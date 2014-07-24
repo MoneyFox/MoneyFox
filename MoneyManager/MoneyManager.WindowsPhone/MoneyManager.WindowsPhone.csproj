@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{50488C20-8D6B-4E5C-B930-8EB1FA801D6F}</ProjectGuid>
+    <ProjectGuid>{01C92D11-9B98-4FF3-BF14-89917369AB92}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MoneyManager</RootNamespace>

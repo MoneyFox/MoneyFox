@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
 
-  <Identity Name="188c84d2-f87a-434c-a970-bf9535fc11b9"
+  <Identity Name="90799049-cc23-4687-a3bf-ac094e1e38be"
             Publisher="CN=Nino"
             Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="188c84d2-f87a-434c-a970-bf9535fc11b9" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="90799049-cc23-4687-a3bf-ac094e1e38be" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>MoneyManager.WindowsPhone</DisplayName>
