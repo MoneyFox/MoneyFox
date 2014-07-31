@@ -1,14 +1,14 @@
+using MoneyManager.DataAccess;
 using MoneyManager.Models;
-using MoneyTracker.Models;
 using MoneyTracker.Src;
 using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MoneyManager.DataAccess
+namespace MoneyManager.ViewModels
 {
     [ImplementPropertyChanged]
-    public class CategoryDAO : AbstractDataAccess<Category>
+    public class CategoryViewModel : AbstractDataAccess<Category>
     {
         public ObservableCollection<Category> AllCategories { get; set; }
 

@@ -5,9 +5,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MoneyManager.DataAccess
+namespace MoneyManager.ViewModels
 {
-    public class StatisticDAO
+    public class StatisticViewModel
     {
         public ObservableCollection<StatisticItem> MonthlyOverview
         {

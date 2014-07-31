@@ -6,18 +6,22 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Windows.Media.Transcoding;
 
-namespace MoneyTracker.ViewModels
+namespace MoneyManager.ViewModels
 {
     [ImplementPropertyChanged]
-    public class TransactionDAO : AbstractDataAccess<FinancialTransaction>
+    public class TransactionViewModel : AbstractDataAccess<FinancialTransaction>
     {
         public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
 
         public ObservableCollection<FinancialTransaction> RelatedTransactions { get; set; }
 
         public FinancialTransaction SelectedTransaction { get; set; }
+
+        private AccountViewModel accountViewModel
+        {
+            get { return new ViewModelLocator().AccountViewModel; }
+        }
 
         protected override void SaveToDb(FinancialTransaction transaction)
         {
@@ -28,7 +32,7 @@ namespace MoneyTracker.ViewModels
                     AllTransactions = new ObservableCollection<FinancialTransaction>();
                 }
 
-                App.AccountViewModel.AddTransactionAmount(transaction);
+                new ViewModelLocator().AccountViewModel.AddTransactionAmount(transaction);
 
                 AllTransactions.Add(transaction);
                 dbConn.Insert(transaction, typeof(FinancialTransaction));
@@ -49,7 +53,7 @@ namespace MoneyTracker.ViewModels
 
                 transaction.Amount = -transaction.Amount;
 
-                App.AccountViewModel.AddTransactionAmount(transaction);
+                accountViewModel.AddTransactionAmount(transaction);
             }
         }
 
@@ -85,7 +89,7 @@ namespace MoneyTracker.ViewModels
 
         public void GetRelatedTransactions()
         {
-            var accountId = App.AccountViewModel.SelectedAccount.Id;
+            var accountId = new ViewModelLocator().AccountViewModel.SelectedAccount.Id;
             RelatedTransactions = new ObservableCollection<FinancialTransaction>(
                 AllTransactions
                     .Where(x => x.ChargedAccountId == accountId).ToList());
@@ -104,7 +108,7 @@ namespace MoneyTracker.ViewModels
             var transactions = GetUnclearedTransactions();
             foreach (var transaction in transactions)
             {
-                App.AccountViewModel.AddTransactionAmount(transaction);
+                accountViewModel.AddTransactionAmount(transaction);
             }
         }
 

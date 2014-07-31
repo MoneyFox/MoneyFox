@@ -1,7 +1,8 @@
-using MoneyTracker.Models;
+using MoneyManager.ViewModels;
 using PropertyChanged;
 using SQLite;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MoneyManager.Models
 {
@@ -9,6 +10,11 @@ namespace MoneyManager.Models
     [ImplementPropertyChanged]
     public class Group
     {
+        private AccountViewModel accountViewModel
+        {
+            get { return new ViewModelLocator().AccountViewModel; }
+        }
+
         [PrimaryKey, AutoIncrement, Indexed]
         public int Id { get; set; }
 
@@ -18,7 +24,7 @@ namespace MoneyManager.Models
         {
             get
             {
-                return App.AccountViewModel.AllAccounts.Where(x => x.GroupId == Id).ToList();
+                return accountViewModel.AllAccounts.Where(x => x.GroupId == Id).ToList();
             }
         }
     }

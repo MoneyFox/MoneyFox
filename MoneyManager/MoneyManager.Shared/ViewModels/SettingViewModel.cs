@@ -5,9 +5,9 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using Windows.Storage;
 
-namespace MoneyManager.DataAccess
+namespace MoneyManager.ViewModels
 {
-    public class SettingDAO : INotifyPropertyChanged
+    public class SettingViewModel : INotifyPropertyChanged
     {
         private const string DbVersionKeyname = "DbVersion";
         private const string CurrencyKeyname = "Currency";

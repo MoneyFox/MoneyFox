@@ -1,15 +1,14 @@
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
-using MoneyTracker.Models;
 using MoneyTracker.Src;
 using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MoneyTracker.ViewModels
+namespace MoneyManager.ViewModels
 {
     [ImplementPropertyChanged]
-    public class GroupDAO : AbstractDataAccess<Group>
+    public class GroupViewModel : AbstractDataAccess<Group>
     {
         public ObservableCollection<Group> AllGroups { get; set; }
 

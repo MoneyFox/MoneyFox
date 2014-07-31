@@ -1,4 +1,6 @@
-﻿using MoneyManager.Models;
+﻿using MoneyManager;
+using MoneyManager.Models;
+using MoneyManager.ViewModels;
 using PropertyChanged;
 using SQLite;
 using System;
@@ -10,6 +12,11 @@ namespace MoneyTracker.Models
     [Table("FinancialTransactions")]
     public class FinancialTransaction
     {
+        private AccountViewModel accountViewModel
+        {
+            get { return new ViewModelLocator().AccountViewModel; }
+        }
+
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
@@ -36,23 +43,23 @@ namespace MoneyTracker.Models
         [Ignore]
         public Account ChargedAccount
         {
-            get { return App.AccountViewModel.AllAccounts.FirstOrDefault(x => x.Id == Id); }
+            get { return accountViewModel.AllAccounts.FirstOrDefault(x => x.Id == Id); }
             set { ChargedAccountId = value.Id; }
         }
 
         [Ignore]
         public Account TargetAccount
         {
-            get { return App.AccountViewModel.AllAccounts.FirstOrDefault(x => x.Id == Id); }
+            get { return accountViewModel.AllAccounts.FirstOrDefault(x => x.Id == Id); }
             set { ChargedAccountId = value.Id; }
         }
 
-        [Ignore]
-        public RecurringTransaction RecurringTransaction
-        {
-            get { return App.RecurrenceTransactionViewModel.AllTransactions.FirstOrDefault(x => x.Id == Id); }
-            set { ReccuringTransactionId = value.Id; }
-        }
+        //[Ignore]
+        //public RecurringTransaction RecurringTransaction
+        //{
+        //    get { return App.RecurrenceTransactionViewModel.AllTransactions.FirstOrDefault(x => x.Id == Id); }
+        //    set { ReccuringTransactionId = value.Id; }
+        //}
 
         [Ignore]
         public bool ClearTransactionNow
