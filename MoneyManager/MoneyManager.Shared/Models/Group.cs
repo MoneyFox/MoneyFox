@@ -1,4 +1,5 @@
 using MoneyManager.ViewModels;
+using MoneyManager.ViewModels.Data;
 using PropertyChanged;
 using SQLite;
 using System.Collections.Generic;

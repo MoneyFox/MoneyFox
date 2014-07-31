@@ -5,7 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MoneyManager.ViewModels
+namespace MoneyManager.ViewModels.Views
 {
     public class StatisticViewModel
     {

@@ -1,11 +1,10 @@
-using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyTracker.Src;
 using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MoneyManager.ViewModels
+namespace MoneyManager.ViewModels.Data
 {
     [ImplementPropertyChanged]
     public class CategoryViewModel : AbstractDataAccess<Category>

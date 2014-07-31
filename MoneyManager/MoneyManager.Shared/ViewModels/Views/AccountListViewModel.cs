@@ -1,4 +1,4 @@
-namespace MoneyManager.ViewModels
+namespace MoneyManager.ViewModels.Views
 {
     public class AccountListViewModel
     {

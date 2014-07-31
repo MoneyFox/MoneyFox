@@ -1,5 +1,4 @@
-﻿using MoneyManager.DataAccess;
-using MoneyTracker.Models;
+﻿using MoneyTracker.Models;
 using MoneyTracker.Src;
 using PropertyChanged;
 using System;
@@ -7,7 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MoneyManager.ViewModels
+namespace MoneyManager.ViewModels.Data
 {
     [ImplementPropertyChanged]
     public class TransactionViewModel : AbstractDataAccess<FinancialTransaction>

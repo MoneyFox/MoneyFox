@@ -1,5 +1,7 @@
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.ViewModels.Data;
+using MoneyManager.ViewModels.Views;
 
 namespace MoneyManager.ViewModels
 {
@@ -14,7 +16,16 @@ namespace MoneyManager.ViewModels
             SimpleIoc.Default.Register<AccountViewModel>();
         }
 
-        #region ViewModels
+        #region DataAccess
+
+        public AccountViewModel AccountViewModel
+        {
+            get { return ServiceLocator.Current.GetInstance<AccountViewModel>(); }
+        }
+
+        #endregion DataAccess
+
+        #region Views
 
         public MainViewModel Main
         {
@@ -26,15 +37,6 @@ namespace MoneyManager.ViewModels
             get { return ServiceLocator.Current.GetInstance<SettingsViewModel>(); }
         }
 
-        #endregion ViewModels
-
-        #region DataAccess
-
-        public AccountViewModel AccountViewModel
-        {
-            get { return ServiceLocator.Current.GetInstance<AccountViewModel>(); }
-        }
-
-        #endregion DataAccess
+        #endregion Views
     }
 }

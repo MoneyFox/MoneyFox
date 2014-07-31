@@ -15,8 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AbstractDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\IDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\FinancialTransaction.cs" />
@@ -33,19 +31,21 @@
     <Compile Include="$(MSBuildThisFileDirectory)Src\DatabaseHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Enumerations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Utils.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AccountListViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AccountViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CategoryViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GroupViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RecurrenceTransactionDAO.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StatisticViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TransactionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AbstractDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\AccountViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\CategoryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\GroupViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\RecurrenceTransactionDAO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\TransactionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLocator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\AccountListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\StatisticViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)DataAccess\" />
     <Folder Include="$(MSBuildThisFileDirectory)UserControls\" />
   </ItemGroup>
   <ItemGroup>

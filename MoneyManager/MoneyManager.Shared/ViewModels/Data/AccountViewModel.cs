@@ -1,12 +1,11 @@
-﻿using MoneyManager.DataAccess;
-using MoneyManager.Models;
+﻿using MoneyManager.Models;
 using MoneyTracker.Models;
 using MoneyTracker.Src;
 using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MoneyManager.ViewModels
+namespace MoneyManager.ViewModels.Data
 {
     [ImplementPropertyChanged]
     public class AccountViewModel : AbstractDataAccess<Account>

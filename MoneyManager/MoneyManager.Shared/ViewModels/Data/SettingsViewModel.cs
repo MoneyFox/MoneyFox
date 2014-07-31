@@ -1,13 +1,13 @@
-﻿using MoneyManager.Annotations;
+using MoneyManager.Annotations;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using Windows.Storage;
 
-namespace MoneyManager.ViewModels
+namespace MoneyManager.ViewModels.Data
 {
-    public class SettingViewModel : INotifyPropertyChanged
+    public class SettingsViewModel : INotifyPropertyChanged
     {
         private const string DbVersionKeyname = "DbVersion";
         private const string CurrencyKeyname = "Currency";
@@ -45,7 +45,7 @@ namespace MoneyManager.ViewModels
 
         #endregion Properties
 
-        private void AddOrUpdateValue(string key, Object value)
+        private void AddOrUpdateValue(string key, object value)
         {
             ApplicationData.Current.RoamingSettings.Values[key] = value;
         }
