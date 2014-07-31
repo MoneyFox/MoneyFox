@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoneyManager.Common;
+using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 

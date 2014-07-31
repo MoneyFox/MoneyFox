@@ -1,4 +1,5 @@
 ﻿using MoneyManager.Models;
+using MoneyManager.Views;
 using MoneyTracker.Src;
 using System;
 using Windows.UI.Popups;

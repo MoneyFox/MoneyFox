@@ -1,4 +1,5 @@
-﻿using MoneyTracker.UserControls;
+﻿using MoneyManager.Common;
+using MoneyTracker.UserControls;
 using Windows.UI.Xaml.Navigation;
 
 namespace MoneyManager.Views

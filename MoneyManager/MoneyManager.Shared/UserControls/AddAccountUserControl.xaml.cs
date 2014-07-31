@@ -1,4 +1,6 @@
-﻿namespace MoneyTracker.UserControls
+﻿using MoneyManager;
+
+namespace MoneyTracker.UserControls
 {
     public sealed partial class AddAccountUserControl
     {

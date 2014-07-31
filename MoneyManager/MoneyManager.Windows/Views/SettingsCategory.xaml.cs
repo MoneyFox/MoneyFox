@@ -1,8 +1,8 @@
-﻿using System;
+﻿// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+using MoneyManager.Common;
+using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace MoneyManager.Views
 {

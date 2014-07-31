@@ -1,4 +1,5 @@
-﻿using MoneyTracker.Src;
+﻿using MoneyManager;
+using MoneyTracker.Src;
 using System;
 using System.Collections.Generic;
 using System.Linq;
