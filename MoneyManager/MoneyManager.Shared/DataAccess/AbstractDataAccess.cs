@@ -1,4 +1,4 @@
-﻿using MoneyTracker.ViewModels;
+﻿using BugSense;
 using System;
 
 namespace MoneyManager.DataAccess

@@ -1,6 +1,6 @@
 ﻿using MoneyTracker.Src;
 
-namespace MoneyTracker.Models
+namespace MoneyManager.Models
 {
     public class Parameters
     {

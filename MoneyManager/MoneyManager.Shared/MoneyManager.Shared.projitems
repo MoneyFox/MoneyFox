@@ -32,16 +32,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\RecurringTransaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Setting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\StatisticOverview.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Annotations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ConnectionFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\CurrencyHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\DatabaseHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Enumerations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Utils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)UserControls\" />
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Styles\AppStyles.xaml">

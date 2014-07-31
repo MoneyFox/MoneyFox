@@ -1,7 +1,9 @@
-﻿using MoneyTracker.Models;
+﻿using MoneyManager.Models;
+using MoneyTracker.Models;
 using MoneyTracker.Src;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MoneyManager.DataAccess
 {

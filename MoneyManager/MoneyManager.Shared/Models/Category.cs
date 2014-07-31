@@ -1,7 +1,6 @@
-using MoneyTracker.Src;
 using PropertyChanged;
 
-namespace MoneyTracker.Models
+namespace MoneyManager.Models
 {
     [ImplementPropertyChanged]
     public class Category

@@ -2,7 +2,7 @@
 using SQLite;
 using System;
 
-namespace MoneyTracker.Models
+namespace MoneyManager.Models
 {
     [ImplementPropertyChanged]
     [Table("RecurringTransactions")]

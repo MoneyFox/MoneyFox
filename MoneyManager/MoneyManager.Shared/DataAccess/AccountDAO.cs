@@ -1,6 +1,8 @@
-﻿using MoneyTracker.Models;
+﻿using MoneyManager.Models;
+using MoneyTracker.Models;
 using MoneyTracker.Src;
 using MoneyTracker.ViewModels;
+using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -41,7 +43,7 @@ namespace MoneyManager.DataAccess
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
-                transactionViewModel.DeleteAssociatedTransactionsFromDatabase(account.Id);
+                transactionDAO.DeleteAssociatedTransactionsFromDatabase(account.Id);
 
                 AllAccounts.Remove(account);
                 dbConn.Delete(account);

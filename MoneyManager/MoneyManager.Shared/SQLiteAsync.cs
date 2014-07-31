@@ -301,7 +301,7 @@ namespace SQLite
 	}
 
 	//
-	// TODO: Bind to AsyncConnection.GetDbConnection instead so that delayed
+	// TODO: Bind to AsyncConnection.GetConnection instead so that delayed
 	// execution can still work after a Pool.Reset.
 	//
 	public class AsyncTableQuery<T>

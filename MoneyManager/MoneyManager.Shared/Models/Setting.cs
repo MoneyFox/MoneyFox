@@ -1,7 +1,7 @@
 ﻿using PropertyChanged;
 using SQLite;
 
-namespace MoneyTracker.Models
+namespace MoneyManager.Models
 {
     [ImplementPropertyChanged]
     [Table("Setting")]

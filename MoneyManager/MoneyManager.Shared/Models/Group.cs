@@ -1,9 +1,9 @@
+using MoneyTracker.Models;
 using PropertyChanged;
 using SQLite;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace MoneyTracker.Models
+namespace MoneyManager.Models
 {
     [Table("Groups")]
     [ImplementPropertyChanged]

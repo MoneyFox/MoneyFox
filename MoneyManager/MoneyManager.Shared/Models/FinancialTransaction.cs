@@ -1,4 +1,5 @@
-﻿using PropertyChanged;
+﻿using MoneyManager.Models;
+using PropertyChanged;
 using SQLite;
 using System;
 using System.Linq;
