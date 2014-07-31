@@ -1,0 +1,24 @@
+﻿<UserControl
+    x:Class="MoneyTracker.UserControls.AddAccountUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Width="Auto">
+
+    <StackPanel>
+        <TextBox Text="{Binding Name, Mode=TwoWay}"
+                 Header="Name" VerticalAlignment="Top"
+                 Margin="12,0,12,12" />
+        <TextBox Text="{Binding Iban, Mode=TwoWay}"
+                 Header="IBAN" VerticalAlignment="Top"
+                 Margin="12,0,12,12" />
+        <TextBox Text="{Binding CurrentBalance, Mode=TwoWay}"
+                 Header="Balance" VerticalAlignment="Top"
+                 Margin="12,0,12,12" InputScope="Number"
+                 TextAlignment="Right" />
+        <TextBox Text="{Binding Note, Mode=TwoWay}"
+                 Header="Notes" VerticalAlignment="Top"
+                 Margin="12,0,12,12" />
+    </StackPanel>
+</UserControl>

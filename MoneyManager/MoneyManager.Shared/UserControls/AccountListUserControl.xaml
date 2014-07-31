@@ -1,0 +1,53 @@
+﻿<UserControl
+    x:Class="MoneyTracker.UserControls.AccountListUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="AccountTemplate">
+            <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
+                        MinWidth="300" Holding="AccountList_Holding">
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="Delete_OnClick" />
+                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" Click="Edit_OnClick" />
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+                <Grid HorizontalAlignment="Stretch">
+                    <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Name}" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding CurrentBalance}"
+                               HorizontalAlignment="Right" TextAlignment="Right" Margin="0,0,5,0" />
+                        <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Currency}"
+                               HorizontalAlignment="Right" TextAlignment="Right" />
+                    </StackPanel>
+                </Grid>
+                <TextBlock Style="{StaticResource MenuItemSmallText}" Text="{Binding Iban}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Total: " Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
+            <TextBlock Text="{Binding TotalBalance, Mode=TwoWay}" Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
+            <TextBlock x:Name="TextBlockCurrency" Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
+        </StackPanel>
+        <ScrollViewer>
+            <ListView Name="AccountList" ItemsSource="{Binding AllAccounts}"
+                  ItemTemplate="{StaticResource AccountTemplate}"
+                  HorizontalAlignment="Stretch" SelectionChanged="AccountList_OnSelectionChanged">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </ScrollViewer>
+    </StackPanel>
+</UserControl>

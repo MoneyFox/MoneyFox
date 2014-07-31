@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="MoneyTracker.UserControls.BarChartUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
+    mc:Ignorable="d"
+    DataContext="{StaticResource StatisticViewModel}"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <chart:RadCartesianChart PaletteName="DefaultLightSelected">
+            <chart:RadCartesianChart.VerticalAxis>
+                <chart:LinearAxis />
+            </chart:RadCartesianChart.VerticalAxis>
+            <chart:RadCartesianChart.HorizontalAxis>
+                <chart:CategoricalAxis />
+            </chart:RadCartesianChart.HorizontalAxis>
+            <chart:BarSeries LegendTitleBinding="{Binding Category}" ItemsSource="{Binding MonthlyOverview}" PaletteMode="DataPoint">
+                <chart:BarSeries.CategoryBinding>
+                    <chart:PropertyNameDataPointBinding PropertyName="Category" />
+                </chart:BarSeries.CategoryBinding>
+                <chart:BarSeries.ValueBinding>
+                    <chart:PropertyNameDataPointBinding PropertyName="Value" />
+                </chart:BarSeries.ValueBinding>
+            </chart:BarSeries>
+        </chart:RadCartesianChart>
+    </Grid>
+</UserControl>

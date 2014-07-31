@@ -1,0 +1,38 @@
+﻿<UserControl
+    x:Class="MoneyTracker.UserControls.TransactionListUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:src="using:MoneyTracker.Src"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <src:CultureConverter x:Key="FormatConverter" />
+        <DataTemplate x:Key="TransactionTemplate">
+            <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
+                        MinWidth="300" Holding="TransactionList_Holding">
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="Delete_OnClick" />
+                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" Click="Edit_OnClick" />
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+                <Grid HorizontalAlignment="Stretch">
+                    <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
+                    <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Amount}"
+                               HorizontalAlignment="Right" TextAlignment="Right" />
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <ListView x:Name="TransactionList" ItemsSource="{Binding RelatedTransactions}"
+                  ItemTemplate="{StaticResource TransactionTemplate}"
+                  HorizontalAlignment="Stretch"
+                  SelectionChanged="TransactionListOnSelectionChanged" />
+    </StackPanel>
+</UserControl>

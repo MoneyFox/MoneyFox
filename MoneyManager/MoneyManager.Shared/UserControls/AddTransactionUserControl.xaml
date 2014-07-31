@@ -1,0 +1,48 @@
+﻿<UserControl
+    x:Class="MoneyTracker.UserControls.AddTransactionUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:src="using:MoneyTracker.Src"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <src:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <src:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <DataTemplate x:Key="TransactionTemplate">
+            <StackPanel Margin="0,0,0,12">
+                <TextBlock Text="{Binding Name}" FontSize="24" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <ScrollViewer>
+        <StackPanel Margin="12,0">
+            <ComboBox Name="CmbChargedAccount"
+                      Header="Charged Account" x:Uid="ChargedAccount"
+                      ItemTemplate="{StaticResource TransactionTemplate}"
+                      SelectedItem="{Binding ChargedAccount, Mode=TwoWay}" />
+            <ComboBox x:Name="CmbTargetAccount" x:Uid="TargetAccount"
+        	          Header="Target Account"
+                      SelectedItem="{Binding TargetAccount, Mode=TwoWay}"
+        	          ItemTemplate="{StaticResource TransactionTemplate}"
+                      Margin="0,0,-0.167,0" Visibility="Collapsed" />
+            <TextBox Text="{Binding Amount, Mode=TwoWay}" Header="Amount"
+                     InputScope="Number" TextAlignment="Right" />
+            <ComboBox x:Name="CmbCategory" Header="Category" x:Uid="CategoryHeader"
+                      ItemTemplate="{StaticResource TransactionTemplate}"
+                      SelectedItem="{Binding Category, Mode=TwoWay}" />
+            <DatePicker Date="{Binding Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}" />
+            <TextBox Header="Note" Text="{Binding Note, Mode=TwoWay}" />
+            <ToggleSwitch x:Name="toggleSwitch" Header="Repeat" x:Uid="Repeat"
+                          VerticalAlignment="Stretch"
+                          IsOn="{Binding IsRecurrence, Mode=TwoWay}" />
+            <StackPanel Visibility="{Binding IsRecurrence, Converter={StaticResource BooleanVisibilityConverter}}">
+                <ComboBox Header="Reccurence" x:Uid="RecurrenceHeader"
+                          x:Name="ComboBoxRecurrenceType" />
+                <DatePicker x:Name="DatePickerEndDate" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
