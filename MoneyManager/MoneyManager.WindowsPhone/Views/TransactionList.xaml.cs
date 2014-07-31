@@ -1,4 +1,6 @@
-﻿namespace MoneyManager.Views
+﻿using MoneyManager.Common;
+
+namespace MoneyManager.Views
 {
     public sealed partial class TransactionList
     {
