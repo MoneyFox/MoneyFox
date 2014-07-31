@@ -1,6 +1,5 @@
-﻿using MoneyTracker.Models;
+﻿using MoneyManager.Models;
 using MoneyTracker.Src;
-using MoneyTracker.Views;
 using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -8,7 +7,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 
-namespace MoneyTracker.UserControls
+namespace MoneyManager.UserControls
 {
     public sealed partial class AccountListUserControl
     {
@@ -17,7 +16,6 @@ namespace MoneyTracker.UserControls
         public AccountListUserControl()
         {
             InitializeComponent();
-            DataContext = App.AccountViewModel;
 
             TextBlockCurrency.Text = App.Settings.Currency;
         }

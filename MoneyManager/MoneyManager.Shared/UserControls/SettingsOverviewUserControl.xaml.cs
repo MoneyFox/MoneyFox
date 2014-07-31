@@ -1,9 +1,9 @@
-﻿using MoneyTracker.Views;
+﻿using MoneyManager.Views;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace MoneyTracker.UserControls
+namespace MoneyManager.UserControls
 {
     public sealed partial class SettingsOverviewUserControl
     {

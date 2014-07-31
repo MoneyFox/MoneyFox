@@ -1,16 +1,16 @@
 ﻿<UserControl
-    x:Class="MoneyTracker.UserControls.TransactionListUserControl"
+    x:Class="MoneyManager.UserControls.TransactionListUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:src="using:MoneyTracker.Src"
+    xmlns:converter="using:Helper.Converter"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignHeight="300" d:DesignWidth="400"
+    DataContext="{Binding Main, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <src:CultureConverter x:Key="FormatConverter" />
+        <converter:CultureConverter x:Key="FormatConverter" />
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
                         MinWidth="300" Holding="TransactionList_Holding">

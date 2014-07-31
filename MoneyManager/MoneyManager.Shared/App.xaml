@@ -5,6 +5,12 @@
     xmlns:viewModels="using:MoneyManager.ViewModels">
 
     <Application.Resources>
-        <viewModels:ViewModelLocator x:Key="Locator" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/AppStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <viewModels:ViewModelLocator x:Key="Locator" />
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,6 +1,6 @@
-﻿using MoneyTracker.Models;
+﻿using MoneyManager.Views;
+using MoneyTracker.Models;
 using MoneyTracker.Src;
-using MoneyTracker.Views;
 using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;

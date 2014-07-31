@@ -1,6 +1,7 @@
-﻿using MoneyTracker.Models;
+﻿using MoneyManager.Models;
+using MoneyManager.ViewModels;
+using MoneyTracker.Models;
 using MoneyTracker.Src;
-using MoneyTracker.Views;
 using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -8,7 +9,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 
-namespace MoneyTracker.UserControls
+namespace MoneyManager.UserControls
 {
     public sealed partial class TransactionListUserControl
     {
@@ -17,15 +18,12 @@ namespace MoneyTracker.UserControls
         public TransactionListUserControl()
         {
             InitializeComponent();
-
-            App.TransactionViewModel.GetRelatedTransactions();
-            DataContext = App.TransactionViewModel;
         }
 
         public FinancialTransaction SelectedTransaction
         {
-            get { return App.TransactionViewModel.SelectedTransaction; }
-            set { App.TransactionViewModel.SelectedTransaction = value; }
+            get { return new ViewModelLocator().TransactionViewModel.SelectedTransaction; }
+            set { new ViewModelLocator().TransactionViewModel.SelectedTransaction = value; }
         }
 
         private void TransactionList_Holding(object sender, HoldingRoutedEventArgs e)

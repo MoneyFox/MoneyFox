@@ -5,11 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:src="using:MoneyTracker.Src"
+    xmlns:converter="using:Helper.Converter"
     mc:Ignorable="d">
 
     <UserControl.Resources>
-        <src:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-        <src:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,12">
                 <TextBlock Text="{Binding Name}" FontSize="24" />

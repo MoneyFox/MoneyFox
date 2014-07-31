@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="MoneyManager.Views.AddAccount"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:MoneyTracker.UserControls"
+    mc:Ignorable="d">
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Accept" x:Uid="Done" Label="Done" Click="Done_Click" />
+            <AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" Click="Cancel_Click" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- TitlePanel -->
+        <StackPanel Grid.Row="0" Margin="24,17,0,28">
+            <TextBlock x:Uid="AccountTitle" Text="Account" Style="{ThemeResource TitleTextBlockStyle}" Typography.Capitals="SmallCaps" />
+            <TextBlock Name="LblTitle" x:Uid="Add" Text="Add" Margin="0,12,0,0" Style="{ThemeResource HeaderTextBlockStyle}" />
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" Name="Test">
+            <userControls:AddAccountUserControl x:Name="AddAccountControl" />
+        </Grid>
+    </Grid>
+</Page>
