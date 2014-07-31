@@ -36,7 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\CategoryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\GroupViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\RecurrenceTransactionDAO.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\SettingViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\TransactionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLocator.cs" />

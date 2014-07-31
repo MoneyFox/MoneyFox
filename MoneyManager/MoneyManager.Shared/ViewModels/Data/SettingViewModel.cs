@@ -7,7 +7,7 @@ using Windows.Storage;
 
 namespace MoneyManager.ViewModels.Data
 {
-    public class SettingsViewModel : INotifyPropertyChanged
+    public class SettingViewModel : INotifyPropertyChanged
     {
         private const string DbVersionKeyname = "DbVersion";
         private const string CurrencyKeyname = "Currency";
