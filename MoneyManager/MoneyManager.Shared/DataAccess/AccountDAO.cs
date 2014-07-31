@@ -1,18 +1,17 @@
 ﻿using MoneyTracker.Models;
 using MoneyTracker.Src;
-using PropertyChanged;
-using System;
+using MoneyTracker.ViewModels;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MoneyTracker.DataAccess
+namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
     public class AccountDAO : AbstractDataAccess<Account>
     {
-        private TransactionViewModel transactionViewModel
+        private TransactionDAO transactionDAO
         {
-            get { return new TransactionViewModel(); }
+            get { return new TransactionDAO(); }
         }
 
         public Account SelectedAccount { get; set; }

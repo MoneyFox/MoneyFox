@@ -1,12 +1,13 @@
-﻿using MoneyTracker.Models;
-using MoneyTracker.Src;
+﻿using MoneyManager.Annotations;
 using System;
+using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
+using System.Runtime.CompilerServices;
+using Windows.Storage;
 
-namespace MoneyTracker.ViewModels
+namespace MoneyManager.DataAccess
 {
-    public class SettingDAO
+    public class SettingDAO : INotifyPropertyChanged
     {
         private const string DbVersionKeyname = "DbVersion";
         private const string CurrencyKeyname = "Currency";
@@ -25,6 +26,7 @@ namespace MoneyTracker.ViewModels
             set
             {
                 AddOrUpdateValue(DbVersionKeyname, value);
+                OnPropertyChanged();
             }
         }
 
@@ -37,6 +39,7 @@ namespace MoneyTracker.ViewModels
             set
             {
                 AddOrUpdateValue(CurrencyKeyname, value);
+                OnPropertyChanged();
             }
         }
 
@@ -44,38 +47,32 @@ namespace MoneyTracker.ViewModels
 
         private void AddOrUpdateValue(string key, Object value)
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
-            {
-                if (dbConn.Table<Setting>().All(item => item.Key != key))
-                {
-                    var t = new Setting { Key = key, Value = value.ToString() };
-                    dbConn.Insert(t, typeof(Setting));
-                }
-
-                var setting = dbConn.Table<Setting>().Single(item => item.Key == key);
-                setting.Value = value.ToString();
-                dbConn.Update(setting, typeof(Setting));
-            }
+            ApplicationData.Current.RoamingSettings.Values[key] = value;
         }
 
         private valueType GetValueOrDefault<valueType>(string key, valueType defaultValue)
         {
             valueType value;
 
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key))
             {
-                if (dbConn.Table<Setting>().Any(item => item.Key == key))
-                {
-                    var selectedItem = dbConn.Table<Setting>().Single(item => item.Key == key);
-                    value = (valueType)Convert.ChangeType(selectedItem.Value, typeof(valueType), CultureInfo.InvariantCulture);
-                }
-                else
-                {
-                    value = defaultValue;
-                }
+                var setting = ApplicationData.Current.RoamingSettings.Values[key];
+                value = (valueType)Convert.ChangeType(setting, typeof(valueType), CultureInfo.InvariantCulture);
             }
-
+            else
+            {
+                value = defaultValue;
+            }
             return value;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

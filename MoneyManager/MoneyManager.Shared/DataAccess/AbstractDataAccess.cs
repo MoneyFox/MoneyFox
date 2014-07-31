@@ -1,7 +1,7 @@
-﻿using BugSense;
+﻿using MoneyTracker.ViewModels;
 using System;
 
-namespace MoneyTracker.ViewModels
+namespace MoneyManager.DataAccess
 {
     public abstract class AbstractDataAccess<T> : IDataAccess<T>
     {

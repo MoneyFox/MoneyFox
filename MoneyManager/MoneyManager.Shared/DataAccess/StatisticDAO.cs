@@ -2,9 +2,8 @@
 using MoneyTracker.Src;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 
-namespace MoneyTracker.ViewModels
+namespace MoneyManager.DataAccess
 {
     public class StatisticDAO
     {

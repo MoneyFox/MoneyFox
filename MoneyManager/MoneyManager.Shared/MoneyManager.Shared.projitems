@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -15,5 +15,41 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AbstractDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AccountDAO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\CategoryDAO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\GroupDAO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\IDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\RecurrenceTransactionDAO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\SettingDAO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\StatisticDAO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\TransactionDAO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\FinancialTransaction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Group.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Parameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\RecurringTransaction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Setting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\StatisticOverview.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\Annotations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\ConnectionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\CurrencyHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\DatabaseHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\Enumerations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)UserControls\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\AppStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
   </ItemGroup>
 </Project>

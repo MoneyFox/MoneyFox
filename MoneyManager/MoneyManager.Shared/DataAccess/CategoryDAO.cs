@@ -1,10 +1,9 @@
 using MoneyTracker.Models;
 using MoneyTracker.Src;
-using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MoneyTracker.ViewModels
+namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
     public class CategoryDAO : AbstractDataAccess<Category>

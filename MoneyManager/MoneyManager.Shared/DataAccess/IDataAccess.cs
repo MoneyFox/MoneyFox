@@ -1,4 +1,4 @@
-﻿namespace MoneyTracker.ViewModels
+﻿namespace MoneyManager.DataAccess
 {
     public interface IDataAccess<T>
     {
