@@ -6,9 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
     mc:Ignorable="d"
-    DataContext="{StaticResource StatisticViewModel}"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignHeight="300" d:DesignWidth="400"
+    DataContext="{Binding Statistic, Source={StaticResource Locator}}">
 
     <Grid>
         <chart:RadCartesianChart PaletteName="DefaultLightSelected">

@@ -186,6 +186,18 @@
     <Reference Include="System.Net.Http.Primitives">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.27-beta\lib\wpa81\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Core">
+      <HintPath>..\..\packages\TelerikUniversalWindowsPreview\Windows Phone 8.1\Telerik.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Chart">
+      <HintPath>..\..\packages\TelerikUniversalWindowsPreview\Windows Phone 8.1\Telerik.UI.Xaml.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Input">
+      <HintPath>..\..\packages\TelerikUniversalWindowsPreview\Windows Phone 8.1\Telerik.UI.Xaml.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Primitives">
+      <HintPath>..\..\packages\TelerikUniversalWindowsPreview\Windows Phone 8.1\Telerik.UI.Xaml.Primitives.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -36,11 +36,12 @@
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Total: " Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
-            <TextBlock Text="{Binding TotalBalance, Mode=TwoWay}" Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
-            <TextBlock x:Name="TextBlockCurrency" Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
+            <TextBlock Text="{Binding AccountViewModel.TotalBalance, Mode=TwoWay}" Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
+            <TextBlock Text="{Binding SettingViewModel.Currency}"
+                       Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
         </StackPanel>
         <ScrollViewer>
-            <ListView Name="AccountList" ItemsSource="{Binding AllAccounts}"
+            <ListView Name="AccountList" ItemsSource="{Binding AccountViewModel.AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
                   HorizontalAlignment="Stretch" SelectionChanged="AccountList_OnSelectionChanged">
                 <ListView.ItemContainerStyle>

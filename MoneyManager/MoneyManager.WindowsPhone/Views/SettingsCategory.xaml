@@ -4,6 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:UserControls="using:MoneyTracker.UserControls"
+    xmlns:userControls="using:MoneyManager.UserControls"
     x:Class="MoneyManager.Views.SettingsCategory"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -37,7 +38,7 @@
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <UserControls:SettingsCategoryUserControl />
+            <userControls:SettingsCategoryUserControl />
         </Grid>
     </Grid>
 </Page>

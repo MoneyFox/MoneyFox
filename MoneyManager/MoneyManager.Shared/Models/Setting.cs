@@ -4,7 +4,7 @@ using SQLite;
 namespace MoneyManager.Models
 {
     [ImplementPropertyChanged]
-    [Table("Setting")]
+    [Table("Settings")]
     public class Setting
     {
         [PrimaryKey, AutoIncrement, Indexed]

@@ -9,5 +9,10 @@ namespace MoneyManager.ViewModels.Views
         {
             get { return new ViewModelLocator().AccountViewModel; }
         }
+
+        public SettingViewModel SettingViewModel
+        {
+            get { return new ViewModelLocator().Settings; }
+        }
     }
 }

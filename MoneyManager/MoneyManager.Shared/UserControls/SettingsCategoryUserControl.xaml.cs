@@ -1,5 +1,6 @@
-﻿using MoneyManager;
-using MoneyManager.Models;
+﻿using MoneyManager.Models;
+using MoneyManager.ViewModels;
+using MoneyManager.ViewModels.Views;
 using MoneyManager.Views;
 using MoneyTracker.Src;
 using System;
@@ -9,15 +10,18 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 
-namespace MoneyTracker.UserControls
+namespace MoneyManager.UserControls
 {
     public sealed partial class SettingsCategoryUserControl
     {
         public SettingsCategoryUserControl()
         {
             InitializeComponent();
+        }
 
-            DataContext = App.CategoryViewModel;
+        public SettingsCategoryViewModel SettingsCategoryViewModel
+        {
+            get { return new ViewModelLocator().SettingsCategory; }
         }
 
         private async void CategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -48,7 +52,7 @@ namespace MoneyTracker.UserControls
 
             if (result.Label == Utilities.GetTranslation("YesLabel"))
             {
-                App.CategoryViewModel.Delete(category);
+                SettingsCategoryViewModel.CategoryViewModel.Delete(category);
             }
         }
 

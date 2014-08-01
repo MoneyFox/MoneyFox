@@ -1,4 +1,6 @@
 ﻿using MoneyManager.Models;
+using MoneyManager.ViewModels;
+using MoneyManager.ViewModels.Data;
 using MoneyTracker.Src;
 using Windows.UI.Xaml.Controls;
 
@@ -11,6 +13,11 @@ namespace MoneyManager.Views
         public CategoryDialog()
         {
             InitializeComponent();
+        }
+
+        public CategoryViewModel CategorievViewModel
+        {
+            get { return new ViewModelLocator().CategoryViewModel; }
         }
 
         public CategoryDialog(Category category)
@@ -26,12 +33,12 @@ namespace MoneyManager.Views
             if (categoryToUpdate == null)
             {
                 var category = new Category { Name = TextboxCategoryName.Text };
-                App.CategoryViewModel.Save(category);
+                CategorievViewModel.Save(category);
             }
             else
             {
                 categoryToUpdate.Name = TextboxCategoryName.Text;
-                App.CategoryViewModel.Update(categoryToUpdate);
+                CategorievViewModel.Update(categoryToUpdate);
             }
         }
     }

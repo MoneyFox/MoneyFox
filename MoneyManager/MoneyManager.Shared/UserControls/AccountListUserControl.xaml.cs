@@ -1,4 +1,6 @@
 ﻿using MoneyManager.Models;
+using MoneyManager.ViewModels;
+using MoneyManager.ViewModels.Data;
 using MoneyManager.Views;
 using MoneyTracker.Src;
 using System;
@@ -17,8 +19,11 @@ namespace MoneyManager.UserControls
         public AccountListUserControl()
         {
             InitializeComponent();
+        }
 
-            TextBlockCurrency.Text = App.Settings.Currency;
+        public AccountViewModel accountViewModel
+        {
+            get { return new ViewModelLocator().AccountViewModel; }
         }
 
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)
@@ -45,14 +50,14 @@ namespace MoneyManager.UserControls
 
             if (result.Label == Utilities.GetTranslation("YesLabel"))
             {
-                App.AccountViewModel.Delete(account);
+                accountViewModel.Delete(account);
             }
         }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement)sender;
-            App.AccountViewModel.SelectedAccount = element.DataContext as Account;
+            accountViewModel.SelectedAccount = element.DataContext as Account;
             parameters.Edit = true;
             ((Frame)Window.Current.Content).Navigate(typeof(AddAccount), parameters);
         }
@@ -61,7 +66,7 @@ namespace MoneyManager.UserControls
         {
             if (AccountList.SelectedItem != null)
             {
-                App.AccountViewModel.SelectedAccount = AccountList.SelectedItem as Account;
+                accountViewModel.SelectedAccount = AccountList.SelectedItem as Account;
                 ((Frame)Window.Current.Content).Navigate(typeof(TransactionList));
                 AccountList.SelectedItem = null;
             }

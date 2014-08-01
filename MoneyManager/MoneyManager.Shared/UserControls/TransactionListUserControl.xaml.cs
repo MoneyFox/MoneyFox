@@ -1,5 +1,6 @@
 ﻿using MoneyManager.Models;
 using MoneyManager.ViewModels;
+using MoneyManager.ViewModels.Data;
 using MoneyManager.Views;
 using MoneyTracker.Src;
 using System;
@@ -18,6 +19,11 @@ namespace MoneyManager.UserControls
         public TransactionListUserControl()
         {
             InitializeComponent();
+        }
+
+        private TransactionViewModel transactionViewModel
+        {
+            get { return new ViewModelLocator().TransactionViewModel; }
         }
 
         public FinancialTransaction SelectedTransaction
@@ -50,7 +56,7 @@ namespace MoneyManager.UserControls
 
             if (result.Label == Utilities.GetTranslation("YesLabel"))
             {
-                App.TransactionViewModel.Delete(transaction);
+                transactionViewModel.Delete(transaction);
             }
         }
 

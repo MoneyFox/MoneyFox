@@ -1,10 +1,11 @@
 ﻿using MoneyManager.Common;
 using MoneyManager.Models;
+using MoneyManager.ViewModels;
+using MoneyManager.ViewModels.Data;
 using MoneyTracker.Src;
 using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Navigation;
 
 namespace MoneyManager.Views
 {
@@ -25,26 +26,28 @@ namespace MoneyManager.Views
             get { return navigationHelper; }
         }
 
-        public FinancialTransaction SelectedTransaction
+        private FinancialTransaction selectedTransaction
         {
-            get { return App.TransactionViewModel.SelectedTransaction; }
+            get { return new ViewModelLocator().TransactionViewModel.SelectedTransaction; }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private TransactionViewModel transactionViewModel
         {
-            navigationHelper.OnNavigatedTo(e);
-            parameters = e.Parameter as Parameters;
+            get { return new ViewModelLocator().TransactionViewModel; }
+        }
 
-            AddTransactionControl.AdjustForm(parameters.TransactionType);
+        private RecurrenceTransactionViewModel recurrenceTransactionViewModel
+        {
+            get { return new ViewModelLocator().RecurrenceTransactionViewModel; }
         }
 
         private async void Done_Click(object sender, RoutedEventArgs e)
         {
-            SelectedTransaction.Type = (int)parameters.TransactionType;
+            selectedTransaction.Type = (int)parameters.TransactionType;
 
-            if (SelectedTransaction.ChargedAccountId == 0 ||
+            if (selectedTransaction.ChargedAccountId == 0 ||
                 (parameters.TransactionType == TransactionType.Transfer
-                && SelectedTransaction.TargetAccountId == 0))
+                && selectedTransaction.TargetAccountId == 0))
             {
                 await new MessageDialog(Utilities.GetTranslation("AccountMissingMessage")).ShowAsync();
                 return;
@@ -53,17 +56,16 @@ namespace MoneyManager.Views
             if (parameters.TransactionType == TransactionType.Spending
                 || parameters.TransactionType == TransactionType.Transfer)
             {
-                App.TransactionViewModel.SelectedTransaction.Amount =
-                    -App.TransactionViewModel.SelectedTransaction.Amount;
+                selectedTransaction.Amount = -selectedTransaction.Amount;
             }
 
             if (parameters.Edit)
             {
-                App.TransactionViewModel.Update(App.TransactionViewModel.SelectedTransaction);
+                transactionViewModel.Update(selectedTransaction);
             }
             else
             {
-                App.TransactionViewModel.Save(App.TransactionViewModel.SelectedTransaction);
+                transactionViewModel.Save(selectedTransaction);
                 CreateRecurringTransaction();
             }
             NavigationHelper.GoBack();
@@ -71,18 +73,18 @@ namespace MoneyManager.Views
 
         private void CreateRecurringTransaction()
         {
-            if (App.TransactionViewModel.SelectedTransaction.IsRecurrence)
+            if (selectedTransaction.IsRecurrence)
             {
                 var recurrenceTransaction = new RecurringTransaction
                 {
-                    TransactionId = SelectedTransaction.Id,
-                    StartDate = SelectedTransaction.Date,
+                    TransactionId = selectedTransaction.Id,
+                    StartDate = selectedTransaction.Date,
                     EndDate = AddTransactionControl.GetEndDate(),
                     RecurringType = AddTransactionControl.GetRecurrenceType()
                 };
-                App.RecurrenceTransactionViewModel.Save(recurrenceTransaction);
-                App.TransactionViewModel.SelectedTransaction.ReccuringTransactionId = recurrenceTransaction.Id;
-                App.TransactionViewModel.Update(App.TransactionViewModel.SelectedTransaction);
+                recurrenceTransactionViewModel.Save(recurrenceTransaction);
+                selectedTransaction.ReccuringTransactionId = recurrenceTransaction.Id;
+                transactionViewModel.Update(selectedTransaction);
             }
         }
 

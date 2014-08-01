@@ -20,7 +20,10 @@ namespace MoneyManager.ViewModels
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<AddAccountViewModel>();
+            SimpleIoc.Default.Register<AddAccountUserControlViewModel>();
             SimpleIoc.Default.Register<AddTransactionViewModel>();
+            SimpleIoc.Default.Register<StatisticViewModel>();
+            SimpleIoc.Default.Register<SettingsCategoryViewModel>();
         }
 
         #region DataAccess
@@ -50,6 +53,16 @@ namespace MoneyManager.ViewModels
             get { return ServiceLocator.Current.GetInstance<TransactionViewModel>(); }
         }
 
+        public SettingViewModel Settings
+        {
+            get { return ServiceLocator.Current.GetInstance<SettingViewModel>(); }
+        }
+
+        public SettingsCategoryViewModel SettingsCategory
+        {
+            get { return ServiceLocator.Current.GetInstance<SettingsCategoryViewModel>(); }
+        }
+
         #endregion DataAccess
 
         #region Views
@@ -59,19 +72,24 @@ namespace MoneyManager.ViewModels
             get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
         }
 
-        public AddAccountViewModel AddAccountViewModel
+        public AddAccountViewModel AddAccount
         {
-            get { ServiceLocator.Current.GetInstance<AddAccountViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>(); }
         }
 
-        public AddTransactionViewModel AddTransactionViewModel
+        public AddAccountUserControlViewModel AddAccountUserControl
+        {
+            get { return ServiceLocator.Current.GetInstance<AddAccountUserControlViewModel>(); }
+        }
+
+        public AddTransactionViewModel AddTransaction
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
-        public SettingViewModel Setting
+        public StatisticViewModel Statistic
         {
-            get { return ServiceLocator.Current.GetInstance<SettingViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<StatisticViewModel>(); }
         }
 
         #endregion Views

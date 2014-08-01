@@ -11,7 +11,6 @@ namespace MoneyManager.Views
     public sealed partial class AddAccount
     {
         private readonly NavigationHelper navigationHelper;
-        private Parameters parameters = new Parameters();
 
         public AddAccount()
         {
@@ -32,17 +31,11 @@ namespace MoneyManager.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
-            parameters = e.Parameter as Parameters;
-
-            if (parameters.Edit)
-            {
-                LblTitle.Text = Utilities.GetTranslation("EditTitle");
-            }
         }
 
         private void Done_Click(object sender, RoutedEventArgs e)
         {
-            var isEditMode = new ViewModelLocator().AddAccountViewModel.IsEditMode;
+            var isEditMode = new ViewModelLocator().AddAccount.IsEditMode;
 
             if (isEditMode)
             {
@@ -50,7 +43,7 @@ namespace MoneyManager.Views
             }
             else
             {
-                SelectedAccount.Currency = new ViewModelLocator().Setting.Currency;
+                SelectedAccount.Currency = new ViewModelLocator().Settings.Currency;
                 new ViewModelLocator().AccountViewModel.Save(SelectedAccount);
             }
             NavigationHelper.GoBack();
