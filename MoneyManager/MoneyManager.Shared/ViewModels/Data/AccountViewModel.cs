@@ -1,5 +1,4 @@
 ﻿using MoneyManager.Models;
-using MoneyTracker.Models;
 using MoneyTracker.Src;
 using PropertyChanged;
 using System.Collections.ObjectModel;

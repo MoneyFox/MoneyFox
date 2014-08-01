@@ -1,5 +1,6 @@
 ﻿using MoneyManager.Common;
 using MoneyManager.Models;
+using MoneyManager.ViewModels;
 using MoneyTracker.Src;
 using System;
 using Windows.UI.Xaml;
@@ -23,6 +24,11 @@ namespace MoneyManager.Views
             get { return navigationHelper; }
         }
 
+        public Account SelectedAccount
+        {
+            get { return new ViewModelLocator().AccountViewModel.SelectedAccount; }
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
@@ -36,14 +42,16 @@ namespace MoneyManager.Views
 
         private void Done_Click(object sender, RoutedEventArgs e)
         {
-            if (parameters != null && Convert.ToBoolean(parameters.Edit))
+            var isEditMode = new ViewModelLocator().AddAccountViewModel.IsEditMode;
+
+            if (isEditMode)
             {
-                App.AccountViewModel.Update(App.AccountViewModel.SelectedAccount);
+                new ViewModelLocator().AccountViewModel.Update(SelectedAccount);
             }
             else
             {
-                App.AccountViewModel.SelectedAccount.Currency = App.Settings.Currency;
-                App.AccountViewModel.Save(App.AccountViewModel.SelectedAccount);
+                SelectedAccount.Currency = new ViewModelLocator().Setting.Currency;
+                new ViewModelLocator().AccountViewModel.Save(SelectedAccount);
             }
             NavigationHelper.GoBack();
         }

@@ -1,4 +1,4 @@
-﻿using MoneyTracker.Models;
+﻿using MoneyManager.Models;
 using MoneyTracker.Src;
 using PropertyChanged;
 using System;

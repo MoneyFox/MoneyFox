@@ -258,4 +258,13 @@
   <data name="SpentLabel" xml:space="preserve">
     <value>spent</value>
   </data>
+  <data name="Balance.Header" xml:space="preserve">
+    <value>balance</value>
+  </data>
+  <data name="Iban.Header" xml:space="preserve">
+    <value>iban</value>
+  </data>
+  <data name="Notes.Header" xml:space="preserve">
+    <value>notes</value>
+  </data>
 </root>

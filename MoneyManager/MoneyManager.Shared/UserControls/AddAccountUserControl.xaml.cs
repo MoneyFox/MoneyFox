@@ -1,14 +1,10 @@
-﻿using MoneyManager;
-
-namespace MoneyTracker.UserControls
+﻿namespace MoneyManager.UserControls
 {
     public sealed partial class AddAccountUserControl
     {
         public AddAccountUserControl()
         {
             InitializeComponent();
-
-            DataContext = App.AccountViewModel.SelectedAccount;
         }
     }
 }

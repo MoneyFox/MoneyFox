@@ -1,21 +1,31 @@
-﻿using MoneyManager;
-using MoneyManager.Models;
-using MoneyManager.ViewModels;
+﻿using MoneyManager.ViewModels;
 using MoneyManager.ViewModels.Data;
 using PropertyChanged;
 using SQLite;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MoneyTracker.Models
+namespace MoneyManager.Models
 {
     [ImplementPropertyChanged]
     [Table("FinancialTransactions")]
     public class FinancialTransaction
     {
-        private AccountViewModel accountViewModel
+        public FinancialTransaction()
         {
-            get { return new ViewModelLocator().AccountViewModel; }
+            Date = DateTime.Now;
+        }
+
+        private IEnumerable<Account> allAccounts
+        {
+            get { return new ViewModelLocator().AccountViewModel.AllAccounts; }
+        }
+
+        private IEnumerable<Category> allCategories
+        {
+            get { return new ViewModelLocator().CategoryViewModel.AllCategories; }
         }
 
         [PrimaryKey, AutoIncrement]
@@ -31,6 +41,8 @@ namespace MoneyTracker.Models
 
         public string Currency { get; set; }
 
+        public int CategoryId { get; set; }
+
         public bool Cleared { get; set; }
 
         public int Type { get; set; }
@@ -44,15 +56,22 @@ namespace MoneyTracker.Models
         [Ignore]
         public Account ChargedAccount
         {
-            get { return accountViewModel.AllAccounts.FirstOrDefault(x => x.Id == Id); }
+            get { return allAccounts.FirstOrDefault(x => x.Id == ChargedAccountId); }
             set { ChargedAccountId = value.Id; }
         }
 
         [Ignore]
         public Account TargetAccount
         {
-            get { return accountViewModel.AllAccounts.FirstOrDefault(x => x.Id == Id); }
+            get { return allAccounts.FirstOrDefault(x => x.Id == TargetAccountId); }
             set { ChargedAccountId = value.Id; }
+        }
+
+        [Ignore]
+        public Category Category
+        {
+            get { return allCategories.FirstOrDefault(x => x.Id == CategoryId); }
+            set { CategoryId = value.Id; }
         }
 
         //[Ignore]

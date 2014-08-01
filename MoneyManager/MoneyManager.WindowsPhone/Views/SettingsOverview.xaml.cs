@@ -1,4 +1,5 @@
 ﻿using MoneyManager.Common;
+using MoneyManager.UserControls;
 using MoneyTracker.UserControls;
 using Windows.UI.Xaml.Navigation;
 

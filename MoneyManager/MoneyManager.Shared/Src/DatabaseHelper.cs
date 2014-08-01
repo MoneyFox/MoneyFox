@@ -1,5 +1,4 @@
 ﻿using MoneyManager.Models;
-using MoneyTracker.Models;
 using System.Threading.Tasks;
 
 namespace MoneyTracker.Src
