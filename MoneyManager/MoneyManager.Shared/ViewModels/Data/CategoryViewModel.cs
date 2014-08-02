@@ -11,6 +11,11 @@ namespace MoneyManager.ViewModels.Data
     {
         public ObservableCollection<Category> AllCategories { get; set; }
 
+        public CategoryViewModel()
+        {
+            LoadList();
+        }
+
         protected override void SaveToDb(Category category)
         {
             if (AllCategories == null)
