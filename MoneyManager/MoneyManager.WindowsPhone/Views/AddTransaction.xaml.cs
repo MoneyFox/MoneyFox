@@ -1,8 +1,8 @@
 ﻿using MoneyManager.Common;
 using MoneyManager.Models;
+using MoneyManager.Src;
 using MoneyManager.ViewModels;
 using MoneyManager.ViewModels.Data;
-using MoneyTracker.Src;
 using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;

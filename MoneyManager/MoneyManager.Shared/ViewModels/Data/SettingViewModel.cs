@@ -1,4 +1,4 @@
-using MoneyManager.Annotations;
+using MoneyManager.Src;
 using System;
 using System.ComponentModel;
 using System.Globalization;

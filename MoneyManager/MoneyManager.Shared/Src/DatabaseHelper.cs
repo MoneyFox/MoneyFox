@@ -1,7 +1,7 @@
 ﻿using MoneyManager.Models;
 using System.Threading.Tasks;
 
-namespace MoneyTracker.Src
+namespace MoneyManager.Src
 {
     public class DatabaseHelper
     {

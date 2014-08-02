@@ -1,5 +1,5 @@
 ﻿using MoneyManager.Models;
-using MoneyTracker.Src;
+using MoneyManager.Src;
 using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,6 +9,11 @@ namespace MoneyManager.ViewModels.Data
     [ImplementPropertyChanged]
     public class AccountViewModel : AbstractDataAccess<Account>
     {
+        public AccountViewModel()
+        {
+            GetListFromDb();
+        }
+
         private TransactionViewModel TransactionViewModel
         {
             get { return new TransactionViewModel(); }

@@ -1,5 +1,5 @@
 ﻿using MoneyManager;
-using MoneyTracker.Src;
+using MoneyManager.Src;
 using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml;

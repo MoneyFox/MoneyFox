@@ -1,7 +1,7 @@
 ﻿using MoneyManager.Models;
+using MoneyManager.Src;
 using MoneyManager.ViewModels;
 using MoneyManager.ViewModels.Data;
-using MoneyTracker.Src;
 using Windows.UI.Xaml.Controls;
 
 namespace MoneyManager.Views

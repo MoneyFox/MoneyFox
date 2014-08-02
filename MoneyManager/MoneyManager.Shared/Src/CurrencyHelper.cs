@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace MoneyTracker.Src
+namespace MoneyManager.Src
 {
     public class CurrencyHelper
     {

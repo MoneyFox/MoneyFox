@@ -1,14 +1,25 @@
+using GalaSoft.MvvmLight;
+using MoneyManager.Models;
+using MoneyManager.ViewModels.Data;
+using System.Collections.ObjectModel;
+
 namespace MoneyManager.ViewModels.Views
 {
-    public class AccountListViewModel
+    public class AccountListViewModel : ViewModelBase
     {
-        public AccountListViewModel()
+        public ObservableCollection<Account> AllAccounts
         {
-            //AccountViewModel = new RelayCommand(LoadAccountList);
+            get { return new ViewModelLocator().AccountViewModel.AllAccounts; }
         }
 
-        private void LoadAccountList()
+        public AccountViewModel AccountViewModel
         {
+            get { return new ViewModelLocator().AccountViewModel; }
+        }
+
+        public SettingViewModel SettingViewModel
+        {
+            get { return new ViewModelLocator().Settings; }
         }
     }
 }

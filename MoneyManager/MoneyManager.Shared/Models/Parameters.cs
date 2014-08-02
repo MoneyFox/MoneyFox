@@ -1,4 +1,4 @@
-﻿using MoneyTracker.Src;
+﻿using MoneyManager.Src;
 
 namespace MoneyManager.Models
 {

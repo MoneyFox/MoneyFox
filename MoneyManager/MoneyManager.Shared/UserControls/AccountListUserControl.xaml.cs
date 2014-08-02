@@ -1,8 +1,8 @@
 ﻿using MoneyManager.Models;
+using MoneyManager.Src;
 using MoneyManager.ViewModels;
 using MoneyManager.ViewModels.Data;
 using MoneyManager.Views;
-using MoneyTracker.Src;
 using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -21,7 +21,7 @@ namespace MoneyManager.UserControls
             InitializeComponent();
         }
 
-        public AccountViewModel accountViewModel
+        private AccountViewModel accountViewModel
         {
             get { return new ViewModelLocator().AccountViewModel; }
         }

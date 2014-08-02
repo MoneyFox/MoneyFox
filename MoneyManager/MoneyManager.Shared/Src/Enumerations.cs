@@ -1,4 +1,4 @@
-﻿namespace MoneyTracker.Src
+﻿namespace MoneyManager.Src
 {
     public enum TransactionType
     {

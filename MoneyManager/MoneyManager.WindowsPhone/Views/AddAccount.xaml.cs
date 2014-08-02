@@ -1,7 +1,6 @@
 ﻿using MoneyManager.Common;
 using MoneyManager.Models;
 using MoneyManager.ViewModels;
-using MoneyTracker.Src;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;

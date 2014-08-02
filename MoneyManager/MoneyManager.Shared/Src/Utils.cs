@@ -1,7 +1,6 @@
-﻿using System;
-using Windows.ApplicationModel.Resources;
+﻿using Windows.ApplicationModel.Resources;
 
-namespace MoneyTracker.Src
+namespace MoneyManager.Src
 {
     public class Utilities
     {

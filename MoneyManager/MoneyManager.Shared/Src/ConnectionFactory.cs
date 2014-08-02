@@ -2,12 +2,12 @@
 using System.IO;
 using Windows.Storage;
 
-namespace MoneyTracker.Src
+namespace MoneyManager.Src
 {
     public static class ConnectionFactory
     {
         private static readonly string _dbPath = Path.Combine(
-            Path.Combine(ApplicationData.Current.LocalFolder.Path, "moneytracker.sqlite"));
+            Path.Combine(ApplicationData.Current.LocalFolder.Path, "moneymanager.sqlite"));
 
         public static SQLiteConnection GetDbConnection()
         {

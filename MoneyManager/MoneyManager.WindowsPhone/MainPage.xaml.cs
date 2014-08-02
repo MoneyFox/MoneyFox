@@ -1,31 +1,71 @@
-﻿using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
+﻿using MoneyManager.Models;
+using MoneyManager.Src;
+using MoneyManager.ViewModels;
+using MoneyManager.Views;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyManager
 {
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage
     {
+        private readonly Parameters parameters = new Parameters();
+
         public MainPage()
         {
-            this.InitializeComponent();
-
-            this.NavigationCacheMode = NavigationCacheMode.Required;
+            InitializeComponent();
         }
 
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private Account selectedAccount
         {
-            // TODO: Prepare page for display here.
+            get { return new ViewModelLocator().Main.SelectedAccount; }
+            set { new ViewModelLocator().Main.SelectedAccount = value; }
+        }
 
-            // TODO: If your application contains multiple pages, ensure that you are
-            // handling the hardware Back button by registering for the
-            // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
-            // If you are using the NavigationHelper provided by some templates,
-            // this event is handled for you.
+        private FinancialTransaction selectedTransaction
+        {
+            get { return new ViewModelLocator().Main.SelectedTransaction; }
+            set { new ViewModelLocator().Main.SelectedTransaction = value; }
+        }
+
+        private void AddAccount_Click(object sender, RoutedEventArgs e)
+        {
+            selectedAccount = new Account();
+            Frame.Navigate(typeof(AddAccount));
+        }
+
+        private void AddTransaction_OnClick(object sender, RoutedEventArgs e)
+        {
+            selectedTransaction = new FinancialTransaction();
+
+            switch ((e.OriginalSource as MenuFlyoutItem).Text)
+            {
+                case "spending":
+                    parameters.TransactionType = TransactionType.Spending;
+                    break;
+
+                case "income":
+                    parameters.TransactionType = TransactionType.Income;
+                    break;
+
+                case "transfer":
+                    parameters.TransactionType = TransactionType.Transfer;
+                    break;
+
+                case "refund":
+                    parameters.TransactionType = TransactionType.Refund;
+                    break;
+
+                default:
+                    break;
+            }
+
+            Frame.Navigate(typeof(AddTransaction), parameters);
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SettingsOverview));
         }
     }
 }
