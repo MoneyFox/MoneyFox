@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Models;
 using MoneyManager.Src;
+using MoneyManager.ViewModels;
 using MoneyManager.ViewModels.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,14 +9,18 @@ using System.Threading.Tasks;
 namespace MoneyManager.Windows.Test.ViewModels
 {
     [TestClass]
-    public class GroupViewModelTest
+    public class groupviewModelTest
     {
         private Group group;
+
+        private GroupViewModel groupviewModel
+        {
+            get { return new ViewModelLocator().GroupViewModel; }
+        }
 
         [TestInitialize]
         public async Task InitTests()
         {
-            App.GroupViewModel = new GroupViewModel();
             await DatabaseHelper.CreateDatabase();
 
             using (var dbConn = ConnectionFactory.GetDbConnection())
@@ -32,7 +37,7 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestMethod]
         public void SaveGroupTest()
         {
-            App.GroupViewModel.Save(group);
+            groupviewModel.Save(group);
 
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
@@ -44,13 +49,13 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestMethod]
         public void LoadGroupListTest()
         {
-            App.GroupViewModel.Save(group);
-            App.GroupViewModel.Save(group);
-            Assert.AreEqual(App.GroupViewModel.AllGroups.Count, 2);
+            groupviewModel.Save(group);
+            groupviewModel.Save(group);
+            Assert.AreEqual(groupviewModel.AllGroups.Count, 2);
 
-            App.GroupViewModel.AllGroups = null;
-            App.GroupViewModel.LoadList();
-            Assert.AreEqual(App.GroupViewModel.AllGroups.Count, 2);
+            groupviewModel.AllGroups = null;
+            groupviewModel.LoadList();
+            Assert.AreEqual(groupviewModel.AllGroups.Count, 2);
         }
 
         [TestMethod]
@@ -58,14 +63,14 @@ namespace MoneyManager.Windows.Test.ViewModels
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
-                App.GroupViewModel.Save(group);
-                Assert.AreEqual(App.GroupViewModel.AllGroups.Count, 1);
+                groupviewModel.Save(group);
+                Assert.AreEqual(groupviewModel.AllGroups.Count, 1);
 
                 string newName = "This is a new Name";
 
                 group = dbConn.Table<Group>().First();
                 group.Name = newName;
-                App.GroupViewModel.Update(group);
+                groupviewModel.Update(group);
 
                 Assert.AreEqual(newName, dbConn.Table<Group>().First().Name);
             }
@@ -74,11 +79,11 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestMethod]
         public void DeleteGroupTest()
         {
-            App.GroupViewModel.Save(group);
-            Assert.IsTrue(App.GroupViewModel.AllGroups.Contains(group));
+            groupviewModel.Save(group);
+            Assert.IsTrue(groupviewModel.AllGroups.Contains(group));
 
-            App.GroupViewModel.Delete(group);
-            Assert.IsFalse(App.GroupViewModel.AllGroups.Contains(group));
+            groupviewModel.Delete(group);
+            Assert.IsFalse(groupviewModel.AllGroups.Contains(group));
         }
     }
 }

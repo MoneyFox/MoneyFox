@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 namespace MoneyManager.Windows.Test.ViewModels
 {
     [TestClass]
-    public class accountViewModelTest
+    public class AccountViewModelTest
     {
         private Account account;
 
-        private accountViewModel accountViewModel
+        private AccountViewModel accountViewModel
         {
-            get { return new ViewModelLocator().accountViewModel; }
+            get { return new ViewModelLocator().AccountViewModel; }
         }
 
         [TestInitialize]

@@ -12,7 +12,7 @@ namespace MoneyManager.Windows.Test.Src
         {
             var connection = ConnectionFactory.GetDbConnection();
             Assert.IsInstanceOfType(connection, typeof(SQLiteConnection));
-            Assert.IsTrue(connection.DatabasePath.Contains("moneytracker.sqlite"));
+            Assert.IsTrue(connection.DatabasePath.Contains("moneymanager.sqlite"));
         }
 
         [TestMethod]

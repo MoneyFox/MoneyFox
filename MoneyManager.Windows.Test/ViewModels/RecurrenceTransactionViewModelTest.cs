@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Models;
 using MoneyManager.Src;
+using MoneyManager.ViewModels;
 using MoneyManager.ViewModels.Data;
 using System;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace MoneyManager.Windows.Test.ViewModels
@@ -15,6 +15,11 @@ namespace MoneyManager.Windows.Test.ViewModels
         private FinancialTransaction transaction;
         private RecurringTransaction recurringTransaction;
 
+        private RecurrenceTransactionViewModel recurrenceTransactionViewModel
+        {
+            get { return new ViewModelLocator().RecurrenceTransactionViewModel; }
+        }
+
         [TestInitialize]
         public async Task InitTest()
         {
@@ -24,12 +29,6 @@ namespace MoneyManager.Windows.Test.ViewModels
             {
                 dbConn.DeleteAll<RecurringTransaction>();
             }
-
-            App.RecurrenceTransactionViewModel = new RecurrenceTransactionViewModel();
-            transactionViewModel = new TransactionViewModel
-            {
-                AllTransactions = new ObservableCollection<FinancialTransaction>()
-            };
 
             CreateTestData();
         }
@@ -70,9 +69,9 @@ namespace MoneyManager.Windows.Test.ViewModels
                 EndDate = DateTime.Now.AddYears(1),
             };
 
-            App.RecurrenceTransactionViewModel.Save(recurringTransaction);
+            recurrenceTransactionViewModel.Save(recurringTransaction);
 
-            Assert.IsTrue(App.RecurrenceTransactionViewModel.AllTransactions.Contains(recurringTransaction));
+            Assert.IsTrue(recurrenceTransactionViewModel.AllTransactions.Contains(recurringTransaction));
         }
 
         [TestMethod]
@@ -80,25 +79,25 @@ namespace MoneyManager.Windows.Test.ViewModels
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
-                App.RecurrenceTransactionViewModel.Save(recurringTransaction);
-                App.RecurrenceTransactionViewModel.Save(recurringTransaction);
-                Assert.AreEqual(2, App.RecurrenceTransactionViewModel.AllTransactions.Count);
+                recurrenceTransactionViewModel.Save(recurringTransaction);
+                recurrenceTransactionViewModel.Save(recurringTransaction);
+                Assert.AreEqual(2, recurrenceTransactionViewModel.AllTransactions.Count);
 
-                App.RecurrenceTransactionViewModel.AllTransactions = null;
-                App.RecurrenceTransactionViewModel.LoadList();
-                Assert.AreEqual(2, App.RecurrenceTransactionViewModel.AllTransactions.Count);
+                recurrenceTransactionViewModel.AllTransactions = null;
+                recurrenceTransactionViewModel.LoadList();
+                Assert.AreEqual(2, recurrenceTransactionViewModel.AllTransactions.Count);
             }
         }
 
         [TestMethod]
         public void UpdateRecurringTransactionTest()
         {
-            App.RecurrenceTransactionViewModel.Save(recurringTransaction);
-            Assert.IsTrue(App.RecurrenceTransactionViewModel.AllTransactions.Contains(recurringTransaction));
+            recurrenceTransactionViewModel.Save(recurringTransaction);
+            Assert.IsTrue(recurrenceTransactionViewModel.AllTransactions.Contains(recurringTransaction));
 
             var newStartdate = new DateTime(1992, 1, 31);
             recurringTransaction.StartDate = newStartdate;
-            App.RecurrenceTransactionViewModel.Update(recurringTransaction);
+            recurrenceTransactionViewModel.Update(recurringTransaction);
 
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
@@ -109,11 +108,11 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestMethod]
         public void DeleteRecurrenceTransactionTest()
         {
-            App.RecurrenceTransactionViewModel.Save(recurringTransaction);
-            Assert.IsTrue(App.RecurrenceTransactionViewModel.AllTransactions.Contains(recurringTransaction));
+            recurrenceTransactionViewModel.Save(recurringTransaction);
+            Assert.IsTrue(recurrenceTransactionViewModel.AllTransactions.Contains(recurringTransaction));
 
-            App.RecurrenceTransactionViewModel.Delete(recurringTransaction);
-            Assert.IsFalse(App.RecurrenceTransactionViewModel.AllTransactions.Contains(recurringTransaction));
+            recurrenceTransactionViewModel.Delete(recurringTransaction);
+            Assert.IsFalse(recurrenceTransactionViewModel.AllTransactions.Contains(recurringTransaction));
         }
     }
 }

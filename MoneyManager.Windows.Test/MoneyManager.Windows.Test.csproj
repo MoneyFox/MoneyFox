@@ -115,7 +115,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\ConnectionFactoryTest.cs" />
-    <Compile Include="Src\CultureConverterTest.cs" />
     <Compile Include="Src\DatabaseHelperTest.cs" />
     <Compile Include="Src\TransactionTypeHelperTest.cs" />
     <Compile Include="ViewModels\AccountViewModelTest.cs" />
