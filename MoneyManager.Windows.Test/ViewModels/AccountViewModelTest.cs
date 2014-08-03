@@ -22,8 +22,8 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestInitialize]
         public async Task InitTests()
         {
-            accountViewModel.Save(account);
             await DatabaseHelper.CreateDatabase();
+            accountViewModel.Save(account);
 
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {

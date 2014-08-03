@@ -53,7 +53,7 @@ namespace MoneyManager.ViewModels.Data
             }
         }
 
-        protected override void GetListFromDb()
+        protected override sealed void GetListFromDb()
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
