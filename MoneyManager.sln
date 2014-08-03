@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E43E31
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Windows.Test", "MoneyManager.Windows.Test\MoneyManager.Windows.Test.csproj", "{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MoneyManager\MoneyManager.Shared\MoneyManager.Shared.projitems*{1e89b344-8b07-4e30-8591-44ee1ad8caf1}*SharedItemsImports = 4
@@ -77,6 +79,30 @@ Global
 		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|x86.ActiveCfg = Release|x86
 		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|x86.Build.0 = Release|x86
 		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|x86.Deploy.0 = Release|x86
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Debug|ARM.ActiveCfg = Debug|ARM
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Debug|ARM.Build.0 = Debug|ARM
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Debug|ARM.Deploy.0 = Debug|ARM
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Debug|x64.ActiveCfg = Debug|x64
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Debug|x64.Build.0 = Debug|x64
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Debug|x64.Deploy.0 = Debug|x64
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Debug|x86.ActiveCfg = Debug|x86
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Debug|x86.Build.0 = Debug|x86
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Debug|x86.Deploy.0 = Debug|x86
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Release|ARM.ActiveCfg = Release|ARM
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Release|ARM.Build.0 = Release|ARM
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Release|ARM.Deploy.0 = Release|ARM
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Release|x64.ActiveCfg = Release|x64
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Release|x64.Build.0 = Release|x64
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Release|x64.Deploy.0 = Release|x64
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Release|x86.ActiveCfg = Release|x86
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Release|x86.Build.0 = Release|x86
+		{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
