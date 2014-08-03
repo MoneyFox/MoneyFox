@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1dc12e5d-7aca-43b5-b6f2-7a3b77d0228c}</ProjectGuid>
+    <ProjectGuid>{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MoneyManager.Windows.Test</RootNamespace>
-    <AssemblyName>MoneyManager.Windows.Test</AssemblyName>    
+    <AssemblyName>MoneyManager.Windows.Test</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
@@ -108,33 +108,48 @@
     <AppxPackageIncludePrivateSymbols>true</AppxPackageIncludePrivateSymbols>
   </PropertyGroup>
   <ItemGroup>
-     <!--A reference to the entire .Net Framework and Windows SDK are automatically included--> 
+    <!--A reference to the entire .Net Framework and Windows SDK are automatically included-->
     <SDKReference Include="MSTestFramework, Version=11.0" />
     <SDKReference Include="TestPlatform, Version=11.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Src\ConnectionFactoryTest.cs" />
+    <Compile Include="Src\CultureConverterTest.cs" />
+    <Compile Include="Src\DatabaseHelperTest.cs" />
+    <Compile Include="Src\TransactionTypeHelperTest.cs" />
+    <Compile Include="ViewModels\AccountViewModelTest.cs" />
+    <Compile Include="ViewModels\CategoryViewModelTest.cs" />
+    <Compile Include="ViewModels\GroupViewModelTest.cs" />
+    <Compile Include="ViewModels\RecurrenceTransactionViewModelTest.cs" />
+    <Compile Include="ViewModels\SettingsViewModelTest.cs" />
+    <Compile Include="ViewModels\TransactionViewModelTest.cs" />
   </ItemGroup>
- <ItemGroup>
+  <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="MoneyManager.Windows.Test_TemporaryKey.pfx" />
- </ItemGroup>
- <ItemGroup>
-	<Content Include="Images\UnitTestLogo.scale-100.png">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
-	<Content Include="Images\UnitTestSmallLogo.scale-100.png">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
-	<Content Include="Images\UnitTestSplashScreen.scale-100.png">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
-	<Content Include="Images\UnitTestStoreLogo.scale-100.png">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\UnitTestLogo.scale-100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\UnitTestSmallLogo.scale-100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\UnitTestSplashScreen.scale-100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\UnitTestStoreLogo.scale-100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyManager\MoneyManager.Windows\MoneyManager.Windows.csproj">
+      <Project>{1e89b344-8b07-4e30-8591-44ee1ad8caf1}</Project>
+      <Name>MoneyManager.Windows</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
