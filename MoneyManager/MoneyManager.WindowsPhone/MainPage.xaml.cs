@@ -2,6 +2,7 @@
 using MoneyManager.Src;
 using MoneyManager.ViewModels;
 using MoneyManager.Views;
+using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -36,31 +37,8 @@ namespace MoneyManager
             selectedTransaction = new FinancialTransaction();
             var viewModel = new ViewModelLocator().AddTransaction;
 
-            switch ((e.OriginalSource as MenuFlyoutItem).Text)
-            {
-                case "spending":
-                    viewModel.TransactionType = TransactionType.Spending;
-                    viewModel.TransactionTitle = Utilities.GetTranslation("SpendingTitle");
-                    break;
+            viewModel.TransactionType = TransactionTypeHelper.GetEnumFromString((e.OriginalSource as MenuFlyoutItem).Text);
 
-                case "income":
-                    viewModel.TransactionType = TransactionType.Income;
-                    viewModel.TransactionTitle = Utilities.GetTranslation("IncomeTitle");
-                    break;
-
-                case "transfer":
-                    viewModel.TransactionType = TransactionType.Transfer;
-                    viewModel.TransactionTitle = Utilities.GetTranslation("Transfer.Title");
-                    break;
-
-                case "refund":
-                    viewModel.TransactionType = TransactionType.Refund;
-                    viewModel.TransactionTitle = Utilities.GetTranslation("RefundTitle");
-                    break;
-
-                default:
-                    break;
-            }
             Frame.Navigate(typeof(AddTransaction));
         }
 

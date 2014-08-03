@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Src\CurrencyHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\DatabaseHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Enumerations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\TransactionTypeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Utils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>

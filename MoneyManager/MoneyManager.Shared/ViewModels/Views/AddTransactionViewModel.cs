@@ -17,6 +17,7 @@ namespace MoneyManager.ViewModels.Views
             {
                 transactionType = value;
                 IsTargetAccountVisible = transactionType == TransactionType.Transfer;
+                TransactionTitle = TransactionTypeHelper.GetViewTitleForType(transactionType);
                 RaisePropertyChanged();
             }
         }
