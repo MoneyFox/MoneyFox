@@ -42,7 +42,7 @@
 
         <Grid Grid.Row="1">
             <Hub x:Uid="ApplicationName" Header="MoneyTracker" HorizontalAlignment="Left" Margin="0,27,0,0" VerticalAlignment="Top">
-                <HubSection x:Uid="AccountsMenu.Header" Header="overview">
+                <HubSection x:Uid="AccountsMenu" Header="overview">
                     <DataTemplate>
                         <userControls:AccountListUserControl />
                     </DataTemplate>

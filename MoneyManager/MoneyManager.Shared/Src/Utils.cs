@@ -6,7 +6,7 @@ namespace MoneyManager.Src
     {
         public static string GetTranslation(string text)
         {
-            return ResourceLoader.GetForCurrentView().GetString(text);
+            return ResourceLoader.GetForViewIndependentUse().GetString(text);
         }
 
         public static int GetMaxId()

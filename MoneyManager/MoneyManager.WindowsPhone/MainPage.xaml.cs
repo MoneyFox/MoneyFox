@@ -2,6 +2,7 @@
 using MoneyManager.Src;
 using MoneyManager.ViewModels;
 using MoneyManager.Views;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -9,8 +10,6 @@ namespace MoneyManager
 {
     public sealed partial class MainPage
     {
-        private readonly Parameters parameters = new Parameters();
-
         public MainPage()
         {
             InitializeComponent();
@@ -18,13 +17,11 @@ namespace MoneyManager
 
         private Account selectedAccount
         {
-            get { return new ViewModelLocator().Main.SelectedAccount; }
             set { new ViewModelLocator().Main.SelectedAccount = value; }
         }
 
         private FinancialTransaction selectedTransaction
         {
-            get { return new ViewModelLocator().Main.SelectedTransaction; }
             set { new ViewModelLocator().Main.SelectedTransaction = value; }
         }
 
@@ -37,30 +34,34 @@ namespace MoneyManager
         private void AddTransaction_OnClick(object sender, RoutedEventArgs e)
         {
             selectedTransaction = new FinancialTransaction();
+            var viewModel = new ViewModelLocator().AddTransaction;
 
             switch ((e.OriginalSource as MenuFlyoutItem).Text)
             {
                 case "spending":
-                    parameters.TransactionType = TransactionType.Spending;
+                    viewModel.TransactionType = TransactionType.Spending;
+                    viewModel.TransactionTitle = Utilities.GetTranslation("SpendingTitle");
                     break;
 
                 case "income":
-                    parameters.TransactionType = TransactionType.Income;
+                    viewModel.TransactionType = TransactionType.Income;
+                    viewModel.TransactionTitle = Utilities.GetTranslation("IncomeTitle");
                     break;
 
                 case "transfer":
-                    parameters.TransactionType = TransactionType.Transfer;
+                    viewModel.TransactionType = TransactionType.Transfer;
+                    viewModel.TransactionTitle = Utilities.GetTranslation("Transfer.Title");
                     break;
 
                 case "refund":
-                    parameters.TransactionType = TransactionType.Refund;
+                    viewModel.TransactionType = TransactionType.Refund;
+                    viewModel.TransactionTitle = Utilities.GetTranslation("RefundTitle");
                     break;
 
                 default:
                     break;
             }
-
-            Frame.Navigate(typeof(AddTransaction), parameters);
+            Frame.Navigate(typeof(AddTransaction));
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)

@@ -6,7 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:MoneyTracker.UserControls"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding AddTransaction, Source={StaticResource Locator}}">
 
     <Page.BottomAppBar>
         <CommandBar>
@@ -30,7 +31,7 @@
 
         <!-- TitlePanel -->
         <StackPanel Grid.Row="0" Margin="24,17,0,28">
-            <TextBlock Text="Transaction" Style="{ThemeResource TitleTextBlockStyle}" Typography.Capitals="SmallCaps" />
+            <TextBlock Text="{Binding TransactionTitle}" Style="{ThemeResource TitleTextBlockStyle}" Typography.Capitals="SmallCaps" />
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->

@@ -267,4 +267,16 @@
   <data name="Notes.Header" xml:space="preserve">
     <value>notes</value>
   </data>
+  <data name="IncomeTitle" xml:space="preserve">
+    <value>income</value>
+  </data>
+  <data name="RefundTitle" xml:space="preserve">
+    <value>refund</value>
+  </data>
+  <data name="SpendingTitle" xml:space="preserve">
+    <value>spending</value>
+  </data>
+  <data name="TransferTitle" xml:space="preserve">
+    <value>transfer</value>
+  </data>
 </root>
