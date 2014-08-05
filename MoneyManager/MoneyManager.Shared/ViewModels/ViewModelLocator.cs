@@ -14,17 +14,10 @@ namespace MoneyManager.ViewModels
             SimpleIoc.Default.Register<AccountViewModel>();
             SimpleIoc.Default.Register<CategoryViewModel>();
             SimpleIoc.Default.Register<GroupViewModel>();
-            SimpleIoc.Default.Register<RecurrenceTransactionViewModel>();
             SimpleIoc.Default.Register<SettingViewModel>();
             SimpleIoc.Default.Register<TransactionViewModel>();
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<AccountListViewModel>();
-            SimpleIoc.Default.Register<AddAccountViewModel>();
-            SimpleIoc.Default.Register<AddAccountUserControlViewModel>();
-            SimpleIoc.Default.Register<AddTransactionViewModel>();
-            SimpleIoc.Default.Register<StatisticViewModel>();
-            SimpleIoc.Default.Register<SettingsCategoryViewModel>();
         }
 
         #region DataAccess
@@ -44,11 +37,6 @@ namespace MoneyManager.ViewModels
             get { return ServiceLocator.Current.GetInstance<GroupViewModel>(); }
         }
 
-        public RecurrenceTransactionViewModel RecurrenceTransactionViewModel
-        {
-            get { return ServiceLocator.Current.GetInstance<RecurrenceTransactionViewModel>(); }
-        }
-
         public TransactionViewModel TransactionViewModel
         {
             get { return ServiceLocator.Current.GetInstance<TransactionViewModel>(); }
@@ -59,11 +47,6 @@ namespace MoneyManager.ViewModels
             get { return ServiceLocator.Current.GetInstance<SettingViewModel>(); }
         }
 
-        public SettingsCategoryViewModel SettingsCategory
-        {
-            get { return ServiceLocator.Current.GetInstance<SettingsCategoryViewModel>(); }
-        }
-
         #endregion DataAccess
 
         #region Views
@@ -71,31 +54,6 @@ namespace MoneyManager.ViewModels
         public MainViewModel Main
         {
             get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
-        }
-
-        public AccountListViewModel AccountList
-        {
-            get { return ServiceLocator.Current.GetInstance<AccountListViewModel>(); }
-        }
-
-        public AddAccountViewModel AddAccount
-        {
-            get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>(); }
-        }
-
-        public AddAccountUserControlViewModel AddAccountUserControl
-        {
-            get { return ServiceLocator.Current.GetInstance<AddAccountUserControlViewModel>(); }
-        }
-
-        public AddTransactionViewModel AddTransaction
-        {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
-
-        public StatisticViewModel Statistic
-        {
-            get { return ServiceLocator.Current.GetInstance<StatisticViewModel>(); }
         }
 
         #endregion Views

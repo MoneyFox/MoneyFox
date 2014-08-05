@@ -120,7 +120,6 @@
     <Compile Include="ViewModels\AccountViewModelTest.cs" />
     <Compile Include="ViewModels\CategoryViewModelTest.cs" />
     <Compile Include="ViewModels\GroupViewModelTest.cs" />
-    <Compile Include="ViewModels\RecurrenceTransactionViewModelTest.cs" />
     <Compile Include="ViewModels\SettingsViewModelTest.cs" />
     <Compile Include="ViewModels\TransactionViewModelTest.cs" />
   </ItemGroup>

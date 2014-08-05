@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:MoneyManager.UserControls"
-    xmlns:userControls1="using:MoneyTracker.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Resources>
@@ -49,7 +48,7 @@
                 </HubSection>
                 <HubSection x:Uid="OverviewMenu">
                     <DataTemplate>
-                        <userControls1:BarChartUserControl />
+                        <userControls:BarChartUserControl />
                     </DataTemplate>
                 </HubSection>
             </Hub>

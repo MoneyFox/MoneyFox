@@ -1,7 +1,5 @@
 ﻿using MoneyManager.Models;
 using MoneyManager.Src;
-using MoneyManager.ViewModels;
-using MoneyManager.ViewModels.Views;
 using MoneyManager.Views;
 using System;
 using Windows.UI.Popups;
@@ -19,11 +17,6 @@ namespace MoneyManager.UserControls
             InitializeComponent();
         }
 
-        public SettingsCategoryViewModel SettingsCategoryViewModel
-        {
-            get { return new ViewModelLocator().SettingsCategory; }
-        }
-
         private async void CategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CategoryList.SelectedItem != null)
@@ -34,34 +27,6 @@ namespace MoneyManager.UserControls
 #endif
                 CategoryList.SelectedItem = null;
             }
-        }
-
-        private async void Delete_OnClick(object sender, RoutedEventArgs e)
-        {
-            var element = (FrameworkElement)sender;
-            var category = element.DataContext as Category;
-            if (category == null) return;
-
-            var dialog = new MessageDialog(Utilities.GetTranslation("DeleteQuestionMessage"),
-                Utilities.GetTranslation("DeleteCategoryQuestionMessage"));
-            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("YesLabel")));
-            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("NoLabel")));
-            dialog.DefaultCommandIndex = 1;
-
-            var result = await dialog.ShowAsync();
-
-            if (result.Label == Utilities.GetTranslation("YesLabel"))
-            {
-                SettingsCategoryViewModel.CategoryViewModel.Delete(category);
-            }
-        }
-
-        private void CategoryList_Holding(object sender, HoldingRoutedEventArgs e)
-        {
-            var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
-
-            flyoutBase.ShowAt(senderElement);
         }
     }
 }

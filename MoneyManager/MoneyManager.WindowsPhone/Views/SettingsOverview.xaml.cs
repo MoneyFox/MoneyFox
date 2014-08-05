@@ -1,6 +1,5 @@
 ﻿using MoneyManager.Common;
 using MoneyManager.UserControls;
-using MoneyTracker.UserControls;
 using Windows.UI.Xaml.Navigation;
 
 namespace MoneyManager.Views
@@ -19,11 +18,6 @@ namespace MoneyManager.Views
         public NavigationHelper NavigationHelper
         {
             get { return navigationHelper; }
-        }
-
-        public void Navigate()
-        {
-            UserControlFrame.Navigate(typeof(AddAccountUserControl));
         }
 
         #region NavigationHelper registration

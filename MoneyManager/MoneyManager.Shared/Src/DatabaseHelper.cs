@@ -11,7 +11,6 @@ namespace MoneyManager.Src
 
             await dbConn.CreateTableAsync<Account>();
             await dbConn.CreateTableAsync<FinancialTransaction>();
-            await dbConn.CreateTableAsync<RecurringTransaction>();
             await dbConn.CreateTableAsync<Group>();
             await dbConn.CreateTableAsync<Setting>();
         }

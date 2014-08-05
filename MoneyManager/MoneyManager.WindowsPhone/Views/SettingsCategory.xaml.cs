@@ -21,9 +21,8 @@ namespace MoneyManager.Views
             get { return navigationHelper; }
         }
 
-        private async void AddCategoryOnClick(object sender, RoutedEventArgs e)
+        private void AddCategoryOnClick(object sender, RoutedEventArgs e)
         {
-            await new CategoryDialog().ShowAsync();
         }
 
         #region NavigationHelper registration

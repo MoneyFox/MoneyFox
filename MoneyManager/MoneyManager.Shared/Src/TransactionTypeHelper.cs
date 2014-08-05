@@ -19,12 +19,6 @@ namespace MoneyManager.Src
                 case TransactionType.Income:
                     return Utilities.GetTranslation("IncomeTitle");
 
-                case TransactionType.Transfer:
-                    return Utilities.GetTranslation("Transfer.Title");
-
-                case TransactionType.Refund:
-                    return Utilities.GetTranslation("RefundTitle");
-
                 default:
                     return String.Empty;
             }

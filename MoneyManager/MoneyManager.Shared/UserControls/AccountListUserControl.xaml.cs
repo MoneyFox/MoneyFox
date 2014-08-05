@@ -14,16 +14,9 @@ namespace MoneyManager.UserControls
 {
     public sealed partial class AccountListUserControl
     {
-        private readonly Parameters parameters = new Parameters();
-
         public AccountListUserControl()
         {
             InitializeComponent();
-        }
-
-        private AccountViewModel accountViewModel
-        {
-            get { return new ViewModelLocator().AccountViewModel; }
         }
 
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)
@@ -32,44 +25,6 @@ namespace MoneyManager.UserControls
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
             flyoutBase.ShowAt(senderElement);
-        }
-
-        private async void Delete_OnClick(object sender, RoutedEventArgs e)
-        {
-            var element = (FrameworkElement)sender;
-            var account = element.DataContext as Account;
-            if (account == null) return;
-
-            var dialog = new MessageDialog(Utilities.GetTranslation("DeleteQuestionMessage"),
-                Utilities.GetTranslation("DeleteAccountQuestionMessage"));
-            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("YesLabel")));
-            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("NoLabel")));
-            dialog.DefaultCommandIndex = 1;
-
-            var result = await dialog.ShowAsync();
-
-            if (result.Label == Utilities.GetTranslation("YesLabel"))
-            {
-                accountViewModel.Delete(account);
-            }
-        }
-
-        private void Edit_OnClick(object sender, RoutedEventArgs e)
-        {
-            var element = (FrameworkElement)sender;
-            accountViewModel.SelectedAccount = element.DataContext as Account;
-            parameters.Edit = true;
-            ((Frame)Window.Current.Content).Navigate(typeof(AddAccount), parameters);
-        }
-
-        private void AccountList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (AccountList.SelectedItem != null)
-            {
-                accountViewModel.SelectedAccount = AccountList.SelectedItem as Account;
-                ((Frame)Window.Current.Content).Navigate(typeof(TransactionList));
-                AccountList.SelectedItem = null;
-            }
         }
     }
 }

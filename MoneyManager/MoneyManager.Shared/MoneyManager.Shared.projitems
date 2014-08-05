@@ -19,15 +19,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\FinancialTransaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Group.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Parameters.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\RecurringTransaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Setting.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\StatisticOverview.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\StatisticItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Annotations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ConnectionFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\CurrencyHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\DatabaseHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Enumerations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\TransactionTypeHelper.cs" />
@@ -57,18 +54,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\AccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\CategoryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\GroupViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\RecurrenceTransactionDAO.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\SettingViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\TransactionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLocator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\AccountListViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\AddAccountUserControlViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\AddAccountViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\AddTransactionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\MainViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\SettingsCategoryViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\StatisticViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Styles\AppStyles.xaml">

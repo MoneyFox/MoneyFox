@@ -1,4 +1,4 @@
-﻿namespace MoneyTracker.UserControls
+﻿namespace MoneyManager.UserControls
 {
     public sealed partial class BarChartUserControl
     {
