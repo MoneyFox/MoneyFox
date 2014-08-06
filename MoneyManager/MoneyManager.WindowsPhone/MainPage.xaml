@@ -9,10 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Resources>
         <MenuFlyout x:Key="AddTransactionFlyOut">
-            <MenuFlyoutItem Click="AddTransaction_OnClick" x:Uid="Spending" Text="spending" />
-            <MenuFlyoutItem Click="AddTransaction_OnClick" x:Uid="Income" Text="income" />
-            <MenuFlyoutItem Click="AddTransaction_OnClick" x:Uid="Transfer" Text="transfer" />
-            <MenuFlyoutItem Click="AddTransaction_OnClick" x:Uid="Refund" Text="refund" />
+            <MenuFlyoutItem x:Uid="Spending" Text="spending" />
+            <MenuFlyoutItem x:Uid="Income" Text="income" />
         </MenuFlyout>
     </Page.Resources>
     <Page.BottomAppBar>

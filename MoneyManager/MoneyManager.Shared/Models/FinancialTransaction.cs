@@ -33,8 +33,6 @@ namespace MoneyManager.Models
 
         public int ChargedAccountId { get; set; }
 
-        public int TargetAccountId { get; set; }
-
         public DateTime Date { get; set; }
 
         public double Amount { get; set; }

@@ -9,8 +9,8 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Accept" x:Uid="Done" Label="Done" Click="Done_Click" />
-            <AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" Click="Cancel_Click" />
+            <AppBarButton Icon="Accept" x:Uid="Done" Label="Done" />
+            <AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" />
         </CommandBar>
     </Page.BottomAppBar>
 

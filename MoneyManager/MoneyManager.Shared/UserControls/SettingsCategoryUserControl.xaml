@@ -12,10 +12,10 @@
     <UserControl.Resources>
         <DataTemplate x:Key="CategoryTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
-                        MinWidth="300" Holding="CategoryList_Holding">
+                        MinWidth="300" >
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="Delete_OnClick" />
+                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Name}" />
@@ -25,7 +25,6 @@
 
     <StackPanel>
         <ListView ItemsSource="{Binding AllCategories}" x:Name="CategoryList"
-                  SelectionChanged="CategoryList_SelectionChanged"
                   ItemTemplate="{StaticResource CategoryTemplate }" />
     </StackPanel>
 </UserControl>

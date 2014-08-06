@@ -16,8 +16,8 @@
                         MinWidth="300" Holding="TransactionList_Holding">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="Delete_OnClick" />
-                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" Click="Edit_OnClick" />
+                        <MenuFlyoutItem x:Uid="Delete" Text="Delete"  />
+                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch">
@@ -32,7 +32,6 @@
     <StackPanel>
         <ListView x:Name="TransactionList" ItemsSource="{Binding RelatedTransactions}"
                   ItemTemplate="{StaticResource TransactionTemplate}"
-                  HorizontalAlignment="Stretch"
-                  SelectionChanged="TransactionListOnSelectionChanged" />
+                  HorizontalAlignment="Stretch" />
     </StackPanel>
 </UserControl>

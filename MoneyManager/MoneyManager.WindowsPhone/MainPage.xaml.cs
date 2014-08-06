@@ -28,7 +28,6 @@ namespace MoneyManager
 
         private void AddAccount_Click(object sender, RoutedEventArgs e)
         {
-            selectedAccount = new Account();
             Frame.Navigate(typeof(AddAccount));
         }
 

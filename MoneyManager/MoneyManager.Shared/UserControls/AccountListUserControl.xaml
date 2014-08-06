@@ -15,8 +15,8 @@
                         MinWidth="300" Holding="AccountList_Holding">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="Delete_OnClick" />
-                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" Click="Edit_OnClick" />
+                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" />
+                        <MenuFlyoutItem x:Uid="Edit" Text="Edit"/>
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch">
@@ -43,7 +43,7 @@
         <ScrollViewer>
             <ListView Name="AccountList" ItemsSource="{Binding AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
-                  HorizontalAlignment="Stretch" SelectionChanged="AccountList_OnSelectionChanged">
+                  HorizontalAlignment="Stretch">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
