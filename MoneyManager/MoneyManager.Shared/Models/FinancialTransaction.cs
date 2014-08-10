@@ -59,25 +59,11 @@ namespace MoneyManager.Models
         }
 
         [Ignore]
-        public Account TargetAccount
-        {
-            get { return allAccounts.FirstOrDefault(x => x.Id == TargetAccountId); }
-            set { ChargedAccountId = value.Id; }
-        }
-
-        [Ignore]
         public Category Category
         {
             get { return allCategories.FirstOrDefault(x => x.Id == CategoryId); }
             set { CategoryId = value.Id; }
         }
-
-        //[Ignore]
-        //public RecurringTransaction RecurringTransaction
-        //{
-        //    get { return App.RecurrenceTransactionViewModel.AllTransactions.FirstOrDefault(x => x.Id == Id); }
-        //    set { ReccuringTransactionId = value.Id; }
-        //}
 
         [Ignore]
         public bool ClearTransactionNow

@@ -16,7 +16,7 @@
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Delete" Text="Delete" />
-                        <MenuFlyoutItem x:Uid="Edit" Text="Edit"/>
+                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch">
@@ -41,7 +41,7 @@
                        Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
         </StackPanel>
         <ScrollViewer>
-            <ListView Name="AccountList" ItemsSource="{Binding AllAccounts}"
+            <ListView ItemsSource="{Binding AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
                   HorizontalAlignment="Stretch">
                 <ListView.ItemContainerStyle>

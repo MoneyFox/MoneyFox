@@ -18,7 +18,6 @@ namespace MoneyManager.Windows.Test.Src
             {
                 dbConn.Table<Account>().ToList();
                 dbConn.Table<FinancialTransaction>().ToList();
-                dbConn.Table<RecurringTransaction>().ToList();
                 dbConn.Table<Setting>().ToList();
             }
         }

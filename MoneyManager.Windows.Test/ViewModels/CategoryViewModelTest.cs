@@ -18,7 +18,7 @@ namespace MoneyManager.Windows.Test.ViewModels
         }
 
         [TestInitialize]
-        public async Task InitTests()
+        public void InitTests()
         {
             categoryViewModel.DeleteAll();
 

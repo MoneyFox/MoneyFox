@@ -1,6 +1,5 @@
 using GalaSoft.MvvmLight;
 using MoneyManager.Models;
-using MoneyManager.ViewModels.Data;
 
 namespace MoneyManager.ViewModels.Views
 {
@@ -9,6 +8,7 @@ namespace MoneyManager.ViewModels.Views
         public Account SelectedAccount
         {
             get { return new ViewModelLocator().AccountViewModel.SelectedAccount; }
+            set { new ViewModelLocator().AccountViewModel.SelectedAccount = value; }
         }
 
         public AddAccountUserControlViewModel()

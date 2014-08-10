@@ -31,16 +31,6 @@ namespace MoneyManager
             Frame.Navigate(typeof(AddAccount));
         }
 
-        private void AddTransaction_OnClick(object sender, RoutedEventArgs e)
-        {
-            selectedTransaction = new FinancialTransaction();
-            var viewModel = new ViewModelLocator().AddTransaction;
-
-            viewModel.TransactionType = TransactionTypeHelper.GetEnumFromString((e.OriginalSource as MenuFlyoutItem).Text);
-
-            Frame.Navigate(typeof(AddTransaction));
-        }
-
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SettingsOverview));
