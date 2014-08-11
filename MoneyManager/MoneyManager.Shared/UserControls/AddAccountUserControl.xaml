@@ -5,20 +5,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Width="Auto"
-    DataContext="{Binding AddAccountControl.SelectedAccount , Source={StaticResource Locator}}">
+    DataContext="{Binding AddAccountControl, Source={StaticResource Locator}}">
 
     <StackPanel>
-        <TextBox Text="{Binding Name, Mode=TwoWay}"
+        <TextBox Text="{Binding SelectedAccount.Name, Mode=TwoWay}"
                  Header="Name" VerticalAlignment="Top"
                  Margin="12,0,12,12" x:Uid="Name" />
-        <TextBox Text="{Binding Iban, Mode=TwoWay}"
+        <TextBox Text="{Binding SelectedAccount.Iban, Mode=TwoWay}"
                  Header="IBAN" VerticalAlignment="Top"
                  Margin="12,0,12,12" x:Uid="Iban" />
-        <TextBox Text="{Binding CurrentBalance, Mode=TwoWay}"
+        <TextBox Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay}"
                  Header="Balance" VerticalAlignment="Top"
                  Margin="12,0,12,12" InputScope="Number"
                  TextAlignment="Right" x:Uid="Balance" />
-        <TextBox Text="{Binding Note, Mode=TwoWay}"
+        <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
                  Header="Notes" VerticalAlignment="Top"
                  Margin="12,0,12,12" x:Uid="Notes" />
     </StackPanel>

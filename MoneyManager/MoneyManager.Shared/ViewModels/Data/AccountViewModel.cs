@@ -9,11 +9,6 @@ namespace MoneyManager.ViewModels.Data
     [ImplementPropertyChanged]
     public class AccountViewModel : AbstractDataAccess<Account>
     {
-        public AccountViewModel()
-        {
-            GetListFromDb();
-        }
-
         private TransactionViewModel TransactionViewModel
         {
             get { return new TransactionViewModel(); }
@@ -25,7 +20,12 @@ namespace MoneyManager.ViewModels.Data
 
         public double TotalBalance
         {
-            get { return AllAccounts.Sum(x => x.CurrentBalance); }
+            get
+            {
+                return AllAccounts != null ?
+                    AllAccounts.Sum(x => x.CurrentBalance)
+                    : 0;
+            }
         }
 
         protected override void SaveToDb(Account account)

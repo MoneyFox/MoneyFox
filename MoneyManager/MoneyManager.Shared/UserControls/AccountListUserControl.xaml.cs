@@ -1,12 +1,4 @@
-﻿using MoneyManager.Models;
-using MoneyManager.Src;
-using MoneyManager.ViewModels;
-using MoneyManager.ViewModels.Data;
-using MoneyManager.Views;
-using System;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 

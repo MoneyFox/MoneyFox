@@ -4,10 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
-    DataContext="{Binding AccountList, Source={StaticResource Locator}}">
+    DataContext="{Binding AccountListControl, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
         <DataTemplate x:Key="AccountTemplate">
@@ -33,7 +35,14 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <StackPanel>
+    <StackPanel x:Name="MainPanel">
+
+        <interactivity:Interaction.Behaviors>
+            <core:EventTriggerBehavior EventName="Loaded">
+                <core:InvokeCommandAction Command="{Binding LoadAccountsCommand}" CommandParameter="{Binding ElementName=MainPanel}" />
+            </core:EventTriggerBehavior>
+        </interactivity:Interaction.Behaviors>
+
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Total: " Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
             <TextBlock Text="{Binding AccountViewModel.TotalBalance, Mode=TwoWay}" Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
@@ -41,7 +50,7 @@
                        Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
         </StackPanel>
         <ScrollViewer>
-            <ListView ItemsSource="{Binding AllAccounts}"
+            <ListView ItemsSource="{Binding AccountViewModel.AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
                   HorizontalAlignment="Stretch">
                 <ListView.ItemContainerStyle>

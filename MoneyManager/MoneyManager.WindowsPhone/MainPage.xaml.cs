@@ -1,11 +1,5 @@
-﻿using MoneyManager.Models;
-using MoneyManager.Src;
-using MoneyManager.ViewModels;
-using MoneyManager.Views;
-using System;
-using Windows.UI.Popups;
+﻿using MoneyManager.Views;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace MoneyManager
 {
@@ -14,16 +8,6 @@ namespace MoneyManager
         public MainPage()
         {
             InitializeComponent();
-        }
-
-        private Account selectedAccount
-        {
-            set { new ViewModelLocator().Main.SelectedAccount = value; }
-        }
-
-        private FinancialTransaction selectedTransaction
-        {
-            set { new ViewModelLocator().Main.SelectedTransaction = value; }
         }
 
         private void AddAccount_Click(object sender, RoutedEventArgs e)

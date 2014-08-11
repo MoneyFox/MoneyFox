@@ -5,11 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:MoneyManager.UserControls"
+    DataContext="{Binding AddAccountView, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Accept" x:Uid="Done" Label="Done" />
+            <AppBarButton Icon="Accept" x:Uid="Done" Label="Done" Command="{Binding AddAccountCommand}" />
             <AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" />
         </CommandBar>
     </Page.BottomAppBar>
@@ -29,11 +30,11 @@
 
         <StackPanel Grid.Row="0" Margin="24,17,0,28">
             <TextBlock x:Uid="AccountTitle" Text="Account" Style="{ThemeResource TitleTextBlockStyle}" Typography.Capitals="SmallCaps" />
-            <TextBlock Name="LblTitle" x:Uid="Add" Text="Add" Margin="0,12,0,0" Style="{ThemeResource HeaderTextBlockStyle}" />
+            <TextBlock x:Uid="Add" Text="Add" Margin="0,12,0,0" Style="{ThemeResource HeaderTextBlockStyle}" />
         </StackPanel>
 
-        <Grid Grid.Row="1" Name="Test">
-            <userControls:AddAccountUserControl x:Name="AddAccountControl" />
+        <Grid Grid.Row="1">
+            <userControls:AddAccountUserControl />
         </Grid>
     </Grid>
 </Page>
