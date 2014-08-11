@@ -1,10 +1,10 @@
-﻿using MoneyManager.ViewModels;
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.ViewModels;
 using MoneyManager.ViewModels.Data;
 using PropertyChanged;
 using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace MoneyManager.Models
@@ -20,12 +20,12 @@ namespace MoneyManager.Models
 
         private IEnumerable<Account> allAccounts
         {
-            get { return new ViewModelLocator().AccountViewModel.AllAccounts; }
+            get { return ServiceLocator.Current.GetInstance<AccountViewModel>().AllAccounts; }
         }
 
         private IEnumerable<Category> allCategories
         {
-            get { return new ViewModelLocator().CategoryViewModel.AllCategories; }
+            get { return ServiceLocator.Current.GetInstance<CategoryViewModel>().AllCategories; }
         }
 
         [PrimaryKey, AutoIncrement]
