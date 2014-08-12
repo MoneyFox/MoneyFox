@@ -1,7 +1,6 @@
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
-using MoneyManager.ViewModels.Views;
 
 namespace MoneyManager.ViewModels
 {

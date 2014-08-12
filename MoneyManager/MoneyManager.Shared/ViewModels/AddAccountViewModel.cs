@@ -1,12 +1,12 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using RelayCommand = GalaSoft.MvvmLight.Command.RelayCommand;
 
-namespace MoneyManager.ViewModels.Views
+namespace MoneyManager.ViewModels
 {
     public class AddAccountViewModel : ViewModelBase
     {

@@ -1,7 +1,7 @@
 using GalaSoft.MvvmLight;
 using MoneyManager.Models;
 
-namespace MoneyManager.ViewModels.Views
+namespace MoneyManager.ViewModels
 {
     public class AddAccountUserControlViewModel : ViewModelBase
     {

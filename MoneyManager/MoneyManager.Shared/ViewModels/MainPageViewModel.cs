@@ -3,7 +3,7 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 
-namespace MoneyManager.ViewModels.Views
+namespace MoneyManager.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
