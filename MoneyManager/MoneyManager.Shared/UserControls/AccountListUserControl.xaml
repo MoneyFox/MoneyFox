@@ -18,7 +18,7 @@
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="Delete_OnClick" />
-                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" />
+                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" Click="Edit_OnClick" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch">

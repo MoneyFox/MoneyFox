@@ -10,6 +10,22 @@ namespace MoneyManager.ViewModels
 {
     public class AddAccountViewModel : ViewModelBase
     {
+        private bool isEdit;
+
+        public bool IsEdit
+        {
+            get { return isEdit; }
+            set
+            {
+                if (isEdit != value)
+                {
+                    isEdit = value;
+                }
+
+                RaisePropertyChanged();
+            }
+        }
+
         public RelayCommand AddAccountCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
 
