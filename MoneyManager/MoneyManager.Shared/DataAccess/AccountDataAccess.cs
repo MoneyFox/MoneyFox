@@ -1,17 +1,20 @@
 ﻿using MoneyManager.Models;
 using MoneyManager.Src;
 using PropertyChanged;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 
-namespace MoneyManager.ViewModels.Data
+namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
-    public class AccountViewModel : AbstractDataAccess<Account>
+    public class AccountDataAccess : AbstractDataAccess<Account>
     {
-        private TransactionViewModel TransactionViewModel
+        private TransactionDataAccess TransactionViewModel
         {
-            get { return new TransactionViewModel(); }
+            get { return new TransactionDataAccess(); }
         }
 
         public Account SelectedAccount { get; set; }

@@ -1,8 +1,9 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using Microsoft.Practices.ServiceLocation;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
 using MoneyManager.ViewModels;
-using MoneyManager.ViewModels.Data;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,14 +16,14 @@ namespace MoneyManager.Windows.Test.ViewModels
         private Account account;
         private FinancialTransaction transaction;
 
-        private AccountViewModel accountViewModel
+        private AccountDataAccess AccountDataAccess
         {
-            get { return new ViewModelLocator().AccountViewModel; }
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
-        private TransactionViewModel transactionViewModel
+        private TransactionDataAccess TransactionDataAccess
         {
-            get { return new ViewModelLocator().TransactionViewModel; }
+            get { return new ViewModelLocator().TransactionDataAccess; }
         }
 
         [TestInitialize]
@@ -48,7 +49,7 @@ namespace MoneyManager.Windows.Test.ViewModels
                 Note = "this is a note"
             };
 
-            accountViewModel.Save(account);
+            AccountDataAccess.Save(account);
 
             transaction = new FinancialTransaction
             {
@@ -63,7 +64,7 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestMethod]
         public void SaveTransactionTest()
         {
-            transactionViewModel.Save(transaction);
+            TransactionDataAccess.Save(transaction);
 
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
@@ -77,24 +78,24 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestMethod]
         public void LoadTransactionListTest()
         {
-            transactionViewModel.Save(transaction);
-            transactionViewModel.Save(transaction);
-            Assert.AreEqual(2, transactionViewModel.AllTransactions.Count);
+            TransactionDataAccess.Save(transaction);
+            TransactionDataAccess.Save(transaction);
+            Assert.AreEqual(2, TransactionDataAccess.AllTransactions.Count);
 
-            transactionViewModel.AllTransactions = null;
-            accountViewModel.LoadList();
-            Assert.AreEqual(2, transactionViewModel.AllTransactions.Count);
+            TransactionDataAccess.AllTransactions = null;
+            AccountDataAccess.LoadList();
+            Assert.AreEqual(2, TransactionDataAccess.AllTransactions.Count);
         }
 
         [TestMethod]
         public void UpdateFinancialTransactionTest()
         {
-            transactionViewModel.Save(transaction);
-            Assert.IsTrue(transactionViewModel.AllTransactions.Contains(transaction));
+            TransactionDataAccess.Save(transaction);
+            Assert.IsTrue(TransactionDataAccess.AllTransactions.Contains(transaction));
 
             double newAmount = 108.3;
             transaction.Amount = newAmount;
-            transactionViewModel.Update(transaction);
+            TransactionDataAccess.Update(transaction);
 
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
@@ -105,23 +106,23 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestMethod]
         public void DeleteFinancialTransactionTest()
         {
-            transactionViewModel.Save(transaction);
-            Assert.IsTrue(transactionViewModel.AllTransactions.Contains(transaction));
+            TransactionDataAccess.Save(transaction);
+            Assert.IsTrue(TransactionDataAccess.AllTransactions.Contains(transaction));
 
-            transactionViewModel.Delete(transaction);
-            Assert.IsFalse(transactionViewModel.AllTransactions.Contains(transaction));
+            TransactionDataAccess.Delete(transaction);
+            Assert.IsFalse(TransactionDataAccess.AllTransactions.Contains(transaction));
         }
 
         [TestMethod]
         public void GetUnclearedTransactionsTest()
         {
             var firstTransaction = transaction;
-            transactionViewModel.Save(firstTransaction);
+            TransactionDataAccess.Save(firstTransaction);
 
             var secondTransaction = new FinancialTransaction { Amount = 80, Date = DateTime.Now.AddDays(1) };
-            transactionViewModel.Save(secondTransaction);
+            TransactionDataAccess.Save(secondTransaction);
 
-            var unclearedList = transactionViewModel.GetUnclearedTransactions();
+            var unclearedList = TransactionDataAccess.GetUnclearedTransactions();
             Assert.AreEqual(unclearedList.Count, 1);
             var loadedTransaction = unclearedList.First();
             Assert.IsTrue(loadedTransaction.Id == firstTransaction.Id

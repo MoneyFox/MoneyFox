@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
 using MoneyManager.ViewModels;
-using MoneyManager.ViewModels.Data;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,16 +14,16 @@ namespace MoneyManager.Windows.Test.ViewModels
     {
         private Account account;
 
-        private AccountViewModel accountViewModel
+        private AccountDataAccess AccountDataAccess
         {
-            get { return new ViewModelLocator().AccountViewModel; }
+            get { return new ViewModelLocator().AccountDataAccess; }
         }
 
         [TestInitialize]
         public async Task InitTests()
         {
             await DatabaseHelper.CreateDatabase();
-            accountViewModel.Save(account);
+            AccountDataAccess.Save(account);
 
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
@@ -42,7 +42,7 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestMethod]
         public void SaveAccount()
         {
-            accountViewModel.Save(account);
+            AccountDataAccess.Save(account);
 
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
@@ -55,7 +55,7 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestMethod]
         public void AddTransactionAmountTest()
         {
-            accountViewModel.Save(account);
+            AccountDataAccess.Save(account);
 
             var transaction = new FinancialTransaction
             {
@@ -64,20 +64,20 @@ namespace MoneyManager.Windows.Test.ViewModels
                 Date = DateTime.Today,
                 Note = "this is a note!!!"
             };
-            accountViewModel.AddTransactionAmount(transaction);
+            AccountDataAccess.AddTransactionAmount(transaction);
             Assert.AreEqual(account.CurrentBalance, 40);
         }
 
         [TestMethod]
         public void LoadAccountListTest()
         {
-            accountViewModel.Save(account);
-            accountViewModel.Save(account);
-            Assert.AreEqual(accountViewModel.AllAccounts.Count, 2);
+            AccountDataAccess.Save(account);
+            AccountDataAccess.Save(account);
+            Assert.AreEqual(AccountDataAccess.AllAccounts.Count, 2);
 
-            accountViewModel.AllAccounts = null;
-            accountViewModel.LoadList();
-            Assert.AreEqual(accountViewModel.AllAccounts.Count, 2);
+            AccountDataAccess.AllAccounts = null;
+            AccountDataAccess.LoadList();
+            Assert.AreEqual(AccountDataAccess.AllAccounts.Count, 2);
         }
 
         [TestMethod]
@@ -85,14 +85,14 @@ namespace MoneyManager.Windows.Test.ViewModels
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
-                accountViewModel.Save(account);
-                Assert.AreEqual(accountViewModel.AllAccounts.Count, 1);
+                AccountDataAccess.Save(account);
+                Assert.AreEqual(AccountDataAccess.AllAccounts.Count, 1);
 
                 string newName = "This is a new Name";
 
                 account = dbConn.Table<Account>().First();
                 account.Name = newName;
-                accountViewModel.Update(account);
+                AccountDataAccess.Update(account);
 
                 Assert.AreEqual(newName, dbConn.Table<Account>().First().Name);
             }
@@ -101,11 +101,11 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestMethod]
         public void DeleteAccountTest()
         {
-            accountViewModel.Save(account);
-            Assert.IsTrue(accountViewModel.AllAccounts.Contains(account));
+            AccountDataAccess.Save(account);
+            Assert.IsTrue(AccountDataAccess.AllAccounts.Contains(account));
 
-            accountViewModel.Delete(account);
-            Assert.IsFalse(accountViewModel.AllAccounts.Contains(account));
+            AccountDataAccess.Delete(account);
+            Assert.IsFalse(AccountDataAccess.AllAccounts.Contains(account));
         }
     }
 }

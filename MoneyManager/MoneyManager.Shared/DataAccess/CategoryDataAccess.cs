@@ -1,17 +1,20 @@
 using MoneyManager.Models;
 using MoneyManager.Src;
 using PropertyChanged;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 
-namespace MoneyManager.ViewModels.Data
+namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
-    public class CategoryViewModel : AbstractDataAccess<Category>
+    public class CategoryDataAccess : AbstractDataAccess<Category>
     {
         public ObservableCollection<Category> AllCategories { get; set; }
 
-        public CategoryViewModel()
+        public CategoryDataAccess()
         {
             LoadList();
         }

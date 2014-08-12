@@ -17,7 +17,7 @@
                         MinWidth="300" Holding="AccountList_Holding">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" />
+                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="Delete_OnClick" />
                         <MenuFlyoutItem x:Uid="Edit" Text="Edit" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
@@ -35,27 +35,26 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <StackPanel x:Name="MainPanel">
-
+    <StackPanel>
         <interactivity:Interaction.Behaviors>
             <core:EventTriggerBehavior EventName="Loaded">
-                <core:InvokeCommandAction Command="{Binding LoadAccountsCommand}" CommandParameter="{Binding ElementName=MainPanel}" />
+                <core:InvokeCommandAction Command="{Binding LoadAccountsCommand}" />
             </core:EventTriggerBehavior>
         </interactivity:Interaction.Behaviors>
 
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Total: " Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
-            <TextBlock Text="{Binding AccountViewModel.TotalBalance, Mode=TwoWay}" Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
-            <TextBlock Text="{Binding SettingViewModel.Currency}"
+            <TextBlock Text="{Binding AccountDataAccess.TotalBalance, Mode=TwoWay}" Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
+            <TextBlock Text="{Binding SettingDataAccess.Currency}"
                        Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
         </StackPanel>
         <ScrollViewer>
-            <ListView ItemsSource="{Binding AccountViewModel.AllAccounts}"
+            <ListView ItemsSource="{Binding AccountDataAccess.AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
                   HorizontalAlignment="Stretch">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>

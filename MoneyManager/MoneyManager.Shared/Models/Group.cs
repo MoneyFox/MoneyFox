@@ -1,5 +1,5 @@
-using MoneyManager.ViewModels;
-using MoneyManager.ViewModels.Data;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
 using PropertyChanged;
 using SQLite;
 using System.Collections.Generic;
@@ -11,9 +11,12 @@ namespace MoneyManager.Models
     [ImplementPropertyChanged]
     public class Group
     {
-        private AccountViewModel accountViewModel
+        private AccountDataAccess AccountDataAccess
         {
-            get { return new ViewModelLocator().AccountViewModel; }
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AccountDataAccess>();
+            }
         }
 
         [PrimaryKey, AutoIncrement, Indexed]
@@ -25,7 +28,7 @@ namespace MoneyManager.Models
         {
             get
             {
-                return accountViewModel.AllAccounts.Where(x => x.GroupId == Id).ToList();
+                return AccountDataAccess.AllAccounts.Where(x => x.GroupId == Id).ToList();
             }
         }
     }

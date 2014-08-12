@@ -1,4 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Models;
+using MoneyManager.ViewModels;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 
@@ -17,6 +20,15 @@ namespace MoneyManager.UserControls
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
             flyoutBase.ShowAt(senderElement);
+        }
+
+        private void Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+            var element = (FrameworkElement)sender;
+            var account = element.DataContext as Account;
+            if (account == null) return;
+
+            ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>().Delete(account);
         }
     }
 }

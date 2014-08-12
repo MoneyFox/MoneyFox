@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.ViewModels
+﻿namespace MoneyManager.OperationContracts
 {
     public interface IDataAccess<T>
     {

@@ -1,21 +1,21 @@
+using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
-using MoneyManager.ViewModels;
-using MoneyManager.ViewModels.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace MoneyManager.Windows.Test.ViewModels
 {
     [TestClass]
-    public class groupviewModelTest
+    public class GroupviewModelTest
     {
         private Group group;
 
-        private GroupViewModel groupviewModel
+        private GroupDataAccess groupviewModel
         {
-            get { return new ViewModelLocator().GroupViewModel; }
+            get { return ServiceLocator.Current.GetInstance<GroupDataAccess>(); }
         }
 
         [TestInitialize]

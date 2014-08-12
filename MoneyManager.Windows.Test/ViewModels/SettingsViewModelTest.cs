@@ -1,7 +1,8 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using Microsoft.Practices.ServiceLocation;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
 using MoneyManager.Src;
 using MoneyManager.ViewModels;
-using MoneyManager.ViewModels.Data;
 using System.Threading.Tasks;
 
 namespace MoneyManager.Windows.Test.ViewModels
@@ -9,9 +10,9 @@ namespace MoneyManager.Windows.Test.ViewModels
     [TestClass]
     public class SettingsViewModelTest
     {
-        private SettingViewModel settings
+        private SettingDataAccess settings
         {
-            get { return new ViewModelLocator().Settings; }
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
 
         [TestInitialize]

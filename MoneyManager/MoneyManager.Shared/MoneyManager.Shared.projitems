@@ -15,12 +15,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AbstractDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AccountDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\CategoryDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\GroupDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\SettingDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\TransactionDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\FinancialTransaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Group.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Setting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\StatisticItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OperationContracts\IDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Annotations.cs" />
@@ -50,18 +57,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\TransactionListUserControl.xaml.cs">
       <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AbstractDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\AccountViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\CategoryViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\GroupViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\SettingViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Data\TransactionViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AccountListUserControlViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddAccountUserControlViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddAccountViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLocator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\AccountListUserControlViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\AddAccountUserControlViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\AddAccountViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Views\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Styles\AppStyles.xaml">
@@ -99,5 +99,8 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Views\" />
   </ItemGroup>
 </Project>

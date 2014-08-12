@@ -1,6 +1,6 @@
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.ViewModels.Data;
+using MoneyManager.DataAccess;
 using MoneyManager.ViewModels.Views;
 
 namespace MoneyManager.ViewModels
@@ -11,13 +11,13 @@ namespace MoneyManager.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            SimpleIoc.Default.Register<AccountViewModel>();
-            SimpleIoc.Default.Register<CategoryViewModel>();
-            SimpleIoc.Default.Register<GroupViewModel>();
-            SimpleIoc.Default.Register<SettingViewModel>();
-            SimpleIoc.Default.Register<TransactionViewModel>();
+            SimpleIoc.Default.Register<AccountDataAccess>();
+            SimpleIoc.Default.Register<CategoryDataAccess>();
+            SimpleIoc.Default.Register<GroupDataAccess>();
+            SimpleIoc.Default.Register<SettingDataAccess>();
+            SimpleIoc.Default.Register<TransactionDataAccess>();
 
-            SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<MainPageViewModel>();
             SimpleIoc.Default.Register<AccountListUserControlViewModel>();
             SimpleIoc.Default.Register<AddAccountViewModel>();
             SimpleIoc.Default.Register<AddAccountUserControlViewModel>();
@@ -25,38 +25,38 @@ namespace MoneyManager.ViewModels
 
         #region DataAccess
 
-        public AccountViewModel AccountViewModel
+        public AccountDataAccess AccountDataAccess
         {
-            get { return ServiceLocator.Current.GetInstance<AccountViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
-        public CategoryViewModel CategoryViewModel
+        public CategoryDataAccess CategoryDataAccess
         {
-            get { return ServiceLocator.Current.GetInstance<CategoryViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
         }
 
-        public GroupViewModel GroupViewModel
+        public GroupDataAccess GroupDataAccess
         {
-            get { return ServiceLocator.Current.GetInstance<GroupViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<GroupDataAccess>(); }
         }
 
-        public TransactionViewModel TransactionViewModel
+        public TransactionDataAccess TransactionDataAccess
         {
-            get { return ServiceLocator.Current.GetInstance<TransactionViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        public SettingViewModel Settings
+        public SettingDataAccess Settings
         {
-            get { return ServiceLocator.Current.GetInstance<SettingViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
 
         #endregion DataAccess
 
         #region Views
 
-        public MainViewModel Main
+        public MainPageViewModel Main
         {
-            get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<MainPageViewModel>(); }
         }
 
         public AccountListUserControlViewModel AccountListControl

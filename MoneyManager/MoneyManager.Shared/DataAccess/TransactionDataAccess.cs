@@ -1,15 +1,18 @@
-﻿using MoneyManager.Models;
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Models;
 using MoneyManager.Src;
+using MoneyManager.ViewModels;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace MoneyManager.ViewModels.Data
+namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
-    public class TransactionViewModel : AbstractDataAccess<FinancialTransaction>
+    public class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
     {
         public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
 
@@ -17,9 +20,9 @@ namespace MoneyManager.ViewModels.Data
 
         public FinancialTransaction SelectedTransaction { get; set; }
 
-        private AccountViewModel accountViewModel
+        private AccountDataAccess AccountDataAccess
         {
-            get { return new ViewModelLocator().AccountViewModel; }
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
         protected override void SaveToDb(FinancialTransaction transaction)
@@ -31,7 +34,7 @@ namespace MoneyManager.ViewModels.Data
                     AllTransactions = new ObservableCollection<FinancialTransaction>();
                 }
 
-                new ViewModelLocator().AccountViewModel.AddTransactionAmount(transaction);
+                new ViewModelLocator().AccountDataAccess.AddTransactionAmount(transaction);
 
                 AllTransactions.Add(transaction);
                 dbConn.Insert(transaction, typeof(FinancialTransaction));
@@ -52,7 +55,7 @@ namespace MoneyManager.ViewModels.Data
 
                 transaction.Amount = -transaction.Amount;
 
-                accountViewModel.AddTransactionAmount(transaction);
+                AccountDataAccess.AddTransactionAmount(transaction);
             }
         }
 
@@ -88,7 +91,7 @@ namespace MoneyManager.ViewModels.Data
 
         public void GetRelatedTransactions()
         {
-            var accountId = new ViewModelLocator().AccountViewModel.SelectedAccount.Id;
+            var accountId = ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount.Id;
             RelatedTransactions = new ObservableCollection<FinancialTransaction>(
                 AllTransactions
                     .Where(x => x.ChargedAccountId == accountId).ToList());
@@ -107,7 +110,7 @@ namespace MoneyManager.ViewModels.Data
             var transactions = GetUnclearedTransactions();
             foreach (var transaction in transactions)
             {
-                accountViewModel.AddTransactionAmount(transaction);
+                AccountDataAccess.AddTransactionAmount(transaction);
             }
         }
 

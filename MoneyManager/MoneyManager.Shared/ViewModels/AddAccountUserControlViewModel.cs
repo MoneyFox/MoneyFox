@@ -7,8 +7,8 @@ namespace MoneyManager.ViewModels.Views
     {
         public Account SelectedAccount
         {
-            get { return new ViewModelLocator().AccountViewModel.SelectedAccount; }
-            set { new ViewModelLocator().AccountViewModel.SelectedAccount = value; }
+            get { return new ViewModelLocator().AccountDataAccess.SelectedAccount; }
+            set { new ViewModelLocator().AccountDataAccess.SelectedAccount = value; }
         }
 
         public AddAccountUserControlViewModel()

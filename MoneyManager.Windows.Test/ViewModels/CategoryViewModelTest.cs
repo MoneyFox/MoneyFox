@@ -1,9 +1,8 @@
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.ViewModels;
-using MoneyManager.ViewModels.Data;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MoneyManager.Windows.Test.ViewModels
 {
@@ -12,15 +11,15 @@ namespace MoneyManager.Windows.Test.ViewModels
     {
         private Category category;
 
-        private CategoryViewModel categoryViewModel
+        private CategoryDataAccess CategoryDataAccess
         {
-            get { return new ViewModelLocator().CategoryViewModel; }
+            get { return new ViewModelLocator().CategoryDataAccess; }
         }
 
         [TestInitialize]
         public void InitTests()
         {
-            categoryViewModel.DeleteAll();
+            CategoryDataAccess.DeleteAll();
 
             category = new Category
             {
@@ -31,10 +30,10 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestMethod]
         public void SaveCategoryTest()
         {
-            categoryViewModel.Save(category);
+            CategoryDataAccess.Save(category);
 
-            categoryViewModel.LoadList();
-            var saved = categoryViewModel.AllCategories.FirstOrDefault(x => x.Id == category.Id);
+            CategoryDataAccess.LoadList();
+            var saved = CategoryDataAccess.AllCategories.FirstOrDefault(x => x.Id == category.Id);
 
             Assert.IsTrue(saved.Name == category.Name);
         }
@@ -42,39 +41,39 @@ namespace MoneyManager.Windows.Test.ViewModels
         [TestMethod]
         public void LoadCategoryListTest()
         {
-            categoryViewModel.Save(category);
-            categoryViewModel.Save(category);
-            Assert.AreEqual(categoryViewModel.AllCategories.Count, 2);
+            CategoryDataAccess.Save(category);
+            CategoryDataAccess.Save(category);
+            Assert.AreEqual(CategoryDataAccess.AllCategories.Count, 2);
 
-            categoryViewModel.AllCategories = null;
-            categoryViewModel.LoadList();
-            Assert.AreEqual(categoryViewModel.AllCategories.Count, 2);
+            CategoryDataAccess.AllCategories = null;
+            CategoryDataAccess.LoadList();
+            Assert.AreEqual(CategoryDataAccess.AllCategories.Count, 2);
         }
 
         [TestMethod]
         public void UpateCategoryTest()
         {
-            categoryViewModel.Save(category);
-            Assert.AreEqual(categoryViewModel.AllCategories.Count, 1);
+            CategoryDataAccess.Save(category);
+            Assert.AreEqual(CategoryDataAccess.AllCategories.Count, 1);
 
             string newName = "This is a new Name";
 
-            categoryViewModel.LoadList();
-            category = categoryViewModel.AllCategories.FirstOrDefault();
+            CategoryDataAccess.LoadList();
+            category = CategoryDataAccess.AllCategories.FirstOrDefault();
             category.Name = newName;
-            categoryViewModel.Update(category);
+            CategoryDataAccess.Update(category);
 
-            Assert.AreEqual(newName, categoryViewModel.AllCategories.FirstOrDefault().Name);
+            Assert.AreEqual(newName, CategoryDataAccess.AllCategories.FirstOrDefault().Name);
         }
 
         [TestMethod]
         public void DeleteCategoryTest()
         {
-            categoryViewModel.Save(category);
-            Assert.IsTrue(categoryViewModel.AllCategories.Contains(category));
+            CategoryDataAccess.Save(category);
+            Assert.IsTrue(CategoryDataAccess.AllCategories.Contains(category));
 
-            categoryViewModel.Delete(category);
-            Assert.IsFalse(categoryViewModel.AllCategories.Contains(category));
+            CategoryDataAccess.Delete(category);
+            Assert.IsFalse(CategoryDataAccess.AllCategories.Contains(category));
         }
     }
 }
