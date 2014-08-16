@@ -267,4 +267,7 @@
   <data name="IncomeTitle" xml:space="preserve">
     <value>income</value>
   </data>
+  <data name="AddTitle" xml:space="preserve">
+    <value>add</value>
+  </data>
 </root>

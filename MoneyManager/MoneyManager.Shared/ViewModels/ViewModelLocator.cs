@@ -20,6 +20,8 @@ namespace MoneyManager.ViewModels
             SimpleIoc.Default.Register<AccountListUserControlViewModel>();
             SimpleIoc.Default.Register<AddAccountViewModel>();
             SimpleIoc.Default.Register<AddAccountUserControlViewModel>();
+            SimpleIoc.Default.Register<AddTransactionViewModel>();
+            SimpleIoc.Default.Register<AddTransactionUserControlViewModel>();
         }
 
         #region DataAccess
@@ -71,6 +73,16 @@ namespace MoneyManager.ViewModels
         public AddAccountViewModel AddAccountView
         {
             get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>(); }
+        }
+
+        public AddTransactionUserControlViewModel AddTransactionControl
+        {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionUserControlViewModel>(); }
+        }
+
+        public AddTransactionViewModel AddTransaction
+        {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
         #endregion Views

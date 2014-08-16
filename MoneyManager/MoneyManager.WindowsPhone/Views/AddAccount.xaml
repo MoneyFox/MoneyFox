@@ -11,7 +11,7 @@
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Icon="Accept" x:Uid="Done" Label="Done" Command="{Binding AddAccountCommand}" />
-            <AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" />
+            <AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" Command="{Binding CancelCommand}"/>
         </CommandBar>
     </Page.BottomAppBar>
 

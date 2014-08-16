@@ -6,11 +6,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:MoneyManager.UserControls"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Page.Resources>
         <MenuFlyout x:Key="AddTransactionFlyOut">
-            <MenuFlyoutItem x:Uid="Spending" Text="spending" />
-            <MenuFlyoutItem x:Uid="Income" Text="income" />
+            <MenuFlyoutItem x:Uid="Spending" Text="spending" Command="{Binding AddTransactionCommand}" CommandParameter="Spending" />
+            <MenuFlyoutItem x:Uid="Income" Text="income" Command="{Binding AddTransactionCommand}" CommandParameter="Income"/>
         </MenuFlyout>
     </Page.Resources>
     <Page.BottomAppBar>

@@ -5,25 +5,18 @@ using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using PropertyChanged;
 
 namespace MoneyManager.ViewModels
 {
+    [ImplementPropertyChanged]
     public class AddAccountViewModel : ViewModelBase
     {
-        private bool isEdit;
+        public bool IsEdit { get; set; }
 
-        public bool IsEdit
+        public Account SelectedAccount
         {
-            get { return isEdit; }
-            set
-            {
-                if (isEdit != value)
-                {
-                    isEdit = value;
-                }
-
-                RaisePropertyChanged();
-            }
+            get { return new ViewModelLocator().AccountDataAccess.SelectedAccount; }
         }
 
         public RelayCommand AddAccountCommand { get; private set; }
@@ -33,11 +26,6 @@ namespace MoneyManager.ViewModels
         {
             AddAccountCommand = new RelayCommand(AddAccount);
             CancelCommand = new RelayCommand(Cancel);
-        }
-
-        public Account SelectedAccount
-        {
-            get { return new ViewModelLocator().AccountDataAccess.SelectedAccount; }
         }
 
         private void AddAccount()

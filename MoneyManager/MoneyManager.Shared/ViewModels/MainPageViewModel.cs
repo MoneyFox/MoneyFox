@@ -1,7 +1,13 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using Windows.UI.Xaml;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
+using MoneyManager.Src;
+using Windows.UI.Xaml.Controls;
+using MoneyManager.Views;
 
 namespace MoneyManager.ViewModels
 {
@@ -13,10 +19,22 @@ namespace MoneyManager.ViewModels
             set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
         }
 
-        public FinancialTransaction SelectedTransaction
+        public AddTransactionUserControlViewModel AddTransactionControl
         {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
-            set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
+            get { return ServiceLocator.Current.GetInstance<AddTransactionUserControlViewModel>(); }
+        }
+
+        public RelayCommand<string> AddTransactionCommand { get; private set; }
+
+        public MainPageViewModel()
+        {
+            AddTransactionCommand = new RelayCommand<string>(AddTransaction);
+        }
+
+        private void AddTransaction(string transactionType)
+        {
+            AddTransactionControl.TransactionType = (TransactionType)Enum.Parse(typeof(TransactionType), transactionType);
+            ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
         }
     }
 }

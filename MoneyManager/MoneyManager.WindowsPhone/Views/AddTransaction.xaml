@@ -11,8 +11,8 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Accept" Label="Done" />
-            <AppBarButton Icon="Cancel" Label="Cancel" />
+            <AppBarButton Icon="Accept" Label="Done" Command="{Binding AddTransactionControl}" />
+            <AppBarButton Icon="Cancel" Label="Cancel" Command="{Binding CancelCommand}" />
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -31,12 +31,12 @@
 
         <!-- TitlePanel -->
         <StackPanel Grid.Row="0" Margin="24,17,0,28">
-            <TextBlock Text="{Binding TransactionTitle}" Style="{ThemeResource TitleTextBlockStyle}" Typography.Capitals="SmallCaps" />
+            <TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}" Typography.Capitals="SmallCaps" />
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
         <Grid Grid.Row="1" x:Name="ContentRoot">
-            <userControls1:AddTransactionUserControl x:Name="AddTransactionControl" />
+            <userControls1:AddTransactionUserControl />
         </Grid>
     </Grid>
 </Page>
