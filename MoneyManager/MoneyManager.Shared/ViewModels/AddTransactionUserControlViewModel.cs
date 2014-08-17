@@ -4,6 +4,7 @@ using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
 using PropertyChanged;
+using System.Collections.ObjectModel;
 
 namespace MoneyManager.ViewModels
 {
@@ -14,6 +15,11 @@ namespace MoneyManager.ViewModels
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
             set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
+        }
+
+        public ObservableCollection<Account> AllAccounts
+        {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
         }
 
         public bool IsEdit { get; set; }

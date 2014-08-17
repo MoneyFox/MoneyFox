@@ -7,7 +7,7 @@
     xmlns:converter="using:Helper.Converter"
     mc:Ignorable="d"
     d:DesignWidth="400" d:DesignHeight="600"
-    DataContext="{Binding AddTransaction, Source={StaticResource Locator}}">
+    DataContext="{Binding AddTransactionControl, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
@@ -38,9 +38,8 @@
                           VerticalAlignment="Stretch"
                           IsOn="{Binding SelectedTransaction.IsRecurrence, Mode=TwoWay}" />
             <StackPanel Visibility="{Binding SelectedTransaction.IsRecurrence, Converter={StaticResource BooleanVisibilityConverter}}">
-                <ComboBox Header="Reccurence" x:Uid="RecurrenceHeader"
-                          x:Name="ComboBoxRecurrenceType" />
-                <DatePicker x:Name="DatePickerEndDate" />
+                <ComboBox Header="Reccurence" x:Uid="RecurrenceHeader" />
+                <DatePicker />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

@@ -1,0 +1,2388 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.UI.Xaml.Map</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapBehavior">
+            <summary>
+            This is the base class for all map behaviors.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnShapeLayerCleared(Telerik.UI.Xaml.Controls.Map.MapShapeLayer)">
+            <summary>
+            Called when the respective <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> is invalidated and its contents are cleared.
+            </summary>
+            <param name="layer">The shape layer.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.HitTest(Windows.Foundation.Point)">
+            <summary>
+            Initiates a hit test on the specified <see cref="T:Windows.Foundation.Point"/> location.
+            </summary>
+            <remarks>
+            The default <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> logic returns only the top-most <see cref="T:Telerik.UI.Drawing.D2DShape"/> from the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> that matches the specific behavior requirements; 
+            you can override the default logic and return multiple <see cref="T:Telerik.UI.Drawing.D2DShape"/> instances (e.g. from layers that overlay one another) and the specific <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> will
+            manipulate all of them.
+            </remarks>
+            <param name="location">The location.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnPointerEntered(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.PointerEntered"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnPointerMoved(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.PointerMoved"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnPointerExited(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.PointerExited"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnPointerPressed(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.PointerPressed"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnHoldCompleted(Windows.UI.Xaml.Input.HoldingRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.HoldCompleted"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnHoldStarted(Windows.UI.Xaml.Input.HoldingRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.HoldStarted"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnTapped(Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.Tapped"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnDoubleTapped(Windows.UI.Xaml.Input.DoubleTappedRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.DoubleTapped"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnManipulationStarted(Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.ManipulationStarted"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnManipulationDelta(Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.ManipulationDelta"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnManipulationCompleted(Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.ManipulationCompleted"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnPointerWheelChanged(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.PointerWheelChanged"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnPointerReleased(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.PointerReleased"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnMapViewChanged(Telerik.UI.Xaml.Controls.Map.ViewChangedContext)">
+            <summary>
+            A callback from the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance that notifies for a view change event.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnLoaded">
+            <summary>
+            Called when the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance is loaded in the visual tree.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnUnloaded">
+            <summary>
+            Called when the map owner is removed from the element tree.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnAttached">
+            <summary>
+            Called when the behavior is added to the map control.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehavior.OnDetached">
+            <summary>
+            Called when the behavior is removed from the map control.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapBehavior.Map">
+            <summary>
+            Gets the <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance to which this behavior is attached.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapBehavior.DesiredManipulationMode">
+            <summary>
+            Gets the desired manipulation mode to be used by this <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapBehavior.AdornerLayer">
+            <summary>
+            Gets the <see cref="T:Windows.UI.Xaml.Controls.Canvas"/> instance used by different behaviors to add some elements to the visual tree.
+            Will be null if the behavior is not yet attached or the map template is not applied.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapBehaviorCollection">
+            <summary>
+            This collection contains the behaviors for RadMap.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehaviorCollection.InsertItem(System.Int32,Telerik.UI.Xaml.Controls.Map.MapBehavior)">
+            <summary>
+            Inserts a behavior at the specified index.
+            </summary>
+            <param name="index">The index at which to insert the behavior.</param>
+            <param name="item">The behavior to insert.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehaviorCollection.RemoveItem(System.Int32)">
+            <summary>
+            Removes a behavior at the specified index.
+            </summary>
+            <param name="index">The index at which a behavior will be removed.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehaviorCollection.SetItem(System.Int32,Telerik.UI.Xaml.Controls.Map.MapBehavior)">
+            <summary>
+            Replaces a behavior at the specified index with the specified item.
+            </summary>
+            <param name="index">The index of the behavior to replace.</param>
+            <param name="item">The new behavior.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapBehaviorCollection.ClearItems">
+            <summary>
+            Removes all behaviors from RadMap.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapDoubleTapAction">
+            <summary>
+            Defines the available actions that <see cref="T:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior"/> can perform on double tap gesture.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapDoubleTapAction.Reset">
+            <summary>
+            The map is reset to initial state (<see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.Center"/> and <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.ZoomLevel"/> properties are reset to initial values).
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapDoubleTapAction.ZoomToPoint">
+            <summary>
+            The map is zoomed to the contact point with the primary pointer that triggered the input.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapDoubleTapAction.None">
+            <summary>
+            The map does not handle the double tap gesture.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior">
+            <summary>
+            Represents a map behavior that handles Pinch and Drag gestures and manipulates the relevant properties of the associated <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.IsPanEnabledProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.IsPanEnabled"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.ZoomModeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.ZoomMode"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.DoubleTapActionProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.DoubleTapAction"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.OnZoomScale(Windows.Foundation.Point,System.Double)">
+            <summary>
+            Method is internal for the sake of unit-testing.
+            </summary>
+            <param name="zoomPoint">The zoom point.</param>
+            <param name="newZoomLevel">The new zoom level.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.OnPan(Windows.Foundation.Point)">
+            <summary>
+            Method is internal for the sake of unit-testing.
+            </summary>
+            <param name="translation">The translation.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.OnDoubleTapped(Windows.UI.Xaml.Input.DoubleTappedRoutedEventArgs)">
+            <summary>
+            Executes the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.DoubleTapAction"/> associated with the behavior.
+            </summary>
+            <param name="args">The <see cref="T:Windows.UI.Xaml.Input.DoubleTappedRoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.OnManipulationStarted(Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.ManipulationStarted"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.OnManipulationCompleted(Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.ManipulationCompleted"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.OnManipulationDelta(Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs)">
+            <summary>
+            Processes the Scale and Translation properties of the Delta manipulation.
+            The event is handled if the owning map is not in "Hold" state.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.OnPointerWheelChanged(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.PointerWheelChanged"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.IsPanEnabled">
+            <summary>
+            Gets or sets a value indicating whether the Translation manipulation is handled by the behavior.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.ZoomMode">
+            <summary>
+            Gets or sets the current <see cref="T:Telerik.UI.Xaml.Controls.Map.MapZoomMode"/> value that specifies how a Pinch gesture is processed by the behavior.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.DoubleTapAction">
+            <summary>
+            Gets or sets a value indicating how the double tap action is processed.
+            </summary>
+            <value>
+            The double tap action.
+            </value>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior.DesiredManipulationMode">
+            <summary>
+            Gets the desired manipulation mode to be used by this <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapShapePointerOverBehavior">
+            <summary>
+            Represents a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> implementation that provides a visual indication when the primary input pointer is over a <see cref="T:Telerik.Geospatial.IMapShape"/> instance. Applicable for <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> instances.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapePointerOverBehavior.HitTest(Windows.Foundation.Point)">
+            <summary>
+            Initiates a hit test on the specified <see cref="T:Windows.Foundation.Point"/> location.
+            </summary>
+            <param name="location">The location.</param>
+            <returns></returns>
+            <remarks>
+            The default <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> logic returns only the top-most <see cref="T:Telerik.UI.Drawing.D2DShape"/> from the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> that matches the specific behavior requirements;
+            you can override the default logic and return multiple <see cref="T:Telerik.UI.Drawing.D2DShape"/> instances (e.g. from layers that overlay one another) and the specific <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> will
+            manipulate all of them.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapePointerOverBehavior.OnPointerEntered(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:PointerEntered"/> event.
+            </summary>
+            <param name="args">The <see cref="T:Windows.UI.Xaml.Input.PointerRoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapePointerOverBehavior.OnPointerMoved(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:PointerMoved"/> event.
+            </summary>
+            <param name="args">The <see cref="T:Windows.UI.Xaml.Input.PointerRoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapePointerOverBehavior.OnPointerReleased(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:PointerReleased"/> event.
+            </summary>
+            <param name="args">The <see cref="T:Windows.UI.Xaml.Input.PointerRoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapePointerOverBehavior.OnPointerExited(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Raises the <see cref="E:PointerExited"/> event.
+            </summary>
+            <param name="args">The <see cref="T:Windows.UI.Xaml.Input.PointerRoutedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapePointerOverBehavior.OnUnloaded">
+            <summary>
+            Called when the map owner is removed from the element tree.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapZoomMode">
+            <summary>
+            Defines the available modes to process user input that affects the <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.ZoomLevel"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapZoomMode.ZoomToPoint">
+            <summary>
+            The map is zoomed to the contact point with the primary pointer that triggered the input.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapZoomMode.ZoomToCenter">
+            <summary>
+            The map is zoomed its center regardless of the primary pointer that triggered the input.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapZoomMode.None">
+            <summary>
+            The map may not be zoomed through user input.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior">
+            <summary>
+            Represents a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> that allows map shapes from different <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> instances to be selected.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.SelectionModeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.SelectionMode"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.SelectedShapeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.SelectedShape"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.ClearSelection">
+            <summary>
+            Clears the selected shapes for this behavior.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.HandleTap(Windows.Foundation.Point)">
+            <summary>
+            Method is internal for unit test purposes.
+            </summary>
+            <param name="position">The position.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.OnShapeLayerCleared(Telerik.UI.Xaml.Controls.Map.MapShapeLayer)">
+            <summary>
+            Called when the respective <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> is invalidated and its contents are cleared.
+            </summary>
+            <param name="layer">The shape layer.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.HitTest(Windows.Foundation.Point)">
+            <summary>
+            Initiates a hit test on the specified <see cref="T:Windows.Foundation.Point"/> location.
+            </summary>
+            <param name="location">The location.</param>
+            <returns></returns>
+            <remarks>
+            The default <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> logic returns only the top-most <see cref="T:Telerik.UI.Drawing.D2DShape"/> from the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> that matches the specific behavior requirements;
+            you can override the default logic and return multiple <see cref="T:Telerik.UI.Drawing.D2DShape"/> instances (e.g. from layers that overlay one another) and the specific <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> will
+            manipulate all of them.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.OnTapped(Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.Tapped"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.OnSelectionChanged(System.Collections.Generic.IList{System.Object},System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Raises the <see cref="F:Telerik.UI.Xaml.Controls.Map.CommandId.ShapeSelectionChanged"/> command and the <see cref="E:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.SelectionChanged"/> event.
+            </summary>
+            <param name="removedItems">The removed items.</param>
+            <param name="addedItems">The added items.</param>
+        </member>
+        <member name="E:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.SelectionChanged">
+            <summary>
+            Raised when the current selection has changed.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.SelectedShapes">
+            <summary>
+            Gets the currently selected <see cref="T:Telerik.Geospatial.IMapShape"/> instances.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.SelectionMode">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionMode"/> value that defines how the user input affects the current selection.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior.SelectedShape">
+            <summary>
+            Gets or sets the currently selected <see cref="T:Telerik.Geospatial.IMapShape"/> instance. When multiple selection is enabled, this value is set to the first selected shape.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior">
+            <summary>
+            Represents a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> that provides a context-sensitive information on a per map shape basis. Applicable when <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> are added to a <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.ContentTemplateProperty">
+            <summary>
+            Identifies the ContentTemplate attached property.
+            Usually this property is used by <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> to define different toolTips on a per layer basis.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.GetContentTemplate(Windows.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the <see cref="T:Windows.UI.Xaml.DataTemplate"/> instance associated with the specified <see cref="T:Windows.UI.Xaml.DependencyObject"/> instance.
+            </summary>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.SetContentTemplate(Windows.UI.Xaml.DependencyObject,Windows.UI.Xaml.DataTemplate)">
+            <summary>
+            Sets the provided <see cref="T:Windows.UI.Xaml.DataTemplate"/> instance to the the specified <see cref="T:Windows.UI.Xaml.DependencyObject"/> instance.
+            </summary>
+            <param name="instance"></param>
+            <param name="template"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.HandleTap(Windows.Foundation.Point)">
+            <summary>
+            Exposed for testing purposes.
+            </summary>
+            <param name="position">The position.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.UpdateToolTipCore">
+            <summary>
+            Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.ShowToolTip">
+            <summary>
+            Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.OnShapeLayerCleared(Telerik.UI.Xaml.Controls.Map.MapShapeLayer)">
+            <summary>
+            Called when the respective <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> is invalidated and its contents are cleared.
+            </summary>
+            <param name="layer">The shape layer.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.HitTest(Windows.Foundation.Point)">
+            <summary>
+            Initiates a hit test on the specified <see cref="T:Windows.Foundation.Point"/> location.
+            </summary>
+            <param name="location">The location.</param>
+            <returns></returns>
+            <remarks>
+            The default <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> logic returns only the top-most <see cref="T:Telerik.UI.Drawing.D2DShape"/> from the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> that matches the specific behavior requirements;
+            you can override the default logic and return multiple <see cref="T:Telerik.UI.Drawing.D2DShape"/> instances (e.g. from layers that overlay one another) and the specific <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> will
+            manipulate all of them.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.OnMapViewChanged(Telerik.UI.Xaml.Controls.Map.ViewChangedContext)">
+            <summary>
+            A callback from the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance that notifies for a view change event.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.OnTapped(Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:RadMap.Tapped"/> event of the owning <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.OnUnloaded">
+            <summary>
+            Called when the map owner is removed from the element tree.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.InitializeToolTip">
+            <summary>
+            Initializes the toolTip visual and adds it to the <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> visual tree.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.UpdateToolTip(Windows.Foundation.Point)">
+            <summary>
+            Updates the tooltip display position (and opens it if it was previously hidden).
+            </summary>
+            <param name="position">The position.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.HideToolTip">
+            <summary>
+            Hides the toolTip visual.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.TouchOverhang">
+            <summary>
+            Gets or sets the offset to be applied when the toolTip position is calculated.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.ShowDelay">
+            <summary>
+            Gets or sets the delay to be applied before the toolTip is displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior.IsOpen">
+            <summary>
+            Gets a value indicating whether the toolTip is currently displayed.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionMode">
+            <summary>
+            Defines the available selection modes in a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionMode.None">
+            <summary>
+            No selection is allowed.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionMode.Single">
+            <summary>
+            Single-shape selection is allowed. A shape is selected when tapped and deselected if tapped again. If a new shape is tapped, the previous selected one is deselected.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionMode.MultiSimple">
+            <summary>
+            Multiple-shape selection is allowed. A shape is selected when tapped and deselected if tapped again.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionMode.MultiExtended">
+            <summary>
+            Multiple-shape selection is allowed. Multiple shapes may be selected only if the Control modifier key is pressed.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.Primitives.MapToolTip">
+            <summary>
+            This class represents the toolTips for <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.Primitives.MapToolTip.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.Primitives.MapToolTip"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipContext">
+            <summary>
+            Represents the data context used by <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipContext.DisplayContent">
+            <summary>
+            Gets or sets the default object that visually represents the associated <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipContext.Shape"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipContext.Shape">
+            <summary>
+            Gets the associated map shape instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipContext.Layer">
+            <summary>
+            Gets the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> that the associated <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipContext.Shape"/> belongs to.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.ISpatialReference">
+            <summary>
+            The OGC Spatial Reference requirements. 
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ISpatialReference.ConvertGeographicToLogicalCoordinate(Telerik.Geospatial.Location)">
+            <summary>
+            Converts a geographical coordinate (Longitude, Latitude) to a logical Point (0->1).
+            </summary>
+            <param name="geographicPoint">The geographical coordinate (Longitude, Latitude).</param>
+            <returns>The logical Point.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ISpatialReference.ConvertLogicalToGeographicCoordinate(Telerik.UI.Drawing.DoublePoint)">
+            <summary>
+            Converts a logical Point (0->1) to a geographical coordinate (Longitude, Latitude).
+            </summary>
+            <param name="logicalPoint">The logical Point.</param>
+            <returns>The geographical coordinate (Longitude, Latitude).</returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.AngularUnitOfMeasurement">
+            <summary>
+            The measurement units used to define the angles of a spheroid or ellipse associated with a specific datum.
+            The datum is usually WGS (World Geodetic System) 1984 and the unit of measurement is a degree.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.Authority">
+            <summary>
+            The authority body that defines the standards for the spatial reference parameters.
+            Spatial Reference is usually WGS 1984 and the authority is EPSG:4326.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.CentralMeridian">
+            <summary>
+            The line of longitude at the center of a map projection generally used as the basis for constructing the projection.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.Datum">
+            <summary>
+            This indicates the horizontal datum,
+            which corresponds to the procedure used to measure positions on the surface of the Earth. 
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.DatumAuthority">
+            <summary>
+            This indicates the horizontal datum,
+            which corresponds to the procedure used to measure positions on the surface of the Earth.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.FalseEasting">
+            <summary>
+            The value added to all "x" values in the rectangular coordinate for a map projection. 
+            This value frequently is assigned to eliminate negative numbers.
+            Expressed in the unit of measure identified in Planar Coordinate Units.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.FalseNorthing">
+            <summary>
+            The value added to all "y" values in the rectangular coordinates for a map projection. 
+            This value frequently is assigned to eliminate negative numbers. 
+            Expressed in the unit of measure identified in Planar Coordinate Units.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.GeoGcs">
+            <summary>
+            A coordinate system based on latitude and longitude. Some geographic coordinate systems are Latitude/Longitude, 
+            and some are Longitude/Latitude. You can find out which this is by examining the axes. 
+            You should also check the angular units, since not all geographic coordinate systems use degrees.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.LatitudeOfOrigin">
+            <summary>
+            The latitude chosen as the origin of rectangular coordinate for a map projection.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.Primem">
+            <summary>
+            This defines the meridian used to take longitude measurements from. 
+            The units of the longitude must be inferred from the context.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.PrimemAuthority">
+            <summary>
+            This defines the meridian used to take longitude measurements from. 
+            The units of the longitude must be inferred from the context.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.ProjectionAuthority">
+            <summary>
+            This describes a projection from geographic coordinates to projected coordinates.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.SpheroidRadius">
+            <summary>
+            This describes a spheroid, which is an approximation of the Earth's surface as a squashed sphere.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.SpheroidFlattening">
+            <summary>
+            This describes a spheroid, which is an approximation of the Earth's surface as a squashed sphere.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.SpheroidAuthority">
+            <summary>
+            This describes a spheroid, which is an approximation of the Earth's surface as a squashed sphere.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.StandardParallel">
+            <summary>
+            The line of constant latitude at which the surface of the Earth and the plane or developable surface intersect.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.UnitAuthority">
+            <summary>
+            The authority body that defines the unit of measurement i.e. European Petroleum Survey Group (EPSG).
+            The unit of measurement is usually degrees and the authority for the datum the map uses, WGS 1984 is EPSG:4326.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.MinLatitude">
+            <summary>
+            The minimum Latitude this tile source supports.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.MaxLatitude">
+            <summary>
+            The maximum Latitude this tile source supports.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.MinLongitude">
+            <summary>
+            The minimum Longitude this tile source supports.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ISpatialReference.MaxLongitude">
+            <summary>
+            The maximum Longitude this tile source supports.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.IShapeDataSource">
+            <summary>
+            Defines the contract for data sources that provide <see cref="T:Telerik.Geospatial.IMapShape"/> instances.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.IShapeDataSource.Shapes">
+            <summary>
+            Gets the <see cref="T:Telerik.Geospatial.MapShapeModelCollection"/> provided by this source.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.ITransportResolver">
+            <summary>
+            Defines a type that is used by the <see cref="T:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource"/> to load a <see cref="T:Windows.Storage.StorageFile"/> containing the Map Shapes definition.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ITransportResolver.GetStorageFile(System.Uri)">
+            <summary>
+            Loads the <see cref="T:Windows.Storage.StorageFile"/> containing the Map Shapes definition.
+            </summary>
+            <param name="uri">The <see cref="T:System.Uri"/> pointing to the file location.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer">
+            <summary>
+            Represents a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeColorizer"/> implementation that groups the associated <see cref="T:Telerik.Geospatial.IMapShape"/> objects in ranges, depending on each shape's attribute value and colorizes each range with a different color.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapShapeColorizer">
+            <summary>
+            Represents a class that may be used to colorize a <see cref="T:Telerik.Geospatial.IMapShape"/> instance, present within a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeColorizer.GetShapeStyle(Telerik.Geospatial.IMapShape)">
+            <summary>
+            Gets the <see cref="T:Telerik.UI.Drawing.D2DShapeStyle"/> instance that defines the appearance of the specified <see cref="T:Telerik.Geospatial.IMapShape"/> instance.
+            </summary>
+            <param name="shape">The <see cref="T:Telerik.Geospatial.IMapShape"/> instance for which the style is to be retrieved.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeColorizer.ResetOverride">
+            <summary>
+            Provides an extension methods to inheritors to reset the current state.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeColorizer.InitializeOverride(System.Collections.Generic.IEnumerable{Telerik.Geospatial.IMapShape})">
+            <summary>
+            Provides an extension methods to inheritors to perform the core initialization logic given a set of shapes.
+            </summary>
+            <param name="shapes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeColorizer.OnChanged">
+            <summary>
+            Raises the <see cref="E:Telerik.UI.Xaml.Controls.Map.MapShapeColorizer.Changed"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeColorizer.OnInitialized">
+            <summary>
+            Provides an entry point that allows inheritors to perform some additional logic upon initialization completion.
+            </summary>
+        </member>
+        <member name="E:Telerik.UI.Xaml.Controls.Map.MapShapeColorizer.Changed">
+            <summary>
+            Raised when the current instance has changed in a way that needs re-evaluation of each shape's style.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeColorizer.IsProperlyInitialized">
+            <summary>
+            Gets a value indicating whether the colorizer is successfully initialized and has its colorization logic realized.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.AttributeNameProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.AttributeName"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.RangeDistributionProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.RangeDistribution"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.GetRangeForShape(Telerik.Geospatial.IMapShape)">
+            <summary>
+            Gets the <see cref="T:Telerik.UI.Xaml.Controls.Map.ColorRange"/> instance where the specified shape falls.
+            </summary>
+            <param name="shape"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.GetShapeStyle(Telerik.Geospatial.IMapShape)">
+            <summary>
+            Gets the <see cref="T:Telerik.UI.Drawing.D2DShapeStyle"/> instance that defines the appearance of the specified <see cref="T:Telerik.Geospatial.IMapShape"/> instance.
+            </summary>
+            <param name="shape">The <see cref="T:Telerik.Geospatial.IMapShape"/> instance for which the style is to be retrieved.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.GetRangeAt(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Telerik.UI.Xaml.Controls.Map.ColorRange"/> instance at the specified index.
+            </summary>
+            <param name="rangeIndex">The zero-based index of the range.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.GetRangeCount">
+            <summary>
+            Gets the count of the ranges that will be generated.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.BuildRanges(System.Collections.Generic.IEnumerable{Telerik.Geospatial.IMapShape})">
+            <summary>
+            Provides the core logic behind range generation. Allows inheritors to provide custom range generation routine.
+            </summary>
+            <param name="shapes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.GetRangeForValue(System.Double)">
+            <summary>
+            Gets the <see cref="T:Telerik.UI.Xaml.Controls.Map.ColorRange"/> instance where the specified value falls.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.ResetOverride">
+            <summary>
+            Implements the core logic behind the Reset routine.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.InitializeOverride(System.Collections.Generic.IEnumerable{Telerik.Geospatial.IMapShape})">
+            <summary>
+            Implements the core logic behind the Initialize routine.
+            </summary>
+            <param name="shapes">The set of shapes to initialize from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.SetFillForRange(Telerik.UI.Xaml.Controls.Map.ColorRange)">
+            <summary>
+            Sets the <see cref="T:Telerik.UI.Drawing.D2DBrush"/> instance that defines the fill for each shape falling within the range.
+            </summary>
+            <param name="range"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.OnShapeAssociated(Telerik.Geospatial.IMapShape,Telerik.UI.Xaml.Controls.Map.ColorRange)">
+            <summary>
+            Provides an extension point for inheritors to perform additional logic when a <see cref="T:Telerik.Geospatial.IMapShape"/> is associated with a valid <see cref="T:Telerik.UI.Xaml.Controls.Map.ColorRange"/>.
+            </summary>
+            <param name="shape"></param>
+            <param name="range"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.OnInitialized">
+            <summary>
+            Provides an entry point that allows inheritors to perform some additional logic upon initialization completion.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.AttributeName">
+            <summary>
+            Gets or sets the name of the attribute that identifies the <see cref="T:System.Double"/> value for each shape. This value is used in the range distribution logic.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.RangeDistribution">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Xaml.Controls.Map.ChoroplethRangeDistribution"/> instance that may be used to override the default linear distribution of shape values.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.ActualRange">
+            <summary>
+            Gets the current range, computed by the colorizer.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer.Ranges">
+            <summary>
+            Gets all the ranges computed by the colorizer.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.ChoroplethRangeDistribution">
+            <summary>
+            Encapsulates the logic behind range distribution of shape attributes, used by a <see cref="T:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethRangeDistribution.BuildRanges(Telerik.Core.ValueRange{System.Double},System.Int32)">
+            <summary>
+            Implements logic for dividing the interval defined by the <paramref name="valueRange"/> into smaller intervals (ranges).
+            </summary>
+            <param name="valueRange">The full range that will be divided.</param>
+            <param name="count">The count of the generated ranges.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ChoroplethRangeDistribution.GetRangeIndexForValue(System.Double)">
+            <summary>
+            Gets the index of the numeric range that contains the <paramref name="value"/>.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.ColorRange">
+            <summary>
+            Represents a range within a <see cref="T:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ColorRange.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.ColorRange"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ColorRange.Min">
+            <summary>
+            Gets or sets the minimum of the range.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ColorRange.Max">
+            <summary>
+            Gets or sets the maximum of the range.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ColorRange.Fill">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Drawing.D2DBrush"/> instance that defines the fill of all shapes that fall within the range.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ColorRange.Index">
+            <summary>
+            The zero-based index of the range in its owning <see cref="T:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer"/> instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer">
+            <summary>
+            Represents a concrete <see cref="T:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer"/> implementation that creates a desaturated color for each generated <see cref="T:Telerik.UI.Xaml.Controls.Map.ColorRange"/> given a base color value.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.RangeCountProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.RangeCount"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.BaseColorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.BaseColor"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.FromProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.From"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.ToProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.To"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.GetRangeCount">
+            <summary>
+            Gets the count of the ranges that will be generated.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.SetFillForRange(Telerik.UI.Xaml.Controls.Map.ColorRange)">
+            <summary>
+            Sets the <see cref="T:Telerik.UI.Drawing.D2DBrush"/> instance that defines the fill for each shape falling within the range.
+            </summary>
+            <param name="range"></param>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.From">
+            <summary>
+            Gets or sets a value between 0 and 1 that specifies the maximum percentage of desaturation that may be applied to the specified <see cref="P:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.BaseColor"/> value. A zero means completely white.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.To">
+            <summary>
+            Gets or sets a value between 0 and 1 that specifies the starting desaturation percentage of the <see cref="P:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.BaseColor"/> value. 1 means that the first color will be the BaseColor itself.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.RangeCount">
+            <summary>
+            Gets or sets the number of ranges to be generated, based on the computed <see cref="P:ActualRange"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.DesaturationColorizer.BaseColor">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Color"/> value from which the rest desaturated values will be generated. This value will represent the range, containing the shapes with maximum values, as defined by the <see cref="P:AttributeName"/> property.
+            Defaults to 7.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.LinearRangeDistribution">
+            <summary>
+            A specific <see cref="T:Telerik.UI.Xaml.Controls.Map.ChoroplethRangeDistribution"/> implementation that uses linear range distribution.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.LinearRangeDistribution.BuildRanges(Telerik.Core.ValueRange{System.Double},System.Int32)">
+            <summary>
+            Divides the interval defined by the <paramref name="valueRange" /> into smaller intervals (ranges) using linear distribution.
+            </summary>
+            <param name="valueRange">The full range that will be divided.</param>
+            <param name="count">The count of the generated ranges.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.LinearRangeDistribution.GetRangeIndexForValue(System.Double)">
+            <summary>
+            Gets the index of the numeric range that contains the <paramref name="value" />.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution">
+            <summary>
+            A specific <see cref="T:Telerik.UI.Xaml.Controls.Map.ChoroplethRangeDistribution"/> implementation that uses logarithmic range distribution.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution.LogarithmBaseProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution.LogarithmBase"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution.BuildRanges(Telerik.Core.ValueRange{System.Double},System.Int32)">
+            <summary>
+            Implements logic for splitting the interval defined by the <paramref name="valueRange"/> into smaller intervals (ranges) using logarithmic distribution.
+            The base of the logarithm is the <see cref="P:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution.LogarithmBase"/> property.
+            </summary>
+            <remarks>
+            <para>
+            The <paramref name="valueRange"/> is mapped to a made-up interval that is separated into <paramref name="count"/> sub-ranges as follows:
+            b^0, b^1, ... , b^<paramref name="count"/>.
+            The actual boundary (upper) value of a range with index i is defined from the following equality:
+            </para>
+            <para>
+            actualBoundaryValue = (max - min) * ratio + min
+            </para>
+            <para>
+            where
+            </para>
+            <para>
+            ratio = (base^i - 1)/(base^count - 1)
+            </para>
+            <para>
+            and min and max are <see cref="T:ValueRange.Minimum"/> and <see cref="T:ValueRange.Maximum"/> of the <paramref name="valueRange"/>.
+            </para>
+            <para>
+            This ratio is sensitive to the power values. The <see cref="M:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution.CalculateMaxPowerForRangeLengthPrecision"/> method returns a value that defines the maximum power x, defined by the following inequality:
+            </para>
+            <para>
+            b^x &lt;= 10^10
+            </para>
+            <para>
+            This power defines the smallest possible width of a range.
+            </para>
+            </remarks>
+            <param name="valueRange">The full range that will be divided.</param>
+            <param name="count">The count of the generated ranges.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution.GetRangeIndexForValue(System.Double)">
+            <summary>
+            Gets the index of the numeric range that contains the <paramref name="value" />.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution.CalculateMaxPowerForRangeLengthPrecision">
+            <summary>
+            <para>
+            Returns a number that defines the maximum value of x, defined by the following inequality:
+            </para>
+            <para>
+            b^x &lt;= 10^10
+            </para>
+            <para>
+            Here b is defined by the <see cref="P:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution.LogarithmBase"/> property. This power defines the smallest possible width of an interval when the ranges  are build by the <see cref="M:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution.BuildRanges(Telerik.Core.ValueRange{System.Double},System.Int32)"/> method.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.LogarithmicRangeDistribution.LogarithmBase">
+            <summary>
+            Gets or sets the base of the Logarithm function used to transform shape attributes. Defaults to 10d.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.PaletteColorizer">
+            <summary>
+            Represents a concrete <see cref="T:Telerik.UI.Xaml.Controls.Map.ChoroplethColorizer"/> implementation that enables color distribution to be specified through a collection of <see cref="T:Telerik.UI.Drawing.D2DBrush"/> objects.
+            The count of the ranges produced is implicitly defined by the number of brushes present within the <see cref="P:Telerik.UI.Xaml.Controls.Map.PaletteColorizer.Brushes"/> collection.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.PaletteColorizer.RangeStopsProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.PaletteColorizer.RangeStops"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.PaletteColorizer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.PaletteColorizer"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.PaletteColorizer.BuildRanges(System.Collections.Generic.IEnumerable{Telerik.Geospatial.IMapShape})">
+            <summary>
+            Provides the core logic behind range generation. Allows inheritors to provide custom range generation routine.
+            </summary>
+            <param name="shapes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.PaletteColorizer.GetRangeCount">
+            <summary>
+            Gets the count of the ranges that will be generated.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.PaletteColorizer.SetFillForRange(Telerik.UI.Xaml.Controls.Map.ColorRange)">
+            <summary>
+            Sets the <see cref="T:Telerik.UI.Drawing.D2DBrush"/> instance that defines the fill for each shape falling within the range.
+            </summary>
+            <param name="range"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.PaletteColorizer.GetRangeForValue(System.Double)">
+            <summary>
+            Gets the <see cref="T:Telerik.UI.Xaml.Controls.Map.ColorRange"/> instance where the specified value falls.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.PaletteColorizer.Brushes">
+            <summary>
+             Gets the collection of <see cref="T:Telerik.UI.Drawing.D2DBrush"/> objects that defines the appearance of each range. The number of ranges is implicitly defined by the count of this collection.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.PaletteColorizer.RangeStops">
+            <summary>
+            Gets or sets a comma separated list of the numeric range stop values for the colorizer to use when generating its associated <see cref="T:Telerik.UI.Xaml.Controls.Map.ColorRange"/> instances.
+            </summary>
+            <remarks>
+            This property is optional. If set, it has higher priority than <see cref="P:Telerik.UI.Xaml.Controls.Map.PaletteColorizer.Brushes"/> count and the range stops control the number of <see cref="T:Telerik.UI.Xaml.Controls.Map.ColorRange"/> instances; 
+            if not set, the colorizer will generate the <see cref="T:Telerik.UI.Xaml.Controls.Map.ColorRange"/> instances automatically based on the provided <see cref="P:Telerik.UI.Xaml.Controls.Map.PaletteColorizer.Brushes"/> count.
+            </remarks>
+            <value>
+            For example if this property is set to "1, 2.5, 3, 5", the colorizer will generate 3 ranges -- [1, 2.5], [2.5, 3], [3, 5].
+            </value>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.IMapDataItem">
+            <summary>
+            Defines a contract that allows arbitrary data items to be visualized within a <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.IMapDataItem.Location">
+            <summary>
+            The geographic location where the item needs to be displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.IMapDataItem.MinZoom">
+            <summary>
+            The minimum of the zoom range in which the item is visible.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.IMapDataItem.MaxZoom">
+            <summary>
+            The maximum of the zoom range in which the item is visible.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.IMapDataItem.LocationOrigin">
+            <summary>
+            Defines how the visual representation of the data item is aligned with the physical coordinates of the <see cref="P:Telerik.UI.Xaml.Controls.Map.IMapDataItem.Location"/> property.
+            A value of (0.5, 0.5) will center the visual representation over the geographic location.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapDataItem">
+            <summary>
+            Represents a concrete implementation if the <see cref="T:Telerik.UI.Xaml.Controls.Map.IMapDataItem"/> interface.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapDataItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapDataItem"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapDataItem.MinZoom">
+            <summary>
+            Gets or sets the minimum of the zoom range in which the item is visible.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapDataItem.MaxZoom">
+            <summary>
+            Gets or sets the maximum of the zoom range in which the item is visible.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapDataItem.Location">
+            <summary>
+            Gets or sets the geographic location where the item needs to be displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapDataItem.LocationOrigin">
+            <summary>
+            Gets or sets the <see cref="T:Windows.Foundation.Point"/> value that defines how the visual representation of the data item is aligned with the physical coordinates of the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapDataItem.Location"/> property.
+            The default value of (0.5, 0.5) will center the visual representation over the geographic location.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext">
+            <summary>
+            Encapsulates the information needed by a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutStrategy"/> instance to customize the labels for each shape within a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext.Shape">
+            <summary>
+            Gets the associated <see cref="T:Telerik.Geospatial.IMapShape"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext.Label">
+            <summary>
+            Gets the label of the associated <see cref="T:Telerik.Geospatial.IMapShape"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext.ZoomLevel">
+            <summary>
+            Gets the current zoom level of the map.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext.Center">
+            <summary>
+            Gets the current Center of the map.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext.Visibility">
+            <summary>
+            Gets or sets the desired visibility of the shape's label.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext.RenderLocation">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Geospatial.Location"/> at which the label will be rendered. The actual position in render units is further modified by the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext.RenderLocationOrigin"/> property.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext.RenderLocationOrigin">
+            <summary>
+            Gets or sets the <see cref="T:Windows.Foundation.Point"/> value that defines how the label is position in render units over its <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext.RenderLocation"/>.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutStrategy">
+            <summary>
+            Defines a type that may be used to extend the built-in label position logic for <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> instances.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutStrategy.Process(Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext,Telerik.UI.Xaml.Controls.Map.MapShapeLayer)">
+            <summary>
+            Applies the custom layout logic given the provided layout context and layer.
+            </summary>
+            <param name="context"></param>
+            <param name="container"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutStrategy.ProcessCore(Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext,Telerik.UI.Xaml.Controls.Map.MapShapeLayer)">
+            <summary>
+            Performs the core logic behind the <see cref="M:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutStrategy.Process(Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutContext,Telerik.UI.Xaml.Controls.Map.MapShapeLayer)"/> routine.
+            </summary>
+            <param name="context"></param>
+            <param name="container"></param>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapUserLayer">
+            <summary>
+            Represents a specific <see cref="T:Telerik.UI.Xaml.Controls.Map.MapLayer"/> that allows for user-defined locations to be visualized through data templates.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapLayer">
+            <summary>
+            Base class for all layers that may reside within a <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapLayer.UnloadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Unloaded" /> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapLayer.Bounds">
+            <summary>
+            Gets the bounding rectangle of the layer in geographical coordinates.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapLayer.Id">
+            <summary>
+            Shapefile Layers expose an ID property for logical separation of all the shapes that reside within one D2DCanvas instance.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapUserLayer.ItemTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.ItemTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapUserLayer.ItemTemplateSelectorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.ItemTemplateSelector"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapUserLayer.ItemsSourceProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.ItemsSource"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapUserLayer.LocationPropertyNameProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.LocationPropertyName"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapUserLayer.LocationOriginPropertyNameProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.LocationOriginPropertyName"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapUserLayer.MinZoomPropertyNameProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.MinZoomPropertyName"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapUserLayer.MaxZoomPropertyNameProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.MaxZoomPropertyName"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapUserLayer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapUserLayer"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapUserLayer.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapUserLayer"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapUserLayer.ApplyTemplateCore">
+            <summary>
+            Called when the Framework <see cref="M:OnApplyTemplate" /> is called. Inheritors should override this method should they have some custom template-related logic.
+            This is done to ensure that the <see cref="P:IsTemplateApplied" /> property is properly initialized.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapUserLayer.UnloadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Unloaded" /> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.ItemsSource">
+            <summary>
+            Gets or sets the collection of data items to be visualized by the layer.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.ItemTemplate">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.DataTemplate"/> that defines the visual representation of each data item present within the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.ItemsSource"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.ItemTemplateSelector">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Controls.DataTemplateSelector"/> that may be used to provide context-based appearance for each data item within the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.ItemsSource"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.LocationPropertyName">
+            <summary>
+            Gets or sets the name of the property that contains the GeoSpatial Location value for each item in the ItemsSource.
+            </summary>
+            <remarks>
+            The expected return value of the property is of type <see cref="T:Telerik.Geospatial.Location"/>.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.LocationOriginPropertyName">
+            <summary>
+            Gets or sets the name of the property that defines the origin of the item relative to the Geo Location of the item.
+            A value of (0.5, 0.5) will center the visual representation of each item over its geographical location.
+            </summary>
+            <remarks>
+            The expected return value of the property is of type <see cref="T:Windows.Foundation.Point"/>.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.MinZoomPropertyName">
+            <summary>
+            Gets or sets the name of the property that contains the minimum zoom level needed for the item to be displayed.
+            </summary>
+            <remarks>
+            The expected return value of the property is of type <see cref="T:System.Double"/>.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapUserLayer.MaxZoomPropertyName">
+            <summary>
+            Gets or sets the name of the property that contains the maximum zoom level needed for the item to be displayed.
+            </summary>
+            <remarks>
+            The expected return value of the property is of type <see cref="T:System.Double"/>.
+            </remarks>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapShapeStyleContext">
+            <summary>
+            Encapsulates the information, provided by a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeStyleSelector"/> and used by a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> to dynamically style each hosted <see cref="T:Telerik.Geospatial.IMapShape"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeStyleContext.Shape">
+            <summary>
+            Gets the associated <see cref="T:Telerik.Geospatial.IMapShape"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeStyleContext.UIState">
+            <summary>
+            Gets the <see cref="T:Telerik.UI.Drawing.ShapeUIState"/> value of the <see cref="T:Telerik.UI.Drawing.D2DShape"/> instance that visualizes the associated shape model.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeStyleContext.NormalStyle">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Drawing.D2DShapeStyle"/> value that defines the appearance of the underlying <see cref="T:Telerik.UI.Drawing.D2DShape"/> in its <see cref="F:Telerik.UI.Drawing.ShapeUIState.Normal"/> state.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeStyleContext.PointerOverStyle">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Drawing.D2DShapeStyle"/> value that defines the appearance of the underlying <see cref="T:Telerik.UI.Drawing.D2DShape"/> in its <see cref="F:Telerik.UI.Drawing.ShapeUIState.PointerOver"/> state.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeStyleContext.SelectedStyle">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Drawing.D2DShapeStyle"/> value that defines the appearance of the underlying <see cref="T:Telerik.UI.Drawing.D2DShape"/> in its <see cref="F:Telerik.UI.Drawing.ShapeUIState.Selected"/> state.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeStyleContext.LabelStyle">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Drawing.D2DTextStyle"/> value that defines the appearance of the label, displayed by the underlying <see cref="T:Telerik.UI.Drawing.D2DShape"/> instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapShapeStyleSelector">
+            <summary>
+            Defines a type that may be used to dynamically style <see cref="T:Telerik.Geospatial.IMapShape"/> instances visualized within a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeStyleSelector.SelectStyle(Telerik.UI.Xaml.Controls.Map.MapShapeStyleContext,Telerik.UI.Xaml.Controls.Map.MapShapeLayer)">
+            <summary>
+            Selects the desired style, provided the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> instance, containing the shape.
+            </summary>
+            <param name="context">The context, associated with each shape.</param>
+            <param name="container">The <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> instance.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeStyleSelector.SelectStyleCore(Telerik.UI.Xaml.Controls.Map.MapShapeStyleContext,Telerik.UI.Xaml.Controls.Map.MapShapeLayer)">
+            <summary>
+            Provides the core implementation of the <see cref="M:SelectStyle"/> method.
+            </summary>
+            <param name="context"></param>
+            <param name="container"></param>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.LocalTransportResolver">
+            <summary>
+            Represents a concrete <see cref="T:Telerik.UI.Xaml.Controls.Map.ITransportResolver"/> implementation that loads files, specified as "Local" to the application.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.LocalTransportResolver.GetStorageFile(System.Uri)">
+            <summary>
+            Loads the <see cref="T:Windows.Storage.StorageFile"/> containing the Map Shapes definition.
+            </summary>
+            <param name="uri">The <see cref="T:System.Uri"/> pointing to the file location.</param>
+            <returns></returns>
+            <exception cref="T:System.NotSupportedException">The NotSupportedException in case the Uri does not start with 'ms-appx' or 'ms-appdata'.</exception>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapLayerCollection">
+            <summary>
+            Represents a strongly-typed collection of <see cref="T:Telerik.UI.Xaml.Controls.Map.MapLayer"/> instances.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapLayerCollection.FindLayerById(System.Int32)">
+            <summary>
+            Retrieves the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapLayer"/> instance from the specified Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapLayerCollection.InsertItem(System.Int32,Telerik.UI.Xaml.Controls.Map.MapLayer)">
+            <summary>
+            Inserts an element into the <see cref="T:System.Collections.ObjectModel.Collection`1" /> at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which <paramref name="item" /> should be inserted.</param>
+            <param name="item">The object to insert. The value can be null for reference types.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapLayerCollection.RemoveItem(System.Int32)">
+            <summary>
+            Removes the element at the specified index of the collection.
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapLayerCollection.ClearItems">
+            <summary>
+            Removes all elements from the <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapLayerCollection.SetItem(System.Int32,Telerik.UI.Xaml.Controls.Map.MapLayer)">
+            <summary>
+            Replaces the element at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the element to replace.</param>
+            <param name="newPresenter">The new value for the element at the specified index. The value can be null for reference types.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index"/> is less than zero.
+            -or-
+            <paramref name="index"/> is greater than <see cref="P:System.Collections.ObjectModel.Collection`1.Count"/>.
+            </exception>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer">
+            <summary>
+            Represents a concrete <see cref="T:Telerik.UI.Xaml.Controls.Map.MapLayer"/> implementation that is used to visualize vector information coming from various <see cref="T:Telerik.UI.Xaml.Controls.Map.IShapeDataSource"/> instances.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapePointerOverStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapePointerOverStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeSelectedStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeSelectedStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeLabelStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeLabelStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeStyleSelectorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeStyleSelector"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeLabelLayoutStrategyProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeLabelLayoutStrategy"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.SourceProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.Source"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeLabelAttributeNameProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeLabelAttributeName"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeToolTipAttributeNameProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeToolTipAttributeName"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.IsSelectionEnabledProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.IsSelectionEnabled"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.IsPointerOverEnabledProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.IsPointerOverEnabled"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.IsToolTipEnabledProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.IsToolTipEnabled"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeColorizerProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeColorizer"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.EvaluateShapeStyles">
+            <summary>
+            Forces the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> to reevaluate and apply the styling logic for its associated shapes (e.g. <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeStyleSelector"/> and/or 
+            <see cref="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeColorizer"/> will be re-applied in response to calling this method). 
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="M:OnApplyTemplate" /> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.UnloadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Unloaded" /> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.LoadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Loaded" /> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeColorizer">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeColorizer"/> instance that is used to provide context-based colorization of the visualized shapes, based on their attribute data.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.IsSelectionEnabled">
+            <summary>
+            Gets or sets a value indicating whether the shapes within the layer may be manipulated by a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.IsPointerOverEnabled">
+            <summary>
+            Gets or sets a value indicating whether the shapes within the layer may be manipulated by a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapePointerOverBehavior"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.IsToolTipEnabled">
+            <summary>
+            Gets or sets a value indicating whether the shapes within the layer may be manipulated by a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeToolTipBehavior"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeLabelAttributeName">
+            <summary>
+            Gets or sets the name of the attribute, as specified by the *.dbf file, that points to the value set to each Shape as its label.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeToolTipAttributeName">
+            <summary>
+            Gets or sets the name of the attribute, as specified by the *.dbf file, that points to the value of each Shape that is used to display a toolTip for the shape.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeStyleSelector">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeStyleSelector"/> instance that may be used to dynamically style a shape based on its attributes.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeLabelLayoutStrategy">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLabelLayoutStrategy"/> instance that may be used to customize the layout of each shape's label.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeStyle">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Drawing.D2DShapeStyle"/> instance that defines the appearance of all the shapes that are currently in <see cref="F:Telerik.UI.Drawing.ShapeUIState.Normal"/>  state.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapePointerOverStyle">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Drawing.D2DShapeStyle"/> instance that defines the appearance of all the shapes that are currently in <see cref="F:Telerik.UI.Drawing.ShapeUIState.PointerOver"/>  state.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeSelectedStyle">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Drawing.D2DShapeStyle"/> instance that defines the appearance of all the shapes that are currently in <see cref="F:Telerik.UI.Drawing.ShapeUIState.Selected"/>  state.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeLabelStyle">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Drawing.D2DTextStyle"/> instance that defines the appearance of each label, displayed by the visualized shapes.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.Source">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.UI.Xaml.Controls.Map.IShapeDataSource"/> implementation that provides the shapes definition.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapShapeLayer.ShapeVisuals">
+            <summary>
+            Exposed for testing purposes, do not use outside the test project.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MercatorProjection">
+            <summary>
+            Mercator is the projection used by most online maps including Virtual Earth, GMaps and Yahoo
+            It maintains Vertical resolution while expanding the earth horizontally to fill
+            The effect is that items at the poles appear much larger then those of equal size at the equator.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.SpatialReference">
+            <summary>
+            The OGC Spatial Reference requirements.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.SpatialReference.HalfPI">
+            <summary>
+            Half of PI.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.SpatialReference.RadiansToDegrees">
+            <summary>
+            Degrees of one radiant.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.SpatialReference.ConvertGeographicToLogicalCoordinate(Telerik.Geospatial.Location)">
+            <summary>
+            Converts a geographical coordinate (Longitude, Latitude) to a logical Point (0->1).
+            </summary>
+            <param name="geographicPoint">The geographical coordinate (Longitude, Latitude).</param>
+            <returns>The logical Point.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.SpatialReference.ConvertLogicalToGeographicCoordinate(Telerik.UI.Drawing.DoublePoint)">
+            <summary>
+            Converts a logical Point (0->1) to a geographical coordinate (Longitude, Latitude).
+            </summary>
+            <param name="logicalPoint">The logical Point.</param>
+            <returns>The geographical coordinate (Longitude, Latitude).</returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.AngularUnitOfMeasurement">
+            <summary>
+            Gets or sets the measurement units used to define the angles of a spheroid or ellipse associated with a specific datum.
+            The datum is WGS 1984 and the unit of measurement is a degree.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.Authority">
+            <summary>
+            Gets or sets the authority body that defines the standards for the spatial reference parameters.
+            The Spatial Reference is WGS 1984 and the authority is EPSG:4326.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.CentralMeridian">
+            <summary>
+            Gets or sets the line of longitude at the center of a map projection generally used as the basis for constructing the projection.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.Datum">
+            <summary>
+            Gets or sets the horizontal datum,
+            which corresponds to the procedure used to measure positions on the surface of the Earth.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.DatumAuthority">
+            <summary>
+            Gets or sets the horizontal datum,
+            which corresponds to the procedure used to measure positions on the surface of the Earth.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.FalseEasting">
+            <summary>
+            Gets or sets value added to all "x" values in the rectangular coordinate for a map projection. 
+            This value frequently is assigned to eliminate negative numbers.
+            Expressed in the unit of measure identified in Planar Coordinate Units.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.FalseNorthing">
+            <summary>
+            Gets or sets value added to all "y" values in the rectangular coordinates for a map projection. 
+            This value frequently is assigned to eliminate negative numbers. 
+            Expressed in the unit of measure identified in Planar Coordinate Units.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.GeoGcs">
+            <summary>
+            Gets or sets coordinate system based on latitude and longitude.
+            Some geographic coordinate systems are Latitude/Longitude, and some are Longitude/Latitude.
+            You can find out which this is by examining the axes. 
+            You should also check the angular units, since not all geographic coordinate systems use degrees.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.LatitudeOfOrigin">
+            <summary>
+            Gets or sets the latitude chosen as the origin of rectangular coordinate for a map projection.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.OffsetX">
+            <summary>
+            Gets or sets logical X offset to centre of earth.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.OffsetY">
+            <summary>
+            Gets or sets logical Y offset to centre of earth.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.Primem">
+            <summary>
+            Gets or sets the meridian used to take longitude measurements from. 
+            The units of the longitude must be inferred from the context.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.PrimemAuthority">
+            <summary>
+            Gets or sets the meridian used to take longitude measurements from. 
+            The units of the longitude must be inferred from the context.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.ProjectionAuthority">
+            <summary>
+            Gets or sets a projection from geographic coordinates to projected coordinates.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.ScaleX">
+            <summary>
+            Gets or sets the real world coordinate scale at a given longitude.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.ScaleY">
+            <summary>
+            Gets or sets the real world coordinate scale at a given latitude.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.SpheroidRadius">
+            <summary>
+            Gets or sets a spheroid, which is an approximation of the Earth's surface as a squashed sphere.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.SpheroidFlattening">
+            <summary>
+            Gets or sets a spheroid, which is an approximation of the Earth's surface as a squashed sphere.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.SpheroidAuthority">
+            <summary>
+            Gets or sets a spheroid, which is an approximation of the Earth's surface as a squashed sphere.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.StandardParallel">
+            <summary>
+            Gets or sets the line of constant latitude at which the surface of the Earth
+            and the plane or developable surface intersect.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.UnitAuthority">
+            <summary>
+            Gets or sets the authority body that defines the unit of measurement i.e. European Petroleum Survey Group (EPSG).
+            The unit of measurement is usually degrees and the authority for the datum the map uses, WGS 1984 is EPSG:4326.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.MinLatitude">
+            <summary>
+            The minimum Latitude this tile source supports.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.MaxLatitude">
+            <summary>
+            The maximum Latitude this tile source supports.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.MinLongitude">
+            <summary>
+            The minimum Longitude this tile source supports.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.SpatialReference.MaxLongitude">
+            <summary>
+            The maximum Longitude this tile source supports.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MercatorProjection.#ctor">
+            <summary>
+            Initializes a new instance of the MercatorProjection class.
+            Mercator is the projection used by most online maps including Virtual Earth, GMaps and Yahoo.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.RadMap">
+            <summary>
+            Represents a <see cref="T:Telerik.UI.Xaml.Controls.RadControl"/> implementation that enables rich GeoSpatial data visualization.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.RadMap.CenterProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.Center"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.RadMap.ZoomLevelProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.ZoomLevel"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.RadMap.MaxZoomLevelProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.MaxZoomLevel"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.RadMap.MinZoomLevelProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.MinZoomLevel"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.HitTest(Windows.Foundation.Point,Telerik.UI.Xaml.Controls.Map.MapShapeLayer)">
+            <summary>
+            Initiates a hit test on the specified <see cref="T:Windows.Foundation.Point"/> location.
+            </summary>
+            <param name="location">The location.</param>
+            <param name="shapeLayer">The <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> instance whose shapes to hit test. 
+            Default value is null i.e. hit testing is performed on all layers (starting from the top-most one) and the first positive match is returned.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.SetView(Telerik.Geospatial.LocationRect)">
+            <summary>
+            Sets the provided <see cref="T:Telerik.Geospatial.LocationRect"/> value as the current view of the map.
+            </summary>
+            <param name="boundingRect"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.GetLayerForShape(Telerik.Geospatial.IMapShape)">
+            <summary>
+            Gets the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> that the <see cref="T:Telerik.Geospatial.IMapShape"/> instance specified as parameter belongs to.
+            </summary>
+            <param name="shape">The <see cref="T:Telerik.Geospatial.IMapShape"/> instance.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.ConvertPhysicalToGeographicCoordinate(Telerik.UI.Drawing.DoublePoint)">
+            <summary>
+            Converts the specified physical point to its geographic equivalent. The provided physical point is relative to the map's TopLeft position.
+            </summary>
+            <param name="point">The physical point (typically associated with a Pointer contact).</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.ConvertGeographicToPhysicalCoordinate(Telerik.Geospatial.Location)">
+            <summary>
+            Converts the specified geographic location to its physical equivalent.
+            </summary>
+            <param name="location">The geographic location.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.ArrangeOverride(Windows.Foundation.Size)">
+            <summary>
+            Provides the behavior for the Arrange pass of layout. Classes can override this method to define their own Arrange pass behavior.
+            </summary>
+            <param name="finalSize">The final area within the parent that this object should use to arrange itself and its children.</param>
+            <returns>
+            The actual size that is used after the element is arranged in layout.
+            </returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.ApplyTemplateCore">
+            <summary>
+            Called when the Framework <see cref="M:OnApplyTemplate" /> is called. Inheritors should override this method should they have some custom template-related logic.
+            This is done to ensure that the <see cref="P:IsTemplateApplied" /> property is properly initialized.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="M:OnApplyTemplate" /> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.UnapplyTemplateCore">
+            <summary>
+            Unapplies the current control template. Occurs when a template has already been applied and a new one is applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.CalculateGeoBounds">
+            <summary>
+            Calculates the geo bounds.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnPointerPressed(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerPressed event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnPointerEntered(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerEntered event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnPointerMoved(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerMoved event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnPointerReleased(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerReleased event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnPointerExited(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerExited event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnTapped(Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            Called before the Tapped event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnDoubleTapped(Windows.UI.Xaml.Input.DoubleTappedRoutedEventArgs)">
+            <summary>
+            Called before the DoubleTapped event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnHolding(Windows.UI.Xaml.Input.HoldingRoutedEventArgs)">
+            <summary>
+            Called before the Holding event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnManipulationStarted(Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs)">
+            <summary>
+            Called before the ManipulationStarted event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnManipulationDelta(Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs)">
+            <summary>
+            Called before the ManipulationDelta event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnManipulationCompleted(Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs)">
+            <summary>
+            Called before the ManipulationCompleted event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.OnPointerWheelChanged(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerWheelChanged event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.LoadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Loaded" /> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.RadMap.UnloadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Unloaded" /> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.RadMap.Center">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Geospatial.Location"/> value that represents the logical center of the map.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.RadMap.ZoomLevel">
+            <summary>
+            Gets or sets the <see cref="T:System.Double"/> value that represents the current zoom level of the map.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.RadMap.MaxZoomLevel">
+            <summary>
+            Gets or sets the <see cref="T:System.Double"/> value that defines the maximum value the <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.ZoomLevel"/> property can reach.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.RadMap.MinZoomLevel">
+            <summary>
+            Gets or sets the <see cref="T:System.Double"/> value that defines the minimum value the <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.ZoomLevel"/> property can reach.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.RadMap.Layers">
+            <summary>
+            Gets the collection with all the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapLayer"/> instances currently available within the map.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.RadMap.SpatialReference">
+            <summary>
+            Gets the current <see cref="T:Telerik.UI.Xaml.Controls.Map.ISpatialReference"/> implementation that is used by the map to visualize the geographical coordinates in the 2-D space.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.RadMap.Bounds">
+            <summary>
+            Gets a <see cref="T:Telerik.Geospatial.LocationRect"/> instance that defines the geographical boundaries of the currently visible area of the <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> control.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.RadMap.Behaviors">
+            <summary>
+            Gets the collection with all the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapBehavior"/> instances, registered with the map.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.RadMap.CommandService">
+            <summary>
+            Gets the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapCommandService"/> instance that handles the commanding support in the map.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.RadMap.Commands">
+            <summary>
+            Gets the collection with user-defined commands, associated with the different <see cref="T:Telerik.UI.Xaml.Controls.Map.CommandId"/> values.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.CommandId">
+            <summary>
+            Defines the commands, available in a <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.CommandId.Unknown">
+            <summary>
+            The command is not familiar to <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.CommandId.ViewChanged">
+            <summary>
+            A command associated with a change either in the <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.Center"/> or <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.ZoomLevel"/> properties (or both) triggered by a user input through the <see cref="T:Telerik.UI.Xaml.Controls.Map.MapPanAndZoomBehavior"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.CommandId.ShapeSelectionChanged">
+            <summary>
+            A command associated with a change in the SelectedShapes property of a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeSelectionBehavior"/> instance.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.CommandId.ShapeLayerSourceChanged">
+            <summary>
+            A command that is triggered when a <see cref="T:Telerik.UI.Xaml.Controls.Map.IShapeDataSource"/> instance is specified as a source to a <see cref="T:Telerik.UI.Xaml.Controls.Map.MapShapeLayer"/> instance and the <see cref="P:Telerik.UI.Xaml.Controls.Map.IShapeDataSource.Shapes"/> are prepared.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapCommand">
+            <summary>
+            Represents the base class for all commands in a <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapCommand.Id">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapCommand.CommandId"/> value for this instance.
+            This value is used to associate a command with a known event within a <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapCommandService">
+            <summary>
+            Encapsulates the predefined commands in a <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance. Exposes public APIs allowing for command execution.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapCommandService.ExecuteCommand(Telerik.UI.Xaml.Controls.Map.CommandId,System.Object)">
+            <summary>
+            Attempts to find the command, associated with the specified Id and to perform its Execute routine, using the provided parameter.
+            </summary>
+            <param name="id">The <see cref="T:Telerik.UI.Xaml.Controls.Map.CommandId"/> value to look for.</param>
+            <param name="parameter">The parameter that is passed to the CanExecute and Execute methods of the command.</param>
+            <returns>True if the command is successfully executed, false otherwise.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapCommandService.ExecuteDefaultCommand(Telerik.UI.Xaml.Controls.Map.CommandId,System.Object)">
+            <summary>
+            Executes the default (built-in) command (without looking for user-defined commands), associated with the specified Id.
+            </summary>
+            <param name="id">The <see cref="T:Telerik.UI.Xaml.Controls.Map.CommandId"/> value to look for.</param>
+            <param name="parameter">The parameter that is passed to the CanExecute and Execute methods of the command.</param>
+            <returns>True if the command is successfully executed, false otherwise.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapCommandService.CanExecuteDefaultCommand(Telerik.UI.Xaml.Controls.Map.CommandId,System.Object)">
+            <summary>
+            Determines whether the default command, associated with the specified Id can be executed given the parameter provided.
+            </summary>
+            <param name="id">The <see cref="T:Telerik.UI.Xaml.Controls.Map.CommandId"/> value to look for.</param>
+            <param name="parameter">The parameter that is passed to the CanExecute and Execute methods of the command.</param>
+            <returns>True if the command can be executed, false otherwise.</returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapCommandService.UserCommands">
+            <summary>
+            Gets the collection with all the user commands registered with the service. User commands have higher priority than the built-in (default) ones.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.MapUserCommand">
+            <summary>
+            Represents a predefined command that aggregates a custom ICommand implementation, which may be used to perform additional action over the default implementation.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapUserCommand.CommandProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapUserCommand.Command"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.MapUserCommand.EnableDefaultCommandProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.MapUserCommand.EnableDefaultCommand"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapUserCommand.CanExecute(System.Object)">
+            <summary>
+            Determines whether the command can be executed against the provided parameter.
+            </summary>
+            <param name="parameter">The command parameter.</param>
+            <returns>Boolean value that specifies whether the command can be executed.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.MapUserCommand.Execute(System.Object)">
+            <summary>
+            Performs the core action given the provided parameter.
+            </summary>
+            <param name="parameter">The command parameter.</param>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapUserCommand.Command">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.Input.ICommand"/> implementation that is used to perform the custom logic associated with this command.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.MapUserCommand.EnableDefaultCommand">
+            <summary>
+            Gets or sets a value indicating whether the default command implementation, related to the current Id, should be executed.
+            </summary>
+            <value>
+            The default value is <c>True</c>.
+            </value>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.ViewChangedContext">
+            <summary>
+            Encapsulates the information associated with the <see cref="F:Telerik.UI.Xaml.Controls.Map.CommandId.ViewChanged"/> command within a <see cref="T:Telerik.UI.Xaml.Controls.Map.RadMap"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ViewChangedContext.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.ViewChangedContext"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ViewChangedContext.NewCenter">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Geospatial.Location"/> value that will be set as the new <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.Center"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ViewChangedContext.NewZoomLevel">
+            <summary>
+            Gets or sets the <see cref="T:System.Double"/> value that will be set as the new <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.ZoomLevel"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ViewChangedContext.PreviousCenter">
+            <summary>
+            Gets the previous <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.Center"/> value.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ViewChangedContext.PreviousZoomLevel">
+            <summary>
+            Gets the previous <see cref="P:Telerik.UI.Xaml.Controls.Map.RadMap.ZoomLevel"/> value.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource">
+            <summary>
+            Represents a <see cref="T:Telerik.UI.Xaml.Controls.Map.IShapeDataSource"/> implementation that loads and parses shape files.
+            The default transport resolver is set to a <see cref="T:Telerik.UI.Xaml.Controls.Map.LocalTransportResolver"/> instance, allowing loading of application-defined files, reachable through the "ms-appx" and "ms-appdata" Uri schema.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.SourceUriProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.SourceUri"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.DataSourceUriProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.DataSourceUri"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.SourceUriStringProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.SourceUriString"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.DataSourceUriStringProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.DataSourceUriString"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.EncodingProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.Encoding"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.TransportResolverProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.TransportResolver"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.AttributesToLoadProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.AttributesToLoad"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.AttributeValueConverterProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.AttributeValueConverter"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.CoordinateValueConverterProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.CoordinateValueConverter"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.ShapesProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.Shapes"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.LoadShapesSynchronously">
+            <summary>
+            This method is exposed for testing purposes only, do not use it outside the testing project.
+            </summary>
+        </member>
+        <member name="E:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.ShapeProcessingCompleted">
+            <summary>
+            Occurs when the asynchronous processing of the file has been completed.
+            </summary>
+        </member>
+        <member name="E:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.System#ComponentModel#INotifyPropertyChanged#PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.SourceUri">
+            <summary>
+            Gets or sets the Uri that points to the file to read data from.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.DataSourceUri">
+            <summary>
+            Gets or sets the Uri that points to the file, containing the data (or attributes) for each shape within the shape file.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.SourceUriString">
+            <summary>
+            Gets or sets the string representation of the <see cref="P:SourceUri"/> value. Primarily used to enable declarative Uri definition.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.DataSourceUriString">
+            <summary>
+            Gets or sets the string representation of the <see cref="P:DataSourceUri"/> value. Primarily used to enable declarative Uri definition.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.AttributesToLoad">
+            <summary>
+            Gets or sets the comma-delimited attributes to load from the specified <see cref="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.DataSourceUri"/> file. Useful when the data file contains large amount of attributes and only a small subset of them is required.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.AttributeValueConverter">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Geospatial.IAttributeValueConverter"/> implementation that allows specific attribute values to be handled explicitly.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.CoordinateValueConverter">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Geospatial.ICoordinateValueConverter"/> implementation that allows the <see cref="T:Telerik.Geospatial.Location"/> value of each processed shape to be modified externally.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.Encoding">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.Encoding"/> of the file to read.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.TransportResolver">
+            <summary>
+            Gets or sets the current <see cref="T:Telerik.UI.Xaml.Controls.Map.ITransportResolver"/> implementation. Defaults to a <see cref="T:Telerik.UI.Xaml.Controls.Map.LocalTransportResolver"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.Map.ShapefileDataSource.Shapes">
+            <summary>
+            Gets the collection of <see cref="T:Telerik.Geospatial.IMapShape"/> instances that represents the final result of the file processing.
+            </summary>
+        </member>
+    </members>
+</doc>

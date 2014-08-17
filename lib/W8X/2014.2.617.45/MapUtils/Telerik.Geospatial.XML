@@ -1,0 +1,470 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.Geospatial</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.Geospatial.Location">
+            <summary>
+            Represents a geographical location.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.Location.Empty">
+            <summary>
+            An empty location.
+            </summary>
+        </member>
+        <member name="M:Telerik.Geospatial.Location.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Geospatial.Location"/> struct.
+            </summary>
+            <param name="latitude">The latitude.</param>
+            <param name="longitude">The longitude.</param>
+        </member>
+        <member name="M:Telerik.Geospatial.Location.op_Equality(Telerik.Geospatial.Location,Telerik.Geospatial.Location)">
+            <summary>
+            Checks whether two <see cref="T:Telerik.Geospatial.Location"/> values are equal.
+            </summary>
+            <param name="location1"></param>
+            <param name="location2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Geospatial.Location.op_Inequality(Telerik.Geospatial.Location,Telerik.Geospatial.Location)">
+            <summary>
+            Checks whether two <see cref="T:Telerik.Geospatial.Location"/> values are not equal.
+            </summary>
+            <param name="location1"></param>
+            <param name="location2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Geospatial.Location.Equals(Telerik.Geospatial.Location,Telerik.Geospatial.Location)">
+            <summary>
+            Checks whether two <see cref="T:Telerik.Geospatial.Location"/> values are equal.
+            </summary>
+            <param name="location1"></param>
+            <param name="location2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Geospatial.Location.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Telerik.Geospatial.Location.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Geospatial.Location.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:Telerik.Geospatial.Location.Latitude">
+            <summary>
+            Gets the latitude value of the location.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.Location.Longitude">
+            <summary>
+            Gets the longitude value of the location.
+            </summary>
+        </member>
+        <member name="T:Telerik.Geospatial.LocationCollection">
+            <summary>
+            A strongly-typed collection of <see cref="T:Telerik.Geospatial.Location"/> values.
+            </summary>
+        </member>
+        <member name="T:Telerik.Geospatial.LocationRect">
+            <summary>
+            Represents a structure that defines a Geographical rectangle, defined by two <see cref="T:Telerik.Geospatial.Location"/> values.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.LocationRect.Empty">
+            <summary>
+            An empty rect.
+            </summary>
+        </member>
+        <member name="M:Telerik.Geospatial.LocationRect.#ctor(Telerik.Geospatial.Location,Telerik.Geospatial.Location)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Geospatial.LocationRect"/> struct.
+            </summary>
+            <param name="northwest">The northwest.</param>
+            <param name="southeast">The southeast.</param>
+        </member>
+        <member name="M:Telerik.Geospatial.LocationRect.op_Equality(Telerik.Geospatial.LocationRect,Telerik.Geospatial.LocationRect)">
+            <summary>
+            Checks whether two <see cref="T:Telerik.Geospatial.LocationRect"/> values are equal.
+            </summary>
+            <param name="locationRect1"></param>
+            <param name="locationRect2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Geospatial.LocationRect.op_Inequality(Telerik.Geospatial.LocationRect,Telerik.Geospatial.LocationRect)">
+            <summary>
+            Checks whether two <see cref="T:Telerik.Geospatial.LocationRect"/> values are not equal.
+            </summary>
+            <param name="locationRect1"></param>
+            <param name="locationRect2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Geospatial.LocationRect.Equals(Telerik.Geospatial.LocationRect,Telerik.Geospatial.LocationRect)">
+            <summary>
+            Checks whether two <see cref="T:Telerik.Geospatial.LocationRect"/> values are equal.
+            </summary>
+            <param name="locationRect1"></param>
+            <param name="locationRect2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Geospatial.LocationRect.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Geospatial.LocationRect.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:Telerik.Geospatial.LocationRect.Northwest">
+            <summary>
+            Gets the northwest value of the rect.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.LocationRect.Southeast">
+            <summary>
+            Gets the southeast value of the rect.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.LocationRect.North">
+            <summary>
+            Gets the north value of the rect.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.LocationRect.East">
+            <summary>
+            Gets the east value of the rect.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.LocationRect.South">
+            <summary>
+            Gets the south value of the rect.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.LocationRect.West">
+            <summary>
+            Gets the west value of the rect.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.LocationRect.IsEmpty">
+            <summary>
+            Gets a value indicating whether the current rect is empty.
+            </summary>
+        </member>
+        <member name="T:Telerik.Geospatial.IMap2DShape">
+            <summary>
+            Represents a 2-Dimensional <see cref="T:Telerik.Geospatial.IMapShape"/>. Such a shape is represented by one or more polygons.
+            </summary>
+        </member>
+        <member name="T:Telerik.Geospatial.IMapShape">
+            <summary>
+            Defines the abstraction of a geographical shape.
+            </summary>
+        </member>
+        <member name="M:Telerik.Geospatial.IMapShape.GetAttribute(System.String)">
+            <summary>
+            Gets the attribute value associated with the provided key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Geospatial.IMapShape.SetAttribute(System.String,System.Object)">
+            <summary>
+            Sets the attribute value associated with the provided key.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="E:Telerik.Geospatial.IMapShape.AttributeChanged">
+            <summary>
+            Occurs when an attribute of the <see cref="T:Telerik.Geospatial.IMapShape"/> is changed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.IMap2DShape.Locations">
+            <summary>
+            Get the collection of collections of <see cref="T:Telerik.Geospatial.Location"/> values that represent the shape.
+            </summary>
+        </member>
+        <member name="T:Telerik.Geospatial.IMapPointShape">
+            <summary>
+            Defines a 1-Dimensional <see cref="T:Telerik.Geospatial.IMapShape"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.IMapPointShape.Location">
+            <summary>
+            The geographical location of the shape.
+            </summary>
+        </member>
+        <member name="T:Telerik.Geospatial.AttributeChangedEventHandler">
+            <summary>
+            Represents the method that will handle the <see cref="E:Telerik.Geospatial.IMapShape.AttributeChanged"/> event.
+            </summary>
+        </member>
+        <member name="T:Telerik.Geospatial.AttributeChangedEventArgs">
+            <summary>
+            Provides data for the <see cref="E:Telerik.Geospatial.IMapShape.AttributeChanged"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Geospatial.AttributeChangedEventArgs.#ctor(System.String,System.Object,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Geospatial.AttributeChangedEventArgs"/> class.
+            </summary>
+            <param name="attributeName">The attribute name.</param>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="P:Telerik.Geospatial.AttributeChangedEventArgs.Cancel">
+            <summary>
+            Gets or sets a value indicating whether the attribute change can be accepted. Valid during the Changing pass.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.AttributeChangedEventArgs.AttributeName">
+            <summary>
+            Gets the name of the attribute associated with the event.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.AttributeChangedEventArgs.OldValue">
+            <summary>
+            Gets the old value of the associated property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.AttributeChangedEventArgs.NewValue">
+            <summary>
+            Gets or sets the new value of the associated property.
+            </summary>
+        </member>
+        <member name="E:Telerik.Geospatial.MapShapeModel.AttributeChanged">
+            <summary>
+            Occurs when an attribute of the <see cref="T:Telerik.Geospatial.MapShapeModel"/> is changed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.MapShapeModel.UniqueId">
+            <summary>
+            Gets the unique identifier of the shape model; used for hashing purposes.
+            </summary>
+        </member>
+        <member name="T:Telerik.Geospatial.MapShapeModelCollection">
+            <summary>
+            Represents a collection of <see cref="T:Telerik.Geospatial.IMapShape"/> instances. This collection is the final result of a Shapefile processing.
+            </summary>
+        </member>
+        <member name="M:Telerik.Geospatial.MapShapeModelCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Geospatial.MapShapeModelCollection"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Geospatial.MapShapeModelCollection.BoundingRect">
+            <summary>
+            Gets the <see cref="T:Telerik.Geospatial.LocationRect"/> that represents the best view for all the shapes within the collection.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.OemUnitedStates">
+            <summary>
+            OEM United States.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.WesternEuropeanDos">
+            <summary>
+            Western European (DOS).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.WesternEuropeanWindows">
+            <summary>
+            Western European (Windows).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.WesternEuropeanMac">
+            <summary>
+            Western European (Mac).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.CentralEuropeanDos">
+            <summary>
+            Central European (DOS).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.NordicDos">
+            <summary>
+            Nordic (DOS).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.CyrillicDos">
+            <summary>
+            Cyrillic (DOS).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.IcelandicDos">
+            <summary>
+            Icelandic (DOS).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.GreekDos">
+            <summary>
+            Greek (DOS).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.TurkishDos">
+            <summary>
+            Turkish (DOS).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.CyrillicMac">
+            <summary>
+            Cyrillic (Mac).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.CentralEuropeanMac">
+            <summary>
+            Central European (Mac).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.GreekMac">
+            <summary>
+            Greek (Mac).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.CentralEuropeanWindows">
+            <summary>
+            Central European (Windows).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.CyrillicWindows">
+            <summary>
+            Cyrillic (Windows).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.TurkishWindows">
+            <summary>
+            Turkish (Windows).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.DbfEncoding.GreekWindows">
+            <summary>
+            Greek (Windows).
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.NullShape">
+            <summary>
+            Null Shape.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.Point">
+            <summary>
+            Point.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.Polyline">
+            <summary>
+            Polyline.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.Polygon">
+            <summary>
+            Polygon.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.Multipoint">
+            <summary>
+            Multipoint.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.PointZ">
+            <summary>
+            PointZ.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.PolylineZ">
+            <summary>
+            PolylineZ.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.PolygonZ">
+            <summary>
+            PolygonZ.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.MultipointZ">
+            <summary>
+            MultipointZ.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.PointM">
+            <summary>
+            PointM.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.PolylineM">
+            <summary>
+            PolylineM.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.PolygonM">
+            <summary>
+            PolygonM.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.MultipointM">
+            <summary>
+            MultipointM.
+            </summary>
+        </member>
+        <member name="F:Telerik.Geospatial.EsriShapeType.Multipatch">
+            <summary>
+            Multipatch.
+            </summary>
+        </member>
+        <member name="T:Telerik.Geospatial.IAttributeValueConverter">
+            <summary>
+            Defines a type that may be used to provide custom shape attribute parsing routine. Used by a Shapefile reader.
+            </summary>
+        </member>
+        <member name="M:Telerik.Geospatial.IAttributeValueConverter.Convert(System.Object,System.String,System.Type)">
+            <summary>
+            Converts the provided attribute value to the desired value.
+            </summary>
+            <param name="value">The raw value read from the file.</param>
+            <param name="fieldName">The name of the field associated with the provided value.</param>
+            <param name="fieldType">The type of the field associated with the provided value.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Geospatial.ICoordinateValueConverter">
+            <summary>
+            Defines a type that may be used by a Shapefile reader to provide custom conversion of each <see cref="T:Telerik.Geospatial.Location"/> value processed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Geospatial.ICoordinateValueConverter.Convert(Telerik.Geospatial.Location)">
+            <summary>
+            Converts the processed <see cref="T:Telerik.Geospatial.Location"/> value.
+            </summary>
+            <param name="location"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

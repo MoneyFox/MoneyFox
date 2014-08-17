@@ -1,13 +1,13 @@
-﻿using System;
-using Windows.UI.Xaml;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
-using Windows.UI.Xaml.Controls;
 using MoneyManager.Views;
+using System;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyManager.ViewModels
 {

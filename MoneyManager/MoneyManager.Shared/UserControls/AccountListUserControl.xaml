@@ -51,7 +51,13 @@
         <ScrollViewer>
             <ListView ItemsSource="{Binding AccountDataAccess.AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
-                  HorizontalAlignment="Stretch">
+                  HorizontalAlignment="Stretch" SelectedItem="{Binding SelectedAccount, Mode=TwoWay}">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                        <core:InvokeCommandAction Command="{Binding GoToTransactionListCommand}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />

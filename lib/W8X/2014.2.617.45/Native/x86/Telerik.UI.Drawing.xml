@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "Native"
+    </assembly>
+    <members>
+        <member name="F:Telerik.UI.Drawing.FontWeightName.Thin">
+            <summary>
+ Specifies a "Thin" font weight.
+</summary>
+        </member>
+        <member name="F:Telerik.UI.Drawing.FontWeightName.SemiLight">
+            <summary>
+ Specifies a "SemiLight" font weight.
+</summary>
+        </member>
+        <member name="F:Telerik.UI.Drawing.FontWeightName.SemiBold">
+            <summary>
+ Specifies a "SemiBold" font weight.
+</summary>
+        </member>
+        <member name="F:Telerik.UI.Drawing.FontWeightName.Normal">
+            <summary>
+ Specifies a "Normal" font weight.
+</summary>
+        </member>
+        <member name="F:Telerik.UI.Drawing.FontWeightName.Medium">
+            <summary>
+ Specifies a "Medium" font weight.
+</summary>
+        </member>
+        <member name="F:Telerik.UI.Drawing.FontWeightName.Light">
+            <summary>
+ Specifies a "Light" font weight.
+</summary>
+        </member>
+        <member name="F:Telerik.UI.Drawing.FontWeightName.ExtraLight">
+            <summary>
+ Specifies an "ExtraLight" font weight.
+</summary>
+        </member>
+        <member name="F:Telerik.UI.Drawing.FontWeightName.ExtraBold">
+            <summary>
+ Specifies an "ExtraBold" font weight.
+</summary>
+        </member>
+        <member name="F:Telerik.UI.Drawing.FontWeightName.ExtraBlack">
+            <summary>
+ Specifies an "ExtraBlack" font weight.
+</summary>
+        </member>
+        <member name="F:Telerik.UI.Drawing.FontWeightName.Bold">
+            <summary>
+Specifies a "Bold" font weight.
+</summary>
+        </member>
+        <member name="F:Telerik.UI.Drawing.FontWeightName.Black">
+            <summary>
+Specifies a "Black" font weight.
+</summary>
+        </member>
+    </members>
+</doc>

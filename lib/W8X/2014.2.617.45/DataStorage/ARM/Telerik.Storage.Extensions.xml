@@ -1,0 +1,1331 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.Storage.Extensions</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.Storage.Extensions.SortOrder">
+            <summary>
+            Data sort order for columns included in index
+            </summary>
+        </member>
+        <member name="F:Telerik.Storage.Extensions.SortOrder.Asc">
+            <summary>
+            Ascending  sort order
+            </summary>
+        </member>
+        <member name="F:Telerik.Storage.Extensions.SortOrder.Desc">
+            <summary>
+            Descending sort order
+            </summary>
+        </member>
+        <member name="T:Telerik.Storage.Extensions.DatabaseIndexAttribute">
+            <summary>
+            Attribute to specify the corresponding column as included in index
+            </summary>
+        </member>
+        <member name="P:Telerik.Storage.Extensions.DatabaseIndexAttribute.Name">
+            <summary>
+            The name of the index where the column belongs to
+            </summary>
+        </member>
+        <member name="P:Telerik.Storage.Extensions.DatabaseIndexAttribute.Unique">
+            <summary>
+            The unique state of data added to column.
+            All columns included in index should have the same value for this property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Storage.Extensions.DatabaseIndexAttribute.Order">
+            <summary>
+            Sort order of data added to corresponding column.
+            Possible values are in  
+            </summary>
+        </member>
+        <member name="P:Telerik.Storage.Extensions.DatabaseIndexAttribute.Position">
+            <summary>
+            Position of column in index table. 
+            The position is important for query performance optimizations using indices.
+            </summary>
+        </member>
+        <member name="T:Telerik.Storage.Extensions.SuppressSchemaGeneration">
+            <summary>
+            Attribute to suppress automatically table creation for specified entity type 
+            </summary>
+        </member>
+        <member name="T:QEDCode.AwaitableCriticalSection">
+            <summary>
+            Protects shared database resources (a database file in our case) within asynchronous
+            methods without blocking the thread.
+            </summary>
+        </member>
+        <member name="M:QEDCode.AwaitableCriticalSection.#ctor">
+            <summary>
+            Constructor of the class
+            </summary>
+        </member>
+        <member name="T:Telerik.Storage.Extensions.DatabaseLocation">
+            <summary>
+            Enumeration with possible locations for database file.
+            </summary>
+        </member>
+        <member name="F:Telerik.Storage.Extensions.DatabaseLocation.Local">
+            <summary>
+            The database file is stored in isolated Local storage.
+            </summary>
+        </member>
+        <member name="F:Telerik.Storage.Extensions.DatabaseLocation.Roaming">
+            <summary>
+            The database file is stored in isolated Roaming folder.
+            </summary>
+        </member>
+        <member name="F:Telerik.Storage.Extensions.DatabaseLocation.Temporary">
+            <summary>
+            The database file is stored in isolated Temp folder.
+            </summary>
+        </member>
+        <member name="F:Telerik.Storage.Extensions.DatabaseLocation.Fullpath">
+            <summary>
+            The database file is specified by full path to location in any available isolated storage.
+            </summary>
+        </member>
+        <member name="T:Telerik.Storage.Extensions.Context">
+            <summary>
+            The <see cref="T:Telerik.Storage.Extensions.Context"/> class is the entry point for all database operations. 
+            This class tracks the changes of all persisted objects and updates the database accordingly.
+            </summary>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.#ctor(System.String)">
+            <summary>
+            Constructor of the <see cref="T:Telerik.Storage.Extensions.Context"/> class that creates database file in Local folder.
+            </summary>
+            <param name="databaseName">The name of database file. </param>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.#ctor(System.String,Telerik.Storage.Extensions.DatabaseLocation)">
+            <summary>
+            Constructor of the <see cref="T:Telerik.Storage.Extensions.Context"/> class.
+            </summary>
+            <param name="databaseName">The name of database file. If you specify full path, the "location" parameter should be "Fullpath".</param>
+            <param name="location">The location of database file.</param>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.TrackExisting``1(``0)">
+            <summary>
+            Inserts given data object into a collection with objects which changes should be tracked.
+            </summary>
+            <typeparam name="PersistentType">The type of generic method that inherits the <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> interface.</typeparam>
+            <param name="data">The object whose changes should be tracked.</param>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.Insert``1(``0)">
+            <summary>
+            Adds an object to a collection with data objects that should be inserted in the database.
+            </summary>
+            <typeparam name="T">The type of the inserted object.</typeparam>
+            <param name="objectToInsert">The object to be inserted.</param>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.Update``1(``0)">
+            <summary>
+            Adds an object to a collection with data objects that should be updated in the database.
+            </summary>
+            <typeparam name="T">The type of the object to update.</typeparam>
+            <param name="objectToUpdate">The object to be updated.</param>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.Delete``1(``0)">
+            <summary>
+            Adds an object to a collection with data objects that should be deleted.
+            </summary>
+            <typeparam name="T">The type of the deleted object.</typeparam>
+            <param name="objectToDelete">The object to be deleted.</param>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.SaveChanges">
+            <summary>
+            Saves all changes made since the last call of this method. 
+            This methods should be called in order to persist current state of the tracked objects in the database.
+            </summary>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.SaveChangesAsync">
+            <summary>
+            Saves asynchronously changes made in context.
+            Asynchronous version of <see cref="M:Telerik.Storage.Extensions.Context.SaveChanges"/>.
+            </summary>
+            <returns> Return value is <code>void</code></returns>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.GetAsync``1(System.String)">
+            <summary>
+            Executes a given query asynchronously.
+            </summary>
+            <typeparam name="PersistentType">The type of returned entity objects.</typeparam>
+            <param name="query">The SQL query that should be executed.</param>
+            <returns>Task object with result that keeps recordset as List of entity objects.</returns>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.Get``1(System.String,System.Object[])">
+            <summary>
+            Executes given parameterized SELECT query.
+            </summary>
+            <typeparam name="PersistentType">The type of returned entity objects.</typeparam>
+            <param name="queryStatement">The parameterized SQL query statement that should be executed.</param>
+            <param name="queryParameter">An array with parameter values.</param>
+            <returns>Recordset as List of entity objects.</returns>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.ConvertToPersistentType``1(System.Object)">
+             <summary>
+            Converter for primitive types. Currently only numeric types to bool conversion is implemented.
+             </summary>
+             <typeparam name="PersistentType">The generic target type. </typeparam>
+             <param name="value">The value that should be converted.</param>
+             <returns>Boxed value that can be casted by caller.</returns>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.GetAll``1">
+            <summary>
+            Gets all records from a table with the name of PersistentType type name.
+            </summary>
+            <typeparam name="PersistentType">The entity type of the returned objects in result.</typeparam>
+            <returns><see cref="T:System.Linq.IQueryable"/>Collection with all data objects.</returns>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.GetScalarAsync``1(System.String)">
+            <summary>
+            Asynchronous method that executes a query with scalar result.
+            </summary>
+            <typeparam name="ScalarType">The type of the returned scalar result.</typeparam>
+            <param name="query">The SQL query.</param>
+            <returns>Returns a scalar value as result of given SQL query.</returns>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.GetScalar``1(System.String)">
+            <summary>
+            Executes a query with scalar result.
+            </summary>
+            <typeparam name="ScalarType">The type of the returned scalar result.</typeparam>
+            <param name="query">The SQL query.</param>
+            <returns>A scalar value as result of given SQL query.</returns>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.Context.CloseDatabase">
+            <summary>
+            Closes databse and releases all allocated resources.
+            </summary>
+        </member>
+        <member name="P:Telerik.Storage.Extensions.Context.Log">
+            <summary>
+            The log of executed database operations.
+            </summary>
+        </member>
+        <member name="T:Telerik.Storage.Extensions.AsyncQueryable">
+            <summary>
+            Provides a set of asynchronous extension methods of <see cref="T:System.Linq.IQueryable`1"/> generic class
+            </summary>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.AsyncQueryable.ExecuteAsync``1(System.Linq.IQueryable{``0})">
+            <summary>
+            Extension method of IQueryable&lt;TElement&gt; class that executes asynchronously the expression of current query
+            </summary>
+            <typeparam name="TElement">The type parameter of generic class </typeparam>
+            <param name="query"> The instance of IQueryable&lt;TElement&gt; class </param>
+            <returns>Task with result of collection of TElement objects</returns>
+        </member>
+        <member name="M:Telerik.Storage.Extensions.AsyncQueryable.ExecuteAsync``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{System.Linq.IQueryable{``0},``1}})">
+            <summary>
+            Extension method of IQueryable&lt;TElement&gt; class that executes asynchronously the expression modified by given selector
+            </summary>
+            <typeparam name="TElement"> The type parameter of generic class </typeparam>
+            <typeparam name="TResult"> The return type of executed query</typeparam>
+            <param name="query"> The instance of IQueryable&lt;TElement&gt; class </param>
+            <param name="selector"> The <see cref="T:System.Linq.Expressions.Expression"/> generic instance that represents a lambda expression </param>
+            <returns>Task with result of TElement object</returns>
+        </member>
+        <member name="T:IQToolkit.Data.Common.QueryMapping">
+            <summary>
+            Defines mapping information &amp; rules for the query provider
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.GetTableId(System.Type)">
+            <summary>
+            Determines the entity Id based on the type of the entity alone
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.GetEntity(System.Type)">
+            <summary>
+            Get the meta entity directly corresponding to the CLR type
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.GetEntity(System.Type,System.String)">
+            <summary>
+            Get the meta entity that maps between the CLR type 'entityType' and the database table, yet
+            is represented publicly as 'elementType'.
+            </summary>
+            <param name="elementType"></param>
+            <param name="entityID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.GetEntity(System.Reflection.MemberInfo)">
+            <summary>
+            Get the meta entity represented by the IQueryable context member
+            </summary>
+            <param name="contextMember"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.IsRelationship(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a property is mapped as a relationship
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.IsSingletonRelationship(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a relationship property refers to a single entity (as opposed to a collection.)
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapping.CanBeEvaluatedLocally(System.Linq.Expressions.Expression)">
+            <summary>
+            Determines whether a given expression can be executed locally. 
+            (It contains no parts that should be translated to the target environment.)
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsMapped(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Deterimines is a property is mapped onto a column or relationship
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsColumn(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a property is mapped onto a column
+            </summary>
+            /// <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetColumnDbType(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            The type declaration for the column in the provider's syntax
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns>a string representing the type declaration or null</returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsPrimaryKey(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a property represents or is part of the entities unique identity (often primary key)
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsComputed(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a property is computed after insert or update
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsGenerated(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a property is generated on the server during insert
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsUpdatable(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a property can be part of an update operation
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetRelatedEntity(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            The type of the entity on the other side of the relationship
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.IsAssociationRelationship(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Determines if the property is an assocation relationship.
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetAssociationKeyMembers(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Returns the key members on this side of the association
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetAssociationRelatedKeyMembers(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Returns the key members on the other side (related side) of the association
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetTableName(IQToolkit.Data.Common.MappingEntity)">
+            <summary>
+            The name of the corresponding database table
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetColumnName(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            The name of the corresponding table column
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapping.GetMappedMembers(IQToolkit.Data.Common.MappingEntity)">
+            <summary>
+            A sequence of all the mapped members
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IQToolkit.Data.EntityProvider">
+            <summary>
+            A LINQ IQueryable query provider that executes database queries over a DbConnection
+            </summary>
+        </member>
+        <member name="T:IQToolkit.QueryProvider">
+            <summary>
+            A basic abstract LINQ query provider
+            </summary>
+        </member>
+        <member name="T:IQToolkit.IQueryText">
+            <summary>
+            Optional interface for IQueryProvider to implement Query&lt;T&gt;'s QueryText property.
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.EntityProvider.Execute(System.Linq.Expressions.Expression)">
+            <summary>
+            Execute the query expression (does translation, etc.)
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.EntityProvider.GetExecutionPlan(System.Linq.Expressions.Expression)">
+            <summary>
+            Convert the query expression into an execution plan
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IQToolkit.Query`1">
+            <summary>
+            A default implementation of IQueryable for use with QueryProvider
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.DbExpressionVisitor">
+            <summary>
+            An extended expression visitor including custom DbExpression nodes
+            </summary>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.InsertAsync``1(IQToolkit.IUpdatable{``0},``0)">
+            <summary>
+            Insert a copy of the instance into an updatable collection.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert.</param>
+            <returns>The value 1 if the insert succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.InsertAsync``2(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Insert an copy of the instance into the updatable collection and produce a result if the insert succeeds.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <typeparam name="S">The type of the result.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert.</param>
+            <param name="resultSelector">The function that produces the result.</param>
+            <returns>The value of the result if the insert succeed, otherwise null.</returns>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.UpdateAsync``2(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Update the object in the updatable collection with the values in this instance only if the update check passes and produce
+            a result based on the updated object if the update succeeds.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <typeparam name="S">The type of the result.</typeparam>
+            <param name="collection">The updatable collection</param>
+            <param name="instance">The instance to update.</param>
+            <param name="updateCheck">A predicate testing the suitability of the object in the collection (often used that make sure assumptions have not changed.)</param>
+            <param name="resultSelector">A function that produces a result based on the object in the collection after the update succeeds.</param>
+            <returns>The value of the result function if the update succeeds, otherwise null.</returns>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.UpdateAsync``1(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Update the object in the updatable collection with the values in this instance only if the update check passes.
+            </summary>
+            <typeparam name="T">The type of the instance</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to update.</param>
+            <param name="updateCheck">A predicate testing the suitability of the object in the collection.</param>
+            <returns>The value 1 if the update succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.UpdateAsync``1(IQToolkit.IUpdatable{``0},``0)">
+            <summary>
+            Update the object in the updatable collection with the values in this instance.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to update.</param>
+            <returns>The value 1 if the update succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.InsertOrUpdateAsync``2(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Insert a copy of the instance if it does not exist in the collection or update the object in the collection with the values in this instance. 
+            Produce a result based on the object in the collection after the insert or update succeeds.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <typeparam name="S">The type of the result.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert or update.</param>
+            <param name="updateCheck">A predicate testing the suitablilty of the object in the collection if an update is required.</param>
+            <param name="resultSelector">A function producing a result based on the object in the collection after the insert or update succeeds.</param>
+            <returns>The value of the result if the insert or update succeeds, otherwise null.</returns>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.InsertOrUpdateAsync``1(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Insert a copy of the instance if it does not exist in the collection or update the object in the collection with the values in this instance. 
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert or update.</param>
+            <param name="updateCheck">A function producing a result based on the object in the collection after the insert or update succeeds.</param>
+            <returns>The value 1 if the insert or update succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.InsertOrUpdateAsync``1(IQToolkit.IUpdatable{``0},``0)">
+            <summary>
+            Insert a copy of the instance if it does not exist in the collection or update the object in the collection with the values in this instance. 
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert or update.</param>
+            <returns>The value 1 if the insert or update succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.DeleteAsync``1(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Delete the object in the collection that matches the instance only if the delete check passes.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to delete.</param>
+            <param name="deleteCheck">A predicate testing the suitability of the corresponding object in the collection.</param>
+            <returns>The value 1 if the delete succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.DeleteAsync``1(IQToolkit.IUpdatable{``0},``0)">
+            <summary>
+            Delete the object in the collection that matches the instance.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to delete.</param>
+            <returns>The value 1 if the Delete succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.DeleteAsync``1(IQToolkit.IUpdatable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Delete all the objects in the collection that match the predicate.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="predicate">The predicate.</param>
+            <returns>The number of objects deleted.</returns>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.BatchAsync``3(IQToolkit.IUpdatable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{IQToolkit.IUpdatable{``0},``1,``2}},System.Int32,System.Boolean)">
+            <summary>
+            Apply an Insert, Update, InsertOrUpdate or Delete operation over a set of items and produce a set of results per invocation.
+            </summary>
+            <typeparam name="U">The type of the updateble items</typeparam>
+            <typeparam name="T">The type of the instances.</typeparam>
+            <typeparam name="S">The type of each result</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instances">The instances to apply the operation to.</param>
+            <param name="fnOperation">The operation to apply.</param>
+            <param name="batchSize">The maximum size of each batch.</param>
+            <param name="stream">If true then execution is deferred until the resulting sequence is enumerated.</param>
+            <returns>A sequence of results cooresponding to each invocation.</returns>
+        </member>
+        <member name="M:IQToolkit.AsyncUpdatable.BatchAsync``3(IQToolkit.IUpdatable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{IQToolkit.IUpdatable{``0},``1,``2}})">
+            <summary>
+            Apply an Insert, Update, InsertOrUpdate or Delete operation over a set of items and produce a set of result per invocation.
+            </summary>
+            <typeparam name="U">The type of the updateble items</typeparam>
+            <typeparam name="T">The type of the items.</typeparam>
+            <typeparam name="S">The type of each result.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instances">The instances to apply the operation to.</param>
+            <param name="fnOperation">The operation to apply.</param>
+            <returns>A sequence of results corresponding to each invocation.</returns>
+        </member>
+        <member name="T:IQToolkit.Data.Common.SqlFormatter">
+            <summary>
+            Formats a query expression into common SQL language syntax
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:IQToolkit.Data.SQLite.SQLiteFormatter.WriteRecordsCountWithCondition(IQToolkit.Data.Common.SelectExpression)" -->
+        <member name="T:IQToolkit.Data.Common.QueryLanguage">
+            <summary>
+            Defines the language rules for the query provider
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryLanguage.IsScalar(System.Type)">
+            <summary>
+            Determines whether the CLR type corresponds to a scalar data type in the query language
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryLanguage.CanBeColumn(System.Linq.Expressions.Expression)">
+            <summary>
+            Determines whether the given expression can be represented as a column in a select expressionss
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryLinguist.Translate(System.Linq.Expressions.Expression)">
+            <summary>
+            Provides language specific query translation.  Use this to apply language specific rewrites or
+            to make assertions/validations about the query.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryLinguist.Format(System.Linq.Expressions.Expression)">
+            <summary>
+            Converts the query expression into text of this query language
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryLinguist.Parameterize(System.Linq.Expressions.Expression)">
+            <summary>
+            Determine which sub-expressions must be parameters
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ExecutionBuilder">
+            <summary>
+            Builds an execution plan for a query expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ExecutionBuilder.OuterParameterizer">
+            <summary>
+            columns referencing the outer alias are turned into special named-value parameters
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.Aggregator.GetAggregator(System.Type,System.Type)">
+            <summary>
+            Get a function that coerces a sequence of one type into another type.
+            This is primarily used for aggregators stored in ProjectionExpression's, which are used to represent the 
+            final transformation of the entire result set of a query.
+            </summary>
+            <param name="expectedType"></param>
+            <param name="actualType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IQToolkit.Data.Common.DbExpressionComparer">
+            <summary>
+            Determines if two expressions are equivalent. Supports DbExpression nodes.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.ExpressionComparer">
+            <summary>
+            Compare two expressions to determine if they are equivalent
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.DbExpressionReplacer">
+            <summary>
+            Replaces references to one specific instance of an expression node with another node.
+            Supports DbExpression nodes
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.DbExpressionType">
+            <summary>
+            Extended node types for custom expressions
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.AliasedExpression">
+            <summary>
+            A base class for expressions that declare table aliases.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.TableExpression">
+            <summary>
+            A custom expression node that represents a table reference in a SQL query
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.EntityExpression">
+            <summary>
+            An expression node that introduces an entity mapping.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ColumnExpression">
+            <summary>
+            A custom expression node that represents a reference to a column in a SQL query
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.TableAlias">
+            <summary>
+            An alias for a table.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ColumnDeclaration">
+            <summary>
+            A declaration of a column in a SQL SELECT expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.OrderType">
+            <summary>
+            An SQL OrderBy order type 
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.OrderExpression">
+            <summary>
+            A pairing of an expression and an order type for use in a SQL Order By clause
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.SelectExpression">
+            <summary>
+            A custom expression node used to represent a SQL SELECT expression
+            </summary>
+        </member>
+        <member name="P:IQToolkit.Data.Common.SelectExpression.MethodKind">
+            <summary>
+            this property is used for First/Last/Any methods and initialized in QueryBinder::BindFirst() only 
+            in order to solve the problem with distinction between First and Last methods and process the right query 
+            in SQLiteFormater::VisitSelect() method
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.JoinType">
+            <summary>
+            A kind of SQL join
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.JoinExpression">
+            <summary>
+            A SQL join clause expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.OuterJoinedExpression">
+            <summary>
+            A wrapper around and expression that is part of an outer joined projection
+            including a test expression to determine if the expression ought to be considered null.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.SubqueryExpression">
+            <summary>
+            An base class for SQL subqueries.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ScalarExpression">
+            <summary>
+            A SQL scalar subquery expression:
+              exists(select x from y where z)
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ExistsExpression">
+            <summary>
+            A SQL Exists subquery expression.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.InExpression">
+            <summary>
+            A SQL 'In' subquery:
+              expr in (select x from y where z)
+              expr in (a, b, c)
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.AggregateExpression">
+            <summary>
+            An SQL Aggregate expression:
+                MIN, MAX, AVG, COUNT
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.IsNullExpression">
+            <summary>
+            Allows is-null tests against value-types like int and float
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ProjectionExpression">
+            <summary>
+            A custom expression representing the construction of one or more result objects from a 
+            SQL select expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.DbExpressionWriter">
+            <summary>
+            Writes out an expression tree (including DbExpression nodes) in a C#-ish syntax
+            </summary>
+        </member>
+        <member name="T:IQToolkit.ExpressionWriter">
+            <summary>
+            Writes out an expression tree in a C#-ish syntax
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetQueryExpression(IQToolkit.Data.Common.MappingEntity)">
+            <summary>
+            Get a query expression that selects all entities from a table
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetEntityExpression(System.Linq.Expressions.Expression,IQToolkit.Data.Common.MappingEntity)">
+            <summary>
+            Gets an expression that constructs an entity instance relative to a root.
+            The root is most often a TableExpression, but may be any other experssion such as
+            a ConstantExpression.
+            </summary>
+            <param name="root"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetMemberExpression(System.Linq.Expressions.Expression,IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            Get an expression for a mapped property relative to a root expression. 
+            The root is either a TableExpression or an expression defining an entity instance.
+            </summary>
+            <param name="root"></param>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetInsertExpression(IQToolkit.Data.Common.MappingEntity,System.Linq.Expressions.Expression,System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Get an expression that represents the insert operation for the specified instance.
+            </summary>
+            <param name="entity"></param>
+            <param name="instance">The instance to insert.</param>
+            <param name="selector">A lambda expression that computes a return value from the operation.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetUpdateExpression(IQToolkit.Data.Common.MappingEntity,System.Linq.Expressions.Expression,System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.Expression)">
+            <summary>
+            Get an expression that represents the update operation for the specified instance.
+            </summary>
+            <param name="entity"></param>
+            <param name="instance"></param>
+            <param name="updateCheck"></param>
+            <param name="selector"></param>
+            <param name="else"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetInsertOrUpdateExpression(IQToolkit.Data.Common.MappingEntity,System.Linq.Expressions.Expression,System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Get an expression that represents the insert-or-update operation for the specified instance.
+            </summary>
+            <param name="entity"></param>
+            <param name="instance"></param>
+            <param name="updateCheck"></param>
+            <param name="resultSelector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.GetDeleteExpression(IQToolkit.Data.Common.MappingEntity,System.Linq.Expressions.Expression,System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Get an expression that represents the delete operation for the specified instance.
+            </summary>
+            <param name="entity"></param>
+            <param name="instance"></param>
+            <param name="deleteCheck"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.IncludeMembers(IQToolkit.Data.Common.EntityExpression,System.Func{System.Reflection.MemberInfo,System.Boolean})">
+            <summary>
+            Recreate the type projection with the additional members included
+            </summary>
+            <param name="entity"></param>
+            <param name="fnIsIncluded"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.HasIncludedMembers(IQToolkit.Data.Common.EntityExpression)">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.ApplyMapping(System.Linq.Expressions.Expression)">
+            <summary>
+            Apply mapping to a sub query expression
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryMapper.Translate(System.Linq.Expressions.Expression)">
+            <summary>
+            Apply mapping translations to this expression
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.BasicMapper.GetColumnType(IQToolkit.Data.Common.MappingEntity,System.Reflection.MemberInfo)">
+            <summary>
+            The query language specific type for the column
+            </summary>
+            <param name="entity"></param>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IQToolkit.Data.Common.QueryPolicy">
+            <summary>
+            Defines query execution and materialization policies. 
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryPolicy.IsIncluded(System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a relationship property is to be included in the results of the query
+            </summary>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryPolicy.IsDeferLoaded(System.Reflection.MemberInfo)">
+            <summary>
+            Determines if a relationship property is included, but the query for the related data is 
+            deferred until the property is first accessed.
+            </summary>
+            <param name="member"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryPolice.Translate(System.Linq.Expressions.Expression)">
+            <summary>
+            Provides policy specific query translations.  This is where choices about inclusion of related objects and how
+            heirarchies are materialized affect the definition of the queries.
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.Data.Common.QueryPolice.BuildExecutionPlan(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)">
+            <summary>
+            Converts a query into an execution plan.  The plan is an function that executes the query and builds the
+            resulting objects.
+            </summary>
+            <param name="query"></param>
+            <param name="provider"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IQToolkit.Data.Common.QueryTranslator">
+            <summary>
+            Defines query execution and materialization policies. 
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.AggregateChecker">
+            <summary>
+            Determines if a SelectExpression contains any aggregate expressions
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.AggregateRewriter">
+            <summary>
+            Rewrite aggregate expressions, moving them into same select expression that has the group-by clause
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ClientJoinedProjectionRewriter">
+            <summary>
+            rewrites nested projections into client-side joins
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ColumnMapper">
+            <summary>
+            Rewrite all column references to one or more aliases to a new single alias
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ProjectedColumns">
+            <summary>
+            Result from calling ColumnProjector.ProjectColumns
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ColumnProjector">
+            <summary>
+            Splits an expression into two parts
+              1) a list of column declarations for sub-expressions that must be evaluated on the server
+              2) a expression that describes how to combine/project the columns back together into the correct result
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ColumnProjector.Nominator">
+            <summary>
+            Nominator is a class that walks an expression tree bottom up, determining the set of 
+            candidate expressions that are possible columns of a select expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.CrossApplyRewriter">
+            <summary>
+            Attempts to rewrite cross-apply and outer-apply joins as inner and left-outer joins
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.CrossJoinIsolator">
+            <summary>
+            Isolates cross joins from other types of joins using nested sub queries
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.CrossJoinRewriter">
+            <summary>
+            Attempt to rewrite cross joins as inner joins
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.DeclaredAliasGatherer">
+            <summary>
+             returns the set of all aliases produced by a query source
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.OrderByRewriter">
+            <summary>
+            Moves order-bys to the outermost select if possible
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Data.Common.OrderByRewriter.PrependOrderings(System.Collections.Generic.IList{IQToolkit.Data.Common.OrderExpression})">
+            <summary>
+            Add a sequence of order expressions to an accumulated list, prepending so as
+            to give precedence to the new expressions over any previous expressions
+            </summary>
+            <param name="newOrderings"></param>
+        </member>
+        <member name="M:IQToolkit.Data.Common.OrderByRewriter.RebindOrderings(System.Collections.Generic.IEnumerable{IQToolkit.Data.Common.OrderExpression},IQToolkit.Data.Common.TableAlias,System.Collections.Generic.HashSet{IQToolkit.Data.Common.TableAlias},System.Collections.Generic.IEnumerable{IQToolkit.Data.Common.ColumnDeclaration})">
+            <summary>
+            Rebind order expressions to reference a new alias and add to column declarations if necessary
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.Parameterizer">
+            <summary>
+            Converts user arguments into named-value parameters
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.QueryBinder">
+            <summary>
+            Converts LINQ query operators to into custom DbExpression's
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.QueryDuplicator">
+            <summary>
+            Duplicate the query expression by making a copy with new table aliases
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.RedundantColumnRemover">
+            <summary>
+            Removes duplicate column declarations that refer to the same underlying column
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.RedundantJoinRemover">
+            <summary>
+            Removes joins expressions that are identical to joins that already exist
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.RedundantSubqueryRemover">
+            <summary>
+            Removes select expressions that don't add any additional semantic value
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ReferencedAliasGatherer">
+            <summary>
+             returns the set of all aliases produced by a query source
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.ReferencedColumnGatherer">
+            <summary>
+            Gathers all columns referenced by the given expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.RelationshipBinder">
+            <summary>
+            Translates accesses to relationship members into projections or joins
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.RelationshipIncluder">
+            <summary>
+            Adds relationship to query results depending on policy
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.SelectGatherer">
+            <summary>
+            returns the list of SelectExpressions accessible from the source expression
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.SingletonProjectionRewriter">
+            <summary>
+            Rewrites nested singleton projection into server-side joins
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.SkipToNestedOrderByRewriter">
+            <summary>
+            Rewrites queries with skip and take to use the nested queries with inverted ordering technique
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.SkipToRowNumberRewriter">
+            <summary>
+            Rewrites take and skip expressions into uses of TSQL row_number function
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.SubqueryRemover">
+            <summary>
+            Removes one or more SelectExpression's by rewriting the expression tree to not include them, promoting
+            their from clause expressions and rewriting any column expressions that may have referenced them to now
+            reference the underlying data directly.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Data.Common.UnusedColumnRemover">
+            <summary>
+            Removes column declarations in SelectExpression's that are not referenced
+            </summary>
+        </member>
+        <member name="T:IQToolkit.IDeferLoadable">
+            <summary>
+            Common interface for controlling defer-loadable types
+            </summary>
+        </member>
+        <member name="T:IQToolkit.DeferredList`1">
+            <summary>
+            A list implementation that is loaded the first time the contents are examined
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:IQToolkit.ExpressionReplacer">
+            <summary>
+            Replaces references to one specific instance of an expression node with another node
+            </summary>
+        </member>
+        <member name="T:IQToolkit.Grouping`2">
+            <summary>
+            Simple implementation of the <see cref="T:System.Linq.IGrouping`2"/> interface
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TElement"></typeparam>
+        </member>
+        <member name="T:IQToolkit.MostRecentlyUsedCache`1">
+            <summary>
+            Implements a cache over a most recently used list
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:IQToolkit.Parameterizer">
+            <summary>
+            Converts constants into parameters
+            </summary>
+        </member>
+        <member name="T:IQToolkit.PartialEvaluator">
+            <summary>
+            Rewrites an expression tree so that locally isolatable sub-expressions are evaluated and converted into ConstantExpression nodes.
+            </summary>
+        </member>
+        <member name="M:IQToolkit.PartialEvaluator.Eval(System.Linq.Expressions.Expression)">
+            <summary>
+            Performs evaluation &amp; replacement of independent sub-trees
+            </summary>
+            <param name="expression">The root of the expression tree.</param>
+            <returns>A new tree with sub-trees evaluated and replaced.</returns>
+        </member>
+        <member name="M:IQToolkit.PartialEvaluator.Eval(System.Linq.Expressions.Expression,System.Func{System.Linq.Expressions.Expression,System.Boolean})">
+            <summary>
+            Performs evaluation &amp; replacement of independent sub-trees
+            </summary>
+            <param name="expression">The root of the expression tree.</param>
+            <param name="fnCanBeEvaluated">A function that decides whether a given expression node can be part of the local function.</param>
+            <returns>A new tree with sub-trees evaluated and replaced.</returns>
+        </member>
+        <member name="T:IQToolkit.PartialEvaluator.SubtreeEvaluator">
+            <summary>
+            Evaluates &amp; replaces sub-trees when first candidate is reached (top-down)
+            </summary>
+        </member>
+        <member name="T:IQToolkit.PartialEvaluator.Nominator">
+            <summary>
+            Performs bottom-up analysis to determine which nodes can possibly
+            be part of an evaluated sub-tree.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.QueryCache">
+            <summary>
+            Keeps a cache of compiled queries.
+            </summary>
+        </member>
+        <member name="T:IQToolkit.QueryCompiler">
+            <summary>
+            Creates a reusable, parameterized representation of a query that caches the execution plan
+            </summary>
+        </member>
+        <member name="T:IQToolkit.StrongDelegate">
+            <summary>
+            Make a strongly-typed delegate to a weakly typed method (one that takes single object[] argument)
+            (up to 8 arguments)
+            </summary>
+        </member>
+        <member name="M:IQToolkit.StrongDelegate.CreateDelegate(System.Type,System.Object,System.Reflection.MethodInfo)">
+            <summary>
+            Create a strongly typed delegate over a method with a weak signature
+            </summary>
+            <param name="delegateType">The strongly typed delegate's type</param>
+            <param name="target"></param>
+            <param name="method">Any method that takes a single array of objects and returns an object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:IQToolkit.StrongDelegate.CreateDelegate(System.Type,System.Func{System.Object[],System.Object})">
+            <summary>
+            Create a strongly typed delegate over a Func delegate with weak signature
+            </summary>
+            <param name="delegateType"></param>
+            <param name="fn"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IQToolkit.TypedSubtreeFinder">
+            <summary>
+            Finds the first sub-expression that is of a specified type
+            </summary>
+        </member>
+        <member name="T:IQToolkit.TypeHelper">
+            <summary>
+            Type related helper methods
+            </summary>
+        </member>
+        <member name="M:IQToolkit.Updatable.Insert``2(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Insert an copy of the instance into the updatable collection and produce a result if the insert succeeds.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <typeparam name="S">The type of the result.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert.</param>
+            <param name="resultSelector">The function that produces the result.</param>
+            <returns>The value of the result if the insert succeed, otherwise null.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Insert``1(IQToolkit.IUpdatable{``0},``0)">
+            <summary>
+            Insert a copy of the instance into an updatable collection.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert.</param>
+            <returns>The value 1 if the insert succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Update``2(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Update the object in the updatable collection with the values in this instance only if the update check passes and produce
+            a result based on the updated object if the update succeeds.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <typeparam name="S">The type of the result.</typeparam>
+            <param name="collection">The updatable collection</param>
+            <param name="instance">The instance to update.</param>
+            <param name="updateCheck">A predicate testing the suitability of the object in the collection (often used that make sure assumptions have not changed.)</param>
+            <param name="resultSelector">A function that produces a result based on the object in the collection after the update succeeds.</param>
+            <returns>The value of the result function if the update succeeds, otherwise null.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Update``1(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Update the object in the updatable collection with the values in this instance only if the update check passes.
+            </summary>
+            <typeparam name="T">The type of the instance</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to update.</param>
+            <param name="updateCheck">A predicate testing the suitability of the object in the collection.</param>
+            <returns>The value 1 if the update succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Update``1(IQToolkit.IUpdatable{``0},``0)">
+            <summary>
+            Update the object in the updatable collection with the values in this instance.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to update.</param>
+            <returns>The value 1 if the update succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.InsertOrUpdate``2(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Insert a copy of the instance if it does not exist in the collection or update the object in the collection with the values in this instance. 
+            Produce a result based on the object in the collection after the insert or update succeeds.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <typeparam name="S">The type of the result.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert or update.</param>
+            <param name="updateCheck">A predicate testing the suitablilty of the object in the collection if an update is required.</param>
+            <param name="resultSelector">A function producing a result based on the object in the collection after the insert or update succeeds.</param>
+            <returns>The value of the result if the insert or update succeeds, otherwise null.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.InsertOrUpdate``1(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Insert a copy of the instance if it does not exist in the collection or update the object in the collection with the values in this instance. 
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert or update.</param>
+            <param name="updateCheck">A function producing a result based on the object in the collection after the insert or update succeeds.</param>
+            <returns>The value 1 if the insert or update succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.InsertOrUpdate``1(IQToolkit.IUpdatable{``0},``0)">
+            <summary>
+            Insert a copy of the instance if it does not exist in the collection or update the object in the collection with the values in this instance. 
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to insert or update.</param>
+            <returns>The value 1 if the insert or update succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Delete``1(IQToolkit.IUpdatable{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Delete the object in the collection that matches the instance only if the delete check passes.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to delete.</param>
+            <param name="deleteCheck">A predicate testing the suitability of the corresponding object in the collection.</param>
+            <returns>The value 1 if the delete succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Delete``1(IQToolkit.IUpdatable{``0},``0)">
+            <summary>
+            Delete the object in the collection that matches the instance.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instance">The instance to delete.</param>
+            <returns>The value 1 if the Delete succeeds, otherwise 0.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Delete``1(IQToolkit.IUpdatable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Delete all the objects in the collection that match the predicate.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="predicate">The predicate.</param>
+            <returns>The number of objects deleted.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Batch``3(IQToolkit.IUpdatable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{IQToolkit.IUpdatable{``0},``1,``2}},System.Int32,System.Boolean)">
+            <summary>
+            Apply an Insert, Update, InsertOrUpdate or Delete operation over a set of items and produce a set of results per invocation.
+            </summary>
+            <typeparam name="U">The type of the updateble items</typeparam>
+            <typeparam name="T">The type of the instances.</typeparam>
+            <typeparam name="S">The type of each result</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instances">The instances to apply the operation to.</param>
+            <param name="fnOperation">The operation to apply.</param>
+            <param name="batchSize">The maximum size of each batch.</param>
+            <param name="stream">If true then execution is deferred until the resulting sequence is enumerated.</param>
+            <returns>A sequence of results cooresponding to each invocation.</returns>
+        </member>
+        <member name="M:IQToolkit.Updatable.Batch``3(IQToolkit.IUpdatable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{IQToolkit.IUpdatable{``0},``1,``2}})">
+            <summary>
+            Apply an Insert, Update, InsertOrUpdate or Delete operation over a set of items and produce a set of result per invocation.
+            </summary>
+            <typeparam name="U">The type of the updateble items</typeparam>
+            <typeparam name="T">The type of the items.</typeparam>
+            <typeparam name="S">The type of each result.</typeparam>
+            <param name="collection">The updatable collection.</param>
+            <param name="instances">The instances to apply the operation to.</param>
+            <param name="fnOperation">The operation to apply.</param>
+            <returns>A sequence of results corresponding to each invocation.</returns>
+        </member>
+    </members>
+</doc>

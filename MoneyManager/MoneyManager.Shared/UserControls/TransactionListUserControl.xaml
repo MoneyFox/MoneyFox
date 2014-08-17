@@ -5,9 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converter="using:Helper.Converter"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400"
-    DataContext="{Binding Main, Source={StaticResource Locator}}">
+    DataContext="{Binding TransactionListControl, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
         <converter:CultureConverter x:Key="FormatConverter" />
@@ -29,8 +31,14 @@
         </DataTemplate>
     </UserControl.Resources>
 
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadRelatedTransactionsCommand}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
+
     <StackPanel>
-        <ListView x:Name="TransactionList" ItemsSource="{Binding RelatedTransactions}"
+        <ListView ItemsSource="{Binding RelatedTransactions}"
                   ItemTemplate="{StaticResource TransactionTemplate}"
                   HorizontalAlignment="Stretch" />
     </StackPanel>

@@ -1,0 +1,1879 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.UI.Xaml.DataVisualization</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.AdditionalMeasuresCollection`1">
+            <summary>
+            This collection is used insider RadBulletGraph and contains the additional comparative measures.
+            </summary>
+            <typeparam name="T">The type of the measures contained in the collection.</typeparam>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.AdditionalMeasuresCollection`1.InsertItem(System.Int32,`0)">
+            <summary>
+            Inserts an item into the collection at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which item should be inserted.</param>
+            <param name="item">The object to insert.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.AdditionalMeasuresCollection`1.RemoveItem(System.Int32)">
+            <summary>
+            Removes the item at the specified index from the collection.
+            </summary>
+            <param name="index">The zero-based index of the item to remove.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.AdditionalMeasuresCollection`1.SetItem(System.Int32,`0)">
+            <summary>
+            Replaces the item at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the item to replace.</param>
+            <param name="item">The new value for the item at the specified index.</param>
+            <exception cref="T:System.InvalidOperationException">
+            The method is being called in a System.Collections.ObjectModel.ObservableCollection.PropertyChanged
+            or System.Collections.ObjectModel.ObservableCollection.CollectionChanged
+            event handler.
+            </exception>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.AdditionalMeasuresCollection`1.ClearItems">
+            <summary>
+            Removes all items from the collection.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            The method is being called in a System.Collections.ObjectModel.ObservableCollection.PropertyChanged
+            or System.Collections.ObjectModel.ObservableCollection.CollectionChanged
+            event handler.
+            </exception>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraphComparativeMeasure">
+            <summary>
+            Represents a comparative measure in a RadBulletGraph.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraphMeasureBase">
+            <summary>
+            The base class for RadBulletGraph's additional measures.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraphMeasureBase.ValueProperty">
+            <summary>
+            Identifies the Value dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraphMeasureBase.#ctor">
+            <summary>
+            Initializes a new instance of the BulletGraphMeasureBase class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraphMeasureBase.CreateVisual">
+            <summary>
+            This is a factory method that is used to create specific visualizations for different bullet graph measures.
+            </summary>
+            <returns>Returns an object that will be used to visualize this measure.</returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraphMeasureBase.Value">
+            <summary>
+            Gets or sets the value of this measure.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraphComparativeMeasure.TemplateProperty">
+            <summary>
+            Identifies the Template property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraphComparativeMeasure.CreateVisual">
+            <summary>
+            This is a factory method that is used to create specific visualizations for different bullet graph measures.
+            </summary>
+            <returns>Returns an object that will be used to visualize this measure.</returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraphComparativeMeasure.Template">
+            <summary>
+            Gets or sets a data template that defines the look of this comparative measure instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraphQualitativeRangeCollection">
+            <summary>
+            This collection is used in RadBulletGraph and contains its qualitative range segments.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph">
+            <summary>
+            A control that represents the bullet graph data visualization.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.StartValueProperty">
+            <summary>
+            Identifies the StartValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.EndValueProperty">
+            <summary>
+            Identifies the EndValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.TickStepProperty">
+            <summary>
+            Identifies the TickStep dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.LabelStepProperty">
+            <summary>
+            Identifies the LabelStep dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.LabelOffsetProperty">
+            <summary>
+            Identifies the LabelOffset dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.TickTemplateProperty">
+            <summary>
+            Identifies the TickTemplate dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.LabelTemplateProperty">
+            <summary>
+            Identifies the LabelTemplate dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.OrientationProperty">
+            <summary>
+            Identifies the Orientation dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.FeaturedMeasureProperty">
+            <summary>
+            Identifies the FeaturedMeasure dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.FeaturedMeasureStartValueProperty">
+            <summary>
+            Identifies the FeaturedMeasureStartValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.FeaturedMeasureBrushProperty">
+            <summary>
+            Identifies the FeaturedMeasureBrush dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.FeaturedMeasureThicknessProperty">
+            <summary>
+            Identifies the FeaturedMeasureThickness dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.FeaturedMeasureAlternativeTemplateProperty">
+            <summary>
+            Identifies the FeaturedMeasureAlternativeTemplate dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.ProjectedMeasureProperty">
+            <summary>
+            Identifies the ProjectedMeasure dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.ProjectedMeasureBrushProperty">
+            <summary>
+            Identifies the ProjectedMeasureBrush dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.ComparativeMeasureProperty">
+            <summary>
+            Identifies the ComparativeMeasure dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.ComparativeMeasureTemplateProperty">
+            <summary>
+            Identifies the ComparativeMeasureTemplate dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.IsAnimatedProperty">
+            <summary>
+            Identifies the IsAnimated dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.#ctor">
+            <summary>
+            Initializes a new instance of the RadBulletGraph class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.ApplyTemplateCore">
+            <summary>
+            Retrieves the template parts of the control.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.OnTemplateApplied">
+            <summary>
+            Ensures that all logical values fall within the specified range.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.IsAnimated">
+            <summary>
+            Gets a value that determines if the featured measure will be animated when its value changes.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.StartValue">
+            <summary>
+            Gets or sets the start value of the bullet graph scale.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.EndValue">
+            <summary>
+            Gets or sets the end value of the bullet graph scale.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.TickStep">
+            <summary>
+            Gets or sets the tick step of the bullet graph scale.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.LabelStep">
+            <summary>
+            Gets or sets the label step of the bullet graph scale.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.LabelTemplate">
+            <summary>
+            Gets or sets the label template of the bullet graph scale.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.TickTemplate">
+            <summary>
+            Gets or sets the tick template of the bullet graph scale.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.LabelOffset">
+            <summary>
+            Gets or sets the label offset of the bullet graph scale. This offset moves the labels
+            relative to the ticks and the measures.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.Orientation">
+            <summary>
+            Gets or sets the orientation of the bullet graph.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.QualitativeRanges">
+            <summary>
+            Gets the collection that contains the qualitative ranges of the bullet graph.
+            New ranges can be added and old ones can be removed. There must be two ranges at minimum and
+            no more than 5. Otherwise an exception is thrown.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.FeaturedMeasure">
+            <summary>
+            Gets or sets the value of the featured measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.FeaturedMeasureStartValue">
+            <summary>
+            Gets or sets the start value of the featured measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.FeaturedMeasureBrush">
+            <summary>
+            Gets or sets the color of the featured measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.FeaturedMeasureThickness">
+            <summary>
+            Gets or sets the thickness of the featured measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.FeaturedMeasureAlternativeTemplate">
+            <summary>
+            Gets or sets the template that determines the look of the alternative featured measure.
+            The alternative featured measure is visible when the StartValue of RadBulletGraph is non-zero.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.ProjectedMeasure">
+            <summary>
+            Gets or sets the value of the projected measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.ProjectedMeasureBrush">
+            <summary>
+            Gets or sets the color of the projected measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.ComparativeMeasure">
+            <summary>
+            Gets or sets the value of the comparative measure.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.ComparativeMeasureTemplate">
+            <summary>
+            Gets or sets a template that determines the look of the default comparative measure.
+            If not template is specified for the additional comparative measures this template will be used instead.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadBulletGraph.AdditionalComparativeMeasures">
+            <summary>
+            Gets a collection that contains any additional comparative measure.
+            All operations on this collection are supported.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraph.ValueToVisibilityConverter">
+            <summary>
+            This class converts 0 to its Visibility property value and non-zero to the opposite of its Visibility property value.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraph.ValueToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraph.ValueToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.BulletGraph.ValueToVisibilityConverter.Visibility">
+            <summary>
+            Gets or sets a value that is returned if the value to be converted is 0.
+            If the value to be converted is non-zero the opposite of this property is returned.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment">
+            <summary>
+            This class represents a segment in a segmented bar indicator.
+            A segment can have a distinctive color, length and thickness.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment.LengthProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment.Length"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment.ThicknessProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment.Thickness"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment.StrokeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment.Stroke"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment.ApplyTemplateCore">
+            <summary>
+            Initializes the template parts of the control (see the TemplatePart attributes for more information).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment.Length">
+            <summary>
+            Gets or sets the length of the current segment.
+            </summary>
+            <remarks>
+            The length does not need to be an absolute value.
+            Internally a ratio is calculated that determines the
+            actual length of each segment, relative to the actual value range of the owning <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel"/> instance.
+            For example if a segmented indicator has three segments
+            of length 1, they will be of evenly placed over the available indicator space.
+            This property is somewhat similar to the relative size of the Grid panel's columns and rows.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment.Stroke">
+            <summary>
+            Gets or sets the color of the segment.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment.Thickness">
+            <summary>
+            Gets or sets the thickness of the segment.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.CalculateAngleContext">
+            <summary>
+            Contains data to calculate an angle based on a value.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.GaugeColorValueRange">
+            <summary>
+            This class represents a color that
+            should be used only in visual elements
+            that are between the min and max values.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeColorValueRange.Color">
+            <summary>
+            The color of this particular rage.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeColorValueRange.MinValue">
+            <summary>
+            The bottom limit of the range.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeColorValueRange.MaxValue">
+            <summary>
+            The top limit of the range.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.GaugeValueToBrushConverter">
+            <summary>
+            This converter can be used to fill visual elements
+            in the ticks and labels with a color that depends on
+            the value of the tick or label.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeValueToBrushConverter.#ctor">
+            <summary>
+            Initializes a new instance of the GaugeValueToBrushConverter class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeValueToBrushConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeValueToBrushConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeValueToBrushConverter.Ranges">
+            <summary>
+            Gets a list of GaugeColorToValueRanges.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeValueToBrushConverter.DefaultColor">
+            <summary>
+            Gets or sets the default color of the converter.
+            </summary>
+            <remarks>
+            If a value is passed that is not in the ranges list
+            the default color will be returned.
+            </remarks>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.GaugeValueToStringConverter">
+            <summary>
+            Converts a value to a string and vice versa providing
+            a Precision property to control the floating point precision
+            of the converted value.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeValueToStringConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeValueToStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeValueToStringConverter.Precision">
+            <summary>
+            Gets or sets the number of digits to be displayed after the decimal sign.
+            This property is used only when converting a value to string, not vice versa.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicatorCollection">
+            <summary>
+            Represents a strongly typed collection of <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator"/> instances.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.IndicatorValueChangedEventArgs">
+            <summary>
+            Event arguments for the ValueChanged event of GaugeIndicator.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.IndicatorValueChangedEventArgs.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the IndicatorValueChangedEventArgs class.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.IndicatorValueChangedEventArgs.NewValue">
+            <summary>
+            Gets the new indicator value.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.IndicatorValueChangedEventArgs.OldValue">
+            <summary>
+            Gets the old indicator value.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.UpdateArcContext">
+            <summary>
+            Contains data to update an arc based on an angle.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.GaugeType">
+            <summary>
+            Represents the available gauge types.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.GaugeType.Linear">
+            <summary>
+            Represents a linear gauge.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.GaugeType.Radial">
+            <summary>
+            Represents a radial gauge.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.TickType">
+            <summary>
+            This enumeration represents the types that a GaugeTick can be created as.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.TickType.Minor">
+            <summary>
+            Represents a normal tick.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.TickType.Middle">
+            <summary>
+            Represents a Middle tick.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.TickType.Major">
+            <summary>
+            Represents a Major tick.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.TickType.Label">
+            <summary>
+            Represents a label.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.ArrowGaugeIndicator">
+            <summary>
+            This class represents and indicator in the form of an arrow with a circular tail.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.NeedleGaugeIndicator">
+            <summary>
+            Represents a base class for needle indicators. For example and arrow or some
+            other thin and pointy indicator. This class provides a rotation render transform.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugeIndicator">
+            <summary>
+            This is a base class for the radial indicators.
+            It keeps a cache of the attached properties of the radial
+            range. It defines neither visualization nor behavior so it is marked abstract.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.BarGaugeIndicator">
+            <summary>
+            A base class for bar indicators.
+            A bar has a thickness and a brush that defines its color.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator">
+            <summary>
+            This is the base class of the gauge indicators. It is abstract
+            because more concrete types must implement the arrange logic. Every indicator
+            knows how to arrange itself in its range container.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.ValueProperty">
+            <summary>
+            Identifies the Value dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.StartValueProperty">
+            <summary>
+            Identifies the StartValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.IsAnimatedProperty">
+            <summary>
+            Identifies the IsAnimated dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.AnimationEasingProperty">
+            <summary>
+            Identifies the AnimationEasing dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.AnimationDurationProperty">
+            <summary>
+            Identifies the AnimationDuration dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.ActualValueProperty">
+            <summary>
+            Identifies the ActualValue dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the GaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.Update(Windows.Foundation.Size)">
+            <summary>
+            This method should be called whenever an indicator needs to be updated.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.GetArrangeRect(Windows.Foundation.Size)">
+            <summary>
+            This method defines how a particular indicator will
+            arrange itself in the parent range.
+            </summary>
+            <param name="finalSize">The size in which the indicator should arrange itself.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the value of this indicator changes.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.OnStartValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the start value of this indicator changes.
+            </summary>
+            <param name="newStartValue">The new start value.</param>
+            <param name="oldStartValue">The old start value.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.OnOwnerChanged(Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel,Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel)">
+            <summary>
+            A virtual method that is called when the Owner of this indicator changes.
+            </summary>
+            <param name="newOwner">The new Owner.</param>
+            <param name="oldOwner">The old Owner.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.UpdateOverride(Windows.Foundation.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.MeasureOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the measure layout pass to determine the desired size.
+            </summary>
+            <param name="availableSize">The available size that was given by the layout system.</param>
+            <returns>Returns the desired size of the indicator.</returns>
+        </member>
+        <member name="E:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.ValueChanged">
+            <summary>
+            This event fires after the Value property changes.
+            The event arguments contain the new as well as the old value.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.Value">
+            <summary>
+            Gets or sets the value of this indicator.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.StartValue">
+            <summary>
+            Determines from where in the value range does the indicator start.
+            By default every indicator starts at 0. The Value and StartValue properties do the exact same
+            thing in the MarkerGaugeIndicator since it is always on a single point in the range.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.Owner">
+            <summary>
+            Gets the owner range of this indicator.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.IsAnimated">
+            <summary>
+            Gets or sets the IsAnimated property value. This
+            property enables and disables the animated transition
+            between values.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.AnimationDuration">
+            <summary>
+            Gets or sets the duration of the animation when IsAnimated is true.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.AnimationEasing">
+            <summary>
+            Gets or sets the easing of the animation when IsAnimated is true.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.MeasureCallback">
+            <summary>
+            Callback for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.ArrangeCallback">
+            <summary>
+            Callback for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.ActualValue">
+            <summary>
+            Gets the actual value of the indicator.
+            Inheritors must use this property for their calculations, not the Value property.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator.MinMaxValueDifference">
+            <summary>
+            Gets the difference between the min and max value of the parent range.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.BarGaugeIndicator.ThicknessProperty">
+            <summary>
+            Identifies the BarThickness dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.BarGaugeIndicator.BrushProperty">
+            <summary>
+            Identifies the BarBrush dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.BarGaugeIndicator.OnThicknessChanged(System.Double)">
+            <summary>
+            A virtual method that is called when the thickness of this indicator changes.
+            </summary>
+            <param name="newThickness">The new thickness.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.BarGaugeIndicator.OnBrushChanged(Windows.UI.Xaml.Media.Brush)">
+            <summary>
+            A virtual method that is called when the color of this indicator changes.
+            </summary>
+            <param name="newColor">The new color.</param>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.BarGaugeIndicator.Thickness">
+            <summary>
+            Gets or sets the thickness of this bar indicator.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.BarGaugeIndicator.Brush">
+            <summary>
+            Gets or sets the color of this bar indicator.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the RadialGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugeIndicator.UpdateOverride(Windows.Foundation.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            </summary>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugeIndicator.MeasureOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the measure layout pass to determine the desired size.
+            </summary>
+            <param name="availableSize">The available size that was given by the layout system.</param>
+            <returns>Returns the desired size of the indicator.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugeIndicator.ArrangeOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugeIndicator.MinAngle">
+            <summary>
+            Gets a cached value of the MinAngle attached property.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugeIndicator.MaxAngle">
+            <summary>
+            Gets a cached value of the MaxAngle attached property.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugeIndicator.Center">
+            <summary>
+            Gets a cached value of the center of the parent range.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugeIndicator.Radius">
+            <summary>
+            Gets a cached value of the radius of the parent range.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugeIndicator.RadiusScale">
+            <summary>
+            Gets a cached value of the IndicatorRadiusScale attached property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.NeedleGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the NeedleGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.NeedleGaugeIndicator.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the value of this indicator changes.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.NeedleGaugeIndicator.UpdateOverride(Windows.Foundation.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.NeedleGaugeIndicator.ApplyTemplateCore">
+            <summary>
+            Initializes the template parts of the indicator (see the TemplatePart attributes for more information).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.NeedleGaugeIndicator.ArrangeOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.ArrowGaugeIndicator.ArrowTailRadiusProperty">
+            <summary>
+            Identifies the ArrowTailRadius dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.ArrowGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the ArrowGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.ArrowGaugeIndicator.UpdateOverride(Windows.Foundation.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.ArrowGaugeIndicator.ApplyTemplateCore">
+            <summary>
+            Initializes the template parts of the control (see the TemplatePart attributes for more information).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.ArrowGaugeIndicator.ArrangeOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.ArrowGaugeIndicator.ArrowTailRadius">
+            <summary>
+            Gets or sets the radius of the arrow tail.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.IndicatorSegmentCollection">
+            <summary>
+            Represents a typed collection that stores <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.BarIndicatorSegment"/> instances.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.LinearBarGaugeIndicator">
+            <summary>
+            Represents a line indicator with a specific color and thickness.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearBarGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the LinearBarGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearBarGaugeIndicator.GetArrangeRect(Windows.Foundation.Size)">
+            <summary>
+            This method defines how a particular indicator will
+            arrange itself in the parent range.
+            </summary>
+            <param name="finalSize">The size in which the indicator should arrange itself.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearBarGaugeIndicator.OnOwnerChanged(Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel,Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel)">
+            <summary>
+            A virtual method that is called when the Owner of this indicator changes.
+            </summary>
+            <param name="newOwner">The new Owner.</param>
+            <param name="oldOwner">The old Owner.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearBarGaugeIndicator.OnThicknessChanged(System.Double)">
+            <summary>
+            A virtual method that is called when the thickness of this indicator changes.
+            </summary>
+            <param name="newThickness">The new thickness.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearBarGaugeIndicator.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the value of this indicator changes.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearBarGaugeIndicator.OnStartValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the start value of this indicator changes.
+            </summary>
+            <param name="newStartValue">The new start value.</param>
+            <param name="oldStartValue">The old start value.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearBarGaugeIndicator.UpdateOverride(Windows.Foundation.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearBarGaugeIndicator.ApplyTemplateCore">
+            <summary>
+            Initializes the template parts of the indicator (see the TemplatePart attributes for more information).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearBarGaugeIndicator.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="M:OnApplyTemplate"/> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator">
+            <summary>
+            This class represents a marker indicator that is
+            usually placed somewhere near the ticks of the owner range.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.ContentTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.ContentTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.ContentProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.Content"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.IsRotatedProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.IsRotated"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the MarkerGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the value of this indicator changes.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.OnStartValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the start value of this indicator changes.
+            </summary>
+            <param name="newStartValue">The new start value.</param>
+            <param name="oldStartValue">The old start value.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.UpdateOverride(Windows.Foundation.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            </summary>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.ApplyTemplateCore">
+            <summary>
+            Initializes the template parts of the indicator (see the TemplatePart attributes for more information).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="M:OnApplyTemplate"/> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.MeasureOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the measure layout pass to determine the desired size.
+            </summary>
+            <param name="availableSize">The available size that was given by the layout system.</param>
+            <returns>Returns the desired size of the indicator.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.ArrangeOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.Content">
+            <summary>
+            Gets or sets the template for the marker.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.ContentTemplate">
+            <summary>
+            Gets or sets the template for the marker.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.MarkerGaugeIndicator.IsRotated">
+            <summary>
+            Gets or sets a value that determines if the marker will rotate in place as well as around the center
+            of a radial range or whether it will rotate automatically in a linear range when its orientation is Vertical.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.RadialBarGaugeIndicator">
+            <summary>
+            This class represents a radial bar gauge indicator.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialBarGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the RadialBarGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialBarGaugeIndicator.UpdateArc(Telerik.UI.Xaml.Controls.DataVisualization.UpdateArcContext)">
+            <summary>
+            Updates an arc segment with the provided data.
+            </summary>
+            <param name="context">A context for the arc to be updated. the arc to update is a part of the context.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialBarGaugeIndicator.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the value of this indicator changes.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialBarGaugeIndicator.OnThicknessChanged(System.Double)">
+            <summary>
+            A virtual method that is called when the thickness of this indicator changes.
+            </summary>
+            <param name="newThickness">The new thickness.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialBarGaugeIndicator.OnBrushChanged(Windows.UI.Xaml.Media.Brush)">
+            <summary>
+            A virtual method that is called when the color of this indicator changes.
+            </summary>
+            <param name="newColor">The new color.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialBarGaugeIndicator.UpdateOverride(Windows.Foundation.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialBarGaugeIndicator.ApplyTemplateCore">
+            <summary>
+            Initializes the template parts of the indicator (see the TemplatePart attributes for more information).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialBarGaugeIndicator.ArrangeOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator">
+            <summary>
+            This is the base class for the segmented indicators.
+            It defines a collection of segments and provides
+            a grid panel for the layout of the segments.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the SegmentedGaugeIndicator class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.UpdateOverride(Windows.Foundation.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.OnValueChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the value of this indicator changes.
+            </summary>
+            <param name="newValue">The new value.</param>
+            <param name="oldValue">The old value.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.ResetSegments(Windows.Foundation.Size)">
+            <summary>
+            This method is called whenever the segments
+            need to recreate their visual representation.
+            </summary>
+            <param name="availableSize">The available size which the visual parts can occupy.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.SyncWithValue(System.Double)">
+            <summary>
+            This method is called so that a segmented indicator can synchronize
+            its visual state with its current value.
+            </summary>
+            <param name="value">The value to synchronize with.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.ApplyTemplateCore">
+            <summary>
+            Initializes the template parts of the indicator (see the TemplatePart attributes for more information).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.Segments">
+            <summary>
+            Gets the segments collection.
+            </summary>
+            <remarks>
+            Segments can be added and removed from this collection.
+            Every such action triggers state resets and will be slow if
+            done often.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.SegmentInfos">
+            <summary>
+            Gets a list of SegmentInfos. These infos are 
+            used during the creation of the visual representation of
+            the segments.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.TotalSegmentLength">
+            <summary>
+            Gets the total length of the currently added segments.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.Layout">
+            <summary>
+            Gets the layout panel for this segmented indicator.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.SegmentInfo">
+            <summary>
+            This class is internally created during
+            segment reset in order to provide information
+            during value synchronization.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.SegmentInfo.PathSegment">
+            <summary>
+            Gets or sets a path segment.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.SegmentInfo.Start">
+            <summary>
+            Gets or sets the start of the path segment.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedGaugeIndicator.SegmentInfo.End">
+            <summary>
+            Gets or sets the end of the part segment.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedLinearGaugeIndicator">
+            <summary>
+            This class represents a line indicator with different segments.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedLinearGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedLinearGaugeIndicator"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedLinearGaugeIndicator.OnOwnerChanged(Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel,Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel)">
+            <summary>
+            A virtual method that is called when the Owner of this indicator changes.
+            </summary>
+            <param name="newOwner">The new Owner.</param>
+            <param name="oldOwner">The old Owner.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedLinearGaugeIndicator.UpdateOverride(Windows.Foundation.Size)">
+            <summary>
+            This is a virtual method that resets the state of the indicator.
+            The parent range is responsible to (indirectly) call this method when
+            a property of importance changes.
+            </summary>
+            <param name="availableSize">A size which can be used by the update logic.</param>
+            <remarks>
+            The linear range for example triggers the UpdateOverride() method
+            of its indicators when its Orientation property changes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedLinearGaugeIndicator.ResetSegments(Windows.Foundation.Size)">
+            <summary>
+            This method is called whenever the segments
+            need to recreate their visual representation.
+            </summary>
+            <param name="availableSize">The available size which the visual parts can occupy.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedLinearGaugeIndicator.SyncWithValue(System.Double)">
+            <summary>
+            This method is called so that a segmented indicator can synchronize
+            its visual state with its current value.
+            </summary>
+            <param name="value">The value to synchronize with.</param>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedRadialGaugeIndicator">
+            <summary>
+            This class represents a circle indicator with different segments.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedRadialGaugeIndicator.minAngle">
+            <summary>
+            Represents Min calculated angle according the Value, StartValue and gauge MinValue defined.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedRadialGaugeIndicator.maxAngle">
+            <summary>
+            Represents Max calculated angle according the Value, StartValue and gauge MaxValue defined.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedRadialGaugeIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedRadialGaugeIndicator"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedRadialGaugeIndicator.SyncWithValue(System.Double)">
+            <summary>
+            This method is called so that a segmented indicator can synchronize
+            its visual state with its current value.
+            </summary>
+            <param name="value">The value to synchronize with.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.SegmentedRadialGaugeIndicator.ResetSegments(Windows.Foundation.Size)">
+            <summary>
+            This method is called whenever the segments
+            need to recreate their visual representation.
+            </summary>
+            <param name="availableSize">The available size which the visual parts can occupy.</param>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel">
+            <summary>
+            Base class for the gauge ranges. Defines a value range (min and max value), tick and label steps and templates for the ticks and labels.
+            The class is abstract because the layout of the ticks and labels are defined in concrete types, for example the radial and linear ranges.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel.ArrangeTicksOverride(Windows.Foundation.Size)">
+            <summary>
+            Defines the arrange logic for the ticks.
+            </summary>
+            <param name="finalSize">The size in which the ticks can be arranged.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel.ArrangeLabelsOverride(Windows.Foundation.Size)">
+            <summary>
+            Defines the arrange logic for the labels.
+            </summary>
+            <param name="finalSize">The size in which the labels can be arranged.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel.GetTick(System.Int32)">
+            <summary>
+            Gets a tick at the specified index.
+            </summary>
+            <param name="index">The index at which the desired tick is.</param>
+            <returns>A GaugeTick.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel.GetLabel(System.Int32)">
+            <summary>
+            Gets a label at the specified index.
+            </summary>
+            <param name="index">The index at which the desired label is.</param>
+            <returns>A GaugeTick which represents a label.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel.ArrangeIndicator(Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator,Windows.Foundation.Size)">
+            <summary>
+            A virtual method that is called for each indicator in the arrange layout pass.
+            </summary>
+            <param name="indicator">The indicator to arrange.</param>
+            <param name="finalSize">The size in which to arrange the indicator.</param>
+            <remarks>
+            The Rect in which the indicator will be arranged should be retrieved from
+            the indicator itself via the GetArrangeRect() method.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel.MeasureOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the measure layout pass to determine the desired size.
+            </summary>
+            <param name="availableSize">The available size that was given by the layout system.</param>
+            <returns>Returns the desired size of the panel.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel.ArrangeOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel.TickCount">
+            <summary>
+            Gets the count of the currently created ticks.
+            </summary>
+            <returns>Returns the count of the currently created ticks.</returns>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.GaugePanel.LabelCount">
+            <summary>
+            Gets the count of the currently created labels.
+            </summary>
+            <returns>Returns the count of the currently created labels.</returns>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.LinearGaugePanel">
+            <summary>
+            Represents a linear range that arranges its ticks
+            and labels in a straight line and defines attached
+            properties for the contained indicators.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearGaugePanel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.LinearGaugePanel"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearGaugePanel.ArrangeTicksOverride(Windows.Foundation.Size)">
+            <summary>
+            Defines the arrange logic for the ticks.
+            </summary>
+            <param name="finalSize">The size in which the ticks can be arranged.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearGaugePanel.ArrangeLabelsOverride(Windows.Foundation.Size)">
+            <summary>
+            Defines the arrange logic for the labels.
+            </summary>
+            <param name="finalSize">The size in which the labels can be arranged.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearGaugePanel.OnLabelOffsetChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the LabelOffset property changes.
+            </summary>
+            <param name="newLabelOffset">The new LabelOffset.</param>
+            <param name="oldLabelOffset">The old LabelOffset.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearGaugePanel.OnOrientationChanged(Windows.UI.Xaml.Controls.Orientation,Windows.UI.Xaml.Controls.Orientation)">
+            <summary>
+            A virtual method that is called when the Orientation property changes.
+            </summary>
+            <param name="newOrientation">The new Orientation.</param>
+            <param name="oldOrientation">The old Orientation.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.LinearGaugePanel.ArrangeOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the arrange pass of the layout system.
+            </summary>
+            <param name="finalSize">The final size that was given by the layout system.</param>
+            <returns>The final size of the panel.</returns>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugePanel">
+            <summary>
+            Represents a radial range which arranges its ticks and labels
+            in a circle and defines attached properties for the contained
+            indicators.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugePanel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugePanel"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugePanel.CreateRotatedPoint(System.Double,System.Double,Windows.Foundation.Point,System.Double)">
+            <summary>
+            Creates a point rotated angle radians around the center. The point will
+            be radius * radiusScale away from the center.
+            </summary>
+            <param name="angle">Determines how much the resulting point will be rotated.</param>
+            <param name="radius">The radius of the circle over which to rotate the point.</param>
+            <param name="center">The center of rotation.</param>
+            <param name="radiusScale">A scale factor that the radius will be multiplied by.</param>
+            <returns>Returns a point rotated according to the parameters.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugePanel.ConvertDegreesToRadians(System.Double)">
+            <summary>
+            Converts the provided value in degrees to radians.
+            </summary>
+            <param name="angleInDegrees">The angle in degrees to convert.</param>
+            <returns>Returns the provided value in degrees converted to radians.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugePanel.CalculateAngle(Telerik.UI.Xaml.Controls.DataVisualization.CalculateAngleContext)">
+            <summary>
+            Calculates and angle in degrees based on a value, a value range, an angle range and a sweep direction.
+            </summary>
+            <param name="context">A context that contains the value to be converted to an angle.</param>
+            <returns>Returns an angle in radians that corresponds to the provided value in the context.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugePanel.ArrangeTicksOverride(Windows.Foundation.Size)">
+            <summary>
+            Defines the arrange logic for the ticks.
+            </summary>
+            <param name="finalSize">The size in which the ticks can be arranged.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugePanel.ArrangeLabelsOverride(Windows.Foundation.Size)">
+            <summary>
+            Defines the arrange logic for the labels.
+            </summary>
+            <param name="finalSize">The size in which the labels can be arranged.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugePanel.ArrangeIndicator(Telerik.UI.Xaml.Controls.DataVisualization.GaugeIndicator,Windows.Foundation.Size)">
+            <summary>
+            A virtual method that is called for each indicator in the arrange layout pass.
+            </summary>
+            <param name="indicator">The indicator to arrange.</param>
+            <param name="finalSize">The size in which to arrange the indicator.</param>
+            <remarks>
+            The rect in which the indicator will be arranged should be retrieved from
+            the indicator itself via the GetArrangeRect() method.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugePanel.OnTickRadiusScaleChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the TickRadiusScale property changes.
+            </summary>
+            <param name="newTickRadiusScale">The new TickRadiusScale.</param>
+            <param name="oldTickRadiusScale">The old TickRadiusScale.</param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadialGaugePanel.OnLabelRadiusScaleChanged(System.Double,System.Double)">
+            <summary>
+            A virtual method that is called when the LabelRadiusScale property changes.
+            </summary>
+            <param name="newLabelRadiusScale">The new LabelRadiusScale.</param>
+            <param name="oldLabelRadiusScale">The old LabelRadiusScale.</param>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge">
+            <summary>
+            Base class for <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge"/> and <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MinValueProperty">
+            <summary>
+            Identifies the MinValue property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MaxValueProperty">
+            <summary>
+            Identifies the MinValue property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.TickTemplateProperty">
+            <summary>
+            Identifies the TickTemplate property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MiddleTickTemplateProperty">
+            <summary>
+            Identifies the MiddleTickTemplate property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MajorTickTemplateProperty">
+            <summary>
+            Identifies the MajorTickTemplate property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.LabelTemplateProperty">
+            <summary>
+            Identifies the LabelTemplate property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.TickStepProperty">
+            <summary>
+            Identifies the TickStep property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.LabelStepProperty">
+            <summary>
+            Identifies the LabelStep property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MiddleTickStepProperty">
+            <summary>
+            Identifies the MiddleTickStep property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MajorTickStepProperty">
+            <summary>
+            Identifies the MajorTickStep property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.IndicatorsZIndexProperty">
+            <summary>
+            Identifies the IndicatorsZIndex property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MapLogicalToPhysicalValue(System.Double,System.Double,System.Double)">
+            <summary>
+            Converts a logical value from a value range to some kind of physical value in another range.
+            </summary>
+            <param name="logicalValue">The value to be converted.</param>
+            <param name="physicalValueMinMaxDifference">The difference of the min and max values of the expected metric's range.</param>
+            <param name="logicalValueMinMaxDifference">The difference between the min and max values.</param>
+            <returns>Returns a physical value that corresponds to the logical value in the physical value's respective range.</returns>
+            <remarks>
+            The other physical value can be an angle in the radial range and a distance in the linear range.
+            For example a value in the min/max value range can be converted to an angle in min/max angle range
+            or to a distance in the min/max distance range.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.ApplyTemplateCore">
+            <summary>
+            Resolves the control's template parts.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="M:OnApplyTemplate"/> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.UnapplyTemplateCore">
+            <summary>
+            Unapplies the current control template. Occurs when a template has already been applied and a new one is applied.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.Indicators">
+            <summary>
+            Gets a collection that holds the indicators in this range.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MinValue">
+            <summary>
+            Gets or sets the minimum value that this range can represent.
+            </summary>
+            <remarks>
+            The indicators can not point to a value that is less than MinValue.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MaxValue">
+            <summary>
+            Gets or sets the maximum value that this range represent.
+            </summary>
+            <remarks>
+            The indicators can not point to a value that is larger than MaxValue.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.TickStep">
+            <summary>
+            Gets or sets the tick step. 
+            </summary>
+            <remarks>
+            The tick step is used to determine how
+            the range ticks are spread over the value range.
+            In other words, it determines how many ticks will be created.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.LabelStep">
+            <summary>
+            Gets or sets the label step. 
+            </summary>
+            <remarks>
+            This step used to determine how
+            the range labels will be spread over the value range.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MiddleTickStep">
+            <summary>
+            Gets or sets a step that is used to determine which ticks
+            will be middle ticks. 
+            </summary>
+            <remarks>
+            This step is used on top of the number of
+            created ticks, not the value range. Middle ticks will use the
+            middle tick template.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MajorTickStep">
+            <summary>
+            Gets or sets a step that is used to determine which ticks
+            will be major ticks. 
+            </summary>
+            <remarks>
+            This step is used on top of the number of
+            created ticks, not the value range. Major ticks will use the major
+            tick template.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.TickTemplate">
+            <summary>
+            Gets or sets the template for the minor ticks.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MiddleTickTemplate">
+            <summary>
+            Gets or sets the template for the middle ticks.
+            </summary>
+            <remarks>
+            If this is null, the minor template will be used instead.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.MajorTickTemplate">
+            <summary>
+            Gets or sets the template for the major ticks.
+            </summary>
+            <remarks>
+            If this is null, the minor template will be used instead.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.LabelTemplate">
+            <summary>
+            Gets or sets the template that will represent the labels.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.IndicatorsZIndex">
+            <summary>
+            Gets or sets the z-index for the gauge indicators that belong to this instance.
+            </summary>
+            <value>
+            The default value is -1 (i.e. indicators are rendered below ticks and labels).
+            </value>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadGauge.GaugeType">
+            <summary>
+            Gets or sets the type of this range. It can be Radial or Linear.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge">
+            <summary>
+            Represents a Gauge that arranges its ticks, labels and indicators in a circle.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge.OrientationProperty">
+            <summary>
+            Identifies the Orientation property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge.IndicatorOffsetProperty">
+            <summary>
+            Identifies the IndicatorOffset property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge.LabelOffsetProperty">
+            <summary>
+            Identifies the LabelOffset property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge.SetIndicatorOffset(Windows.UI.Xaml.DependencyObject,System.Double)">
+            <summary>
+            Sets the IndicatorOffset attached property to the provided indicator.
+            </summary>
+            <param name="indicator">The indicator for which to set the offset.</param>
+            <param name="value">The offset of the indicator.</param>
+            <remarks>
+            Setting IndicatorOffset to 0 in horizontal mode will move the indicators to the top edge of the range.
+            Setting it to 2 on the other hand will move them to the bottom. In essence this is a factor
+            by which the position of the indicators will be multiplied by.
+            </remarks>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge.GetIndicatorOffset(Windows.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the IndicatorOffset of the provided indicator.
+            </summary>
+            <param name="indicator">The indicator from which the offset will be obtained.</param>
+            <returns>Returns the offset the provided indicator.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge.GetOrientation(Windows.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the Orientation value for the provided indicator.
+            </summary>
+            <param name="indicator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge.SetOrientation(Windows.UI.Xaml.DependencyObject,Windows.UI.Xaml.Controls.Orientation)">
+            <summary>
+            Sets the specified Orientation value to the provided indicator.
+            </summary>
+            <param name="indicator"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="M:OnApplyTemplate"/> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge.LabelOffset">
+            <summary>
+            Gets or sets an offset that is used to nudge the labels to the right or left (top/bottom if Orientation is horizontal)
+            of the ticks.
+            </summary>
+            <remarks>
+            Setting LabelOffset to 0 in horizontal mode will move the labels to the top edge of the range.
+            Setting it to 2 on the other hand will move them to the bottom. In essence this is a factor
+            by which the position of the labels will be multiplied by.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadLinearGauge.GaugeType">
+            <summary>
+            Gets the type of this range. For this type it is always Linear.
+            </summary>
+        </member>
+        <member name="T:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge">
+            <summary>
+            Represents a Gauge that arranges its ticks, labels and indicators in a circle.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge.MaxAngleProperty">
+            <summary>
+            Identifies the MaxAngle attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge.MinAngleProperty">
+            <summary>
+            Identifies the MinAngle attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge.IndicatorRadiusScaleProperty">
+            <summary>
+            Identifies the IndicatorRadiusScale attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge.TickRadiusScaleProperty">
+            <summary>
+            Identifies the TickRadiusScale property.
+            </summary>
+        </member>
+        <member name="F:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge.LabelRadiusScaleProperty">
+            <summary>
+            Identifies the LabelRadiusScale property.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge.GetIndicatorRadiusScale(Windows.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the IndicatorRadiusScale attached property.
+            </summary>
+            <param name="indicator">The indicator for which to obtain the IndicatorRadiusScale.</param>
+            <returns>Returns the IndicatorRadiusScale of the provided indicator.</returns>
+        </member>
+        <member name="M:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge.SetIndicatorRadiusScale(Windows.UI.Xaml.DependencyObject,System.Double)">
+            <summary>
+            Sets the IndicatorRadiusScale attached property.
+            </summary>
+            <param name="indicator">The indicator on which to set the IndicatorRadiusScale property.</param>
+            <param name="scale">The IndicatorRadiusScale value which will be set on the indicator.</param>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge.TickRadiusScale">
+            <summary>
+            Gets or sets a scale factor that will be multiplied by the radius
+            of this range in order to position the ticks.
+            </summary>
+            <remarks>
+            Setting this property to 1 will cause the ticks to be placed as
+            far away from the center as possible. Setting it to 0 will cause all
+            ticks to be placed at the center. The radius of the range is half
+            the value of the minimum between the width and height of the layout slot.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge.LabelRadiusScale">
+            <summary>
+            Gets or sets a scale factor that will be multiplied by the radius
+            of this range in order to position the labels.
+            </summary>
+            <remarks>
+            Setting this property to 1 will cause the labels to be placed as
+            far away from the center as possible. Setting it to 0 will cause all
+            labels to be placed at the center. The radius of the range is half
+            the value of the minimum between the width and height of the layout slot.
+            </remarks>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge.MaxAngle">
+            <summary>
+            Gets or sets the MaxAngle property.
+            </summary>
+        </member>
+        <member name="P:Telerik.UI.Xaml.Controls.DataVisualization.RadRadialGauge.MinAngle">
+            <summary>
+            Gets or sets the MinAngle property.
+            </summary>
+        </member>
+    </members>
+</doc>

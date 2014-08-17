@@ -1,13 +1,11 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Models;
 using MoneyManager.Src;
-using MoneyManager.ViewModels;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MoneyManager.DataAccess
 {
@@ -25,6 +23,11 @@ namespace MoneyManager.DataAccess
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
+        public TransactionDataAccess()
+        {
+            LoadList();
+        }
+
         protected override void SaveToDb(FinancialTransaction transaction)
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
@@ -34,7 +37,7 @@ namespace MoneyManager.DataAccess
                     AllTransactions = new ObservableCollection<FinancialTransaction>();
                 }
 
-                new ViewModelLocator().AccountDataAccess.AddTransactionAmount(transaction);
+                ServiceLocator.Current.GetInstance<AccountDataAccess>().AddTransactionAmount(transaction);
 
                 AllTransactions.Add(transaction);
                 dbConn.Insert(transaction, typeof(FinancialTransaction));
@@ -89,9 +92,8 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        public void GetRelatedTransactions()
+        public void GetRelatedTransactions(int accountId)
         {
-            var accountId = ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount.Id;
             RelatedTransactions = new ObservableCollection<FinancialTransaction>(
                 AllTransactions
                     .Where(x => x.ChargedAccountId == accountId).ToList());

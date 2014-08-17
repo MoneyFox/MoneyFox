@@ -1,0 +1,119 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:telerik="using:Telerik.UI.Xaml.Controls">
+
+    <SolidColorBrush x:Key="TelerikGridBackgroundBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="TelerikGridForegroundBrush" Color="#CC000000"/>
+    <SolidColorBrush x:Key="TelerikGridBorderBrush" Color="#FFCCCCCC"/>
+    <SolidColorBrush x:Key="TelerikGridHeaderBackgroundBrush" Color="#FFC6C6C6"/>
+    <SolidColorBrush x:Key="TelerikGridHeaderForegroundBrush" Color="#CC000000"/>
+    <SolidColorBrush x:Key="TelerikGridHeaderPointerOverForegroundBrush" Color="#FF000000"/>
+    <SolidColorBrush x:Key="TelerikGridAlternateRowBackgroundBrush" Color="#FFE6EEF2"/>
+
+    <SolidColorBrush x:Key="TelerikGridShadowBrush" Color="#4C838282"/>
+    <SolidColorBrush x:Key="TelerikGridInnerShadowBrush" Color="#26000000"/>
+
+    <!--Grouping-->
+    <SolidColorBrush x:Key="TelerikGridGroupHeaderBackgroundBrush" Color="#FF999999"/>
+    <SolidColorBrush x:Key="TelerikGridGroupHeaderForegroundBrush" Color="{StaticResource TelerikWhiteColor}"/>
+    <SolidColorBrush x:Key="TelerikGridGroupHeaderArrowForegroundBrush" Color="#7FFFFFFF"/>
+
+    <!--Filtering ClearFilter button-->
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutClearButtonBackgroundBrush" Color="#FFCCCCCC"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutClearButtonForegroundBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutClearButtonBorderBrush" Color="#FF999999"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutClearButtonPointerOverBackgroundBrush" Color="#FFEBEBEB"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutClearButtonPressedBackgroundBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutClearButtonPressedForegroundBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutClearButtonPressedBorderBrush" Color="#FF000000"/>
+
+    <!--Filtering ExpandCollapse button-->
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutExpandButtonForegroundBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutExpandButtonPointerOverBackgroundBrush" Color="#FFEBEBEB"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutExpandButtonPointerOverBorderBrush" Color="#FF999999"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutExpandButtonPressedBackgroundBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutExpandButtonPressedForegroundBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutExpandButtonPressedBorderBrush" Color="#FF000000"/>
+
+    <!--Flyout-->
+    <SolidColorBrush x:Key="TelerikGridFlyoutBackgroundBrush" Color="#FFDDDDDD"/>
+    <SolidColorBrush x:Key="TelerikGridFlyoutForegroundBrush" Color="#CC000000"/>
+    <SolidColorBrush x:Key="TelerikGridFlyoutBorderBrush" Color="#FF999999"/>
+
+    <!--Service column-->
+    <SolidColorBrush x:Key="TelerikGridServiceColumnBackgroundBrush" Color="#FFCCCCCC"/>
+    <SolidColorBrush x:Key="TelerikGridServiceColumnForegroundBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <SolidColorBrush x:Key="TelerikGridServiceColumnActiveForegroundBrush" Color="{StaticResource TelerikWhiteColor}"/>
+    <SolidColorBrush x:Key="TelerikGridServiceColumnActiveBackgroundBrush" Color="{StaticResource TelerikSelectedColor}"/>
+    <SolidColorBrush x:Key="TelerikGridServiceColumnFlyoutBackgroundBrush" Color="#FFCCCCCC"/>
+
+    <!--Flyout grouping-->
+    <SolidColorBrush x:Key="TelerikGridFlyoutGroupHeaderBackgroundBrush" Color="#FFAAAAAA"/>
+    <SolidColorBrush x:Key="TelerikGridFlyoutGroupHeaderForegroundBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <SolidColorBrush x:Key="TelerikGridFlyoutGroupForegroundBrush" Color="#99000000"/>
+
+    <!--Service Button-->
+    <SolidColorBrush x:Key="TelerikGridServiceButtonBackgroundBrush" Color="{StaticResource TelerikSelectedColor}"/>
+    <SolidColorBrush x:Key="TelerikGridServiceButtonForegroundBrush" Color="{StaticResource TelerikWhiteColor}"/>
+    <SolidColorBrush x:Key="TelerikGridServiceButtonPointerOverBackgroundBrush" Color="#FF2086D9"/>
+    <SolidColorBrush x:Key="TelerikGridServiceButtonPressedBackgroundBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <SolidColorBrush x:Key="TelerikGridServiceButtonPressedForegroundBrush" Color="#FFFFFFFF"/>
+
+    <!--Selection-->
+    <SolidColorBrush x:Key="TelerikGridSelectedBorderBrush" Color="{StaticResource TelerikSelectedColor}"/>
+    <SolidColorBrush x:Key="TelerikGridSelectedBackgroundBrush" Color="#14000000"/>
+
+    <!--PointerOver-->
+    <SolidColorBrush x:Key="TelerikGridPointerOverBackgroundBrush" Color="#14000000"/>
+
+    <!--Currency-->
+    <SolidColorBrush x:Key="TelerikGridCurrentCellBackgroundBrush" Color="#FFF2F2F2"/>
+    <SolidColorBrush x:Key="TelerikGridCurrentCellBorderBrush" Color="#FFCCCCCC"/>
+
+    <!-- Load More Data-->
+    <SolidColorBrush x:Key="TelerikGridLoadMoreDataButtonPressedForegroundBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="TelerikGridLoadMoreDataButtonBorderBrush" Color="#FFB0B0B0"/>
+    <SolidColorBrush x:Key="TelerikGridLoadMoreDataButtonBackgroundBrush" Color="#FFCCCCCC"/>
+    <SolidColorBrush x:Key="TelerikGridLoadMoreDataButtonForegroundBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <SolidColorBrush x:Key="TelerikGridLoadMoreDataButtonPointerOverBackgroundBrush" Color="#FF2086D9"/>
+    <SolidColorBrush x:Key="TelerikGridLoadMoreDataButtonPressedBackgroundBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <!--Overlay-->
+    <SolidColorBrush x:Key="TelerikGridOverlayBackgroundBrush" Color="#B2FFFFFF"/>
+
+    <!--Filtering TextCaseButton-->
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonBackgroundBrush" Color="#FFDDDDDD"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonBorderBrush" Color="#FF999999"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonForegroundBrush" Color="#FF000000"/>
+
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonPointerOverBackgroundBrush" Color="#21000000"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonPointerOverBorderBrush" Color="#21000000"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonPointerOverForegroundBrush" Color="#FF000000"/>
+
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonPressedBackgroundBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonPressedBorderBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonPressedForegroundBrush" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonCheckedBackgroundBrush" Color="{StaticResource TelerikWhiteColor}"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonCheckedBorderBrush" Color="{StaticResource TelerikWhiteColor}"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonCheckedForegroundBrush" Color="{StaticResource TelerikSelectedColor}"/>
+
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonCheckedPointerOverBackgroundBrush" Color="#21000000"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonCheckedPointerOverBorderBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonCheckedPointerOverForegroundBrush" Color="{StaticResource TelerikSelectedColor}"/>
+
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonCheckedPressedBackgroundBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonCheckedPressedBorderBrush" Color="{StaticResource TelerikForegroundColor}"/>
+    <SolidColorBrush x:Key="TelerikGridFilterFlyoutTextCaseButtonCheckedPressedForegroundBrush" Color="{StaticResource TelerikSelectedColor}"/>
+
+    <SolidColorBrush x:Key="TelerikGridSelectedBrush" Color="{StaticResource TelerikSelectedColor}"/>
+    
+    <telerik:UserThemeResources x:Key="ResourceLoaderInitializer"/>
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///Telerik.UI.Xaml.Primitives/Themes/ThemeColorsLight.xaml"/>
+        <ResourceDictionary Source="{CustomResource LightResourcesPath}"/>
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>
+
