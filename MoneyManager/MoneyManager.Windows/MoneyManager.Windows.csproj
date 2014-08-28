@@ -174,14 +174,18 @@
     <Reference Include="BugSense-W8">
       <HintPath>..\..\packages\BugSense.W8.3.6.6.0\lib\netcore45\BugSense-W8.dll</HintPath>
     </Reference>
+    <Reference Include="Controls">
+      <HintPath>..\..\packages\HelperLib.0.1.0\lib\Controls.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight">
       <HintPath>..\..\packages\MvvmLightLibs.4.4.32.1\lib\netcore45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras">
       <HintPath>..\..\packages\MvvmLightLibs.4.4.32.1\lib\netcore45\GalaSoft.MvvmLight.Extras.dll</HintPath>
     </Reference>
-    <Reference Include="Helper">
-      <HintPath>..\..\packages\Helper.1.0\lib\portable-win81+wpa81\Helper.dll</HintPath>
+    <Reference Include="Helper, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\HelperLib.0.1.0\lib\Helper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

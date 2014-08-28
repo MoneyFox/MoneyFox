@@ -162,6 +162,9 @@
     <Reference Include="BugSense-WP8.1">
       <HintPath>..\..\packages\BugSense.WP81.3.6.6.0\lib\wpa81\BugSense-WP8.1.dll</HintPath>
     </Reference>
+    <Reference Include="Controls">
+      <HintPath>..\..\packages\HelperLib.0.1.0\lib\Controls.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight">
       <HintPath>..\..\packages\MvvmLightLibs.4.4.32.1\lib\wpa81\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
@@ -171,8 +174,9 @@
     <Reference Include="GalaSoft.MvvmLight.Platform">
       <HintPath>..\..\packages\MvvmLightLibs.4.4.32.1\lib\wpa81\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="Helper">
-      <HintPath>..\..\packages\Helper.1.0\lib\portable-win81+wpa81\Helper.dll</HintPath>
+    <Reference Include="Helper, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\HelperLib.0.1.0\lib\Helper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\MvvmLightLibs.4.4.32.1\lib\wpa81\Microsoft.Practices.ServiceLocation.dll</HintPath>
