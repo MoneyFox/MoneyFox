@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoneyManager", "MoneyManager", "{40D4888B-FCFE-4C53-8B5C-1082881C3571}"
 EndProject
@@ -12,9 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.WindowsPhone", "MoneyManager\MoneyManager.WindowsPhone\MoneyManager.WindowsPhone.csproj", "{01C92D11-9B98-4FF3-BF14-89917369AB92}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E43E3146-04DB-495E-AB4C-39D107DE8456}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Windows.Test", "MoneyManager.Windows.Test\MoneyManager.Windows.Test.csproj", "{1DC12E5D-7ACA-43B5-B6F2-7A3B77D0228C}"
 EndProject
