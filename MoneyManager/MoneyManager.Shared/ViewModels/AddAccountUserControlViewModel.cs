@@ -1,4 +1,6 @@
 using GalaSoft.MvvmLight;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
 using MoneyManager.Models;
 
 namespace MoneyManager.ViewModels
@@ -7,13 +9,8 @@ namespace MoneyManager.ViewModels
     {
         public Account SelectedAccount
         {
-            get { return new ViewModelLocator().AccountDataAccess.SelectedAccount; }
-            set { new ViewModelLocator().AccountDataAccess.SelectedAccount = value; }
-        }
-
-        public AddAccountUserControlViewModel()
-        {
-            SelectedAccount = new Account();
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
+            set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
         }
     }
 }

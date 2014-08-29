@@ -1,4 +1,7 @@
-﻿using MoneyManager.Views;
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
+using MoneyManager.Models;
+using MoneyManager.Views;
 using Windows.UI.Xaml;
 
 namespace MoneyManager
@@ -10,8 +13,15 @@ namespace MoneyManager
             InitializeComponent();
         }
 
+        public Account SelectedAccount
+        {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
+            set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
+        }
+
         private void AddAccount_Click(object sender, RoutedEventArgs e)
         {
+            SelectedAccount = new Account();
             Frame.Navigate(typeof(AddAccount));
         }
 

@@ -11,7 +11,7 @@
     <Page.Resources>
         <MenuFlyout x:Key="AddTransactionFlyOut">
             <MenuFlyoutItem x:Uid="Spending" Text="spending" Command="{Binding AddTransactionCommand}" CommandParameter="Spending" />
-            <MenuFlyoutItem x:Uid="Income" Text="income" Command="{Binding AddTransactionCommand}" CommandParameter="Income"/>
+            <MenuFlyoutItem x:Uid="Income" Text="income" Command="{Binding AddTransactionCommand}" CommandParameter="Income" />
         </MenuFlyout>
     </Page.Resources>
     <Page.BottomAppBar>
