@@ -75,7 +75,12 @@ namespace MoneyManager.DataAccess
             {
                 var account = AllAccounts.FirstOrDefault(x => x.Id == transaction.ChargedAccountId);
                 if (account == null) return;
-                account.CurrentBalance += transaction.Amount;
+
+                var amount = transaction.Type == TransactionType.Spending
+                    ? -transaction.Amount
+                    : transaction.Amount
+
+                account.CurrentBalance += amount;
                 transaction.Cleared = true;
                 UpdateItem(account);
             }

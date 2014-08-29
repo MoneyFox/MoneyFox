@@ -17,6 +17,7 @@ namespace MoneyManager.ViewModels
         public Account SelectedAccount
         {
             get { return new ViewModelLocator().AccountDataAccess.SelectedAccount; }
+            set { ViewModelLocator().AccountDataAccess.SelectedAccount = value; }
         }
 
         public RelayCommand AddAccountCommand { get; private set; }
@@ -26,6 +27,13 @@ namespace MoneyManager.ViewModels
         {
             AddAccountCommand = new RelayCommand(AddAccount);
             CancelCommand = new RelayCommand(Cancel);
+
+
+            //Ensure that this line of code is required
+            if(!IsEdit)
+            {
+                SelectedAccount = new Account();
+            }
         }
 
         private void AddAccount()

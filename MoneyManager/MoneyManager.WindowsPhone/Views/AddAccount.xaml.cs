@@ -13,6 +13,8 @@ namespace MoneyManager.Views
             navigationHelper = new NavigationHelper(this);
         }
 
+        #region NavigationHelper registration
+
         public NavigationHelper NavigationHelper
         {
             get { return navigationHelper; }
@@ -22,5 +24,12 @@ namespace MoneyManager.Views
         {
             navigationHelper.OnNavigatedTo(e);
         }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            navigationHelper.OnNavigatedFrom(e);
+        }
+
+        #endregion NavigationHelper registration
     }
 }

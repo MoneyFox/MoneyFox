@@ -39,7 +39,9 @@ namespace MoneyManager.UserControls
             var account = element.DataContext as Account;
             if (account == null) return;
 
-            ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = true;
+            var viewModel = ServiceLocator.Current.GetInstance<AddAccountViewModel>();
+            viewModel.IsEdit = true;
+            viewModel.SelectedAccount = account;
 
             ((Frame)Window.Current.Content).Navigate(typeof(AddAccount));
         }

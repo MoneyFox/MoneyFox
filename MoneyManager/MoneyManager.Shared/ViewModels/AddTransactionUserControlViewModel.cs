@@ -28,7 +28,10 @@ namespace MoneyManager.ViewModels
 
         public AddTransactionUserControlViewModel()
         {
-            SelectedTransaction = new FinancialTransaction();
+            if(!IsEdit)
+            {
+                SelectedTransaction = new FinancialTransaction();
+            }
         }
     }
 }
