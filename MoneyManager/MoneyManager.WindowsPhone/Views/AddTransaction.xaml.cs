@@ -1,7 +1,12 @@
-﻿namespace MoneyManager.Views
+﻿using MoneyManager.Common;
+using Windows.UI.Xaml.Navigation;
+
+namespace MoneyManager.Views
 {
     public sealed partial class AddTransaction
     {
+        private readonly NavigationHelper navigationHelper;
+
         public AddTransaction()
         {
             InitializeComponent();

@@ -3,9 +3,9 @@ using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
+using PropertyChanged;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using PropertyChanged;
 
 namespace MoneyManager.ViewModels
 {
@@ -16,11 +16,12 @@ namespace MoneyManager.ViewModels
 
         public Account SelectedAccount
         {
-            get { return new ViewModelLocator().AccountDataAccess.SelectedAccount; }
-            set { ViewModelLocator().AccountDataAccess.SelectedAccount = value; }
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
+            set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
         }
 
         public RelayCommand AddAccountCommand { get; private set; }
+
         public RelayCommand CancelCommand { get; private set; }
 
         public AddAccountViewModel()
@@ -28,9 +29,8 @@ namespace MoneyManager.ViewModels
             AddAccountCommand = new RelayCommand(AddAccount);
             CancelCommand = new RelayCommand(Cancel);
 
-
             //Ensure that this line of code is required
-            if(!IsEdit)
+            if (!IsEdit)
             {
                 SelectedAccount = new Account();
             }

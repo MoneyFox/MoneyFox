@@ -76,9 +76,9 @@ namespace MoneyManager.DataAccess
                 var account = AllAccounts.FirstOrDefault(x => x.Id == transaction.ChargedAccountId);
                 if (account == null) return;
 
-                var amount = transaction.Type == TransactionType.Spending
+                var amount = transaction.Type == (int)TransactionType.Spending
                     ? -transaction.Amount
-                    : transaction.Amount
+                    : transaction.Amount;
 
                 account.CurrentBalance += amount;
                 transaction.Cleared = true;

@@ -1,4 +1,5 @@
 ﻿using MoneyManager.Common;
+using Windows.UI.Xaml.Navigation;
 
 namespace MoneyManager.Views
 {
