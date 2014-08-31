@@ -2,8 +2,10 @@
 using BugSense.Model;
 using MoneyManager.Src;
 using System;
+using System.Linq.Expressions;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -21,6 +23,13 @@ namespace MoneyManager
         {
             InitializeComponent();
             Suspending += OnSuspending;
+
+            UnhandledException += OnUnhandledException;
+        }
+
+        private async void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            await new MessageDialog(e.Message).ShowAsync();
         }
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
@@ -87,6 +96,7 @@ namespace MoneyManager
         }
 
 #if WINDOWS_PHONE_APP
+
         /// <summary>
         /// Restores the content transitions after the app has launched.
         /// </summary>
@@ -98,6 +108,7 @@ namespace MoneyManager
             rootFrame.ContentTransitions = this.transitions ?? new TransitionCollection() { new NavigationThemeTransition() };
             rootFrame.Navigated -= this.RootFrame_FirstNavigated;
         }
+
 #endif
 
         /// <summary>
