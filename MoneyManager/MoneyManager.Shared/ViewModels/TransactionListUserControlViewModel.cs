@@ -30,5 +30,10 @@ namespace MoneyManager.ViewModels
         {
             ServiceLocator.Current.GetInstance<TransactionDataAccess>().GetRelatedTransactions(SelectedAccount.Id);
         }
+
+        public void Dispose()
+        {
+            this.Cleanup();
+        }
     }
 }
