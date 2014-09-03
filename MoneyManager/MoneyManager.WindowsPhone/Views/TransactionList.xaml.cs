@@ -1,7 +1,4 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Common;
-using MoneyManager.UserControls;
-using MoneyManager.ViewModels;
+﻿using MoneyManager.Common;
 using Windows.UI.Xaml.Navigation;
 
 namespace MoneyManager.Views
@@ -23,7 +20,7 @@ namespace MoneyManager.Views
             get { return navigationHelper; }
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
         }
