@@ -168,9 +168,6 @@
     <Reference Include="GalaSoft.MvvmLight.Platform">
       <HintPath>..\..\packages\MvvmLightLibs.4.4.32.1\lib\wpa81\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="Helper">
-      <HintPath>..\..\packages\HelperLib.0.2.0\Helper\bin\Debug\Helper.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\MvvmLightLibs.4.4.32.1\lib\wpa81\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -221,8 +218,8 @@
     <SDKReference Include="Microsoft.VCLibs, version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.WinRTPhone81, Version=3.8.4.1">
-      <Name>SQLite for Windows Runtime %28Windows Phone 8.1%29</Name>
+    <SDKReference Include="SQLite.WP81, Version=3.8.6">
+      <Name>SQLite for Windows Phone 8.1</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup />
