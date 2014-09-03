@@ -22,12 +22,15 @@ namespace MoneyManager.ViewModels
             set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
         }
 
+        public Account SelectedItem { get; set; }
+
         public SettingDataAccess SettingDataAccess
         {
             get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); ; }
         }
 
         public RelayCommand LoadAccountsCommand { get; private set; }
+
         public RelayCommand GoToTransactionListCommand { get; private set; }
 
         public AccountListUserControlViewModel()
@@ -43,9 +46,11 @@ namespace MoneyManager.ViewModels
 
         private void GoToTransactionList()
         {
-            if (SelectedAccount != null)
+            if (SelectedItem != null)
             {
+                SelectedAccount = SelectedItem;
                 ((Frame)Window.Current.Content).Navigate(typeof(TransactionList));
+                SelectedItem = null;
             }
         }
 
