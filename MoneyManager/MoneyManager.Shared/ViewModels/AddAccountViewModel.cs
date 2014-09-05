@@ -32,7 +32,14 @@ namespace MoneyManager.ViewModels
 
         private void AddAccount()
         {
-            ServiceLocator.Current.GetInstance<AccountDataAccess>().Save(SelectedAccount);
+            if (IsEdit)
+            {
+                ServiceLocator.Current.GetInstance<AccountDataAccess>().Update(SelectedAccount);
+            }
+            else
+            {
+                ServiceLocator.Current.GetInstance<AccountDataAccess>().Save(SelectedAccount);
+            }
             ((Frame)Window.Current.Content).GoBack();
         }
 
