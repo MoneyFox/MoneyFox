@@ -12,11 +12,6 @@ namespace MoneyManager.Models
     [Table("FinancialTransactions")]
     public class FinancialTransaction
     {
-        public FinancialTransaction()
-        {
-            Date = DateTime.Now;
-        }
-
         private IEnumerable<Account> allAccounts
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }

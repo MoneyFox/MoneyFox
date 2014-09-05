@@ -11,12 +11,6 @@ namespace MoneyManager.ViewModels
     [ImplementPropertyChanged]
     public class AddTransactionUserControlViewModel : ViewModelBase
     {
-        public FinancialTransaction SelectedTransaction
-        {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
-            set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
-        }
-
         public ObservableCollection<Account> AllAccounts
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
@@ -25,13 +19,5 @@ namespace MoneyManager.ViewModels
         public bool IsEdit { get; set; }
 
         public TransactionType TransactionType { get; set; }
-
-        public AddTransactionUserControlViewModel()
-        {
-            if(!IsEdit)
-            {
-                SelectedTransaction = new FinancialTransaction();
-            }
-        }
     }
 }

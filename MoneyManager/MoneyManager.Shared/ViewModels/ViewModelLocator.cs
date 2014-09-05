@@ -15,14 +15,16 @@ namespace MoneyManager.ViewModels
             SimpleIoc.Default.Register<GroupDataAccess>();
             SimpleIoc.Default.Register<SettingDataAccess>();
             SimpleIoc.Default.Register<TransactionDataAccess>();
+            SimpleIoc.Default.Register<StatisticDataAccess>();
 
             SimpleIoc.Default.Register<MainPageViewModel>();
             SimpleIoc.Default.Register<AccountListUserControlViewModel>();
-            SimpleIoc.Default.Register<AddAccountViewModel>();
             SimpleIoc.Default.Register<AddAccountUserControlViewModel>();
-            SimpleIoc.Default.Register<AddTransactionViewModel>();
+            SimpleIoc.Default.Register<AddAccountViewModel>();
             SimpleIoc.Default.Register<AddTransactionUserControlViewModel>();
+            SimpleIoc.Default.Register<AddTransactionViewModel>();
             SimpleIoc.Default.Register<TransactionListUserControlViewModel>();
+            SimpleIoc.Default.Register<BarChartUserControlViewModel>();
         }
 
         #region DataAccess
@@ -45,6 +47,11 @@ namespace MoneyManager.ViewModels
         public TransactionDataAccess TransactionDataAccess
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
+
+        public StatisticDataAccess StatisticDataAccess
+        {
+            get { return ServiceLocator.Current.GetInstance<StatisticDataAccess>(); }
         }
 
         public SettingDataAccess Settings
@@ -89,6 +96,11 @@ namespace MoneyManager.ViewModels
         public TransactionListUserControlViewModel TransactionListControl
         {
             get { return ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>(); }
+        }
+
+        public BarChartUserControlViewModel BarChart
+        {
+            get { return ServiceLocator.Current.GetInstance<BarChartUserControlViewModel>(); }
         }
 
         #endregion Views

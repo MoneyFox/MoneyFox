@@ -1,10 +1,10 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyManager.ViewModels
 {
@@ -31,6 +31,7 @@ namespace MoneyManager.ViewModels
         }
 
         public RelayCommand AddTransactionCommand { get; private set; }
+
         public RelayCommand CancelCommand { get; private set; }
 
         public AddTransactionViewModel()

@@ -24,6 +24,12 @@ namespace MoneyManager.ViewModels
             get { return ServiceLocator.Current.GetInstance<AddTransactionUserControlViewModel>(); }
         }
 
+        public FinancialTransaction SelectedTransaction
+        {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
+            set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
+        }
+
         public RelayCommand<string> AddTransactionCommand { get; private set; }
 
         public MainPageViewModel()
@@ -33,6 +39,7 @@ namespace MoneyManager.ViewModels
 
         private void AddTransaction(string transactionType)
         {
+            SelectedTransaction = new FinancialTransaction();
             AddTransactionControl.TransactionType = (TransactionType)Enum.Parse(typeof(TransactionType), transactionType);
             ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
         }

@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\CategoryDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\GroupDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\SettingDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\StatisticDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\TransactionDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Category.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddTransactionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddTransactionUserControlViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BarChartUserControlViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TransactionListUserControlViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLocator.cs" />
