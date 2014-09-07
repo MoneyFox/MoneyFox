@@ -12,7 +12,7 @@
     <Grid>
         <chart:RadCartesianChart PaletteName="DefaultLightSelected">
             <chart:RadCartesianChart.VerticalAxis>
-                <chart:LinearAxis />
+                <chart:LinearAxis RangeExtendDirection="Positive" />
             </chart:RadCartesianChart.VerticalAxis>
             <chart:RadCartesianChart.HorizontalAxis>
                 <chart:CategoricalAxis />

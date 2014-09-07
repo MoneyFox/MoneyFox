@@ -40,7 +40,7 @@ namespace MoneyManager.DataAccess
                 var increased = new StatisticItem
                 {
                     Category = Utilities.GetTranslation("IncreasedLabel"),
-                    Value = income.Value - spent.Value
+                    Value = spent.Value + income.Value
                 };
 
                 itemList.Add(income);

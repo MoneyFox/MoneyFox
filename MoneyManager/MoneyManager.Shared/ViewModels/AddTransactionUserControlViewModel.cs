@@ -23,7 +23,5 @@ namespace MoneyManager.ViewModels
         }
 
         public bool IsEdit { get; set; }
-
-        public TransactionType TransactionType { get; set; }
     }
 }
