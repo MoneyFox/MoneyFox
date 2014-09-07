@@ -4,9 +4,11 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using System.Collections.ObjectModel;
+using PropertyChanged;
 
 namespace MoneyManager.ViewModels
 {
+    [ImplementPropertyChanged]
     public class TransactionListUserControlViewModel : ViewModelBase
     {
         private Account SelectedAccount

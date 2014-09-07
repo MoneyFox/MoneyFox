@@ -14,6 +14,12 @@ namespace MoneyManager.ViewModels
         public ObservableCollection<Account> AllAccounts
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
+        }        
+        
+        public FinancialTransaction SelectedTransaction
+        {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
+            set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
         }
 
         public bool IsEdit { get; set; }

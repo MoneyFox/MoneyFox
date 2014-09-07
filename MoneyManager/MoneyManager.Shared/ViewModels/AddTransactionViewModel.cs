@@ -5,9 +5,11 @@ using MoneyManager.Models;
 using MoneyManager.Src;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using PropertyChanged;
 
 namespace MoneyManager.ViewModels
 {
+    [ImplementPropertyChanged]
     public class AddTransactionViewModel
     {
         public FinancialTransaction SelectedTransaction
