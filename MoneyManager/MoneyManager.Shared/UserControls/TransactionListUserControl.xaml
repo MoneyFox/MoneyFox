@@ -38,7 +38,7 @@
     </interactivity:Interaction.Behaviors>
 
     <StackPanel>
-        <ListView ItemsSource="{Binding RelatedTransactions}"
+        <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
                   ItemTemplate="{StaticResource TransactionTemplate}"
                   HorizontalAlignment="Stretch" />
     </StackPanel>

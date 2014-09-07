@@ -14,8 +14,6 @@ namespace MoneyManager.DataAccess
     {
         public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
 
-        public ObservableCollection<FinancialTransaction> RelatedTransactions { get; set; }
-
         public FinancialTransaction SelectedTransaction { get; set; }
 
         private AccountDataAccess AccountDataAccess
@@ -48,11 +46,6 @@ namespace MoneyManager.DataAccess
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
-                if (RelatedTransactions != null && RelatedTransactions.Contains(transaction))
-                {
-                    RelatedTransactions.Remove(transaction);
-                }
-
                 AllTransactions.Remove(transaction);
                 dbConn.Delete(transaction);
 
@@ -92,9 +85,9 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        public void GetRelatedTransactions(int accountId)
+        public ObservableCollection<FinancialTransaction> GetRelatedTransactions(int accountId)
         {
-            RelatedTransactions = new ObservableCollection<FinancialTransaction>(
+            return new ObservableCollection<FinancialTransaction>(
                 AllTransactions
                     .Where(x => x.ChargedAccountId == accountId).ToList());
         }

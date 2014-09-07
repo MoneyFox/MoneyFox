@@ -16,10 +16,7 @@ namespace MoneyManager.ViewModels
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
         }
 
-        public ObservableCollection<FinancialTransaction> RelatedTransactions
-        {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().RelatedTransactions; }
-        }
+        public ObservableCollection<FinancialTransaction> RelatedTransactions { get; set; }
 
         public RelayCommand LoadRelatedTransactionsCommand { get; private set; }
 
@@ -30,7 +27,7 @@ namespace MoneyManager.ViewModels
 
         private void LoadRelatedTransactions()
         {
-            ServiceLocator.Current.GetInstance<TransactionDataAccess>().GetRelatedTransactions(SelectedAccount.Id);
+            RelatedTransactions = ServiceLocator.Current.GetInstance<TransactionDataAccess>().GetRelatedTransactions(SelectedAccount.Id);
         }
     }
 }

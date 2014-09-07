@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls1="using:MoneyManager.UserControls"
+    xmlns:userControls="using:MoneyManager.UserControls"
     x:Class="MoneyManager.Views.TransactionList"
     mc:Ignorable="d" NavigationCacheMode="Disabled"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -26,8 +26,8 @@
             <TextBlock x:Uid="OverviewList" Text="overview" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
         </StackPanel>
 
-        <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <userControls1:TransactionListUserControl />
+        <Grid Grid.Row="1" Margin="19,9.5,19,0" >
+            <userControls:TransactionListUserControl />
         </Grid>
     </Grid>
 </Page>
