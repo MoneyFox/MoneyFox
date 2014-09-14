@@ -38,6 +38,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Src\ConnectionFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\DatabaseHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Enumerations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\TileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\TransactionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\TransactionTypeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Utils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\AccountListUserControl.xaml.cs">

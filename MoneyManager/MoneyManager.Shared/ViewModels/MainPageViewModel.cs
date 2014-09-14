@@ -39,11 +39,7 @@ namespace MoneyManager.ViewModels
 
         private void AddTransaction(string transactionType)
         {
-            SelectedTransaction = new FinancialTransaction
-            {
-                Type = (int) Enum.Parse(typeof (TransactionType), transactionType)
-            };
-            ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
+            TransactionHelper.GoToTransaction(transactionType);
         }
     }
 }
