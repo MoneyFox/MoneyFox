@@ -19,6 +19,7 @@ namespace MoneyManager.ViewModels
 
             SimpleIoc.Default.Register<AddAccountViewModel>();
             SimpleIoc.Default.Register<AddTransactionViewModel>();
+            SimpleIoc.Default.Register<TotalBalanceViewModel>();
         }
 
         #region DataAccess
@@ -65,6 +66,11 @@ namespace MoneyManager.ViewModels
         public AddTransactionViewModel AddTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+        }
+
+        public TotalBalanceViewModel TotalBalanceView
+        {
+            get { return ServiceLocator.Current.GetInstance<TotalBalanceViewModel>(); }
         }
 
         #endregion Views

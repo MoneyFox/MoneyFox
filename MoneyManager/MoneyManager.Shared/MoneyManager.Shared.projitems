@@ -60,11 +60,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml.cs">
       <DependentUpon>SettingsOverviewUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserControls\TotalBalanceUserControl.xaml.cs">
+      <DependentUpon>TotalBalanceUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\TransactionListUserControl.xaml.cs">
       <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddTransactionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TotalBalanceViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +97,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)UserControls\TotalBalanceUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

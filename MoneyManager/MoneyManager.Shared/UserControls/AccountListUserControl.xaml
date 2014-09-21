@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:userControls="using:MoneyManager.UserControls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -36,12 +35,7 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Total: " Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
-            <TextBlock Text="{Binding AccountDataAccess.TotalBalance, Mode=TwoWay}" Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
-            <TextBlock Text="{Binding SettingDataAccess.Currency}"
-                       Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
-        </StackPanel>
+        <userControls:TotalBalanceUserControl />
         <ScrollViewer>
             <ListView ItemsSource="{Binding AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
