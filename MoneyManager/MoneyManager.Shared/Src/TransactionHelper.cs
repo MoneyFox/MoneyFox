@@ -20,7 +20,8 @@ namespace MoneyManager.Src
             ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction 
                 = new FinancialTransaction
             {
-                Type = (int)transactionType
+                Type = (int)transactionType,
+                Currency = "CHF"
             };
             ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
         }
