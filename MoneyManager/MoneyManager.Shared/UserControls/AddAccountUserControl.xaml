@@ -7,19 +7,23 @@
     mc:Ignorable="d" Width="Auto"
     DataContext="{Binding AddAccountView, Source={StaticResource Locator}}">
 
-    <StackPanel>
+    <StackPanel Margin="12,0" >
         <TextBox Text="{Binding SelectedAccount.Name, Mode=TwoWay}"
                  Header="Name" VerticalAlignment="Top"
-                 Margin="12,0,12,12" x:Uid="Name" />
+                 x:Uid="Name" Margin="0,0,0,12" />
         <TextBox Text="{Binding SelectedAccount.Iban, Mode=TwoWay}"
                  Header="IBAN" VerticalAlignment="Top"
-                 Margin="12,0,12,12" x:Uid="Iban" />
-        <TextBox Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay}"
-                 Header="Balance" VerticalAlignment="Top"
-                 Margin="12,0,12,12" InputScope="Number"
+                 x:Uid="Iban" Margin="0,0,0,12" />
+        <Grid Margin="0,0,0,12">
+            <TextBox Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay}"
+                 Header="Balance" VerticalAlignment="Stretch"
+                 Margin="0,0,40,12" InputScope="Number"
                  TextAlignment="Right" x:Uid="Balance" />
+            <TextBlock Text="CHF" Style="{StaticResource MenuItemSubSmallText}" 
+                       HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,15"/>
+        </Grid>
         <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
-                 Header="Notes" VerticalAlignment="Top"
-                 Margin="12,0,12,12" x:Uid="Notes" />
+        	Header="Notes" VerticalAlignment="Top"
+        	x:Uid="Notes" Margin="0,0,-0.167,0" />
     </StackPanel>
 </UserControl>

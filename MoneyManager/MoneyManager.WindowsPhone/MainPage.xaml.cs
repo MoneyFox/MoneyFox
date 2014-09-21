@@ -22,7 +22,10 @@ namespace MoneyManager
 
         private void AddAccount_Click(object sender, RoutedEventArgs e)
         {
-            SelectedAccount = new Account();
+            SelectedAccount = new Account
+            {
+                Currency = "CHF"
+            };
             Frame.Navigate(typeof(AddAccount));
         }
 
