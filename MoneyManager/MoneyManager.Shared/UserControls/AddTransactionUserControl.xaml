@@ -7,7 +7,7 @@
     xmlns:converter="using:Helper.Converter"
     mc:Ignorable="d"
     d:DesignWidth="400" d:DesignHeight="600"
-    DataContext="{Binding AddTransactionControl, Source={StaticResource Locator}}">
+    DataContext="{Binding AddTransactionView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />

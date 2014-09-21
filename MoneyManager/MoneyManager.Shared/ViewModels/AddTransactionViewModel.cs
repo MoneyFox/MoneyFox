@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using System.Collections.ObjectModel;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
@@ -16,6 +17,16 @@ namespace MoneyManager.ViewModels
         public FinancialTransaction SelectedTransaction
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
+        }
+
+        public ObservableCollection<Account> AllAccounts
+        {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
+        }       
+        
+        public ObservableCollection<Category> AllCategories
+        {
+            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
         }
 
         public string Title

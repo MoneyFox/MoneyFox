@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls1="using:MoneyManager.UserControls"
+    xmlns:userControls="using:MoneyManager.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding AddTransactionView, Source={StaticResource Locator}}">
@@ -34,9 +34,8 @@
             <TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}" Typography.Capitals="SmallCaps" />
         </StackPanel>
 
-        <!--TODO: Content should be placed within the following grid-->
-        <Grid Grid.Row="1" x:Name="ContentRoot">
-            <userControls1:AddTransactionUserControl />
+        <Grid Grid.Row="1" >
+            <userControls:AddTransactionUserControl/>
         </Grid>
     </Grid>
 </Page>
