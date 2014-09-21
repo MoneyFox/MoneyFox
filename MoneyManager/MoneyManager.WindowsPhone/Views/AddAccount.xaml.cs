@@ -1,5 +1,8 @@
-﻿using MoneyManager.Common;
+﻿using Windows.UI.Xaml;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Common;
 using Windows.UI.Xaml.Navigation;
+using MoneyManager.ViewModels;
 
 namespace MoneyManager.Views
 {
@@ -11,6 +14,16 @@ namespace MoneyManager.Views
         {
             InitializeComponent();
             navigationHelper = new NavigationHelper(this);
+        }
+
+        private void CancelClick(object sender, RoutedEventArgs e)
+        {
+            ServiceLocator.Current.GetInstance<AddAccountViewModel>().AddAccount();
+        }
+
+        private void DoneClick(object sender, RoutedEventArgs e)
+        {
+            ServiceLocator.Current.GetInstance<AddAccountViewModel>().Cancel();
         }
 
         #region NavigationHelper registration

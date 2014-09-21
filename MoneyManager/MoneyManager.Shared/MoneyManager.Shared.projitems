@@ -63,14 +63,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\TransactionListUserControl.xaml.cs">
       <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AccountListUserControlViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddAccountUserControlViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddTransactionViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddTransactionUserControlViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BarChartUserControlViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TransactionListUserControlViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>

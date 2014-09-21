@@ -17,14 +17,8 @@ namespace MoneyManager.ViewModels
             SimpleIoc.Default.Register<TransactionDataAccess>();
             SimpleIoc.Default.Register<StatisticDataAccess>();
 
-            SimpleIoc.Default.Register<MainPageViewModel>();
-            SimpleIoc.Default.Register<AccountListUserControlViewModel>();
-            SimpleIoc.Default.Register<AddAccountUserControlViewModel>();
             SimpleIoc.Default.Register<AddAccountViewModel>();
-            SimpleIoc.Default.Register<AddTransactionUserControlViewModel>();
             SimpleIoc.Default.Register<AddTransactionViewModel>();
-            SimpleIoc.Default.Register<TransactionListUserControlViewModel>();
-            SimpleIoc.Default.Register<BarChartUserControlViewModel>();
         }
 
         #region DataAccess
@@ -63,44 +57,14 @@ namespace MoneyManager.ViewModels
 
         #region Views
 
-        public MainPageViewModel Main
-        {
-            get { return ServiceLocator.Current.GetInstance<MainPageViewModel>(); }
-        }
-
-        public AccountListUserControlViewModel AccountListControl
-        {
-            get { return ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>(); }
-        }
-
-        public AddAccountUserControlViewModel AddAccountControl
-        {
-            get { return ServiceLocator.Current.GetInstance<AddAccountUserControlViewModel>(); }
-        }
-
         public AddAccountViewModel AddAccountView
         {
             get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>(); }
         }
 
-        public AddTransactionUserControlViewModel AddTransactionControl
-        {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionUserControlViewModel>(); }
-        }
-
-        public AddTransactionViewModel AddTransaction
+        public AddTransactionViewModel AddTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
-
-        public TransactionListUserControlViewModel TransactionListControl
-        {
-            get { return ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>(); }
-        }
-
-        public BarChartUserControlViewModel BarChart
-        {
-            get { return ServiceLocator.Current.GetInstance<BarChartUserControlViewModel>(); }
         }
 
         #endregion Views

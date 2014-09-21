@@ -10,8 +10,8 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Accept" x:Uid="Done" Label="Done" Command="{Binding AddAccountCommand}" />
-            <AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" Command="{Binding CancelCommand}"/>
+            <AppBarButton Icon="Accept" x:Uid="Done" Label="Done" Click="DoneClick" />
+            <AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" Click="CancelClick" />
         </CommandBar>
     </Page.BottomAppBar>
 

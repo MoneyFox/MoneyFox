@@ -7,12 +7,12 @@
     xmlns:userControls1="using:MoneyManager.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    DataContext="{Binding AddTransaction, Source={StaticResource Locator}}">
+    DataContext="{Binding AddTransactionView, Source={StaticResource Locator}}">
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Accept" Label="Done" Command="{Binding AddTransactionCommand}" />
-            <AppBarButton Icon="Cancel" Label="Cancel" Command="{Binding CancelCommand}" />
+            <AppBarButton Icon="Accept" Label="Done" Click="DoneClick"/>
+            <AppBarButton Icon="Cancel" Label="Cancel" Click="CancelClick"/>
         </CommandBar>
     </Page.BottomAppBar>
 

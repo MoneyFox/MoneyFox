@@ -35,7 +35,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <StackPanel>
+    <StackPanel >
         <interactivity:Interaction.Behaviors>
             <core:EventTriggerBehavior EventName="Loaded">
                 <core:InvokeCommandAction Command="{Binding LoadAccountsCommand}" />
@@ -51,12 +51,8 @@
         <ScrollViewer>
             <ListView ItemsSource="{Binding AccountDataAccess.AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
-                  HorizontalAlignment="Stretch" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding GoToTransactionListCommand}" />
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
+                  HorizontalAlignment="Stretch" x:Name="AccountList"
+                  SelectionChanged="NavigateToTransactionList">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">

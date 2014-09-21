@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
@@ -12,43 +11,30 @@ namespace MoneyManager.ViewModels
     [ImplementPropertyChanged]
     public class AddTransactionViewModel
     {
+        public bool IsEdit { get; set; }
+
         public FinancialTransaction SelectedTransaction
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
-        }
-
-        public AddTransactionUserControlViewModel AddTransactionControl
-        {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionUserControlViewModel>(); }
         }
 
         public string Title
         {
             get
             {
-                return AddTransactionControl.IsEdit
+                return IsEdit
                     ? Utilities.GetTranslation("EditTitle")
                     : Utilities.GetTranslation("AddTitle");
             }
         }
 
-        public RelayCommand AddTransactionCommand { get; private set; }
-
-        public RelayCommand CancelCommand { get; private set; }
-
-        public AddTransactionViewModel()
-        {
-            AddTransactionCommand = new RelayCommand(AddTransaction);
-            CancelCommand = new RelayCommand(Cancel);
-        }
-
-        private void AddTransaction()
+        public void Save()
         {
             ServiceLocator.Current.GetInstance<TransactionDataAccess>().Save(SelectedTransaction);
             ((Frame)Window.Current.Content).GoBack();
         }
 
-        private void Cancel()
+        public void Cancel()
         {
             ((Frame)Window.Current.Content).GoBack();
         }
