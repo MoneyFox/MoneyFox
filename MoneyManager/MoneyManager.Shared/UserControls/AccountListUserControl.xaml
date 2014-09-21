@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
-    DataContext="{Binding AccountListControl, Source={StaticResource Locator}}">
+    DataContext="{Binding AccountDataAccess, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
         <DataTemplate x:Key="AccountTemplate">
@@ -35,13 +35,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <StackPanel >
-        <interactivity:Interaction.Behaviors>
-            <core:EventTriggerBehavior EventName="Loaded">
-                <core:InvokeCommandAction Command="{Binding LoadAccountsCommand}" />
-            </core:EventTriggerBehavior>
-        </interactivity:Interaction.Behaviors>
-
+    <StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Total: " Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
             <TextBlock Text="{Binding AccountDataAccess.TotalBalance, Mode=TwoWay}" Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
@@ -49,7 +43,7 @@
                        Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
         </StackPanel>
         <ScrollViewer>
-            <ListView ItemsSource="{Binding AccountDataAccess.AllAccounts}"
+            <ListView ItemsSource="{Binding AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
                   HorizontalAlignment="Stretch" x:Name="AccountList"
                   SelectionChanged="NavigateToTransactionList">

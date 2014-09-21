@@ -16,12 +16,12 @@ namespace MoneyManager.Views
             navigationHelper = new NavigationHelper(this);
         }
 
-        private void CancelClick(object sender, RoutedEventArgs e)
+        private void DoneClick(object sender, RoutedEventArgs e)
         {
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().AddAccount();
         }
 
-        private void DoneClick(object sender, RoutedEventArgs e)
+        private void CancelClick(object sender, RoutedEventArgs e)
         {
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().Cancel();
         }
