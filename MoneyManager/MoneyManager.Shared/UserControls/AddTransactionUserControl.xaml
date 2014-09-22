@@ -22,9 +22,10 @@
     <ScrollViewer>
         <StackPanel Margin="12,0">
             <ComboBox Header="Charged Account" x:Uid="ChargedAccount"
+                      x:Name="ComboBoxChargedAccount"
                       ItemTemplate="{StaticResource ComboBoxTemplate}"
-                      SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay}"
-                      ItemsSource="{Binding AllAccounts}" />
+                      ItemsSource="{Binding AllAccounts, Mode=TwoWay}"                       
+                      SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay}"/>
             <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay}" Header="Amount"
                      InputScope="Number" TextAlignment="Right" />
             <ComboBox Header="Category" x:Uid="CategoryHeader"
