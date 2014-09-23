@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
+using MoneyManager.Src;
 using PropertyChanged;
 using SQLite;
 using System;

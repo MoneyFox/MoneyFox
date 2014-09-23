@@ -9,9 +9,11 @@
     x:Uid="CategoryDialog"
     PrimaryButtonText="done"
     SecondaryButtonText="cancel"
-    PrimaryButtonClick="DoneOnClick">
+    PrimaryButtonClick="DoneOnClick"
+    DataContext="{Binding CategoryDataAccess, Source={StaticResource Locator}}">
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <TextBox Name="TextboxCategoryName" Header="name" x:Uid="Name" />
+        <TextBox Header="name" x:Uid="Name" 
+                 Text="{Binding SelectedCategory.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     </StackPanel>
 </ContentDialog>

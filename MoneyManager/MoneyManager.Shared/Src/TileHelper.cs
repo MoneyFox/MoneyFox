@@ -22,7 +22,7 @@ namespace MoneyManager.Src
         {
             if (tileId == IntakeTileId)
             {
-                TransactionHelper.GoToTransaction(TransactionType.Spending.ToString());
+                TransactionHelper.GoToAddTransaction(TransactionType.Spending);
             }
         }
     }

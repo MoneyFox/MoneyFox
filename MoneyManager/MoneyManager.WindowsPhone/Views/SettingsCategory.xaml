@@ -11,7 +11,9 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Add" x:Uid="AddCategory" Label="add category" />
+                <AppBarButton Icon="Add" x:Uid="AddCategory" 
+                              Label="add category" 
+                              Click="AddCategoryClick"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

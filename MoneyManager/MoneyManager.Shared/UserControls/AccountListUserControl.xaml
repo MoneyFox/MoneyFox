@@ -4,12 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:userControls="using:MoneyManager.UserControls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
-    DataContext="{Binding AccountListControl, Source={StaticResource Locator}}">
+    DataContext="{Binding AccountDataAccess, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
         <DataTemplate x:Key="AccountTemplate">
@@ -25,9 +24,9 @@
                     <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Name}" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding CurrentBalance}"
-                               HorizontalAlignment="Right" TextAlignment="Right" Margin="0,0,5,0" />
-                        <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Currency}"
                                HorizontalAlignment="Right" TextAlignment="Right" />
+                        <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Currency}"
+                               HorizontalAlignment="Right" TextAlignment="Right" Margin="10,0,0,0" />
                     </StackPanel>
                 </Grid>
                 <TextBlock Style="{StaticResource MenuItemSmallText}" Text="{Binding Iban}" />
@@ -36,27 +35,12 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <interactivity:Interaction.Behaviors>
-            <core:EventTriggerBehavior EventName="Loaded">
-                <core:InvokeCommandAction Command="{Binding LoadAccountsCommand}" />
-            </core:EventTriggerBehavior>
-        </interactivity:Interaction.Behaviors>
-
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Total: " Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
-            <TextBlock Text="{Binding AccountDataAccess.TotalBalance, Mode=TwoWay}" Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
-            <TextBlock Text="{Binding SettingDataAccess.Currency}"
-                       Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
-        </StackPanel>
+        <userControls:TotalBalanceUserControl />
         <ScrollViewer>
-            <ListView ItemsSource="{Binding AccountDataAccess.AllAccounts}"
+            <ListView ItemsSource="{Binding AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
-                  HorizontalAlignment="Stretch" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding GoToTransactionListCommand}" />
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
+                  HorizontalAlignment="Stretch" x:Name="AccountList"
+                  SelectionChanged="NavigateToTransactionList">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">

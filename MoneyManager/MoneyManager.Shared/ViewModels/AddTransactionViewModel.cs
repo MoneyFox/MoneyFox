@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using System.Collections.ObjectModel;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
@@ -12,43 +12,40 @@ namespace MoneyManager.ViewModels
     [ImplementPropertyChanged]
     public class AddTransactionViewModel
     {
+        public bool IsEdit { get; set; }
+
         public FinancialTransaction SelectedTransaction
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
         }
 
-        public AddTransactionUserControlViewModel AddTransactionControl
+        public ObservableCollection<Account> AllAccounts
         {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionUserControlViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
+        }       
+        
+        public ObservableCollection<Category> AllCategories
+        {
+            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
         }
 
         public string Title
         {
             get
             {
-                return AddTransactionControl.IsEdit
+                return IsEdit
                     ? Utilities.GetTranslation("EditTitle")
                     : Utilities.GetTranslation("AddTitle");
             }
         }
 
-        public RelayCommand AddTransactionCommand { get; private set; }
-
-        public RelayCommand CancelCommand { get; private set; }
-
-        public AddTransactionViewModel()
-        {
-            AddTransactionCommand = new RelayCommand(AddTransaction);
-            CancelCommand = new RelayCommand(Cancel);
-        }
-
-        private void AddTransaction()
+        public void Save()
         {
             ServiceLocator.Current.GetInstance<TransactionDataAccess>().Save(SelectedTransaction);
             ((Frame)Window.Current.Content).GoBack();
         }
 
-        private void Cancel()
+        public void Cancel()
         {
             ((Frame)Window.Current.Content).GoBack();
         }

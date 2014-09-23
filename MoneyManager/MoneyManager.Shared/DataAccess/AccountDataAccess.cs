@@ -18,16 +18,6 @@ namespace MoneyManager.DataAccess
 
         public ObservableCollection<Account> AllAccounts { get; set; }
 
-        public double TotalBalance
-        {
-            get
-            {
-                return AllAccounts != null ?
-                    AllAccounts.Sum(x => x.CurrentBalance)
-                    : 0;
-            }
-        }
-
         protected override void SaveToDb(Account account)
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())

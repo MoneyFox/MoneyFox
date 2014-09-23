@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
+using MoneyManager.Src;
 using MoneyManager.Views;
 using Windows.UI.Xaml;
 
@@ -21,13 +22,26 @@ namespace MoneyManager
 
         private void AddAccount_Click(object sender, RoutedEventArgs e)
         {
-            SelectedAccount = new Account();
+            SelectedAccount = new Account
+            {
+                Currency = "CHF"
+            };
             Frame.Navigate(typeof(AddAccount));
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SettingsOverview));
+        }
+
+        private void AddSpendingClick(object sender, RoutedEventArgs e)
+        {
+            TransactionHelper.GoToAddTransaction(TransactionType.Spending);
+        }
+
+        private void AddIncomeClick(object sender, RoutedEventArgs e)
+        {
+            TransactionHelper.GoToAddTransaction(TransactionType.Income);
         }
     }
 }

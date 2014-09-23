@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.ViewModels;
 using MoneyManager.Views;
@@ -14,6 +15,9 @@ namespace MoneyManager.UserControls
         public AccountListUserControl()
         {
             InitializeComponent();
+
+            //TODO: be sure this is only called once
+            ServiceLocator.Current.GetInstance<AccountDataAccess>().LoadList();
         }
 
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)
@@ -30,7 +34,7 @@ namespace MoneyManager.UserControls
             var account = element.DataContext as Account;
             if (account == null) return;
 
-            ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>().Delete(account);
+            ServiceLocator.Current.GetInstance<AccountDataAccess>().Delete(account);
         }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)
@@ -44,6 +48,18 @@ namespace MoneyManager.UserControls
             viewModel.SelectedAccount = account;
 
             ((Frame)Window.Current.Content).Navigate(typeof(AddAccount));
+        }
+
+        private void NavigateToTransactionList(object sender, SelectionChangedEventArgs e)
+        {
+            if (AccountList.SelectedItem != null)
+            {
+                var accountId = (AccountList.SelectedItem as Account).Id;
+                ServiceLocator.Current.GetInstance<TransactionDataAccess>().GetRelatedTransactions(accountId);
+
+                ((Frame) Window.Current.Content).Navigate(typeof (TransactionList));
+                AccountList.SelectedItem = null;
+            }
         }
     }
 }

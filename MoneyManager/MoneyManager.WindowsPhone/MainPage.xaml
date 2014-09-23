@@ -10,14 +10,14 @@
     DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Page.Resources>
         <MenuFlyout x:Key="AddTransactionFlyOut">
-            <MenuFlyoutItem x:Uid="Spending" Text="spending" Command="{Binding AddTransactionCommand}" CommandParameter="Spending" />
-            <MenuFlyoutItem x:Uid="Income" Text="income" Command="{Binding AddTransactionCommand}" CommandParameter="Income" />
+            <MenuFlyoutItem x:Uid="Spending" Text="spending" Click="AddSpendingClick"/>
+            <MenuFlyoutItem x:Uid="Income" Text="income" Click="AddIncomeClick" />
         </MenuFlyout>
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Add" x:Uid="AddTransaction" Label="add transaction" Flyout="{StaticResource AddTransactionFlyOut}" />
+                <AppBarButton Icon="Add" x:Uid="Save" Label="add transaction" Flyout="{StaticResource AddTransactionFlyOut}" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccount_Click" />
@@ -45,10 +45,10 @@
                         <userControls:AccountListUserControl />
                     </DataTemplate>
                 </HubSection>
-                <HubSection x:Uid="OverviewMenu">
-                    <DataTemplate>
-                        <userControls:BarChartUserControl />
-                    </DataTemplate>
+                    <HubSection x:Uid="OverviewMenu">
+                        <DataTemplate>
+                            <userControls:BarChartUserControl />
+                        </DataTemplate>
                 </HubSection>
             </Hub>
         </Grid>

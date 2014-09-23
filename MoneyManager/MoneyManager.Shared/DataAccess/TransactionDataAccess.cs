@@ -14,6 +14,8 @@ namespace MoneyManager.DataAccess
     {
         public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
 
+        public ObservableCollection<FinancialTransaction> RelatedTransactions { get; set; } 
+
         public FinancialTransaction SelectedTransaction { get; set; }
 
         private AccountDataAccess AccountDataAccess
@@ -85,11 +87,10 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        public ObservableCollection<FinancialTransaction> GetRelatedTransactions(int accountId)
+        public void GetRelatedTransactions(int accountId)
         {
-            return new ObservableCollection<FinancialTransaction>(
-                AllTransactions
-                    .Where(x => x.ChargedAccountId == accountId).ToList());
+            RelatedTransactions = new ObservableCollection<FinancialTransaction>(
+                AllTransactions.Where(x => x.ChargedAccountId == accountId).ToList());
         }
 
         protected override void UpdateItem(FinancialTransaction transaction)

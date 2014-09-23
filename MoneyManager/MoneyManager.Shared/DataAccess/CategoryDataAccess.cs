@@ -1,11 +1,8 @@
 using MoneyManager.Models;
 using MoneyManager.Src;
 using PropertyChanged;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
-using Windows.UI.Popups;
 
 namespace MoneyManager.DataAccess
 {
@@ -13,6 +10,8 @@ namespace MoneyManager.DataAccess
     public class CategoryDataAccess : AbstractDataAccess<Category>
     {
         public ObservableCollection<Category> AllCategories { get; set; }
+
+        public Category SelectedCategory { get; set; }
 
         public CategoryDataAccess()
         {

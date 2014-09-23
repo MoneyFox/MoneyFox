@@ -270,4 +270,17 @@
   <data name="AddTitle" xml:space="preserve">
     <value>add</value>
   </data>
+  <data name="AddCategoryInfoText" xml:space="preserve">
+    <value>We will show this information in you category lists.
+                If you wanna edit this information, go to category settings.</value>
+  </data>
+  <data name="AddCategoryMeta.PrimaryButtonText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AddCategoryMeta.Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CategoryName.Header" xml:space="preserve">
+    <value>category name</value>
+  </data>
 </root>

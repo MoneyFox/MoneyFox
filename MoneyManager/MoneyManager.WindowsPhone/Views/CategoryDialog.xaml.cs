@@ -1,4 +1,7 @@
 ﻿using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
+using MoneyManager.Models;
 
 namespace MoneyManager.Views
 {
@@ -7,10 +10,18 @@ namespace MoneyManager.Views
         public CategoryDialog()
         {
             InitializeComponent();
+
+            CategoryData.SelectedCategory = new Category();
+        }
+
+        private CategoryDataAccess CategoryData
+        {
+            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
         }
 
         private void DoneOnClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            CategoryData.Save(CategoryData.SelectedCategory);
         }
     }
 }
