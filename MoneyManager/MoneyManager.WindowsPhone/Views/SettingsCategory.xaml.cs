@@ -1,7 +1,11 @@
-﻿using MoneyManager.Common;
+﻿using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Common;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using MoneyManager.DataAccess;
+using MoneyManager.Models;
 
 namespace MoneyManager.Views
 {
@@ -21,10 +25,6 @@ namespace MoneyManager.Views
             get { return navigationHelper; }
         }
 
-        private void AddCategoryOnClick(object sender, RoutedEventArgs e)
-        {
-        }
-
         #region NavigationHelper registration
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -38,5 +38,10 @@ namespace MoneyManager.Views
         }
 
         #endregion NavigationHelper registration
+
+        private async void AddCategoryClick(object sender, RoutedEventArgs e)
+        {
+            await new CategoryDialog().ShowAsync();
+        }
     }
 }
