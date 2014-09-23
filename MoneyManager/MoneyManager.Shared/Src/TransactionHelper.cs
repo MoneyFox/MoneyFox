@@ -26,7 +26,6 @@ namespace MoneyManager.Src
             SetDefaultTransaction(transactionType);
             SetDefaultAccount();
 
-
             ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
         }
 
