@@ -11,8 +11,6 @@ namespace MoneyManager.UserControls
             InitializeComponent();
 
             ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Date = DateTime.Now;
-            
-
         }
     }
 }

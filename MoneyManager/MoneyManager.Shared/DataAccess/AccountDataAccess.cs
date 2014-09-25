@@ -65,8 +65,21 @@ namespace MoneyManager.DataAccess
 
         public void RemoveTransactionAmount(FinancialTransaction transaction)
         {
-            transaction.Amount = -transaction.Amount;
-            AddTransactionAmount(transaction);
+            if (transaction.ClearTransactionNow)
+            {
+                var account = AllAccounts.FirstOrDefault(x => x.Id == transaction.ChargedAccountId);
+                if (account == null) return;
+
+                var amount = transaction.Amount;
+
+                amount = transaction.Type == (int) TransactionType.Spending
+                    ? amount
+                    : -amount;
+
+                account.CurrentBalance += amount;
+                transaction.Cleared = true;
+                UpdateItem(account);
+            }
         }
 
         public void AddTransactionAmount(FinancialTransaction transaction)
@@ -76,9 +89,11 @@ namespace MoneyManager.DataAccess
                 var account = AllAccounts.FirstOrDefault(x => x.Id == transaction.ChargedAccountId);
                 if (account == null) return;
 
-                var amount = transaction.Type == (int)TransactionType.Spending
-                    ? -transaction.Amount
-                    : transaction.Amount;
+                var amount = transaction.Amount;
+
+                amount = transaction.Type == (int)TransactionType.Spending
+                    ? -amount
+                    : amount;
 
                 account.CurrentBalance += amount;
                 transaction.Cleared = true;

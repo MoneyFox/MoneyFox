@@ -56,6 +56,11 @@ namespace MoneyManager.ViewModels
 
         public void Cancel()
         {
+            if (IsEdit)
+            {
+                ServiceLocator.Current.GetInstance<AccountDataAccess>().AddTransactionAmount(SelectedTransaction);
+            }
+
             ((Frame)Window.Current.Content).GoBack();
         }
     }
