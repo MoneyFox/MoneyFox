@@ -13,13 +13,15 @@
         <converter:CultureConverter x:Key="FormatConverter" />
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
-                        MinWidth="100" Background="{ThemeResource PhoneChromeBrush}">
+                        MinWidth="100" Background="{ThemeResource PhoneChromeBrush}"
+                        Holding="OpenContextMenu">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" />
-                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" />
+                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" Click="EditTransaction"/>
+                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="DeleteTransaction"/>
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
+                <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Category.Name}" Margin="12,0,0,0" />
                 <Grid HorizontalAlignment="Stretch" Margin="0,0,10,10">
                     <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" Margin="12,0,0,0" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -27,7 +29,6 @@
                         <TextBlock  Style="{StaticResource MenuItemMediumSmallText}" 
                                     Text="{Binding Currency}" Margin="5,0,0,0"/>
                     </StackPanel>
-                    
                 </Grid>
             </StackPanel>
         </DataTemplate>
@@ -36,7 +37,8 @@
     <StackPanel>
         <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
                   ItemTemplate="{StaticResource TransactionTemplate}"
-                  HorizontalAlignment="Stretch" >
+                  HorizontalAlignment="Stretch" Name="TransactionListView"
+                  SelectionChanged="EditTransactionOnSelection">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />

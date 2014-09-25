@@ -17,6 +17,7 @@ namespace MoneyManager.ViewModels
         public FinancialTransaction SelectedTransaction
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
+            set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
         }
 
         public ObservableCollection<Account> AllAccounts
