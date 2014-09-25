@@ -4,9 +4,11 @@ using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
+using PropertyChanged;
 
 namespace MoneyManager.ViewModels
 {
+    [ImplementPropertyChanged]
     public class TotalBalanceViewModel : ViewModelBase
     {
         public SettingDataAccess Settings
@@ -19,14 +21,13 @@ namespace MoneyManager.ViewModels
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
         }
 
-        public double TotalBalance
+        public double TotalBalance { get; set; }
+
+        public void UpdateBalance()
         {
-            get
-            {
-                return AllAccounts != null ?
-                    AllAccounts.Sum(x => x.CurrentBalance)
-                    : 0;
-            }
+            TotalBalance = AllAccounts != null
+                ? AllAccounts.Sum(x => x.CurrentBalance)
+                : 0;
         }
     }
 }

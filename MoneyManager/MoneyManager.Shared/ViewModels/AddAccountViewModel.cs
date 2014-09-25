@@ -19,7 +19,7 @@ namespace MoneyManager.ViewModels
             set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
         }
         
-        public void AddAccount()
+        public void Save()
         {
             if (IsEdit)
             {

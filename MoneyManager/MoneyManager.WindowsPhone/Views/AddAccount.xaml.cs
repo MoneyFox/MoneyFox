@@ -18,7 +18,7 @@ namespace MoneyManager.Views
 
         private void DoneClick(object sender, RoutedEventArgs e)
         {
-            ServiceLocator.Current.GetInstance<AddAccountViewModel>().AddAccount();
+            ServiceLocator.Current.GetInstance<AddAccountViewModel>().Save();
         }
 
         private void CancelClick(object sender, RoutedEventArgs e)

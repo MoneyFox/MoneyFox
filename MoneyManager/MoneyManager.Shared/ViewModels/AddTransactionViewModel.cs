@@ -42,7 +42,15 @@ namespace MoneyManager.ViewModels
 
         public void Save()
         {
-            ServiceLocator.Current.GetInstance<TransactionDataAccess>().Save(SelectedTransaction);
+            if (IsEdit)
+            {
+                ServiceLocator.Current.GetInstance<TransactionDataAccess>().Update(SelectedTransaction);
+            }
+            else
+            {
+                ServiceLocator.Current.GetInstance<TransactionDataAccess>().Save(SelectedTransaction);
+            }
+
             ((Frame)Window.Current.Content).GoBack();
         }
 

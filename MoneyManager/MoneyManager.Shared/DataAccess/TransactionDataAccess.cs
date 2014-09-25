@@ -48,12 +48,11 @@ namespace MoneyManager.DataAccess
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
+                AccountDataAccess.RemoveTransactionAmount(transaction);
+
                 AllTransactions.Remove(transaction);
+                RelatedTransactions.Remove(transaction);
                 dbConn.Delete(transaction);
-
-                transaction.Amount = -transaction.Amount;
-
-                AccountDataAccess.AddTransactionAmount(transaction);
             }
         }
 

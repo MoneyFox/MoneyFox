@@ -1,14 +1,21 @@
 ﻿using BugSense;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.OperationContracts;
 using MoneyManager.Src;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using MoneyManager.ViewModels;
 
 namespace MoneyManager.DataAccess
 {
     public abstract class AbstractDataAccess<T> : IDataAccess<T>
     {
+        private TotalBalanceViewModel TotalBalanceView
+        {
+            get { return ServiceLocator.Current.GetInstance<TotalBalanceViewModel>(); }
+        }
+
         protected abstract void SaveToDb(T itemToAdd);
 
         protected abstract void DeleteFromDatabase(T itemToDelete);
@@ -22,6 +29,7 @@ namespace MoneyManager.DataAccess
             try
             {
                 SaveToDb(itemToSave);
+                TotalBalanceView.UpdateBalance();
             }
             catch (Exception ex)
             {
@@ -36,6 +44,7 @@ namespace MoneyManager.DataAccess
                 if (await IsDeletionConfirmed())
                 {
                     DeleteFromDatabase(itemToDelete);
+                    TotalBalanceView.UpdateBalance();
                 }
             }
             catch (Exception ex)
@@ -74,6 +83,7 @@ namespace MoneyManager.DataAccess
             try
             {
                 UpdateItem(itemToUpdate);
+                TotalBalanceView.UpdateBalance();
             }
             catch (Exception ex)
             {

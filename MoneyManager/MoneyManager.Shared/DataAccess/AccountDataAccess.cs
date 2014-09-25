@@ -1,8 +1,11 @@
-﻿using MoneyManager.Models;
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Models;
 using MoneyManager.Src;
+using MoneyManager.ViewModels;
 using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Telerik.UI.Xaml.Controls.Primitives;
 
 namespace MoneyManager.DataAccess
 {
@@ -48,6 +51,7 @@ namespace MoneyManager.DataAccess
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
                 AllAccounts = new ObservableCollection<Account>(dbConn.Table<Account>().ToList());
+                ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().UpdateBalance();
             }
         }
 
@@ -57,6 +61,12 @@ namespace MoneyManager.DataAccess
             {
                 dbConn.Update(account, typeof(Account));
             }
+        }
+
+        public void RemoveTransactionAmount(FinancialTransaction transaction)
+        {
+            transaction.Amount = -transaction.Amount;
+            AddTransactionAmount(transaction);
         }
 
         public void AddTransactionAmount(FinancialTransaction transaction)

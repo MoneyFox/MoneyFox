@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
+using MoneyManager.ViewModels;
 using MoneyManager.Views;
 
 namespace MoneyManager.Src
@@ -23,6 +24,8 @@ namespace MoneyManager.Src
 
         public static void GoToAddTransaction(TransactionType transactionType)
         {
+            ServiceLocator.Current.GetInstance<AddTransactionViewModel>().IsEdit = false;
+
             SetDefaultTransaction(transactionType);
             SetDefaultAccount();
 
