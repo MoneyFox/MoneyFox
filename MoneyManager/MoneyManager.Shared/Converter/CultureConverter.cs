@@ -2,7 +2,7 @@
 using System.Globalization;
 using Windows.UI.Xaml.Data;
 
-namespace Helper.Converter
+namespace MoneyManager.Converter
 {
     public class CultureConverter : IValueConverter
     {

@@ -1,7 +1,7 @@
 using System;
 using Windows.UI.Xaml.Data;
 
-namespace Helper.Converter
+namespace MoneyManager.Converter
 {
     public class DateTimeToDateTimeOffsetConverter : IValueConverter
     {

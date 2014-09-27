@@ -4,13 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converter="using:Helper.Converter"
+    xmlns:converter1="using:MoneyManager.Converter"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400"
     DataContext="{Binding TransactionDataAccess, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter:CultureConverter x:Key="FormatConverter" />
+        <converter1:CultureConverter x:Key="FormatConverter" />
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
                         MinWidth="100" Background="{ThemeResource PhoneChromeBrush}"

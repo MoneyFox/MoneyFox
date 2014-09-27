@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace Helper.Converter
+namespace MoneyManager.Converter
 {
     public class BooleanToVisibilityConverter : IValueConverter
     {
