@@ -37,7 +37,7 @@ namespace MoneyManager.DataAccess
                     AllTransactions = new ObservableCollection<FinancialTransaction>();
                 }
 
-                ServiceLocator.Current.GetInstance<AccountDataAccess>().AddTransactionAmount(transaction);
+                AccountDataAccess.AddTransactionAmount(transaction);
 
                 AllTransactions.Add(transaction);
                 dbConn.Insert(transaction, typeof(FinancialTransaction));
@@ -96,6 +96,7 @@ namespace MoneyManager.DataAccess
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
+                AccountDataAccess.AddTransactionAmount(transaction);
                 dbConn.Update(transaction);
             }
         }
