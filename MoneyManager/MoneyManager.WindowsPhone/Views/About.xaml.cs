@@ -35,12 +35,14 @@ namespace MoneyManager.Views
 
         private async void GoToWebsite_OnTap(object sender, TappedRoutedEventArgs e)
         {
-            await Windows.System.Launcher.LaunchUriAsync(new Uri(lblWebsite.Text));
+            var url = "http://npadrutt.com";
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(url));
         }
 
         private async void GoToTwitter_OnTap(object sender, TappedRoutedEventArgs e)
         {
-            await Windows.System.Launcher.LaunchUriAsync(new Uri(lblTwitter.Text));
+            var url = "http://twitter.com/npadrutt";
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(url));
         }
 
         public NavigationHelper NavigationHelper
