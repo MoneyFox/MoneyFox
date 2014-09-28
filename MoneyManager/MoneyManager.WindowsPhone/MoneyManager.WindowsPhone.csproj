@@ -90,9 +90,6 @@
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="Dialogs\AddCategoryDialog.xaml.cs">
-      <DependentUpon>AddCategoryDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -103,7 +100,7 @@
     <Compile Include="Views\AddTransaction.xaml.cs">
       <DependentUpon>AddTransaction.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CategoryDialog.xaml.cs">
+    <Compile Include="Dialogs\CategoryDialog.xaml.cs">
       <DependentUpon>CategoryDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsCategory.xaml.cs">
@@ -138,10 +135,6 @@
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Dialogs\AddCategoryDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -154,7 +147,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\CategoryDialog.xaml">
+    <Page Include="Dialogs\CategoryDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
