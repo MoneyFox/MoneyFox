@@ -7,7 +7,7 @@
     xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400"
-    DataContext="{Binding BarChart, Source={StaticResource Locator}}">
+    DataContext="{Binding StatisticDataAccess, Source={StaticResource Locator}}">
 
     <Grid>
         <chart:RadCartesianChart PaletteName="DefaultLightSelected">
@@ -17,7 +17,8 @@
             <chart:RadCartesianChart.HorizontalAxis>
                 <chart:CategoricalAxis />
             </chart:RadCartesianChart.HorizontalAxis>
-            <chart:BarSeries LegendTitleBinding="{Binding Category}" ItemsSource="{Binding Chart}" PaletteMode="DataPoint">
+            <chart:BarSeries LegendTitleBinding="{Binding Category}" 
+                             ItemsSource="{Binding MonthlyOverview}" PaletteMode="DataPoint">
                 <chart:BarSeries.CategoryBinding>
                     <chart:PropertyNameDataPointBinding PropertyName="Category" />
                 </chart:BarSeries.CategoryBinding>
