@@ -11,7 +11,10 @@
     <StackPanel>
         <TextBlock Style="{StaticResource MenuItemText }"
                    x:Uid="SettingCategory"
-                   Text="Category" Tapped="NavigateToCategorySettings"/>
-        <Button  Content="create tile" Click="ButtonBase_OnClick" Margin="0,50,0,0" />
+                   Text="Category" Tapped="NavigateToCategorySettings" Margin="0,0,0,12"/>
+        <TextBlock Style="{StaticResource MenuItemText }"
+                   x:Uid="SettingTiles"
+                   Text="Tiles" Tapped="NavigateToTilesSettings" 
+                   Margin="0,0,0,12"/>
     </StackPanel>
 </UserControl>

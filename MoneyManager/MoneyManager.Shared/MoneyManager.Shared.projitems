@@ -63,6 +63,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml.cs">
       <DependentUpon>SettingsOverviewUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsTilesUserControl.xaml.cs">
+      <DependentUpon>SettingsTilesUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\TotalBalanceUserControl.xaml.cs">
       <DependentUpon>TotalBalanceUserControl.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsTilesUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

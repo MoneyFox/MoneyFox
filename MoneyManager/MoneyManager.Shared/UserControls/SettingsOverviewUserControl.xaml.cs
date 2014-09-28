@@ -1,7 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using MoneyManager.Src;
 using MoneyManager.Views;
 
 namespace MoneyManager.UserControls
@@ -18,9 +17,9 @@ namespace MoneyManager.UserControls
             ((Frame)Window.Current.Content).Navigate(typeof(SettingsCategory));
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void NavigateToTilesSettings(object sender, TappedRoutedEventArgs e)
         {
-            TileHelper.CreateSecondaryTile();
+            ((Frame)Window.Current.Content).Navigate(typeof(SettingsTiles));
         }
     }
 }

@@ -126,6 +126,9 @@
     <Compile Include="Views\SettingsOverView.xaml.cs">
       <DependentUpon>SettingsOverView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SettingsTiles.xaml.cs">
+      <DependentUpon>SettingsTiles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TransactionList.xaml.cs">
       <DependentUpon>TransactionList.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,10 @@
     <Page Include="Views\SettingsOverView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingsTiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TransactionList.xaml">
       <Generator>MSBuild:Compile</Generator>

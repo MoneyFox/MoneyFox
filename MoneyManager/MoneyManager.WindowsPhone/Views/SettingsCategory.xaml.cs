@@ -5,6 +5,7 @@ using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using MoneyManager.DataAccess;
+using MoneyManager.Dialogs;
 using MoneyManager.Models;
 
 namespace MoneyManager.Views

@@ -286,4 +286,10 @@
   <data name="CategorieAuswählenLabel" xml:space="preserve">
     <value>please select category..</value>
   </data>
+  <data name="Tiles.Text" xml:space="preserve">
+    <value>tiles</value>
+  </data>
+  <data name="SettingTiles.Text" xml:space="preserve">
+    <value>tiles</value>
+  </data>
 </root>

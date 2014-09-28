@@ -3,7 +3,7 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 
-namespace MoneyManager.Views
+namespace MoneyManager.Dialogs
 {
     public sealed partial class CategoryDialog
     {
