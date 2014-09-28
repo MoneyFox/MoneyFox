@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AccountDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\CategoryDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\GroupDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\RecurringTransactionDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\SettingDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\StatisticDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\TransactionDataAccess.cs" />
@@ -31,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\FinancialTransaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Group.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\RecurringTransaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Setting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\StatisticItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OperationContracts\IDataAccess.cs" />

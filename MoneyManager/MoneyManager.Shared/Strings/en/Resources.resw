@@ -325,4 +325,10 @@
   <data name="AddLabel.Label" xml:space="preserve">
     <value>add</value>
   </data>
+  <data name="MonthlyContent.Content" xml:space="preserve">
+    <value>monthly</value>
+  </data>
+  <data name="WeeklyContent.Content" xml:space="preserve">
+    <value>weekly</value>
+  </data>
 </root>

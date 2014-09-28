@@ -1,16 +1,14 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
-using PropertyChanged;
-using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
+using SQLite;
 
 namespace MoneyManager.Models
 {
-    [ImplementPropertyChanged]
     [Table("FinancialTransactions")]
-    public class FinancialTransaction
+    public class RecurringTransaction
     {
         private IEnumerable<Account> allAccounts
         {
@@ -35,15 +33,9 @@ namespace MoneyManager.Models
 
         public int? CategoryId { get; set; }
 
-        public bool Cleared { get; set; }
-
         public int Type { get; set; }
 
         public string Note { get; set; }
-
-        public bool IsRecurrence { get; set; }
-
-        public int ReccuringTransactionId { get; set; }
 
         [Ignore]
         public Account ChargedAccount
@@ -61,15 +53,6 @@ namespace MoneyManager.Models
                 CategoryId = value == null
                     ? (int?)null
                     : value.Id;
-            }
-        }
-
-        [Ignore]
-        public bool ClearTransactionNow
-        {
-            get
-            {
-                return Date.Date <= DateTime.Now.Date;
             }
         }
     }

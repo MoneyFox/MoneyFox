@@ -40,6 +40,8 @@ namespace MoneyManager.DataAccess
                 AccountDataAccess.AddTransactionAmount(transaction);
 
                 AllTransactions.Add(transaction);
+                AllTransactions = new ObservableCollection<FinancialTransaction>(AllTransactions.OrderBy(x => x.Date));
+
                 dbConn.Insert(transaction, typeof(FinancialTransaction));
             }
         }

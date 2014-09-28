@@ -47,8 +47,10 @@
                           VerticalAlignment="Stretch"
                           IsOn="{Binding SelectedTransaction.IsRecurrence, Mode=TwoWay}" />
             <StackPanel Visibility="{Binding SelectedTransaction.IsRecurrence, Converter={StaticResource BooleanVisibilityConverter}}">
-                <ComboBox Header="Reccurence" x:Uid="RecurrenceHeader" />
-                <DatePicker />
+                <ComboBox Header="Reccurence" x:Uid="RecurrenceHeader">
+                    <ComboBoxItem Content="weekly" x:Uid="WeeklyContent" />                
+                    <ComboBoxItem Content="monthly" x:Uid="MonthlyContent" />                
+                </ComboBox>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>
