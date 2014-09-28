@@ -57,7 +57,12 @@ namespace MoneyManager.Models
         public Category Category
         {
             get { return allCategories.FirstOrDefault(x => x.Id == CategoryId); }
-            set { CategoryId = value.Id; }
+            set
+            {
+                CategoryId = value == null
+                    ? (int?)null
+                    : value.Id;
+            }
         }
 
         [Ignore]

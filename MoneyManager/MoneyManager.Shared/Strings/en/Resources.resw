@@ -283,4 +283,7 @@
   <data name="CategoryName.Header" xml:space="preserve">
     <value>category name</value>
   </data>
+  <data name="CategorieAuswählenLabel" xml:space="preserve">
+    <value>please select category..</value>
+  </data>
 </root>

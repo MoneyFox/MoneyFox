@@ -4,14 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converter1="using:MoneyManager.Converter"
+    xmlns:converter="using:MoneyManager.Converter"
     mc:Ignorable="d"
     d:DesignWidth="400" d:DesignHeight="600"
     DataContext="{Binding AddTransactionView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter1:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-        <converter1:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:ThemedImageConverter x:Key="ThemedImageConverter"/>
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate">
             <StackPanel Margin="0,0,0,12">
                 <TextBlock Text="{Binding Name}" FontSize="24" />
@@ -22,16 +23,22 @@
     <ScrollViewer>
         <StackPanel Margin="12,0">
             <ComboBox Header="Charged Account" x:Uid="ChargedAccount"
-                      x:Name="ComboBoxChargedAccount"
                       ItemTemplate="{StaticResource ComboBoxTemplate}"
                       ItemsSource="{Binding AllAccounts, Mode=TwoWay}"                       
                       SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay}"/>
             <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay}" Header="Amount"
                      InputScope="Number" TextAlignment="Right" />
-            <ComboBox Header="Category" x:Uid="CategoryHeader"
-                      ItemTemplate="{StaticResource ComboBoxTemplate}"
-                      ItemsSource="{Binding AllCategories}"
-                      SelectedItem="{Binding SelectedTransaction.Category, Mode=TwoWay}" />
+            <Grid>
+                <ComboBox Header="Category" x:Uid="CategoryHeader"
+                          ItemTemplate="{StaticResource ComboBoxTemplate}"
+                          ItemsSource="{Binding AllCategories}"
+                          SelectedItem="{Binding SelectedTransaction.Category, Mode=TwoWay}" />
+                <Image Height="35"  Width="35" 
+                           Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
+                           DataContext="/Images/{0}/close.png"
+                           Margin="338,30,3,10"
+                           Tapped="ResetCategory"/>
+            </Grid>
             <DatePicker Date="{Binding SelectedTransaction.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}" />
             <TextBox Header="Note"
                      Text="{Binding SelectedTransaction.Note, Mode=TwoWay}" />
