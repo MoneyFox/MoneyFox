@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
@@ -34,9 +35,15 @@ namespace MoneyManager.ViewModels
         {
             get
             {
-                return IsEdit
+                var text = IsEdit
                     ? Utilities.GetTranslation("EditTitle")
                     : Utilities.GetTranslation("AddTitle");
+
+                var type = SelectedTransaction.Type == (int) TransactionType.Spending
+                    ? Utilities.GetTranslation("SpendingLabel")
+                    : Utilities.GetTranslation("IncomeLabel");
+
+                return String.Format(text, type);
             }
         }
 

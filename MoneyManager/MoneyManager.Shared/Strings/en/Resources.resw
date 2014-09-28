@@ -187,7 +187,7 @@
     <value>edit</value>
   </data>
   <data name="EditTitle" xml:space="preserve">
-    <value>edit</value>
+    <value>edit {0}</value>
   </data>
   <data name="Income.Text" xml:space="preserve">
     <value>income</value>
@@ -268,7 +268,7 @@
     <value>income</value>
   </data>
   <data name="AddTitle" xml:space="preserve">
-    <value>add</value>
+    <value>add {0}</value>
   </data>
   <data name="AddCategoryInfoText" xml:space="preserve">
     <value>We will show this information in you category lists.
@@ -282,5 +282,8 @@
   </data>
   <data name="CategoryName.Header" xml:space="preserve">
     <value>category name</value>
+  </data>
+  <data name="SpendingLabel" xml:space="preserve">
+    <value>spending</value>
   </data>
 </root>
