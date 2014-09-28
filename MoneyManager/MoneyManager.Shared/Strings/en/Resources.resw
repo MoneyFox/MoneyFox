@@ -313,4 +313,13 @@
   <data name="SupportMail" xml:space="preserve">
     <value>mobile.support@apply-solutions.ch</value>
   </data>
+  <data name="SelectCategory.Text" xml:space="preserve">
+    <value>select category</value>
+  </data>
+  <data name="DateHeader.Header" xml:space="preserve">
+    <value>date</value>
+  </data>
+  <data name="SearchHeader.Header" xml:space="preserve">
+    <value>search</value>
+  </data>
 </root>

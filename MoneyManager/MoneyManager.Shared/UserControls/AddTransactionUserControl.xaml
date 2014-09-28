@@ -29,17 +29,18 @@
             <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay}" Header="Amount"
                      InputScope="Number" TextAlignment="Right" />
             <Grid>
-                <ComboBox Header="Category" x:Uid="CategoryHeader"
-                          ItemTemplate="{StaticResource ComboBoxTemplate}"
-                          ItemsSource="{Binding AllCategories}"
-                          SelectedItem="{Binding SelectedTransaction.Category, Mode=TwoWay}" />
+                <TextBox Header="Category" x:Uid="CategoryHeader"
+                         Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
+                         GotFocus="OpenSelectCategoryDialog"
+                         IsReadOnly="True"/>
                 <Image Height="35"  Width="35" 
-                           Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
-                           DataContext="/Images/{0}/close.png"
-                           Margin="338,30,3,10"
+                           Source="/Images/light/close.png"
+                           Margin="338,38,3,11"
                            Tapped="ResetCategory"/>
             </Grid>
-            <DatePicker Date="{Binding SelectedTransaction.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}" />
+            <DatePicker Date="{Binding SelectedTransaction.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}"
+                        Margin="0,12,0,0" Header="Date" 
+                        x:Uid="DateHeader"/>
             <TextBox Header="Note"
                      Text="{Binding SelectedTransaction.Note, Mode=TwoWay}" />
             <ToggleSwitch Header="Repeat" x:Uid="Repeat"

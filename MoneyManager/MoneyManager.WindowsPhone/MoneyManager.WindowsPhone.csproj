@@ -106,6 +106,9 @@
     <Compile Include="Dialogs\CategoryDialog.xaml.cs">
       <DependentUpon>CategoryDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SelectCategory.xaml.cs">
+      <DependentUpon>SelectCategory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsCategory.xaml.cs">
       <DependentUpon>SettingsCategory.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,10 @@
     <Page Include="Dialogs\CategoryDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SelectCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SettingsCategory.xaml">
       <Generator>MSBuild:Compile</Generator>
