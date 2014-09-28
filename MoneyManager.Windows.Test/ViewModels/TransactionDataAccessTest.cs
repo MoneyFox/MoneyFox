@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace MoneyManager.Windows.Test.ViewModels
 {
     [TestClass]
-    public class TransactionViewModelTest
+    public class TransactionDataAccessTest
     {
         private Account account;
         private FinancialTransaction transaction;

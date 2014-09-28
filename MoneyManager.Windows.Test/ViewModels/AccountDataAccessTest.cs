@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace MoneyManager.Windows.Test.ViewModels
 {
     [TestClass]
-    public class AccountViewModelTest
+    public class AccountDataAccessTest
     {
         private Account account;
 

@@ -7,7 +7,7 @@ using System.Linq;
 namespace MoneyManager.Windows.Test.ViewModels
 {
     [TestClass]
-    public class CategoryViewModelTest
+    public class CategoryDataAccessTest
     {
         private Category category;
 

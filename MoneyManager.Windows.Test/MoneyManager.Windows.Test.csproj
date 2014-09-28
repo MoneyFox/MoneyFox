@@ -120,11 +120,11 @@
     <Compile Include="Src\ConnectionFactoryTest.cs" />
     <Compile Include="Src\DatabaseHelperTest.cs" />
     <Compile Include="Src\TransactionTypeHelperTest.cs" />
-    <Compile Include="ViewModels\AccountViewModelTest.cs" />
-    <Compile Include="ViewModels\CategoryViewModelTest.cs" />
-    <Compile Include="ViewModels\GroupViewModelTest.cs" />
-    <Compile Include="ViewModels\SettingsViewModelTest.cs" />
-    <Compile Include="ViewModels\TransactionViewModelTest.cs" />
+    <Compile Include="ViewModels\AccountDataAccessTest.cs" />
+    <Compile Include="ViewModels\CategoryDataAccessTest.cs" />
+    <Compile Include="ViewModels\GroupDataAccessTest.cs" />
+    <Compile Include="ViewModels\SettingsDataAccessTest.cs" />
+    <Compile Include="ViewModels\TransactionDataAccessTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

@@ -2,13 +2,12 @@
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess;
 using MoneyManager.Src;
-using MoneyManager.ViewModels;
 using System.Threading.Tasks;
 
 namespace MoneyManager.Windows.Test.ViewModels
 {
     [TestClass]
-    public class SettingsViewModelTest
+    public class SettingsDataAccessTest
     {
         private SettingDataAccess settings
         {

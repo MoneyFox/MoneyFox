@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MoneyManager.Windows.Test.ViewModels
 {
     [TestClass]
-    public class GroupviewModelTest
+    public class GroupDataAccessTest
     {
         private Group group;
 
