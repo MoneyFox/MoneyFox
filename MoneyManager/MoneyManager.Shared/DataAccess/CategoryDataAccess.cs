@@ -28,6 +28,7 @@ namespace MoneyManager.DataAccess
             category.Id = Utilities.GetMaxId();
 
             AllCategories.Add(category);
+            AllCategories = new ObservableCollection<Category>(AllCategories.OrderBy(x => x.Name));
 
             var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
             roamingSettings.Values[category.Id.ToString()] = category.Name;
@@ -46,6 +47,7 @@ namespace MoneyManager.DataAccess
             var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
 
             AllCategories = new ObservableCollection<Category>(roamingSettings.Values
+                .OrderBy(x => x.Value)
                 .Select(x => new Category
                 {
                     Id = int.Parse(x.Key),
