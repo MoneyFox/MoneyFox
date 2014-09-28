@@ -43,5 +43,10 @@ namespace MoneyManager
         {
             TransactionHelper.GoToAddTransaction(TransactionType.Income);
         }
+
+        private void GoToAbout(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(About));
+        }
     }
 }

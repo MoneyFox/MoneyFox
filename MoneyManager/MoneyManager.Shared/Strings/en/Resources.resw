@@ -292,4 +292,25 @@
   <data name="SettingTiles.Text" xml:space="preserve">
     <value>tiles</value>
   </data>
+  <data name="AboutLabel.Label" xml:space="preserve">
+    <value>about</value>
+  </data>
+  <data name="AboutText.Text" xml:space="preserve">
+    <value>about</value>
+  </data>
+  <data name="Contact.Text" xml:space="preserve">
+    <value>contact</value>
+  </data>
+  <data name="Developer.Text" xml:space="preserve">
+    <value>developer:</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback Money Manager</value>
+  </data>
+  <data name="Info.Text" xml:space="preserve">
+    <value>info</value>
+  </data>
+  <data name="SupportMail" xml:space="preserve">
+    <value>mobile.support@apply-solutions.ch</value>
+  </data>
 </root>

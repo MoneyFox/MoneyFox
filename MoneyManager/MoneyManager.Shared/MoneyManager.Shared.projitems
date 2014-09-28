@@ -44,7 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Src\TileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\TransactionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\TransactionTypeHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\Utils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\Utilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>

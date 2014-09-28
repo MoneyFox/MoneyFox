@@ -1,9 +1,15 @@
-﻿using Windows.ApplicationModel.Resources;
+﻿using System.Reflection;
+using Windows.ApplicationModel.Resources;
 
 namespace MoneyManager.Src
 {
     public class Utilities
     {
+        public static string GetVersion()
+        {
+            return Assembly.Load(new AssemblyName("MoneyManager.WindowsPhone")).FullName.Split('=')[1].Split(',')[0];
+        }
+
         public static string GetTranslation(string text)
         {
             return ResourceLoader.GetForViewIndependentUse().GetString(text);
