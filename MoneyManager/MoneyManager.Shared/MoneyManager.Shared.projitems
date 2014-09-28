@@ -18,6 +18,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\CultureConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\ThemedImageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionAmountConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AbstractDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AccountDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\CategoryDataAccess.cs" />
@@ -38,6 +40,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Src\ConnectionFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\DatabaseHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Enumerations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\ThemedImageConverterHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\TileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\TransactionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\TransactionTypeHelper.cs" />

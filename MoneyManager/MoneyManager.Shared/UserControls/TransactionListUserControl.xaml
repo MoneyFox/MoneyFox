@@ -4,13 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converter1="using:MoneyManager.Converter"
+    xmlns:converter="using:MoneyManager.Converter"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400"
     DataContext="{Binding TransactionDataAccess, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter1:CultureConverter x:Key="FormatConverter" />
+        <converter:CultureConverter x:Key="FormatConverter" />
+        <converter:TransactionAmountConverter x:Key="TransactionAmountConverter"/>
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
                         MinWidth="100" Background="{ThemeResource PhoneChromeBrush}"
@@ -21,10 +22,15 @@
                         <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="DeleteTransaction"/>
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Category.Name}" Margin="12,0,0,0" />
+                    <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Category.Name}"  />
                 <Grid HorizontalAlignment="Stretch" Margin="0,0,10,10">
-                    <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" Margin="12,0,0,0" />
+                        <TextBlock Style="{StaticResource MenuItemMediumSmallText}" 
+                                   Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" 
+                                   Margin="12,0,0,0" />
+                    
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <TextBlock Style="{StaticResource MenuItemMediumSmallText}" 
+                                   Text="{Binding Type, Converter={StaticResource TransactionAmountConverter}}" Margin="0,0,3,0" />
                         <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Amount}" />
                         <TextBlock  Style="{StaticResource MenuItemMediumSmallText}" 
                                     Text="{Binding Currency}" Margin="5,0,0,0"/>

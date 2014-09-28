@@ -129,6 +129,10 @@
     <Content Include="Assets\StoreLogo.scale-240.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
     <Content Include="FodyWeavers.xml" />
+    <Content Include="Images\dark\ArrowheadDown.png" />
+    <Content Include="Images\dark\ArrowheadUp.png" />
+    <Content Include="Images\light\ArrowheadDown.png" />
+    <Content Include="Images\light\ArrowheadUp.png" />
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>

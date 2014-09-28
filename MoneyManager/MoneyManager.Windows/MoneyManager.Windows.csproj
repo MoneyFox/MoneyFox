@@ -142,6 +142,10 @@
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="FodyWeavers.xml" />
+    <Content Include="Images\dark\ArrowheadDown.png" />
+    <Content Include="Images\dark\ArrowheadUp.png" />
+    <Content Include="Images\light\ArrowheadDown.png" />
+    <Content Include="Images\light\ArrowheadUp.png" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml">

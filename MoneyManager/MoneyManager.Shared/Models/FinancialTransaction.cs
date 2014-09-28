@@ -34,7 +34,7 @@ namespace MoneyManager.Models
 
         public string Currency { get; set; }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
         public bool Cleared { get; set; }
 
