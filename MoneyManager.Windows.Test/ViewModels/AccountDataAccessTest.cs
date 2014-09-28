@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using Microsoft.Practices.ServiceLocation;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
-using MoneyManager.ViewModels;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +16,7 @@ namespace MoneyManager.Windows.Test.ViewModels
 
         private AccountDataAccess AccountDataAccess
         {
-            get { return new ViewModelLocator().AccountDataAccess; }
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
         [TestInitialize]

@@ -39,9 +39,7 @@ namespace MoneyManager.ViewModels
                     ? Utilities.GetTranslation("EditTitle")
                     : Utilities.GetTranslation("AddTitle");
 
-                var type = SelectedTransaction.Type == (int) TransactionType.Spending
-                    ? Utilities.GetTranslation("SpendingLabel")
-                    : Utilities.GetTranslation("IncomeLabel");
+                var type = TransactionTypeHelper.GetViewTitleForType(SelectedTransaction.Type);
 
                 return String.Format(text, type);
             }

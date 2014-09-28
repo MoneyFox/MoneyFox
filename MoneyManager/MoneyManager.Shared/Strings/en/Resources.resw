@@ -283,7 +283,4 @@
   <data name="CategoryName.Header" xml:space="preserve">
     <value>category name</value>
   </data>
-  <data name="SpendingLabel" xml:space="preserve">
-    <value>spending</value>
-  </data>
 </root>

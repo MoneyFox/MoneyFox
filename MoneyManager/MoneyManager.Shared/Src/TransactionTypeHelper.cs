@@ -9,6 +9,11 @@ namespace MoneyManager.Src
             return (TransactionType)Enum.Parse(typeof(TransactionType), input);
         }
 
+        public static string GetViewTitleForType(int type)
+        {
+            return GetViewTitleForType((TransactionType) type);
+        }
+
         public static string GetViewTitleForType(TransactionType type)
         {
             switch (type)

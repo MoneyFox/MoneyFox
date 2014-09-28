@@ -9,21 +9,31 @@ namespace MoneyManager.Windows.Test.Src
         [TestMethod]
         public void GetEnumFromStringTest()
         {
-            var resultSpending = TransactionTypeHelper.GetEnumFromString("spending");
-            var resultIncome = TransactionTypeHelper.GetEnumFromString("income");
+            var enumSpending = TransactionTypeHelper.GetEnumFromString("spending");
+            var enumIncome = TransactionTypeHelper.GetEnumFromString("income");
 
-            Assert.AreEqual(TransactionType.Spending, resultSpending);
-            Assert.AreEqual(TransactionType.Income, resultIncome);
+            Assert.AreEqual(TransactionType.Spending, enumSpending);
+            Assert.AreEqual(TransactionType.Income, enumIncome);
         }
 
         [TestMethod]
+        public void GetViewTitleForTypeIntTest()
+        {
+            var titleSpending = TransactionTypeHelper.GetViewTitleForType(0);
+            var titleIncome = TransactionTypeHelper.GetViewTitleForType(1);
+            
+            Assert.AreEqual(Utilities.GetTranslation("SpendingTitle"), titleSpending);
+            Assert.AreEqual(Utilities.GetTranslation("IncomeTitle"), titleIncome);
+        }        
+        
+        [TestMethod]
         public void GetViewTitleForTypeTest()
         {
-            var resultSpending = TransactionTypeHelper.GetViewTitleForType(TransactionType.Spending);
-            var resultIncome = TransactionTypeHelper.GetViewTitleForType(TransactionType.Income);
-
-            Assert.AreEqual(Utilities.GetTranslation("SpendingTitle"), resultSpending);
-            Assert.AreEqual(Utilities.GetTranslation("IncomeTitle"), resultIncome);
+            var titleSpending = TransactionTypeHelper.GetViewTitleForType(TransactionType.Spending);
+            var titleIncome = TransactionTypeHelper.GetViewTitleForType(TransactionType.Income);
+            
+            Assert.AreEqual(Utilities.GetTranslation("SpendingTitle"), titleSpending);
+            Assert.AreEqual(Utilities.GetTranslation("IncomeTitle"), titleIncome);
         }
     }
 }

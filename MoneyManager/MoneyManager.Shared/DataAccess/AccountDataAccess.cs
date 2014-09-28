@@ -5,7 +5,6 @@ using MoneyManager.ViewModels;
 using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Telerik.UI.Xaml.Controls.Primitives;
 
 namespace MoneyManager.DataAccess
 {

@@ -2,7 +2,6 @@
 using BugSense.Model;
 using MoneyManager.Src;
 using System;
-using System.Linq.Expressions;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Popups;
