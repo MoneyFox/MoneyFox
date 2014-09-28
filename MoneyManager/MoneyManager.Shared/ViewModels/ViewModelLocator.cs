@@ -15,6 +15,7 @@ namespace MoneyManager.ViewModels
             SimpleIoc.Default.Register<GroupDataAccess>();
             SimpleIoc.Default.Register<SettingDataAccess>();
             SimpleIoc.Default.Register<TransactionDataAccess>();
+            SimpleIoc.Default.Register<RecurringTransactionDataAccess>();
             SimpleIoc.Default.Register<StatisticDataAccess>();
 
             SimpleIoc.Default.Register<AddAccountViewModel>();
@@ -43,6 +44,11 @@ namespace MoneyManager.ViewModels
         public TransactionDataAccess TransactionDataAccess
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
+
+        public RecurringTransactionDataAccess RecurringTransactionDataAccess
+        {
+            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
         }
 
         public StatisticDataAccess StatisticDataAccess
