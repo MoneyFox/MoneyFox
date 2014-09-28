@@ -11,7 +11,8 @@
     <StackPanel>
         <TextBlock Style="{StaticResource MenuItemText }"
                    x:Uid="SettingCategory"
-                   Text="Category" Tapped="NavigateToCategorySettings" Margin="0,0,0,20"/>
+                   Text="Category" Tapped="NavigateToCategorySettings" 
+                   Margin="0,0,0,20"/>
         <TextBlock Style="{StaticResource MenuItemText }"
                    x:Uid="SettingTiles"
                    Text="Tiles" Tapped="NavigateToTilesSettings" 
