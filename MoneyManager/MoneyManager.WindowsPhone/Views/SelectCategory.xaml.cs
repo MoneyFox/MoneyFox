@@ -1,5 +1,8 @@
-﻿using MoneyManager.Common;
+﻿using System;
+using Windows.UI.Xaml;
+using MoneyManager.Common;
 using Windows.UI.Xaml.Navigation;
+using MoneyManager.Dialogs;
 
 namespace MoneyManager.Views
 {
@@ -23,6 +26,11 @@ namespace MoneyManager.Views
         public ObservableDictionary DefaultViewModel
         {
             get { return defaultViewModel; }
+        }
+
+        private async void AddCategory(object sender, RoutedEventArgs e)
+        {
+            await new CategoryDialog().ShowAsync();
         }
 
         #region NavigationHelper registration

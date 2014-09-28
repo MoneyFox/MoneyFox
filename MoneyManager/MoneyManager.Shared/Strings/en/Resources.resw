@@ -322,4 +322,7 @@
   <data name="SearchHeader.Header" xml:space="preserve">
     <value>search</value>
   </data>
+  <data name="AddLabel.Label" xml:space="preserve">
+    <value>add</value>
+  </data>
 </root>
