@@ -129,5 +129,14 @@ namespace MoneyManager.DataAccess
                     && x.Date <= DateTime.Now).ToList();
             }
         }
+
+        public List<FinancialTransaction> LoadRecurringList()
+        {
+            using (var db = ConnectionFactory.GetDbConnection())
+            {
+                return db.Table<FinancialTransaction>()
+                    .Where(x => x.IsRecurring).ToList();
+            }
+        }
     }
 }
