@@ -5,4 +5,10 @@
         Spending,
         Income
     }
+
+    public enum TransactionRecurrence
+    {
+        Weekly,
+        Monthly
+    }
 }

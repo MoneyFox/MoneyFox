@@ -7,7 +7,7 @@ using SQLite;
 
 namespace MoneyManager.Models
 {
-    [Table("FinancialTransactions")]
+    [Table("RecurringTransactiont")]
     public class RecurringTransaction
     {
         private IEnumerable<Account> allAccounts
@@ -25,7 +25,11 @@ namespace MoneyManager.Models
 
         public int ChargedAccountId { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
+        public bool IsEndless { get; set; }
 
         public double Amount { get; set; }
 
@@ -34,6 +38,8 @@ namespace MoneyManager.Models
         public int? CategoryId { get; set; }
 
         public int Type { get; set; }
+
+        public int Recurrence { get; set; }
 
         public string Note { get; set; }
 

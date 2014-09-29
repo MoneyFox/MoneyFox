@@ -1,13 +1,39 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Models;
 using MoneyManager.Src;
+using MoneyManager.ViewModels;
 
 namespace MoneyManager.DataAccess
 {
     public class RecurringTransactionDataAccess : AbstractDataAccess<RecurringTransaction>
     {
         public ObservableCollection<RecurringTransaction> AllRecurringTransactions { get; set; }
+
+        private AddTransactionViewModel addTransactionView
+        {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+        }
+
+        public void Save(FinancialTransaction transaction)
+        {
+            var recurringTransaction = new RecurringTransaction
+            {
+                ChargedAccountId = transaction.ChargedAccountId,
+                StartDate = transaction.Date,
+                EndDate = addTransactionView.EndDate,
+                IsEndless = addTransactionView.IsEndless,
+                Amount = transaction.Amount,
+                Currency = transaction.Currency,
+                CategoryId = transaction.CategoryId,
+                Type = transaction.Type,
+                Recurrence = addTransactionView.Recurrence,
+                Note = transaction.Note,
+            };
+
+            SaveToDb(recurringTransaction);
+        }
 
         protected override void SaveToDb(RecurringTransaction itemToAdd)
         {
@@ -20,7 +46,7 @@ namespace MoneyManager.DataAccess
 
                 AllRecurringTransactions.Add(itemToAdd);
                 AllRecurringTransactions = new ObservableCollection<RecurringTransaction>
-                    (AllRecurringTransactions.OrderBy(x => x.Date));
+                    (AllRecurringTransactions.OrderBy(x => x.StartDate));
 
                 dbConn.Insert(itemToAdd, typeof(RecurringTransaction));
             }

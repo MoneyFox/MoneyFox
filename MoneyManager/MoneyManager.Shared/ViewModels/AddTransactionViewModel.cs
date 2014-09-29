@@ -45,6 +45,12 @@ namespace MoneyManager.ViewModels
             }
         }
 
+        public DateTime EndDate { get; set; }
+
+        public bool IsEndless { get; set; }
+
+        public int Recurrence { get; set; }
+
         public void Save()
         {
             if (IsEdit)

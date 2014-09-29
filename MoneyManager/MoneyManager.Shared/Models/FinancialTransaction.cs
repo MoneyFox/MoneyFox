@@ -41,7 +41,7 @@ namespace MoneyManager.Models
 
         public string Note { get; set; }
 
-        public bool IsRecurrence { get; set; }
+        public bool IsRecurring { get; set; }
 
         public int ReccuringTransactionId { get; set; }
 

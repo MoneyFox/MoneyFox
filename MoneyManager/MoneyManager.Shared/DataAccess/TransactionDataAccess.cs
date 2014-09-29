@@ -23,6 +23,11 @@ namespace MoneyManager.DataAccess
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
+        private RecurringTransactionDataAccess RecurringTransactionData
+        {
+            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+        }
+
         public TransactionDataAccess()
         {
             LoadList();
@@ -38,6 +43,10 @@ namespace MoneyManager.DataAccess
                 }
 
                 AccountDataAccess.AddTransactionAmount(transaction);
+                if (transaction.IsRecurring)
+                {
+                    RecurringTransactionData.Save(transaction);
+                }
 
                 AllTransactions.Add(transaction);
                 AllTransactions = new ObservableCollection<FinancialTransaction>(AllTransactions.OrderBy(x => x.Date));
