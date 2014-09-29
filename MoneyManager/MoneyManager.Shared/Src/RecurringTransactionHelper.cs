@@ -33,16 +33,10 @@ namespace MoneyManager.Src
         public static void CheckForRecurringTransactions()
         {
             RecurringTransactionData.LoadList();
-
-            var transactionsList = CheckIfIntervallIsReady();
-
-            foreach (var recurringTransaction in transactionsList)
-            {
-                SaveTransaction(recurringTransaction);
-            }
+            CheckIfIntervallIsReady();
         }
 
-        private static List<RecurringTransaction> CheckIfIntervallIsReady()
+        private static void CheckIfIntervallIsReady()
         {
             var transactions = TransactionData.LoadRecurringList();
 
