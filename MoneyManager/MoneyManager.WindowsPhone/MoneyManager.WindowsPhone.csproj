@@ -230,6 +230,9 @@
       <HintPath>..\..\packages\PropertyChanged.Fody.1.48.3\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="QKit">
+      <HintPath>..\..\packages\QKit.0.4.1\lib\wpa81\QKit.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.28\lib\wpa81\System.Net.Http.Extensions.dll</HintPath>
       <Private>True</Private>

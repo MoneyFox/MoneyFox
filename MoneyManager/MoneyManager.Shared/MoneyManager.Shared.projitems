@@ -81,6 +81,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddTransactionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectCategoryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TotalBalanceViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TransactionListUserControlViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
