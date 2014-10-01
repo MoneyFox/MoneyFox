@@ -1,4 +1,5 @@
-﻿using BugSense;
+﻿using Windows.UI.Xaml.Documents;
+using BugSense;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.OperationContracts;
 using MoneyManager.Src;
@@ -37,11 +38,11 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        public async void Delete(T itemToDelete)
+        public async void Delete(T itemToDelete, bool isTest = false)
         {
             try
             {
-                if (await IsDeletionConfirmed())
+                if (isTest || await IsDeletionConfirmed())
                 {
                     DeleteFromDatabase(itemToDelete);
                     TotalBalanceView.UpdateBalance();

@@ -82,7 +82,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             groupviewModel.Save(group);
             Assert.IsTrue(groupviewModel.AllGroups.Contains(group));
 
-            groupviewModel.Delete(group);
+            groupviewModel.Delete(group, true);
             Assert.IsFalse(groupviewModel.AllGroups.Contains(group));
         }
     }

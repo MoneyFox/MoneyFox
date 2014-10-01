@@ -72,7 +72,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             CategoryDataAccess.Save(category);
             Assert.IsTrue(CategoryDataAccess.AllCategories.Contains(category));
 
-            CategoryDataAccess.Delete(category);
+            CategoryDataAccess.Delete(category, true);
             Assert.IsFalse(CategoryDataAccess.AllCategories.Contains(category));
         }
     }

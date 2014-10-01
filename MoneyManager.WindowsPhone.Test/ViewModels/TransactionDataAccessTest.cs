@@ -109,7 +109,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             TransactionDataAccess.Save(transaction);
             Assert.IsTrue(TransactionDataAccess.AllTransactions.Contains(transaction));
 
-            TransactionDataAccess.Delete(transaction);
+            TransactionDataAccess.Delete(transaction, true);
             Assert.IsFalse(TransactionDataAccess.AllTransactions.Contains(transaction));
         }
 

@@ -104,7 +104,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             AccountDataAccess.Save(account);
             Assert.IsTrue(AccountDataAccess.AllAccounts.Contains(account));
 
-            AccountDataAccess.Delete(account);
+            AccountDataAccess.Delete(account, true);
             Assert.IsFalse(AccountDataAccess.AllAccounts.Contains(account));
         }
     }

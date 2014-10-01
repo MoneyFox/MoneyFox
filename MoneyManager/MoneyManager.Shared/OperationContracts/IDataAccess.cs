@@ -4,7 +4,7 @@
     {
         void Save(T itemToSave);
 
-        void Delete(T itemToDelete);
+        void Delete(T itemToDelete, bool isTest = false);
 
         void LoadList();
 
