@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace MoneyManager.Src
+namespace BackgroundTask
 {
-    //public class RecurringTransactionHelper
-    //{
+    public sealed class RecurringTransactionHelper
+    {
     //   public static void CheckForRecurringTransactions()
     //    {
     //        RecurringTransactionData.LoadList();
