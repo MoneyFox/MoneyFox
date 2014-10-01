@@ -9,8 +9,8 @@ namespace MoneyManager.WindowsPhone.Test.Src
         [TestMethod]
         public void GetEnumFromStringTest()
         {
-            var enumSpending = TransactionTypeHelper.GetEnumFromString("spending");
-            var enumIncome = TransactionTypeHelper.GetEnumFromString("income");
+            var enumSpending = TransactionTypeHelper.GetEnumFromString("Spending");
+            var enumIncome = TransactionTypeHelper.GetEnumFromString("Income");
 
             Assert.AreEqual(TransactionType.Spending, enumSpending);
             Assert.AreEqual(TransactionType.Income, enumIncome);

@@ -126,7 +126,7 @@ namespace MoneyManager.DataAccess
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
                 return dbConn.Table<FinancialTransaction>().Where(x => x.Cleared == false
-                    && x.Date <= DateTime.Now).ToList();
+                    && x.Date >= DateTime.Now).ToList();
             }
         }
 
