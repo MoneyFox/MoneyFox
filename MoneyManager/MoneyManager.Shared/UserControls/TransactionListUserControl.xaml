@@ -23,8 +23,7 @@
                         <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="DeleteTransaction"/>
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                    <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Category.Name}" Margin="12,0,0,3" />
-                <Grid HorizontalAlignment="Stretch" Margin="0,0,10,10">
+                <Grid HorizontalAlignment="Stretch" Margin="0,0,10,3">
                         <TextBlock Style="{StaticResource MenuItemMediumSmallText}" 
                                    Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" 
                                    Margin="12,0,0,0" />
@@ -37,6 +36,7 @@
                                     Text="{Binding Currency}" Margin="5,0,0,0"/>
                     </StackPanel>
                 </Grid>
+                <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Category.Name}" Margin="12,0,0,10" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>

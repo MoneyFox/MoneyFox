@@ -2,7 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
-MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoneyManager", "MoneyManager", "{40D4888B-FCFE-4C53-8B5C-1082881C3571}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MoneyManager.Shared", "MoneyManager\MoneyManager.Shared\MoneyManager.Shared.shproj", "{C2B4DF67-ABFD-4A73-A0C6-471516C01ECA}"
@@ -21,6 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.WindowsPhone.T
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MoneyManager\MoneyManager.Shared\MoneyManager.Shared.projitems*{1e89b344-8b07-4e30-8591-44ee1ad8caf1}*SharedItemsImports = 4
 		MoneyManager\MoneyManager.Shared\MoneyManager.Shared.projitems*{01c92d11-9b98-4ff3-bf14-89917369ab92}*SharedItemsImports = 4
 		MoneyManager\MoneyManager.Shared\MoneyManager.Shared.projitems*{c2b4df67-abfd-4a73-a0c6-471516c01eca}*SharedItemsImports = 13
 	EndGlobalSection
