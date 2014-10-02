@@ -38,11 +38,11 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        public async void Delete(T itemToDelete, bool isTest = false)
+        public async void Delete(T itemToDelete, bool suppressConfirmation = false)
         {
             try
             {
-                if (isTest || await IsDeletionConfirmed())
+                if (suppressConfirmation || await IsDeletionConfirmed())
                 {
                     DeleteFromDatabase(itemToDelete);
                     TotalBalanceView.UpdateBalance();

@@ -1,9 +1,11 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using BugSense;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.UI.Popups;
 
 namespace MoneyManager.Src
 {
@@ -24,10 +26,17 @@ namespace MoneyManager.Src
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        public void CheckForRecurringTransactions()
+        public async void CheckForRecurringTransactions()
         {
-            RecurringTransactionData.LoadList();
-            CheckIfIntervallIsReady();
+            try
+            {
+                RecurringTransactionData.LoadList();
+                CheckIfIntervallIsReady();
+            }
+            catch (Exception ex)
+            {
+                BugSenseHandler.Instance.LogException(ex);
+            }
         }
 
         private void CheckIfIntervallIsReady()

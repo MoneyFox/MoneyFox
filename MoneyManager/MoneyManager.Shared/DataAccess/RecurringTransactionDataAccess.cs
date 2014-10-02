@@ -32,6 +32,11 @@ namespace MoneyManager.DataAccess
                 Note = transaction.Note,
             };
 
+            if (AllRecurringTransactions != null)
+            {
+                AllRecurringTransactions.Add(recurringTransaction);
+            }
+
             SaveToDb(recurringTransaction);
         }
 
@@ -56,7 +61,11 @@ namespace MoneyManager.DataAccess
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
-                AllRecurringTransactions.Remove(itemToDelete);
+                if (AllRecurringTransactions != null)
+                {
+                    AllRecurringTransactions.Remove(itemToDelete);
+                }
+
                 dbConn.Delete(itemToDelete);
             }
         }
