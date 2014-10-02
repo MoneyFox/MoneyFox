@@ -6,7 +6,6 @@ namespace BackgroundTask
     {
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            throw new System.NotImplementedException();
         }
     }
 }

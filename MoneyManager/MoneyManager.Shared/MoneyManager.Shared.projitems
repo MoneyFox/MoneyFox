@@ -42,6 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Src\ConnectionFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\DatabaseHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Enumerations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\RecurringTransactionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ThemedImageConverterHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\TileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\TransactionHelper.cs" />
