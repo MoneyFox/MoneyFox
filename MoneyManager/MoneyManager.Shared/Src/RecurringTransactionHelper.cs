@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MoneyManager.Src
 {

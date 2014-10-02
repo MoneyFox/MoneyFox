@@ -93,6 +93,8 @@ namespace MoneyManager
             // Ensure the current window is active
             Window.Current.Activate();
             TileHelper.DoNavigation(e.TileId);
+
+            new RecurringTransactionHelper().CheckForRecurringTransactions();
         }
 
 #if WINDOWS_PHONE_APP
