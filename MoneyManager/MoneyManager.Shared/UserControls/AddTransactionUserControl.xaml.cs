@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
+using MoneyManager.Models;
 using MoneyManager.Views;
 
 namespace MoneyManager.UserControls
@@ -14,7 +15,12 @@ namespace MoneyManager.UserControls
         {
             InitializeComponent();
 
-            ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Date = DateTime.Now;
+            SelectedTransaction.Date = DateTime.Now;
+        }
+
+        public FinancialTransaction SelectedTransaction
+        {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
         }
 
         private void ResetCategory(object sender, TappedRoutedEventArgs e)

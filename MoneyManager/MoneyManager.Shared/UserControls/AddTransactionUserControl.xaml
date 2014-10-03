@@ -10,7 +10,7 @@
     DataContext="{Binding AddTransactionView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter:ThemedImageConverter x:Key="ThemedImageConverter"/>
+        <converter:AmountConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate">
@@ -26,8 +26,9 @@
                       ItemTemplate="{StaticResource ComboBoxTemplate}"
                       ItemsSource="{Binding AllAccounts, Mode=TwoWay}"                       
                       SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay}"/>
-            <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay}" Header="Amount"
-                     InputScope="Number" TextAlignment="Right" />
+            <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay, Converter={StaticResource AmountConverter}}" 
+                     Header="Amount" InputScope="Number"
+                     TextAlignment="Right" />
             <Grid>
                 <TextBox Header="Category" x:Uid="CategoryHeader"
                          Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
