@@ -34,13 +34,13 @@ namespace MoneyManager.DataAccess
                 var spent = new StatisticItem
                 {
                     Category = Utilities.GetTranslation("SpentLabel"),
-                    Value = -transactionList.Where(x => x.Type == (int)TransactionType.Spending).Sum(x => x.Amount)
+                    Value = transactionList.Where(x => x.Type == (int)TransactionType.Spending).Sum(x => x.Amount)
                 };
 
                 var increased = new StatisticItem
                 {
                     Category = Utilities.GetTranslation("IncreasedLabel"),
-                    Value = spent.Value + income.Value
+                    Value = income.Value - spent.Value
                 };
 
                 itemList.Add(income);

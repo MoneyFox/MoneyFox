@@ -27,7 +27,7 @@
                       ItemTemplate="{StaticResource ComboBoxTemplate}"
                       ItemsSource="{Binding AllAccounts, Mode=TwoWay}"                       
                       SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay}"/>
-            <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource AmountConverter}}" 
+            <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                      Header="Amount" InputScope="Number" x:Name="TextBoxAmount"
                      TextAlignment="Right" GotFocus="RemoveZeroOnFocus"
                      LostFocus="AddZeroIfEmpty" />

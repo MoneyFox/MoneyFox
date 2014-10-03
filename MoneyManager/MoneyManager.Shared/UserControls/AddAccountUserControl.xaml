@@ -7,7 +7,7 @@
     mc:Ignorable="d" Width="Auto"
     DataContext="{Binding AddAccountView, Source={StaticResource Locator}}">
 
-    <StackPanel Margin="12,0" >
+    <StackPanel Margin="12,0">
         <TextBox Text="{Binding SelectedAccount.Name, Mode=TwoWay}"
                  Header="Name" VerticalAlignment="Top"
                  x:Uid="Name" Margin="0,0,0,12" />
@@ -18,9 +18,11 @@
             <TextBox Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay}"
                  Header="Balance" VerticalAlignment="Stretch"
                  Margin="0,0,40,12" InputScope="Number"
-                 TextAlignment="Right" x:Uid="Balance" />
-            <TextBlock Text="CHF" Style="{StaticResource MenuItemSubSmallText}" 
-                       HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,15"/>
+                 TextAlignment="Right" x:Uid="Balance"
+                 GotFocus="RemoveZeroOnFocus" x:Name="TextBoxCurrentBalance"
+                 LostFocus="AddZeroIfEmpty" />
+            <TextBlock Text="CHF" Style="{StaticResource MenuItemSubSmallText}"
+                       HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,15" />
         </Grid>
         <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
         	Header="Notes" VerticalAlignment="Top"
