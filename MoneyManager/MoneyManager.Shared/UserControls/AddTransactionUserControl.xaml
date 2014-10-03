@@ -5,12 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converter="using:MoneyManager.Converter"
+    xmlns:userControls="using:MoneyManager.UserControls"
     mc:Ignorable="d"
     d:DesignWidth="400" d:DesignHeight="600"
     DataContext="{Binding AddTransactionView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter:AmountConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate">
@@ -26,19 +26,11 @@
                       ItemTemplate="{StaticResource ComboBoxTemplate}"
                       ItemsSource="{Binding AllAccounts, Mode=TwoWay}"                       
                       SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay}"/>
-            <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay, Converter={StaticResource AmountConverter}}" 
-                     Header="Amount" InputScope="Number"
-                     TextAlignment="Right" />
-            <Grid>
-                <TextBox Header="Category" x:Uid="CategoryHeader"
-                         Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
-                         GotFocus="OpenSelectCategoryDialog"
-                         IsReadOnly="True"/>
-                <Image Height="35"  Width="35" 
-                           Source="/Images/light/close.png"
-                           Margin="338,38,3,11"
-                           Tapped="ResetCategory"/>
-            </Grid>
+            <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay}" 
+                     Header="Amount" InputScope="Number" x:Name="TextBoxAmount"
+                     TextAlignment="Right" GotFocus="RemoveZeroOnFocus"
+                     LostFocus="AddZeroIfEmpty"/>
+            <userControls:SelectCategoryTextBoxUserControl />
             <DatePicker Date="{Binding SelectedTransaction.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}"
                         Margin="0,12,0,0" Header="Date" 
                         x:Uid="DateHeader"/>

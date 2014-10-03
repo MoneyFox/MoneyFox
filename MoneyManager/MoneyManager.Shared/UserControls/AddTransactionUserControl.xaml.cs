@@ -1,11 +1,8 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
-using MoneyManager.Models;
-using MoneyManager.Views;
+
 
 namespace MoneyManager.UserControls
 {
@@ -15,22 +12,25 @@ namespace MoneyManager.UserControls
         {
             InitializeComponent();
 
-            SelectedTransaction.Date = DateTime.Now;
+            ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Date = DateTime.Now;
         }
 
-        public FinancialTransaction SelectedTransaction
+        private void RemoveZeroOnFocus(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
+            if (TextBoxAmount.Text == "0")
+            {
+                TextBoxAmount.Text = String.Empty;
+            }
+
+            TextBoxAmount.SelectAll();
         }
 
-        private void ResetCategory(object sender, TappedRoutedEventArgs e)
+        private void AddZeroIfEmpty(object sender, RoutedEventArgs e)
         {
-            ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = null;
-        }
-
-        private void OpenSelectCategoryDialog(object sender, RoutedEventArgs routedEventArgs)
-        {
-            ((Frame) Window.Current.Content).Navigate(typeof (SelectCategory));
+            if (TextBoxAmount.Text == String.Empty)
+            {
+                TextBoxAmount.Text = "0";
+            }
         }
     }
 }
