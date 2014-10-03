@@ -11,6 +11,7 @@
     DataContext="{Binding AddTransactionView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
+        <converter:AmountConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate">
@@ -26,10 +27,10 @@
                       ItemTemplate="{StaticResource ComboBoxTemplate}"
                       ItemsSource="{Binding AllAccounts, Mode=TwoWay}"                       
                       SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay}"/>
-            <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay}" 
+            <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource AmountConverter}}" 
                      Header="Amount" InputScope="Number" x:Name="TextBoxAmount"
                      TextAlignment="Right" GotFocus="RemoveZeroOnFocus"
-                     LostFocus="AddZeroIfEmpty"/>
+                     LostFocus="AddZeroIfEmpty" />
             <userControls:SelectCategoryTextBoxUserControl />
             <DatePicker Date="{Binding SelectedTransaction.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}"
                         Margin="0,12,0,0" Header="Date" 

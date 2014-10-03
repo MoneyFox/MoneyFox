@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 
@@ -15,7 +16,7 @@ namespace MoneyManager.UserControls
             ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Date = DateTime.Now;
         }
 
-        private void RemoveZeroOnFocus(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
         {
             if (TextBoxAmount.Text == "0")
             {

@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\AmountConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\CultureConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\DateTimeToDateTimeOffsetConverter.cs" />
