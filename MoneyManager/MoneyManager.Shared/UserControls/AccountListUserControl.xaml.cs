@@ -28,15 +28,6 @@ namespace MoneyManager.UserControls
             flyoutBase.ShowAt(senderElement);
         }
 
-        private void Delete_OnClick(object sender, RoutedEventArgs e)
-        {
-            var element = (FrameworkElement)sender;
-            var account = element.DataContext as Account;
-            if (account == null) return;
-
-            ServiceLocator.Current.GetInstance<AccountDataAccess>().Delete(account);
-        }
-
         private void Edit_OnClick(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement)sender;
@@ -48,6 +39,15 @@ namespace MoneyManager.UserControls
             viewModel.SelectedAccount = account;
 
             ((Frame)Window.Current.Content).Navigate(typeof(AddAccount));
+        }
+
+        private void Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+            var element = (FrameworkElement)sender;
+            var account = element.DataContext as Account;
+            if (account == null) return;
+
+            ServiceLocator.Current.GetInstance<AccountDataAccess>().Delete(account);
         }
 
         private void NavigateToTransactionList(object sender, SelectionChangedEventArgs e)
