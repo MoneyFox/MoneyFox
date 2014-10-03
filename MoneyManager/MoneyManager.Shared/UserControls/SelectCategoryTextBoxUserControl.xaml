@@ -16,7 +16,7 @@
                          IsReadOnly="True"/>
         <Image Height="35"  Width="35" 
                            Source="/Images/light/close.png"
-                           Margin="0,35,0,10"
+                           Margin="0,36,0,0"
                            Tapped="ResetCategory" VerticalAlignment="Top" HorizontalAlignment="Right"/>
     </Grid>
 </UserControl>
