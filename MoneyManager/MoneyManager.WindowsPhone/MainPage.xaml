@@ -26,7 +26,7 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
-    
+
     <Grid>
 
         <Grid.ChildrenTransitions>
@@ -42,7 +42,7 @@
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
             <Pivot Title="MoneyTracker">
-                <PivotItem x:Uid="AccountsMenu" Header="overview" > 
+                <PivotItem x:Uid="AccountsMenu" Header="overview">
                     <Grid>
                         <userControls:AccountListUserControl />
                     </Grid>
