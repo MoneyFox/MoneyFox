@@ -35,7 +35,16 @@
                 <TextBlock Text="CHF" Style="{StaticResource MenuItemSubSmallText}"
                        HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0" />
             </Grid>
-            <userControls:SelectCategoryTextBoxUserControl />
+            <Grid>
+                <TextBox Header="Category" x:Uid="CategoryHeader"
+                         Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
+                         GotFocus="OpenSelectCategoryDialog"
+                         IsReadOnly="True"/>
+                <Image Height="35"  Width="35" 
+                           Source="/Images/light/close.png"
+                           Margin="0,36,0,0"
+                           Tapped="ResetCategory" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            </Grid>
             <DatePicker Date="{Binding SelectedTransaction.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}"
                         Margin="0,12,0,0" Header="Date" 
                         x:Uid="DateHeader"/>
