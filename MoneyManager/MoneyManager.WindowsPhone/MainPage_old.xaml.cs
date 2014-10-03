@@ -1,28 +1,17 @@
-﻿using Windows.UI.Xaml;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Common;
-using Windows.UI.Xaml.Navigation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
 using MoneyManager.Views;
+using Windows.UI.Xaml;
 
 namespace MoneyManager
 {
     public sealed partial class MainPage
     {
-        private NavigationHelper navigationHelper;
-
         public MainPage()
         {
-            this.InitializeComponent();
-
-            navigationHelper = new NavigationHelper(this);
-        }
-
-        public NavigationHelper NavigationHelper
-        {
-            get { return navigationHelper; }
+            InitializeComponent();
         }
 
         public Account SelectedAccount
@@ -59,20 +48,5 @@ namespace MoneyManager
         {
             Frame.Navigate(typeof(About));
         }
-
-
-        #region NavigationHelper registration
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            navigationHelper.OnNavigatedTo(e);
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            navigationHelper.OnNavigatedFrom(e);
-        }
-
-        #endregion
     }
 }

@@ -166,8 +166,8 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\About.xaml">
       <SubType>Designer</SubType>

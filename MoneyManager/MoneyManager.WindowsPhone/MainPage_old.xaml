@@ -6,11 +6,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:MoneyManager.UserControls"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding Main, Source={StaticResource Locator}}">
     <Page.Resources>
         <MenuFlyout x:Key="AddTransactionFlyOut">
-            <MenuFlyoutItem x:Uid="Spending" Text="spending" Click="AddSpendingClick" />
+            <MenuFlyoutItem x:Uid="Spending" Text="spending" Click="AddSpendingClick"/>
             <MenuFlyoutItem x:Uid="Income" Text="income" Click="AddIncomeClick" />
         </MenuFlyout>
     </Page.Resources>
@@ -26,9 +26,8 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
-    
-    <Grid>
 
+    <Grid>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition />
@@ -40,19 +39,19 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <Pivot Title="MoneyTracker">
-                <PivotItem x:Uid="AccountsMenu" Header="overview" > 
-                    <Grid>
+        <Grid Grid.Row="1">
+            <Hub x:Uid="ApplicationName" Header="MoneyTracker" HorizontalAlignment="Left" Margin="0,27,0,0" VerticalAlignment="Top">
+                <HubSection x:Uid="AccountsMenu" Header="overview">
+                    <DataTemplate>
                         <userControls:AccountListUserControl />
-                    </Grid>
-                </PivotItem>
-                <PivotItem x:Uid="OverviewMenu" Header="overview">
-                    <Grid>
-                        <userControls:BarChartUserControl />
-                    </Grid>
-                </PivotItem>
-            </Pivot>
+                    </DataTemplate>
+                </HubSection>
+                    <HubSection x:Uid="OverviewMenu">
+                        <DataTemplate>
+                            <userControls:BarChartUserControl />
+                        </DataTemplate>
+                </HubSection>
+            </Hub>
         </Grid>
     </Grid>
 </Page>
