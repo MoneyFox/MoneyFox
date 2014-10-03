@@ -27,10 +27,14 @@
                       ItemTemplate="{StaticResource ComboBoxTemplate}"
                       ItemsSource="{Binding AllAccounts, Mode=TwoWay}"                       
                       SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay}"/>
-            <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            <Grid>
+                <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                      Header="Amount" InputScope="Number" x:Name="TextBoxAmount"
                      TextAlignment="Right" GotFocus="RemoveZeroOnFocus"
-                     LostFocus="AddZeroIfEmpty" />
+                     LostFocus="AddZeroIfEmpty" Margin="0,0,40,0" />
+                <TextBlock Text="CHF" Style="{StaticResource MenuItemSubSmallText}"
+                       HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0" />
+            </Grid>
             <userControls:SelectCategoryTextBoxUserControl />
             <DatePicker Date="{Binding SelectedTransaction.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}"
                         Margin="0,12,0,0" Header="Date" 
