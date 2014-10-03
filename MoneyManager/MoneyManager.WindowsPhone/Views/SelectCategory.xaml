@@ -33,7 +33,7 @@
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <userControls:SelectCategoryTextBoxUserControl />
+            <userControls:SelectCategoryUserControl />
         </Grid>
     </Grid>
 </Page>
