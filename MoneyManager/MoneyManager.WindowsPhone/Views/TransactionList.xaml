@@ -8,6 +8,19 @@
     mc:Ignorable="d" NavigationCacheMode="Disabled"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <MenuFlyout x:Key="AddTransactionFlyOut">
+            <MenuFlyoutItem x:Uid="Spending" Text="spending" Click="AddSpendingClick" />
+            <MenuFlyoutItem x:Uid="Income" Text="income" Click="AddIncomeClick" />
+        </MenuFlyout>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <CommandBar IsSticky="True" ClosedDisplayMode="Minimal">
+            <AppBarButton Icon="Add" Label="Add" x:Uid="AddLabel" Flyout="{StaticResource AddTransactionFlyOut}"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
     <Grid>
 
         <Grid.ChildrenTransitions>
