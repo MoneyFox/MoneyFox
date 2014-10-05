@@ -11,7 +11,6 @@
     DataContext="{Binding RecurringTransactionDataAccess, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter:CultureConverter x:Key="FormatConverter" />
         <converter:RecurrenceConverter x:Key="RecurrenceConverter" />
         <converter:TransactionAmountConverter x:Key="TransactionAmountConverter"/>
         <DataTemplate x:Key="TransactionTemplate">
@@ -23,7 +22,8 @@
                         <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="DeleteTransaction"/>
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <Grid HorizontalAlignment="Stretch" Margin="0,0,10,3">
+                <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding ChargedAccount.Name}" Margin="12,0,0,0" />
+                <Grid HorizontalAlignment="Stretch" Margin="0,0,10,10">
                     <TextBlock Style="{StaticResource MenuItemMediumSmallText}" 
                                    Text="{Binding Recurrence,Converter={StaticResource RecurrenceConverter}}" 
                                    Margin="12,0,0,0" />
@@ -36,7 +36,6 @@
                                     Text="{Binding Currency}" Margin="5,0,0,0"/>
                     </StackPanel>
                 </Grid>
-                <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Category.Name}" Margin="12,0,0,10" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
