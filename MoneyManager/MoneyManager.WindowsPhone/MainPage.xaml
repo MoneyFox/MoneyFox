@@ -21,7 +21,8 @@
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccount_Click" />
-                <AppBarButton Icon="Add" x:Uid="SettingsOverview" Label="settings" Click="Settings_Click" />
+                <AppBarButton  x:Uid="RecurringListLabel" Label="recurring transactions" Click="RecurringTransactions_Click" />
+                <AppBarButton  x:Uid="SettingsOverview" Label="settings" Click="Settings_Click" />
                 <AppBarButton x:Uid="AboutLabel" Label="about" Click="GoToAbout" />
             </CommandBar.SecondaryCommands>
         </CommandBar>

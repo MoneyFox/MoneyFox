@@ -45,6 +45,11 @@ namespace MoneyManager
             Frame.Navigate(typeof(SettingsOverview));
         }
 
+        private void RecurringTransactions_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(RecurringTransactionList));
+        }
+
         private void AddSpendingClick(object sender, RoutedEventArgs e)
         {
             TransactionHelper.GoToAddTransaction(TransactionType.Spending);
@@ -59,7 +64,6 @@ namespace MoneyManager
         {
             Frame.Navigate(typeof(About));
         }
-
 
         #region NavigationHelper registration
 

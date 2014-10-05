@@ -11,6 +11,8 @@ namespace MoneyManager.DataAccess
     {
         public ObservableCollection<RecurringTransaction> AllRecurringTransactions { get; set; }
 
+        public RecurringTransaction SelectedRecurringTransaction { get; set; }
+
         private AddTransactionViewModel addTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }

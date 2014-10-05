@@ -275,10 +275,10 @@
                 If you wanna edit this information, go to category settings.</value>
   </data>
   <data name="AddCategoryMeta.PrimaryButtonText" xml:space="preserve">
-    <value />
+    <value>add</value>
   </data>
   <data name="AddCategoryMeta.Title" xml:space="preserve">
-    <value />
+    <value>add category</value>
   </data>
   <data name="CategoryName.Header" xml:space="preserve">
     <value>category name</value>
@@ -330,5 +330,11 @@
   </data>
   <data name="WeeklyContent.Content" xml:space="preserve">
     <value>weekly</value>
+  </data>
+  <data name="RecurringTransactions.Text" xml:space="preserve">
+    <value>recurring transactions</value>
+  </data>
+  <data name="RecurringListLabel.Label" xml:space="preserve">
+    <value>recurring transactions</value>
   </data>
 </root>

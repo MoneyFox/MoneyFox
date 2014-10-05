@@ -7,7 +7,6 @@ using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Views;
 
-
 namespace MoneyManager.UserControls
 {
     public sealed partial class AddTransactionUserControl
@@ -23,8 +22,7 @@ namespace MoneyManager.UserControls
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
         }
-
-
+        
         private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
         {
             if (TextBoxAmount.Text == "0")
