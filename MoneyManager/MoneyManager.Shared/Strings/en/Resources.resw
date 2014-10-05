@@ -337,4 +337,10 @@
   <data name="RecurringListLabel.Label" xml:space="preserve">
     <value>recurring transactions</value>
   </data>
+  <data name="MonthlyLabel" xml:space="preserve">
+    <value>monthly</value>
+  </data>
+  <data name="WeeklyLabel" xml:space="preserve">
+    <value>weekly</value>
+  </data>
 </root>

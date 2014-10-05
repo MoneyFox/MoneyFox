@@ -12,6 +12,7 @@
 
     <UserControl.Resources>
         <converter:CultureConverter x:Key="FormatConverter" />
+        <converter:RecurrenceConverter x:Key="RecurrenceConverter" />
         <converter:TransactionAmountConverter x:Key="TransactionAmountConverter"/>
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
@@ -24,7 +25,7 @@
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch" Margin="0,0,10,3">
                     <TextBlock Style="{StaticResource MenuItemMediumSmallText}" 
-                                   Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" 
+                                   Text="{Binding Recurrence,Converter={StaticResource RecurrenceConverter}}" 
                                    Margin="12,0,0,0" />
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
