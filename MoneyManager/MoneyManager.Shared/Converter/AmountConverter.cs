@@ -7,18 +7,12 @@ namespace MoneyManager.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return value;
+            return System.Convert.ToDouble(value).ToString("F2");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            if (value.ToString() == string.Empty)
-            {
-                return value;
-            }
-
-            var valDouble = Double.Parse(value.ToString());
-            return (valDouble/100).ToString();
+            return value;
         }
     }
 }

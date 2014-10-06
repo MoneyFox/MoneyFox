@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Navigation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
+using MoneyManager.ViewModels;
 using MoneyManager.Views;
 
 namespace MoneyManager
@@ -37,6 +38,7 @@ namespace MoneyManager
             {
                 Currency = "CHF"
             };
+            ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
             Frame.Navigate(typeof(AddAccount));
         }
 

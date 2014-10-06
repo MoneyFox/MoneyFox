@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -50,6 +51,5 @@ namespace MoneyManager.UserControls
         {
             ((Frame)Window.Current.Content).Navigate(typeof(SelectCategory));
         }
-
     }
 }
