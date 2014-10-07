@@ -4,8 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:MoneyManager.Converter"
     mc:Ignorable="d" Width="Auto"
     DataContext="{Binding AddAccountView, Source={StaticResource Locator}}">
+
+    <UserControl.Resources>
+        <converter:AmountConverter x:Key="AmountConverter" />
+    </UserControl.Resources>
 
     <StackPanel Margin="12,0">
         <TextBox Text="{Binding SelectedAccount.Name, Mode=TwoWay}"
@@ -15,7 +20,7 @@
                  Header="IBAN" VerticalAlignment="Top"
                  x:Uid="Iban" Margin="0,0,0,12" />
         <Grid Margin="0,0,0,12">
-            <TextBox Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay}"
+            <TextBox Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
                  Header="Balance" VerticalAlignment="Stretch"
                  Margin="0,0,40,12" InputScope="Number"
                  TextAlignment="Right" x:Uid="Balance"

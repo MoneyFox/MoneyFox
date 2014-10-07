@@ -39,7 +39,7 @@
 
     <StackPanel>
         <userControls:TotalBalanceUserControl />
-        <ScrollViewer>
+        <ScrollViewer Margin="0,10,0,0">
             <ListView ItemsSource="{Binding AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
                   HorizontalAlignment="Stretch" x:Name="AccountList"
