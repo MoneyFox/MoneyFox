@@ -10,7 +10,7 @@
 
     <Page.Transitions>
         <TransitionCollection>
-            <NavigationThemeTransition>
+            <NavigationThemeTransition >
                 <NavigationThemeTransition.DefaultNavigationTransitionInfo>
                     <SlideNavigationTransitionInfo/>
                 </NavigationThemeTransition.DefaultNavigationTransitionInfo>
@@ -27,11 +27,6 @@
     </Page.BottomAppBar>
 
     <Grid>
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
