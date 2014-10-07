@@ -27,6 +27,8 @@ namespace MoneyManager.Models
 
         public int ChargedAccountId { get; set; }
 
+        public int TargetAccountId { get; set; }
+
         public DateTime Date { get; set; }
 
         public double Amount { get; set; }
@@ -50,6 +52,13 @@ namespace MoneyManager.Models
         {
             get { return allAccounts.FirstOrDefault(x => x.Id == ChargedAccountId); }
             set { ChargedAccountId = value.Id; }
+        }
+
+        [Ignore]
+        public Account TargetAccount
+        {
+            get { return allAccounts.FirstOrDefault(x => x.Id == TargetAccountId); }
+            set { TargetAccountId = value.Id; }
         }
 
         [Ignore]

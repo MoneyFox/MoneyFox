@@ -22,9 +22,18 @@ namespace MoneyManager.Src
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
+        private static AddTransactionViewModel addTransactionView
+        {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+        }
+
         public static void GoToAddTransaction(TransactionType transactionType)
         {
             ServiceLocator.Current.GetInstance<AddTransactionViewModel>().IsEdit = false;
+            if (transactionType == TransactionType.Transfer)
+            {
+                addTransactionView.IsTransfer = false;
+            }
 
             SetDefaultTransaction(transactionType);
             SetDefaultAccount();
@@ -34,12 +43,11 @@ namespace MoneyManager.Src
 
         private static void SetDefaultTransaction(TransactionType transactionType)
         {
-            ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction
-                = new FinancialTransaction
-                {
-                    Type = (int) transactionType,
-                    Currency = "CHF"
-                };
+            SelectedTransaction = new FinancialTransaction
+            {
+                Type = (int) transactionType,
+                Currency = "CHF"
+            };
         }
 
         private static void SetDefaultAccount()

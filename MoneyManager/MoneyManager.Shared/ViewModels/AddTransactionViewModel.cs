@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
+using PropertyChanged;
+using System;
+using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using PropertyChanged;
 
 namespace MoneyManager.ViewModels
 {
@@ -24,8 +24,8 @@ namespace MoneyManager.ViewModels
         public ObservableCollection<Account> AllAccounts
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
-        }       
-        
+        }
+
         public ObservableCollection<Category> AllCategories
         {
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
@@ -50,6 +50,8 @@ namespace MoneyManager.ViewModels
         public bool IsEndless { get; set; }
 
         public int Recurrence { get; set; }
+
+        public bool IsTransfer { get; set; }
 
         public void Save()
         {

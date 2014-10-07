@@ -3,7 +3,8 @@
     public enum TransactionType
     {
         Spending,
-        Income
+        Income,
+        Transfer
     }
 
     public enum TransactionRecurrence

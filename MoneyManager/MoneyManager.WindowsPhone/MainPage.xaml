@@ -12,6 +12,7 @@
         <MenuFlyout x:Key="AddTransactionFlyOut">
             <MenuFlyoutItem x:Uid="Spending" Text="spending" Click="AddSpendingClick" />
             <MenuFlyoutItem x:Uid="Income" Text="income" Click="AddIncomeClick" />
+            <MenuFlyoutItem x:Uid="Transfer" Text="transfer" Click="AddTransferClick" />
         </MenuFlyout>
     </Page.Resources>
     <Page.BottomAppBar>
