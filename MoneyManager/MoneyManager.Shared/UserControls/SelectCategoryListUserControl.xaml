@@ -30,7 +30,7 @@
         <ListView ItemsSource="{Binding Categories}"
                   ItemTemplate="{StaticResource CategoryTemplate }"
                   SelectedItem="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  SelectionChanged="SelectCategory"/>
+                  SelectionChanged="SelectCategory" Margin="0,12,0,0"/>
 
     </StackPanel>
 </UserControl>
