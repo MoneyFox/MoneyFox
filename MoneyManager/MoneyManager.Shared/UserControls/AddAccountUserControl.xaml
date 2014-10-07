@@ -27,7 +27,8 @@
                  GotFocus="RemoveZeroOnFocus" x:Name="TextBoxCurrentBalance"
                  LostFocus="AddZeroIfEmpty" />
             <TextBlock Text="CHF" Style="{StaticResource MenuItemSubSmallText}"
-                       HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,15" />
+                       HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                       Margin="0,0,0,15" />
         </Grid>
         <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
         	Header="Notes" VerticalAlignment="Top"
