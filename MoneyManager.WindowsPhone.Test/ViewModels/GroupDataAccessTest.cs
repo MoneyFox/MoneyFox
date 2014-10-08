@@ -26,6 +26,10 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
                 dbConn.DeleteAll<Group>();
+                if (groupviewModel.AllGroups != null)
+                {
+                    groupviewModel.AllGroups.Clear();
+                }
             }
 
             group = new Group

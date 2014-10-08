@@ -21,7 +21,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
-        private TransactionDataAccess TransactionDataAccess
+        private TransactionDataAccess transactionDataAccess
         {
             get { return new ViewModelLocator().TransactionDataAccess; }
         }
@@ -34,6 +34,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
                 dbConn.DeleteAll<FinancialTransaction>();
+                transactionDataAccess.AllTransactions.Clear();
             }
 
             CreateTestData();
@@ -64,7 +65,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void SaveTransactionTest()
         {
-            TransactionDataAccess.Save(transaction);
+            transactionDataAccess.Save(transaction);
 
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
@@ -78,24 +79,24 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void LoadTransactionListTest()
         {
-            TransactionDataAccess.Save(transaction);
-            TransactionDataAccess.Save(transaction);
-            Assert.AreEqual(2, TransactionDataAccess.AllTransactions.Count);
+            transactionDataAccess.Save(transaction);
+            transactionDataAccess.Save(transaction);
+            Assert.AreEqual(2, transactionDataAccess.AllTransactions.Count);
 
-            TransactionDataAccess.AllTransactions = null;
-            AccountDataAccess.LoadList();
-            Assert.AreEqual(2, TransactionDataAccess.AllTransactions.Count);
+            transactionDataAccess.AllTransactions = null;
+            transactionDataAccess.LoadList();
+            Assert.AreEqual(2, transactionDataAccess.AllTransactions.Count);
         }
 
         [TestMethod]
         public void UpdateFinancialTransactionTest()
         {
-            TransactionDataAccess.Save(transaction);
-            Assert.IsTrue(TransactionDataAccess.AllTransactions.Contains(transaction));
+            transactionDataAccess.Save(transaction);
+            Assert.IsTrue(transactionDataAccess.AllTransactions.Contains(transaction));
 
             double newAmount = 108.3;
             transaction.Amount = newAmount;
-            TransactionDataAccess.Update(transaction);
+            transactionDataAccess.Update(transaction);
 
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
@@ -106,23 +107,23 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void DeleteFinancialTransactionTest()
         {
-            TransactionDataAccess.Save(transaction);
-            Assert.IsTrue(TransactionDataAccess.AllTransactions.Contains(transaction));
+            transactionDataAccess.Save(transaction);
+            Assert.IsTrue(transactionDataAccess.AllTransactions.Contains(transaction));
 
-            TransactionDataAccess.Delete(transaction, true);
-            Assert.IsFalse(TransactionDataAccess.AllTransactions.Contains(transaction));
+            transactionDataAccess.Delete(transaction, true);
+            Assert.IsFalse(transactionDataAccess.AllTransactions.Contains(transaction));
         }
 
         [TestMethod]
         public void GetUnclearedTransactionsTest()
         {
             var firstTransaction = transaction;
-            TransactionDataAccess.Save(firstTransaction);
+            transactionDataAccess.Save(firstTransaction);
 
             var secondTransaction = new FinancialTransaction { Amount = 80, Date = DateTime.Now.AddDays(1) };
-            TransactionDataAccess.Save(secondTransaction);
+            transactionDataAccess.Save(secondTransaction);
 
-            var unclearedList = TransactionDataAccess.GetUnclearedTransactions();
+            var unclearedList = transactionDataAccess.GetUnclearedTransactions();
             Assert.AreEqual(unclearedList.Count, 1);
             var loadedTransaction = unclearedList.First();
             Assert.IsTrue(loadedTransaction.Id == secondTransaction.Id

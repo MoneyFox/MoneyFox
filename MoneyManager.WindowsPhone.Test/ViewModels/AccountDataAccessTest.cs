@@ -14,7 +14,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
     {
         private Account account;
 
-        private AccountDataAccess AccountDataAccess
+        private AccountDataAccess accountDataAccess
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
@@ -23,11 +23,14 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         public async Task InitTests()
         {
             await DatabaseHelper.CreateDatabase();
-            AccountDataAccess.Save(account);
 
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
                 dbConn.DeleteAll<Account>();
+                if (accountDataAccess.AllAccounts != null)
+                {
+                    accountDataAccess.AllAccounts.Clear();
+                }
             }
 
             account = new Account
@@ -42,7 +45,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void SaveAccount()
         {
-            AccountDataAccess.Save(account);
+            accountDataAccess.Save(account);
 
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
@@ -53,31 +56,67 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         }
 
         [TestMethod]
-        public void AddTransactionAmountTest()
+        public void AddTransactionAmountIncomeTest()
         {
-            AccountDataAccess.Save(account);
+            accountDataAccess.Save(account);
 
             var transaction = new FinancialTransaction
             {
                 ChargedAccountId = account.Id,
                 Amount = 20,
                 Date = DateTime.Today,
+                Type = (int)TransactionType.Income,
                 Note = "this is a note!!!"
             };
-            AccountDataAccess.AddTransactionAmount(transaction);
-            Assert.AreEqual(account.CurrentBalance, 40);
+            accountDataAccess.AddTransactionAmount(transaction);
+            Assert.AreEqual(40, transaction.ChargedAccount.CurrentBalance);
+        }
+
+        [TestMethod]
+        public void AddTransactionAmountSpendingTest()
+        {
+            accountDataAccess.Save(account);
+
+            var transaction = new FinancialTransaction
+            {
+                ChargedAccountId = account.Id,
+                Amount = 10,
+                Date = DateTime.Today,
+                Type = (int)TransactionType.Spending,
+                Note = "this is a note!!!"
+            };
+            accountDataAccess.AddTransactionAmount(transaction);
+            Assert.AreEqual(10, transaction.ChargedAccount.CurrentBalance);
+        }
+
+        [TestMethod]
+        public void AddTransactionAmountTransferTest()
+        {
+            accountDataAccess.Save(account);
+
+            var transaction = new FinancialTransaction
+            {
+                ChargedAccountId = account.Id,
+                TargetAccountId = account.Id,
+                Amount = 10,
+                Date = DateTime.Today,
+                Type = (int)TransactionType.Transfer,
+                Note = "this is a note!!!"
+            };
+            accountDataAccess.AddTransactionAmount(transaction);
+            Assert.AreEqual(20, transaction.ChargedAccount.CurrentBalance);
         }
 
         [TestMethod]
         public void LoadAccountListTest()
         {
-            AccountDataAccess.Save(account);
-            AccountDataAccess.Save(account);
-            Assert.AreEqual(AccountDataAccess.AllAccounts.Count, 2);
+            accountDataAccess.Save(account);
+            accountDataAccess.Save(account);
+            Assert.AreEqual(accountDataAccess.AllAccounts.Count, 2);
 
-            AccountDataAccess.AllAccounts = null;
-            AccountDataAccess.LoadList();
-            Assert.AreEqual(AccountDataAccess.AllAccounts.Count, 2);
+            accountDataAccess.AllAccounts = null;
+            accountDataAccess.LoadList();
+            Assert.AreEqual(accountDataAccess.AllAccounts.Count, 2);
         }
 
         [TestMethod]
@@ -85,14 +124,14 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
-                AccountDataAccess.Save(account);
-                Assert.AreEqual(AccountDataAccess.AllAccounts.Count, 1);
+                accountDataAccess.Save(account);
+                Assert.AreEqual(1, accountDataAccess.AllAccounts.Count);
 
                 string newName = "This is a new Name";
 
                 account = dbConn.Table<Account>().First();
                 account.Name = newName;
-                AccountDataAccess.Update(account);
+                accountDataAccess.Update(account);
 
                 Assert.AreEqual(newName, dbConn.Table<Account>().First().Name);
             }
@@ -101,11 +140,11 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void DeleteAccountTest()
         {
-            AccountDataAccess.Save(account);
-            Assert.IsTrue(AccountDataAccess.AllAccounts.Contains(account));
+            accountDataAccess.Save(account);
+            Assert.IsTrue(accountDataAccess.AllAccounts.Contains(account));
 
-            AccountDataAccess.Delete(account, true);
-            Assert.IsFalse(AccountDataAccess.AllAccounts.Contains(account));
+            accountDataAccess.Delete(account, true);
+            Assert.IsFalse(accountDataAccess.AllAccounts.Contains(account));
         }
     }
 }

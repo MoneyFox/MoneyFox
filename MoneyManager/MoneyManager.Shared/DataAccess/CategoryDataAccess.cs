@@ -65,6 +65,8 @@ namespace MoneyManager.DataAccess
         {
             var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
             roamingSettings.Values.Clear();
+
+            AllCategories.Clear();
         }
     }
 }

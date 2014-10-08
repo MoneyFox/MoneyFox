@@ -2,6 +2,7 @@
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess;
+using MoneyManager.Models;
 using MoneyManager.Src;
 
 namespace MoneyManager.WindowsPhone.Test.ViewModels
@@ -18,6 +19,12 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         public async Task InitTests()
         {
             await DatabaseHelper.CreateDatabase();
+
+            using (var dbConn = ConnectionFactory.GetDbConnection())
+            {
+                dbConn.DeleteAll<Setting>();
+                settings.Dbversion = 1;
+            }
         }
 
         [TestMethod]
