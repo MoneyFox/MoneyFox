@@ -343,4 +343,7 @@
   <data name="WeeklyLabel" xml:space="preserve">
     <value>weekly</value>
   </data>
+  <data name="TransferTitle" xml:space="preserve">
+    <value>transfer</value>
+  </data>
 </root>

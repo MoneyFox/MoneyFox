@@ -32,7 +32,7 @@ namespace MoneyManager.Src
             ServiceLocator.Current.GetInstance<AddTransactionViewModel>().IsEdit = false;
             if (transactionType == TransactionType.Transfer)
             {
-                addTransactionView.IsTransfer = false;
+                addTransactionView.IsTransfer = true;
             }
 
             SetDefaultTransaction(transactionType);

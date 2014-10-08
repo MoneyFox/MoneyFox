@@ -100,7 +100,9 @@ namespace MoneyManager.DataAccess
         public void GetRelatedTransactions(int accountId)
         {
             RelatedTransactions = new ObservableCollection<FinancialTransaction>(
-                AllTransactions.Where(x => x.ChargedAccountId == accountId).ToList());
+                AllTransactions
+                .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
+                .ToList());
         }
 
         protected override void UpdateItem(FinancialTransaction transaction)
