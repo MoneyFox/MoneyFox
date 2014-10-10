@@ -14,7 +14,6 @@ namespace MoneyManager.DataAccess
     {
         public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
 
-
         public ObservableCollection<FinancialTransaction> RelatedTransactions { get; set; } 
 
         public FinancialTransaction SelectedTransaction { get; set; }
