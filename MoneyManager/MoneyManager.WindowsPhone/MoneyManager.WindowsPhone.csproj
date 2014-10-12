@@ -154,7 +154,7 @@
     <Content Include="Images\developerImage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\intakeTileIcon.png">
+    <Content Include="Images\incomeTileIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\light\close.png">

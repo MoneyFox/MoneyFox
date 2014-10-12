@@ -1,4 +1,5 @@
 ﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Input;
 using MoneyManager.Src;
 
 namespace MoneyManager.UserControls
@@ -10,7 +11,7 @@ namespace MoneyManager.UserControls
             InitializeComponent();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void CreateIntakeTile(object sender, TappedRoutedEventArgs e)
         {
             TileHelper.CreateSecondaryTile();
         }

@@ -12,8 +12,8 @@ namespace MoneyManager.Src
             var secondaryTile = new SecondaryTile(
                 IntakeTileId,
                 "Add Intake", 
-                "intake", 
-                new Uri("ms-appx:///Images/intakeTileIcon.png", UriKind.Absolute),
+                "intake",
+                new Uri("ms-appx:///Images/spendingTileIcon.png", UriKind.Absolute),
                 TileSize.Square150x150);
             await secondaryTile.RequestCreateAsync();
         }
