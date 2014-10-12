@@ -11,6 +11,7 @@
     DataContext="{Binding TransactionListUserControlView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
+        <converter:AmountConverter x:Key="AmountConverter" />
         <converter:CultureConverter x:Key="FormatConverter" />
         <converter:TransactionAmountConverter x:Key="TransactionAmountConverter"/>
         <DataTemplate x:Key="TransactionTemplate">
@@ -33,7 +34,7 @@
                                    Text="{Binding Type, Converter={StaticResource TransactionAmountConverter}}" 
                                    Margin="0,0,3,0" />
                         <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
-                                   Text="{Binding Amount}" />
+                                   Text="{Binding Amount, Converter={StaticResource AmountConverter}}" />
                         <TextBlock  Style="{StaticResource MenuItemMediumSmallText}" 
                                     Text="{Binding Currency}" Margin="5,0,0,0"/>
                     </StackPanel>
