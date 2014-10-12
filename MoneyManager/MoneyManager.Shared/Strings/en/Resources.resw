@@ -346,4 +346,13 @@
   <data name="TransferTitle" xml:space="preserve">
     <value>transfer</value>
   </data>
+  <data name="AddSpendingLabel.Label" xml:space="preserve">
+    <value>add spending</value>
+  </data>
+  <data name="AddTransactionLabel.Label" xml:space="preserve">
+    <value>add transaction</value>
+  </data>
+  <data name="AddTransferLabel.Label" xml:space="preserve">
+    <value>add transfer</value>
+  </data>
 </root>

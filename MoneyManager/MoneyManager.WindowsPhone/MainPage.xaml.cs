@@ -39,37 +39,37 @@ namespace MoneyManager
                 Currency = "CHF"
             };
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
-            Frame.Navigate(typeof(AddAccount));
+            Frame.Navigate(typeof (AddAccount));
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SettingsOverview));
+            Frame.Navigate(typeof (SettingsOverview));
         }
 
         private void RecurringTransactions_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(RecurringTransactionList));
-        }
-
-        private void AddSpendingClick(object sender, RoutedEventArgs e)
-        {
-            TransactionHelper.GoToAddTransaction(TransactionType.Spending);
-        }
-
-        private void AddIncomeClick(object sender, RoutedEventArgs e)
-        {
-            TransactionHelper.GoToAddTransaction(TransactionType.Income);
-        }
-
-        private void AddTransferClick(object sender, RoutedEventArgs e)
-        {
-            TransactionHelper.GoToAddTransaction(TransactionType.Transfer);
+            Frame.Navigate(typeof (RecurringTransactionList));
         }
 
         private void GoToAbout(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(About));
+            Frame.Navigate(typeof (About));
+        }
+
+        private void AddIncome(object sender, RoutedEventArgs e)
+        {
+            TransactionHelper.GoToAddTransaction(TransactionType.Income);
+        }
+
+        private void AddSpending(object sender, RoutedEventArgs e)
+        {
+            TransactionHelper.GoToAddTransaction(TransactionType.Spending);
+        }
+
+        private void AddTransfer(object sender, RoutedEventArgs e)
+        {
+            TransactionHelper.GoToAddTransaction(TransactionType.Transfer);
         }
 
         #region NavigationHelper registration

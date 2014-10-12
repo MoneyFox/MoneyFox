@@ -13,7 +13,7 @@ namespace MoneyManager.Src
                 IntakeTileId,
                 "Add Intake", 
                 "intake", 
-                new Uri("ms-appx:///Assets/Logo.scale-240.png", UriKind.Absolute),
+                new Uri("ms-appx:///Images/intakeTileIcon.png", UriKind.Absolute),
                 TileSize.Square150x150);
             await secondaryTile.RequestCreateAsync();
         }

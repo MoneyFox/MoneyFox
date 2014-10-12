@@ -8,17 +8,12 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.Resources>
-        <MenuFlyout x:Key="AddTransactionFlyOut">
-            <MenuFlyoutItem x:Uid="Spending" Text="spending" Click="AddSpendingClick" />
-            <MenuFlyoutItem x:Uid="Income" Text="income" Click="AddIncomeClick" />
-            <MenuFlyoutItem x:Uid="Transfer" Text="transfer" Click="AddTransferClick" />
-        </MenuFlyout>
-    </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Add" x:Uid="Save" Label="add transaction" Flyout="{StaticResource AddTransactionFlyOut}" />
+                <AppBarButton Icon="add" x:Uid="AddIncomeLabel" Label="add income" Click="AddIncome"/>
+                <AppBarButton Icon="remove" x:Uid="AddSpendingLabel" Label="add spending" Click="AddSpending"/>
+                <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Icon="Remote" Click="AddTransfer"/>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccount_Click" />
