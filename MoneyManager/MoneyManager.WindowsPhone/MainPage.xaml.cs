@@ -32,7 +32,7 @@ namespace MoneyManager
             set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
         }
 
-        private void AddAccount_Click(object sender, RoutedEventArgs e)
+        private void AddAccountClick(object sender, RoutedEventArgs e)
         {
             SelectedAccount = new Account
             {
@@ -42,12 +42,12 @@ namespace MoneyManager
             Frame.Navigate(typeof (AddAccount));
         }
 
-        private void Settings_Click(object sender, RoutedEventArgs e)
+        private void SettingsClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof (SettingsOverview));
         }
 
-        private void RecurringTransactions_Click(object sender, RoutedEventArgs e)
+        private void RecurringTransactionsClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof (RecurringTransactionList));
         }
@@ -57,17 +57,17 @@ namespace MoneyManager
             Frame.Navigate(typeof (About));
         }
 
-        private void AddIncome(object sender, RoutedEventArgs e)
+        private void AddIncomeClick(object sender, RoutedEventArgs e)
         {
             TransactionHelper.GoToAddTransaction(TransactionType.Income);
         }
 
-        private void AddSpending(object sender, RoutedEventArgs e)
+        private void AddSpendingClick(object sender, RoutedEventArgs e)
         {
             TransactionHelper.GoToAddTransaction(TransactionType.Spending);
         }
 
-        private void AddTransfer(object sender, RoutedEventArgs e)
+        private void AddTransferClick(object sender, RoutedEventArgs e)
         {
             TransactionHelper.GoToAddTransaction(TransactionType.Transfer);
         }

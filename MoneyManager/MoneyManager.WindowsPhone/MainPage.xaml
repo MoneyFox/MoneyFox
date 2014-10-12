@@ -11,14 +11,14 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="add" x:Uid="AddIncomeLabel" Label="add income" Click="AddIncome"/>
-                <AppBarButton Icon="remove" x:Uid="AddSpendingLabel" Label="add spending" Click="AddSpending"/>
-                <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Icon="Remote" Click="AddTransfer"/>
+                <AppBarButton Icon="add" x:Uid="AddIncomeClickLabel" Label="add income" Click="AddIncomeClick"/>
+                <AppBarButton Icon="remove" x:Uid="AddSpendingClickLabel" Label="add spending" Click="AddSpendingClick"/>
+                <AppBarButton x:Uid="AddTransferClickLabel" Label="add transfer" Icon="Remote" Click="AddTransferClick"/>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccount_Click" />
-                <AppBarButton  x:Uid="RecurringListLabel" Label="recurring transactions" Click="RecurringTransactions_Click" />
-                <AppBarButton  x:Uid="SettingsOverview" Label="settings" Click="Settings_Click" />
+                <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccountClick" />
+                <AppBarButton  x:Uid="RecurringListLabel" Label="recurring transactions" Click="RecurringTransactionsClick" />
+                <AppBarButton  x:Uid="SettingsOverview" Label="settings" Click="SettingsClick" />
                 <AppBarButton x:Uid="AboutLabel" Label="about" Click="GoToAbout" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
