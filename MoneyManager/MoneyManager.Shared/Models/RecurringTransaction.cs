@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using SQLite;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MoneyManager.Models
 {

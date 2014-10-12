@@ -1,10 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using PropertyChanged;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MoneyManager.ViewModels
 {
@@ -27,7 +27,7 @@ namespace MoneyManager.ViewModels
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category; }
             set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value; }
-        } 
+        }
 
         public void Search(string keyword)
         {

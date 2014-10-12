@@ -1,8 +1,8 @@
-using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.ViewModels;
+using System.Linq;
 
 namespace MoneyManager.WindowsPhone.Test.ViewModels
 {

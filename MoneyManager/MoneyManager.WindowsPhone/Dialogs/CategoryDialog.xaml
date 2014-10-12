@@ -13,7 +13,7 @@
     DataContext="{Binding CategoryDataAccess, Source={StaticResource Locator}}">
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <TextBox Header="name" x:Uid="Name" 
-                 Text="{Binding SelectedCategory.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Header="name" x:Uid="Name"
+                 Text="{Binding SelectedCategory.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
 </ContentDialog>

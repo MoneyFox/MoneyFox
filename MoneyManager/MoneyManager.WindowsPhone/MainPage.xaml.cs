@@ -1,12 +1,12 @@
-﻿using Windows.UI.Xaml;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Common;
-using Windows.UI.Xaml.Navigation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
 using MoneyManager.ViewModels;
 using MoneyManager.Views;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Navigation;
 
 namespace MoneyManager
 {
@@ -39,22 +39,22 @@ namespace MoneyManager
                 Currency = "CHF"
             };
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
-            Frame.Navigate(typeof (AddAccount));
+            Frame.Navigate(typeof(AddAccount));
         }
 
         private void SettingsClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof (SettingsOverview));
+            Frame.Navigate(typeof(SettingsOverview));
         }
 
         private void RecurringTransactionsClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof (RecurringTransactionList));
+            Frame.Navigate(typeof(RecurringTransactionList));
         }
 
         private void GoToAbout(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof (About));
+            Frame.Navigate(typeof(About));
         }
 
         private void AddIncomeClick(object sender, RoutedEventArgs e)
@@ -84,6 +84,6 @@ namespace MoneyManager
             navigationHelper.OnNavigatedFrom(e);
         }
 
-        #endregion
+        #endregion NavigationHelper registration
     }
 }

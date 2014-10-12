@@ -18,7 +18,7 @@ namespace MoneyManager.ViewModels
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
             set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
         }
-        
+
         public void Save()
         {
             if (IsEdit)

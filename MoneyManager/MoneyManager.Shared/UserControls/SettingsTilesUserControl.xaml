@@ -7,12 +7,12 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    
+
     <StackPanel>
-        <StackPanel Orientation="Horizontal" Tapped="CreateIntakeTile" >
-            <Image Source="/Images/spendingTileIcon.png" 
-                   Width="50" Height="50"/>
-            <TextBlock Text="create tile" VerticalAlignment="Center" 
+        <StackPanel Orientation="Horizontal" Tapped="CreateIntakeTile">
+            <Image Source="/Images/spendingTileIcon.png"
+                   Width="50" Height="50" />
+            <TextBlock Text="create tile" VerticalAlignment="Center"
                        Style="{StaticResource ItemHeaderText}"
                        Margin="40,0,0,0" />
         </StackPanel>

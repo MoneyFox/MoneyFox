@@ -1,11 +1,11 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Dialogs;
 using MoneyManager.Models;
+using System;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Input;
 
 namespace MoneyManager.UserControls
 {
@@ -15,7 +15,7 @@ namespace MoneyManager.UserControls
         {
             InitializeComponent();
         }
-        
+
         private void CategoryListHolding(object sender, HoldingRoutedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;

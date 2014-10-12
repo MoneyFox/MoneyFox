@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MoneyManager.Src;
+using System;
 using Windows.UI.Xaml.Data;
-using MoneyManager.Src;
 
 namespace MoneyManager.Converter
 {
@@ -8,7 +8,7 @@ namespace MoneyManager.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (int) value == (int) TransactionType.Spending
+            return (int)value == (int)TransactionType.Spending
                 ? "-"
                 : "+";
         }

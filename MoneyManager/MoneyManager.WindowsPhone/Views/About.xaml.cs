@@ -1,10 +1,9 @@
-﻿using Windows.ApplicationModel.Email;
-using Microsoft.VisualBasic.CompilerServices;
-using MoneyManager.Common;
+﻿using MoneyManager.Common;
+using MoneyManager.Src;
 using System;
+using Windows.ApplicationModel.Email;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using MoneyManager.Src;
 
 namespace MoneyManager.Views
 {
@@ -28,7 +27,7 @@ namespace MoneyManager.Views
                 Address = Utilities.GetTranslation("SupportMail")
             };
 
-            var mail = new EmailMessage {Subject = Utilities.GetTranslation("Feedback") };
+            var mail = new EmailMessage { Subject = Utilities.GetTranslation("Feedback") };
             mail.To.Add(sendTo);
             await EmailManager.ShowComposeNewEmailAsync(mail);
         }
@@ -67,6 +66,6 @@ namespace MoneyManager.Views
             navigationHelper.OnNavigatedFrom(e);
         }
 
-        #endregion
+        #endregion NavigationHelper registration
     }
 }

@@ -11,7 +11,7 @@ namespace MoneyManager.Src
 
         public static string GetViewTitleForType(int type)
         {
-            return GetViewTitleForType((TransactionType) type);
+            return GetViewTitleForType((TransactionType)type);
         }
 
         public static string GetViewTitleForType(TransactionType type)

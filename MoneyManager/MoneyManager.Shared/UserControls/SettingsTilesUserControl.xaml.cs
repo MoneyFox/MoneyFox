@@ -1,5 +1,5 @@
-﻿using Windows.UI.Xaml.Input;
-using MoneyManager.Src;
+﻿using MoneyManager.Src;
+using Windows.UI.Xaml.Input;
 
 namespace MoneyManager.UserControls
 {

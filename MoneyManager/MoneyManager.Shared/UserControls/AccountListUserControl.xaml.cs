@@ -57,7 +57,7 @@ namespace MoneyManager.UserControls
                 var accountId = (AccountList.SelectedItem as Account).Id;
                 ServiceLocator.Current.GetInstance<TransactionDataAccess>().GetRelatedTransactions(accountId);
 
-                ((Frame) Window.Current.Content).Navigate(typeof (TransactionList));
+                ((Frame)Window.Current.Content).Navigate(typeof(TransactionList));
                 AccountList.SelectedItem = null;
             }
         }

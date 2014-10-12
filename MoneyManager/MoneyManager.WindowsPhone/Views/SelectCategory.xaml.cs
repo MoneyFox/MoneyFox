@@ -1,12 +1,12 @@
-﻿using System;
-using Windows.UI.Xaml;
-using MoneyManager.Common;
-using Windows.UI.Xaml.Navigation;
+﻿using MoneyManager.Common;
 using MoneyManager.Dialogs;
+using System;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Navigation;
 
 namespace MoneyManager.Views
 {
-    public sealed partial class SelectCategory 
+    public sealed partial class SelectCategory
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -45,6 +45,6 @@ namespace MoneyManager.Views
             navigationHelper.OnNavigatedFrom(e);
         }
 
-        #endregion
+        #endregion NavigationHelper registration
     }
 }

@@ -123,7 +123,10 @@ namespace MoneyManager.Src
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public sealed class NotifyPropertyChangedInvocatorAttribute : Attribute
     {
-        public NotifyPropertyChangedInvocatorAttribute() { }
+        public NotifyPropertyChangedInvocatorAttribute()
+        {
+        }
+
         public NotifyPropertyChangedInvocatorAttribute(string parameterName)
         {
             ParameterName = parameterName;
@@ -187,6 +190,7 @@ namespace MoneyManager.Src
         }
 
         public string Contract { get; private set; }
+
         public bool ForceFullStates { get; private set; }
     }
 
@@ -202,7 +206,11 @@ namespace MoneyManager.Src
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
     public sealed class LocalizationRequiredAttribute : Attribute
     {
-        public LocalizationRequiredAttribute() : this(true) { }
+        public LocalizationRequiredAttribute()
+            : this(true)
+        {
+        }
+
         public LocalizationRequiredAttribute(bool required)
         {
             Required = required;
@@ -283,6 +291,7 @@ namespace MoneyManager.Src
         }
 
         public ImplicitUseKindFlags UseKindFlags { get; private set; }
+
         public ImplicitUseTargetFlags TargetFlags { get; private set; }
     }
 
@@ -312,6 +321,7 @@ namespace MoneyManager.Src
 
         [UsedImplicitly]
         public ImplicitUseKindFlags UseKindFlags { get; private set; }
+
         [UsedImplicitly]
         public ImplicitUseTargetFlags TargetFlags { get; private set; }
     }
@@ -320,15 +330,19 @@ namespace MoneyManager.Src
     public enum ImplicitUseKindFlags
     {
         Default = Access | Assign | InstantiatedWithFixedConstructorSignature,
+
         /// <summary>Only entity marked with attribute considered used</summary>
         Access = 1,
+
         /// <summary>Indicates implicit assignment to a member</summary>
         Assign = 2,
+
         /// <summary>
         /// Indicates implicit instantiation of a type with fixed constructor signature.
         /// That means any unused constructor parameters won't be reported as such.
         /// </summary>
         InstantiatedWithFixedConstructorSignature = 4,
+
         /// <summary>Indicates implicit instantiation of a type</summary>
         InstantiatedNoFixedConstructorSignature = 8,
     }
@@ -343,8 +357,10 @@ namespace MoneyManager.Src
     {
         Default = Itself,
         Itself = 1,
+
         /// <summary>Members of entity marked with attribute are considered used</summary>
         Members = 2,
+
         /// <summary>Entity marked with attribute and all its members considered used</summary>
         WithMembers = Itself | Members
     }
@@ -356,7 +372,10 @@ namespace MoneyManager.Src
     [MeansImplicitUse]
     public sealed class PublicAPIAttribute : Attribute
     {
-        public PublicAPIAttribute() { }
+        public PublicAPIAttribute()
+        {
+        }
+
         public PublicAPIAttribute([NotNull] string comment)
         {
             Comment = comment;
@@ -398,7 +417,10 @@ namespace MoneyManager.Src
     [AttributeUsage(AttributeTargets.Parameter)]
     public class PathReferenceAttribute : Attribute
     {
-        public PathReferenceAttribute() { }
+        public PathReferenceAttribute()
+        {
+        }
+
         public PathReferenceAttribute([PathReference] string basePath)
         {
             BasePath = basePath;
@@ -413,37 +435,49 @@ namespace MoneyManager.Src
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     public sealed class AspMvcAreaMasterLocationFormatAttribute : Attribute
     {
-        public AspMvcAreaMasterLocationFormatAttribute(string format) { }
+        public AspMvcAreaMasterLocationFormatAttribute(string format)
+        {
+        }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     public sealed class AspMvcAreaPartialViewLocationFormatAttribute : Attribute
     {
-        public AspMvcAreaPartialViewLocationFormatAttribute(string format) { }
+        public AspMvcAreaPartialViewLocationFormatAttribute(string format)
+        {
+        }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     public sealed class AspMvcAreaViewLocationFormatAttribute : Attribute
     {
-        public AspMvcAreaViewLocationFormatAttribute(string format) { }
+        public AspMvcAreaViewLocationFormatAttribute(string format)
+        {
+        }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     public sealed class AspMvcMasterLocationFormatAttribute : Attribute
     {
-        public AspMvcMasterLocationFormatAttribute(string format) { }
+        public AspMvcMasterLocationFormatAttribute(string format)
+        {
+        }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     public sealed class AspMvcPartialViewLocationFormatAttribute : Attribute
     {
-        public AspMvcPartialViewLocationFormatAttribute(string format) { }
+        public AspMvcPartialViewLocationFormatAttribute(string format)
+        {
+        }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     public sealed class AspMvcViewLocationFormatAttribute : Attribute
     {
-        public AspMvcViewLocationFormatAttribute(string format) { }
+        public AspMvcViewLocationFormatAttribute(string format)
+        {
+        }
     }
 
     /// <summary>
@@ -455,7 +489,10 @@ namespace MoneyManager.Src
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method)]
     public sealed class AspMvcActionAttribute : Attribute
     {
-        public AspMvcActionAttribute() { }
+        public AspMvcActionAttribute()
+        {
+        }
+
         public AspMvcActionAttribute([NotNull] string anonymousProperty)
         {
             AnonymousProperty = anonymousProperty;
@@ -473,7 +510,10 @@ namespace MoneyManager.Src
     [AttributeUsage(AttributeTargets.Parameter)]
     public sealed class AspMvcAreaAttribute : PathReferenceAttribute
     {
-        public AspMvcAreaAttribute() { }
+        public AspMvcAreaAttribute()
+        {
+        }
+
         public AspMvcAreaAttribute([NotNull] string anonymousProperty)
         {
             AnonymousProperty = anonymousProperty;
@@ -493,7 +533,10 @@ namespace MoneyManager.Src
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method)]
     public sealed class AspMvcControllerAttribute : Attribute
     {
-        public AspMvcControllerAttribute() { }
+        public AspMvcControllerAttribute()
+        {
+        }
+
         public AspMvcControllerAttribute([NotNull] string anonymousProperty)
         {
             AnonymousProperty = anonymousProperty;
@@ -588,7 +631,10 @@ namespace MoneyManager.Src
       AttributeTargets.Field, Inherited = true)]
     public sealed class HtmlElementAttributesAttribute : Attribute
     {
-        public HtmlElementAttributesAttribute() { }
+        public HtmlElementAttributesAttribute()
+        {
+        }
+
         public HtmlElementAttributesAttribute([NotNull] string name)
         {
             Name = name;

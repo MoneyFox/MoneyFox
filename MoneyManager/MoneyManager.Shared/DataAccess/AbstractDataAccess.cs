@@ -1,12 +1,11 @@
-﻿using Windows.UI.Xaml.Documents;
-using BugSense;
+﻿using BugSense;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.OperationContracts;
 using MoneyManager.Src;
+using MoneyManager.ViewModels;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using MoneyManager.ViewModels;
 
 namespace MoneyManager.DataAccess
 {

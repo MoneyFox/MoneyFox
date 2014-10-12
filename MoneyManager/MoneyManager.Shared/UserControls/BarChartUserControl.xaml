@@ -17,7 +17,7 @@
             <chart:RadCartesianChart.HorizontalAxis>
                 <chart:CategoricalAxis />
             </chart:RadCartesianChart.HorizontalAxis>
-            <chart:BarSeries LegendTitleBinding="{Binding Category}" 
+            <chart:BarSeries LegendTitleBinding="{Binding Category}"
                              ItemsSource="{Binding MonthlyOverview}" PaletteMode="DataPoint">
                 <chart:BarSeries.CategoryBinding>
                     <chart:PropertyNameDataPointBinding PropertyName="Category" />

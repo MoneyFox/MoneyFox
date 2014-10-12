@@ -1,12 +1,12 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.ViewModels;
 using MoneyManager.Views;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Input;
 
 namespace MoneyManager.UserControls
 {
@@ -20,8 +20,8 @@ namespace MoneyManager.UserControls
         public TransactionDataAccess TransactionData
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-        }        
-        
+        }
+
         public AddTransactionViewModel AddTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }

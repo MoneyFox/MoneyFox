@@ -17,7 +17,7 @@
 
     <Page.BottomAppBar>
         <CommandBar IsSticky="True" ClosedDisplayMode="Minimal">
-            <AppBarButton Icon="Add" Label="Add" x:Uid="AddLabel" Flyout="{StaticResource AddTransactionFlyOut}"/>
+            <AppBarButton Icon="Add" Label="Add" x:Uid="AddLabel" Flyout="{StaticResource AddTransactionFlyOut}" />
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -39,7 +39,7 @@
             <TextBlock x:Uid="OverviewList" Text="overview" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
         </StackPanel>
 
-        <Grid Grid.Row="1" Margin="19,9.5,19,0" >
+        <Grid Grid.Row="1" Margin="19,9.5,19,0">
             <userControls:TransactionListUserControl />
         </Grid>
     </Grid>

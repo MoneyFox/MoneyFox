@@ -1,7 +1,7 @@
-﻿using Windows.UI.Xaml.Controls;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyManager.Dialogs
 {

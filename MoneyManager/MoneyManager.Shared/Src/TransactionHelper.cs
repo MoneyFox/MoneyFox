@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.ViewModels;
 using MoneyManager.Views;
+using System.Linq;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyManager.Src
 {
@@ -45,7 +45,7 @@ namespace MoneyManager.Src
         {
             SelectedTransaction = new FinancialTransaction
             {
-                Type = (int) transactionType,
+                Type = (int)transactionType,
                 Currency = "CHF"
             };
         }
@@ -57,6 +57,5 @@ namespace MoneyManager.Src
                 SelectedTransaction.ChargedAccount = AccountData.AllAccounts.First();
             }
         }
-
     }
 }

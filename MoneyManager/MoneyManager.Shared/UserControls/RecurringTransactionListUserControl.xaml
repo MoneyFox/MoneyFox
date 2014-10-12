@@ -12,28 +12,28 @@
 
     <UserControl.Resources>
         <converter:RecurrenceConverter x:Key="RecurrenceConverter" />
-        <converter:TransactionAmountConverter x:Key="TransactionAmountConverter"/>
+        <converter:TransactionAmountConverter x:Key="TransactionAmountConverter" />
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
                         MinWidth="100" Background="{ThemeResource PhoneChromeBrush}"
                         Holding="OpenContextMenu">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="DeleteTransaction"/>
+                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="DeleteTransaction" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding ChargedAccount.Name}" Margin="12,0,0,0" />
                 <Grid HorizontalAlignment="Stretch" Margin="0,0,10,10">
-                    <TextBlock Style="{StaticResource MenuItemMediumSmallText}" 
-                                   Text="{Binding Recurrence,Converter={StaticResource RecurrenceConverter}}" 
+                    <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
+                                   Text="{Binding Recurrence,Converter={StaticResource RecurrenceConverter}}"
                                    Margin="12,0,0,0" />
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <TextBlock Style="{StaticResource MenuItemMediumSmallText}" 
+                        <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
                                    Text="{Binding Type, Converter={StaticResource TransactionAmountConverter}}" Margin="0,0,3,0" />
                         <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Amount}" />
-                        <TextBlock  Style="{StaticResource MenuItemMediumSmallText}" 
-                                    Text="{Binding Currency}" Margin="5,0,0,0"/>
+                        <TextBlock  Style="{StaticResource MenuItemMediumSmallText}"
+                                    Text="{Binding Currency}" Margin="5,0,0,0" />
                     </StackPanel>
                 </Grid>
             </StackPanel>
@@ -41,14 +41,14 @@
     </UserControl.Resources>
 
     <StackPanel>
-            <ListView ItemsSource="{Binding AllRecurringTransactions, Mode=TwoWay}"
+        <ListView ItemsSource="{Binding AllRecurringTransactions, Mode=TwoWay}"
                       ItemTemplate="{StaticResource TransactionTemplate}"
                       HorizontalAlignment="Stretch" x:Name="RecurringTransactionListView">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
     </StackPanel>
 </UserControl>

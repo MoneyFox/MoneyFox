@@ -1,12 +1,11 @@
-﻿using System;
-using System.Globalization;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Views;
+using System;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace MoneyManager.UserControls
 {
@@ -23,7 +22,7 @@ namespace MoneyManager.UserControls
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
         }
-        
+
         private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
         {
             if (TextBoxAmount.Text == "0")

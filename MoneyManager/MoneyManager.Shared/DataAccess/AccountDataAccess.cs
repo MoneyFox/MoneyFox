@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Models;
 using MoneyManager.Src;
 using MoneyManager.ViewModels;
 using PropertyChanged;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -68,7 +68,7 @@ namespace MoneyManager.DataAccess
             PrehandleRemoveIfTransfer(transaction);
 
             Func<double, double> amountFunc = (x) =>
-                transaction.Type == (int) TransactionType.Income
+                transaction.Type == (int)TransactionType.Income
                     ? -x
                     : x;
 
@@ -80,7 +80,7 @@ namespace MoneyManager.DataAccess
             PrehandleAddIfTransfer(transaction);
 
             Func<double, double> amountFunc = (x) =>
-                transaction.Type == (int) TransactionType.Income
+                transaction.Type == (int)TransactionType.Income
                     ? x
                     : -x;
 
@@ -89,7 +89,7 @@ namespace MoneyManager.DataAccess
 
         private void PrehandleAddIfTransfer(FinancialTransaction transaction)
         {
-            if (transaction.Type == (int) TransactionType.Transfer)
+            if (transaction.Type == (int)TransactionType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
                 HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
@@ -123,11 +123,11 @@ namespace MoneyManager.DataAccess
         {
             if (transaction.ClearTransactionNow)
             {
-                var account = getAccountFunc(transaction); 
+                var account = getAccountFunc(transaction);
                 if (account == null) return;
 
                 var amount = amountFunc(transaction.Amount);
-                
+
                 account.CurrentBalance += amount;
                 transaction.Cleared = true;
                 UpdateItem(account);

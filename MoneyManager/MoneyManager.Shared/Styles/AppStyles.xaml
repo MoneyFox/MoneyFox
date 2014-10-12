@@ -78,7 +78,7 @@
         <Setter Property="TextAlignment" Value="left" />
         <Setter Property="VerticalAlignment" Value="Top" />
     </Style>
-    
+
     <Style x:Key="MenuItemSubText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
         <Setter Property="FontSize" Value="24" />
         <Setter Property="Foreground" Value="Gray" />

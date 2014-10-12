@@ -1,8 +1,8 @@
 ﻿using MoneyManager.Common;
+using MoneyManager.Dialogs;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-using MoneyManager.Dialogs;
 
 namespace MoneyManager.Views
 {

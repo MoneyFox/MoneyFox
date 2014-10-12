@@ -11,9 +11,9 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="add" x:Uid="AddIncomeClickLabel" Label="add income" Click="AddIncomeClick"/>
-                <AppBarButton Icon="remove" x:Uid="AddSpendingClickLabel" Label="add spending" Click="AddSpendingClick"/>
-                <AppBarButton x:Uid="AddTransferClickLabel" Label="add transfer" Icon="Remote" Click="AddTransferClick"/>
+                <AppBarButton Icon="add" x:Uid="AddIncomeClickLabel" Label="add income" Click="AddIncomeClick" />
+                <AppBarButton Icon="remove" x:Uid="AddSpendingClickLabel" Label="add spending" Click="AddSpendingClick" />
+                <AppBarButton x:Uid="AddTransferClickLabel" Label="add transfer" Icon="Remote" Click="AddTransferClick" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccountClick" />

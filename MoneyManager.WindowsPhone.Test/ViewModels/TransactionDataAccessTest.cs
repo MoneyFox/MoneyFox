@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
 using MoneyManager.ViewModels;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MoneyManager.WindowsPhone.Test.ViewModels
 {

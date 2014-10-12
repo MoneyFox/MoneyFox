@@ -37,6 +37,6 @@ namespace MoneyManager.Views
             this.navigationHelper.OnNavigatedFrom(e);
         }
 
-        #endregion
+        #endregion NavigationHelper registration
     }
 }

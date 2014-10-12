@@ -10,9 +10,9 @@
 
     <Page.Transitions>
         <TransitionCollection>
-            <NavigationThemeTransition >
+            <NavigationThemeTransition>
                 <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <SlideNavigationTransitionInfo/>
+                    <SlideNavigationTransitionInfo />
                 </NavigationThemeTransition.DefaultNavigationTransitionInfo>
             </NavigationThemeTransition>
         </TransitionCollection>
@@ -20,21 +20,21 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Add" 
+            <AppBarButton Icon="Add"
                           Label="add" x:Uid="AddLabel"
-                          Click="AddCategory"/>
+                          Click="AddCategory" />
         </CommandBar>
     </Page.BottomAppBar>
 
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="select category" x:Uid="SelectCategory" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="select category" x:Uid="SelectCategory" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0" />
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">

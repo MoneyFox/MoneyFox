@@ -25,7 +25,7 @@
                 <Grid HorizontalAlignment="Stretch">
                     <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <TextBlock Style="{StaticResource MenuItemText}" 
+                        <TextBlock Style="{StaticResource MenuItemText}"
                                Text="{Binding CurrentBalance, Converter={StaticResource AmountConverter}}"
                                HorizontalAlignment="Right" TextAlignment="Right" TextTrimming="None" />
                         <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Currency}"

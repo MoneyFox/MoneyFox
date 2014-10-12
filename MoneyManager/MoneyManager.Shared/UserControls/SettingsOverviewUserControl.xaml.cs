@@ -1,7 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using MoneyManager.Views;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using MoneyManager.Views;
 
 namespace MoneyManager.UserControls
 {
