@@ -44,12 +44,12 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <StackPanel>
+    <Grid>
         <qKit:GenericJumpList>
             <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
                       ItemTemplate="{StaticResource TransactionTemplate}"
                       HorizontalAlignment="Stretch" Name="TransactionListView"
-                      SelectionChanged="EditTransactionOnSelection">
+                      SelectionChanged="EditTransactionOnSelection" ShowsScrollingPlaceholders="True">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -57,5 +57,5 @@
                 </ListView.ItemContainerStyle>
             </ListView>
         </qKit:GenericJumpList>
-    </StackPanel>
+    </Grid>
 </UserControl>
