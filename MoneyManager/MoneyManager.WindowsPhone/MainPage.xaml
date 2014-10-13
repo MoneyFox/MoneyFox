@@ -38,7 +38,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <Pivot Title="MoneyTracker">
+            <Pivot Title="MoneyTracker" x:Uid="ApplicationNameTitle">
                 <PivotItem x:Uid="AccountsMenu" Header="overview">
                     <Grid>
                         <userControls:AccountListUserControl />

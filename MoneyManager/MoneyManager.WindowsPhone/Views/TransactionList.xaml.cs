@@ -28,5 +28,10 @@ namespace MoneyManager.Views
         {
             TransactionHelper.GoToAddTransaction(TransactionType.Income);
         }
+
+        private void AddTransferClick(object sender, RoutedEventArgs e)
+        {
+            TransactionHelper.GoToAddTransaction(TransactionType.Transfer);
+        }
     }
 }

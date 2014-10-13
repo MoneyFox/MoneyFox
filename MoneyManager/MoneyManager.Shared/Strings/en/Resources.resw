@@ -141,11 +141,8 @@
   <data name="AddCategoryDialog.Title" xml:space="preserve">
     <value>ADD CATEGORY</value>
   </data>
-  <data name="ApplicationName.Header" xml:space="preserve">
-    <value>MoneyTracker</value>
-  </data>
   <data name="ApplicationNameText.Text" xml:space="preserve">
-    <value>MoneyTracker</value>
+    <value>Money Fox</value>
   </data>
   <data name="Cancel.Label" xml:space="preserve">
     <value>cancel</value>
@@ -302,7 +299,7 @@
     <value>developer:</value>
   </data>
   <data name="Feedback" xml:space="preserve">
-    <value>Feedback Money Manager</value>
+    <value>Feedback Money Fox</value>
   </data>
   <data name="Info.Text" xml:space="preserve">
     <value>info</value>
@@ -384,5 +381,8 @@
   </data>
   <data name="RemoveTransferTile.Content" xml:space="preserve">
     <value>remove transfer tile</value>
+  </data>
+  <data name="ApplicationNameTitle.Title" xml:space="preserve">
+    <value>Money Fox</value>
   </data>
 </root>
