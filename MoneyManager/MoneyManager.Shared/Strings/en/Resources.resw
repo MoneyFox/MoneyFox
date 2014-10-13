@@ -367,4 +367,22 @@
   <data name="TileUnpinnedTitle" xml:space="preserve">
     <value>unpinned</value>
   </data>
+  <data name="AddIncomeTile.Content" xml:space="preserve">
+    <value>create income tile</value>
+  </data>
+  <data name="AddSpendingTile.Content" xml:space="preserve">
+    <value>create spending tile</value>
+  </data>
+  <data name="AddTransferTile.Content" xml:space="preserve">
+    <value>create transfer tile</value>
+  </data>
+  <data name="RemoveIncomeTile.Content" xml:space="preserve">
+    <value>remove income tile</value>
+  </data>
+  <data name="RemoveSpendingTile.Content" xml:space="preserve">
+    <value>remove spending tile</value>
+  </data>
+  <data name="RemoveTransferTile.Content" xml:space="preserve">
+    <value>remove transfer tile</value>
+  </data>
 </root>

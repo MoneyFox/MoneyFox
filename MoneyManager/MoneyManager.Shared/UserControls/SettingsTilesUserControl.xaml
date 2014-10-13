@@ -16,32 +16,52 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
             <Grid Background="{StaticResource PhoneAccentBrush}">
                 <Image Source="/Images/incomeTileIcon.png"
                        Width="50" Height="50" />
             </Grid>
-            <Button Content="create tile" VerticalAlignment="Center"
-                       Margin="40,0,0,0" Click="CreateIncomeTile"
-                       Visibility="{Binding Visibility, ElementName=ButtonRemoveIncomeTile, Converter={StaticResource RevertVisibilityConverter}}"/>
-            <Button Content="remove tile" VerticalAlignment="Center"
-                       Click="RemoveIncomeTile" x:Name="ButtonRemoveIncomeTile"
-                       Visibility="{Binding IncomeTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}"
-                       Margin="40,0,0,0" />
+            <Button Content="create income tile" VerticalAlignment="Center"
+                    x:Uid="AddIncomeTile"
+                    Margin="40,0,0,0" Click="CreateIncomeTile"
+                    Visibility="{Binding Visibility, ElementName=ButtonRemoveIncomeTile, Converter={StaticResource RevertVisibilityConverter}}" Width="200" />
+            <Button Content="remove income tile" x:Uid="RemoveIncomeTile"
+                    VerticalAlignment="Center"
+                    Click="RemoveIncomeTile" x:Name="ButtonRemoveIncomeTile"
+                    Visibility="{Binding IncomeTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Margin="40,0,0,0" Width="200" />
         </StackPanel>
-        
-        <StackPanel Orientation="Horizontal">
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
             <Grid Background="{StaticResource PhoneAccentBrush}">
                 <Image Source="/Images/spendingTileIcon.png"
                        Width="50" Height="50" />
             </Grid>
-            <Button Content="create tile" VerticalAlignment="Center"
-                       Margin="40,0,0,0" Click="CreateSpendingTile"
-                       Visibility="{Binding Visibility, ElementName=ButtonRemoveSpendingTile, Converter={StaticResource RevertVisibilityConverter}}"/>
-            <Button Content="remove tile" VerticalAlignment="Center"
-                       Click="RemoveSpendingTile" x:Name="ButtonRemoveSpendingTile"
-                       Visibility="{Binding SpendingTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}"
-                       Margin="40,0,0,0" />
+            <Button Content="create spending tile" x:Uid="AddSpendingTile"
+                    VerticalAlignment="Center"
+                    Margin="40,0,0,0" Click="CreateSpendingTile"
+                    Visibility="{Binding Visibility, ElementName=ButtonRemoveSpendingTile, Converter={StaticResource RevertVisibilityConverter}}" Width="200" />
+            <Button Content="remove spending tile" x:Uid="RemoveSpendingTile"
+                    VerticalAlignment="Center"
+                    Click="RemoveSpendingTile" x:Name="ButtonRemoveSpendingTile"
+                    Visibility="{Binding SpendingTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Margin="40,0,0,0" Width="200" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Grid Background="{StaticResource PhoneAccentBrush}">
+                <Image Source="/Images/transferTileIcon.png"
+                       Width="50" Height="50" />
+            </Grid>
+            <Button Content="create transfer tile" x:Uid="AddTransferTile"
+                    VerticalAlignment="Center"
+                    Margin="40,0,0,0" Click="CreateTransferTile"
+                    Visibility="{Binding Visibility, ElementName=ButtonRemoveTransferTile, Converter={StaticResource RevertVisibilityConverter}}" Width="200" />
+            <Button Content="remove transfer tile" x:Uid="RemoveTransferTile"
+                    VerticalAlignment="Center"
+                    Click="RemoveTransferTile" x:Name="ButtonRemoveTransferTile"
+                    Visibility="{Binding SpendingTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Margin="40,0,0,0" Width="200" />
         </StackPanel>
     </StackPanel>
 </UserControl>

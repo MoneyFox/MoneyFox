@@ -19,6 +19,19 @@ namespace MoneyManager.UserControls
             get { return ServiceLocator.Current.GetInstance<TileSettingsUserControlViewModel>(); }
         }
 
+        private void CreateIncomeTile(object sender, RoutedEventArgs e)
+        {
+            TileSettingsUserControlView.IncomeTile.Create();
+            ButtonRemoveIncomeTile.Visibility = Visibility.Visible;
+        }
+
+        private void RemoveIncomeTile(object sender, RoutedEventArgs e)
+        {
+            TileSettingsUserControlView.IncomeTile.Remove();
+            ButtonRemoveIncomeTile.Visibility = Visibility.Collapsed;
+            ShowUnpinnNotification();
+        }
+
         private void CreateSpendingTile(object sender, RoutedEventArgs routedEventArgs)
         {
             TileSettingsUserControlView.SpendingTile.Create();
@@ -32,6 +45,19 @@ namespace MoneyManager.UserControls
             ShowUnpinnNotification();
         }
 
+        private void RemoveTransferTile(object sender, RoutedEventArgs e)
+        {
+            TileSettingsUserControlView.TransferTile.Create();
+            ButtonRemoveTransferTile.Visibility = Visibility.Visible;
+        }
+
+        private void CreateTransferTile(object sender, RoutedEventArgs e)
+        {
+            TileSettingsUserControlView.TransferTile.Remove();
+            ButtonRemoveTransferTile.Visibility = Visibility.Collapsed;
+            ShowUnpinnNotification();
+        }
+
         private async void ShowUnpinnNotification()
         {
             var dialog = new MessageDialog(Utilities.GetTranslation("TileUnpinnedText"),
@@ -40,16 +66,6 @@ namespace MoneyManager.UserControls
             dialog.DefaultCommandIndex = 1;
 
             await dialog.ShowAsync();
-        }
-
-        private void CreateIncomeTile(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void RemoveIncomeTile(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }
