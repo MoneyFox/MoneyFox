@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\CultureConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\RecurrenceConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\RevertVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\ThemedImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionAmountConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AbstractDataAccess.cs" />
@@ -37,7 +38,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\RecurringTransaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Setting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\StatisticItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Tiles\IncomeTile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Tiles\SpendingTile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Tiles\Tile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Tiles\TransferTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OperationContracts\IDataAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OperationContracts\ISecondTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Annotations.cs" />
@@ -86,6 +92,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddTransactionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectCategoryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TileSettingsUserControlViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TotalBalanceViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TransactionListUserControlViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLocator.cs" />

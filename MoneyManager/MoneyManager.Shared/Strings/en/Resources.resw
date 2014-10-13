@@ -141,9 +141,6 @@
   <data name="AddCategoryDialog.Title" xml:space="preserve">
     <value>ADD CATEGORY</value>
   </data>
-  <data name="AddTransaction.Label" xml:space="preserve">
-    <value>add transaction</value>
-  </data>
   <data name="ApplicationName.Header" xml:space="preserve">
     <value>MoneyTracker</value>
   </data>
@@ -349,10 +346,25 @@
   <data name="AddSpendingLabel.Label" xml:space="preserve">
     <value>add spending</value>
   </data>
-  <data name="AddTransactionLabel.Label" xml:space="preserve">
-    <value>add transaction</value>
-  </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
     <value>add transfer</value>
+  </data>
+  <data name="AddIncomeTileText" xml:space="preserve">
+    <value>add income</value>
+  </data>
+  <data name="AddSpendingTileText" xml:space="preserve">
+    <value>add spending</value>
+  </data>
+  <data name="AddTransferTileText" xml:space="preserve">
+    <value>add transfer</value>
+  </data>
+  <data name="OkLabel" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="TileUnpinnedText" xml:space="preserve">
+    <value>tile was successful unpinned.</value>
+  </data>
+  <data name="TileUnpinnedTitle" xml:space="preserve">
+    <value>unpinned</value>
   </data>
 </root>

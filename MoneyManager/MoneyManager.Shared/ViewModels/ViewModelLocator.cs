@@ -23,6 +23,7 @@ namespace MoneyManager.ViewModels
             SimpleIoc.Default.Register<TotalBalanceViewModel>();
             SimpleIoc.Default.Register<SelectCategoryViewModel>();
             SimpleIoc.Default.Register<TransactionListUserControlViewModel>();
+            SimpleIoc.Default.Register<TileSettingsUserControlViewModel>();
         }
 
         #region DataAccess
@@ -89,6 +90,11 @@ namespace MoneyManager.ViewModels
         public TransactionListUserControlViewModel TransactionListUserControlView
         {
             get { return ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>(); }
+        }
+
+        public TileSettingsUserControlViewModel TileSettingsUserControlView
+        {
+            get { return ServiceLocator.Current.GetInstance<TileSettingsUserControlViewModel>(); }
         }
 
         #endregion Views
