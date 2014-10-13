@@ -7,26 +7,26 @@ namespace MoneyManager.Models.Tiles
 {
     public class IncomeTile : Tile, ISecondTile
     {
-        public const string IncomeTileId = "AddIntakeTile";
+        public const string Id = "AddIncomeTile";
 
         public bool Exists
         {
-            get { return Exists(IncomeTileId); }
+            get { return Exists(Id); }
         }
         
         public async void Create()
         {
             await Create(new SecondaryTile(
-                IncomeTileId,
-                Utilities.GetTranslation("AddIncomeLabel"),
+                Id,
+                Utilities.GetTranslation("AddIncomeTileText"),
                 "intake",
                 new Uri("ms-appx:///Images/incomeTileIcon.png", UriKind.Absolute),
                 TileSize.Default));
         }
 
-        public void Remove()
+        public async void Remove()
         {
-            throw new NotImplementedException();
+            await Remove(new SecondaryTile(Id));
         }
     }
 }

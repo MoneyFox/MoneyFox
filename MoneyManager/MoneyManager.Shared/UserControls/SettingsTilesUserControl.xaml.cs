@@ -1,9 +1,9 @@
-﻿using System;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Src;
 using MoneyManager.ViewModels;
+using System;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 
 namespace MoneyManager.UserControls
 {
@@ -45,13 +45,13 @@ namespace MoneyManager.UserControls
             ShowUnpinnNotification();
         }
 
-        private void RemoveTransferTile(object sender, RoutedEventArgs e)
+        private void CreateTransferTile(object sender, RoutedEventArgs e)
         {
             TileSettingsUserControlView.TransferTile.Create();
             ButtonRemoveTransferTile.Visibility = Visibility.Visible;
         }
 
-        private void CreateTransferTile(object sender, RoutedEventArgs e)
+        private void RemoveTransferTile(object sender, RoutedEventArgs e)
         {
             TileSettingsUserControlView.TransferTile.Remove();
             ButtonRemoveTransferTile.Visibility = Visibility.Collapsed;

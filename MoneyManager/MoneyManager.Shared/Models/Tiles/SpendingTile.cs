@@ -1,5 +1,4 @@
 ﻿using System;
-using Windows.Foundation;
 using Windows.UI.StartScreen;
 using MoneyManager.OperationContracts;
 using MoneyManager.Src;
@@ -8,17 +7,17 @@ namespace MoneyManager.Models.Tiles
 {
     public class SpendingTile : Tile, ISecondTile
     {
-        public const string SpendingTileId = "AddSpendingTile";
+        public const string Id = "AddSpendingTile";
 
         public bool Exists
         {
-            get { return Exists(SpendingTileId); }
+            get { return Exists(Id); }
         }
 
         public async void Create()
         {
             await Create(new SecondaryTile(
-                SpendingTileId,
+                Id,
                 Utilities.GetTranslation("AddSpendingTileText"),
                 "intake",
                 new Uri("ms-appx:///Images/spendingTileIcon.png", UriKind.Absolute),
@@ -27,7 +26,7 @@ namespace MoneyManager.Models.Tiles
 
         public async void Remove()
         {
-            await Remove(new SecondaryTile(SpendingTileId));
+            await Remove(new SecondaryTile(Id));
         }
     }
 }

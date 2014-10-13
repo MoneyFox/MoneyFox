@@ -7,26 +7,26 @@ namespace MoneyManager.Models.Tiles
 {
     public class TransferTile : Tile, ISecondTile
     {
-        public const string TransferTileId = "AddTransferTile";
+        public const string Id = "AddTransferTile";
 
         public bool Exists
         {
-            get { return Exists(TransferTileId); }
+            get { return Exists(Id); }
         }
 
         public async void Create()
         {
             await Create(new SecondaryTile(
-                TransferTileId,
-                Utilities.GetTranslation("AddTransferLabel"),
+                Id,
+                Utilities.GetTranslation("AddTransferTileText"),
                 "intake",
                 new Uri("ms-appx:///Images/transferTileIcon.png", UriKind.Absolute),
                 TileSize.Default));
         }
 
-        public void Remove()
+        public async void Remove()
         {
-            throw new NotImplementedException();
+            await Remove(new SecondaryTile(Id));
         }
     }
 }

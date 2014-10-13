@@ -7,15 +7,15 @@ namespace MoneyManager.Src
     {
         public static void DoNavigation(string tileId)
         {
-            if (tileId == IncomeTile.IncomeTileId)
+            if (tileId == IncomeTile.Id)
             {
                 TransactionHelper.GoToAddTransaction(TransactionType.Income);
             }
-            else if (tileId == SpendingTile.SpendingTileId)
+            else if (tileId == SpendingTile.Id)
             {
                 TransactionHelper.GoToAddTransaction(TransactionType.Spending);
             }
-            else if(tileId == TransferTile.TransferTileId)
+            else if(tileId == TransferTile.Id)
             {
                 TransactionHelper.GoToAddTransaction(TransactionType.Transfer);
             }
