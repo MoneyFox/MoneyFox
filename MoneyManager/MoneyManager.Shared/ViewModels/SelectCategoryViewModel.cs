@@ -29,10 +29,22 @@ namespace MoneyManager.ViewModels
             set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value; }
         }
 
-        public void Search(string keyword)
+        private string searchText;
+
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                searchText = value;
+                Search();
+            }
+        }
+
+        public void Search()
         {
             Categories = new ObservableCollection<Category>
-                (allCategories.Where(x => x.Name.ToLower().Contains(keyword.ToLower())).ToList());
+                (allCategories.Where(x => x.Name.ToLower().Contains(searchText.ToLower())).ToList());
         }
     }
 }

@@ -385,4 +385,10 @@
   <data name="ApplicationNameTitle.Title" xml:space="preserve">
     <value>Money Fox</value>
   </data>
+  <data name="NameRequiredMessage" xml:space="preserve">
+    <value>Field for name must not be empty.</value>
+  </data>
+  <data name="NameRequiredTitle" xml:space="preserve">
+    <value>name required</value>
+  </data>
 </root>

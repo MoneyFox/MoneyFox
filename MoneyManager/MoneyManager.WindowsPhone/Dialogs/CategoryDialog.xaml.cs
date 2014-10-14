@@ -1,7 +1,11 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using System;
+using Windows.UI.Popups;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using Windows.UI.Xaml.Controls;
+using MoneyManager.Src;
+using MoneyManager.ViewModels;
 
 namespace MoneyManager.Dialogs
 {
@@ -25,8 +29,18 @@ namespace MoneyManager.Dialogs
 
         public bool IsEdit { get; set; }
 
-        private void DoneOnClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private async void DoneOnClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            if (CategoryData.SelectedCategory.Name == String.Empty)
+            {
+                var dialog = new MessageDialog(Utilities.GetTranslation("NameRequiredMessage"),
+                    Utilities.GetTranslation("NameRequiredTitle"));
+                dialog.Commands.Add(new UICommand(Utilities.GetTranslation("OkLabel")));
+                dialog.DefaultCommandIndex = 1;
+
+                await dialog.ShowAsync();
+            }
+
             if (IsEdit)
             {
                 CategoryData.Update(CategoryData.SelectedCategory);
@@ -35,6 +49,8 @@ namespace MoneyManager.Dialogs
             {
                 CategoryData.Save(CategoryData.SelectedCategory);
             }
+
+            ServiceLocator.Current.GetInstance<SelectCategoryViewModel>().SearchText = String.Empty;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace MoneyManager.UserControls
 
         private void SearchCategories(object sender, TextChangedEventArgs textChangedEventArgs)
         {
-            ServiceLocator.Current.GetInstance<SelectCategoryViewModel>().Search(TextBoxSearchfield.Text);
+            //ServiceLocator.Current.GetInstance<SelectCategoryViewModel>().sea(TextBoxSearchfield.Text);
         }
     }
 }

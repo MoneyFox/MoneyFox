@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
+using MoneyManager.ViewModels;
 using MoneyManager.Views;
 using System;
 using Windows.UI.Xaml;
@@ -15,7 +16,10 @@ namespace MoneyManager.UserControls
         {
             InitializeComponent();
 
-            SelectedTransaction.Date = DateTime.Now;
+            if (!ServiceLocator.Current.GetInstance<AddTransactionViewModel>().IsEdit)
+            {
+                SelectedTransaction.Date = DateTime.Now;
+            }
         }
 
         public FinancialTransaction SelectedTransaction
