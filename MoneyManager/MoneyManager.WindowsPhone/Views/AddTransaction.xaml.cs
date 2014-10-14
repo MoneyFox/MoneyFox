@@ -1,6 +1,9 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using System;
+using Windows.UI.Popups;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Common;
 using MoneyManager.DataAccess;
+using MoneyManager.Src;
 using MoneyManager.ViewModels;
 using Windows.UI.Xaml;
 
@@ -34,12 +37,30 @@ namespace MoneyManager.Views
 
         private void DoneClick(object sender, RoutedEventArgs e)
         {
-            ServiceLocator.Current.GetInstance<AddTransactionViewModel>().Save();
+            if (AddTransactionView.SelectedTransaction.ChargedAccount == null)
+            {
+                ShowAccountRequiredMessage();
+                return;
+            } 
+
+            AddTransactionView.Save();
+        }
+
+        private async void ShowAccountRequiredMessage()
+        {
+            var dialog = new MessageDialog
+                (
+                Utilities.GetTranslation("AccountRequiredMessage"),
+                Utilities.GetTranslation("AccountRequiredTitle")
+                );
+            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("OkLabel")));
+            dialog.DefaultCommandIndex = 1;
+            await dialog.ShowAsync();
         }
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            ServiceLocator.Current.GetInstance<AddTransactionViewModel>().Cancel();
+            AddTransactionView.Cancel();
         }
     }
 }

@@ -391,6 +391,12 @@
   <data name="NameRequiredTitle" xml:space="preserve">
     <value>name required</value>
   </data>
+  <data name="AccountRequiredMessage" xml:space="preserve">
+    <value>Charged account is required. Please check your input.</value>
+  </data>
+  <data name="AccountRequiredTitle" xml:space="preserve">
+    <value>account required</value>
+  </data>
   <data name="NoNamePlaceholderLabel" xml:space="preserve">
     <value>[no name]</value>
   </data>
