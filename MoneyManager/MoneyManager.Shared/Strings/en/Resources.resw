@@ -391,4 +391,7 @@
   <data name="NameRequiredTitle" xml:space="preserve">
     <value>name required</value>
   </data>
+  <data name="NoNamePlaceholderLabel" xml:space="preserve">
+    <value>[no name]</value>
+  </data>
 </root>
