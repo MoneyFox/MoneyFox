@@ -11,7 +11,7 @@ namespace MoneyManager.Converter
             try
             {
                 var date = (DateTime)value;
-                return new DateTimeOffset(date).ToString("d", CultureInfo.CurrentCulture);
+                return new DateTimeOffset(date).ToString("d", CultureInfo.InvariantCulture);
             }
             catch (Exception)
             {
@@ -24,7 +24,7 @@ namespace MoneyManager.Converter
             try
             {
                 var dto = (DateTimeOffset)value;
-                return dto.DateTime.ToString("d", CultureInfo.CurrentCulture);
+                return dto.DateTime.ToString("d", CultureInfo.InvariantCulture);
             }
             catch (Exception)
             {
