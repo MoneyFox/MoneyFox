@@ -191,6 +191,7 @@
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>38045npadrutt.FavoritePlaces</MainPackageIdentityName>
+    <MainPackageIdentityName>38045npadrutt.MoneyFox</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.MoneyManager</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.MyMedi</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.MyMediBeta</MainPackageIdentityName>
@@ -202,7 +203,7 @@
     <PackageInfo>
       <OsMinVersion>6.3.0.0</OsMinVersion>
       <PackageArchitecture>arm</PackageArchitecture>
-      <PackageMaxArchitectureVersion>0.2.9.0</PackageMaxArchitectureVersion>
+      <PackageMaxArchitectureVersion>0.2.10.0</PackageMaxArchitectureVersion>
     </PackageInfo>
   </PackageInfoList>
 </StoreAssociation>
