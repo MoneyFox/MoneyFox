@@ -82,7 +82,7 @@ namespace MoneyManager.Src
                 Note = recurringTransaction.Note,
             };
 
-            TransactionData.Save(newTransaction);
+            TransactionData.SaveToDb(newTransaction, true);
         }
     }
 }

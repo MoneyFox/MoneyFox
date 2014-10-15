@@ -34,6 +34,10 @@ namespace MoneyManager.Src
             {
                 addTransactionView.IsTransfer = true;
             }
+            else
+            {
+                addTransactionView.IsTransfer = false;
+            }
 
             SetDefaultTransaction(transactionType);
             SetDefaultAccount();

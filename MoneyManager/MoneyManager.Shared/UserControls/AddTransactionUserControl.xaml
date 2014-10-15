@@ -49,7 +49,7 @@
                            Margin="0,36,0,0"
                            Tapped="ResetCategory" VerticalAlignment="Top" HorizontalAlignment="Right" />
             </Grid>
-            <DatePicker Date="{Binding SelectedTransaction.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}"
+            <DatePicker Date="{Binding SelectedTransaction.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Margin="0,12,0,0" Header="date"
                         x:Uid="DateHeader" />
             <TextBox Header="Note"

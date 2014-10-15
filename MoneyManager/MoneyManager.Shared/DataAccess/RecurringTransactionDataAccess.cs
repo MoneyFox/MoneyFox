@@ -40,6 +40,7 @@ namespace MoneyManager.DataAccess
             }
 
             SaveToDb(recurringTransaction);
+            transaction.ReccuringTransactionId = recurringTransaction.Id;
         }
 
         protected override void SaveToDb(RecurringTransaction itemToAdd)

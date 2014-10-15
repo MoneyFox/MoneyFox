@@ -35,6 +35,11 @@ namespace MoneyManager.DataAccess
 
         protected override void SaveToDb(FinancialTransaction transaction)
         {
+            SaveToDb(transaction, false);
+        }
+
+        public void SaveToDb(FinancialTransaction transaction, bool skipRecurring )
+        {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
                 if (AllTransactions == null)
@@ -43,7 +48,7 @@ namespace MoneyManager.DataAccess
                 }
 
                 AccountDataAccess.AddTransactionAmount(transaction);
-                if (transaction.IsRecurring)
+                if (!skipRecurring && transaction.IsRecurring)
                 {
                     RecurringTransactionData.Save(transaction);
                 }

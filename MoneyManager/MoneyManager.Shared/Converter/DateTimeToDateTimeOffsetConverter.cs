@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using Windows.UI.Xaml.Data;
 
 namespace MoneyManager.Converter
@@ -11,7 +10,7 @@ namespace MoneyManager.Converter
             try
             {
                 var date = (DateTime)value;
-                return new DateTimeOffset(date).ToString("d", CultureInfo.InvariantCulture);
+                return new DateTimeOffset(date);
             }
             catch (Exception)
             {
@@ -24,7 +23,7 @@ namespace MoneyManager.Converter
             try
             {
                 var dto = (DateTimeOffset)value;
-                return dto.DateTime.ToString("d", CultureInfo.InvariantCulture);
+                return dto.DateTime;
             }
             catch (Exception)
             {
