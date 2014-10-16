@@ -68,6 +68,9 @@ namespace MoneyManager.DataAccess
             {
                 AccountDataAccess.RemoveTransactionAmount(transaction);
 
+                CheckForRecurringTransaction(transaction,
+                    () => RecurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));
+
                 AllTransactions.Remove(transaction);
                 RelatedTransactions.Remove(transaction);
                 dbConn.Delete(transaction);
@@ -121,7 +124,7 @@ namespace MoneyManager.DataAccess
                 AccountDataAccess.AddTransactionAmount(transaction);
                 dbConn.Update(transaction);
 
-                CheckForRecurringTransaction(transaction);
+                CheckForRecurringTransaction(transaction, () => RecurringTransactionData.Update(transaction));
             }
         }
 
@@ -133,7 +136,7 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        private async void CheckForRecurringTransaction(FinancialTransaction transaction)
+        private async void CheckForRecurringTransaction(FinancialTransaction transaction, Action recurringTransactionAction)
         {
             if (!transaction.IsRecurring) return;
 
@@ -141,14 +144,16 @@ namespace MoneyManager.DataAccess
                 new MessageDialog(Utilities.GetTranslation("ChangeSubsequentTransactionsMessage"),
                     Utilities.GetTranslation("ChangeSubsequentTransactionsTitle"));
 
-            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("SubsequentLabel")));
-            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("JustThis")));
+            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("RecurringLabel")));
+            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("JustThisLabel")));
+
+            dialog.DefaultCommandIndex = 1;
 
             var result = await dialog.ShowAsync();
 
-            if (result.Label == Utilities.GetTranslation("SubsequentLabel"))
+            if (result.Label == Utilities.GetTranslation("RecurringLabel"))
             {
-                RecurringTransactionData.Update(transaction);
+                recurringTransactionAction();
             }
         }
 

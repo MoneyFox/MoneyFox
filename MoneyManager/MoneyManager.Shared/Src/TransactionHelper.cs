@@ -60,5 +60,14 @@ namespace MoneyManager.Src
                 SelectedTransaction.ChargedAccount = AccountData.AllAccounts.First();
             }
         }
+
+        public static void GoToEdit(FinancialTransaction transaction)
+        {
+            addTransactionView.IsEdit = true;
+            addTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
+            addTransactionView.SelectedTransaction = transaction;
+
+            ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
+        }
     }
 }

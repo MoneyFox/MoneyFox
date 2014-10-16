@@ -25,7 +25,7 @@ namespace MoneyManager.Src
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        public async void CheckForRecurringTransactions()
+        public void CheckForRecurringTransactions()
         {
             try
             {
@@ -59,7 +59,8 @@ namespace MoneyManager.Src
             switch (recTrans.Recurrence)
             {
                 case (int)TransactionRecurrence.Weekly:
-                    return (relTransaction.Date - DateTime.Now).Days >= 7;
+                    var days = DateTime.Now - relTransaction.Date; 
+                    return days.Days >= 7;
 
                 case (int)TransactionRecurrence.Monthly:
                     return relTransaction.Date.Month != DateTime.Now.Month;

@@ -56,7 +56,7 @@ namespace MoneyManager.DataAccess
         private async Task<bool> IsDeletionConfirmed()
         {
             var dialog = new MessageDialog(Utilities.GetTranslation("DeleteEntryQuestionMessage"),
-                Utilities.GetTranslation("DeleteQuestionMessage"));
+                Utilities.GetTranslation("DeleteQuestionTitle"));
             dialog.Commands.Add(new UICommand(Utilities.GetTranslation("YesLabel")));
             dialog.Commands.Add(new UICommand(Utilities.GetTranslation("NoLabel")));
             dialog.DefaultCommandIndex = 1;

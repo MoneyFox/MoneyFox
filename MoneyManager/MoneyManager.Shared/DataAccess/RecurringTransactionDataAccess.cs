@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using BugSense.Core.Model;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Models;
 using MoneyManager.Src;
 using MoneyManager.ViewModels;
@@ -16,6 +17,10 @@ namespace MoneyManager.DataAccess
         private AddTransactionViewModel addTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+        }
+        private TransactionDataAccess transactionData
+        {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
         public void Save(FinancialTransaction transaction)
@@ -74,10 +79,24 @@ namespace MoneyManager.DataAccess
                     AllRecurringTransactions.Remove(itemToDelete);
                 }
 
+                RemoveRecurringForTransactions(itemToDelete);
+
                 dbConn.Delete(itemToDelete);
             }
         }
-        
+
+        private void RemoveRecurringForTransactions(RecurringTransaction recTrans)
+        {
+            var relatedTrans = transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
+
+            foreach (var transaction in relatedTrans)
+            {
+                transaction.IsRecurring = false;
+                transaction.ReccuringTransactionId = null;
+                transactionData.Update(transaction);
+            }
+        }
+
         public void Delete(int reccuringTransactionId)
         {
             var recTrans = AllRecurringTransactions.FirstOrDefault(x => x.Id == reccuringTransactionId);

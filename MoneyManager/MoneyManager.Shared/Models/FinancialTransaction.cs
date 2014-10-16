@@ -26,6 +26,11 @@ namespace MoneyManager.Models
         private IEnumerable<Category> allCategories
         {
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
+        }  
+        
+        private IEnumerable<RecurringTransaction> allRecurringTransactions
+        {
+            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>().AllRecurringTransactions; }
         }
 
         [PrimaryKey, AutoIncrement]
@@ -80,6 +85,14 @@ namespace MoneyManager.Models
                     : value.Id;
             }
         }
+        
+        [Ignore]
+        public RecurringTransaction RecurringTransaction
+        {
+            get { return allRecurringTransactions.FirstOrDefault(x => x.Id == ReccuringTransactionId); }
+            set { ReccuringTransactionId = value.Id; }
+        }
+
 
         [Ignore]
         public bool ClearTransactionNow

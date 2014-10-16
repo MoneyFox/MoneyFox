@@ -171,9 +171,6 @@
   <data name="DeleteQuestionTitle" xml:space="preserve">
     <value>delete?</value>
   </data>
-  <data name="DeleteTransactionQuestionMessage" xml:space="preserve">
-    <value>Do you really wanna delete this transaction?</value>
-  </data>
   <data name="Done.Label" xml:space="preserve">
     <value>done</value>
   </data>
@@ -404,9 +401,9 @@
     <value>change subsequent?</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>just this</value>
+    <value>this</value>
   </data>
-  <data name="SubsequentLabel" xml:space="preserve">
-    <value>subsequent</value>
+  <data name="RecurringLabel" xml:space="preserve">
+    <value>recurring</value>
   </data>
 </root>

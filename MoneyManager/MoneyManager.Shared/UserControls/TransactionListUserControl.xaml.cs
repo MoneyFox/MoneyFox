@@ -1,8 +1,8 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
+using MoneyManager.Src;
 using MoneyManager.ViewModels;
-using MoneyManager.Views;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -33,10 +33,7 @@ namespace MoneyManager.UserControls
             var transaction = element.DataContext as FinancialTransaction;
             if (transaction == null) return;
 
-            AddTransactionView.IsEdit = true;
-            AddTransactionView.SelectedTransaction = transaction;
-
-            ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
+            TransactionHelper.GoToEdit(transaction);
         }
 
         private void DeleteTransaction(object sender, RoutedEventArgs e)

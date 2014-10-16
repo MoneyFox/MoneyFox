@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
 using MoneyManager.Src;
@@ -14,8 +13,6 @@ namespace MoneyManager.ViewModels
     [ImplementPropertyChanged]
     public class AddTransactionViewModel
     {
-        public bool IsEdit { get; set; }
-
         public FinancialTransaction SelectedTransaction
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
@@ -49,6 +46,8 @@ namespace MoneyManager.ViewModels
         public DateTime EndDate { get; set; }
 
         public bool IsEndless { get; set; }
+
+        public bool IsEdit { get; set; }
 
         public int Recurrence { get; set; }
 
