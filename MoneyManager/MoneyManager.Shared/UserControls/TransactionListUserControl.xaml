@@ -56,7 +56,7 @@
         <qKit:GenericJumpList>
             <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
                       ItemTemplate="{StaticResource TransactionTemplate}"
-                      HorizontalAlignment="Stretch" Name="TransactionListView"
+                      HorizontalAlignment="Stretch" 
                       SelectionChanged="EditTransactionOnSelection" ShowsScrollingPlaceholders="True">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">

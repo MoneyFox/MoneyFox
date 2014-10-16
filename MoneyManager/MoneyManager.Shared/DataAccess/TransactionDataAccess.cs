@@ -1,13 +1,13 @@
-﻿using System.Reflection;
-using Windows.UI.Popups;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Models;
 using MoneyManager.Src;
+using MoneyManager.ViewModels;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.UI.Popups;
 
 namespace MoneyManager.DataAccess
 {
@@ -15,8 +15,6 @@ namespace MoneyManager.DataAccess
     public class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
     {
         public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
-
-        public ObservableCollection<FinancialTransaction> RelatedTransactions { get; set; }
 
         public FinancialTransaction SelectedTransaction { get; set; }
 
@@ -30,6 +28,11 @@ namespace MoneyManager.DataAccess
             get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
         }
 
+        private static TransactionListUserControlViewModel TransactionListUserControlView
+        {
+            get { return ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>(); }
+        }
+
         public TransactionDataAccess()
         {
             LoadList();
@@ -40,7 +43,7 @@ namespace MoneyManager.DataAccess
             SaveToDb(transaction, false);
         }
 
-        public void SaveToDb(FinancialTransaction transaction, bool skipRecurring )
+        public void SaveToDb(FinancialTransaction transaction, bool skipRecurring)
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
@@ -69,7 +72,7 @@ namespace MoneyManager.DataAccess
                 AccountDataAccess.RemoveTransactionAmount(transaction);
 
                 AllTransactions.Remove(transaction);
-                RelatedTransactions.Remove(transaction);
+                TransactionListUserControlView.SetRelatedTransactions(transaction.ChargedAccountId);
                 dbConn.Delete(transaction);
 
                 CheckForRecurringTransaction(transaction,
@@ -107,12 +110,11 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        public void GetRelatedTransactions(int accountId)
+        public IEnumerable<FinancialTransaction> GetRelatedTransactions(int accountId)
         {
-            RelatedTransactions = new ObservableCollection<FinancialTransaction>(
-                AllTransactions
+            return AllTransactions
                 .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
-                .ToList());
+                .ToList();
         }
 
         protected override void UpdateItem(FinancialTransaction transaction)
