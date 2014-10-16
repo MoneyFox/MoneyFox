@@ -27,7 +27,7 @@ namespace MoneyManager.DataAccess
                 EndDate = addTransactionView.EndDate,
                 IsEndless = addTransactionView.IsEndless,
                 Amount = transaction.Amount,
-                Currency = transaction.Currency,
+                Currency = transaction.CurrencyCulture,
                 CategoryId = transaction.CategoryId,
                 Type = transaction.Type,
                 Recurrence = addTransactionView.Recurrence,

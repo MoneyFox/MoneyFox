@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using System.Globalization;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Common;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
@@ -16,7 +17,7 @@ namespace MoneyManager
 
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             navigationHelper = new NavigationHelper(this);
         }
@@ -34,10 +35,7 @@ namespace MoneyManager
 
         private void AddAccountClick(object sender, RoutedEventArgs e)
         {
-            SelectedAccount = new Account
-            {
-                Currency = "CHF"
-            };
+            SelectedAccount = new Account();
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
             Frame.Navigate(typeof(AddAccount));
         }

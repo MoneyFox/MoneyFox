@@ -13,6 +13,7 @@
         <converter:AmountConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:CurrencyConverter x:Key="CurrencyConverter" />
         <DataTemplate x:Key="ComboBoxTemplate">
             <StackPanel Margin="0,0,0,12">
                 <TextBlock Text="{Binding Name}" FontSize="24" />
@@ -35,9 +36,9 @@
                 <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
                      Header="amount" InputScope="Number" x:Name="TextBoxAmount"
                      TextAlignment="Right" GotFocus="RemoveZeroOnFocus"
-                     LostFocus="AddZeroIfEmpty" Margin="0,0,40,0" />
-                <TextBlock Text="CHF" Style="{StaticResource MenuItemSubSmallText}"
-                       HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="3" />
+                     LostFocus="AddZeroIfEmpty" Margin="0,0,30,0" />
+                <TextBlock Text="{Binding SelectedTransaction.CurrencyCulture, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource MenuItemSubSmallText}"
+                       HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,7" />
             </Grid>
             <Grid>
                 <TextBox Header="category" x:Uid="CategoryHeader"

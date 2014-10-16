@@ -75,7 +75,7 @@ namespace MoneyManager.Src
                 Date = DateTime.Now,
                 IsRecurring = true,
                 Amount = recurringTransaction.Amount,
-                Currency = recurringTransaction.Currency,
+                CurrencyCulture = recurringTransaction.Currency,
                 CategoryId = recurringTransaction.CategoryId,
                 Type = recurringTransaction.Type,
                 ReccuringTransactionId = recurringTransaction.Id,

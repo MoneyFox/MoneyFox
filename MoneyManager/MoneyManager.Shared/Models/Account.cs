@@ -1,4 +1,5 @@
-﻿using PropertyChanged;
+﻿using System.Globalization;
+using PropertyChanged;
 using SQLite;
 
 namespace MoneyManager.Models
@@ -7,6 +8,11 @@ namespace MoneyManager.Models
     [ImplementPropertyChanged]
     public class Account
     {
+        public Account()
+        {
+            CurrencyCulture = CultureInfo.CurrentCulture.Name;
+        }
+
         [PrimaryKey, AutoIncrement, Indexed]
         public int Id { get; set; }
 
@@ -16,7 +22,7 @@ namespace MoneyManager.Models
 
         public double CurrentBalance { get; set; }
 
-        public string Currency { get; set; }
+        public string CurrencyCulture { get; set; }
 
         public string Note { get; set; }
 

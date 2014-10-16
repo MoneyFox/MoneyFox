@@ -12,6 +12,7 @@
 
     <UserControl.Resources>
         <converter:AmountConverter x:Key="AmountConverter" />
+        <converter:CurrencyConverter x:Key="CurrencyConverter" />
     </UserControl.Resources>
 
     <StackPanel Orientation="Horizontal">
@@ -19,7 +20,7 @@
                    Margin="0,0,5,10" />
         <TextBlock Text="{Binding TotalBalance, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
                    Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
-        <TextBlock Text="{Binding Settings.Currency}"
+        <TextBlock Text="{Binding CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
                        Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,10" />
     </StackPanel>
 </UserControl>

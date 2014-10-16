@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Globalization;
+using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.Models;
@@ -11,17 +12,17 @@ namespace MoneyManager.ViewModels
     [ImplementPropertyChanged]
     public class TotalBalanceViewModel : ViewModelBase
     {
-        public SettingDataAccess Settings
-        {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
-
         public ObservableCollection<Account> AllAccounts
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
         }
 
         public double TotalBalance { get; set; }
+
+        public string CurrencyCulture
+        {
+            get { return CultureInfo.CurrentCulture.TwoLetterISOLanguageName; }
+        }
 
         public void UpdateBalance()
         {

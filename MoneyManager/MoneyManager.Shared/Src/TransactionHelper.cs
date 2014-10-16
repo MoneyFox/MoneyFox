@@ -50,7 +50,6 @@ namespace MoneyManager.Src
             SelectedTransaction = new FinancialTransaction
             {
                 Type = (int)transactionType,
-                Currency = "CHF"
             };
         }
 
