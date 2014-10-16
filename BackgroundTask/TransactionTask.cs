@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Windows.ApplicationModel.Background;
+﻿using Windows.ApplicationModel.Background;
 
 namespace BackgroundTask
 {
@@ -7,13 +6,6 @@ namespace BackgroundTask
     {
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            if (IsTaskExisting()) return;
-
-        }
-
-        private bool IsTaskExisting()
-        {
-            return BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == name);
         }
     }
 }
