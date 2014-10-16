@@ -47,7 +47,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Annotations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\BackgroundTaskHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ConnectionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\CurrencyHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\DatabaseHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Enumerations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\RecurringTransactionHelper.cs" />

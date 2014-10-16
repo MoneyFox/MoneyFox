@@ -300,7 +300,12 @@
       <Name>SQLite for Windows Phone 8.1</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\BackgroundTask\BackgroundTask.csproj">
+      <Project>{745ec520-0f96-4f42-9b8b-7d6bf6995717}</Project>
+      <Name>BackgroundTask</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
