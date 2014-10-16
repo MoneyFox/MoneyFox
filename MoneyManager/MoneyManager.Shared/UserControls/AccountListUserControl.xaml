@@ -13,6 +13,7 @@
 
     <UserControl.Resources>
         <converter:AmountConverter x:Key="AmountConverter" />
+        <converter:CurrencyConverter x:Key="CurrencyConverter" />
         <DataTemplate x:Key="AccountTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
                         MinWidth="300" Holding="AccountList_Holding">
@@ -26,10 +27,11 @@
                     <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <TextBlock Style="{StaticResource MenuItemText}"
-                               Text="{Binding CurrentBalance, Converter={StaticResource AmountConverter}}"
-                               HorizontalAlignment="Right" TextAlignment="Right" TextTrimming="None" />
-                        <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Currency}"
-                               HorizontalAlignment="Right" TextAlignment="Right" Margin="10,0,0,0" TextTrimming="None" />
+                                   Text="{Binding CurrentBalance, Converter={StaticResource AmountConverter}}"
+                                   HorizontalAlignment="Right" TextAlignment="Right" TextTrimming="None" />
+                        <TextBlock Style="{StaticResource MenuItemText}"
+                                   Text="{Binding CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
+                                   HorizontalAlignment="Right" TextAlignment="Right" Margin="10,0,0,0" TextTrimming="None" />
                     </StackPanel>
                 </Grid>
                 <TextBlock Style="{StaticResource MenuItemSmallText}" Text="{Binding Iban}" />
@@ -42,7 +44,7 @@
         <ListView ItemsSource="{Binding AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
                   HorizontalAlignment="Stretch" x:Name="AccountList"
-                  SelectionChanged="NavigateToTransactionList" Margin="0,30,0,0" >
+                  SelectionChanged="NavigateToTransactionList" Margin="0,30,0,0">
 
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
