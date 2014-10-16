@@ -15,7 +15,7 @@ namespace MoneyManager.Models
     {
         public FinancialTransaction()
         {
-            CurrencyCulture = CultureInfo.CurrentCulture.Name;
+            CurrencyCulture = ServiceLocator.Current.GetInstance<SettingDataAccess>().CurrencyCulture;
         }
 
         private IEnumerable<Account> allAccounts

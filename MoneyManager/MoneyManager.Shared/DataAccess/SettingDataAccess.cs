@@ -10,8 +10,10 @@ namespace MoneyManager.DataAccess
     public class SettingDataAccess : INotifyPropertyChanged
     {
         private const string DbVersionKeyname = "DbVersion";
+        private const string CurrencyCultureKeyname = "CurrencyCulture";
 
         private const int DbVersionKeydefault = 1;
+        private const string CurrencyCulutreKeydefault = "";
 
         #region Properties
 
@@ -24,6 +26,19 @@ namespace MoneyManager.DataAccess
             set
             {
                 AddOrUpdateValue(DbVersionKeyname, value);
+                OnPropertyChanged();
+            }
+        }        
+        
+        public string CurrencyCulture
+        {
+            get
+            {
+                return GetValueOrDefault(CurrencyCultureKeyname, CurrencyCulutreKeydefault);
+            }
+            set
+            {
+                AddOrUpdateValue(CurrencyCultureKeyname, value);
                 OnPropertyChanged();
             }
         }

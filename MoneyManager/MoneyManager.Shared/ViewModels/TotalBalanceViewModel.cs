@@ -21,7 +21,10 @@ namespace MoneyManager.ViewModels
 
         public string CurrencyCulture
         {
-            get { return CultureInfo.CurrentCulture.TwoLetterISOLanguageName; }
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SettingDataAccess>().CurrencyCulture;
+            }
         }
 
         public void UpdateBalance()
