@@ -1,4 +1,6 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using System.Reflection;
+using Windows.UI.Popups;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Models;
 using MoneyManager.Src;
 using PropertyChanged;
@@ -114,8 +116,39 @@ namespace MoneyManager.DataAccess
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
+                CheckIfRecurringWasRemoved(transaction);
+
                 AccountDataAccess.AddTransactionAmount(transaction);
                 dbConn.Update(transaction);
+
+                CheckForRecurringTransaction(transaction);
+            }
+        }
+
+        private void CheckIfRecurringWasRemoved(FinancialTransaction transaction)
+        {
+            if (!transaction.IsRecurring && transaction.ReccuringTransactionId != null)
+            {
+                RecurringTransactionData.Delete(transaction.ReccuringTransactionId.Value);
+            }
+        }
+
+        private async void CheckForRecurringTransaction(FinancialTransaction transaction)
+        {
+            if (!transaction.IsRecurring) return;
+
+            var dialog =
+                new MessageDialog(Utilities.GetTranslation("ChangeSubsequentTransactionsMessage"),
+                    Utilities.GetTranslation("ChangeSubsequentTransactionsTitle"));
+
+            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("SubsequentLabel")));
+            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("JustThis")));
+
+            var result = await dialog.ShowAsync();
+
+            if (result.Label == Utilities.GetTranslation("SubsequentLabel"))
+            {
+                RecurringTransactionData.Update(transaction);
             }
         }
 

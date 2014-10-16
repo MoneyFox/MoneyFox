@@ -403,4 +403,16 @@
   <data name="LanguageLabel.Text" xml:space="preserve">
     <value>language</value>
   </data>
+  <data name="ChangeSubsequentTransactionsMessage" xml:space="preserve">
+    <value>You've made changes to a recurring transaction. Do you want apply this changes for all subsequent transactions or only for this one?</value>
+  </data>
+  <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
+    <value>change subsequent?</value>
+  </data>
+  <data name="JustThisLabel" xml:space="preserve">
+    <value>just this</value>
+  </data>
+  <data name="SubsequentLabel" xml:space="preserve">
+    <value>subsequent</value>
+  </data>
 </root>

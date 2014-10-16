@@ -51,7 +51,7 @@ namespace MoneyManager.Models
 
         public bool IsRecurring { get; set; }
 
-        public int ReccuringTransactionId { get; set; }
+        public int? ReccuringTransactionId { get; set; }
 
         [Ignore]
         public Account ChargedAccount

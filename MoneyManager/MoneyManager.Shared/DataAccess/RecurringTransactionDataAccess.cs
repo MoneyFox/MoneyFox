@@ -20,7 +20,20 @@ namespace MoneyManager.DataAccess
 
         public void Save(FinancialTransaction transaction)
         {
-            var recurringTransaction = new RecurringTransaction
+            var recurringTransaction = GetRecurringFromFinancialTransaction(transaction);
+
+            if (AllRecurringTransactions != null)
+            {
+                AllRecurringTransactions.Add(recurringTransaction);
+            }
+
+            SaveToDb(recurringTransaction);
+            transaction.ReccuringTransactionId = recurringTransaction.Id;
+        }
+
+        private RecurringTransaction GetRecurringFromFinancialTransaction(FinancialTransaction transaction)
+        {
+            return new RecurringTransaction
             {
                 ChargedAccountId = transaction.ChargedAccountId,
                 StartDate = transaction.Date,
@@ -33,14 +46,6 @@ namespace MoneyManager.DataAccess
                 Recurrence = addTransactionView.Recurrence,
                 Note = transaction.Note,
             };
-
-            if (AllRecurringTransactions != null)
-            {
-                AllRecurringTransactions.Add(recurringTransaction);
-            }
-
-            SaveToDb(recurringTransaction);
-            transaction.ReccuringTransactionId = recurringTransaction.Id;
         }
 
         protected override void SaveToDb(RecurringTransaction itemToAdd)
@@ -72,6 +77,15 @@ namespace MoneyManager.DataAccess
                 dbConn.Delete(itemToDelete);
             }
         }
+        
+        public void Delete(int reccuringTransactionId)
+        {
+            var recTrans = AllRecurringTransactions.FirstOrDefault(x => x.Id == reccuringTransactionId);
+            if (recTrans != null)
+            {
+                Delete(recTrans, true);
+            }
+        }
 
         protected override void GetListFromDb()
         {
@@ -88,6 +102,13 @@ namespace MoneyManager.DataAccess
             {
                 dbConn.Update(itemToUpdate);
             }
+        }
+
+        public void Update(FinancialTransaction transaction)
+        {
+            var recTransaction = GetRecurringFromFinancialTransaction(transaction);
+            recTransaction.Id = transaction.ReccuringTransactionId.Value;
+            Update(recTransaction);
         }
     }
 }
