@@ -44,11 +44,6 @@ namespace MoneyManager
             Frame.Navigate(typeof(SettingsOverview));
         }
 
-        private void RecurringTransactionsClick(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(RecurringTransactionList));
-        }
-
         private void GoToAbout(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(About));

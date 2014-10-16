@@ -325,12 +325,6 @@
   <data name="WeeklyContent.Content" xml:space="preserve">
     <value>weekly</value>
   </data>
-  <data name="RecurringTransactions.Text" xml:space="preserve">
-    <value>recurring transactions</value>
-  </data>
-  <data name="RecurringListLabel.Label" xml:space="preserve">
-    <value>recurring transactions</value>
-  </data>
   <data name="MonthlyLabel" xml:space="preserve">
     <value>monthly</value>
   </data>
