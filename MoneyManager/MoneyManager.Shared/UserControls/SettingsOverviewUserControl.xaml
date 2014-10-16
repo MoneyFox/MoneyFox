@@ -16,6 +16,10 @@
         <TextBlock Style="{StaticResource MenuItemText }"
                    x:Uid="SettingTiles"
                    Text="Tiles" Tapped="NavigateToTilesSettings"
+                   Margin="0,0,0,20" />        
+        <TextBlock Style="{StaticResource MenuItemText }"
+                   x:Uid="LanguageLabel"
+                   Text="Language" Tapped="NavigateToLanguageSettings"
                    Margin="0,0,0,20" />
     </StackPanel>
 </UserControl>

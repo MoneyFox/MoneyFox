@@ -15,7 +15,7 @@ namespace MoneyManager.Models
     {
         public FinancialTransaction()
         {
-            CurrencyCulture = ServiceLocator.Current.GetInstance<SettingDataAccess>().CurrencyCulture;
+            CurrencyCulture = CultureInfo.CurrentCulture.Name;
         }
 
         private IEnumerable<Account> allAccounts
@@ -70,7 +70,9 @@ namespace MoneyManager.Models
         [Ignore]
         public Category Category
         {
-            get { return allCategories.FirstOrDefault(x => x.Id == CategoryId); }
+            get { return allCategories != null 
+                ? allCategories.FirstOrDefault(x => x.Id == CategoryId)
+                : new Category(); }
             set
             {
                 CategoryId = value == null

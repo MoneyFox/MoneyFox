@@ -1,5 +1,4 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
+﻿using System.Globalization;
 using PropertyChanged;
 using SQLite;
 
@@ -11,7 +10,7 @@ namespace MoneyManager.Models
     {
         public Account()
         {
-            CurrencyCulture = ServiceLocator.Current.GetInstance<SettingDataAccess>().CurrencyCulture;
+            CurrencyCulture = CultureInfo.CurrentCulture.Name;
         }
 
         [PrimaryKey, AutoIncrement, Indexed]

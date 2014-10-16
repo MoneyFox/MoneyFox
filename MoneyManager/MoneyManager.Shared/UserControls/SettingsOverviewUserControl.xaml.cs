@@ -21,5 +21,10 @@ namespace MoneyManager.UserControls
         {
             ((Frame)Window.Current.Content).Navigate(typeof(SettingsTiles));
         }
+
+        private void NavigateToLanguageSettings(object sender, TappedRoutedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(SettingsLanguage));
+        }
     }
 }

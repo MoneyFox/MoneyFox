@@ -400,4 +400,7 @@
   <data name="NoNamePlaceholderLabel" xml:space="preserve">
     <value>[no name]</value>
   </data>
+  <data name="LanguageLabel.Text" xml:space="preserve">
+    <value>language</value>
+  </data>
 </root>

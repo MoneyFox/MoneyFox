@@ -23,7 +23,7 @@ namespace MoneyManager.ViewModels
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<SettingDataAccess>().CurrencyCulture;
+                return CultureInfo.CurrentCulture.Name;
             }
         }
 

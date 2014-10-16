@@ -53,6 +53,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Src\CurrencyHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\DatabaseHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\Enumerations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Src\LanguageHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\RecurringTransactionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\ThemedImageConverterHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Src\TileHelper.cs" />
@@ -80,6 +81,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsCategoryUserControl.xaml.cs">
       <DependentUpon>SettingsCategoryUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsLanguageUserControl.xaml.cs">
+      <DependentUpon>SettingsLanguageUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml.cs">
       <DependentUpon>SettingsOverviewUserControl.xaml</DependentUpon>
     </Compile>
@@ -94,6 +98,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddTransactionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LanguageSettingUserControlViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectCategoryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TileSettingsUserControlViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TotalBalanceViewModel.cs" />
@@ -130,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsCategoryUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsLanguageUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
