@@ -68,12 +68,12 @@ namespace MoneyManager.DataAccess
             {
                 AccountDataAccess.RemoveTransactionAmount(transaction);
 
-                CheckForRecurringTransaction(transaction,
-                    () => RecurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));
-
                 AllTransactions.Remove(transaction);
                 RelatedTransactions.Remove(transaction);
                 dbConn.Delete(transaction);
+
+                CheckForRecurringTransaction(transaction,
+                    () => RecurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));
             }
         }
 
