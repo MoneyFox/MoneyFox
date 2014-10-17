@@ -70,7 +70,7 @@
                 <Image Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
             		DataContext="/Images/{0}/internet.png" Width="50" Height="50" />
                 <TextBlock x:Name="lblWebsite" TextWrapping="Wrap"
-                           Text="www.npadrutt.com" HorizontalAlignment="Left"
+                           Text="www.apply-solutions.ch" HorizontalAlignment="Left"
                            Width="456" Margin="5,0,0,0"
                            VerticalAlignment="Center" FontSize="20"
                            FontFamily="Segoe WP Light" />
