@@ -34,7 +34,7 @@ namespace MoneyManager.Views
 
         private async void GoToWebsite_OnTap(object sender, TappedRoutedEventArgs e)
         {
-            var url = "http://npadrutt.com";
+            var url = "http://www.apply-solutions.ch/moneyfoxbeta";
             await Windows.System.Launcher.LaunchUriAsync(new Uri(url));
         }
 
