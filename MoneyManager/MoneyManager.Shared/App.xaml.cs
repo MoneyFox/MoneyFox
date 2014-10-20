@@ -26,7 +26,7 @@ namespace MoneyManager
 
             BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "62241cba");
 #if DEBUG
-            BugSenseHandler.Instance.HandleWhileDebugging = false;
+            //BugSenseHandler.Instance.HandleWhileDebugging = false;
 #endif
 
             UnhandledException += OnUnhandledException;
@@ -34,14 +34,14 @@ namespace MoneyManager
 
         private async void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            e.Handled = true;
+            BugSenseHandler.Instance.LogException(e.Exception);
             await new MessageDialog(e.Message).ShowAsync();
         }
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "62241cba");
 #if DEBUG
-            //BugSenseHandler.Instance.HandleWhileDebugging = false;
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 this.DebugSettings.EnableFrameRateCounter = true;

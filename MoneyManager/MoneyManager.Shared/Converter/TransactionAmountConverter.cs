@@ -16,16 +16,17 @@ namespace MoneyManager.Converter
         
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if((int)value == (int)TransactionType.Transfer)
+            var transaction = value as FinancialTransaction;
+
+            if (transaction.Type == (int)TransactionType.Transfer)
             {
-                var transaction = parameter as FinancialTransaction;
                 
                 return selectedAccount == transaction.ChargedAccount
                     ? "-"
                     : "+";
             }
-            
-            return (int)value == (int)TransactionType.Spending
+
+            return transaction.Type == (int)TransactionType.Spending
                 ? "-"
                 : "+";
         }

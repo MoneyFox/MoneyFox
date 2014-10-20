@@ -16,7 +16,12 @@ namespace MoneyManager.UserControls
         {
             InitializeComponent();
 
-            ServiceLocator.Current.GetInstance<AccountDataAccess>().LoadList();
+            accountData.LoadList();
+        }
+
+        private AccountDataAccess accountData
+        {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)
@@ -53,9 +58,9 @@ namespace MoneyManager.UserControls
         {
             if (AccountList.SelectedItem != null)
             {
-                var accountId = (AccountList.SelectedItem as Account).Id;
+                accountData.SelectedAccount = AccountList.SelectedItem as Account;
 
-                ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>().SetRelatedTransactions(accountId);
+                ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>().SetRelatedTransactions(accountData.SelectedAccount.Id);
 
                 ((Frame)Window.Current.Content).Navigate(typeof(TransactionList));
                 AccountList.SelectedItem = null;
