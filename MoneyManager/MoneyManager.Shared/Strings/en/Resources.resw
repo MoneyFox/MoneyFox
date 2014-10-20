@@ -406,4 +406,10 @@
   <data name="RecurringLabel" xml:space="preserve">
     <value>recurring</value>
   </data>
+  <data name="LanguageHeader.Header" xml:space="preserve">
+    <value>language</value>
+  </data>
+  <data name="InfoLanguageSettingsText.Text" xml:space="preserve">
+    <value>This setting will affect regional settings like the currency and format of Dates.</value>
+  </data>
 </root>
