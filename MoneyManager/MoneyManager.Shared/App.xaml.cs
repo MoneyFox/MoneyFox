@@ -23,6 +23,11 @@ namespace MoneyManager
             InitializeComponent();
             Suspending += OnSuspending;
 
+            BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "62241cba");
+#if DEBUG
+            BugSenseHandler.Instance.HandleWhileDebugging = false;
+#endif
+
             UnhandledException += OnUnhandledException;
         }
 
