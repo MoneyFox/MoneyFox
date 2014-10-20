@@ -9,7 +9,9 @@
 
     public enum TransactionRecurrence
     {
+        Daily,
         Weekly,
-        Monthly
+        Monthly,
+        Yearly
     }
 }
