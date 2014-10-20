@@ -240,8 +240,14 @@
   <data name="YesLabel" xml:space="preserve">
     <value>yes</value>
   </data>
+  <data name="YearlyContent.Content" xml:space="preserve">
+    <value>yearly</value>
+  </data>
   <data name="YearlyLabel" xml:space="preserve">
     <value>yearly</value>
+  </data>
+  <data name="DailyContent.Content" xml:space="preserve">
+    <value>daily</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>daily</value>
