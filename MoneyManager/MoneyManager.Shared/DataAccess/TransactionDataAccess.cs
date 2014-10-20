@@ -168,7 +168,7 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        public List<FinancialTransaction> GetUnclearedTransactions()
+        public IEnumerable<FinancialTransaction> GetUnclearedTransactions()
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {

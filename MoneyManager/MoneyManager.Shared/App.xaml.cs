@@ -1,5 +1,6 @@
 ﻿using BugSense;
 using BugSense.Model;
+using MoneyManager.DataAccess;
 using MoneyManager.Src;
 using System;
 using Windows.ApplicationModel;
@@ -40,7 +41,7 @@ namespace MoneyManager
         {
             BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "62241cba");
 #if DEBUG
-            BugSenseHandler.Instance.HandleWhileDebugging = false;
+            //BugSenseHandler.Instance.HandleWhileDebugging = false;
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 this.DebugSettings.EnableFrameRateCounter = true;
@@ -100,6 +101,7 @@ namespace MoneyManager
             TileHelper.DoNavigation(e.TileId);
 
             new RecurringTransactionHelper().CheckForRecurringTransactions();
+            new TransactionDataAccess().ClearTransaction();
         }
 
 #if WINDOWS_PHONE_APP

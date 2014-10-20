@@ -124,7 +124,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             transactionDataAccess.Save(secondTransaction);
 
             var unclearedList = transactionDataAccess.GetUnclearedTransactions();
-            Assert.AreEqual(unclearedList.Count, 1);
+            Assert.AreEqual(unclearedList.Count(), 1);
             var loadedTransaction = unclearedList.First();
             Assert.IsTrue(loadedTransaction.Id == secondTransaction.Id
                 && loadedTransaction.Amount == secondTransaction.Amount
