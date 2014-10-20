@@ -1,4 +1,7 @@
-﻿using MoneyManager.Src;
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
+using MoneyManager.Models;
+using MoneyManager.Src;
 using System;
 using Windows.UI.Xaml.Data;
 
@@ -8,7 +11,7 @@ namespace MoneyManager.Converter
     {
         private Account selectedAccount
         {
-            get{ return ServiceLocator.Current.GetInstance<AccoountDataAccess>().SelectedAccount; }
+            get{ return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
         }
         
         public object Convert(object value, Type targetType, object parameter, string language)

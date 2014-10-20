@@ -10,7 +10,8 @@ namespace MoneyManager.Converter
         {
             var enumInt = Int32.Parse(value.ToString());
             
-            Switch(enumInt){
+            switch(enumInt)
+            {
                 case (int)TransactionRecurrence.Daily:
                     return Utilities.GetTranslation("DailyLabel");
                     
@@ -22,10 +23,9 @@ namespace MoneyManager.Converter
                     
                 case (int)TransactionRecurrence.Yearly:
                     return Utilities.GetTranslation("YearlyLabel");
-                    
-                Default:
-                    return Utilities.GetTranslation("NoneLabel"); 
             }
+
+            return Utilities.GetTranslation("NoneLabel");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
