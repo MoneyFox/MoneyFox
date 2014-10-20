@@ -176,7 +176,7 @@
   </data>
   <data name="NoneLabel" xml:space="preserve">
     <value>none</value>
-  </data>  
+  </data>
   <data name="Edit.Text" xml:space="preserve">
     <value>edit</value>
   </data>
@@ -426,5 +426,11 @@
   </data>
   <data name="InfoLanguageSettingsText.Text" xml:space="preserve">
     <value>This setting will affect regional settings like the currency and format of Dates.</value>
+  </data>
+  <data name="EnddateHeader.Header" xml:space="preserve">
+    <value>enddate</value>
+  </data>
+  <data name="EndlessContent.Content" xml:space="preserve">
+    <value>endless</value>
   </data>
 </root>

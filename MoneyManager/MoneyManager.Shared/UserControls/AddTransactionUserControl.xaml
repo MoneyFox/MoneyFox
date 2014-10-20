@@ -66,6 +66,11 @@
                     <ComboBoxItem Content="monthly" x:Uid="MonthlyContent" />
                     <ComboBoxItem Content="yearly" x:Uid="YearlyContent" />
                 </ComboBox>
+                <CheckBox Content="Endless" x:Uid="EndlessContent" IsChecked="{Binding IsEndless, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DatePicker Date="{Binding EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Margin="0,12,0,0" Header="enddate" 
+                        Visibility="{Binding IsEndless, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert}"
+                        x:Uid="EnddateHeader" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

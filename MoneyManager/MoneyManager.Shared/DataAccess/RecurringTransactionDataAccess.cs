@@ -14,10 +14,6 @@ namespace MoneyManager.DataAccess
 
         public RecurringTransaction SelectedRecurringTransaction { get; set; }
 
-        private AddTransactionViewModel addTransactionView
-        {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
         private TransactionDataAccess transactionData
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
@@ -25,7 +21,7 @@ namespace MoneyManager.DataAccess
 
         public void Save(FinancialTransaction transaction)
         {
-            var recurringTransaction = GetRecurringFromFinancialTransaction(transaction);
+            var recurringTransaction = RecurringTransactionHelper.GetRecurringFromFinancialTransaction(transaction);
 
             if (AllRecurringTransactions != null)
             {
@@ -34,23 +30,6 @@ namespace MoneyManager.DataAccess
 
             SaveToDb(recurringTransaction);
             transaction.ReccuringTransactionId = recurringTransaction.Id;
-        }
-
-        private RecurringTransaction GetRecurringFromFinancialTransaction(FinancialTransaction transaction)
-        {
-            return new RecurringTransaction
-            {
-                ChargedAccountId = transaction.ChargedAccountId,
-                StartDate = transaction.Date,
-                EndDate = addTransactionView.EndDate,
-                IsEndless = addTransactionView.IsEndless,
-                Amount = transaction.Amount,
-                Currency = transaction.CurrencyCulture,
-                CategoryId = transaction.CategoryId,
-                Type = transaction.Type,
-                Recurrence = addTransactionView.Recurrence,
-                Note = transaction.Note,
-            };
         }
 
         protected override void SaveToDb(RecurringTransaction itemToAdd)
@@ -125,9 +104,17 @@ namespace MoneyManager.DataAccess
 
         public void Update(FinancialTransaction transaction)
         {
-            var recTransaction = GetRecurringFromFinancialTransaction(transaction);
-            recTransaction.Id = transaction.ReccuringTransactionId.Value;
-            Update(recTransaction);
+            var recTransaction = RecurringTransactionHelper.GetRecurringFromFinancialTransaction(transaction);
+
+            if (!transaction.ReccuringTransactionId.HasValue)
+            {
+                Save(recTransaction);
+            }
+            else
+            {
+                recTransaction.Id = transaction.ReccuringTransactionId.Value;
+                Update(recTransaction);
+            }
         }
     }
 }

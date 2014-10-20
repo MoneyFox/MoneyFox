@@ -110,6 +110,14 @@ namespace MoneyManager.DataAccess
             }
         }
 
+        private void CheckIfRecurringWasRemoved(FinancialTransaction transaction)
+        {
+            if (!transaction.IsRecurring && transaction.ReccuringTransactionId != null)
+            {
+                RecurringTransactionData.Delete(transaction.ReccuringTransactionId.Value);
+            }
+        }
+
         public IEnumerable<FinancialTransaction> GetRelatedTransactions(int accountId)
         {
             return AllTransactions
@@ -127,14 +135,6 @@ namespace MoneyManager.DataAccess
                 dbConn.Update(transaction);
 
                 CheckForRecurringTransaction(transaction, () => RecurringTransactionData.Update(transaction));
-            }
-        }
-
-        private void CheckIfRecurringWasRemoved(FinancialTransaction transaction)
-        {
-            if (!transaction.IsRecurring && transaction.ReccuringTransactionId != null)
-            {
-                RecurringTransactionData.Delete(transaction.ReccuringTransactionId.Value);
             }
         }
 
@@ -182,7 +182,8 @@ namespace MoneyManager.DataAccess
             using (var db = ConnectionFactory.GetDbConnection())
             {
                 return db.Table<FinancialTransaction>()
-                    .Where(x => x.IsRecurring).ToList();
+                    .Where(x => x.IsRecurring)
+                    .Where(x => x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date).ToList();
             }
         }
     }

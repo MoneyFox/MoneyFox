@@ -29,16 +29,9 @@ namespace MoneyManager.Src
 
         public static void GoToAddTransaction(TransactionType transactionType)
         {
-            ServiceLocator.Current.GetInstance<AddTransactionViewModel>().IsEdit = false;
-            if (transactionType == TransactionType.Transfer)
-            {
-                addTransactionView.IsTransfer = true;
-            }
-            else
-            {
-                addTransactionView.IsTransfer = false;
-            }
-
+            addTransactionView.IsEdit = false;
+            addTransactionView.IsEndless = true;
+            addTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
             SetDefaultTransaction(transactionType);
             SetDefaultAccount();
 
@@ -64,7 +57,11 @@ namespace MoneyManager.Src
         public static void GoToEdit(FinancialTransaction transaction)
         {
             addTransactionView.IsEdit = true;
-            addTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
+            if (transaction.ReccuringTransactionId.HasValue)
+            {
+                addTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
+                addTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
+            }
             addTransactionView.SelectedTransaction = transaction;
 
             ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));

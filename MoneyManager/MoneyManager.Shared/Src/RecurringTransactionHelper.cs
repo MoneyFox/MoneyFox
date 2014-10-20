@@ -5,6 +5,7 @@ using MoneyManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MoneyManager.ViewModels;
 
 namespace MoneyManager.Src
 {
@@ -13,6 +14,11 @@ namespace MoneyManager.Src
         private RecurringTransactionDataAccess RecurringTransactionData
         {
             get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+        }
+
+        private static AddTransactionViewModel addTransactionView
+        {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
         private IEnumerable<RecurringTransaction> AllRecurringTransactions
@@ -91,6 +97,23 @@ namespace MoneyManager.Src
             };
 
             TransactionData.SaveToDb(newTransaction, true);
+        }
+
+        public static RecurringTransaction GetRecurringFromFinancialTransaction(FinancialTransaction transaction)
+        {
+            return new RecurringTransaction
+            {
+                ChargedAccountId = transaction.ChargedAccountId,
+                StartDate = transaction.Date,
+                EndDate = addTransactionView.EndDate,
+                IsEndless = addTransactionView.IsEndless,
+                Amount = transaction.Amount,
+                Currency = transaction.CurrencyCulture,
+                CategoryId = transaction.CategoryId,
+                Type = transaction.Type,
+                Recurrence = addTransactionView.Recurrence,
+                Note = transaction.Note,
+            };
         }
     }
 }
