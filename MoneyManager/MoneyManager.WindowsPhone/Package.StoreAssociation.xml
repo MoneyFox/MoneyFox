@@ -200,5 +200,11 @@
     <MainPackageIdentityName>38045npadrutt.SleepTracker</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.SleepTrackerBeta</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=83554bcf-9733-4945-bf6b-d2bf2e247d8c" />
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=83554bcf-9733-4945-bf6b-d2bf2e247d8c">
+    <PackageInfo>
+      <OsMinVersion>6.3.0.0</OsMinVersion>
+      <PackageArchitecture>arm</PackageArchitecture>
+      <PackageMaxArchitectureVersion>0.2.14.0</PackageMaxArchitectureVersion>
+    </PackageInfo>
+  </PackageInfoList>
 </StoreAssociation>
