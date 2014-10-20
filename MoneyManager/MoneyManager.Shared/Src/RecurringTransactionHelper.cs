@@ -58,14 +58,23 @@ namespace MoneyManager.Src
         {
             switch (recTrans.Recurrence)
             {
+                case (int)TransactionRecurrence.Daily:
+                    return DateTime.Now.Date != relTransaction.Date;
+                
                 case (int)TransactionRecurrence.Weekly:
                     var days = DateTime.Now - relTransaction.Date; 
                     return days.Days >= 7;
 
                 case (int)TransactionRecurrence.Monthly:
-                    return relTransaction.Date.Month != DateTime.Now.Month;
+                    return DateTime.Now.Month != relTransaction.Date.Month;
+                    
+                case (int)TransactionRecurrence.Yearly:
+                    return DateTime.Now.Year != relTransaction.Date.Year
+                        && DateTime.Now.Month == relTransaction.Date.Month;
+                        
+                default
+                    return false;
             }
-            return false;
         }
 
         private void SaveTransaction(RecurringTransaction recurringTransaction)
