@@ -10,7 +10,9 @@
     DataContext="{Binding LanguageSettingUserControlView, Source={StaticResource Locator}}">
     
     <Grid>
-        <ComboBox ItemsSource="{Binding LanguageList}" 
+        <ComboBox ItemsSource="{Binding LanguageList}"  x:Uid="LanguageHeader"
                   SelectedValue="{Binding SelectedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    
+        <TextBlock x:Uid="InfoLanguageSettingsText" Text="Here will be a info text to notify which kind of stuff that is affected." />
     </Grid>
 </UserControl>
