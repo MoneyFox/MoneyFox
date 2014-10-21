@@ -193,7 +193,7 @@ namespace MoneyManager.DataAccess
             using (var db = ConnectionFactory.GetDbConnection())
             {
                 //Have to make a list before apply the where statements
-                db.Table<FinancialTransaction>()
+                return db.Table<FinancialTransaction>()
                     .ToList()
                     .Where(x => x.IsRecurring)
                     .Where(x => x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date).ToList();

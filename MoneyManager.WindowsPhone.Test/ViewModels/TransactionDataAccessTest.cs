@@ -120,11 +120,14 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             var firstTransaction = transaction;
             transactionDataAccess.Save(firstTransaction);
 
-            var secondTransaction = new FinancialTransaction { Amount = 80, Date = DateTime.Now.AddDays(1) };
-            transactionDataAccess.Save(secondTransaction);
+            var secondTransaction = new FinancialTransaction { Amount = 80, Date = DateTime.Now, Cleared = false};
+            using (var db = ConnectionFactory.GetDbConnection())
+            {
+                db.Insert(secondTransaction);
+            }
 
             var unclearedList = transactionDataAccess.GetUnclearedTransactions();
-            Assert.AreEqual(unclearedList.Count(), 1);
+            Assert.AreEqual(1, unclearedList.Count());
             var loadedTransaction = unclearedList.First();
             Assert.IsTrue(loadedTransaction.Id == secondTransaction.Id
                 && loadedTransaction.Amount == secondTransaction.Amount
