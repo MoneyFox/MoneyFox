@@ -83,7 +83,7 @@ namespace MoneyManager.DataAccess
                 AccountDataAccess.RemoveTransactionAmount(transaction);
 
                 AllTransactions.Remove(transaction);
-                TransactionListUserControlView.SetRelatedTransactions(transaction.ChargedAccountId);
+                RefreshRelatedTransactions(transaction);
                 dbConn.Delete(transaction);
 
                 CheckForRecurringTransaction(transaction,
