@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using System.Threading.Tasks;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Models;
 using MoneyManager.Src;
 using MoneyManager.ViewModels;
@@ -61,7 +62,17 @@ namespace MoneyManager.DataAccess
                 AllTransactions.Add(transaction);
                 AllTransactions = new ObservableCollection<FinancialTransaction>(AllTransactions.OrderBy(x => x.Date));
 
+                RefreshRelatedTransactions(transaction);
+
                 dbConn.Insert(transaction, typeof(FinancialTransaction));
+            }
+        }
+
+        private void RefreshRelatedTransactions(FinancialTransaction transaction)
+        {
+            if (AccountDataAccess.SelectedAccount == transaction.ChargedAccount)
+            {
+                TransactionListUserControlView.SetRelatedTransactions(transaction.ChargedAccountId);
             }
         }
 
@@ -125,7 +136,7 @@ namespace MoneyManager.DataAccess
                 .ToList();
         }
 
-        protected override void UpdateItem(FinancialTransaction transaction)
+        protected async override void UpdateItem(FinancialTransaction transaction)
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
@@ -134,11 +145,11 @@ namespace MoneyManager.DataAccess
                 AccountDataAccess.AddTransactionAmount(transaction);
                 dbConn.Update(transaction);
 
-                CheckForRecurringTransaction(transaction, () => RecurringTransactionData.Update(transaction));
+                await CheckForRecurringTransaction(transaction, () => RecurringTransactionData.Update(transaction));
             }
         }
 
-        private async void CheckForRecurringTransaction(FinancialTransaction transaction, Action recurringTransactionAction)
+        private async Task CheckForRecurringTransaction(FinancialTransaction transaction, Action recurringTransactionAction)
         {
             if (!transaction.IsRecurring) return;
 

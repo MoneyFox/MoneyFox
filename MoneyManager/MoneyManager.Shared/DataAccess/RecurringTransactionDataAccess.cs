@@ -1,8 +1,6 @@
-﻿using BugSense.Core.Model;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Models;
 using MoneyManager.Src;
-using MoneyManager.ViewModels;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -99,6 +97,7 @@ namespace MoneyManager.DataAccess
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
                 dbConn.Update(itemToUpdate);
+                LoadList();
             }
         }
 
