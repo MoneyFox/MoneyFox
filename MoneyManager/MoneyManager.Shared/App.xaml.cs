@@ -1,4 +1,6 @@
-﻿using BugSense;
+﻿using Windows.UI.Popups;
+using BugSense;
+using BugSense.Core.Model;
 using BugSense.Model;
 using MoneyManager.DataAccess;
 using MoneyManager.Src;
@@ -22,13 +24,11 @@ namespace MoneyManager
         {
             InitializeComponent();
             Suspending += OnSuspending;
-
-            BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "62241cba");
         }
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            var sendResultAsync = await BugSenseHandler.Instance.SendEventAsync("Test Send Event!");
+            BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");   
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
