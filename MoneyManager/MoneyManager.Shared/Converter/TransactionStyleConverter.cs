@@ -10,7 +10,7 @@ namespace MoneyManager.Converter
         {
             var transaction = value as FinancialTransaction;
 
-            if (transaction == null) return 1;
+            if (transaction == null) return 0;
 
             return transaction.Cleared
                 ? 1
