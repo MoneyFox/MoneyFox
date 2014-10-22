@@ -23,6 +23,11 @@ namespace MoneyManager.ViewModels
 
             var dateInfo = new DateTimeFormatInfo();
             RelatedTransactions = related.ToGroups(x => x.Date, x => dateInfo.GetMonthName(x.Date.Month));
+
+            foreach (var lists in RelatedTransactions)
+            {
+                lists.Reverse();
+            }
         }
     }
 }
