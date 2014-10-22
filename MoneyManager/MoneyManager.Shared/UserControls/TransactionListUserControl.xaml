@@ -17,10 +17,11 @@
         <converter:TransactionAmountConverter x:Key="TransactionAmountConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:CurrencyConverter x:Key="CurrencyConverter" />
+        <converter:TransactionStyleConverter x:Key="TransactionStyleConverter" />
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
-                        MinWidth="100" Background="{ThemeResource PhoneChromeBrush}"
-                        Holding="OpenContextMenu">
+                        MinWidth="100" Background="{ThemeResource PhoneAccentBrush}"
+                        Holding="OpenContextMenu" Opacity="{Binding Converter={StaticResource TransactionStyleConverter}}">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit" Text="Edit" Click="EditTransaction" />

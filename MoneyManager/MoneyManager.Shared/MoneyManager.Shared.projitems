@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\RevertVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\ThemedImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionAmountConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionStyleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AbstractDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AccountDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\CategoryDataAccess.cs" />
