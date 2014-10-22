@@ -25,18 +25,7 @@ namespace MoneyManager
             Suspending += OnSuspending;
 
             BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "62241cba");
-#if DEBUG
-            //BugSenseHandler.Instance.HandleWhileDebugging = false;
-#endif
-
-            UnhandledException += OnUnhandledException;
-        }
-
-        private async void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            e.Handled = true;
-            BugSenseHandler.Instance.LogException(e.Exception);
-            await new MessageDialog(e.Message).ShowAsync();
+            BugSenseResponseResult sendResultAsync = BugSenseHandler.Instance.SendEventAsync("Test Send Event!");
         }
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
@@ -129,6 +118,7 @@ namespace MoneyManager
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
+            BugSenseHandler.Instance.CloseSession();
             var deferral = e.SuspendingOperation.GetDeferral();
 
             // TODO: Save application state and stop any background activity
