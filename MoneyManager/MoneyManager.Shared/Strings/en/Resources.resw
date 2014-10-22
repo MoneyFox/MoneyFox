@@ -439,4 +439,10 @@
   <data name="GeneralText.Text" xml:space="preserve">
     <value>general</value>
   </data>
+  <data name="ChangeAllEntitiesMessage" xml:space="preserve">
+    <value>Do you want to change all accounts and transactions to match the new language?</value>
+  </data>
+  <data name="ChangeAllEntitiesTitle" xml:space="preserve">
+    <value>Change all?</value>
+  </data>
 </root>

@@ -1,53 +1,67 @@
-﻿using System;
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
+using MoneyManager.Models;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using Windows.Globalization;
 using Windows.System.UserProfile;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
-using MoneyManager.Models;
+using Windows.UI.Popups;
 
 namespace MoneyManager.Src
 {
     public class LanguageHelper
     {
-        private static IEnumerable<FinancialTransaction> allTransactions
+        private static TransactionDataAccess transactionData
         {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().AllTransactions; }
-        } 
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
 
-        private static IEnumerable<Account> allAccounts
+        private static AccountDataAccess accountData
         {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
-        } 
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+        }
 
         public static List<String> GetSupportedLanguages()
         {
             return GlobalizationPreferences.Languages.ToList();
         }
 
-        public static void SetPrimaryLanguage(string lang)
+        public async static void SetPrimaryLanguage(string lang)
         {
             ApplicationLanguages.PrimaryLanguageOverride = lang;
 
-            ChangeTransactions();
-            ChangeAccounts();
+            var dialog = new MessageDialog(Utilities.GetTranslation("ChangeAllEntitiesMessage"),
+                Utilities.GetTranslation("ChangeAllEntitiesTitle"));
+            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("YesLabel")));
+            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("NoLabel")));
+            dialog.DefaultCommandIndex = 1;
+
+            var result = await dialog.ShowAsync();
+
+            if (result.Label == Utilities.GetTranslation("YesLabel"))
+            {
+                ChangeTransactions();
+                ChangeAccounts();
+            }
         }
 
         private static void ChangeTransactions()
         {
-            foreach (var transaction in allTransactions)
+            foreach (var transaction in transactionData.AllTransactions)
             {
                 transaction.CurrencyCulture = CultureInfo.CurrentCulture.Name;
+                transactionData.Update(transaction);
             }
         }
+
         private static void ChangeAccounts()
         {
-            foreach (var accounts in allAccounts)
+            foreach (var account in accountData.AllAccounts)
             {
-                accounts.CurrencyCulture = CultureInfo.CurrentCulture.Name;
+                account.CurrencyCulture = CultureInfo.CurrentCulture.Name;
+                accountData.Update(account);
             }
         }
 
