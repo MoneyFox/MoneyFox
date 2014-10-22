@@ -95,7 +95,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddAccountViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddTransactionViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LanguageSettingUserControlViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GeneralSettingUserControlViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectCategoryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TileSettingsUserControlViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TotalBalanceViewModel.cs" />

@@ -4,7 +4,7 @@ using MoneyManager.Src;
 
 namespace MoneyManager.ViewModels
 {
-    public class LanguageSettingUserControlViewModel
+    public class GeneralSettingUserControlViewModel
     {
         public List<String> LanguageList
         {

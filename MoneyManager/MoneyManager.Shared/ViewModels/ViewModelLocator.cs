@@ -24,7 +24,7 @@ namespace MoneyManager.ViewModels
             SimpleIoc.Default.Register<SelectCategoryViewModel>();
             SimpleIoc.Default.Register<TransactionListUserControlViewModel>();
             SimpleIoc.Default.Register<TileSettingsUserControlViewModel>();
-            SimpleIoc.Default.Register<LanguageSettingUserControlViewModel>();
+            SimpleIoc.Default.Register<GeneralSettingUserControlViewModel>();
         }
 
         #region DataAccess
@@ -98,9 +98,9 @@ namespace MoneyManager.ViewModels
             get { return ServiceLocator.Current.GetInstance<TileSettingsUserControlViewModel>(); }
         }
 
-        public LanguageSettingUserControlViewModel LanguageSettingUserControlView
+        public GeneralSettingUserControlViewModel LanguageSettingUserControlView
         {
-            get { return ServiceLocator.Current.GetInstance<LanguageSettingUserControlViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<GeneralSettingUserControlViewModel>(); }
         }
 
         #endregion Views
