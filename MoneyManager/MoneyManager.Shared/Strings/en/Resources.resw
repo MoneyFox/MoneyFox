@@ -433,4 +433,7 @@
   <data name="EndlessContent.Content" xml:space="preserve">
     <value>endless</value>
   </data>
+  <data name="SpendingTitle" xml:space="preserve">
+    <value>spending</value>
+  </data>
 </root>
