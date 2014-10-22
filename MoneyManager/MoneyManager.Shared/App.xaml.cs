@@ -5,7 +5,6 @@ using MoneyManager.Src;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -25,11 +24,12 @@ namespace MoneyManager
             Suspending += OnSuspending;
 
             BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "62241cba");
-            BugSenseResponseResult sendResultAsync = BugSenseHandler.Instance.SendEventAsync("Test Send Event!");
         }
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            var sendResultAsync = await BugSenseHandler.Instance.SendEventAsync("Test Send Event!");
+
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
