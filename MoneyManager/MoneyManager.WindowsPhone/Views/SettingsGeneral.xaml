@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="MoneyManager.Views.SettingsLanguage"
+    x:Class="MoneyManager.Views.SettingsGeneral"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MoneyManager.Views"
@@ -31,7 +31,7 @@
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <userControls:SettingsLanguageUserControl />
+            <userControls:SettingsGeneralUserControl />
         </Grid>
     </Grid>
 </Page>

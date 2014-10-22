@@ -78,8 +78,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsCategoryUserControl.xaml.cs">
       <DependentUpon>SettingsCategoryUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsLanguageUserControl.xaml.cs">
-      <DependentUpon>SettingsLanguageUserControl.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsGeneralUserControl.xaml.cs">
+      <DependentUpon>SettingsGeneralUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml.cs">
       <DependentUpon>SettingsOverviewUserControl.xaml</DependentUpon>
@@ -131,7 +131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsLanguageUserControl.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsGeneralUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

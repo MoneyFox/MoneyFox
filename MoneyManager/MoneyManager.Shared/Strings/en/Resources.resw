@@ -436,4 +436,7 @@
   <data name="SpendingTitle" xml:space="preserve">
     <value>spending</value>
   </data>
+  <data name="GeneralText.Text" xml:space="preserve">
+    <value>general</value>
+  </data>
 </root>
