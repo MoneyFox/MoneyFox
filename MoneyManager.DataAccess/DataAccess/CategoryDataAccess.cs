@@ -1,9 +1,8 @@
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.Storage;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -34,9 +33,9 @@ namespace MoneyManager.DataAccess.DataAccess
             roamingSettings.Values[category.Id.ToString()] = category.Name;
         }
 
-        private  int GetMaxId()
+        private int GetMaxId()
         {
-            var roamingSettings = ApplicationData.Current.RoamingSettings;
+            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
             return roamingSettings.Values.Count;
         }
 

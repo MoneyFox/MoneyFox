@@ -1,5 +1,5 @@
-﻿using SQLite.Net.Attributes;
-using System.Globalization;
+﻿using System.Globalization;
+using SQLite.Net.Attributes;
 
 namespace MoneyManager.DataAccess.Model
 {

@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
-using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
@@ -18,6 +14,7 @@ namespace MoneyManager.Business
     internal class TransactionLogic
     {
         #region Properties
+
         private static FinancialTransaction SelectedTransaction
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
@@ -86,13 +83,14 @@ namespace MoneyManager.Business
             AccountLogic.RefreshRelatedTransactions(transaction);
 
             CheckForRecurringTransaction(transaction,
-    () => recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));
-
+                () => recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));
         }
 
         public static void DeleteAssociatedTransactionsFromDatabase(int accountId)
         {
-            foreach (var transaction in transactionData.AllTransactions.Where(x => x.ChargedAccountId == accountId))
+            foreach (
+                FinancialTransaction transaction in
+                    transactionData.AllTransactions.Where(x => x.ChargedAccountId == accountId))
             {
                 transactionData.Delete(transaction);
             }
@@ -161,6 +159,5 @@ namespace MoneyManager.Business
                 AccountLogic.AddTransactionAmount(transaction);
             }
         }
-
     }
 }

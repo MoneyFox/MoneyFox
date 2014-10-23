@@ -1,12 +1,11 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
-using Windows.UI.Popups;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
+using SQLite.Net;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -38,7 +37,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public void SaveToDb(FinancialTransaction transaction, bool skipRecurring)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllTransactions == null)
                 {
@@ -48,13 +47,13 @@ namespace MoneyManager.DataAccess.DataAccess
                 AllTransactions.Add(transaction);
                 AllTransactions = new ObservableCollection<FinancialTransaction>(AllTransactions.OrderBy(x => x.Date));
 
-                dbConn.Insert(transaction, typeof(FinancialTransaction));
+                dbConn.Insert(transaction, typeof (FinancialTransaction));
             }
         }
 
         protected override void DeleteFromDatabase(FinancialTransaction transaction)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 AllTransactions.Remove(transaction);
                 dbConn.Delete(transaction);
@@ -64,7 +63,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void GetListFromDb()
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 AllTransactions =
                     new ObservableCollection<FinancialTransaction>(dbConn.Table<FinancialTransaction>().ToList());
@@ -80,7 +79,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override async void UpdateItem(FinancialTransaction transaction)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.Update(transaction);
             }
@@ -89,7 +88,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions()
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 return dbConn.Table<FinancialTransaction>().Where(x => x.Cleared == false
                                                                        && x.Date <= DateTime.Now).ToList();
@@ -98,7 +97,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public List<FinancialTransaction> LoadRecurringList()
         {
-            using (var db = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection())
             {
                 //Have to make a list before apply the where statements
                 return db.Table<FinancialTransaction>()

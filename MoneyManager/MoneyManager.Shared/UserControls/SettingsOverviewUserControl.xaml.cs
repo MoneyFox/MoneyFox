@@ -1,7 +1,7 @@
-﻿using MoneyManager.Views;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using MoneyManager.Views;
 
 namespace MoneyManager.UserControls
 {
@@ -14,17 +14,17 @@ namespace MoneyManager.UserControls
 
         private void NavigateToCategorySettings(object sender, TappedRoutedEventArgs e)
         {
-            ((Frame)Window.Current.Content).Navigate(typeof(SettingsCategory));
+            ((Frame) Window.Current.Content).Navigate(typeof (SettingsCategory));
         }
 
         private void NavigateToTilesSettings(object sender, TappedRoutedEventArgs e)
         {
-            ((Frame)Window.Current.Content).Navigate(typeof(SettingsTiles));
+            ((Frame) Window.Current.Content).Navigate(typeof (SettingsTiles));
         }
 
         private void NavigateToGeneralSettings(object sender, TappedRoutedEventArgs e)
         {
-            ((Frame)Window.Current.Content).Navigate(typeof(SettingsGeneral));
+            ((Frame) Window.Current.Content).Navigate(typeof (SettingsGeneral));
         }
     }
 }

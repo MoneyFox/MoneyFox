@@ -1,11 +1,11 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Dialogs;
-using System;
+﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Dialogs;
 
 namespace MoneyManager.UserControls
 {
@@ -26,7 +26,7 @@ namespace MoneyManager.UserControls
 
         private async void EditCategory(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement)sender;
+            var element = (FrameworkElement) sender;
             var category = element.DataContext as Category;
             if (category == null) return;
 
@@ -39,7 +39,7 @@ namespace MoneyManager.UserControls
 
         private void DeleteCategory(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement)sender;
+            var element = (FrameworkElement) sender;
             var category = element.DataContext as Category;
             if (category == null) return;
 

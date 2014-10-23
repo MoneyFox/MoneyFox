@@ -1,9 +1,9 @@
-﻿using MoneyManager.DataAccess.Model;
-using SQLite.Net;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyManager.DataAccess.Model;
+using SQLite.Net;
 
 namespace MoneyManager.DataAccess.DataAccess
 {

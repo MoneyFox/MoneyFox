@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace MoneyManager.Foundation.OperationContracts
+﻿namespace MoneyManager.Foundation.OperationContracts
 {
     internal interface IDataAccess<T>
     {

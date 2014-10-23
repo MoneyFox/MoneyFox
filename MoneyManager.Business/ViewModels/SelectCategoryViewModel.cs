@@ -1,9 +1,9 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace MoneyManager.Business.ViewModels
 {

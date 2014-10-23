@@ -1,10 +1,10 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
-using SQLite.Net.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.DataAccess;
+using SQLite.Net.Attributes;
 
 namespace MoneyManager.DataAccess.Model
 {
@@ -85,7 +85,7 @@ namespace MoneyManager.DataAccess.Model
             set
             {
                 CategoryId = value == null
-                    ? (int?)null
+                    ? (int?) null
                     : value.Id;
             }
         }

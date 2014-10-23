@@ -1,9 +1,9 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.ViewModels;
-using MoneyManager.Foundation;
-using System;
+﻿using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.ViewModels;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.UserControls
 {

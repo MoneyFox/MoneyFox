@@ -40,7 +40,7 @@ namespace MoneyManager.Business
             IEnumerable<FinancialTransaction> relatedTrans =
                 transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
 
-            foreach (var transaction in relatedTrans)
+            foreach (FinancialTransaction transaction in relatedTrans)
             {
                 transaction.IsRecurring = false;
                 transaction.ReccuringTransactionId = null;
@@ -81,17 +81,17 @@ namespace MoneyManager.Business
         {
             switch (recTrans.Recurrence)
             {
-                case (int)TransactionRecurrence.Daily:
+                case (int) TransactionRecurrence.Daily:
                     return DateTime.Now.Date != relTransaction.Date;
 
-                case (int)TransactionRecurrence.Weekly:
+                case (int) TransactionRecurrence.Weekly:
                     TimeSpan days = DateTime.Now - relTransaction.Date;
                     return days.Days >= 7;
 
-                case (int)TransactionRecurrence.Monthly:
+                case (int) TransactionRecurrence.Monthly:
                     return DateTime.Now.Month != relTransaction.Date.Month;
 
-                case (int)TransactionRecurrence.Yearly:
+                case (int) TransactionRecurrence.Yearly:
                     return DateTime.Now.Year != relTransaction.Date.Year
                            && DateTime.Now.Month == relTransaction.Date.Month;
             }

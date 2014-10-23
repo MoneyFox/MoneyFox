@@ -40,7 +40,7 @@ namespace MoneyManager.DataAccess.DataAccess
             if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key))
             {
                 object setting = ApplicationData.Current.RoamingSettings.Values[key];
-                value = (valueType)Convert.ChangeType(setting, typeof(valueType), CultureInfo.InvariantCulture);
+                value = (valueType) Convert.ChangeType(setting, typeof (valueType), CultureInfo.InvariantCulture);
             }
             else
             {

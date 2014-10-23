@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+using SQLite.Net;
 
 namespace MoneyManager.DataAccess.WindowsPhone.Test
 {
@@ -12,7 +14,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
         [TestInitialize]
         public void TestInit()
         {
-            using (var db = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection())
             {
                 db.CreateTable<RecurringTransaction>();
             }
@@ -38,7 +40,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
             recurringTransactionDataAccess.Save(transaction);
 
             recurringTransactionDataAccess.LoadList();
-            var list = recurringTransactionDataAccess.AllRecurringTransactions;
+            ObservableCollection<RecurringTransaction> list = recurringTransactionDataAccess.AllRecurringTransactions;
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstAmount, list.First().Amount);
@@ -58,8 +60,6 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
             recurringTransactionDataAccess.LoadList();
             list = recurringTransactionDataAccess.AllRecurringTransactions;
             Assert.IsFalse(list.Any());
-
         }
-
     }
 }
