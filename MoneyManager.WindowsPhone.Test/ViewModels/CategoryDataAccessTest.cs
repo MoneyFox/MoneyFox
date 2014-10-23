@@ -1,4 +1,8 @@
+using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using System.Linq;
 
 namespace MoneyManager.WindowsPhone.Test.ViewModels
 {
@@ -9,7 +13,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
 
         private CategoryDataAccess CategoryDataAccess
         {
-            get { return new ViewModelLocator().CategoryDataAccess; }
+            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
         }
 
         [TestInitialize]
@@ -29,7 +33,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             CategoryDataAccess.Save(category);
 
             CategoryDataAccess.LoadList();
-            var saved = CategoryDataAccess.AllCategories.FirstOrDefault(x => x.Id == category.Id);
+            Category saved = CategoryDataAccess.AllCategories.FirstOrDefault(x => x.Id == category.Id);
 
             Assert.IsTrue(saved.Name == category.Name);
         }

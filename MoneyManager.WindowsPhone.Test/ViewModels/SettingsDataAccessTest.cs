@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using SQLite.Net;
 
 namespace MoneyManager.WindowsPhone.Test.ViewModels
 {
@@ -13,11 +16,11 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         }
 
         [TestInitialize]
-        public async Task InitTests()
+        public void InitTests()
         {
-            await DatabaseHelper.CreateDatabase();
+            DatabaseLogic.CreateDatabase();
 
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.DeleteAll<Setting>();
                 settings.Dbversion = 1;

@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
+using SQLite.Net;
 
 namespace MoneyManager.WindowsPhone.Test.Src
 {
@@ -8,16 +10,9 @@ namespace MoneyManager.WindowsPhone.Test.Src
         [TestMethod]
         public void GetDbConnectionTest()
         {
-            var connection = ConnectionFactory.GetDbConnection();
-            Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
+            var connection = SqlConnectionFactory.GetSqlConnection();
+            Assert.IsInstanceOfType(connection, typeof(SQLiteConnection));
             Assert.IsTrue(connection.DatabasePath.Contains("moneymanager.sqlite"));
-        }
-
-        [TestMethod]
-        public void GetAsyncDbConnectionTest()
-        {
-            var connection = ConnectionFactory.GetAsyncDbConnection();
-            Assert.IsInstanceOfType(connection, typeof (SQLiteAsyncConnection));
         }
     }
 }

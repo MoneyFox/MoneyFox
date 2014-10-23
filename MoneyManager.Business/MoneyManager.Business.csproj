@@ -74,7 +74,6 @@
     <Compile Include="ViewModels\TileSettingsUserControlViewModel.cs" />
     <Compile Include="ViewModels\TotalBalanceViewModel.cs" />
     <Compile Include="ViewModels\TransactionListUserControlViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BugSense-Windows.Universal">

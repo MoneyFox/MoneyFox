@@ -58,6 +58,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\TransactionListUserControl.xaml.cs">
       <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Styles\AppStyles.xaml">

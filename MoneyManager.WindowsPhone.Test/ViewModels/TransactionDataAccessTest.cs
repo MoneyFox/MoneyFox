@@ -1,7 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using System;
+using System.Linq;
 
 namespace MoneyManager.WindowsPhone.Test.ViewModels
 {
@@ -18,15 +21,15 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
 
         private TransactionDataAccess transactionDataAccess
         {
-            get { return new ViewModelLocator().TransactionDataAccess; }
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
         [TestInitialize]
-        public async Task InitTests()
+        public void InitTests()
         {
-            await DatabaseHelper.CreateDatabase();
+            DatabaseLogic.CreateDatabase();
 
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.DeleteAll<FinancialTransaction>();
                 transactionDataAccess.AllTransactions.Clear();
@@ -62,7 +65,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         {
             transactionDataAccess.Save(transaction);
 
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 var saved = dbConn.Table<FinancialTransaction>().ToList().First();
                 Assert.IsTrue(saved.ChargedAccountId == transaction.ChargedAccountId
@@ -93,7 +96,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             transaction.Amount = newAmount;
             transactionDataAccess.Update(transaction);
 
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 Assert.AreEqual(newAmount, dbConn.Table<FinancialTransaction>().First().Amount);
             }
@@ -115,8 +118,8 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             var firstTransaction = transaction;
             transactionDataAccess.Save(firstTransaction);
 
-            var secondTransaction = new FinancialTransaction {Amount = 80, Date = DateTime.Now, Cleared = false};
-            using (var db = ConnectionFactory.GetDbConnection())
+            var secondTransaction = new FinancialTransaction { Amount = 80, Date = DateTime.Now, Cleared = false };
+            using (var db = SqlConnectionFactory.GetSqlConnection())
             {
                 db.Insert(secondTransaction);
             }

@@ -117,6 +117,10 @@
       <Project>{217ba6c1-a9ca-426d-b8d3-d891aa59a308}</Project>
       <Name>MoneyManager.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
+      <Project>{6936F4D3-8889-48C7-A676-80D59B2740CE}</Project>
+      <Name>MoneyManager.Foundation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyManager\MoneyManager.WindowsPhone\MoneyManager.WindowsPhone.csproj">
       <Project>{01C92D11-9B98-4FF3-BF14-89917369AB92}</Project>
       <Name>MoneyManager.WindowsPhone</Name>

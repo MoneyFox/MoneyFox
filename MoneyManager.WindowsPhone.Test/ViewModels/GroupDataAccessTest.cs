@@ -1,6 +1,11 @@
-using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using SQLite.Net;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MoneyManager.WindowsPhone.Test.ViewModels
 {
@@ -17,9 +22,9 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         [TestInitialize]
         public async Task InitTests()
         {
-            await DatabaseHelper.CreateDatabase();
+            DatabaseLogic.CreateDatabase();
 
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.DeleteAll<Group>();
                 if (groupviewModel.AllGroups != null)
@@ -39,9 +44,9 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         {
             groupviewModel.Save(group);
 
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                var saved = dbConn.Table<Group>().Where(x => x.Name == group.Name).ToList().First();
+                Group saved = dbConn.Table<Group>().Where(x => x.Name == group.Name).ToList().First();
                 Assert.IsTrue(saved.Name == group.Name);
             }
         }
@@ -61,7 +66,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void UpateGroupTest()
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 groupviewModel.Save(group);
                 Assert.AreEqual(groupviewModel.AllGroups.Count, 1);

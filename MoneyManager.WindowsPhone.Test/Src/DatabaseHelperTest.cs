@@ -1,5 +1,9 @@
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.Model;
+using SQLite.Net;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MoneyManager.WindowsPhone.Test.Src
 {
@@ -9,12 +13,14 @@ namespace MoneyManager.WindowsPhone.Test.Src
         [TestMethod]
         public async Task CreateDatabaseTest()
         {
-            await DatabaseHelper.CreateDatabase();
+            DatabaseLogic.CreateDatabase();
 
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.Table<Account>().ToList();
                 dbConn.Table<FinancialTransaction>().ToList();
+                dbConn.Table<RecurringTransaction>().ToList();
+                dbConn.Table<Group>().ToList();
                 dbConn.Table<Setting>().ToList();
             }
         }
