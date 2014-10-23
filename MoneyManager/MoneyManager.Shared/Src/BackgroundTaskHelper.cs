@@ -18,7 +18,7 @@ namespace MoneyManager.Src
             var trigger = new TimeTrigger(720, false);
 
             builder.Name = name;
-            builder.TaskEntryPoint = typeof(BackgroundTask.TransactionTask).FullName;
+            builder.TaskEntryPoint = typeof(Tasks.TransactionsWp.TransactionTask).FullName;
             builder.SetTrigger(trigger);
             var registration = builder.Register();
             registration.Completed += RegistrationOnCompleted;

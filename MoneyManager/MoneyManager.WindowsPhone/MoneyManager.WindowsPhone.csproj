@@ -297,9 +297,9 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BackgroundTask\BackgroundTask.csproj">
-      <Project>{745ec520-0f96-4f42-9b8b-7d6bf6995717}</Project>
-      <Name>BackgroundTask</Name>
+    <ProjectReference Include="..\..\MoneyManager.Tasks.TransactionsWp\MoneyManager.Tasks.TransactionsWp.csproj">
+      <Project>{44e9295b-acb7-458b-99a2-c8f1a941f87a}</Project>
+      <Name>MoneyManager.Tasks.TransactionsWp</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
