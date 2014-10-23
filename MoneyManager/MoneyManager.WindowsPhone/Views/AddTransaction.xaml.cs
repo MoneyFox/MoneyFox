@@ -2,6 +2,7 @@
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business;
 using MoneyManager.Common;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
@@ -20,9 +21,7 @@ namespace MoneyManager.Views
 
             if (AddTransactionView.IsEdit)
             {
-                //TODO: refactor
-                //ServiceLocator.Current.GetInstance<AccountDataAccess>()
-                //    .RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
+                AccountLogic.RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
             }
         }
 

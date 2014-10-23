@@ -1,7 +1,7 @@
 ﻿using MoneyManager.Business.Tiles;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Business.Src
+namespace MoneyManager.Business
 {
     internal class TileHelper
     {
@@ -10,15 +10,15 @@ namespace MoneyManager.Business.Src
             switch (tileId)
             {
                 case IncomeTile.Id:
-                    TransactionHelper.GoToAddTransaction(TransactionType.Income);
+                    TransactionLogic.GoToAddTransaction(TransactionType.Income);
                     break;
 
                 case SpendingTile.Id:
-                    TransactionHelper.GoToAddTransaction(TransactionType.Spending);
+                    TransactionLogic.GoToAddTransaction(TransactionType.Spending);
                     break;
 
                 case TransferTile.Id:
-                    TransactionHelper.GoToAddTransaction(TransactionType.Transfer);
+                    TransactionLogic.GoToAddTransaction(TransactionType.Transfer);
                     break;
             }
         }

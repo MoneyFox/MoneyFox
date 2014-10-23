@@ -1,7 +1,8 @@
 ﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Src;
+using MoneyManager.Business;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
 using MoneyManager.DataAccess.DataAccess;
@@ -52,17 +53,23 @@ namespace MoneyManager
 
         private void AddIncomeClick(object sender, RoutedEventArgs e)
         {
-            TransactionHelper.GoToAddTransaction(TransactionType.Income);
+            AddTransaction(TransactionType.Income);
         }
 
         private void AddSpendingClick(object sender, RoutedEventArgs e)
         {
-            TransactionHelper.GoToAddTransaction(TransactionType.Spending);
+            AddTransaction(TransactionType.Spending);
         }
 
         private void AddTransferClick(object sender, RoutedEventArgs e)
         {
-            TransactionHelper.GoToAddTransaction(TransactionType.Transfer);
+            AddTransaction(TransactionType.Transfer);
+        }
+
+        private static void AddTransaction(TransactionType type)
+        {
+            TransactionLogic.GoToAddTransaction(type);
+            ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
         #region NavigationHelper registration

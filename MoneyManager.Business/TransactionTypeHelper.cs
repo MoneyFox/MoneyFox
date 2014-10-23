@@ -1,7 +1,7 @@
-﻿using MoneyManager.Foundation;
-using System;
+﻿using System;
+using MoneyManager.Foundation;
 
-namespace MoneyManager.Src
+namespace MoneyManager.Business
 {
     internal class TransactionTypeHelper
     {

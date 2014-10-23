@@ -1,7 +1,7 @@
 ﻿using Windows.ApplicationModel;
 using Windows.Storage;
 
-namespace MoneyManager.Business.Src
+namespace MoneyManager.Business
 {
     internal class Utilities
     {

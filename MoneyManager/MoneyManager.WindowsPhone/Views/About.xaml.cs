@@ -3,7 +3,7 @@ using Windows.ApplicationModel.Email;
 using Windows.System;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using MoneyManager.Business.Src;
+using MoneyManager.Business;
 using MoneyManager.Common;
 using MoneyManager.Foundation;
 

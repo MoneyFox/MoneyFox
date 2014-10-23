@@ -1,16 +1,16 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI.Popups;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 
-namespace MoneyManager.Business.Src
+namespace MoneyManager.Business
 {
     internal class LanguageHelper
     {

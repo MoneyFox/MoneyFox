@@ -1,6 +1,6 @@
 ﻿using BugSense;
 using BugSense.Model;
-using MoneyManager.Business.Src;
+using MoneyManager.Business;
 using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
 using System;

@@ -14,11 +14,6 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public RecurringTransaction SelectedRecurringTransaction { get; set; }
 
-        private TransactionDataAccess transactionData
-        {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-        }
-
         public void Save(FinancialTransaction transaction)
         {
             //TODO: Refactor
@@ -66,18 +61,7 @@ namespace MoneyManager.DataAccess.DataAccess
             }
         }
 
-        private void RemoveRecurringForTransactions(RecurringTransaction recTrans)
-        {
-            IEnumerable<FinancialTransaction> relatedTrans =
-                transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
-
-            foreach (FinancialTransaction transaction in relatedTrans)
-            {
-                transaction.IsRecurring = false;
-                transaction.ReccuringTransactionId = null;
-                transactionData.Update(transaction);
-            }
-        }
+       
 
         public void Delete(int reccuringTransactionId)
         {

@@ -1,15 +1,20 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using MoneyManager.ViewModels;
-using System.Linq;
 
-namespace MoneyManager.Business.Src
+namespace MoneyManager.Business
 {
-    internal class TransactionHelper
+    internal class TransactionLogic
     {
-        public static FinancialTransaction SelectedTransaction
+        #region Properties
+        private static FinancialTransaction SelectedTransaction
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
             set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
@@ -20,10 +25,17 @@ namespace MoneyManager.Business.Src
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
+        public static TransactionDataAccess transactionData
+        {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
+
         private static AddTransactionViewModel addTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
+
+        #endregion
 
         public static void GoToAddTransaction(TransactionType transactionType)
         {
@@ -32,9 +44,33 @@ namespace MoneyManager.Business.Src
             addTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
             SetDefaultTransaction(transactionType);
             SetDefaultAccount();
+        }
 
-            //TODO: refactor
-            //((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
+        public static void PrepareEdit(FinancialTransaction transaction)
+        {
+            addTransactionView.IsEdit = true;
+            if (transaction.ReccuringTransactionId.HasValue)
+            {
+                addTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
+                addTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
+            }
+            addTransactionView.SelectedTransaction = transaction;
+        }
+
+        public static void DeleteTransaction(FinancialTransaction transaction)
+        {
+            transactionData.Delete(transaction);
+            AccountLogic.RemoveTransactionAmount(SelectedTransaction);
+        }
+
+        public static void DeleteAssociatedTransactionsFromDatabase(int accountId)
+        {
+            var transactions = transactionData.LoadList();
+
+            foreach (var transaction in transactions)
+            {
+                transactionData.Delete(transaction);
+            }
         }
 
         private static void SetDefaultTransaction(TransactionType transactionType)
@@ -51,20 +87,6 @@ namespace MoneyManager.Business.Src
             {
                 SelectedTransaction.ChargedAccount = AccountData.AllAccounts.First();
             }
-        }
-
-        public static void GoToEdit(FinancialTransaction transaction)
-        {
-            addTransactionView.IsEdit = true;
-            if (transaction.ReccuringTransactionId.HasValue)
-            {
-                addTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
-                addTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
-            }
-            addTransactionView.SelectedTransaction = transaction;
-
-            //TODO: Refactor
-            //((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
         }
     }
 }

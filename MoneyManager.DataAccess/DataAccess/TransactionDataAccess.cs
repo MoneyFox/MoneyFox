@@ -68,14 +68,14 @@ namespace MoneyManager.DataAccess.DataAccess
             }
         }
 
-        private void RefreshRelatedTransactions(FinancialTransaction transaction)
-        {
-            if (AccountDataAccess.SelectedAccount == transaction.ChargedAccount)
-            {
-                //TODO: refactor
-                //TransactionListUserControlView.SetRelatedTransactions(transaction.ChargedAccountId);
-            }
-        }
+        //private void RefreshRelatedTransactions(FinancialTransaction transaction)
+        //{
+        //    if (AccountDataAccess.SelectedAccount == transaction.ChargedAccount)
+        //    {
+        //        //TODO: refactor
+        //        //TransactionListUserControlView.SetRelatedTransactions(transaction.ChargedAccountId);
+        //    }
+        //}
 
         protected override void DeleteFromDatabase(FinancialTransaction transaction)
         {
@@ -94,26 +94,6 @@ namespace MoneyManager.DataAccess.DataAccess
             }
         }
 
-        public void DeleteAssociatedTransactionsFromDatabase(int accountId)
-        {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
-            {
-                if (AllTransactions == null)
-                {
-                    AllTransactions = new ObservableCollection<FinancialTransaction>();
-                }
-
-                var transactions = dbConn.Table<FinancialTransaction>()
-                    .Where(x => x.ChargedAccountId == accountId)
-                    .ToList();
-
-                foreach (var transaction in transactions)
-                {
-                    AllTransactions.Remove(transaction);
-                    dbConn.Delete(transaction);
-                }
-            }
-        }
 
         protected override List<FinancialTransaction> GetListFromDb()
         {

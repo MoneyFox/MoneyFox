@@ -15,7 +15,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void SaveToDb(Account itemToAdd)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllAccounts == null)
                 {
@@ -29,11 +29,8 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void DeleteFromDatabase(Account itemToDelete)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                //TODO: refactor
-                //TransactionViewModel.DeleteAssociatedTransactionsFromDatabase(account.Id);
-
                 AllAccounts.Remove(itemToDelete);
                 dbConn.Delete(itemToDelete);
             }
@@ -41,18 +38,15 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override List<Account> GetListFromDb()
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 return dbConn.Table<Account>().ToList();
-
-                //TODO: Refactor this:
-                //ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().UpdateBalance();
             }
         }
 
         protected override void UpdateItem(Account itemToUpdate)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.Update(itemToUpdate, typeof(Account));
             }

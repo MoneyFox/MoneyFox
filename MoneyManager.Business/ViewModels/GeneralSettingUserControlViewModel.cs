@@ -1,5 +1,4 @@
-﻿using MoneyManager.Business.Src;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace MoneyManager.Business.ViewModels

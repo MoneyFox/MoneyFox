@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Xaml;
-using MoneyManager.Business.Src;
+using MoneyManager.Business;
 using MoneyManager.Common;
 using MoneyManager.Foundation;
 
@@ -22,17 +22,17 @@ namespace MoneyManager.Views
 
         private void AddSpendingClick(object sender, RoutedEventArgs e)
         {
-            TransactionHelper.GoToAddTransaction(TransactionType.Spending);
+            TransactionLogic.GoToAddTransaction(TransactionType.Spending);
         }
 
         private void AddIncomeClick(object sender, RoutedEventArgs e)
         {
-            TransactionHelper.GoToAddTransaction(TransactionType.Income);
+            TransactionLogic.GoToAddTransaction(TransactionType.Income);
         }
 
         private void AddTransferClick(object sender, RoutedEventArgs e)
         {
-            TransactionHelper.GoToAddTransaction(TransactionType.Transfer);
+            TransactionLogic.GoToAddTransaction(TransactionType.Transfer);
         }
     }
 }

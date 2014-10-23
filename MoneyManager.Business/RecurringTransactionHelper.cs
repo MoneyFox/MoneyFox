@@ -1,20 +1,25 @@
-﻿using BugSense;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using BugSense;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using MoneyManager.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace MoneyManager.Business.Src
+namespace MoneyManager.Business
 {
     internal class RecurringTransactionHelper
     {
         private RecurringTransactionDataAccess RecurringTransactionData
         {
             get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+        }
+
+        private static TransactionDataAccess transactionData
+        {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
         private static AddTransactionViewModel addTransactionView
@@ -30,9 +35,17 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        private TransactionDataAccess TransactionData
+        public static void RemoveRecurringForTransactions(RecurringTransaction recTrans)
         {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+            IEnumerable<FinancialTransaction> relatedTrans =
+                transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
+
+            foreach (var transaction in relatedTrans)
+            {
+                transaction.IsRecurring = false;
+                transaction.ReccuringTransactionId = null;
+                transactionData.Update(transaction);
+            }
         }
 
         public void CheckForRecurringTransactions()
@@ -50,7 +63,7 @@ namespace MoneyManager.Business.Src
 
         private void CheckIfIntervallIsReady()
         {
-            List<FinancialTransaction> transactions = TransactionData.LoadRecurringList();
+            List<FinancialTransaction> transactions = transactionData.LoadRecurringList();
 
             foreach (RecurringTransaction recTrans in AllRecurringTransactions)
             {
@@ -68,17 +81,17 @@ namespace MoneyManager.Business.Src
         {
             switch (recTrans.Recurrence)
             {
-                case (int) TransactionRecurrence.Daily:
+                case (int)TransactionRecurrence.Daily:
                     return DateTime.Now.Date != relTransaction.Date;
 
-                case (int) TransactionRecurrence.Weekly:
+                case (int)TransactionRecurrence.Weekly:
                     TimeSpan days = DateTime.Now - relTransaction.Date;
                     return days.Days >= 7;
 
-                case (int) TransactionRecurrence.Monthly:
+                case (int)TransactionRecurrence.Monthly:
                     return DateTime.Now.Month != relTransaction.Date.Month;
 
-                case (int) TransactionRecurrence.Yearly:
+                case (int)TransactionRecurrence.Yearly:
                     return DateTime.Now.Year != relTransaction.Date.Year
                            && DateTime.Now.Month == relTransaction.Date.Month;
             }
@@ -100,7 +113,7 @@ namespace MoneyManager.Business.Src
                 Note = recurringTransaction.Note,
             };
 
-            TransactionData.SaveToDb(newTransaction, true);
+            transactionData.SaveToDb(newTransaction, true);
         }
 
         public static RecurringTransaction GetRecurringFromFinancialTransaction(FinancialTransaction transaction)
