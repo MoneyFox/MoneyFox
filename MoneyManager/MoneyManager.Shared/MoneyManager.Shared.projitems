@@ -15,45 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\AmountConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\BooleanToVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\CultureConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\CurrencyConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\DateTimeToDateTimeOffsetConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\RecurrenceConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\RevertVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\ThemedImageConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionAmountConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionStyleConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AbstractDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\AccountDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\CategoryDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\GroupDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\RecurringTransactionDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\SettingDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\StatisticDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataAccess\TransactionDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Tiles\IncomeTile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Tiles\SpendingTile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Tiles\Tile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Tiles\TransferTile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OperationContracts\IDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OperationContracts\ISecondTile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\Annotations.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\BackgroundTaskHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\ConnectionFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\CurrencyHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\DatabaseHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\Enumerations.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\LanguageHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\RecurringTransactionHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\ThemedImageConverterHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\TileHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\TransactionHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\TransactionTypeHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Src\Utilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>
@@ -87,14 +48,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\TransactionListUserControl.xaml.cs">
       <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddAccountViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddTransactionViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GeneralSettingUserControlViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SelectCategoryViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TileSettingsUserControlViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TotalBalanceViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TransactionListUserControlViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Styles\AppStyles.xaml">
@@ -145,9 +98,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)packages.config" />

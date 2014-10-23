@@ -28,4 +28,5 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: InternalsVisibleTo("MoneyManager.DataAccess")]
+[assembly: publicsVisibleTo("MoneyManager.DataAccess")]
+[assembly: publicsVisibleTo("MoneyManager.Business")]
