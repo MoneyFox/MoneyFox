@@ -59,7 +59,8 @@ namespace MoneyManager.DataAccess.DataAccess
                     AllRecurringTransactions.Remove(itemToDelete);
                 }
 
-                RemoveRecurringForTransactions(itemToDelete);
+                //TODO: refactor
+                //RemoveRecurringForTransactions(itemToDelete);
 
                 dbConn.Delete(itemToDelete);
             }
@@ -83,7 +84,7 @@ namespace MoneyManager.DataAccess.DataAccess
             RecurringTransaction recTrans = AllRecurringTransactions.FirstOrDefault(x => x.Id == reccuringTransactionId);
             if (recTrans != null)
             {
-                Delete(recTrans, true);
+                Delete(recTrans);
             }
         }
 

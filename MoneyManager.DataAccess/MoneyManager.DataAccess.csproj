@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\CategoryDataAccess.cs" />
-    <Compile Include="DataAccess\GroupDataAccess.cs" />
     <Compile Include="DataAccess\RecurringTransactionDataAccess.cs" />
     <Compile Include="DataAccess\SettingDataAccess.cs" />
     <Compile Include="DataAccess\StatisticDataAccess.cs" />

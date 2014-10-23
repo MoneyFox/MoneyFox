@@ -1,77 +1,91 @@
-﻿namespace MoneyManager.Business
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
+using System;
+using System.Linq;
+
+namespace MoneyManager.Business
 {
     //TODO: Refactor
-    //internal class AccountLogic
-    //{
-    //    public void RemoveTransactionAmount(FinancialTransaction transaction)
-    //    {
-    //        PrehandleRemoveIfTransfer(transaction);
+    internal class AccountLogic
+    {
+        private AccountDataAccess accountData
+        {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+        }
 
-    //        Func<double, double> amountFunc = (x) =>
-    //            transaction.Type == (int)TransactionType.Income
-    //                ? -x
-    //                : x;
+        public void RemoveTransactionAmount(FinancialTransaction transaction, Account account)
+        {
+            PrehandleRemoveIfTransfer(transaction);
 
-    //        HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
-    //    }
+            Func<double, double> amountFunc = (x) =>
+                transaction.Type == (int)TransactionType.Income
+                    ? -x
+                    : x;
 
-    //    public void AddTransactionAmount(FinancialTransaction transaction)
-    //    {
-    //        PrehandleAddIfTransfer(transaction);
+            HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+        }
 
-    //        Func<double, double> amountFunc = (x) =>
-    //            transaction.Type == (int)TransactionType.Income
-    //                ? x
-    //                : -x;
+        public void AddTransactionAmount(FinancialTransaction transaction)
+        {
+            PrehandleAddIfTransfer(transaction);
 
-    //        HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
-    //    }
+            Func<double, double> amountFunc = (x) =>
+                transaction.Type == (int)TransactionType.Income
+                    ? x
+                    : -x;
 
-    //    private void PrehandleAddIfTransfer(FinancialTransaction transaction)
-    //    {
-    //        if (transaction.Type == (int)TransactionType.Transfer)
-    //        {
-    //            Func<double, double> amountFunc = x => x;
-    //            HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
-    //        }
-    //    }
+            HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+        }
 
-    //    private void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
-    //    {
-    //        if (transaction.Type == (int)TransactionType.Transfer)
-    //        {
-    //            Func<double, double> amountFunc = x => -x;
-    //            HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
-    //        }
-    //    }
 
-    //    private Func<FinancialTransaction, Account> GetTargetAccountFunc()
-    //    {
-    //        Func<FinancialTransaction, Account> targetAccountFunc =
-    //            (trans) => AllAccounts.FirstOrDefault(x => x.Id == trans.TargetAccountId);
-    //        return targetAccountFunc;
-    //    }
+        private void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
+        {
+            if (transaction.Type == (int)TransactionType.Transfer)
+            {
+                Func<double, double> amountFunc = x => -x;
+                HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
+            }
+        }
 
-    //    private Func<FinancialTransaction, Account> GetChargedAccountFunc()
-    //    {
-    //        Func<FinancialTransaction, Account> accountFunc =
-    //            (trans) => AllAccounts.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
-    //        return accountFunc;
-    //    }
+        private void HandleTransactionAmount(FinancialTransaction transaction, Func<double, double> amountFunc, Func<FinancialTransaction, Account> getAccountFunc)
+        {
+            if (transaction.ClearTransactionNow)
+            {
+                var account = getAccountFunc(transaction);
+                if (account == null) return;
 
-    //    private void HandleTransactionAmount(FinancialTransaction transaction, Func<double, double> amountFunc, Func<FinancialTransaction, Account> getAccountFunc)
-    //    {
-    //        if (transaction.ClearTransactionNow)
-    //        {
-    //            var account = getAccountFunc(transaction);
-    //            if (account == null) return;
+                var amount = amountFunc(transaction.Amount);
 
-    //            var amount = amountFunc(transaction.Amount);
+                account.CurrentBalance += amount;
+                transaction.Cleared = true;
+                accountData.Update(account);
+            }
+        }
 
-    //            account.CurrentBalance += amount;
-    //            transaction.Cleared = true;
-    //            UpdateItem(account);
-    //        }
-    //    }
-    //}
+
+        private void PrehandleAddIfTransfer(FinancialTransaction transaction)
+        {
+            if (transaction.Type == (int)TransactionType.Transfer)
+            {
+                Func<double, double> amountFunc = x => x;
+                HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
+            }
+        }
+
+        private Func<FinancialTransaction, Account> GetTargetAccountFunc()
+        {
+            Func<FinancialTransaction, Account> targetAccountFunc =
+                (trans) => accountData.AllAccounts.FirstOrDefault(x => x.Id == trans.TargetAccountId);
+            return targetAccountFunc;
+        }
+
+        private Func<FinancialTransaction, Account> GetChargedAccountFunc()
+        {
+            Func<FinancialTransaction, Account> accountFunc =
+                (trans) => accountData.AllAccounts.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
+            return accountFunc;
+        }
+    }
 }

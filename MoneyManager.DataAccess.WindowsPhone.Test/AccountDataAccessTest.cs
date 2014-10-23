@@ -8,6 +8,15 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
     [TestClass]
     public class AccountDataAccessTest
     {
+        [TestInitialize]
+        public void InitTests()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
+                db.CreateTable<Account>();
+            }
+        }
+
         [TestMethod]
         public void CrudAccountTest()
         {
@@ -29,7 +38,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
             var list = accountDataAccess.LoadList();
 
             Assert.AreEqual(1, list.Count);
-            Assert.AreEqual(firstName, list.First());
+            Assert.AreEqual(firstName, list.First().Name);
 
             account.Name = secondName;
 
@@ -38,7 +47,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
             list = accountDataAccess.LoadList();
 
             Assert.AreEqual(1, list.Count);
-            Assert.AreEqual(secondName, list.First());
+            Assert.AreEqual(secondName, list.First().Name);
 
             accountDataAccess.Delete(account);
 

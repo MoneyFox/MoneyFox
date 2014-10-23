@@ -53,15 +53,16 @@ namespace MoneyManager.DataAccess.DataAccess
 
                 //TODO: refactor
                 //AccountDataAccess.AddTransactionAmount(transaction);
-                if (!skipRecurring && transaction.IsRecurring)
-                {
-                    RecurringTransactionData.Save(transaction);
-                }
+                //if (!skipRecurring && transaction.IsRecurring)
+                //{
+                //    RecurringTransactionData.Save(transaction);
+                //}
 
                 AllTransactions.Add(transaction);
                 AllTransactions = new ObservableCollection<FinancialTransaction>(AllTransactions.OrderBy(x => x.Date));
 
-                RefreshRelatedTransactions(transaction);
+                //TODO: refactor
+                //RefreshRelatedTransactions(transaction);
 
                 dbConn.Insert(transaction, typeof(FinancialTransaction));
             }
@@ -84,7 +85,8 @@ namespace MoneyManager.DataAccess.DataAccess
                 //AccountDataAccess.RemoveTransactionAmount(transaction);
 
                 AllTransactions.Remove(transaction);
-                RefreshRelatedTransactions(transaction);
+                //TODO: refactor
+                //RefreshRelatedTransactions(transaction);
                 dbConn.Delete(transaction);
 
                 CheckForRecurringTransaction(transaction,

@@ -27,11 +27,11 @@ namespace MoneyManager.Foundation
             }
         }
 
-        public async void Delete(T itemToDelete)
+        public void Delete(T itemToDelete)
         {
             try
             {
-                    DeleteFromDatabase(itemToDelete);
+                DeleteFromDatabase(itemToDelete);
             }
             catch (Exception ex)
             {

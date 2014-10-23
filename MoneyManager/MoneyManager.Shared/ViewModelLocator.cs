@@ -14,7 +14,6 @@ namespace MoneyManager
 
             SimpleIoc.Default.Register<AccountDataAccess>();
             SimpleIoc.Default.Register<CategoryDataAccess>();
-            SimpleIoc.Default.Register<GroupDataAccess>();
             SimpleIoc.Default.Register<SettingDataAccess>();
             SimpleIoc.Default.Register<TransactionDataAccess>();
             SimpleIoc.Default.Register<RecurringTransactionDataAccess>();
@@ -39,11 +38,6 @@ namespace MoneyManager
         public CategoryDataAccess CategoryDataAccess
         {
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
-        }
-
-        public GroupDataAccess GroupDataAccess
-        {
-            get { return ServiceLocator.Current.GetInstance<GroupDataAccess>(); }
         }
 
         public TransactionDataAccess TransactionDataAccess
