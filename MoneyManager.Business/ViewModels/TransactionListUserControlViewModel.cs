@@ -2,11 +2,11 @@
 using System.Globalization;
 using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using QKit.JumpList;
 
-namespace MoneyManager.ViewModels
+namespace MoneyManager.Business.ViewModels
 {
     internal class TransactionListUserControlViewModel : ViewModelBase
     {

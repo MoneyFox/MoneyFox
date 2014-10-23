@@ -20,17 +20,5 @@ namespace MoneyManager.DataAccess
         {
             return new SQLiteConnection(sqlitePlatform, _dbPath);
         }
-
-        private static ISQLitePlatform GetCurrentPlatform()
-        {
-#if WINDOWS_PHONE_APP
-                return new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT()
-#endif
-
-#if WINDOWS_APP
-                return new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT()
-#endif
-
-        }
     }
 }

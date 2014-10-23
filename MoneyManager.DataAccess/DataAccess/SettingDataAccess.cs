@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using Windows.Storage;
-using MoneyManager.Src;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -50,7 +49,6 @@ namespace MoneyManager.DataAccess.DataAccess
             return value;
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

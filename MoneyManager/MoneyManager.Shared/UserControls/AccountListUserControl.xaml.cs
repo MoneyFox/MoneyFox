@@ -3,6 +3,10 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.ViewModels;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.ViewModels;
 using MoneyManager.Views;
 
 namespace MoneyManager.UserControls

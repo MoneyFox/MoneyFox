@@ -2,7 +2,7 @@
 using MoneyManager.Business.Tiles;
 using MoneyManager.Models.Tiles;
 
-namespace MoneyManager.ViewModels
+namespace MoneyManager.Business.ViewModels
 {
     internal class TileSettingsUserControlViewModel : ViewModelBase
     {

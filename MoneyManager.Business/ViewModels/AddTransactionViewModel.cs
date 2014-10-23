@@ -4,6 +4,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 using MoneyManager.Src;
 using PropertyChanged;
 
@@ -68,10 +71,11 @@ namespace MoneyManager.ViewModels
 
         public void Cancel()
         {
-            if (IsEdit)
-            {
-                ServiceLocator.Current.GetInstance<AccountDataAccess>().AddTransactionAmount(SelectedTransaction);
-            }
+            //TODO: refactor
+            //if (IsEdit)
+            //{
+            //    ServiceLocator.Current.GetInstance<AccountDataAccess>().AddTransactionAmount(SelectedTransaction);
+            //}
 
             ((Frame) Window.Current.Content).GoBack();
         }

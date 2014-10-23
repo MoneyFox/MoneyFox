@@ -6,7 +6,7 @@ using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using PropertyChanged;
 
-namespace MoneyManager.ViewModels
+namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
     internal class AddAccountViewModel : ViewModelBase

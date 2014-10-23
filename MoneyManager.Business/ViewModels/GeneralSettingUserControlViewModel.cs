@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using MoneyManager.Src;
+using MoneyManager.Business.Src;
 
-namespace MoneyManager.ViewModels
+namespace MoneyManager.Business.ViewModels
 {
     internal class GeneralSettingUserControlViewModel
     {

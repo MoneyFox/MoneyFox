@@ -1,10 +1,9 @@
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
+using MoneyManager.ViewModels;
 
-namespace MoneyManager.ViewModels
+namespace MoneyManager.Business.ViewModels
 {
     internal class ViewModelLocator
     {
