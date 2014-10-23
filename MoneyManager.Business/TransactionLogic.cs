@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
@@ -31,12 +34,30 @@ namespace MoneyManager.Business
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
+        private static RecurringTransactionDataAccess recurringTransactionData
+        {
+            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+        }
+
         private static AddTransactionViewModel addTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
         #endregion
+
+        public static void SaveTransaction(FinancialTransaction transaction, bool skipRecurring = false)
+        {
+            AccountLogic.AddTransactionAmount(transaction);
+            if (!skipRecurring && transaction.IsRecurring)
+            {
+                recurringTransactionData.Save(transaction);
+            }
+
+            AccountLogic.RemoveTransactionAmount(transaction);
+
+            transactionData.Save(transaction);
+        }
 
         public static void GoToAddTransaction(TransactionType transactionType)
         {
@@ -62,6 +83,11 @@ namespace MoneyManager.Business
         {
             transactionData.Delete(transaction);
             AccountLogic.RemoveTransactionAmount(SelectedTransaction);
+            AccountLogic.RefreshRelatedTransactions(transaction);
+
+            CheckForRecurringTransaction(transaction,
+    () => recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));
+
         }
 
         public static void DeleteAssociatedTransactionsFromDatabase(int accountId)
@@ -71,6 +97,45 @@ namespace MoneyManager.Business
                 transactionData.Delete(transaction);
             }
         }
+
+        public static async void UpdateTransaction(FinancialTransaction transaction)
+        {
+            CheckIfRecurringWasRemoved(transaction);
+            AccountLogic.AddTransactionAmount(transaction);
+            transactionData.Update(transaction);
+            await CheckForRecurringTransaction(transaction, () => recurringTransactionData.Update(transaction));
+        }
+
+        private static async Task CheckForRecurringTransaction(FinancialTransaction transaction,
+            Action recurringTransactionAction)
+        {
+            if (!transaction.IsRecurring) return;
+
+            var dialog =
+                new MessageDialog(Translation.GetTranslation("ChangeSubsequentTransactionsMessage"),
+                    Translation.GetTranslation("ChangeSubsequentTransactionsTitle"));
+
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("RecurringLabel")));
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("JustThisLabel")));
+
+            dialog.DefaultCommandIndex = 1;
+
+            IUICommand result = await dialog.ShowAsync();
+
+            if (result.Label == Translation.GetTranslation("RecurringLabel"))
+            {
+                recurringTransactionAction();
+            }
+        }
+
+        private static void CheckIfRecurringWasRemoved(FinancialTransaction transaction)
+        {
+            if (!transaction.IsRecurring && transaction.ReccuringTransactionId != null)
+            {
+                RecurringTransactionData.Delete(transaction.ReccuringTransactionId.Value);
+            }
+        }
+
 
         private static void SetDefaultTransaction(TransactionType transactionType)
         {

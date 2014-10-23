@@ -31,12 +31,6 @@ namespace MoneyManager.DataAccess.DataAccess
             get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
         }
 
-        ////TODO: refactor
-        //private static TransactionListUserControlViewModel TransactionListUserControlView
-        //{
-        //    get { return ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>(); }
-        //}
-
         protected override void SaveToDb(FinancialTransaction transaction)
         {
             SaveToDb(transaction, false);
@@ -51,46 +45,19 @@ namespace MoneyManager.DataAccess.DataAccess
                     AllTransactions = new ObservableCollection<FinancialTransaction>();
                 }
 
-                //TODO: refactor
-                //AccountDataAccess.AddTransactionAmount(transaction);
-                //if (!skipRecurring && transaction.IsRecurring)
-                //{
-                //    RecurringTransactionData.Save(transaction);
-                //}
-
                 AllTransactions.Add(transaction);
                 AllTransactions = new ObservableCollection<FinancialTransaction>(AllTransactions.OrderBy(x => x.Date));
-
-                //TODO: refactor
-                //RefreshRelatedTransactions(transaction);
 
                 dbConn.Insert(transaction, typeof(FinancialTransaction));
             }
         }
 
-        //private void RefreshRelatedTransactions(FinancialTransaction transaction)
-        //{
-        //    if (AccountDataAccess.SelectedAccount == transaction.ChargedAccount)
-        //    {
-        //        //TODO: refactor
-        //        //TransactionListUserControlView.SetRelatedTransactions(transaction.ChargedAccountId);
-        //    }
-        //}
-
         protected override void DeleteFromDatabase(FinancialTransaction transaction)
         {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                //TODO: refactor
-                //AccountDataAccess.RemoveTransactionAmount(transaction);
-
                 AllTransactions.Remove(transaction);
-                //TODO: refactor
-                //RefreshRelatedTransactions(transaction);
                 dbConn.Delete(transaction);
-
-                CheckForRecurringTransaction(transaction,
-                    () => RecurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));
             }
         }
 
@@ -101,14 +68,6 @@ namespace MoneyManager.DataAccess.DataAccess
             {
                 AllTransactions =
                     new ObservableCollection<FinancialTransaction>(dbConn.Table<FinancialTransaction>().ToList());
-            }
-        }
-
-        private void CheckIfRecurringWasRemoved(FinancialTransaction transaction)
-        {
-            if (!transaction.IsRecurring && transaction.ReccuringTransactionId != null)
-            {
-                RecurringTransactionData.Delete(transaction.ReccuringTransactionId.Value);
             }
         }
 
@@ -123,37 +82,10 @@ namespace MoneyManager.DataAccess.DataAccess
         {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                CheckIfRecurringWasRemoved(transaction);
-                //TODO: refactor
-                //AccountDataAccess.AddTransactionAmount(transaction);
                 dbConn.Update(transaction);
-
-                await CheckForRecurringTransaction(transaction, () => RecurringTransactionData.Update(transaction));
             }
         }
 
-        private async Task CheckForRecurringTransaction(FinancialTransaction transaction,
-            Action recurringTransactionAction)
-        {
-            //TODO: Refactor
-            if (!transaction.IsRecurring) return;
-
-            var dialog =
-                new MessageDialog(Translation.GetTranslation("ChangeSubsequentTransactionsMessage"),
-                    Translation.GetTranslation("ChangeSubsequentTransactionsTitle"));
-
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("RecurringLabel")));
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("JustThisLabel")));
-
-            dialog.DefaultCommandIndex = 1;
-
-            IUICommand result = await dialog.ShowAsync();
-
-            if (result.Label == Translation.GetTranslation("RecurringLabel"))
-            {
-                recurringTransactionAction();
-            }
-        }
 
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions()
         {

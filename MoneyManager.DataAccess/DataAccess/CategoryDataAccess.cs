@@ -25,8 +25,7 @@ namespace MoneyManager.DataAccess.DataAccess
                 AllCategories = new ObservableCollection<Category>();
             }
 
-            //TODO: Refactor
-            //category.Id = Utilities.GetMaxId();
+            category.Id = GetMaxId();
 
             AllCategories.Add(category);
             AllCategories = new ObservableCollection<Category>(AllCategories.OrderBy(x => x.Name));
@@ -34,6 +33,13 @@ namespace MoneyManager.DataAccess.DataAccess
             ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
             roamingSettings.Values[category.Id.ToString()] = category.Name;
         }
+
+        private  int GetMaxId()
+        {
+            var roamingSettings = ApplicationData.Current.RoamingSettings;
+            return roamingSettings.Values.Count;
+        }
+
 
         protected override void DeleteFromDatabase(Category category)
         {
