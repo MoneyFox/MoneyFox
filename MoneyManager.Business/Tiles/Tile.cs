@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 
-namespace MoneyManager.Models.Tiles
+namespace MoneyManager.Business.Tiles
 {
-    public abstract class Tile
+    internal abstract class Tile
     {
         protected bool Exists(string id)
         {

@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using MoneyManager.Src;
-using PropertyChanged;
+using System;
+using System.Collections.ObjectModel;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyManager.ViewModels
 {
-    [ImplementPropertyChanged]
     internal class AddTransactionViewModel
     {
         public FinancialTransaction SelectedTransaction
@@ -39,7 +36,7 @@ namespace MoneyManager.ViewModels
                     ? Translation.GetTranslation("EditTitle")
                     : Translation.GetTranslation("AddTitle");
 
-                var type = TransactionTypeHelper.GetViewTitleForType(SelectedTransaction.Type);
+                string type = TransactionTypeHelper.GetViewTitleForType(SelectedTransaction.Type);
 
                 return String.Format(text, type);
             }

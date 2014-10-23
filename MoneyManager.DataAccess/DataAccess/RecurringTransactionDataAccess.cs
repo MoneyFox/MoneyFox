@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using SQLite.Net;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -46,7 +46,7 @@ namespace MoneyManager.DataAccess.DataAccess
                 AllRecurringTransactions = new ObservableCollection<RecurringTransaction>
                     (AllRecurringTransactions.OrderBy(x => x.StartDate));
 
-                dbConn.Insert(itemToAdd, typeof (RecurringTransaction));
+                dbConn.Insert(itemToAdd, typeof(RecurringTransaction));
             }
         }
 

@@ -1,35 +1,35 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Src;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.ViewModels;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Input;
 
 namespace MoneyManager.UserControls
 {
-    public sealed partial class TransactionListUserControl
+    public partial class TransactionListUserControl
     {
         public TransactionListUserControl()
         {
             InitializeComponent();
         }
 
-        public TransactionDataAccess TransactionData
+        internal TransactionDataAccess TransactionData
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        public AddTransactionViewModel AddTransactionView
+        internal AddTransactionViewModel AddTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
         private void EditTransaction(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement) sender;
+            var element = (FrameworkElement)sender;
             var transaction = element.DataContext as FinancialTransaction;
             if (transaction == null) return;
 
@@ -38,7 +38,7 @@ namespace MoneyManager.UserControls
 
         private void DeleteTransaction(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement) sender;
+            var element = (FrameworkElement)sender;
             var transaction = element.DataContext as FinancialTransaction;
             if (transaction == null) return;
 

@@ -1,18 +1,15 @@
-﻿using System;
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
-using PropertyChanged;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
-    [ImplementPropertyChanged]
     internal class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
     {
         public TransactionDataAccess()
@@ -66,7 +63,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
                 RefreshRelatedTransactions(transaction);
 
-                dbConn.Insert(transaction, typeof (FinancialTransaction));
+                dbConn.Insert(transaction, typeof(FinancialTransaction));
             }
         }
 

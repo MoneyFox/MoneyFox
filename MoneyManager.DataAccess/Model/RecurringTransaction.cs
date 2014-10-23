@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.DataAccess;
+using SQLite.Net.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
-using PropertyChanged;
-using SQLite.Net.Attributes;
 
 namespace MoneyManager.DataAccess.Model
 {
     [Table("RecurringTransactiont")]
-    [ImplementPropertyChanged]
     internal class RecurringTransaction
     {
         private IEnumerable<Account> allAccounts
@@ -59,7 +57,7 @@ namespace MoneyManager.DataAccess.Model
             set
             {
                 CategoryId = value == null
-                    ? (int?) null
+                    ? (int?)null
                     : value.Id;
             }
         }

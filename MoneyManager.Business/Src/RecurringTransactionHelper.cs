@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using BugSense;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 using MoneyManager.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MoneyManager.Business.Src
 {

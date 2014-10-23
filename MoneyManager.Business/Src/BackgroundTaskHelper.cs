@@ -19,7 +19,7 @@ namespace MoneyManager.Business.Src
 
             builder.Name = name;
             //TODO: Refactor
-            builder.TaskEntryPoint = typeof (Tasks.TransactionsWp.TransactionTask).FullName;
+            //builder.TaskEntryPoint = typeof(Tasks.TransactionsWp.TransactionTask).FullName;
             builder.SetTrigger(trigger);
             BackgroundTaskRegistration registration = builder.Register();
             registration.Completed += RegistrationOnCompleted;

@@ -1,5 +1,5 @@
-﻿using System;
-using MoneyManager.Foundation;
+﻿using MoneyManager.Foundation;
+using System;
 
 namespace MoneyManager.Src
 {

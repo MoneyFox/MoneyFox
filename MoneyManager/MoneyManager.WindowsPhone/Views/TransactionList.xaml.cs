@@ -1,5 +1,7 @@
 ﻿using Windows.UI.Xaml;
+using MoneyManager.Business.Src;
 using MoneyManager.Common;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Views
 {

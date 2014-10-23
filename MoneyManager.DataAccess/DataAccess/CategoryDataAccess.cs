@@ -1,14 +1,12 @@
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.Storage;
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
-using PropertyChanged;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
-    [ImplementPropertyChanged]
     internal class CategoryDataAccess : AbstractDataAccess<Category>
     {
         public CategoryDataAccess()

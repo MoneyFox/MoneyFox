@@ -1,15 +1,13 @@
-﻿using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
-using PropertyChanged;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
 
 namespace MoneyManager.Business.ViewModels
 {
-    [ImplementPropertyChanged]
     internal class TotalBalanceViewModel : ViewModelBase
     {
         public ObservableCollection<Account> AllAccounts

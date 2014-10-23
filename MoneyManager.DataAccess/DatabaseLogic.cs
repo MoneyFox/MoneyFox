@@ -1,5 +1,4 @@
-﻿using MoneyManager.DataAccess;
-using MoneyManager.DataAccess.Model;
+﻿using MoneyManager.DataAccess.Model;
 using SQLite.Net;
 
 namespace MoneyManager.DataAccess
@@ -8,7 +7,7 @@ namespace MoneyManager.DataAccess
     {
         public static void CreateDatabase()
         {
-            var dbConn = SqlConnectionFactory.GetSqlConnection();
+            SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection();
 
             dbConn.CreateTable<Account>();
             dbConn.CreateTable<FinancialTransaction>();

@@ -2,7 +2,10 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Views
 {
@@ -16,7 +19,7 @@ namespace MoneyManager.Views
             navigationHelper = new NavigationHelper(this);
         }
 
-        public Account SelectedAccount
+        internal Account SelectedAccount
         {
             get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>().SelectedAccount; }
         }

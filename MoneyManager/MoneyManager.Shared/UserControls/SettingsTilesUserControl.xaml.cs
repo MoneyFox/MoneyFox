@@ -1,10 +1,9 @@
-﻿using System;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Foundation;
-using MoneyManager.ViewModels;
+using System;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 
 namespace MoneyManager.UserControls
 {
@@ -15,7 +14,7 @@ namespace MoneyManager.UserControls
             InitializeComponent();
         }
 
-        public TileSettingsUserControlViewModel TileSettingsUserControlView
+        internal TileSettingsUserControlViewModel TileSettingsUserControlView
         {
             get { return ServiceLocator.Current.GetInstance<TileSettingsUserControlViewModel>(); }
         }

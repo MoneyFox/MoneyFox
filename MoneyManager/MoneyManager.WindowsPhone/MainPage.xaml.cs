@@ -1,7 +1,12 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Src;
+using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 using MoneyManager.Views;
 
 namespace MoneyManager
@@ -22,7 +27,7 @@ namespace MoneyManager
             get { return navigationHelper; }
         }
 
-        public Account SelectedAccount
+        internal Account SelectedAccount
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
             set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }

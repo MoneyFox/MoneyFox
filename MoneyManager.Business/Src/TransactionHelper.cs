@@ -1,12 +1,9 @@
-﻿using System.Linq;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
-using MoneyManager.Src;
+using MoneyManager.Foundation;
 using MoneyManager.ViewModels;
+using System.Linq;
 
 namespace MoneyManager.Business.Src
 {
@@ -66,7 +63,8 @@ namespace MoneyManager.Business.Src
             }
             addTransactionView.SelectedTransaction = transaction;
 
-            ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
+            //TODO: Refactor
+            //((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
         }
     }
 }

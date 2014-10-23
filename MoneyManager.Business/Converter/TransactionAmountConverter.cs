@@ -1,9 +1,9 @@
-﻿using System;
-using Windows.UI.Xaml.Data;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
-using MoneyManager.Src;
+using MoneyManager.Foundation;
+using System;
+using Windows.UI.Xaml.Data;
 
 namespace MoneyManager.Business.Converter
 {

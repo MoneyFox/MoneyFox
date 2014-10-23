@@ -26,8 +26,6 @@ namespace MoneyManager.Business.ViewModels
             SimpleIoc.Default.Register<TransactionListUserControlViewModel>();
             SimpleIoc.Default.Register<TileSettingsUserControlViewModel>();
             SimpleIoc.Default.Register<GeneralSettingUserControlViewModel>();
-
-            SimpleIoc.Default.Register<CurrentPlatform>();
         }
 
         #region DataAccess
@@ -107,10 +105,5 @@ namespace MoneyManager.Business.ViewModels
         }
 
         #endregion Views
-
-        public CurrentPlatform CurrentPlatform
-        {
-            get { return ServiceLocator.Current.GetInstance<CurrentPlatform>(); }
-        }
     }
 }

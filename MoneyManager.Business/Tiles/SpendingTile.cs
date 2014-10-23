@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MoneyManager.Foundation;
+using MoneyManager.Foundation.OperationContracts;
+using System;
 using Windows.UI.StartScreen;
-using MoneyManager.Src;
 
-namespace MoneyManager.Models.Tiles
+namespace MoneyManager.Business.Tiles
 {
     internal class SpendingTile : Tile, ISecondTile
     {

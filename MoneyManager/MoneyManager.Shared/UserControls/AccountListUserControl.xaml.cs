@@ -1,13 +1,12 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
-using MoneyManager.ViewModels;
 using MoneyManager.Views;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Input;
 
 namespace MoneyManager.UserControls
 {
@@ -35,7 +34,7 @@ namespace MoneyManager.UserControls
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement) sender;
+            var element = (FrameworkElement)sender;
             var account = element.DataContext as Account;
             if (account == null) return;
 
@@ -43,12 +42,12 @@ namespace MoneyManager.UserControls
             viewModel.IsEdit = true;
             viewModel.SelectedAccount = account;
 
-            ((Frame) Window.Current.Content).Navigate(typeof (AddAccount));
+            ((Frame)Window.Current.Content).Navigate(typeof(AddAccount));
         }
 
         private void Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement) sender;
+            var element = (FrameworkElement)sender;
             var account = element.DataContext as Account;
             if (account == null) return;
 
@@ -64,7 +63,7 @@ namespace MoneyManager.UserControls
                 ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>()
                     .SetRelatedTransactions(accountData.SelectedAccount.Id);
 
-                ((Frame) Window.Current.Content).Navigate(typeof (TransactionList));
+                ((Frame)Window.Current.Content).Navigate(typeof(TransactionList));
                 AccountList.SelectedItem = null;
             }
         }

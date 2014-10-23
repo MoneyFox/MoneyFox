@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MoneyManager.Foundation;
+using System;
 using Windows.UI.Xaml.Data;
-using MoneyManager.Src;
 
 namespace MoneyManager.Business.Converter
 {

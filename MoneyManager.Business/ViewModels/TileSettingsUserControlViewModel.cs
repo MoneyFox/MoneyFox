@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
 using MoneyManager.Business.Tiles;
-using MoneyManager.Models.Tiles;
 
 namespace MoneyManager.Business.ViewModels
 {

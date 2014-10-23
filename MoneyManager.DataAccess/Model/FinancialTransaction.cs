@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.DataAccess;
+using SQLite.Net.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
-using PropertyChanged;
-using SQLite.Net.Attributes;
 
 namespace MoneyManager.DataAccess.Model
 {
-    [ImplementPropertyChanged]
     [Table("FinancialTransactions")]
     internal class FinancialTransaction
     {
@@ -87,7 +85,7 @@ namespace MoneyManager.DataAccess.Model
             set
             {
                 CategoryId = value == null
-                    ? (int?) null
+                    ? (int?)null
                     : value.Id;
             }
         }
@@ -98,7 +96,6 @@ namespace MoneyManager.DataAccess.Model
             get { return allRecurringTransactions.FirstOrDefault(x => x.Id == ReccuringTransactionId); }
             set { ReccuringTransactionId = value.Id; }
         }
-
 
         [Ignore]
         public bool ClearTransactionNow

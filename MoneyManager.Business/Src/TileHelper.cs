@@ -1,6 +1,5 @@
 ﻿using MoneyManager.Business.Tiles;
-using MoneyManager.Models.Tiles;
-using MoneyManager.Src;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Business.Src
 {
@@ -13,9 +12,11 @@ namespace MoneyManager.Business.Src
                 case IncomeTile.Id:
                     TransactionHelper.GoToAddTransaction(TransactionType.Income);
                     break;
+
                 case SpendingTile.Id:
                     TransactionHelper.GoToAddTransaction(TransactionType.Spending);
                     break;
+
                 case TransferTile.Id:
                     TransactionHelper.GoToAddTransaction(TransactionType.Transfer);
                     break;

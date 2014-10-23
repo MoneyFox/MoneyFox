@@ -4,16 +4,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converter1="using:MoneyManager.Business.Converter"
+    xmlns:converter="using:MoneyManager.Business.Converter"
     mc:Ignorable="d"
     d:DesignWidth="400" d:DesignHeight="600"
     DataContext="{Binding AddTransactionView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter1:AmountConverter x:Key="AmountConverter" />
-        <converter1:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-        <converter1:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
-        <converter1:CurrencyConverter x:Key="CurrencyConverter" />
+        <converter:AmountConverter x:Key="AmountConverter" />
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:CurrencyConverter x:Key="CurrencyConverter" />
         <DataTemplate x:Key="ComboBoxTemplate">
             <StackPanel Margin="0,0,0,12">
                 <TextBlock Text="{Binding Name}" FontSize="24" />

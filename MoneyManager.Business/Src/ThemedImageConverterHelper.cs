@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace MoneyManager.Business.Src
 {
-    private static class ThemedImageConverterHelper
+    internal static class ThemedImageConverterHelper
     {
         private static readonly Dictionary<string, BitmapImage> ImageCache = new Dictionary<string, BitmapImage>();
 

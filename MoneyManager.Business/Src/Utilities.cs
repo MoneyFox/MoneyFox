@@ -1,5 +1,4 @@
-﻿
-using Windows.ApplicationModel;
+﻿using Windows.ApplicationModel;
 using Windows.Storage;
 
 namespace MoneyManager.Business.Src
@@ -8,8 +7,8 @@ namespace MoneyManager.Business.Src
     {
         public static string GetVersion()
         {
-            return new PackageVersion().Major.ToString() + new PackageVersion().Minor 
-                + new PackageVersion().Revision;
+            return new PackageVersion().Major.ToString() + new PackageVersion().Minor
+                   + new PackageVersion().Revision;
         }
 
         public static int GetMaxId()

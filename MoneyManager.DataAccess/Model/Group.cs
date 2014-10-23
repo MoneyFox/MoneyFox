@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
-using PropertyChanged;
 using SQLite.Net.Attributes;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MoneyManager.DataAccess.Model
 {
     [Table("Groups")]
-    [ImplementPropertyChanged]
     internal class Group
     {
         private AccountDataAccess AccountDataAccess

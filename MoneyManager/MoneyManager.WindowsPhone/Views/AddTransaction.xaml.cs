@@ -3,6 +3,9 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Common;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Foundation;
+using MoneyManager.ViewModels;
 
 namespace MoneyManager.Views
 {
@@ -17,12 +20,13 @@ namespace MoneyManager.Views
 
             if (AddTransactionView.IsEdit)
             {
-                ServiceLocator.Current.GetInstance<AccountDataAccess>()
-                    .RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
+                //TODO: refactor
+                //ServiceLocator.Current.GetInstance<AccountDataAccess>()
+                //    .RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
             }
         }
 
-        public AddTransactionViewModel AddTransactionView
+        internal AddTransactionViewModel AddTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }

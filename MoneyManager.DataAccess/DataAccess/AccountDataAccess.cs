@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using MoneyManager.DataAccess.Model;
+﻿using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using SQLite.Net;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -12,7 +12,6 @@ namespace MoneyManager.DataAccess.DataAccess
         public Account SelectedAccount { get; set; }
 
         public ObservableCollection<Account> AllAccounts { get; set; }
-
 
         protected override void SaveToDb(Account itemToAdd)
         {
@@ -55,7 +54,7 @@ namespace MoneyManager.DataAccess.DataAccess
         {
             using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                dbConn.Update(itemToUpdate, typeof (Account));
+                dbConn.Update(itemToUpdate, typeof(Account));
             }
         }
     }
