@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.ViewModels;
 
-namespace MoneyManager.Src
+namespace MoneyManager.Business.Src
 {
-    public sealed class RecurringTransactionHelper
+    internal class RecurringTransactionHelper
     {
         private RecurringTransactionDataAccess RecurringTransactionData
         {

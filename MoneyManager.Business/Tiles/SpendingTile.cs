@@ -17,7 +17,7 @@ namespace MoneyManager.Models.Tiles
         {
             await Create(new SecondaryTile(
                 Id,
-                Utilities.GetTranslation("AddSpendingTileText"),
+                Translation.GetTranslation("AddSpendingTileText"),
                 "intake",
                 new Uri("ms-appx:///Images/spendingTileIcon.png", UriKind.Absolute),
                 TileSize.Default));

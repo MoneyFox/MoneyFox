@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace MoneyManager.Src
+namespace MoneyManager.Business.Src
 {
-    public static class ThemedImageConverterHelper
+    private static class ThemedImageConverterHelper
     {
         private static readonly Dictionary<string, BitmapImage> ImageCache = new Dictionary<string, BitmapImage>();
 

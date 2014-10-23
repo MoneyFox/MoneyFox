@@ -33,8 +33,8 @@ namespace MoneyManager.ViewModels
             get
             {
                 string text = IsEdit
-                    ? Utilities.GetTranslation("EditTitle")
-                    : Utilities.GetTranslation("AddTitle");
+                    ? Translation.GetTranslation("EditTitle")
+                    : Translation.GetTranslation("AddTitle");
 
                 var type = TransactionTypeHelper.GetViewTitleForType(SelectedTransaction.Type);
 

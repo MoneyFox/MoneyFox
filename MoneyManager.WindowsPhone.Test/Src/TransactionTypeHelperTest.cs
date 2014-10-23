@@ -21,8 +21,8 @@ namespace MoneyManager.WindowsPhone.Test.Src
             var titleSpending = TransactionTypeHelper.GetViewTitleForType(0);
             var titleIncome = TransactionTypeHelper.GetViewTitleForType(1);
 
-            Assert.AreEqual(Utilities.GetTranslation("SpendingTitle"), titleSpending);
-            Assert.AreEqual(Utilities.GetTranslation("IncomeTitle"), titleIncome);
+            Assert.AreEqual(Translation.GetTranslation("SpendingTitle"), titleSpending);
+            Assert.AreEqual(Translation.GetTranslation("IncomeTitle"), titleIncome);
         }
 
         [TestMethod]
@@ -31,8 +31,8 @@ namespace MoneyManager.WindowsPhone.Test.Src
             var titleSpending = TransactionTypeHelper.GetViewTitleForType(TransactionType.Spending);
             var titleIncome = TransactionTypeHelper.GetViewTitleForType(TransactionType.Income);
 
-            Assert.AreEqual(Utilities.GetTranslation("SpendingTitle"), titleSpending);
-            Assert.AreEqual(Utilities.GetTranslation("IncomeTitle"), titleIncome);
+            Assert.AreEqual(Translation.GetTranslation("SpendingTitle"), titleSpending);
+            Assert.AreEqual(Translation.GetTranslation("IncomeTitle"), titleIncome);
         }
     }
 }

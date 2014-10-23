@@ -2,7 +2,7 @@
 using System.Globalization;
 using Windows.UI.Xaml.Data;
 
-namespace MoneyManager.Converter
+namespace MoneyManager.Business.Converter
 {
     internal class CurrencyConverter : IValueConverter
     {

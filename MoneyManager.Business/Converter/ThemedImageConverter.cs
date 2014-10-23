@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Data;
 using MoneyManager.Src;
 
-namespace MoneyManager.Converter
+namespace MoneyManager.Business.Converter
 {
     internal class ThemedImageConverter : IValueConverter
     {

@@ -29,7 +29,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void DeleteFromDatabase(Group group)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 AllGroups.Remove(group);
                 dbConn.Delete(group);
@@ -38,7 +38,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override List<Group> GetListFromDb()
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 return dbConn.Table<Group>().ToList();
             }
@@ -46,7 +46,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void UpdateItem(Group group)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.Update(group, typeof (Group));
             }

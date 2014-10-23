@@ -18,7 +18,7 @@ namespace MoneyManager.Business.Tiles
         {
             await Create(new SecondaryTile(
                 Id,
-                Utilities.GetTranslation("AddIncomeTileText"),
+                Translation.GetTranslation("AddIncomeTileText"),
                 "intake",
                 new Uri("ms-appx:///Images/incomeTileIcon.png", UriKind.Absolute),
                 TileSize.Default));

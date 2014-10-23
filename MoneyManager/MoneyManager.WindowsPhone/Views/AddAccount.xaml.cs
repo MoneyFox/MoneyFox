@@ -25,7 +25,7 @@ namespace MoneyManager.Views
         {
             if (String.IsNullOrEmpty(SelectedAccount.Name))
             {
-                SelectedAccount.Name = Utilities.GetTranslation("NoNamePlaceholderLabel");
+                SelectedAccount.Name = Translation.GetTranslation("NoNamePlaceholderLabel");
             }
 
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().Save();

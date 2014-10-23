@@ -48,10 +48,10 @@ namespace MoneyManager.Views
         {
             var sendTo = new EmailRecipient
             {
-                Address = Utilities.GetTranslation("SupportMail")
+                Address = Translation.GetTranslation("SupportMail")
             };
 
-            var mail = new EmailMessage {Subject = Utilities.GetTranslation("Feedback")};
+            var mail = new EmailMessage {Subject = Translation.GetTranslation("Feedback")};
             mail.To.Add(sendTo);
             await EmailManager.ShowComposeNewEmailAsync(mail);
         }

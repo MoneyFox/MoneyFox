@@ -89,7 +89,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override List<RecurringTransaction> GetListFromDb()
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 return dbConn.Table<RecurringTransaction>().ToList();
             }
@@ -97,7 +97,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void UpdateItem(RecurringTransaction itemToUpdate)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.Update(itemToUpdate);
                 LoadList();

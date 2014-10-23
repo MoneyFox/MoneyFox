@@ -5,15 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:MoneyManager.UserControls"
-    xmlns:converter="using:MoneyManager.Converter"
+    xmlns:converter1="using:MoneyManager.Business.Converter"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
     DataContext="{Binding AccountDataAccess, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter:AmountConverter x:Key="AmountConverter" />
-        <converter:CurrencyConverter x:Key="CurrencyConverter" />
+        <converter1:AmountConverter x:Key="AmountConverter" />
+        <converter1:CurrencyConverter x:Key="CurrencyConverter" />
         <DataTemplate x:Key="AccountTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
                         MinWidth="300" Holding="AccountList_Holding">

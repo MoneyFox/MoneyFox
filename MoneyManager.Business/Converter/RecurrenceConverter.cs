@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Data;
 using MoneyManager.Src;
 
-namespace MoneyManager.Converter
+namespace MoneyManager.Business.Converter
 {
     internal class RecurrenceConverter : IValueConverter
     {
@@ -13,19 +13,19 @@ namespace MoneyManager.Converter
             switch (enumInt)
             {
                 case (int) TransactionRecurrence.Daily:
-                    return Utilities.GetTranslation("DailyLabel");
+                    return Translation.GetTranslation("DailyLabel");
 
                 case (int) TransactionRecurrence.Weekly:
-                    return Utilities.GetTranslation("WeeklyLabel");
+                    return Translation.GetTranslation("WeeklyLabel");
 
                 case (int) TransactionRecurrence.Monthly:
-                    return Utilities.GetTranslation("MonthlyLabel");
+                    return Translation.GetTranslation("MonthlyLabel");
 
                 case (int) TransactionRecurrence.Yearly:
-                    return Utilities.GetTranslation("YearlyLabel");
+                    return Translation.GetTranslation("YearlyLabel");
             }
 
-            return Utilities.GetTranslation("NoneLabel");
+            return Translation.GetTranslation("NoneLabel");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

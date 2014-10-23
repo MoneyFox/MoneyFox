@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Data;
 using MoneyManager.DataAccess.Model;
 
-namespace MoneyManager.Converter
+namespace MoneyManager.Business.Converter
 {
     internal class TransactionStyleConverter : IValueConverter
     {

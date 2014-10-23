@@ -47,10 +47,10 @@ namespace MoneyManager.Views
         {
             var dialog = new MessageDialog
                 (
-                Utilities.GetTranslation("AccountRequiredMessage"),
-                Utilities.GetTranslation("AccountRequiredTitle")
+                Translation.GetTranslation("AccountRequiredMessage"),
+                Translation.GetTranslation("AccountRequiredTitle")
                 );
-            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("OkLabel")));
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
             dialog.DefaultCommandIndex = 1;
             await dialog.ShowAsync();
         }

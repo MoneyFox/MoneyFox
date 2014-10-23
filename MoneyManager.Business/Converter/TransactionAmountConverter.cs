@@ -5,7 +5,7 @@ using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Src;
 
-namespace MoneyManager.Converter
+namespace MoneyManager.Business.Converter
 {
     internal class TransactionAmountConverter : IValueConverter
     {

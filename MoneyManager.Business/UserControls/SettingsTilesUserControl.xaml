@@ -4,15 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converter="using:MoneyManager.Converter"
+    xmlns:converter1="using:MoneyManager.Business.Converter"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
     DataContext="{Binding TileSettingsUserControlView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter:RevertVisibilityConverter x:Key="RevertVisibilityConverter" />
-        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter1:RevertVisibilityConverter x:Key="RevertVisibilityConverter" />
+        <converter1:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
 
     <StackPanel>

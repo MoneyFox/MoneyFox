@@ -10,7 +10,7 @@ using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using PropertyChanged;
 
-namespace MoneyManager.DataAccess
+namespace MoneyManager.DataAccess.DataAccess
 {
     [ImplementPropertyChanged]
     internal class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>

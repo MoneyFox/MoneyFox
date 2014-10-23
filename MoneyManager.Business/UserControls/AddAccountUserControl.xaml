@@ -4,13 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converter="using:MoneyManager.Converter"
+    xmlns:converter1="using:MoneyManager.Business.Converter"
     mc:Ignorable="d" Width="Auto"
     DataContext="{Binding AddAccountView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter:AmountConverter x:Key="AmountConverter" />
-        <converter:CurrencyConverter x:Key="CurrencyConverter" />
+        <converter1:AmountConverter x:Key="AmountConverter" />
+        <converter1:CurrencyConverter x:Key="CurrencyConverter" />
     </UserControl.Resources>
 
     <StackPanel Margin="12,0">

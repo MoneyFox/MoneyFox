@@ -1,10 +1,14 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Linq;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Src;
 using MoneyManager.ViewModels;
 
-namespace MoneyManager.Src
+namespace MoneyManager.Business.Src
 {
     internal class TransactionHelper
     {
@@ -32,7 +36,8 @@ namespace MoneyManager.Src
             SetDefaultTransaction(transactionType);
             SetDefaultAccount();
 
-            ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
+            //TODO: refactor
+            //((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
         private static void SetDefaultTransaction(TransactionType transactionType)

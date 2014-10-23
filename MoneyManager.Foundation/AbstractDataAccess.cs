@@ -81,15 +81,15 @@ namespace MoneyManager.Foundation
         private async Task<bool> IsDeletionConfirmed()
         {
             //TODO: refactor / move
-            //var dialog = new MessageDialog(Utilities.GetTranslation("DeleteEntryQuestionMessage"),
-            //    Utilities.GetTranslation("DeleteQuestionTitle"));
-            //dialog.Commands.Add(new UICommand(Utilities.GetTranslation("YesLabel")));
-            //dialog.Commands.Add(new UICommand(Utilities.GetTranslation("NoLabel")));
+            //var dialog = new MessageDialog(Translation.GetTranslation("DeleteEntryQuestionMessage"),
+            //    Translation.GetTranslation("DeleteQuestionTitle"));
+            //dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
+            //dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
             //dialog.DefaultCommandIndex = 1;
 
             //var result = await dialog.ShowAsync();
 
-            //return result.Label == Utilities.GetTranslation("YesLabel");
+            //return result.Label == Translation.GetTranslation("YesLabel");
 
             return true;
         }

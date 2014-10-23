@@ -1,19 +1,15 @@
-﻿using System.Reflection;
-using Windows.ApplicationModel.Resources;
+﻿
+using Windows.ApplicationModel;
 using Windows.Storage;
 
-namespace MoneyManager.Src
+namespace MoneyManager.Business.Src
 {
     internal class Utilities
     {
         public static string GetVersion()
         {
-            return Assembly.Load(new AssemblyName("MoneyManager.WindowsPhone")).FullName.Split('=')[1].Split(',')[0];
-        }
-
-        public static string GetTranslation(string text)
-        {
-            return ResourceLoader.GetForViewIndependentUse().GetString(text);
+            return new PackageVersion().Major.ToString() + new PackageVersion().Minor 
+                + new PackageVersion().Revision;
         }
 
         public static int GetMaxId()

@@ -58,9 +58,9 @@ namespace MoneyManager.UserControls
 
         private async void ShowUnpinnNotification()
         {
-            var dialog = new MessageDialog(Utilities.GetTranslation("TileUnpinnedText"),
-                Utilities.GetTranslation("TileUnpinnedTitle"));
-            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("OkLabel")));
+            var dialog = new MessageDialog(Translation.GetTranslation("TileUnpinnedText"),
+                Translation.GetTranslation("TileUnpinnedTitle"));
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
             dialog.DefaultCommandIndex = 1;
 
             await dialog.ShowAsync();

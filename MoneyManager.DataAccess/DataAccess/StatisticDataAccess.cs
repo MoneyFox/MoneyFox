@@ -5,7 +5,7 @@ using System.Linq;
 using MoneyManager.DataAccess.Model;
 using SQLite.Net;
 
-namespace MoneyManager.DataAccess
+namespace MoneyManager.DataAccess.DataAccess
 {
     internal class StatisticDataAccess
     {
@@ -26,19 +26,19 @@ namespace MoneyManager.DataAccess
                 //TODO: refactor
                 //var income = new StatisticItem
                 //{
-                //    Category = Utilities.GetTranslation("IncomeLabel"),
+                //    Category = Translation.GetTranslation("IncomeLabel"),
                 //    Value = transactionList.Where(x => x.Type == (int)TransactionType.Income).Sum(x => x.Amount)
                 //};
 
                 //var spent = new StatisticItem
                 //{
-                //    Category = Utilities.GetTranslation("SpentLabel"),
+                //    Category = Translation.GetTranslation("SpentLabel"),
                 //    Value = transactionList.Where(x => x.Type == (int)TransactionType.Spending).Sum(x => x.Amount)
                 //};
 
                 //var increased = new StatisticItem
                 //{
-                //    Category = Utilities.GetTranslation("IncreasedLabel"),
+                //    Category = Translation.GetTranslation("IncreasedLabel"),
                 //    Value = income.Value - spent.Value
                 //};
 

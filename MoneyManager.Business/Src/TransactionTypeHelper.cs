@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Src
 {
@@ -19,13 +20,13 @@ namespace MoneyManager.Src
             switch (type)
             {
                 case TransactionType.Spending:
-                    return Utilities.GetTranslation("SpendingTitle");
+                    return Translation.GetTranslation("SpendingTitle");
 
                 case TransactionType.Income:
-                    return Utilities.GetTranslation("IncomeTitle");
+                    return Translation.GetTranslation("IncomeTitle");
 
                 case TransactionType.Transfer:
-                    return Utilities.GetTranslation("TransferTitle");
+                    return Translation.GetTranslation("TransferTitle");
 
                 default:
                     return String.Empty;

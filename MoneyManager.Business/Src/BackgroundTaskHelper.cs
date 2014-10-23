@@ -3,7 +3,7 @@ using System.Linq;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Popups;
 
-namespace MoneyManager.Src
+namespace MoneyManager.Business.Src
 {
     internal class BackgroundTaskHelper
     {
@@ -18,6 +18,7 @@ namespace MoneyManager.Src
             var trigger = new TimeTrigger(720, false);
 
             builder.Name = name;
+            //TODO: Refactor
             builder.TaskEntryPoint = typeof (Tasks.TransactionsWp.TransactionTask).FullName;
             builder.SetTrigger(trigger);
             BackgroundTaskRegistration registration = builder.Register();
