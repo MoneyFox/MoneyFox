@@ -89,7 +89,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BugSense\BugSense - SDK License Agreement.txt" />
     <Content Include="Images\UnitTestLogo.scale-100.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
