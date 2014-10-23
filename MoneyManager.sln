@@ -80,6 +80,7 @@ Global
 		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|ARM.ActiveCfg = Release|ARM
 		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|ARM.Build.0 = Release|ARM
+		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|ARM.Deploy.0 = Release|ARM
 		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|Mixed Platforms.Build.0 = Release|x86
 		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|x64.ActiveCfg = Release|Any CPU
@@ -95,6 +96,7 @@ Global
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|Any CPU.Build.0 = Release|Any CPU
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|ARM.ActiveCfg = Release|Any CPU
+		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|ARM.Build.0 = Release|Any CPU
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|x64.ActiveCfg = Release|Any CPU
@@ -109,6 +111,7 @@ Global
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Release|ARM.ActiveCfg = Release|Any CPU
+		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Release|ARM.Build.0 = Release|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Release|x64.ActiveCfg = Release|Any CPU
@@ -123,6 +126,7 @@ Global
 		{97C5FD49-1128-4FA5-B529-264562A416EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97C5FD49-1128-4FA5-B529-264562A416EF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{97C5FD49-1128-4FA5-B529-264562A416EF}.Release|ARM.ActiveCfg = Release|Any CPU
+		{97C5FD49-1128-4FA5-B529-264562A416EF}.Release|ARM.Build.0 = Release|Any CPU
 		{97C5FD49-1128-4FA5-B529-264562A416EF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{97C5FD49-1128-4FA5-B529-264562A416EF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{97C5FD49-1128-4FA5-B529-264562A416EF}.Release|x64.ActiveCfg = Release|Any CPU

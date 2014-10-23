@@ -130,7 +130,7 @@ namespace MoneyManager.Business
         {
             if (!transaction.IsRecurring && transaction.ReccuringTransactionId != null)
             {
-                RecurringTransactionData.Delete(transaction.ReccuringTransactionId.Value);
+                recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value);
             }
         }
 
