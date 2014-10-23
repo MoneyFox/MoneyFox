@@ -1,40 +1,40 @@
-﻿using MoneyManager.Common;
-using Windows.UI.Xaml.Navigation;
+﻿using Windows.UI.Xaml.Navigation;
+using MoneyManager.Common;
 
 namespace MoneyManager.Views
 {
     public sealed partial class SettingsTiles
     {
-        private NavigationHelper navigationHelper;
-        private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private readonly ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private readonly NavigationHelper navigationHelper;
 
         public SettingsTiles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.navigationHelper = new NavigationHelper(this);
+            navigationHelper = new NavigationHelper(this);
         }
 
         public NavigationHelper NavigationHelper
         {
-            get { return this.navigationHelper; }
+            get { return navigationHelper; }
         }
 
         public ObservableDictionary DefaultViewModel
         {
-            get { return this.defaultViewModel; }
+            get { return defaultViewModel; }
         }
 
         #region NavigationHelper registration
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.navigationHelper.OnNavigatedTo(e);
+            navigationHelper.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            this.navigationHelper.OnNavigatedFrom(e);
+            navigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion NavigationHelper registration

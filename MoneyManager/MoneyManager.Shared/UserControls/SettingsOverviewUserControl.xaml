@@ -20,6 +20,6 @@
         <TextBlock Style="{StaticResource MenuItemText }"
                    x:Uid="SettingTiles"
                    Text="Tiles" Tapped="NavigateToTilesSettings"
-                   Margin="0,0,0,20" />        
+                   Margin="0,0,0,20" />
     </StackPanel>
 </UserControl>

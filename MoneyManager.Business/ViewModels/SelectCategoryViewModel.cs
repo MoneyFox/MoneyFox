@@ -1,17 +1,18 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.Model;
-using MoneyManager.Models;
 using PropertyChanged;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace MoneyManager.ViewModels
 {
     [ImplementPropertyChanged]
     internal class SelectCategoryViewModel : ViewModelBase
     {
+        private string searchText;
+
         public SelectCategoryViewModel()
         {
             Categories = allCategories;
@@ -29,8 +30,6 @@ namespace MoneyManager.ViewModels
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category; }
             set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value; }
         }
-
-        private string searchText;
 
         public string SearchText
         {

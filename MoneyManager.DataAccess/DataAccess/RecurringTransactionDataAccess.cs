@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
+using SQLite.Net;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -34,7 +34,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void SaveToDb(RecurringTransaction itemToAdd)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllRecurringTransactions == null)
                 {
@@ -45,13 +45,13 @@ namespace MoneyManager.DataAccess.DataAccess
                 AllRecurringTransactions = new ObservableCollection<RecurringTransaction>
                     (AllRecurringTransactions.OrderBy(x => x.StartDate));
 
-                dbConn.Insert(itemToAdd, typeof(RecurringTransaction));
+                dbConn.Insert(itemToAdd, typeof (RecurringTransaction));
             }
         }
 
         protected override void DeleteFromDatabase(RecurringTransaction itemToDelete)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllRecurringTransactions != null)
                 {
@@ -66,9 +66,10 @@ namespace MoneyManager.DataAccess.DataAccess
 
         private void RemoveRecurringForTransactions(RecurringTransaction recTrans)
         {
-            var relatedTrans = transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
+            IEnumerable<FinancialTransaction> relatedTrans =
+                transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
 
-            foreach (var transaction in relatedTrans)
+            foreach (FinancialTransaction transaction in relatedTrans)
             {
                 transaction.IsRecurring = false;
                 transaction.ReccuringTransactionId = null;
@@ -78,7 +79,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public void Delete(int reccuringTransactionId)
         {
-            var recTrans = AllRecurringTransactions.FirstOrDefault(x => x.Id == reccuringTransactionId);
+            RecurringTransaction recTrans = AllRecurringTransactions.FirstOrDefault(x => x.Id == reccuringTransactionId);
             if (recTrans != null)
             {
                 Delete(recTrans, true);
@@ -87,7 +88,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override List<RecurringTransaction> GetListFromDb()
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 return dbConn.Table<RecurringTransaction>().ToList();
             }
@@ -95,7 +96,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void UpdateItem(RecurringTransaction itemToUpdate)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.Update(itemToUpdate);
                 LoadList();

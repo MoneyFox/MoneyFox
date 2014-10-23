@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.UI.StartScreen;
-using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Models.Tiles;
 using MoneyManager.Src;
 

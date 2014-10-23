@@ -1,6 +1,6 @@
-﻿using MoneyManager.DataAccess.Model;
-using System;
+﻿using System;
 using Windows.UI.Xaml.Data;
+using MoneyManager.DataAccess.Model;
 
 namespace MoneyManager.Converter
 {

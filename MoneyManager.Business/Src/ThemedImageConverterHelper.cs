@@ -14,7 +14,7 @@ namespace MoneyManager.Src
             if (string.IsNullOrEmpty(path))
                 return null;
 
-            var isDarkTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark;
+            bool isDarkTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark;
 
             if (negateResult)
                 isDarkTheme = !isDarkTheme;

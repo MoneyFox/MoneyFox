@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.Src;
 
 namespace MoneyManager.WindowsPhone.Test.Src
 {

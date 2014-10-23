@@ -1,6 +1,4 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.ViewModels;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace MoneyManager.UserControls
@@ -14,7 +12,7 @@ namespace MoneyManager.UserControls
 
         private void SelectCategory(object sender, SelectionChangedEventArgs e)
         {
-            ((Frame)Window.Current.Content).GoBack();
+            ((Frame) Window.Current.Content).GoBack();
         }
 
         private void SearchCategories(object sender, TextChangedEventArgs textChangedEventArgs)

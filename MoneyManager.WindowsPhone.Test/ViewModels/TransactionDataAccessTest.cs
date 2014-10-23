@@ -1,12 +1,7 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.DataAccess;
-using MoneyManager.Models;
-using MoneyManager.Src;
-using MoneyManager.ViewModels;
-using System;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace MoneyManager.WindowsPhone.Test.ViewModels
 {
@@ -120,7 +115,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             var firstTransaction = transaction;
             transactionDataAccess.Save(firstTransaction);
 
-            var secondTransaction = new FinancialTransaction { Amount = 80, Date = DateTime.Now, Cleared = false};
+            var secondTransaction = new FinancialTransaction {Amount = 80, Date = DateTime.Now, Cleared = false};
             using (var db = ConnectionFactory.GetDbConnection())
             {
                 db.Insert(secondTransaction);
@@ -130,8 +125,8 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             Assert.AreEqual(1, unclearedList.Count());
             var loadedTransaction = unclearedList.First();
             Assert.IsTrue(loadedTransaction.Id == secondTransaction.Id
-                && loadedTransaction.Amount == secondTransaction.Amount
-                && loadedTransaction.Date.Date == secondTransaction.Date.Date);
+                          && loadedTransaction.Amount == secondTransaction.Amount
+                          && loadedTransaction.Date.Date == secondTransaction.Date.Date);
         }
     }
 }

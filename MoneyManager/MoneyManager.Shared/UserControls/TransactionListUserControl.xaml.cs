@@ -1,12 +1,8 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
-using MoneyManager.Models;
-using MoneyManager.Src;
-using MoneyManager.ViewModels;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using Microsoft.Practices.ServiceLocation;
 
 namespace MoneyManager.UserControls
 {
@@ -29,7 +25,7 @@ namespace MoneyManager.UserControls
 
         private void EditTransaction(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement)sender;
+            var element = (FrameworkElement) sender;
             var transaction = element.DataContext as FinancialTransaction;
             if (transaction == null) return;
 
@@ -38,7 +34,7 @@ namespace MoneyManager.UserControls
 
         private void DeleteTransaction(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement)sender;
+            var element = (FrameworkElement) sender;
             var transaction = element.DataContext as FinancialTransaction;
             if (transaction == null) return;
 
@@ -48,7 +44,7 @@ namespace MoneyManager.UserControls
         private void OpenContextMenu(object sender, HoldingRoutedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
             flyoutBase.ShowAt(senderElement);
         }

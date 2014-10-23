@@ -8,9 +8,8 @@ namespace MoneyManager.Src
 {
     internal class CurrencyHelper
     {
-        private static readonly HttpClient httpClient = new HttpClient();
-
         private const string currencyServiceUrl = "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
+        private static readonly HttpClient httpClient = new HttpClient();
 
         public CurrencyHelper()
         {
@@ -24,11 +23,12 @@ namespace MoneyManager.Src
 
         public static double GetCurrencyRatio(string currencyFrom, string currencyTo)
         {
-            var httpClient = new HttpClient { BaseAddress = new Uri("https://api.SmallInvoice.com/") };
-            httpClient.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
+            var httpClient = new HttpClient {BaseAddress = new Uri("https://api.SmallInvoice.com/")};
+            httpClient.DefaultRequestHeaders.Add("user-agent",
+                "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
 
-            var currencyFromTo = string.Format("{0}-{1}", currencyFrom.ToUpper(), currencyTo.ToUpper());
-            var currenciesFromTo = string.Format(currencyServiceUrl, currencyFromTo);
+            string currencyFromTo = string.Format("{0}-{1}", currencyFrom.ToUpper(), currencyTo.ToUpper());
+            string currenciesFromTo = string.Format(currencyServiceUrl, currencyFromTo);
 
             //Get Value from Service
             //
@@ -52,10 +52,10 @@ namespace MoneyManager.Src
         private static async Task<string> GetJsonFromService(string url)
         {
             var req = new HttpRequestMessage(HttpMethod.Get, url);
-            var response = await httpClient.SendAsync(req);
+            HttpResponseMessage response = await httpClient.SendAsync(req);
             response.EnsureSuccessStatusCode();
 
-            var content = await response.Content.ReadAsStringAsync();
+            string content = await response.Content.ReadAsStringAsync();
             return content;
         }
     }

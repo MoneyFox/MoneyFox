@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
 using PropertyChanged;
+using SQLite.Net;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -14,7 +14,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void SaveToDb(Group group)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllGroups == null)
                 {
@@ -28,7 +28,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void DeleteFromDatabase(Group group)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 AllGroups.Remove(group);
                 dbConn.Delete(group);
@@ -37,7 +37,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override List<Group> GetListFromDb()
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 return dbConn.Table<Group>().ToList();
             }
@@ -45,9 +45,9 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void UpdateItem(Group group)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                dbConn.Update(group, typeof(Group));
+                dbConn.Update(group, typeof (Group));
             }
         }
     }

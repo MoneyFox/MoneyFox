@@ -22,7 +22,7 @@
                     <Setter.Value>
                         <DataTemplate>
                             <TextBlock Text="{Binding}"
-                           OpticalMarginAlignment="TrimSideBearings" />
+                                       OpticalMarginAlignment="TrimSideBearings" />
                         </DataTemplate>
                     </Setter.Value>
                 </Setter>
@@ -30,25 +30,27 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="Pivot">
                             <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                      VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                      Background="{TemplateBinding Background}">
+                                  VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                  Background="{TemplateBinding Background}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="Orientation">
                                         <VisualState x:Name="Portrait">
                                             <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TitleContentControl"
-                                                                   Storyboard.TargetProperty="Margin">
+                                                <ObjectAnimationUsingKeyFrames
+                                                    Storyboard.TargetName="TitleContentControl"
+                                                    Storyboard.TargetProperty="Margin">
                                                     <DiscreteObjectKeyFrame KeyTime="0"
-                                                                Value="{ThemeResource PivotPortraitThemePadding}" />
+                                                                            Value="{ThemeResource PivotPortraitThemePadding}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Landscape">
                                             <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TitleContentControl"
-                                                                   Storyboard.TargetProperty="Margin">
+                                                <ObjectAnimationUsingKeyFrames
+                                                    Storyboard.TargetName="TitleContentControl"
+                                                    Storyboard.TargetProperty="Margin">
                                                     <DiscreteObjectKeyFrame KeyTime="0"
-                                                                Value="{ThemeResource PivotLandscapeThemePadding}" />
+                                                                            Value="{ThemeResource PivotLandscapeThemePadding}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
@@ -59,33 +61,33 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <ContentControl x:Name="TitleContentControl"
-                                    Style="{StaticResource PivotTitleContentControlStyle}"
-                                    Content="{TemplateBinding Title}"
-                                    ContentTemplate="{TemplateBinding TitleTemplate}" />
+                                                Style="{StaticResource PivotTitleContentControlStyle}"
+                                                Content="{TemplateBinding Title}"
+                                                ContentTemplate="{TemplateBinding TitleTemplate}" />
                                 <ScrollViewer x:Name="ScrollViewer"
-                                  Margin="{TemplateBinding Padding}"
-                                  Grid.Row="1"
-                                  HorizontalSnapPointsType="MandatorySingle"
-                                  HorizontalSnapPointsAlignment="Center"
-                                  HorizontalScrollBarVisibility="Hidden"
-                                  VerticalScrollMode="Disabled"
-                                  VerticalScrollBarVisibility="Disabled"
-                                  VerticalSnapPointsType="None"
-                                  VerticalContentAlignment="Stretch"
-                                  ZoomMode="Disabled"
-                                  Template="{StaticResource ScrollViewerScrollBarlessTemplate}">
+                                              Margin="{TemplateBinding Padding}"
+                                              Grid.Row="1"
+                                              HorizontalSnapPointsType="MandatorySingle"
+                                              HorizontalSnapPointsAlignment="Center"
+                                              HorizontalScrollBarVisibility="Hidden"
+                                              VerticalScrollMode="Disabled"
+                                              VerticalScrollBarVisibility="Disabled"
+                                              VerticalSnapPointsType="None"
+                                              VerticalContentAlignment="Stretch"
+                                              ZoomMode="Disabled"
+                                              Template="{StaticResource ScrollViewerScrollBarlessTemplate}">
                                     <PivotPanel x:Name="Panel"
-                                               VerticalAlignment="Stretch">
+                                                VerticalAlignment="Stretch">
                                         <PivotHeaderPanel x:Name="Header">
                                             <PivotHeaderPanel.RenderTransform>
                                                 <CompositeTransform x:Name="HeaderTranslateTransform"
-                                                        TranslateX="0" />
+                                                                    TranslateX="0" />
                                             </PivotHeaderPanel.RenderTransform>
                                         </PivotHeaderPanel>
                                         <ItemsPresenter x:Name="PivotItemPresenter">
                                             <ItemsPresenter.RenderTransform>
                                                 <TranslateTransform x:Name="ItemsPresenterTranslateTransform"
-                                                        X="0" />
+                                                                    X="0" />
                                             </ItemsPresenter.RenderTransform>
                                         </ItemsPresenter>
                                     </PivotPanel>

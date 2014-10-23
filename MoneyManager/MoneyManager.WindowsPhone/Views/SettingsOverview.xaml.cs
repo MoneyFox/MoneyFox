@@ -1,11 +1,11 @@
-﻿using MoneyManager.Common;
-using Windows.UI.Xaml.Navigation;
+﻿using Windows.UI.Xaml.Navigation;
+using MoneyManager.Common;
 
 namespace MoneyManager.Views
 {
     public sealed partial class SettingsOverview
     {
-        private NavigationHelper navigationHelper;
+        private readonly NavigationHelper navigationHelper;
 
         public SettingsOverview()
         {

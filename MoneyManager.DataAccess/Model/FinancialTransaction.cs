@@ -30,7 +30,10 @@ namespace MoneyManager.DataAccess.Model
 
         private IEnumerable<RecurringTransaction> allRecurringTransactions
         {
-            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>().AllRecurringTransactions; }
+            get
+            {
+                return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>().AllRecurringTransactions;
+            }
         }
 
         [PrimaryKey, AutoIncrement]
@@ -84,7 +87,7 @@ namespace MoneyManager.DataAccess.Model
             set
             {
                 CategoryId = value == null
-                    ? (int?)null
+                    ? (int?) null
                     : value.Id;
             }
         }
@@ -100,10 +103,7 @@ namespace MoneyManager.DataAccess.Model
         [Ignore]
         public bool ClearTransactionNow
         {
-            get
-            {
-                return Date.Date <= DateTime.Now.Date;
-            }
+            get { return Date.Date <= DateTime.Now.Date; }
         }
     }
 }

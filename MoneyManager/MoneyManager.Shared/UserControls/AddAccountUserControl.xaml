@@ -21,18 +21,20 @@
                  Header="IBAN" VerticalAlignment="Top"
                  x:Uid="Iban" Margin="0,0,0,12" />
         <Grid Margin="0,0,0,12">
-            <TextBox Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
-                 Header="Balance" VerticalAlignment="Stretch"
-                 Margin="0,0,30,0" InputScope="Number"
-                 TextAlignment="Right" x:Uid="Balance"
-                 GotFocus="RemoveZeroOnFocus" x:Name="TextBoxCurrentBalance"
-                 LostFocus="AddZeroIfEmpty" />
-            <TextBlock Text="{Binding SelectedAccount.CurrencyCulture, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource MenuItemSubSmallText}"
+            <TextBox
+                Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
+                Header="Balance" VerticalAlignment="Stretch"
+                Margin="0,0,30,0" InputScope="Number"
+                TextAlignment="Right" x:Uid="Balance"
+                GotFocus="RemoveZeroOnFocus" x:Name="TextBoxCurrentBalance"
+                LostFocus="AddZeroIfEmpty" />
+            <TextBlock Text="{Binding SelectedAccount.CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
+                       Style="{StaticResource MenuItemSubSmallText}"
                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
                        Margin="0,0,0,7" />
         </Grid>
         <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
-        	Header="Notes" VerticalAlignment="Top"
-        	x:Uid="Notes" Margin="0,0,-0.167,0" />
+                 Header="Notes" VerticalAlignment="Top"
+                 x:Uid="Notes" Margin="0,0,-0.167,0" />
     </StackPanel>
 </UserControl>

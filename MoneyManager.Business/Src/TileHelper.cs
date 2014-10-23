@@ -1,5 +1,4 @@
 ﻿using MoneyManager.Business.Tiles;
-using MoneyManager.Models;
 using MoneyManager.Models.Tiles;
 
 namespace MoneyManager.Src
@@ -16,7 +15,7 @@ namespace MoneyManager.Src
             {
                 TransactionHelper.GoToAddTransaction(TransactionType.Spending);
             }
-            else if(tileId == TransferTile.Id)
+            else if (tileId == TransferTile.Id)
             {
                 TransactionHelper.GoToAddTransaction(TransactionType.Transfer);
             }

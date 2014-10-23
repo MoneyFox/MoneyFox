@@ -21,7 +21,8 @@
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
                         MinWidth="100" Background="{ThemeResource PhoneAccentBrush}"
-                        Holding="OpenContextMenu" Opacity="{Binding Converter={StaticResource TransactionStyleConverter}}">
+                        Holding="OpenContextMenu"
+                        Opacity="{Binding Converter={StaticResource TransactionStyleConverter}}">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit" Text="Edit" Click="EditTransaction" />
@@ -30,25 +31,28 @@
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch" Margin="0,0,10,3">
                     <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
-                                   Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}"
-                                   Margin="12,0,0,0" />
+                               Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}"
+                               Margin="12,0,0,0" />
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <TextBlock Style="{StaticResource MenuItemMediumSmallText}" 
+                        <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
                                    Text="{Binding Converter={StaticResource TransactionAmountConverter}}"
                                    Margin="0,0,3,0" />
                         <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
                                    Text="{Binding Amount, Converter={StaticResource AmountConverter}}" />
-                        <TextBlock  Style="{StaticResource MenuItemMediumSmallText}"
-                                    Text="{Binding CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
-                                    Margin="5,0,0,0" />
+                        <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
+                                   Text="{Binding CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
+                                   Margin="5,0,0,0" />
                     </StackPanel>
                 </Grid>
                 <Grid>
-                    <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Category.Name}" Margin="12,0,0,10" />
-                    <Grid HorizontalAlignment="Right" Visibility="{Binding IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Image Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
-            		        DataContext="/Images/{0}/repeat.png" Width="30" Height="30" />
+                    <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Category.Name}"
+                               Margin="12,0,0,10" />
+                    <Grid HorizontalAlignment="Right"
+                          Visibility="{Binding IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Image
+                            Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
+                            DataContext="/Images/{0}/repeat.png" Width="30" Height="30" />
                     </Grid>
                 </Grid>
             </StackPanel>
@@ -59,7 +63,7 @@
         <qKit:GenericJumpList>
             <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
                       ItemTemplate="{StaticResource TransactionTemplate}"
-                      HorizontalAlignment="Stretch" 
+                      HorizontalAlignment="Stretch"
                       SelectionChanged="EditTransactionOnSelection" ShowsScrollingPlaceholders="True">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">

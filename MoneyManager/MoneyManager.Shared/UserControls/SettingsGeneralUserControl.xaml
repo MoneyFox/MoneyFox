@@ -8,14 +8,14 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     DataContext="{Binding LanguageSettingUserControlView, Source={StaticResource Locator}}">
-    
+
     <Grid>
         <StackPanel>
-            <ComboBox ItemsSource="{Binding LanguageList}" Header="language"  x:Uid="LanguageHeader"
-                  SelectedValue="{Binding SelectedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <ComboBox ItemsSource="{Binding LanguageList}" Header="language" x:Uid="LanguageHeader"
+                      SelectedValue="{Binding SelectedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <TextBlock x:Uid="InfoLanguageSettingsText" 
-                        Style="{StaticResource MenuItemSubSmallText}"
+            <TextBlock x:Uid="InfoLanguageSettingsText"
+                       Style="{StaticResource MenuItemSubSmallText}"
                        Text="Here will be a info text to notify which kind of stuff that is affected." />
         </StackPanel>
     </Grid>

@@ -6,12 +6,12 @@ namespace MoneyManager.Src
     {
         public static TransactionType GetEnumFromString(string input)
         {
-            return (TransactionType)Enum.Parse(typeof(TransactionType), input);
+            return (TransactionType) Enum.Parse(typeof (TransactionType), input);
         }
 
         public static string GetViewTitleForType(int type)
         {
-            return GetViewTitleForType((TransactionType)type);
+            return GetViewTitleForType((TransactionType) type);
         }
 
         public static string GetViewTitleForType(TransactionType type)

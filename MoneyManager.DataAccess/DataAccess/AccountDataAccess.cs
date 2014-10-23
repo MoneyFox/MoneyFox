@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
+using SQLite.Net;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -14,7 +14,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void SaveToDb(Account itemToAdd)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllAccounts == null)
                 {
@@ -28,7 +28,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void DeleteFromDatabase(Account itemToDelete)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 //TODO: refactor
                 //TransactionViewModel.DeleteAssociatedTransactionsFromDatabase(account.Id);
@@ -40,7 +40,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void GetListFromDb()
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 AllAccounts = new ObservableCollection<Account>(dbConn.Table<Account>().ToList());
 
@@ -51,9 +51,9 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void UpdateItem(Account itemToUpdate)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                dbConn.Update(itemToUpdate, typeof(Account));
+                dbConn.Update(itemToUpdate, typeof (Account));
             }
         }
     }

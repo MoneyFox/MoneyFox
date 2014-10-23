@@ -1,13 +1,13 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
-using MoneyManager.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI.Popups;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.Model;
 
 namespace MoneyManager.Src
 {
@@ -28,7 +28,7 @@ namespace MoneyManager.Src
             return GlobalizationPreferences.Languages.ToList();
         }
 
-        public async static void SetPrimaryLanguage(string lang)
+        public static async void SetPrimaryLanguage(string lang)
         {
             ApplicationLanguages.PrimaryLanguageOverride = lang;
 
@@ -38,7 +38,7 @@ namespace MoneyManager.Src
             dialog.Commands.Add(new UICommand(Utilities.GetTranslation("NoLabel")));
             dialog.DefaultCommandIndex = 1;
 
-            var result = await dialog.ShowAsync();
+            IUICommand result = await dialog.ShowAsync();
 
             if (result.Label == Utilities.GetTranslation("YesLabel"))
             {
@@ -49,7 +49,7 @@ namespace MoneyManager.Src
 
         private static void ChangeTransactions()
         {
-            foreach (var transaction in transactionData.AllTransactions)
+            foreach (FinancialTransaction transaction in transactionData.AllTransactions)
             {
                 transaction.CurrencyCulture = CultureInfo.CurrentCulture.Name;
                 transactionData.Update(transaction);

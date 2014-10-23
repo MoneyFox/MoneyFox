@@ -1,12 +1,11 @@
-﻿using MoneyManager.DataAccess.Model;
-using MoneyManager.Models;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using MoneyManager.DataAccess.Model;
 
 namespace MoneyManager.Src
 {
     internal class DatabaseHelper
     {
-        public async static Task CreateDatabase()
+        public static async Task CreateDatabase()
         {
             var dbConn = ConnectionFactory.GetAsyncDbConnection();
 

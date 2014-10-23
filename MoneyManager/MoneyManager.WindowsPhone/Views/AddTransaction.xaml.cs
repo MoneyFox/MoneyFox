@@ -1,11 +1,8 @@
 ﻿using System;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Common;
-using MoneyManager.DataAccess;
-using MoneyManager.Src;
-using MoneyManager.ViewModels;
-using Windows.UI.Xaml;
 
 namespace MoneyManager.Views
 {
@@ -41,7 +38,7 @@ namespace MoneyManager.Views
             {
                 ShowAccountRequiredMessage();
                 return;
-            } 
+            }
 
             AddTransactionView.Save();
         }

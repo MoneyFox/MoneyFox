@@ -25,7 +25,8 @@
 
         <!-- TitlePanel -->
         <StackPanel Grid.Row="0" Margin="24,17,0,28">
-            <TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}" Typography.Capitals="SmallCaps" />
+            <TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}"
+                       Typography.Capitals="SmallCaps" />
         </StackPanel>
 
         <Grid Grid.Row="1">

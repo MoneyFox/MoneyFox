@@ -1,11 +1,8 @@
 ﻿using System;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Common;
-using MoneyManager.Models;
-using MoneyManager.Src;
-using MoneyManager.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Common;
 
 namespace MoneyManager.Views
 {

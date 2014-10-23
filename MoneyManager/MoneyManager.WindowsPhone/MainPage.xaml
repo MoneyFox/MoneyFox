@@ -17,7 +17,7 @@
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccountClick" />
-                <AppBarButton  x:Uid="SettingsOverview" Label="settings" Click="SettingsClick" />
+                <AppBarButton x:Uid="SettingsOverview" Label="settings" Click="SettingsClick" />
                 <AppBarButton x:Uid="AboutLabel" Label="about" Click="GoToAbout" />
             </CommandBar.SecondaryCommands>
         </CommandBar>

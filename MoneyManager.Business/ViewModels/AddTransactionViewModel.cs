@@ -1,12 +1,11 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
-using MoneyManager.Models;
-using MoneyManager.Src;
-using PropertyChanged;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
+using MoneyManager.Src;
+using PropertyChanged;
 
 namespace MoneyManager.ViewModels
 {
@@ -33,7 +32,7 @@ namespace MoneyManager.ViewModels
         {
             get
             {
-                var text = IsEdit
+                string text = IsEdit
                     ? Utilities.GetTranslation("EditTitle")
                     : Utilities.GetTranslation("AddTitle");
 
@@ -64,7 +63,7 @@ namespace MoneyManager.ViewModels
                 ServiceLocator.Current.GetInstance<TransactionDataAccess>().Save(SelectedTransaction);
             }
 
-            ((Frame)Window.Current.Content).GoBack();
+            ((Frame) Window.Current.Content).GoBack();
         }
 
         public void Cancel()
@@ -74,7 +73,7 @@ namespace MoneyManager.ViewModels
                 ServiceLocator.Current.GetInstance<AccountDataAccess>().AddTransactionAmount(SelectedTransaction);
             }
 
-            ((Frame)Window.Current.Content).GoBack();
+            ((Frame) Window.Current.Content).GoBack();
         }
     }
 }

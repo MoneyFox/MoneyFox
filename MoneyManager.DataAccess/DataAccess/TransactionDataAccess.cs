@@ -1,23 +1,24 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
-using MoneyManager.Models;
-using MoneyManager.Src;
-using MoneyManager.ViewModels;
-using PropertyChanged;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Popups;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using PropertyChanged;
 
 namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
     internal class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
     {
+        public TransactionDataAccess()
+        {
+            LoadList();
+        }
+
         public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
 
         public FinancialTransaction SelectedTransaction { get; set; }
@@ -35,11 +36,6 @@ namespace MoneyManager.DataAccess
         private static TransactionListUserControlViewModel TransactionListUserControlView
         {
             get { return ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>(); }
-        }
-
-        public TransactionDataAccess()
-        {
-            LoadList();
         }
 
         protected override void SaveToDb(FinancialTransaction transaction)
@@ -67,7 +63,7 @@ namespace MoneyManager.DataAccess
 
                 RefreshRelatedTransactions(transaction);
 
-                dbConn.Insert(transaction, typeof(FinancialTransaction));
+                dbConn.Insert(transaction, typeof (FinancialTransaction));
             }
         }
 
@@ -139,7 +135,7 @@ namespace MoneyManager.DataAccess
                 .ToList();
         }
 
-        protected async override void UpdateItem(FinancialTransaction transaction)
+        protected override async void UpdateItem(FinancialTransaction transaction)
         {
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
@@ -152,7 +148,8 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        private async Task CheckForRecurringTransaction(FinancialTransaction transaction, Action recurringTransactionAction)
+        private async Task CheckForRecurringTransaction(FinancialTransaction transaction,
+            Action recurringTransactionAction)
         {
             if (!transaction.IsRecurring) return;
 
@@ -165,7 +162,7 @@ namespace MoneyManager.DataAccess
 
             dialog.DefaultCommandIndex = 1;
 
-            var result = await dialog.ShowAsync();
+            IUICommand result = await dialog.ShowAsync();
 
             if (result.Label == Utilities.GetTranslation("RecurringLabel"))
             {
@@ -175,8 +172,8 @@ namespace MoneyManager.DataAccess
 
         public void ClearTransaction()
         {
-            var transactions = GetUnclearedTransactions();
-            foreach (var transaction in transactions)
+            IEnumerable<FinancialTransaction> transactions = GetUnclearedTransactions();
+            foreach (FinancialTransaction transaction in transactions)
             {
                 AccountDataAccess.AddTransactionAmount(transaction);
             }
@@ -187,7 +184,7 @@ namespace MoneyManager.DataAccess
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
                 return dbConn.Table<FinancialTransaction>().Where(x => x.Cleared == false
-                    && x.Date <= DateTime.Now).ToList();
+                                                                       && x.Date <= DateTime.Now).ToList();
             }
         }
 
@@ -199,7 +196,8 @@ namespace MoneyManager.DataAccess
                 return db.Table<FinancialTransaction>()
                     .ToList()
                     .Where(x => x.IsRecurring)
-                    .Where(x => x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date).ToList();
+                    .Where(x => x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date)
+                    .ToList();
             }
         }
     }

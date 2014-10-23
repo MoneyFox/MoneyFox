@@ -1,12 +1,9 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
-using MoneyManager.Models;
-using MoneyManager.ViewModels;
-using MoneyManager.Views;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Views;
 
 namespace MoneyManager.UserControls
 {
@@ -27,14 +24,14 @@ namespace MoneyManager.UserControls
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
             flyoutBase.ShowAt(senderElement);
         }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement)sender;
+            var element = (FrameworkElement) sender;
             var account = element.DataContext as Account;
             if (account == null) return;
 
@@ -42,12 +39,12 @@ namespace MoneyManager.UserControls
             viewModel.IsEdit = true;
             viewModel.SelectedAccount = account;
 
-            ((Frame)Window.Current.Content).Navigate(typeof(AddAccount));
+            ((Frame) Window.Current.Content).Navigate(typeof (AddAccount));
         }
 
         private void Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement)sender;
+            var element = (FrameworkElement) sender;
             var account = element.DataContext as Account;
             if (account == null) return;
 
@@ -60,9 +57,10 @@ namespace MoneyManager.UserControls
             {
                 accountData.SelectedAccount = AccountList.SelectedItem as Account;
 
-                ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>().SetRelatedTransactions(accountData.SelectedAccount.Id);
+                ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>()
+                    .SetRelatedTransactions(accountData.SelectedAccount.Id);
 
-                ((Frame)Window.Current.Content).Navigate(typeof(TransactionList));
+                ((Frame) Window.Current.Content).Navigate(typeof (TransactionList));
                 AccountList.SelectedItem = null;
             }
         }

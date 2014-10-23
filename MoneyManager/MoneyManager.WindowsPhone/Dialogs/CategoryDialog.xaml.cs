@@ -1,11 +1,7 @@
 ﻿using System;
 using Windows.UI.Popups;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
-using MoneyManager.Models;
 using Windows.UI.Xaml.Controls;
-using MoneyManager.Src;
-using MoneyManager.ViewModels;
+using Microsoft.Practices.ServiceLocation;
 
 namespace MoneyManager.Dialogs
 {

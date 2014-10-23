@@ -1,11 +1,7 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.DataAccess;
-using MoneyManager.Models;
-using MoneyManager.Src;
-using System;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace MoneyManager.WindowsPhone.Test.ViewModels
 {
@@ -51,7 +47,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
             {
                 var saved = dbConn.Table<Account>().Where(x => x.Name == account.Name).ToList().First();
                 Assert.IsTrue(saved.Name == account.Name && saved.CurrentBalance == account.CurrentBalance
-                    && saved.Iban == account.Iban && saved.Note == account.Note);
+                              && saved.Iban == account.Iban && saved.Note == account.Note);
             }
         }
 
@@ -65,7 +61,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
                 ChargedAccountId = account.Id,
                 Amount = 20,
                 Date = DateTime.Today,
-                Type = (int)TransactionType.Income,
+                Type = (int) TransactionType.Income,
                 Note = "this is a note!!!"
             };
             accountDataAccess.AddTransactionAmount(transaction);
@@ -82,7 +78,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
                 ChargedAccountId = account.Id,
                 Amount = 10,
                 Date = DateTime.Today,
-                Type = (int)TransactionType.Spending,
+                Type = (int) TransactionType.Spending,
                 Note = "this is a note!!!"
             };
             accountDataAccess.AddTransactionAmount(transaction);
@@ -100,7 +96,7 @@ namespace MoneyManager.WindowsPhone.Test.ViewModels
                 TargetAccountId = account.Id,
                 Amount = 10,
                 Date = DateTime.Today,
-                Type = (int)TransactionType.Transfer,
+                Type = (int) TransactionType.Transfer,
                 Note = "this is a note!!!"
             };
             accountDataAccess.AddTransactionAmount(transaction);

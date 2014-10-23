@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MoneyManager.Business
+﻿namespace MoneyManager.Business
 {
     //TODO: Refactor
     //internal class AccountLogic

@@ -29,7 +29,8 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="24,17,0,28">
-            <TextBlock x:Uid="AccountTitle" Text="Account" Style="{ThemeResource TitleTextBlockStyle}" Typography.Capitals="SmallCaps" />
+            <TextBlock x:Uid="AccountTitle" Text="Account" Style="{ThemeResource TitleTextBlockStyle}"
+                       Typography.Capitals="SmallCaps" />
             <TextBlock x:Uid="Add" Text="Add" Margin="0,12,0,0" Style="{ThemeResource HeaderTextBlockStyle}" />
         </StackPanel>
 

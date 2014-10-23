@@ -26,8 +26,8 @@
     <StackPanel>
         <TextBox TextChanged="SearchCategories"
                  Name="TextBoxSearchfield"
-                 Header="search" x:Uid="SearchHeader" 
-                 Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                 Header="search" x:Uid="SearchHeader"
+                 Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <ListView ItemsSource="{Binding Categories}"
                   ItemTemplate="{StaticResource CategoryTemplate }"
                   SelectedItem="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

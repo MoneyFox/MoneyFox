@@ -13,14 +13,6 @@ namespace MoneyManager.Foundation
         //    get { return ServiceLocator.Current.GetInstance<TotalBalanceViewModel>(); }
         //}
 
-        protected abstract void SaveToDb(T itemToAdd);
-
-        protected abstract void DeleteFromDatabase(T itemToDelete);
-
-        protected abstract List<T> GetListFromDb();
-
-        protected abstract void UpdateItem(T itemToUpdate);
-
         public void Save(T itemToSave)
         {
             try
@@ -52,22 +44,6 @@ namespace MoneyManager.Foundation
             }
         }
 
-        private async Task<bool> IsDeletionConfirmed()
-        {
-            //TODO: refactor / move
-            //var dialog = new MessageDialog(Utilities.GetTranslation("DeleteEntryQuestionMessage"),
-            //    Utilities.GetTranslation("DeleteQuestionTitle"));
-            //dialog.Commands.Add(new UICommand(Utilities.GetTranslation("YesLabel")));
-            //dialog.Commands.Add(new UICommand(Utilities.GetTranslation("NoLabel")));
-            //dialog.DefaultCommandIndex = 1;
-
-            //var result = await dialog.ShowAsync();
-
-            //return result.Label == Utilities.GetTranslation("YesLabel");
-
-            return true;
-        }
-
         public List<T> LoadList()
         {
             try
@@ -92,6 +68,30 @@ namespace MoneyManager.Foundation
             {
                 BugSenseHandler.Instance.LogException(ex);
             }
+        }
+
+        protected abstract void SaveToDb(T itemToAdd);
+
+        protected abstract void DeleteFromDatabase(T itemToDelete);
+
+        protected abstract List<T> GetListFromDb();
+
+        protected abstract void UpdateItem(T itemToUpdate);
+
+        private async Task<bool> IsDeletionConfirmed()
+        {
+            //TODO: refactor / move
+            //var dialog = new MessageDialog(Utilities.GetTranslation("DeleteEntryQuestionMessage"),
+            //    Utilities.GetTranslation("DeleteQuestionTitle"));
+            //dialog.Commands.Add(new UICommand(Utilities.GetTranslation("YesLabel")));
+            //dialog.Commands.Add(new UICommand(Utilities.GetTranslation("NoLabel")));
+            //dialog.DefaultCommandIndex = 1;
+
+            //var result = await dialog.ShowAsync();
+
+            //return result.Label == Utilities.GetTranslation("YesLabel");
+
+            return true;
         }
     }
 }

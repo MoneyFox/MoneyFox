@@ -1,18 +1,14 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Common;
-using MoneyManager.DataAccess;
-using MoneyManager.Models;
-using MoneyManager.Src;
-using MoneyManager.ViewModels;
-using MoneyManager.Views;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Common;
+using MoneyManager.Views;
 
 namespace MoneyManager
 {
     public sealed partial class MainPage
     {
-        private NavigationHelper navigationHelper;
+        private readonly NavigationHelper navigationHelper;
 
         public MainPage()
         {
@@ -36,17 +32,17 @@ namespace MoneyManager
         {
             SelectedAccount = new Account();
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
-            Frame.Navigate(typeof(AddAccount));
+            Frame.Navigate(typeof (AddAccount));
         }
 
         private void SettingsClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SettingsOverview));
+            Frame.Navigate(typeof (SettingsOverview));
         }
 
         private void GoToAbout(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(About));
+            Frame.Navigate(typeof (About));
         }
 
         private void AddIncomeClick(object sender, RoutedEventArgs e)

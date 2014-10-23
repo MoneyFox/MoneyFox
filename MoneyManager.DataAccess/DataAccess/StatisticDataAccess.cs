@@ -1,9 +1,9 @@
-﻿using MoneyManager.DataAccess.Model;
-using MoneyManager.Models;
-using MoneyManager.Src;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyManager.DataAccess.Model;
+using SQLite.Net;
 
 namespace MoneyManager.DataAccess
 {
@@ -11,17 +11,14 @@ namespace MoneyManager.DataAccess
     {
         public ObservableCollection<StatisticItem> MonthlyOverview
         {
-            get
-            {
-                return LoadMonthlyOverview();
-            }
+            get { return LoadMonthlyOverview(); }
         }
 
         private ObservableCollection<StatisticItem> LoadMonthlyOverview()
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                var transactionList = dbConn.Table<FinancialTransaction>().ToList()
+                List<FinancialTransaction> transactionList = dbConn.Table<FinancialTransaction>().ToList()
                     .Where(x => x.Date.Month == DateTime.Now.Month).ToList();
 
                 var itemList = new ObservableCollection<StatisticItem>();

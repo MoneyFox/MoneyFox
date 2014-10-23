@@ -1,10 +1,9 @@
-﻿using BugSense;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
-using MoneyManager.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.Model;
 using MoneyManager.ViewModels;
 
 namespace MoneyManager.Src
@@ -23,7 +22,10 @@ namespace MoneyManager.Src
 
         private IEnumerable<RecurringTransaction> AllRecurringTransactions
         {
-            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>().AllRecurringTransactions; }
+            get
+            {
+                return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>().AllRecurringTransactions;
+            }
         }
 
         private TransactionDataAccess TransactionData
@@ -46,11 +48,11 @@ namespace MoneyManager.Src
 
         private void CheckIfIntervallIsReady()
         {
-            var transactions = TransactionData.LoadRecurringList();
+            List<FinancialTransaction> transactions = TransactionData.LoadRecurringList();
 
-            foreach (var recTrans in AllRecurringTransactions)
+            foreach (RecurringTransaction recTrans in AllRecurringTransactions)
             {
-                var relTransaction = transactions.Where(x => x.ReccuringTransactionId == recTrans.Id)
+                FinancialTransaction relTransaction = transactions.Where(x => x.ReccuringTransactionId == recTrans.Id)
                     .OrderBy(x => x.Date).Last();
 
                 if (CheckIfRepeatable(recTrans, relTransaction))
@@ -64,19 +66,19 @@ namespace MoneyManager.Src
         {
             switch (recTrans.Recurrence)
             {
-                case (int)TransactionRecurrence.Daily:
+                case (int) TransactionRecurrence.Daily:
                     return DateTime.Now.Date != relTransaction.Date;
 
-                case (int)TransactionRecurrence.Weekly:
-                    var days = DateTime.Now - relTransaction.Date;
+                case (int) TransactionRecurrence.Weekly:
+                    TimeSpan days = DateTime.Now - relTransaction.Date;
                     return days.Days >= 7;
 
-                case (int)TransactionRecurrence.Monthly:
+                case (int) TransactionRecurrence.Monthly:
                     return DateTime.Now.Month != relTransaction.Date.Month;
 
-                case (int)TransactionRecurrence.Yearly:
+                case (int) TransactionRecurrence.Yearly:
                     return DateTime.Now.Year != relTransaction.Date.Year
-                        && DateTime.Now.Month == relTransaction.Date.Month;
+                           && DateTime.Now.Month == relTransaction.Date.Month;
             }
             return false;
         }

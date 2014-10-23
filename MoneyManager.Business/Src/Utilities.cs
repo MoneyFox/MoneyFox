@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Windows.ApplicationModel.Resources;
+using Windows.Storage;
 
 namespace MoneyManager.Src
 {
@@ -17,7 +18,7 @@ namespace MoneyManager.Src
 
         public static int GetMaxId()
         {
-            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
             return roamingSettings.Values.Count;
         }
     }

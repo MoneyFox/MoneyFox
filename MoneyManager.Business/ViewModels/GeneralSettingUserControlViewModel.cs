@@ -14,10 +14,7 @@ namespace MoneyManager.ViewModels
         public string SelectedValue
         {
             get { return LanguageHelper.GetPrimaryLanguage(); }
-            set
-            {
-                LanguageHelper.SetPrimaryLanguage(value);
-            }
+            set { LanguageHelper.SetPrimaryLanguage(value); }
         }
     }
 }

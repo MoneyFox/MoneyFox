@@ -1,11 +1,8 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess;
-using MoneyManager.Models;
-using MoneyManager.ViewModels;
-using MoneyManager.Views;
-using System.Linq;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
+using MoneyManager.ViewModels;
 
 namespace MoneyManager.Src
 {
@@ -35,14 +32,14 @@ namespace MoneyManager.Src
             SetDefaultTransaction(transactionType);
             SetDefaultAccount();
 
-            ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
+            ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
         private static void SetDefaultTransaction(TransactionType transactionType)
         {
             SelectedTransaction = new FinancialTransaction
             {
-                Type = (int)transactionType,
+                Type = (int) transactionType,
             };
         }
 
@@ -64,7 +61,7 @@ namespace MoneyManager.Src
             }
             addTransactionView.SelectedTransaction = transaction;
 
-            ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
+            ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
     }
 }

@@ -1,14 +1,14 @@
-﻿using MoneyManager.Common;
-using MoneyManager.Dialogs;
-using System;
+﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using MoneyManager.Common;
+using MoneyManager.Dialogs;
 
 namespace MoneyManager.Views
 {
     public sealed partial class SettingsCategory
     {
-        private NavigationHelper navigationHelper;
+        private readonly NavigationHelper navigationHelper;
 
         public SettingsCategory()
         {

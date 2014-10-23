@@ -18,15 +18,16 @@ namespace MoneyManager.Src
             var trigger = new TimeTrigger(720, false);
 
             builder.Name = name;
-            builder.TaskEntryPoint = typeof(Tasks.TransactionsWp.TransactionTask).FullName;
+            builder.TaskEntryPoint = typeof (Tasks.TransactionsWp.TransactionTask).FullName;
             builder.SetTrigger(trigger);
-            var registration = builder.Register();
+            BackgroundTaskRegistration registration = builder.Register();
             registration.Completed += RegistrationOnCompleted;
         }
 
-        private async void RegistrationOnCompleted(BackgroundTaskRegistration sender, BackgroundTaskCompletedEventArgs args)
+        private async void RegistrationOnCompleted(BackgroundTaskRegistration sender,
+            BackgroundTaskCompletedEventArgs args)
         {
-            var result = await BackgroundExecutionManager.RequestAccessAsync();
+            BackgroundAccessStatus result = await BackgroundExecutionManager.RequestAccessAsync();
             if (result == BackgroundAccessStatus.Denied)
             {
                 var dialog = new MessageDialog("mööp mööp");

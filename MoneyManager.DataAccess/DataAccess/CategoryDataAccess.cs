@@ -1,24 +1,22 @@
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
-using MoneyManager.Models;
-using MoneyManager.Src;
-using PropertyChanged;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.Storage;
+using MoneyManager.DataAccess.Model;
+using PropertyChanged;
 
 namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
     internal class CategoryDataAccess : AbstractDataAccess<Category>
     {
-        public ObservableCollection<Category> AllCategories { get; set; }
-
-        public Category SelectedCategory { get; set; }
-
         public CategoryDataAccess()
         {
             LoadList();
         }
+
+        public ObservableCollection<Category> AllCategories { get; set; }
+
+        public Category SelectedCategory { get; set; }
 
         protected override void SaveToDb(Category category)
         {
@@ -33,13 +31,13 @@ namespace MoneyManager.DataAccess
             AllCategories.Add(category);
             AllCategories = new ObservableCollection<Category>(AllCategories.OrderBy(x => x.Name));
 
-            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
             roamingSettings.Values[category.Id.ToString()] = category.Name;
         }
 
         protected override void DeleteFromDatabase(Category category)
         {
-            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
             roamingSettings.Values.Remove(category.Id.ToString());
 
             AllCategories.Remove(category);
@@ -47,7 +45,7 @@ namespace MoneyManager.DataAccess
 
         protected override void GetListFromDb()
         {
-            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
 
             AllCategories = new ObservableCollection<Category>(roamingSettings.Values
                 .OrderBy(x => x.Value)
@@ -60,13 +58,13 @@ namespace MoneyManager.DataAccess
 
         protected override void UpdateItem(Category category)
         {
-            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
             roamingSettings.Values[category.Id.ToString()] = category.Name;
         }
 
         public void DeleteAll()
         {
-            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
             roamingSettings.Values.Clear();
 
             AllCategories.Clear();
