@@ -94,7 +94,9 @@ namespace MoneyManager
             new RecurringTransactionHelper().CheckForRecurringTransactions();
             new TransactionDataAccess().ClearTransaction();
 
-            ServiceLocator.Current.GetInstance<CurrentPlatform>().Platform = new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT()
+            ServiceLocator.Current.GetInstance<CurrentPlatform>().Platform =
+                new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT();
+
         }
 
 #if WINDOWS_PHONE_APP
