@@ -297,6 +297,14 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MoneyManager.DataAccess\MoneyManager.DataAccess.csproj">
+      <Project>{217ba6c1-a9ca-426d-b8d3-d891aa59a308}</Project>
+      <Name>MoneyManager.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
+      <Project>{6936f4d3-8889-48c7-a676-80d59b2740ce}</Project>
+      <Name>MoneyManager.Foundation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\MoneyManager.Tasks.TransactionsWp\MoneyManager.Tasks.TransactionsWp.csproj">
       <Project>{44e9295b-acb7-458b-99a2-c8f1a941f87a}</Project>
       <Name>MoneyManager.Tasks.TransactionsWp</Name>

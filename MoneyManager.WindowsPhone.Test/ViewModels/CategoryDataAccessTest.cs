@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 namespace MoneyManager.WindowsPhone.Test.ViewModels
 {
     [TestClass]
-    public class CategoryDataAccessTest
+    internal class CategoryDataAccessTest
     {
         private Category category;
 

@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 namespace MoneyManager.WindowsPhone.Test.ViewModels
 {
     [TestClass]
-    public class AccountDataAccessTest
+    internal class AccountDataAccessTest
     {
         private Account account;
 

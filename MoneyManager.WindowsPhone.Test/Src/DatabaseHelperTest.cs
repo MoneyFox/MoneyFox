@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 namespace MoneyManager.WindowsPhone.Test.Src
 {
     [TestClass]
-    public class DatabaseHelperTest
+    internal class DatabaseHelperTest
     {
         [TestMethod]
         public async Task CreateDatabaseTest()

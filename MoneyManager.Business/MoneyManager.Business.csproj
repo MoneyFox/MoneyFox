@@ -78,6 +78,39 @@
     <Compile Include="Tiles\SpendingTile.cs" />
     <Compile Include="Tiles\Tile.cs" />
     <Compile Include="Tiles\TransferTile.cs" />
+    <Compile Include="UserControls\AccountListUserControl.xaml.cs">
+      <DependentUpon>AccountListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AddAccountUserControl.xaml.cs">
+      <DependentUpon>AddAccountUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AddTransactionUserControl.xaml.cs">
+      <DependentUpon>AddTransactionUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BarChartUserControl.xaml.cs">
+      <DependentUpon>BarChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SelectCategoryListUserControl.xaml.cs">
+      <DependentUpon>SelectCategoryListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SettingsCategoryUserControl.xaml.cs">
+      <DependentUpon>SettingsCategoryUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SettingsGeneralUserControl.xaml.cs">
+      <DependentUpon>SettingsGeneralUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SettingsOverviewUserControl.xaml.cs">
+      <DependentUpon>SettingsOverviewUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SettingsTilesUserControl.xaml.cs">
+      <DependentUpon>SettingsTilesUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TotalBalanceUserControl.xaml.cs">
+      <DependentUpon>TotalBalanceUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TransactionListUserControl.xaml.cs">
+      <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\AddTransactionViewModel.cs" />
     <Compile Include="ViewModels\GeneralSettingUserControlViewModel.cs" />
@@ -113,6 +146,52 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="UserControls\AccountListUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\AddAccountUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\AddTransactionUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\BarChartUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SelectCategoryListUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SettingsCategoryUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SettingsGeneralUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SettingsOverviewUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SettingsTilesUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TotalBalanceUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TransactionListUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

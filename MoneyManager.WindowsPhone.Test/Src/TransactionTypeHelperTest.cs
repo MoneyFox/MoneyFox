@@ -3,7 +3,7 @@
 namespace MoneyManager.WindowsPhone.Test.Src
 {
     [TestClass]
-    public class TransactionTypeHelperTest
+    internal class TransactionTypeHelperTest
     {
         [TestMethod]
         public void GetEnumFromStringTest()

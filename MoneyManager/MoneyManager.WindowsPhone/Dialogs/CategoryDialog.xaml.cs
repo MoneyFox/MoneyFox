@@ -2,6 +2,9 @@
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Dialogs
 {
@@ -29,9 +32,9 @@ namespace MoneyManager.Dialogs
         {
             if (CategoryData.SelectedCategory.Name == String.Empty)
             {
-                var dialog = new MessageDialog(Utilities.GetTranslation("NameRequiredMessage"),
-                    Utilities.GetTranslation("NameRequiredTitle"));
-                dialog.Commands.Add(new UICommand(Utilities.GetTranslation("OkLabel")));
+                var dialog = new MessageDialog(Translation.GetTranslation("NameRequiredMessage"),
+                    Translation.GetTranslation("NameRequiredTitle"));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
                 dialog.DefaultCommandIndex = 1;
 
                 await dialog.ShowAsync();

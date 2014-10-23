@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 using PropertyChanged;
 using SQLite.Net;
 

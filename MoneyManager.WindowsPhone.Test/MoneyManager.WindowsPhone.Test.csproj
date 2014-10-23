@@ -109,6 +109,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyManager.Business\MoneyManager.Business.csproj">
+      <Project>{97c5fd49-1128-4fa5-b529-264562a416ef}</Project>
+      <Name>MoneyManager.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyManager.DataAccess\MoneyManager.DataAccess.csproj">
+      <Project>{217ba6c1-a9ca-426d-b8d3-d891aa59a308}</Project>
+      <Name>MoneyManager.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyManager\MoneyManager.WindowsPhone\MoneyManager.WindowsPhone.csproj">
       <Project>{01C92D11-9B98-4FF3-BF14-89917369AB92}</Project>
       <Name>MoneyManager.WindowsPhone</Name>

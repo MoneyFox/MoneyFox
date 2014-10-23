@@ -7,6 +7,7 @@ using Windows.UI.Popups;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 using PropertyChanged;
 
 namespace MoneyManager.DataAccess
@@ -33,10 +34,11 @@ namespace MoneyManager.DataAccess
             get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
         }
 
-        private static TransactionListUserControlViewModel TransactionListUserControlView
-        {
-            get { return ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>(); }
-        }
+        ////TODO: refactor
+        //private static TransactionListUserControlViewModel TransactionListUserControlView
+        //{
+        //    get { return ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>(); }
+        //}
 
         protected override void SaveToDb(FinancialTransaction transaction)
         {
@@ -45,14 +47,15 @@ namespace MoneyManager.DataAccess
 
         public void SaveToDb(FinancialTransaction transaction, bool skipRecurring)
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllTransactions == null)
                 {
                     AllTransactions = new ObservableCollection<FinancialTransaction>();
                 }
 
-                AccountDataAccess.AddTransactionAmount(transaction);
+                //TODO: refactor
+                //AccountDataAccess.AddTransactionAmount(transaction);
                 if (!skipRecurring && transaction.IsRecurring)
                 {
                     RecurringTransactionData.Save(transaction);
@@ -71,15 +74,17 @@ namespace MoneyManager.DataAccess
         {
             if (AccountDataAccess.SelectedAccount == transaction.ChargedAccount)
             {
-                TransactionListUserControlView.SetRelatedTransactions(transaction.ChargedAccountId);
+                //TODO: refactor
+                //TransactionListUserControlView.SetRelatedTransactions(transaction.ChargedAccountId);
             }
         }
 
         protected override void DeleteFromDatabase(FinancialTransaction transaction)
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                AccountDataAccess.RemoveTransactionAmount(transaction);
+                //TODO: refactor
+                //AccountDataAccess.RemoveTransactionAmount(transaction);
 
                 AllTransactions.Remove(transaction);
                 RefreshRelatedTransactions(transaction);
@@ -92,7 +97,7 @@ namespace MoneyManager.DataAccess
 
         public void DeleteAssociatedTransactionsFromDatabase(int accountId)
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllTransactions == null)
                 {
@@ -111,12 +116,11 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        protected override void GetListFromDb()
+        protected override List<FinancialTransaction> GetListFromDb()
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                AllTransactions = new ObservableCollection<FinancialTransaction>
-                    (dbConn.Table<FinancialTransaction>().ToList());
+                return dbConn.Table<FinancialTransaction>().ToList();
             }
         }
 
@@ -137,11 +141,11 @@ namespace MoneyManager.DataAccess
 
         protected override async void UpdateItem(FinancialTransaction transaction)
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 CheckIfRecurringWasRemoved(transaction);
-
-                AccountDataAccess.AddTransactionAmount(transaction);
+                //TODO: refactor
+                //AccountDataAccess.AddTransactionAmount(transaction);
                 dbConn.Update(transaction);
 
                 await CheckForRecurringTransaction(transaction, () => RecurringTransactionData.Update(transaction));
@@ -151,20 +155,21 @@ namespace MoneyManager.DataAccess
         private async Task CheckForRecurringTransaction(FinancialTransaction transaction,
             Action recurringTransactionAction)
         {
+            //TODO: Refactor
             if (!transaction.IsRecurring) return;
 
             var dialog =
-                new MessageDialog(Utilities.GetTranslation("ChangeSubsequentTransactionsMessage"),
-                    Utilities.GetTranslation("ChangeSubsequentTransactionsTitle"));
+                new MessageDialog(Translation.GetTranslation("ChangeSubsequentTransactionsMessage"),
+                    Translation.GetTranslation("ChangeSubsequentTransactionsTitle"));
 
-            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("RecurringLabel")));
-            dialog.Commands.Add(new UICommand(Utilities.GetTranslation("JustThisLabel")));
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("RecurringLabel")));
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("JustThisLabel")));
 
             dialog.DefaultCommandIndex = 1;
 
             IUICommand result = await dialog.ShowAsync();
 
-            if (result.Label == Utilities.GetTranslation("RecurringLabel"))
+            if (result.Label == Translation.GetTranslation("RecurringLabel"))
             {
                 recurringTransactionAction();
             }
@@ -172,16 +177,17 @@ namespace MoneyManager.DataAccess
 
         public void ClearTransaction()
         {
-            IEnumerable<FinancialTransaction> transactions = GetUnclearedTransactions();
-            foreach (FinancialTransaction transaction in transactions)
-            {
-                AccountDataAccess.AddTransactionAmount(transaction);
-            }
+            //TODO: Refactor
+            //IEnumerable<FinancialTransaction> transactions = GetUnclearedTransactions();
+            //foreach (FinancialTransaction transaction in transactions)
+            //{
+            //    AccountDataAccess.AddTransactionAmount(transaction);
+            //}
         }
 
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions()
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 return dbConn.Table<FinancialTransaction>().Where(x => x.Cleared == false
                                                                        && x.Date <= DateTime.Now).ToList();
@@ -190,7 +196,7 @@ namespace MoneyManager.DataAccess
 
         public List<FinancialTransaction> LoadRecurringList()
         {
-            using (var db = ConnectionFactory.GetDbConnection())
+            using (var db = SqlConnectionFactory.GetSqlConnection())
             {
                 //Have to make a list before apply the where statements
                 return db.Table<FinancialTransaction>()

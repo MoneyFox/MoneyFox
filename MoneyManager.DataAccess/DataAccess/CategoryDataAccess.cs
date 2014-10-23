@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.Storage;
 using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 using PropertyChanged;
 
 namespace MoneyManager.DataAccess
@@ -43,17 +45,17 @@ namespace MoneyManager.DataAccess
             AllCategories.Remove(category);
         }
 
-        protected override void GetListFromDb()
+        protected override List<Category> GetListFromDb()
         {
             ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
 
-            AllCategories = new ObservableCollection<Category>(roamingSettings.Values
+            return roamingSettings.Values
                 .OrderBy(x => x.Value)
                 .Select(x => new Category
                 {
                     Id = int.Parse(x.Key),
                     Name = x.Value.ToString()
-                }).ToList());
+                }).ToList();
         }
 
         protected override void UpdateItem(Category category)

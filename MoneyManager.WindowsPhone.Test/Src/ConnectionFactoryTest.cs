@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 namespace MoneyManager.WindowsPhone.Test.Src
 {
     [TestClass]
-    public class ConnectionFactoryTest
+    internal class ConnectionFactoryTest
     {
         [TestMethod]
         public void GetDbConnectionTest()
