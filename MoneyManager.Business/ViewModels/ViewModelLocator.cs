@@ -2,6 +2,7 @@ using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
 
 namespace MoneyManager.ViewModels
 {
@@ -26,6 +27,8 @@ namespace MoneyManager.ViewModels
             SimpleIoc.Default.Register<TransactionListUserControlViewModel>();
             SimpleIoc.Default.Register<TileSettingsUserControlViewModel>();
             SimpleIoc.Default.Register<GeneralSettingUserControlViewModel>();
+
+            SimpleIoc.Default.Register<CurrentPlatform>();
         }
 
         #region DataAccess
@@ -105,5 +108,10 @@ namespace MoneyManager.ViewModels
         }
 
         #endregion Views
+
+        public CurrentPlatform CurrentPlatform
+        {
+            get { return ServiceLocator.Current.GetInstance<CurrentPlatform>(); }
+        }
     }
 }

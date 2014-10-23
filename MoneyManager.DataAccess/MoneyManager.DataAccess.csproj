@@ -51,6 +51,7 @@
     <Compile Include="DatabaseLogic.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\CurrentPlatform.cs" />
     <Compile Include="Model\FinancialTransaction.cs" />
     <Compile Include="Model\Group.cs" />
     <Compile Include="Model\RecurringTransaction.cs" />

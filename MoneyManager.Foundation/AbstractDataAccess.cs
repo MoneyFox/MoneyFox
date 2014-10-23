@@ -48,12 +48,13 @@ namespace MoneyManager.Foundation
         {
             try
             {
-                GetListFromDb();
+                return GetListFromDb();
             }
             catch (Exception ex)
             {
                 BugSenseHandler.Instance.LogException(ex);
             }
+            return new List<T>();
         }
 
         public void Update(T itemToUpdate)

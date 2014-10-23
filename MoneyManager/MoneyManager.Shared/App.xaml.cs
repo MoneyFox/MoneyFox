@@ -8,6 +8,11 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using BugSense;
 using BugSense.Model;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Src;
+using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
 
 namespace MoneyManager
 {
@@ -33,7 +38,7 @@ namespace MoneyManager
                 DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-            await DatabaseHelper.CreateDatabase();
+            DatabaseLogic.CreateDatabase();
 
             var rootFrame = Window.Current.Content as Frame;
 
@@ -88,6 +93,8 @@ namespace MoneyManager
 
             new RecurringTransactionHelper().CheckForRecurringTransactions();
             new TransactionDataAccess().ClearTransaction();
+
+            ServiceLocator.Current.GetInstance<CurrentPlatform>().Platform = new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT()
         }
 
 #if WINDOWS_PHONE_APP

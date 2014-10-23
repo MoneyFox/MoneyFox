@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
@@ -39,11 +40,11 @@ namespace MoneyManager.DataAccess.DataAccess
             }
         }
 
-        protected override void GetListFromDb()
+        protected override List<Account> GetListFromDb()
         {
             using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                AllAccounts = new ObservableCollection<Account>(dbConn.Table<Account>().ToList());
+                return dbConn.Table<Account>().ToList();
 
                 //TODO: Refactor this:
                 //ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().UpdateBalance();

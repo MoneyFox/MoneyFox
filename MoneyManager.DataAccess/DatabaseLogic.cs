@@ -1,18 +1,16 @@
-﻿using System.Threading.Tasks;
-using MoneyManager.DataAccess;
+﻿using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.Model;
 using SQLite.Net;
 
-namespace MoneyManager.Src
+namespace MoneyManager.DataAccess
 {
-    public class DatabaseLogic
+    internal class DatabaseLogic
     {
-        public static async Task CreateDatabase()
+        public static void CreateDatabase()
         {
-            SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection();
+            var dbConn = SqlConnectionFactory.GetSqlConnection();
 
-            dbConn.CreateTable<>() < Account > ()
-            ;
+            dbConn.CreateTable<Account>();
             dbConn.CreateTable<FinancialTransaction>();
             dbConn.CreateTable<RecurringTransaction>();
             dbConn.CreateTable<Group>();
