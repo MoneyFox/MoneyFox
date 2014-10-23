@@ -35,7 +35,8 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
 
             accountDataAccess.Save(account);
 
-            var list = accountDataAccess.LoadList();
+            accountDataAccess.LoadList();
+            var list = accountDataAccess.AllAccounts;
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstName, list.First().Name);
@@ -44,14 +45,17 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
 
             accountDataAccess.Update(account);
 
-            list = accountDataAccess.LoadList();
+            accountDataAccess.LoadList();
+            list = accountDataAccess.AllAccounts;
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(secondName, list.First().Name);
 
             accountDataAccess.Delete(account);
 
-            list = accountDataAccess.LoadList();
+            accountDataAccess.LoadList();
+            list = accountDataAccess.AllAccounts;
+
             Assert.IsFalse(list.Any());
         }
     }

@@ -89,7 +89,7 @@ namespace MoneyManager
             TileLogic.DoNavigation(e.TileId);
 
             new RecurringTransactionLogic().CheckForRecurringTransactions();
-            new TransactionDataAccess().ClearTransaction();
+            TransactionLogic.ClearTransactions();
         }
 
 #if WINDOWS_PHONE_APP

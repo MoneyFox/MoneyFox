@@ -4,11 +4,11 @@ using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
-using MoneyManager.ViewModels;
 
 namespace MoneyManager.Business
 {
@@ -66,9 +66,7 @@ namespace MoneyManager.Business
 
         public static void DeleteAssociatedTransactionsFromDatabase(int accountId)
         {
-            var transactions = transactionData.LoadList();
-
-            foreach (var transaction in transactions)
+            foreach (var transaction in transactionData.AllTransactions.Where(x => x.ChargedAccountId == accountId))
             {
                 transactionData.Delete(transaction);
             }
@@ -90,7 +88,7 @@ namespace MoneyManager.Business
             }
         }
 
-        public void ClearTransaction()
+        public static void ClearTransactions()
         {
             IEnumerable<FinancialTransaction> transactions = transactionData.GetUnclearedTransactions();
             foreach (FinancialTransaction transaction in transactions)

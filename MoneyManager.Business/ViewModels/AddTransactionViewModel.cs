@@ -1,14 +1,13 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business;
-using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 
-namespace MoneyManager.ViewModels
+namespace MoneyManager.Business.ViewModels
 {
     internal class AddTransactionViewModel
     {

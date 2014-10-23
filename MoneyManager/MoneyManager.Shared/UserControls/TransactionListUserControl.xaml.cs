@@ -1,8 +1,8 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business;
+using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
-using MoneyManager.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;

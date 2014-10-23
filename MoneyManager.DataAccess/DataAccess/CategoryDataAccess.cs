@@ -43,17 +43,17 @@ namespace MoneyManager.DataAccess.DataAccess
             AllCategories.Remove(category);
         }
 
-        protected override List<Category> GetListFromDb()
+        protected override void GetListFromDb()
         {
             ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
 
-            return roamingSettings.Values
+            AllCategories = new ObservableCollection<Category>(roamingSettings.Values
                 .OrderBy(x => x.Value)
                 .Select(x => new Category
                 {
                     Id = int.Parse(x.Key),
                     Name = x.Value.ToString()
-                }).ToList();
+                }).ToList());
         }
 
         protected override void UpdateItem(Category category)

@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <PRIResource Include="Strings\en\Resources.resw" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

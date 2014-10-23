@@ -33,7 +33,8 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
 
             categoryDataAccess.Save(category);
 
-            var list = categoryDataAccess.LoadList();
+            categoryDataAccess.LoadList();
+            var list = categoryDataAccess.AllCategories;
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstName, list.First().Name);
@@ -41,14 +42,16 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
             category.Name = secondName;
             categoryDataAccess.Update(category);
 
-            list = categoryDataAccess.LoadList();
+            categoryDataAccess.LoadList();
+            list = categoryDataAccess.AllCategories;
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(secondName, list.First().Name);
 
             categoryDataAccess.Delete(category);
 
-            list = categoryDataAccess.LoadList();
+            categoryDataAccess.LoadList();
+            list = categoryDataAccess.AllCategories;
             Assert.IsFalse(list.Any());
 
         }

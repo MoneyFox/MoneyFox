@@ -8,11 +8,6 @@ namespace MoneyManager.Foundation
 {
     internal abstract class AbstractDataAccess<T> : IDataAccess<T>
     {
-        //private TotalBalanceViewModel TotalBalanceView
-        //{
-        //    get { return ServiceLocator.Current.GetInstance<TotalBalanceViewModel>(); }
-        //}
-
         public void Save(T itemToSave)
         {
             try
@@ -39,17 +34,16 @@ namespace MoneyManager.Foundation
             }
         }
 
-        public List<T> LoadList()
+        public void LoadList()
         {
             try
             {
-                return GetListFromDb();
+                GetListFromDb();
             }
             catch (Exception ex)
             {
                 BugSenseHandler.Instance.LogException(ex);
             }
-            return new List<T>();
         }
 
         public void Update(T itemToUpdate)
@@ -70,7 +64,7 @@ namespace MoneyManager.Foundation
 
         protected abstract void DeleteFromDatabase(T itemToDelete);
 
-        protected abstract List<T> GetListFromDb();
+        protected abstract void GetListFromDb();
 
         protected abstract void UpdateItem(T itemToUpdate);
 

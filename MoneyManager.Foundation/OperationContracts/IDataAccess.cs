@@ -8,7 +8,7 @@ namespace MoneyManager.Foundation.OperationContracts
 
         void Delete(T itemToDelete);
 
-        List<T> LoadList();
+        void LoadList();
 
         void Update(T itemToUpdate);
     }

@@ -37,7 +37,8 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
 
             transactionDataAccess.Save(transaction);
 
-            var list = transactionDataAccess.LoadList();
+            transactionDataAccess.LoadList();
+            var list = transactionDataAccess.AllTransactions;
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstAmount, list.First().Amount);
@@ -46,14 +47,16 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
 
             transactionDataAccess.Update(transaction);
 
-            list = transactionDataAccess.LoadList();
+            transactionDataAccess.LoadList();
+            list = transactionDataAccess.AllTransactions;
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(secondAmount, list.First().Amount);
 
             transactionDataAccess.Delete(transaction);
 
-            list = transactionDataAccess.LoadList();
+            transactionDataAccess.LoadList();
+            list = transactionDataAccess.AllTransactions;
             Assert.IsFalse(list.Any());
 
         }

@@ -36,11 +36,11 @@ namespace MoneyManager.DataAccess.DataAccess
             }
         }
 
-        protected override List<Account> GetListFromDb()
+        protected override void GetListFromDb()
         {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                return dbConn.Table<Account>().ToList();
+                AllAccounts = new ObservableCollection<Account>(dbConn.Table<Account>().ToList());
             }
         }
 

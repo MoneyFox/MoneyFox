@@ -65,18 +65,19 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public void Delete(int reccuringTransactionId)
         {
-            RecurringTransaction recTrans = AllRecurringTransactions.FirstOrDefault(x => x.Id == reccuringTransactionId);
+            var recTrans = AllRecurringTransactions.FirstOrDefault(x => x.Id == reccuringTransactionId);
             if (recTrans != null)
             {
                 Delete(recTrans);
             }
         }
 
-        protected override List<RecurringTransaction> GetListFromDb()
+        protected override void GetListFromDb()
         {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                return dbConn.Table<RecurringTransaction>().ToList();
+                AllRecurringTransactions =
+                    new ObservableCollection<RecurringTransaction>(dbConn.Table<RecurringTransaction>().ToList());
             }
         }
 

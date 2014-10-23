@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using BugSense;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
-using MoneyManager.ViewModels;
 
 namespace MoneyManager.Business
 {
