@@ -1,13 +1,13 @@
-using MoneyManager.Src;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using Windows.Storage;
+using MoneyManager.Src;
 
-namespace MoneyManager.DataAccess
+namespace MoneyManager.DataAccess.DataAccess
 {
-    public class SettingDataAccess : INotifyPropertyChanged
+    internal class SettingDataAccess : INotifyPropertyChanged
     {
         private const string DbVersionKeyname = "DbVersion";
 
@@ -26,7 +26,7 @@ namespace MoneyManager.DataAccess
                 AddOrUpdateValue(DbVersionKeyname, value);
                 OnPropertyChanged();
             }
-        }        
+        }
 
         #endregion Properties
 

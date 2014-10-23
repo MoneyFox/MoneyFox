@@ -1,3 +1,5 @@
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 using MoneyManager.Models;
 using MoneyManager.Src;
 using PropertyChanged;
@@ -7,7 +9,7 @@ using System.Linq;
 namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
-    public class CategoryDataAccess : AbstractDataAccess<Category>
+    internal class CategoryDataAccess : AbstractDataAccess<Category>
     {
         public ObservableCollection<Category> AllCategories { get; set; }
 
@@ -25,7 +27,8 @@ namespace MoneyManager.DataAccess
                 AllCategories = new ObservableCollection<Category>();
             }
 
-            category.Id = Utilities.GetMaxId();
+            //TODO: Refactor
+            //category.Id = Utilities.GetMaxId();
 
             AllCategories.Add(category);
             AllCategories = new ObservableCollection<Category>(AllCategories.OrderBy(x => x.Name));

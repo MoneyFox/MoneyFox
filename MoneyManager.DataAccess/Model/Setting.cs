@@ -1,5 +1,4 @@
 ﻿using PropertyChanged;
-using SQLite;
 using SQLite.Net.Attributes;
 
 namespace MoneyManager.DataAccess.Model

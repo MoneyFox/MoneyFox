@@ -33,12 +33,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\SettingDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\StatisticDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\TransactionDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Category.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\FinancialTransaction.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Group.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\RecurringTransaction.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Setting.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\StatisticItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Tiles\IncomeTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Tiles\SpendingTile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Tiles\Tile.cs" />

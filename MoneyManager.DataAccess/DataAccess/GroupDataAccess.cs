@@ -1,19 +1,20 @@
-using MoneyManager.Models;
-using MoneyManager.Src;
-using PropertyChanged;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
+using PropertyChanged;
 
-namespace MoneyManager.DataAccess
+namespace MoneyManager.DataAccess.DataAccess
 {
     [ImplementPropertyChanged]
-    public class GroupDataAccess : AbstractDataAccess<Group>
+    internal class GroupDataAccess : AbstractDataAccess<Group>
     {
         public ObservableCollection<Group> AllGroups { get; set; }
 
         protected override void SaveToDb(Group group)
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllGroups == null)
                 {
@@ -27,24 +28,24 @@ namespace MoneyManager.DataAccess
 
         protected override void DeleteFromDatabase(Group group)
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 AllGroups.Remove(group);
                 dbConn.Delete(group);
             }
         }
 
-        protected override void GetListFromDb()
+        protected override List<Group> GetListFromDb()
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                AllGroups = new ObservableCollection<Group>(dbConn.Table<Group>().ToList());
+                return dbConn.Table<Group>().ToList();
             }
         }
 
         protected override void UpdateItem(Group group)
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.Update(group, typeof(Group));
             }

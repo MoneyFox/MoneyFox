@@ -1,12 +1,13 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Models;
-using MoneyManager.Src;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 
-namespace MoneyManager.DataAccess
+namespace MoneyManager.DataAccess.DataAccess
 {
-    public class RecurringTransactionDataAccess : AbstractDataAccess<RecurringTransaction>
+    internal class RecurringTransactionDataAccess : AbstractDataAccess<RecurringTransaction>
     {
         public ObservableCollection<RecurringTransaction> AllRecurringTransactions { get; set; }
 
@@ -19,20 +20,21 @@ namespace MoneyManager.DataAccess
 
         public void Save(FinancialTransaction transaction)
         {
-            var recurringTransaction = RecurringTransactionHelper.GetRecurringFromFinancialTransaction(transaction);
+            //TODO: Refactor
+            //var recurringTransaction = RecurringTransactionHelper.GetRecurringFromFinancialTransaction(transaction);
 
-            if (AllRecurringTransactions != null)
-            {
-                AllRecurringTransactions.Add(recurringTransaction);
-            }
+            //if (AllRecurringTransactions != null)
+            //{
+            //    AllRecurringTransactions.Add(recurringTransaction);
+            //}
 
-            SaveToDb(recurringTransaction);
-            transaction.ReccuringTransactionId = recurringTransaction.Id;
+            //SaveToDb(recurringTransaction);
+            //transaction.ReccuringTransactionId = recurringTransaction.Id;
         }
 
         protected override void SaveToDb(RecurringTransaction itemToAdd)
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllRecurringTransactions == null)
                 {
@@ -49,7 +51,7 @@ namespace MoneyManager.DataAccess
 
         protected override void DeleteFromDatabase(RecurringTransaction itemToDelete)
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllRecurringTransactions != null)
                 {
@@ -83,18 +85,17 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        protected override void GetListFromDb()
+        protected override List<RecurringTransaction> GetListFromDb()
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                AllRecurringTransactions = new ObservableCollection<RecurringTransaction>
-                    (dbConn.Table<RecurringTransaction>().ToList());
+                return dbConn.Table<RecurringTransaction>().ToList();
             }
         }
 
         protected override void UpdateItem(RecurringTransaction itemToUpdate)
         {
-            using (var dbConn = ConnectionFactory.GetDbConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.Update(itemToUpdate);
                 LoadList();
@@ -103,17 +104,18 @@ namespace MoneyManager.DataAccess
 
         public void Update(FinancialTransaction transaction)
         {
-            var recTransaction = RecurringTransactionHelper.GetRecurringFromFinancialTransaction(transaction);
+            //todo: Refactor
+            //var recTransaction = RecurringTransactionHelper.GetRecurringFromFinancialTransaction(transaction);
 
-            if (!transaction.ReccuringTransactionId.HasValue)
-            {
-                Save(recTransaction);
-            }
-            else
-            {
-                recTransaction.Id = transaction.ReccuringTransactionId.Value;
-                Update(recTransaction);
-            }
+            //if (!transaction.ReccuringTransactionId.HasValue)
+            //{
+            //    Save(recTransaction);
+            //}
+            //else
+            //{
+            //    recTransaction.Id = transaction.ReccuringTransactionId.Value;
+            //    Update(recTransaction);
+            //}
         }
     }
 }

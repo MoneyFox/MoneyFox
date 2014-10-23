@@ -1,5 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 using MoneyManager.Models;
 using MoneyManager.Src;
 using MoneyManager.ViewModels;
@@ -13,7 +16,7 @@ using Windows.UI.Popups;
 namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
-    public class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
+    internal class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
     {
         public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
 
