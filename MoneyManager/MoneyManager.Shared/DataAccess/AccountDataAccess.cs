@@ -51,7 +51,9 @@ namespace MoneyManager.DataAccess
             using (var dbConn = ConnectionFactory.GetDbConnection())
             {
                 AllAccounts = new ObservableCollection<Account>(dbConn.Table<Account>().ToList());
-                ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().UpdateBalance();
+
+                //TODO: Refactor this:
+                //ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().UpdateBalance();
             }
         }
 

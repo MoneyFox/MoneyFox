@@ -33,7 +33,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\SettingDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\StatisticDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\TransactionDataAccess.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Account.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\FinancialTransaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Group.cs" />

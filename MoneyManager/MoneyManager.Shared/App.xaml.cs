@@ -1,6 +1,4 @@
-﻿using Windows.UI.Popups;
-using BugSense;
-using BugSense.Core.Model;
+﻿using BugSense;
 using BugSense.Model;
 using MoneyManager.DataAccess;
 using MoneyManager.Src;

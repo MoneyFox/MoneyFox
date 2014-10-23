@@ -5,11 +5,11 @@
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{217BA6C1-A9CA-426D-B8D3-D891AA59A308}</ProjectGuid>
+    <ProjectGuid>{6936F4D3-8889-48C7-A676-80D59B2740CE}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MoneyManager.DataAccess</RootNamespace>
-    <AssemblyName>MoneyManager.DataAccess</AssemblyName>
+    <RootNamespace>MoneyManager.Foundation</RootNamespace>
+    <AssemblyName>MoneyManager.Foundation</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -17,7 +17,6 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <NuGetPackageImportStamp>ea128bfd</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,44 +40,21 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\FinancialTransaction.cs" />
-    <Compile Include="Model\Group.cs" />
-    <Compile Include="Model\RecurringTransaction.cs" />
-    <Compile Include="Model\Setting.cs" />
-    <Compile Include="Model\StatisticItem.cs" />
-    <Compile Include="SqlConnectionFactory.cs" />
-    <Compile Include="DataAccess\AccountDataAccess.cs" />
+    <Compile Include="AbstractDataAccess.cs" />
+    <Compile Include="OperationContracts\IDataAccess.cs" />
+    <Compile Include="OperationContracts\ISecondTile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlPlatformHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    <Reference Include="BugSense-Windows.Universal">
+      <HintPath>..\packages\BugSense.XAML81.3.6.6.0\lib\wpa81\BugSense-Windows.Universal.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PropertyChanged">
-      <HintPath>..\packages\PropertyChanged.Fody.1.48.5\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SQLite.Net">
-      <HintPath>..\packages\SQLite.Net-PCL.2.4.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
-      <Project>{6936f4d3-8889-48c7-a676-80d59b2740ce}</Project>
-      <Name>MoneyManager.Foundation</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
@@ -87,9 +63,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-    <Error Condition="!Exists('..\packages\Fody.1.25.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.25.0\build\Fody.targets'))" />
   </Target>
-  <Import Project="..\packages\Fody.1.25.0\build\Fody.targets" Condition="Exists('..\packages\Fody.1.25.0\build\Fody.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

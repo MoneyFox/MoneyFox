@@ -9,7 +9,13 @@ namespace MoneyManager.DataAccess
     {
         private static readonly string _dbPath = Path.Combine(
             Path.Combine(ApplicationData.Current.LocalFolder.Path, "moneyfox.sqlite"));
-        
+
+
+        public static SQLiteConnection GetSqlConnection()
+        {
+            return GetSqlConnection(SqlPlatformHelper.GetCurrentPlatform());
+        }
+
         public static SQLiteConnection GetSqlConnection(ISQLitePlatform sqlitePlatform)
         {
             return new SQLiteConnection(sqlitePlatform, _dbPath);
