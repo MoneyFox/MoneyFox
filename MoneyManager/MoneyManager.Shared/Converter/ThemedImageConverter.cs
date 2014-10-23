@@ -13,7 +13,7 @@ namespace MoneyManager.Converter
             if (string.IsNullOrEmpty(formatString))
                 formatString = value as string;
 
-            return ThemedImageConverterHelper.GetImage(formatString);
+            return ThemedImageConverterLogic.GetImage(formatString);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

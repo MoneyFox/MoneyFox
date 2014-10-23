@@ -154,16 +154,6 @@ namespace MoneyManager.DataAccess.DataAccess
             }
         }
 
-        public void ClearTransaction()
-        {
-            //TODO: Refactor
-            //IEnumerable<FinancialTransaction> transactions = GetUnclearedTransactions();
-            //foreach (FinancialTransaction transaction in transactions)
-            //{
-            //    AccountDataAccess.AddTransactionAmount(transaction);
-            //}
-        }
-
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions()
         {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection())

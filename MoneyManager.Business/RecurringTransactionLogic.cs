@@ -10,7 +10,7 @@ using MoneyManager.ViewModels;
 
 namespace MoneyManager.Business
 {
-    internal class RecurringTransactionHelper
+    internal class RecurringTransactionLogic
     {
         private RecurringTransactionDataAccess RecurringTransactionData
         {

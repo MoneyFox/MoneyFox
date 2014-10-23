@@ -86,9 +86,9 @@ namespace MoneyManager
 
             // Ensure the current window is active
             Window.Current.Activate();
-            TileHelper.DoNavigation(e.TileId);
+            TileLogic.DoNavigation(e.TileId);
 
-            new RecurringTransactionHelper().CheckForRecurringTransactions();
+            new RecurringTransactionLogic().CheckForRecurringTransactions();
             new TransactionDataAccess().ClearTransaction();
         }
 

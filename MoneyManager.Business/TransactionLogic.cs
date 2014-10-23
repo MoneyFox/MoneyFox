@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -20,12 +21,12 @@ namespace MoneyManager.Business
             set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
         }
 
-        public static AccountDataAccess AccountData
+        private static AccountDataAccess accountDataAccess
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
-        public static TransactionDataAccess transactionData
+        private static TransactionDataAccess transactionData
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
@@ -83,10 +84,20 @@ namespace MoneyManager.Business
 
         private static void SetDefaultAccount()
         {
-            if (AccountData.AllAccounts.Any())
+            if (accountDataAccess.AllAccounts.Any())
             {
-                SelectedTransaction.ChargedAccount = AccountData.AllAccounts.First();
+                SelectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First();
             }
         }
+
+        public void ClearTransaction()
+        {
+            IEnumerable<FinancialTransaction> transactions = transactionData.GetUnclearedTransactions();
+            foreach (FinancialTransaction transaction in transactions)
+            {
+                AccountLogic.AddTransactionAmount(transaction);
+            }
+        }
+
     }
 }

@@ -3,7 +3,7 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Business
 {
-    internal class TransactionTypeHelper
+    internal class TransactionTypeLogic
     {
         public static TransactionType GetEnumFromString(string input)
         {

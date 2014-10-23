@@ -12,7 +12,7 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Business
 {
-    internal class LanguageHelper
+    internal class LanguageLogic
     {
         private static TransactionDataAccess transactionData
         {

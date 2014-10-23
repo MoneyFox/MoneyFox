@@ -54,14 +54,14 @@
   <ItemGroup>
     <Compile Include="AccountLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BackgroundTaskHelper.cs" />
-    <Compile Include="CurrencyHelper.cs" />
-    <Compile Include="LanguageHelper.cs" />
-    <Compile Include="RecurringTransactionHelper.cs" />
-    <Compile Include="ThemedImageConverterHelper.cs" />
-    <Compile Include="TileHelper.cs" />
+    <Compile Include="BackgroundTaskLogic.cs" />
+    <Compile Include="CurrencyLogic.cs" />
+    <Compile Include="LanguageLogic.cs" />
+    <Compile Include="RecurringTransactionLogic.cs" />
+    <Compile Include="ThemedImageConverterLogic.cs" />
+    <Compile Include="TileLogic.cs" />
     <Compile Include="TransactionLogic.cs" />
-    <Compile Include="TransactionTypeHelper.cs" />
+    <Compile Include="TransactionTypeLogic.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Tiles\IncomeTile.cs" />
     <Compile Include="Tiles\SpendingTile.cs" />

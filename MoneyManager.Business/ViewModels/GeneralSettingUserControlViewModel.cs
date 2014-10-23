@@ -7,13 +7,13 @@ namespace MoneyManager.Business.ViewModels
     {
         public List<String> LanguageList
         {
-            get { return LanguageHelper.GetSupportedLanguages(); }
+            get { return LanguageLogic.GetSupportedLanguages(); }
         }
 
         public string SelectedValue
         {
-            get { return LanguageHelper.GetPrimaryLanguage(); }
-            set { LanguageHelper.SetPrimaryLanguage(value); }
+            get { return LanguageLogic.GetPrimaryLanguage(); }
+            set { LanguageLogic.SetPrimaryLanguage(value); }
         }
     }
 }

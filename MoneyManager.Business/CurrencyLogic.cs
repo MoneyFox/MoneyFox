@@ -6,12 +6,12 @@ using Newtonsoft.Json;
 
 namespace MoneyManager.Business
 {
-    internal class CurrencyHelper
+    internal class CurrencyLogic
     {
         private const string currencyServiceUrl = "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
         private static readonly HttpClient httpClient = new HttpClient();
 
-        public CurrencyHelper()
+        public CurrencyLogic()
         {
             httpClient.DefaultRequestHeaders.Add("user-agent",
                 "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");

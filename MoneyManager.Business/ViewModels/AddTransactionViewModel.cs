@@ -36,7 +36,7 @@ namespace MoneyManager.ViewModels
                     ? Translation.GetTranslation("EditTitle")
                     : Translation.GetTranslation("AddTitle");
 
-                string type = TransactionTypeHelper.GetViewTitleForType(SelectedTransaction.Type);
+                string type = TransactionTypeLogic.GetViewTitleForType(SelectedTransaction.Type);
 
                 return String.Format(text, type);
             }
