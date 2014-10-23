@@ -30,4 +30,4 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: InternalsVisibleTo("MoneyManager.Business")]
 [assembly: InternalsVisibleTo("MoneyManager.WindowsPhone")]
-[assembly: InternalsVisibleTo("MoneyManager.WindowsPhone.Test")]
+[assembly: InternalsVisibleTo("MoneyManager.DataAccess.WindowsPhone.Test")]

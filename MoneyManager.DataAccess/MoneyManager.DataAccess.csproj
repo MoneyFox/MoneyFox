@@ -77,9 +77,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
       <Project>{6936f4d3-8889-48c7-a676-80d59b2740ce}</Project>
       <Name>MoneyManager.Foundation</Name>

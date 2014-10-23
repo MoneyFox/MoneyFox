@@ -27,16 +27,11 @@ namespace MoneyManager.Foundation
             }
         }
 
-        public async void Delete(T itemToDelete, bool suppressConfirmation = false)
+        public async void Delete(T itemToDelete)
         {
             try
             {
-                if (suppressConfirmation || await IsDeletionConfirmed())
-                {
                     DeleteFromDatabase(itemToDelete);
-                    //TODO: Refactor
-                    //TotalBalanceView.UpdateBalance();
-                }
             }
             catch (Exception ex)
             {

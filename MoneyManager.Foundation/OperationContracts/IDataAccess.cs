@@ -6,7 +6,7 @@ namespace MoneyManager.Foundation.OperationContracts
     {
         void Save(T itemToSave);
 
-        void Delete(T itemToDelete, bool suppressConfirmation = false);
+        void Delete(T itemToDelete);
 
         List<T> LoadList();
 
