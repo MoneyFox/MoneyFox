@@ -1,8 +1,8 @@
-﻿using MoneyManager.Foundation;
-using System;
+﻿using System;
 using Windows.UI.Xaml.Data;
+using MoneyManager.Foundation;
 
-namespace MoneyManager.Business.Converter
+namespace MoneyManager.Converter
 {
     internal class RecurrenceConverter : IValueConverter
     {

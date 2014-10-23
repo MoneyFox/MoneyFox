@@ -1,11 +1,11 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using System;
+using Windows.UI.Xaml.Data;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
-using System;
-using Windows.UI.Xaml.Data;
 
-namespace MoneyManager.Business.Converter
+namespace MoneyManager.Converter
 {
     internal class TransactionAmountConverter : IValueConverter
     {

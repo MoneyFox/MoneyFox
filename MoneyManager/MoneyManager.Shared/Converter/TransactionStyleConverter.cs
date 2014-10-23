@@ -1,14 +1,20 @@
 ﻿using System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
+using MoneyManager.DataAccess.Model;
 
-namespace MoneyManager.Business.Converter
+namespace MoneyManager.Converter
 {
-    internal class RevertVisibilityConverter : IValueConverter
+    internal class TransactionStyleConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (Visibility) value == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            var transaction = value as FinancialTransaction;
+
+            if (transaction == null) return 0;
+
+            return transaction.Cleared
+                ? 1
+                : 0.5;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

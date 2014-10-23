@@ -2,19 +2,13 @@
 using System.Globalization;
 using Windows.UI.Xaml.Data;
 
-namespace MoneyManager.Business.Converter
+namespace MoneyManager.Converter
 {
-    internal class CultureConverter : IValueConverter
+    internal class CurrencyConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var formatString = parameter as string;
-            if (!string.IsNullOrEmpty(formatString))
-            {
-                return string.Format(CultureInfo.CurrentCulture, formatString, value);
-            }
-
-            return value.ToString();
+            return new CultureInfo(value.ToString()).NumberFormat.CurrencySymbol;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

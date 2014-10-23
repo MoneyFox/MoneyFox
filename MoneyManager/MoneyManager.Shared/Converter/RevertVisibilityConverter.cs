@@ -1,18 +1,19 @@
 ﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace MoneyManager.Business.Converter
+namespace MoneyManager.Converter
 {
-    internal class AmountConverter : IValueConverter
+    internal class RevertVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return System.Convert.ToDouble(value).ToString("F2");
+            return (Visibility) value == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            return value;
+            throw new NotImplementedException();
         }
     }
 }

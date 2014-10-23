@@ -1,8 +1,8 @@
-﻿using MoneyManager.Business.Src;
-using System;
+﻿using System;
 using Windows.UI.Xaml.Data;
+using MoneyManager.Business.Src;
 
-namespace MoneyManager.Business.Converter
+namespace MoneyManager.Converter
 {
     internal class ThemedImageConverter : IValueConverter
     {

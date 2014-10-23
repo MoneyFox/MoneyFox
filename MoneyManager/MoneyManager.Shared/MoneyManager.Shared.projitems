@@ -15,6 +15,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\AmountConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\CultureConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\CurrencyConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\RecurrenceConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\RevertVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\ThemedImageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionAmountConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionStyleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>

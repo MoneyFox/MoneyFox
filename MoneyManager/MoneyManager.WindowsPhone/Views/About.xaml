@@ -4,12 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converter="using:MoneyManager.Business.Converter"
+    xmlns:converter1="using:MoneyManager.Converter"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
+        <converter1:ThemedImageConverter x:Key="ThemedImageConverter" />
     </Page.Resources>
 
     <Grid>
