@@ -1,11 +1,13 @@
-﻿using System;
+﻿using System.Reflection;
+using Windows.ApplicationModel;
+using MoneyManager.Business;
+using MoneyManager.Common;
+using MoneyManager.Foundation;
+using System;
 using Windows.ApplicationModel.Email;
 using Windows.System;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using MoneyManager.Business;
-using MoneyManager.Common;
-using MoneyManager.Foundation;
 
 namespace MoneyManager.Views
 {
@@ -32,20 +34,6 @@ namespace MoneyManager.Views
             get { return defaultViewModel; }
         }
 
-        #region NavigationHelper registration
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            navigationHelper.OnNavigatedTo(e);
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            navigationHelper.OnNavigatedFrom(e);
-        }
-
-        #endregion NavigationHelper registration
-
         private async void ComposeMail_OnTap(object sender, TappedRoutedEventArgs e)
         {
             var sendTo = new EmailRecipient
@@ -69,5 +57,19 @@ namespace MoneyManager.Views
             string url = "http://twitter.com/npadrutt";
             await Launcher.LaunchUriAsync(new Uri(url));
         }
+
+        #region NavigationHelper registration
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            navigationHelper.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            navigationHelper.OnNavigatedFrom(e);
+        }
+
+        #endregion NavigationHelper registration
     }
 }
