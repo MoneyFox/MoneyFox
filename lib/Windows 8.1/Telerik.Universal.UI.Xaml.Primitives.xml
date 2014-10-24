@@ -1,0 +1,2772 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.Universal.UI.Xaml.Primitives</name>
+    </assembly>
+    <members>
+        <member name="T:Primitives.App">
+            <summary>
+            Provides application-specific behavior to supplement the default Application class.
+            </summary>
+        </member>
+        <member name="M:Primitives.App.#ctor">
+            <summary>
+            Initializes the singleton application object.  This is the first line of authored code
+            executed, and as such is the logical equivalent of main() or WinMain().
+            </summary>
+        </member>
+        <member name="M:Primitives.App.OnLaunched(Windows.ApplicationModel.Activation.LaunchActivatedEventArgs)">
+            <summary>
+            Invoked when the application is launched normally by the end user.  Other entry points
+            will be used such as when the application is launched to open a specific file.
+            </summary>
+            <param name="e">Details about the launch request and process.</param>
+        </member>
+        <member name="M:Primitives.App.OnNavigationFailed(System.Object,Windows.UI.Xaml.Navigation.NavigationFailedEventArgs)">
+            <summary>
+            Invoked when Navigation to a certain page fails
+            </summary>
+            <param name="sender">The Frame which failed navigation</param>
+            <param name="e">Details about the navigation failure</param>
+        </member>
+        <member name="M:Primitives.App.OnSuspending(System.Object,Windows.ApplicationModel.SuspendingEventArgs)">
+            <summary>
+            Invoked when application execution is being suspended.  Application state is saved
+            without knowing whether the application will be terminated or resumed with the contents
+            of memory still intact.
+            </summary>
+            <param name="sender">The source of the suspend request.</param>
+            <param name="e">Details about the suspend request.</param>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.AnimationStyle">
+            <summary>
+            Defines all possible animation styles
+            that come out-of-the box.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.AnimationStyle.AnimationStyle1">
+            <summary>
+            Animation style 1.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.AnimationStyle.AnimationStyle2">
+            <summary>
+            Animation style 2.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.AnimationStyle.AnimationStyle3">
+            <summary>
+            Animation style 3.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.AnimationStyle.AnimationStyle4">
+            <summary>
+            Animation style 4.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.AnimationStyle.AnimationStyle5">
+            <summary>
+            Animation style 5.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.AnimationStyle.AnimationStyle6">
+            <summary>
+            Animation style 6.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.AnimationStyle.AnimationStyle7">
+            <summary>
+            Animation style 7.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.AnimationStyle.AnimationStyle8">
+            <summary>
+            Animation style 8.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.AnimationStyle.AnimationStyle9">
+            <summary>
+            Animation style 9.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimation">
+            <summary>
+            Represents an animation displayed in the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator"/> control.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.RadControl">
+            <summary>
+            Defines the base class for all Telerik-specific controls. Encapsulates common routines and properties.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.RadControl"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.BeginVisualStateUpdate">
+            <summary>
+            Locks any visual state update. Useful when performing batch operations.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.EndVisualStateUpdate(System.Boolean,System.Boolean)">
+            <summary>
+            Resumes visual state update and optionally re-evaluates the current visual state.
+            </summary>
+            <param name="update">True to re-evaluate the current visual state, false otherwise.</param>
+            <param name="animate">True to use animations when updating visual state, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.UpdateVisualState(System.Boolean)">
+            <summary>
+            Re-evaluates the current visual state for the control and updates it if necessary.
+            </summary>
+            <param name="animate">True to use transitions during state update, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.SetVisualState(System.String,System.Boolean)">
+            <summary>
+            Applies the specified visual state as current.
+            </summary>
+            <param name="state">The new visual state.</param>
+            <param name="animate">True to use transitions, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.CanUpdateVisualState">
+            <summary>
+            Determines whether the current visual state may be updated.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.ComposeVisualStateName">
+            <summary>
+            Builds the current visual state for this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.MeasureOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the measure layout pass to determine the desired size.
+            </summary>
+            <param name="availableSize">The available size that was given by the layout system.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.ArrangeOverride(Windows.Foundation.Size)">
+            <summary>
+            Provides the behavior for the Arrange pass of layout. Classes can override this method to define their own Arrange pass behavior.
+            </summary>
+            <param name="finalSize">The final area within the parent that this object should use to arrange itself and its children.</param>
+            <returns>
+            The actual size that is used after the element is arranged in layout.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.OnApplyTemplate">
+            <summary>
+            Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.UnapplyTemplateCore">
+            <summary>
+            Unapplies the current control template. Occurs when a template has already been applied and a new one is applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.OnIsEnabledChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Called when the IsEnabled property has changed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="M:OnApplyTemplate"/> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.ApplyTemplateCore">
+            <summary>
+            Called when the Framework <see cref="M:OnApplyTemplate"/> is called. Inheritors should override this method should they have some custom template-related logic.
+            This is done to ensure that the <see cref="P:IsTemplateApplied"/> property is properly initialized.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.LoadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Loaded"/> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.OnLoaded">
+            <summary>
+            Called within the handler of the <see cref="E:Loaded"/> event. Allows inheritors to provide their specific logic after the control has been successfully Loaded.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadControl.UnloadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Unloaded"/> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadControl.CurrentVisualState">
+            <summary>
+            Gets the current visual state of the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadControl.IsLoaded">
+            <summary>
+            Determines whether the <see cref="E:Loaded"/> event is handled and the <see cref="M:Telerik.Universal.UI.Xaml.Controls.RadControl.LoadCore"/> routine is passed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadControl.IsLoading">
+            <summary>
+            Determines whether the control is currently in a process of being loaded on the visual tree. 
+            This flag indicates that currently the LoadCore routine is executed and the control is still not completely loaded.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadControl.IsUnloaded">
+            <summary>
+            Determines whether the Unloaded event has been received.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadControl.WasUnloaded">
+            <summary>
+            Determines whether the control has been unloaded from the visual tree.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadControl.IsTemplateApplied">
+            <summary>
+            Determines whether the <see cref="M:Telerik.Universal.UI.Xaml.Controls.RadControl.OnApplyTemplate"/> method and the <see cref="M:Telerik.Universal.UI.Xaml.Controls.RadControl.ApplyTemplateCore"/> routine is passed.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimation.IsActiveProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimation.IsActive"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimation.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimation"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimation.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimation.Start">
+            <summary>
+            Starts the progress indicator animation.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimation.Stop">
+            <summary>
+            Stops the progress indicator animation.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimation.IsActive">
+            <summary>
+            Gets a boolean value determining whether the animation is currently running.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimationAdapter">
+            <summary>
+            A utility class that is used to adapt an animation in arbitrary ways.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimationAdapter.AnimationProperty">
+            <summary>
+            Identifies the Animation dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimationAdapter.#ctor">
+            <summary>
+            Initializes a new instance of the BusyIndicatorAnimationAdapter class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.BusyIndicator.BusyIndicatorAnimationAdapter.Animation">
+            <summary>
+            Gets or sets the animation to adapt.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ContentPosition">
+            <summary>
+            Defines the position of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator"/> content
+            relative to the indicator.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.ContentPosition.Left">
+            <summary>
+            The content will be positioned at the left side of the progress indicator.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.ContentPosition.Top">
+            <summary>
+            The content will be positioned on top of the progress indicator.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.ContentPosition.Right">
+            <summary>
+            The content will be positioned at the right side of the progress indicator.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.ContentPosition.Bottom">
+            <summary>
+            The content will be positioned below the progress indicator.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator">
+            <summary>
+            Represents a control that shows a progress indicator.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.RadContentControl">
+            <summary>
+            Extends the base <see cref="T:Windows.UI.Xaml.Controls.ContentControl"/>.
+            Wraps basic routed events like Loaded and Unloaded in virtual methods and expose common properties like IsLoaded and IsFocused.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.RadContentControl.IsFocusedProperty">
+            <summary>
+            Defines the IsFocused property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.RadContentControl"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.BeginVisualStateUpdate">
+            <summary>
+            Locks any visual state update. Useful when performing batch operations.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.EndVisualStateUpdate(System.Boolean,System.Boolean)">
+            <summary>
+            Resumes visual state update and optionally re-evaluates the current visual state.
+            </summary>
+            <param name="update">True to re-evaluate the current visual state, false otherwise.</param>
+            <param name="animate">True to use animations when updating visual state, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.UpdateVisualState(System.Boolean)">
+            <summary>
+            Re-evaluates the current visual state for the control and updates it if necessary.
+            </summary>
+            <param name="animate">True to use transitions during state update, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.SetVisualState(System.String,System.Boolean)">
+            <summary>
+            Applies the specified visual state as current.
+            </summary>
+            <param name="state">The new visual state.</param>
+            <param name="animate">True to use transitions, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.CanUpdateVisualState">
+            <summary>
+            Determines whether the current visual state may be updated.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.OnUnloaded(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Occurs when this object is no longer connected to the main object tree.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.OnLoaded(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Occurs when a System.Windows.FrameworkElement has been constructed and added to the object tree.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.ComposeVisualStateName">
+            <summary>
+            Builds the current visual state for this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.OnGotFocus(Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Called before the <see cref="E:System.Windows.UIElement.GotFocus"/> event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.OnLostFocus(Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Called before the <see cref="E:System.Windows.UIElement.LostFocus"/> event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.RadContentControl.GetTemplatePart``1(System.String,System.Boolean)">
+            <summary>
+            Gets a template part for the provided name and type and throws an exception if it is missing.
+            </summary>
+            <typeparam name="T">The type of the template part.</typeparam>
+            <param name="partName">The name of the template part.</param>
+            <param name="throwException">Determines if the method should throw an exception for a missing part.</param>
+            <returns>Returns the specified template part or throws an exception if it is missing.</returns>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadContentControl.CurrentVisualState">
+            <summary>
+            Gets the current visual state of the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadContentControl.IsLoaded">
+            <summary>
+            Determines whether the control is currently loaded.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadContentControl.IsTemplateApplied">
+            <summary>
+            Determines whether the <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/> method has been called for this instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadContentControl.IsFocused">
+            <summary>
+            Determines whether the control is currently Focused (has the keyboard input).
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadContentControl.IsProperlyTemplated">
+            <summary>
+            Gets a boolen value that indicates whether the control template parts
+            have been successfully acquired after the OnApplyTemplate call.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.InitialDelayProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.InitialDelay"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.ContentPositionProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.ContentPosition"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.IndicatorAnimationStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.IndicatorAnimationStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.IsActiveProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.IsActive"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.AnimationStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.AnimationStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.OnUnloaded(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Occurs when this object is no longer connected to the main object tree.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.OnLoaded(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Occurs when a System.Windows.FrameworkElement has been constructed and added to the object tree.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.ComposeVisualStateName">
+            <summary>
+            Builds the current visual state for this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.AnimationStyle">
+            <summary>
+            Gets or sets a value defined by the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.AnimationStyle"/> enumeration
+            that determines the type of animation shown in this <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.InitialDelay">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.TimeSpan"/> struct that
+            determines the initial delay before the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator"/> is
+            shown and the animation is started.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.IsActive">
+            <summary>
+            Gets or sets a boolean value determining whether the animation of the busy indicator is running.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.ContentPosition">
+            <summary>
+            Gets or sets the position of the content relative to the busy indicator animation.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator.IndicatorAnimationStyle">
+            <summary>
+            Gets or sets the style that defines the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator"/> animation.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObject`1">
+            <summary>
+            Represents an object that is attached to an owning object.
+            </summary>
+            <typeparam name="T">The type that owns this object.</typeparam>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadDependencyObject">
+            <summary>
+            Represents an extended <see cref="T:Windows.UI.Xaml.DependencyObject"/> that recognizes whether a property is changed internally within the class or programmatically by the user.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObject`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObject`1"/> class.
+            </summary>
+            <param name="owner">The object instance that owns this one.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObject`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObject`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObject`1.OnDetached(`0)">
+            <summary>
+            Performs the core logic behind the Detach routine. Allows inheritors to provide additional implementation.
+            </summary>
+            <param name="previousOwner"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObject`1.OnAttached">
+            <summary>
+            Performs the core logic behind the Attach routine. Allows inheritors to provide additional implementation.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObject`1.Owner">
+            <summary>
+            Gets the object instance that owns this service.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObjectCollection`2">
+            <summary>
+            Represents a collection of <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObject`1"/> instances.
+            </summary>
+            <typeparam name="TOwner">Specifies the type of the owner of the items.</typeparam>
+            <typeparam name="TObject">Specifies the type of the attachable objects.</typeparam>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObjectCollection`2.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObjectCollection`2"/> class.
+            </summary>
+            <param name="owner">The owner.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObjectCollection`2.RemoveItem(System.Int32)">
+            <summary>
+            Removes the item.
+            </summary>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObjectCollection`2.SetItem(System.Int32,`1)">
+            <summary>
+            Sets the item.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObjectCollection`2.InsertItem(System.Int32,`1)">
+            <summary>
+            Inserts the item.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.AttachableObjectCollection`2.ClearItems">
+            <summary>
+            Clears the items.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.CommandCollection`1">
+            <summary>
+            Represents a strongly-typed collection of <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ControlCommandBase`1"/> instances.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.CommandServiceBase`1">
+            <summary>
+            Represents a strongly-typed class that provides basic infrastructure for <see cref="T:Telerik.Universal.UI.Xaml.Controls.RadControl"/> commands.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ServiceBase`1">
+            <summary>
+            Base class for all services that support the <see cref="T:Telerik.Universal.UI.Xaml.Controls.RadControl"/> infrastructure.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ServiceBase`1.IsOperational">
+            <summary>
+            Determines whether the service is operational (may provide its functionality).
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ControlCommandBase`1">
+            <summary>
+            Represents a command abstraction that is associated with a particular <see cref="T:System.Windows.Input.ICommand"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ControlCommandBase`1.CanExecute(System.Object)">
+            <summary>
+            Determines whether the command can be executed against the provided parameter.
+            </summary>
+            <value>
+            The Default value is <c>False</c>.
+            </value>
+            <param name="parameter">The command parameter.</param>
+            <returns>Value that specifies whether the command can be executed.</returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ControlCommandBase`1.Execute(System.Object)">
+            <summary>
+            Performs the core action given the provided parameter.
+            </summary>
+            <param name="parameter">The command parameter.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ControlCommandBase`1.OnCanExecuteChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:Telerik.Universal.UI.Xaml.Controls.Primitives.ControlCommandBase`1.CanExecuteChanged"/> event.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Primitives.ControlCommandBase`1.CanExecuteChanged">
+            <summary>
+            Occurs when the CanExecute state of the command changes.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton">
+            <summary>
+            Represents a custom Button control that is part of a composite UI.  This type supports Telerik's infrastructure and is not intended to be used outside the composite UI.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PressedBackgroundBrushProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PressedBackgroundBrush"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PressedForegroundBrushProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PressedForegroundBrush"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PressedBorderBrushProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PressedBorderBrush"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PointerOverBackgroundBrushProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PointerOverBackgroundBrush"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PointerOverForegroundBrushProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PointerOverForegroundBrush"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PointerOverBorderBrushProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PointerOverBorderBrush"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.DisabledBackgroundBrushProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.DisabledBackgroundBrush"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.DisabledForegroundBrushProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.DisabledForegroundBrush"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.DisabledBorderBrushProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.DisabledBorderBrush"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.RepeatDelayProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.RepeatDelay"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.RepeatIntervalProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.RepeatInterval"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.IsRepeatingEnabledProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.IsRepeatingEnabled"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.OnPointerPressed(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerPressed event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.OnPointerCaptureLost(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerCaptureLost event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.OnPointerReleased(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerReleased event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.OnPointerMoved(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerMoved event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.IsRepeatingEnabled">
+            <summary>
+            Determines whether the button will act like a RepeatButton when a pointer is pressed over it.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.RepeatDelay">
+            <summary>
+            Gets or sets the time, in milliseconds, that the button waits when it is pressed before it starts repeating the click action. Defaults to 250 milliseconds.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.RepeatInterval">
+            <summary>
+            Gets or sets the time, in milliseconds, between repetitions of the click action, as soon as repeating starts. Defaults to 50 milliseconds.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PressedBackgroundBrush">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Media.Brush"/> instance that defines the <see cref="P:Background"/> value in the Pressed visual state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PressedForegroundBrush">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Media.Brush"/> instance that defines the <see cref="P:Foreground"/> value in the Pressed visual state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PressedBorderBrush">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Media.Brush"/> instance that defines the <see cref="P:Border"/> value in the Pressed visual state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PointerOverBackgroundBrush">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Media.Brush"/> instance that defines the <see cref="P:Background"/> value in the PointerOver visual state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PointerOverForegroundBrush">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Media.Brush"/> instance that defines the <see cref="P:Foreground"/> value in the PointerOver visual state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.PointerOverBorderBrush">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Media.Brush"/> instance that defines the <see cref="P:Border"/> value in the PointerOver visual state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.DisabledBackgroundBrush">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Media.Brush"/> instance that defines the <see cref="P:Background"/> value in the Disabled visual state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.DisabledForegroundBrush">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Media.Brush"/> instance that defines the <see cref="P:Foreground"/> value in the Disabled visual state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.Common.InlineButton.DisabledBorderBrush">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Media.Brush"/> instance that defines the <see cref="P:Border"/> value in the Disabled visual state.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.RadHeaderedContentControl">
+            <summary>
+            Defines a <see cref="T:Telerik.Universal.UI.Xaml.Controls.RadContentControl"/> class that adds notation for a header.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.RadHeaderedContentControl.HeaderProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.RadHeaderedContentControl.Header"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.RadHeaderedContentControl.HeaderTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.RadHeaderedContentControl.HeaderTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.RadHeaderedContentControl.HeaderStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.RadHeaderedContentControl.HeaderStyle"/> property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadHeaderedContentControl.Header">
+            <summary>
+            Gets or sets the object that represents the header content.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadHeaderedContentControl.HeaderTemplate">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.DataTemplate"/> instance that defines the appearance of the header.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadHeaderedContentControl.HeaderStyle">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Style"/> object that defines the appearance of the Header part of the Control.
+            Typically that part will be represented by a <see cref="T:Windows.UI.Xaml.Controls.ContentControl"/> instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.RadHeaderedControl">
+            <summary>
+            Represents an extended <see cref="T:Telerik.Universal.UI.Xaml.Controls.RadControl"/> class that adds the "Header" notation.
+            Typically header is considered a label on top of the control that hints for the control's purpose in the UI.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.RadHeaderedControl.HeaderProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.RadHeaderedControl.Header"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.RadHeaderedControl.HeaderTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.RadHeaderedControl.HeaderTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.RadHeaderedControl.HeaderStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.RadHeaderedControl.HeaderStyle"/> property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadHeaderedControl.Header">
+            <summary>
+            Gets or sets the object that represents the header content.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadHeaderedControl.HeaderTemplate">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.DataTemplate"/> instance that defines the appearance of the header.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.RadHeaderedControl.HeaderStyle">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Style"/> object that defines the appearance of the Header part of the Control.
+            Typically that part will be represented by a <see cref="T:Windows.UI.Xaml.Controls.ContentControl"/> instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.BooleanNotConverter">
+            <summary>
+            Represents a custom <see cref="T:Windows.UI.Xaml.Data.IValueConverter"/> that converts a Boolean value to its opposite (!)(NOT) value.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.BooleanNotConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.BooleanNotConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.StringCaseConverter">
+            <summary>
+            Represents a converter that changes the letter case of the provided System.String value.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.StringCaseConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.StringCaseConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.StringCaseConverter.CaseMode">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.StringCaseMode"/> value that specifies which letter case to be used.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.StringCaseMode">
+            <summary>
+            Defines the possible casing modes to be applied over a System.String object.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.StringCaseMode.Default">
+            <summary>
+            No casing is applied - the string is left in its original form.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.StringCaseMode.ToUpper">
+            <summary>
+            All characters are converted to upper case.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.StringCaseMode.ToLower">
+            <summary>
+            All characters are converted to lower case.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.GridLinesVisibility">
+            <summary>
+            Defines the visibility of the horizontal and vertical lines that enclose a cell within a tabular component (e.g. RadDataGrid, RadCalendar, etc.).
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.GridLinesVisibility.None">
+            <summary>
+            No grid lines are visible.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.GridLinesVisibility.Horizontal">
+            <summary>
+            The horizontal grid lines are visible.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.GridLinesVisibility.Vertical">
+            <summary>
+            The vertical grid lines are visible.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.GridLinesVisibility.Both">
+            <summary>
+            Both horizontal and vertical grid lines are visible.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.INoDesiredSizeControl">
+            <summary>
+            Represents a component that does not have a desired size - such as RadChart.
+            In this case the entire UI update happens in the Arrange pass and virtualizing components like RadDataGrid need an entry point to invalidate control's current state.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1">
+            <summary>
+            Represents an attachable object, that handles Input events from the owning control instance.
+            </summary>
+            <typeparam name="T">The type of the object this behavior can be attached to. Minimum requirement is the <see cref="T:Telerik.Universal.UI.Xaml.Controls.RadControl"/> type.</typeparam>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnPointerEntered(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.PointerEntered"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnPointerMoved(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.PointerMoved"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnPointerExited(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.PointerExited"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnPointerPressed(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.PointerPressed"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnHoldCompleted(Windows.UI.Xaml.Input.HoldingRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.HoldCompleted"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnHoldStarted(Windows.UI.Xaml.Input.HoldingRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.HoldStarted"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnTapped(Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.Tapped"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnDoubleTapped(Windows.UI.Xaml.Input.DoubleTappedRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.DoubleTapped"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnManipulationStarted(Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.ManipulationStarted"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnManipulationDelta(Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.ManipulationDelta"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnManipulationCompleted(Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.ManipulationCompleted"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnPointerWheelChanged(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.PointerWheelChanged"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnPointerReleased(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Handles the <see cref="E:{T}.PointerReleased"/> event of the owning instance.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnLoaded">
+            <summary>
+            Called when the owning instance is loaded in the visual tree.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.InputBehavior`1.OnUnloaded">
+            <summary>
+            Called when the owning instance is unloaded from the visual tree.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ObjectSelector`1">
+            <summary>
+            Defines a type that may be used to conditionally select a T instance.
+            </summary>
+            <typeparam name="T">The type of the object which is to be selected.</typeparam>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ObjectSelector`1.SelectObject(System.Object,Windows.UI.Xaml.DependencyObject)">
+            <summary>
+            Selects a T instance depending on the provided item and container.
+            </summary>
+            <param name="item">The object instance for which a brush is to be selected.</param>
+            <param name="container">The container where the object instance resides.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ObjectSelector`1.SelectObjectCore(System.Object,Windows.UI.Xaml.DependencyObject)">
+            <summary>
+            Allows inheritors to provide custom implementation of the <see cref="M:SelectBrush"/> method.
+            </summary>
+            <param name="item">The object instance for which a brush is to be selected.</param>
+            <param name="container">The container where the object instance resides.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.CultureService">
+            <summary>
+            Exposes notation for culture support on a per DependencyObject instance basis.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.CultureService.CultureNameProperty">
+            <summary>
+            Identifies the CultureName attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.CultureService.CultureProperty">
+            <summary>
+            Identifies the Culture attached property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.CultureService.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.CultureService"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.CultureService.GetCultureName(Windows.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the CultureName value for the specified dependency object instance.
+            </summary>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.CultureService.SetCultureName(Windows.UI.Xaml.DependencyObject,System.String)">
+            <summary>
+            Sets the specified CultureName value to the provided dependency object instance.
+            </summary>
+            <param name="instance"></param>
+            <param name="cultureName"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.CultureService.GetCulture(Windows.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the <see cref="T:System.Globalization.CultureInfo"/> value for the specified dependency object instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.CultureService.SetCulture(Windows.UI.Xaml.DependencyObject,System.Globalization.CultureInfo)">
+            <summary>
+            Sets the specified <see cref="T:System.Globalization.CultureInfo"/> value to the provided dependency object instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ICultureAware">
+            <summary>
+            Defines an object instance which behavior/state depends on its current CultureInfo.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ICultureAware.OnCultureChanged(System.Globalization.CultureInfo,System.Globalization.CultureInfo)">
+            <summary>
+            A callback, used by the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.CultureService"/> class to notify for a change in the CultureName property.
+            </summary>
+            <param name="oldValue"></param>
+            <param name="newValue"></param>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ICultureAware.CurrentCulture">
+            <summary>
+            Gets the current <see cref="T:System.Globalization.CultureInfo"/> object used by this instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.MissingTemplatePartException">
+            <summary>
+            Represents an exception raised when a template part, as defined by the template contract, is missing during template initialization.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.MissingTemplatePartException.#ctor(System.String,System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.MissingTemplatePartException"/> class.
+            </summary>
+            <param name="name">The name of the missing part.</param>
+            <param name="type">The type of the missing part.</param>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.MissingTemplatePartException.PartName">
+            <summary>
+            Gets the name of the missing part.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.MissingTemplatePartException.PartType">
+            <summary>
+            Gets the type of the missing part.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.TemplateNotAppliedException">
+            <summary>
+            Represents an exception raised when a control was unable to load its template correctly.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.TemplateNotAppliedException.#ctor(System.Type,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.TemplateNotAppliedException"/> class.
+            </summary>
+            <param name="type">The type of the control failed to load template.</param>
+            <param name="defaultStyleKey">The DefaultStyleKey of control failed to load template.</param>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.TemplateNotAppliedException.ControlType">
+            <summary>
+            Gets the type of control failed to load template.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.TemplateNotAppliedException.ControlStyleKey">
+            <summary>
+            Gets the DefaultStyleKey of control failed to load template.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.ElementTreeHelper.FindVisualAncestor``1(Windows.UI.Xaml.DependencyObject,System.Predicate{Windows.UI.Xaml.DependencyObject})">
+            <summary>
+            Finds a visual ancestor from a given type and based on a given
+            condition that is in the parent chain of a given child element.
+            </summary>
+            <typeparam name="T">The type of the element to look for.</typeparam>
+            <param name="child">The child.</param>
+            <param name="condition">The condition.</param>
+            <returns>An instance of the given type if found, otherwise null.</returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.ElementTreeHelper.FindLastVisualAncestor``1(Windows.UI.Xaml.DependencyObject,System.Predicate{Windows.UI.Xaml.DependencyObject})">
+            <summary>
+            Finds the last visual ancestor of the provided type.
+            </summary>
+            <typeparam name="T">The type of the ancestor to search for.</typeparam>
+            <param name="child">The from which to start the search.</param>
+            <param name="condition">A condition to test each ancestor of the T type.</param>
+            <returns>The last ancestor of the specified T type which matches the condition.</returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.ElementTreeHelper.FindVisualDescendant``1(Windows.UI.Xaml.DependencyObject,System.Predicate{Windows.UI.Xaml.DependencyObject})">
+            <summary>
+            Finds a visual descendant from a given type and based on a given
+            condition that is in the hierarchy of a given parent element.
+            </summary>
+            <typeparam name="T">The type of the element to look for.</typeparam>
+            <param name="parent">The parent.</param>
+            <param name="condition">The condition.</param>
+            <returns>An instance of the given type if found, otherwise null.</returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.ElementTreeHelper.EnumVisualDescendants``1(Windows.UI.Xaml.DependencyObject)">
+            <summary>
+            Returns a lazily evaluated iterator that allows linear iteration over a tree of DependencyObjects.
+            </summary>
+            <param name="parent">The root element of the tree to iterate over.</param>
+            <returns>
+            Returns a lazily evaluated iterator that allows linear iteration
+            over a tree of DependencyObjects.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.ElementTreeHelper.EnumVisualDescendants(Windows.UI.Xaml.DependencyObject,System.Predicate{Windows.UI.Xaml.DependencyObject},Telerik.Universal.UI.Xaml.Controls.TreeTraversalMode)">
+            <summary>
+            Returns a lazily evaluated iterator that allows linear iteration
+            over a tree of DependencyObjects.
+            </summary>
+            <param name="parent">The root element of the tree to iterate over.</param>
+            <param name="condition">A predicate to filter what elements are returned.</param>
+            <param name="mode">The tree traversal mode of the iteration algorithm.</param>
+            <returns>
+            Returns a lazily evaluated iterator that allows linear iteration
+            over a tree of DependencyObjects.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.ElementTreeHelper.IsElementRendered(Windows.UI.Xaml.FrameworkElement)">
+            <summary>
+            Determines whether the specified element is rendered on the visual tree.
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.ElementTreeHelper.SafeTransformPoint(Windows.UI.Xaml.FrameworkElement,Windows.UI.Xaml.FrameworkElement,Windows.Foundation.Point)">
+            <summary>
+            Transforms the specified point using the TransformToVisual routine while checking for valid transform conditions - e.g. elements are both loaded and rendered.
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.ElementTreeHelper.SafeTransformBounds(Windows.UI.Xaml.FrameworkElement,Windows.UI.Xaml.FrameworkElement,Windows.Foundation.Rect)">
+            <summary>
+            Transforms the specified rect using the TransformToVisual routine while checking for valid transform conditions - e.g. elements are both loaded and rendered.
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="bounds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.ElementTreeHelper.IsParentChainHitTestVisible(Windows.UI.Xaml.UIElement)">
+            <summary>
+            Determines whether all the ancestors of the specified <see cref="T:Windows.UI.Xaml.UIElement"/> instance are hit-test visible.
+            </summary>
+            <param name="element">The element to start from.</param>
+            <returns>True if all the ancestors are hit-test visible, false otherwise.</returns>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.TreeTraversalMode">
+            <summary>
+            Defines possible approaches when traversing a tree.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.TreeTraversalMode.DepthFirst">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.TreeTraversalMode.BreadthFirst">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ILegendInfoProvider">
+            <summary>
+            Represents provider for <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LegendItem"/> objects.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ILegendInfoProvider.LegendInfos">
+            <summary>
+            Collection of <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LegendItem"/> objects that hold the information required to display legend.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LegendItem">
+            <summary>
+            Data representation of the legend items displayed in the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LegendItem.Title">
+            <summary>
+            Gets and set the Legend Title.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LegendItem.Fill">
+            <summary>
+            Gets and set the Legend Fill.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LegendItem.Stroke">
+            <summary>
+            Gets and set the Legend Stroke.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LegendItemCollection">
+            <summary>
+            Strongly typed collection of <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LegendItem"/> items.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl">
+            <summary>
+            Represents legend control that displays the series from <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ILegendInfoProvider"/> instance.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl.LegendProviderProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl.LegendProvider"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl.ItemsPanelProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl.ItemsPanel"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl.ItemTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl.ItemTemplate"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl.ApplyTemplateCore">
+            <summary>
+            Called when the Framework OnApplyTemplate is called. Inheritors should override this method should they have some custom template-related logic.
+            This is done to ensure that the <see cref="P:IsTemplateApplied"/> property is properly initialized.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl.ItemsPanel">
+            <summary>
+            Represents the items panel that will be used for the legend presenter to display data.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl.ItemTemplate">
+            <summary>
+            Gets or sets the DataTemplate used to display each legend item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl.LegendProvider">
+            <summary>
+            Gets or sets the provider that this <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl"/> will use to display its items.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.RadLegendControl.LegendItems">
+            <summary>
+            Represents collection of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LegendItem"/> items that will be displayed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.License.ToastPresenter.OnPointerPressed(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerPressed event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.License.ToastPresenter.OnPointerCaptureLost(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerCaptureLost event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.License.ToastPresenter.OnPointerEntered(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerEntered event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.License.ToastPresenter.OnPointerExited(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerExited event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.License.ToastPresenter.OnPointerMoved(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerMoved event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.License.ToastPresenter.OnPointerReleased(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerReleased event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.License.ToastPresenter.OnManipulationDelta(Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs)">
+            <summary>
+            Called before the ManipulationDelta event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.License.ToastPresenter.OnTapped(Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            Called before the Tapped event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.License.TrialViewModel">
+            <summary>
+            Defines the model behind the Trial message notification.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.License.TrialViewModel.OffsetTop">
+            <summary>
+            Gets the offset from the top of the screen.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.License.TrialViewModel.Width">
+            <summary>
+            Gets the width of the trial message UI.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.License.TrialViewModel.Height">
+            <summary>
+            Gets the height of the trial message UI.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.License.TrialViewModel.Title">
+            <summary>
+            Gets the title part of the trial message UI.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.License.TrialViewModel.MessageLine1">
+            <summary>
+            Gets the first line of text within the trial message UI.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.License.TrialViewModel.MessageLine2">
+            <summary>
+            Gets the second line of text within the trial message UI.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.License.TrialViewModel.MessageLine3">
+            <summary>
+            Gets the third line of text within the trial message UI.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.License.TrialViewModel.Logo">
+            <summary>
+            Gets the source for the Logo Icon within the trial message UI.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList">
+            <summary>
+            Implements a light-weight implementation of a Selector control which is completely virtualized in both UI and Data terms.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OrientationProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.Orientation"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsLoopingEnabledProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsLoopingEnabled"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.SnapOffsetCorrectionProperty">
+            <summary>
+            Defines <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.SnapOffsetCorrection"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.CenteredItemSnapPositionProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.CenteredItemSnapPosition"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsCenteredProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsCentered"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsExpandedProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsExpanded"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.SelectedIndexProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.SelectedIndex"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemHeightProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemHeight"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemWidthProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemWidth"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemSpacingProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemSpacing"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemTemplateProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemTemplateSelectorProperty">
+            <summary>
+            Identifies the SpecialDayTemplateSelector dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemStyleProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemStyle"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.UpdateSelection(System.Int32,Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListSelectionChangeReason)">
+            <summary>
+            Applies the specified index as currently selected.
+            </summary>
+            <param name="newSelectedIndex">The desired selected index.</param>
+            <param name="reason">The reason of the change.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.SelectItem(Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem,Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListSelectionChangeReason)">
+            <summary>
+            Selects the specified visual item.
+            </summary>
+            <param name="item">The item to be selected.</param>
+            <param name="reason">The reason that caused the select request.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.CreateVisualItem">
+            <summary>
+            Creates a <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem"/> instance to be used by the hosted <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.UpdateVisualItem(Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Associates the data at the specified logical index with the provided visual item instance.
+            </summary>
+            <param name="item">The visual item which data is to be updated.</param>
+            <param name="logicalIndex">The logical index that describes the data.</param>
+            <param name="force">True to re-evaluate the data event if the visual item is already associated with the specified logical index.</param>
+            <param name="animate">True to update the visual state using transitions.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.UpdateItemVisualState(Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem,Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.VisualStateUpdateParams)">
+            <summary>
+            Updates the visual state of a single item.
+            </summary>
+            <param name="item">The <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem"/> instance which state is to be updated.</param>
+            <param name="updateParams">The structure that encapsulates different update parameters such as Animate, EvaluateEnabled, etc.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnVisualItemTap(Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem)">
+            <summary>
+            Handles a click from a child <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem"/>.
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnVisualItemDoubleTap(Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem)">
+            <summary>
+            Handles a Double-tap event from a child <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem"/>.
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.UpdateLogicalCount(System.Boolean)">
+            <summary>
+            Updates the logical count of the items panel.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnInitialized">
+            <summary>
+            Called after template is applied and the control is loaded on the SL visual tree.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.InitData">
+            <summary>
+            Initializes the data.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.GetLogicalCount">
+            <summary>
+            Retrieves the logical count of the current data source (if any).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.RaiseSelectedIndexChanged">
+            <summary>
+            Raises the <see cref="E:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.SelectedIndexChanged"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.UpdateData(System.Boolean)">
+            <summary>
+            Forces complete data re-evaluation of the currently visualized items.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.UpdateDataItem(Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem,Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem)">
+            <summary>
+            Allows to minimize the overhead of creating new instances whenever a logical index changes by formatting an existing data item instance.
+            </summary>
+            <param name="dataItem"></param>
+            <param name="visualItem"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnIsExpandedChanged">
+            <summary>
+            Raises the <see cref="E:IsExpandedChanged"/> event and allows inheritors to provide additional logic upon IsExpanded property changed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsItemSelected(System.Int32)">
+            <summary>
+            Determines whether the data item that resides at the specified logical index should be visualized with the Selected state.
+            </summary>
+            <param name="logicalIndex">The logical index that defines the data to check for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsItemEnabled(System.Int32)">
+            <summary>
+            Determines whether the logical item, representing the specified logical index should be enabled or not.
+            </summary>
+            <param name="logicalIndex">The logical index that defines the data to check for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.CanChangeSelectedIndex(System.Int32)">
+            <summary>
+            Determines whether the currently selected index can be changed.
+            Allows inheritors to optionally prevent the change under certain conditions.
+            </summary>
+            <param name="newIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.SelectCurrentItem">
+            <summary>
+            Brings the currently selected index into view and selects the visual item that represents it.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.UpdateItemsVisualState(Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.VisualStateUpdateParams)">
+            <summary>
+            Forces each visual item to update its state.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.CenterCurrentItem(System.Boolean)">
+            <summary>
+            Centers the item at the currently selected index.
+            </summary>
+            <param name="animate"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.CreateVisualItemInstance">
+            <summary>
+            Creates the core <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem"/> instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.LoadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Loaded"/> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ApplyTemplateCore">
+            <summary>
+            Retrieves the control's template parts.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="M:OnApplyTemplate"/> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnManipulationStarted(Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs)">
+            <summary>
+            Called before the ManipulationStarted event occurs.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnManipulationDelta(Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs)">
+            <summary>
+            Called before the ManipulationDelta event occurs.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnManipulationCompleted(Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs)">
+            <summary>
+            Called before the ManipulationCompleted event occurs.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnTapped(Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            Called before the Tapped event occurs.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnGotFocus(Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Called before the GotFocus event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnLostFocus(Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Called before the LostFocus event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnPointerPressed(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerPressed event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.OnPointerReleased(Windows.UI.Xaml.Input.PointerRoutedEventArgs)">
+            <summary>
+            Called before the PointerReleased event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.SelectedIndexChanged">
+            <summary>
+            Notifies for a change in the currently selected index.
+            </summary>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsExpandedChanged">
+            <summary>
+            Occurs when the value of the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsExpanded"/> property has changed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.SnapOffsetCorrection">
+            <summary>
+            Gets or sets a double value that is applied as an offset correction
+            after the selected item has been snapped according to the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.CenteredItemSnapPosition"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.Orientation">
+            <summary>
+            Gets or sets the orientation of looping.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.CenteredItemSnapPosition">
+            <summary>
+            Defines the position of the centered item relatively to the viewport's starting edge
+            if the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsCentered"/> property is set to true.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsCentered">
+            <summary>
+            Determines whether the list will vertically center the currently selected item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsLoopingEnabled">
+            <summary>
+            Determines whether looping is enabled. That is to allow infinite scrolling of the current logical wheel.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsExpanded">
+            <summary>
+            Determines whether the list is currently expanded. That is to put all the items except the currently selected one in the "Collapsed" visual state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.SelectedIndex">
+            <summary>
+            Gets or sets the index that is currently selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemWidth">
+            <summary>
+            Gets or sets the width of a single item within the hosted <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList"/> panel.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemHeight">
+            <summary>
+            Gets or sets the height of a single item within the hosted <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList"/> panel.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemSpacing">
+            <summary>
+            Gets or sets the spacing among visual items within the hosted <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.FirstRealizedIndex">
+            <summary>
+            Gets the first logical index that is realized within the hosted <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemTemplate">
+            <summary>
+            Gets or sets the DataTemplate to be applied to each visual item present within the selector.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemTemplateSelector">
+            <summary>
+            A template selector that used to provide a specific visualization for
+            specific items.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.VerticalOffset">
+            <summary>
+            Gets the currently accumulated vertical offset.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.IsInitialized">
+            <summary>
+            Determines whether the list is loaded and has its template applied.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemStyle">
+            <summary>
+            Gets or sets the Style to be applied to each visual item present within the selector.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ScrollState">
+            <summary>
+            Gets the current scrolling state of the inner <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.AutoExpandCollapse">
+            <summary>
+            Determines whether the Tap event will toggle the IsExpanded property of the list.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.SelectionChangeReason">
+            <summary>
+            Gets the reason for a change in the SelectedIndex property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList.ItemsPanel">
+            <summary>
+            Gets the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel"/> instance that hosts the visual items.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem">
+            <summary>
+            A special data item that may be visualized in a <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem"/> class.
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem.OnPropertyChanged(System.String)">
+            <summary>
+            Raises the <see cref="E:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem.PropertyChanged"/> event.
+            </summary>
+            <param name="propName">Name of the prop.</param>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem.PropertyChanged">
+            <summary>
+            Raised whenever a property has changed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem.Text">
+            <summary>
+            Gets or sets the text associated with this item.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem">
+            <summary>
+            Represents a visual item that resides within a <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel"/> instance.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.IsSelectedProperty">
+            <summary>
+            Specifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.IsSelected"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.SetVerticalOffset(System.Double)">
+            <summary>
+            Applies the desired vertical offset by setting a TranslateTransform.Y value.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.SetHorizontalOffset(System.Double)">
+            <summary>
+            Applies the desired horizontal offset by setting a TranslateTransform.X value.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.ComposeVisualStateName">
+            <summary>
+            Builds the current visual state that is valid for the item.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.SetVisualState(System.String,System.Boolean)">
+            <summary>
+            Applies the specified visual state as current.
+            </summary>
+            <param name="state">The new visual state.</param>
+            <param name="animate">True to use transitions, false otherwise.</param>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.IsSelected">
+            <summary>
+            Determines whether the visual item is currently selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.LogicalIndex">
+            <summary>
+            Gets the logical index in the owning LoopingPanel, represented by this item. 
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.ArrangeRect">
+            <summary>
+            Gets the Rect used by the owning LoopingPanel to arrange this item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.VerticalOffset">
+            <summary>
+            Gets the amount of pixels this item is translated vertically relative to its owning panel.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.HorizontalOffset">
+            <summary>
+            Gets the amount of pixels this item is translated horizontally relative to its owning panel.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.IsExpanded">
+            <summary>
+            Determines whether the item is currently expanded (its owning list is in Expanded state).
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem.Panel">
+            <summary>
+            Gets the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel"/> instance where this item resides.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListSelectionChangeReason">
+            <summary>
+            Defines the possible actions that may select an item within a LoopingList.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListSelectionChangeReason.Private">
+            <summary>
+            The selected index is changed by the list itself to reflect an internal change.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListSelectionChangeReason.PrivateNoNotify">
+            <summary>
+            The selected index is changed by the list itself. The SelectedIndexChanged event is not raised.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListSelectionChangeReason.User">
+            <summary>
+            The selected index is changed by the user through code.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListSelectionChangeReason.VisualItemClick">
+            <summary>
+            A visual item was clicked.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListSelectionChangeReason.VisualItemSnappedToMiddle">
+            <summary>
+            The item is in the middle of a LoopingPanel and automatically selected.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel">
+            <summary>
+            Represents a light-weight virtualized stack panel with vertical orientation with endless looping among logical items.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.VerticalOffsetProperty">
+            <summary>
+            Used internally to animate the vertical offset of the panel.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.SetVerticalOffset(System.Double,Windows.UI.Xaml.Duration,Windows.UI.Xaml.Media.Animation.EasingFunctionBase)">
+            <summary>
+            Applies the specified offset as current.
+            </summary>
+            <param name="offset">The desired offset.</param>
+            <param name="duration">The duration of the animation used to apply the offset.</param>
+            <param name="ease">The easing function that describes animation interpolation.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.UpdateWheel(System.Double,System.Boolean)">
+            <summary>
+            Applies the specified vertical offset, translates the visual items accordingly and updates the logical indexes.
+            </summary>
+            <param name="newOffset">The new vertical offset.</param>
+            <param name="force">True to update the wheel even if the new offset equals the current one, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.ItemFromLogicalIndex(System.Int32)">
+            <summary>
+            Gets the visual item that represents the specified logical index.
+            Will return null if the index is not currently realized (visualized).
+            </summary>
+            <param name="logicalIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.StopOffsetAnimation(System.Boolean)">
+            <summary>
+            Stops the vertical offset animation (if running).
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.UpdateVisualItemCount">
+            <summary>
+            Updates the count of the visual items, depending on the provided available length.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.BringIntoView(System.Int32)">
+            <summary>
+            Ensures that the visual item, associated with the specified logical index is currently displayed.
+            </summary>
+            <param name="logicalIndex"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.MeasureOverride(Windows.Foundation.Size)">
+            <summary>
+            Provides the behavior for the Measure pass of Silverlight layout. Classes can override this method to define their own Measure pass behavior.
+            </summary>
+            <param name="availableSize">The available size that this object can give to child objects. Infinity (<see cref="F:System.Double.PositiveInfinity"/>) can be specified as a value to indicate that the object will size to whatever content is available.</param>
+            <returns>
+            The size that this object determines it needs during layout, based on its calculations of the allocated sizes for child objects; or based on other considerations, such as a fixed container size.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.ArrangeOverride(Windows.Foundation.Size)">
+            <summary>
+            Provides the behavior for the Arrange pass of Silverlight layout. Classes can override this method to define their own Arrange pass behavior.
+            </summary>
+            <param name="finalSize">The final area within the parent that this object should use to arrange itself and its children.</param>
+            <returns>
+            The actual size that is used after the element is arranged in layout.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.AnimateVerticalOffset(System.Double)">
+            <summary>
+            Animates the vertical offset to the specified value, starting from the current one.
+            </summary>
+            <param name="to">The final value of the animation.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.AnimateVerticalOffset(Windows.UI.Xaml.Duration,Windows.UI.Xaml.Media.Animation.EasingFunctionBase,System.Double)">
+            <summary>
+            Animates the vertical offset to the specified value, starting from the current one.
+            </summary>
+            <param name="duration">The duration of the animation.</param>
+            <param name="easing">The easing function that calculates animation steps.</param>
+            <param name="to">The final value of the animation.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.BringIntoView(System.Int32,System.Boolean)">
+            <summary>
+            Ensures that the visual item, associated with the specified logical index is currently displayed.
+            </summary>
+            <param name="logicalIndex"></param>
+            <param name="animate">True to perform animated scrolling, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.CalculateOffset(System.Int32,System.Boolean)">
+            <summary>
+            Calculates the vertical offset so that the first realized index becomes the specified one.
+            </summary>
+            <param name="logicalIndex">The desired logical index.</param>
+            <param name="negative">True to calculate the offset in the negative direction, false to use the positive one.</param>
+            <returns>The offset at which the index is completely visible.</returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.CalculateOffset(System.Int32)">
+            <summary>
+            Calculates the vertical offset so that the first realized index becomes the specified one.
+            </summary>
+            <param name="logicalIndex">The desired logical index.</param>
+            <returns>The offset at which the index is completely visible.</returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.ScrollToIndex(Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem,System.Int32)">
+            <summary>
+            Scrolls to the desired index, starting from the provided visual item.
+            </summary>
+            <param name="item">The visual item to start from.</param>
+            <param name="to">The target index to scroll to.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.OnScrollCompleted(Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanelScrollState)">
+            <summary>
+            Notifies that a scroll operation has completed.
+            </summary>
+            <param name="previousState">The state the panel was in before the scrolling ended.</param>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.ScrollState">
+            <summary>
+            Gets the current scrolling state of the panel.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.IsLoopingEnabled">
+            <summary>
+            Determines whether looping is enabled. That is to allow infinite scrolling of the current logical wheel.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.VisualIndexChain">
+            <summary>
+            Exposed for test purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.CenteredItemSnapPosition">
+            <summary>
+            Defines the position of the centered item relatively to the viewport's starting edge
+            if the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.IsCentered"/> property is set to true.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.SnapOffsetCorrection">
+            <summary>
+            Gets or sets a double value that represents the
+            offset correction applied when the selected item is snapped.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.IsCentered">
+            <summary>
+            Determines whether the panel will center the currently selected item according to the
+            centering options and the layout orientation.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.IsLoaded">
+            <summary>
+            Determines whether the panel is Loaded (present on the visual scene).
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.Owner">
+            <summary>
+            Gets the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList"/> instance that hosts this panel.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.LogicalCount">
+            <summary>
+            Gets the count of the logical items that form the wheel.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.TopLogicalIndex">
+            <summary>
+            Gets or sets the top logical index that is currently realized (visible on the screen).
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanel.VerticalOffset">
+            <summary>
+            Gets the current vertically scrolled amount (in pixels).
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanelScrollState">
+            <summary>
+            Defines the possible scrolling states a LoopingPanel instance may enter.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanelScrollState.NotScrolling">
+            <summary>
+            The panel is currently not scrolling.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanelScrollState.Scrolling">
+            <summary>
+            The panel is scrolled due to a drag manipulation.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanelScrollState.ScrollingToIndex">
+            <summary>
+            A logical index is brought into view via animated scrolling.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingPanelScrollState.SnapScrolling">
+            <summary>
+            The panel is scrolled to snap to the middle item.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItemSnapPosition">
+            <summary>
+            Defines the different snapping positions for the centered item
+            supported by <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItemSnapPosition.Middle">
+            <summary>
+            Positions the selected item in the center of the viewport.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItemSnapPosition.Near">
+            <summary>
+            Positions the selected item at the near side of the viewport.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItemSnapPosition.Far">
+            <summary>
+            Positions the selected item at the far side of the viewport.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.VisualStateUpdateParams">
+            <summary>
+            Encapsulates the parameters needed to evaluate a <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem"/> visual state.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.VisualStateUpdateParams.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.VisualStateUpdateParams"/> struct.
+            </summary>
+            <param name="animate">True to use transitions if visual state changes, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.VisualStateUpdateParams.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.VisualStateUpdateParams"/> struct.
+            </summary>
+            <param name="animate">True to use transitions if visual state changes, false otherwise.</param>
+            <param name="evaluateEnabled">True to evaluate the IsEnabled property of the visual item, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.VisualStateUpdateParams.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.VisualStateUpdateParams"/> struct.
+            </summary>
+            <param name="animate">True to use transitions if visual state changes, false otherwise.</param>
+            <param name="evaluateEnabled">True to evaluate the IsEnabled property of the visual item, false otherwise.</param>
+            <param name="evaluateSelected">True to evaluate the IsSelected property of the visual item, false otherwise.</param>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.VisualStateUpdateParams.Animate">
+            <summary>
+            Determines whether VisualStateManager will use transitions upon visual state change.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.VisualStateUpdateParams.EvaluateEnabled">
+            <summary>
+            Determines whether the IsEnabled property will be evaluated.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.VisualStateUpdateParams.EvaluateSelected">
+            <summary>
+            Determines whether the IsSelected property will be evaluated.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager">
+            <summary>
+            Represents the localization manager used for components defined in this assembly.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.AppTrialEndContentKey">
+            <summary>
+            Defines the key for looking-up the message box content string when trial is over for the <see cref="!:RadTrialApplicationReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.AppTrialEndSkipFurtherRemindersMessageKey">
+            <summary>
+            Defines the key for looking-up the string for skipping reminders checkbox when trial is over for the <see cref="!:RadTrialApplicationReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.AppTrialEndTitleKey">
+            <summary>
+            Defines the key for looking-up the message box title string when trial is over for the <see cref="!:RadTrialApplicationReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.AppTrialReminderContentKey">
+            <summary>
+            Defines the key for looking-up the message box content string before trial is over for the <see cref="!:RadTrialApplicationReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.AppTrialReminderSkipFurtherRemindersMessageKey">
+            <summary>
+            Defines the key for looking-up the string for skipping reminders checkbox before trial is over for the <see cref="!:RadTrialApplicationReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.AppTrialReminderTitleKey">
+            <summary>
+            Defines the key for looking-up the message box title string before trial is over for the <see cref="!:RadTrialApplicationReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.BusyIndicatorContentKey">
+            <summary>
+            Defines the key for looking-up the busy indicator content string for the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.DiagnosticsContentKey">
+            <summary>
+            Defines the key for looking-up the message box content string for the <see cref="!:RadDiagnostics"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.DiagnosticsTitleKey">
+            <summary>
+            Defines the key for looking-up the message box title string for the <see cref="!:RadDiagnostics"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.FeatureTrialEndContentKey">
+            <summary>
+            Defines the key for looking-up the message box content string when trial is over for the <see cref="!:RadTrialFeatureReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.FeatureTrialEndSkipFurtherRemindersMessageKey">
+            <summary>
+            Defines the key for looking-up the string for skipping reminders checkbox when trial is over for the <see cref="!:RadTrialFeatureReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.FeatureTrialEndTitleKey">
+            <summary>
+            Defines the key for looking-up the message box title string when trial is over for the <see cref="!:RadTrialFeatureReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.FeatureTrialReminderContentKey">
+            <summary>
+            Defines the key for looking-up the message box content string before trial is over for the <see cref="!:RadTrialFeatureReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.FeatureTrialReminderSkipFurtherRemindersMessageKey">
+            <summary>
+            Defines the key for looking-up the string for skipping reminders checkbox before trial is over for the <see cref="!:RadTrialFeatureReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.FeatureTrialReminderTitleKey">
+            <summary>
+            Defines the key for looking-up the message box title string before trial is over for the <see cref="!:RadTrialFeatureReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.DataBoundListBoxEmptyContentKey">
+            <summary>
+            Defines the key for looking-up the empty content string for the <see cref="!:RadDataBoundListBox"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.ListPullToRefreshTimeStringKey">
+            <summary>
+            Defines the key for looking-up the list controls' pull-to-refresh time indicator string.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.ListPullToRefreshLoadingStringKey">
+            <summary>
+            Defines the key for looking-up the list controls' pull-to-refresh loading string.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.ListPullToRefreshStringKey">
+            <summary>
+            Defines the key for looking-up the list controls' pull-to-refresh normal state string.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.ListReleaseToRefreshStringKey">
+            <summary>
+            Defines the key for looking-up the list controls' release-to-refresh state string.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.MessageBoxCancelKey">
+            <summary>
+            Defines the key for looking-up the cancel button content string for the <see cref="!:RadMessageBox"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.MessageBoxNoKey">
+            <summary>
+            Defines the key for looking-up the no button content string for the <see cref="!:RadMessageBox"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.MessageBoxOkKey">
+            <summary>
+            Defines the key for looking-up the ok button content string for the <see cref="!:RadMessageBox"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.MessageBoxYesKey">
+            <summary>
+            Defines the key for looking-up the yes button content string for the <see cref="!:RadMessageBox"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.OffKey">
+            <summary>
+            Defines the key for looking-up the Off string for the <see cref="!:RadToggleSwitch"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.OnKey">
+            <summary>
+            Defines the key for looking-up the On string for the <see cref="!:RadToggleSwitch"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.PasswordBoxShowPasswordStringKey">
+            <summary>
+            Defines the key for looking-up the password revealed text for the <see cref="!:RadPasswordBox"/> controls.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.RateReminderContentKey">
+            <summary>
+            Defines the key for looking-up the message box content string for the <see cref="!:RadRateApplicationReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.RateReminderSkipFurtherRemindersMessageKey">
+            <summary>
+            Defines the key for looking-up the string for skipping reminders checkbox for the <see cref="!:RadRateApplicationReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.RateReminderTitleKey">
+            <summary>
+            Defines the key for looking-up the message box title string for the <see cref="!:RadRateApplicationReminder"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.TrialReminderPeriodMessageKey">
+            <summary>
+            Defines the key for looking-up the string for the remaining period before the trial ends in Trial Reminders.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.TrialReminderUsageCountMessageKey">
+            <summary>
+            Defines the key for looking-up the string for the remaining usages before the trial ends in Trial Reminders.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.Instance">
+            <summary>
+            Gets the only instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager"/> class.
+            </summary>
+            <value>The instance.</value>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.AppTrialEndContentString">
+            <summary>
+            Gets the app trial end content string for <see cref="!:RadTrialApplicationReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.AppTrialEndSkipFurtherRemindersMessageString">
+            <summary>
+            Gets the app trial end skip further reminders message string for <see cref="!:RadTrialApplicationReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.AppTrialEndTitleString">
+            <summary>
+            Gets the app trial end title string for <see cref="!:RadTrialApplicationReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.AppTrialReminderContentString">
+            <summary>
+            Gets the app trial reminder message box content string for <see cref="!:RadTrialApplicationReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.AppTrialReminderSkipFurtherRemindersMessageString">
+            <summary>
+            Gets the app trial reminder skip further reminders message string for <see cref="!:RadTrialApplicationReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.AppTrialReminderTitleString">
+            <summary>
+            Gets the app trial reminder title string for <see cref="!:RadTrialApplicationReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.BusyIndicatorContentString">
+            <summary>
+            Gets the content string displayed next to the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.RadBusyIndicator"/> animation.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.DiagnosticsContentString">
+            <summary>
+            Gets the diagnostics content string for <see cref="!:RadDiagnostics"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.DiagnosticsTitleString">
+            <summary>
+            Gets the diagnostics title string for <see cref="!:RadDiagnostics"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.FeatureTrialEndContentString">
+            <summary>
+            Gets the feature trial end content string for <see cref="!:RadTrialFeatureReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.FeatureTrialEndSkipFurtherRemindersMessageString">
+            <summary>
+            Gets the feature trial end skip further reminders message string for <see cref="!:RadTrialFeatureReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.FeatureTrialEndTitleString">
+            <summary>
+            Gets the feature trial end title string for <see cref="!:RadTrialFeatureReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.FeatureTrialReminderContentString">
+            <summary>
+            Gets the feature trial reminder content string for <see cref="!:RadTrialFeatureReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.FeatureTrialReminderSkipFurtherRemindersMessageString">
+            <summary>
+            Gets the feature trial reminder skip further reminders message string for <see cref="!:RadTrialFeatureReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.FeatureTrialReminderTitleString">
+            <summary>
+            Gets the feature trial reminder title string for <see cref="!:RadTrialFeatureReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.DataBoundListBoxEmptyContentString">
+            <summary>
+            Gets the default empty content for the <see cref="!:RadDataBoundListBox"/> control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.ListPullToRefreshTimeString">
+            <summary>
+            Gets the string displayed in a list control's pull-to-refresh time indicator when in refreshing state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.ListPullToRefreshLoadingString">
+            <summary>
+            Gets the string displayed in a list control's pull-to-refresh time indicator when in refreshing state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.ListPullToRefreshString">
+            <summary>
+            Gets the string displayed in a list control's pull-to-refresh time indicator when in normal state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.ListReleaseToRefreshString">
+            <summary>
+            Gets the string displayed in a list control's release-to-refresh time indicator when in normal state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.MessageBoxCancelString">
+            <summary>
+            Gets the message box cancel button string for <see cref="!:RadMessageBox"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.MessageBoxNoString">
+            <summary>
+            Gets the message box no button string for <see cref="!:RadMessageBox"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.MessageBoxOkString">
+            <summary>
+            Gets the message box ok button string for <see cref="!:RadMessageBox"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.MessageBoxYesString">
+            <summary>
+            Gets the message box yes button string for <see cref="!:RadMessageBox"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.ToggleSwitchOffString">
+            <summary>
+            Gets the toggle switch off string for <see cref="!:RadToggleSwitch"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.ToggleSwitchOnString">
+            <summary>
+            Gets the toggle switch on string for <see cref="!:RadToggleSwitch"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.PasswordBoxShowPasswordString">
+            <summary>
+            Gets the string displayed in RadPasswordBox's check box for revealing the password.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.RateReminderContentString">
+            <summary>
+            Gets the rate reminder content string for <see cref="!:RadRateApplicationReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.RateReminderSkipFurtherRemindersMessageString">
+            <summary>
+            Gets the rate reminder skip further reminders message string for <see cref="!:RadRateApplicationReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.RateReminderTitleString">
+            <summary>
+            Gets the rate reminder title string for <see cref="!:RadRateApplicationReminder"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.TrialReminderPeriodMessageString">
+            <summary>
+            Gets the trial reminder period message string for Trial Reminders.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.PrimitivesLocalizationManager.TrialReminderUsageCountMessageString">
+            <summary>
+            Gets the trial reminder usage count message string for Trial Reminders.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.UserThemeResourceLoader">
+            <summary>
+            Represents a custom implementation of the <see cref="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader"/> class that allows users to replace the built-in theme resources via the <see cref="T:Telerik.Universal.UI.Xaml.Controls.UserThemeResources"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.UserThemeResourceLoader.GetResource(System.String,System.String,System.String,System.String)">
+            <summary>
+            Retrieves the paths to the Dark or Light user resource dictionaries, containing replacements of the built-in theme resources.
+            </summary>
+            <param name="resourceId"></param>
+            <param name="objectType"></param>
+            <param name="propertyName"></param>
+            <param name="propertyType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.UserThemeResources">
+            <summary>
+            Defines an entry point allowing user-specified resources to replace the built-in theme resources.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.UserThemeResources.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.UserThemeResources"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.UserThemeResources.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.UserThemeResources"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.UserThemeResources.DarkResourcesPath">
+            <summary>
+            Gets or sets the <see cref="T:System.Uri"/> path to the resource dictionary containing theme resource definitions for the Dark theme.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.UserThemeResources.LightResourcesPath">
+            <summary>
+            Gets or sets the <see cref="T:System.Uri"/> path to the resource dictionary containing theme resource definitions for the Light theme.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidatingEventArgs">
+            <summary>
+            Arguments used to raise Validating event of <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidatingEventArgs.#ctor(System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidatingEventArgs"/> class.
+            </summary>
+            <param name="errors">The errors.</param>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidatingEventArgs.Errors">
+            <summary>
+            Gets the errors displayed in validation control.
+            </summary>
+            <value>The errors.</value>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl">
+            <summary>
+            Visual representation of errors provided through <see cref="T:System.ComponentModel.INotifyDataErrorInfo"/> interface.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.RelativePositionOffsetProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.RelativePositionOffset"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.ControlPeerProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.ControlPeer"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.DataItemProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.DataItem"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.PropertyNameProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.PropertyName"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.ValidateOnErrorsProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.ValidateOnErrors"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.IsValidProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.IsValid"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.Validate(System.Boolean)">
+            <summary>
+            Validates the data updates the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.Errors"/> collection.
+            </summary>
+            <param name="callAsync">Whether the validation will be executed asynchronously.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.OnValidating(System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Called to raise <see cref="E:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.Validating"/> event.
+            </summary>
+            <param name="currentErrors">The current errors.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.ApplyTemplateCore">
+            <summary>
+            Called when the Framework <see cref="M:OnApplyTemplate"/> is called. Inheritors should override this method should they have some custom template-related logic.
+            This is done to ensure that the <see cref="P:IsTemplateApplied"/> property is properly initialized.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="M:OnApplyTemplate"/> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.ComposeVisualStateName">
+            <summary>
+            Builds the current visual state for this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.Validating">
+            <summary>
+            Occurs when validating item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.RelativePositionOffset">
+            <summary>
+            Controls the relative offset from <see cref="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.ControlPeer"/> control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.ControlPeer">
+            <summary>
+            Control that will be used to position validation control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.IsValid">
+            <summary>
+            Gets or sets whether control is in valid state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.ValidateOnErrors">
+            <summary>
+            Gets or sets whether control should trigger validation when error occurs.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.Errors">
+            <summary>
+            Gets the collection of current errors.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.DataItem">
+            <summary>
+            Gets or sets the data item that if implements <see cref="T:System.ComponentModel.INotifyDataErrorInfo"/> interface will be used as source for errors.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Primitives.ValidationControl.PropertyName">
+            <summary>
+            Gets or sets the name of the property that will be validated.
+            </summary>
+            <value>The name of the property.</value>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Roots >
+  <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="DisplayContent" />
+    <RootPropertyPathName Name="DisplayHeader" />
+  </Roots.PropertyPathNames>
+  <Roots.RootTypes>
+    <RootType FullName="Windows.UI.Xaml.Application" />
+    <RootType FullName="Windows.UI.Xaml.ResourceDictionary">
+      <RootProperty Name="ThemeDictionaries" />
+      <RootProperty Name="MergedDictionaries" />
+      <RootProperty Name="Source" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.CustomResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.TransitionCollection" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ChartElementPresenter" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Control">
+      <RootProperty Name="IsTabStop" />
+      <RootProperty Name="Template" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="VerticalContentAlignment" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="BorderBrush" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.FrameworkElement">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="MinWidth" />
+      <RootProperty Name="MinHeight" />
+      <RootProperty Name="Margin" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ChartSeries">
+      <RootProperty Name="ShowLabels" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.UIElement">
+      <RootProperty Name="IsHitTestVisible" />
+      <RootProperty Name="Transitions" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RadChartBase" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RadCartesianChart" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RadPieChart" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RadPolarChart" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.Axis">
+      <RootProperty Name="LabelStyle" />
+      <RootProperty Name="MajorTickStyle" />
+      <RootProperty Name="TitleTemplate" />
+      <RootProperty Name="LineStyle" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.LineAxis" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RadialAxis" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.LinearAxis" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CategoricalAxis" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.DateTimeCategoricalAxis" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.DateTimeContinuousAxis" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.LogarithmicAxis" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CategoricalRadialAxis" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.NumericalRadialAxis" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PolarAxis" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.AreaSeries">
+      <RootProperty Name="Fill" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CategoricalStrokedSeries">
+      <RootProperty Name="Stroke" />
+      <RootProperty Name="StrokeThickness" />
+      <RootProperty Name="StrokeLineJoin" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.StepAreaSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RangeSeries">
+      <RootProperty Name="Fill" />
+      <RootProperty Name="Stroke" />
+      <RootProperty Name="StrokeThickness" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RangeBarSeries">
+      <RootProperty Name="CombineMode" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PointTemplateSeries">
+      <RootProperty Name="DefaultVisualStyle" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PointSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.SplineAreaSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ScatterAreaSeries">
+      <RootProperty Name="Fill" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ScatterLineSeries">
+      <RootProperty Name="Stroke" />
+      <RootProperty Name="StrokeThickness" />
+      <RootProperty Name="StrokeLineJoin" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ScatterSplineAreaSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RadarAreaSeries">
+      <RootProperty Name="Fill" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RadarLineSeries">
+      <RootProperty Name="Stroke" />
+      <RootProperty Name="StrokeThickness" />
+      <RootProperty Name="StrokeLineJoin" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RadarSplineAreaSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PolarAreaSeries">
+      <RootProperty Name="Fill" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PolarLineSeries">
+      <RootProperty Name="Stroke" />
+      <RootProperty Name="StrokeThickness" />
+      <RootProperty Name="StrokeLineJoin" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PolarSplineAreaSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.BarSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CategoricalSeries">
+      <RootProperty Name="CombineMode" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.LineSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.StepLineSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.SplineSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ScatterSplineSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RadarSplineSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PolarSplineSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ScatterPointSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PolarPointSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RadarPointSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.OhlcSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CandlestickSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PieSeries">
+      <RootProperty Name="HighlightBrush" />
+      <RootProperty Name="DefaultSegmentStyle" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.DoughnutSeries" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.BarIndicatorBase">
+      <RootProperty Name="DefaultVisualStyle" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.LineIndicatorBase">
+      <RootProperty Name="Stroke" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.AdaptiveMovingAverageKaufmanIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.AverageTrueRangeIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.BollingerBandsIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CommodityChannelIndexIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ExponentialMovingAverageIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.MacdhIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.MacdIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ModifiedExponentialMovingAverageIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ModifiedMovingAverageIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.MomentumIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.MovingAverageIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.OscillatorIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RateOfChangeIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RaviIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RelativeMomentumIndexIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RelativeStrengthIndexIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.StochasticFastIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.StochasticSlowIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.TrixIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.TrueRangeIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.UltimateOscillatorIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.WeightedMovingAverageIndicator" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CartesianChartGrid">
+      <RootProperty Name="MajorXLineStyle" />
+      <RootProperty Name="MajorYLineStyle" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ChartGrid">
+      <RootProperty Name="DefaultStripeBrush" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PolarChartGrid">
+      <RootProperty Name="PolarLineStyle" />
+      <RootProperty Name="RadialLineStyle" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ChartAnnotation" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CartesianGridLineAnnotation" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CartesianStrokedAnnotation">
+      <RootProperty Name="Stroke" />
+      <RootProperty Name="StrokeThickness" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CartesianCustomLineAnnotation" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CartesianMarkedZoneAnnotation">
+      <RootProperty Name="Fill" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CartesianPlotBandAnnotation">
+      <RootProperty Name="Fill" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.CartesianCustomAnnotation" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PolarStrokedAnnotation">
+      <RootProperty Name="Stroke" />
+      <RootProperty Name="StrokeThickness" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PolarAxisGridLineAnnotation" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RadialAxisGridLineAnnotation" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PolarAxisPlotBandAnnotation">
+      <RootProperty Name="Fill" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.RadialAxisPlotBandAnnotation">
+      <RootProperty Name="Fill" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.PolarCustomAnnotation" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.ChartTooltip" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ContentControl">
+      <RootProperty Name="ContentTemplate" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.Primitives.TrackBallLineControl">
+      <RootProperty Name="LineStyle" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.Primitives.TrackBallInfoControl">
+      <RootProperty Name="DataPointInfoTemplate" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Setter">
+      <RootProperty Name="Property" />
+      <RootProperty Name="Value" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.DataTemplate">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Grid">
+      <RootProperty Name="RowDefinitions" />
+      <RootProperty Name="Children" />
+      <RootMethod Name="GetRow" />
+      <RootMethod Name="SetRow" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition" />
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="Text" />
+      <RootProperty Name="FontWeight" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Foreground" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Path" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ControlTemplate">
+      <RootProperty Name="TargetType" />
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Border">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="Child" />
+      <RootProperty Name="Style" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.TemplateBindingExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel" />
+    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.ThemeResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Canvas">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Children" />
+      <RootMethod Name="GetZIndex" />
+      <RootMethod Name="SetZIndex" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Shapes.Polyline" />
+    <RootType FullName="Windows.UI.Xaml.Shapes.Shape">
+      <RootProperty Name="Stroke" />
+      <RootProperty Name="StrokeThickness" />
+      <RootProperty Name="StrokeDashArray" />
+      <RootProperty Name="Fill" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ContentPresenter">
+      <RootProperty Name="Content" />
+      <RootProperty Name="ContentTemplate" />
+      <RootProperty Name="IsHitTestVisible" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Visibility" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.PopupThemeTransition" />
+    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Shapes.Ellipse" />
+    <RootType FullName="Windows.UI.Xaml.Shapes.Line" />
+    <RootType FullName="Windows.UI.Xaml.Media.SolidColorBrush">
+      <RootProperty Name="Color" />
+      <RootProperty Name="Opacity" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Shapes.Path" />
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.Candlestick">
+      <RootProperty Name="UpFill" />
+      <RootProperty Name="DownFill" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.OhlcShape">
+      <RootProperty Name="UpStroke" />
+      <RootProperty Name="DownStroke" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.Chart.OhlcStick" />
+    <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle" />
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.ContentThemeTransition">
+      <RootProperty Name="HorizontalOffset" />
+      <RootProperty Name="VerticalOffset" />
+    </RootType>
+    <RootType FullName="Telerik.Universal.UI.Xaml.Controls.UserThemeResources" />
+  </Roots.RootTypes>
+</Roots>

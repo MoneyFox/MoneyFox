@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
@@ -28,3 +29,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("0.3.4.0")]
 [assembly: AssemblyFileVersion("0.3.4.0")]
 [assembly: ComVisible(false)]
+
+[assembly: InternalsVisibleTo("MoneyManager.DataAccess")]
+[assembly: InternalsVisibleTo("MoneyManager.Business")]
+[assembly: InternalsVisibleTo("MoneyManager.Foundation")]

@@ -1,0 +1,2529 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.Universal.UI.Xaml.Input</name>
+    </assembly>
+    <members>
+        <member name="T:Input.App">
+            <summary>
+            Provides application-specific behavior to supplement the default Application class.
+            </summary>
+        </member>
+        <member name="M:Input.App.#ctor">
+            <summary>
+            Initializes the singleton application object.  This is the first line of authored code
+            executed, and as such is the logical equivalent of main() or WinMain().
+            </summary>
+        </member>
+        <member name="M:Input.App.OnLaunched(Windows.ApplicationModel.Activation.LaunchActivatedEventArgs)">
+            <summary>
+            Invoked when the application is launched normally by the end user.  Other entry points
+            will be used such as when the application is launched to open a specific file.
+            </summary>
+            <param name="e">Details about the launch request and process.</param>
+        </member>
+        <member name="M:Input.App.OnNavigationFailed(System.Object,Windows.UI.Xaml.Navigation.NavigationFailedEventArgs)">
+            <summary>
+            Invoked when Navigation to a certain page fails
+            </summary>
+            <param name="sender">The Frame which failed navigation</param>
+            <param name="e">Details about the navigation failure</param>
+        </member>
+        <member name="M:Input.App.OnSuspending(System.Object,Windows.ApplicationModel.SuspendingEventArgs)">
+            <summary>
+            Invoked when application execution is being suspended.  Application state is saved
+            without knowing whether the application will be terminated or resumed with the contents
+            of memory still intact.
+            </summary>
+            <param name="sender">The source of the suspend request.</param>
+            <param name="e">Details about the suspend request.</param>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBoxFilterMode">
+            <summary>
+            Defines the possible text filter modes provided by <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBoxFilterMode.StartsWith">
+            <summary>
+            In this mode <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/> filters
+            the items based on whether the starting sequence of each candidate
+            matches the current user input.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBoxFilterMode.Contains">
+            <summary>
+            In this mode <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/> filters
+            the items based on whether the input sequence is contained in each
+            candidate.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBoxPlacementMode">
+            <summary>
+            Defines the supported placement options for the drop-down that contains the available suggestion items.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBoxPlacementMode.Auto">
+            <summary>
+            The position of the drop-down is dynamically calculated based on the available screen estate.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBoxPlacementMode.Top">
+            <summary>
+            The drop-down is always displayed above the input field.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBoxPlacementMode.Bottom">
+            <summary>
+            The drop-down is always displayed below the input field.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBoxPlacementMode.None">
+            <summary>
+            The drop-down is not displayed. In this scenario the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilteredItems"/> property 
+            can be bound to an external items control to display the available suggestion items.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.AutoCompleteTextBox">
+            <summary>
+            Represents the TextBox part of the RadAutoCompleteBox. Exposed for easier styling via implicit style.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.AutoCompleteTextBox.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.AutoCompleteTextBox"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle">
+            <summary>
+            Defines the style settings used to highlight portion of a TextBlock within a suggestion item.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontWeightProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontWeight"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontSizeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontSize"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.ForegroundProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.Foreground"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontFamilyProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontFamily"/> dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontFamily">
+            <summary>
+            Gets or sets an instance of the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontFamily"/> class
+            that defines the family of the font used to highlight text portion
+            within a suggestion item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontWeight">
+            <summary>
+            Gets or sets an instance of the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontWeight"/> struct
+            that defines the weight of the font used to highlight text portion 
+            within a suggestion item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontStyle">
+            <summary>
+            Gets or sets an instance of the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontStyle"/> struct
+            that defines the style of the font used to highlight text portion
+            within a suggestion item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.Foreground">
+            <summary>
+            Gets or sets an instance of the <see cref="T:Windows.UI.Xaml.Media.Brush"/> class
+            that defines the color used to highlight text portion
+            within a suggestion item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle.FontSize">
+            <summary>
+            Gets or sets a value
+            that defines the font size used to highlight text portion
+            within a suggestion item.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider">
+            <summary>
+            This class provides a mechanism for filtering suggestion items based on a given input
+            and a data source that contains a set of predefined suggestions.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider">
+            <summary>
+            An interface used by <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/> that describes text search provider.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.Reset">
+            <summary>
+            Resets the state of the current provider.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.Input(System.Int32,System.Int32,System.String)">
+            <summary>
+            Inputs a string in the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.InputString"/> starting at the given position by purging the text described
+            by the <paramref name="start"/> with the given <paramref name="selectionLength"/>.
+            </summary>
+            <param name="start">The start index in the current input string where the <paramref name="inputText"/> is inserted.</param>
+            <param name="selectionLength">The length of the text to be replaced.</param>
+            <param name="inputText">The text that will be inserted at <paramref name="start"/> position.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.GetFilterKey(System.Object)">
+            <summary>
+            Gets a string that represents the key based on which the
+            corresponding item has been filtered as a valid suggestion item.
+            </summary>
+            <param name="item">The item for which to get the filter key.</param>
+            <returns>The filter key.</returns>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.ComparisonMode">
+            <summary>
+            Gets or sets the mode used to compare 
+            the current input string with the filter
+            key of each <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.ItemsSource"/> item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.FilterMemberPath">
+            <summary>
+            Gets or sets a string representing a property path
+            on a single object from the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.ItemsSource"/>
+            that is used to filter the suggestion items.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.ItemsSource">
+            <summary>
+            Gets or sets an <see cref="T:System.Collections.IEnumerable"/> implementation that contains all suggestion items.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.FilterMemberProvider">
+            <summary>
+            Gets or sets a function that is used to retrieve
+            the key from the source object, 
+            based on which suggestion items are filtered.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.HasItems">
+            <summary>
+            Gets a boolean value determining whether there 
+            are any suggestion items available based on the current
+            input in the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.FilteredItems">
+            <summary>
+            Gets an <see cref="T:System.Collections.IEnumerable"/> implementation containing the currently filtered suggestion items.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider.InputString">
+            <summary>
+            Gets the current input string.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider"/> is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.ReceiveEvent(System.Object,System.Object)">
+            <summary>
+            Receives the event.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.Input(System.Int32,System.Int32,System.String)">
+            <summary>
+            Inputs a string in the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.InputString"/> starting at the given position by purging the text described
+            by the <paramref name="start"/> with the given <paramref name="selectionLength"/>.
+            </summary>
+            <param name="start">The start index in the current input string where the <paramref name="inputText"/> is inserted.</param>
+            <param name="selectionLength">The length of the text to be replaced.</param>
+            <param name="inputText">The text that will be inserted at <paramref name="start"/> position.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.Reset">
+            <summary>
+            Resets the current input and sets the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider"/> to its
+            initial state.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.GetFilterKey(System.Object)">
+            <summary>
+            Gets a string that represents the key based on which the
+            corresponding item has been filtered as a valid suggestion item.
+            </summary>
+            <param name="item">The item for which to get the filter key.</param>
+            <returns>
+            The filter key.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.OnPropertyChanged(System.String)">
+            <summary>
+            Called when a property is changed.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.PropertyChanged">
+            <summary>
+            Fires when a property of this <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider"/> changes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.ComparisonMode">
+            <summary>
+            Gets or sets the mode used to compare 
+            the current input string with the filter
+            key of each <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.ItemsSource"/> item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.HasItems">
+            <summary>
+            Gets a boolean value determining whether there
+            are filtered suggestion items for the current input.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.FilterMemberPath">
+            <summary>
+            Gets or sets a string representing a property path
+            on a single object from the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.ItemsSource"/>
+            that is used to filter the suggestion items.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.FilterMemberProvider">
+            <summary>
+            Gets or sets a function that is used to retrieve
+            the key from the source object, 
+            based on which suggestion items are filtered.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.FilteredItems">
+            <summary>
+            Gets an array containing a subset of the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.ItemsSource"/> which
+            represents all suggestion items filtered based on the current input.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.ItemsSource">
+            <summary>
+            Gets or sets the source collection that provides
+            the set of suggestion items.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.InputString">
+            <summary>
+            Gets the current input string based on which the suggestion items are filtered.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ContainsTextSearchProvider.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ContainsTextSearchProvider"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ContainsTextSearchProvider.Input(System.Int32,System.Int32,System.String)">
+            <summary>
+            Inputs a string in the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.InputString"/> starting at the given position by purging the text described
+            by the <paramref name="start"/> with the given <paramref name="selectionLength"/>.
+            </summary>
+            <param name="start">The start index in the current input string where the <paramref name="inputText"/> is inserted.</param>
+            <param name="selectionLength">The length of the text to be replaced.</param>
+            <param name="inputText">The text that will be inserted at <paramref name="start"/> position.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ContainsTextSearchProvider.Reset">
+            <summary>
+            Resets the current input and sets the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider"/> to its
+            initial state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ContainsTextSearchProvider.HasItems">
+            <summary>
+            Gets a boolean value determining whether there
+            are any suggestion items available based on the current
+            input in the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ContainsTextSearchProvider.FilteredItems">
+            <summary>
+            Gets an array containing a subset of the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.ItemsSource"/> that
+            represents all filtered suggestion items based on the current input.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.StartsWithTextSearchProvider.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.StartsWithTextSearchProvider"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.StartsWithTextSearchProvider.Reset">
+            <summary>
+            Resets the state of the current provider.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.StartsWithTextSearchProvider.Input(System.Int32,System.Int32,System.String)">
+            <summary>
+            Inputs a string in the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.InputString"/> starting at the given position by purging the text described
+            by the <paramref name="start"/> with the given <paramref name="selectionLength"/>.
+            </summary>
+            <param name="start">The start index in the current input string where the <paramref name="inputText"/> is inserted.</param>
+            <param name="selectionLength">The length of the text to be replaced.</param>
+            <param name="inputText">The text that will be inserted at <paramref name="start"/> position.</param>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.StartsWithTextSearchProvider.FilteredItems">
+            <summary>
+            Gets an array containing a subset of the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.ItemsSource"/> which
+            represents all suggestion items filtered based on the current input.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.StartsWithTextSearchProvider.HasItems">
+            <summary>
+            Gets a boolean value determining whether there
+            are filtered suggestion items for the current input.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.WebServiceTextSearchProvider">
+            <summary>
+            Provides infrastructure for using <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/> with a Web Service
+            for providing suggestions.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.WebServiceTextSearchProvider.Reset">
+            <summary>
+            Resets the current input and sets the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider"/> to its
+            initial state.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.WebServiceTextSearchProvider.LoadItems(System.Collections.IEnumerable)">
+            <summary>
+            Loads the acquired items based on the current input.
+            </summary>
+            <param name="items">An <see cref="T:System.Collections.IEnumerable"/> implementation that contains the available suggestions.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.WebServiceTextSearchProvider.Input(System.Int32,System.Int32,System.String)">
+            <summary>
+            Inputs a string in the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.InputString"/> starting at the given position by purging the text described
+            by the <paramref name="start"/> with the given <paramref name="selectionLength"/>.
+            </summary>
+            <param name="start">The start index in the current input string where the <paramref name="inputText"/> is inserted.</param>
+            <param name="selectionLength">The length of the text to be replaced.</param>
+            <param name="inputText">The text that will be inserted at <paramref name="start"/> position.</param>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.WebServiceTextSearchProvider.InputChanged">
+            <summary>
+            Fires when the input string of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.WebServiceTextSearchProvider"/> changes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.WebServiceTextSearchProvider.HasItems">
+            <summary>
+            Gets a boolean value determining whether there
+            are filtered suggestion items for the current input.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.WebServiceTextSearchProvider.FilteredItems">
+            <summary>
+            Gets an array containing a subset of the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.TextSearchProvider.ItemsSource"/> which
+            represents all filtered suggestion items for the current input.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox">
+            <summary>
+            Represents an input control that can use a collection of items to display suggestions while the user types. Essentially, this is
+            a text box control with extended functionality to support customized suggestion items.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.TextProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.Text"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterModeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterMode"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterComparisonModeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterComparisonMode"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterMemberPathProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterMemberPath"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.DisplayMemberPathProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.DisplayMemberPath"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterStartThresholdProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterStartThreshold"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterDelayProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterDelay"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.ItemsSourceProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.ItemsSource"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.ItemTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.ItemTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.ItemTemplateSelectorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.ItemTemplateSelector"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.AutosuggestFirstItemProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.AutosuggestFirstItem"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.DropDownPlacementProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.DropDownPlacement"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.DropDownMaxHeightProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.DropDownMaxHeight"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.IsDropDownOpenProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.IsDropDownOpen"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.TextMatchHighlightStyleProperty">
+            <summary>
+            Identifies the RadAutoCompleteBox.TextMatchHighlightStyle attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.IsTextMatchHighlightEnabledProperty">
+            <summary>
+            Identifies the RadAutoCompleteBox.IsTextMatchHighlightEnabled attached property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.WatermarkProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.Watermark"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.WatermarkTemplateProperty">
+            <summary>
+            Identifies the WatermarkTemplate dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.SelectedItemProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.SelectedItem"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.GetTextMatchHighlightStyle(Windows.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the value of the attached <see cref="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.TextMatchHighlightStyleProperty"/> for the
+            specified <see cref="T:Windows.UI.Xaml.Controls.TextBlock"/>.
+            </summary>
+            <param name="target">The target text block element.</param>
+            <returns>The style of the text block element.</returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.SetTextMatchHighlightStyle(Windows.UI.Xaml.DependencyObject,Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle)">
+            <summary>
+            Sets the value of the attached <see cref="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.TextMatchHighlightStyleProperty"/> on the
+            specified <see cref="T:Windows.UI.Xaml.Controls.TextBlock"/>.
+            </summary>
+            <param name="target">The target text block element.</param>
+            <param name="value">The style to be set.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.GetIsTextMatchHighlightEnabled(Windows.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the value of the attached <see cref="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.IsTextMatchHighlightEnabledProperty"/> for the
+            specified <see cref="T:Windows.UI.Xaml.Controls.TextBlock"/>.
+            </summary>
+            <param name="target">The target text block element.</param>
+            <returns>The value of the attached property.</returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.SetIsTextMatchHighlightEnabled(Windows.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Sets the value of the attached <see cref="F:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.IsTextMatchHighlightEnabledProperty"/> on the
+            specified <see cref="T:Windows.UI.Xaml.Controls.TextBlock"/>.
+            </summary>
+            <param name="target">The target text block.</param>
+            <param name="value">The value to be set.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.Suggest(System.String)">
+            <summary>
+            Forces a refresh of the list of available suggestions (and opens the drop-down if necessary) based on specified text input string. 
+            If no string parameter is specified, uses the current value of the text field as the text to search for.
+            </summary>
+            <param name="searchText">The text to search for.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.InitializeSuggestionsProvider(Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider)">
+            <summary>
+            Initializes the specific <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.ITextSearchProvider"/> implementation
+            for this <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/> instance.
+            </summary>
+            <param name="provider">The provider that the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/> will be initialized with.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.OnKeyDown(Windows.UI.Xaml.Input.KeyRoutedEventArgs)">
+            <summary>
+            Called before the KeyDown event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.ApplyTemplateCore">
+            <summary>
+            Called when the Framework <see cref="T:OnApplyTemplate" /> is called. Inheritors should override this method should they have some custom template-related logic.
+            This is done to ensure that the <see cref="P:IsTemplateApplied" /> property is properly initialized.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="T:OnApplyTemplate" /> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.UnapplyTemplateCore">
+            <summary>
+            Unapplies the current control template. Occurs when a template has already been applied and a new one is applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.UnloadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Unloaded" /> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:PropertyChanged"/> event.
+            </summary>
+            <param name="args">The <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.OnTextChanged(Windows.UI.Xaml.Controls.TextChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:TextChanged"/> event.
+            </summary>
+            <param name="args">The <see cref="T:Windows.UI.Xaml.Controls.TextChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.OnSelectionChanged(Windows.UI.Xaml.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:SelectionChanged"/> event.
+            </summary>
+            <param name="args">The <see cref="T:Windows.UI.Xaml.Controls.SelectionChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.PropertyChanged">
+            <summary>
+            Occurs when a property of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/> changes.
+            </summary>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.SelectionChanged">
+            <summary>
+            Occurs when the end user selects a suggestion item from the drop-down list of items.
+            </summary>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.TextChanged">
+            <summary>
+            Occurs when the content of the <see cref="T:Windows.UI.Xaml.Controls.TextBox"/> part of the control changes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.Text">
+            <summary>
+            Gets or sets the text content of the autocomplete box.
+            </summary>
+            <value>The default value is <see cref="F:System.String.Empty"/>.</value>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox Text="California"/&gt;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterMode">
+            <summary>
+            Gets or sets the mode used to filter the suggestion items based on the user input.
+            </summary>
+            <value>
+            The default value is <see cref="F:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBoxFilterMode.StartsWith"/>.
+            </value>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox FilterMode="Contains"/&gt;
+            </code>
+            </example>
+            <seealso cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBoxFilterMode"/>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterComparisonMode">
+            <summary>
+            Gets or sets a value from the <see cref="T:System.StringComparison"/>
+            enumeration that defines the way the candidate suggestion key is compared
+            to the current user input.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox FilterComparisonMode="InvariantCultureIgnoreCase"/&gt;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterMemberPath">
+            <summary>
+            Gets or sets a string representing a property path
+            of a single object within the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.ItemsSource"/>
+            to be used when filtering the suggestion items.
+            </summary>
+            <remarks>
+            If no <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterMemberPath"/> value is set, the
+            <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.DisplayMemberPath"/> value is used to filter
+            the suggestion items.
+            </remarks>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox FilterMemberPath="PropertyName"/&gt;
+            </code>
+            </example>
+            <seealso cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.DisplayMemberPath"/>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.DisplayMemberPath">
+            <summary>
+            Gets or sets a string representing a property path
+            of a single object within the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.ItemsSource"/>
+            to be used to display the suggestion items.
+            </summary>
+            <remarks>
+            If no <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterMemberPath"/> value is set, this 
+            value is also used to filter the suggestion items.
+            </remarks>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox DisplayMemberPath="PropertyName"/&gt;
+            </code>
+            </example>
+            <seealso cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterMemberPath"/>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterStartThreshold">
+            <summary>
+            Gets or sets the number of symbols that have to be typed in <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/>
+            before the filtering procedure starts.
+            </summary>
+            <value>
+            The default value is <c>0</c>.
+            </value>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox FilterStartThreshold="3"/&gt;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterDelay">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.TimeSpan"/> struct
+            that represents the time interval between the last end user input action and
+            a filter pass operation. 
+            </summary>
+            <value>
+            The default value of this property is 0 milliseconds.
+            </value>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox FilterDelay="1000"/&gt;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilterMemberProvider">
+            <summary>
+            Gets or sets a function that acquires a property value of the suggestion
+            item and returns a value based on which the suggestion is filtered.
+            </summary>
+            <example>
+            <para>
+            This example demonstrates how to filter items, that have a <see cref="T:System.DateTime"/> property, by
+            year while the displayed text is the full date.
+            </para>
+            <para>
+            First, create a sample class that has a property of type <see cref="T:System.DateTime"/>:
+            </para>
+            <code language="c#">
+                public class Birthday
+                {
+                    public DateTime Date { get; set; }
+            
+                    public override string ToString()
+                    {
+                        return this.Date.ToString("dd/mm/yyyy");
+                    }
+                }
+            </code>
+            <para>
+            Then define the <see cref="N:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox"/>:
+            </para>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox x:Name="autoCompleteBox"/&gt;
+            </code>
+            Finally, set the FilterMemberProvider property:
+            <code language="c#">
+            this.autoCompleteBox.FilterMemberProvider = (object item) =&gt;
+                {
+                    return (item as Birthday).Date.Year.ToString();
+                };
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.FilteredItems">
+            <summary>
+            Gets an <see cref="T:System.Collections.IEnumerable"/> implementation that contains all suggestion items that
+            have passed the filter based on the provided input.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox x:Name="autoCompleteBox"/&gt;
+            </code>
+            <code language="c#">
+            var filteredItems = autoCompleteBox.FilteredItems;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.ItemsSource">
+            <summary>
+            Gets or sets an implementation of the <see cref="T:System.Collections.IEnumerable"/> interface that
+            contains all items available for suggestion items in this instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/> class.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox x:Name="autoCompleteBox"/&gt;
+            </code>
+            <code language="c#">
+            autoCompleteBox.ItemsSource = new List&lt;string&gt; { "Apple", "Orange", "Banana", "Pineapple" };
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.ItemTemplate">
+            <summary>
+            Gets or sets an instance of the <see cref="T:Windows.UI.Xaml.DataTemplate"/> class
+            that defines the visual structure of a suggestion item.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox&gt;
+                &lt;telerikInput:RadAutoCompleteBox.ItemTemplate&gt;
+                    &lt;DataTemplate&gt;
+                        &lt;TextBlock Text="{Binding PropertyName}" Foreground="Orange" FontSize="20" /&gt;
+                    &lt;/DataTemplate&gt;
+                &lt;/telerikInput:RadAutoCompleteBox.ItemTemplate&gt;
+            &lt;/telerikInput:RadAutoCompleteBox&gt;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.ItemTemplateSelector">
+            <summary>
+            Gets or sets the custom logic for choosing the template used to display each suggestion item.
+            </summary>
+            <example>
+            <para>
+            This example demonstrates how to set custom template for the suggestion items depending on the
+            length of their string representation.
+            </para>
+            <para>
+            First, create a custom class that inherits the <see cref="T:Windows.UI.Xaml.Controls.DataTemplateSelector"/>
+            class and override its <see cref="M:Windows.UI.Xaml.Controls.DataTemplateSelector.SelectTemplateCore(System.Object,Windows.UI.Xaml.DependencyObject)"/>
+            method.
+            </para>
+            <code language="c#">
+            public class CustomItemTemplateSelector : DataTemplateSelector
+            {
+                public DataTemplate Template1;
+            
+                public DataTemplate Template2;
+            
+                protected override Windows.UI.Xaml.DataTemplate SelectTemplateCore(object item, Windows.UI.Xaml.DependencyObject container)
+                {
+                    var suggestionItem = item as string;
+                    if (suggestionItem.Length &gt; 5)
+                    {
+                        return Template1;
+                    }
+            
+                    return Template2;
+                }
+            }
+            </code>
+            <para>
+            Then define instance of this class in the static resources. It is easier to set the template styles in XAML.
+            </para>
+            <code language="xaml">
+            &lt;Page.Resources&gt;
+                &lt;local:CustomItemTemplateSelector x:Key="templateSelector"&gt;
+                    &lt;local:CustomItemTemplateSelector.Template1&gt;
+                        &lt;DataTemplate&gt;
+                            &lt;TextBlock Text="{Binding}" Foreground="Red"/&gt;
+                        &lt;/DataTemplate&gt;
+                    &lt;/local:CustomItemTemplateSelector.Template1&gt;
+                    &lt;local:CustomItemTemplateSelector.Template2&gt;
+                        &lt;DataTemplate&gt;
+                            &lt;TextBlock Text="{Binding}" Foreground="Blue"/&gt;
+                        &lt;/DataTemplate&gt;
+                    &lt;/local:CustomItemTemplateSelector.Template2&gt;
+                &lt;/local:CustomItemTemplateSelector&gt;
+            &lt;/Page.Resources&gt;
+            </code>
+            <para>
+            Now you can define the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/> and set its ItemTemplateSelector property:
+            </para>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox x:Name="autoCompleteBox" ItemTemplateSelector="{StaticResource templateSelector}"/&gt;
+            </code>
+            <code language="c#">
+            autoCompleteBox.ItemsSource = new List&lt;string&gt; { "Apple", "Orange", "Pineapple", "Tomato", "Cucumber", "Patato", "Grapes", "Egg", "Cheese", "Bread", "Milk"};
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.AutosuggestFirstItem">
+            <summary>
+            Gets or sets a value indicating whether the first suggestion item 
+            should be highlighted by default when the drop-down control is open.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox AutosuggestFirstItem="False"/&gt;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.DropDownPlacement">
+            <summary>
+            Gets or sets a value that specifies the placement of the drop-down that holds the available suggestion items relative to the the input field.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox DropDownPlacement="Top"/&gt;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.DropDownMaxHeight">
+            <summary>
+            Gets or sets the maximum height constraint of the drop-down list that holds the available suggestion items.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox DropDownMaxHeight="200"/&gt;</code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.IsDropDownOpen">
+            <summary>
+            Gets or sets a value that indicates whether the drop-down suggestions list is currently open.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.Watermark">
+            <summary>
+            Gets or sets the content to be displayed when the input field is empty and unfocused.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox Watermark="Write Here"/&gt;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.WatermarkTemplate">
+            <summary>
+            Gets or sets the data template applied to the watermark presenter when the TextBox is empty and unfocused.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox&gt;
+                &lt;telerikInput:RadAutoCompleteBox.WatermarkTemplate&gt;
+                    &lt;DataTemplate&gt;
+                        &lt;Ellipse Fill="Gray" Width="10" Height="10"/&gt;
+                    &lt;/DataTemplate&gt;
+                &lt;/telerikInput:RadAutoCompleteBox.WatermarkTemplate&gt;
+            &lt;/telerikInput:RadAutoCompleteBox&gt; 
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox.SelectedItem">
+            <summary>
+            Gets currently selected item in the RadAutoCompleteBox.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadAutoCompleteBox x:Name="autoCompleteBox"/&gt;
+            </code>
+            <code language="c#">
+            var selected = autoCompleteBox.SelectedItem;
+            </code>
+            </example>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItem">
+            <summary>
+            Represents the visual suggestion item displayed in the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItemsControl"/> of a <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItem"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItem.OnItemTap">
+            <summary>
+            Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItem.HighlightStartingMatch(Windows.UI.Xaml.Controls.TextBlock,System.String,Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle)">
+            <summary>
+            This method is made Internal for testing purposes.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItem.HighlightAllMatches(Windows.UI.Xaml.Controls.TextBlock,System.String,Telerik.Universal.UI.Xaml.Controls.Input.HighlightStyle)">
+            <summary>
+            This method is made Internal for testing purposes.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItem.PrepareHighlightedRunsList">
+            <summary>
+            This method is made Internal for testing purposes.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItem.OnApplyTemplate">
+            <summary>
+            Invoked whenever application code or internal processes (such as a rebuilding layout pass) call ApplyTemplate.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItem.MeasureOverride(Windows.Foundation.Size)">
+            <summary>
+            Called in the measure layout pass to determine the desired size.
+            </summary>
+            <param name="availableSize">The available size that was given by the layout system.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItem.OnTapped(Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            Called before the Tapped event occurs.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItemsControl">
+            <summary>
+            Represents a specialized <see cref="T:Windows.UI.Xaml.Controls.ItemsControl"/> that
+            is integrated with <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadAutoCompleteBox"/> to display
+            available auto-complete suggestions.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItemsControl.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItemsControl"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItemsControl.MeasureOverride(Windows.Foundation.Size)">
+            <summary>
+            Provides the behavior for the Measure pass of the layout cycle. Classes can override this method to define their own Measure pass behavior.
+            </summary>
+            <param name="availableSize">The available size that this object can give to child objects. Infinity can be specified as a value to indicate that the object will size to whatever content is available.</param>
+            <returns>
+            The size that this object determines it needs during layout, based on its calculations of the allocated sizes for child objects or based on other considerations such as a fixed container size.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItemsControl.GetContainerForItemOverride">
+            <summary>
+            Creates or identifies the element that is used to display the given item.
+            </summary>
+            <returns>
+            The element that is used to display the given item.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItemsControl.IsItemItsOwnContainerOverride(System.Object)">
+            <summary>
+            Determines whether the specified item is (or is eligible to be) its own container.
+            </summary>
+            <param name="item">The item to check.</param>
+            <returns>
+            True if the item is (or is eligible to be) its own container; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItemsControl.PrepareContainerForItemOverride(Windows.UI.Xaml.DependencyObject,System.Object)">
+            <summary>
+            Prepares the specified element to display the specified item.
+            </summary>
+            <param name="element">The element that's used to display the specified item.</param>
+            <param name="item">The item to display.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItemsControl.ClearContainerForItemOverride(Windows.UI.Xaml.DependencyObject,System.Object)">
+            <summary>
+            Undoes the effects of the PrepareContainerForItemOverride method.
+            </summary>
+            <param name="element">The container element.</param>
+            <param name="item">The item.</param>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItemTappedEventArgs">
+            <summary>
+            This class contains information about a <see cref="E:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItemsControl.ItemTapped"/> event.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.AutoCompleteBox.SuggestionItemTappedEventArgs.Item">
+            <summary>
+            The data item that has been clicked.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.FontWeightName">
+            <summary>
+            Provides a set of predefined font weights as static property values.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.FontWeightName.Black">
+            <summary>
+            Specifies a "Black" font weight.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.FontWeightName.Bold">
+            <summary>
+            Specifies a "Bold" font weight.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.FontWeightName.ExtraBlack">
+            <summary>
+             Specifies an "ExtraBlack" font weight.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.FontWeightName.ExtraBold">
+            <summary>
+             Specifies an "ExtraBold" font weight.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.FontWeightName.ExtraLight">
+            <summary>
+             Specifies an "ExtraLight" font weight.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.FontWeightName.Light">
+            <summary>
+             Specifies a "Light" font weight.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.FontWeightName.Medium">
+            <summary>
+             Specifies a "Medium" font weight.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.FontWeightName.Normal">
+            <summary>
+             Specifies a "Normal" font weight.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.FontWeightName.SemiBold">
+            <summary>
+             Specifies a "SemiBold" font weight.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.FontWeightName.SemiLight">
+            <summary>
+             Specifies a "SemiLight" font weight.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.FontWeightName.Thin">
+            <summary>
+             Specifies a "Thin" font weight.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.CalendarExtentions.GetUtcDateTime(Windows.Globalization.Calendar)">
+            <summary>
+            Gets the Utc <see cref="T:System.DateTime"/> of the calendar.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.CalendarExtentions.ZeroBasedHour(Windows.Globalization.Calendar)">
+            <summary>
+            Gets zero based calendar hour.
+            </summary>
+            <param name="calendar"></param>
+            <returns>
+            Calendar hour. If the calendar clock is 12 hour and the
+            hour value is 12, then this method will return 0.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.CalendarExtentions.SetZeroBasedHour(Windows.Globalization.Calendar,System.Int32)">
+            <summary>
+            Sets zero based calendar hour.
+            </summary>
+            <param name="calendar"></param>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeComponentType">
+            <summary>
+            Defines the possible modifiable components of a date time item in a <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeComponentType.Day">
+            <summary>
+            The day part of the <see cref="T:System.DateTime"/> structure is considered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeComponentType.Month">
+            <summary>
+            The month part of the <see cref="T:System.DateTime"/> structure is considered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeComponentType.Year">
+            <summary>
+            The year part of the <see cref="T:System.DateTime"/> structure is considered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeComponentType.Hour">
+            <summary>
+            The hour part of the <see cref="T:System.DateTime"/> structure is considered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeComponentType.Minute">
+            <summary>
+            The minute part of the <see cref="T:System.DateTime"/> structure is considered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeComponentType.Second">
+            <summary>
+            The second part of the <see cref="T:System.DateTime"/> structure is considered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeComponentType.AMPM">
+            <summary>
+            The time span of a given <see cref="T:System.DateTime"/> value is considered.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeHelper">
+            <summary>
+            Provides helper methods for working with <see cref="T:System.DateTime"/> instances in the context of a <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker"/> control.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeHelper.Is24HourFormat(System.String)">
+            <summary>
+            Returns a boolean value that determines whether a given time format string
+            implies 24 hour time format.
+            </summary>
+            <param name="timeFormat">The string to check.</param>
+            <returns>True if the string implies 24 hour time format, otherwise false.</returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeHelper.CoerceDateTime(System.DateTime,Windows.Globalization.Calendar)">
+            <summary>
+            Coerces the <paramref name="utcDateTime"/> according to the min and max
+            allowed values of the <paramref name="calendar"/> parameter.
+            </summary>
+            <param name="utcDateTime"></param>
+            <param name="calendar"></param>
+            <returns>The coerced value.</returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeHelper.GetZeroBasedHour(System.String,System.Int32)">
+            <summary>
+            Transforms the <paramref name="hour"/> parameter to a zero based hour.
+            </summary>
+            <returns>
+            Zero based hour. If the clock is 12 hour and the
+            hour value is 12, then this method will return 0.
+            </returns>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeItem">
+            <summary>
+            Represents a data item within a DateTimeList.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeItem.#ctor(Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList,System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeItem"/> class.
+            </summary>
+            <param name="owner">The owner.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeItem.Update(System.DateTime)">
+            <summary>
+            Forces re-evaluation of the HeaderText and ContentText properties.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeItem.HeaderText">
+            <summary>
+            Gets the header of the item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeItem.ContentText">
+            <summary>
+            Gets the content of the item.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList">
+            <summary>
+            A special <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.RadLoopingList"/> instance that visualizes DateTime values.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.StepProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.Step"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.UpdateSelection(System.Int32,Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListSelectionChangeReason)">
+            <summary>
+            Applies the specified index as currently selected.
+            </summary>
+            <param name="newSelectedIndex">The desired selected index.</param>
+            <param name="reason">The reason of the change.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.CreateDataItem(System.Int32)">
+            <summary>
+            Creates a new <see cref="T:Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem"/> instance.
+            </summary>
+            <param name="logicalIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.IsItemEnabled(System.Int32)">
+            <summary>
+            Determines whether the logical item, representing the specified logical index should be enabled or not.
+            </summary>
+            <param name="logicalIndex">The logical index that defines the data to check for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.GetLogicalCount">
+            <summary>
+            Retrieves the logical count of the current data source (if any).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.UpdateDataItem(Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListDataItem,Telerik.Universal.UI.Xaml.Controls.Primitives.LoopingList.LoopingListItem)">
+            <summary>
+            Allows to minimize the overhead of creating new instances whenever a logical index changes by formatting an existing data item instance.
+            </summary>
+            <param name="dataItem"></param>
+            <param name="visualItem"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.TrySelectTypedInput(System.String)">
+            <summary>
+            Attempts to parse the provided input to an integer number and to map it to a logical index. Exposed as internal for testing purposes.
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="M:OnApplyTemplate"/> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.LoadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Loaded"/> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.UnloadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Unloaded" /> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.OnGotFocus(Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Called before the GotFocus event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.OnLostFocus(Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            Called before the LostFocus event occurs.
+            </summary>
+            <param name="e">The data for the event.</param>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.ComponentType">
+            <summary>
+            Gets or sets the component of the DateTime structure visualized by this list.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList.Step">
+            <summary>
+            Gets or sets the time step. The time step
+            determines the step between to possible selection values
+            in the current <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeList"/> instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeListItem">
+            <summary>
+            Represents a special looping list item that is created within a date-time list, used internally by <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker"/> and <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadTimePicker"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeListItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimeListItem"/> class.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.StepProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.Step"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.DisplayModeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.DisplayMode"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.IsReadOnlyProperty">
+            <summary>
+            Identifies the IsReadOnly dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.MinValueProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.MinValue"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.MaxValueProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.MaxValue"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ValueStringProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ValueString"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ValueProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.Value"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.DisplayValueFormatProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.DisplayValueFormat"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.EmptyContentProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.EmptyContent"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.EmptyContentTemplateProperty">
+            <summary>
+            Identifies the <see cref="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.EmptyContentTemplateProperty"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.AutoSizeWidthProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.AutoSizeWidth"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.CalendarIdentifierProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.CalendarIdentifier"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.CalendarLanguageProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.CalendarLanguage"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.CalendarNumeralSystemProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.CalendarNumeralSystem"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.MeasureOverride(Windows.Foundation.Size)">
+            <summary>
+            Provides the behavior for the Measure pass of the layout cycle.
+            </summary>
+            <param name="availableSize"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ItemLengthProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ItemLength"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ItemSpacingProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ItemSpacing"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ItemCountProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ItemCount"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorOrderProperty">
+            <summary>
+            Identifies the SelectorOrder dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorDefaultValueProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorDefaultValue"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorHeaderProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorHeader"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorHeaderTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorHeaderTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.IsOpenProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.IsOpen"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorBackgroundStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorBackgroundStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.GetValueStringFromCalendar(Windows.Globalization.Calendar)">
+            <summary>
+            Gets the string that represents the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.Value"/> according to the <paramref name="calendar"/>.
+            Override this method to change the default <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ValueString"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.GetDateTimeListByComponent(Telerik.Universal.UI.Xaml.Controls.Input.DateTimeComponentType)">
+            <summary>
+            Retrieves the DateTimeList instance associated with the specified DateTimeComponentType. Internal for testing purposes.
+            </summary>
+            <param name="componentType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.GetDateTimeListAt(System.Int32)">
+            <summary>
+            Gets the DateTimeList instance at the specified position as stored in the dateTimeLists field. Internal for testing purposes.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.UpdateSelectorsOrder">
+            <summary>
+            Updates the order (that is the grid column) of each selector, depending on the current Culture and SelectorOrder.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.PerformSelectorOKButtonClick">
+            <summary>
+            Exposes the core functionality behind the OK->Click event. Internal for testing purposes.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.PerformSelectorCancelButtonClick">
+            <summary>
+            Encapsulates the core functionality behind the Cancel->Click event. Internal for testing purposes.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.PerformPickerButtonClick">
+            <summary>
+            Encapsulates the core functionality behind the PickerButton->Click event. Internal for testing purposes.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.PerformSelectorKeyDown(Windows.System.VirtualKey)">
+            <summary>
+            Encapsulates the core functionality behind the KeyDown event of the CoreWindow when the Selector popup is displayed. Internal for testing purposes.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.UnloadCore">
+            <summary>
+            Called within the handler of the <see cref="E:Unloaded"/> event. Allows inheritors to provide their specific logic.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.UnapplyTemplateCore">
+            <summary>
+            Unapplies the current control template.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ApplyTemplateCore">
+            <summary>
+            Resolves the control's template parts.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="M:OnApplyTemplate"/> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ValueChanged">
+            <summary>
+            This event is raised when the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.Value"/> property has changed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.DisplayMode">
+            <summary>
+            Gets or sets the mode that defines how the component is displayed within the visual tree.
+            The default value is <see cref="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickerDisplayMode.Standard"/>.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker" DisplayMode="Standard"/&gt;
+            </code>
+            <code language="c#">
+            datePicker.DisplayMode = DateTimePickerDisplayMode.Standard;
+            </code>
+            </example>
+            <seealso cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickerDisplayMode"/>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.CalendarNumeralSystem">
+            <summary>
+            Gets or sets the calendar numeral system.
+            The default value is <see cref="P:Windows.Globalization.NumeralSystemIdentifiers.Latn"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.CalendarIdentifier">
+            <summary>
+            Gets or sets the calendar identifier.
+            The default value is <see cref="P:Windows.Globalization.CalendarIdentifiers.Gregorian"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.CalendarLanguage">
+            <summary>
+            Gets or sets the calendar language.
+            The default value is <see cref="P:Windows.Globalization.Language.CurrentInputMethodLanguageTag"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.Step">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.DateTimeOffset"/> struct
+            that represents the date or time amount used as an interval
+            to create the selectable options in the date/time component selectors.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.AutoSizeWidth">
+            <summary>
+            Gets or sets a boolean value indicating whether the control will automatically calculate its
+            width so that it equals the width of the Selector part. The default value is <c>true</c>.
+            </summary>
+            <value>
+            Default value: <c>true</c>
+            </value>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker" AutoSizeWidth="False"/&gt;
+            </code>
+            <code language="c#">
+            datePicker.AutoSizeWidth = false;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.IsReadOnly">
+            <summary>
+            Gets or sets a boolean value determining whether the control is in
+            read only mode. If set to true, the control does not allow the user
+            to modify its value.
+            </summary>
+            <value>
+            Default value: <c>false</c>.
+            </value>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker" IsReadOnly="True"/&gt;
+            </code>
+            <code language="c#">
+            datePicker.IsReadOnly = true;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.EmptyContent">
+            <summary>
+            Gets or sets the null text of the control. The null text is displayed when there is no value defined.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker" EmptyContent="No date is selected."/&gt;
+            </code>
+            <code language="c#">
+            datePicker.EmptyContent = "No date is selected.";
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.EmptyContentTemplate">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.DataTemplate"/> defining the visual appearance of the empty content of the control.
+            </summary>
+            <value>The empty content <see cref="T:Windows.UI.Xaml.DataTemplate"/>.</value>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker&gt;
+                &lt;telerikInput:RadDatePicker.EmptyContentTemplate&gt;
+                    &lt;DataTemplate&gt;
+                        &lt;TextBlock Text="No content" Foreground="Red" FontWeight="Bold"/&gt;
+                    &lt;/DataTemplate&gt;
+                &lt;/telerikInput:RadDatePicker.EmptyContentTemplate&gt;
+            &lt;/telerikInput:RadDatePicker&gt;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ValueString">
+            <summary>
+            Gets the string representation of the current value. The string representation is
+            the current value formatted according to the settings of the device and the control.
+            </summary>
+            <value>
+            <para>
+            Default value: <c>null</c>
+            </para>
+            <para>
+            When no date is selected, the text displayed in the button part is defined by the
+            <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.EmptyContent"/> or the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.EmptyContentTemplate"/> properties.
+            </para>
+            </value>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker"/&gt;
+            </code>
+            <code language="c#">
+            datePicker.Value = new DateTime(2013,1,1);
+            string date = datePicker.ValueString;// "1/1/2013"
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.MaxValue">
+            <summary>
+            Gets or sets the maximum value of the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.Value"/> property range for the control.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker"/&gt;
+            </code>
+            <code language="c#">
+            datePicker.MaxValue = new DateTime(2014, 1, 1);
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.MinValue">
+            <summary>
+            Gets or sets the minimum value of the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.Value"/> property range for the control.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker"/&gt;
+            </code>
+            <code language="c#">
+            datePicker.MaxValue = new DateTime(2012, 1, 1);
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.Value">
+            <summary>
+            Gets or sets the date value.
+            </summary>
+            <value>
+            The default value is <c>null</c> or defined by the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.EmptyContent"/> or <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.EmptyContentTemplate"/> properties.
+            </value>
+            <remarks>
+            The range of the value is defined by the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.MinValue"/> and <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.MaxValue"/> properties.
+            </remarks>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker"/&gt;
+            </code>
+            <code language="c#">
+            datePicker.Value = new DateTime(2013, 1, 1);
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.DisplayValueFormat">
+            <summary>
+            Gets or sets the format for the string being displayed
+            The default value is <see cref="F:System.String.Empty"/>.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker" DisplayValueFormat="dd-MM-yyyy"/&gt;
+            </code>
+            <code language="c#">
+            datePicker.DisplayValueFormat = "dd-MM-yyyy";
+            </code>
+            </example>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.Closed">
+            <summary>
+            This event is raised when the selector part of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker"/> control has been closed.
+            </summary>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.Opened">
+            <summary>
+            This event is raised when the selector part of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker"/> control has been opened.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorBackgroundStyle">
+            <summary>
+            Gets or sets the <see cref="T:Windows.UI.Xaml.Style"/> instance that defines the fill and border of the Selector part of the control.
+            The Style should target the <see cref="T:Windows.UI.Xaml.Controls.Border"/> type.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker"&gt;
+                &lt;telerikInput:RadDatePicker.SelectorBackgroundStyle&gt;
+                    &lt;Style TargetType="Border"&gt;
+                        &lt;Setter Property="Background" Value="Bisque"/&gt;
+                        &lt;Setter Property="BorderBrush" Value="RoyalBlue"/&gt;
+                        &lt;Setter Property="BorderThickness" Value="5"/&gt;
+                    &lt;/Style&gt;
+                &lt;/telerikInput:RadDatePicker.SelectorBackgroundStyle&gt;
+            &lt;/telerikInput:RadDatePicker&gt;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ItemLength">
+            <summary>
+            Gets or sets the length (width and height) of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeItem"/> that appear in the selector part of the picker.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker" ItemLength="100"/&gt;
+            </code>
+            <code language="c#">
+            datePicker.ItemLength = 100;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ItemSpacing">
+            <summary>
+            Gets or sets the margin of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeItem"/> that appear in the selector part of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker"/>.
+            </summary>
+            <value>
+            Default value: 5.
+            </value>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker" ItemSpacing="15"/&gt;
+            </code>
+            <code language="c#">
+            datePicker.ItemSpacing = 15;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorOrder">
+            <summary>
+            Gets or sets the selector format. 
+            This value defines which <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimeItem"/> parts of the selector will be visible and how they will be ordered.
+            For example setting "ym" will display the Year and Month items in a <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker"/> instance.
+            </summary>
+            <value>
+            <para>
+            Options available for <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker"/>: <c>"y"</c> (year), <c>"m"</c> (month), <c>"d"</c> (day)
+            </para>
+            <para>
+            Options available for <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadTimePicker"/>: <c>"h"</c>,<c>"H"</c> (hour), <c>"m"</c> (minute), <c>"t"</c> (time part - AM/PM)
+            </para>
+            </value>
+            <remarks>
+            When the format <see cref="T:System.String"/> contains <c>"H"</c>, then the time part is not displayed.
+            </remarks>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker" SelectorOrder="th"/&gt;
+            </code>
+            <code language="C#">
+            datePicker.SelectorOrder = "th";</code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.IsOpen">
+            <summary>
+            Gets or sets a boolean value determining whether the selector part of the control is opened.
+            </summary>
+            <value>
+            Default value: false.
+            </value>
+            <remarks>
+            If the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.DisplayMode"/> property is set to <see cref="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickerDisplayMode.Inline"/>, the selector part is always visible.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorDefaultValue">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.DateTime"/> struct that represents
+            the default value displayed in the selector part when opened. The default value is shown
+            when the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.Value"/> property is set to <c>null</c>.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker" /&gt;
+            </code>
+            <code language="c#">
+            datePicker.SelectorDefaultValue = new DateTime(2020, 10, 11);
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorHeader">
+            <summary>
+            Gets or sets the header displayed in the selector part of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker"/> instance.
+            </summary>
+            <value>
+            Default value: <c>null</c>
+            </value>
+            <remarks>
+            If the value is <c>null</c>, the default displayed text is "Select Date"/"Select Time"
+            for <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker"/>/<see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadTimePicker"/>.
+            </remarks>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker" SelectorHeader="Enter your birthday"/&gt;
+            </code>
+            <code language="c#">
+            datePicker.SelectorHeader = "Enter your birthday:";
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorHeaderTemplate">
+            <summary>
+            Gets or sets an instance of the <see cref="T:Windows.UI.Xaml.DataTemplate"/> 
+            class that represents the template used to visualize the
+            content defined by the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorHeader"/> property.
+            </summary>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker&gt;
+                &lt;telerikInput:RadDatePicker.SelectorHeaderTemplate&gt;
+                    &lt;DataTemplate&gt;
+                        &lt;TextBlock Text="Enter your birthday" Foreground="Orange"
+                                   FontSize="20" FontWeight="Bold" Margin="10,10,10,10"/&gt;
+                    &lt;/DataTemplate&gt;
+                &lt;/telerikInput:RadDatePicker.SelectorHeaderTemplate&gt;
+            &lt;/telerikInput:RadDatePicker&gt;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ItemCount">
+            <summary>
+            Gets or sets the number of items visible within the selector part of the picker.
+            This property is used to determine the height of the selector part when opened.
+            </summary>
+            <value>
+            <para>Default value: 3</para>
+            <para>
+            When the value is set to negative number, the selector part maximizes its height to fit the height of the current top-level Window.
+            </para>
+            </value>
+            <remarks>
+            The calculated height will not exceed the height of the current top-level Window.
+            </remarks>
+            <example>
+            <code language="xaml">
+            &lt;telerikInput:RadDatePicker x:Name="datePicker" ItemCount="8"/&gt;
+            </code>
+            <code language="c#">
+            datePicker.ItemCount = 8;
+            </code>
+            </example>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.Popup">
+            <summary>
+            Gets the Popup instance used to display the component when its DisplayMode is Standard.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.PickerButton">
+            <summary>
+            Gets the DateTimePickerButton instance that represents the inline(picker) part of the button. Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.OKButton">
+            <summary>
+            Gets the OK button present in the Selector part. Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.CancelButton">
+            <summary>
+            Gets the Cancel button present in the Selector part. Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.ButtonsPanel">
+            <summary>
+            Gets container of the buttons in the selector. Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorLayoutRoot">
+            <summary>
+            Gets Border that represents the layout root in the Selector part. Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.IsSelectorPopupClosedInternally">
+            <summary>
+            Determines whether the Selector Popup has been closed by its IsLightDismissEnabled routine or by a click over the OK/Cancel button. Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.DateTimeListsValue">
+            <summary>
+            Gets the current DateTime value displayed by the Selector DateTime lists. Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.SelectorUtcValue">
+            <summary>
+            Gets the current Selector min value with step applied. It may differ from the current MinValue.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker.HostPage">
+            <summary>
+            Gets the page that hosts this window.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimePickerButton">
+            <summary>
+            Represents an extended <see cref="T:Windows.UI.Xaml.Controls.Button"/> class that represents the "Picker" part in a <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker"/> control.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimePickerButton.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DateTimePickerButton"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickerDisplayMode">
+            <summary>
+            Defines the possible display modes of a <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker"/> or <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadTimePicker"/> controls.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickerDisplayMode.Standard">
+            <summary>
+            The control is displayed by two parts: Picker part and Selector part. The Picker part is displayed in the main layout.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickerDisplayMode.Inline">
+            <summary>
+            The control displays only the Selector part in the main layout.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DisplayModeToVisibilityConverter">
+            <summary>
+            Represents a custom value converter that transforms a <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickerDisplayMode"/> value to a <see cref="T:Windows.UI.Xaml.Visibility"/> value.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DisplayModeToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            Converts <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickerDisplayMode"/> values to <see cref="T:Windows.UI.Xaml.Visibility"/> objects.
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DisplayModeToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+             <param name="targetType"></param>
+             <param name="parameter"></param>
+             <param name="language"></param>
+             <returns></returns>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickers.DisplayModeToVisibilityConverter.VisibleDisplayMode">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePickerDisplayMode"/> value that defines the <see cref="F:Windows.UI.Xaml.Visibility.Visible"/> condition.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker">
+            <summary>
+            Represents a control that enables the user to select date values from a range by tapping on a picker box containing the current value and opening a date selector to select a new value.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.DayStepBehaviorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.DayStepBehavior"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.MonthStepBehaviorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.MonthStepBehavior"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.YearStepBehaviorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.YearStepBehavior"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker"/> class.
+            </summary>
+            <remarks>
+            See the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker"/> class for the inherited members.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.GetValueStringFromCalendar(Windows.Globalization.Calendar)">
+            <summary>
+            Gets the string that represents the <see cref="!:Value"/> according to the <paramref name="calendar"/>.
+            Override this method to change the default <see cref="!:ValueString"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.UpdateSelectorsOrder">
+            <summary>
+            Updates the order (that is the grid column) of each selector, depending on the current Culture and SelectorOrder.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.ApplyTemplateCore">
+            <summary>
+            Resolves the control's template parts.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.OnTemplateApplied">
+            <summary>
+            Resolves the control's template parts.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.DayStepBehavior">
+            <summary>
+            Gets or sets a value from the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.StepBehavior"/> enumeration
+            that defines how the value day component value set to the <see cref="!:DateTimeSelector.Step"/> property
+            is interpreted. See the descriptions of the different values
+            exposed by the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.StepBehavior"/> enum for further details.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.MonthStepBehavior">
+            <summary>
+            Gets or sets a value from the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.StepBehavior"/> enumeration
+            that defines how the month component value set to the <see cref="!:DateTimeSelector.Step"/> property
+            is interpreted. See the descriptions of the different values
+            exposed by the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.StepBehavior"/> enum for further details.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadDatePicker.YearStepBehavior">
+            <summary>
+            Gets or sets a value from the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.StepBehavior"/> enumeration
+            that defines how the year component value set to the <see cref="!:DateTimeSelector.Step"/> property
+            is interpreted. See the descriptions of the different values
+            exposed by the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.StepBehavior"/> enum for further details.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.RadTimePicker">
+            <summary>
+            Represents a control that enables the user to select time values from a range by tapping
+            on a picker box containing the current value and opening a time selector to select a new value.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadTimePicker.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadTimePicker"/> class.
+            </summary>
+            <remarks>
+            See the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker"/> class for the inherited members.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadTimePicker.GetValueStringFromCalendar(Windows.Globalization.Calendar)">
+            <summary>
+            Gets the string that represents the <see cref="!:Value"/> according to the <paramref name="calendar"/>.
+            Override this method to change the default <see cref="!:ValueString"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadTimePicker.UpdateSelectorsOrder">
+            <summary>
+            Updates the order (that is the grid column) of each selector, depending on the current Culture and SelectorOrder.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadTimePicker.OnTemplateApplied">
+            <summary>
+            Occurs when the <see cref="M:OnApplyTemplate"/> method has been called and the template is already successfully applied.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadTimePicker.ApplyTemplateCore">
+            <summary>
+            Resolves the control's template parts.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.StepBehavior">
+            <summary>
+            Defines the possible behaviors of <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.DateTimePicker"/> when a step different from 1 is defined 
+            for one of the selectable components of the <see cref="T:System.DateTime"/> structure.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.StepBehavior.Multiples">
+            <summary>
+            All multiples of the current time step are shown in the looping selector.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.StepBehavior.StartFromBase">
+            <summary>
+            Each value in the looping selector is generated by adding the step value to each previous value starting from the base value.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.StepBehavior.BaseAndMultiples">
+            <summary>
+            The base (starting) value and all multiples are shown in the looping selector.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.InputLocalizationManager">
+            <summary>
+            Encapsulates the localization logic for controls within the <see cref="N:Telerik.Universal.UI.Xaml.Controls.Input"/> assembly.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.InputLocalizationManager.Instance">
+            <summary>
+            Gets the only instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.InputLocalizationManager"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.RadRating">
+            <summary>
+            Represents a control that allows for giving a rating by tapping on a RatingItem.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.ValueProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.Value"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.OrientationProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.Orientation"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.AutoGeneratedItemsCountProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.AutoGeneratedItemsCount"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.EmptyIconContentTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.EmptyIconContentTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.FilledIconContentTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.FilledIconContentTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.EmptyIconContentProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.EmptyIconContent"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.FilledIconContentProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.FilledIconContent"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.EmptyIconStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.EmptyIconStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.FilledIconStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.FilledIconStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.HighlightedIconStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.HighlightedIconStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.IsReadOnlyProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.IsReadOnly"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.IsPanEnabledProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.IsPanEnabled"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.RatingSelectionModeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.RatingSelectionMode"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.RatingDisplayPrecisionProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.RatingDisplayPrecision"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.CommandProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.Command"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.CommandParameterProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.CommandParameter"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadRating"/> class.
+            </summary>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.ValueChanged">
+            <summary>
+            Occurs when the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.Value"/> property is changed.
+            </summary>
+        </member>
+        <member name="E:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.ValueChanging">
+            <summary>
+            Occurs when <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.Value"/> property is changing.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.CommandParameter">
+            <summary>
+            Gets or sets the command parameter for the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.Command"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.Command">
+            <summary>
+            Gets or sets the command executed when the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.Value"/> is changed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.RatingDisplayPrecision">
+            <summary>
+            Gets or sets the rating display precision.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.RatingSelectionMode">
+            <summary>
+            Gets or sets the rating selection mode.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.IsPanEnabled">
+            <summary>
+            Gets or sets a value indicating whether the rating control responds to pan gesture.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.IsReadOnly">
+            <summary>
+            Gets or sets a value indicating whether the rating can be changed or is read only.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.Value">
+            <summary>
+            Gets or sets the rating value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.HighlightedIconStyle">
+            <summary>
+            Gets or sets the style of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem"/> icon content in highlighted state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.EmptyIconStyle">
+            <summary>
+            Gets or sets the style of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem"/> icon content when the item is not selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.FilledIconStyle">
+            <summary>
+            Gets or sets the style of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem"/> icon content when the item is selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.EmptyIconContent">
+            <summary>
+            Gets or sets the content of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem"/> icon when the item is not selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.FilledIconContent">
+            <summary>
+            Gets or sets the content of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem"/> icon when the item is selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.EmptyIconContentTemplate">
+            <summary>
+            Gets or sets the content template of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem"/> when the item is not selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.FilledIconContentTemplate">
+            <summary>
+            Gets or sets the content template of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem"/> when the item is selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.AutoGeneratedItemsCount">
+            <summary>
+            Gets or sets the count of visual items that are automatically created. Can not be used when rating items are added manually.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.Items">
+            <summary>
+            Gets the rating items.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRating.Orientation">
+            <summary>
+            Gets or sets the rating orientation.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem">
+            <summary>
+            Represents an item from the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadRating"/> control.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.EmptyIconContentProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.EmptyIconContent"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.EmptyIconContentTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.EmptyIconContentTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.EmptyIconStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.EmptyIconStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.FilledIconContentProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.FilledIconContent"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.FilledIconContentTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.FilledIconContentTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.FilledIconStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.FilledIconStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.HighlightedIconStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.HighlightedIconStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.HighlightedIconStyle">
+            <summary>
+            Gets or sets the style of the icon content in highlighted state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.FilledIconStyle">
+            <summary>
+            Gets or sets the style of the icon content when the item is selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.EmptyIconStyle">
+            <summary>
+            Gets or sets the style of the icon content when the item is not selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.FilledIconContent">
+            <summary>
+            Gets or sets the content of the icon when the item is selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.EmptyIconContent">
+            <summary>
+            Gets or sets the content of the icon when the item is not selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.FilledIconContentTemplate">
+            <summary>
+            Gets or sets the content template of the icon when the item is selected.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.RadRatingItem.EmptyIconContentTemplate">
+            <summary>
+            Gets or sets the content template of the icon when the item is not selected.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.RatingDisplayPrecision">
+            <summary>
+            Specifies the precision of RadRating.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RatingDisplayPrecision.Item">
+            <summary>
+            Specifies that only the full shape of the RatingItems can be visualized as selected.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RatingDisplayPrecision.Half">
+            <summary>
+            Specifies that only full or half of the shape of the RatingItems can be visualized as selected.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RatingDisplayPrecision.Exact">
+            <summary>
+            Specifies that the shape of the RatingItems can be partially visualized as selected.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.RatingSelectionMode">
+            <summary>
+            Specifies the RatingSelectionMode of RadRating.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RatingSelectionMode.Single">
+            <summary>
+            Specifies that only one of the RatingItems will be visualized as selected.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.UI.Xaml.Controls.Input.RatingSelectionMode.Continuous">
+            <summary>
+            Specifies that the selected RatingItem and all RatingItems before it will be visualized as selected.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.ValueChangedEventArgs`1">
+            <summary>
+            This class contains information about events which occur when
+            a given value is changed. Here the old and the new values are exposed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.ValueChangedEventArgs`1.#ctor(`0,`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.ValueChangedEventArgs`1"/> class.
+            </summary>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.ValueChangedEventArgs`1.OldValue">
+            <summary>
+            Gets an instance of the <see cref="T:System.DateTime"/> struct
+            that represents the previous value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.ValueChangedEventArgs`1.NewValue">
+            <summary>
+            Gets an instance of the <see cref="T:System.DateTime"/> struct
+            that represents the new value.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.UI.Xaml.Controls.Input.ValueChangingEventArgs`1">
+            <summary>
+            Contains information about an event which occurs
+            when a given value is about to change. Allows for canceling the change.
+            </summary>
+            <typeparam name="T">The type of the value that is about to change.</typeparam>
+        </member>
+        <member name="M:Telerik.Universal.UI.Xaml.Controls.Input.ValueChangingEventArgs`1.#ctor(`0,`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.UI.Xaml.Controls.Input.ValueChangingEventArgs`1"/> class.
+            </summary>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.ValueChangingEventArgs`1.OldValue">
+            <summary>
+            Gets an instance of the <see cref="T:System.DateTime"/> struct
+            that represents the previous value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.UI.Xaml.Controls.Input.ValueChangingEventArgs`1.NewValue">
+            <summary>
+            Gets an instance of the <see cref="T:System.DateTime"/> struct
+            that represents the new value.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1595 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.Universal.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Core.App">
+            <summary>
+            Provides application-specific behavior to supplement the default Application class.
+            </summary>
+        </member>
+        <member name="M:Core.App.#ctor">
+            <summary>
+            Initializes the singleton application object.  This is the first line of authored code
+            executed, and as such is the logical equivalent of main() or WinMain().
+            </summary>
+        </member>
+        <member name="M:Core.App.OnLaunched(Windows.ApplicationModel.Activation.LaunchActivatedEventArgs)">
+            <summary>
+            Invoked when the application is launched normally by the end user.  Other entry points
+            will be used such as when the application is launched to open a specific file.
+            </summary>
+            <param name="e">Details about the launch request and process.</param>
+        </member>
+        <member name="M:Core.App.OnNavigationFailed(System.Object,Windows.UI.Xaml.Navigation.NavigationFailedEventArgs)">
+            <summary>
+            Invoked when Navigation to a certain page fails
+            </summary>
+            <param name="sender">The Frame which failed navigation</param>
+            <param name="e">Details about the navigation failure</param>
+        </member>
+        <member name="M:Core.App.OnSuspending(System.Object,Windows.ApplicationModel.SuspendingEventArgs)">
+            <summary>
+            Invoked when application execution is being suspended.  Application state is saved
+            without knowing whether the application will be terminated or resumed with the contents
+            of memory still intact.
+            </summary>
+            <param name="sender">The source of the suspend request.</param>
+            <param name="e">Details about the suspend request.</param>
+        </member>
+        <member name="T:Telerik.Universal.Core.BindingExpressionHelper">
+            <summary>
+            Provides methods that allow getting property values without reflection.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.BindingExpressionHelper.ToUntypedFunc``2(System.Func{``0,``1})">
+            <summary>
+            Converts typed to untyped function.
+            </summary>
+            <typeparam name="T">The input parameter type of the function.</typeparam>
+            <typeparam name="TResult">Return type of the function.</typeparam>
+            <param name="func">That that will be converted.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.BindingExpressionHelper.CreateGetValueFunc(System.Type,System.String)">
+            <summary>
+            Returns a function that will return the value of the property, specified by the provided propertyPath.
+            </summary>
+            <param name="itemType">The type of the instance which property will be returned.</param>
+            <param name="propertyPath">The path of the property which value will be returned.</param>
+        </member>
+        <member name="T:Telerik.Universal.Core.WeakReferenceList`1">
+            <summary>
+            Wraps instances of type T in WeakReference and stores them in a List.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.WeakReferenceList`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.WeakReferenceList`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.WeakReferenceList`1.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.WeakReferenceList`1"/> class.
+            </summary>
+            <param name="cleanNonAlive">True to remove any non-alive instances automatically, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.WeakReferenceList`1.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.WeakReferenceList`1"/> class.
+            </summary>
+            <param name="cleanNonAlive">True to remove any non-alive instances automatically, false otherwise.</param>
+            <param name="trackResurrection">True to track object resurrection, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.WeakReferenceList`1.Add(`0)">
+            <summary>
+            Adds the specified value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.WeakReferenceList`1.Insert(System.Int32,`0)">
+            <summary>
+            Inserts an item at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.WeakReferenceList`1.IndexOf(`0)">
+            <summary>
+            Gets the index of the specified value within the list.
+            </summary>
+            <param name="value">The value to check for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.WeakReferenceList`1.Remove(`0)">
+            <summary>
+            Removes the specified value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.WeakReferenceList`1.Clear">
+            <summary>
+            Clears the list.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.WeakReferenceList`1.RemoveAt(System.Int32)">
+            <summary>
+            Removes the value at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.WeakReferenceList`1.CleanNonAlive">
+            <summary>
+            Cleans all targets that are no longer alive.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.WeakReferenceList`1.GetEnumerator">
+            <summary>
+            Gets the enumerator that iterates through all items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.WeakReferenceList`1.InsertCore(System.Int32,`0)">
+            <summary>
+            Core insert implementation. Allows inheritors to provide their own implementation.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="P:Telerik.Universal.Core.WeakReferenceList`1.AutoCleanNonAlive">
+            <summary>
+            Determines whether the list will automatically remove any contained non-alive weak reference.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.WeakReferenceList`1.TrackResurrection">
+            <summary>
+            Determines the WeakReference.TrackResurrection property for all T instances added.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.WeakReferenceList`1.Count">
+            <summary>
+            Gets the count of the list.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.WeakReferenceList`1.List">
+            <summary>
+            Gets the internal List used to store all instances.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.WeakReferenceList`1.Item(System.Int32)">
+            <summary>
+            Gets or sets the item at the specified index.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Telerik.Universal.Core.CommandBase">
+            <summary>
+            Base implementation of the <see cref="T:System.Windows.Input.ICommand"/> interface.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.CommandBase.CanExecute(System.Object)">
+            <summary>
+            Determines whether the command can be executed against the provided parameter.
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.CommandBase.Execute(System.Object)">
+            <summary>
+            Performs the core action associated with the command, using the provided parameter.
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.CommandBase.ExecuteCore(System.Object)">
+            <summary>
+            Performs the core action associated with this command.
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.CommandBase.OnCanExecuteChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:CanExecuteChanged"/> event.
+            </summary>
+        </member>
+        <member name="E:Telerik.Universal.Core.CommandBase.CanExecuteChanged">
+            <summary>
+            Occurs when the CanExecute state of the command changes.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.HslColor">
+            <summary>
+            Converts colors from RGB to HSL and vice versa.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.HslColor.Parse(System.Int32)">
+            <summary>
+            Creates a HSLColor based on an integer containing color information in the rgba format.
+            </summary>
+            <param name="rgba">The color in rgba.</param>
+            <returns>Returns a new instance of HslColor.</returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.HslColor.Parse(Windows.UI.Color)">
+            <summary>
+            Creates a HSLColor based on an integer containing color information in the rgba format.
+            </summary>
+            <param name="color">The color in rgba.</param>
+            <returns>Returns a new instance of HslColor.</returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.HslColor.Parse(System.Byte[])">
+            <summary>
+            Creates a HSLColor based on byte array containing color information in the rgba format.
+            </summary>
+            <param name="rgba">The color in rgba.</param>
+            <returns>Returns a new instance of HslColor.</returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.HslColor.ToInt">
+            <summary>
+            Converts this HslColor instance to <see cref="T:System.Int32"/> in the rgba format.
+            </summary>
+            <returns>Returns an integer.</returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.HslColor.ToColor">
+            <summary>
+            Converts this HslColor to Color.
+            </summary>
+            <returns>Returns a color object.</returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.HslColor.ToRGB">
+            <summary>
+            Converts this HslColor instance to a byte array in the rgba format.
+            </summary>
+            <returns>An byte array.</returns>
+        </member>
+        <member name="T:Telerik.Universal.Core.IAsyncDataErrorInfo">
+            <summary>
+            Defines members that data entity classes can implement to provide custom
+            synchronous and asynchronous validation support. Extends <see cref="T:System.ComponentModel.INotifyDataErrorInfo"/> and adds an option for synchronous execution of async validation.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.IAsyncDataErrorInfo.ValidateAsync(System.String)">
+            <summary>
+            Triggers validate logic asynchronously.
+            </summary>
+            <param name="propertyName">The name of the property that needs validation.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Universal.Core.ICloneable`1">
+            <summary>
+            Supports cloning, which creates a new instance of a class with the same value as an existing instance.
+            </summary>
+            <typeparam name="T">The concrete type of the clone instance.</typeparam>
+        </member>
+        <member name="M:Telerik.Universal.Core.ICloneable`1.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Universal.Core.ValidateViewModelBase">
+            <summary>
+            Provides basic implementation of the <see cref="T:Telerik.Universal.Core.IAsyncDataErrorInfo"/> interface.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.ViewModelBase">
+            <summary>
+            Base implementation of the <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> interface.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.ViewModelBase.OnPropertyChanged(System.String)">
+            <summary>
+            Raises the <see cref="E:Telerik.Universal.Core.ViewModelBase.PropertyChanged"/> event.
+            </summary>
+            <param name="changedPropertyName"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.ViewModelBase.PropertyChangedOverride(System.String)">
+            <summary>
+            Provides an entry point for inheritors to provide additional logic over the PropertyChanged routine.
+            </summary>
+            <param name="changedPropertyName"></param>
+        </member>
+        <member name="E:Telerik.Universal.Core.ViewModelBase.PropertyChanged">
+            <summary>
+            Occurs immediately after a property of this instance has changed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.ValidateViewModelBase.GetErrors(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telerik.Universal.Core.ValidateViewModelBase.ValidateAsync(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telerik.Universal.Core.ValidateViewModelBase.RemoveErrors(System.String)">
+            <summary>
+            Removes the errors for the specified property.
+            </summary>
+            <param name="propertyName">The name of the property to remove validation errors
+            for; or null or <see cref="F:System.String.Empty"/>, to clear entity-level
+            errors.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.ValidateViewModelBase.AddError(System.String,System.Object)">
+            <summary>
+            Adds error message to the specified property.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+            <param name="errorMessage">The error message.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.ValidateViewModelBase.ValidateAsyncOverride(System.String)">
+            <summary>
+            Called by the <see cref="M:ValidateAsync"/> method. Allows inheritors to provide custom validation logic.
+            </summary>
+            <param name="propertyName">The name of the property that needs validation.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.ValidateViewModelBase.OnErrorsChanged(System.String)">
+            <summary>
+            Raises the <see cref="E:Telerik.Universal.Core.ValidateViewModelBase.ErrorsChanged"/> event.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="E:Telerik.Universal.Core.ValidateViewModelBase.ErrorsChanged">
+            <inheritdoc />
+        </member>
+        <member name="P:Telerik.Universal.Core.ValidateViewModelBase.HasErrors">
+            <inheritdoc />
+        </member>
+        <member name="T:Telerik.Universal.Core.BoolToVisibilityConverter">
+            <summary>
+            Converts boolean values to <see cref="!:System.Windows.Visibility"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.BoolToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            Modifies the source data before passing it to the target for display
+            in the UI.
+            </summary>
+            <param name="value">The source data being passed to the target.</param>
+            <param name="targetType">The <see cref="T:System.Type" /> of data expected by
+            the target dependency property.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>The value to be passed to the target dependency property.</returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.BoolToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <summary>
+            Modifies the target data before passing it to the source object.  This
+            method is called only in <see cref="F:System.Windows.Data.BindingMode.TwoWay" />
+            bindings.
+            </summary>
+            <param name="value">The target data being passed to the source.</param>
+            <param name="targetType">The <see cref="T:System.Type" /> of data expected by
+            the source object.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>The value to be passed to the source object.</returns>
+        </member>
+        <member name="T:Telerik.Universal.Core.Data.IIncrementalBatchLoading">
+            <summary>
+            Specifies a calling contract for collection views that support incremental
+            loading adding the notion of batch size.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Data.IIncrementalBatchLoading.BatchSize">
+            <summary>
+            Gets or sets the size of the batch.
+            </summary>
+            <value>The size of the batch.</value>
+        </member>
+        <member name="T:Telerik.Universal.Core.Data.IncrementalLoadingCollection`1">
+            <summary>
+            Represents a dynamic data collection that implements <see cref="T:Telerik.Universal.Core.Data.IIncrementalBatchLoading"/> and simplifies its usage.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.Data.IncrementalLoadingCollection`1.#ctor(System.Func{System.UInt32,System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{`0}}})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.Data.IncrementalLoadingCollection`1"/> class.
+            </summary>
+            <param name="load">Specifies the callback used when more items are requested.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.Data.IncrementalLoadingCollection`1.LoadMoreItemsAsync(System.UInt32)">
+            <summary>Initializes incremental loading from the view.</summary>
+            <returns>The wrapped results of the load operation.</returns>
+            <param name="count">The number of items to load.</param>
+        </member>
+        <member name="P:Telerik.Universal.Core.Data.IncrementalLoadingCollection`1.HasMoreItems">
+            <summary>Gets a sentinel value that supports incremental loading implementations.
+            </summary>
+            <returns>True if additional unloaded items remain in the view; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:Telerik.Universal.Core.Data.IncrementalLoadingCollection`1.BatchSize">
+            <summary>
+            Gets or sets the data batch size that will be requested.
+            </summary>
+            <value>The size of the batch.</value>
+        </member>
+        <member name="T:Telerik.Universal.Core.ISupportCurrentItem">
+            <summary>
+            Defines a type that has a notation for a Current item. This notation is typical for data-bound components like RadDataGrid.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.ISupportCurrentItem.MoveCurrentTo(System.Object)">
+            <summary>
+            Attempts to set the <see cref="P:Telerik.Universal.Core.ISupportCurrentItem.CurrentItem"/> to the provided object instance.
+            </summary>
+            <param name="item">The object instance to set as current.</param>
+            <returns>True if the operation succeeded, false otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.ISupportCurrentItem.MoveCurrentToFirst">
+            <summary>
+            Attempts to move the <see cref="P:Telerik.Universal.Core.ISupportCurrentItem.CurrentItem"/> to the first item in the view.
+            </summary>
+            <returns>True if the operation succeeded, false otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.ISupportCurrentItem.MoveCurrentToLast">
+            <summary>
+            Attempts to move the <see cref="P:Telerik.Universal.Core.ISupportCurrentItem.CurrentItem"/> to the last item in the view.
+            </summary>
+            <returns>True if the operation succeeded, false otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.ISupportCurrentItem.MoveCurrentToNext">
+            <summary>
+            Attempts to move the <see cref="P:Telerik.Universal.Core.ISupportCurrentItem.CurrentItem"/> to the item next to the <see cref="P:Telerik.Universal.Core.ISupportCurrentItem.CurrentItem"/> in the view.
+            </summary>
+            <returns>True if the operation succeeded, false otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.ISupportCurrentItem.MoveCurrentToPrevious">
+            <summary>
+            Attempts to move the <see cref="P:Telerik.Universal.Core.ISupportCurrentItem.CurrentItem"/> to the item previous to the <see cref="P:Telerik.Universal.Core.ISupportCurrentItem.CurrentItem"/> in the view.
+            </summary>
+            <returns>True if the operation succeeded, false otherwise.</returns>
+        </member>
+        <member name="P:Telerik.Universal.Core.ISupportCurrentItem.CurrentItem">
+            <summary>
+            Gets the object instance that is considered Current.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.ISupportCurrentItem.IsCurrentItemInView">
+            <summary>
+            Gets a value indicating whether the current item is within the data view. For example if a filtering operation is applied, the current item may not be visible.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.Data.PropertyValueLookup">
+            <summary>
+            Represents a concrete <see cref="T:Telerik.Universal.Core.Data.ValueLookup"/> implementation that retrieves property value given the name of the property.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.Data.ValueLookup">
+            <summary>
+            Defines a public method that can be used for looking-up values on an object instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.Data.ValueLookup.GetValueForItem(System.Object)">
+            <summary>
+            Retrieves the desired value from the specified object instance.
+            </summary>
+            <param name="dataItem">The object instance from which the value is retrieved.</param>
+            <returns>The actual value.</returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.Data.PropertyValueLookup.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.Data.PropertyValueLookup"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.Data.PropertyValueLookup.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.Data.PropertyValueLookup"/> class.
+            </summary>
+            <param name="propertyName">The name of the property which value is bound.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.Data.PropertyValueLookup.GetValueForItem(System.Object)">
+            <summary>
+            Retrieves the value for the specified object instance.
+            </summary>
+            <param name="dataItem"></param>
+        </member>
+        <member name="P:Telerik.Universal.Core.Data.PropertyValueLookup.PropertyName">
+            <summary>
+            Gets or sets the name of the property which value is bound.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.DynamicHelper">
+            <summary>
+            Encapsulates helper methods to generate Dynamic methods using System.Reflection.Emit.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.DynamicHelper.CreatePropertyValueGetter(System.Type,System.String)">
+            <summary>
+            Generates a untyped function to allow retrieving property values for instances of the specified type without using reflection.
+            </summary>
+            <param name="type"></param>
+            <param name="propertyName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Universal.Core.Element">
+            <summary>
+            Base class for nodes that may have children.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.Node">
+            <summary>
+            Represents a node in a logical tree.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.PropertyBagObject">
+            <summary>
+            Represents an object that stores its properties within a property bag.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.PropertyBagObject.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.PropertyBagObject"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.Node.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.Node"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.Node.Arrange(Telerik.Universal.Core.RadRect,System.Boolean)">
+            <summary>
+            Arranges the node within the specified layout slot.
+            </summary>
+            <param name="rect"></param>
+            <param name="shouldRoundLayout"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.Node.Invalidate">
+            <summary>
+            Delegates an "Invalidate" request to the owning <see cref="T:Telerik.Universal.Core.IElementPresenter"/> instance (if any).
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.Node.InvalidateCore">
+            <summary>
+            Perform the core logic behind the Invalidate routine.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.Node.ApplyLayoutRounding">
+            <summary>
+            Performs pixel-snapping and corrects floating-point calculations errors.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.Node.DispatchMessage(Telerik.Universal.Core.Message)">
+            <summary>
+            Dispatches the provided message to the logical tree, starting from the Sender as a leaf.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="E:Telerik.Universal.Core.Node.PropertyChanged">
+            <summary>
+            Occurs when a property of this node has changed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Node.Presenter">
+            <summary>
+            Gets the <see cref="T:Telerik.Universal.Core.IElementPresenter"/> instance where this node is visualized.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Node.IsArrangeValid">
+            <summary>
+            Gets a value indicating whether the node is laid-out on the chart scene.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Node.NodeState">
+            <summary>
+            Gets the current state of the node.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Node.Index">
+            <summary>
+            Gets the index of this node in its parent <see cref="T:Telerik.Universal.Core.Element"/> nodes collection.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Node.CollectionIndex">
+            <summary>
+            Gets the index of this node in its owning typed collection.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Node.IsTreeLoaded">
+            <summary>
+            Gets a value indicating whether the logical tree this node is part of is loaded.
+            </summary>
+            <remarks>
+            This actually checks for a valid <see cref="T:Telerik.Universal.Core.RootElement"/> reference and asks whether the area itself is loaded.
+            This value may differ from the current <see cref="P:Telerik.Universal.Core.Node.NodeState"/>.
+            </remarks>
+        </member>
+        <member name="P:Telerik.Universal.Core.Node.LayoutSlot">
+            <summary>
+            Gets the rectangle (in physical coordinates) where this node resides.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Node.Parent">
+            <summary>
+            Gets the <see cref="T:Telerik.Universal.Core.Element"/> where this node resides.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Node.TrackPropertyChanging">
+            <summary>
+            Gets or sets a value indicating whether the node will go through the OnPropertyChanging routine when a property is about to be changed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Node.TrackPropertyChanged">
+            <summary>
+            Gets or sets a value indicating whether the node will go through the OnPropertyChanged routine when a property has changed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.Element.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.Element"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.Element.FindAncestor``1">
+            <summary>
+            Searches up the parent chain and returns the first parent of type T.
+            </summary>
+            <typeparam name="T">Must be a <see cref="T:Telerik.Universal.Core.Element"/>.</typeparam>
+        </member>
+        <member name="M:Telerik.Universal.Core.Element.IsAncestorOf(Telerik.Universal.Core.Node)">
+            <summary>
+            Gets a boolean value that determines whether a given element
+            resides in the element hierarchy of this element.
+            </summary>
+            <param name="node">An instance of the <see cref="T:Telerik.Universal.Core.Node"/>
+            class which is checked.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.Element.FindDescendant``1">
+            <summary>
+            Searches down the subtree of elements, using breadth-first approach, and returns the first descendant of type T.
+            </summary>
+            <typeparam name="T">Must be a <see cref="T:Telerik.Universal.Core.Node"/>.</typeparam>
+        </member>
+        <member name="M:Telerik.Universal.Core.Element.FindDescendant(System.Predicate{Telerik.Universal.Core.Node})">
+            <summary>
+            Searches down the subtree of elements, using breadth-first approach, and returns the first descendant of type T.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.Element.EnumDescendants">
+            <summary>
+            Provides flexible routine for traversing all descendants of this instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.Element.EnumDescendants(Telerik.Universal.Core.TreeTraversalMode)">
+            <summary>
+            Provides flexible routine for traversing all descendants of this instance.
+            </summary>
+            <param name="traverseMode">The mode used to traverse the subtree.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.Element.EnumDescendants(System.Predicate{Telerik.Universal.Core.Node},Telerik.Universal.Core.TreeTraversalMode)">
+            <summary>
+            Provides flexible routine for traversing all descendants of this instance that match the provided predicate.
+            </summary>
+            <param name="predicate">The predicate that defines the match criteria.</param>
+            <param name="traverseMode">The mode used to traverse the subtree.</param>
+        </member>
+        <member name="P:Telerik.Universal.Core.Element.Presenter">
+            <summary>
+            Gets the <see cref="T:Telerik.Universal.Core.IElementPresenter"/> instance where this element is presented.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.ElementCollection`1">
+            <summary>
+            Represents a typed collection of <see cref="T:Telerik.Universal.Core.Node"/> instances. For example an element instance may aggregate two or more typed collections of different nodes.
+            </summary>
+            <typeparam name="T">Must be a <see cref="T:Telerik.Universal.Core.Node"/>.</typeparam>
+        </member>
+        <member name="M:Telerik.Universal.Core.ElementCollection`1.#ctor(Telerik.Universal.Core.Element)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.ElementCollection`1"/> class.
+            </summary>
+            <param name="owner">The owner.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.ElementCollection`1.InsertItem(System.Int32,`0)">
+            <summary>
+            Inserts the item at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.ElementCollection`1.ClearItems">
+            <summary>
+            Removes all items from the collection.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.ElementCollection`1.RemoveItem(System.Int32)">
+            <summary>
+            Removes the item at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+        </member>
+        <member name="P:Telerik.Universal.Core.ElementCollection`1.ShouldCacheIndexes">
+            <summary>
+            Determines whether the collection should cache the index of each node added.
+            This will improve performance if many IndexOf calls will be performed upon this collection.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.RadPropertyEventArgs">
+            <summary>
+            Encapsulates all the data associated with a change in a <see cref="T:Telerik.Universal.Core.PropertyBagObject"/> property store.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadPropertyEventArgs.#ctor(System.Int32,System.Object,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.RadPropertyEventArgs"/> class.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadPropertyEventArgs.#ctor(System.String,System.Object,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.RadPropertyEventArgs"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="P:Telerik.Universal.Core.RadPropertyEventArgs.Cancel">
+            <summary>
+            Gets or sets a value indicating whether the property change can be accepted. Valid during the Changing pass.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.RadPropertyEventArgs.Key">
+            <summary>
+            Gets the key of the property associated with the event.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.RadPropertyEventArgs.PropertyName">
+            <summary>
+            Gets the name of the property that has changed. This member is not set if the property is associated with a valid key.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.RadPropertyEventArgs.OldValue">
+            <summary>
+            Gets the old value of the associated property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.RadPropertyEventArgs.NewValue">
+            <summary>
+            Gets or sets the new value of the associated property.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.IElementPresenter">
+            <summary>
+            Represents an instance that may visualize a <see cref="T:Telerik.Universal.Core.Element"/> instance on the screen. Typically this interface is implemented by platform-specific types like the XAML Control class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.IElementPresenter.RefreshNode(System.Object)">
+            <summary>
+            Invalidates the visual representation of the specified logical node.
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.IElementPresenter.MeasureContent(System.Object,System.Object)">
+            <summary>
+            Retrieves the desired size of the specified logical node's content.
+            </summary>
+            <param name="owner"></param>
+            <param name="content"></param>
+        </member>
+        <member name="P:Telerik.Universal.Core.IElementPresenter.IsVisible">
+            <summary>
+            Gets a value indicating whether this instance is visible.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.IView">
+            <summary>
+            Represents <see cref="T:Telerik.Universal.Core.IElementPresenter"/> instance that is the root of the visual scene.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.IView.ViewportWidth">
+            <summary>
+            Gets the visible width of the viewport.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.IView.ViewportHeight">
+            <summary>
+            Gets the visible height of the viewport.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Message.Handled">
+            <summary>
+            Gets or sets a value indicating whether the message is handled (processed) by some receiver.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Message.StopDispatch">
+            <summary>
+            Gets or sets a value indicating whether message may continue being dispatched or not.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Message.DispatchPhase">
+            <summary>
+            Gets or sets the current phase of the dispatch process.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Message.DispatchMode">
+            <summary>
+            Gets or sets the mode which determines how this message is dispatched.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Message.Id">
+            <summary>
+            Gets the unique id for this message.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.Message.Data">
+            <summary>
+            Gets or sets the raw data associated with the message.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.MessageDispatchMode">
+            <summary>
+            Defines how a message should be dispatched in the element tree.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.MessageDispatchMode.Bubble">
+            <summary>
+            Message is dispatched to the direct target and its ancestors.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.MessageDispatchMode.Tunnel">
+            <summary>
+            Message is dispatched to the direct target all its descendants.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.MessageDispatchMode.BubbleAndTunnel">
+            <summary>
+            Message is dispatched to the direct target, its ancestors and all its descendants.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.MessageDispatchPhase">
+            <summary>
+            Defines the possible phases a message dispatch process may enter.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.MessageDispatchPhase.Bubble">
+            <summary>
+            Message is being dispatched up in the parent chain.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.MessageDispatchPhase.Tunnel">
+            <summary>
+            Message is being dispatched down to all descendants.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.NodeCollection">
+            <summary>
+            Represents a collection of a <see cref="T:Telerik.Universal.Core.Node"/> instances.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.NodeCollection.GetEnumerator">
+            <summary>
+            Gets the <see cref="T:System.Collections.IEnumerator"/> instance that allows for traversing all the items.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.NodeCollection.IndexOf(Telerik.Universal.Core.Node)">
+            <summary>
+            Gets the index of the specified node within the collection.
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.NodeCollection.Contains(Telerik.Universal.Core.Node)">
+            <summary>
+            Determines whether the specified node is contained within the collection.
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="P:Telerik.Universal.Core.NodeCollection.Owner">
+            <summary>
+            Gets the <see cref="T:Telerik.Universal.Core.Element"/> instance that owns this collection.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.NodeCollection.Count">
+            <summary>
+            Gets the count of all the items.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.NodeState">
+            <summary>
+            Defines the possible states a <see cref="T:Telerik.Universal.Core.Node"/> may enter.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.NodeState.Initial">
+            <summary>
+            The node is created.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.NodeState.Loading">
+            <summary>
+            The node is loading on the visual scene.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.NodeState.Loaded">
+            <summary>
+            The node is loaded and ready to be visualized.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.NodeState.Unloading">
+            <summary>
+            The node is in a process of being unloaded from the visual scene.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.NodeState.Unloaded">
+            <summary>
+            The node is detached from the visual scene.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.PropertyKeys.Register(System.Type,System.String)">
+            <summary>
+            Registers an integer value that uniquely identifies a property.
+            </summary>
+            <param name="type">The type that declares the property.</param>
+            <param name="propertyName">The name of the property.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.PropertyKeys.Register(System.Type,System.String,System.Object)">
+            <summary>
+            Registers an integer value that uniquely identifies a property.
+            </summary>
+            <param name="type">The type that declares the property.</param>
+            <param name="propertyName">The name of the property.</param>
+            <param name="flags">Optional metadata, associated with the property.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Universal.Core.RootElement">
+            <summary>
+            Represents the root element of a logical tree. This element is usually aggregated by a <see cref="T:Telerik.Universal.Core.IView"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.RootElement.Arrange">
+            <summary>
+            Arranges the element using a rectangle located at (0, 0) and with Size equal to the current view's Viewport.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.RootElement.IsTreeLoaded">
+            <summary>
+            Determines whether the node is loaded.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Telerik.Universal.Core.RootElement.View">
+            <summary>
+            Gets or sets the current <see cref="T:Telerik.Universal.Core.IView"/> instance that aggregates this element.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.TreeTraversalMode">
+            <summary>
+            Defines possible approaches when traversing a tree.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.TreeTraversalMode.DepthFirst">
+            <summary>
+            Depth-first traversal.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.TreeTraversalMode.BreadthFirst">
+            <summary>
+            Breadth first traversal.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.LocalizationManager">
+            <summary>
+            Represents a singleton class that manages application string resources.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.LocalizationManager.GetString(System.String)">
+            <summary>
+            Gets the localized version of the string, associated with the specified key. 
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Universal.Core.LocalizationManager.GlobalResourceMap">
+            <summary>
+            Gets or sets the <see cref="T:Windows.ApplicationModel.Resources.Core.ResourceMap"/> instance that contains localized versions for all keys in each Telerik assembly.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.LocalizationManager.DefaultResourceMap">
+            <summary>
+            Gets the <see cref="T:Windows.ApplicationModel.Resources.Core.ResourceMap"/> instance provided by the associated assembly.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.LocalizationManager.UserResourceMap">
+            <summary>
+            Gets or sets the user-defined <see cref="T:Windows.ApplicationModel.Resources.Core.ResourceMap"/> instance used to look-up localizable resources within the associated assembly.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.LocalizationManager.StringLoader">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Universal.Core.IStringResourceLoader"/> instance used to provide code-based localization per assembly.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.IStringResourceLoader">
+            <summary>
+            Represents a custom loader that may be used to look-up strings through code.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.IStringResourceLoader.GetString(System.String)">
+            <summary>
+            Retrieves a localized version of the string associated with the specified key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Universal.Core.RadCircle">
+            <summary>
+            Represents a logical definition of a circle.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadCircle.Center">
+            <summary>
+            The center of the circle.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadCircle.Radius">
+            <summary>
+            The radius of the circle.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadCircle.#ctor(Telerik.Universal.Core.RadPoint,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.RadCircle"/> struct.
+            </summary>
+            <param name="center">The center.</param>
+            <param name="radius">The radius.</param>
+        </member>
+        <member name="P:Telerik.Universal.Core.RadCircle.Bounds">
+            <summary>
+            Gets the rectangle that encloses this circle.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadLine.X1">
+            <summary>
+            The X-coordinate of the line start point.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadLine.X2">
+            <summary>
+            The X-coordinate of the line end point.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadLine.Y1">
+            <summary>
+            The Y-coordinate of the line start point.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadLine.Y2">
+            <summary>
+            The Y-coordinate of the line end point.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadLine.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.RadLine"/> struct.
+            </summary>
+            <param name="x1">The x1.</param>
+            <param name="x2">The x2.</param>
+            <param name="y1">The y1.</param>
+            <param name="y2">The y2.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadLine.#ctor(Telerik.Universal.Core.RadPoint,Telerik.Universal.Core.RadPoint)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.RadLine"/> struct.
+            </summary>
+            <param name="point1">The point1.</param>
+            <param name="point2">The point2.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadLine.Round(Telerik.Universal.Core.RadLine)">
+            <summary>
+            Rounds the line's values to the closed whole number.
+            </summary>
+            <param name="line"></param>
+        </member>
+        <member name="T:Telerik.Universal.Core.RadMath">
+            <summary>
+            Provides static mathematical functions and constants.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadMath.DegToRadFactor">
+            <summary>
+            The factor used to convert degrees to their radians equivalent.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadMath.RadToDegFactor">
+            <summary>
+            The factor used to convert radians to their degree equivalent.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadMath.Epsilon">
+            <summary>
+            Smallest unit such that 1.0+DBL_EPSILON != 1.0.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadMath.IsZero(System.Double)">
+            <summary>
+            Determines whether the specified value is close to 0 within the order of EPSILON.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadMath.IsZero(System.Decimal)">
+            <summary>
+            Determines whether the specified value is close to 0 within the order of EPSILON.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadMath.IsOne(System.Double)">
+            <summary>
+            Determines whether the specified value is close to 1 within the order of EPSILON.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadMath.IsOne(System.Decimal)">
+            <summary>
+            Determines whether the specified value is close to 1 within the order of EPSILON.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadMath.AreClose(System.Double,System.Double)">
+            <summary>
+            Determines whether the two specified values are close within the order of EPSILON.
+            </summary>
+            <param name="value1"></param>
+            <param name="value2"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadMath.GetPointDistance(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Gets the distance between two points in a plane.
+            </summary>
+            <param name="x1">The x-coordinate of the first point.</param>
+            <param name="x2">The x-coordinate of the second point.</param>
+            <param name="y1">The y-coordinate of the first point.</param>
+            <param name="y2">The y-coordinate of the second point.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadMath.GetArcPoint(System.Double,Telerik.Universal.Core.RadPoint,System.Double)">
+            <summary>
+            Gets the point that lies on the arc segment of the ellipse, described by the center and radius parameters.
+            </summary>
+            <param name="angle"></param>
+            <param name="center"></param>
+            <param name="radius"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadMath.ToPolarCoordinates(Telerik.Universal.Core.RadPoint,Telerik.Universal.Core.RadPoint,System.Boolean)">
+            <summary>
+            Converts cartesian into polar coordinates.
+            </summary>
+            <param name="point">The point we are converting.</param>
+            <param name="centerPoint">The (0,0) point of the the coordinate system.</param>
+            <param name="reverse">True to reverse the calculated angle using the (360 - angle) expression, false otherwise.</param>
+            <returns> Coordinates as radius and angle (in degrees).</returns>
+        </member>
+        <member name="T:Telerik.Universal.Core.RadPoint">
+            <summary>
+            Represents a structure that defines a location (X, Y) in a two-dimensional space.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadPoint.Empty">
+            <summary>
+            A <see cref="T:Telerik.Universal.Core.RadPoint"/> instance which X and Y values are set to 0.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadPoint.X">
+            <summary>
+            The X-coordinate of the point.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadPoint.Y">
+            <summary>
+            The Y-coordinate of the point.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadPoint.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.RadPoint"/> struct.
+            </summary>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadPoint.op_Equality(Telerik.Universal.Core.RadPoint,Telerik.Universal.Core.RadPoint)">
+            <summary>
+            Determines whether two <see cref="T:Telerik.Universal.Core.RadPoint"/> structures are equal.
+            </summary>
+            <param name="point1"></param>
+            <param name="point2"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadPoint.op_Inequality(Telerik.Universal.Core.RadPoint,Telerik.Universal.Core.RadPoint)">
+            <summary>
+            Determines whether two <see cref="T:Telerik.Universal.Core.RadSize"/> structures are not equal.
+            </summary>
+            <param name="point1"></param>
+            <param name="point2"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadPoint.Round(Telerik.Universal.Core.RadPoint)">
+            <summary>
+            Rounds the X and Y members of the specified <see cref="T:Telerik.Universal.Core.RadPoint"/>.
+            </summary>
+            <param name="point"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadPoint.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+                <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadPoint.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="T:Telerik.Universal.Core.RadRect">
+            <summary>
+            Represents a Rectangle in the Euclidean plane geometry.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadRect.Invalid">
+            <summary>
+            Invalid rectangle, which Width and Height properties are set to (-1).
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadRect.Empty">
+            <summary>
+            Empty rectangle which values are zeroes.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadRect.X">
+            <summary>
+            The X-coordinate of the rectangle.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadRect.Y">
+            <summary>
+            The Y-coordinate of the rectangle.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadRect.Width">
+            <summary>
+            The length of the rectangle along the X-axis.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadRect.Height">
+            <summary>
+            The length of the rectangle along the Y-axis.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.RadRect"/> struct.
+            </summary>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.#ctor(Telerik.Universal.Core.RadPoint,Telerik.Universal.Core.RadPoint)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.RadRect"/> struct.
+            </summary>
+            <param name="point1">The point1.</param>
+            <param name="point2">The point2.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.RadRect"/> struct.
+            </summary>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.Round(Telerik.Universal.Core.RadRect)">
+            <summary>
+            Rounds the rectangle's values to the closed whole number.
+            </summary>
+            <param name="rect"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.Floor(Telerik.Universal.Core.RadRect)">
+            <summary>
+            Rounds the rectangle's value to the closest less than or equal to whole numbers.
+            </summary>
+            <param name="rect"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.op_Equality(Telerik.Universal.Core.RadRect,Telerik.Universal.Core.RadRect)">
+            <summary>
+            Determines whether two <see cref="T:Telerik.Universal.Core.RadRect"/> structures are equal.
+            </summary>
+            <param name="rect1"></param>
+            <param name="rect2"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.op_Inequality(Telerik.Universal.Core.RadRect,Telerik.Universal.Core.RadRect)">
+            <summary>
+            Determines whether two <see cref="T:Telerik.Universal.Core.RadRect"/> structures are not equal.
+            </summary>
+            <param name="rect1"></param>
+            <param name="rect2"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.Subtract(Telerik.Universal.Core.RadRect,Telerik.Universal.Core.RadRect)">
+            <summary>
+            Gets the difference between two <see cref="T:Telerik.Universal.Core.RadRect"/> structures.
+            </summary>
+            <param name="rect1"></param>
+            <param name="rect2"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.ToSquare(Telerik.Universal.Core.RadRect,System.Boolean)">
+            <summary>
+            Gets a rectangle that has equal width and height and is centered within the specified rect.
+            </summary>
+            <param name="rect">The rect to create the square from.</param>
+            <param name="offset">True to offset the rectangle's location to meet the smaller of the Width and Height properties.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.CenterRect(Telerik.Universal.Core.RadRect,Telerik.Universal.Core.RadRect)">
+            <summary>
+            Centers the specified rectangle within the provided available one.
+            </summary>
+            <param name="rect"></param>
+            <param name="bounds"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.IntersectsWith(Telerik.Universal.Core.RadRect)">
+            <summary>
+            Determines whether the current rect intersects with the specified one.
+            </summary>
+            <param name="rect"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.IsSizeValid">
+            <summary>
+            Determines whether the size of this rect is valid - that is both Width and Height should be bigger than zero.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+                <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.Contains(System.Double,System.Double)">
+            <summary>
+            Determines if this RadRect instance contains the point that is described by the arguments.
+            </summary>
+            <param name="x">The X coordinate of the point to check.</param>
+            <param name="y">The Y coordinate of the point to check.</param>
+            <returns>Returns true if this rectangle contains the point from the arguments and false otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadRect.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:Telerik.Universal.Core.RadRect.Bottom">
+            <summary>
+            Gets the Y-coordinate of the bottom side of the rectangle.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.RadRect.Right">
+            <summary>
+            Gets the X-coordinate of the right side of the rectangle.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.RadRect.Center">
+            <summary>
+            Gets the center of this rectangle.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.RadRect.Location">
+            <summary>
+            Gets the location (Top-Left corner) of the rectangle.
+            </summary>
+        </member>
+        <member name="T:Telerik.Universal.Core.RadSize">
+            <summary>
+            Represents a structure that defines a size in the two-dimensional space.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadSize.Empty">
+            <summary>
+            A <see cref="T:Telerik.Universal.Core.RadSize"/> instance which Width and Height are set to 0.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadSize.Invalid">
+            <summary>
+            A <see cref="T:Telerik.Universal.Core.RadSize"/> instance which Width and Height are set to -1.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadSize.Width">
+            <summary>
+            The length along the horizontal axis.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadSize.Height">
+            <summary>
+            The length along the vertical axis.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadSize.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.RadSize"/> struct.
+            </summary>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadSize.op_Equality(Telerik.Universal.Core.RadSize,Telerik.Universal.Core.RadSize)">
+            <summary>
+            Determines whether two <see cref="T:Telerik.Universal.Core.RadSize"/> structures are equal.
+            </summary>
+            <param name="size1"></param>
+            <param name="size2"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadSize.op_Inequality(Telerik.Universal.Core.RadSize,Telerik.Universal.Core.RadSize)">
+            <summary>
+            Determines whether two <see cref="T:Telerik.Universal.Core.RadSize"/> structures are not equal.
+            </summary>
+            <param name="size1"></param>
+            <param name="size2"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadSize.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+                <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadSize.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="T:Telerik.Universal.Core.RadThickness">
+            <summary>
+            Represents a structure that defines margins (or padding) of an element.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadThickness.Empty">
+            <summary>
+            A <see cref="T:Telerik.Universal.Core.RadThickness"/> instance with Left, Top, Right, and Bottom components equal to 0.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadThickness.Left">
+            <summary>
+            Left length.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadThickness.Top">
+            <summary>
+            Top length.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadThickness.Right">
+            <summary>
+            Right length.
+            </summary>
+        </member>
+        <member name="F:Telerik.Universal.Core.RadThickness.Bottom">
+            <summary>
+            Bottom length.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadThickness.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.RadThickness"/> struct.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="top">The top.</param>
+            <param name="right">The right.</param>
+            <param name="bottom">The bottom.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadThickness.op_Equality(Telerik.Universal.Core.RadThickness,Telerik.Universal.Core.RadThickness)">
+            <summary>
+            Determines whether two <see cref="T:Telerik.Universal.Core.RadThickness"/> structures are equal.
+            </summary>
+            <param name="thickness1"></param>
+            <param name="thickness2"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadThickness.op_Inequality(Telerik.Universal.Core.RadThickness,Telerik.Universal.Core.RadThickness)">
+            <summary>
+            Determines whether two <see cref="T:Telerik.Universal.Core.RadThickness"/> structures are not equal.
+            </summary>
+            <param name="thickness1"></param>
+            <param name="thickness2"></param>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadThickness.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+                <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.RadThickness.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
+        </member>
+        <member name="T:Telerik.Universal.Core.ValueRange`1">
+            <summary>
+            Represents a structure that defines a range of two IComparable structures - like Single or Double.
+            </summary>
+            <typeparam name="T">Must implement the <see cref="T:System.IComparable"/> interface.</typeparam>
+        </member>
+        <member name="F:Telerik.Universal.Core.ValueRange`1.Empty">
+            <summary>
+            Empty value range where minimum and maximum are set to their default(T) value.
+            </summary>
+        </member>
+        <member name="M:Telerik.Universal.Core.ValueRange`1.#ctor(`0,`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Universal.Core.ValueRange`1"/> struct.
+            </summary>
+            <param name="min">The min.</param>
+            <param name="max">The max.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.ValueRange`1.op_Equality(Telerik.Universal.Core.ValueRange{`0},Telerik.Universal.Core.ValueRange{`0})">
+            <summary>
+            Determines whether two ranges are equal.
+            </summary>
+            <param name="range1">ValueRange to be compared.</param>
+            <param name="range2">ValueRange to be compared.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.ValueRange`1.op_Inequality(Telerik.Universal.Core.ValueRange{`0},Telerik.Universal.Core.ValueRange{`0})">
+            <summary>
+            Determines whether two ranges are not equal.
+            </summary>
+            <param name="range1">ValueRange to be compared.</param>
+            <param name="range2">ValueRange to be compared.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.ValueRange`1.IsInRangeExclusive(`0)">
+            <summary>
+            Determines whether the specified value is within the range, excluding its minimum and maximum values.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.ValueRange`1.IsInRangeInclusive(`0)">
+            <summary>
+            Determines whether the specified value is within the range, including its minimum and maximum values.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Telerik.Universal.Core.ValueRange`1.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+                <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Universal.Core.ValueRange`1.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:Telerik.Universal.Core.ValueRange`1.Maximum">
+            <summary>
+            Gets or sets the maximum of the range.
+            </summary>
+        </member>
+        <member name="P:Telerik.Universal.Core.ValueRange`1.Minimum">
+            <summary>
+            Gets or sets the minimum of the range.
+            </summary>
+        </member>
+    </members>
+</doc>

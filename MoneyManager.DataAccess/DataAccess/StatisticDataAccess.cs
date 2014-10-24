@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
-using SQLite.Net;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -15,9 +15,9 @@ namespace MoneyManager.DataAccess.DataAccess
             get { return LoadMonthlyOverview(); }
         }
 
-        private ObservableCollection<StatisticItem> LoadMonthlyOverview()
+        public ObservableCollection<StatisticItem> LoadMonthlyOverview()
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 List<FinancialTransaction> transactionList = dbConn.Table<FinancialTransaction>().ToList()
                     .Where(x => x.Date.Month == DateTime.Now.Month).ToList();

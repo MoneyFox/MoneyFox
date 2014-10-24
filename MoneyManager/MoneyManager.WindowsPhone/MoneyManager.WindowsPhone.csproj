@@ -262,25 +262,17 @@
     <Reference Include="SQLite.Net.Platform.WindowsPhoneApp81">
       <HintPath>..\..\packages\SQLite.Net.Platform.WP81.1.0.1\lib\SQLite.Net.Platform.WindowsPhoneApp81.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Core, Version=2014.2.617.45, Culture=neutral, PublicKeyToken=54096b0481e00341, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\W8X\2014.2.617.45\Core\Telerik.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Universal.Core">
+      <HintPath>..\..\lib\Windows Phone 8.1\Telerik.Universal.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.UI.Xaml.Chart, Version=2014.2.617.45, Culture=neutral, PublicKeyToken=54096b0481e00341, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\W8X\2014.2.617.45\Chart\Telerik.UI.Xaml.Chart.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Universal.UI.Xaml.Chart">
+      <HintPath>..\..\lib\Windows Phone 8.1\Telerik.Universal.UI.Xaml.Chart.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.UI.Xaml.Input, Version=2014.2.617.45, Culture=neutral, PublicKeyToken=54096b0481e00341, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\W8X\2014.2.617.45\Input\Telerik.UI.Xaml.Input.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Universal.UI.Xaml.Input">
+      <HintPath>..\..\lib\Windows Phone 8.1\Telerik.Universal.UI.Xaml.Input.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.UI.Xaml.Primitives, Version=2014.2.617.45, Culture=neutral, PublicKeyToken=54096b0481e00341, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\W8X\2014.2.617.45\Primitives\Telerik.UI.Xaml.Primitives.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Telerik.Universal.UI.Xaml.Primitives">
+      <HintPath>..\..\lib\Windows Phone 8.1\Telerik.Universal.UI.Xaml.Primitives.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
