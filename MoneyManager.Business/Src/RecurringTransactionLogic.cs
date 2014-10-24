@@ -1,14 +1,14 @@
-﻿using BugSense;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using BugSense;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace MoneyManager.Business
+namespace MoneyManager.Business.Src
 {
     internal class RecurringTransactionLogic
     {

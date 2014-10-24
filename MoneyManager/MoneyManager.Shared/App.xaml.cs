@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Navigation;
 using BugSense;
 using BugSense.Model;
 using MoneyManager.Business;
+using MoneyManager.Business.Src;
 using MoneyManager.DataAccess;
 
 namespace MoneyManager

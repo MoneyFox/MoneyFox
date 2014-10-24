@@ -3,7 +3,7 @@ using System.Linq;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Popups;
 
-namespace MoneyManager.Business
+namespace MoneyManager.Business.Src
 {
     internal class BackgroundTaskLogic
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace MoneyManager.Business
+namespace MoneyManager.Business.Src
 {
     internal static class ThemedImageConverterLogic
     {

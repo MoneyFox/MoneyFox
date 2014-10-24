@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace MoneyManager.Business
+namespace MoneyManager.Business.Src
 {
     internal class Utilities
     {

@@ -9,7 +9,7 @@ using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Business
+namespace MoneyManager.Business.Src
 {
     internal class TransactionLogic
     {

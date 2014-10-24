@@ -53,17 +53,17 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountLogic.cs" />
+    <Compile Include="Src\AccountLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BackgroundTaskLogic.cs" />
-    <Compile Include="CurrencyLogic.cs" />
-    <Compile Include="LanguageLogic.cs" />
-    <Compile Include="RecurringTransactionLogic.cs" />
-    <Compile Include="ThemedImageConverterLogic.cs" />
-    <Compile Include="TileLogic.cs" />
-    <Compile Include="TransactionLogic.cs" />
-    <Compile Include="TransactionTypeLogic.cs" />
-    <Compile Include="Utilities.cs" />
+    <Compile Include="Src\BackgroundTaskLogic.cs" />
+    <Compile Include="Src\CurrencyLogic.cs" />
+    <Compile Include="Src\LanguageLogic.cs" />
+    <Compile Include="Src\RecurringTransactionLogic.cs" />
+    <Compile Include="Src\ThemedImageConverterLogic.cs" />
+    <Compile Include="Src\TileLogic.cs" />
+    <Compile Include="Src\TransactionLogic.cs" />
+    <Compile Include="Src\TransactionTypeLogic.cs" />
+    <Compile Include="Src\Utilities.cs" />
     <Compile Include="Tiles\IncomeTile.cs" />
     <Compile Include="Tiles\SpendingTile.cs" />
     <Compile Include="Tiles\Tile.cs" />

@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Windows.ApplicationModel;
 using MoneyManager.Business;
+using MoneyManager.Business.Src;
 using MoneyManager.Common;
 using MoneyManager.Foundation;
 using System;

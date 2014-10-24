@@ -1,7 +1,7 @@
 ﻿using System;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Business
+namespace MoneyManager.Business.Src
 {
     internal class TransactionTypeLogic
     {
