@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.UI.Popups;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 
 namespace MoneyManager.Business.Src
 {
@@ -41,7 +41,12 @@ namespace MoneyManager.Business.Src
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
-        #endregion
+        private static TotalBalanceViewModel totalBalanceView
+        {
+            get { return ServiceLocator.Current.GetInstance<TotalBalanceViewModel>(); }
+        }
+
+        #endregion Properties
 
         public static void SaveTransaction(FinancialTransaction transaction, bool skipRecurring = false)
         {
@@ -54,6 +59,7 @@ namespace MoneyManager.Business.Src
             }
 
             AccountLogic.RemoveTransactionAmount(transaction);
+            totalBalanceView.UpdateBalance();
 
             transactionData.Save(transaction);
         }
@@ -83,6 +89,7 @@ namespace MoneyManager.Business.Src
             transactionData.Delete(transaction);
             AccountLogic.RemoveTransactionAmount(SelectedTransaction);
             AccountLogic.RefreshRelatedTransactions(transaction);
+            totalBalanceView.UpdateBalance();
 
             CheckForRecurringTransaction(transaction,
                 () => recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));
@@ -139,12 +146,11 @@ namespace MoneyManager.Business.Src
             }
         }
 
-
         private static void SetDefaultTransaction(TransactionType transactionType)
         {
             SelectedTransaction = new FinancialTransaction
             {
-                Type = (int) transactionType,
+                Type = (int)transactionType,
             };
         }
 

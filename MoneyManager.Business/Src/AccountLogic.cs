@@ -17,6 +17,11 @@ namespace MoneyManager.Business.Src
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
+        private static TransactionDataAccess transactionData
+        {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
+
         private static TransactionListUserControlViewModel transactionListUserControlView
         {
             get { return ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>(); }
@@ -83,7 +88,9 @@ namespace MoneyManager.Business.Src
 
                 account.CurrentBalance += amount;
                 transaction.Cleared = true;
+
                 accountData.Update(account);
+                transactionData.Update(transaction);
             }
         }
 

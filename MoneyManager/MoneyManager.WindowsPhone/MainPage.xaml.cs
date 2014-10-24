@@ -2,7 +2,6 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business;
 using MoneyManager.Business.Src;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
@@ -15,7 +14,15 @@ namespace MoneyManager
 {
     public sealed partial class MainPage
     {
+        #region Properties
         private readonly NavigationHelper navigationHelper;
+
+        private Account SelectedAccount
+        {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
+            set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
+        }
+        #endregion
 
         public MainPage()
         {
@@ -27,12 +34,6 @@ namespace MoneyManager
         public NavigationHelper NavigationHelper
         {
             get { return navigationHelper; }
-        }
-
-        internal Account SelectedAccount
-        {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
-            set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
         }
 
         private void AddAccountClick(object sender, RoutedEventArgs e)

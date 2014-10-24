@@ -8,8 +8,9 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using BugSense;
 using BugSense.Model;
-using MoneyManager.Business;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Src;
+using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess;
 
 namespace MoneyManager
@@ -26,7 +27,7 @@ namespace MoneyManager
             Suspending += OnSuspending;
         }
 
-        protected override async void OnLaunched(LaunchActivatedEventArgs e)
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");
 
@@ -91,6 +92,7 @@ namespace MoneyManager
 
             new RecurringTransactionLogic().CheckForRecurringTransactions();
             TransactionLogic.ClearTransactions();
+            ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().UpdateBalance();
         }
 
 #if WINDOWS_PHONE_APP
