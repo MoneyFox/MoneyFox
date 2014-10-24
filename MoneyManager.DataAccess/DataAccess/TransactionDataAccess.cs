@@ -77,7 +77,7 @@ namespace MoneyManager.DataAccess.DataAccess
                 .ToList();
         }
 
-        protected override async void UpdateItem(FinancialTransaction transaction)
+        protected override void UpdateItem(FinancialTransaction transaction)
         {
             using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {

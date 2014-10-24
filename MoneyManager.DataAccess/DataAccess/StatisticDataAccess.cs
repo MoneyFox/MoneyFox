@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 using SQLite.Net;
 
 namespace MoneyManager.DataAccess.DataAccess
@@ -24,27 +25,27 @@ namespace MoneyManager.DataAccess.DataAccess
                 var itemList = new ObservableCollection<StatisticItem>();
 
                 //TODO: refactor
-                //var income = new StatisticItem
-                //{
-                //    Category = Translation.GetTranslation("IncomeLabel"),
-                //    Value = transactionList.Where(x => x.Type == (int)TransactionType.Income).Sum(x => x.Amount)
-                //};
+                var income = new StatisticItem
+                {
+                    Category = Translation.GetTranslation("IncomeLabel"),
+                    Value = transactionList.Where(x => x.Type == (int)TransactionType.Income).Sum(x => x.Amount)
+                };
 
-                //var spent = new StatisticItem
-                //{
-                //    Category = Translation.GetTranslation("SpentLabel"),
-                //    Value = transactionList.Where(x => x.Type == (int)TransactionType.Spending).Sum(x => x.Amount)
-                //};
+                var spent = new StatisticItem
+                {
+                    Category = Translation.GetTranslation("SpentLabel"),
+                    Value = transactionList.Where(x => x.Type == (int)TransactionType.Spending).Sum(x => x.Amount)
+                };
 
-                //var increased = new StatisticItem
-                //{
-                //    Category = Translation.GetTranslation("IncreasedLabel"),
-                //    Value = income.Value - spent.Value
-                //};
+                var increased = new StatisticItem
+                {
+                    Category = Translation.GetTranslation("IncreasedLabel"),
+                    Value = income.Value - spent.Value
+                };
 
-                //itemList.Add(income);
-                //itemList.Add(spent);
-                //itemList.Add(increased);
+                itemList.Add(income);
+                itemList.Add(spent);
+                itemList.Add(increased);
 
                 return itemList;
             }

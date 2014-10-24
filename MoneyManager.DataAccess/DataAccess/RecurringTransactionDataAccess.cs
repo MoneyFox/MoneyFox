@@ -12,20 +12,6 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public RecurringTransaction SelectedRecurringTransaction { get; set; }
 
-        public void Save(FinancialTransaction transaction)
-        {
-            //TODO: Refactor
-            //var recurringTransaction = RecurringTransactionHelper.GetRecurringFromFinancialTransaction(transaction);
-
-            //if (AllRecurringTransactions != null)
-            //{
-            //    AllRecurringTransactions.Add(recurringTransaction);
-            //}
-
-            //SaveToDb(recurringTransaction);
-            //transaction.ReccuringTransactionId = recurringTransaction.Id;
-        }
-
         protected override void SaveToDb(RecurringTransaction itemToAdd)
         {
             using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
@@ -51,9 +37,6 @@ namespace MoneyManager.DataAccess.DataAccess
                 {
                     AllRecurringTransactions.Remove(itemToDelete);
                 }
-
-                //TODO: refactor
-                //RemoveRecurringForTransactions(itemToDelete);
 
                 dbConn.Delete(itemToDelete);
             }
@@ -87,20 +70,29 @@ namespace MoneyManager.DataAccess.DataAccess
             }
         }
 
-        public void Update(FinancialTransaction transaction)
+        public void Save(FinancialTransaction transaction, RecurringTransaction recurringTransaction)
         {
-            //todo: Refactor
-            //var recTransaction = RecurringTransactionHelper.GetRecurringFromFinancialTransaction(transaction);
+            if (AllRecurringTransactions != null)
+            {
+                AllRecurringTransactions.Add(recurringTransaction);
+            }
 
-            //if (!transaction.ReccuringTransactionId.HasValue)
-            //{
-            //    Save(recTransaction);
-            //}
-            //else
-            //{
-            //    recTransaction.Id = transaction.ReccuringTransactionId.Value;
-            //    Update(recTransaction);
-            //}
+            Save(recurringTransaction);
+            transaction.ReccuringTransactionId = recurringTransaction.Id;
+        }
+
+
+        public void Update(FinancialTransaction transaction, RecurringTransaction recurringTransaction)
+        {
+            if (!transaction.ReccuringTransactionId.HasValue)
+            {
+                Save(recurringTransaction);
+            }
+            else
+            {
+                recurringTransaction.Id = transaction.ReccuringTransactionId.Value;
+                Update(recurringTransaction);
+            }
         }
     }
 }

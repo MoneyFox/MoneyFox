@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BugSense;
+﻿using BugSense;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MoneyManager.Business
 {
     internal class RecurringTransactionLogic
     {
-        private RecurringTransactionDataAccess RecurringTransactionData
+        #region Properties
+
+        private static RecurringTransactionDataAccess RecurringTransactionData
         {
             get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
         }
@@ -34,6 +36,8 @@ namespace MoneyManager.Business
                 return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>().AllRecurringTransactions;
             }
         }
+
+        #endregion Properties
 
         public static void RemoveRecurringForTransactions(RecurringTransaction recTrans)
         {
@@ -114,6 +118,12 @@ namespace MoneyManager.Business
             };
 
             transactionData.SaveToDb(newTransaction, true);
+        }
+
+        public static void Delete(RecurringTransaction recTransaction)
+        {
+            RecurringTransactionData.Save(recTransaction);
+            RemoveRecurringForTransactions(recTransaction);
         }
 
         public static RecurringTransaction GetRecurringFromFinancialTransaction(FinancialTransaction transaction)

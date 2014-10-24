@@ -48,7 +48,9 @@ namespace MoneyManager.Business
             AccountLogic.AddTransactionAmount(transaction);
             if (!skipRecurring && transaction.IsRecurring)
             {
-                recurringTransactionData.Save(transaction);
+                var recurringTransaction = RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
+
+                recurringTransactionData.Save(transaction, recurringTransaction);
             }
 
             AccountLogic.RemoveTransactionAmount(transaction);
@@ -101,7 +103,10 @@ namespace MoneyManager.Business
             CheckIfRecurringWasRemoved(transaction);
             AccountLogic.AddTransactionAmount(transaction);
             transactionData.Update(transaction);
-            await CheckForRecurringTransaction(transaction, () => recurringTransactionData.Update(transaction));
+
+            var recurringTransaction = RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
+
+            await CheckForRecurringTransaction(transaction, () => recurringTransactionData.Update(transaction, recurringTransaction));
         }
 
         private static async Task CheckForRecurringTransaction(FinancialTransaction transaction,
