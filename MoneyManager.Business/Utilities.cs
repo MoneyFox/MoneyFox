@@ -1,4 +1,4 @@
-﻿using Windows.ApplicationModel;
+﻿using System.Reflection;
 
 namespace MoneyManager.Business
 {
@@ -6,8 +6,7 @@ namespace MoneyManager.Business
     {
         public static string GetVersion()
         {
-            return new PackageVersion().Major.ToString() + new PackageVersion().Minor
-                   + new PackageVersion().Revision;
+            return Assembly.Load(new AssemblyName("MoneyManager.WindowsPhone")).FullName.Split('=')[1].Split(',')[0];
         }
     }
 }
