@@ -12,6 +12,7 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Src;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess;
+using MoneyManager.Tasks.TransactionsWp;
 
 namespace MoneyManager
 {
@@ -91,6 +92,10 @@ namespace MoneyManager
             TileLogic.DoNavigation(e.TileId);
 
             ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().UpdateBalance();
+
+            new RecurringTransactionLogic().CheckRecurringTransactions();
+            new TransactionLogic().ClearTransactions();
+
             BackgroundTaskLogic.RegisterBackgroundTask();
         }
 

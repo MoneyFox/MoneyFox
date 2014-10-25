@@ -9,7 +9,7 @@ namespace MoneyManager.Tasks.TransactionsWp
     {
         private const string name = "RecurringTransactionTask";
 
-        public void RegisterBackgroundTask()
+        public static void RegisterBackgroundTask()
         {
             if (IsTaskExisting()) return;
 
@@ -24,7 +24,7 @@ namespace MoneyManager.Tasks.TransactionsWp
             registration.Completed += RegistrationOnCompleted;
         }
 
-        private async void RegistrationOnCompleted(BackgroundTaskRegistration sender,
+        private static async void RegistrationOnCompleted(BackgroundTaskRegistration sender,
             BackgroundTaskCompletedEventArgs args)
         {
             BackgroundAccessStatus result = await BackgroundExecutionManager.RequestAccessAsync();
@@ -35,7 +35,7 @@ namespace MoneyManager.Tasks.TransactionsWp
             }
         }
 
-        private bool IsTaskExisting()
+        private static bool IsTaskExisting()
         {
             return BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == name);
         }
