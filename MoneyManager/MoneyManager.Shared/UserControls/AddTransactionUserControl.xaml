@@ -66,7 +66,6 @@
                 Visibility="{Binding SelectedTransaction.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
                 <ComboBox Header="Reccurence" x:Uid="RecurrenceHeader"
                           SelectedIndex="{Binding Recurrence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <ComboBoxItem Content="daily" x:Uid="DailyContent" />
                     <ComboBoxItem Content="weekly" x:Uid="WeeklyContent" />
                     <ComboBoxItem Content="monthly" x:Uid="MonthlyContent" />
                     <ComboBoxItem Content="yearly" x:Uid="YearlyContent" />

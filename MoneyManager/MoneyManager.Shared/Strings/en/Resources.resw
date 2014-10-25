@@ -246,12 +246,6 @@
   <data name="YearlyLabel" xml:space="preserve">
     <value>yearly</value>
   </data>
-  <data name="DailyContent.Content" xml:space="preserve">
-    <value>daily</value>
-  </data>
-  <data name="DailyLabel" xml:space="preserve">
-    <value>daily</value>
-  </data>
   <data name="IncomeLabel" xml:space="preserve">
     <value>income</value>
   </data>
