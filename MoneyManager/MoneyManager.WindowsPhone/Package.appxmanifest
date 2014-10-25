@@ -26,7 +26,7 @@
         <m3:SplashScreen Image="Assets\SplashScreen.png" />
       </m3:VisualElements>
       <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="MoneyManager.Tasks.TransactionsWp.TransactionTask">
+        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTask.TransactionTask">
           <BackgroundTasks>
             <Task Type="timer" />
           </BackgroundTasks>
