@@ -4,10 +4,12 @@ using System.Globalization;
 using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
+using PropertyChanged;
 using SQLite.Net.Attributes;
 
 namespace MoneyManager.DataAccess.Model
 {
+    [ImplementPropertyChanged]
     [Table("FinancialTransactions")]
     internal class FinancialTransaction
     {

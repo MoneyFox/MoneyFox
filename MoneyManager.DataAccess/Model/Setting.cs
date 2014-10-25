@@ -1,7 +1,9 @@
-﻿using SQLite.Net.Attributes;
+﻿using PropertyChanged;
+using SQLite.Net.Attributes;
 
 namespace MoneyManager.DataAccess.Model
 {
+    [ImplementPropertyChanged]
     [Table("Settings")]
     internal class Setting
     {

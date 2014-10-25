@@ -1,8 +1,10 @@
 ﻿using System.Globalization;
+using PropertyChanged;
 using SQLite.Net.Attributes;
 
 namespace MoneyManager.DataAccess.Model
 {
+    [ImplementPropertyChanged]
     [Table("Accounts")]
     internal class Account
     {
