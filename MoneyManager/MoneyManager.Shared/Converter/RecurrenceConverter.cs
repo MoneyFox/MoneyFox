@@ -12,9 +12,6 @@ namespace MoneyManager.Converter
 
             switch (enumInt)
             {
-                case (int) TransactionRecurrence.Daily:
-                    return Translation.GetTranslation("DailyLabel");
-
                 case (int) TransactionRecurrence.Weekly:
                     return Translation.GetTranslation("WeeklyLabel");
 
