@@ -32,7 +32,7 @@ namespace MoneyManager.Business.Src
         public static void DeleteAccount(Account account)
         {
             accountData.Delete(account);
-            TransactionLogic.DeleteAssociatedTransactionsFromDatabase(account.Id);
+            new TransactionLogic().DeleteAssociatedTransactionsFromDatabase(account.Id);
         }
 
         public static void RefreshRelatedTransactions(FinancialTransaction transaction)

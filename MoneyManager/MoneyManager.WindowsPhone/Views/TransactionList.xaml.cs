@@ -23,17 +23,17 @@ namespace MoneyManager.Views
 
         private void AddSpendingClick(object sender, RoutedEventArgs e)
         {
-            TransactionLogic.GoToAddTransaction(TransactionType.Spending);
+            new TransactionLogic().GoToAddTransaction(TransactionType.Spending);
         }
 
         private void AddIncomeClick(object sender, RoutedEventArgs e)
         {
-            TransactionLogic.GoToAddTransaction(TransactionType.Income);
+            new TransactionLogic().GoToAddTransaction(TransactionType.Income);
         }
 
         private void AddTransferClick(object sender, RoutedEventArgs e)
         {
-            TransactionLogic.GoToAddTransaction(TransactionType.Transfer);
+            new TransactionLogic().GoToAddTransaction(TransactionType.Transfer);
         }
     }
 }

@@ -29,9 +29,6 @@ namespace MoneyManager
             InitializeComponent();
 
             navigationHelper = new NavigationHelper(this);
-
-            RecurringTransactionLogic.CheckRecurringTransactions();
-            TransactionLogic.ClearTransactions();
         }
 
         public NavigationHelper NavigationHelper
@@ -73,7 +70,7 @@ namespace MoneyManager
 
         private static void AddTransaction(TransactionType type)
         {
-            TransactionLogic.GoToAddTransaction(type);
+            new TransactionLogic().GoToAddTransaction(type);
             ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 

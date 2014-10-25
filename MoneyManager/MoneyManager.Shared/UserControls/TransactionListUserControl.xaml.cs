@@ -35,7 +35,7 @@ namespace MoneyManager.UserControls
             var transaction = element.DataContext as FinancialTransaction;
             if (transaction == null) return;
 
-            TransactionLogic.PrepareEdit(transaction);
+            new TransactionLogic().PrepareEdit(transaction);
             ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
@@ -45,7 +45,7 @@ namespace MoneyManager.UserControls
             var transaction = element.DataContext as FinancialTransaction;
             if (transaction == null) return;
 
-            TransactionLogic.DeleteTransaction(transaction);
+            new TransactionLogic().DeleteTransaction(transaction);
         }
 
         private void OpenContextMenu(object sender, HoldingRoutedEventArgs e)

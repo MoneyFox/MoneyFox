@@ -14,22 +14,22 @@ namespace MoneyManager.Business.Src
     {
         #region Properties
 
-        private static RecurringTransactionDataAccess RecurringTransactionData
+        private RecurringTransactionDataAccess RecurringTransactionData
         {
             get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
         }
 
-        private static TransactionDataAccess transactionData
+        private TransactionDataAccess transactionData
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        private static AddTransactionViewModel addTransactionView
+        private AddTransactionViewModel addTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
-        private static IEnumerable<RecurringTransaction> AllRecurringTransactions
+        private IEnumerable<RecurringTransaction> AllRecurringTransactions
         {
             get
             {
@@ -39,7 +39,7 @@ namespace MoneyManager.Business.Src
 
         #endregion Properties
 
-        public static void RemoveRecurringForTransactions(RecurringTransaction recTrans)
+        public void RemoveRecurringForTransactions(RecurringTransaction recTrans)
         {
             IEnumerable<FinancialTransaction> relatedTrans =
                 transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
@@ -52,24 +52,12 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        public static void CheckRecurringTransactions()
+        public void CheckRecurringTransactions()
         {
-            try
-            {
-                RecurringTransactionData.LoadList();
-                CheckIfIntervallIsReady();
-            }
-            catch (Exception ex)
-            {
-                BugSenseHandler.Instance.LogException(ex);
-            }
-        }
-
-        private static void CheckIfIntervallIsReady()
-        {
+            RecurringTransactionData.LoadList();
             List<FinancialTransaction> transactions = transactionData.LoadRecurringList();
 
-            foreach (RecurringTransaction recTrans in AllRecurringTransactions)
+            foreach (var recTrans in AllRecurringTransactions)
             {
                 FinancialTransaction relTransaction = transactions.Where(x => x.ReccuringTransactionId == recTrans.Id)
                     .OrderBy(x => x.Date).Last();
@@ -81,7 +69,7 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        private static bool CheckIfRepeatable(RecurringTransaction recTrans, FinancialTransaction relTransaction)
+        private bool CheckIfRepeatable(RecurringTransaction recTrans, FinancialTransaction relTransaction)
         {
             switch (recTrans.Recurrence)
             {
@@ -102,7 +90,7 @@ namespace MoneyManager.Business.Src
             return false;
         }
 
-        private static void SaveTransaction(RecurringTransaction recurringTransaction)
+        private void SaveTransaction(RecurringTransaction recurringTransaction)
         {
             var newTransaction = new FinancialTransaction
             {
@@ -120,13 +108,13 @@ namespace MoneyManager.Business.Src
             transactionData.SaveToDb(newTransaction, true);
         }
 
-        public static void Delete(RecurringTransaction recTransaction)
+        public void Delete(RecurringTransaction recTransaction)
         {
             RecurringTransactionData.Save(recTransaction);
             RemoveRecurringForTransactions(recTransaction);
         }
 
-        public static RecurringTransaction GetRecurringFromFinancialTransaction(FinancialTransaction transaction)
+        public RecurringTransaction GetRecurringFromFinancialTransaction(FinancialTransaction transaction)
         {
             return new RecurringTransaction
             {

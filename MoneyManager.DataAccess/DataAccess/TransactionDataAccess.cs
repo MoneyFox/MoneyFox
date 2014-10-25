@@ -12,11 +12,6 @@ namespace MoneyManager.DataAccess.DataAccess
     [ImplementPropertyChanged]
     internal class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
     {
-        public TransactionDataAccess()
-        {
-            LoadList();
-        }
-
         public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
 
         public FinancialTransaction SelectedTransaction { get; set; }
@@ -62,6 +57,11 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public IEnumerable<FinancialTransaction> GetRelatedTransactions(int accountId)
         {
+            if (AllTransactions == null)
+            {
+                LoadList();
+            }
+
             return AllTransactions
                 .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
                 .ToList();
@@ -86,15 +86,15 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public List<FinancialTransaction> LoadRecurringList()
         {
-            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection())
+            if (AllTransactions == null)
             {
-                //Have to make a list before apply the where statements
-                return db.Table<FinancialTransaction>()
-                    .ToList()
-                    .Where(x => x.IsRecurring)
-                    .Where(x => x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date)
-                    .ToList();
+                LoadList();
             }
+
+            return AllTransactions
+                .Where(x => x.IsRecurring)
+                .Where(x => x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date)
+                .ToList();
         }
     }
 }
