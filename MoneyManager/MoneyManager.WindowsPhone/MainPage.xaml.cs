@@ -8,6 +8,7 @@ using MoneyManager.Common;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using MoneyManager.Tasks.TransactionsWp;
 using MoneyManager.Views;
 
 namespace MoneyManager
@@ -30,8 +31,10 @@ namespace MoneyManager
 
             navigationHelper = new NavigationHelper(this);
 
-            RecurringTransactionLogic.CheckForRecurringTransactions();
+            //RecurringTransactionLogic.CheckRecurringTransactions();
             TransactionLogic.ClearTransactions();
+
+            BackgroundTaskLogic.RegisterBackgroundTask();
         }
 
         public NavigationHelper NavigationHelper

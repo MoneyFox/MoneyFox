@@ -52,17 +52,10 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        public static void CheckForRecurringTransactions()
+        public static void CheckRecurringTransactions()
         {
-            try
-            {
-                RecurringTransactionData.LoadList();
-                CheckIfIntervallIsReady();
-            }
-            catch (Exception ex)
-            {
-                BugSenseHandler.Instance.LogException(ex);
-            }
+            RecurringTransactionData.LoadList();
+            CheckIfIntervallIsReady();
         }
 
         private static void CheckIfIntervallIsReady()

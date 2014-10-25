@@ -15,12 +15,6 @@ namespace MoneyManager.Business.Src
     {
         #region Properties
 
-        private static FinancialTransaction SelectedTransaction
-        {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
-            set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
-        }
-
         private static AccountDataAccess accountDataAccess
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
@@ -87,7 +81,7 @@ namespace MoneyManager.Business.Src
         public static void DeleteTransaction(FinancialTransaction transaction)
         {
             transactionData.Delete(transaction);
-            AccountLogic.RemoveTransactionAmount(SelectedTransaction);
+            AccountLogic.RemoveTransactionAmount(transactionData.SelectedTransaction);
             AccountLogic.RefreshRelatedTransactions(transaction);
             totalBalanceView.UpdateBalance();
 
@@ -148,7 +142,7 @@ namespace MoneyManager.Business.Src
 
         private static void SetDefaultTransaction(TransactionType transactionType)
         {
-            SelectedTransaction = new FinancialTransaction
+            transactionData.SelectedTransaction = new FinancialTransaction
             {
                 Type = (int)transactionType,
             };
@@ -158,7 +152,7 @@ namespace MoneyManager.Business.Src
         {
             if (accountDataAccess.AllAccounts.Any())
             {
-                SelectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First();
+                transactionData.SelectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First();
             }
         }
 

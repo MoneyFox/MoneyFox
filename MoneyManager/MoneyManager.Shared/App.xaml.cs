@@ -12,6 +12,7 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Src;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess;
+using MoneyManager.Tasks.TransactionsWp;
 
 namespace MoneyManager
 {
@@ -31,7 +32,6 @@ namespace MoneyManager
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
 #if DEBUG
             if (Debugger.IsAttached)
             {
