@@ -1,4 +1,6 @@
 ﻿using Windows.ApplicationModel.Background;
+using Windows.Networking.Sockets;
+using MoneyManager.Business.Src;
 
 namespace MoneyManager.Tasks.TransactionsWp
 {
@@ -6,6 +8,8 @@ namespace MoneyManager.Tasks.TransactionsWp
     {
         public void Run(IBackgroundTaskInstance taskInstance)
         {
+            new ViewModelLocatorTask();
+            RecurringTransactionLogic.CheckRecurringTransactions();
         }
     }
 }
