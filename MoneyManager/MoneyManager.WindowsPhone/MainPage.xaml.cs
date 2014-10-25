@@ -70,7 +70,7 @@ namespace MoneyManager
 
         private static void AddTransaction(TransactionType type)
         {
-            new TransactionLogic().GoToAddTransaction(type);
+            TransactionLogic.GoToAddTransaction(type);
             ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 

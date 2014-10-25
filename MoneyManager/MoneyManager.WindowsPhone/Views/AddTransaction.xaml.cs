@@ -25,7 +25,7 @@ namespace MoneyManager.Views
             }
         }
 
-        internal AddTransactionViewModel AddTransactionView
+        private AddTransactionViewModel AddTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }

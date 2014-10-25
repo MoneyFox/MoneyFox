@@ -93,8 +93,8 @@ namespace MoneyManager
 
             ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().UpdateBalance();
 
-            new RecurringTransactionLogic().CheckRecurringTransactions();
-            new TransactionLogic().ClearTransactions();
+            RecurringTransactionLogic.CheckRecurringTransactions();
+            TransactionLogic.ClearTransactions();
 
             BackgroundTaskLogic.RegisterBackgroundTask();
         }

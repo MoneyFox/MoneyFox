@@ -8,7 +8,7 @@ namespace MoneyManager.Tasks.TransactionsWp
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             new ViewModelLocatorTask();
-            new RecurringTransactionLogic().CheckRecurringTransactions();
+            RecurringTransactionLogic.CheckRecurringTransactions();
         }
     }
 }

@@ -15,47 +15,47 @@ namespace MoneyManager.Business.Src
     {
         #region Properties
 
-        private AccountDataAccess accountDataAccess
+        private static AccountDataAccess accountDataAccess
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
-        private TransactionDataAccess transactionData
+        private static TransactionDataAccess transactionData
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        private FinancialTransaction selectedTransaction
+        private static FinancialTransaction selectedTransaction
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
             set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
         }
 
-        private RecurringTransactionDataAccess recurringTransactionData
+        private static RecurringTransactionDataAccess recurringTransactionData
         {
             get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
         }
 
-        private AddTransactionViewModel addTransactionView
+        private static AddTransactionViewModel addTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
-        private TotalBalanceViewModel totalBalanceView
+        private static TotalBalanceViewModel totalBalanceView
         {
             get { return ServiceLocator.Current.GetInstance<TotalBalanceViewModel>(); }
         }
 
         #endregion Properties
 
-        public void SaveTransaction(FinancialTransaction transaction, bool skipRecurring = false)
+        public static void SaveTransaction(FinancialTransaction transaction, bool skipRecurring = false)
         {
             AccountLogic.AddTransactionAmount(transaction);
-            if (!skipRecurring && transaction.IsRecurring)
+            if (transaction.IsRecurring && !skipRecurring)
             {
-                var recurringTransaction = new RecurringTransactionLogic().GetRecurringFromFinancialTransaction(transaction);
-
+                var recurringTransaction = RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
                 recurringTransactionData.Save(transaction, recurringTransaction);
+                transaction.RecurringTransaction = recurringTransaction;
             }
 
             AccountLogic.RemoveTransactionAmount(transaction);
@@ -64,7 +64,7 @@ namespace MoneyManager.Business.Src
             transactionData.Save(transaction);
         }
 
-        public void GoToAddTransaction(TransactionType transactionType)
+        public static void GoToAddTransaction(TransactionType transactionType)
         {
             addTransactionView.IsEdit = false;
             addTransactionView.IsEndless = true;
@@ -73,7 +73,7 @@ namespace MoneyManager.Business.Src
             SetDefaultAccount();
         }
 
-        public void PrepareEdit(FinancialTransaction transaction)
+        public static void PrepareEdit(FinancialTransaction transaction)
         {
             addTransactionView.IsEdit = true;
             if (transaction.ReccuringTransactionId.HasValue)
@@ -84,7 +84,7 @@ namespace MoneyManager.Business.Src
             addTransactionView.SelectedTransaction = transaction;
         }
 
-        public void DeleteTransaction(FinancialTransaction transaction)
+        public static void DeleteTransaction(FinancialTransaction transaction)
         {
             transactionData.Delete(transaction);
             AccountLogic.RemoveTransactionAmount(selectedTransaction);
@@ -95,7 +95,7 @@ namespace MoneyManager.Business.Src
                 () => recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));
         }
 
-        public void DeleteAssociatedTransactionsFromDatabase(int accountId)
+        public static void DeleteAssociatedTransactionsFromDatabase(int accountId)
         {
             foreach (
                 FinancialTransaction transaction in
@@ -105,18 +105,18 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        public async void UpdateTransaction(FinancialTransaction transaction)
+        public static async void UpdateTransaction(FinancialTransaction transaction)
         {
             CheckIfRecurringWasRemoved(transaction);
             AccountLogic.AddTransactionAmount(transaction);
             transactionData.Update(transaction);
 
-            var recurringTransaction = new RecurringTransactionLogic().GetRecurringFromFinancialTransaction(transaction);
+            var recurringTransaction = RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
 
             await CheckForRecurringTransaction(transaction, () => recurringTransactionData.Update(transaction, recurringTransaction));
         }
 
-        private async Task CheckForRecurringTransaction(FinancialTransaction transaction,
+        private static async Task CheckForRecurringTransaction(FinancialTransaction transaction,
             Action recurringTransactionAction)
         {
             if (!transaction.IsRecurring) return;
@@ -138,7 +138,7 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        private void CheckIfRecurringWasRemoved(FinancialTransaction transaction)
+        private static void CheckIfRecurringWasRemoved(FinancialTransaction transaction)
         {
             if (!transaction.IsRecurring && transaction.ReccuringTransactionId != null)
             {
@@ -146,7 +146,7 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        private void SetDefaultTransaction(TransactionType transactionType)
+        private static void SetDefaultTransaction(TransactionType transactionType)
         {
             selectedTransaction = new FinancialTransaction
             {
@@ -154,7 +154,7 @@ namespace MoneyManager.Business.Src
             };
         }
 
-        private void SetDefaultAccount()
+        private static void SetDefaultAccount()
         {
             if (accountDataAccess.AllAccounts.Any())
             {
@@ -162,7 +162,7 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        public void ClearTransactions()
+        public static void ClearTransactions()
         {
             IEnumerable<FinancialTransaction> transactions = transactionData.GetUnclearedTransactions();
             foreach (FinancialTransaction transaction in transactions)

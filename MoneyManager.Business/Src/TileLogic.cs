@@ -7,20 +7,18 @@ namespace MoneyManager.Business.Src
     {
         public static void DoNavigation(string tileId)
         {
-            var transactionLogic = new TransactionLogic();
-
             switch (tileId)
             {
                 case IncomeTile.Id:
-                    transactionLogic.GoToAddTransaction(TransactionType.Income);
+                    TransactionLogic.GoToAddTransaction(TransactionType.Income);
                     break;
 
                 case SpendingTile.Id:
-                    transactionLogic.GoToAddTransaction(TransactionType.Spending);
+                    TransactionLogic.GoToAddTransaction(TransactionType.Spending);
                     break;
 
                 case TransferTile.Id:
-                    transactionLogic.GoToAddTransaction(TransactionType.Transfer);
+                    TransactionLogic.GoToAddTransaction(TransactionType.Transfer);
                     break;
             }
         }
