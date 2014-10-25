@@ -32,3 +32,4 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("MoneyManager.Business")]
 [assembly: InternalsVisibleTo("MoneyManager.WindowsPhone")]
 [assembly: InternalsVisibleTo("MoneyManager.DataAccess.WindowsPhone.Test")]
+[assembly: InternalsVisibleTo("MoneyManager.Tasks.TransactionsWp")]

@@ -52,7 +52,7 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        public static void CheckForRecurringTransactions()
+        public static void CheckRecurringTransactions()
         {
             try
             {
