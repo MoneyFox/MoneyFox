@@ -29,7 +29,7 @@ namespace MoneyManager.Business.Src
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
-        private IEnumerable<RecurringTransaction> AllRecurringTransactions
+        private static IEnumerable<RecurringTransaction> AllRecurringTransactions
         {
             get
             {
@@ -44,7 +44,7 @@ namespace MoneyManager.Business.Src
             IEnumerable<FinancialTransaction> relatedTrans =
                 transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
 
-            foreach (FinancialTransaction transaction in relatedTrans)
+            foreach (var transaction in relatedTrans)
             {
                 transaction.IsRecurring = false;
                 transaction.ReccuringTransactionId = null;
@@ -52,7 +52,7 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        public void CheckForRecurringTransactions()
+        public static void CheckForRecurringTransactions()
         {
             try
             {
@@ -65,7 +65,7 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        private void CheckIfIntervallIsReady()
+        private static void CheckIfIntervallIsReady()
         {
             List<FinancialTransaction> transactions = transactionData.LoadRecurringList();
 
@@ -81,7 +81,7 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        private bool CheckIfRepeatable(RecurringTransaction recTrans, FinancialTransaction relTransaction)
+        private static bool CheckIfRepeatable(RecurringTransaction recTrans, FinancialTransaction relTransaction)
         {
             switch (recTrans.Recurrence)
             {
@@ -102,7 +102,7 @@ namespace MoneyManager.Business.Src
             return false;
         }
 
-        private void SaveTransaction(RecurringTransaction recurringTransaction)
+        private static void SaveTransaction(RecurringTransaction recurringTransaction)
         {
             var newTransaction = new FinancialTransaction
             {

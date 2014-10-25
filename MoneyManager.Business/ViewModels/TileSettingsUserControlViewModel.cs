@@ -1,8 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
 using MoneyManager.Business.Tiles;
+using PropertyChanged;
 
 namespace MoneyManager.Business.ViewModels
 {
+    [ImplementPropertyChanged]
     internal class TileSettingsUserControlViewModel : ViewModelBase
     {
         public IncomeTile IncomeTile

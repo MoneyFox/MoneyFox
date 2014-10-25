@@ -25,11 +25,12 @@ namespace MoneyManager
         {
             InitializeComponent();
             Suspending += OnSuspending;
+
+            BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");
 
 #if DEBUG
             if (Debugger.IsAttached)
@@ -90,8 +91,6 @@ namespace MoneyManager
             Window.Current.Activate();
             TileLogic.DoNavigation(e.TileId);
 
-            new RecurringTransactionLogic().CheckForRecurringTransactions();
-            TransactionLogic.ClearTransactions();
             ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().UpdateBalance();
         }
 

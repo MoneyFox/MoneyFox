@@ -1,14 +1,15 @@
-﻿using System;
+﻿using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
+using PropertyChanged;
+using SQLite.Net;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
-using SQLite.Net;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
+    [ImplementPropertyChanged]
     internal class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
     {
         public TransactionDataAccess()
@@ -19,16 +20,6 @@ namespace MoneyManager.DataAccess.DataAccess
         public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
 
         public FinancialTransaction SelectedTransaction { get; set; }
-
-        private AccountDataAccess AccountDataAccess
-        {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
-        }
-
-        private RecurringTransactionDataAccess RecurringTransactionData
-        {
-            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
-        }
 
         protected override void SaveToDb(FinancialTransaction transaction)
         {
@@ -47,7 +38,7 @@ namespace MoneyManager.DataAccess.DataAccess
                 AllTransactions.Add(transaction);
                 AllTransactions = new ObservableCollection<FinancialTransaction>(AllTransactions.OrderBy(x => x.Date));
 
-                dbConn.Insert(transaction, typeof (FinancialTransaction));
+                dbConn.Insert(transaction, typeof(FinancialTransaction));
             }
         }
 
@@ -59,7 +50,6 @@ namespace MoneyManager.DataAccess.DataAccess
                 dbConn.Delete(transaction);
             }
         }
-
 
         protected override void GetListFromDb()
         {
@@ -84,7 +74,6 @@ namespace MoneyManager.DataAccess.DataAccess
                 dbConn.Update(transaction);
             }
         }
-
 
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions()
         {

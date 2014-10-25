@@ -2,10 +2,11 @@
 using System.Linq;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
-using SQLite.Net;
+using PropertyChanged;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
+    [ImplementPropertyChanged]
     internal class AccountDataAccess : AbstractDataAccess<Account>
     {
         public Account SelectedAccount { get; set; }
@@ -14,7 +15,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void SaveToDb(Account itemToAdd)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllAccounts == null)
                 {
@@ -28,7 +29,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void DeleteFromDatabase(Account itemToDelete)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 AllAccounts.Remove(itemToDelete);
                 dbConn.Delete(itemToDelete);
@@ -37,7 +38,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void GetListFromDb()
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 AllAccounts = new ObservableCollection<Account>(dbConn.Table<Account>().ToList());
             }
@@ -45,7 +46,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void UpdateItem(Account itemToUpdate)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.Update(itemToUpdate, typeof (Account));
             }

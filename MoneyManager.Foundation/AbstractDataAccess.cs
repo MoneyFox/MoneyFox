@@ -12,8 +12,6 @@ namespace MoneyManager.Foundation
             try
             {
                 SaveToDb(itemToSave);
-                //TODO: Refactor
-                //TotalBalanceView.UpdateBalance();
             }
             catch (Exception ex)
             {
@@ -50,8 +48,6 @@ namespace MoneyManager.Foundation
             try
             {
                 UpdateItem(itemToUpdate);
-                //TODO: Refactor
-                //TotalBalanceView.UpdateBalance();
             }
             catch (Exception ex)
             {

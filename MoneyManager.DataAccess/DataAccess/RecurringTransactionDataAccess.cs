@@ -2,10 +2,12 @@
 using System.Linq;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using PropertyChanged;
 using SQLite.Net;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
+    [ImplementPropertyChanged]
     internal class RecurringTransactionDataAccess : AbstractDataAccess<RecurringTransaction>
     {
         public ObservableCollection<RecurringTransaction> AllRecurringTransactions { get; set; }

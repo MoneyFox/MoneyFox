@@ -1,13 +1,15 @@
-﻿using System;
+﻿using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
+using PropertyChanged;
+using SQLite.Net;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyManager.DataAccess;
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
+    [ImplementPropertyChanged]
     internal class StatisticDataAccess
     {
         public ObservableCollection<StatisticItem> MonthlyOverview
@@ -17,7 +19,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public ObservableCollection<StatisticItem> LoadMonthlyOverview()
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 List<FinancialTransaction> transactionList = dbConn.Table<FinancialTransaction>().ToList()
                     .Where(x => x.Date.Month == DateTime.Now.Month).ToList();
@@ -28,13 +30,13 @@ namespace MoneyManager.DataAccess.DataAccess
                 var income = new StatisticItem
                 {
                     Category = Translation.GetTranslation("IncomeLabel"),
-                    Value = transactionList.Where(x => x.Type == (int)TransactionType.Income).Sum(x => x.Amount)
+                    Value = transactionList.Where(x => x.Type == (int) TransactionType.Income).Sum(x => x.Amount)
                 };
 
                 var spent = new StatisticItem
                 {
                     Category = Translation.GetTranslation("SpentLabel"),
-                    Value = transactionList.Where(x => x.Type == (int)TransactionType.Spending).Sum(x => x.Amount)
+                    Value = transactionList.Where(x => x.Type == (int) TransactionType.Spending).Sum(x => x.Amount)
                 };
 
                 var increased = new StatisticItem

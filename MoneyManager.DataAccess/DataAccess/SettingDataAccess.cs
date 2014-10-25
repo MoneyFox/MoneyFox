@@ -3,9 +3,11 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using Windows.Storage;
+using PropertyChanged;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
+    [ImplementPropertyChanged]
     internal class SettingDataAccess : INotifyPropertyChanged
     {
         private const string DbVersionKeyname = "DbVersion";

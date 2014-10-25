@@ -7,9 +7,11 @@ using MoneyManager.Business.Src;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using PropertyChanged;
 
 namespace MoneyManager.Business.ViewModels
 {
+    [ImplementPropertyChanged]
     internal class AddTransactionViewModel
     {
         public FinancialTransaction SelectedTransaction
@@ -63,6 +65,7 @@ namespace MoneyManager.Business.ViewModels
                 ServiceLocator.Current.GetInstance<TransactionDataAccess>().Save(SelectedTransaction);
             }
 
+            AccountLogic.AddTransactionAmount(SelectedTransaction);
             ((Frame) Window.Current.Content).GoBack();
         }
 

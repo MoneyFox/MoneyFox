@@ -4,9 +4,11 @@ using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+using PropertyChanged;
 
 namespace MoneyManager.Business.ViewModels
 {
+    [ImplementPropertyChanged]
     internal class SelectCategoryViewModel : ViewModelBase
     {
         private string searchText;

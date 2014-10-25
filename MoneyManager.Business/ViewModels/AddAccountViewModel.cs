@@ -1,12 +1,14 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using PropertyChanged;
 
 namespace MoneyManager.Business.ViewModels
 {
+    [ImplementPropertyChanged]
     internal class AddAccountViewModel : ViewModelBase
     {
         public bool IsEdit { get; set; }
@@ -27,12 +29,12 @@ namespace MoneyManager.Business.ViewModels
             {
                 ServiceLocator.Current.GetInstance<AccountDataAccess>().Save(SelectedAccount);
             }
-            ((Frame) Window.Current.Content).GoBack();
+            ((Frame)Window.Current.Content).GoBack();
         }
 
         public void Cancel()
         {
-            ((Frame) Window.Current.Content).GoBack();
+            ((Frame)Window.Current.Content).GoBack();
         }
     }
 }
