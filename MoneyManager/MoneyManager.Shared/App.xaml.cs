@@ -31,7 +31,6 @@ namespace MoneyManager
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
 #if DEBUG
             if (Debugger.IsAttached)
             {
@@ -92,6 +91,7 @@ namespace MoneyManager
             TileLogic.DoNavigation(e.TileId);
 
             ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().UpdateBalance();
+            BackgroundTaskLogic.RegisterBackgroundTask();
         }
 
 #if WINDOWS_PHONE_APP

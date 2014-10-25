@@ -3,7 +3,7 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 
-namespace MoneyManager
+namespace MoneyManager.Tasks.TransactionsWp
 {
     internal class ViewModelLocatorTask
     {

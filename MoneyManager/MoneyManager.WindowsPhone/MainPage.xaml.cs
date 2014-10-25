@@ -30,7 +30,7 @@ namespace MoneyManager
 
             navigationHelper = new NavigationHelper(this);
 
-            RecurringTransactionLogic.CheckForRecurringTransactions();
+            RecurringTransactionLogic.CheckRecurringTransactions();
             TransactionLogic.ClearTransactions();
         }
 

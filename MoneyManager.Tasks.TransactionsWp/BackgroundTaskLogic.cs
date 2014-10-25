@@ -3,13 +3,13 @@ using System.Linq;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Popups;
 
-namespace MoneyManager.Business.Src
+namespace MoneyManager.Tasks.TransactionsWp
 {
     internal class BackgroundTaskLogic
     {
         private const string name = "RecurringTransactionTask";
 
-        public static void RegisterBackgroundTask()
+        public void RegisterBackgroundTask()
         {
             if (IsTaskExisting()) return;
 
@@ -18,14 +18,13 @@ namespace MoneyManager.Business.Src
             var trigger = new TimeTrigger(720, false);
 
             builder.Name = name;
-            //TODO: Refactor
-            //builder.TaskEntryPoint = typeof(Tasks.TransactionsWp.TransactionTask).FullName;
+            builder.TaskEntryPoint = typeof(TransactionTask).FullName;
             builder.SetTrigger(trigger);
             BackgroundTaskRegistration registration = builder.Register();
             registration.Completed += RegistrationOnCompleted;
         }
 
-        private static async void RegistrationOnCompleted(BackgroundTaskRegistration sender,
+        private async void RegistrationOnCompleted(BackgroundTaskRegistration sender,
             BackgroundTaskCompletedEventArgs args)
         {
             BackgroundAccessStatus result = await BackgroundExecutionManager.RequestAccessAsync();
@@ -36,7 +35,7 @@ namespace MoneyManager.Business.Src
             }
         }
 
-        private static  bool IsTaskExisting()
+        private bool IsTaskExisting()
         {
             return BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == name);
         }

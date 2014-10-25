@@ -81,6 +81,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BackgroundTaskLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionTask.cs" />
     <Compile Include="ViewModelLocator.cs" />
@@ -114,6 +115,10 @@
     <ProjectReference Include="..\MoneyManager.DataAccess\MoneyManager.DataAccess.csproj">
       <Project>{217ba6c1-a9ca-426d-b8d3-d891aa59a308}</Project>
       <Name>MoneyManager.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
+      <Project>{6936f4d3-8889-48c7-a676-80d59b2740ce}</Project>
+      <Name>MoneyManager.Foundation</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
