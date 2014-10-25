@@ -76,7 +76,7 @@ namespace MoneyManager.Business.Src
                     return DateTime.Now.Date != relTransaction.Date;
 
                 case (int) TransactionRecurrence.Weekly:
-                    TimeSpan days = DateTime.Now - relTransaction.Date;
+                    var days = DateTime.Now - relTransaction.Date;
                     return days.Days >= 7;
 
                 case (int) TransactionRecurrence.Monthly:

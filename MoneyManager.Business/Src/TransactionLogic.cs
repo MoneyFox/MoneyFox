@@ -59,7 +59,6 @@ namespace MoneyManager.Business.Src
             }
 
             AccountLogic.RemoveTransactionAmount(transaction);
-            totalBalanceView.UpdateBalance();
 
             transactionData.Save(transaction);
         }
@@ -89,7 +88,6 @@ namespace MoneyManager.Business.Src
             transactionData.Delete(transaction);
             AccountLogic.RemoveTransactionAmount(selectedTransaction);
             AccountLogic.RefreshRelatedTransactions(transaction);
-            totalBalanceView.UpdateBalance();
 
             CheckForRecurringTransaction(transaction,
                 () => recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));

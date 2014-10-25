@@ -91,8 +91,6 @@ namespace MoneyManager
             Window.Current.Activate();
             TileLogic.DoNavigation(e.TileId);
 
-            ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().UpdateBalance();
-
             RecurringTransactionLogic.CheckRecurringTransactions();
             TransactionLogic.ClearTransactions();
 

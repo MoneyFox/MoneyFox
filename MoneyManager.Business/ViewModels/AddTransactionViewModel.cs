@@ -58,11 +58,11 @@ namespace MoneyManager.Business.ViewModels
         {
             if (IsEdit)
             {
-                ServiceLocator.Current.GetInstance<TransactionDataAccess>().Update(SelectedTransaction);
+                TransactionLogic.UpdateTransaction(SelectedTransaction);
             }
             else
             {
-                ServiceLocator.Current.GetInstance<TransactionDataAccess>().Save(SelectedTransaction);
+                TransactionLogic.SaveTransaction(SelectedTransaction);
             }
 
             AccountLogic.AddTransactionAmount(SelectedTransaction);
