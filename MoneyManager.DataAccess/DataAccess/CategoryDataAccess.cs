@@ -9,72 +9,44 @@ namespace MoneyManager.DataAccess.DataAccess
 {
     [ImplementPropertyChanged]
     internal class CategoryDataAccess : AbstractDataAccess<Category>
-    {
-        public CategoryDataAccess()
-        {
-            LoadList();
-        }
-
-        public ObservableCollection<Category> AllCategories { get; set; }
-
-        public Category SelectedCategory { get; set; }
-
+    {    
         protected override void SaveToDb(Category category)
         {
-            if (AllCategories == null)
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                AllCategories = new ObservableCollection<Category>();
+                if (AllCategories == null)
+                {
+                    LoadList();
+                }
+
+                AllCategories.Add(category);
+                category.Id = dbConn.Insert(category);
             }
-
-            category.Id = GetMaxId();
-
-            AllCategories.Add(category);
-            AllCategories = new ObservableCollection<Category>(AllCategories.OrderBy(x => x.Name));
-
-            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
-            roamingSettings.Values[category.Id.ToString()] = category.Name;
         }
 
-        private int GetMaxId()
+        protected override void DeleteFromDatabase(Category categorycategory)
         {
-            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
-            return roamingSettings.Values.Count;
-        }
-
-
-        protected override void DeleteFromDatabase(Category category)
-        {
-            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
-            roamingSettings.Values.Remove(category.Id.ToString());
-
-            AllCategories.Remove(category);
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            {
+                AllCategories.Remove(categorycategory);
+                dbConn.Delete(category);
+            }
         }
 
         protected override void GetListFromDb()
         {
-            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
-
-            AllCategories = new ObservableCollection<Category>(roamingSettings.Values
-                .OrderBy(x => x.Value)
-                .Select(x => new Category
-                {
-                    Id = int.Parse(x.Key),
-                    Name = x.Value.ToString()
-                }).ToList());
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            {
+                AllCategories = new ObservableCollection<Category>(dbConn.Table<Category>().ToList());
+            }
         }
 
         protected override void UpdateItem(Category category)
         {
-            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
-            roamingSettings.Values[category.Id.ToString()] = category.Name;
-        }
-
-        public void DeleteAll()
-        {
-            ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
-            roamingSettings.Values.Clear();
-
-            AllCategories.Clear();
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            {
+                dbConn.Update(category, typeof (Category));
+            }
         }
     }
 }
