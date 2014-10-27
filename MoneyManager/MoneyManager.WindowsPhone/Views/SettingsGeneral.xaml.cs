@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MoneyManager.Common;
+using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using MoneyManager.Common;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -99,6 +99,6 @@ namespace MoneyManager.Views
             navigationHelper.OnNavigatedFrom(e);
         }
 
-        #endregion
+        #endregion NavigationHelper registration
     }
 }

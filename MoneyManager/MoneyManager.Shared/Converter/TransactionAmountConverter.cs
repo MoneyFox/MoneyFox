@@ -1,9 +1,9 @@
-﻿using System;
-using Windows.UI.Xaml.Data;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using System;
+using Windows.UI.Xaml.Data;
 
 namespace MoneyManager.Converter
 {
@@ -18,14 +18,14 @@ namespace MoneyManager.Converter
         {
             var transaction = value as FinancialTransaction;
 
-            if (transaction.Type == (int) TransactionType.Transfer)
+            if (transaction.Type == (int)TransactionType.Transfer)
             {
                 return selectedAccount == transaction.ChargedAccount
                     ? "-"
                     : "+";
             }
 
-            return transaction.Type == (int) TransactionType.Spending
+            return transaction.Type == (int)TransactionType.Spending
                 ? "-"
                 : "+";
         }

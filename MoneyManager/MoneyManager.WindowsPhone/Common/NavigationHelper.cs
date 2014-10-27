@@ -29,7 +29,7 @@ namespace MoneyManager.Common
     ///          this.navigationHelper.LoadState += navigationHelper_LoadState;
     ///          this.navigationHelper.SaveState += navigationHelper_SaveState;
     ///      }
-    /// 
+    ///
     ///      private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
     ///      { }
     ///      private async void navigationHelper_SaveState(object sender, LoadStateEventArgs e)
@@ -43,7 +43,7 @@ namespace MoneyManager.Common
     ///      {
     ///          navigationHelper.OnNavigatedTo(e);
     ///      }
-    /// 
+    ///
     ///      protected override void OnNavigatedFrom(NavigationEventArgs e)
     ///      {
     ///          navigationHelper.OnNavigatedFrom(e);
@@ -348,7 +348,7 @@ namespace MoneyManager.Common
                 if (LoadState != null)
                 {
                     LoadState(this,
-                        new LoadStateEventArgs(e.Parameter, (Dictionary<String, Object>) frameState[_pageKey]));
+                        new LoadStateEventArgs(e.Parameter, (Dictionary<String, Object>)frameState[_pageKey]));
                 }
             }
         }

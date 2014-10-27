@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using SQLite.Net;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MoneyManager.DataAccess.WindowsPhone.Test
 {

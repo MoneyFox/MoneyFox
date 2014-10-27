@@ -26,20 +26,21 @@ namespace MoneyManager.Business.Src
 
         public ObservableCollection<StatisticItem> LoadMonthlyCashFlow()
         {
-            var transactionList = allTransaction.Where(x => x.Date.Month == DateTime.Now.Month).ToList();
+            List<FinancialTransaction> transactionList =
+                allTransaction.Where(x => x.Date.Month == DateTime.Now.Month).ToList();
 
             var itemList = new ObservableCollection<StatisticItem>();
 
             var income = new StatisticItem
             {
                 Category = Translation.GetTranslation("IncomeLabel"),
-                Value = transactionList.Where(x => x.Type == (int)TransactionType.Income).Sum(x => x.Amount)
+                Value = transactionList.Where(x => x.Type == (int) TransactionType.Income).Sum(x => x.Amount)
             };
 
             var spent = new StatisticItem
             {
                 Category = Translation.GetTranslation("SpentLabel"),
-                Value = transactionList.Where(x => x.Type == (int)TransactionType.Spending).Sum(x => x.Amount)
+                Value = transactionList.Where(x => x.Type == (int) TransactionType.Spending).Sum(x => x.Amount)
             };
 
             var increased = new StatisticItem

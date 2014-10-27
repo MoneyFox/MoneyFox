@@ -1,4 +1,11 @@
-﻿using System;
+﻿using BugSense;
+using BugSense.Model;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Src;
+using MoneyManager.Business.ViewModels;
+using MoneyManager.DataAccess;
+using MoneyManager.Tasks.TransactionsWp;
+using System;
 using System.Diagnostics;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -6,13 +13,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using BugSense;
-using BugSense.Model;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Src;
-using MoneyManager.Business.ViewModels;
-using MoneyManager.DataAccess;
-using MoneyManager.Tasks.TransactionsWp;
 
 namespace MoneyManager
 {
@@ -81,7 +81,7 @@ namespace MoneyManager
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof (MainPage), e.Arguments))
+                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
@@ -107,7 +107,7 @@ namespace MoneyManager
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs e)
         {
             var rootFrame = sender as Frame;
-            rootFrame.ContentTransitions = transitions ?? new TransitionCollection {new NavigationThemeTransition()};
+            rootFrame.ContentTransitions = transitions ?? new TransitionCollection { new NavigationThemeTransition() };
             rootFrame.Navigated -= RootFrame_FirstNavigated;
         }
 

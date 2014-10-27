@@ -1,8 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
-using MoneyManager.DataAccess.Model;
+﻿using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using PropertyChanged;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -48,7 +48,7 @@ namespace MoneyManager.DataAccess.DataAccess
         {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                dbConn.Update(itemToUpdate, typeof (Account));
+                dbConn.Update(itemToUpdate, typeof(Account));
             }
         }
     }

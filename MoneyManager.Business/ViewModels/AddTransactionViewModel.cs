@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Src;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using PropertyChanged;
+using System;
+using System.Collections.ObjectModel;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -66,7 +66,7 @@ namespace MoneyManager.Business.ViewModels
             }
 
             AccountLogic.AddTransactionAmount(SelectedTransaction);
-            ((Frame) Window.Current.Content).GoBack();
+            ((Frame)Window.Current.Content).GoBack();
         }
 
         public void Cancel()
@@ -76,7 +76,7 @@ namespace MoneyManager.Business.ViewModels
                 AccountLogic.AddTransactionAmount(SelectedTransaction);
             }
 
-            ((Frame) Window.Current.Content).GoBack();
+            ((Frame)Window.Current.Content).GoBack();
         }
     }
 }

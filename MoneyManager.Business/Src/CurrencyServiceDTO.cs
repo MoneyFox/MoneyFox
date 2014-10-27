@@ -21,7 +21,7 @@ namespace MoneyManager.Business.Src
 
         [DataMember(Name = "name")]
         public string CountryName { get; set; }
-        
+
         [DataMember(Name = "alpha3")]
         public string CountryAlpha3 { get; set; }
 

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MoneyManager.Business.Src
 {
@@ -72,14 +72,14 @@ namespace MoneyManager.Business.Src
         {
             switch (recTrans.Recurrence)
             {
-                case (int) TransactionRecurrence.Weekly:
+                case (int)TransactionRecurrence.Weekly:
                     var days = DateTime.Now - relTransaction.Date;
                     return days.Days >= 7;
 
-                case (int) TransactionRecurrence.Monthly:
+                case (int)TransactionRecurrence.Monthly:
                     return DateTime.Now.Month != relTransaction.Date.Month;
 
-                case (int) TransactionRecurrence.Yearly:
+                case (int)TransactionRecurrence.Yearly:
                     return DateTime.Now.Year != relTransaction.Date.Year
                            && DateTime.Now.Month == relTransaction.Date.Month;
             }

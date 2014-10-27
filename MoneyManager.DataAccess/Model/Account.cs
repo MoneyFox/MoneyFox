@@ -1,6 +1,6 @@
-﻿using System.Globalization;
-using PropertyChanged;
+﻿using PropertyChanged;
 using SQLite.Net.Attributes;
+using System.Globalization;
 
 namespace MoneyManager.DataAccess.Model
 {

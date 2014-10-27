@@ -2,9 +2,9 @@
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+using PropertyChanged;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using PropertyChanged;
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -29,12 +29,12 @@ namespace MoneyManager.Business.ViewModels
             {
                 ServiceLocator.Current.GetInstance<AccountDataAccess>().Save(SelectedAccount);
             }
-            ((Frame)Window.Current.Content).GoBack();
+            ((Frame) Window.Current.Content).GoBack();
         }
 
         public void Cancel()
         {
-            ((Frame)Window.Current.Content).GoBack();
+            ((Frame) Window.Current.Content).GoBack();
         }
     }
 }

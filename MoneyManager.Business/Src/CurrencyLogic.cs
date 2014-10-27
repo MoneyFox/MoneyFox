@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace MoneyManager.Business.Src
 {
     public class CurrencyLogic
     {
-        private const string CURRENCY_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
+        private const string CURRENCY_SERVICE_URL =
+            "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
+
         private const string COUNTRIES_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/v2/countries";
 
         private static HttpClient httpClient = new HttpClient();
@@ -19,18 +21,18 @@ namespace MoneyManager.Business.Src
                 "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
         }
 
-        public async static Task GetSupportedCurrencies()
+        public static async Task GetSupportedCurrencies()
         {
-            var jsonString = await GetJsonFromService(COUNTRIES_SERVICE_URL);
+            string jsonString = await GetJsonFromService(COUNTRIES_SERVICE_URL);
             ParseCountries(jsonString);
         }
 
         private static void ParseCountries(string jsonString)
         {
-            var countries = JsonConvert.DeserializeAnonymousType(jsonString, typeof(CurrencyServiceDTO));
+            Type countries = JsonConvert.DeserializeAnonymousType(jsonString, typeof (CurrencyServiceDTO));
         }
 
-        public async static Task<double> GetCurrencyRatio(string currencyFrom, string currencyTo)
+        public static async Task<double> GetCurrencyRatio(string currencyFrom, string currencyTo)
         {
             string currencyFromTo = string.Format("{0}-{1}", currencyFrom.ToUpper(), currencyTo.ToUpper());
             string url = string.Format(CURRENCY_SERVICE_URL, currencyFromTo);
@@ -47,9 +49,9 @@ namespace MoneyManager.Business.Src
                 new
                 {
                     Conversion = new
-                                 {
-                                     val = ""
-                                 }
+                    {
+                        val = ""
+                    }
                 };
 
             var currency = JsonConvert.DeserializeAnonymousType(jsonString, typeExample);
@@ -68,7 +70,7 @@ namespace MoneyManager.Business.Src
 
         private static void PrepareHttpClient()
         {
-            httpClient = new HttpClient { BaseAddress = new Uri("https://api.SmallInvoice.com/") };
+            httpClient = new HttpClient {BaseAddress = new Uri("https://api.SmallInvoice.com/")};
             httpClient.DefaultRequestHeaders.Add("user-agent",
                 "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
         }

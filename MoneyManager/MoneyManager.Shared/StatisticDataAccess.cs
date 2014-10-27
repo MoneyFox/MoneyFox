@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyManager.DataAccess;
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
 
 namespace MoneyManager
 {

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using BugSense;
+﻿using BugSense;
 using MoneyManager.Foundation.OperationContracts;
+using System;
+using System.Threading.Tasks;
 
 namespace MoneyManager.Foundation
 {

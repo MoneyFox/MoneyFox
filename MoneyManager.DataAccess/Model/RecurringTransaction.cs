@@ -59,7 +59,7 @@ namespace MoneyManager.DataAccess.Model
             set
             {
                 CategoryId = value == null
-                    ? (int?)null
+                    ? (int?) null
                     : value.Id;
             }
         }

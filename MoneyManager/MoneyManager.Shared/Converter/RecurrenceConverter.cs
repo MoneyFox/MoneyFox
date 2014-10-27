@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MoneyManager.Foundation;
+using System;
 using Windows.UI.Xaml.Data;
-using MoneyManager.Foundation;
 
 namespace MoneyManager.Converter
 {
@@ -12,13 +12,13 @@ namespace MoneyManager.Converter
 
             switch (enumInt)
             {
-                case (int) TransactionRecurrence.Weekly:
+                case (int)TransactionRecurrence.Weekly:
                     return Translation.GetTranslation("WeeklyLabel");
 
-                case (int) TransactionRecurrence.Monthly:
+                case (int)TransactionRecurrence.Monthly:
                     return Translation.GetTranslation("MonthlyLabel");
 
-                case (int) TransactionRecurrence.Yearly:
+                case (int)TransactionRecurrence.Yearly:
                     return Translation.GetTranslation("YearlyLabel");
             }
 

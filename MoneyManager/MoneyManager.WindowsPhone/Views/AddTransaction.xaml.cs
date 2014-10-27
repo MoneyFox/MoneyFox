@@ -1,12 +1,11 @@
-﻿using System;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Src;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
 using MoneyManager.Foundation;
+using System;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 
 namespace MoneyManager.Views
 {

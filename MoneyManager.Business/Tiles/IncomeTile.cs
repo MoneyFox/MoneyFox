@@ -1,7 +1,7 @@
-﻿using System;
-using Windows.UI.StartScreen;
-using MoneyManager.Foundation;
+﻿using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
+using System;
+using Windows.UI.StartScreen;
 
 namespace MoneyManager.Business.Tiles
 {

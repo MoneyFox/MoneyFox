@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using MoneyManager.Business.Src;
+﻿using MoneyManager.Business.Src;
 using PropertyChanged;
+using System;
+using System.Collections.Generic;
 
 namespace MoneyManager.Business.ViewModels
 {

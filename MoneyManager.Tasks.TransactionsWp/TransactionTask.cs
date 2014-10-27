@@ -1,5 +1,5 @@
-﻿using Windows.ApplicationModel.Background;
-using MoneyManager.Business.Src;
+﻿using MoneyManager.Business.Src;
+using Windows.ApplicationModel.Background;
 
 namespace MoneyManager.Tasks.TransactionsWp
 {

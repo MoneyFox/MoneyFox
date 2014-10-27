@@ -1,10 +1,10 @@
-﻿using System.Reflection;
-using Windows.ApplicationModel;
-using MoneyManager.Business;
+﻿using MoneyManager.Business;
 using MoneyManager.Business.Src;
 using MoneyManager.Common;
 using MoneyManager.Foundation;
 using System;
+using System.Reflection;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Email;
 using Windows.System;
 using Windows.UI.Xaml.Input;
@@ -42,7 +42,7 @@ namespace MoneyManager.Views
                 Address = Translation.GetTranslation("SupportMail")
             };
 
-            var mail = new EmailMessage {Subject = Translation.GetTranslation("Feedback")};
+            var mail = new EmailMessage { Subject = Translation.GetTranslation("Feedback") };
             mail.To.Add(sendTo);
             await EmailManager.ShowComposeNewEmailAsync(mail);
         }

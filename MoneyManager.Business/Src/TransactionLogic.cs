@@ -53,7 +53,8 @@ namespace MoneyManager.Business.Src
             AccountLogic.AddTransactionAmount(transaction);
             if (transaction.IsRecurring && !skipRecurring)
             {
-                var recurringTransaction = RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
+                RecurringTransaction recurringTransaction =
+                    RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
                 recurringTransactionData.Save(transaction, recurringTransaction);
                 transaction.RecurringTransaction = recurringTransaction;
             }
@@ -109,9 +110,12 @@ namespace MoneyManager.Business.Src
             AccountLogic.AddTransactionAmount(transaction);
             transactionData.Update(transaction);
 
-            var recurringTransaction = RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
+            RecurringTransaction recurringTransaction =
+                RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
 
-            await CheckForRecurringTransaction(transaction, () => recurringTransactionData.Update(transaction, recurringTransaction));
+            await
+                CheckForRecurringTransaction(transaction,
+                    () => recurringTransactionData.Update(transaction, recurringTransaction));
         }
 
         private static async Task CheckForRecurringTransaction(FinancialTransaction transaction,
@@ -148,7 +152,7 @@ namespace MoneyManager.Business.Src
         {
             selectedTransaction = new FinancialTransaction
             {
-                Type = (int)transactionType,
+                Type = (int) transactionType,
             };
         }
 

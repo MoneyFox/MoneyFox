@@ -1,9 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
-using MoneyManager.DataAccess.Model;
+﻿using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using PropertyChanged;
-using SQLite.Net;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -27,7 +26,7 @@ namespace MoneyManager.DataAccess.DataAccess
                 AllRecurringTransactions = new ObservableCollection<RecurringTransaction>
                     (AllRecurringTransactions.OrderBy(x => x.StartDate));
 
-                dbConn.Insert(itemToAdd, typeof (RecurringTransaction));
+                dbConn.Insert(itemToAdd, typeof(RecurringTransaction));
             }
         }
 
@@ -43,7 +42,6 @@ namespace MoneyManager.DataAccess.DataAccess
                 dbConn.Delete(itemToDelete);
             }
         }
-
 
         public void Delete(int reccuringTransactionId)
         {
@@ -82,7 +80,6 @@ namespace MoneyManager.DataAccess.DataAccess
             Save(recurringTransaction);
             transaction.ReccuringTransactionId = recurringTransaction.Id;
         }
-
 
         public void Update(FinancialTransaction transaction, RecurringTransaction recurringTransaction)
         {
