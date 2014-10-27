@@ -8,7 +8,17 @@ namespace MoneyManager.Business.Src
 {
     internal class CurrencyLogic
     {
-                private const string CURRENCY_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
+using System;
+using System.Globalization;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+namespace Foo
+{
+    public class CurrencyLogic
+    {
+        private const string CURRENCY_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
         private const string COUNTRIES_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/v2/countries";
 
         private static HttpClient httpClient = new HttpClient();
@@ -19,9 +29,15 @@ namespace MoneyManager.Business.Src
                 "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
         }
 
-        public async static Task<string> GetSupportedCurrencies()
+        public async static Task GetSupportedCurrencies()
         {
-            return await GetJsonFromService(COUNTRIES_SERVICE_URL);
+            var jsonString = await GetJsonFromService(COUNTRIES_SERVICE_URL);
+            ParseCountries(jsonString);
+        }
+
+        private static void ParseCountries(string jsonString)
+        {
+            var countries = JsonConvert.DeserializeAnonymousType(jsonString, typeof(CurrencyServiceDTO));
         }
 
         public async static Task<double> GetCurrencyRatio(string currencyFrom, string currencyTo)
