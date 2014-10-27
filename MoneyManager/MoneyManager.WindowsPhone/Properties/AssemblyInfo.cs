@@ -29,7 +29,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("0.3.7.2")]
 [assembly: AssemblyFileVersion("0.3.7.2")]
 [assembly: ComVisible(false)]
-
-[assembly: InternalsVisibleTo("MoneyManager.DataAccess")]
-[assembly: InternalsVisibleTo("MoneyManager.Business")]
-[assembly: InternalsVisibleTo("MoneyManager.Foundation")]
