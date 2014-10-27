@@ -16,7 +16,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void SaveToDb(RecurringTransaction itemToAdd)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllRecurringTransactions == null)
                 {
@@ -33,7 +33,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void DeleteFromDatabase(RecurringTransaction itemToDelete)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllRecurringTransactions != null)
                 {
@@ -47,7 +47,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public void Delete(int reccuringTransactionId)
         {
-            RecurringTransaction recTrans = AllRecurringTransactions.FirstOrDefault(x => x.Id == reccuringTransactionId);
+            var recTrans = AllRecurringTransactions.FirstOrDefault(x => x.Id == reccuringTransactionId);
             if (recTrans != null)
             {
                 Delete(recTrans);
@@ -56,7 +56,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void GetListFromDb()
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 AllRecurringTransactions =
                     new ObservableCollection<RecurringTransaction>(dbConn.Table<RecurringTransaction>().ToList());
@@ -65,7 +65,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void UpdateItem(RecurringTransaction itemToUpdate)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.Update(itemToUpdate);
                 LoadList();
