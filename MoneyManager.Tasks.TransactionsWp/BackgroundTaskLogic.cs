@@ -5,7 +5,7 @@ using Windows.UI.Popups;
 
 namespace MoneyManager.Tasks.TransactionsWp
 {
-    public sealed class BackgroundTaskLogic
+    internal class BackgroundTaskLogic
     {
         private const string name = "RecurringTransactionTask";
 
