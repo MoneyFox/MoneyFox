@@ -27,7 +27,7 @@ namespace MoneyManager.DataAccess.DataAccess
             {
                 if (AllTransactions == null)
                 {
-                    AllTransactions = new ObservableCollection<FinancialTransaction>();
+                    LoadList();
                 }
 
                 AllTransactions.Add(transaction);
