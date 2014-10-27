@@ -1,8 +1,6 @@
 ﻿using BugSense;
 using BugSense.Model;
-using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Src;
-using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess;
 using MoneyManager.Tasks.TransactionsWp;
 using System;
@@ -26,12 +24,12 @@ namespace MoneyManager
         {
             InitializeComponent();
             Suspending += OnSuspending;
-
-            BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");
+
 #if DEBUG
             if (Debugger.IsAttached)
             {
