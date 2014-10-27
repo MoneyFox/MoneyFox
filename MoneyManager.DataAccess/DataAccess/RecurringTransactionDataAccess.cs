@@ -8,7 +8,7 @@ using SQLite.Net;
 namespace MoneyManager.DataAccess.DataAccess
 {
     [ImplementPropertyChanged]
-    internal class RecurringTransactionDataAccess : AbstractDataAccess<RecurringTransaction>
+    public class RecurringTransactionDataAccess : AbstractDataAccess<RecurringTransaction>
     {
         public ObservableCollection<RecurringTransaction> AllRecurringTransactions { get; set; }
 

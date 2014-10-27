@@ -4,7 +4,7 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Converter
 {
-    internal class RecurrenceConverter : IValueConverter
+    public class RecurrenceConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

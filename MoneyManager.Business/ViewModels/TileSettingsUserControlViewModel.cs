@@ -5,7 +5,7 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
-    internal class TileSettingsUserControlViewModel : ViewModelBase
+    public class TileSettingsUserControlViewModel : ViewModelBase
     {
         public IncomeTile IncomeTile
         {

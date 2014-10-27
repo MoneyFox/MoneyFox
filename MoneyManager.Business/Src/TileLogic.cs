@@ -3,7 +3,7 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Business.Src
 {
-    internal class TileLogic
+    public class TileLogic
     {
         public static void DoNavigation(string tileId)
         {

@@ -6,7 +6,7 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
-    internal class GeneralSettingUserControlViewModel
+    public class GeneralSettingUserControlViewModel
     {
         public List<String> LanguageList
         {

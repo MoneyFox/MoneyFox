@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Data;
 
 namespace MoneyManager.Converter
 {
-    internal class CurrencyConverter : IValueConverter
+    public class CurrencyConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

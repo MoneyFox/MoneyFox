@@ -7,7 +7,7 @@ namespace MoneyManager.Tasks.TransactionsWp
     {
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            new ViewModelLocatorTask();
+            //TODO: Include the view model locator from the mainproject
             RecurringTransactionLogic.CheckRecurringTransactions();
         }
     }

@@ -3,7 +3,7 @@
 namespace MoneyManager.DataAccess.Model
 {
     [ImplementPropertyChanged]
-    internal class StatisticItem
+    public class StatisticItem
     {
         public string Category { get; set; }
 

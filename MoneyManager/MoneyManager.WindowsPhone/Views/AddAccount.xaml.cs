@@ -19,7 +19,7 @@ namespace MoneyManager.Views
             navigationHelper = new NavigationHelper(this);
         }
 
-        internal Account SelectedAccount
+        public Account SelectedAccount
         {
             get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>().SelectedAccount; }
         }

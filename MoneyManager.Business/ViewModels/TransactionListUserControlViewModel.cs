@@ -10,7 +10,7 @@ using QKit.JumpList;
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
-    internal class TransactionListUserControlViewModel : ViewModelBase
+    public class TransactionListUserControlViewModel : ViewModelBase
     {
         private TransactionDataAccess TransactionData
         {

@@ -3,7 +3,7 @@ using SQLite.Net;
 
 namespace MoneyManager.DataAccess
 {
-    internal class DatabaseLogic
+    public class DatabaseLogic
     {
         public static void CreateDatabase()
         {

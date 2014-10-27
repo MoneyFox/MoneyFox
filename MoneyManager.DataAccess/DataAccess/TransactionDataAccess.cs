@@ -10,7 +10,7 @@ using System.Linq;
 namespace MoneyManager.DataAccess.DataAccess
 {
     [ImplementPropertyChanged]
-    internal class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
+    public class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
     {
         public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
 

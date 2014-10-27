@@ -4,7 +4,7 @@ using Windows.UI.StartScreen;
 
 namespace MoneyManager.Business.Tiles
 {
-    internal abstract class Tile
+    public abstract class Tile
     {
         protected bool Exists(string id)
         {

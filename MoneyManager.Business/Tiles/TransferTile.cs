@@ -5,7 +5,7 @@ using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Business.Tiles
 {
-    internal class TransferTile : Tile, ISecondTile
+    public class TransferTile : Tile, ISecondTile
     {
         public const string Id = "AddTransferTile";
 

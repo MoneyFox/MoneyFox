@@ -1,6 +1,6 @@
 ﻿namespace MoneyManager.Foundation.OperationContracts
 {
-    internal interface ISecondTile
+    public interface ISecondTile
     {
         void Create();
 

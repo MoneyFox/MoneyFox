@@ -5,7 +5,7 @@ using MoneyManager.DataAccess.DataAccess;
 
 namespace MoneyManager
 {
-    internal class ViewModelLocator
+    public class ViewModelLocator
     {
         static ViewModelLocator()
         {
@@ -13,10 +13,8 @@ namespace MoneyManager
 
             SimpleIoc.Default.Register<AccountDataAccess>();
             SimpleIoc.Default.Register<CategoryDataAccess>();
-            SimpleIoc.Default.Register<SettingDataAccess>();
             SimpleIoc.Default.Register<TransactionDataAccess>();
             SimpleIoc.Default.Register<RecurringTransactionDataAccess>();
-            SimpleIoc.Default.Register<StatisticDataAccess>();
 
             SimpleIoc.Default.Register<AddAccountViewModel>();
             SimpleIoc.Default.Register<AddTransactionViewModel>();
@@ -47,16 +45,6 @@ namespace MoneyManager
         public RecurringTransactionDataAccess RecurringTransactionDataAccess
         {
             get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
-        }
-
-        public StatisticDataAccess StatisticDataAccess
-        {
-            get { return ServiceLocator.Current.GetInstance<StatisticDataAccess>(); }
-        }
-
-        public SettingDataAccess Settings
-        {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
 
         #endregion DataAccess

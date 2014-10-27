@@ -5,7 +5,7 @@ using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Business.Tiles
 {
-    internal class IncomeTile : Tile, ISecondTile
+    public class IncomeTile : Tile, ISecondTile
     {
         public const string Id = "AddIncomeTile";
 

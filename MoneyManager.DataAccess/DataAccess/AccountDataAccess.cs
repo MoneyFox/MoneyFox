@@ -7,7 +7,7 @@ using PropertyChanged;
 namespace MoneyManager.DataAccess.DataAccess
 {
     [ImplementPropertyChanged]
-    internal class AccountDataAccess : AbstractDataAccess<Account>
+    public class AccountDataAccess : AbstractDataAccess<Account>
     {
         public Account SelectedAccount { get; set; }
 

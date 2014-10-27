@@ -10,7 +10,7 @@ namespace MoneyManager.DataAccess.Model
 {
     [ImplementPropertyChanged]
     [Table("RecurringTransactiont")]
-    internal class RecurringTransaction
+    public class RecurringTransaction
     {
         private IEnumerable<Account> allAccounts
         {

@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Data;
 
 namespace MoneyManager.Converter
 {
-    internal class DateTimeToDateTimeOffsetConverter : IValueConverter
+    public class DateTimeToDateTimeOffsetConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

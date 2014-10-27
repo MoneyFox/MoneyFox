@@ -19,12 +19,12 @@ namespace MoneyManager.UserControls
             InitializeComponent();
         }
 
-        internal TransactionDataAccess TransactionData
+        public TransactionDataAccess TransactionData
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        internal AddTransactionViewModel AddTransactionView
+        public AddTransactionViewModel AddTransactionView
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }

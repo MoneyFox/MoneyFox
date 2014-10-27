@@ -11,7 +11,7 @@ using Windows.UI.Popups;
 
 namespace MoneyManager.Business.Src
 {
-    internal class TransactionLogic
+    public class TransactionLogic
     {
         #region Properties
 

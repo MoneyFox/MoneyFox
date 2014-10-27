@@ -14,7 +14,7 @@ namespace MoneyManager.UserControls
             InitializeComponent();
         }
 
-        internal TileSettingsUserControlViewModel TileSettingsUserControlView
+        public TileSettingsUserControlViewModel TileSettingsUserControlView
         {
             get { return ServiceLocator.Current.GetInstance<TileSettingsUserControlViewModel>(); }
         }

@@ -8,7 +8,7 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Business.Src
 {
-    internal class AccountLogic
+    public class AccountLogic
     {
         #region Properties
 

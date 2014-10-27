@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Foo
+namespace MoneyManager.Business.Src
 {
     [DataContract]
     public class CurrencyServiceDTO

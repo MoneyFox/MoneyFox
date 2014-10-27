@@ -6,7 +6,7 @@ using SQLite.Net.Platform.WinRT;
 
 namespace MoneyManager.DataAccess
 {
-    internal class SqlConnectionFactory
+    public class SqlConnectionFactory
     {
         private static readonly string _dbPath = Path.Combine(
             Path.Combine(ApplicationData.Current.LocalFolder.Path, "moneyfox.sqlite"));

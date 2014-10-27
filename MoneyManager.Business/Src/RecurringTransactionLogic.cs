@@ -9,7 +9,7 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Business.Src
 {
-    internal class RecurringTransactionLogic
+    public class RecurringTransactionLogic
     {
         #region Properties
 

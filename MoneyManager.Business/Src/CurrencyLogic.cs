@@ -6,16 +6,6 @@ using Newtonsoft.Json;
 
 namespace MoneyManager.Business.Src
 {
-    internal class CurrencyLogic
-    {
-using System;
-using System.Globalization;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-
-namespace Foo
-{
     public class CurrencyLogic
     {
         private const string CURRENCY_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";

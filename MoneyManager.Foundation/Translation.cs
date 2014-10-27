@@ -2,7 +2,7 @@
 
 namespace MoneyManager.Foundation
 {
-    internal class Translation
+    public class Translation
     {
         public static string GetTranslation(string key)
         {

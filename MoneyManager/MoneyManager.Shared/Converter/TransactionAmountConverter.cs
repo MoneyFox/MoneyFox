@@ -7,7 +7,7 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Converter
 {
-    internal class TransactionAmountConverter : IValueConverter
+    public class TransactionAmountConverter : IValueConverter
     {
         private Account selectedAccount
         {

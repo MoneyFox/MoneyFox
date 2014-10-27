@@ -6,7 +6,7 @@ namespace MoneyManager.DataAccess.Model
 {
     [ImplementPropertyChanged]
     [Table("Accounts")]
-    internal class Account
+    public class Account
     {
         public Account()
         {

@@ -12,7 +12,7 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
-    internal class AddTransactionViewModel
+    public class AddTransactionViewModel
     {
         public FinancialTransaction SelectedTransaction
         {

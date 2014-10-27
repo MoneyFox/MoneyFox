@@ -5,7 +5,7 @@ namespace MoneyManager.DataAccess.Model
 {
     [ImplementPropertyChanged]
     [Table("Settings")]
-    internal class Setting
+    public class Setting
     {
         [PrimaryKey, AutoIncrement, Indexed]
         public int Id { get; set; }

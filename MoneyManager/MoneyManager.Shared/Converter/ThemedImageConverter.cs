@@ -5,7 +5,7 @@ using MoneyManager.Business.Src;
 
 namespace MoneyManager.Converter
 {
-    internal class ThemedImageConverter : IValueConverter
+    public class ThemedImageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

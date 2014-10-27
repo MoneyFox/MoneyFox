@@ -4,7 +4,7 @@ using MoneyManager.DataAccess.Model;
 
 namespace MoneyManager.Converter
 {
-    internal class TransactionStyleConverter : IValueConverter
+    public class TransactionStyleConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

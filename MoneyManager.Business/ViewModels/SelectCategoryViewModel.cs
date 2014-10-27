@@ -9,7 +9,7 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
-    internal class SelectCategoryViewModel : ViewModelBase
+    public class SelectCategoryViewModel : ViewModelBase
     {
         private string searchText;
 

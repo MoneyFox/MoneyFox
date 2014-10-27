@@ -5,7 +5,7 @@ using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Foundation
 {
-    internal abstract class AbstractDataAccess<T> : IDataAccess<T>
+    public abstract class AbstractDataAccess<T> : IDataAccess<T>
     {
         public void Save(T itemToSave)
         {

@@ -9,7 +9,7 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
-    internal class AddAccountViewModel : ViewModelBase
+    public class AddAccountViewModel : ViewModelBase
     {
         public bool IsEdit { get; set; }
 

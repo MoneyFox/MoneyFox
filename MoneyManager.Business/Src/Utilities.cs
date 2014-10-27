@@ -2,7 +2,7 @@
 
 namespace MoneyManager.Business.Src
 {
-    internal class Utilities
+    public class Utilities
     {
         public static string GetVersion()
         {

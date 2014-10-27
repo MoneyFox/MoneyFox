@@ -1,6 +1,6 @@
 ﻿namespace MoneyManager.Foundation.OperationContracts
 {
-    internal interface IDataAccess<T>
+    public interface IDataAccess<T>
     {
         void Save(T itemToSave);
 

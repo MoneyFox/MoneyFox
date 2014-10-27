@@ -8,8 +8,12 @@ using PropertyChanged;
 namespace MoneyManager.DataAccess.DataAccess
 {
     [ImplementPropertyChanged]
-    internal class CategoryDataAccess : AbstractDataAccess<Category>
-    {    
+    public class CategoryDataAccess : AbstractDataAccess<Category>
+    {
+        public ObservableCollection<Category> AllCategories { get; set; }
+
+        public Category SelectedCategory { get; set; }
+
         protected override void SaveToDb(Category category)
         {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection())
@@ -24,11 +28,11 @@ namespace MoneyManager.DataAccess.DataAccess
             }
         }
 
-        protected override void DeleteFromDatabase(Category categorycategory)
+        protected override void DeleteFromDatabase(Category category)
         {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                AllCategories.Remove(categorycategory);
+                AllCategories.Remove(category);
                 dbConn.Delete(category);
             }
         }

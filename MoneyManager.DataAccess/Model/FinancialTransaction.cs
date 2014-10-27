@@ -11,7 +11,7 @@ namespace MoneyManager.DataAccess.Model
 {
     [ImplementPropertyChanged]
     [Table("FinancialTransactions")]
-    internal class FinancialTransaction
+    public class FinancialTransaction
     {
         public FinancialTransaction()
         {

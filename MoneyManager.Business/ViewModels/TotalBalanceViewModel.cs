@@ -10,7 +10,7 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
-    internal class TotalBalanceViewModel : ViewModelBase
+    public class TotalBalanceViewModel : ViewModelBase
     {
         public ObservableCollection<Account> AllAccounts
         {
