@@ -23,6 +23,7 @@ namespace MoneyManager
             SimpleIoc.Default.Register<TransactionListUserControlViewModel>();
             SimpleIoc.Default.Register<TileSettingsUserControlViewModel>();
             SimpleIoc.Default.Register<GeneralSettingUserControlViewModel>();
+            SimpleIoc.Default.Register<StatisticViewModel>();
         }
 
         #region DataAccess
@@ -84,6 +85,11 @@ namespace MoneyManager
         public GeneralSettingUserControlViewModel LanguageSettingUserControlView
         {
             get { return ServiceLocator.Current.GetInstance<GeneralSettingUserControlViewModel>(); }
+        }
+
+        public StatisticViewModel StatisticView
+        {
+            get { return ServiceLocator.Current.GetInstance<StatisticViewModel>(); }
         }
 
         #endregion Views

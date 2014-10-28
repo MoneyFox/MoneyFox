@@ -105,7 +105,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Compile Include="Src\CurrencyServiceDTO.cs" />
-    <Compile Include="Src\StatisticLogic.cs" />
+    <Compile Include="ViewModels\StatisticViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
