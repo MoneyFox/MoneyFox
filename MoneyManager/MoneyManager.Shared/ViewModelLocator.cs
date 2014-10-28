@@ -23,6 +23,7 @@ namespace MoneyManager
             SimpleIoc.Default.Register<TransactionListUserControlViewModel>();
             SimpleIoc.Default.Register<TileSettingsUserControlViewModel>();
             SimpleIoc.Default.Register<GeneralSettingUserControlViewModel>();
+            SimpleIoc.Default.Register<CategorySettingsViewModel>();
             SimpleIoc.Default.Register<StatisticViewModel>();
         }
 
@@ -80,6 +81,11 @@ namespace MoneyManager
         public TileSettingsUserControlViewModel TileSettingsUserControlView
         {
             get { return ServiceLocator.Current.GetInstance<TileSettingsUserControlViewModel>(); }
+        }
+
+        public CategorySettingsViewModel CategorySettingsView
+        {
+            get { return ServiceLocator.Current.GetInstance<CategorySettingsViewModel>(); }
         }
 
         public GeneralSettingUserControlViewModel LanguageSettingUserControlView

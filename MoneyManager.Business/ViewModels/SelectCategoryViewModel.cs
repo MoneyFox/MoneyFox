@@ -15,14 +15,20 @@ namespace MoneyManager.Business.ViewModels
 
         public SelectCategoryViewModel()
         {
+            categoryData.LoadList();
             Categories = allCategories;
         }
 
         public ObservableCollection<Category> Categories { get; set; }
 
+        private CategoryDataAccess categoryData
+        {
+            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
+        }
+
         private ObservableCollection<Category> allCategories
         {
-            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
+            get { return categoryData.AllCategories; }
         }
 
         public Category SelectedCategory

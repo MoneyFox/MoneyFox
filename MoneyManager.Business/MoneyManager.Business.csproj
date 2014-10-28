@@ -72,6 +72,7 @@
     <Compile Include="Logic\Tile\TransferTile.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\AddTransactionViewModel.cs" />
+    <Compile Include="ViewModels\CategorySettingsViewModel.cs" />
     <Compile Include="ViewModels\GeneralSettingUserControlViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryViewModel.cs" />
     <Compile Include="ViewModels\TileSettingsUserControlViewModel.cs" />
