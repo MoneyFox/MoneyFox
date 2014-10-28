@@ -1,7 +1,7 @@
-﻿using MoneyManager.Foundation;
-using System;
+﻿using System;
+using MoneyManager.Foundation;
 
-namespace MoneyManager.Business.Src
+namespace MoneyManager.Business.Logic
 {
     public class TransactionTypeLogic
     {

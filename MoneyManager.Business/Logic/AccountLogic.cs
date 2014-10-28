@@ -1,12 +1,13 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using System;
+using System.Linq;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Src;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
-using System;
-using System.Linq;
 
-namespace MoneyManager.Business.Src
+namespace MoneyManager.Business.Logic
 {
     public class AccountLogic
     {

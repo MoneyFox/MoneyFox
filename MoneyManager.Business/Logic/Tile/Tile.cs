@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 
-namespace MoneyManager.Business.Tiles
+namespace MoneyManager.Business.Logic.Tile
 {
     public abstract class Tile
     {

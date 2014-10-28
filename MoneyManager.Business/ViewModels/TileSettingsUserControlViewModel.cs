@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using MoneyManager.Business.Tiles;
+using MoneyManager.Business.Logic.Tile;
 using PropertyChanged;
 
 namespace MoneyManager.Business.ViewModels

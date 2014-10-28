@@ -1,15 +1,15 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.ViewModels;
-using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.ViewModels;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 
-namespace MoneyManager.Business.Src
+namespace MoneyManager.Business.Logic
 {
     public class TransactionLogic
     {

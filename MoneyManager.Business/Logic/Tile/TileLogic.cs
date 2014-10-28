@@ -1,7 +1,7 @@
-﻿using MoneyManager.Business.Tiles;
+﻿using MoneyManager.Business.Src;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Business.Src
+namespace MoneyManager.Business.Logic.Tile
 {
     public class TileLogic
     {

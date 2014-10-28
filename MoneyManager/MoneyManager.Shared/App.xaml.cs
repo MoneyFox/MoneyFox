@@ -1,5 +1,7 @@
 ﻿using BugSense;
 using BugSense.Model;
+using MoneyManager.Business.Logic;
+using MoneyManager.Business.Logic.Tile;
 using MoneyManager.Business.Src;
 using MoneyManager.DataAccess;
 using MoneyManager.Tasks.TransactionsWp;

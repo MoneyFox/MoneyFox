@@ -1,4 +1,5 @@
-﻿using MoneyManager.Business.Src;
+﻿using MoneyManager.Business.Logic;
+using MoneyManager.Business.Src;
 using PropertyChanged;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
-﻿using MoneyManager.Business.Src;
+﻿using MoneyManager.Business.Logic;
+using MoneyManager.Business.Src;
 using MoneyManager.Common;
 using MoneyManager.Foundation;
 using Windows.UI.Xaml;

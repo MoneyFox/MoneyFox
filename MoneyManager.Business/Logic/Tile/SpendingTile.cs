@@ -1,13 +1,13 @@
-﻿using MoneyManager.Foundation;
-using MoneyManager.Foundation.OperationContracts;
-using System;
+﻿using System;
 using Windows.UI.StartScreen;
+using MoneyManager.Foundation;
+using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Business.Tiles
+namespace MoneyManager.Business.Logic.Tile
 {
-    public class TransferTile : Tile, ISecondTile
+    public class SpendingTile : Tile, ISecondTile
     {
-        public const string Id = "AddTransferTile";
+        public const string Id = "AddSpendingTile";
 
         public bool Exists
         {
@@ -18,9 +18,9 @@ namespace MoneyManager.Business.Tiles
         {
             await Create(new SecondaryTile(
                 Id,
-                Translation.GetTranslation("AddTransferTileText"),
+                Translation.GetTranslation("AddSpendingTileText"),
                 "intake",
-                new Uri("ms-appx:///Images/transferTileIcon.png", UriKind.Absolute),
+                new Uri("ms-appx:///Images/spendingTileIcon.png", UriKind.Absolute),
                 TileSize.Default));
         }
 

@@ -1,10 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
+using MoneyManager.Business.Src;
+using Newtonsoft.Json;
 
-namespace MoneyManager.Business.Src
+namespace MoneyManager.Business.Logic
 {
     public class CurrencyLogic
     {
