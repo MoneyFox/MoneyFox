@@ -53,7 +53,6 @@
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\FinancialTransaction.cs" />
     <Compile Include="Model\RecurringTransaction.cs" />
-    <Compile Include="Model\Setting.cs" />
     <Compile Include="Model\StatisticItem.cs" />
     <Compile Include="SqlConnectionFactory.cs" />
     <Compile Include="DataAccess\AccountDataAccess.cs" />

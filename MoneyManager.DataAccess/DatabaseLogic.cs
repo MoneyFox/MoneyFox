@@ -12,7 +12,7 @@ namespace MoneyManager.DataAccess
             dbConn.CreateTable<Account>();
             dbConn.CreateTable<FinancialTransaction>();
             dbConn.CreateTable<RecurringTransaction>();
-            dbConn.CreateTable<Setting>();
+            dbConn.CreateTable<Category>();
         }
     }
 }
