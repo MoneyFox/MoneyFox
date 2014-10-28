@@ -18,16 +18,16 @@ namespace MoneyManager.Business.Src
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().AllTransactions; }
         }
 
-        //TODO: rename to MonthlyCashFlow
-        public ObservableCollection<StatisticItem> MonthlyOverview
+        public ObservableCollection<StatisticItem> MonthlyCashFlow
         {
             get { return LoadMonthlyCashFlow(); }
         }
 
         public ObservableCollection<StatisticItem> LoadMonthlyCashFlow()
         {
-            List<FinancialTransaction> transactionList =
-                allTransaction.Where(x => x.Date.Month == DateTime.Now.Month).ToList();
+            var transactionList = allTransaction
+                .Where(x => x.Date.Month == DateTime.Now.Month)
+                .ToList();
 
             var itemList = new ObservableCollection<StatisticItem>();
 
