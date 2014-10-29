@@ -20,7 +20,6 @@ namespace MoneyManager
             SimpleIoc.Default.Register<AddTransactionViewModel>();
             SimpleIoc.Default.Register<TotalBalanceViewModel>();
             SimpleIoc.Default.Register<SelectCategoryViewModel>();
-            SimpleIoc.Default.Register<SelectCurrencyViewModel>();
             SimpleIoc.Default.Register<TransactionListViewModel>();
             SimpleIoc.Default.Register<TileSettingsViewModel>();
             SimpleIoc.Default.Register<GeneralSettingViewModel>();
@@ -72,11 +71,6 @@ namespace MoneyManager
         public SelectCategoryViewModel SelectCategoryView
         {
             get { return ServiceLocator.Current.GetInstance<SelectCategoryViewModel>(); }
-        }
-
-        public SelectCurrencyViewModel SelectCurrencyView
-        {
-            get { return ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>(); }
         }
 
         public TransactionListViewModel TransactionListView
