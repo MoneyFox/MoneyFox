@@ -10,7 +10,7 @@ using System.Globalization;
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
-    public class TransactionListUserControlViewModel : ViewModelBase
+    public class TransactionListViewModel : ViewModelBase
     {
         private TransactionDataAccess TransactionData
         {

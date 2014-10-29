@@ -28,10 +28,10 @@ namespace MoneyManager
             Suspending += OnSuspending;
         }
 
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
             BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");
-
+            await CurrencyLogic.GetSupportedCurrencies();
 #if DEBUG
             if (Debugger.IsAttached)
             {

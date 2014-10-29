@@ -15,7 +15,7 @@ namespace MoneyManager.Tasks.TransactionsWp
             SimpleIoc.Default.Register<TransactionDataAccess>();
             SimpleIoc.Default.Register<RecurringTransactionDataAccess>();
 
-            SimpleIoc.Default.Register<TransactionListUserControlViewModel>();
+            SimpleIoc.Default.Register<TransactionListViewModel>();
         }
 
         #region DataAccess
@@ -39,9 +39,9 @@ namespace MoneyManager.Tasks.TransactionsWp
 
         #region Views
 
-        public TransactionListUserControlViewModel TransactionListUserControlView
+        public TransactionListViewModel TransactionListView
         {
-            get { return ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
         }
 
         #endregion Views

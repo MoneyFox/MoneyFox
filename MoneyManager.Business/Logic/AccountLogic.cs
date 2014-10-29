@@ -23,9 +23,9 @@ namespace MoneyManager.Business.Logic
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        private static TransactionListUserControlViewModel transactionListUserControlView
+        private static TransactionListViewModel TransactionListView
         {
-            get { return ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
         }
 
         #endregion Properties
@@ -40,7 +40,7 @@ namespace MoneyManager.Business.Logic
         {
             if (accountData.SelectedAccount == transaction.ChargedAccount)
             {
-                transactionListUserControlView.SetRelatedTransactions(transaction.ChargedAccountId);
+                TransactionListView.SetRelatedTransactions(transaction.ChargedAccountId);
             }
         }
 

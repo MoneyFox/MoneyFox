@@ -60,7 +60,7 @@ namespace MoneyManager.UserControls
             {
                 accountData.SelectedAccount = AccountList.SelectedItem as Account;
 
-                ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>()
+                ServiceLocator.Current.GetInstance<TransactionListViewModel>()
                     .SetRelatedTransactions(accountData.SelectedAccount.Id);
 
                 ((Frame)Window.Current.Content).Navigate(typeof(TransactionList));

@@ -14,10 +14,5 @@ namespace MoneyManager.UserControls
         {
             ((Frame)Window.Current.Content).GoBack();
         }
-
-        private void SearchCategories(object sender, TextChangedEventArgs textChangedEventArgs)
-        {
-            //ServiceLocator.Current.GetInstance<SelectCategoryViewModel>().sea(TextBoxSearchfield.Text);
-        }
     }
 }

@@ -24,9 +24,7 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <TextBox TextChanged="SearchCategories"
-                 Name="TextBoxSearchfield"
-                 Header="search" x:Uid="SearchHeader"
+        <TextBox Header="search" x:Uid="SearchHeader"
                  Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <ListView ItemsSource="{Binding Categories}"
                   ItemTemplate="{StaticResource CategoryTemplate }"

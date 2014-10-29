@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
-    public class GeneralSettingUserControlViewModel
+    public class GeneralSettingViewModel
     {
         public List<String> LanguageList
         {

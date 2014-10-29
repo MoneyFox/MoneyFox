@@ -74,11 +74,12 @@
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\AddTransactionViewModel.cs" />
     <Compile Include="ViewModels\CategorySettingsViewModel.cs" />
-    <Compile Include="ViewModels\GeneralSettingUserControlViewModel.cs" />
+    <Compile Include="ViewModels\GeneralSettingViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryViewModel.cs" />
-    <Compile Include="ViewModels\TileSettingsUserControlViewModel.cs" />
+    <Compile Include="ViewModels\SelectCurrencyViewModel.cs" />
+    <Compile Include="ViewModels\TileSettingsViewModel.cs" />
     <Compile Include="ViewModels\TotalBalanceViewModel.cs" />
-    <Compile Include="ViewModels\TransactionListUserControlViewModel.cs" />
+    <Compile Include="ViewModels\TransactionListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BugSense-Windows.Universal">
@@ -106,7 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Compile Include="Helper\CurrencyServiceDTO.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

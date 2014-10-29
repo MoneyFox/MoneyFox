@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
-using MoneyManager.Business.Src;
 using Newtonsoft.Json;
 
 namespace MoneyManager.Business.Logic
@@ -12,25 +11,12 @@ namespace MoneyManager.Business.Logic
         private const string CURRENCY_SERVICE_URL =
             "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
 
-        private const string COUNTRIES_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/v2/countries";
-
         private static HttpClient httpClient = new HttpClient();
 
         public CurrencyLogic()
         {
             httpClient.DefaultRequestHeaders.Add("user-agent",
                 "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
-        }
-
-        public static async Task GetSupportedCurrencies()
-        {
-            string jsonString = await GetJsonFromService(COUNTRIES_SERVICE_URL);
-            ParseCountries(jsonString);
-        }
-
-        private static void ParseCountries(string jsonString)
-        {
-            Type countries = JsonConvert.DeserializeAnonymousType(jsonString, typeof (CurrencyServiceDTO));
         }
 
         public static async Task<double> GetCurrencyRatio(string currencyFrom, string currencyTo)

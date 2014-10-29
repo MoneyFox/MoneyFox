@@ -20,9 +20,10 @@ namespace MoneyManager
             SimpleIoc.Default.Register<AddTransactionViewModel>();
             SimpleIoc.Default.Register<TotalBalanceViewModel>();
             SimpleIoc.Default.Register<SelectCategoryViewModel>();
-            SimpleIoc.Default.Register<TransactionListUserControlViewModel>();
-            SimpleIoc.Default.Register<TileSettingsUserControlViewModel>();
-            SimpleIoc.Default.Register<GeneralSettingUserControlViewModel>();
+            SimpleIoc.Default.Register<SelectCurrencyViewModel>();
+            SimpleIoc.Default.Register<TransactionListViewModel>();
+            SimpleIoc.Default.Register<TileSettingsViewModel>();
+            SimpleIoc.Default.Register<GeneralSettingViewModel>();
             SimpleIoc.Default.Register<CategorySettingsViewModel>();
             SimpleIoc.Default.Register<StatisticViewModel>();
         }
@@ -73,14 +74,19 @@ namespace MoneyManager
             get { return ServiceLocator.Current.GetInstance<SelectCategoryViewModel>(); }
         }
 
-        public TransactionListUserControlViewModel TransactionListUserControlView
+        public SelectCurrencyViewModel SelectCurrencyView
         {
-            get { return ServiceLocator.Current.GetInstance<TransactionListUserControlViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>(); }
         }
 
-        public TileSettingsUserControlViewModel TileSettingsUserControlView
+        public TransactionListViewModel TransactionListView
         {
-            get { return ServiceLocator.Current.GetInstance<TileSettingsUserControlViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
+        }
+
+        public TileSettingsViewModel TileSettingsView
+        {
+            get { return ServiceLocator.Current.GetInstance<TileSettingsViewModel>(); }
         }
 
         public CategorySettingsViewModel CategorySettingsView
@@ -88,9 +94,9 @@ namespace MoneyManager
             get { return ServiceLocator.Current.GetInstance<CategorySettingsViewModel>(); }
         }
 
-        public GeneralSettingUserControlViewModel LanguageSettingUserControlView
+        public GeneralSettingViewModel LanguageSettingView
         {
-            get { return ServiceLocator.Current.GetInstance<GeneralSettingUserControlViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<GeneralSettingViewModel>(); }
         }
 
         public StatisticViewModel StatisticView
