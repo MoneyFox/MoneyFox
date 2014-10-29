@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
@@ -49,8 +50,15 @@ namespace MoneyManager.Business.ViewModels
 
         public void Search()
         {
-            Categories = new ObservableCollection<Category>
-                (allCategories.Where(x => x.Name.ToLower().Contains(searchText.ToLower())).ToList());
+            if (SearchText != String.Empty)
+            {
+                Categories = new ObservableCollection<Category>
+                    (allCategories.Where(x => x.Name.ToLower().Contains(searchText.ToLower())).ToList());
+            }
+            else
+            {
+                Categories = allCategories;
+            }
         }
     }
 }

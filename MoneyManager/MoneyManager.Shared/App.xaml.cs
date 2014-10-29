@@ -2,7 +2,6 @@
 using BugSense.Model;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
-using MoneyManager.Business.Src;
 using MoneyManager.DataAccess;
 using MoneyManager.Tasks.TransactionsWp;
 using System;
@@ -28,10 +27,9 @@ namespace MoneyManager
             Suspending += OnSuspending;
         }
 
-        protected async override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");
-            await CurrencyLogic.GetSupportedCurrencies();
 #if DEBUG
             if (Debugger.IsAttached)
             {

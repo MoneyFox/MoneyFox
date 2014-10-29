@@ -27,6 +27,11 @@ namespace MoneyManager.Dialogs
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
         }
 
+        private SelectCategoryViewModel selectCategoryView
+        {
+            get { return ServiceLocator.Current.GetInstance<SelectCategoryViewModel>(); }
+        }
+
         public bool IsEdit { get; set; }
 
         private async void DoneOnClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -50,7 +55,8 @@ namespace MoneyManager.Dialogs
                 CategoryData.Save(CategoryData.SelectedCategory);
             }
 
-            ServiceLocator.Current.GetInstance<SelectCategoryViewModel>().SearchText = String.Empty;
+            selectCategoryView.SearchText = String.Empty;
+            selectCategoryView.Search();
         }
     }
 }

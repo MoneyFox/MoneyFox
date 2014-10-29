@@ -23,6 +23,7 @@ namespace MoneyManager.DataAccess.DataAccess
                 }
 
                 AllAccounts.Add(itemToAdd);
+                AllAccounts = new ObservableCollection<Account>(AllAccounts.ToList().OrderBy(x => x.Name));
                 itemToAdd.Id = dbConn.Insert(itemToAdd);
             }
         }
@@ -40,7 +41,9 @@ namespace MoneyManager.DataAccess.DataAccess
         {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                AllAccounts = new ObservableCollection<Account>(dbConn.Table<Account>().ToList());
+                AllAccounts = new ObservableCollection<Account>(dbConn.Table<Account>()
+                    .ToList()
+                    .OrderBy(x => x.Name));
             }
         }
 
