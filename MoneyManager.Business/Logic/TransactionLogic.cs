@@ -154,7 +154,7 @@ namespace MoneyManager.Business.Logic
         {
             selectedTransaction = new FinancialTransaction
             {
-                Type = (int) transactionType,
+                Type = (int) transactionType
             };
         }
 
@@ -162,7 +162,7 @@ namespace MoneyManager.Business.Logic
         {
             if (accountDataAccess.AllAccounts.Any())
             {
-                selectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First();
+                selectedTransaction.ChargedAccount = accountDataAccess.SelectedAccount;
             }
         }
 
