@@ -23,7 +23,7 @@ namespace MoneyManager.DataAccess.DataAccess
                 }
 
                 AllCategories.Add(category);
-                AllCategories = new ObservableCollection<Category>(AllCategories.ToList().OrderBy(x => x.Name));
+                AllCategories = new ObservableCollection<Category>(AllCategories.OrderBy(x => x.Name));
                 category.Id = dbConn.Insert(category);
             }
         }

@@ -38,7 +38,7 @@ namespace MoneyManager.Views
 
         private static void AddTransaction(TransactionType type)
         {
-            TransactionLogic.GoToAddTransaction(type);
+            TransactionLogic.GoToAddTransaction(type, true);
             ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
         }
     }

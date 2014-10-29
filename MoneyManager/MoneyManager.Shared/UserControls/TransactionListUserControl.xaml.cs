@@ -1,7 +1,5 @@
 ﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business;
 using MoneyManager.Business.Logic;
-using MoneyManager.Business.Src;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;

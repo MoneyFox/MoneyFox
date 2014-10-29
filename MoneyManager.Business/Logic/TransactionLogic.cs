@@ -41,14 +41,9 @@ namespace MoneyManager.Business.Logic
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
-        private static TotalBalanceViewModel totalBalanceView
-        {
-            get { return ServiceLocator.Current.GetInstance<TotalBalanceViewModel>(); }
-        }
-
         #endregion Properties
 
-        public static void SaveTransaction(FinancialTransaction transaction, bool skipRecurring = false)
+        public static void SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false, bool skipRecurring = false)
         {
             AccountLogic.AddTransactionAmount(transaction);
             if (transaction.IsRecurring && !skipRecurring)
@@ -62,12 +57,19 @@ namespace MoneyManager.Business.Logic
             AccountLogic.RemoveTransactionAmount(transaction);
 
             transactionData.Save(transaction);
+
+            if (refreshRelatedList)
+            {
+                ServiceLocator.Current.GetInstance<TransactionListViewModel>()
+                    .SetRelatedTransactions(accountDataAccess.SelectedAccount.Id);
+            }
         }
 
-        public static void GoToAddTransaction(TransactionType transactionType)
+        public static void GoToAddTransaction(TransactionType transactionType, bool refreshRelatedList = false)
         {
             addTransactionView.IsEdit = false;
             addTransactionView.IsEndless = true;
+            addTransactionView.RefreshRealtedList = refreshRelatedList;
             addTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
             SetDefaultTransaction(transactionType);
             SetDefaultAccount();

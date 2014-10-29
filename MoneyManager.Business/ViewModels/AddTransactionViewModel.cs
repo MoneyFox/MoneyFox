@@ -15,6 +15,8 @@ namespace MoneyManager.Business.ViewModels
     [ImplementPropertyChanged]
     public class AddTransactionViewModel
     {
+        #region Properties
+
         public FinancialTransaction SelectedTransaction
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
@@ -31,6 +33,20 @@ namespace MoneyManager.Business.ViewModels
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
         }
 
+        public DateTime EndDate { get; set; }
+
+        public bool IsEndless { get; set; }
+
+        public bool IsEdit { get; set; }
+
+        public int Recurrence { get; set; }
+
+        public bool IsTransfer { get; set; }
+
+        public bool RefreshRealtedList { get; set; }
+
+        #endregion
+
         public string Title
         {
             get
@@ -45,16 +61,6 @@ namespace MoneyManager.Business.ViewModels
             }
         }
 
-        public DateTime EndDate { get; set; }
-
-        public bool IsEndless { get; set; }
-
-        public bool IsEdit { get; set; }
-
-        public int Recurrence { get; set; }
-
-        public bool IsTransfer { get; set; }
-
         public void Save()
         {
             if (IsEdit)
@@ -63,7 +69,7 @@ namespace MoneyManager.Business.ViewModels
             }
             else
             {
-                TransactionLogic.SaveTransaction(SelectedTransaction);
+                TransactionLogic.SaveTransaction(SelectedTransaction, RefreshRealtedList);
             }
 
             AccountLogic.AddTransactionAmount(SelectedTransaction);
