@@ -8,7 +8,6 @@ namespace MoneyManager.Views
 {
     public sealed partial class SelectCategory
     {
-        private readonly ObservableDictionary defaultViewModel = new ObservableDictionary();
         private readonly NavigationHelper navigationHelper;
 
         public SelectCategory()
@@ -21,11 +20,6 @@ namespace MoneyManager.Views
         public NavigationHelper NavigationHelper
         {
             get { return navigationHelper; }
-        }
-
-        public ObservableDictionary DefaultViewModel
-        {
-            get { return defaultViewModel; }
         }
 
         private async void AddCategory(object sender, RoutedEventArgs e)

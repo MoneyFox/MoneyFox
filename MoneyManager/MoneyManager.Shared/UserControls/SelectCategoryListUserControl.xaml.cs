@@ -12,7 +12,7 @@ namespace MoneyManager.UserControls
 
         private void SelectCategory(object sender, SelectionChangedEventArgs e)
         {
-            ((Frame)Window.Current.Content).GoBack();
+            ((Frame) Window.Current.Content).GoBack();
         }
     }
 }
