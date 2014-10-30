@@ -23,8 +23,9 @@ namespace MoneyManager
             SimpleIoc.Default.Register<TransactionListViewModel>();
             SimpleIoc.Default.Register<TileSettingsViewModel>();
             SimpleIoc.Default.Register<GeneralSettingViewModel>();
-            SimpleIoc.Default.Register<CategorySettingsViewModel>();
             SimpleIoc.Default.Register<StatisticViewModel>();
+
+            ServiceLocator.Current.GetInstance<CategoryDataAccess>().LoadList();
         }
 
         #region DataAccess
@@ -81,11 +82,6 @@ namespace MoneyManager
         public TileSettingsViewModel TileSettingsView
         {
             get { return ServiceLocator.Current.GetInstance<TileSettingsViewModel>(); }
-        }
-
-        public CategorySettingsViewModel CategorySettingsView
-        {
-            get { return ServiceLocator.Current.GetInstance<CategorySettingsViewModel>(); }
         }
 
         public GeneralSettingViewModel LanguageSettingView

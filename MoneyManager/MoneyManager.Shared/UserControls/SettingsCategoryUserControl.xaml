@@ -7,7 +7,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
-    DataContext="{Binding CategorySettingsView, Source={StaticResource Locator}}">
+    DataContext="{Binding CategoryDataAccess, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
         <DataTemplate x:Key="CategoryTemplate">
@@ -24,8 +24,10 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <StackPanel>
-        <ListView ItemsSource="{Binding AllCategories}"
-                  ItemTemplate="{StaticResource CategoryTemplate }" />
-    </StackPanel>
+    <Grid>
+        <ScrollViewer>
+            <ListView ItemsSource="{Binding AllCategories, UpdateSourceTrigger=PropertyChanged}"
+                      ItemTemplate="{StaticResource CategoryTemplate }" />
+        </ScrollViewer>
+    </Grid>
 </UserControl>

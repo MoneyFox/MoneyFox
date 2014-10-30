@@ -160,9 +160,14 @@ namespace MoneyManager.Business.Logic
 
         private static void SetDefaultAccount()
         {
-            if (accountDataAccess.AllAccounts.Any())
+            if (accountDataAccess.SelectedAccount != null)
             {
                 selectedTransaction.ChargedAccount = accountDataAccess.SelectedAccount;
+            }
+
+            if (accountDataAccess.AllAccounts.Any())
+            {
+                selectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First();
             }
         }
 
