@@ -63,7 +63,6 @@
     <Compile Include="Logic\LanguageLogic.cs" />
     <Compile Include="Logic\RecurringTransactionLogic.cs" />
     <Compile Include="Logic\ThemedImageConverterLogic.cs" />
-    <Compile Include="Logic\Tile\TileLogic.cs" />
     <Compile Include="Logic\TransactionLogic.cs" />
     <Compile Include="Logic\TransactionTypeLogic.cs" />
     <Compile Include="Helper\Utilities.cs" />
