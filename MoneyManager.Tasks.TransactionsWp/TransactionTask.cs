@@ -9,6 +9,7 @@ namespace MoneyManager.Tasks.TransactionsWp
         {
             new BackgroundTaskViewModelLocator();
             RecurringTransactionLogic.CheckRecurringTransactions();
+            TransactionLogic.ClearTransactions();
         }
     }
 }
