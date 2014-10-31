@@ -34,25 +34,16 @@ namespace MoneyManager.Business.ViewModels
             get { return categoryData.AllCategories; }
         }
 
-        private Category _localSelectedCategory;
 
-        public Category LocalSelectedCategory
+        public Category SelectedCategory
         {
-            get { return _localSelectedCategory; }
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category; }
             set
             {
                 if (value == null) return;
-                _localSelectedCategory = value;
-                SelectedCategory = _localSelectedCategory;
-                ((Frame)Window.Current.Content).GoBack();
-            }
-        }
 
-        private Category SelectedCategory
-        {
-            set
-            {
                 ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value;
+                ((Frame)Window.Current.Content).GoBack();
             }
         }
 
