@@ -29,7 +29,7 @@
         <ScrollViewer Margin="0,83,0,0">
             <ListView ItemsSource="{Binding Categories}" x:Name="ListViewCategories"
                         ItemTemplate="{StaticResource CategoryTemplate }"
-                        SelectedItem="{Binding LocalSelectedCategory, Mode=TwoWay}" />
+                        SelectedItem="{Binding LocalSelectedCategory, Mode=TwoWay, UpdateSourceTrigger=Default}" />
         </ScrollViewer>
     </Grid>
 </UserControl>
