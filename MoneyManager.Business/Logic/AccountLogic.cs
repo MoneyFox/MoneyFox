@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Src;
+using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
@@ -30,10 +30,13 @@ namespace MoneyManager.Business.Logic
 
         #endregion Properties
 
-        public static void DeleteAccount(Account account)
+        public static async void DeleteAccount(Account account)
         {
-            accountData.Delete(account);
-            TransactionLogic.DeleteAssociatedTransactionsFromDatabase(account.Id);
+            if (await Utilities.IsDeletionConfirmed())
+            {
+                accountData.Delete(account);
+                TransactionLogic.DeleteAssociatedTransactionsFromDatabase(account.Id);
+            }
         }
 
         public static void RefreshRelatedTransactions(FinancialTransaction transaction)

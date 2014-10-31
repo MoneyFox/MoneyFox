@@ -1,5 +1,4 @@
 ﻿using MoneyManager.Business.Logic;
-using MoneyManager.Business.Src;
 using Windows.ApplicationModel.Background;
 
 namespace MoneyManager.Tasks.TransactionsWp

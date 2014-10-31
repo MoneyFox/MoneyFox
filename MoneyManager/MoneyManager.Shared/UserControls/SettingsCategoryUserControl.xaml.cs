@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Dialogs;
@@ -43,7 +44,7 @@ namespace MoneyManager.UserControls
             var category = element.DataContext as Category;
             if (category == null) return;
 
-            ServiceLocator.Current.GetInstance<CategoryDataAccess>().Delete(category);
+            CategoryLogic.DeleteCategory(category);
         }
     }
 }

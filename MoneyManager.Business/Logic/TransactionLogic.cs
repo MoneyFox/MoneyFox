@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
@@ -86,14 +87,17 @@ namespace MoneyManager.Business.Logic
             addTransactionView.SelectedTransaction = transaction;
         }
 
-        public static void DeleteTransaction(FinancialTransaction transaction)
+        public async static void DeleteTransaction(FinancialTransaction transaction)
         {
-            transactionData.Delete(transaction);
-            AccountLogic.RemoveTransactionAmount(selectedTransaction);
-            AccountLogic.RefreshRelatedTransactions(transaction);
+            if (await Utilities.IsDeletionConfirmed())
+            {
+                transactionData.Delete(transaction);
+                AccountLogic.RemoveTransactionAmount(selectedTransaction);
+                AccountLogic.RefreshRelatedTransactions(transaction);
 
-            CheckForRecurringTransaction(transaction,
-                () => recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));
+                CheckForRecurringTransaction(transaction,
+                    () => recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));
+            }
         }
 
         public static void DeleteAssociatedTransactionsFromDatabase(int accountId)

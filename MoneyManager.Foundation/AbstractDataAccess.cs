@@ -62,21 +62,5 @@ namespace MoneyManager.Foundation
         protected abstract void GetListFromDb();
 
         protected abstract void UpdateItem(T itemToUpdate);
-
-        private async Task<bool> IsDeletionConfirmed()
-        {
-            //TODO: refactor / move
-            //var dialog = new MessageDialog(Translation.GetTranslation("DeleteEntryQuestionMessage"),
-            //    Translation.GetTranslation("DeleteQuestionTitle"));
-            //dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
-            //dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
-            //dialog.DefaultCommandIndex = 1;
-
-            //var result = await dialog.ShowAsync();
-
-            //return result.Label == Translation.GetTranslation("YesLabel");
-
-            return true;
-        }
     }
 }

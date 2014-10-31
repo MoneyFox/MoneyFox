@@ -1,5 +1,4 @@
 ﻿using MoneyManager.Business.Logic;
-using MoneyManager.Business.Src;
 using System;
 using Windows.UI.Xaml.Data;
 
