@@ -73,7 +73,7 @@
 
     <Style x:Key="MenuItemSubSmallText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
         <Setter Property="FontSize" Value="18" />
-        <Setter Property="Foreground" Value="Gray" />
+        <Setter Property="Foreground" Value="DarkGray" />
         <Setter Property="FontWeight" Value="SemiLight" />
         <Setter Property="TextAlignment" Value="left" />
         <Setter Property="VerticalAlignment" Value="Top" />

@@ -93,6 +93,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
             return AllTransactions
                 .Where(x => x.IsRecurring)
+                .Where(x => x.RecurringTransaction != null)
                 .Where(x => x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date)
                 .ToList();
         }

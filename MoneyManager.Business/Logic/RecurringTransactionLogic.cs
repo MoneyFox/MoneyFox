@@ -58,8 +58,14 @@ namespace MoneyManager.Business.Logic
 
             foreach (var recTrans in AllRecurringTransactions)
             {
-                FinancialTransaction relTransaction = transactions.Where(x => x.ReccuringTransactionId == recTrans.Id)
-                    .OrderBy(x => x.Date).Last();
+                var relTransaction = new FinancialTransaction();
+                var transcationList = transactions.Where(x => x.ReccuringTransactionId == recTrans.Id)
+                    .OrderBy(x => x.Date);
+
+                if (transcationList.Any())
+                {
+                    relTransaction = transcationList.Last();
+                }
 
                 if (CheckIfRepeatable(recTrans, relTransaction))
                 {

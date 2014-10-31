@@ -19,7 +19,7 @@
         <converter1:CurrencyConverter x:Key="CurrencyConverter" />
         <converter1:TransactionStyleConverter x:Key="TransactionStyleConverter" />
         <DataTemplate x:Key="TransactionTemplate">
-            <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
+            <StackPanel Margin="0,0,0,6" HorizontalAlignment="Stretch"
                         MinWidth="100" Background="{ThemeResource PhoneAccentBrush}"
                         Holding="OpenContextMenu"
                         Opacity="{Binding Converter={StaticResource TransactionStyleConverter}}">
@@ -46,7 +46,7 @@
                     </StackPanel>
                 </Grid>
                 <Grid>
-                    <TextBlock Style="{StaticResource MenuItemSubSmallText}" Text="{Binding Category.Name}"
+                    <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Category.Name}"
                                Margin="12,0,0,10" />
                     <Grid HorizontalAlignment="Right"
                           Visibility="{Binding IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
