@@ -46,7 +46,7 @@
                     </StackPanel>
                 </Grid>
                 <Grid>
-                    <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Category.Name}"
+                    <TextBlock Style="{StaticResource MenuItemSubSmallText}" Text="{Binding Category.Name}"
                                Margin="12,0,0,10" />
                     <Grid HorizontalAlignment="Right"
                           Visibility="{Binding IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
