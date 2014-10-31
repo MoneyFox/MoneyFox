@@ -17,11 +17,6 @@ namespace MoneyManager.Views
             navigationHelper = new NavigationHelper(this);
         }
 
-        public NavigationHelper NavigationHelper
-        {
-            get { return navigationHelper; }
-        }
-
         private async void AddCategory(object sender, RoutedEventArgs e)
         {
             await new CategoryDialog().ShowAsync();

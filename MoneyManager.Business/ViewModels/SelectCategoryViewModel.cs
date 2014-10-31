@@ -1,11 +1,13 @@
-﻿using System;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using PropertyChanged;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -32,10 +34,26 @@ namespace MoneyManager.Business.ViewModels
             get { return categoryData.AllCategories; }
         }
 
-        public Category SelectedCategory
+        private Category _localSelectedCategory;
+
+        public Category LocalSelectedCategory
         {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category; }
-            set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value; }
+            get { return _localSelectedCategory; }
+            set
+            {
+                if (value == null) return;
+                _localSelectedCategory = value;
+                SelectedCategory = _localSelectedCategory;
+                ((Frame)Window.Current.Content).GoBack();
+            }
+        }
+
+        private Category SelectedCategory
+        {
+            set
+            {
+                ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value;
+            }
         }
 
         public string SearchText

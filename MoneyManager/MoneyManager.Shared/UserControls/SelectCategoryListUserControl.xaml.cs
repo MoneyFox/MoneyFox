@@ -1,5 +1,6 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.ViewModels;
 
 namespace MoneyManager.UserControls
 {
@@ -8,11 +9,8 @@ namespace MoneyManager.UserControls
         public SelectCategoryUserControl()
         {
             InitializeComponent();
-        }
 
-        private void SelectCategory(object sender, SelectionChangedEventArgs e)
-        {
-            ((Frame) Window.Current.Content).GoBack();
+            ListViewCategories.SelectedItem = null;
         }
     }
 }
