@@ -81,6 +81,11 @@ namespace MoneyManager.Business.Logic
                 case (int)TransactionRecurrence.Daily:
                     return DateTime.Today.Date != relTransaction.Date.Date;
 
+                case (int)TransactionRecurrence.DailyWithoutWeekend:
+                    return DateTime.Today.Date != relTransaction.Date.Date
+                           && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
+                           && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
+
                 case (int)TransactionRecurrence.Weekly:
                     var days = DateTime.Now - relTransaction.Date;
                     return days.Days >= 7;

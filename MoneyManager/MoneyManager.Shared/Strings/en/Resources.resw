@@ -442,4 +442,7 @@
   <data name="DailyContent" xml:space="preserve">
     <value>daily</value>
   </data>
+  <data name="DailyWithoutWeekendContent" xml:space="preserve">
+    <value>daily without weekend</value>
+  </data>
 </root>
