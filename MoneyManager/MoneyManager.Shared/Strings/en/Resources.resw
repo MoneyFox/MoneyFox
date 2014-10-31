@@ -439,4 +439,7 @@
   <data name="ChangeAllEntitiesTitle" xml:space="preserve">
     <value>Change all?</value>
   </data>
+  <data name="DailyContent" xml:space="preserve">
+    <value>daily</value>
+  </data>
 </root>

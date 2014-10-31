@@ -78,6 +78,9 @@ namespace MoneyManager.Business.Logic
         {
             switch (recTrans.Recurrence)
             {
+                case (int)TransactionRecurrence.Daily:
+                    return DateTime.Today.Date != relTransaction.Date.Date;
+
                 case (int)TransactionRecurrence.Weekly:
                     var days = DateTime.Now - relTransaction.Date;
                     return days.Days >= 7;
