@@ -28,6 +28,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)StatisticDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StatisticItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserControls\AboutUserControl.xaml.cs">
+      <DependentUpon>AboutUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>
@@ -65,6 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Styles\AppStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)UserControls\AboutUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
