@@ -10,11 +10,23 @@
     Loaded="LoadCountries"
     DataContext="{Binding SelectCurrencyView, Source={StaticResource Locator}}">
 
+    <UserControl.Resources>
+        <DataTemplate x:Key="CurrencyTemplate">
+            <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
+                        MinWidth="300" Orientation="Horizontal">
+                <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding ID}" Margin="0" />
+                <TextBlock Style="{StaticResource MenuItemText}" Text=" - " />
+                <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding CurrencyID}"  Margin="5,0,0,0"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
     <Grid>
         <TextBox Header="search" x:Uid="SearchHeader"
                  Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <ScrollViewer Margin="0,83,0,0">
             <ListView ItemsSource="{Binding AllCountries}"
+                      ItemTemplate="{StaticResource CurrencyTemplate}"
                       SelectedItem="{Binding SelectedCurrency, Mode=TwoWay, UpdateSourceTrigger=Default}" />
         </ScrollViewer>
     </Grid>

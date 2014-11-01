@@ -55,7 +55,7 @@ namespace MoneyManager.UserControls
             ((Frame)Window.Current.Content).Navigate(typeof(SelectCategory));
         }
 
-        private void OpenSelectCurrencyDialog(object sender, TappedRoutedEventArgs e)
+        private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs routedEventArgs)
         {
             ((Frame)Window.Current.Content).Navigate(typeof(SelectCurrency));
         }

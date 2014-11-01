@@ -39,12 +39,9 @@
                     TextAlignment="Right" GotFocus="RemoveZeroOnFocus"
                     LostFocus="AddZeroIfEmpty" />
 
-                <Grid Background="#FF231E1E" Width="45" Height="32" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3,0,0,13" Tapped="OpenSelectCurrencyDialog">
-                    <TextBlock
-                        Text="{Binding SelectedTransaction.CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
-                        Style="{StaticResource MenuItemMediumSmallText}"
-                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="23,1,22,11" />
-                </Grid>
+                <Button MinWidth="40" MinHeight="55" Background="#FF231E1E"
+                        BorderThickness="1,1,1,1" Click="OpenSelectCurrencyDialog"
+                        Content="{Binding SelectedTransaction.CurrencyCulture, Converter={StaticResource CurrencyConverter}}" Margin="2,28,0,6" />
             </Grid>
             <Grid>
                 <TextBox Header="category" x:Uid="CategoryHeader"

@@ -40,7 +40,9 @@ namespace MoneyManager.Business.Logic
                     Name = token.Value["name"].ToString(),
                     Alpha3 = token.Value["alpha3"].ToString(),
                     ID = token.Value["id"].ToString(),
-                }).ToList();
+                })
+                .OrderBy(x => x.ID)
+                .ToList();
         }
 
         public static async Task<double> GetCurrencyRatio(string currencyFrom, string currencyTo)
