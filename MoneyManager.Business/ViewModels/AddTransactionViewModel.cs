@@ -44,6 +44,8 @@ namespace MoneyManager.Business.ViewModels
 
         public bool RefreshRealtedList { get; set; }
 
+        public bool IsExchangeModeActive { get; set; }
+
         #endregion
 
         public string Title

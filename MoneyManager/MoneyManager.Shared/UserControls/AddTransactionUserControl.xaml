@@ -43,6 +43,9 @@
                         BorderThickness="1,1,1,1" Click="OpenSelectCurrencyDialog"
                         Content="{Binding SelectedTransaction.CurrencyCulture, Converter={StaticResource CurrencyConverter}}" Margin="2,28,0,6" />
             </Grid>
+            <TextBlock Text="foo" Style="{StaticResource MenuItemSubSmallText}" 
+                       TextAlignment="Right"
+                       Visibility="{Binding IsExchangeModeActive, Converter={StaticResource BooleanVisibilityConverter}}" />
             <Grid>
                 <TextBox Header="category" x:Uid="CategoryHeader"
                          Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"

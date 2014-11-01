@@ -27,7 +27,7 @@
         <ScrollViewer Margin="0,83,0,0">
             <ListView ItemsSource="{Binding AllCountries}"
                       ItemTemplate="{StaticResource CurrencyTemplate}"
-                      SelectedItem="{Binding SelectedCurrency, Mode=TwoWay, UpdateSourceTrigger=Default}" />
+                      SelectedItem="{Binding SelectedCountry, Mode=TwoWay, UpdateSourceTrigger=Default}" />
         </ScrollViewer>
     </Grid>
 </UserControl>

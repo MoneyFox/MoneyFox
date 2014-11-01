@@ -16,5 +16,7 @@ namespace MoneyManager.DataAccess.Model
         public string ID { get; set; }
 
         public string Name { get; set; }
+
+        public double ExchangeRate { get; set; }
     }
 }
