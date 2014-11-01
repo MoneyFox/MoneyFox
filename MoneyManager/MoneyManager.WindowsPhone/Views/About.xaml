@@ -31,16 +31,18 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Margin="19,9.5,19,0">
-            <StackPanel Orientation="Horizontal" Width="456" Height="150">
-                <Image Source="/Images/developerImage.png" Width="150" Height="150" Margin="0"
+            <StackPanel Orientation="Horizontal" Width="456" >
+                <Grid Background="{StaticResource PhoneAccentBrush}" Margin="0,0,10,0">
+                    <Image Source="/Images/applyLogo.png" Width="150" Margin="5,0"
                        HorizontalAlignment="Left" />
+                </Grid>
                 <StackPanel>
                     <TextBlock TextWrapping="Wrap" Text="developer:"
                                HorizontalAlignment="Right" Width="181"
                                Margin="0" VerticalAlignment="Top" FontSize="26"
                                FontFamily="Segoe WP Light"
                                FontWeight="Bold" x:Uid="Developer" />
-                    <TextBlock TextWrapping="Wrap" Text="Nino Padrutt" HorizontalAlignment="Right" Width="181"
+                    <TextBlock TextWrapping="Wrap" Text="Apply Solutions" HorizontalAlignment="Right" Width="181"
                                Margin="0" VerticalAlignment="Top" FontSize="26" FontFamily="Segoe WP Light" />
                 </StackPanel>
             </StackPanel>
