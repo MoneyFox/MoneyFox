@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Collections.Generic;
+using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
@@ -18,13 +19,21 @@ namespace MoneyManager.Business.ViewModels
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
         }
 
+        private Account selectedAccount
+        {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
+        }
+
         public TransactionDataAccess TransactionData
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
         public double TotalBalance { get; set; }
+
         public double EndOfMonthBalance { get; set; }
+
+        public bool IsTransactionView { get; set; }
 
         public string CurrencyCulture
         {
@@ -33,17 +42,27 @@ namespace MoneyManager.Business.ViewModels
 
         public void UpdateBalance()
         {
-            TotalBalance = AllAccounts != null
-                ? AllAccounts.Sum(x => x.CurrentBalance)
-                : 0;
+            TotalBalance = GetTotalBalance();
 
             EndOfMonthBalance = GetEndOfMonthValue();
+        }
+
+        private double GetTotalBalance()
+        {
+            if (IsTransactionView)
+            {
+                return selectedAccount.CurrentBalance;
+            }
+
+            return AllAccounts != null
+                ? AllAccounts.Sum(x => x.CurrentBalance)
+                : 0;
         }
 
         private double GetEndOfMonthValue()
         {
             var balance = TotalBalance;
-            var unclearedTransactions = TransactionData.GetUnclearedTransactions();
+            var unclearedTransactions = LoadUnclreadTransactions();
 
             foreach (var transaction in unclearedTransactions)
             {
@@ -59,6 +78,15 @@ namespace MoneyManager.Business.ViewModels
             }
 
             return balance;
+        }
+
+        private IEnumerable<FinancialTransaction> LoadUnclreadTransactions()
+        {
+            var unclearedTransactions = TransactionData.GetUnclearedTransactions();
+
+            return IsTransactionView
+                ? unclearedTransactions.Where(x => x.ChargedAccount == selectedAccount)
+                : unclearedTransactions;
         }
     }
 }

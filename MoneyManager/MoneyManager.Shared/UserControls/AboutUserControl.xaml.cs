@@ -1,13 +1,13 @@
-﻿using System;
+﻿using MoneyManager.Business.Helper;
+using MoneyManager.Foundation;
+using System;
 using Windows.ApplicationModel.Email;
 using Windows.System;
 using Windows.UI.Xaml.Input;
-using MoneyManager.Business.Helper;
-using MoneyManager.Foundation;
 
 namespace MoneyManager.UserControls
 {
-    public sealed partial class AboutUserControl 
+    public sealed partial class AboutUserControl
     {
         public AboutUserControl()
         {
@@ -23,7 +23,7 @@ namespace MoneyManager.UserControls
                 Address = Translation.GetTranslation("SupportMail")
             };
 
-            var mail = new EmailMessage { Subject = Translation.GetTranslation("Feedback") };
+            var mail = new EmailMessage {Subject = Translation.GetTranslation("Feedback")};
             mail.To.Add(sendTo);
             await EmailManager.ShowComposeNewEmailAsync(mail);
         }
@@ -39,6 +39,5 @@ namespace MoneyManager.UserControls
             string url = "http://twitter.com/npadrutt";
             await Launcher.LaunchUriAsync(new Uri(url));
         }
-S
     }
 }

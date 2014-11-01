@@ -16,8 +16,12 @@ namespace MoneyManager.UserControls
         public TransactionListUserControl()
         {
             InitializeComponent();
+
+            ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().IsTransactionView = true;
         }
 
+        #region Properties
+        
         public TransactionDataAccess TransactionData
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
@@ -27,6 +31,13 @@ namespace MoneyManager.UserControls
         {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
+
+        public TotalBalanceViewModel TotalBalanceView
+        {
+            get { return ServiceLocator.Current.GetInstance<TotalBalanceViewModel>(); }
+        }
+
+        #endregion
 
         private void EditTransaction(object sender, RoutedEventArgs e)
         {
@@ -50,7 +61,7 @@ namespace MoneyManager.UserControls
         private void OpenContextMenu(object sender, HoldingRoutedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;
-            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
             flyoutBase.ShowAt(senderElement);
         }
@@ -66,6 +77,12 @@ namespace MoneyManager.UserControls
             //    ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
             //    TransactionListView.SelectedItem = null;
             //}
+        }
+
+        private void UnloadPage(object sender, RoutedEventArgs e)
+        {
+            TotalBalanceView.IsTransactionView = false;
+            TotalBalanceView.UpdateBalance();
         }
     }
 }
