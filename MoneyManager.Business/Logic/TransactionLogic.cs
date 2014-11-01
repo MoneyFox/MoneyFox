@@ -90,12 +90,13 @@ namespace MoneyManager.Business.Logic
         {
             if (await Utilities.IsDeletionConfirmed())
             {
-                transactionData.Delete(transaction);
-                AccountLogic.RemoveTransactionAmount(selectedTransaction);
-                AccountLogic.RefreshRelatedTransactions(transaction);
+                await CheckForRecurringTransaction(transaction,
+                    () => RecurringTransactionLogic.Delete(transaction.RecurringTransaction));
 
-                CheckForRecurringTransaction(transaction,
-                    () => recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value));
+                transactionData.Delete(transaction);
+
+                AccountLogic.RemoveTransactionAmount(transaction);
+                AccountLogic.RefreshRelatedTransactions(transaction);
             }
         }
 

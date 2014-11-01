@@ -127,7 +127,7 @@ namespace MoneyManager.Business.Logic
 
         public static void Delete(RecurringTransaction recTransaction)
         {
-            RecurringTransactionData.Save(recTransaction);
+            RecurringTransactionData.Delete(recTransaction);
             RemoveRecurringForTransactions(recTransaction);
         }
 
