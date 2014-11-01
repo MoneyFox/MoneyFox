@@ -30,13 +30,13 @@ namespace MoneyManager.UserControls
 
         private async void GoToWebsite_OnTap(object sender, TappedRoutedEventArgs e)
         {
-            string url = "http://www.apply-solutions.ch/moneyfoxbeta";
+            const string url = "http://www.apply-solutions.ch/moneyfoxbeta";
             await Launcher.LaunchUriAsync(new Uri(url));
         }
 
         private async void GoToTwitter_OnTap(object sender, TappedRoutedEventArgs e)
         {
-            string url = "http://twitter.com/npadrutt";
+            const string url = "http://twitter.com/npadrutt";
             await Launcher.LaunchUriAsync(new Uri(url));
         }
     }

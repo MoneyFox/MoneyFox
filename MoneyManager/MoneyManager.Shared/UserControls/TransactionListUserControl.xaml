@@ -63,7 +63,7 @@
 
     <Grid>
         <StackPanel>
-            <userControls:TotalBalanceUserControl />
+            <userControls:BalanceUserControl />
             <qKit:GenericJumpList>
                 <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
                       ItemTemplate="{StaticResource TransactionTemplate}"

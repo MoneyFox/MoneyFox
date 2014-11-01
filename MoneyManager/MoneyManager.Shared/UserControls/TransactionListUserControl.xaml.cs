@@ -17,7 +17,7 @@ namespace MoneyManager.UserControls
         {
             InitializeComponent();
 
-            ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().IsTransactionView = true;
+            ServiceLocator.Current.GetInstance<BalanceViewModel>().IsTransactionView = true;
         }
 
         #region Properties
@@ -32,9 +32,9 @@ namespace MoneyManager.UserControls
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
-        public TotalBalanceViewModel TotalBalanceView
+        public BalanceViewModel BalanceView
         {
-            get { return ServiceLocator.Current.GetInstance<TotalBalanceViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
         }
 
         #endregion
@@ -81,8 +81,8 @@ namespace MoneyManager.UserControls
 
         private void UnloadPage(object sender, RoutedEventArgs e)
         {
-            TotalBalanceView.IsTransactionView = false;
-            TotalBalanceView.UpdateBalance();
+            BalanceView.IsTransactionView = false;
+            BalanceView.UpdateBalance();
         }
     }
 }

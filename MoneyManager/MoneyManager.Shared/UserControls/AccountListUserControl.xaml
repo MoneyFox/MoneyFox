@@ -42,7 +42,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <userControls:TotalBalanceUserControl />
+        <userControls:BalanceUserControl />
         <ListView ItemsSource="{Binding AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
                   HorizontalAlignment="Stretch" x:Name="AccountList"

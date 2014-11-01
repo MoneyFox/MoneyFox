@@ -32,7 +32,7 @@ namespace MoneyManager.Views
             }
 
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().Save();
-            ServiceLocator.Current.GetInstance<TotalBalanceViewModel>().UpdateBalance();
+            ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
         }
 
         private void CancelClick(object sender, RoutedEventArgs e)

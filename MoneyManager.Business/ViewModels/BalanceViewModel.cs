@@ -12,7 +12,7 @@ using System.Linq;
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
-    public class TotalBalanceViewModel : ViewModelBase
+    public class BalanceViewModel : ViewModelBase
     {
         public ObservableCollection<Account> AllAccounts
         {
