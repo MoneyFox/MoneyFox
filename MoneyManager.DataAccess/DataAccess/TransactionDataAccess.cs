@@ -23,7 +23,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public void SaveToDb(FinancialTransaction transaction, bool skipRecurring)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 if (AllTransactions == null)
                 {
@@ -31,7 +31,7 @@ namespace MoneyManager.DataAccess.DataAccess
                 }
 
                 AllTransactions.Add(transaction);
-                AllTransactions = new ObservableCollection<FinancialTransaction>(AllTransactions.OrderBy(x => x.Date));
+                AllTransactions = new ObservableCollection<FinancialTransaction>(AllTransactions.OrderByDescending(x => x.Date));
 
                 dbConn.Insert(transaction, typeof (FinancialTransaction));
             }
@@ -39,7 +39,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void DeleteFromDatabase(FinancialTransaction transaction)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 AllTransactions.Remove(transaction);
                 dbConn.Delete(transaction);
@@ -48,7 +48,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void GetListFromDb()
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 AllTransactions =
                     new ObservableCollection<FinancialTransaction>(dbConn.Table<FinancialTransaction>().ToList());
@@ -69,7 +69,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected override void UpdateItem(FinancialTransaction transaction)
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 dbConn.Update(transaction);
             }
@@ -77,7 +77,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions()
         {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 return dbConn.Table<FinancialTransaction>().Where(x => x.Cleared == false
                                                                        && x.Date <= DateTime.Now).ToList();

@@ -49,14 +49,17 @@ namespace MoneyManager.Business.Logic
 
         public static void RemoveTransactionAmount(FinancialTransaction transaction)
         {
-            PrehandleRemoveIfTransfer(transaction);
+            if (transaction.Cleared)
+            {
+                PrehandleRemoveIfTransfer(transaction);
 
-            Func<double, double> amountFunc = x =>
-                transaction.Type == (int)TransactionType.Income
-                    ? -x
-                    : x;
-
-            HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+                Func<double, double> amountFunc = x =>
+                    transaction.Type == (int) TransactionType.Income
+                        ? -x
+                        : x;
+                
+                HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+            }
         }
 
         public static void AddTransactionAmount(FinancialTransaction transaction)

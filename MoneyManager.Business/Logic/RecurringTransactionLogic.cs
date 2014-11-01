@@ -54,12 +54,12 @@ namespace MoneyManager.Business.Logic
         public static void CheckRecurringTransactions()
         {
             RecurringTransactionData.LoadList();
-            List<FinancialTransaction> transactions = transactionData.LoadRecurringList();
+            var transactionList = transactionData.LoadRecurringList();
 
             foreach (var recTrans in AllRecurringTransactions)
             {
                 var relTransaction = new FinancialTransaction();
-                var transcationList = transactions.Where(x => x.ReccuringTransactionId == recTrans.Id)
+                var transcationList = transactionList.Where(x => x.ReccuringTransactionId == recTrans.Id)
                     .OrderBy(x => x.Date);
 
                 if (transcationList.Any())
@@ -102,10 +102,17 @@ namespace MoneyManager.Business.Logic
 
         private static void SaveTransaction(RecurringTransaction recurringTransaction)
         {
+            var date = DateTime.Now;
+
+            if (recurringTransaction.Recurrence == (int) TransactionRecurrence.Monthly)
+            {
+                date = DateTime.Now.AddDays(recurringTransaction.StartDate.Day - DateTime.Today.Day);
+            }
+
             var newTransaction = new FinancialTransaction
             {
                 ChargedAccountId = recurringTransaction.ChargedAccountId,
-                Date = DateTime.Now,
+                Date = date,
                 IsRecurring = true,
                 Amount = recurringTransaction.Amount,
                 CurrencyCulture = recurringTransaction.Currency,

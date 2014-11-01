@@ -49,8 +49,7 @@ namespace MoneyManager.Business.Logic
             AccountLogic.AddTransactionAmount(transaction);
             if (transaction.IsRecurring && !skipRecurring)
             {
-                RecurringTransaction recurringTransaction =
-                    RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
+                var recurringTransaction = RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
                 recurringTransactionData.Save(transaction, recurringTransaction);
                 transaction.RecurringTransaction = recurringTransaction;
             }
