@@ -62,20 +62,18 @@
     </UserControl.Resources>
 
     <Grid>
-        <StackPanel>
-            <userControls:BalanceUserControl />
-            <qKit:GenericJumpList>
-                <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
+        <userControls:BalanceUserControl />
+        <qKit:GenericJumpList Margin="0,35,0,0">
+            <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
                       ItemTemplate="{StaticResource TransactionTemplate}"
-                      HorizontalAlignment="Stretch"
+                      HorizontalAlignment="Stretch" x:Name="ListViewTransactions"
                       SelectionChanged="EditTransactionOnSelection" ShowsScrollingPlaceholders="True">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-            </qKit:GenericJumpList>
-        </StackPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </qKit:GenericJumpList>
     </Grid>
 </UserControl>

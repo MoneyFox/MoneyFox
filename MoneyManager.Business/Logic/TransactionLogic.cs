@@ -138,7 +138,7 @@ namespace MoneyManager.Business.Logic
 
             dialog.DefaultCommandIndex = 1;
 
-            IUICommand result = await dialog.ShowAsync();
+            var result = await dialog.ShowAsync();
 
             if (result.Label == Translation.GetTranslation("RecurringLabel"))
             {

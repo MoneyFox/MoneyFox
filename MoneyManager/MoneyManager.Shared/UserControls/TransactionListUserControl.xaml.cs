@@ -21,6 +21,8 @@ namespace MoneyManager.UserControls
         }
 
         #region Properties
+
+        private int counter = 0;
         
         public TransactionDataAccess TransactionData
         {
@@ -35,7 +37,7 @@ namespace MoneyManager.UserControls
         public BalanceViewModel BalanceView
         {
             get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
-        }
+        }        
 
         #endregion
 
@@ -68,15 +70,15 @@ namespace MoneyManager.UserControls
 
         private void EditTransactionOnSelection(object sender, SelectionChangedEventArgs e)
         {
-            //todo: fix multiple navigation. Selection Changed gets triggered from jumplist
-            //if (TransactionListView.SelectedItem != null)
-            //{
-            //    TransactionData.SelectedTransaction = TransactionListView.SelectedItem as FinancialTransaction;
-            //    AddTransactionView.IsEdit = true;
+            if (counter > 0 && ListViewTransactions.SelectedItem != null)
+            {
+                TransactionData.SelectedTransaction = ListViewTransactions.SelectedItem as FinancialTransaction;
+                AddTransactionView.IsEdit = true;
 
-            //    ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
-            //    TransactionListView.SelectedItem = null;
-            //}
+                ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
+                ListViewTransactions.SelectedItem = null;
+            }
+            counter++;
         }
 
         private void UnloadPage(object sender, RoutedEventArgs e)
