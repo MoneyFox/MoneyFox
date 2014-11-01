@@ -75,6 +75,7 @@
     <Compile Include="ViewModels\AddTransactionViewModel.cs" />
     <Compile Include="ViewModels\GeneralSettingViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryViewModel.cs" />
+    <Compile Include="ViewModels\SelectCurrencyViewModel.cs" />
     <Compile Include="ViewModels\TileSettingsViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\TransactionListViewModel.cs" />

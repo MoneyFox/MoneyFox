@@ -4,16 +4,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converter1="using:MoneyManager.Converter"
+    xmlns:converter ="using:MoneyManager.Converter"
     mc:Ignorable="d"
     d:DesignWidth="400" d:DesignHeight="600"
     DataContext="{Binding AddTransactionView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter1:AmountConverter x:Key="AmountConverter" />
-        <converter1:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-        <converter1:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
-        <converter1:CurrencyConverter x:Key="CurrencyConverter" />
+        <converter:AmountConverter x:Key="AmountConverter" />
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:CurrencyConverter x:Key="CurrencyConverter" />
         <DataTemplate x:Key="ComboBoxTemplate">
             <StackPanel Margin="0,0,0,12">
                 <TextBlock Text="{Binding Name}" FontSize="24" />
@@ -37,11 +37,14 @@
                     Text="{Binding SelectedTransaction.Amount, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
                     Header="amount" InputScope="Number" x:Name="TextBoxAmount"
                     TextAlignment="Right" GotFocus="RemoveZeroOnFocus"
-                    LostFocus="AddZeroIfEmpty" Margin="0,0,30,0" />
-                <TextBlock
-                    Text="{Binding SelectedTransaction.CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
-                    Style="{StaticResource MenuItemSubSmallText}"
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,7" />
+                    LostFocus="AddZeroIfEmpty" />
+
+                <Grid Background="#FF231E1E" Width="45" Height="32" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3,0,0,13" Tapped="OpenSelectCurrencyDialog">
+                    <TextBlock
+                        Text="{Binding SelectedTransaction.CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
+                        Style="{StaticResource MenuItemMediumSmallText}"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="23,1,22,11" />
+                </Grid>
             </Grid>
             <Grid>
                 <TextBox Header="category" x:Uid="CategoryHeader"
