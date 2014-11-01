@@ -109,9 +109,6 @@
     <Compile Include="Views\SelectCategory.xaml.cs">
       <DependentUpon>SelectCategory.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SelectCurrency.xaml.cs">
-      <DependentUpon>SelectCurrency.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\SettingsCategory.xaml.cs">
       <DependentUpon>SettingsCategory.xaml</DependentUpon>
     </Compile>
@@ -207,10 +204,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SelectCategory.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SelectCurrency.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

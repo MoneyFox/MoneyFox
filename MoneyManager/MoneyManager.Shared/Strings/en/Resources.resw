@@ -445,7 +445,4 @@
   <data name="DailyWithoutWeekendContent" xml:space="preserve">
     <value>daily without weekend</value>
   </data>
-  <data name="SelectCurrencyText.Text" xml:space="preserve">
-    <value>select currency</value>
-  </data>
 </root>

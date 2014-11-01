@@ -1,25 +1,21 @@
 ﻿using PropertyChanged;
+using SQLite.Net.Attributes;
 
 namespace MoneyManager.DataAccess.Model
 {
     [ImplementPropertyChanged]
+    [Table("Accounts")]
     public class Country
     {
-        public string Abbreviation { get; set; }
+        [PrimaryKey, AutoIncrement, Indexed]
+        public int Id { get; set; }
 
-        public string Alpha3 { get; set; }
-
-        public string CurrencyID { get; set; }
+        public string CurrencyShortName { get; set; }
 
         public string CurrencyName { get; set; }
 
-        public string ID { get; set; }
+        public string CountryName { get; set; }
 
-        public string Name { get; set; }
-
-        public override string ToString()
-        {
-            return ID;
-        }
+        public string CountryShortName { get; set; }
     }
 }
