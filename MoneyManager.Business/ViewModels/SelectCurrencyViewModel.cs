@@ -10,6 +10,7 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 using PropertyChanged;
 
 namespace MoneyManager.Business.ViewModels
@@ -17,14 +18,9 @@ namespace MoneyManager.Business.ViewModels
     [ImplementPropertyChanged]
     public class SelectCurrencyViewModel : ViewModelBase
     {
-        private static AddTransactionViewModel AddTransactionView
-        {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
-
         public ObservableCollection<Country> AllCountries { get; set; }
 
-        public bool IsSettingsCall { get;set; }
+        public InvocationType InvocationType { get;set; }
 
         public Country SelectedCountry
         {
@@ -39,13 +35,17 @@ namespace MoneyManager.Business.ViewModels
 
         private void SetValue(Country value)
         {
-            if (IsSettingsCall)
+            switch (InvocationType)
             {
-                ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency = value.CurrencyID;
-            }
-            else
-            {
-                ServiceLocator.Current.GetInstance<AddTransactionViewModel>().SelectedTransaction.Currency = value.CurrencyID;
+                case InvocationType.Setting:
+                    ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency = value.CurrencyID;
+                    break;
+                case InvocationType.Transaction:
+                    ServiceLocator.Current.GetInstance<AddTransactionViewModel>().SelectedTransaction.Currency = value.CurrencyID;
+                    break;
+                case InvocationType.Account:
+                    ServiceLocator.Current.GetInstance<AddAccountViewModel>().SelectedAccount.Currency = value.CurrencyID;
+                    break;
             }
         }
 

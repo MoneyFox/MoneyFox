@@ -15,4 +15,11 @@
         Monthly,
         Yearly
     }
+
+    public enum InvocationType
+    {
+        Account,
+        Transaction,
+        Setting
+    }
 }

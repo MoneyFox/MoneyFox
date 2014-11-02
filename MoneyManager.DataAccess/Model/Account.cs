@@ -1,6 +1,7 @@
-﻿using PropertyChanged;
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.DataAccess;
+using PropertyChanged;
 using SQLite.Net.Attributes;
-using System.Globalization;
 
 namespace MoneyManager.DataAccess.Model
 {
@@ -10,7 +11,7 @@ namespace MoneyManager.DataAccess.Model
     {
         public Account()
         {
-            CurrencyCulture = CultureInfo.CurrentCulture.Name;
+            Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency;
         }
 
         [PrimaryKey, AutoIncrement, Indexed]
@@ -22,7 +23,7 @@ namespace MoneyManager.DataAccess.Model
 
         public double CurrentBalance { get; set; }
 
-        public string CurrencyCulture { get; set; }
+        public string Currency { get; set; }
 
         public string Note { get; set; }
 

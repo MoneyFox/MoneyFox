@@ -61,7 +61,7 @@ namespace MoneyManager.Business.Logic
         {
             foreach (Account account in accountData.AllAccounts)
             {
-                account.CurrencyCulture = CultureInfo.CurrentCulture.Name;
+                account.Currency = CultureInfo.CurrentCulture.Name;
                 accountData.Update(account);
             }
         }

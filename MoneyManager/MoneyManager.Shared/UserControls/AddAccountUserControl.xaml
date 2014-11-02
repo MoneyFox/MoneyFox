@@ -20,18 +20,18 @@
         <TextBox Text="{Binding SelectedAccount.Iban, Mode=TwoWay}"
                  Header="IBAN" VerticalAlignment="Top"
                  x:Uid="Iban" Margin="0,0,0,12" />
-        <Grid Margin="0,0,0,12">
+        <Grid>
             <TextBox
                 Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
-                Header="Balance" VerticalAlignment="Stretch"
-                Margin="0,0,30,0" InputScope="Number"
-                TextAlignment="Right" x:Uid="Balance"
-                GotFocus="RemoveZeroOnFocus" x:Name="TextBoxCurrentBalance"
+                Header="amount" InputScope="Number"
+                x:Uid="Balance" x:Name="TextBoxCurrentBalance"
+                TextAlignment="Right" GotFocus="RemoveZeroOnFocus"
                 LostFocus="AddZeroIfEmpty" />
-            <TextBlock Text="{Binding SelectedAccount.CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
-                       Style="{StaticResource MenuItemSubSmallText}"
-                       HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                       Margin="0,0,0,7" />
+
+            <Button MinWidth="40" MinHeight="55" Background="#FF231E1E"
+                    BorderThickness="1,1,1,1" Click="OpenSelectCurrencyDialog"
+                    Content="{Binding SelectedAccount.Currency}"
+                    Margin="2,28,0,6" />
         </Grid>
         <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
                  Header="Notes" VerticalAlignment="Top"
