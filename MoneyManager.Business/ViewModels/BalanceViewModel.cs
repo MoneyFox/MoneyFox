@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Helper;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
@@ -82,7 +84,7 @@ namespace MoneyManager.Business.ViewModels
 
         private IEnumerable<FinancialTransaction> LoadUnclreadTransactions()
         {
-            var unclearedTransactions = TransactionData.GetUnclearedTransactions();
+            var unclearedTransactions = TransactionData.GetUnclearedTransactions(Utilities.GetEndOfMonth());
 
             return IsTransactionView
                 ? unclearedTransactions.Where(x => x.ChargedAccount == selectedAccount)

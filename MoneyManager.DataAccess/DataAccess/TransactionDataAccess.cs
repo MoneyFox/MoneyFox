@@ -74,14 +74,20 @@ namespace MoneyManager.DataAccess.DataAccess
                 dbConn.Update(transaction);
             }
         }
-
+        
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions()
+        {
+            return GetUnclearedTransactions(DateTime.Today);
+        }
+
+        public IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date)
         {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
                 return dbConn.Table<FinancialTransaction>().Where(x => x.Cleared == false
-                                                                       && x.Date <= DateTime.Now).ToList();
+                                                                       && x.Date <= date).ToList();
             }
+
         }
 
         public List<FinancialTransaction> LoadRecurringList()
