@@ -1,22 +1,17 @@
-﻿using System;
-using System.Linq;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using System;
+using System.Linq;
 
 namespace MoneyManager.Business.Logic
 {
     public class AccountLogic
     {
         #region Properties
-
-        private static AddAccountViewModel addAccountView
-        {
-            get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>(); }
-        }
 
         private static AccountDataAccess accountData
         {
@@ -28,7 +23,7 @@ namespace MoneyManager.Business.Logic
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        private static TransactionListViewModel TransactionListView
+        private static TransactionListViewModel transactionListView
         {
             get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
         }
@@ -39,7 +34,8 @@ namespace MoneyManager.Business.Logic
         {
             accountData.SelectedAccount = new Account
             {
-                IsExchangeModeActive = false
+                IsExchangeModeActive = false,
+                Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
             };
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
         }
@@ -57,7 +53,7 @@ namespace MoneyManager.Business.Logic
         {
             if (accountData.SelectedAccount == transaction.ChargedAccount)
             {
-                TransactionListView.SetRelatedTransactions(transaction.ChargedAccountId);
+                transactionListView.SetRelatedTransactions(transaction.ChargedAccountId);
             }
         }
 
@@ -68,10 +64,10 @@ namespace MoneyManager.Business.Logic
                 PrehandleRemoveIfTransfer(transaction);
 
                 Func<double, double> amountFunc = x =>
-                    transaction.Type == (int) TransactionType.Income
+                    transaction.Type == (int)TransactionType.Income
                         ? -x
                         : x;
-                
+
                 HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
             }
         }

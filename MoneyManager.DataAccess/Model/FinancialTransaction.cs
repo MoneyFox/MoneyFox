@@ -12,11 +12,6 @@ namespace MoneyManager.DataAccess.Model
     [Table("FinancialTransactions")]
     public class FinancialTransaction
     {
-        public FinancialTransaction()
-        {
-            Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency;
-        }
-
         #region Properties
 
         private IEnumerable<Account> allAccounts
@@ -96,7 +91,7 @@ namespace MoneyManager.DataAccess.Model
             set
             {
                 CategoryId = value == null
-                    ? (int?)null
+                    ? (int?) null
                     : value.Id;
             }
         }

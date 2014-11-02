@@ -44,11 +44,13 @@ namespace MoneyManager.Business.Logic
 
         #endregion Properties
 
-        public static void SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false, bool skipRecurring = false)
+        public static void SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
+            bool skipRecurring = false)
         {
             if (transaction.IsRecurring && !skipRecurring)
             {
-                var recurringTransaction = RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
+                RecurringTransaction recurringTransaction =
+                    RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
                 recurringTransactionData.Save(transaction, recurringTransaction);
                 transaction.RecurringTransaction = recurringTransaction;
             }
@@ -86,7 +88,7 @@ namespace MoneyManager.Business.Logic
             addTransactionView.SelectedTransaction = transaction;
         }
 
-        public async static void DeleteTransaction(FinancialTransaction transaction)
+        public static async void DeleteTransaction(FinancialTransaction transaction)
         {
             if (await Utilities.IsDeletionConfirmed())
             {
@@ -103,7 +105,7 @@ namespace MoneyManager.Business.Logic
         public static void DeleteAssociatedTransactionsFromDatabase(int accountId)
         {
             foreach (
-                var transaction in
+                FinancialTransaction transaction in
                     transactionData.AllTransactions.Where(x => x.ChargedAccountId == accountId))
             {
                 transactionData.Delete(transaction);
@@ -138,7 +140,7 @@ namespace MoneyManager.Business.Logic
 
             dialog.DefaultCommandIndex = 1;
 
-            var result = await dialog.ShowAsync();
+            IUICommand result = await dialog.ShowAsync();
 
             if (result.Label == Translation.GetTranslation("RecurringLabel"))
             {
@@ -158,8 +160,9 @@ namespace MoneyManager.Business.Logic
         {
             selectedTransaction = new FinancialTransaction
             {
-                Type = (int)transactionType,
-                IsExchangeModeActive = false
+                Type = (int) transactionType,
+                IsExchangeModeActive = false,
+                Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
             };
         }
 

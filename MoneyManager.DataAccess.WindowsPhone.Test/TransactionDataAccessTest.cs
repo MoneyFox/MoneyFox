@@ -14,7 +14,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
         [TestInitialize]
         public void InitTests()
         {
-            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection())
+            using (var db = SqlConnectionFactory.GetSqlConnection())
             {
                 db.CreateTable<FinancialTransaction>();
             }

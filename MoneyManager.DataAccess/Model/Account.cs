@@ -1,6 +1,4 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
-using PropertyChanged;
+﻿using PropertyChanged;
 using SQLite.Net.Attributes;
 
 namespace MoneyManager.DataAccess.Model
@@ -9,11 +7,6 @@ namespace MoneyManager.DataAccess.Model
     [Table("Accounts")]
     public class Account
     {
-        public Account()
-        {
-            Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency;
-        }
-
         [PrimaryKey, AutoIncrement, Indexed]
         public int Id { get; set; }
 
