@@ -21,8 +21,6 @@ namespace MoneyManager.UserControls
         }
 
         #region Properties
-
-        private int counter = 0;
         
         public TransactionDataAccess TransactionData
         {
@@ -66,19 +64,6 @@ namespace MoneyManager.UserControls
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
             flyoutBase.ShowAt(senderElement);
-        }
-
-        private void EditTransactionOnSelection(object sender, SelectionChangedEventArgs e)
-        {
-            if (counter > 0 && ListViewTransactions.SelectedItem != null)
-            {
-                TransactionData.SelectedTransaction = ListViewTransactions.SelectedItem as FinancialTransaction;
-                AddTransactionView.IsEdit = true;
-
-                ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
-                ListViewTransactions.SelectedItem = null;
-            }
-            counter++;
         }
 
         private void UnloadPage(object sender, RoutedEventArgs e)

@@ -67,7 +67,7 @@
             <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
                       ItemTemplate="{StaticResource TransactionTemplate}"
                       HorizontalAlignment="Stretch" x:Name="ListViewTransactions"
-                      SelectionChanged="EditTransactionOnSelection" ShowsScrollingPlaceholders="True">
+                      ShowsScrollingPlaceholders="True">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
