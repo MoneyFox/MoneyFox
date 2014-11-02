@@ -13,12 +13,7 @@
         <DataTemplate x:Key="CategoryTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
                         MinWidth="300">
-                <FlyoutBase.AttachedFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" />
-                    </MenuFlyout>
-                </FlyoutBase.AttachedFlyout>
-                <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Name}" />
+                <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding ID}" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>

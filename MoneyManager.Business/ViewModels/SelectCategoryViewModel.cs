@@ -34,7 +34,6 @@ namespace MoneyManager.Business.ViewModels
             get { return categoryData.AllCategories; }
         }
 
-
         public Category SelectedCategory
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category; }

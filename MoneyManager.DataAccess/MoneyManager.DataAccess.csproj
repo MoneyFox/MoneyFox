@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="DataAccess\CategoryDataAccess.cs" />
     <Compile Include="DataAccess\RecurringTransactionDataAccess.cs" />
+    <Compile Include="DataAccess\SettingDataAccess.cs" />
     <Compile Include="DataAccess\TransactionDataAccess.cs" />
     <Compile Include="DatabaseLogic.cs" />
     <Compile Include="Model\Account.cs" />
