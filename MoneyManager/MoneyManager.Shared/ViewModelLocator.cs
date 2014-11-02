@@ -84,7 +84,7 @@ namespace MoneyManager
             get { return ServiceLocator.Current.GetInstance<TileSettingsViewModel>(); }
         }
 
-        public GeneralSettingViewModel LanguageSettingView
+        public GeneralSettingViewModel GeneralSettingView
         {
             get { return ServiceLocator.Current.GetInstance<GeneralSettingViewModel>(); }
         }
