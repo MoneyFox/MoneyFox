@@ -13,6 +13,11 @@ namespace MoneyManager.Business.Logic
     {
         #region Properties
 
+        private static AddAccountViewModel addAccountView
+        {
+            get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>(); }
+        }
+
         private static AccountDataAccess accountData
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
@@ -29,6 +34,15 @@ namespace MoneyManager.Business.Logic
         }
 
         #endregion Properties
+
+        public static void GoToAddAccount()
+        {
+            accountData.SelectedAccount = new Account
+            {
+                IsExchangeModeActive = false
+            };
+            ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
+        }
 
         public static async void DeleteAccount(Account account)
         {

@@ -50,33 +50,6 @@ namespace MoneyManager.Business.ViewModels
 
         public bool RefreshRealtedList { get; set; }
 
-        public bool IsExchangeModeActive { get; set; }
-
-        public double ExchangeRate { get; set; }
-
-        public double AmountWithoutExchange
-        {
-            get { return SelectedTransaction.AmountWithoutExchange; }
-            set
-            {
-                SelectedTransaction.AmountWithoutExchange = value;
-                CalculateNewAmount(value);
-            }
-        }
-
-        private void CalculateNewAmount(double value)
-        {
-            if (ExchangeRate == 0)
-            {
-                ExchangeRate = 1;
-            }
-
-            if (IsExchangeModeActive)
-            {
-                SelectedTransaction.Amount = ExchangeRate * value;
-            }
-        }
-
         #endregion Properties
 
         public string Title
@@ -93,9 +66,38 @@ namespace MoneyManager.Business.ViewModels
             }
         }
 
+        public double AmountWithoutExchange
+        {
+            get { return SelectedTransaction.AmountWithoutExchange; }
+            set
+            {
+                SelectedTransaction.AmountWithoutExchange = value;
+                CalculateNewAmount(value);
+            }
+        }
+
+        private void CalculateNewAmount(double value)
+        {
+            if (SelectedTransaction.ExchangeRatio == 0)
+            {
+                SelectedTransaction.ExchangeRatio = 1;
+            }
+
+            SelectedTransaction.Amount = SelectedTransaction.ExchangeRatio*value;
+        }
+
+        public async void SetCurrency(string currency)
+        {
+            SelectedTransaction.Currency = currency;
+            await LoadCurrencyRatio();
+            SelectedTransaction.IsExchangeModeActive = true;
+            CalculateNewAmount(AmountWithoutExchange);
+        }
+
         public async Task LoadCurrencyRatio()
         {
-            ExchangeRate = await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedTransaction.Currency);
+            SelectedTransaction.ExchangeRatio =
+                await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedTransaction.Currency);
         }
 
         public void Save()
@@ -109,7 +111,6 @@ namespace MoneyManager.Business.ViewModels
                 TransactionLogic.SaveTransaction(SelectedTransaction, RefreshRealtedList);
             }
 
-            AccountLogic.AddTransactionAmount(SelectedTransaction);
             ((Frame) Window.Current.Content).GoBack();
         }
 
@@ -121,14 +122,6 @@ namespace MoneyManager.Business.ViewModels
             }
 
             ((Frame) Window.Current.Content).GoBack();
-        }
-
-        public async void SetCurrency(string currency)
-        {
-            SelectedTransaction.Currency = currency;
-            await LoadCurrencyRatio();
-            IsExchangeModeActive = true;
-            CalculateNewAmount(AmountWithoutExchange);
         }
     }
 }

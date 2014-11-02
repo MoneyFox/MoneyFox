@@ -45,10 +45,10 @@
                         Margin="2,28,0,6" />
             </Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
-                Visibility="{Binding IsExchangeModeActive, Converter={StaticResource BooleanVisibilityConverter}}">
+                Visibility="{Binding SelectedTransaction.IsExchangeModeActive, Converter={StaticResource BooleanVisibilityConverter}}">
 
                 <TextBlock Text=" ( " Style="{StaticResource MenuItemSubSmallText}"/>
-                <TextBlock Text="{Binding ExchangeRate}" Style="{StaticResource MenuItemSubSmallText}"
+                <TextBlock Text="{Binding SelectedTransaction.ExchangeRatio}" Style="{StaticResource MenuItemSubSmallText}"
                        TextAlignment="Right" />
                 <TextBlock Text=") " Style="{StaticResource MenuItemSubSmallText}"/>
 

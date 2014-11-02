@@ -17,6 +17,8 @@ namespace MoneyManager.DataAccess.Model
             Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency;
         }
 
+        #region Properties
+
         private IEnumerable<Account> allAccounts
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
@@ -35,6 +37,8 @@ namespace MoneyManager.DataAccess.Model
             }
         }
 
+        #endregion Properties
+
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
@@ -47,6 +51,10 @@ namespace MoneyManager.DataAccess.Model
         public double AmountWithoutExchange { get; set; }
 
         public double Amount { get; set; }
+
+        public bool IsExchangeModeActive { get; set; }
+
+        public double ExchangeRatio { get; set; }
 
         public string Currency { get; set; }
 
@@ -88,7 +96,7 @@ namespace MoneyManager.DataAccess.Model
             set
             {
                 CategoryId = value == null
-                    ? (int?) null
+                    ? (int?)null
                     : value.Id;
             }
         }

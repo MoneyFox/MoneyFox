@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.UI.Popups;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 
 namespace MoneyManager.Business.Logic
 {
@@ -46,7 +46,6 @@ namespace MoneyManager.Business.Logic
 
         public static void SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false, bool skipRecurring = false)
         {
-            AccountLogic.AddTransactionAmount(transaction);
             if (transaction.IsRecurring && !skipRecurring)
             {
                 var recurringTransaction = RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
@@ -63,13 +62,13 @@ namespace MoneyManager.Business.Logic
                 ServiceLocator.Current.GetInstance<TransactionListViewModel>()
                     .SetRelatedTransactions(accountDataAccess.SelectedAccount.Id);
             }
+            AccountLogic.AddTransactionAmount(transaction);
         }
 
         public static void GoToAddTransaction(TransactionType transactionType, bool refreshRelatedList = false)
         {
             addTransactionView.IsEdit = false;
             addTransactionView.IsEndless = true;
-            addTransactionView.IsExchangeModeActive = false;
             addTransactionView.RefreshRealtedList = refreshRelatedList;
             addTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
             SetDefaultTransaction(transactionType);
@@ -104,7 +103,7 @@ namespace MoneyManager.Business.Logic
         public static void DeleteAssociatedTransactionsFromDatabase(int accountId)
         {
             foreach (
-                FinancialTransaction transaction in
+                var transaction in
                     transactionData.AllTransactions.Where(x => x.ChargedAccountId == accountId))
             {
                 transactionData.Delete(transaction);
@@ -159,7 +158,8 @@ namespace MoneyManager.Business.Logic
         {
             selectedTransaction = new FinancialTransaction
             {
-                Type = (int) transactionType
+                Type = (int)transactionType,
+                IsExchangeModeActive = false
             };
         }
 

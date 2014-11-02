@@ -1,9 +1,5 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Logic;
-using MoneyManager.Business.ViewModels;
+﻿using MoneyManager.Business.Logic;
 using MoneyManager.Common;
-using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using MoneyManager.Views;
 using Windows.UI.Xaml;
@@ -14,17 +10,7 @@ namespace MoneyManager
 {
     public sealed partial class MainPage
     {
-        #region Properties
-
         private readonly NavigationHelper navigationHelper;
-
-        private Account SelectedAccount
-        {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
-            set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
-        }
-
-        #endregion Properties
 
         public MainPage()
         {
@@ -40,19 +26,18 @@ namespace MoneyManager
 
         private void AddAccountClick(object sender, RoutedEventArgs e)
         {
-            SelectedAccount = new Account();
-            ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
-            Frame.Navigate(typeof(AddAccount));
+            AccountLogic.GoToAddAccount();
+            Frame.Navigate(typeof (AddAccount));
         }
 
         private void SettingsClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SettingsOverview));
+            Frame.Navigate(typeof (SettingsOverview));
         }
 
         private void GoToAbout(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(About));
+            Frame.Navigate(typeof (About));
         }
 
         private void AddIncomeClick(object sender, RoutedEventArgs e)
@@ -73,7 +58,7 @@ namespace MoneyManager
         private static void AddTransaction(TransactionType type)
         {
             TransactionLogic.GoToAddTransaction(type);
-            ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
+            ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
         #region NavigationHelper registration
