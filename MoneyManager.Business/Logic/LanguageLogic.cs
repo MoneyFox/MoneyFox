@@ -52,7 +52,7 @@ namespace MoneyManager.Business.Logic
         {
             foreach (FinancialTransaction transaction in transactionData.AllTransactions)
             {
-                transaction.CurrencyCulture = CultureInfo.CurrentCulture.Name;
+                transaction.Currency = CultureInfo.CurrentCulture.Name;
                 transactionData.Update(transaction);
             }
         }

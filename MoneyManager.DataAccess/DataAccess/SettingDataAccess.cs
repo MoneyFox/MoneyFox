@@ -8,7 +8,7 @@ using PropertyChanged;
 namespace MoneyManager.DataAccess.DataAccess
 {
     [ImplementPropertyChanged]
-    internal class SettingDataAccess : INotifyPropertyChanged
+    public class SettingDataAccess : INotifyPropertyChanged
     {
         private const string DefaultCurrencyKeyname = "DefaultCurrency";
 

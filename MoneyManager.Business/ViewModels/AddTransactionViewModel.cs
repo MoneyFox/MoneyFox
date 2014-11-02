@@ -32,6 +32,11 @@ namespace MoneyManager.Business.ViewModels
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
         }
 
+        public SettingDataAccess Settings
+        {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
+
         public DateTime EndDate { get; set; }
 
         public bool IsEndless { get; set; }

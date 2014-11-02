@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
+using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using PropertyChanged;
 
@@ -23,23 +24,28 @@ namespace MoneyManager.Business.ViewModels
 
         public ObservableCollection<Country> AllCountries { get; set; }
 
-        private Country selecteCountry;
+        public bool IsSettingsCall { get;set; }
+
         public Country SelectedCountry
         {
-            get { return selecteCountry; }
             set
             {
                 if (value == null) return;
 
-                selecteCountry = value;
-                string current = CultureInfo.CurrentCulture.Name.Split('-')[1];
-                if (selecteCountry.ID != current)
-                {
-                    AddTransactionView.IsExchangeModeActive = true;
-                    var culture = new CultureInfo(selecteCountry.ID);
-                    AddTransactionView.SelectedTransaction.CurrencyCulture = culture.Name;
-                }
+                SetValue(value);
                 ((Frame)Window.Current.Content).GoBack();
+            }
+        }
+
+        private void SetValue(Country value)
+        {
+            if (IsSettingsCall)
+            {
+                ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency = value.CurrencyID;
+            }
+            else
+            {
+                ServiceLocator.Current.GetInstance<AddTransactionViewModel>().SelectedTransaction.Currency = value.CurrencyID;
             }
         }
 

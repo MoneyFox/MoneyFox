@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using PropertyChanged;
 using SQLite.Net.Attributes;
@@ -15,7 +16,7 @@ namespace MoneyManager.DataAccess.Model
     {
         public FinancialTransaction()
         {
-            CurrencyCulture = CultureInfo.CurrentCulture.Name;
+            Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency;
         }
 
         private IEnumerable<Account> allAccounts
@@ -47,7 +48,7 @@ namespace MoneyManager.DataAccess.Model
 
         public double Amount { get; set; }
 
-        public string CurrencyCulture { get; set; }
+        public string Currency { get; set; }
 
         public int? CategoryId { get; set; }
 

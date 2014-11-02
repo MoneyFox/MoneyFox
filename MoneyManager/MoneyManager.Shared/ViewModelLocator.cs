@@ -15,6 +15,7 @@ namespace MoneyManager
             SimpleIoc.Default.Register<CategoryDataAccess>();
             SimpleIoc.Default.Register<TransactionDataAccess>();
             SimpleIoc.Default.Register<RecurringTransactionDataAccess>();
+            SimpleIoc.Default.Register<SettingDataAccess>();
 
             SimpleIoc.Default.Register<AddAccountViewModel>();
             SimpleIoc.Default.Register<AddTransactionViewModel>();
@@ -23,6 +24,7 @@ namespace MoneyManager
             SimpleIoc.Default.Register<TransactionListViewModel>();
             SimpleIoc.Default.Register<TileSettingsViewModel>();
             SimpleIoc.Default.Register<GeneralSettingViewModel>();
+            SimpleIoc.Default.Register<SelectCurrencyViewModel>();
             SimpleIoc.Default.Register<StatisticViewModel>();
 
             ServiceLocator.Current.GetInstance<CategoryDataAccess>().LoadList();
@@ -48,6 +50,11 @@ namespace MoneyManager
         public RecurringTransactionDataAccess RecurringTransactionDataAccess
         {
             get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+        }
+
+        public SettingDataAccess SettingDataAccess
+        {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
 
         #endregion DataAccess
@@ -87,6 +94,11 @@ namespace MoneyManager
         public GeneralSettingViewModel GeneralSettingView
         {
             get { return ServiceLocator.Current.GetInstance<GeneralSettingViewModel>(); }
+        }
+
+        public SelectCurrencyViewModel SelectCurrencyView
+        {
+            get { return ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>(); }
         }
 
         public StatisticViewModel StatisticView
