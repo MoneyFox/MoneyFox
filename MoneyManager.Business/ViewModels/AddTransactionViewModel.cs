@@ -6,6 +6,7 @@ using MoneyManager.Foundation;
 using PropertyChanged;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -51,7 +52,32 @@ namespace MoneyManager.Business.ViewModels
 
         public bool IsExchangeModeActive { get; set; }
 
-        #endregion
+        public double ExchangeRate { get; set; }
+
+        public double AmountWithoutExchange
+        {
+            get { return SelectedTransaction.AmountWithoutExchange; }
+            set
+            {
+                SelectedTransaction.AmountWithoutExchange = value;
+                CalculateNewAmount(value);
+            }
+        }
+
+        private void CalculateNewAmount(double value)
+        {
+            if (ExchangeRate == 0)
+            {
+                ExchangeRate = 1;
+            }
+
+            if (IsExchangeModeActive)
+            {
+                SelectedTransaction.Amount = ExchangeRate * value;
+            }
+        }
+
+        #endregion Properties
 
         public string Title
         {
@@ -67,6 +93,11 @@ namespace MoneyManager.Business.ViewModels
             }
         }
 
+        public async Task LoadCurrencyRatio()
+        {
+            ExchangeRate = await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedTransaction.Currency);
+        }
+
         public void Save()
         {
             if (IsEdit)
@@ -79,7 +110,7 @@ namespace MoneyManager.Business.ViewModels
             }
 
             AccountLogic.AddTransactionAmount(SelectedTransaction);
-            ((Frame)Window.Current.Content).GoBack();
+            ((Frame) Window.Current.Content).GoBack();
         }
 
         public void Cancel()
@@ -89,7 +120,15 @@ namespace MoneyManager.Business.ViewModels
                 AccountLogic.AddTransactionAmount(SelectedTransaction);
             }
 
-            ((Frame)Window.Current.Content).GoBack();
+            ((Frame) Window.Current.Content).GoBack();
+        }
+
+        public async void SetCurrency(string currency)
+        {
+            SelectedTransaction.Currency = currency;
+            await LoadCurrencyRatio();
+            IsExchangeModeActive = true;
+            CalculateNewAmount(AmountWithoutExchange);
         }
     }
 }

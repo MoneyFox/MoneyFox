@@ -69,6 +69,7 @@ namespace MoneyManager.Business.Logic
         {
             addTransactionView.IsEdit = false;
             addTransactionView.IsEndless = true;
+            addTransactionView.IsExchangeModeActive = false;
             addTransactionView.RefreshRealtedList = refreshRelatedList;
             addTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
             SetDefaultTransaction(transactionType);

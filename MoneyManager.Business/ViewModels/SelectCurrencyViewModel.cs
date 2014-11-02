@@ -41,7 +41,7 @@ namespace MoneyManager.Business.ViewModels
                     ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency = value.CurrencyID;
                     break;
                 case InvocationType.Transaction:
-                    ServiceLocator.Current.GetInstance<AddTransactionViewModel>().SelectedTransaction.Currency = value.CurrencyID;
+                    ServiceLocator.Current.GetInstance<AddTransactionViewModel>().SetCurrency(value.CurrencyID);
                     break;
                 case InvocationType.Account:
                     ServiceLocator.Current.GetInstance<AddAccountViewModel>().SelectedAccount.Currency = value.CurrencyID;

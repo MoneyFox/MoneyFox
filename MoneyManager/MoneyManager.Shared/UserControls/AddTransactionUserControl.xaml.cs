@@ -2,6 +2,7 @@
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 using MoneyManager.Views;
 using System;
 using Windows.UI.Xaml;
@@ -57,6 +58,7 @@ namespace MoneyManager.UserControls
 
         private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs routedEventArgs)
         {
+            ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().InvocationType = InvocationType.Transaction;
             ((Frame)Window.Current.Content).Navigate(typeof(SelectCurrency));
         }
     }

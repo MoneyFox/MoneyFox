@@ -1,11 +1,9 @@
-﻿using Windows.UI.Xaml.Controls;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using PropertyChanged;
 using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace MoneyManager.DataAccess.Model
@@ -45,6 +43,8 @@ namespace MoneyManager.DataAccess.Model
         public int TargetAccountId { get; set; }
 
         public DateTime Date { get; set; }
+
+        public double AmountWithoutExchange { get; set; }
 
         public double Amount { get; set; }
 
@@ -88,7 +88,7 @@ namespace MoneyManager.DataAccess.Model
             set
             {
                 CategoryId = value == null
-                    ? (int?)null
+                    ? (int?) null
                     : value.Id;
             }
         }
