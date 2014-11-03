@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using System.Threading.Tasks;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
@@ -57,7 +58,7 @@ namespace MoneyManager.Business.Logic
             }
         }
 
-        public static void RemoveTransactionAmount(FinancialTransaction transaction)
+        public static async Task RemoveTransactionAmount(FinancialTransaction transaction)
         {
             if (transaction.Cleared)
             {
@@ -68,11 +69,11 @@ namespace MoneyManager.Business.Logic
                         ? -x
                         : x;
 
-                HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+                 await HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
             }
         }
 
-        public static void AddTransactionAmount(FinancialTransaction transaction)
+        public static async Task AddTransactionAmount(FinancialTransaction transaction)
         {
             PrehandleAddIfTransfer(transaction);
 
@@ -81,19 +82,19 @@ namespace MoneyManager.Business.Logic
                     ? x
                     : -x;
 
-            HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+            await HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
         }
 
-        private static void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
+        private static async void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
         {
             if (transaction.Type == (int)TransactionType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
-                HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
+                await HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
             }
         }
 
-        private static void HandleTransactionAmount(FinancialTransaction transaction, Func<double, double> amountFunc,
+        private static async Task HandleTransactionAmount(FinancialTransaction transaction, Func<double, double> amountFunc,
             Func<FinancialTransaction, Account> getAccountFunc)
         {
             if (transaction.ClearTransactionNow)
@@ -101,8 +102,16 @@ namespace MoneyManager.Business.Logic
                 Account account = getAccountFunc(transaction);
                 if (account == null) return;
 
-                double amount = amountFunc(transaction.Amount);
+                double amountWithoutExchange = amountFunc(transaction.Amount);
+                double amount = amountWithoutExchange;
 
+                if (transaction.Currency != account.Currency)
+                {
+                    var ratio = await CurrencyLogic.GetCurrencyRatio(transaction.Currency, account.Currency);
+                    amount = amount * ratio;
+                }
+
+                account.CurrentBalanceWithoutExchange += amountWithoutExchange;
                 account.CurrentBalance += amount;
                 transaction.Cleared = true;
 

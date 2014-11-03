@@ -13,7 +13,6 @@
 
     <UserControl.Resources>
         <converter:AmountConverter x:Key="AmountConverter" />
-        <converter:CurrencyConverter x:Key="CurrencyConverter" />
         <DataTemplate x:Key="AccountTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
                         MinWidth="300" Holding="AccountList_Holding">
@@ -31,7 +30,7 @@
                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountConverter}}"
                                    HorizontalAlignment="Right" TextAlignment="Right" TextTrimming="None" />
                         <TextBlock Style="{StaticResource MenuItemText}"
-                                   Text="{Binding CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
+                                   Text="{Binding Currency}"
                                    HorizontalAlignment="Right" TextAlignment="Right" Margin="10,0,0,0"
                                    TextTrimming="None" />
                     </StackPanel>

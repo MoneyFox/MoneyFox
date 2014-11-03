@@ -100,7 +100,7 @@ namespace MoneyManager.Business.ViewModels
                 await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedTransaction.Currency);
         }
 
-        public void Save()
+        public async void Save()
         {
             if (IsEdit)
             {
@@ -108,7 +108,7 @@ namespace MoneyManager.Business.ViewModels
             }
             else
             {
-                TransactionLogic.SaveTransaction(SelectedTransaction, RefreshRealtedList);
+                await TransactionLogic.SaveTransaction(SelectedTransaction, RefreshRealtedList);
             }
 
             ((Frame) Window.Current.Content).GoBack();

@@ -44,7 +44,7 @@ namespace MoneyManager.Business.Logic
 
         #endregion Properties
 
-        public static void SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
+        public static async Task SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
             bool skipRecurring = false)
         {
             if (transaction.IsRecurring && !skipRecurring)
@@ -55,8 +55,6 @@ namespace MoneyManager.Business.Logic
                 transaction.RecurringTransaction = recurringTransaction;
             }
 
-            AccountLogic.RemoveTransactionAmount(transaction);
-
             transactionData.Save(transaction);
 
             if (refreshRelatedList)
@@ -64,7 +62,7 @@ namespace MoneyManager.Business.Logic
                 ServiceLocator.Current.GetInstance<TransactionListViewModel>()
                     .SetRelatedTransactions(accountDataAccess.SelectedAccount.Id);
             }
-            AccountLogic.AddTransactionAmount(transaction);
+            await AccountLogic.AddTransactionAmount(transaction);
         }
 
         public static void GoToAddTransaction(TransactionType transactionType, bool refreshRelatedList = false)

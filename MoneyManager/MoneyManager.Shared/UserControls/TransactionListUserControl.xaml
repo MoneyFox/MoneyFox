@@ -18,7 +18,6 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:TransactionAmountConverter x:Key="TransactionAmountConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
-        <converter:CurrencyConverter x:Key="CurrencyConverter" />
         <converter:TransactionStyleConverter x:Key="TransactionStyleConverter" />
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,6" HorizontalAlignment="Stretch"
@@ -43,7 +42,7 @@
                         <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
                                    Text="{Binding Amount, Converter={StaticResource AmountConverter}}" />
                         <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
-                                   Text="{Binding CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
+                                   Text="{Binding Currency}"
                                    Margin="5,0,0,0" />
                     </StackPanel>
                 </Grid>

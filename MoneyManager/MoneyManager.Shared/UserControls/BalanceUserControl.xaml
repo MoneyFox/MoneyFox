@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converter1="using:MoneyManager.Converter"
+    xmlns:converter="using:MoneyManager.Converter"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -12,8 +12,7 @@
     Loaded="BalanceUserControl_OnLoaded">
 
     <UserControl.Resources>
-        <converter1:AmountConverter x:Key="AmountConverter" />
-        <converter1:CurrencyConverter x:Key="CurrencyConverter" />
+        <converter:AmountConverter x:Key="AmountConverter" />
     </UserControl.Resources>
 
     <StackPanel Orientation="Horizontal">
@@ -21,12 +20,12 @@
                    Margin="0,0,5,10" />
         <TextBlock Text="{Binding TotalBalance, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
                    Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
-        <TextBlock Text="{Binding CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
+        <TextBlock Text="{Binding CurrencyCulture}"
                    Style="{StaticResource MenuItemSubSmallText}" />
         <TextBlock Text=" / " Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
         <TextBlock Text="{Binding EndOfMonthBalance, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
                    Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,5,0" />
-        <TextBlock Text="{Binding CurrencyCulture, Converter={StaticResource CurrencyConverter}}"
+        <TextBlock Text="{Binding CurrencyCulture}"
                    Style="{StaticResource MenuItemSubSmallText}" />
 
     </StackPanel>

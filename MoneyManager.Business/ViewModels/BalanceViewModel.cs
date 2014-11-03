@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using PropertyChanged;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 
 namespace MoneyManager.Business.ViewModels
@@ -16,6 +14,8 @@ namespace MoneyManager.Business.ViewModels
     [ImplementPropertyChanged]
     public class BalanceViewModel : ViewModelBase
     {
+        #region Properties
+
         public ObservableCollection<Account> AllAccounts
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
@@ -31,6 +31,13 @@ namespace MoneyManager.Business.ViewModels
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
+        public SettingDataAccess settings
+        {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
+
+        #endregion Properties
+
         public double TotalBalance { get; set; }
 
         public double EndOfMonthBalance { get; set; }
@@ -39,7 +46,7 @@ namespace MoneyManager.Business.ViewModels
 
         public string CurrencyCulture
         {
-            get { return CultureInfo.CurrentCulture.Name; }
+            get { return settings.DefaultCurrency; }
         }
 
         public void UpdateBalance()
@@ -70,10 +77,11 @@ namespace MoneyManager.Business.ViewModels
             {
                 switch (transaction.Type)
                 {
-                    case (int) TransactionType.Spending:
+                    case (int)TransactionType.Spending:
                         balance -= transaction.Amount;
                         break;
-                    case (int) TransactionType.Income:
+
+                    case (int)TransactionType.Income:
                         balance += transaction.Amount;
                         break;
                 }
