@@ -10,12 +10,12 @@ namespace MoneyManager.Views
     /// <summary>
     ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SettingsGeneral : Page
+    public sealed partial class SettingsRegion : Page
     {
         private readonly ObservableDictionary defaultViewModel = new ObservableDictionary();
         private readonly NavigationHelper navigationHelper;
 
-        public SettingsGeneral()
+        public SettingsRegion()
         {
             InitializeComponent();
 

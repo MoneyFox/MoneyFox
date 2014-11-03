@@ -7,9 +7,9 @@ using MoneyManager.Views;
 
 namespace MoneyManager.UserControls
 {
-    public sealed partial class SettingsGeneralUserControl
+    public sealed partial class SettingsRegionUserControl
     {
-        public SettingsGeneralUserControl()
+        public SettingsRegionUserControl()
         {
             InitializeComponent();
         }

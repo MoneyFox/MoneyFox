@@ -24,7 +24,7 @@ namespace MoneyManager.UserControls
 
         private void NavigateToGeneralSettings(object sender, TappedRoutedEventArgs e)
         {
-            ((Frame)Window.Current.Content).Navigate(typeof(SettingsGeneral));
+            ((Frame)Window.Current.Content).Navigate(typeof(SettingsRegion));
         }
     }
 }

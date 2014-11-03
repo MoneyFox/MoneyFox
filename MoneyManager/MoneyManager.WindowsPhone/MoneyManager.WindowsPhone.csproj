@@ -115,8 +115,8 @@
     <Compile Include="Views\SettingsCategory.xaml.cs">
       <DependentUpon>SettingsCategory.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SettingsGeneral.xaml.cs">
-      <DependentUpon>SettingsGeneral.xaml</DependentUpon>
+    <Compile Include="Views\SettingsRegion.xaml.cs">
+      <DependentUpon>SettingsRegion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsOverview.xaml.cs">
       <DependentUpon>SettingsOverview.xaml</DependentUpon>
@@ -218,7 +218,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\SettingsGeneral.xaml">
+    <Page Include="Views\SettingsRegion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

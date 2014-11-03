@@ -445,4 +445,10 @@
   <data name="CurrencyHeader.Header" xml:space="preserve">
     <value>currency</value>
   </data>
+  <data name="RegionLabel.Label" xml:space="preserve">
+    <value>region</value>
+  </data>
+  <data name="RegionText.Text" xml:space="preserve">
+    <value>region</value>
+  </data>
 </root>
