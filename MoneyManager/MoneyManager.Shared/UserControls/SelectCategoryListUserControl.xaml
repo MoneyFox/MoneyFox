@@ -13,7 +13,7 @@
         <DataTemplate x:Key="CategoryTemplate">
             <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
                         MinWidth="300">
-                <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding ID}" />
+                <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Name}" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
