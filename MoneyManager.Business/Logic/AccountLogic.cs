@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using BugSense;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
@@ -103,7 +104,7 @@ namespace MoneyManager.Business.Logic
                 if (account == null) return;
 
                 double amountWithoutExchange = amountFunc(transaction.Amount);
-                double amount = GetAmount(amountWithoutExchange);
+                double amount = await GetAmount(amountWithoutExchange, transaction, account);
 
                 account.CurrentBalanceWithoutExchange += amountWithoutExchange;
                 account.CurrentBalance += amount;
@@ -121,12 +122,12 @@ namespace MoneyManager.Business.Logic
                 if (transaction.Currency != account.Currency)
                 {
                     var ratio = await CurrencyLogic.GetCurrencyRatio(transaction.Currency, account.Currency);
-                    return amount * ratio;
+                    return baseAmount * ratio;
                 }
             }
             catch(Exception ex)
             {
-                BugsenseHandler.Instance.AddException(ex);
+                BugSenseHandler.Instance.LogException(ex);
             }
             return 1;
         }
