@@ -103,13 +103,7 @@ namespace MoneyManager.Business.Logic
                 if (account == null) return;
 
                 double amountWithoutExchange = amountFunc(transaction.Amount);
-                double amount = amountWithoutExchange;
-
-                if (transaction.Currency != account.Currency)
-                {
-                    var ratio = await CurrencyLogic.GetCurrencyRatio(transaction.Currency, account.Currency);
-                    amount = amount * ratio;
-                }
+                double amount = GetAmount(amountWithoutExchange);
 
                 account.CurrentBalanceWithoutExchange += amountWithoutExchange;
                 account.CurrentBalance += amount;
@@ -118,6 +112,23 @@ namespace MoneyManager.Business.Logic
                 accountData.Update(account);
                 transactionData.Update(transaction);
             }
+        }
+        
+        private static async Task<double> GetAmount(double baseAmount, FinancialTransaction transaction, Account account)
+        {
+            try
+            {
+                if (transaction.Currency != account.Currency)
+                {
+                    var ratio = await CurrencyLogic.GetCurrencyRatio(transaction.Currency, account.Currency);
+                    return amount * ratio;
+                }
+            }
+            catch(Exception ex)
+            {
+                BugsenseHandler.Instance.AddException(ex);
+            }
+            return 1;
         }
 
         private static void PrehandleAddIfTransfer(FinancialTransaction transaction)
