@@ -78,7 +78,7 @@ namespace MoneyManager.Business.ViewModels
 
         private void CalculateNewAmount(double value)
         {
-            if (SelectedTransaction.ExchangeRatio == 0)
+            if (Math.Abs(SelectedTransaction.ExchangeRatio) < 0.5)
             {
                 SelectedTransaction.ExchangeRatio = 1;
             }

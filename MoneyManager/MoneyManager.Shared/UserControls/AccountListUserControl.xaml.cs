@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
@@ -51,7 +52,7 @@ namespace MoneyManager.UserControls
             var account = element.DataContext as Account;
             if (account == null) return;
 
-            ServiceLocator.Current.GetInstance<AccountDataAccess>().Delete(account);
+            AccountLogic.DeleteAccount(account);
         }
 
         private void NavigateToTransactionList(object sender, SelectionChangedEventArgs e)

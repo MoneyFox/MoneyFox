@@ -95,8 +95,9 @@ namespace MoneyManager.Business.Logic
 
                 transactionData.Delete(transaction);
 
-                AccountLogic.RemoveTransactionAmount(transaction);
-                AccountLogic.RefreshRelatedTransactions(transaction);
+                await AccountLogic.RemoveTransactionAmount(transaction);
+                AccountLogic.RefreshRelatedTransactions();
+                ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
             }
         }
 
@@ -113,15 +114,17 @@ namespace MoneyManager.Business.Logic
         public static async void UpdateTransaction(FinancialTransaction transaction)
         {
             CheckIfRecurringWasRemoved(transaction);
-            AccountLogic.AddTransactionAmount(transaction);
+            await AccountLogic.AddTransactionAmount(transaction);
             transactionData.Update(transaction);
 
-            RecurringTransaction recurringTransaction =
+            var recurringTransaction =
                 RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
 
             await
                 CheckForRecurringTransaction(transaction,
                     () => recurringTransactionData.Update(transaction, recurringTransaction));
+
+            AccountLogic.RefreshRelatedTransactions();
         }
 
         private static async Task CheckForRecurringTransaction(FinancialTransaction transaction,

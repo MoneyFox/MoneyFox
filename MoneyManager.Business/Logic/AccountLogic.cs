@@ -48,15 +48,13 @@ namespace MoneyManager.Business.Logic
             {
                 accountData.Delete(account);
                 TransactionLogic.DeleteAssociatedTransactionsFromDatabase(account.Id);
+                ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
             }
         }
 
-        public static void RefreshRelatedTransactions(FinancialTransaction transaction)
+        public static void RefreshRelatedTransactions()
         {
-            if (accountData.SelectedAccount == transaction.ChargedAccount)
-            {
-                transactionListView.SetRelatedTransactions(transaction.ChargedAccountId);
-            }
+            transactionListView.SetRelatedTransactions(accountData.SelectedAccount.Id);
         }
 
         public static async Task RemoveTransactionAmount(FinancialTransaction transaction)
@@ -111,6 +109,11 @@ namespace MoneyManager.Business.Logic
                 transaction.Cleared = true;
 
                 accountData.Update(account);
+                transactionData.Update(transaction);
+            }
+            else
+            {
+                transaction.Cleared = false;
                 transactionData.Update(transaction);
             }
         }
