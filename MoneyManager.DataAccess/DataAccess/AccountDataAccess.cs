@@ -24,7 +24,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
                 AllAccounts.Add(itemToAdd);
                 AllAccounts = new ObservableCollection<Account>(AllAccounts.OrderBy(x => x.Name));
-                itemToAdd.Id = dbConn.Insert(itemToAdd);
+                dbConn.Insert(itemToAdd);
             }
         }
 

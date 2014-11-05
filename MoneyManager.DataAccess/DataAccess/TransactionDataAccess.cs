@@ -33,7 +33,7 @@ namespace MoneyManager.DataAccess.DataAccess
                 AllTransactions.Add(transaction);
                 AllTransactions = new ObservableCollection<FinancialTransaction>(AllTransactions.OrderByDescending(x => x.Date));
 
-                dbConn.Insert(transaction, typeof (FinancialTransaction));
+                dbConn.Insert(transaction);
             }
         }
 

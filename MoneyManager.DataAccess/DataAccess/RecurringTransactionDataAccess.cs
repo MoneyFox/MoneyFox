@@ -26,7 +26,7 @@ namespace MoneyManager.DataAccess.DataAccess
                 AllRecurringTransactions = new ObservableCollection<RecurringTransaction>
                     (AllRecurringTransactions.OrderBy(x => x.StartDate));
 
-                dbConn.Insert(itemToAdd, typeof(RecurringTransaction));
+                dbConn.Insert(itemToAdd);
             }
         }
 
