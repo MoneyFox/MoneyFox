@@ -129,7 +129,7 @@ namespace MoneyManager.Business.Logic
             {
                 BugSenseHandler.Instance.LogException(ex);
             }
-            return 1;
+            return baseAmount;
         }
 
         private static void PrehandleAddIfTransfer(FinancialTransaction transaction)
