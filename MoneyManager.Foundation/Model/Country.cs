@@ -1,7 +1,4 @@
-﻿using PropertyChanged;
-using SQLite.Net.Attributes;
-
-namespace MoneyManager.DataAccess.Model
+﻿namespace MoneyManager.Foundation.Model
 {
     public class Country
     {
@@ -18,6 +15,5 @@ namespace MoneyManager.DataAccess.Model
         public string Name { get; set; }
 
         public double ExchangeRate { get; set; }
-
-   }
+    }
 }

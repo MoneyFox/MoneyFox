@@ -1,4 +1,5 @@
 ﻿using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.DataAccess
 {

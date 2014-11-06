@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.DataAccess.WindowsPhone.Test
 {

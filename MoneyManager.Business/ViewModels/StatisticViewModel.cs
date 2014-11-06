@@ -1,8 +1,8 @@
-using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using MoneyManager.Business.Logic;
-using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation.Model;
 using PropertyChanged;
+using System.Collections.ObjectModel;
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -14,5 +14,4 @@ namespace MoneyManager.Business.ViewModels
             get { return StatisticLogic.GetMonthlyCashFlow(); }
         }
     }
-
 }
