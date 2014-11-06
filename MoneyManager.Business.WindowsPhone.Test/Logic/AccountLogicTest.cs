@@ -48,11 +48,13 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
         }
 
         [TestMethod]
+        [Ignore]
         public void RemoveTransactionAmountTest()
         {
         }
 
         [TestMethod]
+        [Ignore]
         public void AddTransactionAmount()
         {
         }
