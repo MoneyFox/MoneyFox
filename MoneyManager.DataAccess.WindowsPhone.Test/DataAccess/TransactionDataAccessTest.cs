@@ -94,11 +94,11 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
             }
                 );
 
-            var transactionsAll = transactionDataAccess.GetUnclearedTransactions();
-            var transactionsThisMonth = transactionDataAccess.GetUnclearedTransactions(Utilities.GetEndOfMonth());
+            transactions = transactionDataAccess.GetUnclearedTransactions();
+            Assert.AreEqual(1, transactions.Count());
 
-            Assert.AreEqual(1, transactionsAll.Count());
-            Assert.AreEqual(1, transactionsThisMonth.Count());
+            transactions = transactionDataAccess.GetUnclearedTransactions(Utilities.GetEndOfMonth());
+            Assert.AreEqual(1, transactions.Count());
         }
     }
 }

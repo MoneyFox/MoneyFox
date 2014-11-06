@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Business.Logic;
@@ -44,6 +45,16 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             Assert.AreEqual(false, accountData.SelectedAccount.IsExchangeModeActive);
 
             Assert.AreEqual(false, ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit);
+        }
+
+        [TestMethod]
+        public void RemoveTransactionAmountTest()
+        {
+        }
+
+        [TestMethod]
+        public void AddTransactionAmount()
+        {
         }
     }
 }
