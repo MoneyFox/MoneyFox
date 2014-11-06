@@ -1,6 +1,5 @@
 ﻿using BugSense;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -12,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MoneyManager.Business.Logic
 {
-    public class CurrencyLogic : ICurrencyLogic
+    public class CurrencyLogic
     {
         private const string CURRENCY_SERVICE_URL =
             "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
@@ -28,15 +27,15 @@ namespace MoneyManager.Business.Logic
             var json = JsonConvert.DeserializeObject(jsonString) as JContainer;
 
             return (from JProperty token in json.Children().Children().Children()
-                select new Country
-                {
-                    Abbreviation = token.Name,
-                    CurrencyID = token.Value["currencyId"].ToString(),
-                    CurrencyName = token.Value["currencyName"].ToString(),
-                    Name = token.Value["name"].ToString(),
-                    Alpha3 = token.Value["alpha3"].ToString(),
-                    ID = token.Value["id"].ToString(),
-                })
+                    select new Country
+                    {
+                        Abbreviation = token.Name,
+                        CurrencyID = token.Value["currencyId"].ToString(),
+                        CurrencyName = token.Value["currencyName"].ToString(),
+                        Name = token.Value["name"].ToString(),
+                        Alpha3 = token.Value["alpha3"].ToString(),
+                        ID = token.Value["id"].ToString(),
+                    })
                 .OrderBy(x => x.ID)
                 .ToList();
         }
@@ -95,7 +94,7 @@ namespace MoneyManager.Business.Logic
 
         private static void PrepareHttpClient()
         {
-            httpClient = new HttpClient {BaseAddress = new Uri("https://api.SmallInvoice.com/")};
+            httpClient = new HttpClient { BaseAddress = new Uri("https://api.SmallInvoice.com/") };
             httpClient.DefaultRequestHeaders.Add("user-agent",
                 "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
         }
