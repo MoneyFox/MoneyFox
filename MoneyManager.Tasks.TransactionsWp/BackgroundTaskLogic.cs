@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Popups;
 
@@ -9,9 +10,9 @@ namespace MoneyManager.Tasks.TransactionsWp
     {
         private const string name = "RecurringTransactionTask";
 
-        public static void RegisterBackgroundTask()
+        public async static void RegisterBackgroundTask()
         {
-            if (IsTaskExisting()) return;
+            if (IsTaskExisting() || !await RequestAccess()) return;
 
             var builder = new BackgroundTaskBuilder();
             //Task soll alle 12 Stunden laufen
@@ -20,19 +21,27 @@ namespace MoneyManager.Tasks.TransactionsWp
             builder.Name = name;
             builder.TaskEntryPoint = typeof (TransactionTask).FullName;
             builder.SetTrigger(trigger);
-            BackgroundTaskRegistration registration = builder.Register();
-            registration.Completed += RegistrationOnCompleted;
+            builder.Register();
+        }
+
+        private static async Task<bool> RequestAccess()
+        {
+            BackgroundAccessStatus result = await BackgroundExecutionManager.RequestAccessAsync();
+            if (result == BackgroundAccessStatus.Denied)
+            {
+                var dialog = new MessageDialog("denied");
+                await dialog.ShowAsync();
+
+                return false;
+            }
+            return true;
         }
 
         private static async void RegistrationOnCompleted(BackgroundTaskRegistration sender,
             BackgroundTaskCompletedEventArgs args)
         {
-            BackgroundAccessStatus result = await BackgroundExecutionManager.RequestAccessAsync();
-            if (result == BackgroundAccessStatus.Denied)
-            {
-                var dialog = new MessageDialog("mööp mööp");
-                await dialog.ShowAsync();
-            }
+            var dialog = new MessageDialog("mööp mööp");
+            await dialog.ShowAsync();
         }
 
         private static bool IsTaskExisting()
