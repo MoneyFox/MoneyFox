@@ -1,4 +1,6 @@
-﻿using MoneyManager.Business.Logic;
+﻿using System;
+using BugSense;
+using MoneyManager.Business.Logic;
 using Windows.ApplicationModel.Background;
 
 namespace MoneyManager.Tasks.TransactionsWp
@@ -7,9 +9,16 @@ namespace MoneyManager.Tasks.TransactionsWp
     {
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            new BackgroundTaskViewModelLocator();
-            RecurringTransactionLogic.CheckRecurringTransactions();
-            TransactionLogic.ClearTransactions();
+            try
+            {
+                new BackgroundTaskViewModelLocator();
+                RecurringTransactionLogic.CheckRecurringTransactions();
+                TransactionLogic.ClearTransactions();
+            }
+            catch (Exception ex)
+            {
+                BugSenseHandler.Instance.LogException(ex);
+            }
         }
     }
 }
