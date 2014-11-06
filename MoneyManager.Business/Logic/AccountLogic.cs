@@ -32,7 +32,7 @@ namespace MoneyManager.Business.Logic
 
         #endregion Properties
 
-        public static void GoToAddAccount()
+        public static void PrepareAddAccount()
         {
             accountData.SelectedAccount = new Account
             {
@@ -42,9 +42,9 @@ namespace MoneyManager.Business.Logic
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
         }
 
-        public static async void DeleteAccount(Account account)
+        public static async void DeleteAccount(Account account, bool skipConfirmation = false)
         {
-            if (await Utilities.IsDeletionConfirmed())
+            if (skipConfirmation || await Utilities.IsDeletionConfirmed())
             {
                 accountData.Delete(account);
                 TransactionLogic.DeleteAssociatedTransactionsFromDatabase(account.Id);

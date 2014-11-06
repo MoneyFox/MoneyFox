@@ -26,7 +26,7 @@ namespace MoneyManager
 
         private void AddAccountClick(object sender, RoutedEventArgs e)
         {
-            AccountLogic.GoToAddAccount();
+            AccountLogic.PrepareAddAccount();
             Frame.Navigate(typeof (AddAccount));
         }
 

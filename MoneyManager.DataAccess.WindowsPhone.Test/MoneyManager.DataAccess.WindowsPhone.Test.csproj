@@ -106,6 +106,10 @@
     <Content Include="Assets\WideLogo.scale-240.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyManager.Business\MoneyManager.Business.csproj">
+      <Project>{97C5FD49-1128-4FA5-B529-264562A416EF}</Project>
+      <Name>MoneyManager.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyManager.DataAccess\MoneyManager.DataAccess.csproj">
       <Project>{217ba6c1-a9ca-426d-b8d3-d891aa59a308}</Project>
       <Name>MoneyManager.DataAccess</Name>

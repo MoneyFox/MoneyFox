@@ -103,8 +103,9 @@ namespace MoneyManager.Business.Logic
 
         public static void DeleteAssociatedTransactionsFromDatabase(int accountId)
         {
-            foreach (
-                FinancialTransaction transaction in
+            if (transactionData.AllTransactions == null) return;
+
+            foreach (var transaction in
                     transactionData.AllTransactions.Where(x => x.ChargedAccountId == accountId))
             {
                 transactionData.Delete(transaction);

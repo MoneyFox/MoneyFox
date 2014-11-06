@@ -25,7 +25,5 @@ namespace MoneyManager.DataAccess.Model
         public string Currency { get; set; }
 
         public string Note { get; set; }
-
-        public int GroupId { get; set; }
     }
 }
