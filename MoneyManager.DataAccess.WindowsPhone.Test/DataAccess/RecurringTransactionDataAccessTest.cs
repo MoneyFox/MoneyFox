@@ -1,12 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
-using SQLite.Net;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace MoneyManager.DataAccess.WindowsPhone.Test
+namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
 {
     [TestClass]
     public class RecurringTransactionDataAccessTest
@@ -14,7 +13,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
         [TestInitialize]
         public void TestInit()
         {
-            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection())
+            using (var db = SqlConnectionFactory.GetSqlConnection())
             {
                 db.CreateTable<RecurringTransaction>();
             }

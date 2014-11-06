@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Business", "Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.DataAccess.WindowsPhone.Test", "MoneyManager.DataAccess.WindowsPhone.Test\MoneyManager.DataAccess.WindowsPhone.Test.csproj", "{206C8CE3-628B-4CD1-8354-8F83546F6C7C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D6E6E944-C844-4882-A72A-F86C17196117}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MoneyManager\MoneyManager.Shared\MoneyManager.Shared.projitems*{01c92d11-9b98-4ff3-bf14-89917369ab92}*SharedItemsImports = 4
@@ -173,5 +175,6 @@ Global
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
 		{6936F4D3-8889-48C7-A676-80D59B2740CE} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
 		{97C5FD49-1128-4FA5-B529-264562A416EF} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
+		{206C8CE3-628B-4CD1-8354-8F83546F6C7C} = {D6E6E944-C844-4882-A72A-F86C17196117}
 	EndGlobalSection
 EndGlobal
