@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Xaml;
-using Microsoft.Live.Controls;
+using Microsoft.Live;
 
 namespace MoneyManager.UserControls
 {
@@ -11,17 +11,36 @@ namespace MoneyManager.UserControls
 
         }
 
+        private LiveConnectClient liveClient;
+
+        private async void connectButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var authClient = new LiveAuthClient();
+                LiveLoginResult result = await authClient.LoginAsync(new string[] { "wl.signin", "wl.skydrive" });
+
+                if (result.Status == LiveConnectSessionStatus.Connected)
+                {
+                    liveClient = new LiveConnectClient(result.Session);
+                }
+            }
+            catch (LiveAuthException ex)
+            {
+                // Display an error message.
+            }
+            catch (LiveConnectException ex)
+            {
+                // Display an error message.
+            }
+        }
+
         private void btnBackup_Click(object sender, RoutedEventArgs e)
         {
             
         }
 
         private void btnRestore_Click(object sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private void SignInButton_SessionChanged(object sender, LiveConnectSessionChangedEventArgs e)
         {
             throw new System.NotImplementedException();
         }
