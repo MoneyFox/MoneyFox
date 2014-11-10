@@ -1,5 +1,3 @@
-
-
 namespace MoneyManager.Business.Logic{
 
   public class BackupLogic{
