@@ -14,6 +14,10 @@
                    Text="Region" Tapped="NavigateToGeneralSettings"
                    Margin="0,0,0,20" />
         <TextBlock Style="{StaticResource MenuItemText }"
+                   x:Uid="BackupText"
+                   Text="Backup" Tapped="NavigateToBackupSettings"
+                   Margin="0,0,0,20" />
+        <TextBlock Style="{StaticResource MenuItemText }"
                    x:Uid="SettingCategory"
                    Text="Category" Tapped="NavigateToCategorySettings"
                    Margin="0,0,0,20" />

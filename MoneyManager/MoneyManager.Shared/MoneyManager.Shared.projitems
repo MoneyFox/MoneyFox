@@ -39,6 +39,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\AddTransactionUserControl.xaml.cs">
       <DependentUpon>AddTransactionUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserControls\BackupUserControl.xaml.cs">
+      <DependentUpon>BackupUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\BarChartUserControl.xaml.cs">
       <DependentUpon>BarChartUserControl.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)UserControls\AddTransactionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)UserControls\BackupUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

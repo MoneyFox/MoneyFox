@@ -451,4 +451,7 @@
   <data name="RegionLabel.Label" xml:space="preserve">
     <value>region</value>
   </data>
+  <data name="BackupText.Text" xml:space="preserve">
+    <value>backup</value>
+  </data>
 </root>

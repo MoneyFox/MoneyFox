@@ -112,6 +112,9 @@
     <Compile Include="Views\SelectCurrency.xaml.cs">
       <DependentUpon>SelectCurrency.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SettingsBackup.xaml.cs">
+      <DependentUpon>SettingsBackup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsCategory.xaml.cs">
       <DependentUpon>SettingsCategory.xaml</DependentUpon>
     </Compile>
@@ -212,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SelectCurrency.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsBackup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

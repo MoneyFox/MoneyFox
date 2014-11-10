@@ -12,6 +12,16 @@ namespace MoneyManager.UserControls
             InitializeComponent();
         }
 
+        private void NavigateToGeneralSettings(object sender, TappedRoutedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(SettingsRegion));
+        }
+        
+        private void NavigateToBackupSettings(object sender, TappedRoutedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(SettingsBackup));
+        }
+
         private void NavigateToCategorySettings(object sender, TappedRoutedEventArgs e)
         {
             ((Frame)Window.Current.Content).Navigate(typeof(SettingsCategory));
@@ -20,11 +30,6 @@ namespace MoneyManager.UserControls
         private void NavigateToTilesSettings(object sender, TappedRoutedEventArgs e)
         {
             ((Frame)Window.Current.Content).Navigate(typeof(SettingsTiles));
-        }
-
-        private void NavigateToGeneralSettings(object sender, TappedRoutedEventArgs e)
-        {
-            ((Frame)Window.Current.Content).Navigate(typeof(SettingsRegion));
         }
     }
 }
