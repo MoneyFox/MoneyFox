@@ -454,4 +454,13 @@
   <data name="BackupText.Text" xml:space="preserve">
     <value>backup</value>
   </data>
+  <data name="NotLoggedIn" xml:space="preserve">
+    <value>not logged in</value>
+  </data>
+  <data name="NotLoggedInMessage" xml:space="preserve">
+    <value>You're not logged in. To access your backup storage on OneDrive please log in.</value>
+  </data>
+  <data name="LastBackupCreationDate.Text" xml:space="preserve">
+    <value>Last Backup created at:</value>
+  </data>
 </root>

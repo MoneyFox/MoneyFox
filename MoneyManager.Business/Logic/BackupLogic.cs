@@ -2,17 +2,43 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using BugSense;
 using Microsoft.Live;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Business.Logic{
 
     public class BackupLogic
     {
-        public static async void CreateBackUp(LiveConnectClient liveClient, string backupId)
+        public async static Task<LiveConnectClient> LogInToOneDrive()
         {
             try
             {
+                var authClient = new LiveAuthClient();
+                LiveLoginResult result = await authClient.LoginAsync(new[] { "wl.signin", "wl.skydrive" });
+
+                if (result.Status == LiveConnectSessionStatus.Connected)
+                {
+                    return new LiveConnectClient(result.Session);
+                }
+            }
+            catch (LiveAuthException ex)
+            {
+                // Display an error message.
+            }
+            catch (LiveConnectException ex)
+            {
+                // Display an error message.
+            }
+            return null;
+        }
+
+        public static async Task UploadBackup(LiveConnectClient liveClient, string folderId)
+        {
+            try
+            {
+                var backupId = string.Empty;
                 if (backupId != null)
                 {
                     //var result = MessageBox.Show(AppResources.OverwriteBackupMessage, AppResources.OverwriteBackupTitle, MessageBoxButton.OKCancel);
@@ -25,15 +51,8 @@ namespace MoneyManager.Business.Logic{
 
                 //busyProceedAction.IsRunning = true;
 
-                var folderId = await GetFolderId(liveClient, string.Empty);
-                if (folderId == null)
-                {
-                    folderId = await CreateBackupFolder(liveClient, string.Empty);
-                }
-                else if (backupId != null)
-                {
-                    await liveClient.DeleteAsync(backupId);
-                }
+                
+                
 
                 //using (var store = IsolatedStorageFile.GetUserStoreForApplication())
                 //{
@@ -61,7 +80,7 @@ namespace MoneyManager.Business.Logic{
             }
         }
 
-        private static async Task<string> CreateBackupFolder(LiveConnectClient liveClient, string folderName)
+        public static async Task<string> CreateBackupFolder(LiveConnectClient liveClient, string folderName)
         {
             if (liveClient != null)
             {
@@ -105,6 +124,32 @@ namespace MoneyManager.Business.Logic{
             {
                 BugSenseHandler.Instance.LogException(ex);
             }
+            return String.Empty;
+        }
+
+        public static async Task<string> GetBackupId(LiveConnectClient liveClient, string folderId, string backupName)
+        {
+            try
+            {
+                var operationResultFolder = await liveClient.GetAsync(folderId + "/files");
+                dynamic files = operationResultFolder.Result.Values;
+
+                foreach (var data in files)
+                {
+                    foreach (var file in data)
+                    {
+                        if (file.name == backupName)
+                        {
+                            return file.id;
+                        }
+                    }
+                }
+            }
+            catch (LiveConnectException ex)
+            {
+                BugSenseHandler.Instance.LogException(ex);
+            }
+
             return String.Empty;
         }
 
