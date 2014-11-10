@@ -37,7 +37,7 @@ namespace MoneyManager.Business.ViewModels
             switch (InvocationType)
             {
                 case InvocationType.Setting:
-                    RegionLogic.SetNewCurrency(value.CurrencyID);
+                    ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency = value.CurrencyID;
                     break;
 
                 case InvocationType.Transaction:

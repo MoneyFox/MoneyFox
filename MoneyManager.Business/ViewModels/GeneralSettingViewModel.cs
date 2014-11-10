@@ -12,13 +12,13 @@ namespace MoneyManager.Business.ViewModels
     {
         public List<String> LanguageList
         {
-            get { return RegionLogic.GetSupportedLanguages(); }
+            get { return LanguageLogic.GetSupportedLanguages(); }
         }
 
         public string SelectedValue
         {
-            get { return RegionLogic.GetPrimaryLanguage(); }
-            set { RegionLogic.SetPrimaryLanguage(value); }
+            get { return LanguageLogic.GetPrimaryLanguage(); }
+            set { LanguageLogic.SetPrimaryLanguage(value); }
         }
 
 
