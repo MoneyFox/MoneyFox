@@ -12,7 +12,7 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Business.Logic
 {
-    public class LanguageLogic
+    public class RegionLogic
     {
         private static TransactionDataAccess transactionData
         {
@@ -29,9 +29,14 @@ namespace MoneyManager.Business.Logic
             return GlobalizationPreferences.Languages.ToList();
         }
 
-        public static async void SetPrimaryLanguage(string lang)
+        public static void SetPrimaryLanguage(string lang)
         {
             ApplicationLanguages.PrimaryLanguageOverride = lang;
+        }
+
+        public static async void SetNewCurrency(string currencyId)
+        {
+            ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency = currencyId;
 
             var dialog = new MessageDialog(Translation.GetTranslation("ChangeAllEntitiesMessage"),
                 Translation.GetTranslation("ChangeAllEntitiesTitle"));
