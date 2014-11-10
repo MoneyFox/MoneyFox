@@ -9,12 +9,7 @@
     d:DesignWidth="400">
     
     <Grid>
-        <StackPanel Margin="12,0,12,0" Grid.Row="1">
-            <TextBlock TextWrapping="Wrap" Text="{Binding LocalizedResources.PleaseLogInText, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextSmallStyle}" />
-            <StackPanel Margin="12,0,0,0">
-                <TextBlock TextWrapping="Wrap" Text="{Binding LocalizedResources.LastBackupLabel, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextSmallStyle}" HorizontalAlignment="Left" Margin="0" />
-                <TextBlock TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" HorizontalAlignment="Left" Margin="0" />
-            </StackPanel>
+        <StackPanel Margin="12,0,12,0">
             <Button HorizontalAlignment="Stretch" Content="Connect with Microsoft Account" 
                 Click="connectButton_Click"  />
             <Button Content="create backup" HorizontalAlignment="Stretch" Click="btnBackup_Click" IsEnabled="False" />
