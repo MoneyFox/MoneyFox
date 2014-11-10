@@ -112,9 +112,6 @@
     <Compile Include="Views\SelectCurrency.xaml.cs">
       <DependentUpon>SelectCurrency.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SettingsBackup.xaml.cs">
-      <DependentUpon>SettingsBackup.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\SettingsCategory.xaml.cs">
       <DependentUpon>SettingsCategory.xaml</DependentUpon>
     </Compile>
@@ -186,8 +183,6 @@
     <Content Include="Images\transferTileIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Fonts\LiveSymbol.ttf" />
-    <None Include="app.config" />
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -216,10 +211,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SelectCurrency.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SettingsBackup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -259,9 +250,6 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.0.2.32241, Culture=neutral, PublicKeyToken=2d6752c4fdf70b88, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\MvvmLightLibs.5.0.2.0\lib\wpa81\GalaSoft.MvvmLight.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Live">
-      <HintPath>..\..\packages\LiveSDK.5.6\WindowsXAML\Microsoft.Live.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Live.Controls">
       <HintPath>..\..\..\MyMedi\MyMedi\lib\live.wp8.0\Microsoft.Live.Controls.dll</HintPath>
