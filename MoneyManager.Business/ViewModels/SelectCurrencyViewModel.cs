@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -20,7 +19,7 @@ namespace MoneyManager.Business.ViewModels
     {
         public ObservableCollection<Country> AllCountries { get; set; }
 
-        public InvocationType InvocationType { get;set; }
+        public InvocationType InvocationType { get; set; }
 
         public Country SelectedCountry
         {
@@ -40,9 +39,11 @@ namespace MoneyManager.Business.ViewModels
                 case InvocationType.Setting:
                     RegionLogic.SetNewCurrency(value.CurrencyID);
                     break;
+
                 case InvocationType.Transaction:
                     ServiceLocator.Current.GetInstance<AddTransactionViewModel>().SetCurrency(value.CurrencyID);
                     break;
+
                 case InvocationType.Account:
                     ServiceLocator.Current.GetInstance<AddAccountViewModel>().SetCurrency(value.CurrencyID);
                     break;
@@ -55,6 +56,7 @@ namespace MoneyManager.Business.ViewModels
         }
 
         private string searchText;
+
         public string SearchText
         {
             get { return searchText; }
@@ -78,9 +80,7 @@ namespace MoneyManager.Business.ViewModels
             else
             {
                 await LoadCountries();
-
             }
         }
-
     }
 }
