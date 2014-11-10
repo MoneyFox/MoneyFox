@@ -24,6 +24,11 @@ namespace MoneyManager.Business.Logic
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
+        private static SettingDataAccess settings
+        {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
+
         public static List<String> GetSupportedLanguages()
         {
             return GlobalizationPreferences.Languages.ToList();
@@ -36,7 +41,7 @@ namespace MoneyManager.Business.Logic
 
         public static async void SetNewCurrency(string currencyId)
         {
-            ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency = currencyId;
+            settings.DefaultCurrency = currencyId;
 
             var dialog = new MessageDialog(Translation.GetTranslation("ChangeAllEntitiesMessage"),
                 Translation.GetTranslation("ChangeAllEntitiesTitle"));
@@ -55,18 +60,18 @@ namespace MoneyManager.Business.Logic
 
         private static void ChangeTransactions()
         {
-            foreach (FinancialTransaction transaction in transactionData.AllTransactions)
+            foreach (var transaction in transactionData.AllTransactions)
             {
-                transaction.Currency = CultureInfo.CurrentCulture.Name;
+                transaction.Currency = settings.DefaultCurrency;
                 transactionData.Update(transaction);
             }
         }
 
         private static void ChangeAccounts()
         {
-            foreach (Account account in accountData.AllAccounts)
+            foreach (var account in accountData.AllAccounts)
             {
-                account.Currency = CultureInfo.CurrentCulture.Name;
+                account.Currency = settings.DefaultCurrency;
                 accountData.Update(account);
             }
         }
