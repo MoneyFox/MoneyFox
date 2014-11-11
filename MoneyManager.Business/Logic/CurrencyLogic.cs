@@ -89,7 +89,7 @@ namespace MoneyManager.Business.Logic
             {
                 BugSenseHandler.Instance.LogException(ex);
             }
-            return String.Empty;
+            return "1";
         }
 
         private static void PrepareHttpClient()
