@@ -39,27 +39,26 @@ namespace MoneyManager.Business.ViewModels
 
             await dialog.ShowAsync();
         }
-
-
+        
         public async void CreateBackup()
         {
             var folderId = String.Empty ?? await BackupLogic.CreateBackupFolder(LiveClient, BackupFolderName);
 
-            var backupId = string.Empty ?? await BackupLogic.GetBackupId(LiveClient, folderId, BackupName);
-            if (!String.IsNullOrEmpty(backupId))
-            {
-                await RequestBackupDeletion(backupId);
-            }
+            ShowOverwriteInfo();
 
             await BackupLogic.UploadBackup(LiveClient, folderId);
         }
 
-        private async Task RequestBackupDeletion(string backupId)
+        private async Task<bool> ShowOverwriteInfo(string backupId)
         {
-            if (await Utilities.IsDeletionConfirmed())
-            {
-                await LiveClient.DeleteAsync(backupId);
-            }
+            var dialog = new MessageDialog(Translation.GetTranslation("OverwriteBackupMessage"),
+                Translation.GetTranslation("OverwriteBackup"));
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
+
+            var result await dialog.ShowAsync();
+
+            return result.Label == Translation.GetTranslation("YesLabel");
         }
     }
 }
