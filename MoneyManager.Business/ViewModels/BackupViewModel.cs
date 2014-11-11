@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using GalaSoft.MvvmLight;
@@ -7,9 +9,11 @@ using MoneyManager.Business.Helper;
 using MoneyManager.Business.Logic;
 using MoneyManager.Foundation;
 
+#endregion
+
 namespace MoneyManager.Business.ViewModels
 {
-    public class BackupViewModel: ViewModelBase
+    public class BackupViewModel : ViewModelBase
     {
         private const string BackupFolderName = "MoneyFoxBackup";
         private const string BackupName = "moneyfoxBackup.sqlite";

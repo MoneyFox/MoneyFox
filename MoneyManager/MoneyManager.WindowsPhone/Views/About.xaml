@@ -25,14 +25,14 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-         <StackPanel>
-                     <StackPanel Margin="19,0,0,0">
-            <TextBlock Text="about" x:Uid="AboutText"
-                       Margin="0,12,0,0"
-                       FontSize="36" FontFamily="Segoe WP Light" />
-        </StackPanel>
-        
-        <userControls:AboutUserControl />
+        <StackPanel>
+            <StackPanel Margin="19,0,0,0">
+                <TextBlock Text="about" x:Uid="AboutText"
+                           Margin="0,12,0,0"
+                           FontSize="36" FontFamily="Segoe WP Light" />
+            </StackPanel>
+
+            <userControls:AboutUserControl />
         </StackPanel>
 
     </Grid>

@@ -1,12 +1,16 @@
-﻿using GalaSoft.MvvmLight;
+﻿#region
+
+using System.Threading.Tasks;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using PropertyChanged;
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+
+#endregion
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -55,12 +59,13 @@ namespace MoneyManager.Business.ViewModels
                 SelectedAccount.ExchangeRatio = 1;
             }
 
-            SelectedAccount.CurrentBalance = SelectedAccount.ExchangeRatio * value;
+            SelectedAccount.CurrentBalance = SelectedAccount.ExchangeRatio*value;
         }
 
         public async Task LoadCurrencyRatio()
         {
-            SelectedAccount.ExchangeRatio = await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedAccount.Currency);
+            SelectedAccount.ExchangeRatio =
+                await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedAccount.Currency);
         }
 
         public void Save()
@@ -73,12 +78,12 @@ namespace MoneyManager.Business.ViewModels
             {
                 ServiceLocator.Current.GetInstance<AccountDataAccess>().Save(SelectedAccount);
             }
-            ((Frame)Window.Current.Content).GoBack();
+            ((Frame) Window.Current.Content).GoBack();
         }
 
         public void Cancel()
         {
-            ((Frame)Window.Current.Content).GoBack();
+            ((Frame) Window.Current.Content).GoBack();
         }
     }
 }

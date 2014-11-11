@@ -1,11 +1,15 @@
-﻿using MoneyManager.Common;
+﻿#region
+
 using Windows.UI.Xaml.Navigation;
+using MoneyManager.Common;
+
+#endregion
 
 namespace MoneyManager.Views
 {
     public sealed partial class SelectCurrency
     {
-        private NavigationHelper navigationHelper;
+        private readonly NavigationHelper navigationHelper;
 
         public SelectCurrency()
         {

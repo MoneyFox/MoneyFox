@@ -1,9 +1,12 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿#region
+
+using System;
+using System.Linq;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
-using System;
-using System.Collections.ObjectModel;
-using System.Linq;
+
+#endregion
 
 namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
 {
@@ -39,7 +42,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
             recurringTransactionDataAccess.Save(transaction);
 
             recurringTransactionDataAccess.LoadList();
-            ObservableCollection<RecurringTransaction> list = recurringTransactionDataAccess.AllRecurringTransactions;
+            var list = recurringTransactionDataAccess.AllRecurringTransactions;
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstAmount, list.First().Amount);

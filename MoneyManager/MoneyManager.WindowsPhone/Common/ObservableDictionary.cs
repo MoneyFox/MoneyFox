@@ -1,7 +1,11 @@
-﻿using System.Collections;
+﻿#region
+
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.Foundation.Collections;
+
+#endregion
 
 namespace MoneyManager.Common
 {
@@ -60,9 +64,9 @@ namespace MoneyManager.Common
 
         public void Clear()
         {
-            string[] priorKeys = _dictionary.Keys.ToArray();
+            var priorKeys = _dictionary.Keys.ToArray();
             _dictionary.Clear();
-            foreach (string key in priorKeys)
+            foreach (var key in priorKeys)
             {
                 InvokeMapChanged(CollectionChange.ItemRemoved, key);
             }
@@ -115,7 +119,7 @@ namespace MoneyManager.Common
 
         public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
         {
-            int arraySize = array.Length;
+            var arraySize = array.Length;
             foreach (var pair in _dictionary)
             {
                 if (arrayIndex >= arraySize) break;
@@ -125,7 +129,7 @@ namespace MoneyManager.Common
 
         private void InvokeMapChanged(CollectionChange change, string key)
         {
-            MapChangedEventHandler<string, object> eventHandler = MapChanged;
+            var eventHandler = MapChanged;
             if (eventHandler != null)
             {
                 eventHandler(this, new ObservableDictionaryChangedEventArgs(change, key));

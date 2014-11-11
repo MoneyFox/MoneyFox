@@ -1,14 +1,18 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Logic;
-using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
-using PropertyChanged;
+﻿#region
+
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Logic;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
+using PropertyChanged;
+
+#endregion
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -56,11 +60,11 @@ namespace MoneyManager.Business.ViewModels
         {
             get
             {
-                string text = IsEdit
+                var text = IsEdit
                     ? Translation.GetTranslation("EditTitle")
                     : Translation.GetTranslation("AddTitle");
 
-                string type = TransactionTypeLogic.GetViewTitleForType(SelectedTransaction.Type);
+                var type = TransactionTypeLogic.GetViewTitleForType(SelectedTransaction.Type);
 
                 return String.Format(text, type);
             }

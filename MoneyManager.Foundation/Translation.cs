@@ -1,4 +1,8 @@
-﻿using Windows.ApplicationModel.Resources;
+﻿#region
+
+using Windows.ApplicationModel.Resources;
+
+#endregion
 
 namespace MoneyManager.Foundation
 {

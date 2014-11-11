@@ -1,13 +1,17 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿#region
+
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Input;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Views;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
+
+#endregion
 
 namespace MoneyManager.UserControls
 {
@@ -21,7 +25,7 @@ namespace MoneyManager.UserControls
         }
 
         #region Properties
-        
+
         public TransactionDataAccess TransactionData
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
@@ -35,23 +39,23 @@ namespace MoneyManager.UserControls
         public BalanceViewModel BalanceView
         {
             get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
-        }        
+        }
 
         #endregion
 
         private void EditTransaction(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement)sender;
+            var element = (FrameworkElement) sender;
             var transaction = element.DataContext as FinancialTransaction;
             if (transaction == null) return;
 
             TransactionLogic.PrepareEdit(transaction);
-            ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
+            ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
         private void DeleteTransaction(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement)sender;
+            var element = (FrameworkElement) sender;
             var transaction = element.DataContext as FinancialTransaction;
             if (transaction == null) return;
 

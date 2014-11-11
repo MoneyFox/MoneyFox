@@ -1,22 +1,27 @@
-﻿using GalaSoft.MvvmLight;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Logic;
-using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
-using PropertyChanged;
+﻿#region
+
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using GalaSoft.MvvmLight;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Logic;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Foundation;
+using MoneyManager.Foundation.Model;
+using PropertyChanged;
+
+#endregion
 
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
     public class SelectCurrencyViewModel : ViewModelBase
     {
+        private string searchText;
         public ObservableCollection<Country> AllCountries { get; set; }
 
         public InvocationType InvocationType { get; set; }
@@ -28,7 +33,17 @@ namespace MoneyManager.Business.ViewModels
                 if (value == null) return;
 
                 SetValue(value);
-                ((Frame)Window.Current.Content).GoBack();
+                ((Frame) Window.Current.Content).GoBack();
+            }
+        }
+
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                searchText = value.ToUpper();
+                Search();
             }
         }
 
@@ -53,18 +68,6 @@ namespace MoneyManager.Business.ViewModels
         public async Task LoadCountries()
         {
             AllCountries = new ObservableCollection<Country>(await CurrencyLogic.GetSupportedCountries());
-        }
-
-        private string searchText;
-
-        public string SearchText
-        {
-            get { return searchText; }
-            set
-            {
-                searchText = value.ToUpper();
-                Search();
-            }
         }
 
         public async void Search()

@@ -1,6 +1,10 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿#region
+
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using SQLite.Net;
 using SQLite.Net.Platform.WinRT;
+
+#endregion
 
 namespace MoneyManager.DataAccess.WindowsPhone.Test
 {
@@ -12,7 +16,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
         {
             var connection = SqlConnectionFactory.GetSqlConnection();
 
-            Assert.IsInstanceOfType(connection, typeof(SQLiteConnection));
+            Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
         }
 
         [TestMethod]
@@ -20,7 +24,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
         {
             var connection = SqlConnectionFactory.GetSqlConnection(new SQLitePlatformWinRT());
 
-            Assert.IsInstanceOfType(connection, typeof(SQLiteConnection));
+            Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
         }
     }
 }

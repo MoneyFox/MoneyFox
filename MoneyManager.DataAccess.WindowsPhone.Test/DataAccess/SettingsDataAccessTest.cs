@@ -1,5 +1,9 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿#region
+
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.DataAccess;
+
+#endregion
 
 namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
 {

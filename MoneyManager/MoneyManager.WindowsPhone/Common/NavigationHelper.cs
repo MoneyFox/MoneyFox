@@ -1,10 +1,14 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using Windows.Foundation.Metadata;
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+
+#endregion
 
 namespace MoneyManager.Common
 {
@@ -22,33 +26,33 @@ namespace MoneyManager.Common
     ///     constructor for the page and register a callback for the LoadState and
     ///     SaveState events.
     ///     <code>
-    ///      public MyPage()
-    ///      {
-    ///          this.InitializeComponent();
-    ///          var navigationHelper = new NavigationHelper(this);
-    ///          this.navigationHelper.LoadState += navigationHelper_LoadState;
-    ///          this.navigationHelper.SaveState += navigationHelper_SaveState;
-    ///      }
-    ///
-    ///      private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
-    ///      { }
-    ///      private async void navigationHelper_SaveState(object sender, LoadStateEventArgs e)
-    ///      { }
-    ///  </code>
+    ///       public MyPage()
+    ///       {
+    ///           this.InitializeComponent();
+    ///           var navigationHelper = new NavigationHelper(this);
+    ///           this.navigationHelper.LoadState += navigationHelper_LoadState;
+    ///           this.navigationHelper.SaveState += navigationHelper_SaveState;
+    ///       }
+    /// 
+    ///       private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+    ///       { }
+    ///       private async void navigationHelper_SaveState(object sender, LoadStateEventArgs e)
+    ///       { }
+    ///   </code>
     ///     2) Register the page to call into the NavigationHelper whenever the page participates
     ///     in navigation by overriding the <see cref="Windows.UI.Xaml.Controls.Page.OnNavigatedTo" />
     ///     and <see cref="Windows.UI.Xaml.Controls.Page.OnNavigatedFrom" /> events.
     ///     <code>
-    ///      protected override void OnNavigatedTo(NavigationEventArgs e)
-    ///      {
-    ///          navigationHelper.OnNavigatedTo(e);
-    ///      }
-    ///
-    ///      protected override void OnNavigatedFrom(NavigationEventArgs e)
-    ///      {
-    ///          navigationHelper.OnNavigatedFrom(e);
-    ///      }
-    ///  </code>
+    ///       protected override void OnNavigatedTo(NavigationEventArgs e)
+    ///       {
+    ///           navigationHelper.OnNavigatedTo(e);
+    ///       }
+    /// 
+    ///       protected override void OnNavigatedFrom(NavigationEventArgs e)
+    ///       {
+    ///           navigationHelper.OnNavigatedFrom(e);
+    ///       }
+    ///   </code>
     /// </example>
     [WebHostHidden]
     public class NavigationHelper : DependencyObject
@@ -319,15 +323,15 @@ namespace MoneyManager.Common
         /// </param>
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-            Dictionary<string, object> frameState = SuspensionManager.SessionStateForFrame(Frame);
+            var frameState = SuspensionManager.SessionStateForFrame(Frame);
             _pageKey = "Page-" + Frame.BackStackDepth;
 
             if (e.NavigationMode == NavigationMode.New)
             {
                 // Clear existing state for forward navigation when adding a new page to the
                 // navigation stack
-                string nextPageKey = _pageKey;
-                int nextPageIndex = Frame.BackStackDepth;
+                var nextPageKey = _pageKey;
+                var nextPageIndex = Frame.BackStackDepth;
                 while (frameState.Remove(nextPageKey))
                 {
                     nextPageIndex++;
@@ -348,7 +352,7 @@ namespace MoneyManager.Common
                 if (LoadState != null)
                 {
                     LoadState(this,
-                        new LoadStateEventArgs(e.Parameter, (Dictionary<String, Object>)frameState[_pageKey]));
+                        new LoadStateEventArgs(e.Parameter, (Dictionary<String, Object>) frameState[_pageKey]));
                 }
             }
         }
@@ -364,7 +368,7 @@ namespace MoneyManager.Common
         /// </param>
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
-            Dictionary<string, object> frameState = SuspensionManager.SessionStateForFrame(Frame);
+            var frameState = SuspensionManager.SessionStateForFrame(Frame);
             var pageState = new Dictionary<String, Object>();
             if (SaveState != null)
             {

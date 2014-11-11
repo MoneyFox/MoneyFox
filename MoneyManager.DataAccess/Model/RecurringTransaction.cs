@@ -1,10 +1,14 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
-using PropertyChanged;
-using SQLite.Net.Attributes;
+﻿#region
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.DataAccess;
+using PropertyChanged;
+using SQLite.Net.Attributes;
+
+#endregion
 
 namespace MoneyManager.DataAccess.Model
 {

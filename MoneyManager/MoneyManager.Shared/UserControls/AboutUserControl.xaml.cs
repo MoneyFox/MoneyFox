@@ -1,9 +1,13 @@
-﻿using MoneyManager.Business.Helper;
-using MoneyManager.Foundation;
+﻿#region
+
 using System;
 using Windows.ApplicationModel.Email;
 using Windows.System;
 using Windows.UI.Xaml.Input;
+using MoneyManager.Business.Helper;
+using MoneyManager.Foundation;
+
+#endregion
 
 namespace MoneyManager.UserControls
 {

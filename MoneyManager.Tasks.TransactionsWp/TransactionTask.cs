@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
+using Windows.ApplicationModel.Background;
 using BugSense;
 using MoneyManager.Business.Logic;
-using Windows.ApplicationModel.Background;
+
+#endregion
 
 namespace MoneyManager.Tasks.TransactionsWp
 {

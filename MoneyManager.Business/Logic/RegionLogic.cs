@@ -1,14 +1,16 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI.Popups;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+
+#endregion
 
 namespace MoneyManager.Business.Logic
 {
@@ -49,7 +51,7 @@ namespace MoneyManager.Business.Logic
             dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
             dialog.DefaultCommandIndex = 1;
 
-            IUICommand result = await dialog.ShowAsync();
+            var result = await dialog.ShowAsync();
 
             if (result.Label == Translation.GetTranslation("YesLabel"))
             {

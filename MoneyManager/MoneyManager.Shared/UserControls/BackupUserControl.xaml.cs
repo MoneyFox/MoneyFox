@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
 using Windows.UI.Xaml;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
+
+#endregion
 
 namespace MoneyManager.UserControls
 {

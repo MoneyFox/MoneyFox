@@ -1,6 +1,10 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿#region
+
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Business.Logic;
 using MoneyManager.Foundation;
+
+#endregion
 
 namespace MoneyManager.Business.WindowsPhone.Test.Logic
 {

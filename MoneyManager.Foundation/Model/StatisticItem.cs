@@ -1,4 +1,8 @@
-﻿using PropertyChanged;
+﻿#region
+
+using PropertyChanged;
+
+#endregion
 
 namespace MoneyManager.Foundation.Model
 {

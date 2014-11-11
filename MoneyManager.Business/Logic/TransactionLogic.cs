@@ -1,14 +1,17 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿#region
+
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.UI.Popups;
+
+#endregion
 
 namespace MoneyManager.Business.Logic
 {
@@ -49,7 +52,7 @@ namespace MoneyManager.Business.Logic
         {
             if (transaction.IsRecurring && !skipRecurring)
             {
-                RecurringTransaction recurringTransaction =
+                var recurringTransaction =
                     RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
                 recurringTransactionData.Save(transaction, recurringTransaction);
                 transaction.RecurringTransaction = recurringTransaction;
@@ -106,7 +109,7 @@ namespace MoneyManager.Business.Logic
             if (transactionData.AllTransactions == null) return;
 
             foreach (var transaction in
-                    transactionData.AllTransactions.Where(x => x.ChargedAccountId == accountId))
+                transactionData.AllTransactions.Where(x => x.ChargedAccountId == accountId))
             {
                 transactionData.Delete(transaction);
             }
@@ -142,7 +145,7 @@ namespace MoneyManager.Business.Logic
 
             dialog.DefaultCommandIndex = 1;
 
-            IUICommand result = await dialog.ShowAsync();
+            var result = await dialog.ShowAsync();
 
             if (result.Label == Translation.GetTranslation("RecurringLabel"))
             {
@@ -183,8 +186,8 @@ namespace MoneyManager.Business.Logic
 
         public static void ClearTransactions()
         {
-            IEnumerable<FinancialTransaction> transactions = transactionData.GetUnclearedTransactions();
-            foreach (FinancialTransaction transaction in transactions)
+            var transactions = transactionData.GetUnclearedTransactions();
+            foreach (var transaction in transactions)
             {
                 AccountLogic.AddTransactionAmount(transaction);
             }

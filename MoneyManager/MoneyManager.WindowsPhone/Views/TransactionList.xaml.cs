@@ -1,8 +1,12 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿#region
+
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using MoneyManager.Business.Logic;
 using MoneyManager.Common;
 using MoneyManager.Foundation;
-using Windows.UI.Xaml;
+
+#endregion
 
 namespace MoneyManager.Views
 {
@@ -39,7 +43,7 @@ namespace MoneyManager.Views
         private static void AddTransaction(TransactionType type)
         {
             TransactionLogic.GoToAddTransaction(type, true);
-            ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
+            ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
     }
 }

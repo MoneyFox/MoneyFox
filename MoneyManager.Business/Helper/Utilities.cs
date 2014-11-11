@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Reflection;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using MoneyManager.Foundation;
+
+#endregion
 
 namespace MoneyManager.Business.Helper
 {

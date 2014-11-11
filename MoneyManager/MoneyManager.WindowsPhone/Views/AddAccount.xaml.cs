@@ -1,11 +1,15 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿#region
+
+using System;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Navigation;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
-using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Navigation;
+
+#endregion
 
 namespace MoneyManager.Views
 {

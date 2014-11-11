@@ -1,11 +1,14 @@
-﻿using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation;
-using PropertyChanged;
-using SQLite.Net;
+﻿#region
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
+using PropertyChanged;
+
+#endregion
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -31,7 +34,8 @@ namespace MoneyManager.DataAccess.DataAccess
                 }
 
                 AllTransactions.Add(transaction);
-                AllTransactions = new ObservableCollection<FinancialTransaction>(AllTransactions.OrderByDescending(x => x.Date));
+                AllTransactions =
+                    new ObservableCollection<FinancialTransaction>(AllTransactions.OrderByDescending(x => x.Date));
 
                 dbConn.Insert(transaction);
             }
@@ -74,7 +78,7 @@ namespace MoneyManager.DataAccess.DataAccess
                 dbConn.Update(transaction);
             }
         }
-        
+
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions()
         {
             return GetUnclearedTransactions(DateTime.Today);
@@ -87,7 +91,6 @@ namespace MoneyManager.DataAccess.DataAccess
                 return dbConn.Table<FinancialTransaction>().Where(x => x.Cleared == false
                                                                        && x.Date <= date).ToList();
             }
-
         }
 
         public List<FinancialTransaction> LoadRecurringList()

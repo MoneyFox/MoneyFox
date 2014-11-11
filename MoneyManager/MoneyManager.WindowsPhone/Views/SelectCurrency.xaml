@@ -12,19 +12,19 @@
 
         <Grid.ChildrenTransitions>
             <TransitionCollection>
-                <EntranceThemeTransition/>
+                <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="Select Currency" x:Uid="SelectCurrencyText"
-                       Style="{ThemeResource TitleTextBlockStyle}" 
-                       Margin="0,12,0,0"/>
+                       Style="{ThemeResource TitleTextBlockStyle}"
+                       Margin="0,12,0,0" />
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">

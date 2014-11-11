@@ -1,6 +1,10 @@
-﻿using GalaSoft.MvvmLight;
+﻿#region
+
+using GalaSoft.MvvmLight;
 using MoneyManager.Business.Logic.Tile;
 using PropertyChanged;
+
+#endregion
 
 namespace MoneyManager.Business.ViewModels
 {

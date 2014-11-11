@@ -1,13 +1,17 @@
-﻿using GalaSoft.MvvmLight;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
-using PropertyChanged;
+﻿#region
+
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using GalaSoft.MvvmLight;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.DataAccess.Model;
+using PropertyChanged;
+
+#endregion
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -42,7 +46,7 @@ namespace MoneyManager.Business.ViewModels
                 if (value == null) return;
 
                 ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value;
-                ((Frame)Window.Current.Content).GoBack();
+                ((Frame) Window.Current.Content).GoBack();
             }
         }
 

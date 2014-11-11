@@ -1,8 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿#region
+
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+
+#endregion
 
 namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
 {
@@ -34,7 +37,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
             categoryDataAccess.Save(category);
 
             categoryDataAccess.LoadList();
-            ObservableCollection<Category> list = categoryDataAccess.AllCategories;
+            var list = categoryDataAccess.AllCategories;
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstName, list.First().Name);

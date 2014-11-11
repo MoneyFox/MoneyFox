@@ -1,9 +1,13 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿#region
+
+using System;
+using System.Collections.Generic;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess.DataAccess;
 using PropertyChanged;
-using System;
-using System.Collections.Generic;
+
+#endregion
 
 namespace MoneyManager.Business.ViewModels
 {

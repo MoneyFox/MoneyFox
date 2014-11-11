@@ -8,24 +8,23 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     DataContext="{Binding BackupView, Source={StaticResource Locator}}">
-    
+
     <Grid>
         <StackPanel>
             <TextBlock Style="{StaticResource MenuItemSubSmallText}"
                        Text="Last Backup created at:"
                        x:Uid="LastBackupCreationDate"
-                       Margin="0,0,5,0"/>
-            <TextBlock Style="{StaticResource MenuItemSubSmallText}"
-                       />
-            <Button Content="Login to OneDrive" 
+                       Margin="0,0,5,0" />
+            <TextBlock Style="{StaticResource MenuItemSubSmallText}" />
+            <Button Content="Login to OneDrive"
                     Click="LoginToOneDrive"
-                    HorizontalAlignment="Stretch"/>
+                    HorizontalAlignment="Stretch" />
             <Button Content="Create Backup"
                     Click="CreateBackup"
-                    HorizontalAlignment="Stretch"/>
-            <Button Content="Restore" 
+                    HorizontalAlignment="Stretch" />
+            <Button Content="Restore"
                     Click="RestoreBackup"
-                    HorizontalAlignment="Stretch"/>
+                    HorizontalAlignment="Stretch" />
         </StackPanel>
     </Grid>
 </UserControl>

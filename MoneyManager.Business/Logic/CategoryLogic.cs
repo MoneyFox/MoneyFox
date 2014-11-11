@@ -1,7 +1,11 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿#region
+
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+
+#endregion
 
 namespace MoneyManager.Business.Logic
 {

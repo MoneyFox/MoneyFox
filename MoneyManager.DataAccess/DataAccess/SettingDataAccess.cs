@@ -1,9 +1,13 @@
+#region
+
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using Windows.Storage;
 using PropertyChanged;
+
+#endregion
 
 namespace MoneyManager.DataAccess.DataAccess
 {
@@ -41,7 +45,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
             if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key))
             {
-                object setting = ApplicationData.Current.RoamingSettings.Values[key];
+                var setting = ApplicationData.Current.RoamingSettings.Values[key];
                 value = (valueType) Convert.ChangeType(setting, typeof (valueType), CultureInfo.InvariantCulture);
             }
             else
@@ -53,7 +57,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }

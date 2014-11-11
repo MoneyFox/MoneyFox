@@ -1,13 +1,17 @@
-﻿using BugSense;
-using MoneyManager.Foundation.Model;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿#region
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BugSense;
+using MoneyManager.Foundation.Model;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+#endregion
 
 namespace MoneyManager.Business.Logic
 {
@@ -22,30 +26,30 @@ namespace MoneyManager.Business.Logic
 
         public static async Task<List<Country>> GetSupportedCountries()
         {
-            string jsonString = await GetJsonFromService(COUNTRIES_SERVICE_URL);
+            var jsonString = await GetJsonFromService(COUNTRIES_SERVICE_URL);
 
             var json = JsonConvert.DeserializeObject(jsonString) as JContainer;
 
             return (from JProperty token in json.Children().Children().Children()
-                    select new Country
-                    {
-                        Abbreviation = token.Name,
-                        CurrencyID = token.Value["currencyId"].ToString(),
-                        CurrencyName = token.Value["currencyName"].ToString(),
-                        Name = token.Value["name"].ToString(),
-                        Alpha3 = token.Value["alpha3"].ToString(),
-                        ID = token.Value["id"].ToString(),
-                    })
+                select new Country
+                {
+                    Abbreviation = token.Name,
+                    CurrencyID = token.Value["currencyId"].ToString(),
+                    CurrencyName = token.Value["currencyName"].ToString(),
+                    Name = token.Value["name"].ToString(),
+                    Alpha3 = token.Value["alpha3"].ToString(),
+                    ID = token.Value["id"].ToString(),
+                })
                 .OrderBy(x => x.ID)
                 .ToList();
         }
 
         public static async Task<double> GetCurrencyRatio(string currencyFrom, string currencyTo)
         {
-            string currencyFromTo = string.Format("{0}-{1}", currencyFrom.ToUpper(), currencyTo.ToUpper());
-            string url = string.Format(CURRENCY_SERVICE_URL, currencyFromTo);
+            var currencyFromTo = string.Format("{0}-{1}", currencyFrom.ToUpper(), currencyTo.ToUpper());
+            var url = string.Format(CURRENCY_SERVICE_URL, currencyFromTo);
 
-            string jsonString = await GetJsonFromService(url);
+            var jsonString = await GetJsonFromService(url);
             jsonString = jsonString.Replace(currencyFromTo, "Conversion");
 
             return ParseToExchangeRate(jsonString);
@@ -80,7 +84,7 @@ namespace MoneyManager.Business.Logic
             {
                 PrepareHttpClient();
                 var req = new HttpRequestMessage(HttpMethod.Get, url);
-                HttpResponseMessage response = await httpClient.SendAsync(req);
+                var response = await httpClient.SendAsync(req);
                 response.EnsureSuccessStatusCode();
 
                 return await response.Content.ReadAsStringAsync();
@@ -94,7 +98,7 @@ namespace MoneyManager.Business.Logic
 
         private static void PrepareHttpClient()
         {
-            httpClient = new HttpClient { BaseAddress = new Uri("https://api.SmallInvoice.com/") };
+            httpClient = new HttpClient {BaseAddress = new Uri("https://api.SmallInvoice.com/")};
             httpClient.DefaultRequestHeaders.Add("user-agent",
                 "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
         }

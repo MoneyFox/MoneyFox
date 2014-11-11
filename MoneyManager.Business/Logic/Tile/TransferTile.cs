@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
 using Windows.UI.StartScreen;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
+
+#endregion
 
 namespace MoneyManager.Business.Logic.Tile
 {

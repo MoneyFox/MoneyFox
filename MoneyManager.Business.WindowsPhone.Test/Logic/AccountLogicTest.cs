@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿#region
+
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Business.Logic;
@@ -7,16 +7,13 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 
+#endregion
+
 namespace MoneyManager.Business.WindowsPhone.Test.Logic
 {
     [TestClass]
     public class AccountLogicTest
     {
-        private static AccountDataAccess accountData
-        {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
-        }
-
         private Account _sampleAccount = new Account
         {
             Currency = "CHF",
@@ -28,6 +25,11 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             Name = "Sparkonto",
             Note = "just a note"
         };
+
+        private static AccountDataAccess accountData
+        {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+        }
 
 
         [TestInitialize]
@@ -41,7 +43,8 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
         {
             AccountLogic.PrepareAddAccount();
 
-            Assert.AreEqual(ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency, accountData.SelectedAccount.Currency);
+            Assert.AreEqual(ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency,
+                accountData.SelectedAccount.Currency);
             Assert.AreEqual(false, accountData.SelectedAccount.IsExchangeModeActive);
 
             Assert.AreEqual(false, ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit);

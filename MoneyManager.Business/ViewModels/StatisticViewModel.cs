@@ -1,8 +1,12 @@
+#region
+
+using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using MoneyManager.Business.Logic;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
-using System.Collections.ObjectModel;
+
+#endregion
 
 namespace MoneyManager.Business.ViewModels
 {

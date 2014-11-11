@@ -1,5 +1,9 @@
+#region
+
 using PropertyChanged;
 using SQLite.Net.Attributes;
+
+#endregion
 
 namespace MoneyManager.DataAccess.Model
 {

@@ -1,10 +1,14 @@
-﻿using MoneyManager.Business.Logic;
-using MoneyManager.Common;
-using MoneyManager.Foundation;
-using MoneyManager.Views;
+﻿#region
+
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using MoneyManager.Business.Logic;
+using MoneyManager.Common;
+using MoneyManager.Foundation;
+using MoneyManager.Views;
+
+#endregion
 
 namespace MoneyManager
 {

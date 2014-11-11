@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MoneyManager.Views;
+
+#endregion
 
 namespace MoneyManager.UserControls
 {
@@ -32,7 +36,7 @@ namespace MoneyManager.UserControls
 
         private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs e)
         {
-            ((Frame)Window.Current.Content).Navigate(typeof(SelectCurrency));
+            ((Frame) Window.Current.Content).Navigate(typeof (SelectCurrency));
         }
     }
 }

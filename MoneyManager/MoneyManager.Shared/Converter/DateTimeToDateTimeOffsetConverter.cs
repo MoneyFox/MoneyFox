@@ -1,5 +1,9 @@
+#region
+
 using System;
 using Windows.UI.Xaml.Data;
+
+#endregion
 
 namespace MoneyManager.Converter
 {
@@ -9,7 +13,7 @@ namespace MoneyManager.Converter
         {
             try
             {
-                var date = (DateTime)value;
+                var date = (DateTime) value;
                 return new DateTimeOffset(date);
             }
             catch (Exception)
@@ -22,7 +26,7 @@ namespace MoneyManager.Converter
         {
             try
             {
-                var dto = (DateTimeOffset)value;
+                var dto = (DateTimeOffset) value;
                 return dto.DateTime;
             }
             catch (Exception)

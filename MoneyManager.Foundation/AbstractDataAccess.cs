@@ -1,7 +1,10 @@
-﻿using BugSense;
-using MoneyManager.Foundation.OperationContracts;
+﻿#region
+
 using System;
-using System.Threading.Tasks;
+using BugSense;
+using MoneyManager.Foundation.OperationContracts;
+
+#endregion
 
 namespace MoneyManager.Foundation
 {

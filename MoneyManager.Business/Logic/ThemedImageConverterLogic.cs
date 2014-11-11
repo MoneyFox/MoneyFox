@@ -1,7 +1,11 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
+
+#endregion
 
 namespace MoneyManager.Business.Logic
 {
@@ -14,7 +18,7 @@ namespace MoneyManager.Business.Logic
             if (string.IsNullOrEmpty(path))
                 return null;
 
-            bool isDarkTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark;
+            var isDarkTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark;
 
             if (negateResult)
                 isDarkTheme = !isDarkTheme;

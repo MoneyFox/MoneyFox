@@ -1,8 +1,12 @@
-﻿using SQLite.Net;
-using SQLite.Net.Interop;
-using SQLite.Net.Platform.WinRT;
+﻿#region
+
 using System.IO;
 using Windows.Storage;
+using SQLite.Net;
+using SQLite.Net.Interop;
+using SQLite.Net.Platform.WinRT;
+
+#endregion
 
 namespace MoneyManager.DataAccess
 {

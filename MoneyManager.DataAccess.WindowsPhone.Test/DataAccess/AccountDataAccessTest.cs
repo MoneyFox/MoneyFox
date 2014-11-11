@@ -1,9 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿#region
+
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
-using SQLite.Net;
+
+#endregion
 
 namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
 {
@@ -38,7 +40,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
             accountDataAccess.Save(account);
 
             accountDataAccess.LoadList();
-            ObservableCollection<Account> list = accountDataAccess.AllAccounts;
+            var list = accountDataAccess.AllAccounts;
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstName, list.First().Name);

@@ -1,6 +1,10 @@
-﻿using MoneyManager.Business.Logic;
+﻿#region
+
 using System;
 using Windows.UI.Xaml.Data;
+using MoneyManager.Business.Logic;
+
+#endregion
 
 namespace MoneyManager.Converter
 {

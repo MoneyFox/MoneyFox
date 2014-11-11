@@ -1,5 +1,9 @@
-﻿using MoneyManager.DataAccess.Model;
+﻿#region
+
+using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation.Model;
+
+#endregion
 
 namespace MoneyManager.DataAccess
 {

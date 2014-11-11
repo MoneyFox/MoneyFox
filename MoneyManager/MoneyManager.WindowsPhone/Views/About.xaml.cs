@@ -1,5 +1,9 @@
-﻿using MoneyManager.Common;
+﻿#region
+
 using Windows.UI.Xaml.Navigation;
+using MoneyManager.Common;
+
+#endregion
 
 namespace MoneyManager.Views
 {

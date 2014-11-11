@@ -1,11 +1,15 @@
-﻿using GalaSoft.MvvmLight;
+﻿#region
+
+using System.Collections.Generic;
+using System.Globalization;
+using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using PropertyChanged;
 using QKit.JumpList;
-using System.Collections.Generic;
-using System.Globalization;
+
+#endregion
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -21,7 +25,7 @@ namespace MoneyManager.Business.ViewModels
 
         public void SetRelatedTransactions(int accountId)
         {
-            IEnumerable<FinancialTransaction> related = TransactionData.GetRelatedTransactions(accountId);
+            var related = TransactionData.GetRelatedTransactions(accountId);
 
             var dateInfo = new DateTimeFormatInfo();
             RelatedTransactions = related.ToGroups(x => x.Date, x => dateInfo.GetMonthName(x.Date.Month));

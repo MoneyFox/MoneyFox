@@ -1,4 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿#region
+
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using BugSense;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
@@ -6,8 +10,8 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
-using System;
-using System.Linq;
+
+#endregion
 
 namespace MoneyManager.Business.Logic
 {
@@ -64,11 +68,11 @@ namespace MoneyManager.Business.Logic
                 PrehandleRemoveIfTransfer(transaction);
 
                 Func<double, double> amountFunc = x =>
-                    transaction.Type == (int)TransactionType.Income
+                    transaction.Type == (int) TransactionType.Income
                         ? -x
                         : x;
 
-                 await HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+                await HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
             }
         }
 
@@ -77,7 +81,7 @@ namespace MoneyManager.Business.Logic
             PrehandleAddIfTransfer(transaction);
 
             Func<double, double> amountFunc = x =>
-                transaction.Type == (int)TransactionType.Income
+                transaction.Type == (int) TransactionType.Income
                     ? x
                     : -x;
 
@@ -86,23 +90,24 @@ namespace MoneyManager.Business.Logic
 
         private static async void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
         {
-            if (transaction.Type == (int)TransactionType.Transfer)
+            if (transaction.Type == (int) TransactionType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
                 await HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
             }
         }
 
-        private static async Task HandleTransactionAmount(FinancialTransaction transaction, Func<double, double> amountFunc,
+        private static async Task HandleTransactionAmount(FinancialTransaction transaction,
+            Func<double, double> amountFunc,
             Func<FinancialTransaction, Account> getAccountFunc)
         {
             if (transaction.ClearTransactionNow)
             {
-                Account account = getAccountFunc(transaction);
+                var account = getAccountFunc(transaction);
                 if (account == null) return;
 
-                double amountWithoutExchange = amountFunc(transaction.Amount);
-                double amount = await GetAmount(amountWithoutExchange, transaction, account);
+                var amountWithoutExchange = amountFunc(transaction.Amount);
+                var amount = await GetAmount(amountWithoutExchange, transaction, account);
 
                 account.CurrentBalanceWithoutExchange += amountWithoutExchange;
                 account.CurrentBalance += amount;
@@ -117,7 +122,7 @@ namespace MoneyManager.Business.Logic
                 transactionData.Update(transaction);
             }
         }
-        
+
         private static async Task<double> GetAmount(double baseAmount, FinancialTransaction transaction, Account account)
         {
             try
@@ -125,10 +130,10 @@ namespace MoneyManager.Business.Logic
                 if (transaction.Currency != account.Currency)
                 {
                     var ratio = await CurrencyLogic.GetCurrencyRatio(transaction.Currency, account.Currency);
-                    return baseAmount * ratio;
+                    return baseAmount*ratio;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 BugSenseHandler.Instance.LogException(ex);
             }
@@ -137,7 +142,7 @@ namespace MoneyManager.Business.Logic
 
         private static void PrehandleAddIfTransfer(FinancialTransaction transaction)
         {
-            if (transaction.Type == (int)TransactionType.Transfer)
+            if (transaction.Type == (int) TransactionType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
                 HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());

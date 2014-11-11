@@ -1,13 +1,17 @@
-﻿using GalaSoft.MvvmLight;
+﻿#region
+
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using PropertyChanged;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+
+#endregion
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -77,11 +81,11 @@ namespace MoneyManager.Business.ViewModels
             {
                 switch (transaction.Type)
                 {
-                    case (int)TransactionType.Spending:
+                    case (int) TransactionType.Spending:
                         balance -= transaction.Amount;
                         break;
 
-                    case (int)TransactionType.Income:
+                    case (int) TransactionType.Income:
                         balance += transaction.Amount;
                         break;
                 }
@@ -92,7 +96,8 @@ namespace MoneyManager.Business.ViewModels
 
         private IEnumerable<FinancialTransaction> LoadUnclreadTransactions()
         {
-            var unclearedTransactions = TransactionData.GetUnclearedTransactions(Utilities.GetEndOfMonth());
+            var unclearedTransactions =
+                TransactionData.GetUnclearedTransactions(Utilities.GetEndOfMonth());
 
             return IsTransactionView
                 ? unclearedTransactions.Where(x => x.ChargedAccount == selectedAccount)

@@ -8,17 +8,17 @@
     mc:Ignorable="d"
     d:DesignHeight="500"
     d:DesignWidth="400">
-    
+
     <UserControl.Resources>
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
     </UserControl.Resources>
-    
+
     <Grid>
         <StackPanel Grid.Row="1" Margin="19,9.5,19,0">
-            <StackPanel Orientation="Horizontal" Width="456" >
+            <StackPanel Orientation="Horizontal" Width="456">
                 <Grid Background="{StaticResource PhoneAccentBrush}" Margin="0,0,10,0">
                     <Image Source="/Images/applyLogo.png" Width="150" Margin="5,0"
-                       HorizontalAlignment="Left" />
+                           HorizontalAlignment="Left" />
                 </Grid>
                 <StackPanel>
                     <TextBlock TextWrapping="Wrap" Text="developer:"

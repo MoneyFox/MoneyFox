@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Popups;
+
+#endregion
 
 namespace MoneyManager.Tasks.TransactionsWp
 {
@@ -10,7 +14,7 @@ namespace MoneyManager.Tasks.TransactionsWp
     {
         private const string name = "RecurringTransactionTask";
 
-        public async static void RegisterBackgroundTask()
+        public static async void RegisterBackgroundTask()
         {
             if (IsTaskExisting() || !await RequestAccess()) return;
 
@@ -26,7 +30,7 @@ namespace MoneyManager.Tasks.TransactionsWp
 
         private static async Task<bool> RequestAccess()
         {
-            BackgroundAccessStatus result = await BackgroundExecutionManager.RequestAccessAsync();
+            var result = await BackgroundExecutionManager.RequestAccessAsync();
             if (result == BackgroundAccessStatus.Denied)
             {
                 var dialog = new MessageDialog("denied");

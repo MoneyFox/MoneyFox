@@ -1,22 +1,24 @@
+#region
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
-using Windows.UI.Popups;
 using BugSense;
 using Microsoft.Live;
-using MoneyManager.Foundation;
 
-namespace MoneyManager.Business.Logic{
+#endregion
 
+namespace MoneyManager.Business.Logic
+{
     public class BackupLogic
     {
-        public async static Task<LiveConnectClient> LogInToOneDrive()
+        public static async Task<LiveConnectClient> LogInToOneDrive()
         {
             try
             {
                 var authClient = new LiveAuthClient();
-                LiveLoginResult result = await authClient.LoginAsync(new[] { "wl.signin", "wl.skydrive" });
+                var result = await authClient.LoginAsync(new[] {"wl.signin", "wl.skydrive"});
 
                 if (result.Status == LiveConnectSessionStatus.Connected)
                 {
@@ -51,8 +53,6 @@ namespace MoneyManager.Business.Logic{
 
                 //busyProceedAction.IsRunning = true;
 
-                
-                
 
                 //using (var store = IsolatedStorageFile.GetUserStoreForApplication())
                 //{
@@ -233,7 +233,8 @@ namespace MoneyManager.Business.Logic{
             }
         }
 
-        private static async Task<LiveDownloadOperationResult> DownloadDatabase(LiveConnectClient liveClient, string backupId)
+        private static async Task<LiveDownloadOperationResult> DownloadDatabase(LiveConnectClient liveClient,
+            string backupId)
         {
             var downloadResult = await liveClient.BackgroundDownloadAsync(backupId + "/content");
 

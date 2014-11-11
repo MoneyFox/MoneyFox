@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
+
+#endregion
 
 namespace MoneyManager.Business.Logic.Tile
 {

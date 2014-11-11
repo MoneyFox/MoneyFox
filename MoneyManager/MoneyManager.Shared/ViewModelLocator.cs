@@ -1,7 +1,11 @@
+#region
+
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
+
+#endregion
 
 namespace MoneyManager
 {
