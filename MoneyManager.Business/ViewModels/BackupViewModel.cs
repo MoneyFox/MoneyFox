@@ -44,19 +44,19 @@ namespace MoneyManager.Business.ViewModels
         {
             var folderId = String.Empty ?? await BackupLogic.CreateBackupFolder(LiveClient, BackupFolderName);
 
-            ShowOverwriteInfo();
+            await ShowOverwriteInfo();
 
-            await BackupLogic.UploadBackup(LiveClient, folderId);
+            await BackupLogic.UploadBackup(LiveClient, folderId, BackupName);
         }
 
-        private async Task<bool> ShowOverwriteInfo(string backupId)
+        private async Task<bool> ShowOverwriteInfo()
         {
             var dialog = new MessageDialog(Translation.GetTranslation("OverwriteBackupMessage"),
                 Translation.GetTranslation("OverwriteBackup"));
             dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
             dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
 
-            var result await dialog.ShowAsync();
+            var result = await dialog.ShowAsync();
 
             return result.Label == Translation.GetTranslation("YesLabel");
         }

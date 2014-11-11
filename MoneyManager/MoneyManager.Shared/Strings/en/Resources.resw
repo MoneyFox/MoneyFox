@@ -463,4 +463,10 @@
   <data name="LastBackupCreationDate.Text" xml:space="preserve">
     <value>Last Backup created at:</value>
   </data>
+  <data name="OverwriteBackup" xml:space="preserve">
+    <value>Overwrite existig?</value>
+  </data>
+  <data name="OverwriteBackupMessage" xml:space="preserve">
+    <value>If there is already a backup file it will be overwritten. Do you want to continue?</value>
+  </data>
 </root>

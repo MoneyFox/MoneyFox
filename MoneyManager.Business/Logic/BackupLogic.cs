@@ -3,7 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Threading.Tasks;
+using Windows.Storage;
 using BugSense;
 using Microsoft.Live;
 
@@ -42,17 +44,14 @@ namespace MoneyManager.Business.Logic
 
             try
             {
-                var fileStream
+                var localFolder = ApplicationData.Current.LocalFolder;
 
                 var storageFile = await localFolder.GetFileAsync(backupName);
-                var randomAccessStream = await storageFile.OpenReadAsync();
-                var stream = randomAccessStream.AsStreamForRead();
 
-                var uploadOperation = await liveConnectClient.CreateBackgroundUploadAsync(folderId, Backupname, stream, OverwriteOption.Overwrite);
+                var uploadOperation = await liveClient.CreateBackgroundUploadAsync(
+                    folderId, backupName, storageFile, OverwriteOption.Overwrite);
+
                 LiveOperationResult uploadResult = await uploadOperation.StartAsync();
-
-                stream.Flush();
-                stream.Close();
 
                 //await CheckForBackup();
 
