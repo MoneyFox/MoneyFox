@@ -36,32 +36,24 @@ namespace MoneyManager.Business.Logic
             return null;
         }
 
-        public static async Task UploadBackup(LiveConnectClient liveClient, string folderId)
+        public static async Task UploadBackup(LiveConnectClient liveClient, string folderId, string backupName)
         {
+            //busyProceedAction.IsRunning = true;
+
             try
             {
-                var backupId = string.Empty;
-                if (backupId != null)
-                {
-                    //var result = MessageBox.Show(AppResources.OverwriteBackupMessage, AppResources.OverwriteBackupTitle, MessageBoxButton.OKCancel);
+                var fileStream
 
-                    //if (result == MessageBoxResult.Cancel)
-                    //{
-                    //    return;
-                    //}
-                }
+                var storageFile = await localFolder.GetFileAsync(backupName);
+                var randomAccessStream = await storageFile.OpenReadAsync();
+                var stream = randomAccessStream.AsStreamForRead();
 
-                //busyProceedAction.IsRunning = true;
+                var uploadOperation = await liveConnectClient.CreateBackgroundUploadAsync(folderId, Backupname, stream, OverwriteOption.Overwrite);
+                LiveOperationResult uploadResult = await uploadOperation.StartAsync();
 
+                stream.Flush();
+                stream.Close();
 
-                //using (var store = IsolatedStorageFile.GetUserStoreForApplication())
-                //{
-                //    var fileStream = store.OpenFile(Databasename + ".sdf", FileMode.Open, FileAccess.Read,
-                //        FileShare.ReadWrite);
-                //    await liveClient.UploadAsync(folderId, Backupname + ".sdf", fileStream, OverwriteOption.Overwrite);
-                //    fileStream.Flush();
-                //    fileStream.Close();
-                //}
                 //await CheckForBackup();
 
                 //MessageBox.Show(AppResources.BackupCreatedMessage, AppResources.DoneMessageTitle, MessageBoxButton.OK);
