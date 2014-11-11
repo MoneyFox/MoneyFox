@@ -20,7 +20,7 @@ namespace MoneyManager.Business.Logic
             try
             {
                 var authClient = new LiveAuthClient();
-                var result = await authClient.LoginAsync(new[] {"wl.signin", "wl.skydrive"});
+                var result = await authClient.LoginAsync(new[] { "wl.signin", "wl.skydrive", "wl.skydrive_update" });
 
                 if (result.Status == LiveConnectSessionStatus.Connected)
                 {
@@ -38,7 +38,7 @@ namespace MoneyManager.Business.Logic
             return null;
         }
 
-        public static async Task UploadBackup(LiveConnectClient liveClient, string folderId, string backupName)
+        public static async Task UploadBackup(LiveConnectClient liveClient, string folderId, string dbName)
         {
             //busyProceedAction.IsRunning = true;
 
@@ -46,10 +46,10 @@ namespace MoneyManager.Business.Logic
             {
                 var localFolder = ApplicationData.Current.LocalFolder;
 
-                var storageFile = await localFolder.GetFileAsync(backupName);
+                var storageFile = await localFolder.GetFileAsync(dbName);
 
                 var uploadOperation = await liveClient.CreateBackgroundUploadAsync(
-                    folderId, backupName, storageFile, OverwriteOption.Overwrite);
+                    folderId, "backup" + dbName, storageFile, OverwriteOption.Overwrite);
 
                 LiveOperationResult uploadResult = await uploadOperation.StartAsync();
 

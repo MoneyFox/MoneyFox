@@ -16,7 +16,6 @@ namespace MoneyManager.Business.ViewModels
     public class BackupViewModel : ViewModelBase
     {
         private const string BackupFolderName = "MoneyFoxBackup";
-        private const string BackupName = "moneyfoxBackup.sqlite";
         private const string DbName = "moneyfox.sqlite";
 
         private LiveConnectClient LiveClient { get; set; }
@@ -42,11 +41,16 @@ namespace MoneyManager.Business.ViewModels
         
         public async void CreateBackup()
         {
-            var folderId = String.Empty ?? await BackupLogic.CreateBackupFolder(LiveClient, BackupFolderName);
+            var folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
+
+            if (String.IsNullOrEmpty(folderId))
+            {
+                folderId = await BackupLogic.CreateBackupFolder(LiveClient, BackupFolderName);
+            }
 
             await ShowOverwriteInfo();
 
-            await BackupLogic.UploadBackup(LiveClient, folderId, BackupName);
+            await BackupLogic.UploadBackup(LiveClient, folderId, DbName);
         }
 
         private async Task<bool> ShowOverwriteInfo()

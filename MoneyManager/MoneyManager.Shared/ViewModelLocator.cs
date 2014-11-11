@@ -30,6 +30,7 @@ namespace MoneyManager
             SimpleIoc.Default.Register<GeneralSettingViewModel>();
             SimpleIoc.Default.Register<SelectCurrencyViewModel>();
             SimpleIoc.Default.Register<StatisticViewModel>();
+            SimpleIoc.Default.Register<BackupViewModel>();
 
             ServiceLocator.Current.GetInstance<CategoryDataAccess>().LoadList();
         }
@@ -108,6 +109,11 @@ namespace MoneyManager
         public StatisticViewModel StatisticView
         {
             get { return ServiceLocator.Current.GetInstance<StatisticViewModel>(); }
+        }
+
+        public BackupViewModel BackupView
+        {
+            get { return ServiceLocator.Current.GetInstance<BackupViewModel>(); }
         }
 
         #endregion Views

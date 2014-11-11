@@ -16,14 +16,19 @@ namespace MoneyManager.UserControls
             InitializeComponent();
         }
 
+        private BackupViewModel backupView
+        {
+            get { return ServiceLocator.Current.GetInstance<BackupViewModel>(); }
+        }
+
         private void LoginToOneDrive(object sender, RoutedEventArgs e)
         {
-            ServiceLocator.Current.GetInstance<BackupViewModel>().LogInToOneDrive();
+            backupView.LogInToOneDrive();
         }
 
         private void CreateBackup(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            backupView.CreateBackup();
         }
 
         private void RestoreBackup(object sender, RoutedEventArgs e)
