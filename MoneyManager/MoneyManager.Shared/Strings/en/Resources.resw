@@ -469,4 +469,28 @@
   <data name="OverwriteBackupMessage" xml:space="preserve">
     <value>If there is already a backup file it will be overwritten. Do you want to continue?</value>
   </data>
+  <data name="AbortedTitle" xml:space="preserve">
+    <value>aborted!</value>
+  </data>
+  <data name="BackupAbortedMessage" xml:space="preserve">
+    <value>The backup was aborted.</value>
+  </data>
+  <data name="BackupSuccessfulMessage" xml:space="preserve">
+    <value>Your backup was successfully created!</value>
+  </data>
+  <data name="BackupUnsuccessfulMessage" xml:space="preserve">
+    <value>We ran into an error and coulnd't create your backup. If this problem consists please contact us.</value>
+  </data>
+  <data name="GeneralErrorMessage" xml:space="preserve">
+    <value>There went something wrong. If this problem consists please get in touch with us.</value>
+  </data>
+  <data name="GeneralErrorTitle" xml:space="preserve">
+    <value>oh snap!</value>
+  </data>
+  <data name="SuccessfulTitle" xml:space="preserve">
+    <value>sucess!</value>
+  </data>
+  <data name="UnsuccessfulTitle" xml:space="preserve">
+    <value>failed!</value>
+  </data>
 </root>

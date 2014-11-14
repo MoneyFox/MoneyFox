@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using BugSense;
 using Microsoft.Live;
+using MoneyManager.Foundation;
 
 #endregion
 
@@ -38,7 +39,7 @@ namespace MoneyManager.Business.Logic
             return null;
         }
 
-        public static async Task UploadBackup(LiveConnectClient liveClient, string folderId, string dbName)
+        public static async Task<TaskCompletionType> UploadBackup(LiveConnectClient liveClient, string folderId, string dbName)
         {
             //busyProceedAction.IsRunning = true;
 
@@ -53,21 +54,20 @@ namespace MoneyManager.Business.Logic
 
                 LiveOperationResult uploadResult = await uploadOperation.StartAsync();
 
+
                 //await CheckForBackup();
 
-                //MessageBox.Show(AppResources.BackupCreatedMessage, AppResources.DoneMessageTitle, MessageBoxButton.OK);
+                return TaskCompletionType.Successful;
             }
             catch (TaskCanceledException ex)
             {
                 BugSenseHandler.Instance.LogException(ex);
-                //MessageBox.Show(AppResources.TaskCancelledErrorMessage, AppResources.TaskCancelledErrorTitle,
-                //    MessageBoxButton.OK);
+                return TaskCompletionType.Aborted;
             }
             catch (Exception ex)
             {
                 BugSenseHandler.Instance.LogException(ex);
-                //MessageBox.Show(AppResources.GeneralErrorMessageText, AppResources.GeneralErrorMessageTitle,
-                //    MessageBoxButton.OK);
+                return TaskCompletionType.Unsuccessful;
             }
         }
 

@@ -39,7 +39,7 @@ namespace MoneyManager.Business.ViewModels
             await dialog.ShowAsync();
         }
         
-        public async void CreateBackup()
+        public async Task CreateBackup()
         {
             var folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
 
@@ -50,7 +50,8 @@ namespace MoneyManager.Business.ViewModels
 
             await ShowOverwriteInfo();
 
-            await BackupLogic.UploadBackup(LiveClient, folderId, DbName);
+            var completionType = await BackupLogic.UploadBackup(LiveClient, folderId, DbName);
+            await ShowCompletionNote(completionType);
         }
 
         private async Task<bool> ShowOverwriteInfo()
@@ -63,6 +64,33 @@ namespace MoneyManager.Business.ViewModels
             var result = await dialog.ShowAsync();
 
             return result.Label == Translation.GetTranslation("YesLabel");
+        }
+
+        private async Task ShowCompletionNote(TaskCompletionType completionType)
+        {
+            MessageDialog dialog;
+
+            switch (completionType)
+            {
+                case TaskCompletionType.Successful:
+                    dialog = new MessageDialog("BackupSuccessfulMessage", "SuccessfulTitle");
+                    break;
+
+                case TaskCompletionType.Unsuccessful:
+                    dialog = new MessageDialog("BackupUnsuccessfulMessage", "UnsuccessfulTitle");
+                    break;
+
+                case TaskCompletionType.Aborted:
+                    dialog = new MessageDialog("BackupAbortedMessage", "AbortedTitle");
+                    break;
+
+                default:
+                    dialog = new MessageDialog("GeneralErrorMessage", "GeneralErrorTitle");
+                    break;
+            }
+
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
+            await dialog.ShowAsync();
         }
     }
 }

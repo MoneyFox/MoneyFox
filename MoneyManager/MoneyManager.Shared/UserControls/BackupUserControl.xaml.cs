@@ -26,9 +26,9 @@ namespace MoneyManager.UserControls
             backupView.LogInToOneDrive();
         }
 
-        private void CreateBackup(object sender, RoutedEventArgs e)
+        private async void CreateBackup(object sender, RoutedEventArgs e)
         {
-            backupView.CreateBackup();
+            await backupView.CreateBackup();
         }
 
         private void RestoreBackup(object sender, RoutedEventArgs e)

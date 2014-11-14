@@ -22,4 +22,11 @@
         Transaction,
         Setting
     }
+
+    public enum TaskCompletionType
+    {
+        Successful,
+        Unsuccessful,
+        Aborted
+    }
 }
