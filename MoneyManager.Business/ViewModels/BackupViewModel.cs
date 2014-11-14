@@ -73,19 +73,19 @@ namespace MoneyManager.Business.ViewModels
             switch (completionType)
             {
                 case TaskCompletionType.Successful:
-                    dialog = new MessageDialog("BackupSuccessfulMessage", "SuccessfulTitle");
+                    dialog = new MessageDialog(Translation.GetTranslation("BackupSuccessfulMessage"), Translation.GetTranslation("SuccessfulTitle"));
                     break;
 
                 case TaskCompletionType.Unsuccessful:
-                    dialog = new MessageDialog("BackupUnsuccessfulMessage", "UnsuccessfulTitle");
+                    dialog = new MessageDialog(Translation.GetTranslation("BackupUnsuccessfulMessage"), Translation.GetTranslation("UnsuccessfulTitle"));
                     break;
 
                 case TaskCompletionType.Aborted:
-                    dialog = new MessageDialog("BackupAbortedMessage", "AbortedTitle");
+                    dialog = new MessageDialog(Translation.GetTranslation("BackupAbortedMessage"), Translation.GetTranslation("AbortedTitle"));
                     break;
 
                 default:
-                    dialog = new MessageDialog("GeneralErrorMessage", "GeneralErrorTitle");
+                    dialog = new MessageDialog(Translation.GetTranslation("GeneralErrorMessage"), Translation.GetTranslation("GeneralErrorTitle"));
                     break;
             }
 
