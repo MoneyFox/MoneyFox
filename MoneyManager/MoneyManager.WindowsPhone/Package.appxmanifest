@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="38045npadrutt.MoneyFoxBeta" Publisher="CN=456A8DD5-B6B1-4703-AC59-444B9A479C1F" Version="0.5.1.0" />
+  <Identity Name="38045npadrutt.MoneyFoxBeta" Publisher="CN=456A8DD5-B6B1-4703-AC59-444B9A479C1F" Version="0.5.2.0" />
   <mp:PhoneIdentity PhoneProductId="4a17d637-df70-4b55-8b7c-bdc875f6b5f2" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Money Fox Beta</DisplayName>
