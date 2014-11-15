@@ -54,11 +54,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsCategoryUserControl.xaml.cs">
       <DependentUpon>SettingsCategoryUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsRegionUserControl.xaml.cs">
-      <DependentUpon>SettingsRegionUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml.cs">
       <DependentUpon>SettingsOverviewUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsRegionUserControl.xaml.cs">
+      <DependentUpon>SettingsRegionUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsTilesUserControl.xaml.cs">
       <DependentUpon>SettingsTilesUserControl.xaml</DependentUpon>
@@ -112,11 +112,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsRegionUserControl.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsRegionUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
