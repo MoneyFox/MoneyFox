@@ -3,6 +3,7 @@
 using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
@@ -21,11 +22,16 @@ namespace MoneyManager.Views
         {
             InitializeComponent();
             navigationHelper = new NavigationHelper(this);
+        }
 
-            if (AddTransactionView.IsEdit)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.NavigationMode != NavigationMode.Back && AddTransactionView.IsEdit)
             {
-                AccountLogic.RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
+                await AccountLogic.RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
             }
+
+            base.OnNavigatedTo(e);
         }
 
         private AddTransactionViewModel AddTransactionView

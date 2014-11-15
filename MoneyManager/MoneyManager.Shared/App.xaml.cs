@@ -30,7 +30,7 @@ namespace MoneyManager
             Suspending += OnSuspending;
         }
 
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
             BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");
 #if DEBUG
@@ -93,7 +93,7 @@ namespace MoneyManager
             TileHelper.DoNavigation(e.TileId);
 
             RecurringTransactionLogic.CheckRecurringTransactions();
-            TransactionLogic.ClearTransactions();
+            await TransactionLogic.ClearTransactions();
 
             BackgroundTaskLogic.RegisterBackgroundTask();
         }

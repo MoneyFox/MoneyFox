@@ -184,12 +184,12 @@ namespace MoneyManager.Business.Logic
             }
         }
 
-        public static void ClearTransactions()
+        public async static Task ClearTransactions()
         {
             var transactions = transactionData.GetUnclearedTransactions();
             foreach (var transaction in transactions)
             {
-                AccountLogic.AddTransactionAmount(transaction);
+                await AccountLogic.AddTransactionAmount(transaction);
             }
         }
     }
