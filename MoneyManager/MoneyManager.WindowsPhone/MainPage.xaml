@@ -47,6 +47,11 @@
                     <Grid>
                         <userControls:BarChartUserControl />
                     </Grid>
+                </PivotItem>                
+                <PivotItem x:Uid="SpreadingMenu" Header="overview">
+                    <Grid>
+                        <userControls:PieChartUserControl />
+                    </Grid>
                 </PivotItem>
             </Pivot>
         </Grid>

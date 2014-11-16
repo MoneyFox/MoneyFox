@@ -108,6 +108,12 @@
     <Reference Include="QKit">
       <HintPath>..\packages\QKit.0.4.1\lib\wpa81\QKit.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Core">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q3 2014\Binaries\Windows Phone 8.1\Telerik.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Chart">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q3 2014\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.Chart.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fonts\LiveSymbol.ttf" />
