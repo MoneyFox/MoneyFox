@@ -493,4 +493,16 @@
   <data name="UnsuccessfulTitle" xml:space="preserve">
     <value>failed!</value>
   </data>
+  <data name="AuthException" xml:space="preserve">
+    <value>check credentials</value>
+  </data>
+  <data name="AuthExceptionMessage" xml:space="preserve">
+    <value>We couldn't authenticate you. Please check your credentials.</value>
+  </data>
+  <data name="ConnectionException" xml:space="preserve">
+    <value>connection error</value>
+  </data>
+  <data name="ConnectionExceptionMessage" xml:space="preserve">
+    <value>There where an error establishinig the connection. Please try again.</value>
+  </data>
 </root>

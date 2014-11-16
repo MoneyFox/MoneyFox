@@ -1,16 +1,12 @@
-#region
-
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Popups;
 using BugSense;
 using Microsoft.Live;
 using MoneyManager.Foundation;
-
-#endregion
 
 namespace MoneyManager.Business.Logic
 {
@@ -30,19 +26,35 @@ namespace MoneyManager.Business.Logic
             }
             catch (LiveAuthException ex)
             {
-                // Display an error message.
+                ShowAuthExceptionMessage();
             }
             catch (LiveConnectException ex)
             {
-                // Display an error message.
+                ShowConnectExceptionMessage();
             }
             return null;
         }
 
+        private async static Task ShowAuthExceptionMessage()
+        {
+            var dialog = new MessageDialog(Translation.GetTranslation("AuthExceptionMessage"),
+                Translation.GetTranslation("AuthException"));
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
+
+            await dialog.ShowAsync();
+        }
+
+        private async static Task ShowConnectExceptionMessage()
+        {
+            var dialog = new MessageDialog(Translation.GetTranslation("ConnectionExceptionMessage"),
+                Translation.GetTranslation("ConnectionException"));
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
+
+            await dialog.ShowAsync();
+        }
+
         public static async Task<TaskCompletionType> UploadBackup(LiveConnectClient liveClient, string folderId, string dbName)
         {
-            //busyProceedAction.IsRunning = true;
-
             try
             {
                 var localFolder = ApplicationData.Current.LocalFolder;
@@ -53,9 +65,6 @@ namespace MoneyManager.Business.Logic
                     folderId, "backup" + dbName, storageFile, OverwriteOption.Overwrite);
 
                 LiveOperationResult uploadResult = await uploadOperation.StartAsync();
-
-
-                //await CheckForBackup();
 
                 return TaskCompletionType.Successful;
             }
