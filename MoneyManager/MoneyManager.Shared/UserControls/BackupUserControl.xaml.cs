@@ -31,9 +31,9 @@ namespace MoneyManager.UserControls
             await backupView.CreateBackup();
         }
 
-        private void RestoreBackup(object sender, RoutedEventArgs e)
+        private async void RestoreBackup(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            await backupView.RestoreBackup();
         }
     }
 }

@@ -89,6 +89,27 @@ namespace MoneyManager.Business.ViewModels
             return result.Label == Translation.GetTranslation("YesLabel");
         }
 
+        public async Task RestoreBackup()
+        {
+            try
+            {
+                IsLoading = true;
+                
+                var folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
+
+                await BackupLogic.RestoreBackUp(LiveClient, folderId, "backup" + DbName, DbName);
+            }
+            catch (Exception ex)
+            {
+                BugSenseHandler.Instance.LogException(ex);
+                ShowCompletionNote(TaskCompletionType.Unsuccessful);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
         private async Task ShowCompletionNote(TaskCompletionType completionType)
         {
             MessageDialog dialog;

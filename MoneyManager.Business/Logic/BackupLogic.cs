@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Popups;
@@ -177,69 +180,47 @@ namespace MoneyManager.Business.Logic
             return String.Empty;
         }
 
-        public static void SaveDatabase(LiveDownloadOperationResult downloadResult)
+        public static async Task<TaskCompletionType> RestoreBackUp(LiveConnectClient liveClient, string folderId, string backupName, string dbName)
         {
-            //var stream = downloadResult.Stream as MemoryStream;
-            //using (IsolatedStorageFile.GetUserStoreForApplication())
-            //{
-            //    var myStore = IsolatedStorageFile.GetUserStoreForApplication();
-            //    var myStream = myStore.CreateFile(Databasename + ".sdf");
-            //    if (stream != null)
-            //    {
-            //        myStream.Write(stream.GetBuffer(), 0, (int) stream.Length);
-            //        stream.Flush();
-            //    }
-            //    myStream.Close();
-            //}
-        }
-
-        public static async void RestoreBackUp(LiveConnectClient liveClient)
-        {
-            //var result = MessageBox.Show(AppResources.ConfirmRestoreBackupMessage, AppResources.ConfirmRestoreBackupMessageTitle, MessageBoxButton.OKCancel);
-
-            //if (result != MessageBoxResult.OK)
-            //{
-            //    return;
-            //}
-
             try
             {
-                //busyProceedAction.Content = AppResources.LoadBackupLabel;
-                //busyProceedAction.IsRunning = true;
+                var backupId = await GetBackupId(liveClient, folderId, backupName);
 
-                var backupId = String.Empty;
+                var localFolder = ApplicationData.Current.LocalFolder;
 
-                var downloadResult = await DownloadDatabase(liveClient, backupId);
-                //DeleteOldData();
-                SaveDatabase(downloadResult);
+                //var file = await localFolder.GetFileAsync(dbName);
+                //await file.DeleteAsync();
+
+                var storageFile = await localFolder.CreateFileAsync(dbName, CreationCollisionOption.ReplaceExisting);
+
+                //LiveDownloadOperation operation = await liveClient.CreateBackgroundDownloadAsync(backupId + "/content");
+                //var result = await operation.StartAsync();
+
+                var downloadResult = await liveClient.BackgroundDownloadAsync(backupId + "/content", storageFile);
+
+                //await SaveDatabase(result, dbName);
+                
                 //ReinitCollections();
-                //RecreateReminders();
-
-                //result = MessageBox.Show(AppResources.RestoreCompletedMessage, AppResources.DoneMessageTitle,
-                //    MessageBoxButton.OKCancel);
-                //if (result == MessageBoxResult.OK)
-                //{
-                //    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
-                //}
+                return TaskCompletionType.Successful;
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(string.Format(AppResources.GeneralErrorMessageText, ex));
                 BugSenseHandler.Instance.LogException(ex);
-            }
-            finally
-            {
-                //busyProceedAction.IsRunning = false;
+                return TaskCompletionType.Unsuccessful;
             }
         }
-
-        private static async Task<LiveDownloadOperationResult> DownloadDatabase(LiveConnectClient liveClient,
-            string backupId)
+        
+        private async static Task SaveDatabase(LiveDownloadOperationResult downloadResult, string dbName)
         {
-            var downloadResult = await liveClient.BackgroundDownloadAsync(backupId + "/content");
+            var localFolder = ApplicationData.Current.LocalFolder;
+            var storageFile = await localFolder.CreateFileAsync(dbName, CreationCollisionOption.ReplaceExisting);
 
-            //busyProceedAction.Content = AppResources.RestoreBackupLabel;
-            return downloadResult;
+            var stream = downloadResult.GetRandomAccessStreamAsync();
+
+            var buffer = await FileIO.ReadBufferAsync(downloadResult.File);
+
+            await FileIO.WriteBufferAsync(storageFile, buffer);
         }
+
     }
 }
