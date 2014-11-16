@@ -18,14 +18,30 @@ namespace MoneyManager.Business.ViewModels
     {
         private const string BackupFolderName = "MoneyFoxBackup";
         private const string DbName = "moneyfox.sqlite";
+        private const string BackupName = "backupmoneyfox.sqlite";
+
+        private LiveConnectClient LiveClient { get; set; }
 
         public bool IsConnected { get; set; }
 
         public bool IsLoading { get; set; }
 
-        private LiveConnectClient LiveClient { get; set; }
+        private string creationDate;
+        public string CreationDate
+        {
+            get
+            {
+                if (LiveClient == null || String.IsNullOrEmpty(creationDate))
+                {
+                    return Translation.GetTranslation("NeverLabel");
+                }
 
-        public async void LogInToOneDrive()
+                return creationDate;
+            }
+            private set { creationDate = value; }
+        }
+
+        public async Task LogInToOneDrive()
         {
             LiveClient = await BackupLogic.LogInToOneDrive();
 
@@ -47,7 +63,22 @@ namespace MoneyManager.Business.ViewModels
 
             await dialog.ShowAsync();
         }
-        
+
+        public async Task LoadBackupCreationDate()
+        {
+            if (LiveClient == null) return;
+            IsLoading = true;
+
+            var folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
+            if (folderId != null)
+            {
+                var backupId = await BackupLogic.GetBackupId(LiveClient, folderId, BackupName);
+                CreationDate = await BackupLogic.GetBackupCreationDate(LiveClient, backupId);
+            }
+
+            IsLoading = false;
+        }
+
         public async Task CreateBackup()
         {
             try
@@ -55,7 +86,6 @@ namespace MoneyManager.Business.ViewModels
                 IsLoading = true;
 
                 await ShowOverwriteInfo();
-
                 var folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
 
                 if (String.IsNullOrEmpty(folderId))
@@ -64,6 +94,9 @@ namespace MoneyManager.Business.ViewModels
                 }
 
                 var completionType = await BackupLogic.UploadBackup(LiveClient, folderId, DbName);
+
+                await LoadBackupCreationDate();
+
                 await ShowCompletionNote(completionType);
             }
             catch (Exception ex)
@@ -79,14 +112,18 @@ namespace MoneyManager.Business.ViewModels
 
         private async Task<bool> ShowOverwriteInfo()
         {
-            var dialog = new MessageDialog(Translation.GetTranslation("OverwriteBackupMessage"),
-                Translation.GetTranslation("OverwriteBackup"));
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
+            if (!String.IsNullOrEmpty(creationDate))
+            {
+                var dialog = new MessageDialog(Translation.GetTranslation("OverwriteBackupMessage"),
+                    Translation.GetTranslation("OverwriteBackup"));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
 
-            var result = await dialog.ShowAsync();
+                var result = await dialog.ShowAsync();
 
-            return result.Label == Translation.GetTranslation("YesLabel");
+                return result.Label == Translation.GetTranslation("YesLabel");
+            }
+            return true;
         }
 
         public async Task RestoreBackup()
@@ -98,6 +135,7 @@ namespace MoneyManager.Business.ViewModels
                 var folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
 
                 await BackupLogic.RestoreBackUp(LiveClient, folderId, "backup" + DbName, DbName);
+                await ShowCompletionNote(TaskCompletionType.Successful);
             }
             catch (Exception ex)
             {
@@ -117,15 +155,15 @@ namespace MoneyManager.Business.ViewModels
             switch (completionType)
             {
                 case TaskCompletionType.Successful:
-                    dialog = new MessageDialog(Translation.GetTranslation("BackupSuccessfulMessage"), Translation.GetTranslation("SuccessfulTitle"));
+                    dialog = new MessageDialog(Translation.GetTranslation("TaskSuccessfulMessage"), Translation.GetTranslation("SuccessfulTitle"));
                     break;
 
                 case TaskCompletionType.Unsuccessful:
-                    dialog = new MessageDialog(Translation.GetTranslation("BackupUnsuccessfulMessage"), Translation.GetTranslation("UnsuccessfulTitle"));
+                    dialog = new MessageDialog(Translation.GetTranslation("TaskUnsuccessfulMessage"), Translation.GetTranslation("UnsuccessfulTitle"));
                     break;
 
                 case TaskCompletionType.Aborted:
-                    dialog = new MessageDialog(Translation.GetTranslation("BackupAbortedMessage"), Translation.GetTranslation("AbortedTitle"));
+                    dialog = new MessageDialog(Translation.GetTranslation("TaskAbortedMessage"), Translation.GetTranslation("AbortedTitle"));
                     break;
 
                 default:
@@ -134,6 +172,7 @@ namespace MoneyManager.Business.ViewModels
             }
 
             dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
+
             await dialog.ShowAsync();
         }
     }

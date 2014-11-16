@@ -20,7 +20,8 @@
 				Text="Last Backup created at:"
 				x:Uid="LastBackupCreationDate"
 				Margin="0,0,5,0" />
-            <TextBlock Style="{StaticResource MenuItemSubSmallText}" />
+            <TextBlock Text="{Binding CreationDate}"
+                Style="{StaticResource MenuItemSubSmallText}" Margin="0,0,0,10" />
             <Button Content="Login to OneDrive"
 				Click="LoginToOneDrive"
 				Visibility="{Binding IsConnected, ConverterParameter=revert, Converter={StaticResource BooleanVisibilityConverter}}"

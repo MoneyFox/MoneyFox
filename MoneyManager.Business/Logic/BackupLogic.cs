@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Popups;
@@ -20,7 +17,8 @@ namespace MoneyManager.Business.Logic
             try
             {
                 var authClient = new LiveAuthClient();
-                var result = await authClient.LoginAsync(new[] { "wl.signin", "wl.skydrive", "wl.skydrive_update" });
+                LiveLoginResult result =
+                    await authClient.LoginAsync(new[] {"wl.signin", "wl.skydrive", "wl.skydrive_update"});
 
                 if (result.Status == LiveConnectSessionStatus.Connected)
                 {
@@ -38,7 +36,7 @@ namespace MoneyManager.Business.Logic
             return null;
         }
 
-        private async static Task ShowAuthExceptionMessage()
+        private static async void ShowAuthExceptionMessage()
         {
             var dialog = new MessageDialog(Translation.GetTranslation("AuthExceptionMessage"),
                 Translation.GetTranslation("AuthException"));
@@ -47,7 +45,7 @@ namespace MoneyManager.Business.Logic
             await dialog.ShowAsync();
         }
 
-        private async static Task ShowConnectExceptionMessage()
+        private static async void ShowConnectExceptionMessage()
         {
             var dialog = new MessageDialog(Translation.GetTranslation("ConnectionExceptionMessage"),
                 Translation.GetTranslation("ConnectionException"));
@@ -56,15 +54,16 @@ namespace MoneyManager.Business.Logic
             await dialog.ShowAsync();
         }
 
-        public static async Task<TaskCompletionType> UploadBackup(LiveConnectClient liveClient, string folderId, string dbName)
+        public static async Task<TaskCompletionType> UploadBackup(LiveConnectClient liveClient, string folderId,
+            string dbName)
         {
             try
             {
-                var localFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
 
-                var storageFile = await localFolder.GetFileAsync(dbName);
+                StorageFile storageFile = await localFolder.GetFileAsync(dbName);
 
-                var uploadOperation = await liveClient.CreateBackgroundUploadAsync(
+                LiveUploadOperation uploadOperation = await liveClient.CreateBackgroundUploadAsync(
                     folderId, "backup" + dbName, storageFile, OverwriteOption.Overwrite);
 
                 LiveOperationResult uploadResult = await uploadOperation.StartAsync();
@@ -90,7 +89,7 @@ namespace MoneyManager.Business.Logic
                 try
                 {
                     var folderData = new Dictionary<string, object> {{"name", folderName}};
-                    var operationResult = await liveClient.PostAsync("me/skydrive", folderData);
+                    LiveOperationResult operationResult = await liveClient.PostAsync("me/skydrive", folderData);
                     dynamic result = operationResult.Result;
                     return result.id;
                 }
@@ -106,15 +105,15 @@ namespace MoneyManager.Business.Logic
         {
             try
             {
-                var operationResultFolder = await liveClient.GetAsync("me/skydrive/");
+                LiveOperationResult operationResultFolder = await liveClient.GetAsync("me/skydrive/");
                 dynamic toplevelfolder = operationResultFolder.Result;
 
                 operationResultFolder = await liveClient.GetAsync(toplevelfolder.id + "/files");
                 dynamic folders = operationResultFolder.Result.Values;
 
-                foreach (var data in folders)
+                foreach (dynamic data in folders)
                 {
-                    foreach (var folder in data)
+                    foreach (dynamic folder in data)
                     {
                         if (folder.name == folderName)
                         {
@@ -134,12 +133,12 @@ namespace MoneyManager.Business.Logic
         {
             try
             {
-                var operationResultFolder = await liveClient.GetAsync(folderId + "/files");
+                LiveOperationResult operationResultFolder = await liveClient.GetAsync(folderId + "/files");
                 dynamic files = operationResultFolder.Result.Values;
 
-                foreach (var data in files)
+                foreach (dynamic data in files)
                 {
-                    foreach (var file in data)
+                    foreach (dynamic file in data)
                     {
                         if (file.name == backupName)
                         {
@@ -162,15 +161,11 @@ namespace MoneyManager.Business.Logic
             {
                 try
                 {
-                    var operationResult =
+                    LiveOperationResult operationResult =
                         await liveClient.GetAsync(backupId);
                     dynamic result = operationResult.Result;
                     DateTime createdAt = Convert.ToDateTime(result.created_time);
                     return createdAt.ToString("f", new CultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName));
-                }
-                catch (LiveConnectException ex)
-                {
-                    BugSenseHandler.Instance.LogException(ex, "Additional Information", "Error getting file info");
                 }
                 catch (Exception ex)
                 {
@@ -180,27 +175,17 @@ namespace MoneyManager.Business.Logic
             return String.Empty;
         }
 
-        public static async Task<TaskCompletionType> RestoreBackUp(LiveConnectClient liveClient, string folderId, string backupName, string dbName)
+        public static async Task<TaskCompletionType> RestoreBackUp(LiveConnectClient liveClient, string folderId,
+            string backupName, string dbName)
         {
             try
             {
-                var backupId = await GetBackupId(liveClient, folderId, backupName);
+                string backupId = await GetBackupId(liveClient, folderId, backupName);
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                StorageFile storageFile =
+                    await localFolder.CreateFileAsync(dbName, CreationCollisionOption.ReplaceExisting);
 
-                var localFolder = ApplicationData.Current.LocalFolder;
-
-                //var file = await localFolder.GetFileAsync(dbName);
-                //await file.DeleteAsync();
-
-                var storageFile = await localFolder.CreateFileAsync(dbName, CreationCollisionOption.ReplaceExisting);
-
-                //LiveDownloadOperation operation = await liveClient.CreateBackgroundDownloadAsync(backupId + "/content");
-                //var result = await operation.StartAsync();
-
-                var downloadResult = await liveClient.BackgroundDownloadAsync(backupId + "/content", storageFile);
-
-                //await SaveDatabase(result, dbName);
-                
-                //ReinitCollections();
+                await liveClient.BackgroundDownloadAsync(backupId + "/content", storageFile);
                 return TaskCompletionType.Successful;
             }
             catch (Exception ex)
@@ -209,18 +194,5 @@ namespace MoneyManager.Business.Logic
                 return TaskCompletionType.Unsuccessful;
             }
         }
-        
-        private async static Task SaveDatabase(LiveDownloadOperationResult downloadResult, string dbName)
-        {
-            var localFolder = ApplicationData.Current.LocalFolder;
-            var storageFile = await localFolder.CreateFileAsync(dbName, CreationCollisionOption.ReplaceExisting);
-
-            var stream = downloadResult.GetRandomAccessStreamAsync();
-
-            var buffer = await FileIO.ReadBufferAsync(downloadResult.File);
-
-            await FileIO.WriteBufferAsync(storageFile, buffer);
-        }
-
     }
 }

@@ -472,14 +472,14 @@
   <data name="AbortedTitle" xml:space="preserve">
     <value>aborted!</value>
   </data>
-  <data name="BackupAbortedMessage" xml:space="preserve">
-    <value>The backup was aborted.</value>
+  <data name="TaskAbortedMessage" xml:space="preserve">
+    <value>The task was aborted.</value>
   </data>
-  <data name="BackupSuccessfulMessage" xml:space="preserve">
-    <value>Your backup was successfully created!</value>
+  <data name="TaskSuccessfulMessage" xml:space="preserve">
+    <value>The task was successful completed.</value>
   </data>
-  <data name="BackupUnsuccessfulMessage" xml:space="preserve">
-    <value>We ran into an error and coulnd't create your backup. If this problem consists please contact us.</value>
+  <data name="TaskUnsuccessfulMessage" xml:space="preserve">
+    <value>We ran into an error and coulnd't complete the task. If this problem consists please contact us.</value>
   </data>
   <data name="GeneralErrorMessage" xml:space="preserve">
     <value>There went something wrong. If this problem consists please get in touch with us.</value>
@@ -504,5 +504,8 @@
   </data>
   <data name="ConnectionExceptionMessage" xml:space="preserve">
     <value>There where an error establishinig the connection. Please try again.</value>
+  </data>
+  <data name="NeverLabel" xml:space="preserve">
+    <value>never</value>
   </data>
 </root>
