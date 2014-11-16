@@ -5,8 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:MoneyManager.UserControls"
+    xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
+    xmlns:converter="using:MoneyManager.Converter"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding BackupView, Source={StaticResource Locator}}">
+
+    <UserControl.Resources>
+        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+    </UserControl.Resources>
 
     <Grid>
         <Grid.ChildrenTransitions>
@@ -32,5 +39,19 @@
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
             <userControls:BackupUserControl />
         </Grid>
+
+        <primitives:RadBusyIndicator 
+                    IsActive="{Binding IsLoading}"
+                    Visibility="{Binding IsLoading, Converter={StaticResource BooleanVisibilityConverter}}"
+                    AnimationStyle="AnimationStyle8" Grid.RowSpan="2">
+            <primitives:RadBusyIndicator.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#CC000000"/>
+                </LinearGradientBrush>
+            </primitives:RadBusyIndicator.Background>
+        </primitives:RadBusyIndicator>
+
+
     </Grid>
 </Page>

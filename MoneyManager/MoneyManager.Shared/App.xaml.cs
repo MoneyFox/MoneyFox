@@ -33,6 +33,7 @@ namespace MoneyManager
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
             BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");
+            BugSenseHandler.Instance.HandleWhileDebugging = false;
 #if DEBUG
             if (Debugger.IsAttached)
             {

@@ -1,33 +1,37 @@
-﻿#region
-
+﻿using MoneyManager.Common;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-#endregion
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
-
 namespace MoneyManager.Views
 {
-    /// <summary>
-    ///     An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class SettingsBackup : Page
     {
+        private readonly NavigationHelper navigationHelper;
+
         public SettingsBackup()
         {
             InitializeComponent();
+
+            navigationHelper = new NavigationHelper(this);
         }
 
-        /// <summary>
-        ///     Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">
-        ///     Event data that describes how this page was reached.
-        ///     This parameter is typically used to configure the page.
-        /// </param>
+        public NavigationHelper NavigationHelper
+        {
+            get { return navigationHelper; }
+        }
+
+        #region NavigationHelper registration
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            navigationHelper.OnNavigatedTo(e);
         }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            navigationHelper.OnNavigatedFrom(e);
+        }
+
+        #endregion NavigationHelper registration
     }
 }

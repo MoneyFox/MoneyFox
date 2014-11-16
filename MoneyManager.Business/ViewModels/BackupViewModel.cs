@@ -3,6 +3,7 @@
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using BugSense;
 using GalaSoft.MvvmLight;
 using Microsoft.Live;
 using MoneyManager.Business.Helper;
@@ -18,6 +19,10 @@ namespace MoneyManager.Business.ViewModels
         private const string BackupFolderName = "MoneyFoxBackup";
         private const string DbName = "moneyfox.sqlite";
 
+        public bool IsConnected { get; set; }
+
+        public bool IsLoading { get; set; }
+
         private LiveConnectClient LiveClient { get; set; }
 
         public async void LogInToOneDrive()
@@ -27,6 +32,10 @@ namespace MoneyManager.Business.ViewModels
             if (LiveClient == null)
             {
                 await ShowNotLoggedInMessage();
+            }
+            else
+            {
+                IsConnected = true;
             }
         }
 
@@ -41,17 +50,31 @@ namespace MoneyManager.Business.ViewModels
         
         public async Task CreateBackup()
         {
-            var folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
-
-            if (String.IsNullOrEmpty(folderId))
+            try
             {
-                folderId = await BackupLogic.CreateBackupFolder(LiveClient, BackupFolderName);
+                IsLoading = true;
+
+                await ShowOverwriteInfo();
+
+                var folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
+
+                if (String.IsNullOrEmpty(folderId))
+                {
+                    folderId = await BackupLogic.CreateBackupFolder(LiveClient, BackupFolderName);
+                }
+
+                var completionType = await BackupLogic.UploadBackup(LiveClient, folderId, DbName);
+                await ShowCompletionNote(completionType);
             }
-
-            await ShowOverwriteInfo();
-
-            var completionType = await BackupLogic.UploadBackup(LiveClient, folderId, DbName);
-            await ShowCompletionNote(completionType);
+            catch (Exception ex)
+            {
+                BugSenseHandler.Instance.LogException(ex);
+                ShowCompletionNote(TaskCompletionType.Unsuccessful);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         private async Task<bool> ShowOverwriteInfo()

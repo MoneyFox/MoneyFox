@@ -304,6 +304,9 @@
     <SDKReference Include="SQLite.WP81, Version=3.8.7.1">
       <Name>SQLite for Windows Phone 8.1 %28SQLite.WP81, Version=3.8.7.1%29</Name>
     </SDKReference>
+    <SDKReference Include="Telerik UI For Windows Universal, Version=2014.3.1024.45">
+      <Name>Telerik UI For Windows Universal</Name>
+    </SDKReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\MoneyManager.Business\MoneyManager.Business.csproj">
