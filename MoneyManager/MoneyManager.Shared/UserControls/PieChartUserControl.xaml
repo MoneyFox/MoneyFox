@@ -12,7 +12,7 @@
     DataContext="{Binding StatisticView, Source={StaticResource Locator}}">
 
     <Grid VerticalAlignment="Top">
-        <chart:RadPieChart x:Name="TransactionSpreading" PaletteName="DefaultLight" Margin="0,0,0,80">
+        <chart:RadPieChart x:Name="TransactionSpreading" PaletteName="DefaultLight" Margin="0,0,0,120">
             <chart:PieSeries ItemsSource="{Binding MonthlySpreading}" RadiusFactor="0.8">
                 <chart:PieSeries.ValueBinding>
                     <chart:PropertyNameDataPointBinding PropertyName="Value"/>

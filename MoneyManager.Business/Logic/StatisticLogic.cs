@@ -24,12 +24,12 @@ namespace MoneyManager.Business.Logic
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().AllTransactions; }
         }
         
-        private static IEnumerable<Category> allCategories
+        private static IEnumerable<Category> AllCategories
         {
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
         }
 
-        private static TransactionDataAccess transactionData
+        private static TransactionDataAccess TransactionData
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
@@ -71,16 +71,17 @@ namespace MoneyManager.Business.Logic
         {
             if (allTransaction == null)
             {
-                transactionData.LoadList();
+                TransactionData.LoadList();
             }
 
             var transactionList = allTransaction
                 .Where(x => x.Category != null
                             && x.Cleared
-                            && x.Date.Month == DateTime.Today.Date.Month)
+                            && x.Date.Month == DateTime.Today.Date.Month
+                            && x.Type == (int) TransactionType.Spending)
                 .ToList();
 
-            var tempStatisticList = allCategories.Select(category => new StatisticItem
+            var tempStatisticList = AllCategories.Select(category => new StatisticItem
             {
                 Category = category.Name,
                 Value = transactionList
@@ -88,18 +89,53 @@ namespace MoneyManager.Business.Logic
                     .Sum(x => x.Amount),
             }).ToList();
 
-            tempStatisticList = tempStatisticList.OrderByDescending(x => x.Value).ToList();
+            RemoveNullList(tempStatisticList);
 
-            var statisticList = tempStatisticList.Take(4).ToList();
-            statisticList.Add(new StatisticItem
+            tempStatisticList = tempStatisticList.OrderByDescending(x => x.Value).ToList();
+            var statisticList = tempStatisticList.Take(6).ToList();
+
+            AddOtherItem(tempStatisticList, statisticList);
+
+            IncludeSpending(statisticList, transactionList);
+
+            return new ObservableCollection<StatisticItem>(statisticList);
+        }
+
+        private static void RemoveNullList(ICollection<StatisticItem> tempStatisticList)
+        {
+            var nullerList = tempStatisticList.Where(x => x.Value == 0).ToList();
+            foreach (var statisticItem in nullerList)
+            {
+                tempStatisticList.Remove(statisticItem);
+            }
+        }
+
+        private static void IncludeSpending(IEnumerable<StatisticItem> statisticList, List<FinancialTransaction> transactionList)
+        {
+            foreach (var statisticItem in statisticList)
+            {
+                statisticItem.Value -= allTransaction
+                    .Where(x => x.Type == (int) TransactionType.Income)
+                    .Where(x => x.Category.Name == statisticItem.Category)
+                    .Sum(x => x.Amount);
+            }
+        }
+
+        private static void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
+            ICollection<StatisticItem> statisticList)
+        {
+            var othersItem = new StatisticItem
             {
                 Category = "Others",
                 Value = tempStatisticList
                     .Where(x => !statisticList.Contains(x))
                     .Sum(x => x.Value)
-            });
+            };
 
-            return new ObservableCollection<StatisticItem>(statisticList);
+            if (othersItem.Value != 0)
+            {
+                statisticList.Add(othersItem);
+            }
         }
     }
 }
