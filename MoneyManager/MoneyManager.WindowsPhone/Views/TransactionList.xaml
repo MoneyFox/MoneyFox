@@ -6,7 +6,8 @@
     xmlns:userControls="using:MoneyManager.UserControls"
     x:Class="MoneyManager.Views.TransactionList"
     mc:Ignorable="d" NavigationCacheMode="Disabled"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding TransactionListView, Source={StaticResource Locator}}">
 
     <Page.BottomAppBar>
         <CommandBar IsSticky="True" ClosedDisplayMode="Minimal">
@@ -30,7 +31,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock x:Uid="Transactions" Text="transactions" Style="{ThemeResource TitleTextBlockStyle}"
+            <TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}"
                        Margin="0,12,0,0" />
         </StackPanel>
 

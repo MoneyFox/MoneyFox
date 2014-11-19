@@ -228,9 +228,6 @@
   <data name="TargetAccount.PlaceholderText" xml:space="preserve">
     <value>please select account</value>
   </data>
-  <data name="Transactions.Text" xml:space="preserve">
-    <value>transactions</value>
-  </data>
   <data name="Transfer.Text" xml:space="preserve">
     <value>transfer</value>
   </data>
