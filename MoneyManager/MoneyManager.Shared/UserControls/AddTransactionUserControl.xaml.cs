@@ -50,16 +50,6 @@ namespace MoneyManager.UserControls
             }
         }
 
-        private void ResetCategory(object sender, TappedRoutedEventArgs e)
-        {
-            ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = null;
-        }
-
-        private void OpenSelectCategoryDialog(object sender, RoutedEventArgs routedEventArgs)
-        {
-            ((Frame) Window.Current.Content).Navigate(typeof (SelectCategory));
-        }
-
         private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs routedEventArgs)
         {
             ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().InvocationType = InvocationType.Transaction;

@@ -51,11 +51,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SelectCategoryListUserControl.xaml.cs">
       <DependentUpon>SelectCategoryListUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SelectCategoryUserControl.xaml.cs">
+      <DependentUpon>SelectCategoryUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SelectCurrencyUserControl.xaml.cs">
       <DependentUpon>SelectCurrencyUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsCategoryUserControl.xaml.cs">
       <DependentUpon>SettingsCategoryUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsDefaultsUserControl.xaml.cs">
+      <DependentUpon>SettingsDefaultsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml.cs">
       <DependentUpon>SettingsOverviewUserControl.xaml</DependentUpon>
@@ -111,11 +117,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)UserControls\SelectCategoryUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)UserControls\SelectCurrencyUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsCategoryUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsDefaultsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

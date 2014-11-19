@@ -5,8 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converter="using:MoneyManager.Converter"
+    xmlns:userControls="using:MoneyManager.UserControls"
     mc:Ignorable="d"
-    d:DesignWidth="400" d:DesignHeight="600"
+    d:DesignWidth="400" d:DesignHeight="800"
     DataContext="{Binding AddTransactionView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
@@ -62,14 +63,7 @@
                            Style="{StaticResource MenuItemSubSmallText}" />
             </StackPanel>
             <Grid>
-                <TextBox Header="category" x:Uid="CategoryHeader"
-                         Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
-                         GotFocus="OpenSelectCategoryDialog"
-                         IsReadOnly="True" />
-                <Image Height="35" Width="35"
-                       Source="/Images/light/close.png"
-                       Margin="0,36,0,0"
-                       Tapped="ResetCategory" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <userControls:SelectCategoryUserControl />
             </Grid>
             <DatePicker
                 Date="{Binding SelectedTransaction.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

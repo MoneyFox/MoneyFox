@@ -508,4 +508,10 @@
   <data name="NeverLabel" xml:space="preserve">
     <value>never</value>
   </data>
+  <data name="DefaultsText.Text" xml:space="preserve">
+    <value>defaults</value>
+  </data>
+  <data name="AccountHeader.Header" xml:space="preserve">
+    <value>account</value>
+  </data>
 </root>

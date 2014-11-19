@@ -1,8 +1,8 @@
 ﻿namespace MoneyManager.UserControls
 {
-    public partial class SelectCategoryListUserControl
+    public sealed partial class SettingsDefaultsUserControl 
     {
-        public SelectCategoryListUserControl()
+        public SettingsDefaultsUserControl()
         {
             InitializeComponent();
         }
