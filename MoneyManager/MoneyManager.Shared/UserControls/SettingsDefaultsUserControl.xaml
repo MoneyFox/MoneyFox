@@ -7,15 +7,22 @@
     xmlns:userControls="using:MoneyManager.UserControls"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    DataContext="{Binding SettingDefaultsView,  Source={StaticResource Locator}}">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ComboBoxTemplate">
+            <StackPanel Margin="0,0,0,12">
+                <TextBlock Text="{Binding Name}" FontSize="24" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
 
     <Grid>
         <StackPanel>
             <ComboBox Header="account" x:Uid="AccountHeader"
                       ItemTemplate="{StaticResource ComboBoxTemplate}"
                       ItemsSource="{Binding AllAccounts, Mode=TwoWay}"
-                      SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay}" />
-            <userControls:SelectCategoryUserControl />
+                      SelectedItem="{Binding DefaultAccount, Mode=TwoWay}" />
         </StackPanel>
     </Grid>
 </UserControl>

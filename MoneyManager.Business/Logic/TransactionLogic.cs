@@ -45,6 +45,11 @@ namespace MoneyManager.Business.Logic
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
+        private static SettingDataAccess settings
+        {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
+
         #endregion Properties
 
         public static async Task SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
@@ -173,12 +178,15 @@ namespace MoneyManager.Business.Logic
 
         private static void SetDefaultAccount()
         {
-            if (accountDataAccess.SelectedAccount != null)
+            if (accountDataAccess.AllAccounts.Any() && settings.DefaultAccount == -1)
+            {
+                selectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First(x => x.Id == settings.DefaultAccount);
+            }
+            else if (accountDataAccess.SelectedAccount != null)
             {
                 selectedTransaction.ChargedAccount = accountDataAccess.SelectedAccount;
-            }
-
-            if (accountDataAccess.AllAccounts.Any())
+            } 
+            else if (accountDataAccess.AllAccounts.Any())
             {
                 selectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First();
             }

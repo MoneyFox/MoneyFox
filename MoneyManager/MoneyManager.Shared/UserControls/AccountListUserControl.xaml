@@ -35,7 +35,7 @@
                                    TextTrimming="None" />
                     </StackPanel>
                 </Grid>
-                <TextBlock Style="{StaticResource MenuItemSmallText}" Text="{Binding Iban}" />
+                <TextBlock Style="{StaticResource MenuItemSubSmallText}" Text="{Binding Iban}" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>

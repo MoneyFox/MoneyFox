@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Views;
 
 #endregion
 
@@ -28,6 +29,7 @@ namespace MoneyManager
             SimpleIoc.Default.Register<TransactionListViewModel>();
             SimpleIoc.Default.Register<TileSettingsViewModel>();
             SimpleIoc.Default.Register<GeneralSettingViewModel>();
+            SimpleIoc.Default.Register<SettingDefaultsViewModel>();
             SimpleIoc.Default.Register<SelectCurrencyViewModel>();
             SimpleIoc.Default.Register<StatisticViewModel>();
             SimpleIoc.Default.Register<BackupViewModel>();
@@ -99,6 +101,11 @@ namespace MoneyManager
         public GeneralSettingViewModel GeneralSettingView
         {
             get { return ServiceLocator.Current.GetInstance<GeneralSettingViewModel>(); }
+        }
+
+        public SettingDefaultsViewModel SettingDefaultsView
+        {
+            get { return ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>(); }
         }
 
         public SelectCurrencyViewModel SelectCurrencyView
