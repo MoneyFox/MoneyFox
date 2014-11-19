@@ -22,7 +22,7 @@
                         <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="Delete_OnClick" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <Grid HorizontalAlignment="Stretch">
+                <Grid HorizontalAlignment="Stretch" Margin="0,0,0,5">
                     <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Name}"
                                TextTrimming="CharacterEllipsis" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
