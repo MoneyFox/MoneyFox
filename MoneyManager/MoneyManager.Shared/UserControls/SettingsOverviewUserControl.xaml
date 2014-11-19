@@ -10,20 +10,24 @@
 
     <StackPanel>
         <TextBlock Style="{StaticResource MenuItemText }"
+                   x:Uid="DefaultsText"
+                   Text="defaults" Tapped="NavigateToDefaultSettings"
+                   Margin="0,0,0,20" />
+        <TextBlock Style="{StaticResource MenuItemText }"
                    x:Uid="RegionText"
-                   Text="Region" Tapped="NavigateToGeneralSettings"
+                   Text="region" Tapped="NavigateToGeneralSettings"
                    Margin="0,0,0,20" />
         <TextBlock Style="{StaticResource MenuItemText }"
                    x:Uid="BackupText"
-                   Text="Backup" Tapped="NavigateToBackupSettings"
+                   Text="backup" Tapped="NavigateToBackupSettings"
                    Margin="0,0,0,20" />
         <TextBlock Style="{StaticResource MenuItemText }"
                    x:Uid="SettingCategory"
-                   Text="Category" Tapped="NavigateToCategorySettings"
+                   Text="category" Tapped="NavigateToCategorySettings"
                    Margin="0,0,0,20" />
         <TextBlock Style="{StaticResource MenuItemText }"
                    x:Uid="SettingTiles"
-                   Text="Tiles" Tapped="NavigateToTilesSettings"
+                   Text="tiles" Tapped="NavigateToTilesSettings"
                    Margin="0,0,0,20" />
     </StackPanel>
 </UserControl>

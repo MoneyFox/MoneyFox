@@ -1,11 +1,7 @@
-﻿#region
-
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using MoneyManager.Views;
-
-#endregion
 
 namespace MoneyManager.UserControls
 {
@@ -14,6 +10,11 @@ namespace MoneyManager.UserControls
         public SettingsOverviewUserControl()
         {
             InitializeComponent();
+        }
+
+        private void NavigateToDefaultSettings(object sender, TappedRoutedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(SettingsDefaults));
         }
 
         private void NavigateToGeneralSettings(object sender, TappedRoutedEventArgs e)
@@ -35,5 +36,6 @@ namespace MoneyManager.UserControls
         {
             ((Frame) Window.Current.Content).Navigate(typeof (SettingsTiles));
         }
+
     }
 }
