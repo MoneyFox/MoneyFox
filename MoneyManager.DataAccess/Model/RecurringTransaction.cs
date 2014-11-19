@@ -31,6 +31,8 @@ namespace MoneyManager.DataAccess.Model
 
         public int ChargedAccountId { get; set; }
 
+        public int TargetAccountId { get; set; }
+
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
@@ -51,6 +53,13 @@ namespace MoneyManager.DataAccess.Model
 
         [Ignore]
         public Account ChargedAccount
+        {
+            get { return allAccounts.FirstOrDefault(x => x.Id == ChargedAccountId); }
+            set { ChargedAccountId = value.Id; }
+        }
+        
+        [Ignore]
+        public Account TargetAccount
         {
             get { return allAccounts.FirstOrDefault(x => x.Id == ChargedAccountId); }
             set { ChargedAccountId = value.Id; }
