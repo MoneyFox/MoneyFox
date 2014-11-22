@@ -23,6 +23,11 @@ namespace MoneyManager.Dialogs
             if (!isEdit)
             {
                 CategoryData.SelectedCategory = new Category();
+
+                if (!String.IsNullOrEmpty(selectCategoryView.SearchText))
+                {
+                    CategoryData.SelectedCategory.Name = selectCategoryView.SearchText;
+                }
             }
         }
 
