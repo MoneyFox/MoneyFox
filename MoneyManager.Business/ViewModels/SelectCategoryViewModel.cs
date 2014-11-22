@@ -26,11 +26,18 @@ namespace MoneyManager.Business.ViewModels
             Categories = allCategories;
         }
 
+        public bool IsSettingCall { get; set; }
+
         public ObservableCollection<Category> Categories { get; set; }
 
         private CategoryDataAccess categoryData
         {
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
+        }
+
+        private TransactionDataAccess transactionData
+        {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>();  }
         }
 
         private ObservableCollection<Category> allCategories
@@ -40,13 +47,21 @@ namespace MoneyManager.Business.ViewModels
 
         public Category SelectedCategory
         {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category; }
+            get
+            {
+                return transactionData.SelectedTransaction == null
+                    ? new Category()
+                    : transactionData.SelectedTransaction.Category;
+            }
             set
             {
                 if (value == null) return;
 
-                ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value;
-                ((Frame) Window.Current.Content).GoBack();
+                if (!IsSettingCall)
+                {
+                    ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value;
+                    ((Frame) Window.Current.Content).GoBack();
+                }
             }
         }
 

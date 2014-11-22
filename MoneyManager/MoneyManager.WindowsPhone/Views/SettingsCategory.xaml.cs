@@ -3,6 +3,8 @@
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
 using MoneyManager.Dialogs;
 
@@ -19,11 +21,17 @@ namespace MoneyManager.Views
             InitializeComponent();
 
             navigationHelper = new NavigationHelper(this);
+            ServiceLocator.Current.GetInstance<SelectCategoryViewModel>().IsSettingCall = true;
         }
 
         public NavigationHelper NavigationHelper
         {
             get { return navigationHelper; }
+        }
+
+        private async void AddCategoryClick(object sender, RoutedEventArgs e)
+        {
+            await new CategoryDialog().ShowAsync();
         }
 
         #region NavigationHelper registration
@@ -40,9 +48,5 @@ namespace MoneyManager.Views
 
         #endregion NavigationHelper registration
 
-        private async void AddCategoryClick(object sender, RoutedEventArgs e)
-        {
-            await new CategoryDialog().ShowAsync();
-        }
     }
 }
