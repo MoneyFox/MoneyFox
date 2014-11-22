@@ -10,9 +10,9 @@ using MoneyManager.Dialogs;
 
 namespace MoneyManager.UserControls
 {
-    public partial class SelectCategoryListUserControl
+    public partial class CategoryListUserControl
     {
-        public SelectCategoryListUserControl()
+        public CategoryListUserControl()
         {
             InitializeComponent();
         }

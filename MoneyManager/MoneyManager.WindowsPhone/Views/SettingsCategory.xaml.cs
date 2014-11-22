@@ -21,7 +21,7 @@ namespace MoneyManager.Views
             InitializeComponent();
 
             navigationHelper = new NavigationHelper(this);
-            ServiceLocator.Current.GetInstance<SelectCategoryViewModel>().IsSettingCall = true;
+            ServiceLocator.Current.GetInstance<CategoryListViewModel>().IsSettingCall = true;
         }
 
         public NavigationHelper NavigationHelper

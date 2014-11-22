@@ -39,7 +39,7 @@
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <userControls:SelectCategoryListUserControl />
+            <userControls:CategoryListUserControl />
         </Grid>
     </Grid>
 </Page>

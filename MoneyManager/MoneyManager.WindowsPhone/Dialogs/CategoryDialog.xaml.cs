@@ -24,9 +24,9 @@ namespace MoneyManager.Dialogs
             {
                 CategoryData.SelectedCategory = new Category();
 
-                if (!String.IsNullOrEmpty(selectCategoryView.SearchText))
+                if (!String.IsNullOrEmpty(CategoryListView.SearchText))
                 {
-                    CategoryData.SelectedCategory.Name = selectCategoryView.SearchText;
+                    CategoryData.SelectedCategory.Name = CategoryListView.SearchText;
                 }
             }
         }
@@ -36,9 +36,9 @@ namespace MoneyManager.Dialogs
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
         }
 
-        private SelectCategoryViewModel selectCategoryView
+        private CategoryListViewModel CategoryListView
         {
-            get { return ServiceLocator.Current.GetInstance<SelectCategoryViewModel>(); }
+            get { return ServiceLocator.Current.GetInstance<CategoryListViewModel>(); }
         }
 
         public bool IsEdit { get; set; }
@@ -64,8 +64,8 @@ namespace MoneyManager.Dialogs
                 CategoryData.Save(CategoryData.SelectedCategory);
             }
 
-            selectCategoryView.SearchText = String.Empty;
-            selectCategoryView.Search();
+            CategoryListView.SearchText = String.Empty;
+            CategoryListView.Search();
         }
     }
 }

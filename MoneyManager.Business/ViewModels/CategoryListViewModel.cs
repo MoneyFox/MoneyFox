@@ -16,11 +16,11 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
-    public class SelectCategoryViewModel : ViewModelBase
+    public class CategoryListViewModel : ViewModelBase
     {
         private string searchText;
 
-        public SelectCategoryViewModel()
+        public CategoryListViewModel()
         {
             categoryData.LoadList();
             Categories = allCategories;
