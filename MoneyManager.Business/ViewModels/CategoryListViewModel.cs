@@ -80,7 +80,7 @@ namespace MoneyManager.Business.ViewModels
             if (SearchText != String.Empty)
             {
                 Categories = new ObservableCollection<Category>
-                    (allCategories.Where(x => x.Name.ToLower().Contains(searchText.ToLower())).ToList());
+                    (allCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower())).ToList());
             }
             else
             {
