@@ -25,7 +25,7 @@
                     x:Uid="AddIncomeTile"
                     Margin="40,0,0,0" Click="CreateIncomeTile"
                     Visibility="{Binding Visibility, ElementName=ButtonRemoveIncomeTile, Converter={StaticResource RevertVisibilityConverter}}"
-                    Width="200" />
+                    Width="230" />
             <Button Content="remove income tile" x:Uid="RemoveIncomeTile"
                     VerticalAlignment="Center"
                     Click="RemoveIncomeTile" x:Name="ButtonRemoveIncomeTile"
@@ -42,7 +42,7 @@
                     VerticalAlignment="Center"
                     Margin="40,0,0,0" Click="CreateSpendingTile"
                     Visibility="{Binding Visibility, ElementName=ButtonRemoveSpendingTile, Converter={StaticResource RevertVisibilityConverter}}"
-                    Width="200" />
+                    Width="230" />
             <Button Content="remove spending tile" x:Uid="RemoveSpendingTile"
                     VerticalAlignment="Center"
                     Click="RemoveSpendingTile" x:Name="ButtonRemoveSpendingTile"
@@ -59,7 +59,7 @@
                     VerticalAlignment="Center"
                     Margin="40,0,0,0" Click="CreateTransferTile"
                     Visibility="{Binding Visibility, ElementName=ButtonRemoveTransferTile, Converter={StaticResource RevertVisibilityConverter}}"
-                    Width="200" />
+                    Width="230" />
             <Button Content="remove transfer tile" x:Uid="RemoveTransferTile"
                     VerticalAlignment="Center"
                     Click="RemoveTransferTile" x:Name="ButtonRemoveTransferTile"

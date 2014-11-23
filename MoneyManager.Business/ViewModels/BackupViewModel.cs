@@ -43,15 +43,22 @@ namespace MoneyManager.Business.ViewModels
 
         public async Task LogInToOneDrive()
         {
-            LiveClient = await BackupLogic.LogInToOneDrive();
+            try
+            {
+                LiveClient = await BackupLogic.LogInToOneDrive();
 
-            if (LiveClient == null)
-            {
-                await ShowNotLoggedInMessage();
+                if (LiveClient == null)
+                {
+                    await ShowNotLoggedInMessage();
+                }
+                else
+                {
+                    IsConnected = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                IsConnected = true;
+                BugSenseHandler.Instance.LogException(ex);
             }
         }
 

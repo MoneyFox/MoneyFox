@@ -147,6 +147,9 @@
   <data name="AddCategory.Label" xml:space="preserve">
     <value>Kategorie hinzufügen</value>
   </data>
+  <data name="AddIncomeLabel.Label" xml:space="preserve">
+    <value>Einnahme hinzufügen</value>
+  </data>
   <data name="AddIncomeTile.Content" xml:space="preserve">
     <value>Einnahmetile erstellen</value>
   </data>
