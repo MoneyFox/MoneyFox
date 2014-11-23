@@ -516,4 +516,10 @@
   <data name="SpreadingContent" xml:space="preserve">
     <value>spreading</value>
   </data>
+  <data name="CashFlowHeader.Header" xml:space="preserve">
+    <value>cash flow</value>
+  </data>
+  <data name="SpreadingHeader.Header" xml:space="preserve">
+    <value>spreading</value>
+  </data>
 </root>

@@ -43,12 +43,12 @@
                         <userControls:AccountListUserControl />
                     </Grid>
                 </PivotItem>
-                <PivotItem x:Uid="OverviewMenu" Header="overview">
+                <PivotItem x:Uid="CashFlowHeader" Header="cash flow">
                     <Grid>
                         <userControls:BarChartUserControl />
                     </Grid>
                 </PivotItem>                
-                <PivotItem x:Uid="SpreadingMenu" Header="overview">
+                <PivotItem x:Uid="SpreadingHeader" Header="spreading">
                     <Grid>
                         <userControls:PieChartUserControl />
                     </Grid>
