@@ -159,9 +159,6 @@
   <data name="Delete.Text" xml:space="preserve">
     <value>delete</value>
   </data>
-  <data name="DeleteAccount.Text" xml:space="preserve">
-    <value>delete account</value>
-  </data>
   <data name="DeleteEntryQuestionMessage" xml:space="preserve">
     <value>Do you really want to delete this entry?</value>
   </data>
@@ -200,9 +197,6 @@
   </data>
   <data name="RecurrenceHeader.Header" xml:space="preserve">
     <value>recurrence</value>
-  </data>
-  <data name="Refund.Text" xml:space="preserve">
-    <value>refund</value>
   </data>
   <data name="Repeat.Header" xml:space="preserve">
     <value>repeat</value>
@@ -372,14 +366,8 @@
   <data name="NameRequiredMessage" xml:space="preserve">
     <value>Field for name must not be empty.</value>
   </data>
-  <data name="NameRequiredTitle" xml:space="preserve">
-    <value>name required</value>
-  </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Charged account is required. Please check your input.</value>
-  </data>
-  <data name="AccountRequiredTitle" xml:space="preserve">
-    <value>account required</value>
   </data>
   <data name="NoNamePlaceholderLabel" xml:space="preserve">
     <value>[no name]</value>
@@ -451,7 +439,7 @@
     <value>Overwrite existing?</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>If there is already a backup file it will be overwritten. Do you want to continue?</value>
+    <value>There is already an existing backup. Do you want to overwrite it?</value>
   </data>
   <data name="AbortedTitle" xml:space="preserve">
     <value>Aborted!</value>
@@ -521,5 +509,8 @@
   </data>
   <data name="SpreadingHeader.Header" xml:space="preserve">
     <value>spreading</value>
+  </data>
+  <data name="MandatoryField" xml:space="preserve">
+    <value>Pflichtfeld</value>
   </data>
 </root>

@@ -60,7 +60,7 @@ namespace MoneyManager.Views
             var dialog = new MessageDialog
                 (
                 Translation.GetTranslation("AccountRequiredMessage"),
-                Translation.GetTranslation("AccountRequiredTitle")
+                Translation.GetTranslation("MandatoryField")
                 );
             dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
             dialog.DefaultCommandIndex = 1;
