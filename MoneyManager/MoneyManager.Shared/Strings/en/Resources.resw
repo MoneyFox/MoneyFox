@@ -132,13 +132,10 @@
   <data name="AddCategory.Label" xml:space="preserve">
     <value>add category</value>
   </data>
-  <data name="AddCategoryDialog.PrimaryButtonText" xml:space="preserve">
-    <value>done</value>
-  </data>
-  <data name="AddCategoryDialog.SecondaryButtonText" xml:space="preserve">
+  <data name="CategoryDialog.SecondaryButtonText" xml:space="preserve">
     <value>cancel</value>
   </data>
-  <data name="AddCategoryDialog.Title" xml:space="preserve">
+  <data name="CategoryDialog.Title" xml:space="preserve">
     <value>ADD CATEGORY</value>
   </data>
   <data name="ApplicationNameText.Text" xml:space="preserve">
@@ -266,16 +263,6 @@
   </data>
   <data name="AddTitle" xml:space="preserve">
     <value>add {0}</value>
-  </data>
-  <data name="AddCategoryInfoText" xml:space="preserve">
-    <value>We will show this information in you category lists.
-                If you wanna edit this information, go to category settings.</value>
-  </data>
-  <data name="AddCategoryMeta.PrimaryButtonText" xml:space="preserve">
-    <value>add</value>
-  </data>
-  <data name="AddCategoryMeta.Title" xml:space="preserve">
-    <value>add category</value>
   </data>
   <data name="CategoryName.Header" xml:space="preserve">
     <value>category name</value>
@@ -510,5 +497,23 @@
   </data>
   <data name="AccountHeader.Header" xml:space="preserve">
     <value>account</value>
+  </data>
+  <data name="CashFlowContent" xml:space="preserve">
+    <value>cash flow</value>
+  </data>
+  <data name="CategoryDialog.PrimaryButtonText" xml:space="preserve">
+    <value>done</value>
+  </data>
+  <data name="SelectStatisticDialog.PrimaryButton" xml:space="preserve">
+    <value>done</value>
+  </data>
+  <data name="SelectStatisticDialog.SecondaryButton" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="SelectStatisticDialog.Title" xml:space="preserve">
+    <value>SELECT STATISTIC</value>
+  </data>
+  <data name="SpreadingContent" xml:space="preserve">
+    <value>spreading</value>
   </data>
 </root>
