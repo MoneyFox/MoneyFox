@@ -163,10 +163,10 @@
     <value>delete account</value>
   </data>
   <data name="DeleteEntryQuestionMessage" xml:space="preserve">
-    <value>Do you really wanna delete this entry?</value>
+    <value>Do you really want to delete this entry?</value>
   </data>
   <data name="DeleteQuestionTitle" xml:space="preserve">
-    <value>delete?</value>
+    <value>Delete?</value>
   </data>
   <data name="Done.Label" xml:space="preserve">
     <value>done</value>
@@ -268,7 +268,7 @@
     <value>category name</value>
   </data>
   <data name="CategorieAuswählenLabel" xml:space="preserve">
-    <value>please select category..</value>
+    <value>Please select category.</value>
   </data>
   <data name="Tiles.Text" xml:space="preserve">
     <value>tiles</value>
@@ -343,7 +343,7 @@
     <value>OK</value>
   </data>
   <data name="TileUnpinnedText" xml:space="preserve">
-    <value>tile was successful unpinned.</value>
+    <value>Tile was successful unpinned.</value>
   </data>
   <data name="TileUnpinnedTitle" xml:space="preserve">
     <value>unpinned</value>
@@ -391,7 +391,7 @@
     <value>You've made changes to a recurring transaction. Do you want apply this changes for all subsequent transactions or only for this one?</value>
   </data>
   <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
-    <value>change subsequent?</value>
+    <value>Change subsequent?</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
     <value>this</value>
@@ -403,7 +403,7 @@
     <value>language</value>
   </data>
   <data name="EnddateHeader.Header" xml:space="preserve">
-    <value>enddate</value>
+    <value>end date</value>
   </data>
   <data name="EndlessContent.Content" xml:space="preserve">
     <value>endless</value>
@@ -448,13 +448,13 @@
     <value>Last Backup created at:</value>
   </data>
   <data name="OverwriteBackup" xml:space="preserve">
-    <value>Overwrite existig?</value>
+    <value>Overwrite existing?</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
     <value>If there is already a backup file it will be overwritten. Do you want to continue?</value>
   </data>
   <data name="AbortedTitle" xml:space="preserve">
-    <value>aborted!</value>
+    <value>Aborted!</value>
   </data>
   <data name="TaskAbortedMessage" xml:space="preserve">
     <value>The task was aborted.</value>
@@ -463,19 +463,19 @@
     <value>The task was successful completed.</value>
   </data>
   <data name="TaskUnsuccessfulMessage" xml:space="preserve">
-    <value>We ran into an error and coulnd't complete the task. If this problem consists please contact us.</value>
+    <value>We ran into an error and couldn't complete the task. If this problem consists please contact us.</value>
   </data>
   <data name="GeneralErrorMessage" xml:space="preserve">
     <value>There went something wrong. If this problem consists please get in touch with us.</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>oh snap!</value>
+    <value>Oh snap!</value>
   </data>
   <data name="SuccessfulTitle" xml:space="preserve">
-    <value>sucess!</value>
+    <value>success!</value>
   </data>
   <data name="UnsuccessfulTitle" xml:space="preserve">
-    <value>failed!</value>
+    <value>Failed!</value>
   </data>
   <data name="AuthException" xml:space="preserve">
     <value>check credentials</value>
@@ -487,7 +487,7 @@
     <value>connection error</value>
   </data>
   <data name="ConnectionExceptionMessage" xml:space="preserve">
-    <value>There where an error establishinig the connection. Please try again.</value>
+    <value>There where an error establishing  the connection. Please try again.</value>
   </data>
   <data name="NeverLabel" xml:space="preserve">
     <value>never</value>
