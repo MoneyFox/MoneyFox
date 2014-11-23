@@ -220,7 +220,7 @@
     <value>Kategorie</value>
   </data>
   <data name="CategoryName.Header" xml:space="preserve">
-    <value>Kategoriename</value>
+    <value>Kategorie Name</value>
   </data>
   <data name="ChangeAllEntitiesMessage" xml:space="preserve">
     <value>Möchtest du alle Konten und Transaktionen auf die neue Sprache ändern?</value>
