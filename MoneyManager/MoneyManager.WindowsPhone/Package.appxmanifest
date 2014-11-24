@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="38045npadrutt.MoneyFox" Publisher="CN=456A8DD5-B6B1-4703-AC59-444B9A479C1F" Version="0.5.9.2" />
-  <mp:PhoneIdentity PhoneProductId="32c0b3b9-3d91-43a5-894a-3df383b1bfe0" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="38045npadrutt.MoneyFox" Publisher="CN=456A8DD5-B6B1-4703-AC59-444B9A479C1F" Version="0.6.0.0" />
+  <mp:PhoneIdentity PhoneProductId="bce45a91-1d6a-4810-8304-6ebfb1a397fe" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Money Fox</DisplayName>
     <PublisherDisplayName>Apply-Solutions</PublisherDisplayName>
