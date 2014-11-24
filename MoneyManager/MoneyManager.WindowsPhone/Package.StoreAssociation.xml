@@ -184,14 +184,14 @@
     <Language Code="vi-vn" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>38045npadrutt.MoneyFoxBeta</MainPackageIdentityName>
+    <MainPackageIdentityName>38045npadrutt.MoneyFox</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>Money Fox Beta</ReservedName>
+      <ReservedName>Money Fox</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>38045npadrutt.FavoritePlaces</MainPackageIdentityName>
-    <MainPackageIdentityName>38045npadrutt.MoneyFox</MainPackageIdentityName>
+    <MainPackageIdentityName>38045npadrutt.MoneyFoxBeta</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.MoneyManager</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.MoneyManagerBeta</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.MyMedi</MainPackageIdentityName>
@@ -200,11 +200,18 @@
     <MainPackageIdentityName>38045npadrutt.SleepTracker</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.SleepTrackerBeta</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=83554bcf-9733-4945-bf6b-d2bf2e247d8c">
-    <PackageInfo>
-      <OsMinVersion>6.3.0.0</OsMinVersion>
-      <PackageArchitecture>arm</PackageArchitecture>
-      <PackageMaxArchitectureVersion>0.5.8.0</PackageMaxArchitectureVersion>
-    </PackageInfo>
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=c7533b5e-cd70-4dc0-9fb0-2bfe3c174ad8">
+    <BundleInfo>
+      <PackageInfo>
+        <OsMinVersion>6.3.0.0</OsMinVersion>
+        <PackageArchitecture>arm</PackageArchitecture>
+        <PackageMaxArchitectureVersion>0.5.9.1</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>6.3.0.0</OsMinVersion>
+        <PackageArchitecture></PackageArchitecture>
+        <PackageMaxArchitectureVersion>0.5.9.1</PackageMaxArchitectureVersion>
+      </PackageInfo>
+    </BundleInfo>
   </PackageInfoList>
 </StoreAssociation>

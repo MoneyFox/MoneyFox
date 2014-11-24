@@ -87,7 +87,7 @@ namespace MoneyManager.Business.Logic
         {
             addTransactionView.IsEdit = true;
             addTransactionView.IsTransfer = transaction.Type == (int) TransactionType.Transfer;
-            if (transaction.ReccuringTransactionId.HasValue)
+            if (transaction.ReccuringTransactionId.HasValue && transaction.RecurringTransaction != null)
             {
                 addTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
                 addTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;

@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -70,10 +71,32 @@ namespace MoneyManager.UserControls
             flyoutBase.ShowAt(senderElement);
         }
 
+
+
         private void UnloadPage(object sender, RoutedEventArgs e)
         {
             BalanceView.IsTransactionView = false;
+            AddTransactionView.IsNavigationBlocked = true;
             BalanceView.UpdateBalance();
+        }
+
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {
+            AddTransactionView.IsNavigationBlocked = false;
+            ListViewTransactions.SelectedItem = null;
+        }
+
+        private void LoadDetails(object sender, SelectionChangedEventArgs e)
+        {
+            if (!AddTransactionView.IsNavigationBlocked && ListViewTransactions.SelectedItem != null)
+            {
+                TransactionData.SelectedTransaction = ListViewTransactions.SelectedItem as FinancialTransaction;
+
+                TransactionLogic.PrepareEdit(TransactionData.SelectedTransaction);
+
+                ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
+                ListViewTransactions.SelectedItem = null;
+            }
         }
     }
 }

@@ -19,6 +19,11 @@ namespace MoneyManager.Business.ViewModels
     [ImplementPropertyChanged]
     public class AddTransactionViewModel
     {
+        public AddTransactionViewModel()
+        {
+            IsNavigationBlocked = true;
+        }
+
         #region Properties
 
         public FinancialTransaction SelectedTransaction
@@ -79,6 +84,8 @@ namespace MoneyManager.Business.ViewModels
                 CalculateNewAmount(value);
             }
         }
+
+        public bool IsNavigationBlocked { get; set; }
 
         private void CalculateNewAmount(double value)
         {

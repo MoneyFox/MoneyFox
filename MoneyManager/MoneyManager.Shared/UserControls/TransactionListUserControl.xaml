@@ -10,6 +10,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400"
     DataContext="{Binding TransactionListView, Source={StaticResource Locator}}"
+    Loaded="PageLoaded"
     Unloaded="UnloadPage">
 
     <UserControl.Resources>
@@ -66,7 +67,8 @@
             <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
                       ItemTemplate="{StaticResource TransactionTemplate}"
                       HorizontalAlignment="Stretch" x:Name="ListViewTransactions"
-                      ShowsScrollingPlaceholders="True">
+                      ShowsScrollingPlaceholders="True"
+                      SelectionChanged="LoadDetails">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
