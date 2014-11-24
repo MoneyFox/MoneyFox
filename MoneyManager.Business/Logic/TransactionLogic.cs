@@ -161,7 +161,7 @@ namespace MoneyManager.Business.Logic
 
         private static void CheckIfRecurringWasRemoved(FinancialTransaction transaction)
         {
-            if (!transaction.IsRecurring)
+            if (!transaction.IsRecurring && transaction.ReccuringTransactionId.HasValue)
             {
                 recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value);
                 transaction.ReccuringTransactionId = null;
