@@ -17,7 +17,6 @@ namespace MoneyManager.DataAccess
                 dbConn.CreateTable<FinancialTransaction>();
                 dbConn.CreateTable<RecurringTransaction>();
                 dbConn.CreateTable<Category>();
-                dbConn.CreateTable<Country>();
             }
         }
     }
