@@ -88,8 +88,8 @@ namespace MoneyManager.DataAccess.DataAccess
         {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                return dbConn.Table<FinancialTransaction>().Where(x => x.Cleared == false
-                                                                       && x.Date <= date).ToList();
+                return AllTransactions.Where(x => x.Cleared == false
+                                                  && x.Date.Date <= date.Date).ToList();
             }
         }
 

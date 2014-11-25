@@ -202,6 +202,7 @@ namespace MoneyManager.Business.Logic
             foreach (var transaction in transactions)
             {
                 await AccountLogic.AddTransactionAmount(transaction);
+                transactionData.LoadList();
             }
         }
     }
