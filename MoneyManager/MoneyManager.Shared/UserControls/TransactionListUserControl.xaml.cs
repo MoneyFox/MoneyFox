@@ -54,24 +54,24 @@ namespace MoneyManager.UserControls
             ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
-        private void DeleteTransaction(object sender, RoutedEventArgs e)
+        private async void DeleteTransaction(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
             var transaction = element.DataContext as FinancialTransaction;
             if (transaction == null) return;
 
-            TransactionLogic.DeleteTransaction(transaction);
+            await TransactionLogic.DeleteTransaction(transaction);
+            AddTransactionView.IsNavigationBlocked = false;
         }
 
         private void OpenContextMenu(object sender, HoldingRoutedEventArgs e)
         {
+            AddTransactionView.IsNavigationBlocked = true;
             var senderElement = sender as FrameworkElement;
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
             flyoutBase.ShowAt(senderElement);
         }
-
-
 
         private void UnloadPage(object sender, RoutedEventArgs e)
         {

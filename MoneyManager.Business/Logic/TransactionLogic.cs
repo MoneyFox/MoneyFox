@@ -95,7 +95,7 @@ namespace MoneyManager.Business.Logic
             addTransactionView.SelectedTransaction = transaction;
         }
 
-        public static async void DeleteTransaction(FinancialTransaction transaction)
+        public static async Task DeleteTransaction(FinancialTransaction transaction)
         {
             if (await Utilities.IsDeletionConfirmed())
             {
@@ -202,7 +202,6 @@ namespace MoneyManager.Business.Logic
             foreach (var transaction in transactions)
             {
                 await AccountLogic.AddTransactionAmount(transaction);
-                transactionData.LoadList();
             }
         }
     }
