@@ -23,7 +23,6 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
                 var temp2 = dbConn.Table<FinancialTransaction>().ToList();
                 var temp3 = dbConn.Table<RecurringTransaction>().ToList();
                 var temp4 = dbConn.Table<Category>().ToList();
-                var temp5 = dbConn.Table<Country>().ToList();
             }
         }
     }
