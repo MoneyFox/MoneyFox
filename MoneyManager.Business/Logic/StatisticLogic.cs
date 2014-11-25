@@ -37,6 +37,7 @@ namespace MoneyManager.Business.Logic
         public static ObservableCollection<StatisticItem> GetMonthlyCashFlow()
         {
             var transactionList = allTransaction
+                .Where(x => x.Type != (int) TransactionType.Transfer)
                 .Where(x => x.Date.Month == DateTime.Now.Month)
                 .ToList();
 
