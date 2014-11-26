@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
@@ -16,6 +16,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
     public class AccountLogicTest
     {
         private Account _sampleAccount;
+        private Account _sampleAccount2;
 
         private static AccountDataAccess accountData
         {
@@ -36,6 +37,17 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
                 CurrentBalanceWithoutExchange = 700,
                 ExchangeRatio = 1,
                 Iban = "this is a iban",
+                Name = "Jugendkonto",
+                Note = "just a note"
+            };
+            _sampleAccount2 = new Account
+            {
+                Currency = "CHF",
+                IsExchangeModeActive = false,
+                CurrentBalance = 1200,
+                CurrentBalanceWithoutExchange = 1200,
+                ExchangeRatio = 1,
+                Iban = "this is a second iban",
                 Name = "Sparkonto",
                 Note = "just a note"
             };
@@ -54,7 +66,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
         }
 
         [TestMethod]
-        public async void AddTransactionAmount()
+        public async void AddSpendingTransactionAmount()
         {
             using (var db = SqlConnectionFactory.GetSqlConnection())
             {
@@ -64,6 +76,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = _sampleAccount,
+                Type = (int) TransactionType.Spending
                 Currency = "CHF",
                 Amount = 100
             };
@@ -75,7 +88,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
         }
 
         [TestMethod]
-        public async void RemoveTransactionAmountTest()
+        public async void AddIncomeTransactionAmount()
         {
             using (var db = SqlConnectionFactory.GetSqlConnection())
             {
@@ -85,15 +98,162 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = _sampleAccount,
+                Type = (int) TransactionType.Income
+                Currency = "CHF",
+                Amount = 100
+            };
+
+            await AccountLogic.AddTransactionAmount(transaction);
+
+            Assert.AreEqual(800, _sampleAccount.CurrentBalance);
+            Assert.AreEqual(800, _sampleAccount.CurrentBalanceWithoutExchange);
+        }
+
+        [TestMethod]
+        public async void AddTransferTransactionAmount()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
+                db.Insert(_sampleAccount);
+                db.Insert(_sampleAccount2);
+            }
+
+            var transaction = new FinancialTransaction
+            {
+                ChargedAccount = _sampleAccount,
+                TargetAccount = _sampleAccount2,
+                Type = (int) TransactionType.Transfer
+                Currency = "CHF",
+                Amount = 100
+            };
+
+            await AccountLogic.AddTransactionAmount(transaction);
+
+            Assert.AreEqual(600, _sampleAccount.CurrentBalance);
+            Assert.AreEqual(600, _sampleAccount.CurrentBalanceWithoutExchange);
+
+            Assert.AreEqual(1300, _sampleAccount2.CurrentBalance);
+            Assert.AreEqual(1300, _sampleAccount2.CurrentBalanceWithoutExchange);
+        }
+
+        [TestMethod]
+        public async void RemoveSpendingTransactionAmountTest()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
+                db.Insert(_sampleAccount);
+            }
+
+            var transaction = new FinancialTransaction
+            {
+                ChargedAccount = _sampleAccount,
+                Type = (int) TransactionType.Spending
                 Currency = "CHF",
                 Amount = 100
             };
 
             await AccountLogic.RemoveTransactionAmount(transaction);
 
-            Assert.AreEqual(700, _sampleAccount.CurrentBalance);
-            Assert.AreEqual(700, _sampleAccount.CurrentBalanceWithoutExchange);
+            Assert.AreEqual(800, _sampleAccount.CurrentBalance);
+            Assert.AreEqual(800, _sampleAccount.CurrentBalanceWithoutExchange);
+        }
 
+        [TestMethod]
+        public async void RemoveSpendingTransactionAmountTest()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
+                db.Insert(_sampleAccount);
+            }
+
+            var transaction = new FinancialTransaction
+            {
+                ChargedAccount = _sampleAccount,
+                Type = (int) TransactionType.Income
+                Currency = "CHF",
+                Amount = 100
+            };
+
+            await AccountLogic.RemoveTransactionAmount(transaction);
+
+            Assert.AreEqual(600, _sampleAccount.CurrentBalance);
+            Assert.AreEqual(600, _sampleAccount.CurrentBalanceWithoutExchange);
+        }
+
+
+        [TestMethod]
+        public async void RemoveTransferTransactionAmount()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
+                db.Insert(_sampleAccount);
+                db.Insert(_sampleAccount2);
+            }
+
+            var transaction = new FinancialTransaction
+            {
+                ChargedAccount = _sampleAccount,
+                TargetAccount = _sampleAccount2,
+                Type = (int) TransactionType.Transfer
+                Currency = "CHF",
+                Amount = 100
+            };
+
+            await AccountLogic.RemoveTransactionAmount(transaction);
+
+            Assert.AreEqual(600, _sampleAccount.CurrentBalance);
+            Assert.AreEqual(600, _sampleAccount.CurrentBalanceWithoutExchange);
+
+            Assert.AreEqual(1300, _sampleAccount2.CurrentBalance);
+            Assert.AreEqual(1300, _sampleAccount2.CurrentBalanceWithoutExchange);
+        }
+
+        [TestMethod]
+        public async void AddTransactionAmountSaveToDb()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
+                db.Insert(_sampleAccount);
+            }
+
+            var transaction = new FinancialTransaction
+            {
+                ChargedAccount = _sampleAccount,
+                Type = (int) TransactionType.Income
+                Currency = "CHF",
+                Amount = 100
+            };
+
+            await AccountLogic.AddTransactionAmount(transaction);
+
+            var loadedAccount = db.Table<Account>().First(x => x.Id == _sampleAccount.Id);
+
+            Assert.AreEqual(800, loadedAccount.CurrentBalance);
+            Assert.AreEqual(800, loadedAccount.CurrentBalanceWithoutExchange);
+        }
+
+        [TestMethod]
+        public async void RemoveTransactionAmountSaveToDb()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
+                db.Insert(_sampleAccount);
+            }
+
+            var transaction = new FinancialTransaction
+            {
+                ChargedAccount = _sampleAccount,
+                Type = (int) TransactionType.Income
+                Currency = "CHF",
+                Amount = 100
+            };
+
+            await AccountLogic.RemoveTransactionAmount(transaction);
+
+            var loadedAccount = db.Table<Account>().First(x => x.Id == _sampleAccount.Id);
+
+            Assert.AreEqual(600, loadedAccount.CurrentBalance);
+            Assert.AreEqual(600, loadedAccount.CurrentBalanceWithoutExchange);
         }
     }
 }
