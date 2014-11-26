@@ -140,12 +140,12 @@ namespace MoneyManager.Business.Logic
             return baseAmount;
         }
 
-        private static void PrehandleAddIfTransfer(FinancialTransaction transaction)
+        private async static void PrehandleAddIfTransfer(FinancialTransaction transaction)
         {
             if (transaction.Type == (int) TransactionType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
-                HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
+                await HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
             }
         }
 
