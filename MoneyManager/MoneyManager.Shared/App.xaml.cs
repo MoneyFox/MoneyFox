@@ -34,7 +34,7 @@ namespace MoneyManager
         {
             BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");
 #if DEBUG
-            BugSenseHandler.Instance.HandleWhileDebugging = false;
+            //BugSenseHandler.Instance.HandleWhileDebugging = false;
             if (Debugger.IsAttached)
             {
                 DebugSettings.EnableFrameRateCounter = true;
