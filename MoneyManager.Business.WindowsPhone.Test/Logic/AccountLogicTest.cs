@@ -22,8 +22,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
-
-
+        
         [TestInitialize]
         public void TestInit()
         {
@@ -63,6 +62,31 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             Assert.AreEqual(false, accountData.SelectedAccount.IsExchangeModeActive);
 
             Assert.AreEqual(false, ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit);
+        }
+        
+        [TestMethod]
+        public void DeleteAccountTest(){
+            var transaction = new FinancialTransaction
+            {
+                ChargedAccount = _sampleAccount,
+                Type = (int) TransactionType.Income
+                Currency = "CHF",
+                Amount = 100
+            };
+
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
+                db.Insert(_sampleAccount);
+                db.Insert(transaction);
+            }
+
+            AccountLogic.DeleteAccount(_sampleAccount, true);
+
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
+                Assert.IsFalse(db.Table<Account>().Any(x => x.Id == _sampleAccount.Id));
+                Assert.IsFalse(db.Table<FinancialTransaction>().Any(x => x.ChargedAccountId == _sampleAccount.Id));
+            }
         }
 
         [TestMethod]
