@@ -25,11 +25,11 @@ namespace MoneyManager.Business.Logic
                     return new LiveConnectClient(result.Session);
                 }
             }
-            catch (LiveAuthException ex)
+            catch (LiveAuthException)
             {
                 ShowAuthExceptionMessage();
             }
-            catch (LiveConnectException ex)
+            catch (LiveConnectException)
             {
                 ShowConnectExceptionMessage();
             }

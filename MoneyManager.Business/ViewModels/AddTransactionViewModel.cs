@@ -125,11 +125,11 @@ namespace MoneyManager.Business.ViewModels
             ((Frame) Window.Current.Content).GoBack();
         }
 
-        public void Cancel()
+        public async void Cancel()
         {
             if (IsEdit)
             {
-                AccountLogic.AddTransactionAmount(SelectedTransaction);
+                await AccountLogic.AddTransactionAmount(SelectedTransaction);
             }
 
             ((Frame) Window.Current.Content).GoBack();
