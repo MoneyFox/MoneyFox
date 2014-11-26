@@ -87,6 +87,14 @@
         <Setter Property="VerticalAlignment" Value="Top" />
     </Style>
 
+    <Style x:Key="ComboBoxItemSubText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Foreground" Value="Gray" />
+        <Setter Property="FontWeight" Value="SemiLight" />
+        <Setter Property="TextAlignment" Value="left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
     <Style x:Key="MenuItemMediumSmallText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
         <Setter Property="FontSize" Value="18" />
         <Setter Property="TextAlignment" Value="left" />

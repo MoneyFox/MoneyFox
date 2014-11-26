@@ -15,8 +15,12 @@
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate">
-            <StackPanel Margin="0,0,0,12">
+            <StackPanel Margin="0,0,0,12" Orientation="Horizontal">
                 <TextBlock Text="{Binding Name}" FontSize="24" />
+                <TextBlock Text=" ( "  Style="{StaticResource ComboBoxItemSubText}"/>
+                <TextBlock Text="{Binding CurrentBalance}" Style="{StaticResource ComboBoxItemSubText}"/>
+                <TextBlock Text="{Binding Currency}" Style="{StaticResource ComboBoxItemSubText}" Margin="5,0,0,0"  FontSize="24"/>
+                <TextBlock Text=" )"  Style="{StaticResource ComboBoxItemSubText}" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
