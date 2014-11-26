@@ -16,9 +16,9 @@ namespace MoneyManager.Business.Logic
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
         }
 
-        public static async void DeleteCategory(Category category)
+        public static async void DeleteCategory(Category category, bool skipConfirmation = false)
         {
-            if (await Utilities.IsDeletionConfirmed())
+            if (await Utilities.IsDeletionConfirmed() || skipConfirmation)
             {
                 categoryData.Delete(category);
             }
