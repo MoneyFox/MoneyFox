@@ -36,7 +36,10 @@ namespace MoneyManager.DataAccess.DataAccess
         {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                AllCategories.Remove(category);
+                if (AllCategories != null)
+                {
+                    AllCategories.Remove(category);
+                }
                 dbConn.Delete(category);
             }
         }

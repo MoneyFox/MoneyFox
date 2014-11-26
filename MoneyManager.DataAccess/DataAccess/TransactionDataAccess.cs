@@ -86,11 +86,14 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date)
         {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            if (AllTransactions == null)
             {
-                return AllTransactions.Where(x => x.Cleared == false
-                                                  && x.Date.Date <= date.Date).ToList();
+                LoadList();
             }
+
+            return AllTransactions.Where(x => x.Cleared == false
+                                              && x.Date.Date <= date.Date).ToList();
+
         }
 
         public List<FinancialTransaction> LoadRecurringList()

@@ -30,6 +30,8 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
         {
             new ViewModelLocator();
 
+            DatabaseLogic.CreateDatabase();
+
             _sampleAccount = new Account
             {
                 Currency = "CHF",
@@ -68,9 +70,11 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
         
         [TestMethod]
         public void DeleteAccountTest(){
+            accountData.LoadList();
+
             var transaction = new FinancialTransaction
             {
-                ChargedAccount = _sampleAccount,
+                ChargedAccountId = _sampleAccount.Id,
                 Type = (int) TransactionType.Income,
                 Currency = "CHF",
                 Amount = 100

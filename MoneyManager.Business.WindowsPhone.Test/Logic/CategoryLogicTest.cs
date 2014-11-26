@@ -12,6 +12,8 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
     [TestInitialize]
     public void InitTest(){
       new ViewModelLocator();
+
+        DatabaseLogic.CreateDatabase();
     }
 
     [TestMethod]
@@ -32,8 +34,8 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
         db.Insert(category3);
       }
 
-      CategoryLogic.DeleteCategory(category1);
-      CategoryLogic.DeleteCategory(category3);
+      CategoryLogic.DeleteCategory(category1, true);
+      CategoryLogic.DeleteCategory(category3, true);
 
       using(var db = SqlConnectionFactory.GetSqlConnection()){
         Assert.IsFalse(db.Table<Category>().Any(x => x.Id == category1.Id));

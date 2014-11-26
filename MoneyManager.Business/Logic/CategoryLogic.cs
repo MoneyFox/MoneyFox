@@ -18,7 +18,7 @@ namespace MoneyManager.Business.Logic
 
         public static async void DeleteCategory(Category category, bool skipConfirmation = false)
         {
-            if (await Utilities.IsDeletionConfirmed() || skipConfirmation)
+            if (skipConfirmation || await Utilities.IsDeletionConfirmed())
             {
                 categoryData.Delete(category);
             }
