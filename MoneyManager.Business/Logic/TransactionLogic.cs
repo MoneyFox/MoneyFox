@@ -95,9 +95,9 @@ namespace MoneyManager.Business.Logic
             addTransactionView.SelectedTransaction = transaction;
         }
 
-        public static async Task DeleteTransaction(FinancialTransaction transaction)
+        public static async Task DeleteTransaction(FinancialTransaction transaction, bool skipConfirmation = false)
         {
-            if (await Utilities.IsDeletionConfirmed())
+            if (skipConfirmation || await Utilities.IsDeletionConfirmed())
             {
                 await CheckForRecurringTransaction(transaction,
                     () => RecurringTransactionLogic.Delete(transaction.RecurringTransaction));
