@@ -1,5 +1,6 @@
 #region
 
+using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Business.Logic;
@@ -7,6 +8,7 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation;
 
 #endregion
 
@@ -69,7 +71,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = _sampleAccount,
-                Type = (int) TransactionType.Income
+                Type = (int) TransactionType.Income,
                 Currency = "CHF",
                 Amount = 100
             };
@@ -100,7 +102,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = _sampleAccount,
-                Type = (int) TransactionType.Spending
+                Type = (int) TransactionType.Spending,
                 Currency = "CHF",
                 Amount = 100
             };
@@ -122,7 +124,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = _sampleAccount,
-                Type = (int) TransactionType.Income
+                Type = (int) TransactionType.Income,
                 Currency = "CHF",
                 Amount = 100
             };
@@ -146,7 +148,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             {
                 ChargedAccount = _sampleAccount,
                 TargetAccount = _sampleAccount2,
-                Type = (int) TransactionType.Transfer
+                Type = (int) TransactionType.Transfer,
                 Currency = "CHF",
                 Amount = 100
             };
@@ -171,7 +173,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = _sampleAccount,
-                Type = (int) TransactionType.Spending
+                Type = (int) TransactionType.Spending,
                 Currency = "CHF",
                 Amount = 100
             };
@@ -183,7 +185,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
         }
 
         [TestMethod]
-        public async void RemoveSpendingTransactionAmountTest()
+        public async void RemoveIncomeTransactionAmountTest()
         {
             using (var db = SqlConnectionFactory.GetSqlConnection())
             {
@@ -193,7 +195,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = _sampleAccount,
-                Type = (int) TransactionType.Income
+                Type = (int) TransactionType.Income,
                 Currency = "CHF",
                 Amount = 100
             };
@@ -218,7 +220,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             {
                 ChargedAccount = _sampleAccount,
                 TargetAccount = _sampleAccount2,
-                Type = (int) TransactionType.Transfer
+                Type = (int) TransactionType.Transfer,
                 Currency = "CHF",
                 Amount = 100
             };
@@ -243,17 +245,21 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = _sampleAccount,
-                Type = (int) TransactionType.Income
+                Type = (int) TransactionType.Income,
                 Currency = "CHF",
                 Amount = 100
             };
 
             await AccountLogic.AddTransactionAmount(transaction);
 
-            var loadedAccount = db.Table<Account>().First(x => x.Id == _sampleAccount.Id);
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
 
-            Assert.AreEqual(800, loadedAccount.CurrentBalance);
-            Assert.AreEqual(800, loadedAccount.CurrentBalanceWithoutExchange);
+                var loadedAccount = db.Table<Account>().First(x => x.Id == _sampleAccount.Id);
+
+                Assert.AreEqual(800, loadedAccount.CurrentBalance);
+                Assert.AreEqual(800, loadedAccount.CurrentBalanceWithoutExchange);
+            }
         }
 
         [TestMethod]
@@ -267,17 +273,20 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = _sampleAccount,
-                Type = (int) TransactionType.Income
+                Type = (int) TransactionType.Income,
                 Currency = "CHF",
                 Amount = 100
             };
 
             await AccountLogic.RemoveTransactionAmount(transaction);
 
-            var loadedAccount = db.Table<Account>().First(x => x.Id == _sampleAccount.Id);
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
+                var loadedAccount = db.Table<Account>().First(x => x.Id == _sampleAccount.Id);
 
-            Assert.AreEqual(600, loadedAccount.CurrentBalance);
-            Assert.AreEqual(600, loadedAccount.CurrentBalanceWithoutExchange);
+                Assert.AreEqual(600, loadedAccount.CurrentBalance);
+                Assert.AreEqual(600, loadedAccount.CurrentBalanceWithoutExchange);
+            }
         }
     }
 }

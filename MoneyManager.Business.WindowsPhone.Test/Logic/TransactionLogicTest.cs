@@ -1,6 +1,8 @@
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+
 namespace MoneyManager.Business.WindowsPhone.Test.Logic
 {
-  [TestMethod]
+  [TestClass]
   public class TransactionLogicTest{
     [TestInitialize]
     public void TestInit(){

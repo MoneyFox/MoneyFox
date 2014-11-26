@@ -76,6 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logic\AccountLogicTest.cs" />
+    <Compile Include="Logic\CategoryLogicTest.cs" />
+    <Compile Include="Logic\TransactionLogicTest.cs" />
     <Compile Include="Logic\TransactionTypeLogicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

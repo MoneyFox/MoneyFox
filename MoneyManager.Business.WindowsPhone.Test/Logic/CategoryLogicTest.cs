@@ -1,10 +1,16 @@
+using System.Linq;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.Business.Logic;
+using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.Model;
+
 namespace MoneyManager.Business.WindowsPhone.Test.Logic
 {
   [TestClass]
   public class CategoryLogicTest{
 
     [TestInitialize]
-    pulic void InitTest(){
+    public void InitTest(){
       new ViewModelLocator();
     }
 
