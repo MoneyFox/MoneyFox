@@ -47,8 +47,8 @@ namespace MoneyManager.Business.ViewModels
         public async void SetCurrency(string currency)
         {
             SelectedAccount.Currency = currency;
-            await LoadCurrencyRatio();
             SelectedAccount.IsExchangeModeActive = true;
+            await LoadCurrencyRatio();
             CalculateNewAmount(CurrentBalanceWithoutExchange);
         }
 
