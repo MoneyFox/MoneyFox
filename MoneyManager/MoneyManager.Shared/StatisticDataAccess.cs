@@ -6,6 +6,7 @@ using System.Linq;
 using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Model;
 
 #endregion
 
@@ -27,7 +28,6 @@ namespace MoneyManager
 
                 var itemList = new ObservableCollection<StatisticItem>();
 
-                //TODO: refactor
                 var income = new StatisticItem
                 {
                     Category = Translation.GetTranslation("IncomeLabel"),
