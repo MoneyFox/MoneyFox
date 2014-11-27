@@ -24,14 +24,18 @@ namespace MoneyManager.Business.Logic
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().AllTransactions; }
         }
         
-        private static IEnumerable<Category> AllCategories
+        private static IEnumerable<Category> allCategories
         {
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
         }
 
-        private static TransactionDataAccess TransactionData
+        private static TransactionDataAccess transactionData
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
+        private static SettingDataAccess settings
+        {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
 
         public static ObservableCollection<StatisticItem> GetMonthlyCashFlow()
@@ -48,21 +52,21 @@ namespace MoneyManager.Business.Logic
                 Category = Translation.GetTranslation("IncomeLabel"),
                 Value = transactionList.Where(x => x.Type == (int) TransactionType.Income).Sum(x => x.Amount)
             };
-            income.Label = income.Category + ": " + income.Value;
+            income.Label = income.Category + ": " + income.Value + " " + settings.DefaultCurrency;
 
             var spent = new StatisticItem
             {
                 Category = Translation.GetTranslation("SpentLabel"),
                 Value = transactionList.Where(x => x.Type == (int) TransactionType.Spending).Sum(x => x.Amount)
             };
-            spent.Label = spent.Category + ": " + spent.Value;
+            spent.Label = spent.Category + ": " + spent.Value + " " + settings.DefaultCurrency;
 
             var increased = new StatisticItem
             {
                 Category = Translation.GetTranslation("IncreasedLabel"),
                 Value = income.Value - spent.Value
             };
-            increased.Label = increased.Category + ": " + increased.Value;
+            increased.Label = increased.Category + ": " + increased.Value + " " + settings.DefaultCurrency;
 
             itemList.Add(income);
             itemList.Add(spent);
@@ -75,7 +79,7 @@ namespace MoneyManager.Business.Logic
         {
             if (allTransaction == null)
             {
-                TransactionData.LoadList();
+                transactionData.LoadList();
             }
 
             var transactionList = allTransaction
@@ -85,7 +89,7 @@ namespace MoneyManager.Business.Logic
                             && x.Type == (int) TransactionType.Spending)
                 .ToList();
 
-            var tempStatisticList = AllCategories.Select(category => new StatisticItem
+            var tempStatisticList = allCategories.Select(category => new StatisticItem
             {
                 Category = category.Name,
                 Value = transactionList
@@ -94,6 +98,7 @@ namespace MoneyManager.Business.Logic
             }).ToList();
 
             RemoveNullList(tempStatisticList);
+            SetLabel(tempStatisticList);
 
             tempStatisticList = tempStatisticList.OrderByDescending(x => x.Value).ToList();
             var statisticList = tempStatisticList.Take(6).ToList();
@@ -111,6 +116,14 @@ namespace MoneyManager.Business.Logic
             foreach (var statisticItem in nullerList)
             {
                 tempStatisticList.Remove(statisticItem);
+            }
+        }
+        
+        private static void SetLabel(IEnumerable<StatisticItem> tempStatisticList)
+        {
+            foreach (var item in tempStatisticList)
+            {
+                item.Label = item.Category + ": " + item.Value + " " + settings.DefaultCurrency;
             }
         }
 

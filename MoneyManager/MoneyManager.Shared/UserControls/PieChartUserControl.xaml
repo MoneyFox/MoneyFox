@@ -18,7 +18,7 @@
                     <chart:PropertyNameDataPointBinding PropertyName="Value"/>
                 </chart:PieSeries.ValueBinding>
                 <chart:PieSeries.LegendTitleBinding >
-                    <chart:PropertyNameDataPointBinding PropertyName="Category"/>
+                    <chart:PropertyNameDataPointBinding PropertyName="Label"/>
                 </chart:PieSeries.LegendTitleBinding>
             </chart:PieSeries>
         </chart:RadPieChart>
