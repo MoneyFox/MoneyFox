@@ -1,11 +1,14 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Business.Helper;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+using SQLite.Net;
 
 #endregion
 
@@ -17,7 +20,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
         [TestInitialize]
         public void InitTests()
         {
-            using (var db = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection())
             {
                 db.CreateTable<FinancialTransaction>();
             }
@@ -43,7 +46,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
             transactionDataAccess.Save(transaction);
 
             transactionDataAccess.LoadList();
-            var list = transactionDataAccess.AllTransactions;
+            ObservableCollection<FinancialTransaction> list = transactionDataAccess.AllTransactions;
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstAmount, list.First().Amount);
@@ -70,7 +73,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
         {
             var transactionDataAccess = new TransactionDataAccess();
 
-            var date = DateTime.Today.AddDays(-1);
+            DateTime date = DateTime.Today.AddDays(-1);
             transactionDataAccess.Save(new FinancialTransaction
             {
                 ChargedAccountId = 4,
@@ -81,11 +84,11 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
             }
                 );
 
-            var transactions = transactionDataAccess.GetUnclearedTransactions();
+            IEnumerable<FinancialTransaction> transactions = transactionDataAccess.GetUnclearedTransactions();
 
             Assert.AreEqual(1, transactions.Count());
 
-            var date2 = DateTime.Today.AddMonths(1);
+            DateTime date2 = DateTime.Today.AddMonths(1);
             transactionDataAccess.Save(new FinancialTransaction
             {
                 ChargedAccountId = 4,

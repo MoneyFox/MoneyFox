@@ -1,9 +1,11 @@
 ﻿#region
 
+using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
+using SQLite.Net;
 
 #endregion
 
@@ -15,7 +17,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
         [TestInitialize]
         public void InitTests()
         {
-            using (var db = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection())
             {
                 db.CreateTable<Account>();
             }
@@ -40,7 +42,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
             accountDataAccess.Save(account);
 
             accountDataAccess.LoadList();
-            var list = accountDataAccess.AllAccounts;
+            ObservableCollection<Account> list = accountDataAccess.AllAccounts;
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstName, list.First().Name);

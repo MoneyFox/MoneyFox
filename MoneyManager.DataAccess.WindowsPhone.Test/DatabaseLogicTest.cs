@@ -1,9 +1,10 @@
 ﻿#region
 
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.Model;
-using MoneyManager.Foundation.Model;
+using SQLite.Net;
 
 #endregion
 
@@ -17,12 +18,12 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
         {
             DatabaseLogic.CreateDatabase();
 
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
             {
-                var temp1 = dbConn.Table<Account>().ToList();
-                var temp2 = dbConn.Table<FinancialTransaction>().ToList();
-                var temp3 = dbConn.Table<RecurringTransaction>().ToList();
-                var temp4 = dbConn.Table<Category>().ToList();
+                List<Account> temp1 = dbConn.Table<Account>().ToList();
+                List<FinancialTransaction> temp2 = dbConn.Table<FinancialTransaction>().ToList();
+                List<RecurringTransaction> temp3 = dbConn.Table<RecurringTransaction>().ToList();
+                List<Category> temp4 = dbConn.Table<Category>().ToList();
             }
         }
     }

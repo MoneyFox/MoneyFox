@@ -14,7 +14,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
         [TestMethod]
         public void GetSqlConnectionWithouthParamsTest()
         {
-            var connection = SqlConnectionFactory.GetSqlConnection();
+            SQLiteConnection connection = SqlConnectionFactory.GetSqlConnection();
 
             Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
         }
@@ -22,7 +22,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test
         [TestMethod]
         public void GetSqlConnectionWithParamsTest()
         {
-            var connection = SqlConnectionFactory.GetSqlConnection(new SQLitePlatformWinRT());
+            SQLiteConnection connection = SqlConnectionFactory.GetSqlConnection(new SQLitePlatformWinRT());
 
             Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
         }
