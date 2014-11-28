@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BugSense;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
@@ -44,14 +45,21 @@ namespace MoneyManager.Business.Logic
 
         public static void RemoveRecurringForTransactions(RecurringTransaction recTrans)
         {
-            var relatedTrans =
-                transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
-
-            foreach (var transaction in relatedTrans)
+            try
             {
-                transaction.IsRecurring = false;
-                transaction.ReccuringTransactionId = null;
-                transactionData.Update(transaction);
+                var relatedTrans =
+                    transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
+
+                foreach (var transaction in relatedTrans)
+                {
+                    transaction.IsRecurring = false;
+                    transaction.ReccuringTransactionId = null;
+                    transactionData.Update(transaction);
+                }
+            }
+            catch (Exception ex)
+            {
+                BugSenseHandler.Instance.LogException(ex);
             }
         }
 
