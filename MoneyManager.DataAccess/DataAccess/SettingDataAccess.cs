@@ -3,7 +3,9 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using Windows.Globalization;
 using Windows.Storage;
 using PropertyChanged;
 
@@ -17,14 +19,13 @@ namespace MoneyManager.DataAccess.DataAccess
         private const string DefaultCurrencyKeyname = "DefaultCurrency";
         private const string DefaultAccountKeyname = "DefaultAccount";
 
-        private const string DefaultCurrencyKeydefault = "USD";
         private const int DefaultAccountKeydefault = -1;
 
         #region Properties
 
         public string DefaultCurrency
         {
-            get { return GetValueOrDefault(DefaultCurrencyKeyname, DefaultCurrencyKeydefault); }
+            get { return GetValueOrDefault(DefaultCurrencyKeyname, new GeographicRegion().CurrenciesInUse.First()); }
             set
             {
                 AddOrUpdateValue(DefaultCurrencyKeyname, value);
