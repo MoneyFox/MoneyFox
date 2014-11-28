@@ -148,8 +148,9 @@ namespace MoneyManager.Business.Logic
                     .Where(x => !statisticList.Contains(x))
                     .Sum(x => x.Value)
             };
+            othersItem.Label = othersItem.Category + ": " + othersItem.Value + " " + settings.DefaultCurrency;
 
-            if (othersItem.Value != 0)
+            if (othersItem.Value > 0)
             {
                 statisticList.Add(othersItem);
             }

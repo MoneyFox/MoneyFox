@@ -34,8 +34,7 @@
             </chart:BarSeries>
         </chart:RadCartesianChart>
 
-        <primitives:RadLegendControl LegendProvider="{Binding ElementName=CashFlowChart}" 
-                                     VerticalAlignment="Bottom">
+        <primitives:RadLegendControl LegendProvider="{Binding ElementName=CashFlowChart}" VerticalAlignment="Bottom" >
             <primitives:RadLegendControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -43,11 +42,11 @@
             </primitives:RadLegendControl.ItemsPanel>
             <primitives:RadLegendControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,-15" >
-                        <Ellipse Fill="{Binding Fill}" Stroke="{Binding Stroke}"
+                    <StackPanel Orientation="Horizontal" >
+                        <Ellipse Fill="{Binding Fill}" Stroke="{Binding Stroke}" Margin="0,0,-5,0"
                          StrokeThickness="1" Width="10" Height="10"/>
                         <TextBlock Text="{Binding Title}" Foreground="{Binding Fill}"
-                           Margin="10" FontStyle="Italic" />
+                           Margin="10" />
                     </StackPanel>
                 </DataTemplate>
             </primitives:RadLegendControl.ItemTemplate>

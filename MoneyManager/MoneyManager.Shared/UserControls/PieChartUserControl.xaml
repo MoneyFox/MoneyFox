@@ -23,7 +23,8 @@
             </chart:PieSeries>
         </chart:RadPieChart>
 
-        <primitives:RadLegendControl LegendProvider="{Binding ElementName=TransactionSpreading}" VerticalAlignment="Bottom">
+        <primitives:RadLegendControl LegendProvider="{Binding ElementName=TransactionSpreading}"
+                                     VerticalAlignment="Bottom" Margin="0">
             <primitives:RadLegendControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"/>
@@ -35,7 +36,7 @@
                         <Ellipse Fill="{Binding Fill}" Stroke="{Binding Stroke}"
                          StrokeThickness="1" Width="10" Height="10"/>
                         <TextBlock Text="{Binding Title}" Foreground="{Binding Fill}"
-                           Margin="10" FontStyle="Italic" />
+                           Margin="10" />
                     </StackPanel>
                 </DataTemplate>
             </primitives:RadLegendControl.ItemTemplate>
