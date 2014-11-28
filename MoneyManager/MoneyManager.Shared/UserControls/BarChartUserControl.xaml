@@ -13,7 +13,7 @@
     <Grid>
         <chart:RadCartesianChart PaletteName="DefaultLightSelected" 
                                  x:Name="CashFlowChart"
-                                 Margin="0,0,0,40">
+                                 Margin="0,0,0,55">
             <chart:RadCartesianChart.VerticalAxis>
                 <chart:LinearAxis LabelFitMode="Rotate" />
             </chart:RadCartesianChart.VerticalAxis>
@@ -42,7 +42,7 @@
             </primitives:RadLegendControl.ItemsPanel>
             <primitives:RadLegendControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal"  Margin="0,0,0,-20">
+                    <StackPanel Orientation="Horizontal"  Margin="0,0,0,-15">
                         <Ellipse Fill="{Binding Fill}" Stroke="{Binding Stroke}" 
                          StrokeThickness="1" Width="10" Height="10"/>
                         <TextBlock Text="{Binding Title}" Foreground="{Binding Fill}"
