@@ -37,7 +37,7 @@
                       SelectedItem="{Binding SelectedTransaction.TargetAccount, Mode=TwoWay}"
                       Visibility="{Binding IsTransfer, Converter={StaticResource BooleanVisibilityConverter}}" />
             <Grid>
-                <TextBox
+                <TextBox 
                     Text="{Binding AmountWithoutExchange, Mode=TwoWay, 
                     Converter={StaticResource AmountConverter}, UpdateSourceTrigger=PropertyChanged}"
                     Header="amount" InputScope="Number" x:Name="TextBoxAmount"

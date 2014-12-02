@@ -27,7 +27,7 @@ namespace MoneyManager.UserControls
             }
         }
 
-        public FinancialTransaction SelectedTransaction
+        private FinancialTransaction SelectedTransaction
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
         }
