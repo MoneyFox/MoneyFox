@@ -252,10 +252,10 @@
   <data name="CurrencyHeader.Header" xml:space="preserve">
     <value>Währung</value>
   </data>
-  <data name="DailyContent" xml:space="preserve">
+  <data name="DailyContent.Content" xml:space="preserve">
     <value>täglich</value>
   </data>
-  <data name="DailyWithoutWeekendContent" xml:space="preserve">
+  <data name="DailyWithoutWeekendContent.Content" xml:space="preserve">
     <value>täglich ohne Wochenende</value>
   </data>
   <data name="DateHeader.Header" xml:space="preserve">
@@ -307,7 +307,7 @@
     <value>IBAN</value>
   </data>
   <data name="Income.Text" xml:space="preserve">
-    <value>Einnahme</value>
+    <value>Einnahmen</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
     <value>Einnahme</value>
@@ -442,7 +442,7 @@
     <value>Ausgabe</value>
   </data>
   <data name="SpentLabel" xml:space="preserve">
-    <value>Ausgegeben</value>
+    <value>Ausgaben</value>
   </data>
   <data name="SpreadingContent" xml:space="preserve">
     <value>Verteilung</value>

@@ -408,10 +408,10 @@
   <data name="ChangeAllEntitiesTitle" xml:space="preserve">
     <value>Change all?</value>
   </data>
-  <data name="DailyContent" xml:space="preserve">
+  <data name="DailyContent.Content" xml:space="preserve">
     <value>daily</value>
   </data>
-  <data name="DailyWithoutWeekendContent" xml:space="preserve">
+  <data name="DailyWithoutWeekendContent.Content" xml:space="preserve">
     <value>daily without weekend</value>
   </data>
   <data name="CurrencyHeader.Header" xml:space="preserve">
