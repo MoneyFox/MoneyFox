@@ -1,8 +1,8 @@
 ﻿using System;
+using BugSense;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace MoneyManager.Views
@@ -32,9 +32,16 @@ namespace MoneyManager.Views
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            await backupView.LogInToOneDrive();
-            await backupView.LoadBackupCreationDate();
-            navigationHelper.OnNavigatedTo(e);
+            try
+            {
+                await backupView.LogInToOneDrive();
+                await backupView.LoadBackupCreationDate();
+                navigationHelper.OnNavigatedTo(e);
+            }
+            catch (Exception ex)
+            {
+                BugSenseHandler.Instance.LogException(ex);
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

@@ -21,9 +21,9 @@ namespace MoneyManager.UserControls
             get { return ServiceLocator.Current.GetInstance<BackupViewModel>(); }
         }
 
-        private void LoginToOneDrive(object sender, RoutedEventArgs e)
+        private async void LoginToOneDrive(object sender, RoutedEventArgs e)
         {
-            backupView.LogInToOneDrive();
+            await backupView.LogInToOneDrive();
         }
 
         private async void CreateBackup(object sender, RoutedEventArgs e)
