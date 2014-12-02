@@ -55,6 +55,7 @@ namespace MoneyManager.Business.Logic
 
                 dialog.ShowAsync();
             }
+            return new List<Country>();
         }
 
         public static async Task<double> GetCurrencyRatio(string currencyFrom, string currencyTo)
