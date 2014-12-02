@@ -6,7 +6,9 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using BugSense;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -26,22 +28,33 @@ namespace MoneyManager.Business.Logic
 
         public static async Task<List<Country>> GetSupportedCountries()
         {
-            var jsonString = await GetJsonFromService(COUNTRIES_SERVICE_URL);
+            try
+            {
+                var jsonString = await GetJsonFromService(COUNTRIES_SERVICE_URL);
 
-            var json = JsonConvert.DeserializeObject(jsonString) as JContainer;
+                var json = JsonConvert.DeserializeObject(jsonString) as JContainer;
 
-            return (from JProperty token in json.Children().Children().Children()
-                select new Country
-                {
-                    Abbreviation = token.Name,
-                    CurrencyID = token.Value["currencyId"].ToString(),
-                    CurrencyName = token.Value["currencyName"].ToString(),
-                    Name = token.Value["name"].ToString(),
-                    Alpha3 = token.Value["alpha3"].ToString(),
-                    ID = token.Value["id"].ToString(),
-                })
-                .OrderBy(x => x.ID)
-                .ToList();
+                return (from JProperty token in json.Children().Children().Children()
+                    select new Country
+                    {
+                        Abbreviation = token.Name,
+                        CurrencyID = token.Value["currencyId"].ToString(),
+                        CurrencyName = token.Value["currencyName"].ToString(),
+                        Name = token.Value["name"].ToString(),
+                        Alpha3 = token.Value["alpha3"].ToString(),
+                        ID = token.Value["id"].ToString(),
+                    })
+                    .OrderBy(x => x.ID)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                var dialog = new MessageDialog(Translation.GetTranslation("CheckInternetConnectionMessage"),
+                Translation.GetTranslation("CheckInternetConnectionTitle"));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
+
+                dialog.ShowAsync();
+            }
         }
 
         public static async Task<double> GetCurrencyRatio(string currencyFrom, string currencyTo)

@@ -504,4 +504,10 @@
   <data name="YesLabel" xml:space="preserve">
     <value>Ja</value>
   </data>
+  <data name="CheckInternetConnectionMessage" xml:space="preserve">
+    <value>Wir konnten den Währungsservice nicht erreichen. Bitte prüfe deine Internetverbindung und versuche es erneut.</value>
+  </data>
+  <data name="CheckInternetConnectionTitle" xml:space="preserve">
+    <value>Verbindung prüfen</value>
+  </data>
 </root>
