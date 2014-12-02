@@ -19,6 +19,7 @@ namespace MoneyManager.Business.Logic
 {
     public class StatisticLogic
     {
+        #region Properties
         private static IEnumerable<FinancialTransaction> allTransaction
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().AllTransactions; }
@@ -37,6 +38,7 @@ namespace MoneyManager.Business.Logic
         {
             get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
+        #endregion
 
         public static ObservableCollection<StatisticItem> GetMonthlyCashFlow()
         {
@@ -84,7 +86,6 @@ namespace MoneyManager.Business.Logic
 
             var transactionList = allTransaction
                 .Where(x => x.Category != null
-                            && x.Cleared
                             && x.Date.Month == DateTime.Today.Date.Month
                             && x.Type == (int) TransactionType.Spending)
                 .ToList();
