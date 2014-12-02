@@ -114,8 +114,11 @@ namespace MoneyManager.Business.Logic
         {
             if (transactionData.AllTransactions == null) return;
 
-            foreach (var transaction in
-                transactionData.AllTransactions.Where(x => x.ChargedAccountId == accountId))
+            var transactionsToDelete = transactionData.AllTransactions
+                .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
+                .ToList();
+
+            foreach (var transaction in transactionsToDelete)
             {
                 transactionData.Delete(transaction);
             }
