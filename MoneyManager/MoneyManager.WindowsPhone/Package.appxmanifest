@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="38045npadrutt.MoneyFox" Publisher="CN=456A8DD5-B6B1-4703-AC59-444B9A479C1F" Version="0.6.2.3" />
-  <mp:PhoneIdentity PhoneProductId="690937a2-333f-4453-81e9-fec2b456eb8b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="38045npadrutt.MoneyFoxBeta" Publisher="CN=456A8DD5-B6B1-4703-AC59-444B9A479C1F" Version="0.6.3.0" />
+  <mp:PhoneIdentity PhoneProductId="251c9f21-615e-490a-bf8f-0b8fede45de5" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Money Fox</DisplayName>
+    <DisplayName>Money Fox Beta</DisplayName>
     <PublisherDisplayName>Apply-Solutions</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -16,7 +16,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="MoneyManager.WindowsPhone.App">
-      <m3:VisualElements DisplayName="Money Fox" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="Money Fox for Windows   Phone 8.1" ForegroundText="light" BackgroundColor="transparent">
+      <m3:VisualElements DisplayName="Money Fox Beta" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="Money Fox for Windows   Phone 8.1" ForegroundText="light" BackgroundColor="transparent">
         <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png">
           <m3:ShowNameOnTiles>
             <m3:ShowOn Tile="square150x150Logo" />
