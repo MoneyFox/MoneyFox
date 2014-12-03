@@ -99,14 +99,13 @@ namespace MoneyManager.Business.Logic
             }).ToList();
 
             RemoveNullList(tempStatisticList);
-            SetLabel(tempStatisticList);
 
             tempStatisticList = tempStatisticList.OrderByDescending(x => x.Value).ToList();
             var statisticList = tempStatisticList.Take(6).ToList();
 
             AddOtherItem(tempStatisticList, statisticList);
 
-            IncludeSpending(statisticList, transactionList);
+            IncludeIncome(statisticList, transactionList);
 
             return new ObservableCollection<StatisticItem>(statisticList);
         }
@@ -119,16 +118,13 @@ namespace MoneyManager.Business.Logic
                 tempStatisticList.Remove(statisticItem);
             }
         }
-        
-        private static void SetLabel(IEnumerable<StatisticItem> tempStatisticList)
+
+        private static void SetLabel(StatisticItem item)
         {
-            foreach (var item in tempStatisticList)
-            {
-                item.Label = item.Category + ": " + item.Value + " " + settings.DefaultCurrency;
-            }
+            item.Label = item.Category + ": " + item.Value + " " + settings.DefaultCurrency;
         }
 
-        private static void IncludeSpending(IEnumerable<StatisticItem> statisticList, List<FinancialTransaction> transactionList)
+        private static void IncludeIncome(IEnumerable<StatisticItem> statisticList, List<FinancialTransaction> transactionList)
         {
             foreach (var statisticItem in statisticList)
             {
@@ -136,12 +132,21 @@ namespace MoneyManager.Business.Logic
                     .Where(x => x.Type == (int) TransactionType.Income)
                     .Where(x => x.Category.Name == statisticItem.Category)
                     .Sum(x => x.Amount);
+
+                SetLabel(statisticItem);
+
+                if (statisticItem.Value <= 0)
+                {
+                    statisticItem.Value = 0;
+                }
             }
         }
 
         private static void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
             ICollection<StatisticItem> statisticList)
         {
+            if (statisticList.Count <= 6) return;
+
             var othersItem = new StatisticItem
             {
                 Category = "Others",
