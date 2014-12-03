@@ -234,15 +234,6 @@
   <data name="YearlyLabel" xml:space="preserve">
     <value>yearly</value>
   </data>
-  <data name="IncomeLabel" xml:space="preserve">
-    <value>income</value>
-  </data>
-  <data name="IncreasedLabel" xml:space="preserve">
-    <value>increased</value>
-  </data>
-  <data name="SpentLabel" xml:space="preserve">
-    <value>spent</value>
-  </data>
   <data name="Balance.Header" xml:space="preserve">
     <value>balance</value>
   </data>
@@ -516,13 +507,19 @@
   <data name="MandatoryField" xml:space="preserve">
     <value>Pflichtfeld</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="CheckInternetConnectionMessage" xml:space="preserve">
     <value>We could not reach the currency service. Please check your internet connection and try again.</value>
   </data>
   <data name="CheckInternetConnectionTitle" xml:space="preserve">
     <value>Check connection</value>
+  </data>
+  <data name="ExpensesLabel" xml:space="preserve">
+    <value>expenses</value>
+  </data>
+  <data name="IncreasesLabel" xml:space="preserve">
+    <value>increases</value>
+  </data>
+  <data name="RevenuesLabel" xml:space="preserve">
+    <value>revenues</value>
   </data>
 </root>

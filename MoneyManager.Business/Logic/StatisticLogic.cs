@@ -51,21 +51,21 @@ namespace MoneyManager.Business.Logic
 
             var income = new StatisticItem
             {
-                Category = Translation.GetTranslation("IncomeLabel"),
+                Category = Translation.GetTranslation("RevenuesLabel"),
                 Value = transactionList.Where(x => x.Type == (int) TransactionType.Income).Sum(x => x.Amount)
             };
             income.Label = income.Category + ": " + income.Value + " " + settings.DefaultCurrency;
 
             var spent = new StatisticItem
             {
-                Category = Translation.GetTranslation("SpentLabel"),
+                Category = Translation.GetTranslation("ExpensesLabel"),
                 Value = transactionList.Where(x => x.Type == (int) TransactionType.Spending).Sum(x => x.Amount)
             };
             spent.Label = spent.Category + ": " + spent.Value + " " + settings.DefaultCurrency;
 
             var increased = new StatisticItem
             {
-                Category = Translation.GetTranslation("IncreasedLabel"),
+                Category = Translation.GetTranslation("IncreasesLabel"),
                 Value = income.Value - spent.Value
             };
             increased.Label = increased.Category + ": " + increased.Value + " " + settings.DefaultCurrency;

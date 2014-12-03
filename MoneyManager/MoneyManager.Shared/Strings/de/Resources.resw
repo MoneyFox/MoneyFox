@@ -309,14 +309,8 @@
   <data name="Income.Text" xml:space="preserve">
     <value>Einnahmen</value>
   </data>
-  <data name="IncomeLabel" xml:space="preserve">
-    <value>Einnahme</value>
-  </data>
   <data name="IncomeTitle" xml:space="preserve">
     <value>Einnahme</value>
-  </data>
-  <data name="IncreasedLabel" xml:space="preserve">
-    <value>Erhöhung</value>
   </data>
   <data name="Info.Text" xml:space="preserve">
     <value>Info</value>
@@ -441,9 +435,6 @@
   <data name="SpendingTitle" xml:space="preserve">
     <value>Ausgabe</value>
   </data>
-  <data name="SpentLabel" xml:space="preserve">
-    <value>Ausgaben</value>
-  </data>
   <data name="SpreadingContent" xml:space="preserve">
     <value>Verteilung</value>
   </data>
@@ -509,5 +500,14 @@
   </data>
   <data name="CheckInternetConnectionTitle" xml:space="preserve">
     <value>Verbindung prüfen</value>
+  </data>
+  <data name="ExpensesLabel" xml:space="preserve">
+    <value>Ausgaben</value>
+  </data>
+  <data name="IncreasesLabel" xml:space="preserve">
+    <value>Gewinn</value>
+  </data>
+  <data name="RevenuesLabel" xml:space="preserve">
+    <value>Einnahmen</value>
   </data>
 </root>
