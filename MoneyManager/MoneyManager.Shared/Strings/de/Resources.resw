@@ -510,4 +510,7 @@
   <data name="RevenuesLabel" xml:space="preserve">
     <value>Einnahmen</value>
   </data>
+  <data name="LanguageInformationText.Text" xml:space="preserve">
+    <value>Bitte überprüfe das die Regioneinstellungen in den Einstellungen deines Telefons mit diesen Einstellungen übereinstimmen. Das vermeidet Probleme dem Regionalformat.</value>
+  </data>
 </root>

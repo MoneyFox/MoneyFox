@@ -16,6 +16,7 @@
             <TextBox Header="currency" x:Uid="CurrencyHeader"
                      Text="{Binding DefaultCurrency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      GotFocus="OpenSelectCurrencyDialog" IsReadOnly="True" />
+            <TextBlock x:Uid="LanguageInformationText" Text="RegionalInformation" Style="{StaticResource DeemphasizedText}" />
         </StackPanel>
     </Grid>
 </UserControl>
