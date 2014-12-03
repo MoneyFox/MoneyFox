@@ -145,7 +145,7 @@ namespace MoneyManager.Business.Logic
         private static void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
             ICollection<StatisticItem> statisticList)
         {
-            if (statisticList.Count <= 6) return;
+            if (statisticList.Count < 6) return;
 
             var othersItem = new StatisticItem
             {
