@@ -124,7 +124,7 @@ namespace MoneyManager.Business.Logic
             }
         }
 
-        public static async void UpdateTransaction(FinancialTransaction transaction)
+        public static async Task UpdateTransaction(FinancialTransaction transaction)
         {
             CheckIfRecurringWasRemoved(transaction);
             await AccountLogic.AddTransactionAmount(transaction);
@@ -183,12 +183,12 @@ namespace MoneyManager.Business.Logic
 
         private static void SetDefaultAccount()
         {
-            if (accountDataAccess.AllAccounts.Any())
+            if (accountDataAccess.AllAccounts != null && accountDataAccess.AllAccounts.Any())
             {
                 selectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First();
             }
 
-            if (accountDataAccess.AllAccounts.Any() && settings.DefaultAccount != -1)
+            if (accountDataAccess.AllAccounts != null && accountDataAccess.AllAccounts.Any() && settings.DefaultAccount != -1)
             {
                 selectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First(x => x.Id == settings.DefaultAccount);
             }
