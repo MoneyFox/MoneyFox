@@ -351,7 +351,7 @@
   <data name="RemoveTransferTile.Content" xml:space="preserve">
     <value>remove transfer tile</value>
   </data>
-  <data name="ApplicationNameTitle.Title" xml:space="preserve">
+  <data name="ApplicationNameTitle.Header" xml:space="preserve">
     <value>Money Fox</value>
   </data>
   <data name="NameRequiredMessage" xml:space="preserve">

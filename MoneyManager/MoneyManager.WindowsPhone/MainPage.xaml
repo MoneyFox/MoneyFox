@@ -41,23 +41,28 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <Pivot Title="MoneyTracker" x:Uid="ApplicationNameTitle">
-                <PivotItem x:Uid="AccountsMenu" Header="overview">
-                    <Grid>
+
+            <Hub x:Uid="ApplicationNameTitle" Header="Money Fox">
+                <HubSection x:Uid="AccountsMenu" Header="overview" >
+                    <DataTemplate>
                         <userControls:AccountListUserControl />
-                    </Grid>
-                </PivotItem>
-                <PivotItem x:Uid="CashFlowHeader" Header="cash flow">
-                    <Grid>
+                    </DataTemplate>
+                </HubSection>
+                <HubSection x:Uid="CashFlowHeader" Header="cash flow" >
+                    <DataTemplate>
                         <userControls:BarChartUserControl />
-                    </Grid>
-                </PivotItem>                
-                <PivotItem x:Uid="SpreadingHeader" Header="spreading">
-                    <Grid>
+                    </DataTemplate>
+                </HubSection>
+
+
+                <HubSection x:Uid="SpreadingHeader" Header="spreading" >
+                    <DataTemplate>
                         <userControls:PieChartUserControl />
-                    </Grid>
-                </PivotItem>
-            </Pivot>
+                    </DataTemplate>
+                </HubSection>
+
+
+            </Hub>
         </Grid>
     </Grid>
 </Page>
