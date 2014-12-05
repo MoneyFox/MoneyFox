@@ -59,12 +59,13 @@
                         <userControls:AccountListUserControl />
                     </DataTemplate>
                 </HubSection>
+                
                 <HubSection x:Uid="CashFlowHeader" Header="cash flow" HeaderTemplate="{StaticResource HubSectionHeaderTemplate}" >
                     <DataTemplate>
                         <userControls:BarChartUserControl />
                     </DataTemplate>
                 </HubSection>
-
+                
                 <HubSection x:Uid="SpreadingHeader" Header="spreading" HeaderTemplate="{StaticResource HubSectionHeaderTemplate}">
                     <DataTemplate>
                         <userControls:PieChartUserControl />

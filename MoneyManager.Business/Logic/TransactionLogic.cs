@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using BugSense;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
@@ -201,10 +202,17 @@ namespace MoneyManager.Business.Logic
 
         public async static Task ClearTransactions()
         {
-            var transactions = transactionData.GetUnclearedTransactions();
-            foreach (var transaction in transactions)
+            try
             {
-                await AccountLogic.AddTransactionAmount(transaction);
+                var transactions = transactionData.GetUnclearedTransactions();
+                foreach (var transaction in transactions)
+                {
+                    await AccountLogic.AddTransactionAmount(transaction);
+                }
+            }
+            catch (Exception ex)
+            {
+                BugSenseHandler.Instance.LogException(ex);
             }
         }
     }

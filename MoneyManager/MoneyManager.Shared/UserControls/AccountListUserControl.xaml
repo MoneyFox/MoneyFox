@@ -41,8 +41,14 @@
     </UserControl.Resources>
 
     <Grid>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
         <userControls:BalanceUserControl />
-        <ListView ItemsSource="{Binding AllAccounts}"
+        <ListView Grid.Column="0" ItemsSource="{Binding AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
                   HorizontalAlignment="Stretch" x:Name="AccountList"
                   SelectionChanged="NavigateToTransactionList" Margin="0,30,0,0">

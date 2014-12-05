@@ -11,6 +11,12 @@
     DataContext="{Binding StatisticView, Source={StaticResource Locator}}">
 
     <Grid>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
         <chart:RadCartesianChart PaletteName="DefaultLightSelected" 
                                  x:Name="CashFlowChart"
                                  Margin="0,0,0,55">
