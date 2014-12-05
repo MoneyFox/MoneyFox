@@ -32,12 +32,6 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
-    
-    <Page.Resources>
-        <DataTemplate x:Key="HubSectionHeaderTemplate">
-            <TextBlock Margin="0,0,0,-9.5" Text="{Binding}"/>
-        </DataTemplate>
-    </Page.Resources>
 
     <Grid>
         <Grid.ChildrenTransitions>
@@ -46,32 +40,25 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="1" Margin="19,9.5,19,0">
-
-            <Hub x:Uid="ApplicationNameTitle" Header="Money Fox">
-                <HubSection x:Uid="AccountsMenu" Header="overview" HeaderTemplate="{StaticResource HubSectionHeaderTemplate}" >
-                    <DataTemplate>
-                        <userControls:AccountListUserControl />
-                    </DataTemplate>
-                </HubSection>
+        <Hub x:Uid="ApplicationNameTitle" Header="Money Fox">
+            <HubSection x:Uid="AccountsMenu" Header="overview" >
+                <DataTemplate>
+                    <userControls:AccountListUserControl />
+                </DataTemplate>
+            </HubSection>
                 
-                <HubSection x:Uid="CashFlowHeader" Header="cash flow" HeaderTemplate="{StaticResource HubSectionHeaderTemplate}" >
-                    <DataTemplate>
-                        <userControls:BarChartUserControl />
-                    </DataTemplate>
-                </HubSection>
+            <HubSection x:Uid="CashFlowHeader" Header="cash flow" >
+                <DataTemplate>
+                    <userControls:BarChartUserControl />
+                </DataTemplate>
+            </HubSection>
                 
-                <HubSection x:Uid="SpreadingHeader" Header="spreading" HeaderTemplate="{StaticResource HubSectionHeaderTemplate}">
-                    <DataTemplate>
-                        <userControls:PieChartUserControl />
-                    </DataTemplate>
-                </HubSection>
-            </Hub>
-        </Grid>
+            <HubSection x:Uid="SpreadingHeader" Header="spreading" >
+                <DataTemplate>
+                    <userControls:PieChartUserControl />
+                </DataTemplate>
+            </HubSection>
+        </Hub>
+
     </Grid>
 </Page>
