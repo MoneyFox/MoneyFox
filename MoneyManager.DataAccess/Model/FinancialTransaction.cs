@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Foundation;
 using PropertyChanged;
 using SQLite.Net.Attributes;
 
@@ -111,6 +112,12 @@ namespace MoneyManager.DataAccess.Model
         public bool ClearTransactionNow
         {
             get { return Date.Date <= DateTime.Now.Date; }
+        }
+
+        [Ignore]
+        public bool IsTransfer
+        {
+            get { return Type == (int) TransactionType.Transfer; }
         }
     }
 }

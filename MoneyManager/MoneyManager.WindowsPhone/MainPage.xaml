@@ -18,12 +18,16 @@
         </TransitionCollection>
     </Page.Transitions>
 
-   <Page.BottomAppBar>
+    <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="add" x:Uid="AddIncomeLabel" Label="add income" Click="AddIncomeClick" />
                 <AppBarButton Icon="remove" x:Uid="AddSpendingLabel" Label="add spending" Click="AddSpendingClick" />
-                <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Icon="Remote" Click="AddTransferClick" />
+                <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Click="AddTransferClick" >
+                    <AppBarButton.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Images/dark/transfer.png" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccountClick" />
