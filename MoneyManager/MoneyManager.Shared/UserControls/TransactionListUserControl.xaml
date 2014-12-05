@@ -50,12 +50,15 @@
                 <Grid>
                     <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Category.Name}"
                                Margin="12,0,0,10" />
-                    <Grid HorizontalAlignment="Right"
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal"
                           Visibility="{Binding IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Image
                             Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
+                            DataContext="/Images/{0}/transfer.png" Width="30" Height="30" />
+                        <Image
+                            Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
                             DataContext="/Images/{0}/repeat.png" Width="30" Height="30" />
-                    </Grid>
+                    </StackPanel>
                 </Grid>
             </StackPanel>
         </DataTemplate>

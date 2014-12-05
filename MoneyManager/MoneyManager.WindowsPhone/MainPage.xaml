@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:MoneyManager.UserControls"
+    xmlns:converter="using:MoneyManager.Converter"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -18,12 +19,17 @@
         </TransitionCollection>
     </Page.Transitions>
 
-    <Page.BottomAppBar>
+    <UserControl.Resources>
+        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
+    </UserControl.Resources>
+
+
+   <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="add" x:Uid="AddIncomeLabel" Label="add income" Click="AddIncomeClick" />
                 <AppBarButton Icon="remove" x:Uid="AddSpendingLabel" Label="add spending" Click="AddSpendingClick" />
-                <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Icon="Remote" Click="AddTransferClick" />
+                <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Icon="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}" Click="AddTransferClick" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccountClick" />
