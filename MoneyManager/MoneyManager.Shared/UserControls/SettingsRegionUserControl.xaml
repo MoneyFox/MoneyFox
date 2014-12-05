@@ -11,12 +11,13 @@
 
     <Grid>
         <StackPanel>
+            <TextBlock x:Uid="LanguageInformationText" Text="RegionalInformation"
+                       Style="{StaticResource DeemphasizedText}" Margin="0,0,0,12" />
             <ComboBox ItemsSource="{Binding LanguageList}" Header="language" x:Uid="LanguageHeader"
                       SelectedValue="{Binding SelectedValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox Header="currency" x:Uid="CurrencyHeader"
                      Text="{Binding DefaultCurrency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      GotFocus="OpenSelectCurrencyDialog" IsReadOnly="True" />
-            <TextBlock x:Uid="LanguageInformationText" Text="RegionalInformation" Style="{StaticResource DeemphasizedText}" />
         </StackPanel>
     </Grid>
 </UserControl>

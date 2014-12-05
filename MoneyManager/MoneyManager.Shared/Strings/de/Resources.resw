@@ -511,6 +511,6 @@
     <value>Einnahmen</value>
   </data>
   <data name="LanguageInformationText.Text" xml:space="preserve">
-    <value>Bitte überprüfe das die Regioneinstellungen in den Einstellungen deines Telefons mit diesen Einstellungen übereinstimmen. Das vermeidet Probleme dem Regionalformat.</value>
+    <value>Bitte überprüfe das die Regioneinstellungen in den Einstellungen deines Telefons mit diesen Einstellungen übereinstimmen. Das vermeidet Probleme dem Regionalformat. Möglicherweise müssen Sie ein Sprachupdate herunterladen.</value>
   </data>
 </root>
