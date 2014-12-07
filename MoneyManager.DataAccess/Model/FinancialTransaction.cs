@@ -29,6 +29,11 @@ namespace MoneyManager.DataAccess.Model
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
         }
 
+        private AccountDataAccess accountData
+        {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+        }
+
         private IEnumerable<RecurringTransaction> allRecurringTransactions
         {
             get
@@ -73,14 +78,28 @@ namespace MoneyManager.DataAccess.Model
         [Ignore]
         public Account ChargedAccount
         {
-            get { return allAccounts.FirstOrDefault(x => x.Id == ChargedAccountId); }
+            get
+            {
+                if (allAccounts == null)
+                {
+                    accountData.LoadList();
+                }
+                return allAccounts.FirstOrDefault(x => x.Id == ChargedAccountId);
+            }
             set { ChargedAccountId = value.Id; }
         }
 
         [Ignore]
         public Account TargetAccount
         {
-            get { return allAccounts.FirstOrDefault(x => x.Id == TargetAccountId); }
+            get
+            {
+                if (allAccounts == null)
+                {
+                    accountData.LoadList();
+                }
+                return allAccounts.FirstOrDefault(x => x.Id == TargetAccountId);
+            }
             set { TargetAccountId = value.Id; }
         }
 
