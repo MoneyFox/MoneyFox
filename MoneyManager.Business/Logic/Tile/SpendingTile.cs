@@ -13,7 +13,7 @@ namespace MoneyManager.Business.Logic.Tile
     {
         public const string Id = "AddSpendingTile";
 
-        public new bool Exists
+        public bool Exists
         {
             get { return Exists(Id); }
         }

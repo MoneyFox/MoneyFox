@@ -63,7 +63,7 @@
             <Button Content="remove transfer tile" x:Uid="RemoveTransferTile"
                     VerticalAlignment="Center"
                     Click="RemoveTransferTile" x:Name="ButtonRemoveTransferTile"
-                    Visibility="{Binding SpendingTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Visibility="{Binding TransferTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Margin="40,0,0,0" Width="200" />
         </StackPanel>
     </StackPanel>
