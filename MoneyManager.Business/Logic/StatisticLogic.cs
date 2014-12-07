@@ -34,6 +34,12 @@ namespace MoneyManager.Business.Logic
         {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
+
+        private static CategoryDataAccess cateogryData
+        {
+            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
+        }
+
         private static SettingDataAccess settings
         {
             get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
@@ -82,6 +88,11 @@ namespace MoneyManager.Business.Logic
             if (allTransaction == null)
             {
                 transactionData.LoadList();
+            }
+
+            if (allCategories == null)
+            {
+                cateogryData.LoadList();
             }
 
             var transactionList = allTransaction
