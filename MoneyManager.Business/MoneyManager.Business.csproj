@@ -102,6 +102,10 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PropertyChanged">
+      <HintPath>..\packages\PropertyChanged.Fody.1.48.6\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="QKit">
       <HintPath>..\packages\QKit.0.4.1\lib\wpa81\QKit.dll</HintPath>
     </Reference>
