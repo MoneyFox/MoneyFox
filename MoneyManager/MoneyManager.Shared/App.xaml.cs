@@ -10,8 +10,10 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using BugSense;
 using BugSense.Model;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess;
+using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Tasks.TransactionsWp;
 
 #endregion
