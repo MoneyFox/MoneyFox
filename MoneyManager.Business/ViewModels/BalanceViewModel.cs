@@ -88,9 +88,26 @@ namespace MoneyManager.Business.ViewModels
                     case (int) TransactionType.Income:
                         balance += transaction.Amount;
                         break;
+                        
+                    case (int) TransactionType.Transfer:
+                        balance = HandleTransferAmount(transaction, balance);
+                        break;
                 }
             }
 
+            return balance;
+        }
+
+        private double HandleTransferAmount(FinancialTransaction transaction, double balance)
+        {
+            if (selectedAccount == transaction.ChargedAccount)
+            {
+                balance -= transaction.Amount;
+            }
+            else
+            {
+                balance += transaction.Amount;
+            }
             return balance;
         }
 
