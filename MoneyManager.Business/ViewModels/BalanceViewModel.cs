@@ -100,7 +100,7 @@ namespace MoneyManager.Business.ViewModels
                 TransactionData.GetUnclearedTransactions(Utilities.GetEndOfMonth());
 
             return IsTransactionView
-                ? unclearedTransactions.Where(x => x.ChargedAccount == selectedAccount)
+                ? unclearedTransactions.Where(x => x.ChargedAccount == selectedAccount || x.TargetAccount == selectedAccount).ToList()
                 : unclearedTransactions;
         }
     }

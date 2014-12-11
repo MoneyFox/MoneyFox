@@ -71,6 +71,9 @@
   </PropertyGroup>
   <ItemGroup>
     <!--A reference to the entire .Net Framework and Windows SDK are automatically included-->
+    <SDKReference Include="Microsoft.VCLibs, version=12.0">
+      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
+    </SDKReference>
     <SDKReference Include="MSTestFramework, Version=12.0" />
     <SDKReference Include="TestPlatform, Version=12.0" />
   </ItemGroup>
