@@ -4,26 +4,36 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:MoneyManager.Converter"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    
-    <Grid>
-        <ScrollViewer HorizontalAlignment="Left" Margin="12,0,12,0" Grid.Row="1">
+
+    <UserControl.Resources>
+        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
+    </UserControl.Resources>
+
+
+            <Grid>
+        <ScrollViewer HorizontalAlignment="Left" Margin="12,0,12,0" >
             <ItemsControl x:Name="Plugin">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                 <Image Margin="4" DataContext="{Binding imgLink}"
-                                            Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}" MaxWidth="200" MaxHeight="200" Width="200" Height="200" />
+                                       Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}" 
+                                       MaxWidth="200" MaxHeight="200" Width="200" Height="200" />
                                 <StackPanel Margin="0,30,0,0">
-                                    <TextBlock Text="{Binding Name}" Style="{StaticResource PhoneTextNormalStyle}" />
-                                    <TextBlock Text="{Binding Status}" Style="{StaticResource PhoneTextNormalStyle}" />
-                                    <Button Content="Buy Now" Visibility="{Binding BuyNowButtonVisible}" Click="ButtonBuyNow_Clicked" Tag="{Binding key}" />
+                                    <TextBlock Text="{Binding Name}" />
+                                    <TextBlock Text="{Binding Status}" />
+                                    <Button Content="Buy Now" Visibility="{Binding BuyNowButtonVisible}" 
+                                            Click="ButtonBuyNow_Clicked" Tag="{Binding key}" />
                                 </StackPanel>
                             </StackPanel>
-                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Style="{StaticResource PhoneTextSmallStyle}" Margin="0" FontFamily="Segoe WP Light" />
+                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" 
+                                       Style="{StaticResource MenuItemSubSmallText}" 
+                                       Margin="0" FontFamily="Segoe WP Light" />
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
