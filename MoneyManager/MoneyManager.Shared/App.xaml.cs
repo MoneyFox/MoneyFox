@@ -35,6 +35,7 @@ namespace MoneyManager
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
             BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");
+            await LicenseHelper.CheckLicenceFeaturepack();
 #if DEBUG
             BugSenseHandler.Instance.HandleWhileDebugging = false;
             if (Debugger.IsAttached)
@@ -51,10 +52,7 @@ namespace MoneyManager
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
-
-                // TODO: change this value to a cache size that is appropriate for your application
-                rootFrame.CacheSize = 1;
+                rootFrame = new Frame {CacheSize = 1};
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

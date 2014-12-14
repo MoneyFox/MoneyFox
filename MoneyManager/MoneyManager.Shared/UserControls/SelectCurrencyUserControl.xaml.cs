@@ -1,8 +1,14 @@
 ﻿#region
 
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
+using MoneyManager.Foundation;
+using MoneyManager.Views;
 
 #endregion
 
@@ -17,7 +23,28 @@ namespace MoneyManager.UserControls
 
         private async void LoadCountries(object sender, RoutedEventArgs e)
         {
-            await ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().LoadCountries();
+            if (LicenseHelper.IsFeaturepackLicensed)
+            {
+                await ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().LoadCountries();
+            }
+            else
+            {
+                var dialog = new MessageDialog(Translation.GetTranslation("FeatureNotLicensedMessage"),
+                    Translation.GetTranslation("FeatureNotLicensedTitle"));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("PurchaseLabel"), GoToPurchase));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("BackLabel"), NavigateBack));
+                dialog.ShowAsync();
+            }
+        }
+
+        private void GoToPurchase(IUICommand command)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(LicenseView));
+        }
+
+        private void NavigateBack(IUICommand command)
+        {
+            ((Frame)Window.Current.Content).GoBack();
         }
     }
 }

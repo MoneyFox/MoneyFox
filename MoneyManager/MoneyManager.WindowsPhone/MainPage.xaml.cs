@@ -67,6 +67,11 @@ namespace MoneyManager
             ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
+        private void LicenseClick(object sender, RoutedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(LicenseView));
+        }
+
         #region NavigationHelper registration
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -81,9 +86,5 @@ namespace MoneyManager
 
         #endregion NavigationHelper registration
 
-        private void LicenseClick(object sender, RoutedEventArgs e)
-        {
-            ((Frame)Window.Current.Content).Navigate(typeof(LicenseView));
-        }
     }
 }
