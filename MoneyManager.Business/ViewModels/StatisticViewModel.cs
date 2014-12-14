@@ -14,14 +14,34 @@ namespace MoneyManager.Business.ViewModels
     [ImplementPropertyChanged]
     public class StatisticViewModel : ViewModelBase
     {
+        private ObservableCollection<StatisticItem> _monthlyCashFlow;
         public ObservableCollection<StatisticItem> MonthlyCashFlow
         {
-            get { return StatisticLogic.GetMonthlyCashFlow(); }
+            get
+            {
+                _monthlyCashFlow = StatisticLogic.GetMonthlyCashFlow();
+                return _monthlyCashFlow;
+            }
+            set
+            {
+                if (value == null) return;
+                _monthlyCashFlow = value;
+            }
         }
 
+        private ObservableCollection<StatisticItem> _monthlySpreading;
         public ObservableCollection<StatisticItem> MonthlySpreading
         {
-            get { return StatisticLogic.GetSpreading(); }
+            get
+            {
+                _monthlySpreading = StatisticLogic.GetSpreading();
+                return _monthlySpreading;
+            }
+            set
+            {
+                if (value == null) return;
+                _monthlySpreading = value;
+            }
         }
     }
 }

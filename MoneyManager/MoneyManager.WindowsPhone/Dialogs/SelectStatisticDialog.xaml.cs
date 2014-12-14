@@ -12,7 +12,7 @@ namespace MoneyManager.Dialogs
 
         private void LoadStatistic(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

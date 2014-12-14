@@ -552,4 +552,22 @@
   <data name="PurchasedFailedTitle" xml:space="preserve">
     <value>Purchase failed</value>
   </data>
+  <data name="Filter" xml:space="preserve">
+    <value>filter</value>
+  </data>
+  <data name="SelectStatisticText.Text" xml:space="preserve">
+    <value>select statistic</value>
+  </data>
+  <data name="StatisticLabel.Label" xml:space="preserve">
+    <value>statistic</value>
+  </data>
+  <data name="StatisticText.Text" xml:space="preserve">
+    <value>statistic</value>
+  </data>
+  <data name="ApplicationNameHeader.Header" xml:space="preserve">
+    <value>Money Fox</value>
+  </data>
+  <data name="StatistikTitle.Title" xml:space="preserve">
+    <value>statistic</value>
+  </data>
 </root>

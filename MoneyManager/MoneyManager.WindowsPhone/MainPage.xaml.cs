@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using System.Linq;
 using Windows.Globalization;
 using Windows.UI.Xaml;
@@ -7,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Common;
+using MoneyManager.Dialogs;
 using MoneyManager.Foundation;
 using MoneyManager.Views;
 
@@ -67,6 +69,11 @@ namespace MoneyManager
             ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
+        private async void OpenStatisticClick(object sender, RoutedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(StatisticView));
+        }
+
         private void LicenseClick(object sender, RoutedEventArgs e)
         {
             ((Frame)Window.Current.Content).Navigate(typeof(LicenseView));
@@ -85,6 +92,5 @@ namespace MoneyManager
         }
 
         #endregion NavigationHelper registration
-
     }
 }

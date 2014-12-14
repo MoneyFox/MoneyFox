@@ -29,8 +29,14 @@
                     </AppBarButton.Icon>
                 </AppBarButton>
             </CommandBar.PrimaryCommands>
+            
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccountClick" />
+                <AppBarButton x:Uid="StatisticLabel" Label="statistic" Click="OpenStatisticClick" >
+                    <AppBarButton.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Images/dark/unlock.png" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
                 <AppBarButton x:Uid="LicenseLabel" Label="License" Click="LicenseClick" >
                     <AppBarButton.Icon>
                         <BitmapIcon UriSource="ms-appx:///Images/dark/unlock.png" />
@@ -49,7 +55,7 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <Hub x:Uid="ApplicationNameTitle" Header="Money Fox">
+        <Hub x:Uid="ApplicationNameHeader" Header="Money Fox">
             <HubSection x:Uid="AccountsMenu" Header="overview" >
                 <DataTemplate>
                     <userControls:AccountListUserControl />

@@ -540,4 +540,22 @@
   <data name="PurchasedFailedTitle" xml:space="preserve">
     <value>Kauf fehlgeschlagen</value>
   </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="SelectStatisticText.Text" xml:space="preserve">
+    <value>Statistik wählen</value>
+  </data>
+  <data name="StatisticLabel.Label" xml:space="preserve">
+    <value>Statistik</value>
+  </data>
+  <data name="StatisticText.Text" xml:space="preserve">
+    <value>Statistik</value>
+  </data>
+  <data name="ApplicationNameHeader.Header" xml:space="preserve">
+    <value>Money Fox</value>
+  </data>
+  <data name="StatistikTitle.Title" xml:space="preserve">
+    <value>Statistik</value>
+  </data>
 </root>

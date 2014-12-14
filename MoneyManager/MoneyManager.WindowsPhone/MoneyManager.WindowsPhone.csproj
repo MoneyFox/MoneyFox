@@ -136,6 +136,9 @@
     <Compile Include="Views\SettingsTiles.xaml.cs">
       <DependentUpon>SettingsTiles.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StatisticView.xaml.cs">
+      <DependentUpon>StatisticView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TransactionList.xaml.cs">
       <DependentUpon>TransactionList.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,8 @@
     <Content Include="Assets\WideLogo.scale-240.png" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="Images\applyLogo.png" />
+    <Content Include="Images\dark\filter.png" />
+    <Content Include="Images\dark\statistic.png" />
     <Content Include="Images\dark\transfer.png" />
     <Content Include="Images\dark\close.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -175,6 +180,8 @@
     <Content Include="Images\incomeTileIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\light\filter.png" />
+    <Content Include="Images\light\statistic.png" />
     <Content Include="Images\light\transfer.png" />
     <Content Include="Images\light\close.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -259,6 +266,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SettingsTiles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StatisticView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
