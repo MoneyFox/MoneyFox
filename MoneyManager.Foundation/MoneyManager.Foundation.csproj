@@ -48,6 +48,7 @@
     <Compile Include="AbstractDataAccess.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\ProductItem.cs" />
     <Compile Include="Model\StatisticItem.cs" />
     <Compile Include="OperationContracts\IDataAccess.cs" />
     <Compile Include="OperationContracts\ISecondTile.cs" />

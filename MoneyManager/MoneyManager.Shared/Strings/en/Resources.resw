@@ -525,4 +525,19 @@
   <data name="LanguageInformationText.Text" xml:space="preserve">
     <value>Please check your region information in the settings of your phone to match these settings. This can avoid problems with the regional formats. Probably you have to download a language update.</value>
   </data>
+  <data name="PurchasedLabel" xml:space="preserve">
+    <value>purchased</value>
+  </data>
+  <data name="ProductNotFoundMessage" xml:space="preserve">
+    <value>We couldn't find that product.</value>
+  </data>
+  <data name="ProductNotFoundTitle" xml:space="preserve">
+    <value>Product not found</value>
+  </data>
+  <data name="PurchasedFailedMessage" xml:space="preserve">
+    <value>The purchase failed. Please try again later. If this error still occurs please contact us.</value>
+  </data>
+  <data name="PurchasedFailedTitle" xml:space="preserve">
+    <value>Purchase failed</value>
+  </data>
 </root>
