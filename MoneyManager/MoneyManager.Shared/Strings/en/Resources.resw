@@ -528,11 +528,23 @@
   <data name="PurchasedLabel" xml:space="preserve">
     <value>purchased</value>
   </data>
+  <data name="LicenseLabel.Label" xml:space="preserve">
+    <value>license</value>
+  </data>
+  <data name="LicenseText.Text" xml:space="preserve">
+    <value>license</value>
+  </data>
   <data name="ProductNotFoundMessage" xml:space="preserve">
     <value>We couldn't find that product.</value>
   </data>
   <data name="ProductNotFoundTitle" xml:space="preserve">
     <value>Product not found</value>
+  </data>
+  <data name="PurchasedCompletedMessage" xml:space="preserve">
+    <value>Your purchase is completed. Thanks for supporting us!</value>
+  </data>
+  <data name="PurchasedCompletedTitle" xml:space="preserve">
+    <value>Completed</value>
   </data>
   <data name="PurchasedFailedMessage" xml:space="preserve">
     <value>The purchase failed. Please try again later. If this error still occurs please contact us.</value>

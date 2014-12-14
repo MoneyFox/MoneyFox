@@ -80,5 +80,10 @@ namespace MoneyManager
         }
 
         #endregion NavigationHelper registration
+
+        private void LicenseClick(object sender, RoutedEventArgs e)
+        {
+            ((Frame)Window.Current.Content).Navigate(typeof(LicenseView));
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Store;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -38,7 +39,7 @@ namespace MoneyManager.UserControls
                     picItems.Add(
                         new ProductItem
                         {
-                            imgLink = key.Equals("10001") ? "/Images/{0}/UnlockFeatures.png" : "/Images/add.png.png",
+                            imgLink = key.Equals("10001") ? "/Images/{0}/unlock.png" : "/Assets/Logo.scale-240.png",
                             Name = pListing.Name,
                             Status = status,
                             Key = key,
@@ -52,10 +53,7 @@ namespace MoneyManager.UserControls
             }
             catch (Exception ex)
             {
-                var dialog = new MessageDialog(Translation.GetTranslation("ProductNotFoundMessage"),
-                    Translation.GetTranslation("ProductNotFoundTitle"));
-                dialog.Commands.Add(new UICommand(Translation.GetTranslation("Ok")));
-
+                ShowProductNotFoundDialog();
                 BugSenseHandler.Instance.LogException(ex);
             }
         }
@@ -75,13 +73,17 @@ namespace MoneyManager.UserControls
                     ProductListing productListing;
                     if (!products.ProductListings.TryGetValue(LicenseHelper.FeaturepackProductKey, out productListing))
                     {
-                        var dialog = new MessageDialog(Translation.GetTranslation("ProductNotFoundMessage"),
-                            Translation.GetTranslation("ProductNotFoundTitle"));
-                        dialog.Commands.Add(new UICommand(Translation.GetTranslation("Ok")));
+                        await ShowProductNotFoundDialog();
                         return;
                     }
 
                     await CurrentApp.RequestProductPurchaseAsync(productListing.ProductId);
+
+                    var dialog = new MessageDialog(Translation.GetTranslation("PurchasedCompletedMessage"),
+                        Translation.GetTranslation("PurchasedCompletedTitle"));
+                    dialog.Commands.Add(new UICommand(Translation.GetTranslation("Ok")));
+                    dialog.ShowAsync();
+
                 }
             }
             catch (Exception ex)
@@ -91,6 +93,7 @@ namespace MoneyManager.UserControls
                     var dialog = new MessageDialog(Translation.GetTranslation("PurchasedFailedMessage"),
                         Translation.GetTranslation("PurchasedFailedTitle"));
                     dialog.Commands.Add(new UICommand(Translation.GetTranslation("Ok")));
+                    dialog.ShowAsync();
                 }
                 else
                 {
@@ -99,5 +102,12 @@ namespace MoneyManager.UserControls
             }
         }
 
+        private static async Task ShowProductNotFoundDialog()
+        {
+            var dialog = new MessageDialog(Translation.GetTranslation("ProductNotFoundMessage"),
+                Translation.GetTranslation("ProductNotFoundTitle"));
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("Ok")));
+            await dialog.ShowAsync();
+        }
     }
 }

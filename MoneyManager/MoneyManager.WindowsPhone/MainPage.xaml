@@ -31,6 +31,11 @@
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccountClick" />
+                <AppBarButton x:Uid="LicenseLabel" Label="License" Click="LicenseClick" >
+                    <AppBarButton.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Images/dark/unlock.png" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
                 <AppBarButton x:Uid="Settings" Label="settings" Click="SettingsClick" />
                 <AppBarButton x:Uid="AboutLabel" Label="about" Click="GoToAbout" />
             </CommandBar.SecondaryCommands>
