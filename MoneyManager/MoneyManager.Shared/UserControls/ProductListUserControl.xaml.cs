@@ -81,7 +81,7 @@ namespace MoneyManager.UserControls
 
                     var dialog = new MessageDialog(Translation.GetTranslation("PurchasedCompletedMessage"),
                         Translation.GetTranslation("PurchasedCompletedTitle"));
-                    dialog.Commands.Add(new UICommand(Translation.GetTranslation("Ok")));
+                    dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
                     dialog.ShowAsync();
 
                 }
@@ -92,7 +92,7 @@ namespace MoneyManager.UserControls
                 {
                     var dialog = new MessageDialog(Translation.GetTranslation("PurchasedFailedMessage"),
                         Translation.GetTranslation("PurchasedFailedTitle"));
-                    dialog.Commands.Add(new UICommand(Translation.GetTranslation("Ok")));
+                    dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
                     dialog.ShowAsync();
                 }
                 else
@@ -106,7 +106,7 @@ namespace MoneyManager.UserControls
         {
             var dialog = new MessageDialog(Translation.GetTranslation("ProductNotFoundMessage"),
                 Translation.GetTranslation("ProductNotFoundTitle"));
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("Ok")));
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
             await dialog.ShowAsync();
         }
     }

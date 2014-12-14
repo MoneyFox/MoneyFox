@@ -17,7 +17,7 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <chart:RadCartesianChart PaletteName="DefaultLightSelected" 
+        <chart:RadCartesianChart PaletteName="DefaultLight" 
                                  x:Name="CashFlowChart"
                                  Margin="0,0,0,60">
             <chart:RadCartesianChart.VerticalAxis>
@@ -40,7 +40,8 @@
             </chart:BarSeries>
         </chart:RadCartesianChart>
 
-        <primitives:RadLegendControl LegendProvider="{Binding ElementName=CashFlowChart}" VerticalAlignment="Bottom" >
+        <primitives:RadLegendControl LegendProvider="{Binding ElementName=CashFlowChart}"
+                                     VerticalAlignment="Bottom" >
             <primitives:RadLegendControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"/>
