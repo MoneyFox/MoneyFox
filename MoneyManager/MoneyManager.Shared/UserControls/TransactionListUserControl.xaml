@@ -41,9 +41,9 @@
                                    Text="{Binding Converter={StaticResource TransactionAmountConverter}}"
                                    Margin="0,0,3,0" />
                         <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
-                                   Text="{Binding Amount, Converter={StaticResource AmountConverter}}" />
+                                   Text="{Binding AmountWithoutExchange, Converter={StaticResource AmountConverter}}" />
                         <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
-                                   Text="{Binding GeneralSettingView.DefaultCurrency}"
+                                   Text="{Binding Currency}"
                                    Margin="5,0,0,0" />
                     </StackPanel>
                 </Grid>
