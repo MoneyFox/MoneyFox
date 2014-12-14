@@ -9,23 +9,23 @@
     d:DesignWidth="400">
 
     <StackPanel>
-        <TextBlock Style="{StaticResource MenuItemText }"
+        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
                    x:Uid="DefaultsText"
                    Text="defaults" Tapped="NavigateToDefaultSettings"
                    Margin="0,0,0,20" />
-        <TextBlock Style="{StaticResource MenuItemText }"
+        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
                    x:Uid="RegionText"
                    Text="region" Tapped="NavigateToGeneralSettings"
                    Margin="0,0,0,20" />
-        <TextBlock Style="{StaticResource MenuItemText }"
+        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
                    x:Uid="BackupText"
                    Text="backup" Tapped="NavigateToBackupSettings"
                    Margin="0,0,0,20" />
-        <TextBlock Style="{StaticResource MenuItemText }"
+        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
                    x:Uid="SettingCategory"
                    Text="category" Tapped="NavigateToCategorySettings"
                    Margin="0,0,0,20" />
-        <TextBlock Style="{StaticResource MenuItemText }"
+        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
                    x:Uid="SettingTiles"
                    Text="tiles" Tapped="NavigateToTilesSettings"
                    Margin="0,0,0,20" />

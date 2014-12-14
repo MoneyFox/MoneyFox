@@ -19,7 +19,7 @@
                         <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="DeleteCategory" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Name}" />
+                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding Name}" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>

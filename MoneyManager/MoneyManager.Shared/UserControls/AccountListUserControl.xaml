@@ -23,13 +23,13 @@
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch" Margin="0,0,0,5">
-                    <TextBlock Style="{StaticResource MenuItemText}" Text="{Binding Name}"
+                    <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding Name}"
                                TextTrimming="CharacterEllipsis" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <TextBlock Style="{StaticResource MenuItemText}"
+                        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}"
                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountConverter}}"
                                    HorizontalAlignment="Right" TextAlignment="Right" TextTrimming="None" />
-                        <TextBlock Style="{StaticResource MenuItemText}"
+                        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}"
                                    Text="{Binding Currency}"
                                    HorizontalAlignment="Right" TextAlignment="Right" Margin="10,0,0,0"
                                    TextTrimming="None" />
