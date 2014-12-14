@@ -92,7 +92,8 @@ namespace MoneyManager.Business.ViewModels
             {
                 IsLoading = true;
 
-                await ShowOverwriteInfo();
+                if (!await ShowOverwriteInfo()) return;
+
                 var folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
 
                 if (String.IsNullOrEmpty(folderId))
@@ -130,7 +131,7 @@ namespace MoneyManager.Business.ViewModels
 
                 return result.Label == Translation.GetTranslation("YesLabel");
             }
-            return true;
+            return false;
         }
 
         public async Task RestoreBackup()
