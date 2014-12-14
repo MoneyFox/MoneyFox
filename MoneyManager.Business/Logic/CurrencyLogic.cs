@@ -83,7 +83,8 @@ namespace MoneyManager.Business.Logic
                     };
 
                 var currency = JsonConvert.DeserializeAnonymousType(jsonString, typeExample);
-                return Double.Parse(currency.Conversion.val, CultureInfo.CurrentCulture);
+                //use US culture info for parsing, since service uses us format
+                return Double.Parse(currency.Conversion.val, new CultureInfo("en-us"));
             }
             catch (Exception ex)
             {

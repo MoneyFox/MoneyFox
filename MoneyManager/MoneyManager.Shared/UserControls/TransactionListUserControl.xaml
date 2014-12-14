@@ -43,7 +43,7 @@
                         <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
                                    Text="{Binding Amount, Converter={StaticResource AmountConverter}}" />
                         <TextBlock Style="{StaticResource MenuItemMediumSmallText}"
-                                   Text="{Binding Currency}"
+                                   Text="{Binding GeneralSettingView.DefaultCurrency}"
                                    Margin="5,0,0,0" />
                     </StackPanel>
                 </Grid>
