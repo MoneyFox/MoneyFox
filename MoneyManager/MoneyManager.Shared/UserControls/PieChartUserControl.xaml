@@ -12,7 +12,7 @@
     DataContext="{Binding StatisticView, Source={StaticResource Locator}}">
 
     <Grid VerticalAlignment="Top">
-        <chart:RadPieChart x:Name="TransactionSpreading" PaletteName="DefaultLight" Margin="0,0,0,120">
+        <chart:RadPieChart x:Name="TransactionSpreading" PaletteName="DefaultLight" Margin="0,0,0,130">
             <chart:PieSeries ItemsSource="{Binding MonthlySpreading}" RadiusFactor="0.8">
                 <chart:PieSeries.ValueBinding>
                     <chart:PropertyNameDataPointBinding PropertyName="Value"/>
@@ -36,7 +36,7 @@
                         <Ellipse Fill="{Binding Fill}" Stroke="{Binding Stroke}"
                          StrokeThickness="1" Width="10" Height="10"/>
                         <TextBlock Text="{Binding Title}" Foreground="{Binding Fill}"
-                           Margin="10" />
+                           Margin="10" FontSize="12" />
                     </StackPanel>
                 </DataTemplate>
             </primitives:RadLegendControl.ItemTemplate>
