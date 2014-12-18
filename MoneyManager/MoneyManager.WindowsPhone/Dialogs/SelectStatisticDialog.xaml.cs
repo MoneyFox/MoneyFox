@@ -32,7 +32,7 @@ namespace MoneyManager.Dialogs
             {
                 var dialog = new MessageDialog(Translation.GetTranslation("FeatureNotLicensedMessage"),
                     Translation.GetTranslation("FeatureNotLicensedTitle"));
-                dialog.Commands.Add(new UICommand(Translation.GetTranslation("PurchaseLabel"), GoToPurchase));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("RedirectLabel"), GoToPurchase));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("BackLabel")));
                 dialog.ShowAsync();
             }

@@ -540,12 +540,6 @@
   <data name="ProductNotFoundTitle" xml:space="preserve">
     <value>Product not found</value>
   </data>
-  <data name="PurchasedCompletedMessage" xml:space="preserve">
-    <value>Your purchase is completed. Thanks for supporting us!</value>
-  </data>
-  <data name="PurchasedCompletedTitle" xml:space="preserve">
-    <value>Completed</value>
-  </data>
   <data name="PurchasedFailedMessage" xml:space="preserve">
     <value>The purchase failed. Please try again later. If this error still occurs please contact us.</value>
   </data>
@@ -572,5 +566,17 @@
   </data>
   <data name="StartdateHeader.Header" xml:space="preserve">
     <value>startdate</value>
+  </data>
+  <data name="BackLabel" xml:space="preserve">
+    <value>back</value>
+  </data>
+  <data name="FeatureNotLicensedMessage" xml:space="preserve">
+    <value>You don't own a license for this feature. Shall we redirect you to the product overview?</value>
+  </data>
+  <data name="FeatureNotLicensedTitle" xml:space="preserve">
+    <value>Not licensed</value>
+  </data>
+  <data name="RedirectLabel" xml:space="preserve">
+    <value>redirect</value>
   </data>
 </root>

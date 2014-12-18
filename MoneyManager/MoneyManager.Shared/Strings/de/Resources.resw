@@ -561,4 +561,16 @@
   <data name="StartdateHeader.Header" xml:space="preserve">
     <value>Startdatum</value>
   </data>
+  <data name="BackLabel" xml:space="preserve">
+    <value>zurück</value>
+  </data>
+  <data name="FeatureNotLicensedMessage" xml:space="preserve">
+    <value>Du besitzt keine Lizenz für diese Funktion. Möchtest du zu der Produktübersicht weitergeleitet werden um eine Lizenz zu erwerben?</value>
+  </data>
+  <data name="FeatureNotLicensedTitle" xml:space="preserve">
+    <value>Nicht lizensiert</value>
+  </data>
+  <data name="RedirectLabel" xml:space="preserve">
+    <value>weiterleiten</value>
+  </data>
 </root>

@@ -78,12 +78,6 @@ namespace MoneyManager.UserControls
                     }
 
                     await CurrentApp.RequestProductPurchaseAsync(productListing.ProductId);
-
-                    var dialog = new MessageDialog(Translation.GetTranslation("PurchasedCompletedMessage"),
-                        Translation.GetTranslation("PurchasedCompletedTitle"));
-                    dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
-                    dialog.ShowAsync();
-
                 }
             }
             catch (Exception ex)
