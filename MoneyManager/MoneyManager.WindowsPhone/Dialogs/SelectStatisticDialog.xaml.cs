@@ -1,6 +1,11 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Popups;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
+using MoneyManager.Foundation;
+using MoneyManager.Views;
 
 namespace MoneyManager.Dialogs
 {
@@ -18,8 +23,24 @@ namespace MoneyManager.Dialogs
 
         private void LoadStatistic(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            statisticView.SetCustomCashFlow();
-            statisticView.SetCustomSpreading();
+            if (LicenseHelper.IsFeaturepackLicensed)
+            {
+                statisticView.SetCustomCashFlow();
+                statisticView.SetCustomSpreading();
+            }
+            else
+            {
+                var dialog = new MessageDialog(Translation.GetTranslation("FeatureNotLicensedMessage"),
+                    Translation.GetTranslation("FeatureNotLicensedTitle"));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("PurchaseLabel"), GoToPurchase));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("BackLabel")));
+                dialog.ShowAsync();
+            }
+        }
+
+        private void GoToPurchase(IUICommand command)
+        {
+            ((Frame) Window.Current.Content).Navigate(typeof (LicenseView));
         }
     }
 }
