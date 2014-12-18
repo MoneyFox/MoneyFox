@@ -1,5 +1,6 @@
-﻿using System;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.ViewModels;
 
 namespace MoneyManager.Dialogs
 {
@@ -10,9 +11,14 @@ namespace MoneyManager.Dialogs
             InitializeComponent();
         }
 
+        private StatisticViewModel statisticView
+        {
+            get { return ServiceLocator.Current.GetInstance<StatisticViewModel>(); }
+        }
+
         private void LoadStatistic(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            
+            statisticView.SetCustomCashFlow();
         }
     }
 }

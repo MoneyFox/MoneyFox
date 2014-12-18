@@ -558,4 +558,7 @@
   <data name="StatistikTitle.Title" xml:space="preserve">
     <value>Statistik</value>
   </data>
+  <data name="StartdateHeader.Header" xml:space="preserve">
+    <value>Startdatum</value>
+  </data>
 </root>

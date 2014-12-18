@@ -46,12 +46,33 @@ namespace MoneyManager.Business.Logic
         }
         #endregion
 
+        public static ObservableCollection<StatisticItem> GetMonthlyCashFlow(DateTime startDate, DateTime endDate)
+        {
+            var transactionListFunc =
+                new Func<List<FinancialTransaction>>(() =>
+                    allTransaction
+                        .Where(x => x.Type != (int) TransactionType.Transfer)
+                        .Where(x => x.Date >= startDate && x.Date <= endDate)
+                        .ToList());
+
+            return GetStatisticItems(transactionListFunc);
+        }
+
         public static ObservableCollection<StatisticItem> GetMonthlyCashFlow()
         {
-            var transactionList = allTransaction
-                .Where(x => x.Type != (int) TransactionType.Transfer)
-                .Where(x => x.Date.Month == DateTime.Now.Month)
-                .ToList();
+            var transactionListFunc =
+                new Func<List<FinancialTransaction>>(() =>
+                    allTransaction
+                        .Where(x => x.Type != (int)TransactionType.Transfer)
+                        .Where(x => x.Date.Month == DateTime.Now.Month)
+                        .ToList());
+
+            return GetStatisticItems(transactionListFunc);
+        } 
+
+        private static ObservableCollection<StatisticItem> GetStatisticItems(Func<List<FinancialTransaction>> getTransactionListFunc)
+        {
+            var transactionList = getTransactionListFunc();
 
             var itemList = new ObservableCollection<StatisticItem>();
 
