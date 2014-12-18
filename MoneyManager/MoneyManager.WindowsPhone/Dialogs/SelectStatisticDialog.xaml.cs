@@ -19,6 +19,7 @@ namespace MoneyManager.Dialogs
         private void LoadStatistic(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             statisticView.SetCustomCashFlow();
+            statisticView.SetCustomSpreading();
         }
     }
 }

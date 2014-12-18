@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using GalaSoft.MvvmLight;
 using MoneyManager.Business.Logic;
 using MoneyManager.Foundation.Model;
@@ -24,7 +25,12 @@ namespace MoneyManager.Business.ViewModels
         private ObservableCollection<StatisticItem> _monthlyCashFlow;
         public ObservableCollection<StatisticItem> MonthlyCashFlow
         {
-            get { return _monthlyCashFlow ?? (_monthlyCashFlow = StatisticLogic.GetMonthlyCashFlow()); }
+            get
+            {
+                return _monthlyCashFlow == null || !_monthlyCashFlow.Any()
+                    ? StatisticLogic.GetMonthlyCashFlow()
+                    : _monthlyCashFlow;
+            }
             set
             {
                 if (value == null) return;
@@ -37,8 +43,9 @@ namespace MoneyManager.Business.ViewModels
         {
             get
             {
-                _monthlySpreading = StatisticLogic.GetSpreading();
-                return _monthlySpreading;
+                return _monthlySpreading == null || !_monthlySpreading.Any()
+                    ? StatisticLogic.GetSpreading()
+                    : _monthlySpreading;
             }
             set
             {
@@ -51,9 +58,25 @@ namespace MoneyManager.Business.ViewModels
 
         public DateTime EndDate { get; set; }
 
+        public void SetDefaultCashFlow()
+        {
+            MonthlyCashFlow = StatisticLogic.GetMonthlyCashFlow();
+        }
+
+        public void SetDefaultSpreading()
+        {
+            MonthlySpreading = StatisticLogic.GetSpreading();
+        }
+
         public void SetCustomCashFlow()
         {
             MonthlyCashFlow = StatisticLogic.GetMonthlyCashFlow(StartDate, EndDate);
         }
+
+        public void SetCustomSpreading()
+        {
+            MonthlySpreading = StatisticLogic.GetSpreading(StartDate, EndDate);
+        }
+
     }
 }

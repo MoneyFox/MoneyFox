@@ -1,5 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
 using Windows.UI.Xaml.Navigation;
 using MoneyManager.Dialogs;
@@ -36,11 +38,13 @@ namespace MoneyManager.Views
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            ServiceLocator.Current.GetInstance<StatisticViewModel>().SetDefaultCashFlow();
+            ServiceLocator.Current.GetInstance<StatisticViewModel>().SetDefaultSpreading();
+
             navigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion
-
 
     }
 }
