@@ -39,7 +39,7 @@ namespace MoneyManager.Business.ViewModels
             var related = transactionData.GetRelatedTransactions(accountId);
 
             var dateInfo = new DateTimeFormatInfo();
-            RelatedTransactions = related.ToGroups(x => x.Date, x => dateInfo.GetMonthName(x.Date.Month));
+            RelatedTransactions = related.ToGroups(x => x.Date, x => dateInfo.GetMonthName(x.Date.Month) + " " + x.Date.Year);
 
             foreach (var list in RelatedTransactions)
             {
