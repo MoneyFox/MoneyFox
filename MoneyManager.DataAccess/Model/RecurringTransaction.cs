@@ -41,6 +41,8 @@ namespace MoneyManager.DataAccess.Model
 
         public double Amount { get; set; }
 
+        public double AmountWithoutExchange { get; set; }
+
         public string Currency { get; set; }
 
         public int? CategoryId { get; set; }
