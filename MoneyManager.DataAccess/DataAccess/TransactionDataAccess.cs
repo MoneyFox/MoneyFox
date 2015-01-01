@@ -68,6 +68,7 @@ namespace MoneyManager.DataAccess.DataAccess
 
             return AllTransactions
                 .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
+                .OrderByDescending(x => x.Date)
                 .ToList();
         }
 
