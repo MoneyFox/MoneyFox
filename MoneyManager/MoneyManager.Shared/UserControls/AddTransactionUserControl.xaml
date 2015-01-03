@@ -18,7 +18,7 @@
             <StackPanel Margin="0,0,0,12" Orientation="Horizontal">
                 <TextBlock Text="{Binding Name}" FontSize="24" />
                 <TextBlock Text=" ("  Style="{StaticResource ComboBoxItemSubText}"/>
-                <TextBlock Text="{Binding CurrentBalance}" Style="{StaticResource ComboBoxItemSubText}" Margin="5,0,0,0" />
+                <TextBlock Text="{Binding CurrentBalanceWithoutExchange}" Style="{StaticResource ComboBoxItemSubText}" Margin="5,0,0,0" />
                 <TextBlock Text="{Binding Currency}" Style="{StaticResource ComboBoxItemSubText}" Margin="5,0,5,0" />
                 <TextBlock Text=")"  Style="{StaticResource ComboBoxItemSubText}" />
             </StackPanel>
@@ -45,7 +45,7 @@
                     LostFocus="AddZeroIfEmpty" />
 
                 <Button MinWidth="40" MinHeight="55" Background="#FF231E1E"
-                        BorderThickness="1,1,1,1" Click="OpenSelectCurrencyDialog"
+                        BorderThickness="0" Click="OpenSelectCurrencyDialog"
                         Content="{Binding SelectedTransaction.Currency}"
                         Margin="2,28,0,6" />
             </Grid>
