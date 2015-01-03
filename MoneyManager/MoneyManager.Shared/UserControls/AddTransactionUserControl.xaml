@@ -74,7 +74,8 @@
                 Margin="0,12,0,0" Header="date"
                 x:Uid="DateHeader" />
             <TextBox Header="Note"
-                     Text="{Binding SelectedTransaction.Note, Mode=TwoWay}" />
+                     Text="{Binding SelectedTransaction.Note, Mode=TwoWay}"
+                     TextWrapping="Wrap" />
             <ToggleSwitch Header="repeat" x:Uid="Repeat"
                           VerticalAlignment="Stretch"
                           IsOn="{Binding SelectedTransaction.IsRecurring, Mode=TwoWay}" />
