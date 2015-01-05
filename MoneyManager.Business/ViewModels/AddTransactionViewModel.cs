@@ -115,7 +115,7 @@ namespace MoneyManager.Business.ViewModels
         {
             if (IsEdit)
             {
-                TransactionLogic.UpdateTransaction(SelectedTransaction);
+                await TransactionLogic.UpdateTransaction(SelectedTransaction);
             }
             else
             {
