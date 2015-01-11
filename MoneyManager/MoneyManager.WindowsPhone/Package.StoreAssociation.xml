@@ -194,6 +194,7 @@
     <MainPackageIdentityName>38045npadrutt.MoneyFox</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.MoneyManager</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.MyMedi</MainPackageIdentityName>
+    <MainPackageIdentityName>38045npadrutt.MyMediBeta</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.SleepTracker</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.SleepTrackerBeta</MainPackageIdentityName>
   </AccountPackageIdentityNames>
@@ -201,13 +202,13 @@
     <BundleInfo>
       <PackageInfo>
         <OsMinVersion>6.3.0.0</OsMinVersion>
-        <PackageArchitecture></PackageArchitecture>
-        <PackageMaxArchitectureVersion>0.7.2.1</PackageMaxArchitectureVersion>
+        <PackageArchitecture>arm</PackageArchitecture>
+        <PackageMaxArchitectureVersion>0.7.3.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>6.3.0.0</OsMinVersion>
-        <PackageArchitecture>arm</PackageArchitecture>
-        <PackageMaxArchitectureVersion>0.7.2.1</PackageMaxArchitectureVersion>
+        <PackageArchitecture></PackageArchitecture>
+        <PackageMaxArchitectureVersion>0.7.3.0</PackageMaxArchitectureVersion>
       </PackageInfo>
     </BundleInfo>
   </PackageInfoList>
