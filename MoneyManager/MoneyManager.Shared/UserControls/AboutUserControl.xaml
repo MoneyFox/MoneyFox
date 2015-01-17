@@ -14,7 +14,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <StackPanel Grid.Row="1" Margin="19,9.5,19,0">
+        <StackPanel Margin="19,9.5,19,0">
             <StackPanel Orientation="Horizontal" Width="456">
                 <Grid Background="{StaticResource PhoneAccentBrush}" Margin="0,0,10,0">
                     <Image Source="/Images/applyLogo.png" Width="150" Margin="5,0"
