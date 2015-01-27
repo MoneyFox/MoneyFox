@@ -17,6 +17,7 @@
         <converter:AmountConverter x:Key="AmountConverter" />
         <converter:CultureConverter x:Key="FormatConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:TransactionAmountConverter x:Key="TransactionAmountConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:TransactionStyleConverter x:Key="TransactionStyleConverter" />
@@ -48,10 +49,23 @@
                     </StackPanel>
                 </Grid>
                 <Grid>
-                    <TextBlock Style="{StaticResource MenuItemMediumSmallText}" Text="{Binding Category.Name}"
-                               Margin="12,0,0,10" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Style="{StaticResource MenuItemMediumSmallText}" 
+                                   Text="{Binding Category.Name}"
+                                   Margin="12,0,2,10" />
+                        <TextBlock Text="/" 
+                                   Visibility="{Binding Note, Converter={StaticResource NoteVisibilityConverter}}"
+                                   Style="{StaticResource MenuItemMediumSmallDeemphasizeText}" />
+                        <TextBlock Style="{StaticResource MenuItemMediumSmallDeemphasizeText}"
+                                   Text="{Binding Note}"
+                                   Visibility="{Binding Note, Converter={StaticResource NoteVisibilityConverter}}"
+                                   Margin="2,0,0,0"
+                                   MaxWidth="150"
+                                   MaxLines="1"
+                                   TextTrimming="CharacterEllipsis"/>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Grid HorizontalAlignment="Right" 
+                        <Grid HorizontalAlignment="Right"
                               Visibility="{Binding IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Image
                                 Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"

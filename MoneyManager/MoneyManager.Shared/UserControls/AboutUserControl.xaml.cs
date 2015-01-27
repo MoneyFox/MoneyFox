@@ -34,7 +34,7 @@ namespace MoneyManager.UserControls
 
         private async void GoToWebsite_OnTap(object sender, TappedRoutedEventArgs e)
         {
-            const string url = "http://www.apply-solutions.ch/moneyfoxbeta";
+            const string url = "http://www.apply-solutions.ch";
             await Launcher.LaunchUriAsync(new Uri(url));
         }
 

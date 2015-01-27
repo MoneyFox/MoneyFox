@@ -184,25 +184,33 @@ namespace MoneyManager.Business.Logic
 
         private static void SetDefaultAccount()
         {
-            if (accountDataAccess.AllAccounts == null)
+            try
             {
-                accountDataAccess.LoadList();
-            }
+                if (accountDataAccess.AllAccounts == null)
+                {
+                    accountDataAccess.LoadList();
+                }
 
-            if (accountDataAccess.AllAccounts.Any())
-            {
-                selectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First();
-            }
+                if (accountDataAccess.AllAccounts.Any())
+                {
+                    selectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First();
+                }
 
-            if (accountDataAccess.AllAccounts.Any() && settings.DefaultAccount != -1)
-            {
-                selectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First(x => x.Id == settings.DefaultAccount);
+                if (accountDataAccess.AllAccounts.Any() && settings.DefaultAccount != -1)
+                {
+                    selectedTransaction.ChargedAccount =
+                        accountDataAccess.AllAccounts.First(x => x.Id == settings.DefaultAccount);
+                }
+
+                if (accountDataAccess.SelectedAccount != null)
+                {
+                    selectedTransaction.ChargedAccount = accountDataAccess.SelectedAccount;
+                }
             }
-            
-            if (accountDataAccess.SelectedAccount != null)
+            catch (Exception ex)
             {
-                selectedTransaction.ChargedAccount = accountDataAccess.SelectedAccount;
-            } 
+                BugSenseHandler.Instance.LogException(ex);
+            }
         }
 
         public async static Task ClearTransactions()

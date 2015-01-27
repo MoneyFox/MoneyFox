@@ -78,6 +78,8 @@ namespace MoneyManager.UserControls
                     }
 
                     await CurrentApp.RequestProductPurchaseAsync(productListing.ProductId);
+
+                    RenderStoreItems();
                 }
             }
             catch (Exception ex)

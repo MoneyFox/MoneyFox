@@ -12,7 +12,9 @@ namespace MoneyManager.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return System.Convert.ToDouble(value, CultureInfo.CurrentCulture.NumberFormat).ToString("F2");
+            var numberString = value.ToString().Replace(".", ",");
+
+            return System.Convert.ToDouble(numberString, new CultureInfo("de-CH").NumberFormat).ToString("F2");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

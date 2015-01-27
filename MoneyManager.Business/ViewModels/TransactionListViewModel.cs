@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
@@ -40,6 +41,8 @@ namespace MoneyManager.Business.ViewModels
 
             var dateInfo = new DateTimeFormatInfo();
             RelatedTransactions = related.ToGroups(x => x.Date, x => dateInfo.GetMonthName(x.Date.Month) + " " + x.Date.Year);
+
+            RelatedTransactions = RelatedTransactions.OrderByDescending(x => ((FinancialTransaction)x.First()).Date).ToList();
 
             foreach (var list in RelatedTransactions)
             {

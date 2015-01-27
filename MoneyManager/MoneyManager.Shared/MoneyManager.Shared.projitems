@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\CultureConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\NoteVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\RecurrenceConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\RevertVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\ThemedImageConverter.cs" />
