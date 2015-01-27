@@ -83,6 +83,7 @@
     <Compile Include="Logic\TransactionLogicTest.cs" />
     <Compile Include="Logic\TransactionTypeLogicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AddTransactionViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
