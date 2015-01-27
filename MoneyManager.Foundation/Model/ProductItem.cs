@@ -4,7 +4,7 @@ namespace MoneyManager.Foundation.Model
 {
     public class ProductItem
     {
-        public string imgLink { get; set; }
+        public string ImgLink { get; set; }
 
         public string Status { get; set; }
 

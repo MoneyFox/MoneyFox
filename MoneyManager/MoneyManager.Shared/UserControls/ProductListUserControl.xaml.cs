@@ -39,7 +39,7 @@ namespace MoneyManager.UserControls
                     picItems.Add(
                         new ProductItem
                         {
-                            imgLink = key.Equals("10001") ? "/Images/{0}/unlock.png" : "/Assets/Logo.scale-240.png",
+                            ImgLink = key.Equals("10001") ? "/Images/{0}/unlock.png" : "/Assets/Logo.scale-240.png",
                             Name = pListing.Name,
                             Status = status,
                             Key = key,
