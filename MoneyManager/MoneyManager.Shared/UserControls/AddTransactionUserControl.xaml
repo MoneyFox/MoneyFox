@@ -37,12 +37,15 @@
                       SelectedItem="{Binding SelectedTransaction.TargetAccount, Mode=TwoWay}"
                       Visibility="{Binding IsTransfer, Converter={StaticResource BooleanVisibilityConverter}}" />
             <Grid>
-                <TextBox 
-                    Text="{Binding AmountWithoutExchange, Mode=TwoWay, 
+                <TextBox Text="{Binding AmountString, Mode=TwoWay, 
                     Converter={StaticResource AmountConverter}, UpdateSourceTrigger=PropertyChanged}"
-                    Header="amount" InputScope="Number" x:Name="TextBoxAmount"
-                    TextAlignment="Right" GotFocus="RemoveZeroOnFocus"
-                    LostFocus="AddZeroIfEmpty" />
+                         Header="amount"
+                         InputScope="Number"
+                         x:Name="TextBoxAmount"
+                         TextAlignment="Right"
+                         TextChanged="ReplaceSeparatorChar"
+                         GotFocus="RemoveZeroOnFocus"
+                         LostFocus="AddZeroIfEmpty" />
 
                 <Button MinWidth="40" MinHeight="55" Background="#FF231E1E"
                         BorderThickness="1,1,1,1" Click="OpenSelectCurrencyDialog"

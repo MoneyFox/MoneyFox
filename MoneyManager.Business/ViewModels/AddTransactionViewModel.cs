@@ -75,6 +75,19 @@ namespace MoneyManager.Business.ViewModels
             }
         }
 
+        public string AmountString
+        {
+            get { return AmountWithoutExchange.ToString(); }
+            set
+            {
+                double amount;
+                if (Double.TryParse(value, out amount))
+                {
+                    AmountWithoutExchange = amount;
+                }
+            }
+        }
+
         public double AmountWithoutExchange
         {
             get { return SelectedTransaction.AmountWithoutExchange; }
@@ -115,7 +128,7 @@ namespace MoneyManager.Business.ViewModels
         {
             if (IsEdit)
             {
-                TransactionLogic.UpdateTransaction(SelectedTransaction);
+                await TransactionLogic.UpdateTransaction(SelectedTransaction);
             }
             else
             {

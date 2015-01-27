@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -54,6 +55,17 @@ namespace MoneyManager.UserControls
         {
             ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().InvocationType = InvocationType.Transaction;
             ((Frame) Window.Current.Content).Navigate(typeof (SelectCurrency));
+        }
+
+        private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e)
+        {
+            if (e.OriginalSource == null) return;
+
+            TextBoxAmount.Text = e.OriginalSource.ToString()
+                .Replace(",", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
+
+            TextBoxAmount.Text = e.OriginalSource.ToString()
+                .Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
         }
     }
 }
