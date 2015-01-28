@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -34,6 +35,19 @@ namespace MoneyManager.Business.ViewModels
 
         #endregion Properties
 
+        public string CurrentBalanceString
+        {
+            get { return CurrentBalanceWithoutExchange.ToString(); }
+            set
+            {
+                double amount;
+                if (Double.TryParse(value, out amount))
+                {
+                    CurrentBalanceWithoutExchange = amount;
+                }
+            }
+        }
+
         public double CurrentBalanceWithoutExchange
         {
             get { return SelectedAccount.CurrentBalanceWithoutExchange; }
@@ -54,7 +68,7 @@ namespace MoneyManager.Business.ViewModels
 
         private void CalculateNewAmount(double value)
         {
-            if (SelectedAccount.ExchangeRatio == 0)
+            if (Math.Abs(SelectedAccount.ExchangeRatio) < 0.5)
             {
                 SelectedAccount.ExchangeRatio = 1;
             }

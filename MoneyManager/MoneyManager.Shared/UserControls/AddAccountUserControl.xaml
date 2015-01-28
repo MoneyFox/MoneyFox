@@ -21,8 +21,7 @@
                  Header="IBAN" VerticalAlignment="Top"
                  x:Uid="Iban" Margin="0,0,0,12" />
         <Grid>
-            <TextBox
-                Text="{Binding CurrentBalanceWithoutExchange, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
+            <TextBox Text="{Binding CurrentBalanceString, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
                 Header="amount" InputScope="Number"
                 x:Uid="Balance" x:Name="TextBoxCurrentBalance"
                 TextAlignment="Right" GotFocus="RemoveZeroOnFocus"
