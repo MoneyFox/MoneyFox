@@ -71,8 +71,9 @@ namespace MoneyManager.Business.Logic
             foreach (var recTrans in AllRecurringTransactions)
             {
                 var relTransaction = new FinancialTransaction();
+                RecurringTransaction trans = recTrans;
                 var transcationList = transactionList.Where(
-                    x => x.ReccuringTransactionId == recTrans.Id)
+                    x => x.ReccuringTransactionId == trans.Id)
                     .OrderBy(x => x.Date);
 
                 if (transcationList.Any())

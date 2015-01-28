@@ -48,6 +48,7 @@ namespace MoneyManager.DataAccess.DataAccess
                 AllAccounts = new ObservableCollection<Account>(dbConn.Table<Account>()
                     .ToList()
                     .OrderBy(x => x.Name));
+
             }
         }
 

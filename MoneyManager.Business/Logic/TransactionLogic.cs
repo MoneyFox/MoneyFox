@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
@@ -58,7 +59,7 @@ namespace MoneyManager.Business.Logic
         {
             if (transaction.IsRecurring && !skipRecurring)
             {
-                var recurringTransaction =
+                RecurringTransaction recurringTransaction =
                     RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
                 recurringTransactionData.Save(transaction, recurringTransaction);
                 transaction.RecurringTransaction = recurringTransaction;
@@ -115,11 +116,11 @@ namespace MoneyManager.Business.Logic
         {
             if (transactionData.AllTransactions == null) return;
 
-            var transactionsToDelete = transactionData.AllTransactions
+            List<FinancialTransaction> transactionsToDelete = transactionData.AllTransactions
                 .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
                 .ToList();
 
-            foreach (var transaction in transactionsToDelete)
+            foreach (FinancialTransaction transaction in transactionsToDelete)
             {
                 transactionData.Delete(transaction);
             }
@@ -131,7 +132,7 @@ namespace MoneyManager.Business.Logic
             await AccountLogic.AddTransactionAmount(transaction);
             transactionData.Update(transaction);
 
-            var recurringTransaction =
+            RecurringTransaction recurringTransaction =
                 RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
 
             await
@@ -155,7 +156,7 @@ namespace MoneyManager.Business.Logic
 
             dialog.DefaultCommandIndex = 1;
 
-            var result = await dialog.ShowAsync();
+            IUICommand result = await dialog.ShowAsync();
 
             if (result.Label == Translation.GetTranslation("RecurringLabel"))
             {
@@ -213,19 +214,19 @@ namespace MoneyManager.Business.Logic
             }
         }
 
-        public async static Task ClearTransactions()
+        public static async Task ClearTransactions()
         {
-            try
+            var transactions = transactionData.GetUnclearedTransactions();
+            foreach (FinancialTransaction transaction in transactions)
             {
-                var transactions = transactionData.GetUnclearedTransactions();
-                foreach (var transaction in transactions)
+                try
                 {
                     await AccountLogic.AddTransactionAmount(transaction);
                 }
-            }
-            catch (Exception ex)
-            {
-                BugSenseHandler.Instance.LogException(ex);
+                catch (Exception ex)
+                {
+                    BugSenseHandler.Instance.LogException(ex);
+                }
             }
         }
     }

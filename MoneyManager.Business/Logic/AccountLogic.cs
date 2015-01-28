@@ -19,7 +19,7 @@ namespace MoneyManager.Business.Logic
     {
         #region Properties
 
-        private static AccountDataAccess accountData
+        private static AccountDataAccess accountDataAccess
         {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
@@ -38,7 +38,7 @@ namespace MoneyManager.Business.Logic
 
         public static void PrepareAddAccount()
         {
-            accountData.SelectedAccount = new Account
+            accountDataAccess.SelectedAccount = new Account
             {
                 IsExchangeModeActive = false,
                 Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
@@ -50,7 +50,7 @@ namespace MoneyManager.Business.Logic
         {
             if (skipConfirmation || await Utilities.IsDeletionConfirmed())
             {
-                accountData.Delete(account);
+                accountDataAccess.Delete(account);
                 TransactionLogic.DeleteAssociatedTransactionsFromDatabase(account.Id);
                 ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
             }
@@ -58,7 +58,7 @@ namespace MoneyManager.Business.Logic
 
         public static void RefreshRelatedTransactions()
         {
-            transactionListView.SetRelatedTransactions(accountData.SelectedAccount.Id);
+            transactionListView.SetRelatedTransactions(accountDataAccess.SelectedAccount.Id);
         }
 
         public static async Task RemoveTransactionAmount(FinancialTransaction transaction)
@@ -113,7 +113,7 @@ namespace MoneyManager.Business.Logic
                 account.CurrentBalance += amount;
                 transaction.Cleared = true;
 
-                accountData.Update(account);
+                accountDataAccess.Update(account);
                 transactionData.Update(transaction);
             }
             else
@@ -151,15 +151,25 @@ namespace MoneyManager.Business.Logic
 
         private static Func<FinancialTransaction, Account> GetTargetAccountFunc()
         {
+            if (accountDataAccess.AllAccounts == null)
+            {
+                accountDataAccess.LoadList();
+            }
+
             Func<FinancialTransaction, Account> targetAccountFunc =
-                trans => accountData.AllAccounts.FirstOrDefault(x => x.Id == trans.TargetAccountId);
+                trans => accountDataAccess.AllAccounts.FirstOrDefault(x => x.Id == trans.TargetAccountId);
             return targetAccountFunc;
         }
 
         private static Func<FinancialTransaction, Account> GetChargedAccountFunc()
         {
+            if (accountDataAccess.AllAccounts == null)
+            {
+                accountDataAccess.LoadList();
+            }
+
             Func<FinancialTransaction, Account> accountFunc =
-                trans => accountData.AllAccounts.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
+                trans => accountDataAccess.AllAccounts.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
             return accountFunc;
         }
     }
