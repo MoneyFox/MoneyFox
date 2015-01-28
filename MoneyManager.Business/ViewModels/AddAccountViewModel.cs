@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -41,7 +42,7 @@ namespace MoneyManager.Business.ViewModels
             set
             {
                 double amount;
-                if (Double.TryParse(value, out amount))
+                if (Double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount))
                 {
                     CurrentBalanceWithoutExchange = amount;
                 }
