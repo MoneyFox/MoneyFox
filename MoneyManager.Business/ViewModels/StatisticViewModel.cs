@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight;
 using MoneyManager.Business.Logic;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 using Telerik.Charting;
@@ -57,6 +58,16 @@ namespace MoneyManager.Business.ViewModels
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
+
+        public string Title
+        {
+            get
+            {
+                return Translation.GetTranslation("StatistikTitle") + " " + StartDate.ToString("d") +
+                       " - " +
+                       EndDate.ToString("d");
+            }
+        }
 
         public void SetDefaultCashFlow()
         {

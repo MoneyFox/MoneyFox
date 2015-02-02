@@ -20,7 +20,9 @@
     </Page.Transitions>
 
     <Page.BottomAppBar>
-        <CommandBar IsSticky="True" ClosedDisplayMode="Minimal">
+        <CommandBar IsSticky="True"
+                    ClosedDisplayMode="Minimal"
+                    Background="{StaticResource PhoneAccentBrush}">
             <AppBarButton Icon="add" x:Uid="AddIncomeLabel" Label="add income" Click="AddIncomeClick" />
             <AppBarButton Icon="remove" x:Uid="AddSpendingLabel" Label="add spending" Click="AddSpendingClick" />
             <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Click="AddTransferClick" >

@@ -4,13 +4,21 @@
         <ResourceDictionary x:Key="Dark">
 
             <!-- Colors -->
-            <Color x:Key="AppAccentColor">Orange</Color>
+            <Color x:Key="AppAccentColor">#FF3E7768</Color>
 
             <!-- Brushes -->
             <SolidColorBrush x:Key="PhoneAccentBrush"
                              Color="{StaticResource AppAccentColor}" />
+
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                              Color="{StaticResource PhoneChromeColor}" />
+
+            <SolidColorBrush x:Key="AppBarBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+
+            <SolidColorBrush x:Key="ButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+
         </ResourceDictionary>
 
     </ResourceDictionary.ThemeDictionaries>

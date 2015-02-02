@@ -1,12 +1,12 @@
-﻿<Page
-    x:Class="MoneyManager.Views.AddAccount"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls="using:MoneyManager.UserControls"
-    DataContext="{Binding AddAccountView, Source={StaticResource Locator}}"
-    mc:Ignorable="d">
+﻿<Page x:Class="MoneyManager.Views.AddAccount"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:userControls="using:MoneyManager.UserControls"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      DataContext="{Binding AddAccountView, Source={StaticResource Locator}}"
+      mc:Ignorable="d">
 
     <Page.Transitions>
         <TransitionCollection>
@@ -19,7 +19,7 @@
     </Page.Transitions>
 
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Background="{StaticResource PhoneAccentBrush}">
             <AppBarButton Icon="Accept" x:Uid="Done" Label="Done" Click="DoneClick" />
             <AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" Click="CancelClick" />
         </CommandBar>

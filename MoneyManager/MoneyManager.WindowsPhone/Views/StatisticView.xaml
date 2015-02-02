@@ -6,10 +6,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:MoneyManager.UserControls"
     mc:Ignorable="d"
+    DataContext="{Binding StatisticView, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Background="{StaticResource PhoneAccentBrush}">
             <AppBarButton x:Uid="Filter" Label="filter" Click="OpenFilter" >
                 <AppBarButton.Icon>
                     <BitmapIcon UriSource="ms-appx:///Images/dark/filter.png" />
@@ -32,7 +33,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <Pivot Title="Statistik" x:Uid="StatistikTitle" >
+            <Pivot Title="{Binding Title}" x:Uid="StatistikTitle" >
                 <PivotItem x:Uid="AccountsMenu" Header="overview">
                     <Grid>
                         <userControls:BarChartUserControl />

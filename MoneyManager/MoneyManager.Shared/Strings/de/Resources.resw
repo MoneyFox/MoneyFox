@@ -555,7 +555,7 @@
   <data name="ApplicationNameHeader.Header" xml:space="preserve">
     <value>Money Fox</value>
   </data>
-  <data name="StatistikTitle.Title" xml:space="preserve">
+  <data name="StatistikTitle" xml:space="preserve">
     <value>Statistik</value>
   </data>
   <data name="StartdateHeader.Header" xml:space="preserve">
