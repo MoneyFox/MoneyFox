@@ -16,7 +16,98 @@
             <SolidColorBrush x:Key="AppBarBackgroundThemeBrush"
                              Color="{StaticResource AppAccentColor}" />
 
+            
+            <!-- Pressed Background -->
             <SolidColorBrush x:Key="ButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+
+            <SolidColorBrush x:Key="AppBarToggleButtonCheckedPressedBackgroundThemeBrush"
+                             Color="White" />
+
+            <SolidColorBrush x:Key="CheckBoxPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+
+            <SolidColorBrush x:Key="ComboBoxItemPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+
+            <SolidColorBrush x:Key="ComboBoxPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+
+            <SolidColorBrush x:Key="FlipViewButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+
+            <SolidColorBrush x:Key="IMECandidateListPagingButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+
+            <SolidColorBrush x:Key="ListBoxItemPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="MediaButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="MenuFlyoutItemPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="RadioButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="RepeatButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="ScrollBarButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="ScrollBarThumbPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="SemanticZoomButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="SliderThumbPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="SliderTrackDecreasePressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="SliderTrackPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="TextBoxButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="ThumbPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="ToggleButtonCheckedPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="ToggleButtonPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="ToggleSwitchCurtainPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="ToggleSwitchThumbPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="ToggleSwitchTrackPressedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+
+            
+            <!-- Selected Background -->
+            <SolidColorBrush x:Key="ComboBoxItemSelectedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+            
+            <SolidColorBrush x:Key="ComboBoxSelectedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+
+            <SolidColorBrush x:Key="ListBoxItemSelectedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+
+            <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush"
+                             Color="{StaticResource AppAccentColor}" />
+
+            <SolidColorBrush x:Key="SearchBoxHitHighlightSelectedForegroundThemeBrush"
                              Color="{StaticResource AppAccentColor}" />
 
         </ResourceDictionary>
