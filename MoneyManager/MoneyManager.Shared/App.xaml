@@ -10,14 +10,6 @@
                 <ResourceDictionary Source="Styles/AppStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Dark">
-                    <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="/Styles/DarkTheme.xaml" />
-                    </ResourceDictionary.MergedDictionaries>
-                </ResourceDictionary>
-            </ResourceDictionary.ThemeDictionaries>
-
             <moneyManager:ViewModelLocator x:Key="Locator" />
 
             <x:Int32 x:Key="PivotHeaderItemCharacterSpacing">0</x:Int32>
