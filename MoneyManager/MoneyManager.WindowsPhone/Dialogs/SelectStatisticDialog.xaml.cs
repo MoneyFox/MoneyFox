@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.UI.Popups;
+﻿using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
@@ -22,7 +21,7 @@ namespace MoneyManager.Dialogs
             get { return ServiceLocator.Current.GetInstance<StatisticViewModel>(); }
         }
 
-        private async void LoadStatistic(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private void LoadStatistic(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             if (LicenseHelper.IsFeaturepackLicensed)
             {
@@ -35,7 +34,7 @@ namespace MoneyManager.Dialogs
                     Translation.GetTranslation("FeatureNotLicensedTitle"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("RedirectLabel"), GoToPurchase));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("BackLabel")));
-                await dialog.ShowAsync();
+                dialog.ShowAsync();
             }
         }
 

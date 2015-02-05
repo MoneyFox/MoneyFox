@@ -19,7 +19,7 @@
     </Page.Transitions>
 
     <Page.BottomAppBar>
-        <CommandBar >
+        <CommandBar Background="{StaticResource PhoneAccentBrush}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Add" x:Uid="AddCategory"
                               Label="add category"

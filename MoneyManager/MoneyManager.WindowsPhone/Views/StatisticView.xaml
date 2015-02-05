@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Background="{StaticResource PhoneAccentBrush}">
             <AppBarButton x:Uid="Filter" Label="filter" Click="OpenFilter" >
                 <AppBarButton.Icon>
                     <BitmapIcon UriSource="ms-appx:///Images/dark/filter.png" />

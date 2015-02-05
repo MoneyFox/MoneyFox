@@ -69,7 +69,7 @@ namespace MoneyManager
             ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
-        private void OpenStatisticClick(object sender, RoutedEventArgs e)
+        private async void OpenStatisticClick(object sender, RoutedEventArgs e)
         {
             ((Frame)Window.Current.Content).Navigate(typeof(StatisticView));
         }
