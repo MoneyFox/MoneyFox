@@ -27,7 +27,7 @@
                         MinWidth="100"
                         Holding="OpenContextMenu"
                         Opacity="{Binding Converter={StaticResource TransactionStyleConverter}}"
-                        Background="{ThemeResource CommandBarBackgroundThemeBrush}">
+                        Background="{StaticResource ListItemSolidColorBrush}">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"

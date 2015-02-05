@@ -18,7 +18,7 @@ namespace MoneyManager.Converter
 
             return transaction.Cleared
                 ? 1
-                : 0.5;
+                : 0.7;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

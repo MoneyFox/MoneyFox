@@ -59,7 +59,7 @@
                       Margin="0,10"
                       Stretch="Fill"
                       UseLayoutRounding="False"
-                      Stroke="Black"
+                      Stroke="{StaticResource PhoneAccentBrush}"
                       StrokeThickness="2" />
                 <TextBlock TextWrapping="Wrap"
                            Text="info"

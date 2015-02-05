@@ -13,10 +13,11 @@
     <UserControl.Resources>
         <converter:AmountConverter x:Key="AmountConverter" />
         <DataTemplate x:Key="AccountTemplate">
-            <StackPanel Margin="0,0,0,12"
+            <StackPanel Margin="0,0,0,7"
                         HorizontalAlignment="Stretch"
                         MinWidth="300"
-                        Holding="AccountList_Holding">
+                        Holding="AccountList_Holding"
+                        Background="{StaticResource ListItemSolidColorBrush}">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
@@ -27,36 +28,28 @@
                                         Click="Delete_OnClick" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <Grid HorizontalAlignment="Stretch"
-                      Margin="0,0,0,5">
-                    <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}"
-                               Text="{Binding Name}"
-                               TextTrimming="CharacterEllipsis" />
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Right">
-                        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}"
-                                   Text="{Binding CurrentBalance, Converter={StaticResource AmountConverter}}"
-                                   HorizontalAlignment="Right"
-                                   TextAlignment="Right"
-                                   TextTrimming="None" />
-                        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}"
-                                   Text="{Binding Currency}"
-                                   HorizontalAlignment="Right"
-                                   TextAlignment="Right"
-                                   Margin="10,0,0,0"
-                                   TextTrimming="None" />
-                    </StackPanel>
-                </Grid>
-                <TextBlock Style="{StaticResource MenuItemSubSmallText}"
-                           Text="{Binding Iban}" />
-                <Path Data="M9,242 L456,242"
-                      Fill="{StaticResource PhoneAccentBrush}"
-                      Height="15"
-                      Margin="0,10"
-                      Stretch="Fill"
-                      UseLayoutRounding="False"
-                      Stroke="Black"
-                      StrokeThickness="2" />
+                <StackPanel Margin="5">
+                    <Grid HorizontalAlignment="Stretch"
+                          Margin="0,0,0,8">
+                        <TextBlock Style="{StaticResource MenuItemText}"
+                                   Text="{Binding Name}"
+                                   TextTrimming="CharacterEllipsis" />
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+                            <TextBlock Style="{StaticResource MenuItemText}"
+                                       Text="{Binding CurrentBalance, Converter={StaticResource AmountConverter}}"
+                                       HorizontalAlignment="Right"
+                                       TextAlignment="Right" />
+                            <TextBlock Style="{StaticResource MenuItemText}"
+                                       Text="{Binding Currency}"
+                                       HorizontalAlignment="Right"
+                                       TextAlignment="Right"
+                                       Margin="10,0,0,0" />
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Style="{StaticResource MenuItemSubSmallText}"
+                               Text="{Binding Iban}" />
+                </StackPanel>
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
@@ -75,7 +68,7 @@
                   HorizontalAlignment="Stretch"
                   x:Name="AccountList"
                   SelectionChanged="NavigateToTransactionList"
-                  Margin="0,30,0,0">
+                  Margin="0,30,-12,0">
 
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
