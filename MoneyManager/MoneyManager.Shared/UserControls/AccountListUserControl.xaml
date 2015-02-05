@@ -1,41 +1,62 @@
-﻿<UserControl
-    x:Class="MoneyManager.UserControls.AccountListUserControl"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls="using:MoneyManager.UserControls"
-    xmlns:converter="using:MoneyManager.Converter"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400"
-    DataContext="{Binding AccountDataAccess, Source={StaticResource Locator}}">
+﻿<UserControl x:Class="MoneyManager.UserControls.AccountListUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:userControls="using:MoneyManager.UserControls"
+             xmlns:converter="using:MoneyManager.Converter"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             DataContext="{Binding AccountDataAccess, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
         <converter:AmountConverter x:Key="AmountConverter" />
         <DataTemplate x:Key="AccountTemplate">
-            <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
-                        MinWidth="300" Holding="AccountList_Holding">
+            <StackPanel Margin="0,0,0,12"
+                        HorizontalAlignment="Stretch"
+                        MinWidth="300"
+                        Holding="AccountList_Holding">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" Click="Edit_OnClick" />
-                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="Delete_OnClick" />
+                        <MenuFlyoutItem x:Uid="Edit"
+                                        Text="Edit"
+                                        Click="Edit_OnClick" />
+                        <MenuFlyoutItem x:Uid="Delete"
+                                        Text="Delete"
+                                        Click="Delete_OnClick" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <Grid HorizontalAlignment="Stretch" Margin="0,0,0,5">
-                    <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding Name}"
+                <Grid HorizontalAlignment="Stretch"
+                      Margin="0,0,0,5">
+                    <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}"
+                               Text="{Binding Name}"
                                TextTrimming="CharacterEllipsis" />
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
                         <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}"
                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountConverter}}"
-                                   HorizontalAlignment="Right" TextAlignment="Right" TextTrimming="None" />
+                                   HorizontalAlignment="Right"
+                                   TextAlignment="Right"
+                                   TextTrimming="None" />
                         <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}"
                                    Text="{Binding Currency}"
-                                   HorizontalAlignment="Right" TextAlignment="Right" Margin="10,0,0,0"
+                                   HorizontalAlignment="Right"
+                                   TextAlignment="Right"
+                                   Margin="10,0,0,0"
                                    TextTrimming="None" />
                     </StackPanel>
                 </Grid>
-                <TextBlock Style="{StaticResource MenuItemSubSmallText}" Text="{Binding Iban}" />
+                <TextBlock Style="{StaticResource MenuItemSubSmallText}"
+                           Text="{Binding Iban}" />
+                <Path Data="M9,242 L456,242"
+                      Fill="{StaticResource PhoneAccentBrush}"
+                      Height="15"
+                      Margin="0,10"
+                      Stretch="Fill"
+                      UseLayoutRounding="False"
+                      Stroke="Black"
+                      StrokeThickness="2" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
@@ -43,19 +64,23 @@
     <Grid>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
-                <EntranceThemeTransition/>
+                <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
         <userControls:BalanceUserControl />
-        <ListView Grid.Column="0" ItemsSource="{Binding AllAccounts}"
+        <ListView Grid.Column="0"
+                  ItemsSource="{Binding AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
-                  HorizontalAlignment="Stretch" x:Name="AccountList"
-                  SelectionChanged="NavigateToTransactionList" Margin="0,30,0,0">
+                  HorizontalAlignment="Stretch"
+                  x:Name="AccountList"
+                  SelectionChanged="NavigateToTransactionList"
+                  Margin="0,30,0,0">
 
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>

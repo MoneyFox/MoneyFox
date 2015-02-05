@@ -15,14 +15,14 @@
 
     <Grid>
         <StackPanel>
-            <StackPanel Margin="19,0,0,0">
+            <StackPanel>
                 <TextBlock Text="about"
                            x:Uid="AboutText"
                            Margin="0,12,0,0"
                            FontSize="36"
                            FontFamily="Segoe WP Light" />
             </StackPanel>
-            <StackPanel Margin="19,9.5,19,0">
+            <StackPanel >
                 <StackPanel Orientation="Horizontal"
                             Width="456">
                     <Grid Background="{StaticResource PhoneAccentBrush}"
@@ -54,7 +54,7 @@
                     </StackPanel>
                 </StackPanel>
                 <Path Data="M9,242 L456,242"
-                      Fill="#FFF4F4F5"
+                      Fill="{StaticResource PhoneAccentBrush}"
                       Height="15"
                       Margin="0,10"
                       Stretch="Fill"
