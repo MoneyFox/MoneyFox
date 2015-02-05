@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -33,7 +34,7 @@ namespace MoneyManager.UserControls
                     Translation.GetTranslation("FeatureNotLicensedTitle"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("RedirectLabel"), GoToPurchase));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("BackLabel"), NavigateBack));
-                dialog.ShowAsync();
+                await dialog.ShowAsync();
             }
         }
 

@@ -146,7 +146,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
 
         [TestMethod]
         [Ignore]
-        public async Task ClearTransactionsTest()
+        public void ClearTransactionsTest()
         {
             Assert.IsTrue(false);
         }
