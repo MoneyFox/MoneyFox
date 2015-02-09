@@ -30,12 +30,9 @@ namespace MoneyManager
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            await LicenseHelper.CheckLicenceFeaturepack();
-#if RELEASE
-           Insights.Initialize("599ff6bfdc79368ff3d5f5629a57c995fe93352e");
-#endif
-            DatabaseLogic.CreateDatabase();
+            Insights.Initialize("599ff6bfdc79368ff3d5f5629a57c995fe93352e");
 
+            await LicenseHelper.CheckLicenceFeaturepack();
             var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

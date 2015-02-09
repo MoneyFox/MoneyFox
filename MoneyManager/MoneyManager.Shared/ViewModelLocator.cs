@@ -4,8 +4,11 @@ using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
+using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Tasks.TransactionsWp;
 using MoneyManager.Views;
+using Xamarin;
 
 #endregion
 
@@ -15,6 +18,8 @@ namespace MoneyManager
     {
         static ViewModelLocator()
         {
+            DatabaseLogic.CreateDatabase();
+
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<AccountDataAccess>();
