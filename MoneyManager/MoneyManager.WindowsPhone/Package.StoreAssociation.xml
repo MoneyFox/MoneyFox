@@ -184,31 +184,31 @@
     <Language Code="vi-vn" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>38045npadrutt.MoneyFox</MainPackageIdentityName>
+    <MainPackageIdentityName>38045npadrutt.MoneyFoxBeta</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>Money Fox</ReservedName>
+      <ReservedName>Money Fox Beta</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>38045npadrutt.FavoritePlaces</MainPackageIdentityName>
-    <MainPackageIdentityName>38045npadrutt.MoneyFoxBeta</MainPackageIdentityName>
+    <MainPackageIdentityName>38045npadrutt.MoneyFox</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.MoneyManager</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.MyMedi</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.MyMediBeta</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.SleepTracker</MainPackageIdentityName>
     <MainPackageIdentityName>38045npadrutt.SleepTrackerBeta</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=c7533b5e-cd70-4dc0-9fb0-2bfe3c174ad8">
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=83554bcf-9733-4945-bf6b-d2bf2e247d8c">
     <BundleInfo>
       <PackageInfo>
         <OsMinVersion>6.3.0.0</OsMinVersion>
         <PackageArchitecture></PackageArchitecture>
-        <PackageMaxArchitectureVersion>0.7.5.4</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>0.7.6.7</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>6.3.0.0</OsMinVersion>
         <PackageArchitecture>arm</PackageArchitecture>
-        <PackageMaxArchitectureVersion>0.7.5.4</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>0.7.6.7</PackageMaxArchitectureVersion>
       </PackageInfo>
     </BundleInfo>
   </PackageInfoList>
