@@ -325,7 +325,7 @@
     <value>Sprache</value>
   </data>
   <data name="LastBackupCreationDate.Text" xml:space="preserve">
-    <value>Letzte Sicherung war erstellt am: </value>
+    <value>Letzte Sicherung wurde erstellt am: </value>
   </data>
   <data name="MonthlyContent.Content" xml:space="preserve">
     <value>monatlich</value>
