@@ -7,11 +7,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using BugSense;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Xamarin;
 
 #endregion
 
@@ -88,7 +88,7 @@ namespace MoneyManager.Business.Logic
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex, ReportSeverity.Error);
             }
             return 1;
         }
@@ -106,7 +106,7 @@ namespace MoneyManager.Business.Logic
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex, ReportSeverity.Error);
             }
             return "1";
         }

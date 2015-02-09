@@ -2,8 +2,8 @@
 
 using System;
 using Windows.ApplicationModel.Background;
-using BugSense;
 using MoneyManager.Business.Logic;
+using Xamarin;
 
 #endregion
 
@@ -21,7 +21,7 @@ namespace MoneyManager.Tasks.TransactionsWp
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex, ReportSeverity.Error);
             }
         }
     }

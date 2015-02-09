@@ -3,12 +3,11 @@
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using BugSense;
 using GalaSoft.MvvmLight;
 using Microsoft.Live;
-using MoneyManager.Business.Helper;
 using MoneyManager.Business.Logic;
 using MoneyManager.Foundation;
+using Xamarin;
 
 #endregion
 
@@ -58,7 +57,7 @@ namespace MoneyManager.Business.ViewModels
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex);
             }
         }
 
@@ -109,7 +108,7 @@ namespace MoneyManager.Business.ViewModels
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex);
                 ShowCompletionNote(TaskCompletionType.Unsuccessful);
             }
             finally
@@ -147,7 +146,7 @@ namespace MoneyManager.Business.ViewModels
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex, ReportSeverity.Error);
                 ShowCompletionNote(TaskCompletionType.Unsuccessful);
             }
             finally

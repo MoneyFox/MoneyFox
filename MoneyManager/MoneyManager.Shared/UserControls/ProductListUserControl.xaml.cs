@@ -5,10 +5,10 @@ using Windows.ApplicationModel.Store;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using BugSense;
 using MoneyManager.Business.Logic;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using Xamarin;
 
 namespace MoneyManager.UserControls
 {
@@ -54,7 +54,7 @@ namespace MoneyManager.UserControls
             catch (Exception ex)
             {
                 ShowProductNotFoundDialog();
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex, ReportSeverity.Error);
             }
         }
 
@@ -93,7 +93,7 @@ namespace MoneyManager.UserControls
                 }
                 else
                 {
-                    BugSenseHandler.Instance.LogException(ex);
+                    Insights.Report(ex, ReportSeverity.Error);
                 }
             }
         }

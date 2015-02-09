@@ -3,13 +3,13 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using BugSense;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using Xamarin;
 
 #endregion
 
@@ -135,7 +135,7 @@ namespace MoneyManager.Business.Logic
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex, ReportSeverity.Error);
             }
             return baseAmount;
         }

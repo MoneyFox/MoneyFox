@@ -1,8 +1,8 @@
 ﻿#region
 
 using System;
-using BugSense;
 using MoneyManager.Foundation.OperationContracts;
+using Xamarin;
 
 #endregion
 
@@ -18,7 +18,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex);
             }
         }
 
@@ -30,7 +30,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex);
             }
         }
 
@@ -42,7 +42,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex);
             }
         }
 
@@ -54,7 +54,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex);
             }
         }
 

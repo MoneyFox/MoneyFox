@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Store;
-using BugSense;
+using Xamarin;
 
 namespace MoneyManager.Business.Logic
 {
@@ -39,7 +39,7 @@ namespace MoneyManager.Business.Logic
             {
                 if (!ex.Message.Contains("0x805A0194"))
                 {
-                    BugSenseHandler.Instance.LogException(ex);
+                    Insights.Report(ex);
                 }
             }
         }

@@ -1,9 +1,9 @@
 ﻿using System;
-using BugSense;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
 using Windows.UI.Xaml.Navigation;
+using Xamarin;
 
 namespace MoneyManager.Views
 {
@@ -40,7 +40,7 @@ namespace MoneyManager.Views
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex, ReportSeverity.Error);
             }
         }
 

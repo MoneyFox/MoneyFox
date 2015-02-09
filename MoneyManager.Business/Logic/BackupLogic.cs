@@ -4,9 +4,9 @@ using System.Globalization;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Popups;
-using BugSense;
 using Microsoft.Live;
 using MoneyManager.Foundation;
+using Xamarin;
 
 namespace MoneyManager.Business.Logic
 {
@@ -72,12 +72,12 @@ namespace MoneyManager.Business.Logic
             }
             catch (TaskCanceledException ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex);
                 return TaskCompletionType.Aborted;
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex);
                 return TaskCompletionType.Unsuccessful;
             }
         }
@@ -95,7 +95,7 @@ namespace MoneyManager.Business.Logic
                 }
                 catch (LiveConnectException ex)
                 {
-                    BugSenseHandler.Instance.LogException(ex);
+                    Insights.Report(ex, ReportSeverity.Error);
                 }
             }
             return String.Empty;
@@ -124,7 +124,7 @@ namespace MoneyManager.Business.Logic
             }
             catch (LiveConnectException ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex, ReportSeverity.Error);
             }
             return String.Empty;
         }
@@ -149,7 +149,7 @@ namespace MoneyManager.Business.Logic
             }
             catch (LiveConnectException ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex, ReportSeverity.Error);
             }
 
             return String.Empty;
@@ -169,7 +169,7 @@ namespace MoneyManager.Business.Logic
                 }
                 catch (Exception ex)
                 {
-                    BugSenseHandler.Instance.LogException(ex);
+                    Insights.Report(ex, ReportSeverity.Error);
                 }
             }
             return String.Empty;
@@ -190,7 +190,7 @@ namespace MoneyManager.Business.Logic
             }
             catch (Exception ex)
             {
-                BugSenseHandler.Instance.LogException(ex);
+                Insights.Report(ex, ReportSeverity.Error);
                 return TaskCompletionType.Unsuccessful;
             }
         }

@@ -1,20 +1,16 @@
 ﻿#region
 
 using System;
-using System.Diagnostics;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using BugSense;
-using BugSense.Model;
-using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess;
-using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Tasks.TransactionsWp;
+using Xamarin;
 
 #endregion
 
@@ -34,14 +30,9 @@ namespace MoneyManager
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            BugSenseHandler.Instance.InitAndStartSession(new ExceptionManager(Current), "298c818d");
             await LicenseHelper.CheckLicenceFeaturepack();
-#if DEBUG
-            BugSenseHandler.Instance.HandleWhileDebugging = false;
-            if (Debugger.IsAttached)
-            {
-                DebugSettings.EnableFrameRateCounter = true;
-            }
+#if RELEASE
+           Insights.Initialize("599ff6bfdc79368ff3d5f5629a57c995fe93352e");
 #endif
             DatabaseLogic.CreateDatabase();
 
@@ -124,7 +115,6 @@ namespace MoneyManager
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            BugSenseHandler.Instance.CloseSession();
             var deferral = e.SuspendingOperation.GetDeferral();
 
             // TODO: Save application state and stop any background activity
