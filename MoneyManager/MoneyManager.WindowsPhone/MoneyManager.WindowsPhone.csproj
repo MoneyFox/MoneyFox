@@ -333,9 +333,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q3 2014\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Insights">
-      <HintPath>..\..\packages\Xamarin.Insights.1.8.3\lib\wpa\Xamarin.Insights.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
