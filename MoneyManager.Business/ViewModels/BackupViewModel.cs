@@ -130,7 +130,7 @@ namespace MoneyManager.Business.ViewModels
 
                 return result.Label == Translation.GetTranslation("YesLabel");
             }
-            return false;
+            return true;
         }
 
         public async Task RestoreBackup()

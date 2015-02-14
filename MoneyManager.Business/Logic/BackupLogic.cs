@@ -18,7 +18,7 @@ namespace MoneyManager.Business.Logic
             {
                 var authClient = new LiveAuthClient();
                 LiveLoginResult result =
-                    await authClient.LoginAsync(new[] {"wl.signin", "wl.skydrive", "wl.skydrive_update"});
+                    await authClient.LoginAsync(new[] { "wl.basic", "wl.skydrive", "wl.skydrive_update", "wl.offline_access" });
 
                 if (result.Status == LiveConnectSessionStatus.Connected)
                 {
