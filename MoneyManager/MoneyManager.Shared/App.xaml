@@ -13,7 +13,7 @@
             <moneyManager:ViewModelLocator x:Key="Locator" />
 
             <x:Int32 x:Key="PivotHeaderItemCharacterSpacing">0</x:Int32>
-            
+
             <Style TargetType="Pivot">
                 <Setter Property="HeaderTemplate">
                     <Setter.Value>

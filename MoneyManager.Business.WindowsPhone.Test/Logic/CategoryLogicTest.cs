@@ -5,37 +5,29 @@ using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.Model;
 using SQLite.Net;
 
-namespace MoneyManager.Business.WindowsPhone.Test.Logic
-{
+namespace MoneyManager.Business.WindowsPhone.Test.Logic {
     [TestClass]
-    public class CategoryLogicTest
-    {
+    public class CategoryLogicTest {
         [TestInitialize]
-        public void InitTest()
-        {
+        public void InitTest() {
             new ViewModelLocator();
 
             DatabaseLogic.CreateDatabase();
         }
 
         [TestMethod]
-        public void DeleteCategoryTest()
-        {
-            var category1 = new Category
-            {
+        public void DeleteCategoryTest() {
+            var category1 = new Category {
                 Name = "Einkaufen"
             };
-            var category2 = new Category
-            {
+            var category2 = new Category {
                 Name = "Sparen"
             };
-            var category3 = new Category
-            {
+            var category3 = new Category {
                 Name = "Schule"
             };
 
-            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection())
-            {
+            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection()) {
                 db.Insert(category1);
                 db.Insert(category2);
                 db.Insert(category3);
@@ -44,8 +36,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             CategoryLogic.DeleteCategory(category1, true);
             CategoryLogic.DeleteCategory(category3, true);
 
-            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection())
-            {
+            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection()) {
                 Assert.IsFalse(db.Table<Category>().Any(x => x.Id == category1.Id));
                 Assert.IsTrue(db.Table<Category>().Any(x => x.Id == category2.Id));
                 Assert.IsFalse(db.Table<Category>().Any(x => x.Id == category3.Id));

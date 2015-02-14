@@ -8,48 +8,40 @@ using MoneyManager.Business.Logic;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
-using Telerik.Charting;
 
 #endregion
 
-namespace MoneyManager.Business.ViewModels
-{
+namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
-    public class StatisticViewModel : ViewModelBase
-    {
-        public StatisticViewModel()
-        {
+    public class StatisticViewModel : ViewModelBase {
+        private ObservableCollection<StatisticItem> _monthlyCashFlow;
+
+        private ObservableCollection<StatisticItem> _monthlySpreading;
+
+        public StatisticViewModel() {
             StartDate = DateTime.Now.Date.AddMonths(-1);
             EndDate = DateTime.Now.Date;
         }
 
-        private ObservableCollection<StatisticItem> _monthlyCashFlow;
-        public ObservableCollection<StatisticItem> MonthlyCashFlow
-        {
-            get
-            {
+        public ObservableCollection<StatisticItem> MonthlyCashFlow {
+            get {
                 return _monthlyCashFlow == null || !_monthlyCashFlow.Any()
                     ? StatisticLogic.GetMonthlyCashFlow()
                     : _monthlyCashFlow;
             }
-            set
-            {
+            set {
                 if (value == null) return;
                 _monthlyCashFlow = value;
             }
         }
 
-        private ObservableCollection<StatisticItem> _monthlySpreading;
-        public ObservableCollection<StatisticItem> MonthlySpreading
-        {
-            get
-            {
+        public ObservableCollection<StatisticItem> MonthlySpreading {
+            get {
                 return _monthlySpreading == null || !_monthlySpreading.Any()
                     ? StatisticLogic.GetSpreading()
                     : _monthlySpreading;
             }
-            set
-            {
+            set {
                 if (value == null) return;
                 _monthlySpreading = value;
             }
@@ -59,35 +51,28 @@ namespace MoneyManager.Business.ViewModels
 
         public DateTime EndDate { get; set; }
 
-        public string Title
-        {
-            get
-            {
+        public string Title {
+            get {
                 return Translation.GetTranslation("StatistikTitle") + " " + StartDate.ToString("d") +
                        " - " +
                        EndDate.ToString("d");
             }
         }
 
-        public void SetDefaultCashFlow()
-        {
+        public void SetDefaultCashFlow() {
             MonthlyCashFlow = StatisticLogic.GetMonthlyCashFlow();
         }
 
-        public void SetDefaultSpreading()
-        {
+        public void SetDefaultSpreading() {
             MonthlySpreading = StatisticLogic.GetSpreading();
         }
 
-        public void SetCustomCashFlow()
-        {
+        public void SetCustomCashFlow() {
             MonthlyCashFlow = StatisticLogic.GetMonthlyCashFlow(StartDate, EndDate);
         }
 
-        public void SetCustomSpreading()
-        {
+        public void SetCustomSpreading() {
             MonthlySpreading = StatisticLogic.GetSpreading(StartDate, EndDate);
         }
-
     }
 }

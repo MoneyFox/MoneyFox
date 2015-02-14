@@ -12,42 +12,33 @@ using MoneyManager.Foundation;
 
 #endregion
 
-namespace MoneyManager.Views
-{
-    public sealed partial class AddTransaction
-    {
+namespace MoneyManager.Views {
+    public sealed partial class AddTransaction {
         private readonly NavigationHelper navigationHelper;
 
-        public AddTransaction()
-        {
+        public AddTransaction() {
             InitializeComponent();
             navigationHelper = new NavigationHelper(this);
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if (e.NavigationMode != NavigationMode.Back && AddTransactionView.IsEdit)
-            {
+        private AddTransactionViewModel AddTransactionView {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+        }
+
+        public NavigationHelper NavigationHelper {
+            get { return navigationHelper; }
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e) {
+            if (e.NavigationMode != NavigationMode.Back && AddTransactionView.IsEdit) {
                 await AccountLogic.RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
             }
 
             base.OnNavigatedTo(e);
         }
 
-        private AddTransactionViewModel AddTransactionView
-        {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
-
-        public NavigationHelper NavigationHelper
-        {
-            get { return navigationHelper; }
-        }
-
-        private void DoneClick(object sender, RoutedEventArgs e)
-        {
-            if (AddTransactionView.SelectedTransaction.ChargedAccount == null)
-            {
+        private void DoneClick(object sender, RoutedEventArgs e) {
+            if (AddTransactionView.SelectedTransaction.ChargedAccount == null) {
                 ShowAccountRequiredMessage();
                 return;
             }
@@ -55,8 +46,7 @@ namespace MoneyManager.Views
             AddTransactionView.Save();
         }
 
-        private async void ShowAccountRequiredMessage()
-        {
+        private async void ShowAccountRequiredMessage() {
             var dialog = new MessageDialog
                 (
                 Translation.GetTranslation("AccountRequiredMessage"),
@@ -67,8 +57,7 @@ namespace MoneyManager.Views
             await dialog.ShowAsync();
         }
 
-        private void CancelClick(object sender, RoutedEventArgs e)
-        {
+        private void CancelClick(object sender, RoutedEventArgs e) {
             AddTransactionView.Cancel();
         }
     }

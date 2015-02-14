@@ -15,7 +15,7 @@
         <TransitionCollection>
             <NavigationThemeTransition>
                 <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <ContinuumNavigationTransitionInfo/>
+                    <ContinuumNavigationTransitionInfo />
                 </NavigationThemeTransition.DefaultNavigationTransitionInfo>
             </NavigationThemeTransition>
         </TransitionCollection>
@@ -28,10 +28,10 @@
     <Grid>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
-                <EntranceThemeTransition/>
+                <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -50,14 +50,14 @@
             <userControls:BackupUserControl />
         </Grid>
 
-        <primitives:RadBusyIndicator 
-                    IsActive="{Binding IsLoading}"
-                    Visibility="{Binding IsLoading, Converter={StaticResource BooleanVisibilityConverter}}"
-                    AnimationStyle="AnimationStyle8" Grid.RowSpan="2">
+        <primitives:RadBusyIndicator
+            IsActive="{Binding IsLoading}"
+            Visibility="{Binding IsLoading, Converter={StaticResource BooleanVisibilityConverter}}"
+            AnimationStyle="AnimationStyle8" Grid.RowSpan="2">
             <primitives:RadBusyIndicator.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="#CC000000"/>
+                    <GradientStop Color="Black" Offset="0" />
+                    <GradientStop Color="#CC000000" />
                 </LinearGradientBrush>
             </primitives:RadBusyIndicator.Background>
         </primitives:RadBusyIndicator>

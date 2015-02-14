@@ -10,19 +10,15 @@ using SQLite.Net.Attributes;
 
 #endregion
 
-namespace MoneyManager.DataAccess.Model
-{
+namespace MoneyManager.DataAccess.Model {
     [ImplementPropertyChanged]
     [Table("RecurringTransactiont")]
-    public class RecurringTransaction
-    {
-        private IEnumerable<Account> allAccounts
-        {
+    public class RecurringTransaction {
+        private IEnumerable<Account> allAccounts {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
         }
 
-        private IEnumerable<Category> allCategories
-        {
+        private IEnumerable<Category> allCategories {
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
         }
 
@@ -54,25 +50,21 @@ namespace MoneyManager.DataAccess.Model
         public string Note { get; set; }
 
         [Ignore]
-        public Account ChargedAccount
-        {
-            get { return allAccounts.FirstOrDefault(x => x.Id == ChargedAccountId); }
-            set { ChargedAccountId = value.Id; }
-        }
-        
-        [Ignore]
-        public Account TargetAccount
-        {
+        public Account ChargedAccount {
             get { return allAccounts.FirstOrDefault(x => x.Id == ChargedAccountId); }
             set { ChargedAccountId = value.Id; }
         }
 
         [Ignore]
-        public Category Category
-        {
+        public Account TargetAccount {
+            get { return allAccounts.FirstOrDefault(x => x.Id == ChargedAccountId); }
+            set { ChargedAccountId = value.Id; }
+        }
+
+        [Ignore]
+        public Category Category {
             get { return allCategories.FirstOrDefault(x => x.Id == CategoryId); }
-            set
-            {
+            set {
                 CategoryId = value == null
                     ? (int?) null
                     : value.Id;

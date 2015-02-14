@@ -10,30 +10,24 @@ using SQLite.Net;
 
 #endregion
 
-namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
-{
+namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
     [TestClass]
-    public class RecurringTransactionDataAccessTest
-    {
+    public class RecurringTransactionDataAccessTest {
         [TestInitialize]
-        public void TestInit()
-        {
-            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection())
-            {
+        public void TestInit() {
+            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection()) {
                 db.CreateTable<RecurringTransaction>();
             }
         }
 
         [TestMethod]
-        public void CrudRecurringTransactionTest()
-        {
+        public void CrudRecurringTransactionTest() {
             var recurringTransactionDataAccess = new RecurringTransactionDataAccess();
 
             const double firstAmount = 100.70;
             const double secondAmount = 80.45;
 
-            var transaction = new RecurringTransaction
-            {
+            var transaction = new RecurringTransaction {
                 ChargedAccountId = 7,
                 Amount = firstAmount,
                 StartDate = DateTime.Today,

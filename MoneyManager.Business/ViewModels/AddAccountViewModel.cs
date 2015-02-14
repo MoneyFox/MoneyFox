@@ -14,21 +14,17 @@ using PropertyChanged;
 
 #endregion
 
-namespace MoneyManager.Business.ViewModels
-{
+namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
-    public class AddAccountViewModel : ViewModelBase
-    {
+    public class AddAccountViewModel : ViewModelBase {
         #region Properties
 
-        public Account SelectedAccount
-        {
+        public Account SelectedAccount {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
             set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
         }
 
-        public SettingDataAccess Settings
-        {
+        public SettingDataAccess Settings {
             get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
 
@@ -36,68 +32,54 @@ namespace MoneyManager.Business.ViewModels
 
         #endregion Properties
 
-        public string CurrentBalanceString
-        {
+        public string CurrentBalanceString {
             get { return CurrentBalanceWithoutExchange.ToString(); }
-            set
-            {
+            set {
                 double amount;
-                if (Double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount))
-                {
+                if (Double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount)) {
                     CurrentBalanceWithoutExchange = amount;
                 }
             }
         }
 
-        public double CurrentBalanceWithoutExchange
-        {
+        public double CurrentBalanceWithoutExchange {
             get { return SelectedAccount.CurrentBalanceWithoutExchange; }
-            set
-            {
+            set {
                 SelectedAccount.CurrentBalanceWithoutExchange = value;
                 CalculateNewAmount(value);
             }
         }
 
-        public async void SetCurrency(string currency)
-        {
+        public async void SetCurrency(string currency) {
             SelectedAccount.Currency = currency;
             SelectedAccount.IsExchangeModeActive = true;
             await LoadCurrencyRatio();
             CalculateNewAmount(CurrentBalanceWithoutExchange);
         }
 
-        private void CalculateNewAmount(double value)
-        {
-            if (Math.Abs(SelectedAccount.ExchangeRatio) < 0.5)
-            {
+        private void CalculateNewAmount(double value) {
+            if (Math.Abs(SelectedAccount.ExchangeRatio) < 0.5) {
                 SelectedAccount.ExchangeRatio = 1;
             }
 
             SelectedAccount.CurrentBalance = SelectedAccount.ExchangeRatio*value;
         }
 
-        public async Task LoadCurrencyRatio()
-        {
+        public async Task LoadCurrencyRatio() {
             SelectedAccount.ExchangeRatio =
                 await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedAccount.Currency);
         }
 
-        public void Save()
-        {
-            if (IsEdit)
-            {
+        public void Save() {
+            if (IsEdit) {
                 ServiceLocator.Current.GetInstance<AccountDataAccess>().Update(SelectedAccount);
-            }
-            else
-            {
+            } else {
                 ServiceLocator.Current.GetInstance<AccountDataAccess>().Save(SelectedAccount);
             }
             ((Frame) Window.Current.Content).GoBack();
         }
 
-        public void Cancel()
-        {
+        public void Cancel() {
             ((Frame) Window.Current.Content).GoBack();
         }
     }

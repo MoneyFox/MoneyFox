@@ -6,12 +6,9 @@ using MoneyManager.Business.Logic;
 
 #endregion
 
-namespace MoneyManager.Converter
-{
-    public class ThemedImageConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
+namespace MoneyManager.Converter {
+    public class ThemedImageConverter : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, string language) {
             var formatString = parameter as string;
 
             if (string.IsNullOrEmpty(formatString))
@@ -20,8 +17,7 @@ namespace MoneyManager.Converter
             return ThemedImageConverterLogic.GetImage(formatString);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
+        public object ConvertBack(object value, Type targetType, object parameter, string language) {
             throw new NotImplementedException();
         }
     }

@@ -12,30 +12,24 @@ using SQLite.Net;
 
 #endregion
 
-namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
-{
+namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
     [TestClass]
-    public class TransactionDataAccessTest
-    {
+    public class TransactionDataAccessTest {
         [TestInitialize]
-        public void InitTests()
-        {
-            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection())
-            {
+        public void InitTests() {
+            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection()) {
                 db.CreateTable<FinancialTransaction>();
             }
         }
 
         [TestMethod]
-        public void CrudTransactionTest()
-        {
+        public void CrudTransactionTest() {
             var transactionDataAccess = new TransactionDataAccess();
 
             const double firstAmount = 76.30;
             const double secondAmount = 22.90;
 
-            var transaction = new FinancialTransaction
-            {
+            var transaction = new FinancialTransaction {
                 ChargedAccountId = 4,
                 Amount = firstAmount,
                 Date = DateTime.Today,
@@ -69,13 +63,11 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
         }
 
         [TestMethod]
-        public void GetUnclearedTransactionsTest()
-        {
+        public void GetUnclearedTransactionsTest() {
             var transactionDataAccess = new TransactionDataAccess();
 
             DateTime date = DateTime.Today.AddDays(-1);
-            transactionDataAccess.Save(new FinancialTransaction
-            {
+            transactionDataAccess.Save(new FinancialTransaction {
                 ChargedAccountId = 4,
                 Amount = 55,
                 Date = date,
@@ -89,8 +81,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
             Assert.AreEqual(1, transactions.Count());
 
             DateTime date2 = DateTime.Today.AddMonths(1);
-            transactionDataAccess.Save(new FinancialTransaction
-            {
+            transactionDataAccess.Save(new FinancialTransaction {
                 ChargedAccountId = 4,
                 Amount = 55,
                 Date = date2,

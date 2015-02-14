@@ -13,15 +13,12 @@ using PropertyChanged;
 
 #endregion
 
-namespace MoneyManager.Business.ViewModels
-{
+namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
-    public class CategoryListViewModel : ViewModelBase
-    {
+    public class CategoryListViewModel : ViewModelBase {
         private string searchText;
 
-        public CategoryListViewModel()
-        {
+        public CategoryListViewModel() {
             categoryData.LoadList();
             Categories = allCategories;
         }
@@ -30,60 +27,48 @@ namespace MoneyManager.Business.ViewModels
 
         public ObservableCollection<Category> Categories { get; set; }
 
-        private CategoryDataAccess categoryData
-        {
+        private CategoryDataAccess categoryData {
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
         }
 
-        private TransactionDataAccess transactionData
-        {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>();  }
+        private TransactionDataAccess transactionData {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        private ObservableCollection<Category> allCategories
-        {
+        private ObservableCollection<Category> allCategories {
             get { return categoryData.AllCategories; }
         }
 
-        public Category SelectedCategory
-        {
-            get
-            {
+        public Category SelectedCategory {
+            get {
                 return transactionData.SelectedTransaction == null
                     ? new Category()
                     : transactionData.SelectedTransaction.Category;
             }
-            set
-            {
+            set {
                 if (value == null) return;
 
-                if (!IsSettingCall)
-                {
+                if (!IsSettingCall) {
                     ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value;
                     ((Frame) Window.Current.Content).GoBack();
                 }
             }
         }
 
-        public string SearchText
-        {
+        public string SearchText {
             get { return searchText; }
-            set
-            {
+            set {
                 searchText = value;
                 Search();
             }
         }
 
-        public void Search()
-        {
-            if (SearchText != String.Empty)
-            {
+        public void Search() {
+            if (SearchText != String.Empty) {
                 Categories = new ObservableCollection<Category>
-                    (allCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower())).ToList());
-            }
-            else
-            {
+                    (allCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
+                        .ToList());
+            } else {
                 Categories = allCategories;
             }
         }

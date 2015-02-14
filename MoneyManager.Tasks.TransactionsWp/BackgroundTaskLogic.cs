@@ -9,14 +9,11 @@ using Xamarin;
 
 #endregion
 
-namespace MoneyManager.Tasks.TransactionsWp
-{
-    internal class BackgroundTaskLogic
-    {
+namespace MoneyManager.Tasks.TransactionsWp {
+    internal class BackgroundTaskLogic {
         private const string name = "RecurringTransactionTask";
 
-        public static async void RegisterBackgroundTask()
-        {
+        public static async void RegisterBackgroundTask() {
             try {
                 if (IsTaskExisting() || !await RequestAccess()) return;
 
@@ -33,11 +30,9 @@ namespace MoneyManager.Tasks.TransactionsWp
             }
         }
 
-        private static async Task<bool> RequestAccess()
-        {
-            var result = await BackgroundExecutionManager.RequestAccessAsync();
-            if (result == BackgroundAccessStatus.Denied)
-            {
+        private static async Task<bool> RequestAccess() {
+            BackgroundAccessStatus result = await BackgroundExecutionManager.RequestAccessAsync();
+            if (result == BackgroundAccessStatus.Denied) {
                 var dialog = new MessageDialog("denied");
                 await dialog.ShowAsync();
 
@@ -47,14 +42,12 @@ namespace MoneyManager.Tasks.TransactionsWp
         }
 
         private static async void RegistrationOnCompleted(BackgroundTaskRegistration sender,
-            BackgroundTaskCompletedEventArgs args)
-        {
+            BackgroundTaskCompletedEventArgs args) {
             var dialog = new MessageDialog("mööp mööp");
             await dialog.ShowAsync();
         }
 
-        private static bool IsTaskExisting()
-        {
+        private static bool IsTaskExisting() {
             return BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == name);
         }
     }

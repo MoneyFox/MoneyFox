@@ -1,9 +1,7 @@
 ﻿using Windows.UI.Xaml;
 
-namespace MoneyManager.Foundation.Model
-{
-    public class ProductItem
-    {
+namespace MoneyManager.Foundation.Model {
+    public class ProductItem {
         public string ImgLink { get; set; }
 
         public string Status { get; set; }

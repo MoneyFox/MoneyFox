@@ -1,6 +1,5 @@
 ﻿#region
 
-using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -14,12 +13,9 @@ using MoneyManager.Views;
 
 #endregion
 
-namespace MoneyManager.UserControls
-{
-    public partial class TransactionListUserControl
-    {
-        public TransactionListUserControl()
-        {
+namespace MoneyManager.UserControls {
+    public partial class TransactionListUserControl {
+        public TransactionListUserControl() {
             InitializeComponent();
 
             ServiceLocator.Current.GetInstance<BalanceViewModel>().IsTransactionView = true;
@@ -27,25 +23,21 @@ namespace MoneyManager.UserControls
 
         #region Properties
 
-        public TransactionDataAccess TransactionData
-        {
+        public TransactionDataAccess TransactionData {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        public AddTransactionViewModel AddTransactionView
-        {
+        public AddTransactionViewModel AddTransactionView {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
-        public BalanceViewModel BalanceView
-        {
+        public BalanceViewModel BalanceView {
             get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
         }
 
         #endregion
 
-        private void EditTransaction(object sender, RoutedEventArgs e)
-        {
+        private void EditTransaction(object sender, RoutedEventArgs e) {
             var element = (FrameworkElement) sender;
             var transaction = element.DataContext as FinancialTransaction;
             if (transaction == null) return;
@@ -54,8 +46,7 @@ namespace MoneyManager.UserControls
             ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
-        private async void DeleteTransaction(object sender, RoutedEventArgs e)
-        {
+        private async void DeleteTransaction(object sender, RoutedEventArgs e) {
             var element = (FrameworkElement) sender;
             var transaction = element.DataContext as FinancialTransaction;
             if (transaction == null) return;
@@ -64,37 +55,32 @@ namespace MoneyManager.UserControls
             AddTransactionView.IsNavigationBlocked = false;
         }
 
-        private void OpenContextMenu(object sender, HoldingRoutedEventArgs e)
-        {
+        private void OpenContextMenu(object sender, HoldingRoutedEventArgs e) {
             AddTransactionView.IsNavigationBlocked = true;
             var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
             flyoutBase.ShowAt(senderElement);
         }
 
-        private void UnloadPage(object sender, RoutedEventArgs e)
-        {
+        private void UnloadPage(object sender, RoutedEventArgs e) {
             BalanceView.IsTransactionView = false;
             AddTransactionView.IsNavigationBlocked = true;
             BalanceView.UpdateBalance();
         }
 
-        private void PageLoaded(object sender, RoutedEventArgs e)
-        {
+        private void PageLoaded(object sender, RoutedEventArgs e) {
             AddTransactionView.IsNavigationBlocked = false;
             ListViewTransactions.SelectedItem = null;
         }
 
-        private void LoadDetails(object sender, SelectionChangedEventArgs e)
-        {
-            if (!AddTransactionView.IsNavigationBlocked && ListViewTransactions.SelectedItem != null)
-            {
+        private void LoadDetails(object sender, SelectionChangedEventArgs e) {
+            if (!AddTransactionView.IsNavigationBlocked && ListViewTransactions.SelectedItem != null) {
                 TransactionData.SelectedTransaction = ListViewTransactions.SelectedItem as FinancialTransaction;
 
                 TransactionLogic.PrepareEdit(TransactionData.SelectedTransaction);
 
-                ((Frame)Window.Current.Content).Navigate(typeof(AddTransaction));
+                ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
                 ListViewTransactions.SelectedItem = null;
             }
         }

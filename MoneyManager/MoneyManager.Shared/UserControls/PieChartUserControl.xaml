@@ -15,10 +15,10 @@
         <chart:RadPieChart x:Name="TransactionSpreading" PaletteName="DefaultLight" Margin="0,0,0,130">
             <chart:PieSeries ItemsSource="{Binding MonthlySpreading}" RadiusFactor="0.8">
                 <chart:PieSeries.ValueBinding>
-                    <chart:PropertyNameDataPointBinding PropertyName="Value"/>
+                    <chart:PropertyNameDataPointBinding PropertyName="Value" />
                 </chart:PieSeries.ValueBinding>
-                <chart:PieSeries.LegendTitleBinding >
-                    <chart:PropertyNameDataPointBinding PropertyName="Label"/>
+                <chart:PieSeries.LegendTitleBinding>
+                    <chart:PropertyNameDataPointBinding PropertyName="Label" />
                 </chart:PieSeries.LegendTitleBinding>
             </chart:PieSeries>
         </chart:RadPieChart>
@@ -27,16 +27,16 @@
                                      VerticalAlignment="Bottom" Margin="0">
             <primitives:RadLegendControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical"/>
+                    <StackPanel Orientation="Vertical" />
                 </ItemsPanelTemplate>
             </primitives:RadLegendControl.ItemsPanel>
             <primitives:RadLegendControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,-15" >
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,-15">
                         <Ellipse Fill="{Binding Fill}" Stroke="{Binding Stroke}"
-                         StrokeThickness="1" Width="10" Height="10"/>
+                                 StrokeThickness="1" Width="10" Height="10" />
                         <TextBlock Text="{Binding Title}" Foreground="{Binding Fill}"
-                           Margin="10" FontSize="12" />
+                                   Margin="10" FontSize="12" />
                     </StackPanel>
                 </DataTemplate>
             </primitives:RadLegendControl.ItemTemplate>

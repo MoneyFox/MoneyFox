@@ -12,7 +12,7 @@
         <TransitionCollection>
             <NavigationThemeTransition>
                 <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True"/>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True" />
                 </NavigationThemeTransition.DefaultNavigationTransitionInfo>
             </NavigationThemeTransition>
         </TransitionCollection>
@@ -23,22 +23,22 @@
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="add" x:Uid="AddIncomeLabel" Label="add income" Click="AddIncomeClick" />
                 <AppBarButton Icon="remove" x:Uid="AddSpendingLabel" Label="add spending" Click="AddSpendingClick" />
-                <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Click="AddTransferClick" >
+                <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Click="AddTransferClick">
                     <AppBarButton.Icon>
                         <BitmapIcon UriSource="ms-appx:///Images/dark/transfer.png" />
                     </AppBarButton.Icon>
                 </AppBarButton>
             </CommandBar.PrimaryCommands>
-            
+
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccountClick" />
-                <AppBarButton x:Uid="StatisticLabel" Label="statistic" Click="OpenStatisticClick" >
+                <AppBarButton x:Uid="StatisticLabel" Label="statistic" Click="OpenStatisticClick">
                     <AppBarButton.Icon>
                         <BitmapIcon UriSource="ms-appx:///Images/dark/unlock.png" />
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <AppBarButton x:Uid="Settings" Label="settings" Click="SettingsClick" />
-                <AppBarButton x:Uid="LicenseLabel" Label="license" Click="LicenseClick" >
+                <AppBarButton x:Uid="LicenseLabel" Label="license" Click="LicenseClick">
                     <AppBarButton.Icon>
                         <BitmapIcon UriSource="ms-appx:///Images/dark/unlock.png" />
                     </AppBarButton.Icon>
@@ -51,24 +51,24 @@
     <Grid>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
-                <EntranceThemeTransition/>
+                <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
         <Hub x:Uid="ApplicationNameHeader" Header="Money Fox">
-            <HubSection x:Uid="AccountsMenu" Header="overview" >
+            <HubSection x:Uid="AccountsMenu" Header="overview">
                 <DataTemplate>
                     <userControls:AccountListUserControl />
                 </DataTemplate>
             </HubSection>
-                
-            <HubSection x:Uid="CashFlowHeader" Header="cash flow" >
+
+            <HubSection x:Uid="CashFlowHeader" Header="cash flow">
                 <DataTemplate>
                     <userControls:BarChartUserControl />
                 </DataTemplate>
             </HubSection>
-                
-            <HubSection x:Uid="SpreadingHeader" Header="spreading" >
+
+            <HubSection x:Uid="SpreadingHeader" Header="spreading">
                 <DataTemplate>
                     <userControls:PieChartUserControl />
                 </DataTemplate>

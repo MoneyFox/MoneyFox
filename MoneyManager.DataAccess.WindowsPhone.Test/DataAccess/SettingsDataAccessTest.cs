@@ -5,14 +5,11 @@ using MoneyManager.DataAccess.DataAccess;
 
 #endregion
 
-namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
-{
+namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
     [TestClass]
-    public class SettingsDataAccessTest
-    {
+    public class SettingsDataAccessTest {
         [TestMethod]
-        public void CrudSettingsTest()
-        {
+        public void CrudSettingsTest() {
             var settings = new SettingDataAccess();
             Assert.AreEqual("USD", settings.DefaultCurrency);
 

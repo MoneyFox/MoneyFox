@@ -8,26 +8,21 @@ using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Dialogs;
 
-namespace MoneyManager.UserControls
-{
-    public partial class CategoryListUserControl
-    {
-        public CategoryListUserControl()
-        {
+namespace MoneyManager.UserControls {
+    public partial class CategoryListUserControl {
+        public CategoryListUserControl() {
             InitializeComponent();
         }
 
-        private void CategoryListHolding(object sender, HoldingRoutedEventArgs e)
-        {
+        private void CategoryListHolding(object sender, HoldingRoutedEventArgs e) {
             var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
             flyoutBase.ShowAt(senderElement);
         }
 
-        private async void EditCategory(object sender, RoutedEventArgs e)
-        {
-            var element = (FrameworkElement)sender;
+        private async void EditCategory(object sender, RoutedEventArgs e) {
+            var element = (FrameworkElement) sender;
             var category = element.DataContext as Category;
             if (category == null) return;
 
@@ -38,9 +33,8 @@ namespace MoneyManager.UserControls
             await dialog.ShowAsync();
         }
 
-        private void DeleteCategory(object sender, RoutedEventArgs e)
-        {
-            var element = (FrameworkElement)sender;
+        private void DeleteCategory(object sender, RoutedEventArgs e) {
+            var element = (FrameworkElement) sender;
             var category = element.DataContext as Category;
             if (category == null) return;
 

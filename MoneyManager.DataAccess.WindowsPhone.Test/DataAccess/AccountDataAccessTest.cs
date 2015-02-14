@@ -9,30 +9,24 @@ using SQLite.Net;
 
 #endregion
 
-namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
-{
+namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
     [TestClass]
-    public class AccountDataAccessTest
-    {
+    public class AccountDataAccessTest {
         [TestInitialize]
-        public void InitTests()
-        {
-            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection())
-            {
+        public void InitTests() {
+            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection()) {
                 db.CreateTable<Account>();
             }
         }
 
         [TestMethod]
-        public void CrudAccountTest()
-        {
+        public void CrudAccountTest() {
             var accountDataAccess = new AccountDataAccess();
 
             const string firstName = "fooo Name";
             const string secondName = "new Foooo";
 
-            var account = new Account
-            {
+            var account = new Account {
                 CurrentBalance = 20,
                 Iban = "CHF20 0000 00000 000000",
                 Name = firstName,

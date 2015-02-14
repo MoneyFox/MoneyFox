@@ -1,43 +1,36 @@
 ﻿using System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
-using Windows.UI.Xaml.Navigation;
 using MoneyManager.Dialogs;
 
-namespace MoneyManager.Views
-{
-    public sealed partial class StatisticView
-    {
-        private NavigationHelper navigationHelper;
+namespace MoneyManager.Views {
+    public sealed partial class StatisticView {
+        private readonly NavigationHelper navigationHelper;
 
-        public StatisticView()
-        {
+        public StatisticView() {
             InitializeComponent();
 
             navigationHelper = new NavigationHelper(this);
         }
 
-        public NavigationHelper NavigationHelper
-        {
+        public NavigationHelper NavigationHelper {
             get { return navigationHelper; }
         }
 
-        private async void OpenFilter(object sender, RoutedEventArgs e)
-        {
+        private async void OpenFilter(object sender, RoutedEventArgs e) {
             await new SelectStatisticDialog().ShowAsync();
         }
 
         #region NavigationHelper registration
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
             navigationHelper.OnNavigatedTo(e);
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
+        protected override void OnNavigatedFrom(NavigationEventArgs e) {
             ServiceLocator.Current.GetInstance<StatisticViewModel>().SetDefaultCashFlow();
             ServiceLocator.Current.GetInstance<StatisticViewModel>().SetDefaultSpreading();
 
@@ -45,6 +38,5 @@ namespace MoneyManager.Views
         }
 
         #endregion
-
     }
 }

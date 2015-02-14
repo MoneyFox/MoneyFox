@@ -6,54 +6,36 @@ using Xamarin;
 
 #endregion
 
-namespace MoneyManager.Foundation
-{
-    public abstract class AbstractDataAccess<T> : IDataAccess<T>
-    {
-        public void Save(T itemToSave)
-        {
-            try
-            {
+namespace MoneyManager.Foundation {
+    public abstract class AbstractDataAccess<T> : IDataAccess<T> {
+        public void Save(T itemToSave) {
+            try {
                 SaveToDb(itemToSave);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Insights.Report(ex);
             }
         }
 
-        public void Delete(T itemToDelete)
-        {
-            try
-            {
+        public void Delete(T itemToDelete) {
+            try {
                 DeleteFromDatabase(itemToDelete);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Insights.Report(ex);
             }
         }
 
-        public void LoadList()
-        {
-            try
-            {
+        public void LoadList() {
+            try {
                 GetListFromDb();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Insights.Report(ex);
             }
         }
 
-        public void Update(T itemToUpdate)
-        {
-            try
-            {
+        public void Update(T itemToUpdate) {
+            try {
                 UpdateItem(itemToUpdate);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Insights.Report(ex);
             }
         }

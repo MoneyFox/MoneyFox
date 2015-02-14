@@ -11,33 +11,26 @@ using SQLite.Net.Attributes;
 
 #endregion
 
-namespace MoneyManager.DataAccess.Model
-{
+namespace MoneyManager.DataAccess.Model {
     [ImplementPropertyChanged]
     [Table("FinancialTransactions")]
-    public class FinancialTransaction
-    {
+    public class FinancialTransaction {
         #region Properties
 
-        private IEnumerable<Account> allAccounts
-        {
+        private IEnumerable<Account> allAccounts {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
         }
 
-        private IEnumerable<Category> allCategories
-        {
+        private IEnumerable<Category> allCategories {
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
         }
 
-        private AccountDataAccess accountData
-        {
+        private AccountDataAccess accountData {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
-        private IEnumerable<RecurringTransaction> allRecurringTransactions
-        {
-            get
-            {
+        private IEnumerable<RecurringTransaction> allRecurringTransactions {
+            get {
                 return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>().AllRecurringTransactions;
             }
         }
@@ -76,12 +69,9 @@ namespace MoneyManager.DataAccess.Model
         public int? ReccuringTransactionId { get; set; }
 
         [Ignore]
-        public Account ChargedAccount
-        {
-            get
-            {
-                if (allAccounts == null)
-                {
+        public Account ChargedAccount {
+            get {
+                if (allAccounts == null) {
                     accountData.LoadList();
                 }
                 return allAccounts.FirstOrDefault(x => x.Id == ChargedAccountId);
@@ -90,12 +80,9 @@ namespace MoneyManager.DataAccess.Model
         }
 
         [Ignore]
-        public Account TargetAccount
-        {
-            get
-            {
-                if (allAccounts == null)
-                {
+        public Account TargetAccount {
+            get {
+                if (allAccounts == null) {
                     accountData.LoadList();
                 }
                 return allAccounts.FirstOrDefault(x => x.Id == TargetAccountId);
@@ -104,16 +91,13 @@ namespace MoneyManager.DataAccess.Model
         }
 
         [Ignore]
-        public Category Category
-        {
-            get
-            {
+        public Category Category {
+            get {
                 return allCategories != null
                     ? allCategories.FirstOrDefault(x => x.Id == CategoryId)
                     : new Category();
             }
-            set
-            {
+            set {
                 CategoryId = value == null
                     ? (int?) null
                     : value.Id;
@@ -121,21 +105,18 @@ namespace MoneyManager.DataAccess.Model
         }
 
         [Ignore]
-        public RecurringTransaction RecurringTransaction
-        {
+        public RecurringTransaction RecurringTransaction {
             get { return allRecurringTransactions.FirstOrDefault(x => x.Id == ReccuringTransactionId); }
             set { ReccuringTransactionId = value.Id; }
         }
 
         [Ignore]
-        public bool ClearTransactionNow
-        {
+        public bool ClearTransactionNow {
             get { return Date.Date <= DateTime.Now.Date; }
         }
 
         [Ignore]
-        public bool IsTransfer
-        {
+        public bool IsTransfer {
             get { return Type == (int) TransactionType.Transfer; }
         }
     }

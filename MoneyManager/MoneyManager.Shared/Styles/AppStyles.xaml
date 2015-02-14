@@ -6,7 +6,7 @@
 
     <SolidColorBrush x:Name="ListItemSolidColorBrush"
                      Color="#242424" />
-    
+
     <!-- Text Styles -->
     <Style x:Key="BaseItemText" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource PhoneForegroundColor}" />
@@ -29,7 +29,7 @@
         <Setter Property="MaxHeight" Value="110" />
         <Setter Property="VerticalAlignment" Value="Top" />
     </Style>
-    
+
     <Style x:Key="ItemHeaderText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
         <Setter Property="FontSize" Value="24" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -109,7 +109,7 @@
         <Setter Property="TextAlignment" Value="left" />
         <Setter Property="VerticalAlignment" Value="Top" />
     </Style>
-    
+
     <Style x:Key="MenuItemMediumSmallDeemphasizeText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
         <Setter Property="FontSize" Value="18" />
         <Setter Property="Foreground" Value="Gray" />

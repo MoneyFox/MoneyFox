@@ -11,42 +11,33 @@ using MoneyManager.Foundation;
 
 #endregion
 
-namespace MoneyManager.Dialogs
-{
-    public sealed partial class CategoryDialog
-    {
-        public CategoryDialog(bool isEdit = false)
-        {
+namespace MoneyManager.Dialogs {
+    public sealed partial class CategoryDialog {
+        public CategoryDialog(bool isEdit = false) {
             InitializeComponent();
 
             IsEdit = isEdit;
-            if (!isEdit)
-            {
+            if (!isEdit) {
                 CategoryData.SelectedCategory = new Category();
 
-                if (!String.IsNullOrEmpty(CategoryListView.SearchText))
-                {
+                if (!String.IsNullOrEmpty(CategoryListView.SearchText)) {
                     CategoryData.SelectedCategory.Name = CategoryListView.SearchText;
                 }
             }
         }
 
-        private CategoryDataAccess CategoryData
-        {
+        private CategoryDataAccess CategoryData {
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
         }
 
-        private CategoryListViewModel CategoryListView
-        {
+        private CategoryListViewModel CategoryListView {
             get { return ServiceLocator.Current.GetInstance<CategoryListViewModel>(); }
         }
 
         public bool IsEdit { get; set; }
 
-        private async void DoneOnClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        {
-            if (CategoryData.SelectedCategory.Name == String.Empty)
-            {
+        private async void DoneOnClick(ContentDialog sender, ContentDialogButtonClickEventArgs args) {
+            if (CategoryData.SelectedCategory.Name == String.Empty) {
                 var dialog = new MessageDialog(Translation.GetTranslation("NameRequiredMessage"),
                     Translation.GetTranslation("MandatoryField"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
@@ -55,12 +46,9 @@ namespace MoneyManager.Dialogs
                 await dialog.ShowAsync();
             }
 
-            if (IsEdit)
-            {
+            if (IsEdit) {
                 CategoryData.Update(CategoryData.SelectedCategory);
-            }
-            else
-            {
+            } else {
                 CategoryData.Save(CategoryData.SelectedCategory);
             }
 

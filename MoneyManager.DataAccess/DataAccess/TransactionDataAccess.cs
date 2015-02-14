@@ -7,29 +7,24 @@ using System.Linq;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using PropertyChanged;
+using SQLite.Net;
 
 #endregion
 
-namespace MoneyManager.DataAccess.DataAccess
-{
+namespace MoneyManager.DataAccess.DataAccess {
     [ImplementPropertyChanged]
-    public class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
-    {
+    public class TransactionDataAccess : AbstractDataAccess<FinancialTransaction> {
         public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
 
         public FinancialTransaction SelectedTransaction { get; set; }
 
-        protected override void SaveToDb(FinancialTransaction transaction)
-        {
+        protected override void SaveToDb(FinancialTransaction transaction) {
             SaveToDb(transaction, false);
         }
 
-        public void SaveToDb(FinancialTransaction transaction, bool skipRecurring)
-        {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
-            {
-                if (AllTransactions == null)
-                {
+        public void SaveToDb(FinancialTransaction transaction, bool skipRecurring) {
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
+                if (AllTransactions == null) {
                     LoadList();
                 }
 
@@ -41,28 +36,22 @@ namespace MoneyManager.DataAccess.DataAccess
             }
         }
 
-        protected override void DeleteFromDatabase(FinancialTransaction transaction)
-        {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
-            {
+        protected override void DeleteFromDatabase(FinancialTransaction transaction) {
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
                 AllTransactions.Remove(transaction);
                 dbConn.Delete(transaction);
             }
         }
 
-        protected override void GetListFromDb()
-        {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
-            {
+        protected override void GetListFromDb() {
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
                 AllTransactions =
                     new ObservableCollection<FinancialTransaction>(dbConn.Table<FinancialTransaction>().ToList());
             }
         }
 
-        public IEnumerable<FinancialTransaction> GetRelatedTransactions(int accountId)
-        {
-            if (AllTransactions == null)
-            {
+        public IEnumerable<FinancialTransaction> GetRelatedTransactions(int accountId) {
+            if (AllTransactions == null) {
                 LoadList();
             }
 
@@ -72,35 +61,27 @@ namespace MoneyManager.DataAccess.DataAccess
                 .ToList();
         }
 
-        protected override void UpdateItem(FinancialTransaction transaction)
-        {
-            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
-            {
+        protected override void UpdateItem(FinancialTransaction transaction) {
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
                 dbConn.Update(transaction);
             }
         }
 
-        public IEnumerable<FinancialTransaction> GetUnclearedTransactions()
-        {
+        public IEnumerable<FinancialTransaction> GetUnclearedTransactions() {
             return GetUnclearedTransactions(DateTime.Today);
         }
 
-        public IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date)
-        {
-            if (AllTransactions == null)
-            {
+        public IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date) {
+            if (AllTransactions == null) {
                 LoadList();
             }
 
             return AllTransactions.Where(x => x.Cleared == false
                                               && x.Date.Date <= date.Date).ToList();
-
         }
 
-        public List<FinancialTransaction> LoadRecurringList()
-        {
-            if (AllTransactions == null)
-            {
+        public List<FinancialTransaction> LoadRecurringList() {
+            if (AllTransactions == null) {
                 LoadList();
             }
 

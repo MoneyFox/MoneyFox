@@ -1,14 +1,11 @@
-﻿namespace MoneyManager.Foundation
-{
-    public enum TransactionType
-    {
+﻿namespace MoneyManager.Foundation {
+    public enum TransactionType {
         Spending,
         Income,
         Transfer
     }
 
-    public enum TransactionRecurrence
-    {
+    public enum TransactionRecurrence {
         Daily,
         DailyWithoutWeekend,
         Weekly,
@@ -16,15 +13,13 @@
         Yearly
     }
 
-    public enum InvocationType
-    {
+    public enum InvocationType {
         Account,
         Transaction,
         Setting
     }
 
-    public enum TaskCompletionType
-    {
+    public enum TaskCompletionType {
         Successful,
         Unsuccessful,
         Aborted

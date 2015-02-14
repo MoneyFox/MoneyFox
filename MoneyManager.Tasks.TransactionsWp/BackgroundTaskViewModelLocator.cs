@@ -7,12 +7,9 @@ using MoneyManager.DataAccess.DataAccess;
 
 #endregion
 
-namespace MoneyManager.Tasks.TransactionsWp
-{
-    internal class BackgroundTaskViewModelLocator
-    {
-        static BackgroundTaskViewModelLocator()
-        {
+namespace MoneyManager.Tasks.TransactionsWp {
+    internal class BackgroundTaskViewModelLocator {
+        static BackgroundTaskViewModelLocator() {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register<AccountDataAccess>();
@@ -24,18 +21,15 @@ namespace MoneyManager.Tasks.TransactionsWp
 
         #region DataAccess
 
-        public AccountDataAccess AccountDataAccess
-        {
+        public AccountDataAccess AccountDataAccess {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
-        public TransactionDataAccess TransactionDataAccess
-        {
+        public TransactionDataAccess TransactionDataAccess {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        public RecurringTransactionDataAccess RecurringTransactionDataAccess
-        {
+        public RecurringTransactionDataAccess RecurringTransactionDataAccess {
             get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
         }
 
@@ -43,8 +37,7 @@ namespace MoneyManager.Tasks.TransactionsWp
 
         #region Views
 
-        public TransactionListViewModel TransactionListView
-        {
+        public TransactionListViewModel TransactionListView {
             get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
         }
 

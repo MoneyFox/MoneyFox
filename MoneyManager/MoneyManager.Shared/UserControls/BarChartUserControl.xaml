@@ -13,11 +13,11 @@
     <Grid>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
-                <EntranceThemeTransition/>
+                <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <chart:RadCartesianChart PaletteName="DefaultLight" 
+        <chart:RadCartesianChart PaletteName="DefaultLight"
                                  x:Name="CashFlowChart"
                                  Margin="0,0,0,60">
             <chart:RadCartesianChart.VerticalAxis>
@@ -26,7 +26,7 @@
             <chart:RadCartesianChart.HorizontalAxis>
                 <chart:CategoricalAxis />
             </chart:RadCartesianChart.HorizontalAxis>
-            
+
             <chart:BarSeries ItemsSource="{Binding MonthlyCashFlow}" PaletteMode="DataPoint">
                 <chart:BarSeries.CategoryBinding>
                     <chart:PropertyNameDataPointBinding PropertyName="Category" />
@@ -34,26 +34,26 @@
                 <chart:BarSeries.ValueBinding>
                     <chart:PropertyNameDataPointBinding PropertyName="Value" />
                 </chart:BarSeries.ValueBinding>
-                <chart:BarSeries.LegendTitleBinding >
-                    <chart:PropertyNameDataPointBinding PropertyName="Label"/>
+                <chart:BarSeries.LegendTitleBinding>
+                    <chart:PropertyNameDataPointBinding PropertyName="Label" />
                 </chart:BarSeries.LegendTitleBinding>
             </chart:BarSeries>
         </chart:RadCartesianChart>
 
         <primitives:RadLegendControl LegendProvider="{Binding ElementName=CashFlowChart}"
-                                     VerticalAlignment="Bottom" >
+                                     VerticalAlignment="Bottom">
             <primitives:RadLegendControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical"/>
+                    <StackPanel Orientation="Vertical" />
                 </ItemsPanelTemplate>
             </primitives:RadLegendControl.ItemsPanel>
             <primitives:RadLegendControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal"  Margin="0,0,0,-15">
-                        <Ellipse Fill="{Binding Fill}" Stroke="{Binding Stroke}" 
-                         StrokeThickness="1" Width="10" Height="10"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,-15">
+                        <Ellipse Fill="{Binding Fill}" Stroke="{Binding Stroke}"
+                                 StrokeThickness="1" Width="10" Height="10" />
                         <TextBlock Text="{Binding Title}" Foreground="{Binding Fill}"
-                           Margin="10" FontSize="12" />
+                                   Margin="10" FontSize="12" />
                     </StackPanel>
                 </DataTemplate>
             </primitives:RadLegendControl.ItemTemplate>

@@ -8,18 +8,14 @@ using SQLite.Net;
 
 #endregion
 
-namespace MoneyManager.DataAccess.WindowsPhone.Test
-{
+namespace MoneyManager.DataAccess.WindowsPhone.Test {
     [TestClass]
-    public class DatabaseLogicTest
-    {
+    public class DatabaseLogicTest {
         [TestMethod]
-        public void CreateDatabaseTest()
-        {
+        public void CreateDatabaseTest() {
             DatabaseLogic.CreateDatabase();
 
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection())
-            {
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
                 List<Account> temp1 = dbConn.Table<Account>().ToList();
                 List<FinancialTransaction> temp2 = dbConn.Table<FinancialTransaction>().ToList();
                 List<RecurringTransaction> temp3 = dbConn.Table<RecurringTransaction>().ToList();

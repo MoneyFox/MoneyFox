@@ -22,10 +22,10 @@
                  x:Uid="Iban" Margin="0,0,0,12" />
         <Grid>
             <TextBox Text="{Binding CurrentBalanceString, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
-                Header="amount" InputScope="Number"
-                x:Uid="Balance" x:Name="TextBoxCurrentBalance"
-                TextAlignment="Right" GotFocus="RemoveZeroOnFocus"
-                LostFocus="AddZeroIfEmpty" />
+                     Header="amount" InputScope="Number"
+                     x:Uid="Balance" x:Name="TextBoxCurrentBalance"
+                     TextAlignment="Right" GotFocus="RemoveZeroOnFocus"
+                     LostFocus="AddZeroIfEmpty" />
 
             <Button MinWidth="40" MinHeight="55" Background="#FF231E1E"
                     BorderThickness="0" Click="OpenSelectCurrencyDialog"

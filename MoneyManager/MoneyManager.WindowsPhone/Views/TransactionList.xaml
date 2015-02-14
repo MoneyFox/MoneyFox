@@ -13,7 +13,7 @@
         <TransitionCollection>
             <NavigationThemeTransition>
                 <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <ContinuumNavigationTransitionInfo/>
+                    <ContinuumNavigationTransitionInfo />
                 </NavigationThemeTransition.DefaultNavigationTransitionInfo>
             </NavigationThemeTransition>
         </TransitionCollection>
@@ -25,7 +25,7 @@
                     Background="{StaticResource PhoneAccentBrush}">
             <AppBarButton Icon="add" x:Uid="AddIncomeLabel" Label="add income" Click="AddIncomeClick" />
             <AppBarButton Icon="remove" x:Uid="AddSpendingLabel" Label="add spending" Click="AddSpendingClick" />
-            <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Click="AddTransferClick" >
+            <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Click="AddTransferClick">
                 <AppBarButton.Icon>
                     <BitmapIcon UriSource="ms-appx:///Images/dark/transfer.png" />
                 </AppBarButton.Icon>
@@ -36,7 +36,7 @@
     <Grid>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
-                <EntranceThemeTransition/>
+                <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 

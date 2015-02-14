@@ -10,38 +10,32 @@ using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using SQLite.Net;
 
-namespace MoneyManager.Business.WindowsPhone.Test.Logic
-{
+namespace MoneyManager.Business.WindowsPhone.Test.Logic {
     [TestClass]
-    public class TransactionLogicTest
-    {
+    public class TransactionLogicTest {
         #region properties
 
         private Account _sampleAccount;
 
-        private static AddTransactionViewModel addTransactionView
-        {
+        private static AddTransactionViewModel addTransactionView {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
-        private static TransactionDataAccess transactionData
-        {
+        private static TransactionDataAccess transactionData {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
         #endregion
 
-
         [TestInitialize]
-        public void TestInit()
-        {
+        public void TestInit() {
             new ViewModelLocator();
 
             DatabaseLogic.CreateDatabase();
 
-            _sampleAccount = new Account
-            {
+            _sampleAccount = new Account {
                 Currency = "CHF",
                 IsExchangeModeActive = false,
                 CurrentBalance = 700,
@@ -52,8 +46,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
                 Note = "just a note"
             };
 
-            using (var db = SqlConnectionFactory.GetSqlConnection())
-            {
+            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection()) {
                 db.Insert(_sampleAccount);
             }
 
@@ -61,29 +54,26 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
         }
 
         [TestMethod]
-        public void GoToAddTransactionTest()
-        {
+        public void GoToAddTransactionTest() {
             TransactionLogic.GoToAddTransaction(TransactionType.Income);
 
             Assert.IsFalse(addTransactionView.IsEdit);
             Assert.IsFalse(addTransactionView.IsTransfer);
-            Assert.AreEqual((int)TransactionType.Income, addTransactionView.SelectedTransaction.Type);
+            Assert.AreEqual((int) TransactionType.Income, addTransactionView.SelectedTransaction.Type);
             Assert.IsFalse(addTransactionView.SelectedTransaction.IsExchangeModeActive);
 
             TransactionLogic.GoToAddTransaction(TransactionType.Transfer);
 
             Assert.IsFalse(addTransactionView.IsEdit);
             Assert.IsTrue(addTransactionView.IsTransfer);
-            Assert.AreEqual((int)TransactionType.Transfer, addTransactionView.SelectedTransaction.Type);
+            Assert.AreEqual((int) TransactionType.Transfer, addTransactionView.SelectedTransaction.Type);
             Assert.IsFalse(addTransactionView.SelectedTransaction.IsExchangeModeActive);
         }
 
         [TestMethod]
-        public void PrepareEditTest()
-        {
-            var transaction = new FinancialTransaction
-            {
-                Type = (int)TransactionType.Income
+        public void PrepareEditTest() {
+            var transaction = new FinancialTransaction {
+                Type = (int) TransactionType.Income
             };
 
             TransactionLogic.PrepareEdit(transaction);
@@ -91,9 +81,8 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
             Assert.IsTrue(addTransactionView.IsEdit);
             Assert.IsFalse(addTransactionView.IsTransfer);
 
-            transaction = new FinancialTransaction
-            {
-                Type = (int)TransactionType.Transfer
+            transaction = new FinancialTransaction {
+                Type = (int) TransactionType.Transfer
             };
 
             TransactionLogic.PrepareEdit(transaction);
@@ -103,15 +92,12 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
         }
 
         [TestMethod]
-        public async Task CrudTransactionTest()
-        {
-            var transaction = new FinancialTransaction
-            {
+        public async Task CrudTransactionTest() {
+            var transaction = new FinancialTransaction {
                 Amount = 50,
                 AmountWithoutExchange = 50,
                 Type = (int) TransactionType.Income,
-                Category = new Category
-                {
+                Category = new Category {
                     Id = 1,
                     Name = "Einkaufen"
                 },
@@ -139,15 +125,13 @@ namespace MoneyManager.Business.WindowsPhone.Test.Logic
 
         [TestMethod]
         [Ignore]
-        public void DeleteAssociatedTransactionsFromDatabaseTest()
-        {
+        public void DeleteAssociatedTransactionsFromDatabaseTest() {
             Assert.IsTrue(false);
         }
 
         [TestMethod]
         [Ignore]
-        public async Task ClearTransactionsTest()
-        {
+        public async Task ClearTransactionsTest() {
             Assert.IsTrue(false);
         }
     }

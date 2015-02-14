@@ -6,23 +6,18 @@ using PropertyChanged;
 
 #endregion
 
-namespace MoneyManager.Business.ViewModels
-{
+namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
-    public class TileSettingsViewModel : ViewModelBase
-    {
-        public IncomeTile IncomeTile
-        {
+    public class TileSettingsViewModel : ViewModelBase {
+        public IncomeTile IncomeTile {
             get { return new IncomeTile(); }
         }
 
-        public SpendingTile SpendingTile
-        {
+        public SpendingTile SpendingTile {
             get { return new SpendingTile(); }
         }
 
-        public TransferTile TransferTile
-        {
+        public TransferTile TransferTile {
             get { return new TransferTile(); }
         }
     }

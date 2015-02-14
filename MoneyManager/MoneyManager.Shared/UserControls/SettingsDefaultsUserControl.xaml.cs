@@ -1,9 +1,6 @@
-﻿namespace MoneyManager.UserControls
-{
-    public sealed partial class SettingsDefaultsUserControl 
-    {
-        public SettingsDefaultsUserControl()
-        {
+﻿namespace MoneyManager.UserControls {
+    public sealed partial class SettingsDefaultsUserControl {
+        public SettingsDefaultsUserControl() {
             InitializeComponent();
         }
     }

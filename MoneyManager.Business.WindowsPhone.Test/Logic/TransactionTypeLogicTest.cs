@@ -6,14 +6,11 @@ using MoneyManager.Foundation;
 
 #endregion
 
-namespace MoneyManager.Business.WindowsPhone.Test.Logic
-{
+namespace MoneyManager.Business.WindowsPhone.Test.Logic {
     [TestClass]
-    public class TransactionTypeLogicTest
-    {
+    public class TransactionTypeLogicTest {
         [TestMethod]
-        public void GetEnumFromStringTest()
-        {
+        public void GetEnumFromStringTest() {
             TransactionType typeSpending = TransactionTypeLogic.GetEnumFromString("Spending");
             TransactionType typeIncome = TransactionTypeLogic.GetEnumFromString("Income");
             TransactionType typeTransfer = TransactionTypeLogic.GetEnumFromString("Transfer");

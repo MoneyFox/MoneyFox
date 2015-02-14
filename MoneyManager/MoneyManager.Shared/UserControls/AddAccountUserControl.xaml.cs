@@ -7,35 +7,27 @@ using MoneyManager.Views;
 
 #endregion
 
-namespace MoneyManager.UserControls
-{
-    public sealed partial class AddAccountUserControl
-    {
-        public AddAccountUserControl()
-        {
+namespace MoneyManager.UserControls {
+    public sealed partial class AddAccountUserControl {
+        public AddAccountUserControl() {
             InitializeComponent();
         }
 
-        private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
-        {
-            if (TextBoxCurrentBalance.Text == "0")
-            {
+        private void RemoveZeroOnFocus(object sender, RoutedEventArgs e) {
+            if (TextBoxCurrentBalance.Text == "0") {
                 TextBoxCurrentBalance.Text = String.Empty;
             }
 
             TextBoxCurrentBalance.SelectAll();
         }
 
-        private void AddZeroIfEmpty(object sender, RoutedEventArgs e)
-        {
-            if (TextBoxCurrentBalance.Text == String.Empty)
-            {
+        private void AddZeroIfEmpty(object sender, RoutedEventArgs e) {
+            if (TextBoxCurrentBalance.Text == String.Empty) {
                 TextBoxCurrentBalance.Text = "0";
             }
         }
 
-        private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs e)
-        {
+        private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs e) {
             ((Frame) Window.Current.Content).Navigate(typeof (SelectCurrency));
         }
     }

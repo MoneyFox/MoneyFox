@@ -11,13 +11,12 @@ using Xamarin;
 
 #endregion
 
-namespace MoneyManager.Business.ViewModels
-{
-    public class BackupViewModel : ViewModelBase
-    {
+namespace MoneyManager.Business.ViewModels {
+    public class BackupViewModel : ViewModelBase {
         private const string BackupFolderName = "MoneyFoxBackup";
         private const string DbName = "moneyfox.sqlite";
         private const string BackupName = "backupmoneyfox.sqlite";
+        private string creationDate;
 
         private LiveConnectClient LiveClient { get; set; }
 
@@ -25,13 +24,9 @@ namespace MoneyManager.Business.ViewModels
 
         public bool IsLoading { get; set; }
 
-        private string creationDate;
-        public string CreationDate
-        {
-            get
-            {
-                if (LiveClient == null || String.IsNullOrEmpty(creationDate))
-                {
+        public string CreationDate {
+            get {
+                if (LiveClient == null || String.IsNullOrEmpty(creationDate)) {
                     return Translation.GetTranslation("NeverLabel");
                 }
 
@@ -40,29 +35,21 @@ namespace MoneyManager.Business.ViewModels
             private set { creationDate = value; }
         }
 
-        public async Task LogInToOneDrive()
-        {
-            try
-            {
+        public async Task LogInToOneDrive() {
+            try {
                 LiveClient = await BackupLogic.LogInToOneDrive();
 
-                if (LiveClient == null)
-                {
+                if (LiveClient == null) {
                     await ShowNotLoggedInMessage();
-                }
-                else
-                {
+                } else {
                     IsConnected = true;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Insights.Report(ex);
             }
         }
 
-        private static async Task ShowNotLoggedInMessage()
-        {
+        private static async Task ShowNotLoggedInMessage() {
             var dialog = new MessageDialog(Translation.GetTranslation("NotLoggedInMessage"),
                 Translation.GetTranslation("NotLoggedIn"));
             dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
@@ -70,111 +57,96 @@ namespace MoneyManager.Business.ViewModels
             await dialog.ShowAsync();
         }
 
-        public async Task LoadBackupCreationDate()
-        {
+        public async Task LoadBackupCreationDate() {
             if (LiveClient == null) return;
             IsLoading = true;
 
-            var folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
-            if (folderId != null)
-            {
-                var backupId = await BackupLogic.GetBackupId(LiveClient, folderId, BackupName);
+            string folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
+            if (folderId != null) {
+                string backupId = await BackupLogic.GetBackupId(LiveClient, folderId, BackupName);
                 CreationDate = await BackupLogic.GetBackupCreationDate(LiveClient, backupId);
             }
 
             IsLoading = false;
         }
 
-        public async Task CreateBackup()
-        {
-            try
-            {
+        public async Task CreateBackup() {
+            try {
                 IsLoading = true;
 
                 if (!await ShowOverwriteInfo()) return;
 
-                var folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
+                string folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
 
-                if (String.IsNullOrEmpty(folderId))
-                {
+                if (String.IsNullOrEmpty(folderId)) {
                     folderId = await BackupLogic.CreateBackupFolder(LiveClient, BackupFolderName);
                 }
 
-                var completionType = await BackupLogic.UploadBackup(LiveClient, folderId, DbName);
+                TaskCompletionType completionType = await BackupLogic.UploadBackup(LiveClient, folderId, DbName);
 
                 await LoadBackupCreationDate();
 
                 await ShowCompletionNote(completionType);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Insights.Report(ex);
                 ShowCompletionNote(TaskCompletionType.Unsuccessful);
-            }
-            finally
-            {
+            } finally {
                 IsLoading = false;
             }
         }
 
-        private async Task<bool> ShowOverwriteInfo()
-        {
-            if (!String.IsNullOrEmpty(creationDate))
-            {
+        private async Task<bool> ShowOverwriteInfo() {
+            if (!String.IsNullOrEmpty(creationDate)) {
                 var dialog = new MessageDialog(Translation.GetTranslation("OverwriteBackupMessage"),
                     Translation.GetTranslation("OverwriteBackup"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
 
-                var result = await dialog.ShowAsync();
+                IUICommand result = await dialog.ShowAsync();
 
                 return result.Label == Translation.GetTranslation("YesLabel");
             }
             return true;
         }
 
-        public async Task RestoreBackup()
-        {
-            try
-            {
+        public async Task RestoreBackup() {
+            try {
                 IsLoading = true;
-                
-                var folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
+
+                string folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
 
                 await BackupLogic.RestoreBackUp(LiveClient, folderId, "backup" + DbName, DbName);
                 await ShowCompletionNote(TaskCompletionType.Successful);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);
                 ShowCompletionNote(TaskCompletionType.Unsuccessful);
-            }
-            finally
-            {
+            } finally {
                 IsLoading = false;
             }
         }
 
-        private async Task ShowCompletionNote(TaskCompletionType completionType)
-        {
+        private async Task ShowCompletionNote(TaskCompletionType completionType) {
             MessageDialog dialog;
 
-            switch (completionType)
-            {
+            switch (completionType) {
                 case TaskCompletionType.Successful:
-                    dialog = new MessageDialog(Translation.GetTranslation("TaskSuccessfulMessage"), Translation.GetTranslation("SuccessfulTitle"));
+                    dialog = new MessageDialog(Translation.GetTranslation("TaskSuccessfulMessage"),
+                        Translation.GetTranslation("SuccessfulTitle"));
                     break;
 
                 case TaskCompletionType.Unsuccessful:
-                    dialog = new MessageDialog(Translation.GetTranslation("TaskUnsuccessfulMessage"), Translation.GetTranslation("UnsuccessfulTitle"));
+                    dialog = new MessageDialog(Translation.GetTranslation("TaskUnsuccessfulMessage"),
+                        Translation.GetTranslation("UnsuccessfulTitle"));
                     break;
 
                 case TaskCompletionType.Aborted:
-                    dialog = new MessageDialog(Translation.GetTranslation("TaskAbortedMessage"), Translation.GetTranslation("AbortedTitle"));
+                    dialog = new MessageDialog(Translation.GetTranslation("TaskAbortedMessage"),
+                        Translation.GetTranslation("AbortedTitle"));
                     break;
 
                 default:
-                    dialog = new MessageDialog(Translation.GetTranslation("GeneralErrorMessage"), Translation.GetTranslation("GeneralErrorTitle"));
+                    dialog = new MessageDialog(Translation.GetTranslation("GeneralErrorMessage"),
+                        Translation.GetTranslation("GeneralErrorTitle"));
                     break;
             }
 

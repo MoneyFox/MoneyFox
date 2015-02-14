@@ -22,7 +22,7 @@
                            FontSize="36"
                            FontFamily="Segoe WP Light" />
             </StackPanel>
-            <StackPanel >
+            <StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Width="456">
                     <Grid Background="{StaticResource PhoneAccentBrush}"
@@ -98,10 +98,11 @@
                 <StackPanel Orientation="Horizontal"
                             Margin="0,0,0,20"
                             Tapped="GoToTwitter_OnTap">
-                    <Image Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
-                           DataContext="/Images/{0}/twitter.png"
-                           Width="50"
-                           Height="50" />
+                    <Image
+                        Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
+                        DataContext="/Images/{0}/twitter.png"
+                        Width="50"
+                        Height="50" />
                     <TextBlock x:Name="lblTwitter"
                                TextWrapping="Wrap"
                                Text="@NPadrutt"
@@ -115,10 +116,11 @@
                 <StackPanel Orientation="Horizontal"
                             Margin="0,0,0,20"
                             Tapped="GoToWebsite_OnTap">
-                    <Image Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
-                           DataContext="/Images/{0}/internet.png"
-                           Width="50"
-                           Height="50" />
+                    <Image
+                        Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
+                        DataContext="/Images/{0}/internet.png"
+                        Width="50"
+                        Height="50" />
                     <TextBlock x:Name="lblWebsite"
                                TextWrapping="Wrap"
                                Text="www.apply-solutions.ch"
@@ -132,10 +134,11 @@
                 <StackPanel Orientation="Horizontal"
                             Tapped="ComposeMail_OnTap"
                             Margin="0,0,-14.333,0">
-                    <Image Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
-                           DataContext="/Images/{0}/mail.png"
-                           Width="50"
-                           Height="50" />
+                    <Image
+                        Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
+                        DataContext="/Images/{0}/mail.png"
+                        Width="50"
+                        Height="50" />
                     <TextBlock x:Name="lblSupportMail"
                                TextWrapping="Wrap"
                                Text="mobile.support@apply-solutions.ch"

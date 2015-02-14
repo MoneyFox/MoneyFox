@@ -13,30 +13,24 @@ using PropertyChanged;
 
 #endregion
 
-namespace MoneyManager.Business.ViewModels
-{
+namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
-    public class BalanceViewModel : ViewModelBase
-    {
+    public class BalanceViewModel : ViewModelBase {
         #region Properties
 
-        public ObservableCollection<Account> AllAccounts
-        {
+        public ObservableCollection<Account> AllAccounts {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
         }
 
-        private Account selectedAccount
-        {
+        private Account selectedAccount {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
         }
 
-        public TransactionDataAccess TransactionData
-        {
+        public TransactionDataAccess TransactionData {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        public SettingDataAccess settings
-        {
+        public SettingDataAccess settings {
             get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
 
@@ -48,22 +42,18 @@ namespace MoneyManager.Business.ViewModels
 
         public bool IsTransactionView { get; set; }
 
-        public string CurrencyCulture
-        {
+        public string CurrencyCulture {
             get { return settings.DefaultCurrency; }
         }
 
-        public void UpdateBalance()
-        {
+        public void UpdateBalance() {
             TotalBalance = GetTotalBalance();
 
             EndOfMonthBalance = GetEndOfMonthValue();
         }
 
-        private double GetTotalBalance()
-        {
-            if (IsTransactionView)
-            {
+        private double GetTotalBalance() {
+            if (IsTransactionView) {
                 return selectedAccount.CurrentBalance;
             }
 
@@ -72,15 +62,12 @@ namespace MoneyManager.Business.ViewModels
                 : 0;
         }
 
-        private double GetEndOfMonthValue()
-        {
-            var balance = TotalBalance;
-            var unclearedTransactions = LoadUnclreadTransactions();
+        private double GetEndOfMonthValue() {
+            double balance = TotalBalance;
+            IEnumerable<FinancialTransaction> unclearedTransactions = LoadUnclreadTransactions();
 
-            foreach (var transaction in unclearedTransactions)
-            {
-                switch (transaction.Type)
-                {
+            foreach (FinancialTransaction transaction in unclearedTransactions) {
+                switch (transaction.Type) {
                     case (int) TransactionType.Spending:
                         balance -= transaction.Amount;
                         break;
@@ -88,7 +75,7 @@ namespace MoneyManager.Business.ViewModels
                     case (int) TransactionType.Income:
                         balance += transaction.Amount;
                         break;
-                        
+
                     case (int) TransactionType.Transfer:
                         balance = HandleTransferAmount(transaction, balance);
                         break;
@@ -98,26 +85,22 @@ namespace MoneyManager.Business.ViewModels
             return balance;
         }
 
-        private double HandleTransferAmount(FinancialTransaction transaction, double balance)
-        {
-            if (selectedAccount == transaction.ChargedAccount)
-            {
+        private double HandleTransferAmount(FinancialTransaction transaction, double balance) {
+            if (selectedAccount == transaction.ChargedAccount) {
                 balance -= transaction.Amount;
-            }
-            else
-            {
+            } else {
                 balance += transaction.Amount;
             }
             return balance;
         }
 
-        private IEnumerable<FinancialTransaction> LoadUnclreadTransactions()
-        {
-            var unclearedTransactions =
+        private IEnumerable<FinancialTransaction> LoadUnclreadTransactions() {
+            IEnumerable<FinancialTransaction> unclearedTransactions =
                 TransactionData.GetUnclearedTransactions(Utilities.GetEndOfMonth());
 
             return IsTransactionView
-                ? unclearedTransactions.Where(x => x.ChargedAccount == selectedAccount || x.TargetAccount == selectedAccount).ToList()
+                ? unclearedTransactions.Where(
+                    x => x.ChargedAccount == selectedAccount || x.TargetAccount == selectedAccount).ToList()
                 : unclearedTransactions;
         }
     }

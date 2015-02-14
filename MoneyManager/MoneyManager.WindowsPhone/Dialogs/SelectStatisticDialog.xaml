@@ -22,7 +22,7 @@
         <DatePicker
             Date="{Binding StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Header="startdate" x:Uid="StartdateHeader" />
-        <DatePicker 
+        <DatePicker
             Date="{Binding EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Header="enddate" x:Uid="EnddateHeader" />
     </StackPanel>

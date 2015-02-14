@@ -11,11 +11,9 @@ using PropertyChanged;
 
 #endregion
 
-namespace MoneyManager.DataAccess.DataAccess
-{
+namespace MoneyManager.DataAccess.DataAccess {
     [ImplementPropertyChanged]
-    public class SettingDataAccess : INotifyPropertyChanged
-    {
+    public class SettingDataAccess : INotifyPropertyChanged {
         private const string DefaultCurrencyKeyname = "DefaultCurrency";
         private const string DefaultAccountKeyname = "DefaultAccount";
 
@@ -23,21 +21,17 @@ namespace MoneyManager.DataAccess.DataAccess
 
         #region Properties
 
-        public string DefaultCurrency
-        {
+        public string DefaultCurrency {
             get { return GetValueOrDefault(DefaultCurrencyKeyname, new GeographicRegion().CurrenciesInUse.First()); }
-            set
-            {
+            set {
                 AddOrUpdateValue(DefaultCurrencyKeyname, value);
                 OnPropertyChanged();
             }
         }
 
-        public int DefaultAccount
-        {
+        public int DefaultAccount {
             get { return GetValueOrDefault(DefaultAccountKeyname, DefaultAccountKeydefault); }
-            set
-            {
+            set {
                 AddOrUpdateValue(DefaultAccountKeyname, value);
                 OnPropertyChanged();
             }
@@ -47,30 +41,24 @@ namespace MoneyManager.DataAccess.DataAccess
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void AddOrUpdateValue(string key, object value)
-        {
+        private void AddOrUpdateValue(string key, object value) {
             ApplicationData.Current.RoamingSettings.Values[key] = value;
         }
 
-        private valueType GetValueOrDefault<valueType>(string key, valueType defaultValue)
-        {
+        private valueType GetValueOrDefault<valueType>(string key, valueType defaultValue) {
             valueType value;
 
-            if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key))
-            {
-                var setting = ApplicationData.Current.RoamingSettings.Values[key];
+            if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key)) {
+                object setting = ApplicationData.Current.RoamingSettings.Values[key];
                 value = (valueType) Convert.ChangeType(setting, typeof (valueType), CultureInfo.InvariantCulture);
-            }
-            else
-            {
+            } else {
                 value = defaultValue;
             }
             return value;
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            var handler = PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }

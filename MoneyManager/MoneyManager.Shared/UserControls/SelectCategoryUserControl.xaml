@@ -7,15 +7,15 @@
     mc:Ignorable="d"
     d:DesignHeight="100"
     d:DesignWidth="400">
-    
+
     <Grid>
         <TextBox Header="category" x:Uid="CategoryHeader"
-                         Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
-                         GotFocus="OpenSelectCategoryDialog"
-                         IsReadOnly="True" />
+                 Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
+                 GotFocus="OpenSelectCategoryDialog"
+                 IsReadOnly="True" />
         <Image Height="35" Width="35"
-                       Source="/Images/light/close.png"
-                       Margin="0,36,0,0"
-                       Tapped="ResetCategory" VerticalAlignment="Top" HorizontalAlignment="Right" />
+               Source="/Images/light/close.png"
+               Margin="0,36,0,0"
+               Tapped="ResetCategory" VerticalAlignment="Top" HorizontalAlignment="Right" />
     </Grid>
 </UserControl>

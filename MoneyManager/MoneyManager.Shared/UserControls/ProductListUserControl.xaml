@@ -14,25 +14,25 @@
     </UserControl.Resources>
 
 
-            <Grid>
-        <ScrollViewer HorizontalAlignment="Left" Margin="12,0,12,0" >
+    <Grid>
+        <ScrollViewer HorizontalAlignment="Left" Margin="12,0,12,0">
             <ItemsControl x:Name="Plugin">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                 <Image Margin="4" DataContext="{Binding imgLink}"
-                                       Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}" 
+                                       Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
                                        MaxWidth="200" MaxHeight="200" Width="200" Height="200" />
                                 <StackPanel Margin="0,30,0,0">
                                     <TextBlock Text="{Binding Name}" />
                                     <TextBlock Text="{Binding Status}" />
-                                    <Button Content="Buy Now" Visibility="{Binding BuyNowButtonVisible}" 
+                                    <Button Content="Buy Now" Visibility="{Binding BuyNowButtonVisible}"
                                             Click="ButtonBuyNow_Clicked" Tag="{Binding Key}" />
                                 </StackPanel>
                             </StackPanel>
-                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" 
-                                       Style="{StaticResource MenuItemSubSmallText}" 
+                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap"
+                                       Style="{StaticResource MenuItemSubSmallText}"
                                        Margin="0" FontFamily="Segoe WP Light" />
                         </StackPanel>
                     </DataTemplate>

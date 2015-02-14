@@ -16,7 +16,8 @@
                         MinWidth="300" Orientation="Horizontal">
                 <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding ID}" Margin="0" />
                 <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text=" - " />
-                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding CurrencyID}" Margin="5,0,0,0" />
+                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding CurrencyID}"
+                           Margin="5,0,0,0" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>

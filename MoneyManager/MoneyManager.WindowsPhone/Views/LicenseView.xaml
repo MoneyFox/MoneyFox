@@ -12,22 +12,22 @@
 
         <Grid.ChildrenTransitions>
             <TransitionCollection>
-                <EntranceThemeTransition/>
+                <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="19,0,0,0">
             <TextBlock Text="MoneyTracker" x:Uid="ApplicationNameText"
                        Style="{ThemeResource TitleTextBlockStyle}"
                        Margin="0,12,0,0" />
-            <TextBlock Text="license" x:Uid="LicenseText" Margin="0,-6.5,0,26.5" 
-                       Style="{ThemeResource HeaderTextBlockStyle}" 
-                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Text="license" x:Uid="LicenseText" Margin="0,-6.5,0,26.5"
+                       Style="{ThemeResource HeaderTextBlockStyle}"
+                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">

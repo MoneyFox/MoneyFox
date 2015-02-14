@@ -11,7 +11,7 @@
 
     <Page.BottomAppBar>
         <CommandBar Background="{StaticResource PhoneAccentBrush}">
-            <AppBarButton x:Uid="Filter" Label="filter" Click="OpenFilter" >
+            <AppBarButton x:Uid="Filter" Label="filter" Click="OpenFilter">
                 <AppBarButton.Icon>
                     <BitmapIcon UriSource="ms-appx:///Images/dark/filter.png" />
                 </AppBarButton.Icon>
@@ -19,21 +19,21 @@
         </CommandBar>
     </Page.BottomAppBar>
 
-    <Grid >
+    <Grid>
 
         <Grid.ChildrenTransitions>
             <TransitionCollection>
-                <EntranceThemeTransition/>
+                <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <Pivot Title="{Binding Title}" x:Uid="StatistikTitle" >
+            <Pivot Title="{Binding Title}" x:Uid="StatistikTitle">
                 <PivotItem x:Uid="AccountsMenu" Header="overview">
                     <Grid>
                         <userControls:BarChartUserControl />

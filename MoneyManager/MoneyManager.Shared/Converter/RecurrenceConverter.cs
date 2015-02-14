@@ -6,16 +6,12 @@ using MoneyManager.Foundation;
 
 #endregion
 
-namespace MoneyManager.Converter
-{
-    public class RecurrenceConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            var enumInt = Int32.Parse(value.ToString());
+namespace MoneyManager.Converter {
+    public class RecurrenceConverter : IValueConverter {
+        public object Convert(object value, Type targetType, object parameter, string language) {
+            int enumInt = Int32.Parse(value.ToString());
 
-            switch (enumInt)
-            {
+            switch (enumInt) {
                 case (int) TransactionRecurrence.Weekly:
                     return Translation.GetTranslation("WeeklyLabel");
 
@@ -29,8 +25,7 @@ namespace MoneyManager.Converter
             return Translation.GetTranslation("NoneLabel");
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
+        public object ConvertBack(object value, Type targetType, object parameter, string language) {
             throw new NotImplementedException();
         }
     }

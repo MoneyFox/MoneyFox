@@ -6,13 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Title="DIALOG TITLE"
-    PrimaryButtonText="sign in"  
+    PrimaryButtonText="sign in"
     SecondaryButtonText="cancel"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
 
     <StackPanel HorizontalAlignment="Stretch">
-        <TextBox Name="email" Header="Email address"/>
+        <TextBox Name="email" Header="Email address" />
         <DatePicker />
         <DatePicker />
     </StackPanel>

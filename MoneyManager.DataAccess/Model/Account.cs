@@ -5,12 +5,10 @@ using SQLite.Net.Attributes;
 
 #endregion
 
-namespace MoneyManager.DataAccess.Model
-{
+namespace MoneyManager.DataAccess.Model {
     [ImplementPropertyChanged]
     [Table("Accounts")]
-    public class Account
-    {
+    public class Account {
         [PrimaryKey, AutoIncrement, Indexed]
         public int Id { get; set; }
 
