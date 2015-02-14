@@ -573,4 +573,16 @@
   <data name="RedirectLabel" xml:space="preserve">
     <value>weiterleiten</value>
   </data>
+  <data name="CashflowTileLabel" xml:space="preserve">
+    <value>Kapitalfluss</value>
+  </data>
+  <data name="EarningTileLabel" xml:space="preserve">
+    <value>Gewinn: </value>
+  </data>
+  <data name="IncomeTileLabel" xml:space="preserve">
+    <value>Einnahmen: </value>
+  </data>
+  <data name="SpendingTileLabel" xml:space="preserve">
+    <value>Ausgaben: </value>
+  </data>
 </root>

@@ -5,6 +5,7 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Foundation.OperationContracts;
 
 #endregion
 
@@ -15,12 +16,17 @@ namespace MoneyManager {
 
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            //DataAccess
             SimpleIoc.Default.Register<AccountDataAccess>();
             SimpleIoc.Default.Register<CategoryDataAccess>();
             SimpleIoc.Default.Register<TransactionDataAccess>();
             SimpleIoc.Default.Register<RecurringTransactionDataAccess>();
             SimpleIoc.Default.Register<SettingDataAccess>();
 
+            //Logic
+            SimpleIoc.Default.Register<IUserNotification, UserNotification>();
+
+            //ViewModels
             SimpleIoc.Default.Register<AddAccountViewModel>();
             SimpleIoc.Default.Register<AddTransactionViewModel>();
             SimpleIoc.Default.Register<BalanceViewModel>();
@@ -32,8 +38,6 @@ namespace MoneyManager {
             SimpleIoc.Default.Register<SelectCurrencyViewModel>();
             SimpleIoc.Default.Register<StatisticViewModel>();
             SimpleIoc.Default.Register<BackupViewModel>();
-
-            ServiceLocator.Current.GetInstance<CategoryDataAccess>().LoadList();
         }
 
         #region DataAccess

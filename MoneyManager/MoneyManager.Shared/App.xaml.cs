@@ -7,7 +7,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
+using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Tasks.TransactionsWp;
 using Xamarin;
 
@@ -31,8 +33,6 @@ namespace MoneyManager {
 
             await LicenseHelper.CheckLicenceFeaturepack();
             var rootFrame = Window.Current.Content as Frame;
-
-            TileHelper.SetMainTile();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -78,6 +78,8 @@ namespace MoneyManager {
             await TransactionLogic.ClearTransactions();
 
             BackgroundTaskLogic.RegisterBackgroundTask();
+
+            UpdateMainTile();
         }
 
 #if WINDOWS_PHONE_APP
@@ -105,10 +107,16 @@ namespace MoneyManager {
         private void OnSuspending(object sender, SuspendingEventArgs e) {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
 
-            TileHelper.SetMainTile();
+            UpdateMainTile();
 
             // TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private static void UpdateMainTile() {
+            var cashFlow = StatisticLogic.GetMonthlyCashFlow();
+            ServiceLocator.Current.GetInstance<IUserNotification>()
+                .UpdateMainTile(cashFlow[0].Value, cashFlow[1].Value, cashFlow[2].Value);
         }
     }
 }
