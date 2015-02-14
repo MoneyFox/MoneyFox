@@ -3,6 +3,7 @@
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -30,10 +31,15 @@ namespace MoneyManager
 
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            Insights.Initialize("599ff6bfdc79368ff3d5f5629a57c995fe93352e");
+            if (!Insights.IsInitialized)
+            {
+                Insights.Initialize("599ff6bfdc79368ff3d5f5629a57c995fe93352e");
+            }
 
             await LicenseHelper.CheckLicenceFeaturepack();
             var rootFrame = Window.Current.Content as Frame;
+
+            TileHelper.SetMainTile();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -113,6 +119,8 @@ namespace MoneyManager
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
+
+            TileHelper.SetMainTile();
 
             // TODO: Save application state and stop any background activity
             deferral.Complete();

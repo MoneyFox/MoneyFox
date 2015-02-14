@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Microsoft.Practices.ServiceLocation;
@@ -29,11 +30,11 @@ namespace MoneyManager.UserControls
             ButtonRemoveIncomeTile.Visibility = Visibility.Visible;
         }
 
-        private void RemoveIncomeTile(object sender, RoutedEventArgs e)
+        private async void RemoveIncomeTile(object sender, RoutedEventArgs e)
         {
             TileSettingsView.IncomeTile.Remove();
             ButtonRemoveIncomeTile.Visibility = Visibility.Collapsed;
-            ShowUnpinnNotification();
+            await ShowUnpinnNotification();
         }
 
         private void CreateSpendingTile(object sender, RoutedEventArgs routedEventArgs)
@@ -42,11 +43,11 @@ namespace MoneyManager.UserControls
             ButtonRemoveSpendingTile.Visibility = Visibility.Visible;
         }
 
-        private void RemoveSpendingTile(object sender, RoutedEventArgs e)
+        private async void RemoveSpendingTile(object sender, RoutedEventArgs e)
         {
             TileSettingsView.SpendingTile.Remove();
             ButtonRemoveSpendingTile.Visibility = Visibility.Collapsed;
-            ShowUnpinnNotification();
+            await ShowUnpinnNotification();
         }
 
         private void CreateTransferTile(object sender, RoutedEventArgs e)
@@ -55,14 +56,14 @@ namespace MoneyManager.UserControls
             ButtonRemoveTransferTile.Visibility = Visibility.Visible;
         }
 
-        private void RemoveTransferTile(object sender, RoutedEventArgs e)
+        private async void RemoveTransferTile(object sender, RoutedEventArgs e)
         {
             TileSettingsView.TransferTile.Remove();
             ButtonRemoveTransferTile.Visibility = Visibility.Collapsed;
-            ShowUnpinnNotification();
+            await ShowUnpinnNotification();
         }
 
-        private async void ShowUnpinnNotification()
+        private async Task ShowUnpinnNotification()
         {
             var dialog = new MessageDialog(Translation.GetTranslation("TileUnpinnedText"),
                 Translation.GetTranslation("TileUnpinnedTitle"));
