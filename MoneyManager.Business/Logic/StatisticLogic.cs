@@ -175,11 +175,11 @@ namespace MoneyManager.Business.Logic {
             item.Label = item.Category + ": " + item.Value + " " + settings.DefaultCurrency;
         }
 
-        private static void IncludeIncome(IEnumerable<StatisticItem> statisticList,
-            List<FinancialTransaction> transactionList) {
+        private static void IncludeIncome(IEnumerable<StatisticItem> statisticList) {
             foreach (StatisticItem statisticItem in statisticList) {
                 statisticItem.Value -= allTransaction
                     .Where(x => x.Type == (int) TransactionType.Income)
+                    .Where(x => x.Category != null)
                     .Where(x => x.Category.Name == statisticItem.Category)
                     .Sum(x => x.Amount);
 
