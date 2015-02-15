@@ -591,4 +591,13 @@
   <data name="SpendingTileLabel" xml:space="preserve">
     <value>spending: </value>
   </data>
+  <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
+    <value>Show Cashflow on Maintile</value>
+  </data>
+  <data name="ShowInfoOnMainTileHeader.OffContent" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
+    <value>yes</value>
+  </data>
 </root>

@@ -16,6 +16,20 @@
     </UserControl.Resources>
 
     <StackPanel>
+        <ToggleSwitch VerticalAlignment="Center"
+                      Header="Show Cashflow on Maintile" 
+                      x:Uid="ShowInfoOnMainTileHeader"
+                      IsOn="{Binding ShowInfoOnMainTile, Mode=TwoWay}"
+                      OnContent="yes"/>
+        <Path Data="M9,242 L456,242"
+              Fill="{StaticResource PhoneAccentBrush}"
+              Height="15"
+              Margin="0,10"
+              Stretch="Fill"
+              UseLayoutRounding="False"
+              Stroke="{StaticResource PhoneAccentBrush}"
+              StrokeThickness="2" />
+
         <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
             <Grid Background="{StaticResource PhoneAccentBrush}">
                 <Image Source="/Images/incomeTileIcon.png"

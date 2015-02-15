@@ -22,7 +22,7 @@ namespace MoneyManager.Dialogs {
                 statisticView.SetCustomCashFlow();
                 statisticView.SetCustomSpreading();
             } else {
-                var dialog = new MessageDialog(Translation.GetTranslation("FeatureNotLicensedMessage"),
+                var dialog = new MessageDialog(Translation.GetTranslation("ShowFeatureNotLicensedMessage"),
                     Translation.GetTranslation("FeatureNotLicensedTitle"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("RedirectLabel"), GoToPurchase));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("BackLabel")));

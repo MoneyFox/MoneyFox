@@ -16,8 +16,10 @@ namespace MoneyManager.DataAccess.DataAccess {
     public class SettingDataAccess : INotifyPropertyChanged {
         private const string DefaultCurrencyKeyname = "DefaultCurrency";
         private const string DefaultAccountKeyname = "DefaultAccount";
+        private const string ShowCashFlowOnMainTileKeyname = "ShowCashFlowOnMainTile";
 
         private const int DefaultAccountKeydefault = -1;
+        private const bool ShowCashFlowOnMainTileKeydefault = false;
 
         #region Properties
 
@@ -33,6 +35,14 @@ namespace MoneyManager.DataAccess.DataAccess {
             get { return GetValueOrDefault(DefaultAccountKeyname, DefaultAccountKeydefault); }
             set {
                 AddOrUpdateValue(DefaultAccountKeyname, value);
+                OnPropertyChanged();
+            }
+        }
+
+        public bool ShowCashFlowOnMainTile {
+            get { return GetValueOrDefault(ShowCashFlowOnMainTileKeyname, ShowCashFlowOnMainTileKeydefault); }
+            set {
+                AddOrUpdateValue(ShowCashFlowOnMainTileKeyname, value);
                 OnPropertyChanged();
             }
         }

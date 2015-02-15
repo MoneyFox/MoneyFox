@@ -1,11 +1,14 @@
 #region
 
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Views;
 
 #endregion
 
@@ -25,7 +28,8 @@ namespace MoneyManager {
 
             //Logic
             SimpleIoc.Default.Register<IUserNotification, UserNotification>();
-
+            SimpleIoc.Default.Register(CreateNavigationService);
+            SimpleIoc.Default.Register<Utilities>();
             //ViewModels
             SimpleIoc.Default.Register<AddAccountViewModel>();
             SimpleIoc.Default.Register<AddTransactionViewModel>();
@@ -63,6 +67,18 @@ namespace MoneyManager {
         }
 
         #endregion DataAccess
+
+        #region Logic
+
+        private static INavigationService CreateNavigationService()
+        {
+            var navigationService = new NavigationService();
+            navigationService.Configure("LicenseView", typeof(LicenseView));
+
+            return navigationService;
+        }
+
+        #endregion
 
         #region Views
 

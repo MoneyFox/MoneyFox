@@ -68,11 +68,11 @@
     <Compile Include="Logic\ThemedImageConverterLogic.cs" />
     <Compile Include="Logic\TransactionLogic.cs" />
     <Compile Include="Logic\TransactionTypeLogic.cs" />
-    <Compile Include="Helper\Utilities.cs" />
     <Compile Include="Logic\Tile\IncomeTile.cs" />
     <Compile Include="Logic\Tile\SpendingTile.cs" />
     <Compile Include="Logic\Tile\Tile.cs" />
     <Compile Include="Logic\Tile\TransferTile.cs" />
+    <Compile Include="Helper\Utilities.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\AddTransactionViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />

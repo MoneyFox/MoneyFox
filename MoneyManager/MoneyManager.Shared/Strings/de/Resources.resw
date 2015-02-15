@@ -585,4 +585,7 @@
   <data name="SpendingTileLabel" xml:space="preserve">
     <value>Ausgaben: </value>
   </data>
+  <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
+    <value>Zeige Kapitalfluss auf Maintile an</value>
+  </data>
 </root>

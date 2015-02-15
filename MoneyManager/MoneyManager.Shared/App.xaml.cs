@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
+using MoneyManager.Business.Logic.Tile;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Tasks.TransactionsWp;
 using Xamarin;
@@ -79,7 +80,7 @@ namespace MoneyManager {
 
             BackgroundTaskLogic.RegisterBackgroundTask();
 
-            UpdateMainTile();
+            Tile.UpdateMainTile();
         }
 
 #if WINDOWS_PHONE_APP
@@ -107,16 +108,10 @@ namespace MoneyManager {
         private void OnSuspending(object sender, SuspendingEventArgs e) {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
 
-            UpdateMainTile();
+            Tile.UpdateMainTile();
 
             // TODO: Save application state and stop any background activity
             deferral.Complete();
-        }
-
-        private static void UpdateMainTile() {
-            var cashFlow = StatisticLogic.GetMonthlyCashFlow();
-            ServiceLocator.Current.GetInstance<IUserNotification>()
-                .UpdateMainTile(cashFlow[0].Value, cashFlow[1].Value, cashFlow[2].Value);
         }
     }
 }

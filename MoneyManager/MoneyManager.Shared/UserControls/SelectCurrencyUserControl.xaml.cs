@@ -21,7 +21,7 @@ namespace MoneyManager.UserControls {
             if (LicenseHelper.IsFeaturepackLicensed) {
                 await ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().LoadCountries();
             } else {
-                var dialog = new MessageDialog(Translation.GetTranslation("FeatureNotLicensedMessage"),
+                var dialog = new MessageDialog(Translation.GetTranslation("ShowFeatureNotLicensedMessage"),
                     Translation.GetTranslation("FeatureNotLicensedTitle"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("RedirectLabel"), GoToPurchase));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("BackLabel"), NavigateBack));

@@ -3,9 +3,11 @@
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Views;
 using NotificationsExtensions.TileContent;
 
