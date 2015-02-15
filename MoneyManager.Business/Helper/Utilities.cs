@@ -1,25 +1,26 @@
 ﻿#region
 
 using System;
+using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using GalaSoft.MvvmLight.Views;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Model;
 
 #endregion
 
 namespace MoneyManager.Business.Helper {
     public class Utilities {
-
-        private INavigationService _navigationService;
+        private readonly INavigationService _navigationService;
 
         public Utilities(INavigationService navigationService) {
             _navigationService = navigationService;
         }
 
         /// <summary>
-        /// Get the version of the MoneyManager.WindowsPhone dll
+        ///     Get the version of the MoneyManager.WindowsPhone dll
         /// </summary>
         /// <returns>version string</returns>
         public static string GetVersion() {
@@ -39,7 +40,7 @@ namespace MoneyManager.Business.Helper {
         }
 
         /// <summary>
-        /// Returns the last day of the month
+        ///     Returns the last day of the month
         /// </summary>
         /// <returns>Last day of the month</returns>
         public static DateTime GetEndOfMonth() {
@@ -48,10 +49,9 @@ namespace MoneyManager.Business.Helper {
         }
 
         /// <summary>
-        /// Displays a dialog with a feature not licensed message
+        ///     Displays a dialog with a feature not licensed message
         /// </summary>
-        public async Task ShowFeatureNotLicensedMessage()
-        {
+        public async Task ShowFeatureNotLicensedMessage() {
             var dialog = new MessageDialog(Translation.GetTranslation("FeatureNotLicensedMessage"),
                 Translation.GetTranslation("FeatureNotLicensedTitle"));
             dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
@@ -62,6 +62,16 @@ namespace MoneyManager.Business.Helper {
 
             if (result.Label == Translation.GetTranslation("YesLabel")) {
                 _navigationService.NavigateTo("LicenseView");
+            }
+        }
+
+        /// <summary>
+        /// Will round all values of the passed statistic item list
+        /// </summary>
+        /// <param name="items">List of statistic items.</param>
+        public static void RoundStatisticItems(ObservableCollection<StatisticItem> items) {
+            foreach (StatisticItem item in items) {
+                item.Value = Math.Round(item.Value, 2, MidpointRounding.AwayFromZero);
             }
         }
     }

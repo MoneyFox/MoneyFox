@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyManager.Business.Helper;
 using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
@@ -43,6 +44,8 @@ namespace MoneyManager {
                 itemList.Add(income);
                 itemList.Add(spent);
                 itemList.Add(increased);
+
+                Utilities.RoundStatisticItems(itemList);
 
                 return itemList;
             }

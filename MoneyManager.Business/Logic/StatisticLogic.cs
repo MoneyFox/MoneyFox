@@ -38,6 +38,10 @@ namespace MoneyManager.Business.Logic {
 
         #endregion
 
+        /// <summary>
+        /// Get a list with income, spending and earnings for custom date range
+        /// </summary>
+        /// <returns>List with income, spending and earning item.</returns>
         public static ObservableCollection<StatisticItem> GetMonthlyCashFlow(DateTime startDate, DateTime endDate) {
             var transactionListFunc =
                 new Func<List<FinancialTransaction>>(() =>
@@ -49,6 +53,10 @@ namespace MoneyManager.Business.Logic {
             return GetCashFlowStatisticItems(transactionListFunc);
         }
 
+        /// <summary>
+        /// Get a list with income, spending and earnings for current month
+        /// </summary>
+        /// <returns>List with income, spending and earning item.</returns>
         public static ObservableCollection<StatisticItem> GetMonthlyCashFlow() {
             var transactionListFunc =
                 new Func<List<FinancialTransaction>>(() =>
@@ -70,19 +78,19 @@ namespace MoneyManager.Business.Logic {
                 Category = Translation.GetTranslation("RevenuesLabel"),
                 Value = transactionList.Where(x => x.Type == (int) TransactionType.Income).Sum(x => x.Amount)
             };
-            income.Label = income.Category + ": " + Math.Round(income.Value, 2) + " " + settings.DefaultCurrency;
+            income.Label = income.Category + ": " + Math.Round(income.Value, 2, MidpointRounding.AwayFromZero) + " " + settings.DefaultCurrency;
 
             var spent = new StatisticItem {
                 Category = Translation.GetTranslation("ExpensesLabel"),
                 Value = transactionList.Where(x => x.Type == (int) TransactionType.Spending).Sum(x => x.Amount)
             };
-            spent.Label = spent.Category + ": " + Math.Round(spent.Value, 2) + " " + settings.DefaultCurrency;
+            spent.Label = spent.Category + ": " + Math.Round(spent.Value, 2, MidpointRounding.AwayFromZero) + " " + settings.DefaultCurrency;
 
             var increased = new StatisticItem {
                 Category = Translation.GetTranslation("IncreasesLabel"),
                 Value = income.Value - spent.Value
             };
-            increased.Label = increased.Category + ": " + Math.Round(increased.Value, 2) + " " +
+            increased.Label = increased.Category + ": " + Math.Round(increased.Value, 2, MidpointRounding.AwayFromZero) + " " +
                               settings.DefaultCurrency;
 
             itemList.Add(income);
