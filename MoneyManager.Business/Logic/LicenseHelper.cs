@@ -14,7 +14,7 @@ namespace MoneyManager.Business.Logic {
         public static bool IsFeaturepackLicensed {
             get {
 #if DEBUG
-                _isFeaturepackLicensed = false;
+                _isFeaturepackLicensed = true;
 #endif
                 return _isFeaturepackLicensed;
             }

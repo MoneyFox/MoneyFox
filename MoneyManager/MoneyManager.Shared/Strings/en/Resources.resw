@@ -582,15 +582,6 @@
   <data name="CashflowTileLabel" xml:space="preserve">
     <value>cashflow</value>
   </data>
-  <data name="EarningTileLabel" xml:space="preserve">
-    <value>earning: </value>
-  </data>
-  <data name="IncomeTileLabel" xml:space="preserve">
-    <value>income: </value>
-  </data>
-  <data name="SpendingTileLabel" xml:space="preserve">
-    <value>spending: </value>
-  </data>
   <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
     <value>Show Cashflow on Maintile</value>
   </data>

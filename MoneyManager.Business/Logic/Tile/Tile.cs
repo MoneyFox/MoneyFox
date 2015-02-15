@@ -29,7 +29,7 @@ namespace MoneyManager.Business.Logic.Tile {
             var cashFlow = StatisticLogic.GetMonthlyCashFlow();
 
             ServiceLocator.Current.GetInstance<IUserNotification>()
-                .UpdateMainTile(cashFlow[0].Value, cashFlow[1].Value, cashFlow[2].Value);
+                .UpdateMainTile(cashFlow[0].Label, cashFlow[1].Label, cashFlow[2].Label);
         }
 
 
