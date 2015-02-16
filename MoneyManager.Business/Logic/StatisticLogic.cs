@@ -159,7 +159,7 @@ namespace MoneyManager.Business.Logic {
 
             AddOtherItem(tempStatisticList, statisticList);
 
-            IncludeIncome(statisticList, transactionList);
+            IncludeIncome(statisticList);
 
             return new ObservableCollection<StatisticItem>(statisticList);
         }
