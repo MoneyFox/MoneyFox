@@ -31,7 +31,5 @@ namespace MoneyManager.Business.Logic.Tile {
             ServiceLocator.Current.GetInstance<IUserNotification>()
                 .UpdateMainTile(cashFlow[0].Label, cashFlow[1].Label, cashFlow[2].Label);
         }
-
-
     }
 }
