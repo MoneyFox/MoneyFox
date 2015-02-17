@@ -579,4 +579,10 @@
   <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
     <value>Zeige Kapitalfluss auf Maintile an</value>
   </data>
+  <data name="ShowInfoOnMainTileHeader.OffContent" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
+    <value>Ja</value>
+  </data>
 </root>
