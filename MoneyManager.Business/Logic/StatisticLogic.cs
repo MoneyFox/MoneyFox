@@ -78,20 +78,19 @@ namespace MoneyManager.Business.Logic {
                 Category = Translation.GetTranslation("RevenuesLabel"),
                 Value = transactionList.Where(x => x.Type == (int) TransactionType.Income).Sum(x => x.Amount)
             };
-            income.Label = income.Category + ": " + Math.Round(income.Value, 2, MidpointRounding.AwayFromZero).ToString("C") + " " + settings.DefaultCurrency;
+            income.Label = income.Category + ": " + Math.Round(income.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
 
             var spent = new StatisticItem {
                 Category = Translation.GetTranslation("ExpensesLabel"),
                 Value = transactionList.Where(x => x.Type == (int) TransactionType.Spending).Sum(x => x.Amount)
             };
-            spent.Label = spent.Category + ": " + Math.Round(spent.Value, 2, MidpointRounding.AwayFromZero).ToString("C") + " " + settings.DefaultCurrency;
+            spent.Label = spent.Category + ": " + Math.Round(spent.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
 
             var increased = new StatisticItem {
                 Category = Translation.GetTranslation("IncreasesLabel"),
                 Value = income.Value - spent.Value
             };
-            increased.Label = increased.Category + ": " + Math.Round(increased.Value, 2, MidpointRounding.AwayFromZero).ToString("C") + " " +
-                              settings.DefaultCurrency;
+            increased.Label = increased.Category + ": " + Math.Round(increased.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
 
             itemList.Add(income);
             itemList.Add(spent);
