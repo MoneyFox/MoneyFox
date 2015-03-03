@@ -11,67 +11,63 @@ using MoneyManager.Views;
 #endregion
 
 namespace MoneyManager {
-    public sealed partial class MainPage {
-        private readonly NavigationHelper navigationHelper;
+	public sealed partial class MainPage {
+		public MainPage() {
+			InitializeComponent();
 
-        public MainPage() {
-            InitializeComponent();
+			NavigationHelper = new NavigationHelper(this);
+		}
 
-            navigationHelper = new NavigationHelper(this);
-        }
+		public NavigationHelper NavigationHelper { get; }
 
-        public NavigationHelper NavigationHelper {
-            get { return navigationHelper; }
-        }
+		private void AddAccountClick(object sender, RoutedEventArgs e) {
+			AccountLogic.PrepareAddAccount();
+			Frame.Navigate(typeof (AddAccount));
+		}
 
-        private void AddAccountClick(object sender, RoutedEventArgs e) {
-            AccountLogic.PrepareAddAccount();
-            Frame.Navigate(typeof (AddAccount));
-        }
+		private void SettingsClick(object sender, RoutedEventArgs e) {
+			Frame.Navigate(typeof (SettingsOverview));
+		}
 
-        private void SettingsClick(object sender, RoutedEventArgs e) {
-            Frame.Navigate(typeof (SettingsOverview));
-        }
+		private void GoToAbout(object sender, RoutedEventArgs e) {
+			Frame.Navigate(typeof (About));
+		}
 
-        private void GoToAbout(object sender, RoutedEventArgs e) {
-            Frame.Navigate(typeof (About));
-        }
+		private void AddIncomeClick(object sender, RoutedEventArgs e) {
+			AddTransaction(TransactionType.Income);
+		}
 
-        private void AddIncomeClick(object sender, RoutedEventArgs e) {
-            AddTransaction(TransactionType.Income);
-        }
+		private void AddSpendingClick(object sender, RoutedEventArgs e) {
+			AddTransaction(TransactionType.Spending);
+		}
 
-        private void AddSpendingClick(object sender, RoutedEventArgs e) {
-            AddTransaction(TransactionType.Spending);
-        }
+		private void AddTransferClick(object sender, RoutedEventArgs e) {
+			AddTransaction(TransactionType.Transfer);
+		}
 
-        private void AddTransferClick(object sender, RoutedEventArgs e) {
-            AddTransaction(TransactionType.Transfer);
-        }
+		private static void AddTransaction(TransactionType type) {
+			TransactionLogic.GoToAddTransaction(type);
+			((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
+		}
 
-        private static void AddTransaction(TransactionType type) {
-            TransactionLogic.GoToAddTransaction(type);
-            ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
-        }
+		private async void OpenStatisticClick(object sender, RoutedEventArgs e) {
+			((Frame) Window.Current.Content).Navigate(typeof (StatisticView));
+		}
 
-        private async void OpenStatisticClick(object sender, RoutedEventArgs e) {
-            ((Frame) Window.Current.Content).Navigate(typeof (StatisticView));
-        }
+		private void LicenseClick(object sender, RoutedEventArgs e) {
+			((Frame) Window.Current.Content).Navigate(typeof (LicenseView));
+		}
 
-        private void LicenseClick(object sender, RoutedEventArgs e) {
-            ((Frame) Window.Current.Content).Navigate(typeof (LicenseView));
-        }
+		#region NavigationHelper registration
 
-        #region NavigationHelper registration
+		protected override void OnNavigatedTo(NavigationEventArgs e) {
+			NavigationHelper.OnNavigatedTo(e);
+		}
 
-        protected override void OnNavigatedTo(NavigationEventArgs e) {
-            navigationHelper.OnNavigatedTo(e);
-        }
+		protected override void OnNavigatedFrom(NavigationEventArgs e) {
+			NavigationHelper.OnNavigatedFrom(e);
+		}
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e) {
-            navigationHelper.OnNavigatedFrom(e);
-        }
-
-        #endregion NavigationHelper registration
-    }
+		#endregion NavigationHelper registration
+	}
 }

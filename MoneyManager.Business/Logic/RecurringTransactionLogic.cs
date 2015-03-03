@@ -13,133 +13,132 @@ using Xamarin;
 #endregion
 
 namespace MoneyManager.Business.Logic {
-    public class RecurringTransactionLogic {
-        #region Properties
+	public class RecurringTransactionLogic {
+		public static void RemoveRecurringForTransactions(RecurringTransaction recTrans) {
+			try {
+				var relatedTrans =
+					transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
 
-        private static RecurringTransactionDataAccess RecurringTransactionData {
-            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
-        }
+				foreach (var transaction in relatedTrans) {
+					transaction.IsRecurring = false;
+					transaction.ReccuringTransactionId = null;
+					transactionData.Update(transaction);
+				}
+			}
+			catch (Exception ex) {
+				Insights.Report(ex, ReportSeverity.Error);
+			}
+		}
 
-        private static TransactionDataAccess transactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-        }
+		public static void CheckRecurringTransactions() {
+			RecurringTransactionData.LoadList();
+			var transactionList = transactionData.LoadRecurringList();
 
-        private static AddTransactionViewModel addTransactionView {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
+			foreach (var recTrans in AllRecurringTransactions) {
+				var relTransaction = new FinancialTransaction();
+				var trans = recTrans;
+				var transcationList = transactionList.Where(
+					x => x.ReccuringTransactionId == trans.Id)
+					.OrderBy(x => x.Date);
 
-        private static IEnumerable<RecurringTransaction> AllRecurringTransactions {
-            get {
-                return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>().AllRecurringTransactions;
-            }
-        }
+				if (transcationList.Any()) {
+					relTransaction = transcationList.Last();
+				}
 
-        #endregion Properties
+				if (CheckIfRepeatable(recTrans, relTransaction)) {
+					SaveTransaction(recTrans);
+				}
+			}
+		}
 
-        public static void RemoveRecurringForTransactions(RecurringTransaction recTrans) {
-            try {
-                IEnumerable<FinancialTransaction> relatedTrans =
-                    transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
+		private static bool CheckIfRepeatable(RecurringTransaction recTrans, FinancialTransaction relTransaction) {
+			switch (recTrans.Recurrence) {
+				case (int) TransactionRecurrence.Daily:
+					return DateTime.Today.Date != relTransaction.Date.Date;
 
-                foreach (FinancialTransaction transaction in relatedTrans) {
-                    transaction.IsRecurring = false;
-                    transaction.ReccuringTransactionId = null;
-                    transactionData.Update(transaction);
-                }
-            } catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
-            }
-        }
+				case (int) TransactionRecurrence.DailyWithoutWeekend:
+					return DateTime.Today.Date != relTransaction.Date.Date
+					       && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
+					       && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
 
-        public static void CheckRecurringTransactions() {
-            RecurringTransactionData.LoadList();
-            List<FinancialTransaction> transactionList = transactionData.LoadRecurringList();
+				case (int) TransactionRecurrence.Weekly:
+					var days = DateTime.Now - relTransaction.Date;
+					return days.Days >= 7;
 
-            foreach (RecurringTransaction recTrans in AllRecurringTransactions) {
-                var relTransaction = new FinancialTransaction();
-                RecurringTransaction trans = recTrans;
-                IOrderedEnumerable<FinancialTransaction> transcationList = transactionList.Where(
-                    x => x.ReccuringTransactionId == trans.Id)
-                    .OrderBy(x => x.Date);
+				case (int) TransactionRecurrence.Monthly:
+					return DateTime.Now.Month != relTransaction.Date.Month;
 
-                if (transcationList.Any()) {
-                    relTransaction = transcationList.Last();
-                }
+				case (int) TransactionRecurrence.Yearly:
+					return DateTime.Now.Year != relTransaction.Date.Year
+					       && DateTime.Now.Month == relTransaction.Date.Month;
+			}
+			return false;
+		}
 
-                if (CheckIfRepeatable(recTrans, relTransaction)) {
-                    SaveTransaction(recTrans);
-                }
-            }
-        }
+		private static void SaveTransaction(RecurringTransaction recurringTransaction) {
+			var date = DateTime.Now;
 
-        private static bool CheckIfRepeatable(RecurringTransaction recTrans, FinancialTransaction relTransaction) {
-            switch (recTrans.Recurrence) {
-                case (int) TransactionRecurrence.Daily:
-                    return DateTime.Today.Date != relTransaction.Date.Date;
+			if (recurringTransaction.Recurrence == (int) TransactionRecurrence.Monthly) {
+				date = DateTime.Now.AddDays(recurringTransaction.StartDate.Day - DateTime.Today.Day);
+			}
 
-                case (int) TransactionRecurrence.DailyWithoutWeekend:
-                    return DateTime.Today.Date != relTransaction.Date.Date
-                           && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
-                           && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
+			var newTransaction = new FinancialTransaction {
+				ChargedAccountId = recurringTransaction.ChargedAccountId,
+				TargetAccountId = recurringTransaction.TargetAccountId,
+				Date = date,
+				IsRecurring = true,
+				Amount = recurringTransaction.Amount,
+				AmountWithoutExchange = recurringTransaction.AmountWithoutExchange,
+				Currency = recurringTransaction.Currency,
+				CategoryId = recurringTransaction.CategoryId,
+				Type = recurringTransaction.Type,
+				ReccuringTransactionId = recurringTransaction.Id,
+				Note = recurringTransaction.Note
+			};
 
-                case (int) TransactionRecurrence.Weekly:
-                    TimeSpan days = DateTime.Now - relTransaction.Date;
-                    return days.Days >= 7;
+			transactionData.SaveToDb(newTransaction, true);
+		}
 
-                case (int) TransactionRecurrence.Monthly:
-                    return DateTime.Now.Month != relTransaction.Date.Month;
+		public static void Delete(RecurringTransaction recTransaction) {
+			RecurringTransactionData.Delete(recTransaction);
+			RemoveRecurringForTransactions(recTransaction);
+		}
 
-                case (int) TransactionRecurrence.Yearly:
-                    return DateTime.Now.Year != relTransaction.Date.Year
-                           && DateTime.Now.Month == relTransaction.Date.Month;
-            }
-            return false;
-        }
+		public static RecurringTransaction GetRecurringFromFinancialTransaction(FinancialTransaction transaction) {
+			return new RecurringTransaction {
+				ChargedAccountId = transaction.ChargedAccountId,
+				TargetAccountId = transaction.TargetAccountId,
+				StartDate = transaction.Date,
+				EndDate = addTransactionView.EndDate,
+				IsEndless = addTransactionView.IsEndless,
+				Amount = transaction.Amount,
+				AmountWithoutExchange = transaction.AmountWithoutExchange,
+				Currency = transaction.Currency,
+				CategoryId = transaction.CategoryId,
+				Type = transaction.Type,
+				Recurrence = addTransactionView.Recurrence,
+				Note = transaction.Note
+			};
+		}
 
-        private static void SaveTransaction(RecurringTransaction recurringTransaction) {
-            DateTime date = DateTime.Now;
+		#region Properties
 
-            if (recurringTransaction.Recurrence == (int) TransactionRecurrence.Monthly) {
-                date = DateTime.Now.AddDays(recurringTransaction.StartDate.Day - DateTime.Today.Day);
-            }
+		private static RecurringTransactionDataAccess RecurringTransactionData {
+			get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+		}
 
-            var newTransaction = new FinancialTransaction {
-                ChargedAccountId = recurringTransaction.ChargedAccountId,
-                TargetAccountId = recurringTransaction.TargetAccountId,
-                Date = date,
-                IsRecurring = true,
-                Amount = recurringTransaction.Amount,
-                AmountWithoutExchange = recurringTransaction.AmountWithoutExchange,
-                Currency = recurringTransaction.Currency,
-                CategoryId = recurringTransaction.CategoryId,
-                Type = recurringTransaction.Type,
-                ReccuringTransactionId = recurringTransaction.Id,
-                Note = recurringTransaction.Note,
-            };
+		private static TransactionDataAccess transactionData {
+			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+		}
 
-            transactionData.SaveToDb(newTransaction, true);
-        }
+		private static AddTransactionViewModel addTransactionView {
+			get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+		}
 
-        public static void Delete(RecurringTransaction recTransaction) {
-            RecurringTransactionData.Delete(recTransaction);
-            RemoveRecurringForTransactions(recTransaction);
-        }
+		private static IEnumerable<RecurringTransaction> AllRecurringTransactions {
+			get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>().AllRecurringTransactions; }
+		}
 
-        public static RecurringTransaction GetRecurringFromFinancialTransaction(FinancialTransaction transaction) {
-            return new RecurringTransaction {
-                ChargedAccountId = transaction.ChargedAccountId,
-                TargetAccountId = transaction.TargetAccountId,
-                StartDate = transaction.Date,
-                EndDate = addTransactionView.EndDate,
-                IsEndless = addTransactionView.IsEndless,
-                Amount = transaction.Amount,
-                AmountWithoutExchange = transaction.AmountWithoutExchange,
-                Currency = transaction.Currency,
-                CategoryId = transaction.CategoryId,
-                Type = transaction.Type,
-                Recurrence = addTransactionView.Recurrence,
-                Note = transaction.Note,
-            };
-        }
-    }
+		#endregion Properties
+	}
 }

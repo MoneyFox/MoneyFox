@@ -14,54 +14,58 @@ using MoneyManager.Views;
 #endregion
 
 namespace MoneyManager.UserControls {
-    public sealed partial class AccountListUserControl {
-        public AccountListUserControl() {
-            InitializeComponent();
+	public sealed partial class AccountListUserControl {
+		public AccountListUserControl() {
+			InitializeComponent();
 
-            accountData.LoadList();
-        }
+			accountData.LoadList();
+		}
 
-        private AccountDataAccess accountData {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
-        }
+		private AccountDataAccess accountData {
+			get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+		}
 
-        private void AccountList_Holding(object sender, HoldingRoutedEventArgs e) {
-            var senderElement = sender as FrameworkElement;
-            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+		private void AccountList_Holding(object sender, HoldingRoutedEventArgs e) {
+			var senderElement = sender as FrameworkElement;
+			var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
-            flyoutBase.ShowAt(senderElement);
-        }
+			flyoutBase.ShowAt(senderElement);
+		}
 
-        private void Edit_OnClick(object sender, RoutedEventArgs e) {
-            var element = (FrameworkElement) sender;
-            var account = element.DataContext as Account;
-            if (account == null) return;
+		private void Edit_OnClick(object sender, RoutedEventArgs e) {
+			var element = (FrameworkElement) sender;
+			var account = element.DataContext as Account;
+			if (account == null) {
+				return;
+			}
 
-            var viewModel = ServiceLocator.Current.GetInstance<AddAccountViewModel>();
-            viewModel.IsEdit = true;
-            viewModel.SelectedAccount = account;
+			var viewModel = ServiceLocator.Current.GetInstance<AddAccountViewModel>();
+			viewModel.IsEdit = true;
+			viewModel.SelectedAccount = account;
 
-            ((Frame) Window.Current.Content).Navigate(typeof (AddAccount));
-        }
+			((Frame) Window.Current.Content).Navigate(typeof (AddAccount));
+		}
 
-        private void Delete_OnClick(object sender, RoutedEventArgs e) {
-            var element = (FrameworkElement) sender;
-            var account = element.DataContext as Account;
-            if (account == null) return;
+		private void Delete_OnClick(object sender, RoutedEventArgs e) {
+			var element = (FrameworkElement) sender;
+			var account = element.DataContext as Account;
+			if (account == null) {
+				return;
+			}
 
-            AccountLogic.DeleteAccount(account);
-        }
+			AccountLogic.DeleteAccount(account);
+		}
 
-        private void NavigateToTransactionList(object sender, SelectionChangedEventArgs e) {
-            if (AccountList.SelectedItem != null) {
-                accountData.SelectedAccount = AccountList.SelectedItem as Account;
+		private void NavigateToTransactionList(object sender, SelectionChangedEventArgs e) {
+			if (AccountList.SelectedItem != null) {
+				accountData.SelectedAccount = AccountList.SelectedItem as Account;
 
-                ServiceLocator.Current.GetInstance<TransactionListViewModel>()
-                    .SetRelatedTransactions(accountData.SelectedAccount.Id);
+				ServiceLocator.Current.GetInstance<TransactionListViewModel>()
+					.SetRelatedTransactions(accountData.SelectedAccount.Id);
 
-                ((Frame) Window.Current.Content).Navigate(typeof (TransactionList));
-                AccountList.SelectedItem = null;
-            }
-        }
-    }
+				((Frame) Window.Current.Content).Navigate(typeof (TransactionList));
+				AccountList.SelectedItem = null;
+			}
+		}
+	}
 }

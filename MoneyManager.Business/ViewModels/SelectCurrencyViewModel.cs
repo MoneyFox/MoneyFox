@@ -17,60 +17,62 @@ using PropertyChanged;
 #endregion
 
 namespace MoneyManager.Business.ViewModels {
-    [ImplementPropertyChanged]
-    public class SelectCurrencyViewModel : ViewModelBase {
-        private string searchText;
-        public ObservableCollection<Country> AllCountries { get; set; }
+	[ImplementPropertyChanged]
+	public class SelectCurrencyViewModel : ViewModelBase {
+		private string searchText;
+		public ObservableCollection<Country> AllCountries { get; set; }
+		public InvocationType InvocationType { get; set; }
 
-        public InvocationType InvocationType { get; set; }
+		public Country SelectedCountry {
+			set {
+				if (value == null) {
+					return;
+				}
 
-        public Country SelectedCountry {
-            set {
-                if (value == null) return;
+				SetValue(value);
+				((Frame) Window.Current.Content).GoBack();
+			}
+		}
 
-                SetValue(value);
-                ((Frame) Window.Current.Content).GoBack();
-            }
-        }
+		public string SearchText {
+			get { return searchText; }
+			set {
+				searchText = value.ToUpper();
+				Search();
+			}
+		}
 
-        public string SearchText {
-            get { return searchText; }
-            set {
-                searchText = value.ToUpper();
-                Search();
-            }
-        }
+		private void SetValue(Country value) {
+			switch (InvocationType) {
+				case InvocationType.Setting:
+					ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency = value.CurrencyID;
+					break;
 
-        private void SetValue(Country value) {
-            switch (InvocationType) {
-                case InvocationType.Setting:
-                    ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency = value.CurrencyID;
-                    break;
+				case InvocationType.Transaction:
+					ServiceLocator.Current.GetInstance<AddTransactionViewModel>().SetCurrency(value.CurrencyID);
+					break;
 
-                case InvocationType.Transaction:
-                    ServiceLocator.Current.GetInstance<AddTransactionViewModel>().SetCurrency(value.CurrencyID);
-                    break;
+				case InvocationType.Account:
+					ServiceLocator.Current.GetInstance<AddAccountViewModel>().SetCurrency(value.CurrencyID);
+					break;
+			}
+		}
 
-                case InvocationType.Account:
-                    ServiceLocator.Current.GetInstance<AddAccountViewModel>().SetCurrency(value.CurrencyID);
-                    break;
-            }
-        }
+		public async Task LoadCountries() {
+			AllCountries = new ObservableCollection<Country>(await CurrencyLogic.GetSupportedCountries());
+		}
 
-        public async Task LoadCountries() {
-            AllCountries = new ObservableCollection<Country>(await CurrencyLogic.GetSupportedCountries());
-        }
-
-        public async void Search() {
-            if (SearchText != String.Empty) {
-                AllCountries =
-                    new ObservableCollection<Country>(
-                        AllCountries
-                            .Where(x => x.ID.Contains(searchText) || x.CurrencyID.Contains(SearchText))
-                            .ToList());
-            } else {
-                await LoadCountries();
-            }
-        }
-    }
+		public async void Search() {
+			if (SearchText != String.Empty) {
+				AllCountries =
+					new ObservableCollection<Country>(
+						AllCountries
+							.Where(x => x.ID.Contains(searchText) || x.CurrencyID.Contains(SearchText))
+							.ToList());
+			}
+			else {
+				await LoadCountries();
+			}
+		}
+	}
 }

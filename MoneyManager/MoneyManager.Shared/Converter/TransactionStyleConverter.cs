@@ -7,19 +7,21 @@ using MoneyManager.DataAccess.Model;
 #endregion
 
 namespace MoneyManager.Converter {
-    public class TransactionStyleConverter : IValueConverter {
-        public object Convert(object value, Type targetType, object parameter, string language) {
-            var transaction = value as FinancialTransaction;
+	public class TransactionStyleConverter : IValueConverter {
+		public object Convert(object value, Type targetType, object parameter, string language) {
+			var transaction = value as FinancialTransaction;
 
-            if (transaction == null) return 0;
+			if (transaction == null) {
+				return 0;
+			}
 
-            return transaction.Cleared
-                ? 1
-                : 0.7;
-        }
+			return transaction.Cleared
+				? 1
+				: 0.7;
+		}
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language) {
-            throw new NotImplementedException();
-        }
-    }
+		public object ConvertBack(object value, Type targetType, object parameter, string language) {
+			throw new NotImplementedException();
+		}
+	}
 }

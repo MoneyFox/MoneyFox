@@ -8,24 +8,24 @@ using MoneyManager.Foundation.OperationContracts;
 #endregion
 
 namespace MoneyManager.Business.Logic.Tile {
-    public class TransferTile : Tile, ISecondTile {
-        public const string Id = "AddTransferTile";
+	public class TransferTile : Tile, ISecondTile {
+		public const string Id = "AddTransferTile";
 
-        public bool Exists {
-            get { return Exists(Id); }
-        }
+		public bool Exists {
+			get { return Exists(Id); }
+		}
 
-        public async void Create() {
-            await Create(new SecondaryTile(
-                Id,
-                Translation.GetTranslation("AddTransferTileText"),
-                "intake",
-                new Uri("ms-appx:///Images/transferTileIcon.png", UriKind.Absolute),
-                TileSize.Default));
-        }
+		public async void Create() {
+			await Create(new SecondaryTile(
+				Id,
+				Translation.GetTranslation("AddTransferTileText"),
+				"intake",
+				new Uri("ms-appx:///Images/transferTileIcon.png", UriKind.Absolute),
+				TileSize.Default));
+		}
 
-        public async void Remove() {
-            await Remove(new SecondaryTile(Id));
-        }
-    }
+		public async void Remove() {
+			await Remove(new SecondaryTile(Id));
+		}
+	}
 }

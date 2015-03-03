@@ -13,35 +13,35 @@ using QKit.JumpList;
 #endregion
 
 namespace MoneyManager.Business.ViewModels {
-    [ImplementPropertyChanged]
-    public class TransactionListViewModel : ViewModelBase {
-        private TransactionDataAccess transactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-        }
+	[ImplementPropertyChanged]
+	public class TransactionListViewModel : ViewModelBase {
+		private TransactionDataAccess transactionData {
+			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+		}
 
-        private AccountDataAccess accountData {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
-        }
+		private AccountDataAccess accountData {
+			get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+		}
 
-        public string Title {
-            get { return accountData.SelectedAccount.Name; }
-        }
+		public string Title {
+			get { return accountData.SelectedAccount.Name; }
+		}
 
-        public List<JumpListGroup<FinancialTransaction>> RelatedTransactions { set; get; }
+		public List<JumpListGroup<FinancialTransaction>> RelatedTransactions { set; get; }
 
-        public void SetRelatedTransactions(int accountId) {
-            IEnumerable<FinancialTransaction> related = transactionData.GetRelatedTransactions(accountId);
+		public void SetRelatedTransactions(int accountId) {
+			var related = transactionData.GetRelatedTransactions(accountId);
 
-            var dateInfo = new DateTimeFormatInfo();
-            RelatedTransactions = related.ToGroups(x => x.Date,
-                x => dateInfo.GetMonthName(x.Date.Month) + " " + x.Date.Year);
+			var dateInfo = new DateTimeFormatInfo();
+			RelatedTransactions = related.ToGroups(x => x.Date,
+				x => dateInfo.GetMonthName(x.Date.Month) + " " + x.Date.Year);
 
-            RelatedTransactions =
-                RelatedTransactions.OrderByDescending(x => ((FinancialTransaction) x.First()).Date).ToList();
+			RelatedTransactions =
+				RelatedTransactions.OrderByDescending(x => ((FinancialTransaction) x.First()).Date).ToList();
 
-            foreach (var list in RelatedTransactions) {
-                list.Reverse();
-            }
-        }
-    }
+			foreach (var list in RelatedTransactions) {
+				list.Reverse();
+			}
+		}
+	}
 }

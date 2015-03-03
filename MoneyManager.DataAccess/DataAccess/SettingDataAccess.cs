@@ -12,64 +12,65 @@ using PropertyChanged;
 #endregion
 
 namespace MoneyManager.DataAccess.DataAccess {
-    [ImplementPropertyChanged]
-    public class SettingDataAccess : INotifyPropertyChanged {
-        private const string DefaultCurrencyKeyname = "DefaultCurrency";
-        private const string DefaultAccountKeyname = "DefaultAccount";
-        private const string ShowCashFlowOnMainTileKeyname = "ShowCashFlowOnMainTile";
+	[ImplementPropertyChanged]
+	public class SettingDataAccess : INotifyPropertyChanged {
+		private const string DefaultCurrencyKeyname = "DefaultCurrency";
+		private const string DefaultAccountKeyname = "DefaultAccount";
+		private const string ShowCashFlowOnMainTileKeyname = "ShowCashFlowOnMainTile";
+		private const int DefaultAccountKeydefault = -1;
+		private const bool ShowCashFlowOnMainTileKeydefault = false;
+		public event PropertyChangedEventHandler PropertyChanged;
 
-        private const int DefaultAccountKeydefault = -1;
-        private const bool ShowCashFlowOnMainTileKeydefault = false;
+		private void AddOrUpdateValue(string key, object value) {
+			ApplicationData.Current.RoamingSettings.Values[key] = value;
+		}
 
-        #region Properties
+		private valueType GetValueOrDefault<valueType>(string key, valueType defaultValue) {
+			valueType value;
 
-        public string DefaultCurrency {
-            get { return GetValueOrDefault(DefaultCurrencyKeyname, new GeographicRegion().CurrenciesInUse.First()); }
-            set {
-                AddOrUpdateValue(DefaultCurrencyKeyname, value);
-                OnPropertyChanged();
-            }
-        }
+			if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key)) {
+				var setting = ApplicationData.Current.RoamingSettings.Values[key];
+				value = (valueType) Convert.ChangeType(setting, typeof (valueType), CultureInfo.InvariantCulture);
+			}
+			else {
+				value = defaultValue;
+			}
+			return value;
+		}
 
-        public int DefaultAccount {
-            get { return GetValueOrDefault(DefaultAccountKeyname, DefaultAccountKeydefault); }
-            set {
-                AddOrUpdateValue(DefaultAccountKeyname, value);
-                OnPropertyChanged();
-            }
-        }
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+			var handler = PropertyChanged;
+			if (handler != null) {
+				handler(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
 
-        public bool ShowCashFlowOnMainTile {
-            get { return GetValueOrDefault(ShowCashFlowOnMainTileKeyname, ShowCashFlowOnMainTileKeydefault); }
-            set {
-                AddOrUpdateValue(ShowCashFlowOnMainTileKeyname, value);
-                OnPropertyChanged();
-            }
-        }
+		#region Properties
 
-        #endregion Properties
+		public string DefaultCurrency {
+			get { return GetValueOrDefault(DefaultCurrencyKeyname, new GeographicRegion().CurrenciesInUse.First()); }
+			set {
+				AddOrUpdateValue(DefaultCurrencyKeyname, value);
+				OnPropertyChanged();
+			}
+		}
 
-        public event PropertyChangedEventHandler PropertyChanged;
+		public int DefaultAccount {
+			get { return GetValueOrDefault(DefaultAccountKeyname, DefaultAccountKeydefault); }
+			set {
+				AddOrUpdateValue(DefaultAccountKeyname, value);
+				OnPropertyChanged();
+			}
+		}
 
-        private void AddOrUpdateValue(string key, object value) {
-            ApplicationData.Current.RoamingSettings.Values[key] = value;
-        }
+		public bool ShowCashFlowOnMainTile {
+			get { return GetValueOrDefault(ShowCashFlowOnMainTileKeyname, ShowCashFlowOnMainTileKeydefault); }
+			set {
+				AddOrUpdateValue(ShowCashFlowOnMainTileKeyname, value);
+				OnPropertyChanged();
+			}
+		}
 
-        private valueType GetValueOrDefault<valueType>(string key, valueType defaultValue) {
-            valueType value;
-
-            if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key)) {
-                object setting = ApplicationData.Current.RoamingSettings.Values[key];
-                value = (valueType) Convert.ChangeType(setting, typeof (valueType), CultureInfo.InvariantCulture);
-            } else {
-                value = defaultValue;
-            }
-            return value;
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
+		#endregion Properties
+	}
 }

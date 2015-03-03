@@ -14,133 +14,137 @@ using Xamarin;
 #endregion
 
 namespace MoneyManager.Business.Logic {
-    public class AccountLogic {
-        #region Properties
+	public class AccountLogic {
+		public static void PrepareAddAccount() {
+			accountDataAccess.SelectedAccount = new Account {
+				IsExchangeModeActive = false,
+				Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
+			};
+			ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
+		}
 
-        private static AccountDataAccess accountDataAccess {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
-        }
+		public static async void DeleteAccount(Account account, bool skipConfirmation = false) {
+			if (skipConfirmation || await Utilities.IsDeletionConfirmed()) {
+				accountDataAccess.Delete(account);
+				TransactionLogic.DeleteAssociatedTransactionsFromDatabase(account.Id);
+				ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
+			}
+		}
 
-        private static TransactionDataAccess transactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-        }
+		public static void RefreshRelatedTransactions() {
+			transactionListView.SetRelatedTransactions(accountDataAccess.SelectedAccount.Id);
+		}
 
-        private static TransactionListViewModel transactionListView {
-            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
-        }
+		public static async Task RemoveTransactionAmount(FinancialTransaction transaction) {
+			if (transaction.Cleared) {
+				PrehandleRemoveIfTransfer(transaction);
 
-        #endregion Properties
+				Func<double, double> amountFunc = x =>
+					transaction.Type == (int) TransactionType.Income
+						? -x
+						: x;
 
-        public static void PrepareAddAccount() {
-            accountDataAccess.SelectedAccount = new Account {
-                IsExchangeModeActive = false,
-                Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
-            };
-            ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
-        }
+				await HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+			}
+		}
 
-        public static async void DeleteAccount(Account account, bool skipConfirmation = false) {
-            if (skipConfirmation || await Utilities.IsDeletionConfirmed()) {
-                accountDataAccess.Delete(account);
-                TransactionLogic.DeleteAssociatedTransactionsFromDatabase(account.Id);
-                ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
-            }
-        }
+		public static async Task AddTransactionAmount(FinancialTransaction transaction) {
+			PrehandleAddIfTransfer(transaction);
 
-        public static void RefreshRelatedTransactions() {
-            transactionListView.SetRelatedTransactions(accountDataAccess.SelectedAccount.Id);
-        }
+			Func<double, double> amountFunc = x =>
+				transaction.Type == (int) TransactionType.Income
+					? x
+					: -x;
 
-        public static async Task RemoveTransactionAmount(FinancialTransaction transaction) {
-            if (transaction.Cleared) {
-                PrehandleRemoveIfTransfer(transaction);
+			await HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+		}
 
-                Func<double, double> amountFunc = x =>
-                    transaction.Type == (int) TransactionType.Income
-                        ? -x
-                        : x;
+		private static async void PrehandleRemoveIfTransfer(FinancialTransaction transaction) {
+			if (transaction.Type == (int) TransactionType.Transfer) {
+				Func<double, double> amountFunc = x => -x;
+				await HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
+			}
+		}
 
-                await HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
-            }
-        }
+		private static async Task HandleTransactionAmount(FinancialTransaction transaction,
+			Func<double, double> amountFunc,
+			Func<FinancialTransaction, Account> getAccountFunc) {
+			if (transaction.ClearTransactionNow) {
+				var account = getAccountFunc(transaction);
+				if (account == null) {
+					return;
+				}
 
-        public static async Task AddTransactionAmount(FinancialTransaction transaction) {
-            PrehandleAddIfTransfer(transaction);
+				var amountWithoutExchange = amountFunc(transaction.Amount);
+				var amount = await GetAmount(amountWithoutExchange, transaction, account);
 
-            Func<double, double> amountFunc = x =>
-                transaction.Type == (int) TransactionType.Income
-                    ? x
-                    : -x;
+				account.CurrentBalanceWithoutExchange += amountWithoutExchange;
+				account.CurrentBalance += amount;
+				transaction.Cleared = true;
 
-            await HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
-        }
+				accountDataAccess.Update(account);
+				transactionData.Update(transaction);
+			}
+			else {
+				transaction.Cleared = false;
+				transactionData.Update(transaction);
+			}
+		}
 
-        private static async void PrehandleRemoveIfTransfer(FinancialTransaction transaction) {
-            if (transaction.Type == (int) TransactionType.Transfer) {
-                Func<double, double> amountFunc = x => -x;
-                await HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
-            }
-        }
+		private static async Task<double> GetAmount(double baseAmount, FinancialTransaction transaction, Account account) {
+			try {
+				if (transaction.Currency != account.Currency) {
+					var ratio = await CurrencyLogic.GetCurrencyRatio(transaction.Currency, account.Currency);
+					return baseAmount*ratio;
+				}
+			}
+			catch (Exception ex) {
+				Insights.Report(ex, ReportSeverity.Error);
+			}
+			return baseAmount;
+		}
 
-        private static async Task HandleTransactionAmount(FinancialTransaction transaction,
-            Func<double, double> amountFunc,
-            Func<FinancialTransaction, Account> getAccountFunc) {
-            if (transaction.ClearTransactionNow) {
-                Account account = getAccountFunc(transaction);
-                if (account == null) return;
+		private static async void PrehandleAddIfTransfer(FinancialTransaction transaction) {
+			if (transaction.Type == (int) TransactionType.Transfer) {
+				Func<double, double> amountFunc = x => x;
+				await HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
+			}
+		}
 
-                double amountWithoutExchange = amountFunc(transaction.Amount);
-                double amount = await GetAmount(amountWithoutExchange, transaction, account);
+		private static Func<FinancialTransaction, Account> GetTargetAccountFunc() {
+			if (accountDataAccess.AllAccounts == null) {
+				accountDataAccess.LoadList();
+			}
 
-                account.CurrentBalanceWithoutExchange += amountWithoutExchange;
-                account.CurrentBalance += amount;
-                transaction.Cleared = true;
+			Func<FinancialTransaction, Account> targetAccountFunc =
+				trans => accountDataAccess.AllAccounts.FirstOrDefault(x => x.Id == trans.TargetAccountId);
+			return targetAccountFunc;
+		}
 
-                accountDataAccess.Update(account);
-                transactionData.Update(transaction);
-            } else {
-                transaction.Cleared = false;
-                transactionData.Update(transaction);
-            }
-        }
+		private static Func<FinancialTransaction, Account> GetChargedAccountFunc() {
+			if (accountDataAccess.AllAccounts == null) {
+				accountDataAccess.LoadList();
+			}
 
-        private static async Task<double> GetAmount(double baseAmount, FinancialTransaction transaction, Account account) {
-            try {
-                if (transaction.Currency != account.Currency) {
-                    double ratio = await CurrencyLogic.GetCurrencyRatio(transaction.Currency, account.Currency);
-                    return baseAmount*ratio;
-                }
-            } catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
-            }
-            return baseAmount;
-        }
+			Func<FinancialTransaction, Account> accountFunc =
+				trans => accountDataAccess.AllAccounts.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
+			return accountFunc;
+		}
 
-        private static async void PrehandleAddIfTransfer(FinancialTransaction transaction) {
-            if (transaction.Type == (int) TransactionType.Transfer) {
-                Func<double, double> amountFunc = x => x;
-                await HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
-            }
-        }
+		#region Properties
 
-        private static Func<FinancialTransaction, Account> GetTargetAccountFunc() {
-            if (accountDataAccess.AllAccounts == null) {
-                accountDataAccess.LoadList();
-            }
+		private static AccountDataAccess accountDataAccess {
+			get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+		}
 
-            Func<FinancialTransaction, Account> targetAccountFunc =
-                trans => accountDataAccess.AllAccounts.FirstOrDefault(x => x.Id == trans.TargetAccountId);
-            return targetAccountFunc;
-        }
+		private static TransactionDataAccess transactionData {
+			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+		}
 
-        private static Func<FinancialTransaction, Account> GetChargedAccountFunc() {
-            if (accountDataAccess.AllAccounts == null) {
-                accountDataAccess.LoadList();
-            }
+		private static TransactionListViewModel transactionListView {
+			get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
+		}
 
-            Func<FinancialTransaction, Account> accountFunc =
-                trans => accountDataAccess.AllAccounts.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
-            return accountFunc;
-        }
-    }
+		#endregion Properties
+	}
 }

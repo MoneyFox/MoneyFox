@@ -1,50 +1,50 @@
 ﻿<Page
-    x:Class="MoneyManager.Views.StatisticView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls="using:MoneyManager.UserControls"
-    mc:Ignorable="d"
-    DataContext="{Binding StatisticView, Source={StaticResource Locator}}"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	x:Class="MoneyManager.Views.StatisticView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:userControls="using:MoneyManager.UserControls"
+	mc:Ignorable="d"
+	DataContext="{Binding StatisticView, Source={StaticResource Locator}}"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.BottomAppBar>
-        <CommandBar Background="{StaticResource PhoneAccentBrush}">
-            <AppBarButton x:Uid="Filter" Label="filter" Click="OpenFilter">
-                <AppBarButton.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Images/dark/filter.png" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-        </CommandBar>
-    </Page.BottomAppBar>
+	<Page.BottomAppBar>
+		<CommandBar Background="{StaticResource PhoneAccentBrush}">
+			<AppBarButton x:Uid="Filter" Label="filter" Click="OpenFilter">
+				<AppBarButton.Icon>
+					<BitmapIcon UriSource="ms-appx:///Images/dark/filter.png" />
+				</AppBarButton.Icon>
+			</AppBarButton>
+		</CommandBar>
+	</Page.BottomAppBar>
 
-    <Grid>
+	<Grid>
 
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition />
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
+		<Grid.ChildrenTransitions>
+			<TransitionCollection>
+				<EntranceThemeTransition />
+			</TransitionCollection>
+		</Grid.ChildrenTransitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
 
-        <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <Pivot Title="{Binding Title}" x:Uid="StatistikTitle">
-                <PivotItem x:Uid="AccountsMenu" Header="overview">
-                    <Grid>
-                        <userControls:BarChartUserControl />
-                    </Grid>
-                </PivotItem>
-                <PivotItem x:Uid="OverviewMenu" Header="overview">
-                    <Grid>
-                        <userControls:PieChartUserControl />
-                    </Grid>
-                </PivotItem>
-            </Pivot>
-        </Grid>
-    </Grid>
+		<Grid Grid.Row="1" Margin="19,9.5,19,0">
+			<Pivot Title="{Binding Title}" x:Uid="StatistikTitle">
+				<PivotItem x:Uid="AccountsMenu" Header="overview">
+					<Grid>
+						<userControls:BarChartUserControl />
+					</Grid>
+				</PivotItem>
+				<PivotItem x:Uid="OverviewMenu" Header="overview">
+					<Grid>
+						<userControls:PieChartUserControl />
+					</Grid>
+				</PivotItem>
+			</Pivot>
+		</Grid>
+	</Grid>
 </Page>

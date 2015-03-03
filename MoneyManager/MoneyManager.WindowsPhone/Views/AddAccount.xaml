@@ -8,43 +8,43 @@
       DataContext="{Binding AddAccountView, Source={StaticResource Locator}}"
       mc:Ignorable="d">
 
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition>
-                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <ContinuumNavigationTransitionInfo />
-                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-            </NavigationThemeTransition>
-        </TransitionCollection>
-    </Page.Transitions>
+	<Page.Transitions>
+		<TransitionCollection>
+			<NavigationThemeTransition>
+				<NavigationThemeTransition.DefaultNavigationTransitionInfo>
+					<ContinuumNavigationTransitionInfo />
+				</NavigationThemeTransition.DefaultNavigationTransitionInfo>
+			</NavigationThemeTransition>
+		</TransitionCollection>
+	</Page.Transitions>
 
-    <Page.BottomAppBar>
-        <CommandBar Background="{StaticResource PhoneAccentBrush}">
-            <AppBarButton Icon="Accept" x:Uid="Done" Label="Done" Click="DoneClick" />
-            <AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" Click="CancelClick" />
-        </CommandBar>
-    </Page.BottomAppBar>
+	<Page.BottomAppBar>
+		<CommandBar Background="{StaticResource PhoneAccentBrush}">
+			<AppBarButton Icon="Accept" x:Uid="Done" Label="Done" Click="DoneClick" />
+			<AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" Click="CancelClick" />
+		</CommandBar>
+	</Page.BottomAppBar>
 
-    <Grid>
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition />
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
+	<Grid>
+		<Grid.ChildrenTransitions>
+			<TransitionCollection>
+				<EntranceThemeTransition />
+			</TransitionCollection>
+		</Grid.ChildrenTransitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="24,17,0,28">
-            <TextBlock x:Uid="AccountTitle" Text="Account" Style="{ThemeResource TitleTextBlockStyle}"
-                       Typography.Capitals="SmallCaps" />
-            <TextBlock x:Uid="Add" Text="Add" Margin="0,12,0,0" Style="{ThemeResource HeaderTextBlockStyle}" />
-        </StackPanel>
+		<StackPanel Grid.Row="0" Margin="24,17,0,28">
+			<TextBlock x:Uid="AccountTitle" Text="Account" Style="{ThemeResource TitleTextBlockStyle}"
+			           Typography.Capitals="SmallCaps" />
+			<TextBlock x:Uid="Add" Text="Add" Margin="0,12,0,0" Style="{ThemeResource HeaderTextBlockStyle}" />
+		</StackPanel>
 
-        <Grid Grid.Row="1">
-            <userControls:AddAccountUserControl />
-        </Grid>
-    </Grid>
+		<Grid Grid.Row="1">
+			<userControls:AddAccountUserControl />
+		</Grid>
+	</Grid>
 </Page>

@@ -13,119 +13,118 @@ using MoneyManager.Views;
 #endregion
 
 namespace MoneyManager {
-    public class ViewModelLocator {
-        static ViewModelLocator() {
-            DatabaseLogic.CreateDatabase();
+	public class ViewModelLocator {
+		static ViewModelLocator() {
+			DatabaseLogic.CreateDatabase();
 
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+			ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            //DataAccess
-            SimpleIoc.Default.Register<AccountDataAccess>();
-            SimpleIoc.Default.Register<CategoryDataAccess>();
-            SimpleIoc.Default.Register<TransactionDataAccess>();
-            SimpleIoc.Default.Register<RecurringTransactionDataAccess>();
-            SimpleIoc.Default.Register<SettingDataAccess>();
+			//DataAccess
+			SimpleIoc.Default.Register<AccountDataAccess>();
+			SimpleIoc.Default.Register<CategoryDataAccess>();
+			SimpleIoc.Default.Register<TransactionDataAccess>();
+			SimpleIoc.Default.Register<RecurringTransactionDataAccess>();
+			SimpleIoc.Default.Register<SettingDataAccess>();
 
-            //Logic
-            SimpleIoc.Default.Register<IUserNotification, UserNotification>();
-            SimpleIoc.Default.Register(CreateNavigationService);
-            SimpleIoc.Default.Register<Utilities>();
-            //ViewModels
-            SimpleIoc.Default.Register<AddAccountViewModel>();
-            SimpleIoc.Default.Register<AddTransactionViewModel>();
-            SimpleIoc.Default.Register<BalanceViewModel>();
-            SimpleIoc.Default.Register<CategoryListViewModel>();
-            SimpleIoc.Default.Register<TransactionListViewModel>();
-            SimpleIoc.Default.Register<TileSettingsViewModel>();
-            SimpleIoc.Default.Register<GeneralSettingViewModel>();
-            SimpleIoc.Default.Register<SettingDefaultsViewModel>();
-            SimpleIoc.Default.Register<SelectCurrencyViewModel>();
-            SimpleIoc.Default.Register<StatisticViewModel>();
-            SimpleIoc.Default.Register<BackupViewModel>();
-        }
+			//Logic
+			SimpleIoc.Default.Register<IUserNotification, UserNotification>();
+			SimpleIoc.Default.Register(CreateNavigationService);
+			SimpleIoc.Default.Register<Utilities>();
+			//ViewModels
+			SimpleIoc.Default.Register<AddAccountViewModel>();
+			SimpleIoc.Default.Register<AddTransactionViewModel>();
+			SimpleIoc.Default.Register<BalanceViewModel>();
+			SimpleIoc.Default.Register<CategoryListViewModel>();
+			SimpleIoc.Default.Register<TransactionListViewModel>();
+			SimpleIoc.Default.Register<TileSettingsViewModel>();
+			SimpleIoc.Default.Register<GeneralSettingViewModel>();
+			SimpleIoc.Default.Register<SettingDefaultsViewModel>();
+			SimpleIoc.Default.Register<SelectCurrencyViewModel>();
+			SimpleIoc.Default.Register<StatisticViewModel>();
+			SimpleIoc.Default.Register<BackupViewModel>();
+		}
 
-        #region DataAccess
+		#region Logic
 
-        public AccountDataAccess AccountDataAccess {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
-        }
+		private static INavigationService CreateNavigationService() {
+			var navigationService = new NavigationService();
+			navigationService.Configure("LicenseView", typeof (LicenseView));
 
-        public CategoryDataAccess CategoryDataAccess {
-            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
-        }
+			return navigationService;
+		}
 
-        public TransactionDataAccess TransactionDataAccess {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-        }
+		#endregion
 
-        public RecurringTransactionDataAccess RecurringTransactionDataAccess {
-            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
-        }
+		#region DataAccess
 
-        public SettingDataAccess SettingDataAccess {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
+		public AccountDataAccess AccountDataAccess {
+			get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+		}
 
-        #endregion DataAccess
+		public CategoryDataAccess CategoryDataAccess {
+			get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
+		}
 
-        #region Logic
+		public TransactionDataAccess TransactionDataAccess {
+			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+		}
 
-        private static INavigationService CreateNavigationService()
-        {
-            var navigationService = new NavigationService();
-            navigationService.Configure("LicenseView", typeof(LicenseView));
+		public RecurringTransactionDataAccess RecurringTransactionDataAccess {
+			get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+		}
 
-            return navigationService;
-        }
+		public SettingDataAccess SettingDataAccess {
+			get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+		}
 
-        #endregion
+		#endregion DataAccess
 
-        #region Views
+		#region Views
 
-        public AddAccountViewModel AddAccountView {
-            get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>(); }
-        }
+		public AddAccountViewModel AddAccountView {
+			get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>(); }
+		}
 
-        public AddTransactionViewModel AddTransactionView {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
+		public AddTransactionViewModel AddTransactionView {
+			get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+		}
 
-        public BalanceViewModel BalanceView {
-            get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
-        }
+		public BalanceViewModel BalanceView {
+			get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
+		}
 
-        public CategoryListViewModel CategoryListView {
-            get { return ServiceLocator.Current.GetInstance<CategoryListViewModel>(); }
-        }
+		public CategoryListViewModel CategoryListView {
+			get { return ServiceLocator.Current.GetInstance<CategoryListViewModel>(); }
+		}
 
-        public TransactionListViewModel TransactionListView {
-            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
-        }
+		public TransactionListViewModel TransactionListView {
+			get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
+		}
 
-        public TileSettingsViewModel TileSettingsView {
-            get { return ServiceLocator.Current.GetInstance<TileSettingsViewModel>(); }
-        }
+		public TileSettingsViewModel TileSettingsView {
+			get { return ServiceLocator.Current.GetInstance<TileSettingsViewModel>(); }
+		}
 
-        public GeneralSettingViewModel GeneralSettingView {
-            get { return ServiceLocator.Current.GetInstance<GeneralSettingViewModel>(); }
-        }
+		public GeneralSettingViewModel GeneralSettingView {
+			get { return ServiceLocator.Current.GetInstance<GeneralSettingViewModel>(); }
+		}
 
-        public SettingDefaultsViewModel SettingDefaultsView {
-            get { return ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>(); }
-        }
+		public SettingDefaultsViewModel SettingDefaultsView {
+			get { return ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>(); }
+		}
 
-        public SelectCurrencyViewModel SelectCurrencyView {
-            get { return ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>(); }
-        }
+		public SelectCurrencyViewModel SelectCurrencyView {
+			get { return ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>(); }
+		}
 
-        public StatisticViewModel StatisticView {
-            get { return ServiceLocator.Current.GetInstance<StatisticViewModel>(); }
-        }
+		public StatisticViewModel StatisticView {
+			get { return ServiceLocator.Current.GetInstance<StatisticViewModel>(); }
+		}
 
-        public BackupViewModel BackupView {
-            get { return ServiceLocator.Current.GetInstance<BackupViewModel>(); }
-        }
+		public BackupViewModel BackupView {
+			get { return ServiceLocator.Current.GetInstance<BackupViewModel>(); }
+		}
 
-        #endregion Views
-    }
+		#endregion Views
+	}
 }

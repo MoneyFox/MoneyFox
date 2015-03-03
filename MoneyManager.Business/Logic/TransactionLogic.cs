@@ -1,7 +1,6 @@
 ﻿#region
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
@@ -16,180 +15,186 @@ using Xamarin;
 #endregion
 
 namespace MoneyManager.Business.Logic {
-    public class TransactionLogic {
-        #region Properties
+	public class TransactionLogic {
+		public static async Task SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
+			bool skipRecurring = false) {
+			if (transaction.IsRecurring && !skipRecurring) {
+				var recurringTransaction =
+					RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
+				recurringTransactionData.Save(transaction, recurringTransaction);
+				transaction.RecurringTransaction = recurringTransaction;
+			}
 
-        private static AccountDataAccess accountDataAccess {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
-        }
+			transactionData.Save(transaction);
 
-        private static TransactionDataAccess transactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-        }
+			if (refreshRelatedList) {
+				ServiceLocator.Current.GetInstance<TransactionListViewModel>()
+					.SetRelatedTransactions(accountDataAccess.SelectedAccount.Id);
+			}
+			await AccountLogic.AddTransactionAmount(transaction);
+		}
 
-        private static FinancialTransaction selectedTransaction {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
-            set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
-        }
+		public static void GoToAddTransaction(TransactionType transactionType, bool refreshRelatedList = false) {
+			addTransactionView.IsEdit = false;
+			addTransactionView.IsEndless = true;
+			addTransactionView.RefreshRealtedList = refreshRelatedList;
+			addTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
+			SetDefaultTransaction(transactionType);
+			SetDefaultAccount();
+		}
 
-        private static RecurringTransactionDataAccess recurringTransactionData {
-            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
-        }
+		public static void PrepareEdit(FinancialTransaction transaction) {
+			addTransactionView.IsEdit = true;
+			addTransactionView.IsTransfer = transaction.Type == (int) TransactionType.Transfer;
+			if (transaction.ReccuringTransactionId.HasValue && transaction.RecurringTransaction != null) {
+				addTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
+				addTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
+			}
+			addTransactionView.SelectedTransaction = transaction;
+		}
 
-        private static AddTransactionViewModel addTransactionView {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
+		public static async Task DeleteTransaction(FinancialTransaction transaction, bool skipConfirmation = false) {
+			if (skipConfirmation || await Utilities.IsDeletionConfirmed()) {
+				await CheckForRecurringTransaction(transaction,
+					() => RecurringTransactionLogic.Delete(transaction.RecurringTransaction));
 
-        private static SettingDataAccess settings {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
+				transactionData.Delete(transaction);
 
-        #endregion Properties
+				await AccountLogic.RemoveTransactionAmount(transaction);
+				AccountLogic.RefreshRelatedTransactions();
+				ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
+			}
+		}
 
-        public static async Task SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
-            bool skipRecurring = false) {
-            if (transaction.IsRecurring && !skipRecurring) {
-                RecurringTransaction recurringTransaction =
-                    RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
-                recurringTransactionData.Save(transaction, recurringTransaction);
-                transaction.RecurringTransaction = recurringTransaction;
-            }
+		public static void DeleteAssociatedTransactionsFromDatabase(int accountId) {
+			if (transactionData.AllTransactions == null) {
+				return;
+			}
 
-            transactionData.Save(transaction);
+			var transactionsToDelete = transactionData.AllTransactions
+				.Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
+				.ToList();
 
-            if (refreshRelatedList) {
-                ServiceLocator.Current.GetInstance<TransactionListViewModel>()
-                    .SetRelatedTransactions(accountDataAccess.SelectedAccount.Id);
-            }
-            await AccountLogic.AddTransactionAmount(transaction);
-        }
+			foreach (var transaction in transactionsToDelete) {
+				transactionData.Delete(transaction);
+			}
+		}
 
-        public static void GoToAddTransaction(TransactionType transactionType, bool refreshRelatedList = false) {
-            addTransactionView.IsEdit = false;
-            addTransactionView.IsEndless = true;
-            addTransactionView.RefreshRealtedList = refreshRelatedList;
-            addTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
-            SetDefaultTransaction(transactionType);
-            SetDefaultAccount();
-        }
+		public static async Task UpdateTransaction(FinancialTransaction transaction) {
+			CheckIfRecurringWasRemoved(transaction);
+			await AccountLogic.AddTransactionAmount(transaction);
+			transactionData.Update(transaction);
 
-        public static void PrepareEdit(FinancialTransaction transaction) {
-            addTransactionView.IsEdit = true;
-            addTransactionView.IsTransfer = transaction.Type == (int) TransactionType.Transfer;
-            if (transaction.ReccuringTransactionId.HasValue && transaction.RecurringTransaction != null) {
-                addTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
-                addTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
-            }
-            addTransactionView.SelectedTransaction = transaction;
-        }
+			var recurringTransaction =
+				RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
 
-        public static async Task DeleteTransaction(FinancialTransaction transaction, bool skipConfirmation = false) {
-            if (skipConfirmation || await Utilities.IsDeletionConfirmed()) {
-                await CheckForRecurringTransaction(transaction,
-                    () => RecurringTransactionLogic.Delete(transaction.RecurringTransaction));
+			await
+				CheckForRecurringTransaction(transaction,
+					() => recurringTransactionData.Update(transaction, recurringTransaction));
 
-                transactionData.Delete(transaction);
+			AccountLogic.RefreshRelatedTransactions();
+		}
 
-                await AccountLogic.RemoveTransactionAmount(transaction);
-                AccountLogic.RefreshRelatedTransactions();
-                ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
-            }
-        }
+		private static async Task CheckForRecurringTransaction(FinancialTransaction transaction,
+			Action recurringTransactionAction) {
+			if (!transaction.IsRecurring) {
+				return;
+			}
 
-        public static void DeleteAssociatedTransactionsFromDatabase(int accountId) {
-            if (transactionData.AllTransactions == null) return;
+			var dialog =
+				new MessageDialog(Translation.GetTranslation("ChangeSubsequentTransactionsMessage"),
+					Translation.GetTranslation("ChangeSubsequentTransactionsTitle"));
 
-            List<FinancialTransaction> transactionsToDelete = transactionData.AllTransactions
-                .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
-                .ToList();
+			dialog.Commands.Add(new UICommand(Translation.GetTranslation("RecurringLabel")));
+			dialog.Commands.Add(new UICommand(Translation.GetTranslation("JustThisLabel")));
 
-            foreach (FinancialTransaction transaction in transactionsToDelete) {
-                transactionData.Delete(transaction);
-            }
-        }
+			dialog.DefaultCommandIndex = 1;
 
-        public static async Task UpdateTransaction(FinancialTransaction transaction) {
-            CheckIfRecurringWasRemoved(transaction);
-            await AccountLogic.AddTransactionAmount(transaction);
-            transactionData.Update(transaction);
+			var result = await dialog.ShowAsync();
 
-            RecurringTransaction recurringTransaction =
-                RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
+			if (result.Label == Translation.GetTranslation("RecurringLabel")) {
+				recurringTransactionAction();
+			}
+		}
 
-            await
-                CheckForRecurringTransaction(transaction,
-                    () => recurringTransactionData.Update(transaction, recurringTransaction));
+		private static void CheckIfRecurringWasRemoved(FinancialTransaction transaction) {
+			if (!transaction.IsRecurring && transaction.ReccuringTransactionId.HasValue) {
+				recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value);
+				transaction.ReccuringTransactionId = null;
+			}
+		}
 
-            AccountLogic.RefreshRelatedTransactions();
-        }
+		private static void SetDefaultTransaction(TransactionType transactionType) {
+			selectedTransaction = new FinancialTransaction {
+				Type = (int) transactionType,
+				IsExchangeModeActive = false,
+				Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
+			};
+		}
 
-        private static async Task CheckForRecurringTransaction(FinancialTransaction transaction,
-            Action recurringTransactionAction) {
-            if (!transaction.IsRecurring) return;
+		private static void SetDefaultAccount() {
+			try {
+				if (accountDataAccess.AllAccounts == null) {
+					accountDataAccess.LoadList();
+				}
 
-            var dialog =
-                new MessageDialog(Translation.GetTranslation("ChangeSubsequentTransactionsMessage"),
-                    Translation.GetTranslation("ChangeSubsequentTransactionsTitle"));
+				if (accountDataAccess.AllAccounts.Any()) {
+					selectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First();
+				}
 
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("RecurringLabel")));
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("JustThisLabel")));
+				if (accountDataAccess.AllAccounts.Any() && settings.DefaultAccount != -1) {
+					selectedTransaction.ChargedAccount =
+						accountDataAccess.AllAccounts.First(x => x.Id == settings.DefaultAccount);
+				}
 
-            dialog.DefaultCommandIndex = 1;
+				if (accountDataAccess.SelectedAccount != null) {
+					selectedTransaction.ChargedAccount = accountDataAccess.SelectedAccount;
+				}
+			}
+			catch (Exception ex) {
+				Insights.Report(ex, ReportSeverity.Error);
+			}
+		}
 
-            IUICommand result = await dialog.ShowAsync();
+		public static async Task ClearTransactions() {
+			var transactions = transactionData.GetUnclearedTransactions();
+			foreach (var transaction in transactions) {
+				try {
+					await AccountLogic.AddTransactionAmount(transaction);
+				}
+				catch (Exception ex) {
+					Insights.Report(ex, ReportSeverity.Error);
+				}
+			}
+		}
 
-            if (result.Label == Translation.GetTranslation("RecurringLabel")) {
-                recurringTransactionAction();
-            }
-        }
+		#region Properties
 
-        private static void CheckIfRecurringWasRemoved(FinancialTransaction transaction) {
-            if (!transaction.IsRecurring && transaction.ReccuringTransactionId.HasValue) {
-                recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value);
-                transaction.ReccuringTransactionId = null;
-            }
-        }
+		private static AccountDataAccess accountDataAccess {
+			get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+		}
 
-        private static void SetDefaultTransaction(TransactionType transactionType) {
-            selectedTransaction = new FinancialTransaction {
-                Type = (int) transactionType,
-                IsExchangeModeActive = false,
-                Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
-            };
-        }
+		private static TransactionDataAccess transactionData {
+			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+		}
 
-        private static void SetDefaultAccount() {
-            try {
-                if (accountDataAccess.AllAccounts == null) {
-                    accountDataAccess.LoadList();
-                }
+		private static FinancialTransaction selectedTransaction {
+			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
+			set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
+		}
 
-                if (accountDataAccess.AllAccounts.Any()) {
-                    selectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First();
-                }
+		private static RecurringTransactionDataAccess recurringTransactionData {
+			get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+		}
 
-                if (accountDataAccess.AllAccounts.Any() && settings.DefaultAccount != -1) {
-                    selectedTransaction.ChargedAccount =
-                        accountDataAccess.AllAccounts.First(x => x.Id == settings.DefaultAccount);
-                }
+		private static AddTransactionViewModel addTransactionView {
+			get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+		}
 
-                if (accountDataAccess.SelectedAccount != null) {
-                    selectedTransaction.ChargedAccount = accountDataAccess.SelectedAccount;
-                }
-            } catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
-            }
-        }
+		private static SettingDataAccess settings {
+			get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+		}
 
-        public static async Task ClearTransactions() {
-            IEnumerable<FinancialTransaction> transactions = transactionData.GetUnclearedTransactions();
-            foreach (FinancialTransaction transaction in transactions) {
-                try {
-                    await AccountLogic.AddTransactionAmount(transaction);
-                } catch (Exception ex) {
-                    Insights.Report(ex, ReportSeverity.Error);
-                }
-            }
-        }
-    }
+		#endregion Properties
+	}
 }

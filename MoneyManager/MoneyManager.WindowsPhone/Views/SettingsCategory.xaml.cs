@@ -11,34 +11,30 @@ using MoneyManager.Dialogs;
 #endregion
 
 namespace MoneyManager.Views {
-    public sealed partial class SettingsCategory {
-        private readonly NavigationHelper navigationHelper;
+	public sealed partial class SettingsCategory {
+		public SettingsCategory() {
+			InitializeComponent();
 
-        public SettingsCategory() {
-            InitializeComponent();
+			NavigationHelper = new NavigationHelper(this);
+			ServiceLocator.Current.GetInstance<CategoryListViewModel>().IsSettingCall = true;
+		}
 
-            navigationHelper = new NavigationHelper(this);
-            ServiceLocator.Current.GetInstance<CategoryListViewModel>().IsSettingCall = true;
-        }
+		public NavigationHelper NavigationHelper { get; }
 
-        public NavigationHelper NavigationHelper {
-            get { return navigationHelper; }
-        }
+		private async void AddCategoryClick(object sender, RoutedEventArgs e) {
+			await new CategoryDialog().ShowAsync();
+		}
 
-        private async void AddCategoryClick(object sender, RoutedEventArgs e) {
-            await new CategoryDialog().ShowAsync();
-        }
+		#region NavigationHelper registration
 
-        #region NavigationHelper registration
+		protected override void OnNavigatedTo(NavigationEventArgs e) {
+			NavigationHelper.OnNavigatedTo(e);
+		}
 
-        protected override void OnNavigatedTo(NavigationEventArgs e) {
-            navigationHelper.OnNavigatedTo(e);
-        }
+		protected override void OnNavigatedFrom(NavigationEventArgs e) {
+			NavigationHelper.OnNavigatedFrom(e);
+		}
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e) {
-            navigationHelper.OnNavigatedFrom(e);
-        }
-
-        #endregion NavigationHelper registration
-    }
+		#endregion NavigationHelper registration
+	}
 }

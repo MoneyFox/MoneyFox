@@ -9,36 +9,40 @@ using MoneyManager.DataAccess.Model;
 using MoneyManager.Dialogs;
 
 namespace MoneyManager.UserControls {
-    public partial class CategoryListUserControl {
-        public CategoryListUserControl() {
-            InitializeComponent();
-        }
+	public partial class CategoryListUserControl {
+		public CategoryListUserControl() {
+			InitializeComponent();
+		}
 
-        private void CategoryListHolding(object sender, HoldingRoutedEventArgs e) {
-            var senderElement = sender as FrameworkElement;
-            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+		private void CategoryListHolding(object sender, HoldingRoutedEventArgs e) {
+			var senderElement = sender as FrameworkElement;
+			var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
-            flyoutBase.ShowAt(senderElement);
-        }
+			flyoutBase.ShowAt(senderElement);
+		}
 
-        private async void EditCategory(object sender, RoutedEventArgs e) {
-            var element = (FrameworkElement) sender;
-            var category = element.DataContext as Category;
-            if (category == null) return;
+		private async void EditCategory(object sender, RoutedEventArgs e) {
+			var element = (FrameworkElement) sender;
+			var category = element.DataContext as Category;
+			if (category == null) {
+				return;
+			}
 
-            var viewModel = ServiceLocator.Current.GetInstance<CategoryDataAccess>();
-            viewModel.SelectedCategory = category;
+			var viewModel = ServiceLocator.Current.GetInstance<CategoryDataAccess>();
+			viewModel.SelectedCategory = category;
 
-            var dialog = new CategoryDialog(true);
-            await dialog.ShowAsync();
-        }
+			var dialog = new CategoryDialog(true);
+			await dialog.ShowAsync();
+		}
 
-        private void DeleteCategory(object sender, RoutedEventArgs e) {
-            var element = (FrameworkElement) sender;
-            var category = element.DataContext as Category;
-            if (category == null) return;
+		private void DeleteCategory(object sender, RoutedEventArgs e) {
+			var element = (FrameworkElement) sender;
+			var category = element.DataContext as Category;
+			if (category == null) {
+				return;
+			}
 
-            CategoryLogic.DeleteCategory(category);
-        }
-    }
+			CategoryLogic.DeleteCategory(category);
+		}
+	}
 }

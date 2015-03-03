@@ -12,112 +12,97 @@ using SQLite.Net.Attributes;
 #endregion
 
 namespace MoneyManager.DataAccess.Model {
-    [ImplementPropertyChanged]
-    [Table("FinancialTransactions")]
-    public class FinancialTransaction {
-        #region Properties
+	[ImplementPropertyChanged]
+	[Table("FinancialTransactions")]
+	public class FinancialTransaction {
+		[PrimaryKey, AutoIncrement]
+		public int Id { get; set; }
 
-        private IEnumerable<Account> allAccounts {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
-        }
+		public int ChargedAccountId { get; set; }
+		public int TargetAccountId { get; set; }
+		public DateTime Date { get; set; }
+		public double AmountWithoutExchange { get; set; }
+		public double Amount { get; set; }
+		public bool IsExchangeModeActive { get; set; }
+		public double ExchangeRatio { get; set; }
+		public string Currency { get; set; }
+		public int? CategoryId { get; set; }
+		public bool Cleared { get; set; }
+		public int Type { get; set; }
+		public string Note { get; set; }
+		public bool IsRecurring { get; set; }
+		public int? ReccuringTransactionId { get; set; }
 
-        private IEnumerable<Category> allCategories {
-            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
-        }
+		[Ignore]
+		public Account ChargedAccount {
+			get {
+				if (allAccounts == null) {
+					accountData.LoadList();
+				}
+				return allAccounts.FirstOrDefault(x => x.Id == ChargedAccountId);
+			}
+			set { ChargedAccountId = value.Id; }
+		}
 
-        private AccountDataAccess accountData {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
-        }
+		[Ignore]
+		public Account TargetAccount {
+			get {
+				if (allAccounts == null) {
+					accountData.LoadList();
+				}
+				return allAccounts.FirstOrDefault(x => x.Id == TargetAccountId);
+			}
+			set { TargetAccountId = value.Id; }
+		}
 
-        private IEnumerable<RecurringTransaction> allRecurringTransactions {
-            get {
-                return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>().AllRecurringTransactions;
-            }
-        }
+		[Ignore]
+		public Category Category {
+			get {
+				return allCategories != null
+					? allCategories.FirstOrDefault(x => x.Id == CategoryId)
+					: new Category();
+			}
+			set {
+				CategoryId = value == null
+					? (int?) null
+					: value.Id;
+			}
+		}
 
-        #endregion Properties
+		[Ignore]
+		public RecurringTransaction RecurringTransaction {
+			get { return allRecurringTransactions.FirstOrDefault(x => x.Id == ReccuringTransactionId); }
+			set { ReccuringTransactionId = value.Id; }
+		}
 
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+		[Ignore]
+		public bool ClearTransactionNow {
+			get { return Date.Date <= DateTime.Now.Date; }
+		}
 
-        public int ChargedAccountId { get; set; }
+		[Ignore]
+		public bool IsTransfer {
+			get { return Type == (int) TransactionType.Transfer; }
+		}
 
-        public int TargetAccountId { get; set; }
+		#region Properties
 
-        public DateTime Date { get; set; }
+		private IEnumerable<Account> allAccounts {
+			get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
+		}
 
-        public double AmountWithoutExchange { get; set; }
+		private IEnumerable<Category> allCategories {
+			get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
+		}
 
-        public double Amount { get; set; }
+		private AccountDataAccess accountData {
+			get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+		}
 
-        public bool IsExchangeModeActive { get; set; }
+		private IEnumerable<RecurringTransaction> allRecurringTransactions {
+			get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>().AllRecurringTransactions; }
+		}
 
-        public double ExchangeRatio { get; set; }
-
-        public string Currency { get; set; }
-
-        public int? CategoryId { get; set; }
-
-        public bool Cleared { get; set; }
-
-        public int Type { get; set; }
-
-        public string Note { get; set; }
-
-        public bool IsRecurring { get; set; }
-
-        public int? ReccuringTransactionId { get; set; }
-
-        [Ignore]
-        public Account ChargedAccount {
-            get {
-                if (allAccounts == null) {
-                    accountData.LoadList();
-                }
-                return allAccounts.FirstOrDefault(x => x.Id == ChargedAccountId);
-            }
-            set { ChargedAccountId = value.Id; }
-        }
-
-        [Ignore]
-        public Account TargetAccount {
-            get {
-                if (allAccounts == null) {
-                    accountData.LoadList();
-                }
-                return allAccounts.FirstOrDefault(x => x.Id == TargetAccountId);
-            }
-            set { TargetAccountId = value.Id; }
-        }
-
-        [Ignore]
-        public Category Category {
-            get {
-                return allCategories != null
-                    ? allCategories.FirstOrDefault(x => x.Id == CategoryId)
-                    : new Category();
-            }
-            set {
-                CategoryId = value == null
-                    ? (int?) null
-                    : value.Id;
-            }
-        }
-
-        [Ignore]
-        public RecurringTransaction RecurringTransaction {
-            get { return allRecurringTransactions.FirstOrDefault(x => x.Id == ReccuringTransactionId); }
-            set { ReccuringTransactionId = value.Id; }
-        }
-
-        [Ignore]
-        public bool ClearTransactionNow {
-            get { return Date.Date <= DateTime.Now.Date; }
-        }
-
-        [Ignore]
-        public bool IsTransfer {
-            get { return Type == (int) TransactionType.Transfer; }
-        }
-    }
+		#endregion Properties
+	}
 }
