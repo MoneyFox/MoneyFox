@@ -57,9 +57,6 @@
     <Compile Include="Translation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="BugSense-Windows.Universal">
-      <HintPath>..\packages\BugSense.XAML81.3.6.6.0\lib\wpa81\BugSense-Windows.Universal.dll</HintPath>
-    </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.49.0\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>

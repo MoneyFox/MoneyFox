@@ -323,6 +323,27 @@
     <Reference Include="SQLite.Net.Platform.WindowsPhoneApp81">
       <HintPath>..\..\packages\SQLite.Net.Platform.WP81.1.0.1\lib\SQLite.Net.Platform.WindowsPhoneApp81.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Core">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Common\Telerik.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Data">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Common\Telerik.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Chart">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Controls.Data">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.DataVisualization">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Input">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Primitives">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Insights, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Xamarin.Insights.1.9.0.106\lib\wpa\Xamarin.Insights.dll</HintPath>
@@ -340,9 +361,6 @@
     </SDKReference>
     <SDKReference Include="SQLite.WP81, Version=3.8.8.3">
       <Name>SQLite for Windows Phone 8.1</Name>
-    </SDKReference>
-    <SDKReference Include="Telerik UI For Windows Universal, Version=2015.1.226.45">
-      <Name>Telerik UI For Windows Phone 8.1</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
