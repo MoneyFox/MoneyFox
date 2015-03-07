@@ -39,7 +39,6 @@
         </DataTemplate>
     </UserControl.Resources>
 
-
     <Grid>
         <ScrollViewer>
             <ListView ItemsSource="{Binding CategorySummary}"

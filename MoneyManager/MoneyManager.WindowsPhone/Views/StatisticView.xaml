@@ -20,34 +20,22 @@
     </Page.BottomAppBar>
 
     <Grid>
-
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition />
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="1" Margin="19,9.5,19,0">
+        <Grid>
             <Pivot Title="{Binding Title}" x:Uid="StatistikTitle">
                 <PivotItem x:Uid="AccountsMenu" Header="accounts">
-                    <Grid>
-                        <userControls:BarChartUserControl />
-                    </Grid>
+                    <userControls:BarChartUserControl />
                 </PivotItem>
                 <PivotItem x:Uid="OverviewMenu" Header="overview">
-                    <Grid>
-                        <userControls:PieChartUserControl />
-                    </Grid>
+                    <userControls:PieChartUserControl />
                 </PivotItem>                
                 <PivotItem x:Uid="CategorySummary" Header="category summary">
-                    <Grid>
-                        <userControls:CategorySummaryUserControl />
-                    </Grid>
+                    <userControls:CategorySummaryUserControl />
                 </PivotItem>
             </Pivot>
         </Grid>
