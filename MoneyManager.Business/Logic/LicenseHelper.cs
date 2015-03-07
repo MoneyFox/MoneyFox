@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Store;
@@ -8,22 +7,23 @@ using Xamarin;
 namespace MoneyManager.Business.Logic {
     public class LicenseHelper {
         public static readonly string FeaturepackProductKey = "10001";
-
         private static bool _isFeaturepackLicensed;
 
         public static bool IsFeaturepackLicensed {
             get {
-#if DEBUG
-                _isFeaturepackLicensed = false;
-#endif
+                CheckLicenceFeaturepack();
                 return _isFeaturepackLicensed;
             }
         }
 
         public static async Task CheckLicenceFeaturepack() {
+#if DEBUG
+            _isFeaturepackLicensed = true;
+            return;
+#endif
             try {
-                ListingInformation listing = await CurrentApp.LoadListingInformationAsync();
-                KeyValuePair<string, ProductListing> featurepackLicence =
+                var listing = await CurrentApp.LoadListingInformationAsync();
+                var featurepackLicence =
                     listing.ProductListings.FirstOrDefault(p => p.Value.ProductId == FeaturepackProductKey);
 
                 if (CurrentApp.LicenseInformation.ProductLicenses != null) {
