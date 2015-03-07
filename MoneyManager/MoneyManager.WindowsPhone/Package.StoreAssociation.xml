@@ -203,12 +203,12 @@
       <PackageInfo>
         <OsMinVersion>6.3.0.0</OsMinVersion>
         <PackageArchitecture>arm</PackageArchitecture>
-        <PackageMaxArchitectureVersion>0.8.0.10</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>0.8.1.2</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>6.3.0.0</OsMinVersion>
         <PackageArchitecture></PackageArchitecture>
-        <PackageMaxArchitectureVersion>0.8.0.10</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>0.8.1.2</PackageMaxArchitectureVersion>
       </PackageInfo>
     </BundleInfo>
   </PackageInfoList>
