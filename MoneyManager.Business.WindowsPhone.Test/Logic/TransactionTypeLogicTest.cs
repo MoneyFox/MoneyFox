@@ -7,17 +7,17 @@ using MoneyManager.Foundation;
 #endregion
 
 namespace MoneyManager.Business.WindowsPhone.Test.Logic {
-	[TestClass]
-	public class TransactionTypeLogicTest {
-		[TestMethod]
-		public void GetEnumFromStringTest() {
-			var typeSpending = TransactionTypeLogic.GetEnumFromString("Spending");
-			var typeIncome = TransactionTypeLogic.GetEnumFromString("Income");
-			var typeTransfer = TransactionTypeLogic.GetEnumFromString("Transfer");
+    [TestClass]
+    public class TransactionTypeLogicTest {
+        [TestMethod]
+        public void GetEnumFromStringTest() {
+            TransactionType typeSpending = TransactionTypeLogic.GetEnumFromString("Spending");
+            TransactionType typeIncome = TransactionTypeLogic.GetEnumFromString("Income");
+            TransactionType typeTransfer = TransactionTypeLogic.GetEnumFromString("Transfer");
 
-			Assert.AreEqual(TransactionType.Spending, typeSpending);
-			Assert.AreEqual(TransactionType.Income, typeIncome);
-			Assert.AreEqual(TransactionType.Transfer, typeTransfer);
-		}
-	}
+            Assert.AreEqual(TransactionType.Spending, typeSpending);
+            Assert.AreEqual(TransactionType.Income, typeIncome);
+            Assert.AreEqual(TransactionType.Transfer, typeTransfer);
+        }
+    }
 }

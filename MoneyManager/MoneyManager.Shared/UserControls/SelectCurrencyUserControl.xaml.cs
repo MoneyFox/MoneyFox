@@ -12,30 +12,29 @@ using MoneyManager.Views;
 #endregion
 
 namespace MoneyManager.UserControls {
-	public sealed partial class SelectCurrencyUserControl {
-		public SelectCurrencyUserControl() {
-			InitializeComponent();
-		}
+    public sealed partial class SelectCurrencyUserControl {
+        public SelectCurrencyUserControl() {
+            InitializeComponent();
+        }
 
-		private async void LoadCountries(object sender, RoutedEventArgs e) {
-			if (LicenseHelper.IsFeaturepackLicensed) {
-				await ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().LoadCountries();
-			}
-			else {
-				var dialog = new MessageDialog(Translation.GetTranslation("ShowFeatureNotLicensedMessage"),
-					Translation.GetTranslation("FeatureNotLicensedTitle"));
-				dialog.Commands.Add(new UICommand(Translation.GetTranslation("RedirectLabel"), GoToPurchase));
-				dialog.Commands.Add(new UICommand(Translation.GetTranslation("BackLabel"), NavigateBack));
-				dialog.ShowAsync();
-			}
-		}
+        private async void LoadCountries(object sender, RoutedEventArgs e) {
+            if (LicenseHelper.IsFeaturepackLicensed) {
+                await ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().LoadCountries();
+            } else {
+                var dialog = new MessageDialog(Translation.GetTranslation("ShowFeatureNotLicensedMessage"),
+                    Translation.GetTranslation("FeatureNotLicensedTitle"));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("RedirectLabel"), GoToPurchase));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("BackLabel"), NavigateBack));
+                dialog.ShowAsync();
+            }
+        }
 
-		private void GoToPurchase(IUICommand command) {
-			((Frame) Window.Current.Content).Navigate(typeof (LicenseView));
-		}
+        private void GoToPurchase(IUICommand command) {
+            ((Frame) Window.Current.Content).Navigate(typeof (LicenseView));
+        }
 
-		private void NavigateBack(IUICommand command) {
-			((Frame) Window.Current.Content).GoBack();
-		}
-	}
+        private void NavigateBack(IUICommand command) {
+            ((Frame) Window.Current.Content).GoBack();
+        }
+    }
 }

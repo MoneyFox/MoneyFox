@@ -6,36 +6,39 @@ using MoneyManager.Common;
 using Xamarin;
 
 namespace MoneyManager.Views {
-	public sealed partial class SettingsBackup {
-		public SettingsBackup() {
-			InitializeComponent();
+    public sealed partial class SettingsBackup {
+        private readonly NavigationHelper navigationHelper;
 
-			NavigationHelper = new NavigationHelper(this);
-		}
+        public SettingsBackup() {
+            InitializeComponent();
 
-		public NavigationHelper NavigationHelper { get; }
+            navigationHelper = new NavigationHelper(this);
+        }
 
-		private BackupViewModel backupView {
-			get { return ServiceLocator.Current.GetInstance<BackupViewModel>(); }
-		}
+        public NavigationHelper NavigationHelper {
+            get { return navigationHelper; }
+        }
 
-		#region NavigationHelper registration
+        private BackupViewModel backupView {
+            get { return ServiceLocator.Current.GetInstance<BackupViewModel>(); }
+        }
 
-		protected override async void OnNavigatedTo(NavigationEventArgs e) {
-			try {
-				await backupView.LogInToOneDrive();
-				await backupView.LoadBackupCreationDate();
-				NavigationHelper.OnNavigatedTo(e);
-			}
-			catch (Exception ex) {
-				Insights.Report(ex, ReportSeverity.Error);
-			}
-		}
+        #region NavigationHelper registration
 
-		protected override void OnNavigatedFrom(NavigationEventArgs e) {
-			NavigationHelper.OnNavigatedFrom(e);
-		}
+        protected override async void OnNavigatedTo(NavigationEventArgs e) {
+            try {
+                await backupView.LogInToOneDrive();
+                await backupView.LoadBackupCreationDate();
+                navigationHelper.OnNavigatedTo(e);
+            } catch (Exception ex) {
+                Insights.Report(ex, ReportSeverity.Error);
+            }
+        }
 
-		#endregion NavigationHelper registration
-	}
+        protected override void OnNavigatedFrom(NavigationEventArgs e) {
+            navigationHelper.OnNavigatedFrom(e);
+        }
+
+        #endregion NavigationHelper registration
+    }
 }

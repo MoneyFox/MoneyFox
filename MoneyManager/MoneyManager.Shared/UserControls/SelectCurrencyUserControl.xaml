@@ -1,34 +1,34 @@
 ﻿<UserControl
-	x:Class="MoneyManager.UserControls.SelectCurrencyUserControl"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	mc:Ignorable="d"
-	d:DesignHeight="300"
-	d:DesignWidth="400"
-	Loaded="LoadCountries"
-	DataContext="{Binding SelectCurrencyView, Source={StaticResource Locator}}">
+    x:Class="MoneyManager.UserControls.SelectCurrencyUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    Loaded="LoadCountries"
+    DataContext="{Binding SelectCurrencyView, Source={StaticResource Locator}}">
 
-	<UserControl.Resources>
-		<DataTemplate x:Key="CurrencyTemplate">
-			<StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
-			            MinWidth="300" Orientation="Horizontal">
-				<TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding ID}" Margin="0" />
-				<TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text=" - " />
-				<TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding CurrencyID}"
-				           Margin="5,0,0,0" />
-			</StackPanel>
-		</DataTemplate>
-	</UserControl.Resources>
+    <UserControl.Resources>
+        <DataTemplate x:Key="CurrencyTemplate">
+            <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
+                        MinWidth="300" Orientation="Horizontal">
+                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding ID}" Margin="0" />
+                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text=" - " />
+                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding CurrencyID}"
+                           Margin="5,0,0,0" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
 
-	<Grid>
-		<TextBox Header="search" x:Uid="SearchHeader"
-		         Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-		<ScrollViewer Margin="0,83,0,0">
-			<ListView ItemsSource="{Binding AllCountries}"
-			          ItemTemplate="{StaticResource CurrencyTemplate}"
-			          SelectedItem="{Binding SelectedCountry, Mode=TwoWay, UpdateSourceTrigger=Default}" />
-		</ScrollViewer>
-	</Grid>
+    <Grid>
+        <TextBox Header="search" x:Uid="SearchHeader"
+                 Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <ScrollViewer Margin="0,83,0,0">
+            <ListView ItemsSource="{Binding AllCountries}"
+                      ItemTemplate="{StaticResource CurrencyTemplate}"
+                      SelectedItem="{Binding SelectedCountry, Mode=TwoWay, UpdateSourceTrigger=Default}" />
+        </ScrollViewer>
+    </Grid>
 </UserControl>

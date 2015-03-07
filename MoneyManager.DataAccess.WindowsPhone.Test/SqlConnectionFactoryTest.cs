@@ -7,20 +7,20 @@ using SQLite.Net.Platform.WinRT;
 #endregion
 
 namespace MoneyManager.DataAccess.WindowsPhone.Test {
-	[TestClass]
-	public class SqlConnectionFactoryTest {
-		[TestMethod]
-		public void GetSqlConnectionWithouthParamsTest() {
-			var connection = SqlConnectionFactory.GetSqlConnection();
+    [TestClass]
+    public class SqlConnectionFactoryTest {
+        [TestMethod]
+        public void GetSqlConnectionWithouthParamsTest() {
+            SQLiteConnection connection = SqlConnectionFactory.GetSqlConnection();
 
-			Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
-		}
+            Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
+        }
 
-		[TestMethod]
-		public void GetSqlConnectionWithParamsTest() {
-			var connection = SqlConnectionFactory.GetSqlConnection(new SQLitePlatformWinRT());
+        [TestMethod]
+        public void GetSqlConnectionWithParamsTest() {
+            SQLiteConnection connection = SqlConnectionFactory.GetSqlConnection(new SQLitePlatformWinRT());
 
-			Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
-		}
-	}
+            Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
+        }
+    }
 }

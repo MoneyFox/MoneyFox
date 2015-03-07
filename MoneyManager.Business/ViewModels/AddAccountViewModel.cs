@@ -15,73 +15,72 @@ using PropertyChanged;
 #endregion
 
 namespace MoneyManager.Business.ViewModels {
-	[ImplementPropertyChanged]
-	public class AddAccountViewModel : ViewModelBase {
-		public string CurrentBalanceString {
-			get { return CurrentBalanceWithoutExchange.ToString(); }
-			set {
-				double amount;
-				if (Double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount)) {
-					CurrentBalanceWithoutExchange = amount;
-				}
-			}
-		}
+    [ImplementPropertyChanged]
+    public class AddAccountViewModel : ViewModelBase {
+        #region Properties
 
-		public double CurrentBalanceWithoutExchange {
-			get { return SelectedAccount.CurrentBalanceWithoutExchange; }
-			set {
-				SelectedAccount.CurrentBalanceWithoutExchange = value;
-				CalculateNewAmount(value);
-			}
-		}
+        public Account SelectedAccount {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
+            set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
+        }
 
-		public async void SetCurrency(string currency) {
-			SelectedAccount.Currency = currency;
-			SelectedAccount.IsExchangeModeActive = true;
-			await LoadCurrencyRatio();
-			CalculateNewAmount(CurrentBalanceWithoutExchange);
-		}
+        public SettingDataAccess Settings {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
 
-		private void CalculateNewAmount(double value) {
-			if (Math.Abs(SelectedAccount.ExchangeRatio) < 0.5) {
-				SelectedAccount.ExchangeRatio = 1;
-			}
+        public bool IsEdit { get; set; }
 
-			SelectedAccount.CurrentBalance = SelectedAccount.ExchangeRatio*value;
-		}
+        #endregion Properties
 
-		public async Task LoadCurrencyRatio() {
-			SelectedAccount.ExchangeRatio =
-				await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedAccount.Currency);
-		}
+        public string CurrentBalanceString {
+            get { return CurrentBalanceWithoutExchange.ToString(); }
+            set {
+                double amount;
+                if (Double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount)) {
+                    CurrentBalanceWithoutExchange = amount;
+                }
+            }
+        }
 
-		public void Save() {
-			if (IsEdit) {
-				ServiceLocator.Current.GetInstance<AccountDataAccess>().Update(SelectedAccount);
-			}
-			else {
-				ServiceLocator.Current.GetInstance<AccountDataAccess>().Save(SelectedAccount);
-			}
-			((Frame) Window.Current.Content).GoBack();
-		}
+        public double CurrentBalanceWithoutExchange {
+            get { return SelectedAccount.CurrentBalanceWithoutExchange; }
+            set {
+                SelectedAccount.CurrentBalanceWithoutExchange = value;
+                CalculateNewAmount(value);
+            }
+        }
 
-		public void Cancel() {
-			((Frame) Window.Current.Content).GoBack();
-		}
+        public async void SetCurrency(string currency) {
+            SelectedAccount.Currency = currency;
+            SelectedAccount.IsExchangeModeActive = true;
+            await LoadCurrencyRatio();
+            CalculateNewAmount(CurrentBalanceWithoutExchange);
+        }
 
-		#region Properties
+        private void CalculateNewAmount(double value) {
+            if (Math.Abs(SelectedAccount.ExchangeRatio) < 0.5) {
+                SelectedAccount.ExchangeRatio = 1;
+            }
 
-		public Account SelectedAccount {
-			get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
-			set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
-		}
+            SelectedAccount.CurrentBalance = SelectedAccount.ExchangeRatio*value;
+        }
 
-		public SettingDataAccess Settings {
-			get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-		}
+        public async Task LoadCurrencyRatio() {
+            SelectedAccount.ExchangeRatio =
+                await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedAccount.Currency);
+        }
 
-		public bool IsEdit { get; set; }
+        public void Save() {
+            if (IsEdit) {
+                ServiceLocator.Current.GetInstance<AccountDataAccess>().Update(SelectedAccount);
+            } else {
+                ServiceLocator.Current.GetInstance<AccountDataAccess>().Save(SelectedAccount);
+            }
+            ((Frame) Window.Current.Content).GoBack();
+        }
 
-		#endregion Properties
-	}
+        public void Cancel() {
+            ((Frame) Window.Current.Content).GoBack();
+        }
+    }
 }

@@ -10,128 +10,129 @@ using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using SQLite.Net;
 
 namespace MoneyManager.Business.WindowsPhone.Test.Logic {
-	[TestClass]
-	public class TransactionLogicTest {
-		[TestInitialize]
-		public void TestInit() {
-			new ViewModelLocator();
+    [TestClass]
+    public class TransactionLogicTest {
+        #region properties
 
-			DatabaseLogic.CreateDatabase();
+        private Account _sampleAccount;
 
-			_sampleAccount = new Account {
-				Currency = "CHF",
-				IsExchangeModeActive = false,
-				CurrentBalance = 700,
-				CurrentBalanceWithoutExchange = 700,
-				ExchangeRatio = 1,
-				Iban = "this is a iban",
-				Name = "Jugendkonto",
-				Note = "just a note"
-			};
+        private static AddTransactionViewModel addTransactionView {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+        }
 
-			using (var db = SqlConnectionFactory.GetSqlConnection()) {
-				db.Insert(_sampleAccount);
-			}
+        private static TransactionDataAccess transactionData {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
 
-			transactionData.AllTransactions = new ObservableCollection<FinancialTransaction>();
-		}
+        #endregion
 
-		[TestMethod]
-		public void GoToAddTransactionTest() {
-			TransactionLogic.GoToAddTransaction(TransactionType.Income);
+        [TestInitialize]
+        public void TestInit() {
+            new ViewModelLocator();
 
-			Assert.IsFalse(addTransactionView.IsEdit);
-			Assert.IsFalse(addTransactionView.IsTransfer);
-			Assert.AreEqual((int) TransactionType.Income, addTransactionView.SelectedTransaction.Type);
-			Assert.IsFalse(addTransactionView.SelectedTransaction.IsExchangeModeActive);
+            DatabaseLogic.CreateDatabase();
 
-			TransactionLogic.GoToAddTransaction(TransactionType.Transfer);
+            _sampleAccount = new Account {
+                Currency = "CHF",
+                IsExchangeModeActive = false,
+                CurrentBalance = 700,
+                CurrentBalanceWithoutExchange = 700,
+                ExchangeRatio = 1,
+                Iban = "this is a iban",
+                Name = "Jugendkonto",
+                Note = "just a note"
+            };
 
-			Assert.IsFalse(addTransactionView.IsEdit);
-			Assert.IsTrue(addTransactionView.IsTransfer);
-			Assert.AreEqual((int) TransactionType.Transfer, addTransactionView.SelectedTransaction.Type);
-			Assert.IsFalse(addTransactionView.SelectedTransaction.IsExchangeModeActive);
-		}
+            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection()) {
+                db.Insert(_sampleAccount);
+            }
 
-		[TestMethod]
-		public void PrepareEditTest() {
-			var transaction = new FinancialTransaction {
-				Type = (int) TransactionType.Income
-			};
+            transactionData.AllTransactions = new ObservableCollection<FinancialTransaction>();
+        }
 
-			TransactionLogic.PrepareEdit(transaction);
+        [TestMethod]
+        public void GoToAddTransactionTest() {
+            TransactionLogic.GoToAddTransaction(TransactionType.Income);
 
-			Assert.IsTrue(addTransactionView.IsEdit);
-			Assert.IsFalse(addTransactionView.IsTransfer);
+            Assert.IsFalse(addTransactionView.IsEdit);
+            Assert.IsFalse(addTransactionView.IsTransfer);
+            Assert.AreEqual((int) TransactionType.Income, addTransactionView.SelectedTransaction.Type);
+            Assert.IsFalse(addTransactionView.SelectedTransaction.IsExchangeModeActive);
 
-			transaction = new FinancialTransaction {
-				Type = (int) TransactionType.Transfer
-			};
+            TransactionLogic.GoToAddTransaction(TransactionType.Transfer);
 
-			TransactionLogic.PrepareEdit(transaction);
+            Assert.IsFalse(addTransactionView.IsEdit);
+            Assert.IsTrue(addTransactionView.IsTransfer);
+            Assert.AreEqual((int) TransactionType.Transfer, addTransactionView.SelectedTransaction.Type);
+            Assert.IsFalse(addTransactionView.SelectedTransaction.IsExchangeModeActive);
+        }
 
-			Assert.IsTrue(addTransactionView.IsEdit);
-			Assert.IsTrue(addTransactionView.IsTransfer);
-		}
+        [TestMethod]
+        public void PrepareEditTest() {
+            var transaction = new FinancialTransaction {
+                Type = (int) TransactionType.Income
+            };
 
-		[TestMethod]
-		public async Task CrudTransactionTest() {
-			var transaction = new FinancialTransaction {
-				Amount = 50,
-				AmountWithoutExchange = 50,
-				Type = (int) TransactionType.Income,
-				Category = new Category {
-					Id = 1,
-					Name = "Einkaufen"
-				},
-				Cleared = true,
-				Date = DateTime.Now.AddDays(-1)
-			};
+            TransactionLogic.PrepareEdit(transaction);
 
-			await TransactionLogic.SaveTransaction(transaction);
+            Assert.IsTrue(addTransactionView.IsEdit);
+            Assert.IsFalse(addTransactionView.IsTransfer);
 
-			Assert.AreEqual(1, transactionData.AllTransactions.Count);
-			Assert.AreEqual(transaction, transactionData.AllTransactions.First());
+            transaction = new FinancialTransaction {
+                Type = (int) TransactionType.Transfer
+            };
 
-			transaction.Amount = 80;
-			transaction.AmountWithoutExchange = 80;
+            TransactionLogic.PrepareEdit(transaction);
 
-			await TransactionLogic.UpdateTransaction(transaction);
+            Assert.IsTrue(addTransactionView.IsEdit);
+            Assert.IsTrue(addTransactionView.IsTransfer);
+        }
 
-			Assert.AreEqual(1, transactionData.AllTransactions.Count);
-			Assert.AreEqual(transaction, transactionData.AllTransactions.First());
+        [TestMethod]
+        public async Task CrudTransactionTest() {
+            var transaction = new FinancialTransaction {
+                Amount = 50,
+                AmountWithoutExchange = 50,
+                Type = (int) TransactionType.Income,
+                Category = new Category {
+                    Id = 1,
+                    Name = "Einkaufen"
+                },
+                Cleared = true,
+                Date = DateTime.Now.AddDays(-1)
+            };
 
-			await TransactionLogic.DeleteTransaction(transaction, true);
+            await TransactionLogic.SaveTransaction(transaction);
 
-			Assert.IsFalse(transactionData.AllTransactions.Any());
-		}
+            Assert.AreEqual(1, transactionData.AllTransactions.Count);
+            Assert.AreEqual(transaction, transactionData.AllTransactions.First());
 
-		[TestMethod]
-		[Ignore]
-		public void DeleteAssociatedTransactionsFromDatabaseTest() {
-			Assert.IsTrue(false);
-		}
+            transaction.Amount = 80;
+            transaction.AmountWithoutExchange = 80;
 
-		[TestMethod]
-		[Ignore]
-		public async Task ClearTransactionsTest() {
-			Assert.IsTrue(false);
-		}
+            await TransactionLogic.UpdateTransaction(transaction);
 
-		#region properties
+            Assert.AreEqual(1, transactionData.AllTransactions.Count);
+            Assert.AreEqual(transaction, transactionData.AllTransactions.First());
 
-		private Account _sampleAccount;
+            await TransactionLogic.DeleteTransaction(transaction, true);
 
-		private static AddTransactionViewModel addTransactionView {
-			get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-		}
+            Assert.IsFalse(transactionData.AllTransactions.Any());
+        }
 
-		private static TransactionDataAccess transactionData {
-			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-		}
+        [TestMethod]
+        [Ignore]
+        public void DeleteAssociatedTransactionsFromDatabaseTest() {
+            Assert.IsTrue(false);
+        }
 
-		#endregion
-	}
+        [TestMethod]
+        [Ignore]
+        public async Task ClearTransactionsTest() {
+            Assert.IsTrue(false);
+        }
+    }
 }

@@ -7,25 +7,25 @@ using MoneyManager.Business.ViewModels;
 #endregion
 
 namespace MoneyManager.UserControls {
-	public sealed partial class BackupUserControl {
-		public BackupUserControl() {
-			InitializeComponent();
-		}
+    public sealed partial class BackupUserControl {
+        public BackupUserControl() {
+            InitializeComponent();
+        }
 
-		private BackupViewModel backupView {
-			get { return ServiceLocator.Current.GetInstance<BackupViewModel>(); }
-		}
+        private BackupViewModel backupView {
+            get { return ServiceLocator.Current.GetInstance<BackupViewModel>(); }
+        }
 
-		private async void LoginToOneDrive(object sender, RoutedEventArgs e) {
-			await backupView.LogInToOneDrive();
-		}
+        private async void LoginToOneDrive(object sender, RoutedEventArgs e) {
+            await backupView.LogInToOneDrive();
+        }
 
-		private async void CreateBackup(object sender, RoutedEventArgs e) {
-			await backupView.CreateBackup();
-		}
+        private async void CreateBackup(object sender, RoutedEventArgs e) {
+            await backupView.CreateBackup();
+        }
 
-		private async void RestoreBackup(object sender, RoutedEventArgs e) {
-			await backupView.RestoreBackup();
-		}
-	}
+        private async void RestoreBackup(object sender, RoutedEventArgs e) {
+            await backupView.RestoreBackup();
+        }
+    }
 }

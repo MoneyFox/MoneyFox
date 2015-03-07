@@ -9,29 +9,33 @@ using MoneyManager.Foundation;
 #endregion
 
 namespace MoneyManager.Views {
-	public sealed partial class TransactionList {
-		public TransactionList() {
-			InitializeComponent();
-			NavigationHelper = new NavigationHelper(this);
-		}
+    public sealed partial class TransactionList {
+        private readonly NavigationHelper navigationHelper;
 
-		public NavigationHelper NavigationHelper { get; }
+        public TransactionList() {
+            InitializeComponent();
+            navigationHelper = new NavigationHelper(this);
+        }
 
-		private void AddSpendingClick(object sender, RoutedEventArgs e) {
-			AddTransaction(TransactionType.Spending);
-		}
+        public NavigationHelper NavigationHelper {
+            get { return navigationHelper; }
+        }
 
-		private void AddIncomeClick(object sender, RoutedEventArgs e) {
-			AddTransaction(TransactionType.Income);
-		}
+        private void AddSpendingClick(object sender, RoutedEventArgs e) {
+            AddTransaction(TransactionType.Spending);
+        }
 
-		private void AddTransferClick(object sender, RoutedEventArgs e) {
-			AddTransaction(TransactionType.Transfer);
-		}
+        private void AddIncomeClick(object sender, RoutedEventArgs e) {
+            AddTransaction(TransactionType.Income);
+        }
 
-		private static void AddTransaction(TransactionType type) {
-			TransactionLogic.GoToAddTransaction(type, true);
-			((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
-		}
-	}
+        private void AddTransferClick(object sender, RoutedEventArgs e) {
+            AddTransaction(TransactionType.Transfer);
+        }
+
+        private static void AddTransaction(TransactionType type) {
+            TransactionLogic.GoToAddTransaction(type, true);
+            ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
+        }
+    }
 }

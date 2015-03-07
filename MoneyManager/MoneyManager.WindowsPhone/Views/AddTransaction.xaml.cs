@@ -13,48 +13,52 @@ using MoneyManager.Foundation;
 #endregion
 
 namespace MoneyManager.Views {
-	public sealed partial class AddTransaction {
-		public AddTransaction() {
-			InitializeComponent();
-			NavigationHelper = new NavigationHelper(this);
-		}
+    public sealed partial class AddTransaction {
+        private readonly NavigationHelper navigationHelper;
 
-		private AddTransactionViewModel AddTransactionView {
-			get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-		}
+        public AddTransaction() {
+            InitializeComponent();
+            navigationHelper = new NavigationHelper(this);
+        }
 
-		public NavigationHelper NavigationHelper { get; }
+        private AddTransactionViewModel AddTransactionView {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+        }
 
-		protected override async void OnNavigatedTo(NavigationEventArgs e) {
-			if (e.NavigationMode != NavigationMode.Back && AddTransactionView.IsEdit) {
-				await AccountLogic.RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
-			}
+        public NavigationHelper NavigationHelper {
+            get { return navigationHelper; }
+        }
 
-			base.OnNavigatedTo(e);
-		}
+        protected override async void OnNavigatedTo(NavigationEventArgs e) {
+            if (e.NavigationMode != NavigationMode.Back && AddTransactionView.IsEdit) {
+                await AccountLogic.RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
+            }
 
-		private void DoneClick(object sender, RoutedEventArgs e) {
-			if (AddTransactionView.SelectedTransaction.ChargedAccount == null) {
-				ShowAccountRequiredMessage();
-				return;
-			}
+            base.OnNavigatedTo(e);
+        }
 
-			AddTransactionView.Save();
-		}
+        private void DoneClick(object sender, RoutedEventArgs e) {
+            if (AddTransactionView.SelectedTransaction.ChargedAccount == null) {
+                ShowAccountRequiredMessage();
+                return;
+            }
 
-		private async void ShowAccountRequiredMessage() {
-			var dialog = new MessageDialog
-				(
-				Translation.GetTranslation("AccountRequiredMessage"),
-				Translation.GetTranslation("MandatoryField")
-				);
-			dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
-			dialog.DefaultCommandIndex = 1;
-			await dialog.ShowAsync();
-		}
+            AddTransactionView.Save();
+        }
 
-		private void CancelClick(object sender, RoutedEventArgs e) {
-			AddTransactionView.Cancel();
-		}
-	}
+        private async void ShowAccountRequiredMessage() {
+            var dialog = new MessageDialog
+                (
+                Translation.GetTranslation("AccountRequiredMessage"),
+                Translation.GetTranslation("MandatoryField")
+                );
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
+            dialog.DefaultCommandIndex = 1;
+            await dialog.ShowAsync();
+        }
+
+        private void CancelClick(object sender, RoutedEventArgs e) {
+            AddTransactionView.Cancel();
+        }
+    }
 }

@@ -1,7 +1,7 @@
 ﻿namespace MoneyManager.UserControls {
-	public sealed partial class BarChartUserControl {
-		public BarChartUserControl() {
-			InitializeComponent();
-		}
-	}
+    public sealed partial class BarChartUserControl {
+        public BarChartUserControl() {
+            InitializeComponent();
+        }
+    }
 }

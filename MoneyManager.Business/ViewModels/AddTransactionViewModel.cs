@@ -16,114 +16,113 @@ using PropertyChanged;
 #endregion
 
 namespace MoneyManager.Business.ViewModels {
-	[ImplementPropertyChanged]
-	public class AddTransactionViewModel {
-		public AddTransactionViewModel() {
-			IsNavigationBlocked = true;
-		}
+    [ImplementPropertyChanged]
+    public class AddTransactionViewModel {
+        public AddTransactionViewModel() {
+            IsNavigationBlocked = true;
+        }
 
-		public string Title {
-			get {
-				var text = IsEdit
-					? Translation.GetTranslation("EditTitle")
-					: Translation.GetTranslation("AddTitle");
+        #region Properties
 
-				var type = TransactionTypeLogic.GetViewTitleForType(SelectedTransaction.Type);
+        public FinancialTransaction SelectedTransaction {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
+            set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
+        }
 
-				return String.Format(text, type);
-			}
-		}
+        public ObservableCollection<Account> AllAccounts {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
+        }
 
-		public string AmountString {
-			get { return AmountWithoutExchange.ToString(); }
-			set {
-				double amount;
-				if (Double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount)) {
-					AmountWithoutExchange = amount;
-				}
-			}
-		}
+        public ObservableCollection<Category> AllCategories {
+            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
+        }
 
-		public double AmountWithoutExchange {
-			get { return SelectedTransaction.AmountWithoutExchange; }
-			set {
-				SelectedTransaction.AmountWithoutExchange = value;
-				CalculateNewAmount(value);
-			}
-		}
+        public SettingDataAccess Settings {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
 
-		public bool IsNavigationBlocked { get; set; }
+        public DateTime EndDate { get; set; }
 
-		private void CalculateNewAmount(double value) {
-			if (Math.Abs(SelectedTransaction.ExchangeRatio) < 0.5) {
-				SelectedTransaction.ExchangeRatio = 1;
-			}
+        public bool IsEndless { get; set; }
 
-			SelectedTransaction.Amount = SelectedTransaction.ExchangeRatio*value;
-		}
+        public bool IsEdit { get; set; }
 
-		public async void SetCurrency(string currency) {
-			SelectedTransaction.Currency = currency;
-			await LoadCurrencyRatio();
-			SelectedTransaction.IsExchangeModeActive = true;
-			CalculateNewAmount(AmountWithoutExchange);
-		}
+        public int Recurrence { get; set; }
 
-		public async Task LoadCurrencyRatio() {
-			SelectedTransaction.ExchangeRatio =
-				await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedTransaction.Currency);
-		}
+        public bool IsTransfer { get; set; }
 
-		public async void Save() {
-			if (IsEdit) {
-				await TransactionLogic.UpdateTransaction(SelectedTransaction);
-			}
-			else {
-				await TransactionLogic.SaveTransaction(SelectedTransaction, RefreshRealtedList);
-			}
+        public bool RefreshRealtedList { get; set; }
 
-			((Frame) Window.Current.Content).GoBack();
-		}
+        #endregion Properties
 
-		public async void Cancel() {
-			if (IsEdit) {
-				await AccountLogic.AddTransactionAmount(SelectedTransaction);
-			}
+        public string Title {
+            get {
+                string text = IsEdit
+                    ? Translation.GetTranslation("EditTitle")
+                    : Translation.GetTranslation("AddTitle");
 
-			((Frame) Window.Current.Content).GoBack();
-		}
+                string type = TransactionTypeLogic.GetViewTitleForType(SelectedTransaction.Type);
 
-		#region Properties
+                return String.Format(text, type);
+            }
+        }
 
-		public FinancialTransaction SelectedTransaction {
-			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
-			set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
-		}
+        public string AmountString {
+            get { return AmountWithoutExchange.ToString(); }
+            set {
+                double amount;
+                if (Double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount)) {
+                    AmountWithoutExchange = amount;
+                }
+            }
+        }
 
-		public ObservableCollection<Account> AllAccounts {
-			get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
-		}
+        public double AmountWithoutExchange {
+            get { return SelectedTransaction.AmountWithoutExchange; }
+            set {
+                SelectedTransaction.AmountWithoutExchange = value;
+                CalculateNewAmount(value);
+            }
+        }
 
-		public ObservableCollection<Category> AllCategories {
-			get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
-		}
+        public bool IsNavigationBlocked { get; set; }
 
-		public SettingDataAccess Settings {
-			get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-		}
+        private void CalculateNewAmount(double value) {
+            if (Math.Abs(SelectedTransaction.ExchangeRatio) < 0.5) {
+                SelectedTransaction.ExchangeRatio = 1;
+            }
 
-		public DateTime EndDate { get; set; }
+            SelectedTransaction.Amount = SelectedTransaction.ExchangeRatio*value;
+        }
 
-		public bool IsEndless { get; set; }
+        public async void SetCurrency(string currency) {
+            SelectedTransaction.Currency = currency;
+            await LoadCurrencyRatio();
+            SelectedTransaction.IsExchangeModeActive = true;
+            CalculateNewAmount(AmountWithoutExchange);
+        }
 
-		public bool IsEdit { get; set; }
+        public async Task LoadCurrencyRatio() {
+            SelectedTransaction.ExchangeRatio =
+                await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedTransaction.Currency);
+        }
 
-		public int Recurrence { get; set; }
+        public async void Save() {
+            if (IsEdit) {
+                await TransactionLogic.UpdateTransaction(SelectedTransaction);
+            } else {
+                await TransactionLogic.SaveTransaction(SelectedTransaction, RefreshRealtedList);
+            }
 
-		public bool IsTransfer { get; set; }
+            ((Frame) Window.Current.Content).GoBack();
+        }
 
-		public bool RefreshRealtedList { get; set; }
+        public async void Cancel() {
+            if (IsEdit) {
+                await AccountLogic.AddTransactionAmount(SelectedTransaction);
+            }
 
-		#endregion Properties
-	}
+            ((Frame) Window.Current.Content).GoBack();
+        }
+    }
 }

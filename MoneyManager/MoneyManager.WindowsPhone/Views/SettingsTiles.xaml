@@ -1,44 +1,44 @@
 ﻿<Page
-	x:Class="MoneyManager.Views.SettingsTiles"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:userControls="using:MoneyManager.UserControls"
-	mc:Ignorable="d"
-	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    x:Class="MoneyManager.Views.SettingsTiles"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:MoneyManager.UserControls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-	<Page.Transitions>
-		<TransitionCollection>
-			<NavigationThemeTransition>
-				<NavigationThemeTransition.DefaultNavigationTransitionInfo>
-					<ContinuumNavigationTransitionInfo />
-				</NavigationThemeTransition.DefaultNavigationTransitionInfo>
-			</NavigationThemeTransition>
-		</TransitionCollection>
-	</Page.Transitions>
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
 
-	<Grid>
-		<Grid.ChildrenTransitions>
-			<TransitionCollection>
-				<EntranceThemeTransition />
-			</TransitionCollection>
-		</Grid.ChildrenTransitions>
+    <Grid>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
 
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-		<StackPanel Grid.Row="0" Margin="19,0,0,0">
-			<TextBlock Text="settings" x:Uid="SettingsOverviewTitle" Style="{ThemeResource TitleTextBlockStyle}"
-			           Margin="0,12,0,0" />
-			<TextBlock Text="tiles" x:Uid="Tiles" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"
-			           CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
-		</StackPanel>
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="settings" x:Uid="SettingsOverviewTitle" Style="{ThemeResource TitleTextBlockStyle}"
+                       Margin="0,12,0,0" />
+            <TextBlock Text="tiles" x:Uid="Tiles" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}"
+                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
+        </StackPanel>
 
-		<Grid Grid.Row="1" Margin="19,9.5,19,0">
-			<userControls:SettingsTilesUserControl />
-		</Grid>
-	</Grid>
+        <Grid Grid.Row="1" Margin="19,9.5,19,0">
+            <userControls:SettingsTilesUserControl />
+        </Grid>
+    </Grid>
 </Page>

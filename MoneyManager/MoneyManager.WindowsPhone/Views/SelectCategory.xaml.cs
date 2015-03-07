@@ -9,29 +9,29 @@ using MoneyManager.Dialogs;
 #endregion
 
 namespace MoneyManager.Views {
-	public sealed partial class SelectCategory {
-		private readonly NavigationHelper navigationHelper;
+    public sealed partial class SelectCategory {
+        private readonly NavigationHelper navigationHelper;
 
-		public SelectCategory() {
-			InitializeComponent();
+        public SelectCategory() {
+            InitializeComponent();
 
-			navigationHelper = new NavigationHelper(this);
-		}
+            navigationHelper = new NavigationHelper(this);
+        }
 
-		private async void AddCategory(object sender, RoutedEventArgs e) {
-			await new CategoryDialog().ShowAsync();
-		}
+        private async void AddCategory(object sender, RoutedEventArgs e) {
+            await new CategoryDialog().ShowAsync();
+        }
 
-		#region NavigationHelper registration
+        #region NavigationHelper registration
 
-		protected override void OnNavigatedTo(NavigationEventArgs e) {
-			navigationHelper.OnNavigatedTo(e);
-		}
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            navigationHelper.OnNavigatedTo(e);
+        }
 
-		protected override void OnNavigatedFrom(NavigationEventArgs e) {
-			navigationHelper.OnNavigatedFrom(e);
-		}
+        protected override void OnNavigatedFrom(NavigationEventArgs e) {
+            navigationHelper.OnNavigatedFrom(e);
+        }
 
-		#endregion NavigationHelper registration
-	}
+        #endregion NavigationHelper registration
+    }
 }

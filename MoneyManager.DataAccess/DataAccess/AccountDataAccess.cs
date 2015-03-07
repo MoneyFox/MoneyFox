@@ -5,46 +5,48 @@ using System.Linq;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using PropertyChanged;
+using SQLite.Net;
 
 #endregion
 
 namespace MoneyManager.DataAccess.DataAccess {
-	[ImplementPropertyChanged]
-	public class AccountDataAccess : AbstractDataAccess<Account> {
-		public Account SelectedAccount { get; set; }
-		public ObservableCollection<Account> AllAccounts { get; set; }
+    [ImplementPropertyChanged]
+    public class AccountDataAccess : AbstractDataAccess<Account> {
+        public Account SelectedAccount { get; set; }
 
-		protected override void SaveToDb(Account itemToAdd) {
-			using (var dbConn = SqlConnectionFactory.GetSqlConnection()) {
-				if (AllAccounts == null) {
-					AllAccounts = new ObservableCollection<Account>();
-				}
+        public ObservableCollection<Account> AllAccounts { get; set; }
 
-				AllAccounts.Add(itemToAdd);
-				AllAccounts = new ObservableCollection<Account>(AllAccounts.OrderBy(x => x.Name));
-				dbConn.Insert(itemToAdd);
-			}
-		}
+        protected override void SaveToDb(Account itemToAdd) {
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
+                if (AllAccounts == null) {
+                    AllAccounts = new ObservableCollection<Account>();
+                }
 
-		protected override void DeleteFromDatabase(Account itemToDelete) {
-			using (var dbConn = SqlConnectionFactory.GetSqlConnection()) {
-				AllAccounts.Remove(itemToDelete);
-				dbConn.Delete(itemToDelete);
-			}
-		}
+                AllAccounts.Add(itemToAdd);
+                AllAccounts = new ObservableCollection<Account>(AllAccounts.OrderBy(x => x.Name));
+                dbConn.Insert(itemToAdd);
+            }
+        }
 
-		protected override void GetListFromDb() {
-			using (var dbConn = SqlConnectionFactory.GetSqlConnection()) {
-				AllAccounts = new ObservableCollection<Account>(dbConn.Table<Account>()
-					.ToList()
-					.OrderBy(x => x.Name));
-			}
-		}
+        protected override void DeleteFromDatabase(Account itemToDelete) {
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
+                AllAccounts.Remove(itemToDelete);
+                dbConn.Delete(itemToDelete);
+            }
+        }
 
-		protected override void UpdateItem(Account itemToUpdate) {
-			using (var dbConn = SqlConnectionFactory.GetSqlConnection()) {
-				dbConn.Update(itemToUpdate, typeof (Account));
-			}
-		}
-	}
+        protected override void GetListFromDb() {
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
+                AllAccounts = new ObservableCollection<Account>(dbConn.Table<Account>()
+                    .ToList()
+                    .OrderBy(x => x.Name));
+            }
+        }
+
+        protected override void UpdateItem(Account itemToUpdate) {
+            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
+                dbConn.Update(itemToUpdate, typeof (Account));
+            }
+        }
+    }
 }

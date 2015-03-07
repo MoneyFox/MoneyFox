@@ -1,33 +1,33 @@
 ﻿<UserControl
-	x:Class="MoneyManager.UserControls.SettingsOverviewUserControl"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	mc:Ignorable="d"
-	d:DesignHeight="300"
-	d:DesignWidth="400">
+    x:Class="MoneyManager.UserControls.SettingsOverviewUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
 
-	<StackPanel>
-		<TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
-		           x:Uid="DefaultsText"
-		           Text="defaults" Tapped="NavigateToDefaultSettings"
-		           Margin="0,0,0,20" />
-		<TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
-		           x:Uid="RegionText"
-		           Text="region" Tapped="NavigateToGeneralSettings"
-		           Margin="0,0,0,20" />
-		<TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
-		           x:Uid="BackupText"
-		           Text="backup" Tapped="NavigateToBackupSettings"
-		           Margin="0,0,0,20" />
-		<TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
-		           x:Uid="SettingCategory"
-		           Text="category" Tapped="NavigateToCategorySettings"
-		           Margin="0,0,0,20" />
-		<TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
-		           x:Uid="SettingTiles"
-		           Text="tiles" Tapped="NavigateToTilesSettings"
-		           Margin="0,0,0,20" />
-	</StackPanel>
+    <StackPanel>
+        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
+                   x:Uid="DefaultsText"
+                   Text="defaults" Tapped="NavigateToDefaultSettings"
+                   Margin="0,0,0,20" />
+        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
+                   x:Uid="RegionText"
+                   Text="region" Tapped="NavigateToGeneralSettings"
+                   Margin="0,0,0,20" />
+        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
+                   x:Uid="BackupText"
+                   Text="backup" Tapped="NavigateToBackupSettings"
+                   Margin="0,0,0,20" />
+        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
+                   x:Uid="SettingCategory"
+                   Text="category" Tapped="NavigateToCategorySettings"
+                   Margin="0,0,0,20" />
+        <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
+                   x:Uid="SettingTiles"
+                   Text="tiles" Tapped="NavigateToTilesSettings"
+                   Margin="0,0,0,20" />
+    </StackPanel>
 </UserControl>

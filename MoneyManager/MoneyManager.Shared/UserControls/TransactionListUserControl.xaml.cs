@@ -14,79 +14,75 @@ using MoneyManager.Views;
 #endregion
 
 namespace MoneyManager.UserControls {
-	public partial class TransactionListUserControl {
-		public TransactionListUserControl() {
-			InitializeComponent();
+    public partial class TransactionListUserControl {
+        public TransactionListUserControl() {
+            InitializeComponent();
 
-			ServiceLocator.Current.GetInstance<BalanceViewModel>().IsTransactionView = true;
-		}
+            ServiceLocator.Current.GetInstance<BalanceViewModel>().IsTransactionView = true;
+        }
 
-		private void EditTransaction(object sender, RoutedEventArgs e) {
-			var element = (FrameworkElement) sender;
-			var transaction = element.DataContext as FinancialTransaction;
-			if (transaction == null) {
-				return;
-			}
+        #region Properties
 
-			TransactionLogic.PrepareEdit(transaction);
-			((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
-		}
+        public TransactionDataAccess TransactionData {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
 
-		private async void DeleteTransaction(object sender, RoutedEventArgs e) {
-			var element = (FrameworkElement) sender;
-			var transaction = element.DataContext as FinancialTransaction;
-			if (transaction == null) {
-				return;
-			}
+        public AddTransactionViewModel AddTransactionView {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+        }
 
-			await TransactionLogic.DeleteTransaction(transaction);
-			AddTransactionView.IsNavigationBlocked = false;
-		}
+        public BalanceViewModel BalanceView {
+            get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
+        }
 
-		private void OpenContextMenu(object sender, HoldingRoutedEventArgs e) {
-			AddTransactionView.IsNavigationBlocked = true;
-			var senderElement = sender as FrameworkElement;
-			var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+        #endregion
 
-			flyoutBase.ShowAt(senderElement);
-		}
+        private void EditTransaction(object sender, RoutedEventArgs e) {
+            var element = (FrameworkElement) sender;
+            var transaction = element.DataContext as FinancialTransaction;
+            if (transaction == null) return;
 
-		private void UnloadPage(object sender, RoutedEventArgs e) {
-			BalanceView.IsTransactionView = false;
-			AddTransactionView.IsNavigationBlocked = true;
-			BalanceView.UpdateBalance();
-		}
+            TransactionLogic.PrepareEdit(transaction);
+            ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
+        }
 
-		private void PageLoaded(object sender, RoutedEventArgs e) {
-			AddTransactionView.IsNavigationBlocked = false;
-			ListViewTransactions.SelectedItem = null;
-		}
+        private async void DeleteTransaction(object sender, RoutedEventArgs e) {
+            var element = (FrameworkElement) sender;
+            var transaction = element.DataContext as FinancialTransaction;
+            if (transaction == null) return;
 
-		private void LoadDetails(object sender, SelectionChangedEventArgs e) {
-			if (!AddTransactionView.IsNavigationBlocked && ListViewTransactions.SelectedItem != null) {
-				TransactionData.SelectedTransaction = ListViewTransactions.SelectedItem as FinancialTransaction;
+            await TransactionLogic.DeleteTransaction(transaction);
+            AddTransactionView.IsNavigationBlocked = false;
+        }
 
-				TransactionLogic.PrepareEdit(TransactionData.SelectedTransaction);
+        private void OpenContextMenu(object sender, HoldingRoutedEventArgs e) {
+            AddTransactionView.IsNavigationBlocked = true;
+            var senderElement = sender as FrameworkElement;
+            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
-				((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
-				ListViewTransactions.SelectedItem = null;
-			}
-		}
+            flyoutBase.ShowAt(senderElement);
+        }
 
-		#region Properties
+        private void UnloadPage(object sender, RoutedEventArgs e) {
+            BalanceView.IsTransactionView = false;
+            AddTransactionView.IsNavigationBlocked = true;
+            BalanceView.UpdateBalance();
+        }
 
-		public TransactionDataAccess TransactionData {
-			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-		}
+        private void PageLoaded(object sender, RoutedEventArgs e) {
+            AddTransactionView.IsNavigationBlocked = false;
+            ListViewTransactions.SelectedItem = null;
+        }
 
-		public AddTransactionViewModel AddTransactionView {
-			get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-		}
+        private void LoadDetails(object sender, SelectionChangedEventArgs e) {
+            if (!AddTransactionView.IsNavigationBlocked && ListViewTransactions.SelectedItem != null) {
+                TransactionData.SelectedTransaction = ListViewTransactions.SelectedItem as FinancialTransaction;
 
-		public BalanceViewModel BalanceView {
-			get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
-		}
+                TransactionLogic.PrepareEdit(TransactionData.SelectedTransaction);
 
-		#endregion
-	}
+                ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
+                ListViewTransactions.SelectedItem = null;
+            }
+        }
+    }
 }

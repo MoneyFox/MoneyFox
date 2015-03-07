@@ -1,62 +1,62 @@
 ﻿<UserControl
-	x:Class="MoneyManager.UserControls.BarChartUserControl"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
-	xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
-	mc:Ignorable="d"
-	d:DesignHeight="300" d:DesignWidth="400"
-	DataContext="{Binding StatisticView, Source={StaticResource Locator}}">
+    x:Class="MoneyManager.UserControls.BarChartUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
+    xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400"
+    DataContext="{Binding StatisticView, Source={StaticResource Locator}}">
 
-	<Grid>
-		<Grid.ChildrenTransitions>
-			<TransitionCollection>
-				<EntranceThemeTransition />
-			</TransitionCollection>
-		</Grid.ChildrenTransitions>
+    <Grid>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
 
-		<chart:RadCartesianChart PaletteName="DefaultLight"
-		                         x:Name="CashFlowChart"
-		                         Margin="0,0,0,60">
-			<chart:RadCartesianChart.VerticalAxis>
-				<chart:LinearAxis LabelFitMode="Rotate" />
-			</chart:RadCartesianChart.VerticalAxis>
-			<chart:RadCartesianChart.HorizontalAxis>
-				<chart:CategoricalAxis />
-			</chart:RadCartesianChart.HorizontalAxis>
+        <chart:RadCartesianChart PaletteName="DefaultLight"
+                                 x:Name="CashFlowChart"
+                                 Margin="0,0,0,60">
+            <chart:RadCartesianChart.VerticalAxis>
+                <chart:LinearAxis LabelFitMode="Rotate" />
+            </chart:RadCartesianChart.VerticalAxis>
+            <chart:RadCartesianChart.HorizontalAxis>
+                <chart:CategoricalAxis />
+            </chart:RadCartesianChart.HorizontalAxis>
 
-			<chart:BarSeries ItemsSource="{Binding MonthlyCashFlow}" PaletteMode="DataPoint">
-				<chart:BarSeries.CategoryBinding>
-					<chart:PropertyNameDataPointBinding PropertyName="Category" />
-				</chart:BarSeries.CategoryBinding>
-				<chart:BarSeries.ValueBinding>
-					<chart:PropertyNameDataPointBinding PropertyName="Value" />
-				</chart:BarSeries.ValueBinding>
-				<chart:BarSeries.LegendTitleBinding>
-					<chart:PropertyNameDataPointBinding PropertyName="Label" />
-				</chart:BarSeries.LegendTitleBinding>
-			</chart:BarSeries>
-		</chart:RadCartesianChart>
+            <chart:BarSeries ItemsSource="{Binding MonthlyCashFlow}" PaletteMode="DataPoint">
+                <chart:BarSeries.CategoryBinding>
+                    <chart:PropertyNameDataPointBinding PropertyName="Category" />
+                </chart:BarSeries.CategoryBinding>
+                <chart:BarSeries.ValueBinding>
+                    <chart:PropertyNameDataPointBinding PropertyName="Value" />
+                </chart:BarSeries.ValueBinding>
+                <chart:BarSeries.LegendTitleBinding>
+                    <chart:PropertyNameDataPointBinding PropertyName="Label" />
+                </chart:BarSeries.LegendTitleBinding>
+            </chart:BarSeries>
+        </chart:RadCartesianChart>
 
-		<primitives:RadLegendControl LegendProvider="{Binding ElementName=CashFlowChart}"
-		                             VerticalAlignment="Bottom">
-			<primitives:RadLegendControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<StackPanel Orientation="Vertical" />
-				</ItemsPanelTemplate>
-			</primitives:RadLegendControl.ItemsPanel>
-			<primitives:RadLegendControl.ItemTemplate>
-				<DataTemplate>
-					<StackPanel Orientation="Horizontal" Margin="0,0,0,-15">
-						<Ellipse Fill="{Binding Fill}" Stroke="{Binding Stroke}"
-						         StrokeThickness="1" Width="10" Height="10" />
-						<TextBlock Text="{Binding Title}" Foreground="{Binding Fill}"
-						           Margin="10" FontSize="12" />
-					</StackPanel>
-				</DataTemplate>
-			</primitives:RadLegendControl.ItemTemplate>
-		</primitives:RadLegendControl>
-	</Grid>
+        <primitives:RadLegendControl LegendProvider="{Binding ElementName=CashFlowChart}"
+                                     VerticalAlignment="Bottom">
+            <primitives:RadLegendControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </primitives:RadLegendControl.ItemsPanel>
+            <primitives:RadLegendControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,-15">
+                        <Ellipse Fill="{Binding Fill}" Stroke="{Binding Stroke}"
+                                 StrokeThickness="1" Width="10" Height="10" />
+                        <TextBlock Text="{Binding Title}" Foreground="{Binding Fill}"
+                                   Margin="10" FontSize="12" />
+                    </StackPanel>
+                </DataTemplate>
+            </primitives:RadLegendControl.ItemTemplate>
+        </primitives:RadLegendControl>
+    </Grid>
 </UserControl>

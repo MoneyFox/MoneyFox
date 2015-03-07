@@ -6,26 +6,34 @@ using MoneyManager.Common;
 #endregion
 
 namespace MoneyManager.Views {
-	public sealed partial class SettingsTiles {
-		public SettingsTiles() {
-			InitializeComponent();
+    public sealed partial class SettingsTiles {
+        private readonly ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private readonly NavigationHelper navigationHelper;
 
-			NavigationHelper = new NavigationHelper(this);
-		}
+        public SettingsTiles() {
+            InitializeComponent();
 
-		public NavigationHelper NavigationHelper { get; }
-		public ObservableDictionary DefaultViewModel { get; } = new ObservableDictionary();
+            navigationHelper = new NavigationHelper(this);
+        }
 
-		#region NavigationHelper registration
+        public NavigationHelper NavigationHelper {
+            get { return navigationHelper; }
+        }
 
-		protected override void OnNavigatedTo(NavigationEventArgs e) {
-			NavigationHelper.OnNavigatedTo(e);
-		}
+        public ObservableDictionary DefaultViewModel {
+            get { return defaultViewModel; }
+        }
 
-		protected override void OnNavigatedFrom(NavigationEventArgs e) {
-			NavigationHelper.OnNavigatedFrom(e);
-		}
+        #region NavigationHelper registration
 
-		#endregion NavigationHelper registration
-	}
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            navigationHelper.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e) {
+            navigationHelper.OnNavigatedFrom(e);
+        }
+
+        #endregion NavigationHelper registration
+    }
 }

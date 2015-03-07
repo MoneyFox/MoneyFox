@@ -1,79 +1,79 @@
 ﻿<Page
-	x:Class="MoneyManager.MainPage"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:userControls="using:MoneyManager.UserControls"
-	mc:Ignorable="d"
-	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    x:Class="MoneyManager.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:MoneyManager.UserControls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-	<Page.Transitions>
-		<TransitionCollection>
-			<NavigationThemeTransition>
-				<NavigationThemeTransition.DefaultNavigationTransitionInfo>
-					<CommonNavigationTransitionInfo IsStaggeringEnabled="True" />
-				</NavigationThemeTransition.DefaultNavigationTransitionInfo>
-			</NavigationThemeTransition>
-		</TransitionCollection>
-	</Page.Transitions>
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True" />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
 
-	<Page.BottomAppBar>
-		<CommandBar Background="{StaticResource PhoneAccentBrush}">
-			<CommandBar.PrimaryCommands>
-				<AppBarButton Icon="add" x:Uid="AddIncomeLabel" Label="add income" Click="AddIncomeClick" />
-				<AppBarButton Icon="remove" x:Uid="AddSpendingLabel" Label="add spending" Click="AddSpendingClick" />
-				<AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Click="AddTransferClick">
-					<AppBarButton.Icon>
-						<BitmapIcon UriSource="ms-appx:///Images/dark/transfer.png" />
-					</AppBarButton.Icon>
-				</AppBarButton>
-			</CommandBar.PrimaryCommands>
+    <Page.BottomAppBar>
+        <CommandBar Background="{StaticResource PhoneAccentBrush}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="add" x:Uid="AddIncomeLabel" Label="add income" Click="AddIncomeClick" />
+                <AppBarButton Icon="remove" x:Uid="AddSpendingLabel" Label="add spending" Click="AddSpendingClick" />
+                <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Click="AddTransferClick">
+                    <AppBarButton.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Images/dark/transfer.png" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
 
-			<CommandBar.SecondaryCommands>
-				<AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccountClick" />
-				<AppBarButton x:Uid="StatisticLabel" Label="statistic" Click="OpenStatisticClick">
-					<AppBarButton.Icon>
-						<BitmapIcon UriSource="ms-appx:///Images/dark/unlock.png" />
-					</AppBarButton.Icon>
-				</AppBarButton>
-				<AppBarButton x:Uid="Settings" Label="settings" Click="SettingsClick" />
-				<AppBarButton x:Uid="LicenseLabel" Label="license" Click="LicenseClick">
-					<AppBarButton.Icon>
-						<BitmapIcon UriSource="ms-appx:///Images/dark/unlock.png" />
-					</AppBarButton.Icon>
-				</AppBarButton>
-				<AppBarButton x:Uid="AboutLabel" Label="about" Click="GoToAbout" />
-			</CommandBar.SecondaryCommands>
-		</CommandBar>
-	</Page.BottomAppBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Add" x:Uid="NewAccount" Label="new account" Click="AddAccountClick" />
+                <AppBarButton x:Uid="StatisticLabel" Label="statistic" Click="OpenStatisticClick">
+                    <AppBarButton.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Images/dark/unlock.png" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Uid="Settings" Label="settings" Click="SettingsClick" />
+                <AppBarButton x:Uid="LicenseLabel" Label="license" Click="LicenseClick">
+                    <AppBarButton.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Images/dark/unlock.png" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Uid="AboutLabel" Label="about" Click="GoToAbout" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 
-	<Grid>
-		<Grid.ChildrenTransitions>
-			<TransitionCollection>
-				<EntranceThemeTransition />
-			</TransitionCollection>
-		</Grid.ChildrenTransitions>
+    <Grid>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
 
-		<Hub x:Uid="ApplicationNameHeader" Header="Money Fox">
-			<HubSection x:Uid="AccountsMenu" Header="overview">
-				<DataTemplate>
-					<userControls:AccountListUserControl />
-				</DataTemplate>
-			</HubSection>
+        <Hub x:Uid="ApplicationNameHeader" Header="Money Fox">
+            <HubSection x:Uid="AccountsMenu" Header="overview">
+                <DataTemplate>
+                    <userControls:AccountListUserControl />
+                </DataTemplate>
+            </HubSection>
 
-			<HubSection x:Uid="CashFlowHeader" Header="cash flow">
-				<DataTemplate>
-					<userControls:BarChartUserControl />
-				</DataTemplate>
-			</HubSection>
+            <HubSection x:Uid="CashFlowHeader" Header="cash flow">
+                <DataTemplate>
+                    <userControls:BarChartUserControl />
+                </DataTemplate>
+            </HubSection>
 
-			<HubSection x:Uid="SpreadingHeader" Header="spreading">
-				<DataTemplate>
-					<userControls:PieChartUserControl />
-				</DataTemplate>
-			</HubSection>
-		</Hub>
+            <HubSection x:Uid="SpreadingHeader" Header="spreading">
+                <DataTemplate>
+                    <userControls:PieChartUserControl />
+                </DataTemplate>
+            </HubSection>
+        </Hub>
 
-	</Grid>
+    </Grid>
 </Page>

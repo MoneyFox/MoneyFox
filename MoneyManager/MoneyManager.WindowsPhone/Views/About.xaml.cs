@@ -6,25 +6,29 @@ using MoneyManager.Common;
 #endregion
 
 namespace MoneyManager.Views {
-	public sealed partial class About {
-		public About() {
-			InitializeComponent();
+    public sealed partial class About {
+        private readonly NavigationHelper navigationHelper;
 
-			NavigationHelper = new NavigationHelper(this);
-		}
+        public About() {
+            InitializeComponent();
 
-		public NavigationHelper NavigationHelper { get; }
+            navigationHelper = new NavigationHelper(this);
+        }
 
-		#region NavigationHelper registration
+        public NavigationHelper NavigationHelper {
+            get { return navigationHelper; }
+        }
 
-		protected override void OnNavigatedTo(NavigationEventArgs e) {
-			NavigationHelper.OnNavigatedTo(e);
-		}
+        #region NavigationHelper registration
 
-		protected override void OnNavigatedFrom(NavigationEventArgs e) {
-			NavigationHelper.OnNavigatedFrom(e);
-		}
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            navigationHelper.OnNavigatedTo(e);
+        }
 
-		#endregion NavigationHelper registration
-	}
+        protected override void OnNavigatedFrom(NavigationEventArgs e) {
+            navigationHelper.OnNavigatedFrom(e);
+        }
+
+        #endregion NavigationHelper registration
+    }
 }

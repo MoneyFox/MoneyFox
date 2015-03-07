@@ -14,93 +14,94 @@ using PropertyChanged;
 #endregion
 
 namespace MoneyManager.Business.ViewModels {
-	[ImplementPropertyChanged]
-	public class BalanceViewModel : ViewModelBase {
-		public double TotalBalance { get; set; }
-		public double EndOfMonthBalance { get; set; }
-		public bool IsTransactionView { get; set; }
+    [ImplementPropertyChanged]
+    public class BalanceViewModel : ViewModelBase {
+        #region Properties
 
-		public string CurrencyCulture {
-			get { return settings.DefaultCurrency; }
-		}
+        public ObservableCollection<Account> AllAccounts {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
+        }
 
-		public void UpdateBalance() {
-			TotalBalance = GetTotalBalance();
+        private Account selectedAccount {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
+        }
 
-			EndOfMonthBalance = GetEndOfMonthValue();
-		}
+        public TransactionDataAccess TransactionData {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
 
-		private double GetTotalBalance() {
-			if (IsTransactionView) {
-				return selectedAccount.CurrentBalance;
-			}
+        public SettingDataAccess settings {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
 
-			return AllAccounts != null
-				? AllAccounts.Sum(x => x.CurrentBalance)
-				: 0;
-		}
+        #endregion Properties
 
-		private double GetEndOfMonthValue() {
-			var balance = TotalBalance;
-			var unclearedTransactions = LoadUnclreadTransactions();
+        public double TotalBalance { get; set; }
 
-			foreach (var transaction in unclearedTransactions) {
-				switch (transaction.Type) {
-					case (int) TransactionType.Spending:
-						balance -= transaction.Amount;
-						break;
+        public double EndOfMonthBalance { get; set; }
 
-					case (int) TransactionType.Income:
-						balance += transaction.Amount;
-						break;
+        public bool IsTransactionView { get; set; }
 
-					case (int) TransactionType.Transfer:
-						balance = HandleTransferAmount(transaction, balance);
-						break;
-				}
-			}
+        public string CurrencyCulture {
+            get { return settings.DefaultCurrency; }
+        }
 
-			return balance;
-		}
+        public void UpdateBalance() {
+            TotalBalance = GetTotalBalance();
 
-		private double HandleTransferAmount(FinancialTransaction transaction, double balance) {
-			if (selectedAccount == transaction.ChargedAccount) {
-				balance -= transaction.Amount;
-			}
-			else {
-				balance += transaction.Amount;
-			}
-			return balance;
-		}
+            EndOfMonthBalance = GetEndOfMonthValue();
+        }
 
-		private IEnumerable<FinancialTransaction> LoadUnclreadTransactions() {
-			var unclearedTransactions =
-				TransactionData.GetUnclearedTransactions(Utilities.GetEndOfMonth());
+        private double GetTotalBalance() {
+            if (IsTransactionView) {
+                return selectedAccount.CurrentBalance;
+            }
 
-			return IsTransactionView
-				? unclearedTransactions.Where(
-					x => x.ChargedAccount == selectedAccount || x.TargetAccount == selectedAccount).ToList()
-				: unclearedTransactions;
-		}
+            return AllAccounts != null
+                ? AllAccounts.Sum(x => x.CurrentBalance)
+                : 0;
+        }
 
-		#region Properties
+        private double GetEndOfMonthValue() {
+            double balance = TotalBalance;
+            IEnumerable<FinancialTransaction> unclearedTransactions = LoadUnclreadTransactions();
 
-		public ObservableCollection<Account> AllAccounts {
-			get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
-		}
+            foreach (FinancialTransaction transaction in unclearedTransactions) {
+                switch (transaction.Type) {
+                    case (int) TransactionType.Spending:
+                        balance -= transaction.Amount;
+                        break;
 
-		private Account selectedAccount {
-			get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
-		}
+                    case (int) TransactionType.Income:
+                        balance += transaction.Amount;
+                        break;
 
-		public TransactionDataAccess TransactionData {
-			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-		}
+                    case (int) TransactionType.Transfer:
+                        balance = HandleTransferAmount(transaction, balance);
+                        break;
+                }
+            }
 
-		public SettingDataAccess settings {
-			get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-		}
+            return balance;
+        }
 
-		#endregion Properties
-	}
+        private double HandleTransferAmount(FinancialTransaction transaction, double balance) {
+            if (selectedAccount == transaction.ChargedAccount) {
+                balance -= transaction.Amount;
+            } else {
+                balance += transaction.Amount;
+            }
+            return balance;
+        }
+
+        private IEnumerable<FinancialTransaction> LoadUnclreadTransactions() {
+            IEnumerable<FinancialTransaction> unclearedTransactions =
+                TransactionData.GetUnclearedTransactions(Utilities.GetEndOfMonth());
+
+            return IsTransactionView
+                ? unclearedTransactions.Where(
+                    x => x.ChargedAccount == selectedAccount || x.TargetAccount == selectedAccount).ToList()
+                : unclearedTransactions;
+        }
+    }
 }

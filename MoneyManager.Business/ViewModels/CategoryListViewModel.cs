@@ -14,65 +14,63 @@ using PropertyChanged;
 #endregion
 
 namespace MoneyManager.Business.ViewModels {
-	[ImplementPropertyChanged]
-	public class CategoryListViewModel : ViewModelBase {
-		private string searchText;
+    [ImplementPropertyChanged]
+    public class CategoryListViewModel : ViewModelBase {
+        private string searchText;
 
-		public CategoryListViewModel() {
-			categoryData.LoadList();
-			Categories = allCategories;
-		}
+        public CategoryListViewModel() {
+            categoryData.LoadList();
+            Categories = allCategories;
+        }
 
-		public bool IsSettingCall { get; set; }
-		public ObservableCollection<Category> Categories { get; set; }
+        public bool IsSettingCall { get; set; }
 
-		private CategoryDataAccess categoryData {
-			get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
-		}
+        public ObservableCollection<Category> Categories { get; set; }
 
-		private TransactionDataAccess transactionData {
-			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-		}
+        private CategoryDataAccess categoryData {
+            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
+        }
 
-		private ObservableCollection<Category> allCategories {
-			get { return categoryData.AllCategories; }
-		}
+        private TransactionDataAccess transactionData {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
 
-		public Category SelectedCategory {
-			get {
-				return transactionData.SelectedTransaction == null
-					? new Category()
-					: transactionData.SelectedTransaction.Category;
-			}
-			set {
-				if (value == null) {
-					return;
-				}
+        private ObservableCollection<Category> allCategories {
+            get { return categoryData.AllCategories; }
+        }
 
-				if (!IsSettingCall) {
-					ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value;
-					((Frame) Window.Current.Content).GoBack();
-				}
-			}
-		}
+        public Category SelectedCategory {
+            get {
+                return transactionData.SelectedTransaction == null
+                    ? new Category()
+                    : transactionData.SelectedTransaction.Category;
+            }
+            set {
+                if (value == null) return;
 
-		public string SearchText {
-			get { return searchText; }
-			set {
-				searchText = value;
-				Search();
-			}
-		}
+                if (!IsSettingCall) {
+                    ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value;
+                    ((Frame) Window.Current.Content).GoBack();
+                }
+            }
+        }
 
-		public void Search() {
-			if (SearchText != String.Empty) {
-				Categories = new ObservableCollection<Category>
-					(allCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
-						.ToList());
-			}
-			else {
-				Categories = allCategories;
-			}
-		}
-	}
+        public string SearchText {
+            get { return searchText; }
+            set {
+                searchText = value;
+                Search();
+            }
+        }
+
+        public void Search() {
+            if (SearchText != String.Empty) {
+                Categories = new ObservableCollection<Category>
+                    (allCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
+                        .ToList());
+            } else {
+                Categories = allCategories;
+            }
+        }
+    }
 }

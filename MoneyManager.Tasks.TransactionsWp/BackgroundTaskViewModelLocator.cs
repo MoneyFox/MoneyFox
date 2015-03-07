@@ -8,39 +8,39 @@ using MoneyManager.DataAccess.DataAccess;
 #endregion
 
 namespace MoneyManager.Tasks.TransactionsWp {
-	internal class BackgroundTaskViewModelLocator {
-		static BackgroundTaskViewModelLocator() {
-			ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+    internal class BackgroundTaskViewModelLocator {
+        static BackgroundTaskViewModelLocator() {
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-			SimpleIoc.Default.Register<AccountDataAccess>();
-			SimpleIoc.Default.Register<TransactionDataAccess>();
-			SimpleIoc.Default.Register<RecurringTransactionDataAccess>();
+            SimpleIoc.Default.Register<AccountDataAccess>();
+            SimpleIoc.Default.Register<TransactionDataAccess>();
+            SimpleIoc.Default.Register<RecurringTransactionDataAccess>();
 
-			SimpleIoc.Default.Register<TransactionListViewModel>();
-		}
+            SimpleIoc.Default.Register<TransactionListViewModel>();
+        }
 
-		#region Views
+        #region DataAccess
 
-		public TransactionListViewModel TransactionListView {
-			get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
-		}
+        public AccountDataAccess AccountDataAccess {
+            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+        }
 
-		#endregion Views
+        public TransactionDataAccess TransactionDataAccess {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
 
-		#region DataAccess
+        public RecurringTransactionDataAccess RecurringTransactionDataAccess {
+            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+        }
 
-		public AccountDataAccess AccountDataAccess {
-			get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
-		}
+        #endregion DataAccess
 
-		public TransactionDataAccess TransactionDataAccess {
-			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-		}
+        #region Views
 
-		public RecurringTransactionDataAccess RecurringTransactionDataAccess {
-			get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
-		}
+        public TransactionListViewModel TransactionListView {
+            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
+        }
 
-		#endregion DataAccess
-	}
+        #endregion Views
+    }
 }

@@ -13,200 +13,197 @@ using MoneyManager.Foundation.Model;
 #endregion
 
 namespace MoneyManager.Business.Logic {
-	public class StatisticLogic {
-		/// <summary>
-		///     Get a list with income, spending and earnings for custom date range
-		/// </summary>
-		/// <returns>List with income, spending and earning item.</returns>
-		public static ObservableCollection<StatisticItem> GetMonthlyCashFlow(DateTime startDate, DateTime endDate) {
-			var transactionListFunc =
-				new Func<List<FinancialTransaction>>(() =>
-					allTransaction
-						.Where(x => x.Type != (int) TransactionType.Transfer)
-						.Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
-						.ToList());
+    public class StatisticLogic {
+        #region Properties
 
-			return GetCashFlowStatisticItems(transactionListFunc);
-		}
+        private static IEnumerable<FinancialTransaction> allTransaction {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().AllTransactions; }
+        }
 
-		/// <summary>
-		///     Get a list with income, spending and earnings for current month
-		/// </summary>
-		/// <returns>List with income, spending and earning item.</returns>
-		public static ObservableCollection<StatisticItem> GetMonthlyCashFlow() {
-			var transactionListFunc =
-				new Func<List<FinancialTransaction>>(() =>
-					allTransaction
-						.Where(x => x.Type != (int) TransactionType.Transfer)
-						.Where(x => x.Date.Month == DateTime.Now.Month)
-						.ToList());
+        private static IEnumerable<Category> allCategories {
+            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
+        }
 
-			return GetCashFlowStatisticItems(transactionListFunc);
-		}
+        private static TransactionDataAccess transactionData {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
 
-		private static ObservableCollection<StatisticItem> GetCashFlowStatisticItems(
-			Func<List<FinancialTransaction>> getTransactionListFunc) {
-			var transactionList = getTransactionListFunc();
+        private static CategoryDataAccess cateogryData {
+            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
+        }
 
-			var itemList = new ObservableCollection<StatisticItem>();
+        private static SettingDataAccess settings {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
 
-			var income = new StatisticItem {
-				Category = Translation.GetTranslation("RevenuesLabel"),
-				Value = transactionList.Where(x => x.Type == (int) TransactionType.Income).Sum(x => x.Amount)
-			};
-			income.Label = income.Category + ": " + Math.Round(income.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
+        #endregion
 
-			var spent = new StatisticItem {
-				Category = Translation.GetTranslation("ExpensesLabel"),
-				Value = transactionList.Where(x => x.Type == (int) TransactionType.Spending).Sum(x => x.Amount)
-			};
-			spent.Label = spent.Category + ": " + Math.Round(spent.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
+        /// <summary>
+        /// Get a list with income, spending and earnings for custom date range
+        /// </summary>
+        /// <returns>List with income, spending and earning item.</returns>
+        public static ObservableCollection<StatisticItem> GetMonthlyCashFlow(DateTime startDate, DateTime endDate) {
+            var transactionListFunc =
+                new Func<List<FinancialTransaction>>(() =>
+                    allTransaction
+                        .Where(x => x.Type != (int) TransactionType.Transfer)
+                        .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
+                        .ToList());
 
-			var increased = new StatisticItem {
-				Category = Translation.GetTranslation("IncreasesLabel"),
-				Value = income.Value - spent.Value
-			};
-			increased.Label = increased.Category + ": " +
-			                  Math.Round(increased.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
+            return GetCashFlowStatisticItems(transactionListFunc);
+        }
 
-			itemList.Add(income);
-			itemList.Add(spent);
-			itemList.Add(increased);
+        /// <summary>
+        /// Get a list with income, spending and earnings for current month
+        /// </summary>
+        /// <returns>List with income, spending and earning item.</returns>
+        public static ObservableCollection<StatisticItem> GetMonthlyCashFlow() {
+            var transactionListFunc =
+                new Func<List<FinancialTransaction>>(() =>
+                    allTransaction
+                        .Where(x => x.Type != (int) TransactionType.Transfer)
+                        .Where(x => x.Date.Month == DateTime.Now.Month)
+                        .ToList());
 
-			return itemList;
-		}
+            return GetCashFlowStatisticItems(transactionListFunc);
+        }
 
-		public static ObservableCollection<StatisticItem> GetSpreading(DateTime startDate, DateTime endDate) {
-			if (allTransaction == null) {
-				transactionData.LoadList();
-			}
+        private static ObservableCollection<StatisticItem> GetCashFlowStatisticItems(
+            Func<List<FinancialTransaction>> getTransactionListFunc) {
+            List<FinancialTransaction> transactionList = getTransactionListFunc();
 
-			if (allCategories == null) {
-				cateogryData.LoadList();
-			}
+            var itemList = new ObservableCollection<StatisticItem>();
 
-			var transactionListFunc =
-				new Func<List<FinancialTransaction>>(() =>
-					allTransaction
-						.Where(x => x.Category != null)
-						.Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
-						.Where(x => x.Type == (int) TransactionType.Spending)
-						.ToList());
+            var income = new StatisticItem {
+                Category = Translation.GetTranslation("RevenuesLabel"),
+                Value = transactionList.Where(x => x.Type == (int) TransactionType.Income).Sum(x => x.Amount)
+            };
+            income.Label = income.Category + ": " + Math.Round(income.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
 
-			return GetSpreadingStatisticItems(transactionListFunc);
-		}
+            var spent = new StatisticItem {
+                Category = Translation.GetTranslation("ExpensesLabel"),
+                Value = transactionList.Where(x => x.Type == (int) TransactionType.Spending).Sum(x => x.Amount)
+            };
+            spent.Label = spent.Category + ": " + Math.Round(spent.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
 
-		public static ObservableCollection<StatisticItem> GetSpreading() {
-			if (allTransaction == null) {
-				transactionData.LoadList();
-			}
+            var increased = new StatisticItem {
+                Category = Translation.GetTranslation("IncreasesLabel"),
+                Value = income.Value - spent.Value
+            };
+            increased.Label = increased.Category + ": " + Math.Round(increased.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
 
-			if (allCategories == null) {
-				cateogryData.LoadList();
-			}
+            itemList.Add(income);
+            itemList.Add(spent);
+            itemList.Add(increased);
 
-			var transactionListFunc =
-				new Func<List<FinancialTransaction>>(() =>
-					allTransaction
-						.Where(x => x.Category != null)
-						.Where(x => x.Date.Month == DateTime.Today.Date.Month)
-						.Where(x => x.Type == (int) TransactionType.Spending)
-						.ToList());
+            return itemList;
+        }
 
-			return GetSpreadingStatisticItems(transactionListFunc);
-		}
+        public static ObservableCollection<StatisticItem> GetSpreading(DateTime startDate, DateTime endDate) {
+            if (allTransaction == null) {
+                transactionData.LoadList();
+            }
 
-		private static ObservableCollection<StatisticItem> GetSpreadingStatisticItems(
-			Func<List<FinancialTransaction>> getTransactionListFunc) {
-			var transactionList = getTransactionListFunc();
+            if (allCategories == null) {
+                cateogryData.LoadList();
+            }
 
-			var tempStatisticList = allCategories.Select(category => new StatisticItem {
-				Category = category.Name,
-				Value = transactionList
-					.Where(x => x.Category == category)
-					.Sum(x => x.Amount)
-			}).ToList();
+            var transactionListFunc =
+                new Func<List<FinancialTransaction>>(() =>
+                    allTransaction
+                        .Where(x => x.Category != null)
+                        .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
+                        .Where(x => x.Type == (int) TransactionType.Spending)
+                        .ToList());
 
-			RemoveNullList(tempStatisticList);
+            return GetSpreadingStatisticItems(transactionListFunc);
+        }
 
-			tempStatisticList = tempStatisticList.OrderByDescending(x => x.Value).ToList();
-			var statisticList = tempStatisticList.Take(6).ToList();
+        public static ObservableCollection<StatisticItem> GetSpreading() {
+            if (allTransaction == null) {
+                transactionData.LoadList();
+            }
 
-			AddOtherItem(tempStatisticList, statisticList);
+            if (allCategories == null) {
+                cateogryData.LoadList();
+            }
 
-			IncludeIncome(statisticList);
+            var transactionListFunc =
+                new Func<List<FinancialTransaction>>(() =>
+                    allTransaction
+                        .Where(x => x.Category != null)
+                        .Where(x => x.Date.Month == DateTime.Today.Date.Month)
+                        .Where(x => x.Type == (int) TransactionType.Spending)
+                        .ToList());
 
-			return new ObservableCollection<StatisticItem>(statisticList);
-		}
+            return GetSpreadingStatisticItems(transactionListFunc);
+        }
 
-		private static void RemoveNullList(ICollection<StatisticItem> tempStatisticList) {
-			var nullerList = tempStatisticList.Where(x => x.Value == 0).ToList();
-			foreach (var statisticItem in nullerList) {
-				tempStatisticList.Remove(statisticItem);
-			}
-		}
+        private static ObservableCollection<StatisticItem> GetSpreadingStatisticItems(
+            Func<List<FinancialTransaction>> getTransactionListFunc) {
+            List<FinancialTransaction> transactionList = getTransactionListFunc();
 
-		private static void SetLabel(StatisticItem item) {
-			item.Label = item.Category + ": " + item.Value + " " + settings.DefaultCurrency;
-		}
+            List<StatisticItem> tempStatisticList = allCategories.Select(category => new StatisticItem {
+                Category = category.Name,
+                Value = transactionList
+                    .Where(x => x.Category == category)
+                    .Sum(x => x.Amount),
+            }).ToList();
 
-		private static void IncludeIncome(IEnumerable<StatisticItem> statisticList) {
-			foreach (var statisticItem in statisticList) {
-				statisticItem.Value -= allTransaction
-					.Where(x => x.Type == (int) TransactionType.Income)
-					.Where(x => x.Category != null)
-					.Where(x => x.Category.Name == statisticItem.Category)
-					.Sum(x => x.Amount);
+            RemoveNullList(tempStatisticList);
 
-				SetLabel(statisticItem);
+            tempStatisticList = tempStatisticList.OrderByDescending(x => x.Value).ToList();
+            List<StatisticItem> statisticList = tempStatisticList.Take(6).ToList();
 
-				if (statisticItem.Value <= 0) {
-					statisticItem.Value = 0;
-				}
-			}
-		}
+            AddOtherItem(tempStatisticList, statisticList);
 
-		private static void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
-			ICollection<StatisticItem> statisticList) {
-			if (statisticList.Count < 6) {
-				return;
-			}
+            IncludeIncome(statisticList);
 
-			var othersItem = new StatisticItem {
-				Category = "Others",
-				Value = tempStatisticList
-					.Where(x => !statisticList.Contains(x))
-					.Sum(x => x.Value)
-			};
-			othersItem.Label = othersItem.Category + ": " + othersItem.Value + " " + settings.DefaultCurrency;
+            return new ObservableCollection<StatisticItem>(statisticList);
+        }
 
-			if (othersItem.Value > 0) {
-				statisticList.Add(othersItem);
-			}
-		}
+        private static void RemoveNullList(ICollection<StatisticItem> tempStatisticList) {
+            List<StatisticItem> nullerList = tempStatisticList.Where(x => x.Value == 0).ToList();
+            foreach (StatisticItem statisticItem in nullerList) {
+                tempStatisticList.Remove(statisticItem);
+            }
+        }
 
-		#region Properties
+        private static void SetLabel(StatisticItem item) {
+            item.Label = item.Category + ": " + item.Value + " " + settings.DefaultCurrency;
+        }
 
-		private static IEnumerable<FinancialTransaction> allTransaction {
-			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().AllTransactions; }
-		}
+        private static void IncludeIncome(IEnumerable<StatisticItem> statisticList) {
+            foreach (StatisticItem statisticItem in statisticList) {
+                statisticItem.Value -= allTransaction
+                    .Where(x => x.Type == (int) TransactionType.Income)
+                    .Where(x => x.Category != null)
+                    .Where(x => x.Category.Name == statisticItem.Category)
+                    .Sum(x => x.Amount);
 
-		private static IEnumerable<Category> allCategories {
-			get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
-		}
+                SetLabel(statisticItem);
 
-		private static TransactionDataAccess transactionData {
-			get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-		}
+                if (statisticItem.Value <= 0) {
+                    statisticItem.Value = 0;
+                }
+            }
+        }
 
-		private static CategoryDataAccess cateogryData {
-			get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
-		}
+        private static void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
+            ICollection<StatisticItem> statisticList) {
+            if (statisticList.Count < 6) return;
 
-		private static SettingDataAccess settings {
-			get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-		}
+            var othersItem = new StatisticItem {
+                Category = "Others",
+                Value = tempStatisticList
+                    .Where(x => !statisticList.Contains(x))
+                    .Sum(x => x.Value)
+            };
+            othersItem.Label = othersItem.Category + ": " + othersItem.Value + " " + settings.DefaultCurrency;
 
-		#endregion
-	}
+            if (othersItem.Value > 0) {
+                statisticList.Add(othersItem);
+            }
+        }
+    }
 }

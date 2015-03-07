@@ -1,155 +1,155 @@
 ﻿<UserControl
-	x:Class="MoneyManager.UserControls.AboutUserControl"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:converter="using:MoneyManager.Converter"
-	mc:Ignorable="d"
-	d:DesignHeight="500"
-	d:DesignWidth="400">
+    x:Class="MoneyManager.UserControls.AboutUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:MoneyManager.Converter"
+    mc:Ignorable="d"
+    d:DesignHeight="500"
+    d:DesignWidth="400">
 
-	<UserControl.Resources>
-		<converter:ThemedImageConverter x:Key="ThemedImageConverter" />
-	</UserControl.Resources>
+    <UserControl.Resources>
+        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
+    </UserControl.Resources>
 
-	<Grid>
-		<StackPanel>
-			<StackPanel>
-				<TextBlock Text="about"
-				           x:Uid="AboutText"
-				           Margin="0,12,0,0"
-				           FontSize="36"
-				           FontFamily="Segoe WP Light" />
-			</StackPanel>
-			<StackPanel>
-				<StackPanel Orientation="Horizontal"
-				            Width="456">
-					<Grid Background="{StaticResource PhoneAccentBrush}"
-					      Margin="0,0,10,0">
-						<Image Source="/Images/applyLogo.png"
-						       Width="150"
-						       Margin="5,0"
-						       HorizontalAlignment="Left" />
-					</Grid>
-					<StackPanel>
-						<TextBlock TextWrapping="Wrap"
-						           Text="developer:"
-						           HorizontalAlignment="Right"
-						           Width="181"
-						           Margin="0"
-						           VerticalAlignment="Top"
-						           FontSize="26"
-						           FontFamily="Segoe WP Light"
-						           FontWeight="Bold"
-						           x:Uid="Developer" />
-						<TextBlock TextWrapping="Wrap"
-						           Text="Apply Solutions"
-						           HorizontalAlignment="Right"
-						           Width="181"
-						           Margin="0"
-						           VerticalAlignment="Top"
-						           FontSize="26"
-						           FontFamily="Segoe WP Light" />
-					</StackPanel>
-				</StackPanel>
-				<Path Data="M9,242 L456,242"
-				      Fill="{StaticResource PhoneAccentBrush}"
-				      Height="15"
-				      Margin="0,10"
-				      Stretch="Fill"
-				      UseLayoutRounding="False"
-				      Stroke="{StaticResource PhoneAccentBrush}"
-				      StrokeThickness="2" />
-				<TextBlock TextWrapping="Wrap"
-				           Text="info"
-				           HorizontalAlignment="Left"
-				           Width="456"
-				           Margin="0,0,0,10"
-				           x:Uid="Info"
-				           Style="{StaticResource MenuItemSubText}"
-				           VerticalAlignment="Top" />
-				<StackPanel Orientation="Horizontal">
-					<TextBlock TextWrapping="Wrap"
-					           Text="Version: "
-					           HorizontalAlignment="Left"
-					           Margin="5,0,0,0"
-					           VerticalAlignment="Center"
-					           FontSize="24"
-					           FontFamily="Segoe WP Light" />
-					<TextBlock Name="lblVersion"
-					           TextWrapping="Wrap"
-					           Text="1"
-					           HorizontalAlignment="Left"
-					           Width="456"
-					           Margin="5,0,0,0"
-					           VerticalAlignment="Center"
-					           FontSize="24"
-					           FontFamily="Segoe WP Light" />
-				</StackPanel>
-				<TextBlock TextWrapping="Wrap"
-				           Text="contact"
-				           HorizontalAlignment="Left"
-				           Width="456"
-				           Margin="0,10"
-				           x:Uid="Contact"
-				           VerticalAlignment="Top"
-				           Style="{StaticResource MenuItemSubText}" />
-				<StackPanel Orientation="Horizontal"
-				            Margin="0,0,0,20"
-				            Tapped="GoToTwitter_OnTap">
-					<Image
-						Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
-						DataContext="/Images/{0}/twitter.png"
-						Width="50"
-						Height="50" />
-					<TextBlock x:Name="lblTwitter"
-					           TextWrapping="Wrap"
-					           Text="@NPadrutt"
-					           HorizontalAlignment="Left"
-					           Width="456"
-					           Margin="5,0,0,0"
-					           VerticalAlignment="Center"
-					           FontSize="20"
-					           FontFamily="Segoe WP Light" />
-				</StackPanel>
-				<StackPanel Orientation="Horizontal"
-				            Margin="0,0,0,20"
-				            Tapped="GoToWebsite_OnTap">
-					<Image
-						Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
-						DataContext="/Images/{0}/internet.png"
-						Width="50"
-						Height="50" />
-					<TextBlock x:Name="lblWebsite"
-					           TextWrapping="Wrap"
-					           Text="www.apply-solutions.ch"
-					           HorizontalAlignment="Left"
-					           Width="456"
-					           Margin="5,0,0,0"
-					           VerticalAlignment="Center"
-					           FontSize="20"
-					           FontFamily="Segoe WP Light" />
-				</StackPanel>
-				<StackPanel Orientation="Horizontal"
-				            Tapped="ComposeMail_OnTap"
-				            Margin="0,0,-14.333,0">
-					<Image
-						Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
-						DataContext="/Images/{0}/mail.png"
-						Width="50"
-						Height="50" />
-					<TextBlock x:Name="lblSupportMail"
-					           TextWrapping="Wrap"
-					           Text="mobile.support@apply-solutions.ch"
-					           HorizontalAlignment="Left"
-					           Width="456"
-					           Margin="5,0,0,0"
-					           VerticalAlignment="Center"
-					           FontSize="20"
-					           FontFamily="Segoe WP Light" />
-				</StackPanel>
-			</StackPanel>
-		</StackPanel>
-	</Grid>
+    <Grid>
+        <StackPanel>
+            <StackPanel>
+                <TextBlock Text="about"
+                           x:Uid="AboutText"
+                           Margin="0,12,0,0"
+                           FontSize="36"
+                           FontFamily="Segoe WP Light" />
+            </StackPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Width="456">
+                    <Grid Background="{StaticResource PhoneAccentBrush}"
+                          Margin="0,0,10,0">
+                        <Image Source="/Images/applyLogo.png"
+                               Width="150"
+                               Margin="5,0"
+                               HorizontalAlignment="Left" />
+                    </Grid>
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap"
+                                   Text="developer:"
+                                   HorizontalAlignment="Right"
+                                   Width="181"
+                                   Margin="0"
+                                   VerticalAlignment="Top"
+                                   FontSize="26"
+                                   FontFamily="Segoe WP Light"
+                                   FontWeight="Bold"
+                                   x:Uid="Developer" />
+                        <TextBlock TextWrapping="Wrap"
+                                   Text="Apply Solutions"
+                                   HorizontalAlignment="Right"
+                                   Width="181"
+                                   Margin="0"
+                                   VerticalAlignment="Top"
+                                   FontSize="26"
+                                   FontFamily="Segoe WP Light" />
+                    </StackPanel>
+                </StackPanel>
+                <Path Data="M9,242 L456,242"
+                      Fill="{StaticResource PhoneAccentBrush}"
+                      Height="15"
+                      Margin="0,10"
+                      Stretch="Fill"
+                      UseLayoutRounding="False"
+                      Stroke="{StaticResource PhoneAccentBrush}"
+                      StrokeThickness="2" />
+                <TextBlock TextWrapping="Wrap"
+                           Text="info"
+                           HorizontalAlignment="Left"
+                           Width="456"
+                           Margin="0,0,0,10"
+                           x:Uid="Info"
+                           Style="{StaticResource MenuItemSubText}"
+                           VerticalAlignment="Top" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap"
+                               Text="Version: "
+                               HorizontalAlignment="Left"
+                               Margin="5,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="24"
+                               FontFamily="Segoe WP Light" />
+                    <TextBlock Name="lblVersion"
+                               TextWrapping="Wrap"
+                               Text="1"
+                               HorizontalAlignment="Left"
+                               Width="456"
+                               Margin="5,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="24"
+                               FontFamily="Segoe WP Light" />
+                </StackPanel>
+                <TextBlock TextWrapping="Wrap"
+                           Text="contact"
+                           HorizontalAlignment="Left"
+                           Width="456"
+                           Margin="0,10"
+                           x:Uid="Contact"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource MenuItemSubText}" />
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,0,0,20"
+                            Tapped="GoToTwitter_OnTap">
+                    <Image
+                        Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
+                        DataContext="/Images/{0}/twitter.png"
+                        Width="50"
+                        Height="50" />
+                    <TextBlock x:Name="lblTwitter"
+                               TextWrapping="Wrap"
+                               Text="@NPadrutt"
+                               HorizontalAlignment="Left"
+                               Width="456"
+                               Margin="5,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               FontFamily="Segoe WP Light" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,0,0,20"
+                            Tapped="GoToWebsite_OnTap">
+                    <Image
+                        Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
+                        DataContext="/Images/{0}/internet.png"
+                        Width="50"
+                        Height="50" />
+                    <TextBlock x:Name="lblWebsite"
+                               TextWrapping="Wrap"
+                               Text="www.apply-solutions.ch"
+                               HorizontalAlignment="Left"
+                               Width="456"
+                               Margin="5,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               FontFamily="Segoe WP Light" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Tapped="ComposeMail_OnTap"
+                            Margin="0,0,-14.333,0">
+                    <Image
+                        Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
+                        DataContext="/Images/{0}/mail.png"
+                        Width="50"
+                        Height="50" />
+                    <TextBlock x:Name="lblSupportMail"
+                               TextWrapping="Wrap"
+                               Text="mobile.support@apply-solutions.ch"
+                               HorizontalAlignment="Left"
+                               Width="456"
+                               Margin="5,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               FontFamily="Segoe WP Light" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
 </UserControl>

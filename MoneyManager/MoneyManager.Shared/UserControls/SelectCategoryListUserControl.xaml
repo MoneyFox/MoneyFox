@@ -1,36 +1,36 @@
 ﻿<UserControl
-	x:Class="MoneyManager.UserControls.CategoryListUserControl"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	mc:Ignorable="d"
-	d:DesignHeight="300"
-	d:DesignWidth="400"
-	DataContext="{Binding CategoryListView, Source={StaticResource Locator}}">
+    x:Class="MoneyManager.UserControls.CategoryListUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    DataContext="{Binding CategoryListView, Source={StaticResource Locator}}">
 
-	<UserControl.Resources>
-		<DataTemplate x:Key="CategoryTemplate">
-			<StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
-			            MinWidth="300" Holding="CategoryListHolding">
-				<FlyoutBase.AttachedFlyout>
-					<MenuFlyout>
-						<MenuFlyoutItem x:Uid="Edit" Text="Edit" Click="EditCategory" />
-						<MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="DeleteCategory" />
-					</MenuFlyout>
-				</FlyoutBase.AttachedFlyout>
-				<TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding Name}" />
-			</StackPanel>
-		</DataTemplate>
-	</UserControl.Resources>
+    <UserControl.Resources>
+        <DataTemplate x:Key="CategoryTemplate">
+            <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
+                        MinWidth="300" Holding="CategoryListHolding">
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" Click="EditCategory" />
+                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="DeleteCategory" />
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding Name}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
 
-	<Grid>
-		<TextBox Header="search" x:Uid="SearchHeader"
-		         Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-		<ScrollViewer Margin="0,83,0,0">
-			<ListView ItemsSource="{Binding Categories}"
-			          ItemTemplate="{StaticResource CategoryTemplate }"
-			          SelectedItem="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-		</ScrollViewer>
-	</Grid>
+    <Grid>
+        <TextBox Header="search" x:Uid="SearchHeader"
+                 Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <ScrollViewer Margin="0,83,0,0">
+            <ListView ItemsSource="{Binding Categories}"
+                      ItemTemplate="{StaticResource CategoryTemplate }"
+                      SelectedItem="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </ScrollViewer>
+    </Grid>
 </UserControl>

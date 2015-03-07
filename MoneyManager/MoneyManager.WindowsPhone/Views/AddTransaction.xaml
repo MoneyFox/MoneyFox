@@ -1,50 +1,50 @@
 ﻿<Page
-	x:Class="MoneyManager.Views.AddTransaction"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:userControls="using:MoneyManager.UserControls"
-	mc:Ignorable="d"
-	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-	DataContext="{Binding AddTransactionView, Source={StaticResource Locator}}">
+    x:Class="MoneyManager.Views.AddTransaction"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:MoneyManager.UserControls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding AddTransactionView, Source={StaticResource Locator}}">
 
-	<Page.Transitions>
-		<TransitionCollection>
-			<NavigationThemeTransition>
-				<NavigationThemeTransition.DefaultNavigationTransitionInfo>
-					<ContinuumNavigationTransitionInfo />
-				</NavigationThemeTransition.DefaultNavigationTransitionInfo>
-			</NavigationThemeTransition>
-		</TransitionCollection>
-	</Page.Transitions>
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
 
-	<Page.BottomAppBar>
-		<CommandBar Background="{StaticResource PhoneAccentBrush}">
-			<AppBarButton Icon="Accept" Label="Done" x:Uid="Done" Click="DoneClick" />
-			<AppBarButton Icon="Cancel" Label="Cancel" x:Uid="Cancel" Click="CancelClick" />
-		</CommandBar>
-	</Page.BottomAppBar>
+    <Page.BottomAppBar>
+        <CommandBar Background="{StaticResource PhoneAccentBrush}">
+            <AppBarButton Icon="Accept" Label="Done" x:Uid="Done" Click="DoneClick" />
+            <AppBarButton Icon="Cancel" Label="Cancel" x:Uid="Cancel" Click="CancelClick" />
+        </CommandBar>
+    </Page.BottomAppBar>
 
-	<Grid>
-		<Grid.ChildrenTransitions>
-			<TransitionCollection>
-				<EntranceThemeTransition />
-			</TransitionCollection>
-		</Grid.ChildrenTransitions>
+    <Grid>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
 
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-		<StackPanel Grid.Row="0" Margin="24,17,0,28">
-			<TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}"
-			           Typography.Capitals="SmallCaps" />
-		</StackPanel>
+        <StackPanel Grid.Row="0" Margin="24,17,0,28">
+            <TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}"
+                       Typography.Capitals="SmallCaps" />
+        </StackPanel>
 
-		<Grid Grid.Row="1">
-			<userControls:AddTransactionUserControl />
-		</Grid>
-	</Grid>
+        <Grid Grid.Row="1">
+            <userControls:AddTransactionUserControl />
+        </Grid>
+    </Grid>
 </Page>

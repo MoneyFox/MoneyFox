@@ -12,69 +12,67 @@ using PropertyChanged;
 #endregion
 
 namespace MoneyManager.Business.ViewModels {
-	[ImplementPropertyChanged]
-	public class StatisticViewModel : ViewModelBase {
-		private ObservableCollection<StatisticItem> _monthlyCashFlow;
-		private ObservableCollection<StatisticItem> _monthlySpreading;
+    [ImplementPropertyChanged]
+    public class StatisticViewModel : ViewModelBase {
+        private ObservableCollection<StatisticItem> _monthlyCashFlow;
 
-		public StatisticViewModel() {
-			StartDate = DateTime.Now.Date.AddMonths(-1);
-			EndDate = DateTime.Now.Date;
-		}
+        private ObservableCollection<StatisticItem> _monthlySpreading;
 
-		public ObservableCollection<StatisticItem> MonthlyCashFlow {
-			get {
-				return _monthlyCashFlow == null || !_monthlyCashFlow.Any()
-					? StatisticLogic.GetMonthlyCashFlow()
-					: _monthlyCashFlow;
-			}
-			set {
-				if (value == null) {
-					return;
-				}
-				_monthlyCashFlow = value;
-			}
-		}
+        public StatisticViewModel() {
+            StartDate = DateTime.Now.Date.AddMonths(-1);
+            EndDate = DateTime.Now.Date;
+        }
 
-		public ObservableCollection<StatisticItem> MonthlySpreading {
-			get {
-				return _monthlySpreading == null || !_monthlySpreading.Any()
-					? StatisticLogic.GetSpreading()
-					: _monthlySpreading;
-			}
-			set {
-				if (value == null) {
-					return;
-				}
-				_monthlySpreading = value;
-			}
-		}
+        public ObservableCollection<StatisticItem> MonthlyCashFlow {
+            get {
+                return _monthlyCashFlow == null || !_monthlyCashFlow.Any()
+                    ? StatisticLogic.GetMonthlyCashFlow()
+                    : _monthlyCashFlow;
+            }
+            set {
+                if (value == null) return;
+                _monthlyCashFlow = value;
+            }
+        }
 
-		public DateTime StartDate { get; set; }
-		public DateTime EndDate { get; set; }
+        public ObservableCollection<StatisticItem> MonthlySpreading {
+            get {
+                return _monthlySpreading == null || !_monthlySpreading.Any()
+                    ? StatisticLogic.GetSpreading()
+                    : _monthlySpreading;
+            }
+            set {
+                if (value == null) return;
+                _monthlySpreading = value;
+            }
+        }
 
-		public string Title {
-			get {
-				return Translation.GetTranslation("StatistikTitle") + " " + StartDate.ToString("d") +
-				       " - " +
-				       EndDate.ToString("d");
-			}
-		}
+        public DateTime StartDate { get; set; }
 
-		public void SetDefaultCashFlow() {
-			MonthlyCashFlow = StatisticLogic.GetMonthlyCashFlow();
-		}
+        public DateTime EndDate { get; set; }
 
-		public void SetDefaultSpreading() {
-			MonthlySpreading = StatisticLogic.GetSpreading();
-		}
+        public string Title {
+            get {
+                return Translation.GetTranslation("StatistikTitle") + " " + StartDate.ToString("d") +
+                       " - " +
+                       EndDate.ToString("d");
+            }
+        }
 
-		public void SetCustomCashFlow() {
-			MonthlyCashFlow = StatisticLogic.GetMonthlyCashFlow(StartDate, EndDate);
-		}
+        public void SetDefaultCashFlow() {
+            MonthlyCashFlow = StatisticLogic.GetMonthlyCashFlow();
+        }
 
-		public void SetCustomSpreading() {
-			MonthlySpreading = StatisticLogic.GetSpreading(StartDate, EndDate);
-		}
-	}
+        public void SetDefaultSpreading() {
+            MonthlySpreading = StatisticLogic.GetSpreading();
+        }
+
+        public void SetCustomCashFlow() {
+            MonthlyCashFlow = StatisticLogic.GetMonthlyCashFlow(StartDate, EndDate);
+        }
+
+        public void SetCustomSpreading() {
+            MonthlySpreading = StatisticLogic.GetSpreading(StartDate, EndDate);
+        }
+    }
 }

@@ -1,6 +1,7 @@
 ﻿namespace MoneyManager.Foundation.OperationContracts {
-	public interface ISecondTile {
-		void Create();
-		void Remove();
-	}
+    public interface ISecondTile {
+        void Create();
+
+        void Remove();
+    }
 }
