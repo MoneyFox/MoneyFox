@@ -26,10 +26,6 @@ namespace MoneyManager.Business.ViewModels {
 
         public DateTime EndDate { get; set; }
 
-        public string Currency {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency; }
-        }
-
         public StatisticViewModel() {
             StartDate = DateTime.Now.Date.AddMonths(-1);
             EndDate = DateTime.Now.Date;

@@ -229,14 +229,17 @@ namespace MoneyManager.Business.Logic {
             foreach (var category in AllCategories) {
                 categories.Add(new StatisticItem {
                     Category = category.Name,
-                    Value = AllTransaction.Where(x => x.CategoryId == category.Id)
-                            .Sum(x => x.Type == (int) TransactionType.Spending
-                                ? -x.Amount
-                                : x.Amount)
+                    Value = AllTransaction
+                        .Where(x => x.CategoryId == category.Id)
+                        .Where(x => x.Type != (int) TransactionType.Transfer)
+                        .Sum(x => x.Type == (int) TransactionType.Spending
+                            ? -x.Amount
+                            : x.Amount),
+                    Label = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
                 });
             }
 
-            return categories;
+            return new ObservableCollection<StatisticItem>(categories.OrderBy(x => x.Value).ToList());
         }
     }
 }
