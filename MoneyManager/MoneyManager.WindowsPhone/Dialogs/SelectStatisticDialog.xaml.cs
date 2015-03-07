@@ -21,6 +21,7 @@ namespace MoneyManager.Dialogs {
             if (LicenseHelper.IsFeaturepackLicensed) {
                 statisticView.SetCustomCashFlow();
                 statisticView.SetCustomSpreading();
+                statisticView.SetCagtegorySummary();
             } else {
                 var dialog = new MessageDialog(Translation.GetTranslation("ShowFeatureNotLicensedMessage"),
                     Translation.GetTranslation("FeatureNotLicensedTitle"));

@@ -215,5 +215,28 @@ namespace MoneyManager.Business.Logic {
                 statisticList.Add(othersItem);
             }
         }
+
+
+        /// <summary>
+        /// Returns a list with a summary per category for the selected date range.
+        /// </summary>
+        /// <param name="startDate">start date</param>
+        /// <param name="endDate">enddate</param>
+        /// <returns>List with statistic Items.</returns>
+        public static ObservableCollection<StatisticItem> GetCategorySummary(DateTime startDate, DateTime endDate) {
+            var categories = new ObservableCollection<StatisticItem>();
+            
+            foreach (var category in AllCategories) {
+                categories.Add(new StatisticItem {
+                    Category = category.Name,
+                    Value = AllTransaction.Where(x => x.CategoryId == category.Id)
+                            .Sum(x => x.Type == (int) TransactionType.Spending
+                                ? -x.Amount
+                                : x.Amount)
+                });
+            }
+
+            return categories;
+        }
     }
 }

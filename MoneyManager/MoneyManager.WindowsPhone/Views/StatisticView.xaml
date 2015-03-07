@@ -34,7 +34,7 @@
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
             <Pivot Title="{Binding Title}" x:Uid="StatistikTitle">
-                <PivotItem x:Uid="AccountsMenu" Header="overview">
+                <PivotItem x:Uid="AccountsMenu" Header="accounts">
                     <Grid>
                         <userControls:BarChartUserControl />
                     </Grid>
@@ -42,6 +42,11 @@
                 <PivotItem x:Uid="OverviewMenu" Header="overview">
                     <Grid>
                         <userControls:PieChartUserControl />
+                    </Grid>
+                </PivotItem>                
+                <PivotItem x:Uid="CategorySummary" Header="category summary">
+                    <Grid>
+                        <userControls:CategorySummaryUserControl />
                     </Grid>
                 </PivotItem>
             </Pivot>

@@ -4,7 +4,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
+using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
@@ -17,6 +19,16 @@ namespace MoneyManager.Business.ViewModels {
         private ObservableCollection<StatisticItem> _monthlyCashFlow;
 
         private ObservableCollection<StatisticItem> _monthlySpreading;
+
+        private ObservableCollection<StatisticItem> _categorySummary;
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
+        public string Currency {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency; }
+        }
 
         public StatisticViewModel() {
             StartDate = DateTime.Now.Date.AddMonths(-1);
@@ -47,9 +59,18 @@ namespace MoneyManager.Business.ViewModels {
             }
         }
 
-        public DateTime StartDate { get; set; }
+        public ObservableCollection<StatisticItem> CategorySummary {
+            get {
+                return _categorySummary == null || !_categorySummary.Any()
+                    ? StatisticLogic.GetCategorySummary(StartDate, EndDate)
+                    : _categorySummary;
+            }
+            set {
+                if (value == null) return;
+                _categorySummary = value;
+            }
+        } 
 
-        public DateTime EndDate { get; set; }
 
         public string Title {
             get {
@@ -73,6 +94,10 @@ namespace MoneyManager.Business.ViewModels {
 
         public void SetCustomSpreading() {
             MonthlySpreading = StatisticLogic.GetSpreading(StartDate, EndDate);
+        }
+
+        public void SetCagtegorySummary() {
+            CategorySummary = StatisticLogic.GetCategorySummary(StartDate, EndDate);
         }
     }
 }

@@ -585,4 +585,7 @@
   <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
     <value>Ja</value>
   </data>
+  <data name="CategorySummary" xml:space="preserve">
+    <value>Kategory Zusammenfassung</value>
+  </data>
 </root>

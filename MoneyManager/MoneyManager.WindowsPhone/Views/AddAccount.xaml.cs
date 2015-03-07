@@ -8,6 +8,7 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
 using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Model;
 
 #endregion
 
