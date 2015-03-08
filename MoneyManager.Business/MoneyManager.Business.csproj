@@ -73,6 +73,7 @@
     <Compile Include="Logic\Tile\Tile.cs" />
     <Compile Include="Logic\Tile\TransferTile.cs" />
     <Compile Include="Helper\Utilities.cs" />
+    <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\AddTransactionViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />
