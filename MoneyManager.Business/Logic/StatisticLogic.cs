@@ -230,6 +230,7 @@ namespace MoneyManager.Business.Logic {
                 categories.Add(new StatisticItem {
                     Category = category.Name,
                     Value = AllTransaction
+                        .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .Where(x => x.CategoryId == category.Id)
                         .Where(x => x.Type != (int) TransactionType.Transfer)
                         .Sum(x => x.Type == (int) TransactionType.Spending
@@ -239,7 +240,8 @@ namespace MoneyManager.Business.Logic {
                 });
             }
 
-            return new ObservableCollection<StatisticItem>(categories.OrderBy(x => x.Value).ToList());
+            return new ObservableCollection<StatisticItem>(
+                    categories.Where(x => Math.Abs(x.Value) > 0.1).OrderBy(x => x.Value).ToList());
         }
     }
 }
