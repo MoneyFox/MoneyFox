@@ -14,35 +14,35 @@ using PropertyChanged;
 namespace MoneyManager.DataAccess.DataAccess {
     [ImplementPropertyChanged]
     public class SettingDataAccess : INotifyPropertyChanged {
-        private const string DefaultCurrencyKeyname = "DefaultCurrency";
-        private const string DefaultAccountKeyname = "DefaultAccount";
-        private const string ShowCashFlowOnMainTileKeyname = "ShowCashFlowOnMainTile";
+        private const string DEFAULT_CURRENCY_KEYNAME = "DefaultCurrency";
+        private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
+        private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
 
-        private const int DefaultAccountKeydefault = -1;
-        private const bool ShowCashFlowOnMainTileKeydefault = false;
+        private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
+        private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = false;
 
         #region Properties
 
         public string DefaultCurrency {
-            get { return GetValueOrDefault(DefaultCurrencyKeyname, new GeographicRegion().CurrenciesInUse.First()); }
+            get { return GetValueOrDefault(DEFAULT_CURRENCY_KEYNAME, new GeographicRegion().CurrenciesInUse.First()); }
             set {
-                AddOrUpdateValue(DefaultCurrencyKeyname, value);
+                AddOrUpdateValue(DEFAULT_CURRENCY_KEYNAME, value);
                 OnPropertyChanged();
             }
         }
 
         public int DefaultAccount {
-            get { return GetValueOrDefault(DefaultAccountKeyname, DefaultAccountKeydefault); }
+            get { return GetValueOrDefault(DEFAULT_ACCOUNT_KEYNAME, DEFAULT_ACCOUNT_KEYDEFAULT); }
             set {
-                AddOrUpdateValue(DefaultAccountKeyname, value);
+                AddOrUpdateValue(DEFAULT_ACCOUNT_KEYNAME, value);
                 OnPropertyChanged();
             }
         }
 
         public bool ShowCashFlowOnMainTile {
-            get { return GetValueOrDefault(ShowCashFlowOnMainTileKeyname, ShowCashFlowOnMainTileKeydefault); }
+            get { return GetValueOrDefault(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT); }
             set {
-                AddOrUpdateValue(ShowCashFlowOnMainTileKeyname, value);
+                AddOrUpdateValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value);
                 OnPropertyChanged();
             }
         }
@@ -55,12 +55,12 @@ namespace MoneyManager.DataAccess.DataAccess {
             ApplicationData.Current.RoamingSettings.Values[key] = value;
         }
 
-        private valueType GetValueOrDefault<valueType>(string key, valueType defaultValue) {
-            valueType value;
+        private TValueType GetValueOrDefault<TValueType>(string key, TValueType defaultValue) {
+            TValueType value;
 
             if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key)) {
                 object setting = ApplicationData.Current.RoamingSettings.Values[key];
-                value = (valueType) Convert.ChangeType(setting, typeof (valueType), CultureInfo.InvariantCulture);
+                value = (TValueType) Convert.ChangeType(setting, typeof (TValueType), CultureInfo.InvariantCulture);
             } else {
                 value = defaultValue;
             }

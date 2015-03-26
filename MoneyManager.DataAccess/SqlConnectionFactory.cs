@@ -10,7 +10,7 @@ using SQLite.Net.Platform.WinRT;
 
 namespace MoneyManager.DataAccess {
     public class SqlConnectionFactory {
-        private static readonly string _dbPath =
+        private static readonly string DbPath =
             Path.Combine(ApplicationData.Current.LocalFolder.Path, "moneyfox.sqlite");
 
         public static SQLiteConnection GetSqlConnection() {
@@ -18,7 +18,7 @@ namespace MoneyManager.DataAccess {
         }
 
         public static SQLiteConnection GetSqlConnection(ISQLitePlatform sqlitePlatform) {
-            return new SQLiteConnection(sqlitePlatform, _dbPath);
+            return new SQLiteConnection(sqlitePlatform, DbPath);
         }
     }
 }
