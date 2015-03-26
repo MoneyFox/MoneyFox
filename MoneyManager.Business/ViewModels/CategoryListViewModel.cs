@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
 #endregion

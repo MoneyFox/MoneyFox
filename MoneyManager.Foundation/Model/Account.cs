@@ -5,7 +5,7 @@ using SQLite.Net.Attributes;
 
 #endregion
 
-namespace MoneyManager.DataAccess.Model {
+namespace MoneyManager.Foundation.Model {
     [ImplementPropertyChanged]
     [Table("Accounts")]
     public class Account {

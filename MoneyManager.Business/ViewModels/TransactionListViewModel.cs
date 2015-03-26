@@ -6,7 +6,7 @@ using System.Linq;
 using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation.Model;
 using PropertyChanged;
 using QKit.JumpList;
 

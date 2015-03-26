@@ -3,7 +3,7 @@
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation.Model;
 
 #endregion
 

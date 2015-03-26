@@ -5,8 +5,8 @@ using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
 using MoneyManager.Dialogs;
+using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.UserControls {
     public partial class CategoryListUserControl {

@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.DataAccess.Model;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 

@@ -47,8 +47,12 @@
   <ItemGroup>
     <Compile Include="AbstractDataAccess.cs" />
     <Compile Include="Enumerations.cs" />
+    <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\FinancialTransaction.cs" />
     <Compile Include="Model\ProductItem.cs" />
+    <Compile Include="Model\RecurringTransaction.cs" />
     <Compile Include="Model\StatisticItem.cs" />
     <Compile Include="OperationContracts\IDataAccess.cs" />
     <Compile Include="OperationContracts\IRepository.cs" />
@@ -61,6 +65,9 @@
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.49.0\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="SQLite.Net">
+      <HintPath>..\packages\SQLite.Net.Platform.WP81.1.0.1\lib\SQLite.Net.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Insights">
       <HintPath>..\packages\Xamarin.Insights.1.9.1.107\lib\portable-win+net40+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.dll</HintPath>

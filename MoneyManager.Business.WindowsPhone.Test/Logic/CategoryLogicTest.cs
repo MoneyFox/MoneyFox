@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess;
-using MoneyManager.DataAccess.Model;
+using MoneyManager.Foundation.Model;
 using SQLite.Net;
 
 namespace MoneyManager.Business.WindowsPhone.Test.Logic {
