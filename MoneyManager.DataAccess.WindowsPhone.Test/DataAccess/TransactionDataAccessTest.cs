@@ -23,7 +23,6 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
         }
 
         [TestMethod]
-        [Ignore]
         public void CrudTransactionTest() {
             var transactionDataAccess = new TransactionDataAccess();
 
@@ -40,8 +39,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
 
             transactionDataAccess.Save(transaction);
 
-            transactionDataAccess.LoadList();
-            ObservableCollection<FinancialTransaction> list = transactionDataAccess.AllTransactions;
+            var list = transactionDataAccess.LoadList();
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstAmount, list.First().Amount);
@@ -51,7 +49,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
             transactionDataAccess.Save(transaction);
 
             transactionDataAccess.LoadList();
-            list = transactionDataAccess.AllTransactions;
+            list = transactionDataAccess.LoadList();
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(secondAmount, list.First().Amount);
@@ -59,7 +57,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
             transactionDataAccess.Delete(transaction);
 
             transactionDataAccess.LoadList();
-            list = transactionDataAccess.AllTransactions;
+            list = transactionDataAccess.LoadList();
             Assert.IsFalse(list.Any());
         }
 

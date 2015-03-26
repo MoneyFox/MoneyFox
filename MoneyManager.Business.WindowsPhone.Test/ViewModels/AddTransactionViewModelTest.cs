@@ -68,9 +68,8 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels {
         }
 
         [TestMethod]
-        [Ignore]
         public void ReturnTransferDefault_Title() {
-            _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Transfer };
+            _transactionRepository.Selected = new FinancialTransaction {Type = (int)TransactionType.Transfer};
             var viewModel = new AddTransactionViewModel(_transactionRepository);
 
             Assert.AreEqual("add transfer", viewModel.Title);

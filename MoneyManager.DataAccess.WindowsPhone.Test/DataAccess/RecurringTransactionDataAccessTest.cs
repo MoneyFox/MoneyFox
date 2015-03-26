@@ -21,7 +21,6 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
         }
 
         [TestMethod]
-        [Ignore]
         public void CrudRecurringTransactionTest() {
             var recurringTransactionDataAccess = new RecurringTransactionDataAccess();
 
@@ -38,8 +37,8 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
 
             recurringTransactionDataAccess.Save(transaction);
 
-            recurringTransactionDataAccess.LoadList();
-            ObservableCollection<RecurringTransaction> list = recurringTransactionDataAccess.AllRecurringTransactions;
+
+            var list = recurringTransactionDataAccess.LoadList();
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstAmount, list.First().Amount);
@@ -49,7 +48,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
             recurringTransactionDataAccess.Save(transaction);
 
             recurringTransactionDataAccess.LoadList();
-            list = recurringTransactionDataAccess.AllRecurringTransactions;
+            list = recurringTransactionDataAccess.LoadList();
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(secondAmount, list.First().Amount);
@@ -57,7 +56,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
             recurringTransactionDataAccess.Delete(transaction);
 
             recurringTransactionDataAccess.LoadList();
-            list = recurringTransactionDataAccess.AllRecurringTransactions;
+            list = recurringTransactionDataAccess.LoadList();
             Assert.IsFalse(list.Any());
         }
     }

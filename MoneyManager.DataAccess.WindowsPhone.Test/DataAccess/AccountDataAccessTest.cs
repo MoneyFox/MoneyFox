@@ -36,7 +36,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
             accountDataAccess.Save(account);
 
             accountDataAccess.LoadList();
-            ObservableCollection<Account> list = new ObservableCollection<Account>(accountDataAccess.LoadList());
+            var list = accountDataAccess.LoadList();
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstName, list.First().Name);
@@ -45,14 +45,14 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
 
             accountDataAccess.Save(account);
 
-            list = new ObservableCollection<Account>(accountDataAccess.LoadList());
+            list = accountDataAccess.LoadList();
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(secondName, list.First().Name);
 
             accountDataAccess.Delete(account);
 
-            list = new ObservableCollection<Account>(accountDataAccess.LoadList());
+            list = accountDataAccess.LoadList();
 
             Assert.IsFalse(list.Any());
         }

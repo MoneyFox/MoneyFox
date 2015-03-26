@@ -20,7 +20,6 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
         }
 
         [TestMethod]
-        [Ignore]
         public void CrudCategoryTest() {
             var categoryDataAccess = new CategoryDataAccess();
 
@@ -34,7 +33,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
             categoryDataAccess.Save(category);
 
             categoryDataAccess.LoadList();
-            ObservableCollection<Category> list = categoryDataAccess.AllCategories;
+            var list = categoryDataAccess.LoadList();
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(firstName, list.First().Name);
@@ -42,16 +41,14 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
             category.Name = secondName;
             categoryDataAccess.Save(category);
 
-            categoryDataAccess.LoadList();
-            list = categoryDataAccess.AllCategories;
+            list = categoryDataAccess.LoadList();
 
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual(secondName, list.First().Name);
 
             categoryDataAccess.Delete(category);
 
-            categoryDataAccess.LoadList();
-            list = categoryDataAccess.AllCategories;
+            list = categoryDataAccess.LoadList();
             Assert.IsFalse(list.Any());
         }
     }

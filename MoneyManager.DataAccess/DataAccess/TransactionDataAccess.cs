@@ -31,7 +31,6 @@ namespace MoneyManager.DataAccess.DataAccess {
 
         protected override void DeleteFromDatabase(FinancialTransaction transaction) {
             using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                AllTransactions.Remove(transaction);
                 dbConn.Delete(transaction);
             }
         }
