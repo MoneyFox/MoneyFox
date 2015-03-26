@@ -321,11 +321,9 @@
     <Reference Include="QKit">
       <HintPath>..\..\packages\QKit.0.4.1\lib\wpa81\QKit.dll</HintPath>
     </Reference>
-    <Reference Include="SQLite.Net">
-      <HintPath>..\..\packages\SQLite.Net.Platform.WP81.1.0.1\lib\SQLite.Net.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLite.Net.Platform.WindowsPhoneApp81">
-      <HintPath>..\..\packages\SQLite.Net.Platform.WP81.1.0.1\lib\SQLite.Net.Platform.WindowsPhoneApp81.dll</HintPath>
+    <Reference Include="SQLite.Net, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\x86\Debug\SQLite.Net.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Core">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Common\Telerik.Core.dll</HintPath>

@@ -3,6 +3,7 @@
 using System;
 using PropertyChanged;
 using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
 
 #endregion
 
@@ -30,6 +31,7 @@ namespace MoneyManager.Foundation.Model {
 
         public string Currency { get; set; }
 
+        [ForeignKey(typeof(Category))]
         public int? CategoryId { get; set; }
 
         public bool Cleared { get; set; }
@@ -48,7 +50,7 @@ namespace MoneyManager.Foundation.Model {
         [Ignore]
         public Account TargetAccount { get; set; }
 
-        [Ignore]
+        [ManyToOne]
         public Category Category { get; set; }
 
         [Ignore]
