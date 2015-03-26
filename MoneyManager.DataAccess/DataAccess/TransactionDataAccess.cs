@@ -8,6 +8,7 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 using SQLite.Net;
+using SQLiteNetExtensions.Extensions;
 
 #endregion
 
@@ -18,21 +19,13 @@ namespace MoneyManager.DataAccess.DataAccess {
 
         public FinancialTransaction SelectedTransaction { get; set; }
 
-        protected override void SaveToDb(FinancialTransaction transaction) {
-            SaveToDb(transaction, false);
-        }
-
-        public void SaveToDb(FinancialTransaction transaction, bool skipRecurring) {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                if (AllTransactions == null) {
-                    LoadList();
+        protected override void SaveToDb(FinancialTransaction itemToSave) {
+            using (var db = SqlConnectionFactory.GetSqlConnection()) {
+                if (itemToSave.Id == 0) {
+                    db.InsertWithChildren(itemToSave);
+                } else {
+                    db.UpdateWithChildren(itemToSave);
                 }
-
-                AllTransactions.Add(transaction);
-                AllTransactions =
-                    new ObservableCollection<FinancialTransaction>(AllTransactions.OrderByDescending(x => x.Date));
-
-                dbConn.Insert(transaction);
             }
         }
 

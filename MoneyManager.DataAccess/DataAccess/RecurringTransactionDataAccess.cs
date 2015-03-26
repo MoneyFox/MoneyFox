@@ -6,6 +6,7 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 using SQLite.Net;
+using SQLiteNetExtensions.Extensions;
 
 #endregion
 
@@ -16,27 +17,23 @@ namespace MoneyManager.DataAccess.DataAccess {
 
         public RecurringTransaction SelectedRecurringTransaction { get; set; }
 
-        protected override void SaveToDb(RecurringTransaction itemToAdd) {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                if (AllRecurringTransactions == null) {
-                    AllRecurringTransactions = new ObservableCollection<RecurringTransaction>();
+        protected override void SaveToDb(RecurringTransaction itemToSave) {
+            using (var db = SqlConnectionFactory.GetSqlConnection()) {
+                if (itemToSave.Id == 0) {
+                    db.InsertWithChildren(itemToSave);
+                } else {
+                    db.UpdateWithChildren(itemToSave);
                 }
-
-                AllRecurringTransactions.Add(itemToAdd);
-                AllRecurringTransactions = new ObservableCollection<RecurringTransaction>
-                    (AllRecurringTransactions.OrderBy(x => x.StartDate));
-
-                dbConn.Insert(itemToAdd);
             }
         }
 
         protected override void DeleteFromDatabase(RecurringTransaction itemToDelete) {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
+            using (var db = SqlConnectionFactory.GetSqlConnection()) {
                 if (AllRecurringTransactions != null) {
                     AllRecurringTransactions.Remove(itemToDelete);
                 }
 
-                dbConn.Delete(itemToDelete);
+                db.Delete(itemToDelete);
             }
         }
 

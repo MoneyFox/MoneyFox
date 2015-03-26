@@ -6,6 +6,7 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 using SQLite.Net;
+using SQLiteNetExtensions.Extensions;
 
 #endregion
 
@@ -16,28 +17,26 @@ namespace MoneyManager.DataAccess.DataAccess {
 
         public ObservableCollection<Account> AllAccounts { get; set; }
 
-        protected override void SaveToDb(Account itemToAdd) {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                if (AllAccounts == null) {
-                    AllAccounts = new ObservableCollection<Account>();
+        protected override void SaveToDb(Account itemToSave) {
+            using (var db = SqlConnectionFactory.GetSqlConnection()) {
+                if (itemToSave.Id == 0) {
+                    db.InsertWithChildren(itemToSave);
+                } else {
+                    db.UpdateWithChildren(itemToSave);
                 }
-
-                AllAccounts.Add(itemToAdd);
-                AllAccounts = new ObservableCollection<Account>(AllAccounts.OrderBy(x => x.Name));
-                dbConn.Insert(itemToAdd);
             }
         }
 
         protected override void DeleteFromDatabase(Account itemToDelete) {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
+            using (var db = SqlConnectionFactory.GetSqlConnection()) {
                 AllAccounts.Remove(itemToDelete);
-                dbConn.Delete(itemToDelete);
+                db.Delete(itemToDelete);
             }
         }
 
         protected override void GetListFromDb() {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                AllAccounts = new ObservableCollection<Account>(dbConn.Table<Account>()
+            using (var db = SqlConnectionFactory.GetSqlConnection()) {
+                AllAccounts = new ObservableCollection<Account>(db.Table<Account>()
                     .ToList()
                     .OrderBy(x => x.Name));
             }

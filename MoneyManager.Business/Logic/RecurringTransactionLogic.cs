@@ -117,7 +117,7 @@ namespace MoneyManager.Business.Logic {
                 Note = recurringTransaction.Note,
             };
 
-            transactionData.SaveToDb(newTransaction, true);
+            transactionData.Save(newTransaction);
         }
 
         public static void Delete(RecurringTransaction recTransaction) {
