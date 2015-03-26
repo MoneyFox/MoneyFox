@@ -24,11 +24,11 @@ namespace MoneyManager.Business.Repositories {
         public FinancialTransaction Selected { get; set; }
 
         public void Save(FinancialTransaction item) {
-            throw new System.NotImplementedException();
+            _dataAccess.Save(item);
         }
 
         public void Delete(FinancialTransaction item) {
-            throw new System.NotImplementedException();
+            _dataAccess.Delete(item);
         }
     }
 }

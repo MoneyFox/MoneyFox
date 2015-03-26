@@ -80,7 +80,9 @@ namespace MoneyManager.Business.Logic {
                 addTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
                 addTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
             }
-            addTransactionView.SelectedTransaction = transaction;
+
+            //Todo:Refactor
+            //addTransactionView.SelectedTransaction = transaction;
         }
 
         public static async Task DeleteTransaction(FinancialTransaction transaction, bool skipConfirmation = false) {

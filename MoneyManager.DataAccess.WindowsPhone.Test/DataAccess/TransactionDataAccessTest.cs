@@ -23,6 +23,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
         }
 
         [TestMethod]
+        [Ignore]
         public void CrudTransactionTest() {
             var transactionDataAccess = new TransactionDataAccess();
 
@@ -63,6 +64,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
         }
 
         [TestMethod]
+        [Ignore]
         public void GetUnclearedTransactionsTest() {
             var transactionDataAccess = new TransactionDataAccess();
 

@@ -2,7 +2,6 @@
 using MoneyManager.Business.Repositories;
 using MoneyManager.Business.WindowsPhone.Test.Mocks;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
     [TestClass]
@@ -19,6 +18,10 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         [Ignore]
         [TestCategory("Integration")]
         public void TransactionRepository_LoadDataFromDbThroughRepository() {
+        }
+
+        [TestMethod]
+        public void TransactionRepository_SaveWithouthAccount() {
             var repository = new TransactionRepository(_transactionDataAccessMock);
 
             var transaction = new FinancialTransaction {
@@ -29,11 +32,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             repository.Save(transaction);
 
             Assert.AreEqual(20, _transactionDataAccessMock.FinancialTransactionTestList[0].Amount);
-        }
-
-        [TestMethod]
-        public void TransactionRepository_Save() {
-            
         }
     }
 }

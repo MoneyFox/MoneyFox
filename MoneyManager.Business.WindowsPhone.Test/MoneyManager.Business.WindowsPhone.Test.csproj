@@ -78,9 +78,6 @@
     <SDKReference Include="TestPlatform, Version=12.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logic\AccountLogicTest.cs" />
-    <Compile Include="Logic\CategoryLogicTest.cs" />
-    <Compile Include="Logic\TransactionLogicTest.cs" />
     <Compile Include="Logic\TransactionTypeLogicTest.cs" />
     <Compile Include="Mocks\TransactionDataAccessMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

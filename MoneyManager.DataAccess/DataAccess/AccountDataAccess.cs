@@ -30,7 +30,6 @@ namespace MoneyManager.DataAccess.DataAccess {
 
         protected override void DeleteFromDatabase(Account itemToDelete) {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
-                AllAccounts.Remove(itemToDelete);
                 db.Delete(itemToDelete);
             }
         }

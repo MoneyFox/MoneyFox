@@ -11,6 +11,7 @@ using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
 #endregion
@@ -18,15 +19,82 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class AddTransactionViewModel {
-        public AddTransactionViewModel() {
+        private readonly ITransactionRepository _transactionRepository;
+
+        public AddTransactionViewModel(ITransactionRepository transactionRepository) {
+            _transactionRepository = transactionRepository;
             IsNavigationBlocked = true;
         }
 
-        #region Properties
+        public string Title {
+            get {
+                var text = IsEdit
+                    ? Translation.GetTranslation("EditTitle")
+                    : Translation.GetTranslation("AddTitle");
 
-        public FinancialTransaction SelectedTransaction {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
-            set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
+                string type = TransactionTypeLogic.GetViewTitleForType(_transactionRepository.Selected.Type);
+
+                return String.Format(text, type);
+            }
+        }
+
+        public string AmountString {
+            get { return AmountWithoutExchange.ToString(); }
+            set {
+                double amount;
+                if (Double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount)) {
+                    AmountWithoutExchange = amount;
+                }
+            }
+        }
+
+        public double AmountWithoutExchange {
+            get { return _transactionRepository.Selected.AmountWithoutExchange; }
+            set {
+                _transactionRepository.Selected.AmountWithoutExchange = value;
+                CalculateNewAmount(value);
+            }
+        }
+
+        public bool IsNavigationBlocked { get; set; }
+
+        private void CalculateNewAmount(double value) {
+            if (Math.Abs(_transactionRepository.Selected.ExchangeRatio) < 0.5) {
+                _transactionRepository.Selected.ExchangeRatio = 1;
+            }
+
+            _transactionRepository.Selected.Amount = _transactionRepository.Selected.ExchangeRatio * value;
+        }
+
+        public async void SetCurrency(string currency) {
+            _transactionRepository.Selected.Currency = currency;
+            await LoadCurrencyRatio();
+            _transactionRepository.Selected.IsExchangeModeActive = true;
+            CalculateNewAmount(AmountWithoutExchange);
+        }
+
+        public async Task LoadCurrencyRatio() {
+            _transactionRepository.Selected.ExchangeRatio =
+                await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, _transactionRepository.Selected.Currency);
+        }
+
+        public async void Save() {
+            if (IsEdit) {
+                await TransactionLogic.UpdateTransaction(_transactionRepository.Selected);
+            }
+            else {
+                await TransactionLogic.SaveTransaction(_transactionRepository.Selected, RefreshRealtedList);
+            }
+
+            ((Frame) Window.Current.Content).GoBack();
+        }
+
+        public async void Cancel() {
+            if (IsEdit) {
+                await AccountLogic.AddTransactionAmount(_transactionRepository.Selected);
+            }
+
+            ((Frame) Window.Current.Content).GoBack();
         }
 
         public ObservableCollection<Account> AllAccounts {
@@ -52,77 +120,5 @@ namespace MoneyManager.Business.ViewModels {
         public bool IsTransfer { get; set; }
 
         public bool RefreshRealtedList { get; set; }
-
-        #endregion Properties
-
-        public string Title {
-            get {
-                string text = IsEdit
-                    ? Translation.GetTranslation("EditTitle")
-                    : Translation.GetTranslation("AddTitle");
-
-                string type = TransactionTypeLogic.GetViewTitleForType(SelectedTransaction.Type);
-
-                return String.Format(text, type);
-            }
-        }
-
-        public string AmountString {
-            get { return AmountWithoutExchange.ToString(); }
-            set {
-                double amount;
-                if (Double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount)) {
-                    AmountWithoutExchange = amount;
-                }
-            }
-        }
-
-        public double AmountWithoutExchange {
-            get { return SelectedTransaction.AmountWithoutExchange; }
-            set {
-                SelectedTransaction.AmountWithoutExchange = value;
-                CalculateNewAmount(value);
-            }
-        }
-
-        public bool IsNavigationBlocked { get; set; }
-
-        private void CalculateNewAmount(double value) {
-            if (Math.Abs(SelectedTransaction.ExchangeRatio) < 0.5) {
-                SelectedTransaction.ExchangeRatio = 1;
-            }
-
-            SelectedTransaction.Amount = SelectedTransaction.ExchangeRatio*value;
-        }
-
-        public async void SetCurrency(string currency) {
-            SelectedTransaction.Currency = currency;
-            await LoadCurrencyRatio();
-            SelectedTransaction.IsExchangeModeActive = true;
-            CalculateNewAmount(AmountWithoutExchange);
-        }
-
-        public async Task LoadCurrencyRatio() {
-            SelectedTransaction.ExchangeRatio =
-                await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedTransaction.Currency);
-        }
-
-        public async void Save() {
-            if (IsEdit) {
-                await TransactionLogic.UpdateTransaction(SelectedTransaction);
-            } else {
-                await TransactionLogic.SaveTransaction(SelectedTransaction, RefreshRealtedList);
-            }
-
-            ((Frame) Window.Current.Content).GoBack();
-        }
-
-        public async void Cancel() {
-            if (IsEdit) {
-                await AccountLogic.AddTransactionAmount(SelectedTransaction);
-            }
-
-            ((Frame) Window.Current.Content).GoBack();
-        }
     }
 }

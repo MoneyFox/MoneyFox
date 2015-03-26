@@ -31,17 +31,19 @@ namespace MoneyManager.Views {
 
         protected override async void OnNavigatedTo(NavigationEventArgs e) {
             if (e.NavigationMode != NavigationMode.Back && AddTransactionView.IsEdit) {
-                await AccountLogic.RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
+                //TODO:Refactor
+                //await AccountLogic.RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
             }
 
             base.OnNavigatedTo(e);
         }
 
         private void DoneClick(object sender, RoutedEventArgs e) {
-            if (AddTransactionView.SelectedTransaction.ChargedAccount == null) {
-                ShowAccountRequiredMessage();
-                return;
-            }
+            //TODO:Refactor
+            //if (AddTransactionView.SelectedTransaction.ChargedAccount == null) {
+            //    ShowAccountRequiredMessage();
+            //    return;
+            //}
 
             AddTransactionView.Save();
         }
