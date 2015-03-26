@@ -168,14 +168,14 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             };
 
             repository.Save(transaction);
-            Assert.IsTrue(transaction == _transactionDataAccessMock.FinancialTransactionTestList[0]);
+            Assert.IsTrue(transaction == repository.Data[0]);
 
             transaction.Amount = 30;
 
             repository.Save(transaction);
 
-            Assert.AreEqual(1, _transactionDataAccessMock.FinancialTransactionTestList.Count);
-            Assert.AreEqual(30, repository.Data[0]);
+            Assert.AreEqual(1, repository.Data.Count);
+            Assert.AreEqual(30, repository.Data[0].Amount);
         }
     }
 }

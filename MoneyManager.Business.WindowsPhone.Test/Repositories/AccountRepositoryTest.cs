@@ -86,14 +86,14 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
 
             repository.Save(account);
 
-            Assert.IsTrue(account == _accountDataAccessMock.AccountTestList[0]);
+            Assert.IsTrue(account == repository.Data[0]);
 
             account.Name = "newName";
 
             repository.Save(account);
 
-            Assert.AreEqual(2, _accountDataAccessMock.AccountTestList.Count());
-            Assert.AreEqual("newName", repository.Data[0]);
+            Assert.AreEqual(2, repository.Data.Count());
+            Assert.AreEqual("newName", repository.Data[0].Name);
         }
     }
 }
