@@ -19,6 +19,5 @@ namespace MoneyManager.Business.WindowsPhone.Test.Mocks {
         public List<FinancialTransaction> LoadList() {
             return new List<FinancialTransaction>();
         }
-
     }
 }

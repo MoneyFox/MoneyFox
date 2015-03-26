@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
@@ -14,7 +15,10 @@ namespace MoneyManager.Business.Repositories {
         public ObservableCollection<FinancialTransaction> Data {
             get { return _data ?? (_data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList())); }
             set {
-                if (_data != null && _data == value) {
+                if (_data == null) {
+                    _data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList());
+                }
+                if (Equals(_data, value)) {
                     return;
                 }
                 _data = value;
@@ -24,10 +28,24 @@ namespace MoneyManager.Business.Repositories {
         public FinancialTransaction Selected { get; set; }
 
         public void Save(FinancialTransaction item) {
+            if (item.ChargedAccount == null) {
+                throw new ArgumentException("charged accout is missing");
+            }
+
+            if (_data == null) {
+                _data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList());
+            }
+
+            _data.Add(item);
             _dataAccess.Save(item);
         }
 
         public void Delete(FinancialTransaction item) {
+            if (_data == null) {
+                _data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList());
+            }
+
+            _data.Remove(item);
             _dataAccess.Delete(item);
         }
     }

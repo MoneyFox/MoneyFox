@@ -18,7 +18,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels {
         }
 
         [TestMethod]
-        public void ReturnEditSpendingTitle_Test() {
+        public void AddTransactionViewModel_ReturnEditSpendingTitle() {
             _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Spending };
             var viewModel = new AddTransactionViewModel(_transactionRepository) { IsEdit = true, IsTransfer = true };
 
@@ -26,7 +26,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels {
         }
 
         [TestMethod]
-        public void ReturnEditIncomeTitle_Test() {
+        public void AddTransactionViewModel_ReturnEditIncomeTitle() {
             _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Income };
             var viewModel = new AddTransactionViewModel(_transactionRepository) { IsEdit = true, IsTransfer = true };
 
@@ -35,7 +35,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels {
 
 
         [TestMethod]
-        public void ReturnEditTransferTitle_Test() {
+        public void AddTransactionViewModel_ReturnEditTransferTitle() {
             _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Transfer };
             var viewModel = new AddTransactionViewModel(_transactionRepository) { IsEdit = true, IsTransfer = true };
 
@@ -43,7 +43,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels {
         }
 
         [TestMethod]
-        public void ReturnAddTransferTitle_Test() {
+        public void AddTransactionViewModel_ReturnAddTransferTitle() {
             _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Transfer };
             var viewModel = new AddTransactionViewModel(_transactionRepository) { IsEdit = false };
 
@@ -51,7 +51,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels {
         }
 
         [TestMethod]
-        public void ReturnSpendingDefault_Title() {
+        public void AddTransactionViewModel_ReturnSpendingDefaultTitle() {
             _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Spending };
 
             var viewModel = new AddTransactionViewModel(_transactionRepository);
@@ -60,7 +60,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels {
         }
 
         [TestMethod]
-        public void ReturnIncomeDefault_Title() {
+        public void AddTransactionViewModel_ReturnIncomeDefault() {
             _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Income };
             var viewModel = new AddTransactionViewModel(_transactionRepository);
 
@@ -68,7 +68,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels {
         }
 
         [TestMethod]
-        public void ReturnTransferDefault_Title() {
+        public void AddTransactionViewModel_ReturnTransferDefault() {
             _transactionRepository.Selected = new FinancialTransaction {Type = (int)TransactionType.Transfer};
             var viewModel = new AddTransactionViewModel(_transactionRepository);
 

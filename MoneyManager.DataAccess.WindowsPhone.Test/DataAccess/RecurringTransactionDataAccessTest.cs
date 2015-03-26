@@ -22,7 +22,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
 
         [TestMethod]
         [TestCategory("Integration")]
-        public void CrudRecurringTransactionTest() {
+        public void RecurringTransactionDataAccess_CrudRecurringTransaction() {
             var recurringTransactionDataAccess = new RecurringTransactionDataAccess();
 
             const double firstAmount = 100.70;

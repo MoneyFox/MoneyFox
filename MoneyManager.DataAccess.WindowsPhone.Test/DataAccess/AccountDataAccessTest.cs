@@ -21,7 +21,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
 
         [TestMethod]
         [TestCategory("Integration")]
-        public void CrudAccountTest() {
+        public void AccountDataAccess_CrudAccount() {
             var accountDataAccess = new AccountDataAccess();
 
             const string firstName = "fooo Name";

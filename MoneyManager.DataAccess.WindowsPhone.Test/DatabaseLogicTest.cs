@@ -14,7 +14,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test {
     public class DatabaseLogicTest {
         [TestMethod]
         [TestCategory("Integration")]
-        public void CreateDatabaseTest() {
+        public void DatabaseLogic_CreateDatabase() {
             DatabaseLogic.CreateDatabase();
 
             using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
