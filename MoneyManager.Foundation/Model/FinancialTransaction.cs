@@ -15,9 +15,14 @@ namespace MoneyManager.Foundation.Model {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
+        [ForeignKey(typeof(Account))]
         public int ChargedAccountId { get; set; }
-
+        
+        [ForeignKey(typeof(Account))]
         public int TargetAccountId { get; set; }
+
+        [ForeignKey(typeof(Category))]
+        public int? CategoryId { get; set; }
 
         public DateTime Date { get; set; }
 
@@ -31,9 +36,6 @@ namespace MoneyManager.Foundation.Model {
 
         public string Currency { get; set; }
 
-        [ForeignKey(typeof(Category))]
-        public int? CategoryId { get; set; }
-
         public bool Cleared { get; set; }
 
         public int Type { get; set; }
@@ -42,18 +44,19 @@ namespace MoneyManager.Foundation.Model {
 
         public bool IsRecurring { get; set; }
 
+        [ForeignKey(typeof(RecurringTransaction))]
         public int? ReccuringTransactionId { get; set; }
 
-        [Ignore]
+        [ManyToOne]
         public Account ChargedAccount { get; set; }
 
-        [Ignore]
+        [ManyToOne]
         public Account TargetAccount { get; set; }
 
         [ManyToOne]
         public Category Category { get; set; }
 
-        [Ignore]
+        [ManyToOne]
         public RecurringTransaction RecurringTransaction { get; set; }
 
         [Ignore]

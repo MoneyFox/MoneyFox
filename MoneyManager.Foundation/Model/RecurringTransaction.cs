@@ -3,6 +3,7 @@
 using System;
 using PropertyChanged;
 using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
 
 #endregion
 
@@ -14,9 +15,14 @@ namespace MoneyManager.Foundation.Model {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
+        [ForeignKey(typeof(Account))]
         public int ChargedAccountId { get; set; }
 
+        [ForeignKey(typeof(Account))]
         public int TargetAccountId { get; set; }
+
+        [ForeignKey(typeof(Category))]
+        public int? CategoryId { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -30,21 +36,19 @@ namespace MoneyManager.Foundation.Model {
 
         public string Currency { get; set; }
 
-        public int? CategoryId { get; set; }
-
         public int Type { get; set; }
 
         public int Recurrence { get; set; }
 
         public string Note { get; set; }
 
-        [Ignore]
+        [ManyToOne]
         public Account ChargedAccount { get; set; }
 
-        [Ignore]
+        [ManyToOne]
         public Account TargetAccount { get; set; }
 
-        [Ignore]
+        [ManyToOne]
         public Category Category { get; set; }
     }
 }
