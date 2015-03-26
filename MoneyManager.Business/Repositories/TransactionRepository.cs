@@ -3,16 +3,25 @@ using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Business.Repositories {
-    public class TransactionRepository : IRepository<FinancialTransaction> {
-        public ObservableCollection<FinancialTransaction> Data {
-            get { throw new System.NotImplementedException(); }
-            set { throw new System.NotImplementedException(); }
+    public class TransactionRepository : ITransactionRepository {
+        private ObservableCollection<FinancialTransaction> _data;
+        private readonly IDataAccess<FinancialTransaction> _dataAccess;
+
+        public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess) {
+            _dataAccess = dataAccess;
         }
 
-        public FinancialTransaction Selected {
-            get { throw new System.NotImplementedException(); }
-            set { throw new System.NotImplementedException(); }
+        public ObservableCollection<FinancialTransaction> Data {
+            get { return _data ?? (_data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList())); }
+            set {
+                if (_data != null && _data == value) {
+                    return;
+                }
+                _data = value;
+            }
         }
+
+        public FinancialTransaction Selected { get; set; }
 
         public void Save(FinancialTransaction item) {
             throw new System.NotImplementedException();

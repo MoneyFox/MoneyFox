@@ -36,10 +36,9 @@ namespace MoneyManager.DataAccess.DataAccess {
             }
         }
 
-        protected override void GetListFromDb() {
+        protected override List<FinancialTransaction> GetListFromDb() {
             using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                AllTransactions =
-                    new ObservableCollection<FinancialTransaction>(dbConn.Table<FinancialTransaction>().ToList());
+                return dbConn.Table<FinancialTransaction>().ToList();
             }
         }
 

@@ -30,6 +30,7 @@ namespace MoneyManager {
             SimpleIoc.Default.Register<IUserNotification, UserNotification>();
             SimpleIoc.Default.Register(CreateNavigationService);
             SimpleIoc.Default.Register<Utilities>();
+
             //ViewModels
             SimpleIoc.Default.Register<AddAccountViewModel>();
             SimpleIoc.Default.Register<AddTransactionViewModel>();

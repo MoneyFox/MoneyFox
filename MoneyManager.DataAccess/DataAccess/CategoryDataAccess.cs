@@ -1,5 +1,6 @@
 #region
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyManager.Foundation;
@@ -36,11 +37,11 @@ namespace MoneyManager.DataAccess.DataAccess {
             }
         }
 
-        protected override void GetListFromDb() {
+        protected override List<Category> GetListFromDb() {
             using (var dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                AllCategories = new ObservableCollection<Category>(dbConn.Table<Category>()
-                    .ToList()
-                    .OrderBy(x => x.Name));
+                return dbConn.Table<Category>()
+                    .OrderBy(x => x.Name)
+                    .ToList();
             }
         }
     }

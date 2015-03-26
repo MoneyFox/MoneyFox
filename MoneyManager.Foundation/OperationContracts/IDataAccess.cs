@@ -1,9 +1,11 @@
-﻿namespace MoneyManager.Foundation.OperationContracts {
+﻿using System.Collections.Generic;
+
+namespace MoneyManager.Foundation.OperationContracts {
     public interface IDataAccess<T> {
         void Save(T itemToSave);
 
         void Delete(T itemToDelete);
 
-        void LoadList();
+        List<T> LoadList();
     }
 }

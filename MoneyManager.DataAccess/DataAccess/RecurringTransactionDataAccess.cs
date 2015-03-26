@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyManager.Foundation;
@@ -44,10 +45,9 @@ namespace MoneyManager.DataAccess.DataAccess {
             }
         }
 
-        protected override void GetListFromDb() {
+        protected override List<RecurringTransaction> GetListFromDb() {
             using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                AllRecurringTransactions =
-                    new ObservableCollection<RecurringTransaction>(dbConn.Table<RecurringTransaction>().ToList());
+                return dbConn.Table<RecurringTransaction>().ToList();
             }
         }
 
