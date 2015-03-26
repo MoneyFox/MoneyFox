@@ -111,14 +111,14 @@ namespace MoneyManager.Business.Logic {
         public static async Task UpdateTransaction(FinancialTransaction transaction) {
             CheckIfRecurringWasRemoved(transaction);
             await AccountLogic.AddTransactionAmount(transaction);
-            transactionData.Update(transaction);
+            transactionData.Save(transaction);
 
             RecurringTransaction recurringTransaction =
                 RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
 
             await
                 CheckForRecurringTransaction(transaction,
-                    () => recurringTransactionData.Update(transaction, recurringTransaction));
+                    () => recurringTransactionData.Save(recurringTransaction));
 
             AccountLogic.RefreshRelatedTransactions();
         }

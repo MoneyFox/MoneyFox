@@ -61,12 +61,6 @@ namespace MoneyManager.DataAccess.DataAccess {
                 .ToList();
         }
 
-        protected override void UpdateItem(FinancialTransaction transaction) {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                dbConn.Update(transaction);
-            }
-        }
-
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions() {
             return GetUnclearedTransactions(DateTime.Today);
         }

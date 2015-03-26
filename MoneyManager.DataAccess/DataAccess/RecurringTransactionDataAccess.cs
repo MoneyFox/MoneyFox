@@ -54,13 +54,6 @@ namespace MoneyManager.DataAccess.DataAccess {
             }
         }
 
-        protected override void UpdateItem(RecurringTransaction itemToUpdate) {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                dbConn.Update(itemToUpdate);
-                LoadList();
-            }
-        }
-
         public void Save(FinancialTransaction transaction, RecurringTransaction recurringTransaction) {
             if (AllRecurringTransactions != null) {
                 AllRecurringTransactions.Add(recurringTransaction);
@@ -70,12 +63,12 @@ namespace MoneyManager.DataAccess.DataAccess {
             transaction.ReccuringTransactionId = recurringTransaction.Id;
         }
 
-        public void Update(FinancialTransaction transaction, RecurringTransaction recurringTransaction) {
+        public void Update(FinancialTransaction transaction) {
             if (!transaction.ReccuringTransactionId.HasValue) {
-                Save(recurringTransaction);
+                Save(transaction.RecurringTransaction);
             } else {
-                recurringTransaction.Id = transaction.ReccuringTransactionId.Value;
-                Update(recurringTransaction);
+                transaction.RecurringTransaction.Id = transaction.ReccuringTransactionId.Value;
+                Save(transaction.RecurringTransaction);
             }
         }
     }

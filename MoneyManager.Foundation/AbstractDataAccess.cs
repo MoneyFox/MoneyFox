@@ -32,20 +32,10 @@ namespace MoneyManager.Foundation {
             }
         }
 
-        public void Update(T itemToUpdate) {
-            try {
-                UpdateItem(itemToUpdate);
-            } catch (Exception ex) {
-                Insights.Report(ex);
-            }
-        }
-
         protected abstract void SaveToDb(T itemToAdd);
 
         protected abstract void DeleteFromDatabase(T itemToDelete);
 
         protected abstract void GetListFromDb();
-
-        protected abstract void UpdateItem(T itemToUpdate);
     }
 }

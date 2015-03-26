@@ -44,7 +44,7 @@ namespace MoneyManager.Business.Logic {
                 foreach (FinancialTransaction transaction in relatedTrans) {
                     transaction.IsRecurring = false;
                     transaction.ReccuringTransactionId = null;
-                    transactionData.Update(transaction);
+                    transactionData.Save(transaction);
                 }
             } catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);

@@ -42,11 +42,5 @@ namespace MoneyManager.DataAccess.DataAccess {
                     .OrderBy(x => x.Name));
             }
         }
-
-        protected override void UpdateItem(Account itemToUpdate) {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                dbConn.Update(itemToUpdate, typeof (Account));
-            }
-        }
     }
 }

@@ -46,11 +46,7 @@ namespace MoneyManager.Dialogs {
                 await dialog.ShowAsync();
             }
 
-            if (IsEdit) {
-                CategoryData.Update(CategoryData.SelectedCategory);
-            } else {
-                CategoryData.Save(CategoryData.SelectedCategory);
-            }
+            CategoryData.Save(CategoryData.SelectedCategory);
 
             CategoryListView.SearchText = String.Empty;
             CategoryListView.Search();

@@ -5,7 +5,5 @@
         void Delete(T itemToDelete);
 
         void LoadList();
-
-        void Update(T itemToUpdate);
     }
 }

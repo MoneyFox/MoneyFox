@@ -39,7 +39,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
             Assert.AreEqual(firstName, list.First().Name);
 
             category.Name = secondName;
-            categoryDataAccess.Update(category);
+            categoryDataAccess.Save(category);
 
             categoryDataAccess.LoadList();
             list = categoryDataAccess.AllCategories;

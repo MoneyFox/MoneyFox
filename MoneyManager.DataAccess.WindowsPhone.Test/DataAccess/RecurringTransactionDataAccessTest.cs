@@ -45,7 +45,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
 
             transaction.Amount = secondAmount;
 
-            recurringTransactionDataAccess.Update(transaction);
+            recurringTransactionDataAccess.Save(transaction);
 
             recurringTransactionDataAccess.LoadList();
             list = recurringTransactionDataAccess.AllRecurringTransactions;

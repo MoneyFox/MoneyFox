@@ -96,11 +96,11 @@ namespace MoneyManager.Business.Logic {
                 account.CurrentBalance += amount;
                 transaction.Cleared = true;
 
-                accountDataAccess.Update(account);
-                transactionData.Update(transaction);
+                accountDataAccess.Save(account);
+                transactionData.Save(transaction);
             } else {
                 transaction.Cleared = false;
-                transactionData.Update(transaction);
+                transactionData.Save(transaction);
             }
         }
 

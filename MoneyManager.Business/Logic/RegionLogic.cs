@@ -55,14 +55,14 @@ namespace MoneyManager.Business.Logic {
         private static void ChangeTransactions() {
             foreach (FinancialTransaction transaction in transactionData.AllTransactions) {
                 transaction.Currency = settings.DefaultCurrency;
-                transactionData.Update(transaction);
+                transactionData.Save(transaction);
             }
         }
 
         private static void ChangeAccounts() {
             foreach (Account account in accountData.AllAccounts) {
                 account.Currency = settings.DefaultCurrency;
-                accountData.Update(account);
+                accountData.Save(account);
             }
         }
 
