@@ -13,6 +13,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test {
     [TestClass]
     public class DatabaseLogicTest {
         [TestMethod]
+        [TestCategory("Integration")]
         public void CreateDatabaseTest() {
             DatabaseLogic.CreateDatabase();
 

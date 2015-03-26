@@ -20,6 +20,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
         }
 
         [TestMethod]
+        [TestCategory("Integration")]
         public void CrudAccountTest() {
             var accountDataAccess = new AccountDataAccess();
 

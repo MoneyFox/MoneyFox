@@ -21,6 +21,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
         }
 
         [TestMethod]
+        [TestCategory("Integration")]
         public void CrudRecurringTransactionTest() {
             var recurringTransactionDataAccess = new RecurringTransactionDataAccess();
 

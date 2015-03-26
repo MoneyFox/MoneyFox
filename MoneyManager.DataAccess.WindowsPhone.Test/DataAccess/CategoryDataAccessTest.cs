@@ -20,6 +20,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
         }
 
         [TestMethod]
+        [TestCategory("Integration")]
         public void CrudCategoryTest() {
             var categoryDataAccess = new CategoryDataAccess();
 
