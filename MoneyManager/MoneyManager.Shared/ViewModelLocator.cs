@@ -3,9 +3,9 @@
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
-using MoneyManager.DataAccess;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Views;

@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.Business;
 using MoneyManager.Foundation.Model;
 using SQLite.Net;
 

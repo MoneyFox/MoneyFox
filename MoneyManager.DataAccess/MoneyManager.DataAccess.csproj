@@ -49,7 +49,6 @@
     <Compile Include="DataAccess\RecurringTransactionDataAccess.cs" />
     <Compile Include="DataAccess\SettingDataAccess.cs" />
     <Compile Include="DataAccess\TransactionDataAccess.cs" />
-    <Compile Include="DatabaseLogic.cs" />
     <Compile Include="SqlConnectionFactory.cs" />
     <Compile Include="DataAccess\AccountDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
