@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
@@ -36,8 +37,10 @@ namespace MoneyManager.Business.Repositories {
                 _data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList());
             }
 
-            _data.Add(item);
-            _dataAccess.Save(item);
+            if (item.Id == 0) {
+                _data.Add(item);
+            }
+           _dataAccess.Save(item);
         }
 
         public void Delete(FinancialTransaction item) {

@@ -23,6 +23,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         [TestCategory("Integration")]
         public void TransactionRepository_LoadDataFromDbThroughRepository() {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
+                db.DeleteAll<FinancialTransaction>();
                 db.InsertWithChildren(new FinancialTransaction {
                     Amount = 999, 
                     AmountWithoutExchange = 777, 
@@ -120,7 +121,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             };
 
             repository.Save(transaction);
-            Assert.IsTrue(transaction == _transactionDataAccessMock.FinancialTransactionTestList[0]);
+            Assert.AreSame(transaction, _transactionDataAccessMock.FinancialTransactionTestList[0]);
 
             repository.Delete(transaction);
 
@@ -131,6 +132,34 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         [TestMethod]
         public void TransactionRepository_AccessData() {
             Assert.IsNotNull(new TransactionRepository(_transactionDataAccessMock).Data);
+        }
+
+        [TestMethod]
+        public void TransactionRepository_AddMultipleToCache() {
+            var repository = new TransactionRepository(_transactionDataAccessMock);
+
+            var account = new Account {
+                Name = "TestAccount"
+            };
+
+            var transaction = new FinancialTransaction {
+                ChargedAccount = account,
+                Amount = 20,
+                AmountWithoutExchange = 20
+            };
+
+            var secondTransaction = new FinancialTransaction {
+                ChargedAccount = account,
+                Amount = 60,
+                AmountWithoutExchange = 60
+            };
+
+            repository.Save(transaction);
+            repository.Save(secondTransaction);
+
+            Assert.AreEqual(2, repository.Data.Count);
+            Assert.AreSame(transaction, repository.Data[0]);
+            Assert.AreSame(secondTransaction, repository.Data[1]);
         }
 
         [TestMethod]
@@ -155,8 +184,11 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         [TestMethod]
         [TestCategory("Integration")]
         public void TransactionRepository_Update() {
-            var repository = new TransactionRepository(new TransactionDataAccess());
+            using (var db = SqlConnectionFactory.GetSqlConnection()) {
+                db.DeleteAll<FinancialTransaction>();
+            }
 
+            var repository = new TransactionRepository(new TransactionDataAccess());
             var account = new Account {
                 Name = "TestAccount"
             };
@@ -168,7 +200,8 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             };
 
             repository.Save(transaction);
-            Assert.IsTrue(transaction == repository.Data[0]);
+            Assert.AreEqual(1, repository.Data.Count);
+            Assert.AreSame(transaction, repository.Data[0]);
 
             transaction.Amount = 30;
 

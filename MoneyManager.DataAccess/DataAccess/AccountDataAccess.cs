@@ -1,15 +1,10 @@
-﻿#region
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
-using SQLite.Net;
 using SQLiteNetExtensions.Extensions;
-
-#endregion
 
 namespace MoneyManager.DataAccess.DataAccess {
     [ImplementPropertyChanged]

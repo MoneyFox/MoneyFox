@@ -13,6 +13,7 @@ namespace MoneyManager.Business.Repositories {
 
         public AccountRepository(IDataAccess<Account> dataAccess) {
             _dataAccess = dataAccess;
+            _data = new ObservableCollection<Account>(_dataAccess.LoadList());
         }
 
         public ObservableCollection<Account> Data {
@@ -31,23 +32,17 @@ namespace MoneyManager.Business.Repositories {
         public Account Selected { get; set; }
 
         public void Save(Account item) {
-            if (_data == null) {
-                _data =  new ObservableCollection<Account>(_dataAccess.LoadList());
-            }
-
             if (String.IsNullOrWhiteSpace(item.Name)) {
                 item.Name = Translation.GetTranslation("NoNamePlaceholderLabel");
             }
 
-            _data.Add(item);
+            if (item.Id == 0) {
+                _data.Add(item);
+            }
             _dataAccess.Save(item);
         }
 
         public void Delete(Account item) {
-            if (_data == null) {
-                _data = new ObservableCollection<Account>(_dataAccess.LoadList());
-            }
-
             _data.Remove(item);
             _dataAccess.Delete(item);
         }

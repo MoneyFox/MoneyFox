@@ -92,7 +92,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
 
             repository.Save(account);
 
-            Assert.AreEqual(2, repository.Data.Count());
+            Assert.AreEqual(1, repository.Data.Count());
             Assert.AreEqual("newName", repository.Data[0].Name);
         }
     }
