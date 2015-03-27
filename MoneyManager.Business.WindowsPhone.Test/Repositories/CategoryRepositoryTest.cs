@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Business.Repositories;
 using MoneyManager.Business.WindowsPhone.Test.Mocks;
@@ -26,7 +24,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
                 db.DeleteAll<Category>();
                 db.InsertWithChildren(new Category {
-                   Name = "Foooo"
+                    Name = "Foooo"
                 });
             }
 
@@ -59,7 +57,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             Assert.AreSame(category, repository.Data[0]);
             Assert.IsTrue(Translation.GetTranslation("NoNamePlaceholderLabel") == repository.Data[0].Name);
         }
-
 
         [TestMethod]
         public void CategoryRepository_Delete() {

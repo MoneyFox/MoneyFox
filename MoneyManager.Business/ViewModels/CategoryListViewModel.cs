@@ -7,7 +7,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
@@ -24,7 +23,6 @@ namespace MoneyManager.Business.ViewModels {
         }
 
         public bool IsSettingCall { get; set; }
-
         public ObservableCollection<Category> Categories { get; set; }
 
         private IRepository<Category> CategoryRepository {
@@ -46,7 +44,9 @@ namespace MoneyManager.Business.ViewModels {
                     : TransactionRepository.Selected.Category;
             }
             set {
-                if (value == null) return;
+                if (value == null) {
+                    return;
+                }
 
                 if (!IsSettingCall) {
                     TransactionRepository.Selected.Category = value;
@@ -68,7 +68,8 @@ namespace MoneyManager.Business.ViewModels {
                 Categories = new ObservableCollection<Category>
                     (allCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(_searchText.ToLower()))
                         .ToList());
-            } else {
+            }
+            else {
                 Categories = allCategories;
             }
         }

@@ -6,12 +6,11 @@ using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Business.Repositories {
     public class CategoryRepository : IRepository<Category> {
-        private readonly IDataAccess<Category> _dataAccess; 
-
+        private readonly IDataAccess<Category> _dataAccess;
         private ObservableCollection<Category> _data;
 
         /// <summary>
-        /// Creates a CategoryRepository Object
+        ///     Creates a CategoryRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced Category data Access</param>
         public CategoryRepository(IDataAccess<Category> dataAccess) {
@@ -20,7 +19,7 @@ namespace MoneyManager.Business.Repositories {
         }
 
         /// <summary>
-        /// Cached category data
+        ///     Cached category data
         /// </summary>
         public ObservableCollection<Category> Data {
             get { return _data ?? (_data = new ObservableCollection<Category>(_dataAccess.LoadList())); }
@@ -38,7 +37,7 @@ namespace MoneyManager.Business.Repositories {
         public Category Selected { get; set; }
 
         /// <summary>
-        /// Save a new item or update an existin one.
+        ///     Save a new item or update an existin one.
         /// </summary>
         /// <param name="item">item to save</param>
         public void Save(Category item) {
@@ -53,7 +52,7 @@ namespace MoneyManager.Business.Repositories {
         }
 
         /// <summary>
-        /// Deletes the passed item and removes the item from cache
+        ///     Deletes the passed item and removes the item from cache
         /// </summary>
         /// <param name="item">item to delete</param>
         public void Delete(Category item) {

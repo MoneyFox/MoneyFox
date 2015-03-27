@@ -14,7 +14,6 @@ namespace MoneyManager.Common {
     /// </summary>
     public class ObservableDictionary : IObservableMap<string, object> {
         private readonly Dictionary<string, object> _dictionary = new Dictionary<string, object>();
-
         public event MapChangedEventHandler<string, object> MapChanged;
 
         public void Add(string key, object value) {
@@ -99,7 +98,9 @@ namespace MoneyManager.Common {
         public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex) {
             int arraySize = array.Length;
             foreach (var pair in _dictionary) {
-                if (arrayIndex >= arraySize) break;
+                if (arrayIndex >= arraySize) {
+                    break;
+                }
                 array[arrayIndex++] = pair;
             }
         }
@@ -118,7 +119,6 @@ namespace MoneyManager.Common {
             }
 
             public CollectionChange CollectionChange { get; private set; }
-
             public string Key { get; private set; }
         }
     }

@@ -30,7 +30,8 @@ namespace MoneyManager.Views {
                 await backupView.LogInToOneDrive();
                 await backupView.LoadBackupCreationDate();
                 navigationHelper.OnNavigatedTo(e);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);
             }
         }

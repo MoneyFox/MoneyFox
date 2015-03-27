@@ -6,13 +6,11 @@ using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Business.Repositories {
     public class AccountRepository : IAccountRepository {
-
-        private readonly IDataAccess<Account> _dataAccess; 
-
+        private readonly IDataAccess<Account> _dataAccess;
         private ObservableCollection<Account> _data;
 
         /// <summary>
-        /// Creates a AccountRepository Object
+        ///     Creates a AccountRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced account data Access</param>
         public AccountRepository(IDataAccess<Account> dataAccess) {
@@ -21,7 +19,7 @@ namespace MoneyManager.Business.Repositories {
         }
 
         /// <summary>
-        /// Cached account data
+        ///     Cached account data
         /// </summary>
         public ObservableCollection<Account> Data {
             get { return _data ?? (_data = new ObservableCollection<Account>(_dataAccess.LoadList())); }
@@ -39,7 +37,7 @@ namespace MoneyManager.Business.Repositories {
         public Account Selected { get; set; }
 
         /// <summary>
-        /// Save a new item or update an existin one.
+        ///     Save a new item or update an existin one.
         /// </summary>
         /// <param name="item">item to save</param>
         public void Save(Account item) {
@@ -54,7 +52,7 @@ namespace MoneyManager.Business.Repositories {
         }
 
         /// <summary>
-        /// Deletes the passed item and removes the item from cache
+        ///     Deletes the passed item and removes the item from cache
         /// </summary>
         /// <param name="item">item to delete</param>
         public void Delete(Account item) {

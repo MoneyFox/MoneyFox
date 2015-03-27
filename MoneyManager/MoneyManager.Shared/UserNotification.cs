@@ -6,16 +6,14 @@ using MoneyManager.Foundation.OperationContracts;
 using NotificationsExtensions.TileContent;
 
 namespace MoneyManager {
-    public class UserNotification :IUserNotification  {
-
+    public class UserNotification : IUserNotification {
         /// <summary>
-        /// Sets the MainTile with new Information
+        ///     Sets the MainTile with new Information
         /// </summary>
         /// <param name="income">Income of these month</param>
         /// <param name="spending">Spending of these month</param>
         /// <param name="earnings">Earnings of these month </param>
         public void UpdateMainTile(string income, string spending, string earnings) {
-
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 
             if (ServiceLocator.Current.GetInstance<TileSettingsViewModel>().ShowInfoOnMainTile) {

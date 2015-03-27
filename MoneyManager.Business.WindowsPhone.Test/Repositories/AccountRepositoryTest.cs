@@ -22,12 +22,12 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
                 Name = "Sparkonto",
                 CurrentBalanceWithoutExchange = 6034,
                 CurrentBalance = 6034,
-                Currency = "CHF",
+                Currency = "CHF"
             };
 
             _accountDataAccessMock.Save(account);
 
-            Assert.IsTrue(account ==_accountDataAccessMock.AccountTestList[0]);
+            Assert.IsTrue(account == _accountDataAccessMock.AccountTestList[0]);
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             var account = new Account {
                 CurrentBalanceWithoutExchange = 6034,
                 CurrentBalance = 6034,
-                Currency = "CHF",
+                Currency = "CHF"
             };
 
             repository.Save(account);
@@ -59,7 +59,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
                 Name = "Sparkonto",
                 CurrentBalanceWithoutExchange = 6034,
                 CurrentBalance = 6034,
-                Currency = "CHF",
+                Currency = "CHF"
             };
 
             repository.Save(account);
@@ -81,7 +81,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
                 Name = "Sparkonto",
                 CurrentBalanceWithoutExchange = 6034,
                 CurrentBalance = 6034,
-                Currency = "CHF",
+                Currency = "CHF"
             };
 
             repository.Save(account);

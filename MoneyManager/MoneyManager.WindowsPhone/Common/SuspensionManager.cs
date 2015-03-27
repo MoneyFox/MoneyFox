@@ -91,7 +91,8 @@ namespace MoneyManager.Common {
                     sessionData.Seek(0, SeekOrigin.Begin);
                     await sessionData.CopyToAsync(fileStream);
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 throw new SuspensionManagerException(e);
             }
         }
@@ -132,7 +133,8 @@ namespace MoneyManager.Common {
                         RestoreFrameNavigationState(frame);
                     }
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 throw new SuspensionManagerException(e);
             }
         }
@@ -228,7 +230,8 @@ namespace MoneyManager.Common {
                         _sessionState[frameSessionKey] = new Dictionary<String, Object>();
                     }
                     frameState = (Dictionary<String, Object>) _sessionState[frameSessionKey];
-                } else {
+                }
+                else {
                     // Frames that aren't registered have transient state
                     frameState = new Dictionary<String, Object>();
                 }

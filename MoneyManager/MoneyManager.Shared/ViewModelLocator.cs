@@ -46,6 +46,17 @@ namespace MoneyManager {
             SimpleIoc.Default.Register<BackupViewModel>();
         }
 
+        #region Logic
+
+        private static INavigationService CreateNavigationService() {
+            var navigationService = new NavigationService();
+            navigationService.Configure("LicenseView", typeof (LicenseView));
+
+            return navigationService;
+        }
+
+        #endregion
+
         #region DataAccess
 
         public AccountDataAccess AccountDataAccess {
@@ -69,18 +80,6 @@ namespace MoneyManager {
         }
 
         #endregion DataAccess
-
-        #region Logic
-
-        private static INavigationService CreateNavigationService()
-        {
-            var navigationService = new NavigationService();
-            navigationService.Configure("LicenseView", typeof(LicenseView));
-
-            return navigationService;
-        }
-
-        #endregion
 
         #region Views
 

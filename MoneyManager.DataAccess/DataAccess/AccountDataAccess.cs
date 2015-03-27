@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -13,7 +12,8 @@ namespace MoneyManager.DataAccess.DataAccess {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
                 if (itemToSave.Id == 0) {
                     db.InsertWithChildren(itemToSave);
-                } else {
+                }
+                else {
                     db.UpdateWithChildren(itemToSave);
                 }
             }

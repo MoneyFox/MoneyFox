@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.Core;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.Repositories;
@@ -29,8 +28,8 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
                 db.DeleteAll<FinancialTransaction>();
                 db.InsertWithChildren(new FinancialTransaction {
-                    Amount = 999, 
-                    AmountWithoutExchange = 777, 
+                    Amount = 999,
+                    AmountWithoutExchange = 777,
                     ChargedAccount = new Account {
                         Name = "testAccount"
                     }
@@ -226,7 +225,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             };
 
             repository.Save(new FinancialTransaction {
-                ChargedAccount= account,
+                ChargedAccount = account,
                 Amount = 55,
                 Date = DateTime.Today.AddDays(-1),
                 Note = "this is a note!!!",
@@ -240,7 +239,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         /// <summary>
-        /// This Test may fail if the date overlaps with the month transition.
+        ///     This Test may fail if the date overlaps with the month transition.
         /// </summary>
         [TestMethod]
         public void TransactionRepository_GetUnclearedTransactionsFuture() {
@@ -264,7 +263,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
 
             transactions = repository.GetUnclearedTransactions(Utilities.GetEndOfMonth());
             Assert.AreEqual(1, transactions.Count());
-
         }
     }
 }

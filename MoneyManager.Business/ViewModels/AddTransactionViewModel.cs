@@ -58,12 +58,31 @@ namespace MoneyManager.Business.ViewModels {
 
         public bool IsNavigationBlocked { get; set; }
 
+        public ObservableCollection<Account> AllAccounts {
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Data; }
+        }
+
+        public ObservableCollection<Category> AllCategories {
+            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>().Data; }
+        }
+
+        public SettingDataAccess Settings {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
+
+        public DateTime EndDate { get; set; }
+        public bool IsEndless { get; set; }
+        public bool IsEdit { get; set; }
+        public int Recurrence { get; set; }
+        public bool IsTransfer { get; set; }
+        public bool RefreshRealtedList { get; set; }
+
         private void CalculateNewAmount(double value) {
             if (Math.Abs(_transactionRepository.Selected.ExchangeRatio) < 0.5) {
                 _transactionRepository.Selected.ExchangeRatio = 1;
             }
 
-            _transactionRepository.Selected.Amount = _transactionRepository.Selected.ExchangeRatio * value;
+            _transactionRepository.Selected.Amount = _transactionRepository.Selected.ExchangeRatio*value;
         }
 
         public async void SetCurrency(string currency) {
@@ -96,29 +115,5 @@ namespace MoneyManager.Business.ViewModels {
 
             ((Frame) Window.Current.Content).GoBack();
         }
-
-        public ObservableCollection<Account> AllAccounts {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Data; }
-        }
-
-        public ObservableCollection<Category> AllCategories {
-            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>().Data; }
-        }
-
-        public SettingDataAccess Settings {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
-
-        public DateTime EndDate { get; set; }
-
-        public bool IsEndless { get; set; }
-
-        public bool IsEdit { get; set; }
-
-        public int Recurrence { get; set; }
-
-        public bool IsTransfer { get; set; }
-
-        public bool RefreshRealtedList { get; set; }
     }
 }

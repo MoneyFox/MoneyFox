@@ -5,7 +5,6 @@ using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
-using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Views;
@@ -18,26 +17,12 @@ namespace MoneyManager.UserControls {
             ServiceLocator.Current.GetInstance<BalanceViewModel>().IsTransactionView = true;
         }
 
-        #region Properties
-
-        public ITransactionRepository TransactionRepository {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
-        }
-
-        public AddTransactionViewModel AddTransactionView {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
-
-        public BalanceViewModel BalanceView {
-            get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
-        }
-
-        #endregion
-
         private void EditTransaction(object sender, RoutedEventArgs e) {
             var element = (FrameworkElement) sender;
             var transaction = element.DataContext as FinancialTransaction;
-            if (transaction == null) return;
+            if (transaction == null) {
+                return;
+            }
 
             TransactionLogic.PrepareEdit(transaction);
             ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
@@ -46,7 +31,9 @@ namespace MoneyManager.UserControls {
         private async void DeleteTransaction(object sender, RoutedEventArgs e) {
             var element = (FrameworkElement) sender;
             var transaction = element.DataContext as FinancialTransaction;
-            if (transaction == null) return;
+            if (transaction == null) {
+                return;
+            }
 
             await TransactionLogic.DeleteTransaction(transaction);
             AddTransactionView.IsNavigationBlocked = false;
@@ -81,5 +68,21 @@ namespace MoneyManager.UserControls {
                 ListViewTransactions.SelectedItem = null;
             }
         }
+
+        #region Properties
+
+        public ITransactionRepository TransactionRepository {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
+        }
+
+        public AddTransactionViewModel AddTransactionView {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+        }
+
+        public BalanceViewModel BalanceView {
+            get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
+        }
+
+        #endregion
     }
 }

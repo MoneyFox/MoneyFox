@@ -43,7 +43,9 @@ namespace MoneyManager.UserControls {
         }
 
         private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e) {
-            if (e.OriginalSource == null) return;
+            if (e.OriginalSource == null) {
+                return;
+            }
 
             TextBoxAmount.Text = e.OriginalSource.ToString()
                 .Replace(",", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);

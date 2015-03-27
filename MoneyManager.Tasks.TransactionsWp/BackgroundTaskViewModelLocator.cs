@@ -19,6 +19,14 @@ namespace MoneyManager.Tasks.TransactionsWp {
             SimpleIoc.Default.Register<TransactionListViewModel>();
         }
 
+        #region Views
+
+        public TransactionListViewModel TransactionListView {
+            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
+        }
+
+        #endregion Views
+
         #region DataAccess
 
         public AccountDataAccess AccountDataAccess {
@@ -34,13 +42,5 @@ namespace MoneyManager.Tasks.TransactionsWp {
         }
 
         #endregion DataAccess
-
-        #region Views
-
-        public TransactionListViewModel TransactionListView {
-            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
-        }
-
-        #endregion Views
     }
 }

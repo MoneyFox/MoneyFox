@@ -11,7 +11,8 @@ namespace MoneyManager.Converter {
             try {
                 var date = (DateTime) value;
                 return new DateTimeOffset(date);
-            } catch (Exception) {
+            }
+            catch (Exception) {
                 return DateTimeOffset.MinValue;
             }
         }
@@ -20,7 +21,8 @@ namespace MoneyManager.Converter {
             try {
                 var dto = (DateTimeOffset) value;
                 return dto.DateTime;
-            } catch (Exception) {
+            }
+            catch (Exception) {
                 return DateTime.MinValue;
             }
         }

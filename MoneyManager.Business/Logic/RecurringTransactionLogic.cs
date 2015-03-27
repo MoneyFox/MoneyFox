@@ -15,28 +15,6 @@ using Xamarin;
 
 namespace MoneyManager.Business.Logic {
     public class RecurringTransactionLogic {
-        #region Properties
-
-        private static RecurringTransactionDataAccess RecurringTransactionData {
-            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
-        }
-
-        private static ITransactionRepository transactionRepository {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
-        }
-
-        private static AddTransactionViewModel addTransactionView {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
-
-        private static IEnumerable<RecurringTransaction> AllRecurringTransactions {
-            get {
-                return ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>().Data;
-            }
-        }
-
-        #endregion Properties
-
         public static void RemoveRecurringForTransactions(RecurringTransaction recTrans) {
             try {
                 IEnumerable<FinancialTransaction> relatedTrans =
@@ -47,7 +25,8 @@ namespace MoneyManager.Business.Logic {
                     transaction.ReccuringTransactionId = null;
                     transactionRepository.Save(transaction);
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);
             }
         }
@@ -115,7 +94,7 @@ namespace MoneyManager.Business.Logic {
                 CategoryId = recurringTransaction.CategoryId,
                 Type = recurringTransaction.Type,
                 ReccuringTransactionId = recurringTransaction.Id,
-                Note = recurringTransaction.Note,
+                Note = recurringTransaction.Note
             };
 
             transactionRepository.Save(newTransaction);
@@ -139,8 +118,28 @@ namespace MoneyManager.Business.Logic {
                 CategoryId = transaction.CategoryId,
                 Type = transaction.Type,
                 Recurrence = addTransactionView.Recurrence,
-                Note = transaction.Note,
+                Note = transaction.Note
             };
         }
+
+        #region Properties
+
+        private static RecurringTransactionDataAccess RecurringTransactionData {
+            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+        }
+
+        private static ITransactionRepository transactionRepository {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
+        }
+
+        private static AddTransactionViewModel addTransactionView {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+        }
+
+        private static IEnumerable<RecurringTransaction> AllRecurringTransactions {
+            get { return ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>().Data; }
+        }
+
+        #endregion Properties
     }
 }

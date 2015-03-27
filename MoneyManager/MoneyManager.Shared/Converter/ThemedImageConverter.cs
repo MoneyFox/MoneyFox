@@ -11,8 +11,9 @@ namespace MoneyManager.Converter {
         public object Convert(object value, Type targetType, object parameter, string language) {
             var formatString = parameter as string;
 
-            if (string.IsNullOrEmpty(formatString))
+            if (string.IsNullOrEmpty(formatString)) {
                 formatString = value as string;
+            }
 
             return ThemedImageConverterLogic.GetImage(formatString);
         }

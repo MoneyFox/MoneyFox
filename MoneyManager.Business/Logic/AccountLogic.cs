@@ -16,22 +16,6 @@ using Xamarin;
 
 namespace MoneyManager.Business.Logic {
     public class AccountLogic {
-        #region Properties
-
-        private static IAccountRepository AccountRepository {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
-        }
-
-        private static TransactionDataAccess transactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-        }
-
-        private static TransactionListViewModel transactionListView {
-            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
-        }
-
-        #endregion Properties
-
         public static void PrepareAddAccount() {
             AccountRepository.Selected = new Account {
                 IsExchangeModeActive = false,
@@ -88,7 +72,9 @@ namespace MoneyManager.Business.Logic {
             Func<FinancialTransaction, Account> getAccountFunc) {
             if (transaction.ClearTransactionNow) {
                 Account account = getAccountFunc(transaction);
-                if (account == null) return;
+                if (account == null) {
+                    return;
+                }
 
                 double amountWithoutExchange = amountFunc(transaction.Amount);
                 double amount = await GetAmount(amountWithoutExchange, transaction, account);
@@ -99,7 +85,8 @@ namespace MoneyManager.Business.Logic {
 
                 AccountRepository.Save(account);
                 transactionData.Save(transaction);
-            } else {
+            }
+            else {
                 transaction.Cleared = false;
                 transactionData.Save(transaction);
             }
@@ -111,7 +98,8 @@ namespace MoneyManager.Business.Logic {
                     double ratio = await CurrencyLogic.GetCurrencyRatio(transaction.Currency, account.Currency);
                     return baseAmount*ratio;
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);
             }
             return baseAmount;
@@ -135,5 +123,21 @@ namespace MoneyManager.Business.Logic {
                 trans => AccountRepository.Data.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
             return accountFunc;
         }
+
+        #region Properties
+
+        private static IAccountRepository AccountRepository {
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
+        }
+
+        private static TransactionDataAccess transactionData {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
+
+        private static TransactionListViewModel transactionListView {
+            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
+        }
+
+        #endregion Properties
     }
 }

@@ -15,7 +15,9 @@ namespace MoneyManager.Tasks.TransactionsWp {
 
         public static async void RegisterBackgroundTask() {
             try {
-                if (IsTaskExisting() || !await RequestAccess()) return;
+                if (IsTaskExisting() || !await RequestAccess()) {
+                    return;
+                }
 
                 var builder = new BackgroundTaskBuilder();
                 //Task soll alle 12 Stunden laufen
@@ -25,7 +27,8 @@ namespace MoneyManager.Tasks.TransactionsWp {
                 builder.TaskEntryPoint = typeof (TransactionTask).FullName;
                 builder.SetTrigger(trigger);
                 builder.Register();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);
             }
         }

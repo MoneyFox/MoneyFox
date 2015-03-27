@@ -21,12 +21,13 @@ namespace MoneyManager.Business.ViewModels {
     public class SelectCurrencyViewModel : ViewModelBase {
         private string searchText;
         public ObservableCollection<Country> AllCountries { get; set; }
-
         public InvocationType InvocationType { get; set; }
 
         public Country SelectedCountry {
             set {
-                if (value == null) return;
+                if (value == null) {
+                    return;
+                }
 
                 SetValue(value);
                 ((Frame) Window.Current.Content).GoBack();
@@ -68,7 +69,8 @@ namespace MoneyManager.Business.ViewModels {
                         AllCountries
                             .Where(x => x.ID.Contains(searchText) || x.CurrencyID.Contains(SearchText))
                             .ToList());
-            } else {
+            }
+            else {
                 await LoadCountries();
             }
         }

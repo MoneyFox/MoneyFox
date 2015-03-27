@@ -71,14 +71,15 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
                 };
 
                 repository.Save(transaction);
-            } catch (InvalidDataException) {
+            }
+            catch (InvalidDataException) {
                 return;
-            } catch (Exception) {
+            }
+            catch (Exception) {
                 Assert.Fail("wrong exception.");
             }
             Assert.Fail("No excpetion thrown");
         }
-
 
         [TestMethod]
         public void RecurringTransactionRepository_Delete() {

@@ -21,9 +21,11 @@ namespace MoneyManager.Business.Logic {
                 if (result.Status == LiveConnectSessionStatus.Connected) {
                     return new LiveConnectClient(result.Session);
                 }
-            } catch (LiveAuthException) {
+            }
+            catch (LiveAuthException) {
                 ShowAuthExceptionMessage();
-            } catch (LiveConnectException) {
+            }
+            catch (LiveConnectException) {
                 ShowConnectExceptionMessage();
             }
             return null;
@@ -58,10 +60,12 @@ namespace MoneyManager.Business.Logic {
                 LiveOperationResult uploadResult = await uploadOperation.StartAsync();
 
                 return TaskCompletionType.Successful;
-            } catch (TaskCanceledException ex) {
+            }
+            catch (TaskCanceledException ex) {
                 Insights.Report(ex);
                 return TaskCompletionType.Aborted;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex);
                 return TaskCompletionType.Unsuccessful;
             }
@@ -74,7 +78,8 @@ namespace MoneyManager.Business.Logic {
                     LiveOperationResult operationResult = await liveClient.PostAsync("me/skydrive", folderData);
                     dynamic result = operationResult.Result;
                     return result.id;
-                } catch (LiveConnectException ex) {
+                }
+                catch (LiveConnectException ex) {
                     Insights.Report(ex, ReportSeverity.Error);
                 }
             }
@@ -96,7 +101,8 @@ namespace MoneyManager.Business.Logic {
                         }
                     }
                 }
-            } catch (LiveConnectException ex) {
+            }
+            catch (LiveConnectException ex) {
                 Insights.Report(ex, ReportSeverity.Error);
             }
             return String.Empty;
@@ -114,7 +120,8 @@ namespace MoneyManager.Business.Logic {
                         }
                     }
                 }
-            } catch (LiveConnectException ex) {
+            }
+            catch (LiveConnectException ex) {
                 Insights.Report(ex, ReportSeverity.Error);
             }
 
@@ -129,7 +136,8 @@ namespace MoneyManager.Business.Logic {
                     dynamic result = operationResult.Result;
                     DateTime createdAt = Convert.ToDateTime(result.created_time);
                     return createdAt.ToString("f", new CultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName));
-                } catch (Exception ex) {
+                }
+                catch (Exception ex) {
                     Insights.Report(ex, ReportSeverity.Error);
                 }
             }
@@ -146,7 +154,8 @@ namespace MoneyManager.Business.Logic {
 
                 await liveClient.BackgroundDownloadAsync(backupId + "/content", storageFile);
                 return TaskCompletionType.Successful;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);
                 return TaskCompletionType.Unsuccessful;
             }

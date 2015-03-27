@@ -1,11 +1,8 @@
 ﻿#region
 
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.Business.Helper;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using SQLite.Net;

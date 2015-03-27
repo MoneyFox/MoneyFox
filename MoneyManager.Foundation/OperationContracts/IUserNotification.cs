@@ -1,9 +1,7 @@
-﻿namespace MoneyManager.Foundation.OperationContracts
-{
+﻿namespace MoneyManager.Foundation.OperationContracts {
     public interface IUserNotification {
-        
         /// <summary>
-        /// Sets the MainTile with new Information
+        ///     Sets the MainTile with new Information
         /// </summary>
         /// <param name="income">Income of these month</param>
         /// <param name="spending">Spending of these month</param>

@@ -66,7 +66,7 @@ namespace MoneyManager.Business.Helper {
         }
 
         /// <summary>
-        /// Will round all values of the passed statistic item list
+        ///     Will round all values of the passed statistic item list
         /// </summary>
         /// <param name="items">List of statistic items.</param>
         public static void RoundStatisticItems(ObservableCollection<StatisticItem> items) {

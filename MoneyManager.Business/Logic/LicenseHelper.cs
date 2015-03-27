@@ -30,7 +30,8 @@ namespace MoneyManager.Business.Logic {
                     _isFeaturepackLicensed =
                         CurrentApp.LicenseInformation.ProductLicenses[featurepackLicence.Key].IsActive;
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 if (!ex.Message.Contains("0x805A0194")) {
                     Insights.Report(ex);
                 }

@@ -5,7 +5,6 @@ using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
-using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Views;
@@ -30,7 +29,9 @@ namespace MoneyManager.UserControls {
         private void Edit_OnClick(object sender, RoutedEventArgs e) {
             var element = (FrameworkElement) sender;
             var account = element.DataContext as Account;
-            if (account == null) return;
+            if (account == null) {
+                return;
+            }
 
             var viewModel = ServiceLocator.Current.GetInstance<AddAccountViewModel>();
             viewModel.IsEdit = true;
@@ -42,7 +43,9 @@ namespace MoneyManager.UserControls {
         private void Delete_OnClick(object sender, RoutedEventArgs e) {
             var element = (FrameworkElement) sender;
             var account = element.DataContext as Account;
-            if (account == null) return;
+            if (account == null) {
+                return;
+            }
 
             AccountLogic.DeleteAccount(account);
         }

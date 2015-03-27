@@ -2,7 +2,6 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Views;
 

@@ -1,7 +1,6 @@
 ﻿#region
 
 using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.DataAccess;
@@ -33,7 +32,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
                 Amount = firstAmount,
                 StartDate = DateTime.Today,
                 EndDate = DateTime.Now.AddDays(7),
-                Note = "this is a note!!!",
+                Note = "this is a note!!!"
             };
 
             recurringTransactionDataAccess.Save(transaction);

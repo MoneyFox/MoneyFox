@@ -17,30 +17,8 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class BalanceViewModel : ViewModelBase {
-        #region Properties
-
-        public ObservableCollection<Account> AllAccounts {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Data; }
-        }
-
-        private Account selectedAccount {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Selected; }
-        }
-
-        private ITransactionRepository TransactionRepository {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
-        }
-
-        public SettingDataAccess settings {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
-
-        #endregion Properties
-
         public double TotalBalance { get; set; }
-
         public double EndOfMonthBalance { get; set; }
-
         public bool IsTransactionView { get; set; }
 
         public string CurrencyCulture {
@@ -89,7 +67,8 @@ namespace MoneyManager.Business.ViewModels {
         private double HandleTransferAmount(FinancialTransaction transaction, double balance) {
             if (selectedAccount == transaction.ChargedAccount) {
                 balance -= transaction.Amount;
-            } else {
+            }
+            else {
                 balance += transaction.Amount;
             }
             return balance;
@@ -104,5 +83,25 @@ namespace MoneyManager.Business.ViewModels {
                     x => x.ChargedAccount == selectedAccount || x.TargetAccount == selectedAccount).ToList()
                 : unclearedTransactions;
         }
+
+        #region Properties
+
+        public ObservableCollection<Account> AllAccounts {
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Data; }
+        }
+
+        private Account selectedAccount {
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Selected; }
+        }
+
+        private ITransactionRepository TransactionRepository {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
+        }
+
+        public SettingDataAccess settings {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
+
+        #endregion Properties
     }
 }

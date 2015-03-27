@@ -1,6 +1,6 @@
-﻿using MoneyManager.Foundation.Model;
+﻿using System.Collections.Generic;
+using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
-using System.Collections.Generic;
 
 namespace MoneyManager.Business.WindowsPhone.Test.Mocks {
     public class TransactionDataAccessMock : IDataAccess<FinancialTransaction> {

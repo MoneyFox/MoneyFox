@@ -17,9 +17,33 @@ namespace MoneyManager.DataAccess.DataAccess {
         private const string DEFAULT_CURRENCY_KEYNAME = "DefaultCurrency";
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
-
         private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
         private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = false;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void AddOrUpdateValue(string key, object value) {
+            ApplicationData.Current.RoamingSettings.Values[key] = value;
+        }
+
+        private TValueType GetValueOrDefault<TValueType>(string key, TValueType defaultValue) {
+            TValueType value;
+
+            if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key)) {
+                object setting = ApplicationData.Current.RoamingSettings.Values[key];
+                value = (TValueType) Convert.ChangeType(setting, typeof (TValueType), CultureInfo.InvariantCulture);
+            }
+            else {
+                value = defaultValue;
+            }
+            return value;
+        }
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
         #region Properties
 
@@ -48,28 +72,5 @@ namespace MoneyManager.DataAccess.DataAccess {
         }
 
         #endregion Properties
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void AddOrUpdateValue(string key, object value) {
-            ApplicationData.Current.RoamingSettings.Values[key] = value;
-        }
-
-        private TValueType GetValueOrDefault<TValueType>(string key, TValueType defaultValue) {
-            TValueType value;
-
-            if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key)) {
-                object setting = ApplicationData.Current.RoamingSettings.Values[key];
-                value = (TValueType) Convert.ChangeType(setting, typeof (TValueType), CultureInfo.InvariantCulture);
-            } else {
-                value = defaultValue;
-            }
-            return value;
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

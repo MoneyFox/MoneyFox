@@ -9,11 +9,12 @@ using SQLiteNetExtensions.Extensions;
 namespace MoneyManager.DataAccess.DataAccess {
     [ImplementPropertyChanged]
     public class TransactionDataAccess : AbstractDataAccess<FinancialTransaction> {
-       protected override void SaveToDb(FinancialTransaction itemToSave) {
+        protected override void SaveToDb(FinancialTransaction itemToSave) {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
                 if (itemToSave.Id == 0) {
                     db.InsertWithChildren(itemToSave);
-                } else {
+                }
+                else {
                     db.UpdateWithChildren(itemToSave);
                 }
             }

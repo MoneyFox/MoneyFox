@@ -4,7 +4,6 @@ using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Helper;
 using MoneyManager.Foundation.OperationContracts;
 
 #endregion
@@ -24,8 +23,7 @@ namespace MoneyManager.Business.Logic.Tile {
             await secondTile.RequestDeleteAsync();
         }
 
-        public static void UpdateMainTile()
-        {
+        public static void UpdateMainTile() {
             var cashFlow = StatisticLogic.GetMonthlyCashFlow();
 
             ServiceLocator.Current.GetInstance<IUserNotification>()

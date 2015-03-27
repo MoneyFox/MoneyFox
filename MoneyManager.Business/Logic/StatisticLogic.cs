@@ -14,32 +14,8 @@ using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Business.Logic {
     public class StatisticLogic {
-        #region Properties
-
-        private static IEnumerable<FinancialTransaction> AllTransaction {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Data; }
-        }
-
-        private static IEnumerable<Category> AllCategories {
-            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>().Data; }
-        }
-
-        private static TransactionDataAccess TransactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-        }
-
-        private static CategoryDataAccess CateogryData {
-            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
-        }
-
-        private static SettingDataAccess Settings {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
-
-        #endregion
-
         /// <summary>
-        /// Get a list with income, spending and earnings for custom date range
+        ///     Get a list with income, spending and earnings for custom date range
         /// </summary>
         /// <returns>List with income, spending and earning item.</returns>
         public static ObservableCollection<StatisticItem> GetMonthlyCashFlow(DateTime startDate, DateTime endDate) {
@@ -54,7 +30,7 @@ namespace MoneyManager.Business.Logic {
         }
 
         /// <summary>
-        /// Get a list with income, spending and earnings for current month
+        ///     Get a list with income, spending and earnings for current month
         /// </summary>
         /// <returns>List with income, spending and earning item.</returns>
         public static ObservableCollection<StatisticItem> GetMonthlyCashFlow() {
@@ -100,7 +76,7 @@ namespace MoneyManager.Business.Logic {
         }
 
         /// <summary>
-        /// Returns spreading with custom date range
+        ///     Returns spreading with custom date range
         /// </summary>
         /// <param name="startDate">minimum date</param>
         /// <param name="endDate">max date</param>
@@ -126,7 +102,7 @@ namespace MoneyManager.Business.Logic {
         }
 
         /// <summary>
-        /// returns the spreading of the current month
+        ///     returns the spreading of the current month
         /// </summary>
         /// <returns>List with statistic items.</returns>
         public static ObservableCollection<StatisticItem> GetSpreading() {
@@ -157,7 +133,7 @@ namespace MoneyManager.Business.Logic {
                 Category = category.Name,
                 Value = transactionList
                     .Where(x => x.Category == category)
-                    .Sum(x => x.Amount),
+                    .Sum(x => x.Amount)
             }).ToList();
 
             RemoveNullList(tempStatisticList);
@@ -201,7 +177,9 @@ namespace MoneyManager.Business.Logic {
 
         private static void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
             ICollection<StatisticItem> statisticList) {
-            if (statisticList.Count < 6) return;
+            if (statisticList.Count < 6) {
+                return;
+            }
 
             var othersItem = new StatisticItem {
                 Category = "Others",
@@ -216,16 +194,15 @@ namespace MoneyManager.Business.Logic {
             }
         }
 
-
         /// <summary>
-        /// Returns a list with a summary per category for the selected date range.
+        ///     Returns a list with a summary per category for the selected date range.
         /// </summary>
         /// <param name="startDate">start date</param>
         /// <param name="endDate">enddate</param>
         /// <returns>List with statistic Items.</returns>
         public static ObservableCollection<StatisticItem> GetCategorySummary(DateTime startDate, DateTime endDate) {
             var categories = new ObservableCollection<StatisticItem>();
-            
+
             foreach (var category in AllCategories) {
                 categories.Add(new StatisticItem {
                     Category = category.Name,
@@ -241,7 +218,31 @@ namespace MoneyManager.Business.Logic {
             }
 
             return new ObservableCollection<StatisticItem>(
-                    categories.Where(x => Math.Abs(x.Value) > 0.1).OrderBy(x => x.Value).ToList());
+                categories.Where(x => Math.Abs(x.Value) > 0.1).OrderBy(x => x.Value).ToList());
         }
+
+        #region Properties
+
+        private static IEnumerable<FinancialTransaction> AllTransaction {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Data; }
+        }
+
+        private static IEnumerable<Category> AllCategories {
+            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>().Data; }
+        }
+
+        private static TransactionDataAccess TransactionData {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
+
+        private static CategoryDataAccess CateogryData {
+            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
+        }
+
+        private static SettingDataAccess Settings {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
+
+        #endregion
     }
 }

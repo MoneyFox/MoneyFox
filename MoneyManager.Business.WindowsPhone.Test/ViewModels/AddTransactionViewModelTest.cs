@@ -19,40 +19,39 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels {
 
         [TestMethod]
         public void AddTransactionViewModel_ReturnEditSpendingTitle() {
-            _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Spending };
-            var viewModel = new AddTransactionViewModel(_transactionRepository) { IsEdit = true, IsTransfer = true };
+            _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Spending};
+            var viewModel = new AddTransactionViewModel(_transactionRepository) {IsEdit = true, IsTransfer = true};
 
             Assert.AreEqual("edit spending", viewModel.Title);
         }
 
         [TestMethod]
         public void AddTransactionViewModel_ReturnEditIncomeTitle() {
-            _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Income };
-            var viewModel = new AddTransactionViewModel(_transactionRepository) { IsEdit = true, IsTransfer = true };
+            _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Income};
+            var viewModel = new AddTransactionViewModel(_transactionRepository) {IsEdit = true, IsTransfer = true};
 
             Assert.AreEqual("edit income", viewModel.Title);
         }
 
-
         [TestMethod]
         public void AddTransactionViewModel_ReturnEditTransferTitle() {
-            _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Transfer };
-            var viewModel = new AddTransactionViewModel(_transactionRepository) { IsEdit = true, IsTransfer = true };
+            _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer};
+            var viewModel = new AddTransactionViewModel(_transactionRepository) {IsEdit = true, IsTransfer = true};
 
             Assert.AreEqual("edit transfer", viewModel.Title);
         }
 
         [TestMethod]
         public void AddTransactionViewModel_ReturnAddTransferTitle() {
-            _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Transfer };
-            var viewModel = new AddTransactionViewModel(_transactionRepository) { IsEdit = false };
+            _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer};
+            var viewModel = new AddTransactionViewModel(_transactionRepository) {IsEdit = false};
 
             Assert.AreEqual("add transfer", viewModel.Title);
         }
 
         [TestMethod]
         public void AddTransactionViewModel_ReturnSpendingDefaultTitle() {
-            _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Spending };
+            _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Spending};
 
             var viewModel = new AddTransactionViewModel(_transactionRepository);
 
@@ -61,7 +60,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels {
 
         [TestMethod]
         public void AddTransactionViewModel_ReturnIncomeDefault() {
-            _transactionRepository.Selected = new FinancialTransaction { Type = (int)TransactionType.Income };
+            _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Income};
             var viewModel = new AddTransactionViewModel(_transactionRepository);
 
             Assert.AreEqual("add income", viewModel.Title);
@@ -69,7 +68,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels {
 
         [TestMethod]
         public void AddTransactionViewModel_ReturnTransferDefault() {
-            _transactionRepository.Selected = new FinancialTransaction {Type = (int)TransactionType.Transfer};
+            _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer};
             var viewModel = new AddTransactionViewModel(_transactionRepository);
 
             Assert.AreEqual("add transfer", viewModel.Title);

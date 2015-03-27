@@ -21,7 +21,6 @@ namespace MoneyManager.Business.Logic {
             "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
 
         private const string COUNTRIES_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/v2/countries";
-
         private static HttpClient httpClient = new HttpClient();
 
         public static async Task<List<Country>> GetSupportedCountries() {
@@ -37,11 +36,12 @@ namespace MoneyManager.Business.Logic {
                         CurrencyName = token.Value["currencyName"].ToString(),
                         Name = token.Value["name"].ToString(),
                         Alpha3 = token.Value["alpha3"].ToString(),
-                        ID = token.Value["id"].ToString(),
+                        ID = token.Value["id"].ToString()
                     })
                     .OrderBy(x => x.ID)
                     .ToList();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 var dialog = new MessageDialog(Translation.GetTranslation("CheckInternetConnectionMessage"),
                     Translation.GetTranslation("CheckInternetConnectionTitle"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
@@ -73,7 +73,8 @@ namespace MoneyManager.Business.Logic {
                 var currency = JsonConvert.DeserializeAnonymousType(jsonString, typeExample);
                 //use US culture info for parsing, since service uses us format
                 return Double.Parse(currency.Conversion.val, new CultureInfo("en-us"));
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);
             }
             return 1;
@@ -87,7 +88,8 @@ namespace MoneyManager.Business.Logic {
                 response.EnsureSuccessStatusCode();
 
                 return await response.Content.ReadAsStringAsync();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);
             }
             return "1";

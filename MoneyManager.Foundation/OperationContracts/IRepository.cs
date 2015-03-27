@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 
 namespace MoneyManager.Foundation.OperationContracts {
-    public interface IRepository<T>{
+    public interface IRepository<T> {
         /// <summary>
         ///     All item loaded from the database
         /// </summary>

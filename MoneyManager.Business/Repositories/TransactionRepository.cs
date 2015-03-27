@@ -8,11 +8,11 @@ using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Business.Repositories {
     public class TransactionRepository : ITransactionRepository {
-        private ObservableCollection<FinancialTransaction> _data;
         private readonly IDataAccess<FinancialTransaction> _dataAccess;
+        private ObservableCollection<FinancialTransaction> _data;
 
         /// <summary>
-        /// Creates a TransactionRepository Object
+        ///     Creates a TransactionRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced financial transaction data Access</param>
         public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess) {
@@ -21,7 +21,7 @@ namespace MoneyManager.Business.Repositories {
         }
 
         /// <summary>
-        /// cached transaction data
+        ///     cached transaction data
         /// </summary>
         public ObservableCollection<FinancialTransaction> Data {
             get { return _data ?? (_data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList())); }
@@ -39,7 +39,7 @@ namespace MoneyManager.Business.Repositories {
         public FinancialTransaction Selected { get; set; }
 
         /// <summary>
-        /// Save a new item or update an existin one.
+        ///     Save a new item or update an existin one.
         /// </summary>
         /// <param name="item">item to save</param>
         public void Save(FinancialTransaction item) {
@@ -50,11 +50,11 @@ namespace MoneyManager.Business.Repositories {
             if (item.Id == 0) {
                 _data.Add(item);
             }
-           _dataAccess.Save(item);
+            _dataAccess.Save(item);
         }
 
         /// <summary>
-        /// Deletes the passed item and removes the item from cache
+        ///     Deletes the passed item and removes the item from cache
         /// </summary>
         /// <param name="item">item to delete</param>
         public void Delete(FinancialTransaction item) {
@@ -63,7 +63,7 @@ namespace MoneyManager.Business.Repositories {
         }
 
         /// <summary>
-        /// Returns all transaction with date before today
+        ///     Returns all transaction with date before today
         /// </summary>
         /// <returns>list of uncleared transactions</returns>
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions() {
@@ -71,7 +71,7 @@ namespace MoneyManager.Business.Repositories {
         }
 
         /// <summary>
-        /// Returns all transaction with date in this month
+        ///     Returns all transaction with date in this month
         /// </summary>
         /// <returns>list of uncleared transactions</returns>
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date) {
@@ -80,7 +80,7 @@ namespace MoneyManager.Business.Repositories {
         }
 
         /// <summary>
-        /// returns a list with transaction who is related to this account
+        ///     returns a list with transaction who is related to this account
         /// </summary>
         /// <param name="accountId">Id of the account</param>
         /// <returns>List of transactions</returns>
@@ -92,7 +92,7 @@ namespace MoneyManager.Business.Repositories {
         }
 
         /// <summary>
-        /// returns a list with transaction who recure in a given timeframe
+        ///     returns a list with transaction who recure in a given timeframe
         /// </summary>
         /// <returns>list of recurring transactions</returns>
         public List<FinancialTransaction> LoadRecurringList() {
@@ -102,6 +102,5 @@ namespace MoneyManager.Business.Repositories {
                 .Where(x => x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date)
                 .ToList();
         }
-
     }
 }

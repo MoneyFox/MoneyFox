@@ -17,11 +17,8 @@ namespace MoneyManager.Business.ViewModels {
         private const string DbName = "moneyfox.sqlite";
         private const string BackupName = "backupmoneyfox.sqlite";
         private string creationDate;
-
         private LiveConnectClient LiveClient { get; set; }
-
         public bool IsConnected { get; set; }
-
         public bool IsLoading { get; set; }
 
         public string CreationDate {
@@ -41,10 +38,12 @@ namespace MoneyManager.Business.ViewModels {
 
                 if (LiveClient == null) {
                     await ShowNotLoggedInMessage();
-                } else {
+                }
+                else {
                     IsConnected = true;
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex);
             }
         }
@@ -58,7 +57,9 @@ namespace MoneyManager.Business.ViewModels {
         }
 
         public async Task LoadBackupCreationDate() {
-            if (LiveClient == null) return;
+            if (LiveClient == null) {
+                return;
+            }
             IsLoading = true;
 
             string folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
@@ -74,7 +75,9 @@ namespace MoneyManager.Business.ViewModels {
             try {
                 IsLoading = true;
 
-                if (!await ShowOverwriteInfo()) return;
+                if (!await ShowOverwriteInfo()) {
+                    return;
+                }
 
                 string folderId = await BackupLogic.GetFolderId(LiveClient, BackupFolderName);
 
@@ -87,10 +90,12 @@ namespace MoneyManager.Business.ViewModels {
                 await LoadBackupCreationDate();
 
                 await ShowCompletionNote(completionType);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex);
                 ShowCompletionNote(TaskCompletionType.Unsuccessful);
-            } finally {
+            }
+            finally {
                 IsLoading = false;
             }
         }
@@ -117,10 +122,12 @@ namespace MoneyManager.Business.ViewModels {
 
                 await BackupLogic.RestoreBackUp(LiveClient, folderId, "backup" + DbName, DbName);
                 await ShowCompletionNote(TaskCompletionType.Successful);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);
                 ShowCompletionNote(TaskCompletionType.Unsuccessful);
-            } finally {
+            }
+            finally {
                 IsLoading = false;
             }
         }

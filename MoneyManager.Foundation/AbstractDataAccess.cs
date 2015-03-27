@@ -5,7 +5,6 @@ using Xamarin;
 
 namespace MoneyManager.Foundation {
     public abstract class AbstractDataAccess<T> : IDataAccess<T> {
-
         /// <summary>
         ///     Will insert the item to the database if not exists, otherwise will
         ///     update the existing
@@ -14,11 +13,11 @@ namespace MoneyManager.Foundation {
         public void Save(T itemToSave) {
             try {
                 SaveToDb(itemToSave);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex);
             }
         }
-
 
         /// <summary>
         ///     Deletes the passed item from the database
@@ -27,7 +26,8 @@ namespace MoneyManager.Foundation {
         public void Delete(T itemToDelete) {
             try {
                 DeleteFromDatabase(itemToDelete);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex);
             }
         }
@@ -39,16 +39,15 @@ namespace MoneyManager.Foundation {
         public List<T> LoadList() {
             try {
                 return GetListFromDb();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex);
             }
             return new List<T>();
         }
 
         protected abstract void SaveToDb(T itemToAdd);
-
         protected abstract void DeleteFromDatabase(T itemToDelete);
-
         protected abstract List<T> GetListFromDb();
     }
 }

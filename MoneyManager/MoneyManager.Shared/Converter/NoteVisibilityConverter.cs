@@ -5,7 +5,9 @@ using Windows.UI.Xaml.Data;
 namespace MoneyManager.Converter {
     public class NoteVisibilityConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, string language) {
-            if (value == null) return Visibility.Collapsed;
+            if (value == null) {
+                return Visibility.Collapsed;
+            }
 
             return String.IsNullOrEmpty(value.ToString())
                 ? Visibility.Collapsed

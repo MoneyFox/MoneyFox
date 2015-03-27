@@ -14,7 +14,8 @@ namespace MoneyManager.Tasks.TransactionsWp {
                 new BackgroundTaskViewModelLocator();
                 RecurringTransactionLogic.CheckRecurringTransactions();
                 await TransactionLogic.ClearTransactions();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);
             }
         }

@@ -12,13 +12,15 @@ namespace MoneyManager.Business.Logic {
         private static readonly Dictionary<string, BitmapImage> ImageCache = new Dictionary<string, BitmapImage>();
 
         public static BitmapImage GetImage(string path, bool negateResult = false) {
-            if (string.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path)) {
                 return null;
+            }
 
             bool isDarkTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark;
 
-            if (negateResult)
+            if (negateResult) {
                 isDarkTheme = !isDarkTheme;
+            }
 
             BitmapImage result;
             path = "ms-appx:" + string.Format(path, isDarkTheme ? "dark" : "light");

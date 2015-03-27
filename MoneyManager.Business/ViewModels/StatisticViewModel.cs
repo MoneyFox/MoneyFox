@@ -4,9 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight;
-using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
-using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
@@ -16,20 +14,17 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class StatisticViewModel : ViewModelBase {
-        private ObservableCollection<StatisticItem> _monthlyCashFlow;
-
-        private ObservableCollection<StatisticItem> _monthlySpreading;
-
         private ObservableCollection<StatisticItem> _categorySummary;
-
-        public DateTime StartDate { get; set; }
-
-        public DateTime EndDate { get; set; }
+        private ObservableCollection<StatisticItem> _monthlyCashFlow;
+        private ObservableCollection<StatisticItem> _monthlySpreading;
 
         public StatisticViewModel() {
             StartDate = DateTime.Now.Date.AddMonths(-1);
             EndDate = DateTime.Now.Date;
         }
+
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public ObservableCollection<StatisticItem> MonthlyCashFlow {
             get {
@@ -38,7 +33,9 @@ namespace MoneyManager.Business.ViewModels {
                     : _monthlyCashFlow;
             }
             set {
-                if (value == null) return;
+                if (value == null) {
+                    return;
+                }
                 _monthlyCashFlow = value;
             }
         }
@@ -50,7 +47,9 @@ namespace MoneyManager.Business.ViewModels {
                     : _monthlySpreading;
             }
             set {
-                if (value == null) return;
+                if (value == null) {
+                    return;
+                }
                 _monthlySpreading = value;
             }
         }
@@ -62,11 +61,12 @@ namespace MoneyManager.Business.ViewModels {
                     : _categorySummary;
             }
             set {
-                if (value == null) return;
+                if (value == null) {
+                    return;
+                }
                 _categorySummary = value;
             }
-        } 
-
+        }
 
         public string Title {
             get {

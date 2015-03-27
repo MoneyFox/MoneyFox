@@ -8,11 +8,12 @@ using SQLiteNetExtensions.Extensions;
 namespace MoneyManager.DataAccess.DataAccess {
     [ImplementPropertyChanged]
     public class CategoryDataAccess : AbstractDataAccess<Category> {
-           protected override void SaveToDb(Category itemToSave) {
+        protected override void SaveToDb(Category itemToSave) {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
                 if (itemToSave.Id == 0) {
                     db.InsertWithChildren(itemToSave);
-                } else {
+                }
+                else {
                     db.UpdateWithChildren(itemToSave);
                 }
             }

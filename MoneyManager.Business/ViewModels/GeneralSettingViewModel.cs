@@ -21,7 +21,6 @@ namespace MoneyManager.Business.ViewModels {
             set { RegionLogic.SetPrimaryLanguage(value); }
         }
 
-
         public string DefaultCurrency {
             get { return ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency; }
         }

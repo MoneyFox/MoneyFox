@@ -20,7 +20,8 @@ namespace MoneyManager.UserControls {
         private async void LoadCountries(object sender, RoutedEventArgs e) {
             if (LicenseHelper.IsFeaturepackLicensed) {
                 await ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().LoadCountries();
-            } else {
+            }
+            else {
                 var dialog = new MessageDialog(Translation.GetTranslation("ShowFeatureNotLicensedMessage"),
                     Translation.GetTranslation("FeatureNotLicensedTitle"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("RedirectLabel"), GoToPurchase));

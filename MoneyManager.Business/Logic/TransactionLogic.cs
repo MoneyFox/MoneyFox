@@ -18,35 +18,6 @@ using Xamarin;
 
 namespace MoneyManager.Business.Logic {
     public class TransactionLogic {
-        #region Properties
-
-        private static IAccountRepository AccountRepository {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
-        }
-
-        private static ITransactionRepository TransactionRepository {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
-        }
-
-        private static FinancialTransaction selectedTransaction {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected; }
-            set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
-        }
-
-        private static IRecurringTransactionRepository RecurringTransactionRepository {
-            get { return ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>(); }
-        }
-
-        private static AddTransactionViewModel addTransactionView {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
-
-        private static SettingDataAccess settings {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
-
-        #endregion Properties
-
         public static async Task SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
             bool skipRecurring = false) {
             if (transaction.IsRecurring && !skipRecurring) {
@@ -100,7 +71,9 @@ namespace MoneyManager.Business.Logic {
         }
 
         public static void DeleteAssociatedTransactionsFromDatabase(int accountId) {
-            if (TransactionRepository.Data == null) return;
+            if (TransactionRepository.Data == null) {
+                return;
+            }
 
             List<FinancialTransaction> transactionsToDelete = TransactionRepository.Data
                 .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
@@ -128,7 +101,9 @@ namespace MoneyManager.Business.Logic {
 
         private static async Task CheckForRecurringTransaction(FinancialTransaction transaction,
             Action recurringTransactionAction) {
-            if (!transaction.IsRecurring) return;
+            if (!transaction.IsRecurring) {
+                return;
+            }
 
             var dialog =
                 new MessageDialog(Translation.GetTranslation("ChangeSubsequentTransactionsMessage"),
@@ -175,7 +150,8 @@ namespace MoneyManager.Business.Logic {
                 if (AccountRepository.Selected != null) {
                     selectedTransaction.ChargedAccount = AccountRepository.Selected;
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);
             }
         }
@@ -185,10 +161,40 @@ namespace MoneyManager.Business.Logic {
             foreach (FinancialTransaction transaction in transactions) {
                 try {
                     await AccountLogic.AddTransactionAmount(transaction);
-                } catch (Exception ex) {
+                }
+                catch (Exception ex) {
                     Insights.Report(ex, ReportSeverity.Error);
                 }
             }
         }
+
+        #region Properties
+
+        private static IAccountRepository AccountRepository {
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
+        }
+
+        private static ITransactionRepository TransactionRepository {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
+        }
+
+        private static FinancialTransaction selectedTransaction {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected; }
+            set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
+        }
+
+        private static IRecurringTransactionRepository RecurringTransactionRepository {
+            get { return ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>(); }
+        }
+
+        private static AddTransactionViewModel addTransactionView {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+        }
+
+        private static SettingDataAccess settings {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
+
+        #endregion Properties
     }
 }

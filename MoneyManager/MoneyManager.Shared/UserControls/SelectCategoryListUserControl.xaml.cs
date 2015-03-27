@@ -24,7 +24,9 @@ namespace MoneyManager.UserControls {
         private async void EditCategory(object sender, RoutedEventArgs e) {
             var element = (FrameworkElement) sender;
             var category = element.DataContext as Category;
-            if (category == null) return;
+            if (category == null) {
+                return;
+            }
 
             var repository = ServiceLocator.Current.GetInstance<IRepository<Category>>();
             repository.Selected = category;
@@ -36,7 +38,9 @@ namespace MoneyManager.UserControls {
         private void DeleteCategory(object sender, RoutedEventArgs e) {
             var element = (FrameworkElement) sender;
             var category = element.DataContext as Category;
-            if (category == null) return;
+            if (category == null) {
+                return;
+            }
 
             CategoryLogic.DeleteCategory(category);
         }

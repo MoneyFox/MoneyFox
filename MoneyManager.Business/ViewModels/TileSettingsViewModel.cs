@@ -41,7 +41,8 @@ namespace MoneyManager.Business.ViewModels {
         private static async Task<bool> CheckLicense() {
             if (!LicenseHelper.IsFeaturepackLicensed) {
                 await ServiceLocator.Current.GetInstance<Utilities>().ShowFeatureNotLicensedMessage();
-            } else {
+            }
+            else {
                 Tile.UpdateMainTile();
             }
 

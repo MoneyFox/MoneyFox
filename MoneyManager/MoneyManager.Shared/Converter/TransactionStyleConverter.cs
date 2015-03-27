@@ -11,7 +11,9 @@ namespace MoneyManager.Converter {
         public object Convert(object value, Type targetType, object parameter, string language) {
             var transaction = value as FinancialTransaction;
 
-            if (transaction == null) return 0;
+            if (transaction == null) {
+                return 0;
+            }
 
             return transaction.Cleared
                 ? 1

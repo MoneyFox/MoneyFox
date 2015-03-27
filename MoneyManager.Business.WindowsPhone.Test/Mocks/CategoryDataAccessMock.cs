@@ -3,7 +3,7 @@ using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Business.WindowsPhone.Test.Mocks {
-    public class CategoryDataAccessMock :IDataAccess<Category> {
+    public class CategoryDataAccessMock : IDataAccess<Category> {
         public List<Category> CategoryTestList = new List<Category>();
 
         public void Save(Category itemToSave) {

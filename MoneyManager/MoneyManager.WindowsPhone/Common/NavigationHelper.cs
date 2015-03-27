@@ -175,7 +175,9 @@ namespace MoneyManager.Common {
         ///     to invoke the <see cref="Windows.UI.Xaml.Controls.Frame.GoBack" /> method.
         /// </summary>
         public virtual void GoBack() {
-            if (Frame != null && Frame.CanGoBack) Frame.GoBack();
+            if (Frame != null && Frame.CanGoBack) {
+                Frame.GoBack();
+            }
         }
 
         /// <summary>
@@ -183,7 +185,9 @@ namespace MoneyManager.Common {
         ///     to invoke the <see cref="Windows.UI.Xaml.Controls.Frame.GoForward" /> method.
         /// </summary>
         public virtual void GoForward() {
-            if (Frame != null && Frame.CanGoForward) Frame.GoForward();
+            if (Frame != null && Frame.CanGoForward) {
+                Frame.GoForward();
+            }
         }
 
 #if WINDOWS_PHONE_APP
@@ -321,7 +325,8 @@ namespace MoneyManager.Common {
                 if (LoadState != null) {
                     LoadState(this, new LoadStateEventArgs(e.Parameter, null));
                 }
-            } else {
+            }
+            else {
                 // Pass the navigation parameter and preserved page state to the page, using
                 // the same strategy for loading suspended state and recreating pages discarded
                 // from cache

@@ -48,7 +48,8 @@ namespace MoneyManager.UserControls {
                 }
 
                 Plugin.ItemsSource = picItems;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 ShowProductNotFoundDialog();
                 Insights.Report(ex, ReportSeverity.Error);
             }
@@ -73,13 +74,15 @@ namespace MoneyManager.UserControls {
 
                     RenderStoreItems();
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 if (ex.Message.Contains("0x80004005")) {
                     var dialog = new MessageDialog(Translation.GetTranslation("PurchasedFailedMessage"),
                         Translation.GetTranslation("PurchasedFailedTitle"));
                     dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
                     dialog.ShowAsync();
-                } else {
+                }
+                else {
                     Insights.Report(ex, ReportSeverity.Error);
                 }
             }

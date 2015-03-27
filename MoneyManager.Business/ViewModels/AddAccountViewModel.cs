@@ -18,21 +18,6 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class AddAccountViewModel : ViewModelBase {
-        #region Properties
-
-        public Account SelectedAccount {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Selected; }
-            set { ServiceLocator.Current.GetInstance<IAccountRepository>().Selected = value; }
-        }
-
-        public SettingDataAccess Settings {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
-
-        public bool IsEdit { get; set; }
-
-        #endregion Properties
-
         public string CurrentBalanceString {
             get { return CurrentBalanceWithoutExchange.ToString(); }
             set {
@@ -79,5 +64,20 @@ namespace MoneyManager.Business.ViewModels {
         public void Cancel() {
             ((Frame) Window.Current.Content).GoBack();
         }
+
+        #region Properties
+
+        public Account SelectedAccount {
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Selected; }
+            set { ServiceLocator.Current.GetInstance<IAccountRepository>().Selected = value; }
+        }
+
+        public SettingDataAccess Settings {
+            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
+        }
+
+        public bool IsEdit { get; set; }
+
+        #endregion Properties
     }
 }

@@ -5,7 +5,6 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
 using MoneyManager.Foundation;
