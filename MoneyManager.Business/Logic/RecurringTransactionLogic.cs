@@ -31,7 +31,7 @@ namespace MoneyManager.Business.Logic {
 
         private static IEnumerable<RecurringTransaction> AllRecurringTransactions {
             get {
-                return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>().AllRecurringTransactions;
+                return ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>().Data;
             }
         }
 

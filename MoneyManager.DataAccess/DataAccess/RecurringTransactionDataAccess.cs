@@ -14,10 +14,6 @@ using SQLiteNetExtensions.Extensions;
 namespace MoneyManager.DataAccess.DataAccess {
     [ImplementPropertyChanged]
     public class RecurringTransactionDataAccess : AbstractDataAccess<RecurringTransaction> {
-        public ObservableCollection<RecurringTransaction> AllRecurringTransactions { get; set; }
-
-        public RecurringTransaction SelectedRecurringTransaction { get; set; }
-
         protected override void SaveToDb(RecurringTransaction itemToSave) {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
                 if (itemToSave.Id == 0) {
@@ -30,19 +26,15 @@ namespace MoneyManager.DataAccess.DataAccess {
 
         protected override void DeleteFromDatabase(RecurringTransaction itemToDelete) {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
-                if (AllRecurringTransactions != null) {
-                    AllRecurringTransactions.Remove(itemToDelete);
-                }
-
                 db.Delete(itemToDelete);
             }
         }
 
         public void Delete(int reccuringTransactionId) {
-            RecurringTransaction recTrans = AllRecurringTransactions.FirstOrDefault(x => x.Id == reccuringTransactionId);
-            if (recTrans != null) {
-                Delete(recTrans);
-            }
+            //RecurringTransaction recTrans = AllRecurringTransactions.FirstOrDefault(x => x.Id == reccuringTransactionId);
+            //if (recTrans != null) {
+            //    Delete(recTrans);
+            //}
         }
 
         protected override List<RecurringTransaction> GetListFromDb() {
@@ -52,10 +44,6 @@ namespace MoneyManager.DataAccess.DataAccess {
         }
 
         public void Save(FinancialTransaction transaction, RecurringTransaction recurringTransaction) {
-            if (AllRecurringTransactions != null) {
-                AllRecurringTransactions.Add(recurringTransaction);
-            }
-
             Save(recurringTransaction);
             transaction.ReccuringTransactionId = recurringTransaction.Id;
         }

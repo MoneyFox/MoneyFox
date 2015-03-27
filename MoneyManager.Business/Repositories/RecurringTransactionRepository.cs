@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
