@@ -8,6 +8,7 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 using Xamarin;
 
 #endregion
@@ -20,8 +21,8 @@ namespace MoneyManager.Business.Logic {
             get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
         }
 
-        private static TransactionDataAccess transactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        private static ITransactionRepository transactionRepository {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
         private static AddTransactionViewModel addTransactionView {
@@ -39,12 +40,12 @@ namespace MoneyManager.Business.Logic {
         public static void RemoveRecurringForTransactions(RecurringTransaction recTrans) {
             try {
                 IEnumerable<FinancialTransaction> relatedTrans =
-                    transactionData.AllTransactions.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
+                    transactionRepository.Data.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
 
                 foreach (FinancialTransaction transaction in relatedTrans) {
                     transaction.IsRecurring = false;
                     transaction.ReccuringTransactionId = null;
-                    transactionData.Save(transaction);
+                    transactionRepository.Save(transaction);
                 }
             } catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);
@@ -53,7 +54,7 @@ namespace MoneyManager.Business.Logic {
 
         public static void CheckRecurringTransactions() {
             RecurringTransactionData.LoadList();
-            List<FinancialTransaction> transactionList = transactionData.LoadRecurringList();
+            List<FinancialTransaction> transactionList = transactionRepository.LoadRecurringList();
 
             foreach (RecurringTransaction recTrans in AllRecurringTransactions) {
                 var relTransaction = new FinancialTransaction();
@@ -117,7 +118,7 @@ namespace MoneyManager.Business.Logic {
                 Note = recurringTransaction.Note,
             };
 
-            transactionData.Save(newTransaction);
+            transactionRepository.Save(newTransaction);
         }
 
         public static void Delete(RecurringTransaction recTransaction) {

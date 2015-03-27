@@ -62,13 +62,46 @@ namespace MoneyManager.Business.Repositories {
             _dataAccess.Delete(item);
         }
 
+        /// <summary>
+        /// Returns all transaction with date before today
+        /// </summary>
+        /// <returns>list of uncleared transactions</returns>
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions() {
             return GetUnclearedTransactions(DateTime.Today);
         }
 
+        /// <summary>
+        /// Returns all transaction with date in this month
+        /// </summary>
+        /// <returns>list of uncleared transactions</returns>
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date) {
             return Data.Where(x => x.Cleared == false
                                    && x.Date.Date <= date.Date).ToList();
         }
+
+        /// <summary>
+        /// returns a list with transaction who is related to this account
+        /// </summary>
+        /// <param name="accountId">Id of the account</param>
+        /// <returns>List of transactions</returns>
+        public IEnumerable<FinancialTransaction> GetRelatedTransactions(int accountId) {
+            return Data
+                .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
+                .OrderByDescending(x => x.Date)
+                .ToList();
+        }
+
+        /// <summary>
+        /// returns a list with transaction who recure in a given timeframe
+        /// </summary>
+        /// <returns>list of recurring transactions</returns>
+        public List<FinancialTransaction> LoadRecurringList() {
+            return Data
+                .Where(x => x.IsRecurring)
+                .Where(x => x.RecurringTransaction != null)
+                .Where(x => x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date)
+                .ToList();
+        }
+
     }
 }

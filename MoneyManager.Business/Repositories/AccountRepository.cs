@@ -14,7 +14,7 @@ namespace MoneyManager.Business.Repositories {
         /// <summary>
         /// Creates a AccountRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced Account data Access</param>
+        /// <param name="dataAccess">Instanced account data Access</param>
         public AccountRepository(IDataAccess<Account> dataAccess) {
             _dataAccess = dataAccess;
             _data = new ObservableCollection<Account>(_dataAccess.LoadList());

@@ -10,13 +10,14 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 
 #endregion
 
 namespace MoneyManager.Business.Logic {
     public class RegionLogic {
-        private static TransactionDataAccess transactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        private static ITransactionRepository TransactionRepository {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
         private static AccountDataAccess accountData {
@@ -53,9 +54,9 @@ namespace MoneyManager.Business.Logic {
         }
 
         private static void ChangeTransactions() {
-            foreach (FinancialTransaction transaction in transactionData.AllTransactions) {
+            foreach (FinancialTransaction transaction in TransactionRepository.Data) {
                 transaction.Currency = settings.DefaultCurrency;
-                transactionData.Save(transaction);
+                TransactionRepository.Save(transaction);
             }
         }
 

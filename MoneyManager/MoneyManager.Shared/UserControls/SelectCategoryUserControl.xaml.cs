@@ -3,6 +3,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Views;
 
 namespace MoneyManager.UserControls {
@@ -12,7 +13,7 @@ namespace MoneyManager.UserControls {
         }
 
         private void ResetCategory(object sender, TappedRoutedEventArgs e) {
-            ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = null;
+            ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected.Category = null;
         }
 
         private void OpenSelectCategoryDialog(object sender, RoutedEventArgs routedEventArgs) {

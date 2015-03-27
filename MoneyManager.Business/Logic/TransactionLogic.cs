@@ -11,6 +11,7 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 using Xamarin;
 
 #endregion
@@ -23,13 +24,13 @@ namespace MoneyManager.Business.Logic {
             get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
         }
 
-        private static TransactionDataAccess transactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        private static ITransactionRepository TransactionRepository {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
         private static FinancialTransaction selectedTransaction {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction; }
-            set { ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction = value; }
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected; }
+            set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
         }
 
         private static RecurringTransactionDataAccess recurringTransactionData {
@@ -55,7 +56,7 @@ namespace MoneyManager.Business.Logic {
                 transaction.RecurringTransaction = recurringTransaction;
             }
 
-            transactionData.Save(transaction);
+            TransactionRepository.Save(transaction);
 
             if (refreshRelatedList) {
                 ServiceLocator.Current.GetInstance<TransactionListViewModel>()
@@ -90,7 +91,7 @@ namespace MoneyManager.Business.Logic {
                 await CheckForRecurringTransaction(transaction,
                     () => RecurringTransactionLogic.Delete(transaction.RecurringTransaction));
 
-                transactionData.Delete(transaction);
+                TransactionRepository.Delete(transaction);
 
                 await AccountLogic.RemoveTransactionAmount(transaction);
                 AccountLogic.RefreshRelatedTransactions();
@@ -99,21 +100,21 @@ namespace MoneyManager.Business.Logic {
         }
 
         public static void DeleteAssociatedTransactionsFromDatabase(int accountId) {
-            if (transactionData.AllTransactions == null) return;
+            if (TransactionRepository.Data == null) return;
 
-            List<FinancialTransaction> transactionsToDelete = transactionData.AllTransactions
+            List<FinancialTransaction> transactionsToDelete = TransactionRepository.Data
                 .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
                 .ToList();
 
             foreach (FinancialTransaction transaction in transactionsToDelete) {
-                transactionData.Delete(transaction);
+                TransactionRepository.Delete(transaction);
             }
         }
 
         public static async Task UpdateTransaction(FinancialTransaction transaction) {
             CheckIfRecurringWasRemoved(transaction);
             await AccountLogic.AddTransactionAmount(transaction);
-            transactionData.Save(transaction);
+            TransactionRepository.Save(transaction);
 
             RecurringTransaction recurringTransaction =
                 RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
@@ -184,7 +185,7 @@ namespace MoneyManager.Business.Logic {
         }
 
         public static async Task ClearTransactions() {
-            IEnumerable<FinancialTransaction> transactions = transactionData.GetUnclearedTransactions();
+            IEnumerable<FinancialTransaction> transactions = TransactionRepository.GetUnclearedTransactions();
             foreach (FinancialTransaction transaction in transactions) {
                 try {
                     await AccountLogic.AddTransactionAmount(transaction);

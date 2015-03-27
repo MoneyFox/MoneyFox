@@ -1,6 +1,4 @@
-﻿#region
-
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
@@ -9,9 +7,8 @@ using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Views;
-
-#endregion
 
 namespace MoneyManager.UserControls {
     public partial class TransactionListUserControl {
@@ -23,8 +20,8 @@ namespace MoneyManager.UserControls {
 
         #region Properties
 
-        public TransactionDataAccess TransactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        public ITransactionRepository TransactionRepository {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
         public AddTransactionViewModel AddTransactionView {
@@ -76,9 +73,9 @@ namespace MoneyManager.UserControls {
 
         private void LoadDetails(object sender, SelectionChangedEventArgs e) {
             if (!AddTransactionView.IsNavigationBlocked && ListViewTransactions.SelectedItem != null) {
-                TransactionData.SelectedTransaction = ListViewTransactions.SelectedItem as FinancialTransaction;
+                TransactionRepository.Selected = ListViewTransactions.SelectedItem as FinancialTransaction;
 
-                TransactionLogic.PrepareEdit(TransactionData.SelectedTransaction);
+                TransactionLogic.PrepareEdit(TransactionRepository.Selected);
 
                 ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
                 ListViewTransactions.SelectedItem = null;

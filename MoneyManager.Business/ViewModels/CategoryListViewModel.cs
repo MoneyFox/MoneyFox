@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
 #endregion
@@ -16,7 +17,7 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class CategoryListViewModel : ViewModelBase {
-        private string searchText;
+        private string _searchText;
 
         public CategoryListViewModel() {
             categoryData.LoadList();
@@ -31,8 +32,8 @@ namespace MoneyManager.Business.ViewModels {
             get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
         }
 
-        private TransactionDataAccess transactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        private ITransactionRepository TransactionRepository {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
         private ObservableCollection<Category> allCategories {
@@ -41,24 +42,24 @@ namespace MoneyManager.Business.ViewModels {
 
         public Category SelectedCategory {
             get {
-                return transactionData.SelectedTransaction == null
+                return TransactionRepository.Selected == null
                     ? new Category()
-                    : transactionData.SelectedTransaction.Category;
+                    : TransactionRepository.Selected.Category;
             }
             set {
                 if (value == null) return;
 
                 if (!IsSettingCall) {
-                    ServiceLocator.Current.GetInstance<TransactionDataAccess>().SelectedTransaction.Category = value;
+                    TransactionRepository.Selected.Category = value;
                     ((Frame) Window.Current.Content).GoBack();
                 }
             }
         }
 
         public string SearchText {
-            get { return searchText; }
+            get { return _searchText; }
             set {
-                searchText = value;
+                _searchText = value;
                 Search();
             }
         }
@@ -66,7 +67,7 @@ namespace MoneyManager.Business.ViewModels {
         public void Search() {
             if (SearchText != String.Empty) {
                 Categories = new ObservableCollection<Category>
-                    (allCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
+                    (allCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(_searchText.ToLower()))
                         .ToList());
             } else {
                 Categories = allCategories;

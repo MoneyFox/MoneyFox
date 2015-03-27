@@ -8,6 +8,7 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 
 #endregion
 
@@ -16,7 +17,7 @@ namespace MoneyManager.Business.Logic {
         #region Properties
 
         private static IEnumerable<FinancialTransaction> AllTransaction {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>().AllTransactions; }
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Data; }
         }
 
         private static IEnumerable<Category> AllCategories {

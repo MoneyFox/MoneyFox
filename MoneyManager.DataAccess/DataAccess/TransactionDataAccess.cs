@@ -15,11 +15,7 @@ using SQLiteNetExtensions.Extensions;
 namespace MoneyManager.DataAccess.DataAccess {
     [ImplementPropertyChanged]
     public class TransactionDataAccess : AbstractDataAccess<FinancialTransaction> {
-        public ObservableCollection<FinancialTransaction> AllTransactions { get; set; }
-
-        public FinancialTransaction SelectedTransaction { get; set; }
-
-        protected override void SaveToDb(FinancialTransaction itemToSave) {
+       protected override void SaveToDb(FinancialTransaction itemToSave) {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
                 if (itemToSave.Id == 0) {
                     db.InsertWithChildren(itemToSave);
@@ -45,14 +41,15 @@ namespace MoneyManager.DataAccess.DataAccess {
 
 
         public IEnumerable<FinancialTransaction> GetRelatedTransactions(int accountId) {
-            if (AllTransactions == null) {
-                LoadList();
-            }
+            //if (AllTransactions == null) {
+            //    LoadList();
+            //}
 
-            return AllTransactions
-                .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
-                .OrderByDescending(x => x.Date)
-                .ToList();
+            //return AllTransactions
+            //    .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
+            //    .OrderByDescending(x => x.Date)
+            //    .ToList();
+            return new List<FinancialTransaction>();
         }
 
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions() {
@@ -60,24 +57,26 @@ namespace MoneyManager.DataAccess.DataAccess {
         }
 
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date) {
-            if (AllTransactions == null) {
-                LoadList();
-            }
+            //if (AllTransactions == null) {
+            //    LoadList();
+            //}
 
-            return AllTransactions.Where(x => x.Cleared == false
-                                              && x.Date.Date <= date.Date).ToList();
+            //return AllTransactions.Where(x => x.Cleared == false
+            //                                  && x.Date.Date <= date.Date).ToList();
+            return new List<FinancialTransaction>();
         }
 
         public List<FinancialTransaction> LoadRecurringList() {
-            if (AllTransactions == null) {
-                LoadList();
-            }
+            //if (AllTransactions == null) {
+            //    LoadList();
+            //}
 
-            return AllTransactions
-                .Where(x => x.IsRecurring)
-                .Where(x => x.RecurringTransaction != null)
-                .Where(x => x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date)
-                .ToList();
+            //return AllTransactions
+            //    .Where(x => x.IsRecurring)
+            //    .Where(x => x.RecurringTransaction != null)
+            //    .Where(x => x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date)
+            //    .ToList();
+            return new List<FinancialTransaction>();
         }
     }
 }
