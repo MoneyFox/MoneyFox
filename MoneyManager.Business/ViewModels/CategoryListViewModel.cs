@@ -20,7 +20,6 @@ namespace MoneyManager.Business.ViewModels {
         private string _searchText;
 
         public CategoryListViewModel() {
-            categoryData.LoadList();
             Categories = allCategories;
         }
 
@@ -28,8 +27,8 @@ namespace MoneyManager.Business.ViewModels {
 
         public ObservableCollection<Category> Categories { get; set; }
 
-        private CategoryDataAccess categoryData {
-            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
+        private IRepository<Category> CategoryRepository {
+            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>(); }
         }
 
         private ITransactionRepository TransactionRepository {
@@ -37,7 +36,7 @@ namespace MoneyManager.Business.ViewModels {
         }
 
         private ObservableCollection<Category> allCategories {
-            get { return categoryData.AllCategories; }
+            get { return CategoryRepository.Data; }
         }
 
         public Category SelectedCategory {

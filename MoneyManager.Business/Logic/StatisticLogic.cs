@@ -21,7 +21,7 @@ namespace MoneyManager.Business.Logic {
         }
 
         private static IEnumerable<Category> AllCategories {
-            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
+            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>().Data; }
         }
 
         private static TransactionDataAccess TransactionData {

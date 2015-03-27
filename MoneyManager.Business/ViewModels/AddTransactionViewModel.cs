@@ -102,7 +102,7 @@ namespace MoneyManager.Business.ViewModels {
         }
 
         public ObservableCollection<Category> AllCategories {
-            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>().AllCategories; }
+            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>().Data; }
         }
 
         public SettingDataAccess Settings {

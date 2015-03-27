@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
@@ -8,8 +6,7 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-
-#endregion
+using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Dialogs {
     public sealed partial class CategoryDialog {
@@ -18,16 +15,16 @@ namespace MoneyManager.Dialogs {
 
             IsEdit = isEdit;
             if (!isEdit) {
-                CategoryData.SelectedCategory = new Category();
+                CategoryRepository.Selected = new Category();
 
                 if (!String.IsNullOrEmpty(CategoryListView.SearchText)) {
-                    CategoryData.SelectedCategory.Name = CategoryListView.SearchText;
+                    CategoryRepository.Selected.Name = CategoryListView.SearchText;
                 }
             }
         }
 
-        private CategoryDataAccess CategoryData {
-            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
+        private IRepository<Category> CategoryRepository {
+            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>(); }
         }
 
         private CategoryListViewModel CategoryListView {
@@ -37,7 +34,7 @@ namespace MoneyManager.Dialogs {
         public bool IsEdit { get; set; }
 
         private async void DoneOnClick(ContentDialog sender, ContentDialogButtonClickEventArgs args) {
-            if (CategoryData.SelectedCategory.Name == String.Empty) {
+            if (CategoryRepository.Selected.Name == String.Empty) {
                 var dialog = new MessageDialog(Translation.GetTranslation("NameRequiredMessage"),
                     Translation.GetTranslation("MandatoryField"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
@@ -46,7 +43,7 @@ namespace MoneyManager.Dialogs {
                 await dialog.ShowAsync();
             }
 
-            CategoryData.Save(CategoryData.SelectedCategory);
+            CategoryRepository.Save(CategoryRepository.Selected);
 
             CategoryListView.SearchText = String.Empty;
             CategoryListView.Search();

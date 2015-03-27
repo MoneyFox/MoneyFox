@@ -4,9 +4,9 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
-using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Dialogs;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.UserControls {
     public partial class CategoryListUserControl {
@@ -26,8 +26,8 @@ namespace MoneyManager.UserControls {
             var category = element.DataContext as Category;
             if (category == null) return;
 
-            var viewModel = ServiceLocator.Current.GetInstance<CategoryDataAccess>();
-            viewModel.SelectedCategory = category;
+            var repository = ServiceLocator.Current.GetInstance<IRepository<Category>>();
+            repository.Selected = category;
 
             var dialog = new CategoryDialog(true);
             await dialog.ShowAsync();
