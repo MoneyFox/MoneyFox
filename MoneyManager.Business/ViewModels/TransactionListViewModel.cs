@@ -12,8 +12,8 @@ using QKit.JumpList;
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class TransactionListViewModel : ViewModelBase {
-        private TransactionDataAccess transactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        private ITransactionRepository transactionRepository {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
         private IAccountRepository AccountRepository {
@@ -27,7 +27,7 @@ namespace MoneyManager.Business.ViewModels {
         public List<JumpListGroup<FinancialTransaction>> RelatedTransactions { set; get; }
 
         public void SetRelatedTransactions(int accountId) {
-            IEnumerable<FinancialTransaction> related = transactionData.GetRelatedTransactions(accountId);
+            IEnumerable<FinancialTransaction> related = transactionRepository.GetRelatedTransactions(accountId);
 
             var dateInfo = new DateTimeFormatInfo();
             RelatedTransactions = related.ToGroups(x => x.Date,

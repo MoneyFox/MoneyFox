@@ -27,8 +27,8 @@ namespace MoneyManager.Business.ViewModels {
             get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Selected; }
         }
 
-        public TransactionDataAccess TransactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        private ITransactionRepository TransactionRepository {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
         public SettingDataAccess settings {
@@ -97,7 +97,7 @@ namespace MoneyManager.Business.ViewModels {
 
         private IEnumerable<FinancialTransaction> LoadUnclreadTransactions() {
             IEnumerable<FinancialTransaction> unclearedTransactions =
-                TransactionData.GetUnclearedTransactions(Utilities.GetEndOfMonth());
+                TransactionRepository.GetUnclearedTransactions(Utilities.GetEndOfMonth());
 
             return IsTransactionView
                 ? unclearedTransactions.Where(
