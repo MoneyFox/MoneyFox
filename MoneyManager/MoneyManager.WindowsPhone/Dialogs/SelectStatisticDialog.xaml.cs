@@ -18,7 +18,7 @@ namespace MoneyManager.Dialogs {
         }
 
         private void LoadStatistic(ContentDialog sender, ContentDialogButtonClickEventArgs args) {
-            if (LicenseHelper.IsFeaturepackLicensed) {
+            if (ServiceLocator.Current.GetInstance<LicenseHelper>().IsFeaturepackLicensed) {
                 statisticView.SetCustomCashFlow();
                 statisticView.SetCustomSpreading();
                 statisticView.SetCagtegorySummary();

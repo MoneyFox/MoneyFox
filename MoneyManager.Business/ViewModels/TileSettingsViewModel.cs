@@ -10,9 +10,16 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class TileSettingsViewModel : ViewModelBase {
+
+        private readonly LicenseHelper _licenseHelper;
+
+        public TileSettingsViewModel(LicenseHelper licenseHelper) {
+            _licenseHelper = licenseHelper;
+        }
+
         public bool ShowInfoOnMainTile {
             get {
-                if (LicenseHelper.IsFeaturepackLicensed) {
+                if (_licenseHelper.IsFeaturepackLicensed) {
                     return ServiceLocator.Current.GetInstance<SettingDataAccess>().ShowCashFlowOnMainTile;
                 }
                 return false;
@@ -38,15 +45,15 @@ namespace MoneyManager.Business.ViewModels {
             }
         }
 
-        private static async Task<bool> CheckLicense() {
-            if (!LicenseHelper.IsFeaturepackLicensed) {
+        private async Task<bool> CheckLicense() {
+            if (!_licenseHelper.IsFeaturepackLicensed) {
                 await ServiceLocator.Current.GetInstance<Utilities>().ShowFeatureNotLicensedMessage();
             }
             else {
                 Tile.UpdateMainTile();
             }
 
-            return LicenseHelper.IsFeaturepackLicensed;
+            return _licenseHelper.IsFeaturepackLicensed;
         }
     }
 }

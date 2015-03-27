@@ -6,17 +6,17 @@ using Xamarin;
 
 namespace MoneyManager.Business.Logic {
     public class LicenseHelper {
-        public static readonly string FeaturepackProductKey = "10001";
-        private static bool _isFeaturepackLicensed;
+        public readonly string FeaturepackProductKey = "10001";
+        private bool _isFeaturepackLicensed;
 
-        public static bool IsFeaturepackLicensed {
+        public bool IsFeaturepackLicensed {
             get {
                 CheckLicenceFeaturepack();
                 return _isFeaturepackLicensed;
             }
         }
 
-        public static async Task CheckLicenceFeaturepack() {
+        public async Task CheckLicenceFeaturepack() {
 #if DEBUG
             _isFeaturepackLicensed = true;
             return;

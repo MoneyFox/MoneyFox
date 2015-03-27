@@ -1,6 +1,4 @@
-﻿#region
-
-using Windows.UI.Popups;
+﻿using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
@@ -9,8 +7,6 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Views;
 
-#endregion
-
 namespace MoneyManager.UserControls {
     public sealed partial class SelectCurrencyUserControl {
         public SelectCurrencyUserControl() {
@@ -18,7 +14,7 @@ namespace MoneyManager.UserControls {
         }
 
         private async void LoadCountries(object sender, RoutedEventArgs e) {
-            if (LicenseHelper.IsFeaturepackLicensed) {
+            if (ServiceLocator.Current.GetInstance<LicenseHelper>().IsFeaturepackLicensed) {
                 await ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().LoadCountries();
             }
             else {

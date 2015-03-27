@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.ComponentModel;
 using System.Globalization;
@@ -8,8 +6,6 @@ using System.Runtime.CompilerServices;
 using Windows.Globalization;
 using Windows.Storage;
 using PropertyChanged;
-
-#endregion
 
 namespace MoneyManager.DataAccess.DataAccess {
     [ImplementPropertyChanged]

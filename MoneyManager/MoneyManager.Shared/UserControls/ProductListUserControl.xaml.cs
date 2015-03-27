@@ -5,6 +5,7 @@ using Windows.ApplicationModel.Store;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -65,7 +66,7 @@ namespace MoneyManager.UserControls {
                     ListingInformation products = await CurrentApp.LoadListingInformationAsync();
 
                     ProductListing productListing;
-                    if (!products.ProductListings.TryGetValue(LicenseHelper.FeaturepackProductKey, out productListing)) {
+                    if (!products.ProductListings.TryGetValue(ServiceLocator.Current.GetInstance<LicenseHelper>().FeaturepackProductKey, out productListing)) {
                         await ShowProductNotFoundDialog();
                         return;
                     }

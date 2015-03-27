@@ -7,6 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
 using MoneyManager.Tasks.TransactionsWp;
@@ -30,7 +31,7 @@ namespace MoneyManager {
                 Insights.Initialize("599ff6bfdc79368ff3d5f5629a57c995fe93352e");
             }
 
-            await LicenseHelper.CheckLicenceFeaturepack();
+            await ServiceLocator.Current.GetInstance<LicenseHelper>().CheckLicenceFeaturepack();
             var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,

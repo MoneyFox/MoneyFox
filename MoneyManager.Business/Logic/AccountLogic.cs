@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
@@ -11,8 +9,6 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using Xamarin;
-
-#endregion
 
 namespace MoneyManager.Business.Logic {
     public class AccountLogic {
