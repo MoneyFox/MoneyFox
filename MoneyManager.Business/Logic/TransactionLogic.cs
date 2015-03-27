@@ -33,8 +33,8 @@ namespace MoneyManager.Business.Logic {
             set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
         }
 
-        private static RecurringTransactionDataAccess recurringTransactionData {
-            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+        private static IRecurringTransactionRepository RecurringTransactionRepository {
+            get { return ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>(); }
         }
 
         private static AddTransactionViewModel addTransactionView {
@@ -52,7 +52,8 @@ namespace MoneyManager.Business.Logic {
             if (transaction.IsRecurring && !skipRecurring) {
                 RecurringTransaction recurringTransaction =
                     RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
-                recurringTransactionData.Save(transaction, recurringTransaction);
+                RecurringTransactionRepository.Save(recurringTransaction);
+                TransactionRepository.Save(transaction);
                 transaction.RecurringTransaction = recurringTransaction;
             }
 
@@ -82,8 +83,7 @@ namespace MoneyManager.Business.Logic {
                 addTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
             }
 
-            //Todo:Refactor
-            //addTransactionView.SelectedTransaction = transaction;
+            TransactionRepository.Selected = transaction;
         }
 
         public static async Task DeleteTransaction(FinancialTransaction transaction, bool skipConfirmation = false) {
@@ -121,7 +121,7 @@ namespace MoneyManager.Business.Logic {
 
             await
                 CheckForRecurringTransaction(transaction,
-                    () => recurringTransactionData.Save(recurringTransaction));
+                    () => RecurringTransactionRepository.Save(recurringTransaction));
 
             AccountLogic.RefreshRelatedTransactions();
         }
@@ -148,7 +148,7 @@ namespace MoneyManager.Business.Logic {
 
         private static void CheckIfRecurringWasRemoved(FinancialTransaction transaction) {
             if (!transaction.IsRecurring && transaction.ReccuringTransactionId.HasValue) {
-                recurringTransactionData.Delete(transaction.ReccuringTransactionId.Value);
+                RecurringTransactionRepository.Delete(transaction.RecurringTransaction);
                 transaction.ReccuringTransactionId = null;
             }
         }
