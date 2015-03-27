@@ -14,7 +14,7 @@ namespace MoneyManager.UserControls {
         }
 
         private async void LoadCountries(object sender, RoutedEventArgs e) {
-            if (ServiceLocator.Current.GetInstance<LicenseHelper>().IsFeaturepackLicensed) {
+            if (ServiceLocator.Current.GetInstance<LicenseManager>().IsFeaturepackLicensed) {
                 await ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().LoadCountries();
             }
             else {

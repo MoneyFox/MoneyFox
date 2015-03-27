@@ -11,15 +11,15 @@ namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class TileSettingsViewModel : ViewModelBase {
 
-        private readonly LicenseHelper _licenseHelper;
+        private readonly LicenseManager _licenseManager;
 
-        public TileSettingsViewModel(LicenseHelper licenseHelper) {
-            _licenseHelper = licenseHelper;
+        public TileSettingsViewModel(LicenseManager licenseManager) {
+            _licenseManager = licenseManager;
         }
 
         public bool ShowInfoOnMainTile {
             get {
-                if (_licenseHelper.IsFeaturepackLicensed) {
+                if (_licenseManager.IsFeaturepackLicensed) {
                     return ServiceLocator.Current.GetInstance<SettingDataAccess>().ShowCashFlowOnMainTile;
                 }
                 return false;
@@ -46,14 +46,14 @@ namespace MoneyManager.Business.ViewModels {
         }
 
         private async Task<bool> CheckLicense() {
-            if (!_licenseHelper.IsFeaturepackLicensed) {
+            if (!_licenseManager.IsFeaturepackLicensed) {
                 await ServiceLocator.Current.GetInstance<Utilities>().ShowFeatureNotLicensedMessage();
             }
             else {
                 Tile.UpdateMainTile();
             }
 
-            return _licenseHelper.IsFeaturepackLicensed;
+            return _licenseManager.IsFeaturepackLicensed;
         }
     }
 }

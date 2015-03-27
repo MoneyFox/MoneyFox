@@ -66,7 +66,7 @@ namespace MoneyManager.UserControls {
                     ListingInformation products = await CurrentApp.LoadListingInformationAsync();
 
                     ProductListing productListing;
-                    if (!products.ProductListings.TryGetValue(ServiceLocator.Current.GetInstance<LicenseHelper>().FeaturepackProductKey, out productListing)) {
+                    if (!products.ProductListings.TryGetValue(ServiceLocator.Current.GetInstance<LicenseManager>().FeaturepackProductKey, out productListing)) {
                         await ShowProductNotFoundDialog();
                         return;
                     }
