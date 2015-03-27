@@ -10,11 +10,18 @@ namespace MoneyManager.Business.Repositories {
 
         private ObservableCollection<Category> _data;
 
+        /// <summary>
+        /// Creates a CategoryRepository Object
+        /// </summary>
+        /// <param name="dataAccess">Instanced Category data Access</param>
         public CategoryRepository(IDataAccess<Category> dataAccess) {
             _dataAccess = dataAccess;
             _data = new ObservableCollection<Category>(_dataAccess.LoadList());
         }
 
+        /// <summary>
+        /// Cached category data
+        /// </summary>
         public ObservableCollection<Category> Data {
             get { return _data ?? (_data = new ObservableCollection<Category>(_dataAccess.LoadList())); }
             set {
@@ -30,6 +37,10 @@ namespace MoneyManager.Business.Repositories {
 
         public Category Selected { get; set; }
 
+        /// <summary>
+        /// Save a new item or update an existin one.
+        /// </summary>
+        /// <param name="item">item to save</param>
         public void Save(Category item) {
             if (String.IsNullOrWhiteSpace(item.Name)) {
                 item.Name = Translation.GetTranslation("NoNamePlaceholderLabel");
@@ -41,6 +52,10 @@ namespace MoneyManager.Business.Repositories {
             _dataAccess.Save(item);
         }
 
+        /// <summary>
+        /// Deletes the passed item and removes the item from cache
+        /// </summary>
+        /// <param name="item">item to delete</param>
         public void Delete(Category item) {
             _data.Remove(item);
             _dataAccess.Delete(item);

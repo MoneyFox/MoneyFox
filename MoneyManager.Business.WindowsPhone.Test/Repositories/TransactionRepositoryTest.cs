@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Microsoft.VisualStudio.TestPlatform.Core;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.Business.Helper;
 using MoneyManager.Business.Repositories;
 using MoneyManager.Business.WindowsPhone.Test.Mocks;
 using MoneyManager.DataAccess;
@@ -212,6 +215,56 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
 
             Assert.AreEqual(1, repository.Data.Count);
             Assert.AreEqual(30, repository.Data[0].Amount);
+        }
+
+        [TestMethod]
+        public void TransactionRepository_GetUnclearedTransactionsPast() {
+            var repository = new TransactionRepository(_transactionDataAccessMock);
+
+            var account = new Account {
+                Name = "TestAccount"
+            };
+
+            repository.Save(new FinancialTransaction {
+                ChargedAccount= account,
+                Amount = 55,
+                Date = DateTime.Today.AddDays(-1),
+                Note = "this is a note!!!",
+                Cleared = false
+            }
+                );
+
+            IEnumerable<FinancialTransaction> transactions = repository.GetUnclearedTransactions();
+
+            Assert.AreEqual(1, transactions.Count());
+        }
+
+        /// <summary>
+        /// This Test may fail if the date overlaps with the month transition.
+        /// </summary>
+        [TestMethod]
+        public void TransactionRepository_GetUnclearedTransactionsFuture() {
+            var repository = new TransactionRepository(_transactionDataAccessMock);
+
+            var account = new Account {
+                Name = "TestAccount"
+            };
+
+            repository.Save(new FinancialTransaction {
+                ChargedAccount = account,
+                Amount = 55,
+                Date = Utilities.GetEndOfMonth().AddDays(-1),
+                Note = "this is a note!!!",
+                Cleared = false
+            }
+                );
+
+            var transactions = repository.GetUnclearedTransactions();
+            Assert.AreEqual(0, transactions.Count());
+
+            transactions = repository.GetUnclearedTransactions(Utilities.GetEndOfMonth());
+            Assert.AreEqual(1, transactions.Count());
+
         }
     }
 }

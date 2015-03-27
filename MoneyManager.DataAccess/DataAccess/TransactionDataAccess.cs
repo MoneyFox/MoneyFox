@@ -41,6 +41,9 @@ namespace MoneyManager.DataAccess.DataAccess {
             }
         }
 
+
+
+
         public IEnumerable<FinancialTransaction> GetRelatedTransactions(int accountId) {
             if (AllTransactions == null) {
                 LoadList();

@@ -11,11 +11,18 @@ namespace MoneyManager.Business.Repositories {
 
         private ObservableCollection<Account> _data;
 
+        /// <summary>
+        /// Creates a AccountRepository Object
+        /// </summary>
+        /// <param name="dataAccess">Instanced Account data Access</param>
         public AccountRepository(IDataAccess<Account> dataAccess) {
             _dataAccess = dataAccess;
             _data = new ObservableCollection<Account>(_dataAccess.LoadList());
         }
 
+        /// <summary>
+        /// Cached account data
+        /// </summary>
         public ObservableCollection<Account> Data {
             get { return _data ?? (_data = new ObservableCollection<Account>(_dataAccess.LoadList())); }
             set {
@@ -31,6 +38,10 @@ namespace MoneyManager.Business.Repositories {
 
         public Account Selected { get; set; }
 
+        /// <summary>
+        /// Save a new item or update an existin one.
+        /// </summary>
+        /// <param name="item">item to save</param>
         public void Save(Account item) {
             if (String.IsNullOrWhiteSpace(item.Name)) {
                 item.Name = Translation.GetTranslation("NoNamePlaceholderLabel");
@@ -42,6 +53,10 @@ namespace MoneyManager.Business.Repositories {
             _dataAccess.Save(item);
         }
 
+        /// <summary>
+        /// Deletes the passed item and removes the item from cache
+        /// </summary>
+        /// <param name="item">item to delete</param>
         public void Delete(Account item) {
             _data.Remove(item);
             _dataAccess.Delete(item);
