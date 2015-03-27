@@ -6,7 +6,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
     public class SettingsDataAccessTest {
         [TestMethod]
         [TestCategory("Integration")]
-        public void CrudSettingsTest() {
+        public void SettingsDataAccess_CrudSettings() {
             var settings = new SettingDataAccess();
             Assert.AreEqual("USD", settings.DefaultCurrency);
 

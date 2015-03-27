@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
+using MoneyManager.Business.Manager;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -18,6 +19,12 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class AddAccountViewModel : ViewModelBase {
+        private readonly CurrencyManager _currencyManager;
+
+        public AddAccountViewModel(CurrencyManager currencyManager) {
+            _currencyManager = currencyManager;
+        }
+
         public string CurrentBalanceString {
             get { return CurrentBalanceWithoutExchange.ToString(); }
             set {
@@ -53,7 +60,7 @@ namespace MoneyManager.Business.ViewModels {
 
         public async Task LoadCurrencyRatio() {
             SelectedAccount.ExchangeRatio =
-                await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, SelectedAccount.Currency);
+                await _currencyManager.GetCurrencyRatio(Settings.DefaultCurrency, SelectedAccount.Currency);
         }
 
         public void Save() {

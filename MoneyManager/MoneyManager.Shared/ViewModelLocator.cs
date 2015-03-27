@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business;
 using MoneyManager.Business.Helper;
-using MoneyManager.Business.Logic;
+using MoneyManager.Business.Manager;
 using MoneyManager.Business.Repositories;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
@@ -28,8 +28,11 @@ namespace MoneyManager {
             //Logic
             SimpleIoc.Default.Register<IUserNotification, UserNotification>();
             SimpleIoc.Default.Register(CreateNavigationService);
-            SimpleIoc.Default.Register<LicenseManager>();
             SimpleIoc.Default.Register<Utilities>();
+
+            //Manager
+            SimpleIoc.Default.Register<LicenseManager>();
+            SimpleIoc.Default.Register<CurrencyManager>();
 
             //Repositories
             SimpleIoc.Default.Register<ITransactionRepository, TransactionRepository>();

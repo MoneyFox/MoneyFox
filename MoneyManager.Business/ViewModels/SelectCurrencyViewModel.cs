@@ -8,7 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Logic;
+using MoneyManager.Business.Manager;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -19,7 +19,13 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class SelectCurrencyViewModel : ViewModelBase {
-        private string searchText;
+        private readonly CurrencyManager _currencyManager;
+        private string _searchText;
+
+        public SelectCurrencyViewModel(CurrencyManager currencyManager) {
+            _currencyManager = currencyManager;
+        }
+
         public ObservableCollection<Country> AllCountries { get; set; }
         public InvocationType InvocationType { get; set; }
 
@@ -35,9 +41,9 @@ namespace MoneyManager.Business.ViewModels {
         }
 
         public string SearchText {
-            get { return searchText; }
+            get { return _searchText; }
             set {
-                searchText = value.ToUpper();
+                _searchText = value.ToUpper();
                 Search();
             }
         }
@@ -59,7 +65,7 @@ namespace MoneyManager.Business.ViewModels {
         }
 
         public async Task LoadCountries() {
-            AllCountries = new ObservableCollection<Country>(await CurrencyLogic.GetSupportedCountries());
+            AllCountries = new ObservableCollection<Country>(await _currencyManager.GetSupportedCountries());
         }
 
         public async void Search() {
@@ -67,7 +73,7 @@ namespace MoneyManager.Business.ViewModels {
                 AllCountries =
                     new ObservableCollection<Country>(
                         AllCountries
-                            .Where(x => x.ID.Contains(searchText) || x.CurrencyID.Contains(SearchText))
+                            .Where(x => x.ID.Contains(_searchText) || x.CurrencyID.Contains(SearchText))
                             .ToList());
             }
             else {

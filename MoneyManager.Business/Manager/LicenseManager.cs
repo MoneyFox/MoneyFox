@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Store;
 using Xamarin;
 
-namespace MoneyManager.Business.Logic {
+namespace MoneyManager.Business.Manager {
     public class LicenseManager {
         public readonly string FeaturepackProductKey = "10001";
         private bool _isFeaturepackLicensed;

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
+using MoneyManager.Business.Manager;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
@@ -91,7 +92,7 @@ namespace MoneyManager.Business.Logic {
         private static async Task<double> GetAmount(double baseAmount, FinancialTransaction transaction, Account account) {
             try {
                 if (transaction.Currency != account.Currency) {
-                    double ratio = await CurrencyLogic.GetCurrencyRatio(transaction.Currency, account.Currency);
+                    double ratio = await currencyManager.GetCurrencyRatio(transaction.Currency, account.Currency);
                     return baseAmount*ratio;
                 }
             }
@@ -132,6 +133,9 @@ namespace MoneyManager.Business.Logic {
 
         private static TransactionListViewModel transactionListView {
             get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
+        }
+        private static CurrencyManager currencyManager {
+            get { return ServiceLocator.Current.GetInstance<CurrencyManager>(); }
         }
 
         #endregion Properties

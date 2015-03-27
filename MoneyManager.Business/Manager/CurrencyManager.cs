@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -13,17 +11,14 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xamarin;
 
-#endregion
-
-namespace MoneyManager.Business.Logic {
-    public class CurrencyLogic {
-        private const string CURRENCY_SERVICE_URL =
-            "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
-
+namespace MoneyManager.Business.Manager {
+    public class CurrencyManager {
+        private const string CURRENCY_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
         private const string COUNTRIES_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/v2/countries";
-        private static HttpClient httpClient = new HttpClient();
 
-        public static async Task<List<Country>> GetSupportedCountries() {
+        private static HttpClient _httpClient = new HttpClient();
+
+        public async Task<List<Country>> GetSupportedCountries() {
             try {
                 string jsonString = await GetJsonFromService(COUNTRIES_SERVICE_URL);
 
@@ -51,7 +46,7 @@ namespace MoneyManager.Business.Logic {
             return new List<Country>();
         }
 
-        public static async Task<double> GetCurrencyRatio(string currencyFrom, string currencyTo) {
+        public async Task<double> GetCurrencyRatio(string currencyFrom, string currencyTo) {
             string currencyFromTo = string.Format("{0}-{1}", currencyFrom.ToUpper(), currencyTo.ToUpper());
             string url = string.Format(CURRENCY_SERVICE_URL, currencyFromTo);
 
@@ -61,7 +56,7 @@ namespace MoneyManager.Business.Logic {
             return ParseToExchangeRate(jsonString);
         }
 
-        private static double ParseToExchangeRate(string jsonString) {
+        private double ParseToExchangeRate(string jsonString) {
             try {
                 var typeExample =
                     new {
@@ -80,11 +75,11 @@ namespace MoneyManager.Business.Logic {
             return 1;
         }
 
-        private static async Task<string> GetJsonFromService(string url) {
+        private async Task<string> GetJsonFromService(string url) {
             try {
                 PrepareHttpClient();
                 var req = new HttpRequestMessage(HttpMethod.Get, url);
-                HttpResponseMessage response = await httpClient.SendAsync(req);
+                HttpResponseMessage response = await _httpClient.SendAsync(req);
                 response.EnsureSuccessStatusCode();
 
                 return await response.Content.ReadAsStringAsync();
@@ -95,9 +90,9 @@ namespace MoneyManager.Business.Logic {
             return "1";
         }
 
-        private static void PrepareHttpClient() {
-            httpClient = new HttpClient {BaseAddress = new Uri("https://api.SmallInvoice.com/")};
-            httpClient.DefaultRequestHeaders.Add("user-agent",
+        private void PrepareHttpClient() {
+            _httpClient = new HttpClient {BaseAddress = new Uri("https://api.SmallInvoice.com/")};
+            _httpClient.DefaultRequestHeaders.Add("user-agent",
                 "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
         }
     }

@@ -8,6 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
+using MoneyManager.Business.Manager;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -21,8 +22,12 @@ namespace MoneyManager.Business.ViewModels {
     public class AddTransactionViewModel {
         private readonly ITransactionRepository _transactionRepository;
 
-        public AddTransactionViewModel(ITransactionRepository transactionRepository) {
+        private readonly CurrencyManager _currencyManager;
+
+
+        public AddTransactionViewModel(ITransactionRepository transactionRepository, CurrencyManager currencyManager) {
             _transactionRepository = transactionRepository;
+            _currencyManager = currencyManager;
             IsNavigationBlocked = true;
         }
 
@@ -94,7 +99,7 @@ namespace MoneyManager.Business.ViewModels {
 
         public async Task LoadCurrencyRatio() {
             _transactionRepository.Selected.ExchangeRatio =
-                await CurrencyLogic.GetCurrencyRatio(Settings.DefaultCurrency, _transactionRepository.Selected.Currency);
+                await _currencyManager.GetCurrencyRatio(Settings.DefaultCurrency, _transactionRepository.Selected.Currency);
         }
 
         public async void Save() {

@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
+using MoneyManager.Business.Manager;
 using MoneyManager.Tasks.TransactionsWp;
 using Xamarin;
 

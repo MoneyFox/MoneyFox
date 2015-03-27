@@ -4,6 +4,7 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
+using MoneyManager.Business.Manager;
 using MoneyManager.DataAccess.DataAccess;
 using PropertyChanged;
 

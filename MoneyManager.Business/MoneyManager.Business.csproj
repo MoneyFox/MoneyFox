@@ -60,11 +60,11 @@
     <Compile Include="Logic\AccountLogic.cs" />
     <Compile Include="Logic\BackupLogic.cs" />
     <Compile Include="Logic\CategoryLogic.cs" />
-    <Compile Include="Logic\LicenseManager.cs" />
+    <Compile Include="Manager\LicenseManager.cs" />
     <Compile Include="Logic\RegionLogic.cs" />
     <Compile Include="Logic\StatisticLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Logic\CurrencyLogic.cs" />
+    <Compile Include="Manager\CurrencyManager.cs" />
     <Compile Include="Logic\RecurringTransactionLogic.cs" />
     <Compile Include="Logic\ThemedImageConverterLogic.cs" />
     <Compile Include="Logic\TransactionLogic.cs" />

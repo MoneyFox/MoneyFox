@@ -7,6 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
+using MoneyManager.Business.Manager;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using Xamarin;
