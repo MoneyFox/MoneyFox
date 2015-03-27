@@ -78,7 +78,9 @@
     <SDKReference Include="TestPlatform, Version=12.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\UtilitiesTest.cs" />
     <Compile Include="Logic\TransactionTypeLogicTest.cs" />
+    <Compile Include="Manager\CurrencyManagerTest.cs" />
     <Compile Include="Mocks\AccountDataAccessMock.cs" />
     <Compile Include="Mocks\CategoryDataAccessMock.cs" />
     <Compile Include="Mocks\RecurringTransactionDataAccessMock.cs" />

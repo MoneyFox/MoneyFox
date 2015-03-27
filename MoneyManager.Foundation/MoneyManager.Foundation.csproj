@@ -55,6 +55,7 @@
     <Compile Include="Model\RecurringTransaction.cs" />
     <Compile Include="Model\StatisticItem.cs" />
     <Compile Include="OperationContracts\IAccountRepository.cs" />
+    <Compile Include="OperationContracts\IJsonService.cs" />
     <Compile Include="OperationContracts\IDataAccess.cs" />
     <Compile Include="OperationContracts\IRecurringTransactionRepository.cs" />
     <Compile Include="OperationContracts\IRepository.cs" />

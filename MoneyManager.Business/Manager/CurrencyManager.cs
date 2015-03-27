@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xamarin;
@@ -16,11 +16,15 @@ namespace MoneyManager.Business.Manager {
         private const string CURRENCY_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
         private const string COUNTRIES_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/v2/countries";
 
-        private static HttpClient _httpClient = new HttpClient();
+        private IJsonService _jsonService;
+
+        public CurrencyManager(IJsonService jsonService) {
+            _jsonService = jsonService;
+        }
 
         public async Task<List<Country>> GetSupportedCountries() {
             try {
-                string jsonString = await GetJsonFromService(COUNTRIES_SERVICE_URL);
+                string jsonString = await _jsonService.GetJsonFromService(COUNTRIES_SERVICE_URL);
 
                 var json = JsonConvert.DeserializeObject(jsonString) as JContainer;
 
@@ -50,7 +54,7 @@ namespace MoneyManager.Business.Manager {
             string currencyFromTo = string.Format("{0}-{1}", currencyFrom.ToUpper(), currencyTo.ToUpper());
             string url = string.Format(CURRENCY_SERVICE_URL, currencyFromTo);
 
-            string jsonString = await GetJsonFromService(url);
+            string jsonString = await _jsonService.GetJsonFromService(url);
             jsonString = jsonString.Replace(currencyFromTo, "Conversion");
 
             return ParseToExchangeRate(jsonString);
@@ -73,27 +77,6 @@ namespace MoneyManager.Business.Manager {
                 Insights.Report(ex, ReportSeverity.Error);
             }
             return 1;
-        }
-
-        private async Task<string> GetJsonFromService(string url) {
-            try {
-                PrepareHttpClient();
-                var req = new HttpRequestMessage(HttpMethod.Get, url);
-                HttpResponseMessage response = await _httpClient.SendAsync(req);
-                response.EnsureSuccessStatusCode();
-
-                return await response.Content.ReadAsStringAsync();
-            }
-            catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
-            }
-            return "1";
-        }
-
-        private void PrepareHttpClient() {
-            _httpClient = new HttpClient {BaseAddress = new Uri("https://api.SmallInvoice.com/")};
-            _httpClient.DefaultRequestHeaders.Add("user-agent",
-                "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
         }
     }
 }

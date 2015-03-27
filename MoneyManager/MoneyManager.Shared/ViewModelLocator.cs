@@ -5,6 +5,7 @@ using MoneyManager.Business;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.Manager;
 using MoneyManager.Business.Repositories;
+using MoneyManager.Business.Services;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
@@ -27,6 +28,7 @@ namespace MoneyManager {
 
             //Logic
             SimpleIoc.Default.Register<IUserNotification, UserNotification>();
+            SimpleIoc.Default.Register<IJsonService, JsonService>();
             SimpleIoc.Default.Register(CreateNavigationService);
             SimpleIoc.Default.Register<Utilities>();
 
