@@ -130,7 +130,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void TransactionRepository_AccessData() {
+        public void TransactionRepository_AccessCache() {
             Assert.IsNotNull(new TransactionRepository(_transactionDataAccessMock).Data);
         }
 

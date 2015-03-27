@@ -47,7 +47,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void AccountRepository_AccessData() {
+        public void AccountRepository_AccessCache() {
             Assert.IsNotNull(new AccountRepository(_accountDataAccessMock).Data);
         }
 

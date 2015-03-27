@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
@@ -28,11 +29,27 @@ namespace MoneyManager.Business.Repositories {
         public RecurringTransaction Selected { get; set; }
 
         public void Save(RecurringTransaction item) {
-            throw new System.NotImplementedException();
+            if (item.ChargedAccount == null) {
+                throw new ArgumentException("charged accout is missing");
+            }
+
+            if (_data == null) {
+                _data = new ObservableCollection<RecurringTransaction>(_dataAccess.LoadList());
+            }
+
+            if (item.Id == 0) {
+                _data.Add(item);
+            }
+            _dataAccess.Save(item);
         }
 
         public void Delete(RecurringTransaction item) {
-            throw new System.NotImplementedException();
+            if (_data == null) {
+                _data = new ObservableCollection<RecurringTransaction>(_dataAccess.LoadList());
+            }
+
+            _data.Remove(item);
+            _dataAccess.Delete(item);
         }
     }
 }

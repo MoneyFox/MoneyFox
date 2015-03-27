@@ -4,15 +4,15 @@ using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Business.WindowsPhone.Test.Mocks {
     public class RecurringTransactionDataAccessMock : IDataAccess<RecurringTransaction> {
-        public List<RecurringTransaction> FinancialTransactionTestList = new List<RecurringTransaction>();
+        public List<RecurringTransaction> RecurringTransactionTestList = new List<RecurringTransaction>();
 
         public void Save(RecurringTransaction itemToSave) {
-            FinancialTransactionTestList.Add(itemToSave);
+            RecurringTransactionTestList.Add(itemToSave);
         }
 
         public void Delete(RecurringTransaction item) {
-            if (FinancialTransactionTestList.Contains(item)) {
-                FinancialTransactionTestList.Remove(item);
+            if (RecurringTransactionTestList.Contains(item)) {
+                RecurringTransactionTestList.Remove(item);
             }
         }
 
