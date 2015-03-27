@@ -80,10 +80,12 @@
   <ItemGroup>
     <Compile Include="Logic\TransactionTypeLogicTest.cs" />
     <Compile Include="Mocks\AccountDataAccessMock.cs" />
+    <Compile Include="Mocks\CategoryDataAccessMock.cs" />
     <Compile Include="Mocks\RecurringTransactionDataAccessMock.cs" />
     <Compile Include="Mocks\TransactionDataAccessMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepositoryTest.cs" />
+    <Compile Include="Repositories\CategoryRepositoryTest.cs" />
     <Compile Include="Repositories\RecurringTransactionRepositoryTest.cs" />
     <Compile Include="Repositories\TransactionRepositoryTest.cs" />
     <Compile Include="ViewModels\AddTransactionViewModelTest.cs" />

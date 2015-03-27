@@ -42,7 +42,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
 
             repository.Save(account);
 
-            Assert.IsTrue(account ==_accountDataAccessMock.AccountTestList[0]);
+            Assert.AreSame(account, _accountDataAccessMock.AccountTestList[0]);
             Assert.IsTrue(_accountDataAccessMock.AccountTestList[0].Name == Translation.GetTranslation("NoNamePlaceholderLabel"));
         }
 

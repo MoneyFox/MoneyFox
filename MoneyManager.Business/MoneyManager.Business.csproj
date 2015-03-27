@@ -75,6 +75,7 @@
     <Compile Include="Logic\Tile\TransferTile.cs" />
     <Compile Include="Helper\Utilities.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\RecurringTransactionRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />

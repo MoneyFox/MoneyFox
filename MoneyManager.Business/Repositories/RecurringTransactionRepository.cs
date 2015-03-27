@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
@@ -11,6 +12,7 @@ namespace MoneyManager.Business.Repositories {
 
         public RecurringTransactionRepository(IDataAccess<RecurringTransaction> dataAccess) {
             _dataAccess = dataAccess;
+            _data = new ObservableCollection<RecurringTransaction>(_dataAccess.LoadList());
         }
 
         public ObservableCollection<RecurringTransaction> Data {
@@ -30,11 +32,7 @@ namespace MoneyManager.Business.Repositories {
 
         public void Save(RecurringTransaction item) {
             if (item.ChargedAccount == null) {
-                throw new ArgumentException("charged accout is missing");
-            }
-
-            if (_data == null) {
-                _data = new ObservableCollection<RecurringTransaction>(_dataAccess.LoadList());
+                throw new InvalidDataException("charged accout is missing");
             }
 
             if (item.Id == 0) {
@@ -44,10 +42,6 @@ namespace MoneyManager.Business.Repositories {
         }
 
         public void Delete(RecurringTransaction item) {
-            if (_data == null) {
-                _data = new ObservableCollection<RecurringTransaction>(_dataAccess.LoadList());
-            }
-
             _data.Remove(item);
             _dataAccess.Delete(item);
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Business.Repositories;
@@ -52,11 +53,13 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
 
                 repository.Save(transaction);
             }
-            catch (ArgumentException) {
+            catch (InvalidDataException) {
+                return;
             }
             catch (Exception) {
                 Assert.Fail("wrong exception.");
             }
+            Assert.Fail("No excpetion thrown");
         }
 
         [TestMethod]
