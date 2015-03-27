@@ -1,6 +1,4 @@
-﻿#region
-
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
@@ -9,20 +7,17 @@ using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Views;
-
-#endregion
 
 namespace MoneyManager.UserControls {
     public sealed partial class AccountListUserControl {
         public AccountListUserControl() {
             InitializeComponent();
-
-            accountData.LoadList();
         }
 
-        private AccountDataAccess accountData {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+        private IAccountRepository AccountRepository {
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
         }
 
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e) {
@@ -54,10 +49,10 @@ namespace MoneyManager.UserControls {
 
         private void NavigateToTransactionList(object sender, SelectionChangedEventArgs e) {
             if (AccountList.SelectedItem != null) {
-                accountData.SelectedAccount = AccountList.SelectedItem as Account;
+                AccountRepository.Selected = AccountList.SelectedItem as Account;
 
                 ServiceLocator.Current.GetInstance<TransactionListViewModel>()
-                    .SetRelatedTransactions(accountData.SelectedAccount.Id);
+                    .SetRelatedTransactions(AccountRepository.Selected.Id);
 
                 ((Frame) Window.Current.Content).Navigate(typeof (TransactionList));
                 AccountList.SelectedItem = null;

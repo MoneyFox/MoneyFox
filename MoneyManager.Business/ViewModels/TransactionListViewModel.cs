@@ -1,16 +1,13 @@
-﻿#region
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 using QKit.JumpList;
-
-#endregion
 
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
@@ -19,12 +16,12 @@ namespace MoneyManager.Business.ViewModels {
             get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
         }
 
-        private AccountDataAccess accountData {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+        private IAccountRepository AccountRepository {
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
         }
 
         public string Title {
-            get { return accountData.SelectedAccount.Name; }
+            get { return AccountRepository.Selected.Name; }
         }
 
         public List<JumpListGroup<FinancialTransaction>> RelatedTransactions { set; get; }

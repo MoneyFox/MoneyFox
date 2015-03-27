@@ -98,7 +98,7 @@ namespace MoneyManager.Business.ViewModels {
         }
 
         public ObservableCollection<Account> AllAccounts {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Data; }
         }
 
         public ObservableCollection<Category> AllCategories {

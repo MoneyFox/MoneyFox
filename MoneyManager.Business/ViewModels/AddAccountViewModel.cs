@@ -10,6 +10,7 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
 #endregion
@@ -20,8 +21,8 @@ namespace MoneyManager.Business.ViewModels {
         #region Properties
 
         public Account SelectedAccount {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
-            set { ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount = value; }
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Selected; }
+            set { ServiceLocator.Current.GetInstance<IAccountRepository>().Selected = value; }
         }
 
         public SettingDataAccess Settings {

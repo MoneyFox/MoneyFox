@@ -1,18 +1,14 @@
-﻿#region
-
-using System;
+﻿using System;
 using Windows.UI.Xaml.Data;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-
-#endregion
+using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Converter {
     public class TransactionAmountConverter : IValueConverter {
         private Account selectedAccount {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Selected; }
         }
 
         public object Convert(object value, Type targetType, object parameter, string language) {

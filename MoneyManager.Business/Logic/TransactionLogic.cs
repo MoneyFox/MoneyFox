@@ -20,8 +20,8 @@ namespace MoneyManager.Business.Logic {
     public class TransactionLogic {
         #region Properties
 
-        private static AccountDataAccess accountDataAccess {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+        private static IAccountRepository AccountRepository {
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
         }
 
         private static ITransactionRepository TransactionRepository {
@@ -60,7 +60,7 @@ namespace MoneyManager.Business.Logic {
 
             if (refreshRelatedList) {
                 ServiceLocator.Current.GetInstance<TransactionListViewModel>()
-                    .SetRelatedTransactions(accountDataAccess.SelectedAccount.Id);
+                    .SetRelatedTransactions(AccountRepository.Selected.Id);
             }
             await AccountLogic.AddTransactionAmount(transaction);
         }
@@ -163,21 +163,17 @@ namespace MoneyManager.Business.Logic {
 
         private static void SetDefaultAccount() {
             try {
-                if (accountDataAccess.AllAccounts == null) {
-                    accountDataAccess.LoadList();
+                if (AccountRepository.Data.Any()) {
+                    selectedTransaction.ChargedAccount = AccountRepository.Data.First();
                 }
 
-                if (accountDataAccess.AllAccounts.Any()) {
-                    selectedTransaction.ChargedAccount = accountDataAccess.AllAccounts.First();
-                }
-
-                if (accountDataAccess.AllAccounts.Any() && settings.DefaultAccount != -1) {
+                if (AccountRepository.Data.Any() && settings.DefaultAccount != -1) {
                     selectedTransaction.ChargedAccount =
-                        accountDataAccess.AllAccounts.First(x => x.Id == settings.DefaultAccount);
+                        AccountRepository.Data.First(x => x.Id == settings.DefaultAccount);
                 }
 
-                if (accountDataAccess.SelectedAccount != null) {
-                    selectedTransaction.ChargedAccount = accountDataAccess.SelectedAccount;
+                if (AccountRepository.Selected != null) {
+                    selectedTransaction.ChargedAccount = AccountRepository.Selected;
                 }
             } catch (Exception ex) {
                 Insights.Report(ex, ReportSeverity.Error);

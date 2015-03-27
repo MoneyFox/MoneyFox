@@ -20,8 +20,8 @@ namespace MoneyManager.Business.Logic {
             get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
-        private static AccountDataAccess accountData {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+        private static IAccountRepository AccountRepository {
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
         }
 
         private static SettingDataAccess settings {
@@ -61,9 +61,9 @@ namespace MoneyManager.Business.Logic {
         }
 
         private static void ChangeAccounts() {
-            foreach (Account account in accountData.AllAccounts) {
+            foreach (Account account in AccountRepository.Data) {
                 account.Currency = settings.DefaultCurrency;
-                accountData.Save(account);
+                AccountRepository.Save(account);
             }
         }
 

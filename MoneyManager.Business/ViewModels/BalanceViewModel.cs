@@ -9,6 +9,7 @@ using MoneyManager.Business.Helper;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
 #endregion
@@ -19,11 +20,11 @@ namespace MoneyManager.Business.ViewModels {
         #region Properties
 
         public ObservableCollection<Account> AllAccounts {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().AllAccounts; }
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Data; }
         }
 
         private Account selectedAccount {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>().SelectedAccount; }
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Selected; }
         }
 
         public TransactionDataAccess TransactionData {

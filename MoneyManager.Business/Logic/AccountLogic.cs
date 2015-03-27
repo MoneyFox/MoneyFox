@@ -9,6 +9,7 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 using Xamarin;
 
 #endregion
@@ -17,8 +18,8 @@ namespace MoneyManager.Business.Logic {
     public class AccountLogic {
         #region Properties
 
-        private static AccountDataAccess accountDataAccess {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+        private static IAccountRepository AccountRepository {
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
         }
 
         private static TransactionDataAccess transactionData {
@@ -32,7 +33,7 @@ namespace MoneyManager.Business.Logic {
         #endregion Properties
 
         public static void PrepareAddAccount() {
-            accountDataAccess.SelectedAccount = new Account {
+            AccountRepository.Selected = new Account {
                 IsExchangeModeActive = false,
                 Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
             };
@@ -41,14 +42,14 @@ namespace MoneyManager.Business.Logic {
 
         public static async void DeleteAccount(Account account, bool skipConfirmation = false) {
             if (skipConfirmation || await Utilities.IsDeletionConfirmed()) {
-                accountDataAccess.Delete(account);
+                AccountRepository.Delete(account);
                 TransactionLogic.DeleteAssociatedTransactionsFromDatabase(account.Id);
                 ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
             }
         }
 
         public static void RefreshRelatedTransactions() {
-            transactionListView.SetRelatedTransactions(accountDataAccess.SelectedAccount.Id);
+            transactionListView.SetRelatedTransactions(AccountRepository.Selected.Id);
         }
 
         public static async Task RemoveTransactionAmount(FinancialTransaction transaction) {
@@ -96,7 +97,7 @@ namespace MoneyManager.Business.Logic {
                 account.CurrentBalance += amount;
                 transaction.Cleared = true;
 
-                accountDataAccess.Save(account);
+                AccountRepository.Save(account);
                 transactionData.Save(transaction);
             } else {
                 transaction.Cleared = false;
@@ -124,22 +125,14 @@ namespace MoneyManager.Business.Logic {
         }
 
         private static Func<FinancialTransaction, Account> GetTargetAccountFunc() {
-            if (accountDataAccess.AllAccounts == null) {
-                accountDataAccess.LoadList();
-            }
-
             Func<FinancialTransaction, Account> targetAccountFunc =
-                trans => accountDataAccess.AllAccounts.FirstOrDefault(x => x.Id == trans.TargetAccountId);
+                trans => AccountRepository.Data.FirstOrDefault(x => x.Id == trans.TargetAccountId);
             return targetAccountFunc;
         }
 
         private static Func<FinancialTransaction, Account> GetChargedAccountFunc() {
-            if (accountDataAccess.AllAccounts == null) {
-                accountDataAccess.LoadList();
-            }
-
             Func<FinancialTransaction, Account> accountFunc =
-                trans => accountDataAccess.AllAccounts.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
+                trans => AccountRepository.Data.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
             return accountFunc;
         }
     }

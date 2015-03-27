@@ -9,10 +9,6 @@ using SQLiteNetExtensions.Extensions;
 namespace MoneyManager.DataAccess.DataAccess {
     [ImplementPropertyChanged]
     public class AccountDataAccess : AbstractDataAccess<Account> {
-        public Account SelectedAccount { get; set; }
-
-        public ObservableCollection<Account> AllAccounts { get; set; }
-
         protected override void SaveToDb(Account itemToSave) {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
                 if (itemToSave.Id == 0) {
