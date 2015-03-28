@@ -13,6 +13,25 @@ using Xamarin;
 
 namespace MoneyManager.Business.Logic {
     public class AccountLogic {
+        #region Properties
+
+        private static IAccountRepository AccountRepository {
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
+        }
+
+        private static TransactionDataAccess transactionData {
+            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        }
+
+        private static TransactionListViewModel transactionListView {
+            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
+        }
+        private static CurrencyManager currencyManager {
+            get { return ServiceLocator.Current.GetInstance<CurrencyManager>(); }
+        }
+
+        #endregion Properties
+
         public static void PrepareAddAccount() {
             AccountRepository.Selected = new Account {
                 IsExchangeModeActive = false,
@@ -120,24 +139,5 @@ namespace MoneyManager.Business.Logic {
                 trans => AccountRepository.Data.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
             return accountFunc;
         }
-
-        #region Properties
-
-        private static IAccountRepository AccountRepository {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
-        }
-
-        private static TransactionDataAccess transactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
-        }
-
-        private static TransactionListViewModel transactionListView {
-            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
-        }
-        private static CurrencyManager currencyManager {
-            get { return ServiceLocator.Current.GetInstance<CurrencyManager>(); }
-        }
-
-        #endregion Properties
     }
 }

@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -69,7 +70,7 @@ namespace MoneyManager.Business.Helper {
         ///     Will round all values of the passed statistic item list
         /// </summary>
         /// <param name="items">List of statistic items.</param>
-        public static void RoundStatisticItems(ObservableCollection<StatisticItem> items) {
+        public static void RoundStatisticItems(List<StatisticItem> items) {
             foreach (StatisticItem item in items) {
                 item.Value = Math.Round(item.Value, 2, MidpointRounding.AwayFromZero);
             }

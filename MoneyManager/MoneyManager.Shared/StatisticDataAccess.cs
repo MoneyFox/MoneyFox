@@ -44,7 +44,7 @@ namespace MoneyManager {
                 itemList.Add(spent);
                 itemList.Add(increased);
 
-                Utilities.RoundStatisticItems(itemList);
+                Utilities.RoundStatisticItems(itemList.ToList());
 
                 return itemList;
             }
