@@ -1,21 +1,20 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.Business.Manager;
+using MoneyManager.Business.Services;
 
 namespace MoneyManager.Business.WindowsPhone.Test.Manager {
     [TestClass]
     public class CurrencyManagerTest {
         [TestMethod]
-        [Ignore]
         [TestCategory("Integration")]
-        public void CurrencyManager_GetSupportedCountries_Integration() {
+        public async Task CurrencyManager_GetSupportedCountries_Integration() {
+            var currencyManager = new CurrencyManager(new JsonService());
+            var list = await currencyManager.GetSupportedCountries();
 
-        }
-
-        [TestMethod]
-        [Ignore]
-        [TestCategory("Integration")]
-
-        public void CurrencyManager_GetCurrencyRatio_Integration() {
-
+            Assert.IsTrue(list.Any(x => x.ID == "CH"));
+            Assert.IsTrue(list.Any(x => x.ID == "US"));
         }
 
         [TestMethod]
