@@ -1,17 +1,12 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
-using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using Xamarin;
-
-#endregion
 
 namespace MoneyManager.Business.Logic {
     public class RecurringTransactionLogic {
@@ -124,8 +119,8 @@ namespace MoneyManager.Business.Logic {
 
         #region Properties
 
-        private static RecurringTransactionDataAccess RecurringTransactionData {
-            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+        private static IDataAccess<RecurringTransaction> RecurringTransactionData {
+            get { return ServiceLocator.Current.GetInstance<IDataAccess<RecurringTransaction>>(); }
         }
 
         private static ITransactionRepository transactionRepository {

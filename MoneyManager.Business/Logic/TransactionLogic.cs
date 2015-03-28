@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,8 +11,6 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using Xamarin;
-
-#endregion
 
 namespace MoneyManager.Business.Logic {
     public class TransactionLogic {
@@ -38,20 +34,20 @@ namespace MoneyManager.Business.Logic {
         }
 
         public static void GoToAddTransaction(TransactionType transactionType, bool refreshRelatedList = false) {
-            addTransactionView.IsEdit = false;
-            addTransactionView.IsEndless = true;
-            addTransactionView.RefreshRealtedList = refreshRelatedList;
-            addTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
+            AddTransactionView.IsEdit = false;
+            AddTransactionView.IsEndless = true;
+            AddTransactionView.RefreshRealtedList = refreshRelatedList;
+            AddTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
             SetDefaultTransaction(transactionType);
             SetDefaultAccount();
         }
 
         public static void PrepareEdit(FinancialTransaction transaction) {
-            addTransactionView.IsEdit = true;
-            addTransactionView.IsTransfer = transaction.Type == (int) TransactionType.Transfer;
+            AddTransactionView.IsEdit = true;
+            AddTransactionView.IsTransfer = transaction.Type == (int) TransactionType.Transfer;
             if (transaction.ReccuringTransactionId.HasValue && transaction.RecurringTransaction != null) {
-                addTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
-                addTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
+                AddTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
+                AddTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
             }
 
             TransactionRepository.Selected = transaction;
@@ -129,7 +125,7 @@ namespace MoneyManager.Business.Logic {
         }
 
         private static void SetDefaultTransaction(TransactionType transactionType) {
-            selectedTransaction = new FinancialTransaction {
+            SelectedTransaction = new FinancialTransaction {
                 Type = (int) transactionType,
                 IsExchangeModeActive = false,
                 Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
@@ -139,16 +135,16 @@ namespace MoneyManager.Business.Logic {
         private static void SetDefaultAccount() {
             try {
                 if (AccountRepository.Data.Any()) {
-                    selectedTransaction.ChargedAccount = AccountRepository.Data.First();
+                    SelectedTransaction.ChargedAccount = AccountRepository.Data.First();
                 }
 
-                if (AccountRepository.Data.Any() && settings.DefaultAccount != -1) {
-                    selectedTransaction.ChargedAccount =
-                        AccountRepository.Data.First(x => x.Id == settings.DefaultAccount);
+                if (AccountRepository.Data.Any() && Settings.DefaultAccount != -1) {
+                    SelectedTransaction.ChargedAccount =
+                        AccountRepository.Data.First(x => x.Id == Settings.DefaultAccount);
                 }
 
                 if (AccountRepository.Selected != null) {
-                    selectedTransaction.ChargedAccount = AccountRepository.Selected;
+                    SelectedTransaction.ChargedAccount = AccountRepository.Selected;
                 }
             }
             catch (Exception ex) {
@@ -178,7 +174,7 @@ namespace MoneyManager.Business.Logic {
             get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
-        private static FinancialTransaction selectedTransaction {
+        private static FinancialTransaction SelectedTransaction {
             get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected; }
             set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
         }
@@ -187,11 +183,11 @@ namespace MoneyManager.Business.Logic {
             get { return ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>(); }
         }
 
-        private static AddTransactionViewModel addTransactionView {
+        private static AddTransactionViewModel AddTransactionView {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
-        private static SettingDataAccess settings {
+        private static SettingDataAccess Settings {
             get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
 

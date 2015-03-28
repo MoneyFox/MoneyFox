@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,8 +7,6 @@ using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
-
-#endregion
 
 namespace MoneyManager.Business.Logic {
     public class StatisticLogic {
@@ -231,12 +227,12 @@ namespace MoneyManager.Business.Logic {
             get { return ServiceLocator.Current.GetInstance<IRepository<Category>>().Data; }
         }
 
-        private static TransactionDataAccess TransactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        private static IDataAccess<FinancialTransaction> TransactionData {
+            get { return ServiceLocator.Current.GetInstance<IDataAccess<FinancialTransaction>>(); }
         }
 
-        private static CategoryDataAccess CateogryData {
-            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
+        private static IDataAccess<Category> CateogryData {
+            get { return ServiceLocator.Current.GetInstance<IDataAccess<Category>>(); }
         }
 
         private static SettingDataAccess Settings {

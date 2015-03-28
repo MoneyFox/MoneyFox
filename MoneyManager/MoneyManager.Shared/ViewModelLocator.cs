@@ -20,7 +20,7 @@ namespace MoneyManager {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             //DataAccess
-            SimpleIoc.Default.Register<IDataAccess<Account>, IDataAccess<Account>>();
+            SimpleIoc.Default.Register<IDataAccess<Account>, AccountDataAccess>();
             SimpleIoc.Default.Register<IDataAccess<Category>, CategoryDataAccess>();
             SimpleIoc.Default.Register<IDataAccess<FinancialTransaction>, TransactionDataAccess>();
             SimpleIoc.Default.Register<IDataAccess<RecurringTransaction>, RecurringTransactionDataAccess>();

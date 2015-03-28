@@ -16,7 +16,7 @@ namespace MoneyManager.Business.Manager {
         private const string CURRENCY_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/convert?q={0}&compact=y";
         private const string COUNTRIES_SERVICE_URL = "http://www.freecurrencyconverterapi.com/api/v2/countries";
 
-        private IJsonService _jsonService;
+        private readonly IJsonService _jsonService;
 
         public CurrencyManager(IJsonService jsonService) {
             _jsonService = jsonService;

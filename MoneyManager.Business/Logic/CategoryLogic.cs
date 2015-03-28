@@ -4,18 +4,19 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Helper;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 
 #endregion
 
 namespace MoneyManager.Business.Logic {
     public class CategoryLogic {
-        private static CategoryDataAccess categoryData {
-            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
+        private static IDataAccess<Category> CategoryData {
+            get { return ServiceLocator.Current.GetInstance<IDataAccess<Category>>(); }
         }
 
         public static async void DeleteCategory(Category category, bool skipConfirmation = false) {
             if (skipConfirmation || await Utilities.IsDeletionConfirmed()) {
-                categoryData.Delete(category);
+                CategoryData.Delete(category);
             }
         }
     }

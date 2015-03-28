@@ -1,9 +1,5 @@
-﻿#region
-
-using System;
+﻿using System;
 using MoneyManager.Foundation;
-
-#endregion
 
 namespace MoneyManager.Business.Logic {
     public class TransactionTypeLogic {

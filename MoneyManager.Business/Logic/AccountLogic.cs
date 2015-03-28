@@ -19,8 +19,8 @@ namespace MoneyManager.Business.Logic {
             get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
         }
 
-        private static TransactionDataAccess transactionData {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        private static IDataAccess<FinancialTransaction> transactionData {
+            get { return ServiceLocator.Current.GetInstance<IDataAccess<FinancialTransaction>>(); }
         }
 
         private static TransactionListViewModel transactionListView {

@@ -19,10 +19,13 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class AddAccountViewModel : ViewModelBase {
+        private IAccountRepository _accountRepository;
+
         private readonly CurrencyManager _currencyManager;
 
-        public AddAccountViewModel(CurrencyManager currencyManager) {
+        public AddAccountViewModel(IAccountRepository accountRepository, CurrencyManager currencyManager) {
             _currencyManager = currencyManager;
+            _accountRepository = accountRepository;
         }
 
         public string CurrentBalanceString {
@@ -64,7 +67,7 @@ namespace MoneyManager.Business.ViewModels {
         }
 
         public void Save() {
-            ServiceLocator.Current.GetInstance<AccountDataAccess>().Save(SelectedAccount);
+            _accountRepository.Save(SelectedAccount);
             ((Frame) Window.Current.Content).GoBack();
         }
 
