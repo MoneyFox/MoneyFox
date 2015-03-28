@@ -10,7 +10,7 @@
     PrimaryButtonText="done"
     SecondaryButtonText="cancel"
     PrimaryButtonClick="DoneOnClick"
-    DataContext="{Binding CategoryDataAccess, Source={StaticResource Locator}}">
+    DataContext="{Binding CategoryRepository, Source={StaticResource Locator}}">
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <TextBox Header="name" x:Uid="Name"

@@ -7,7 +7,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Logic;
 using MoneyManager.Business.Manager;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
@@ -19,8 +18,7 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class AddAccountViewModel : ViewModelBase {
-        private IAccountRepository _accountRepository;
-
+        private readonly IAccountRepository _accountRepository;
         private readonly CurrencyManager _currencyManager;
 
         public AddAccountViewModel(IAccountRepository accountRepository, CurrencyManager currencyManager) {

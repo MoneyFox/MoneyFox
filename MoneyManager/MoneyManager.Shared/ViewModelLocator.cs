@@ -69,20 +69,20 @@ namespace MoneyManager {
 
         #region DataAccess
 
-        public IDataAccess<Account> AccountDataAccess{
-            get { return ServiceLocator.Current.GetInstance<IDataAccess<Account>>(); }
+        public IAccountRepository AccountRepository{
+            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
         }
 
-        public CategoryDataAccess CategoryDataAccess {
-            get { return ServiceLocator.Current.GetInstance<CategoryDataAccess>(); }
+        public IRepository<Category> CategoryRepository {
+            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>(); }
         }
 
-        public TransactionDataAccess TransactionDataAccess {
-            get { return ServiceLocator.Current.GetInstance<TransactionDataAccess>(); }
+        public ITransactionRepository TransactionRepository {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
-        public RecurringTransactionDataAccess RecurringTransactionDataAccess {
-            get { return ServiceLocator.Current.GetInstance<RecurringTransactionDataAccess>(); }
+        public IRecurringTransactionRepository RecurringTransactionRepository {
+            get { return ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>(); }
         }
 
         public SettingDataAccess SettingDataAccess {
