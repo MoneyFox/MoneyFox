@@ -1,8 +1,4 @@
-﻿#region
-
-using Windows.ApplicationModel.Resources;
-
-#endregion
+﻿using Windows.ApplicationModel.Resources;
 
 namespace MoneyManager.Foundation {
     public class Translation {
