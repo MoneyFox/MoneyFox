@@ -20,7 +20,7 @@ namespace MoneyManager {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             //DataAccess
-            SimpleIoc.Default.Register<IDataAccess<Account>, AccountDataAccess>();
+            SimpleIoc.Default.Register<IDataAccess<Account>, IDataAccess<Account>>();
             SimpleIoc.Default.Register<IDataAccess<Category>, CategoryDataAccess>();
             SimpleIoc.Default.Register<IDataAccess<FinancialTransaction>, TransactionDataAccess>();
             SimpleIoc.Default.Register<IDataAccess<RecurringTransaction>, RecurringTransactionDataAccess>();
@@ -38,6 +38,9 @@ namespace MoneyManager {
 
             //Repositories
             SimpleIoc.Default.Register<ITransactionRepository, TransactionRepository>();
+            SimpleIoc.Default.Register<IRecurringTransactionRepository, RecurringTransactionRepository>();
+            SimpleIoc.Default.Register<IAccountRepository, AccountRepository>();
+            SimpleIoc.Default.Register<IRepository<Category>, CategoryRepository>();
 
             //ViewModels
             SimpleIoc.Default.Register<AddAccountViewModel>();
@@ -66,8 +69,8 @@ namespace MoneyManager {
 
         #region DataAccess
 
-        public AccountDataAccess AccountDataAccess {
-            get { return ServiceLocator.Current.GetInstance<AccountDataAccess>(); }
+        public IDataAccess<Account> AccountDataAccess{
+            get { return ServiceLocator.Current.GetInstance<IDataAccess<Account>>(); }
         }
 
         public CategoryDataAccess CategoryDataAccess {
