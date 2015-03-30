@@ -1,10 +1,6 @@
-﻿#region
-
-using System;
+﻿using System;
 using Windows.UI.Xaml.Data;
 using MoneyManager.Foundation;
-
-#endregion
 
 namespace MoneyManager.Converter {
     public class RecurrenceConverter : IValueConverter {

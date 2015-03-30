@@ -1,5 +1,4 @@
-﻿#region
-
+﻿
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -12,8 +11,6 @@ using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
-
-#endregion
 
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]

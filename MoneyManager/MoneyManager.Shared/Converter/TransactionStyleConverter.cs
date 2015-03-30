@@ -1,10 +1,6 @@
-﻿#region
-
-using System;
+﻿using System;
 using Windows.UI.Xaml.Data;
 using MoneyManager.Foundation.Model;
-
-#endregion
 
 namespace MoneyManager.Converter {
     public class TransactionStyleConverter : IValueConverter {
