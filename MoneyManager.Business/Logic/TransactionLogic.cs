@@ -71,9 +71,7 @@ namespace MoneyManager.Business.Logic {
                 return;
             }
 
-            List<FinancialTransaction> transactionsToDelete = TransactionRepository.Data
-                .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
-                .ToList();
+            var transactionsToDelete = TransactionRepository.GetRelatedTransactions(accountId);
 
             foreach (FinancialTransaction transaction in transactionsToDelete) {
                 TransactionRepository.Delete(transaction);

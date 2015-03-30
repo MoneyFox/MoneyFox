@@ -86,7 +86,8 @@ namespace MoneyManager.Business.Repositories {
         /// <returns>List of transactions</returns>
         public IEnumerable<FinancialTransaction> GetRelatedTransactions(int accountId) {
             return Data
-                .Where(x => x.ChargedAccountId == accountId || x.TargetAccountId == accountId)
+                .Where(x => x.ChargedAccount != null)
+                .Where(x => x.ChargedAccount.Id == accountId || x.TargetAccount.Id == accountId)
                 .OrderByDescending(x => x.Date)
                 .ToList();
         }

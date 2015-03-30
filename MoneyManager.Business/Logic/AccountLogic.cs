@@ -130,13 +130,13 @@ namespace MoneyManager.Business.Logic {
 
         private static Func<FinancialTransaction, Account> GetTargetAccountFunc() {
             Func<FinancialTransaction, Account> targetAccountFunc =
-                trans => AccountRepository.Data.FirstOrDefault(x => x.Id == trans.TargetAccountId);
+                trans => AccountRepository.Data.FirstOrDefault(x => x.Id == trans.TargetAccount.Id);
             return targetAccountFunc;
         }
 
         private static Func<FinancialTransaction, Account> GetChargedAccountFunc() {
             Func<FinancialTransaction, Account> accountFunc =
-                trans => AccountRepository.Data.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
+                trans => AccountRepository.Data.FirstOrDefault(x => x.Id == trans.ChargedAccount.Id);
             return accountFunc;
         }
     }

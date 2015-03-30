@@ -79,8 +79,8 @@ namespace MoneyManager.Business.Logic {
             }
 
             var newTransaction = new FinancialTransaction {
-                ChargedAccountId = recurringTransaction.ChargedAccountId,
-                TargetAccountId = recurringTransaction.TargetAccountId,
+                ChargedAccount = recurringTransaction.ChargedAccount,
+                TargetAccount = recurringTransaction.TargetAccount,
                 Date = date,
                 IsRecurring = true,
                 Amount = recurringTransaction.Amount,
@@ -102,8 +102,8 @@ namespace MoneyManager.Business.Logic {
 
         public static RecurringTransaction GetRecurringFromFinancialTransaction(FinancialTransaction transaction) {
             return new RecurringTransaction {
-                ChargedAccountId = transaction.ChargedAccountId,
-                TargetAccountId = transaction.TargetAccountId,
+                ChargedAccount = transaction.ChargedAccount,
+                TargetAccount = transaction.TargetAccount,
                 StartDate = transaction.Date,
                 EndDate = addTransactionView.EndDate,
                 IsEndless = addTransactionView.IsEndless,

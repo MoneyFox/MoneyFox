@@ -14,10 +14,10 @@ namespace MoneyManager.Foundation.Model {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [ForeignKey(typeof (Account))]
+        [ForeignKey(typeof(Account))]
         public int ChargedAccountId { get; set; }
 
-        [ForeignKey(typeof (Account))]
+        [ForeignKey(typeof(Account))]
         public int TargetAccountId { get; set; }
 
         [ForeignKey(typeof (Category))]

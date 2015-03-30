@@ -264,5 +264,22 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             transactions = repository.GetUnclearedTransactions(Utilities.GetEndOfMonth());
             Assert.AreEqual(1, transactions.Count());
         }
+
+        [TestMethod]
+        public void TransactionRepository_GetUnclearedTransactions_AccountNull() {
+            var repository = new TransactionRepository(_transactionDataAccessMock);
+
+            repository.Data.Add(new FinancialTransaction {
+                Amount = 55,
+                Date = DateTime.Today.AddDays(-1),
+                Note = "this is a note!!!",
+                Cleared = false
+            }
+                );
+
+            IEnumerable<FinancialTransaction> transactions = repository.GetUnclearedTransactions();
+
+            Assert.AreEqual(1, transactions.Count());
+        }
     }
 }

@@ -63,6 +63,11 @@ namespace MoneyManager.Business.ViewModels {
 
         public bool IsNavigationBlocked { get; set; }
 
+        public FinancialTransaction SelectedTransaction {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected; }
+            set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
+        } 
+
         public ObservableCollection<Account> AllAccounts {
             get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Data; }
         }

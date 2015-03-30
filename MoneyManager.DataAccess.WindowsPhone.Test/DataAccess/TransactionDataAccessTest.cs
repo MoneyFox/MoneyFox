@@ -28,7 +28,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
             const double secondAmount = 22.90;
 
             var transaction = new FinancialTransaction {
-                ChargedAccountId = 4,
+                ChargedAccount = new Account{Id = 4},
                 Amount = firstAmount,
                 Date = DateTime.Today,
                 Note = "this is a note!!!",
