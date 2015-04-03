@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Xaml;
@@ -11,15 +9,13 @@ using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
-#endregion
-
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class CategoryListViewModel : ViewModelBase {
         private string _searchText;
 
         public CategoryListViewModel() {
-            Categories = allCategories;
+            Categories = AllCategories;
         }
 
         public bool IsSettingCall { get; set; }
@@ -33,7 +29,7 @@ namespace MoneyManager.Business.ViewModels {
             get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
-        private ObservableCollection<Category> allCategories {
+        private ObservableCollection<Category> AllCategories {
             get { return CategoryRepository.Data; }
         }
 
@@ -66,11 +62,11 @@ namespace MoneyManager.Business.ViewModels {
         public void Search() {
             if (SearchText != String.Empty) {
                 Categories = new ObservableCollection<Category>
-                    (allCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(_searchText.ToLower()))
+                    (AllCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(_searchText.ToLower()))
                         .ToList());
             }
             else {
-                Categories = allCategories;
+                Categories = AllCategories;
             }
         }
     }
