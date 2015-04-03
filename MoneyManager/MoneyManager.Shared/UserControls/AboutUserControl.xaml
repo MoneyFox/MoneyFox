@@ -13,7 +13,7 @@
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Margin="5,5,5,0">
         <StackPanel>
             <StackPanel>
                 <TextBlock Text="about"
