@@ -1,14 +1,11 @@
-﻿
-using System;
+﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
-using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Manager;
 using MoneyManager.DataAccess.DataAccess;
-using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
@@ -17,11 +14,16 @@ namespace MoneyManager.Business.ViewModels {
     public class AddAccountViewModel : ViewModelBase {
         private readonly IAccountRepository _accountRepository;
         private readonly CurrencyManager _currencyManager;
+        private readonly SettingDataAccess _settings;
 
-        public AddAccountViewModel(IAccountRepository accountRepository, CurrencyManager currencyManager) {
+        public AddAccountViewModel(IAccountRepository accountRepository, CurrencyManager currencyManager,
+            SettingDataAccess settings) {
             _currencyManager = currencyManager;
+            _settings = settings;
             _accountRepository = accountRepository;
         }
+
+        public bool IsEdit { get; set; }
 
         public string CurrentBalanceString {
             get { return CurrentBalanceWithoutExchange.ToString(); }
@@ -34,55 +36,40 @@ namespace MoneyManager.Business.ViewModels {
         }
 
         public double CurrentBalanceWithoutExchange {
-            get { return SelectedAccount.CurrentBalanceWithoutExchange; }
+            get { return _accountRepository.Selected.CurrentBalanceWithoutExchange; }
             set {
-                SelectedAccount.CurrentBalanceWithoutExchange = value;
+                _accountRepository.Selected.CurrentBalanceWithoutExchange = value;
                 CalculateNewAmount(value);
             }
         }
 
         public async void SetCurrency(string currency) {
-            SelectedAccount.Currency = currency;
-            SelectedAccount.IsExchangeModeActive = true;
+            _accountRepository.Selected.Currency = currency;
+            _accountRepository.Selected.IsExchangeModeActive = true;
             await LoadCurrencyRatio();
             CalculateNewAmount(CurrentBalanceWithoutExchange);
         }
 
         private void CalculateNewAmount(double value) {
-            if (Math.Abs(SelectedAccount.ExchangeRatio) < 0.5) {
-                SelectedAccount.ExchangeRatio = 1;
+            if (Math.Abs(_accountRepository.Selected.ExchangeRatio) < 0.5) {
+                _accountRepository.Selected.ExchangeRatio = 1;
             }
 
-            SelectedAccount.CurrentBalance = SelectedAccount.ExchangeRatio*value;
+            _accountRepository.Selected.CurrentBalance = _accountRepository.Selected.ExchangeRatio*value;
         }
 
         public async Task LoadCurrencyRatio() {
-            SelectedAccount.ExchangeRatio =
-                await _currencyManager.GetCurrencyRatio(Settings.DefaultCurrency, SelectedAccount.Currency);
+            _accountRepository.Selected.ExchangeRatio =
+                await _currencyManager.GetCurrencyRatio(_settings.DefaultCurrency, _accountRepository.Selected.Currency);
         }
 
         public void Save() {
-            _accountRepository.Save(SelectedAccount);
+            _accountRepository.Save(_accountRepository.Selected);
             ((Frame) Window.Current.Content).GoBack();
         }
 
         public void Cancel() {
             ((Frame) Window.Current.Content).GoBack();
         }
-
-        #region Properties
-
-        public Account SelectedAccount {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Selected; }
-            set { ServiceLocator.Current.GetInstance<IAccountRepository>().Selected = value; }
-        }
-
-        public SettingDataAccess Settings {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
-
-        public bool IsEdit { get; set; }
-
-        #endregion Properties
     }
 }
