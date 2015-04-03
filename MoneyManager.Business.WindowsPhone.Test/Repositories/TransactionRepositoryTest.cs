@@ -281,5 +281,10 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
 
             Assert.AreEqual(1, transactions.Count());
         }
+
+        [TestMethod]
+        [Ignore]
+        public void TransactionRepository_GetRelatedTransaction() {
+        }
     }
 }

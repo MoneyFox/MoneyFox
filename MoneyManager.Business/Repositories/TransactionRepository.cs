@@ -82,12 +82,12 @@ namespace MoneyManager.Business.Repositories {
         /// <summary>
         ///     returns a list with transaction who is related to this account
         /// </summary>
-        /// <param name="accountId">Id of the account</param>
+        /// <param name="account">account to search the related</param>
         /// <returns>List of transactions</returns>
-        public IEnumerable<FinancialTransaction> GetRelatedTransactions(int accountId) {
+        public IEnumerable<FinancialTransaction> GetRelatedTransactions(Account account) {
             return Data
                 .Where(x => x.ChargedAccount != null)
-                .Where(x => x.ChargedAccount.Id == accountId || x.TargetAccount.Id == accountId)
+                .Where(x => x.ChargedAccount == account || x.TargetAccount == account)
                 .OrderByDescending(x => x.Date)
                 .ToList();
         }

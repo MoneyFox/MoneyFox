@@ -25,8 +25,8 @@ namespace MoneyManager.Business.ViewModels {
 
         public List<JumpListGroup<FinancialTransaction>> RelatedTransactions { set; get; }
 
-        public void SetRelatedTransactions(int accountId) {
-            IEnumerable<FinancialTransaction> related = transactionRepository.GetRelatedTransactions(accountId);
+        public void SetRelatedTransactions(Account account) {
+            IEnumerable<FinancialTransaction> related = transactionRepository.GetRelatedTransactions(account);
 
             var dateInfo = new DateTimeFormatInfo();
             RelatedTransactions = related.ToGroups(x => x.Date,

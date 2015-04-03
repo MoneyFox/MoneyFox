@@ -28,7 +28,7 @@ namespace MoneyManager.Business.Logic {
 
             if (refreshRelatedList) {
                 ServiceLocator.Current.GetInstance<TransactionListViewModel>()
-                    .SetRelatedTransactions(AccountRepository.Selected.Id);
+                    .SetRelatedTransactions(AccountRepository.Selected);
             }
             await AccountLogic.AddTransactionAmount(transaction);
         }
@@ -66,12 +66,12 @@ namespace MoneyManager.Business.Logic {
             }
         }
 
-        public static void DeleteAssociatedTransactionsFromDatabase(int accountId) {
+        public static void DeleteAssociatedTransactionsFromDatabase(Account account) {
             if (TransactionRepository.Data == null) {
                 return;
             }
 
-            var transactionsToDelete = TransactionRepository.GetRelatedTransactions(accountId);
+            var transactionsToDelete = TransactionRepository.GetRelatedTransactions(account);
 
             foreach (FinancialTransaction transaction in transactionsToDelete) {
                 TransactionRepository.Delete(transaction);

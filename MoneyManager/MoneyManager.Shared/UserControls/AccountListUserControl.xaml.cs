@@ -55,7 +55,7 @@ namespace MoneyManager.UserControls {
                 AccountRepository.Selected = AccountList.SelectedItem as Account;
 
                 ServiceLocator.Current.GetInstance<TransactionListViewModel>()
-                    .SetRelatedTransactions(AccountRepository.Selected.Id);
+                    .SetRelatedTransactions(AccountRepository.Selected);
 
                 ((Frame) Window.Current.Content).Navigate(typeof (TransactionList));
                 AccountList.SelectedItem = null;

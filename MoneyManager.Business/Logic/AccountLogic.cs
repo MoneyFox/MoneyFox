@@ -43,13 +43,13 @@ namespace MoneyManager.Business.Logic {
         public static async void DeleteAccount(Account account, bool skipConfirmation = false) {
             if (skipConfirmation || await Utilities.IsDeletionConfirmed()) {
                 AccountRepository.Delete(account);
-                TransactionLogic.DeleteAssociatedTransactionsFromDatabase(account.Id);
+                TransactionLogic.DeleteAssociatedTransactionsFromDatabase(account);
                 ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
             }
         }
 
         public static void RefreshRelatedTransactions() {
-            transactionListView.SetRelatedTransactions(AccountRepository.Selected.Id);
+            transactionListView.SetRelatedTransactions(AccountRepository.Selected);
         }
 
         public static async Task RemoveTransactionAmount(FinancialTransaction transaction) {

@@ -37,8 +37,14 @@ namespace MoneyManager.Foundation.Model {
         [ForeignKey(typeof (RecurringTransaction))]
         public int? ReccuringTransactionId { get; set; }
 
+        private Account _chargedAccount;
         [ManyToOne]
-        public Account ChargedAccount { get; set; }
+        public Account ChargedAccount {
+            get { return _chargedAccount; }
+            set {
+                _chargedAccount = value;
+                ChargedAccountId = value.Id;
+            } }
 
         [ManyToOne]
         public Account TargetAccount { get; set; }

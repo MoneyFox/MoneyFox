@@ -6,7 +6,7 @@ namespace MoneyManager.Foundation.OperationContracts {
     public interface ITransactionRepository : IRepository<FinancialTransaction> {
         IEnumerable<FinancialTransaction> GetUnclearedTransactions();
         IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date);
-        IEnumerable<FinancialTransaction> GetRelatedTransactions(int accountId);
+        IEnumerable<FinancialTransaction> GetRelatedTransactions(Account account);
         List<FinancialTransaction> LoadRecurringList();
     }
 }
