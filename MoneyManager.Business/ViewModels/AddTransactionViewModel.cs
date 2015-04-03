@@ -1,12 +1,9 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Manager;
 using MoneyManager.DataAccess.DataAccess;
@@ -15,20 +12,47 @@ using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
-#endregion
-
 namespace MoneyManager.Business.ViewModels {
     [ImplementPropertyChanged]
     public class AddTransactionViewModel {
+        private readonly IAccountRepository _accountRepository;
+        private readonly IRepository<Category> _categoryRepository;
+        private readonly CurrencyManager _currencyManager;
+        private readonly SettingDataAccess _settings;
         private readonly ITransactionRepository _transactionRepository;
 
-        private readonly CurrencyManager _currencyManager;
-
-
-        public AddTransactionViewModel(ITransactionRepository transactionRepository, CurrencyManager currencyManager) {
+        public AddTransactionViewModel(ITransactionRepository transactionRepository,
+            IAccountRepository accountRepository,
+            IRepository<Category> categoryRepository,
+            CurrencyManager currencyManager,
+            SettingDataAccess settings) {
             _transactionRepository = transactionRepository;
             _currencyManager = currencyManager;
+            _settings = settings;
+            _accountRepository = accountRepository;
+            _categoryRepository = categoryRepository;
             IsNavigationBlocked = true;
+        }
+
+        public bool IsNavigationBlocked { get; set; }
+        public DateTime EndDate { get; set; }
+        public bool IsEndless { get; set; }
+        public bool IsEdit { get; set; }
+        public int Recurrence { get; set; }
+        public bool IsTransfer { get; set; }
+        public bool RefreshRealtedList { get; set; }
+
+        public FinancialTransaction SelectedTransaction {
+            get { return _transactionRepository.Selected; }
+            set { _transactionRepository.Selected = value; }
+        }
+
+        public ObservableCollection<Account> AllAccounts {
+            get { return _accountRepository.Data; }
+        }
+
+        public ObservableCollection<Category> AllCategories {
+            get { return _categoryRepository.Data; }
         }
 
         public string Title {
@@ -37,7 +61,7 @@ namespace MoneyManager.Business.ViewModels {
                     ? Translation.GetTranslation("EditTitle")
                     : Translation.GetTranslation("AddTitle");
 
-                string type = TransactionTypeLogic.GetViewTitleForType(_transactionRepository.Selected.Type);
+                var type = TransactionTypeLogic.GetViewTitleForType(_transactionRepository.Selected.Type);
 
                 return String.Format(text, type);
             }
@@ -61,32 +85,6 @@ namespace MoneyManager.Business.ViewModels {
             }
         }
 
-        public bool IsNavigationBlocked { get; set; }
-
-        public FinancialTransaction SelectedTransaction {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected; }
-            set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
-        } 
-
-        public ObservableCollection<Account> AllAccounts {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Data; }
-        }
-
-        public ObservableCollection<Category> AllCategories {
-            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>().Data; }
-        }
-
-        public SettingDataAccess Settings {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
-
-        public DateTime EndDate { get; set; }
-        public bool IsEndless { get; set; }
-        public bool IsEdit { get; set; }
-        public int Recurrence { get; set; }
-        public bool IsTransfer { get; set; }
-        public bool RefreshRealtedList { get; set; }
-
         private void CalculateNewAmount(double value) {
             if (Math.Abs(_transactionRepository.Selected.ExchangeRatio) < 0.5) {
                 _transactionRepository.Selected.ExchangeRatio = 1;
@@ -104,7 +102,9 @@ namespace MoneyManager.Business.ViewModels {
 
         public async Task LoadCurrencyRatio() {
             _transactionRepository.Selected.ExchangeRatio =
-                await _currencyManager.GetCurrencyRatio(Settings.DefaultCurrency, _transactionRepository.Selected.Currency);
+                await
+                    _currencyManager.GetCurrencyRatio(_settings.DefaultCurrency,
+                        _transactionRepository.Selected.Currency);
         }
 
         public async void Save() {
