@@ -37,23 +37,16 @@ namespace MoneyManager.Foundation.Model {
         [ForeignKey(typeof (RecurringTransaction))]
         public int? ReccuringTransactionId { get; set; }
 
-        private Account _chargedAccount;
+        [ManyToOne("ChargedAccountId", CascadeOperations = CascadeOperation.All)]
+        public Account ChargedAccount { get; set; }
 
-        [ManyToOne(CascadeOperations = CascadeOperation.All)]
-        public Account ChargedAccount {
-            get { return _chargedAccount; }
-            set {
-                _chargedAccount = value;
-                ChargedAccountId = value.Id;
-            } }
-
-        [ManyToOne]
+        [ManyToOne("TargetAccountId", CascadeOperations = CascadeOperation.All)]
         public Account TargetAccount { get; set; }
 
         [ManyToOne]
         public Category Category { get; set; }
 
-        [ManyToOne]
+        [ManyToOne]        
         public RecurringTransaction RecurringTransaction { get; set; }
 
         [Ignore]
