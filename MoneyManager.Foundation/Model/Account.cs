@@ -1,9 +1,5 @@
-﻿#region
-
-using PropertyChanged;
+﻿using PropertyChanged;
 using SQLite.Net.Attributes;
-
-#endregion
 
 namespace MoneyManager.Foundation.Model {
     [ImplementPropertyChanged]

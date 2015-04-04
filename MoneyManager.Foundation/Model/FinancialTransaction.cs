@@ -38,7 +38,8 @@ namespace MoneyManager.Foundation.Model {
         public int? ReccuringTransactionId { get; set; }
 
         private Account _chargedAccount;
-        [ManyToOne]
+
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
         public Account ChargedAccount {
             get { return _chargedAccount; }
             set {

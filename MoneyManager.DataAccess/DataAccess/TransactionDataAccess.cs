@@ -12,7 +12,7 @@ namespace MoneyManager.DataAccess.DataAccess {
         protected override void SaveToDb(FinancialTransaction itemToSave) {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
                 if (itemToSave.Id == 0) {
-                    db.InsertWithChildren(itemToSave);
+                    db.Insert(itemToSave);
                 }
                 else {
                     db.UpdateWithChildren(itemToSave);
@@ -28,7 +28,7 @@ namespace MoneyManager.DataAccess.DataAccess {
 
         protected override List<FinancialTransaction> GetListFromDb() {
             using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                return dbConn.Table<FinancialTransaction>().ToList();
+                return dbConn.GetAllWithChildren<FinancialTransaction>(recursive:true).ToList();
             }
         }
     }
