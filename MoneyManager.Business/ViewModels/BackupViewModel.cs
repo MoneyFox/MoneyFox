@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using GalaSoft.MvvmLight;
@@ -8,8 +6,6 @@ using Microsoft.Live;
 using MoneyManager.Business.Logic;
 using MoneyManager.Foundation;
 using Xamarin;
-
-#endregion
 
 namespace MoneyManager.Business.ViewModels {
     public class BackupViewModel : ViewModelBase {
