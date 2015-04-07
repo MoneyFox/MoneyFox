@@ -1,13 +1,16 @@
-public class Backup() {
+using MoneyManager.Foundation.OperationContracts;
 
-  private const string BackupFolderName = "MoneyFoxBackup";
-  private const string DbName = "moneyfox.sqlite";
-  private const string BackupName = "backupmoneyfox.sqlite";
+namespace MoneyManager.Business {
+    public class Backup {
 
-  private IBackupService _backupService;
+        private const string BACKUP_FOLDER_NAME = "MoneyFoxBackup";
+        private const string DB_NAME = "moneyfox.sqlite";
+        private const string BACKUP_NAME = "backupmoneyfox.sqlite";
 
+        private IBackupService _backupService;
 
-  public Backup(IBackupService backupService){
-    _backupService = backupService;
-  }
+        public Backup(IBackupService backupService){
+            _backupService = backupService;
+        }
+    }
 }

@@ -56,6 +56,7 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backup.cs" />
     <Compile Include="DatabaseLogic.cs" />
     <Compile Include="Logic\AccountLogic.cs" />
     <Compile Include="Logic\BackupLogic.cs" />

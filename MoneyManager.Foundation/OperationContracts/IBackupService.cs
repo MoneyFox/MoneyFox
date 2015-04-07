@@ -1,7 +1,11 @@
-public interface IBackupService {
-  void Upload();
+using System;
 
-  void Restore();
+namespace MoneyManager.Foundation.OperationContracts {
+    public interface IBackupService {
+        void Upload();
 
-  DateTime GetLastCreationDate();
+        void Restore();
+
+        DateTime GetLastCreationDate();
+    }
 }
