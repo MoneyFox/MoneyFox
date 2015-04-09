@@ -333,6 +333,29 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\SQLiteNetExtensions.1.2.5\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\SQLiteNetExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Core, Version=2015.1.226.45, Culture=neutral, PublicKeyToken=54096b0481e00341, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Common\Telerik.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Chart, Version=2015.1.226.45, Culture=neutral, PublicKeyToken=54096b0481e00341, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Controls.Data, Version=2015.1.226.45, Culture=neutral, PublicKeyToken=54096b0481e00341, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.DataVisualization">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Input, Version=2015.1.226.45, Culture=neutral, PublicKeyToken=54096b0481e00341, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Primitives, Version=2015.1.226.45, Culture=neutral, PublicKeyToken=54096b0481e00341, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.Primitives.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Insights, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Xamarin.Insights.1.9.1.107\lib\wpa\Xamarin.Insights.dll</HintPath>
@@ -350,9 +373,6 @@
     </SDKReference>
     <SDKReference Include="SQLite.WP81, Version=3.8.8.3">
       <Name>SQLite for Windows Phone 8.1</Name>
-    </SDKReference>
-    <SDKReference Include="Telerik UI For Windows Universal, Version=2015.1.226.45">
-      <Name>Telerik UI For Windows Phone 8.1</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
