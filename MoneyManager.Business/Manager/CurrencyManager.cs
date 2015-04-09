@@ -74,7 +74,7 @@ namespace MoneyManager.Business.Manager {
                 return Double.Parse(currency.Conversion.val, new CultureInfo("en-us"));
             }
             catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
+                InsightHelper.Report(ex);
             }
             return 1;
         }

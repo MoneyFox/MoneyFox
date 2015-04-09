@@ -62,11 +62,11 @@ namespace MoneyManager.Business.Logic {
                 return TaskCompletionType.Successful;
             }
             catch (TaskCanceledException ex) {
-                Insights.Report(ex);
+                InsightHelper.Report(ex);
                 return TaskCompletionType.Aborted;
             }
             catch (Exception ex) {
-                Insights.Report(ex);
+                InsightHelper.Report(ex);
                 return TaskCompletionType.Unsuccessful;
             }
         }
@@ -80,7 +80,7 @@ namespace MoneyManager.Business.Logic {
                     return result.id;
                 }
                 catch (LiveConnectException ex) {
-                    Insights.Report(ex, ReportSeverity.Error);
+                    InsightHelper.Report(ex);
                 }
             }
             return String.Empty;
@@ -103,7 +103,7 @@ namespace MoneyManager.Business.Logic {
                 }
             }
             catch (LiveConnectException ex) {
-                Insights.Report(ex, ReportSeverity.Error);
+                InsightHelper.Report(ex);
             }
             return String.Empty;
         }
@@ -122,7 +122,7 @@ namespace MoneyManager.Business.Logic {
                 }
             }
             catch (LiveConnectException ex) {
-                Insights.Report(ex, ReportSeverity.Error);
+                InsightHelper.Report(ex);
             }
 
             return String.Empty;
@@ -138,7 +138,7 @@ namespace MoneyManager.Business.Logic {
                     return createdAt.ToString("f", new CultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName));
                 }
                 catch (Exception ex) {
-                    Insights.Report(ex, ReportSeverity.Error);
+                    InsightHelper.Report(ex);
                 }
             }
             return String.Empty;
@@ -156,7 +156,7 @@ namespace MoneyManager.Business.Logic {
                 return TaskCompletionType.Successful;
             }
             catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
+                InsightHelper.Report(ex);
                 return TaskCompletionType.Unsuccessful;
             }
         }

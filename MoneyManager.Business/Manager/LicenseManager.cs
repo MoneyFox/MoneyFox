@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Store;
+using MoneyManager.Foundation;
 using Xamarin;
 
 namespace MoneyManager.Business.Manager {
@@ -33,7 +34,7 @@ namespace MoneyManager.Business.Manager {
             }
             catch (Exception ex) {
                 if (!ex.Message.Contains("0x805A0194")) {
-                    Insights.Report(ex);
+                    InsightHelper.Report(ex);
                 }
             }
         }

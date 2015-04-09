@@ -15,7 +15,7 @@ namespace MoneyManager.Foundation {
                 SaveToDb(itemToSave);
             }
             catch (Exception ex) {
-                Insights.Report(ex);
+                InsightHelper.Report(ex);
             }
         }
 
@@ -28,7 +28,7 @@ namespace MoneyManager.Foundation {
                 DeleteFromDatabase(itemToDelete);
             }
             catch (Exception ex) {
-                Insights.Report(ex);
+                InsightHelper.Report(ex);
             }
         }
 
@@ -41,7 +41,7 @@ namespace MoneyManager.Foundation {
                 return GetListFromDb();
             }
             catch (Exception ex) {
-                Insights.Report(ex);
+                InsightHelper.Report(ex);
             }
             return new List<T>();
         }

@@ -53,7 +53,7 @@ namespace MoneyManager.UserControls {
             }
             catch (Exception ex) {
                 ShowProductNotFoundDialog();
-                Insights.Report(ex, ReportSeverity.Error);
+                InsightHelper.Report(ex);
             }
         }
 
@@ -85,7 +85,7 @@ namespace MoneyManager.UserControls {
                     dialog.ShowAsync();
                 }
                 else {
-                    Insights.Report(ex, ReportSeverity.Error);
+                    InsightHelper.Report(ex);
                 }
             }
         }

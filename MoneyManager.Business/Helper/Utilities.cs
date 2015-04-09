@@ -1,16 +1,11 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using GalaSoft.MvvmLight.Views;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-
-#endregion
 
 namespace MoneyManager.Business.Helper {
     public class Utilities {

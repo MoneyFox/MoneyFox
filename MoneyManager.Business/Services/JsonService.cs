@@ -1,29 +1,42 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
-using Xamarin;
 
 namespace MoneyManager.Business.Services {
     public class JsonService : IJsonService {
-        private static HttpClient _httpClient = new HttpClient();
+        private HttpClient _httpClient = new HttpClient();
+        private readonly string _url;
 
-        public async Task<string> GetJsonFromService(string url) {
+        /// <summary>
+        /// Creates an instance of JsonService
+        /// </summary>
+        /// <param name="url">URL for the service to retrieve the json.</param>
+        public JsonService(string url) {
+            _url = url;
+        }
+
+        /// <summary>
+        /// Return a JSON string from the instanced service
+        /// </summary>
+        /// <returns>Recived JSON string.</returns>
+        public async Task<string> GetJsonFromService() {
             try {
                 PrepareHttpClient();
-                var req = new HttpRequestMessage(HttpMethod.Get, url);
+                var req = new HttpRequestMessage(HttpMethod.Get, _url);
                 HttpResponseMessage response = await _httpClient.SendAsync(req);
                 response.EnsureSuccessStatusCode();
 
                 return await response.Content.ReadAsStringAsync();
             } catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
+                InsightHelper.Report(ex);
             }
             return "1";
         }
 
         private void PrepareHttpClient() {
-            _httpClient = new HttpClient { BaseAddress = new Uri("https://api.SmallInvoice.com/") };
+            _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Add("user-agent",
                 "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
         }

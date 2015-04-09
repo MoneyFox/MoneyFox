@@ -16,7 +16,7 @@ namespace MoneyManager.Tasks.TransactionsWp {
                 await TransactionLogic.ClearTransactions();
             }
             catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
+                InsightHelper.Report(ex);
             }
         }
     }

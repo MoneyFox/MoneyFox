@@ -1,6 +1,4 @@
-﻿#region
-
-using System;
+﻿using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -14,8 +12,6 @@ using MoneyManager.Business.Manager;
 using MoneyManager.Tasks.TransactionsWp;
 using Xamarin;
 
-#endregion
-
 namespace MoneyManager {
     public sealed partial class App {
 #if WINDOWS_PHONE_APP
@@ -28,10 +24,11 @@ namespace MoneyManager {
         }
 
         protected override async void OnLaunched(LaunchActivatedEventArgs e) {
+#if DEBUG
             if (!Insights.IsInitialized) {
                 Insights.Initialize("599ff6bfdc79368ff3d5f5629a57c995fe93352e");
             }
-
+#endif
             await ServiceLocator.Current.GetInstance<LicenseManager>().CheckLicenceFeaturepack();
             var rootFrame = Window.Current.Content as Frame;
 

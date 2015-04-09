@@ -40,7 +40,7 @@ namespace MoneyManager.Business.ViewModels {
                 }
             }
             catch (Exception ex) {
-                Insights.Report(ex);
+                InsightHelper.Report(ex);
             }
         }
 
@@ -88,7 +88,7 @@ namespace MoneyManager.Business.ViewModels {
                 await ShowCompletionNote(completionType);
             }
             catch (Exception ex) {
-                Insights.Report(ex);
+                InsightHelper.Report(ex);
                 ShowCompletionNote(TaskCompletionType.Unsuccessful);
             }
             finally {
@@ -120,7 +120,7 @@ namespace MoneyManager.Business.ViewModels {
                 await ShowCompletionNote(TaskCompletionType.Successful);
             }
             catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
+                InsightHelper.Report(ex);
                 ShowCompletionNote(TaskCompletionType.Unsuccessful);
             }
             finally {

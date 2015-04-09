@@ -146,7 +146,7 @@ namespace MoneyManager.Business.Logic {
                 }
             }
             catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
+                InsightHelper.Report(ex);
             }
         }
 
@@ -157,7 +157,7 @@ namespace MoneyManager.Business.Logic {
                     await AccountLogic.AddTransactionAmount(transaction);
                 }
                 catch (Exception ex) {
-                    Insights.Report(ex, ReportSeverity.Error);
+                    InsightHelper.Report(ex);
                 }
             }
         }

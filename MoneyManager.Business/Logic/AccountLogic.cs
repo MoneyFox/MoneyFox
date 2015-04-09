@@ -116,7 +116,7 @@ namespace MoneyManager.Business.Logic {
                 }
             }
             catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
+                InsightHelper.Report(ex);
             }
             return baseAmount;
         }

@@ -1,13 +1,10 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Popups;
-using Xamarin;
-
-#endregion
+using MoneyManager.Business;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Tasks.TransactionsWp {
     internal class BackgroundTaskLogic {
@@ -29,7 +26,7 @@ namespace MoneyManager.Tasks.TransactionsWp {
                 builder.Register();
             }
             catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
+                InsightHelper.Report(ex);
             }
         }
 
@@ -42,12 +39,6 @@ namespace MoneyManager.Tasks.TransactionsWp {
                 return false;
             }
             return true;
-        }
-
-        private static async void RegistrationOnCompleted(BackgroundTaskRegistration sender,
-            BackgroundTaskCompletedEventArgs args) {
-            var dialog = new MessageDialog("mööp mööp");
-            await dialog.ShowAsync();
         }
 
         private static bool IsTaskExisting() {

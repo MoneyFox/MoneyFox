@@ -1,22 +1,23 @@
 ﻿using System;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
-using Xamarin;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Views {
     public sealed partial class SettingsBackup {
-        private readonly NavigationHelper navigationHelper;
+        private readonly NavigationHelper _navigationHelper;
 
         public SettingsBackup() {
             InitializeComponent();
 
-            navigationHelper = new NavigationHelper(this);
+            _navigationHelper = new NavigationHelper(this);
         }
 
         public NavigationHelper NavigationHelper {
-            get { return navigationHelper; }
+            get { return _navigationHelper; }
         }
 
         private BackupViewModel backupView {
@@ -29,15 +30,15 @@ namespace MoneyManager.Views {
             try {
                 await backupView.LogInToOneDrive();
                 await backupView.LoadBackupCreationDate();
-                navigationHelper.OnNavigatedTo(e);
+                _navigationHelper.OnNavigatedTo(e);
             }
             catch (Exception ex) {
-                Insights.Report(ex, ReportSeverity.Error);
+                InsightHelper.Report(ex);
             }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e) {
-            navigationHelper.OnNavigatedFrom(e);
+            _navigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion NavigationHelper registration
