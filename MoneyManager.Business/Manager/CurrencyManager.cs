@@ -9,7 +9,6 @@ using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Xamarin;
 
 namespace MoneyManager.Business.Manager {
     public class CurrencyManager {

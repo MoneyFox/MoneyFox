@@ -7,24 +7,16 @@ using MoneyManager.Foundation.OperationContracts;
 namespace MoneyManager.Business.Services {
     public class JsonService : IJsonService {
         private HttpClient _httpClient = new HttpClient();
-        private readonly string _url;
-
-        /// <summary>
-        /// Creates an instance of JsonService
-        /// </summary>
-        /// <param name="url">URL for the service to retrieve the json.</param>
-        public JsonService(string url) {
-            _url = url;
-        }
 
         /// <summary>
         /// Return a JSON string from the instanced service
         /// </summary>
+        /// <param name="url"></param>
         /// <returns>Recived JSON string.</returns>
-        public async Task<string> GetJsonFromService() {
+        public async Task<string> GetJsonFromService(string url) {
             try {
                 PrepareHttpClient();
-                var req = new HttpRequestMessage(HttpMethod.Get, _url);
+                var req = new HttpRequestMessage(HttpMethod.Get, url);
                 HttpResponseMessage response = await _httpClient.SendAsync(req);
                 response.EnsureSuccessStatusCode();
 
@@ -32,7 +24,7 @@ namespace MoneyManager.Business.Services {
             } catch (Exception ex) {
                 InsightHelper.Report(ex);
             }
-            return "1";
+            return String.Empty;
         }
 
         private void PrepareHttpClient() {

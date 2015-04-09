@@ -1,11 +1,7 @@
-﻿#region
-
-using System;
+﻿using System;
 using Windows.ApplicationModel.Background;
 using MoneyManager.Business.Logic;
-using Xamarin;
-
-#endregion
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Tasks.TransactionsWp {
     public sealed class TransactionTask : IBackgroundTask {

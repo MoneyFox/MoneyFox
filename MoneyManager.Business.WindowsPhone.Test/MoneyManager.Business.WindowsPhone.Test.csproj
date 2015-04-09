@@ -91,6 +91,7 @@
     <Compile Include="Repositories\CategoryRepositoryTest.cs" />
     <Compile Include="Repositories\RecurringTransactionRepositoryTest.cs" />
     <Compile Include="Repositories\TransactionRepositoryTest.cs" />
+    <Compile Include="Service\JsonServiceTest.cs" />
     <Compile Include="ViewModels\AddTransactionViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
