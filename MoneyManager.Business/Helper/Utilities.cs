@@ -28,6 +28,10 @@ namespace MoneyManager.Business.Helper {
             return Assembly.Load(new AssemblyName("MoneyManager.WindowsPhone")).FullName.Split('=')[1].Split(',')[0];
         }
 
+        /// <summary>
+        /// Shows a Dialog to confirm that the selected item really shall be deleted.
+        /// </summary>
+        /// <returns>True or False if the user confirmed the deletion.</returns>
         public static async Task<bool> IsDeletionConfirmed() {
             var dialog = new MessageDialog(Translation.GetTranslation("DeleteEntryQuestionMessage"),
                 Translation.GetTranslation("DeleteQuestionTitle"));
