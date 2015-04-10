@@ -21,8 +21,8 @@ namespace MoneyManager.Business.WindowsPhone.Test.Mocks {
             throw new NotImplementedException();
         }
 
-        public Task<DateTime> GetLastCreationDate() {
-            return Task.FromResult(new DateTime(2013, 10, 30));
+        public async Task<DateTime> GetLastCreationDate() {
+            return await Task.FromResult(new DateTime(2013, 10, 30));
         }
     }
 }
