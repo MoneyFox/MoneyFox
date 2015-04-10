@@ -597,4 +597,7 @@
   <data name="LoginFailedMessage" xml:space="preserve">
     <value>Login failed. Please try again later.</value>
   </data>
+  <data name="BackupFailedMessage" xml:space="preserve">
+    <value>Backup couldn't be uploaded. If this error consists please contact us.</value>
+  </data>
 </root>

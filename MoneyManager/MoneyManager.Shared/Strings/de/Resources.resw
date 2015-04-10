@@ -591,4 +591,7 @@
   <data name="LoginFailedMessage" xml:space="preserve">
     <value>Wir konnten Sie nicht einloggen. Bitte versuchen Sie es später nochmals.</value>
   </data>
+  <data name="BackupFailedMessage" xml:space="preserve">
+    <value>Backup konnte nicht hochgeladen werden. Wenn dieser Fehler weiterhin besteht kontaktiere uns bitte für weiteren Support.</value>
+  </data>
 </root>
