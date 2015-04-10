@@ -5,7 +5,6 @@ using GalaSoft.MvvmLight;
 using Microsoft.Live;
 using MoneyManager.Business.Logic;
 using MoneyManager.Foundation;
-using Xamarin;
 
 namespace MoneyManager.Business.ViewModels {
     public class BackupViewModel : ViewModelBase {

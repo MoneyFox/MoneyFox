@@ -1,8 +1,11 @@
 using System;
+using System.Threading.Tasks;
 
 namespace MoneyManager.Foundation.OperationContracts {
     public interface IBackupService {
-        void Upload();
+        void Login();
+
+        Task<TaskCompletionType> Upload();
 
         void Restore();
 

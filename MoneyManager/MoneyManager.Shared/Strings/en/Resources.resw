@@ -594,4 +594,7 @@
   <data name="CategorySummary" xml:space="preserve">
     <value>category summary</value>
   </data>
+  <data name="LoginFailedMessage" xml:space="preserve">
+    <value>Login failed. Please try again later.</value>
+  </data>
 </root>

@@ -588,4 +588,7 @@
   <data name="CategorySummary" xml:space="preserve">
     <value>Kategory Zusammenfassung</value>
   </data>
+  <data name="LoginFailedMessage" xml:space="preserve">
+    <value>Wir konnten Sie nicht einloggen. Bitte versuchen Sie es später nochmals.</value>
+  </data>
 </root>

@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="AbstractDataAccess.cs" />
     <Compile Include="Enumerations.cs" />
+    <Compile Include="Exceptions\ConnectionException.cs" />
     <Compile Include="InsightHelper.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Category.cs" />

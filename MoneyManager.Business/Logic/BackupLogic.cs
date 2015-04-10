@@ -10,43 +10,7 @@ using Xamarin;
 
 namespace MoneyManager.Business.Logic {
     public class BackupLogic {
-        public static async Task<LiveConnectClient> LogInToOneDrive() {
-            try {
-                var authClient = new LiveAuthClient();
-                LiveLoginResult result =
-                    await
-                        authClient.LoginAsync(new[]
-                        {"wl.basic", "wl.skydrive", "wl.skydrive_update", "wl.offline_access"});
-
-                if (result.Status == LiveConnectSessionStatus.Connected) {
-                    return new LiveConnectClient(result.Session);
-                }
-            }
-            catch (LiveAuthException) {
-                ShowAuthExceptionMessage();
-            }
-            catch (LiveConnectException) {
-                ShowConnectExceptionMessage();
-            }
-            return null;
-        }
-
-        private static async void ShowAuthExceptionMessage() {
-            var dialog = new MessageDialog(Translation.GetTranslation("AuthExceptionMessage"),
-                Translation.GetTranslation("AuthException"));
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
-
-            await dialog.ShowAsync();
-        }
-
-        private static async void ShowConnectExceptionMessage() {
-            var dialog = new MessageDialog(Translation.GetTranslation("ConnectionExceptionMessage"),
-                Translation.GetTranslation("ConnectionException"));
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
-
-            await dialog.ShowAsync();
-        }
-
+        
         public static async Task<TaskCompletionType> UploadBackup(LiveConnectClient liveClient, string folderId,
             string dbName) {
             try {
