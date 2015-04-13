@@ -1,17 +1,13 @@
-﻿#region
-
-using System;
+﻿using System;
 using Windows.UI.StartScreen;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
-
-#endregion
 
 namespace MoneyManager.Business.Logic.Tile {
     public class TransferTile : Tile, ISecondTile {
         public const string Id = "AddTransferTile";
 
-        public bool Exists {
+        public new bool Exists {
             get { return Exists(Id); }
         }
 

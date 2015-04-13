@@ -1,12 +1,8 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Foundation.OperationContracts;
-
-#endregion
 
 namespace MoneyManager.Business.Logic.Tile {
     public abstract class Tile {
