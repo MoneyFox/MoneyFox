@@ -11,15 +11,22 @@
 
     <UserControl.Resources>
         <DataTemplate x:Key="CategoryTemplate">
-            <StackPanel Margin="0,0,0,12" HorizontalAlignment="Stretch"
-                        MinWidth="300" Holding="CategoryListHolding">
+            <StackPanel Margin="0,0,0,12"
+                        HorizontalAlignment="Stretch"
+                        MinWidth="300"
+                        Holding="CategoryListHolding">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="Edit" Text="Edit" Click="EditCategory" />
-                        <MenuFlyoutItem x:Uid="Delete" Text="Delete" Click="DeleteCategory" />
+                        <MenuFlyoutItem x:Uid="Edit"
+                                        Text="Edit"
+                                        Click="EditCategory" />
+                        <MenuFlyoutItem x:Uid="Delete"
+                                        Text="Delete"
+                                        Click="DeleteCategory" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}" Text="{Binding Name}" />
+                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle}"
+                           Text="{Binding Name}" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>

@@ -73,8 +73,20 @@ namespace MoneyManager.Business.Services {
             }
         }
 
-        public void Restore() {
-            throw new NotImplementedException();
+        public async Task<TaskCompletionType> Restore() {
+            try {
+                 await GetBackupId();
+                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+                StorageFile storageFile =
+                    await localFolder.CreateFileAsync(BACKUP_NAME, CreationCollisionOption.ReplaceExisting);
+
+                await _liveClient.BackgroundDownloadAsync(_backupId + "/content", storageFile);
+                return TaskCompletionType.Successful;
+            }
+            catch (Exception ex) {
+                InsightHelper.Report(ex);
+                return TaskCompletionType.Unsuccessful;
+            }
         }
 
         /// <summary>

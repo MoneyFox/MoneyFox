@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.OperationContracts;
@@ -8,6 +9,7 @@ using MoneyManager.Foundation.OperationContracts;
 namespace MoneyManager.Business {
     public class Backup {
         private readonly IBackupService _backupService;
+        private string _creationDate;
 
         public Backup(IBackupService backupService) {
             _backupService = backupService;
@@ -30,14 +32,32 @@ namespace MoneyManager.Business {
         /// <summary>
         ///     Upload a copy of the current database
         /// </summary>
-        public void UploadBackup() {
+        public async void UploadBackup() {
+            if (!await ShowOverwriteInfo()) {
+                return;
+            }
+
             try {
-                _backupService.Upload();
+                await _backupService.Upload();
             }
             catch (Exception ex) {
                 InsightHelper.Report(ex);
                 throw new BackupException(Translation.GetTranslation("BackupFailedMessage"), ex);
             }
+        }
+
+        private async Task<bool> ShowOverwriteInfo() {
+            if (!string.IsNullOrEmpty(_creationDate)) {
+                var dialog = new MessageDialog(Translation.GetTranslation("OverwriteBackupMessage"),
+                    Translation.GetTranslation("OverwriteBackup"));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
+                dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
+
+                var result = await dialog.ShowAsync();
+
+                return result.Label == Translation.GetTranslation("YesLabel");
+            }
+            return true;
         }
 
         /// <summary>
@@ -46,7 +66,8 @@ namespace MoneyManager.Business {
         /// <returns>Formatted Datestring.</returns>
         public async Task<string> GetCreationDateLastBackup() {
             var date = await _backupService.GetLastCreationDate();
-            return date.ToString("f", new CultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName)); 
+            return
+                _creationDate = date.ToString("f", new CultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName));
         }
     }
 }
