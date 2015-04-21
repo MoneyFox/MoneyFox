@@ -11,7 +11,7 @@ namespace MoneyManager.Foundation.OperationContracts {
         /// <summary>
         /// Shows a login prompt to the user.
         /// </summary>
-        void Login();
+        Task Login();
 
         /// <summary>
         /// Uploads a copy of the current database.

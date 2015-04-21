@@ -600,4 +600,7 @@
   <data name="BackupFailedMessage" xml:space="preserve">
     <value>Backup couldn't be uploaded. If this error consists please contact us.</value>
   </data>
+  <data name="RestoreFailedMessage" xml:space="preserve">
+    <value>Restore backup couldn't complete successfully. If this error persists please contact us.</value>
+  </data>
 </root>

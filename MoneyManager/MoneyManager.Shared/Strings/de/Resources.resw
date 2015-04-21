@@ -594,4 +594,7 @@
   <data name="BackupFailedMessage" xml:space="preserve">
     <value>Backup konnte nicht hochgeladen werden. Wenn dieser Fehler weiterhin besteht kontaktiere uns bitte für weiteren Support.</value>
   </data>
+  <data name="RestoreFailedMessage" xml:space="preserve">
+    <value>Das Backup konnte nicht wiederhergestellt werden. Wenn dieser fehler erneut auftritt kontaktieren Sie uns bitte.</value>
+  </data>
 </root>

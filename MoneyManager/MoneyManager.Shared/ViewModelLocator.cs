@@ -29,8 +29,10 @@ namespace MoneyManager {
             //Logic
             SimpleIoc.Default.Register<IUserNotification, UserNotification>();
             SimpleIoc.Default.Register<IJsonService, JsonService>();
+            SimpleIoc.Default.Register<IBackupService, OneDriveBackupService>();
             SimpleIoc.Default.Register(CreateNavigationService);
             SimpleIoc.Default.Register<Utilities>();
+            SimpleIoc.Default.Register<Backup>();
 
             //Manager
             SimpleIoc.Default.Register<LicenseManager>();

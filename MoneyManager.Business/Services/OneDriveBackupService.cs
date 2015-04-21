@@ -27,7 +27,7 @@ namespace MoneyManager.Business.Services {
         /// <summary>
         ///     Prompts a OneDrive login prompt to the user.
         /// </summary>
-        public async void Login() {
+        public async Task Login() {
             var result = await new LiveAuthClient()
                 .LoginAsync(new[] {
                     "wl.basic",
@@ -46,6 +46,10 @@ namespace MoneyManager.Business.Services {
         /// </summary>
         /// <returns>State if the task succeed successfully</returns>
         public async Task<TaskCompletionType> Upload() {
+            if (_liveClient == null) {
+                await Login();
+            }
+
             await GetBackupFolder();
 
             if (String.IsNullOrEmpty(_folderId)) {
@@ -74,11 +78,15 @@ namespace MoneyManager.Business.Services {
         }
 
         public async Task<TaskCompletionType> Restore() {
+            if (_liveClient == null) {
+                await Login();
+            }
+
             try {
                  await GetBackupId();
                 StorageFolder localFolder = ApplicationData.Current.LocalFolder;
                 StorageFile storageFile =
-                    await localFolder.CreateFileAsync(BACKUP_NAME, CreationCollisionOption.ReplaceExisting);
+                    await localFolder.CreateFileAsync(DB_NAME, CreationCollisionOption.ReplaceExisting);
 
                 await _liveClient.BackgroundDownloadAsync(_backupId + "/content", storageFile);
                 return TaskCompletionType.Successful;
@@ -94,6 +102,10 @@ namespace MoneyManager.Business.Services {
         /// </summary>
         /// <returns>Creationtime as DateTime</returns>
         public async Task<DateTime> GetLastCreationDate() {
+            if (_liveClient == null) {
+                await Login();
+            }
+
             await GetBackupId();
 
             if (String.IsNullOrEmpty(_backupId)) {
@@ -113,6 +125,26 @@ namespace MoneyManager.Business.Services {
             }
         }
 
+        private async Task GetBackupId() {
+            await GetBackupFolder();
+
+            try {
+                LiveOperationResult operationResultFolder = await _liveClient.GetAsync(_folderId + "/files");
+                dynamic files = operationResultFolder.Result.Values;
+
+                foreach (dynamic data in files) {
+                    foreach (dynamic file in data) {
+                        if (file.name == BACKUP_NAME) {
+                            _backupId = file.id;
+                            break;
+                        }
+                    }
+                }
+            } catch (LiveConnectException ex) {
+                InsightHelper.Report(ex);
+            }
+        }
+
         private async Task GetBackupFolder() {
             try {
                 var operationResultFolder = await _liveClient.GetAsync("me/skydrive/");
@@ -125,28 +157,12 @@ namespace MoneyManager.Business.Services {
                     foreach (var folder in data) {
                         if (folder.name == BACKUP_FOLDER_NAME) {
                             _folderId = folder.id;
+                            break;
                         }
                     }
                 }
             }
             catch (LiveConnectException ex) {
-                InsightHelper.Report(ex);
-            }
-        }
-
-        private async Task GetBackupId() {
-            try {
-                LiveOperationResult operationResultFolder = await _liveClient.GetAsync(BACKUP_FOLDER_NAME + "/files");
-                dynamic files = operationResultFolder.Result.Values;
-
-                foreach (dynamic data in files) {
-                    foreach (dynamic file in data) {
-                        if (file.name == BACKUP_NAME) {
-                            _backupId = file.id;
-                        }
-                    }
-                }
-            } catch (LiveConnectException ex) {
                 InsightHelper.Report(ex);
             }
         }

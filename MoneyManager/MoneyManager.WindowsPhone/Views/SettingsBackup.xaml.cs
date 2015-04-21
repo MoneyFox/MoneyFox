@@ -1,10 +1,5 @@
-﻿using System;
-using Windows.UI.Xaml.Navigation;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business;
-using MoneyManager.Business.ViewModels;
+﻿using Windows.UI.Xaml.Navigation;
 using MoneyManager.Common;
-using MoneyManager.Foundation;
 
 namespace MoneyManager.Views {
     public sealed partial class SettingsBackup {
@@ -20,21 +15,10 @@ namespace MoneyManager.Views {
             get { return _navigationHelper; }
         }
 
-        private BackupViewModel backupView {
-            get { return ServiceLocator.Current.GetInstance<BackupViewModel>(); }
-        }
-
         #region NavigationHelper registration
 
         protected override async void OnNavigatedTo(NavigationEventArgs e) {
-            try {
-                await backupView.LogInToOneDrive();
-                await backupView.LoadBackupCreationDate();
-                _navigationHelper.OnNavigatedTo(e);
-            }
-            catch (Exception ex) {
-                InsightHelper.Report(ex);
-            }
+            _navigationHelper.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e) {

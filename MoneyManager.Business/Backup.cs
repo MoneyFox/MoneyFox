@@ -1,7 +1,6 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
-using Windows.UI.Popups;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.OperationContracts;
@@ -19,9 +18,9 @@ namespace MoneyManager.Business {
         ///     Prompts a login screen to the user.
         /// </summary>
         /// <exception cref="ConnectionException">Is thrown if the user couldn't be logged in.</exception>
-        public void Login() {
+        public async void Login() {
             try {
-                _backupService.Login();
+                await _backupService.Login();
             }
             catch (Exception ex) {
                 InsightHelper.Report(ex);
@@ -32,11 +31,7 @@ namespace MoneyManager.Business {
         /// <summary>
         ///     Upload a copy of the current database
         /// </summary>
-        public async void UploadBackup() {
-            if (!await ShowOverwriteInfo()) {
-                return;
-            }
-
+        public async Task UploadBackup() {
             try {
                 await _backupService.Upload();
             }
@@ -46,18 +41,18 @@ namespace MoneyManager.Business {
             }
         }
 
-        private async Task<bool> ShowOverwriteInfo() {
-            if (!string.IsNullOrEmpty(_creationDate)) {
-                var dialog = new MessageDialog(Translation.GetTranslation("OverwriteBackupMessage"),
-                    Translation.GetTranslation("OverwriteBackup"));
-                dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
-                dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
-
-                var result = await dialog.ShowAsync();
-
-                return result.Label == Translation.GetTranslation("YesLabel");
+        /// <summary>
+        ///     Restore the database backup
+        /// </summary>
+        /// <returns></returns>
+        public async Task RestoreBackup() {
+            try {
+                await _backupService.Restore();
             }
-            return true;
+            catch (Exception ex) {
+                InsightHelper.Report(ex);
+                throw new BackupException(Translation.GetTranslation("RestoreFailedMessage"), ex);
+            }
         }
 
         /// <summary>
