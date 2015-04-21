@@ -13,12 +13,12 @@ namespace MoneyManager.Business.Services {
         private const string BACKUP_FOLDER_NAME = "MoneyFoxBackup";
         private const string DB_NAME = "moneyfox.sqlite";
         private const string BACKUP_NAME = "backupmoneyfox.sqlite";
-        private string _folderId;
         private string _backupId;
+        private string _folderId;
         private LiveConnectClient _liveClient;
 
         /// <summary>
-        /// Indicates if the user is already logged in or not
+        ///     Indicates if the user is already logged in or not
         /// </summary>
         public bool IsLoggedIn {
             get { return _liveClient == null; }
@@ -42,7 +42,7 @@ namespace MoneyManager.Business.Services {
         }
 
         /// <summary>
-        /// Uploads a copy of the current database to onedrive
+        ///     Uploads a copy of the current database to onedrive
         /// </summary>
         /// <returns>State if the task succeed successfully</returns>
         public async Task<TaskCompletionType> Upload() {
@@ -52,7 +52,7 @@ namespace MoneyManager.Business.Services {
 
             await GetBackupFolder();
 
-            if (String.IsNullOrEmpty(_folderId)) {
+            if (string.IsNullOrEmpty(_folderId)) {
                 return TaskCompletionType.Unsuccessful;
             }
 
@@ -77,15 +77,19 @@ namespace MoneyManager.Business.Services {
             }
         }
 
+        /// <summary>
+        ///     Restore a database backup from OneDrive
+        /// </summary>
+        /// <returns>TaskCompletionType wether the task was successful or not.</returns>
         public async Task<TaskCompletionType> Restore() {
             if (_liveClient == null) {
                 await Login();
             }
 
             try {
-                 await GetBackupId();
-                StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-                StorageFile storageFile =
+                await GetBackupId();
+                var localFolder = ApplicationData.Current.LocalFolder;
+                var storageFile =
                     await localFolder.CreateFileAsync(DB_NAME, CreationCollisionOption.ReplaceExisting);
 
                 await _liveClient.BackgroundDownloadAsync(_backupId + "/content", storageFile);
@@ -98,7 +102,7 @@ namespace MoneyManager.Business.Services {
         }
 
         /// <summary>
-        /// Returns the Creationtime of an existing backup.
+        ///     Returns the Creationtime of an existing backup.
         /// </summary>
         /// <returns>Creationtime as DateTime</returns>
         public async Task<DateTime> GetLastCreationDate() {
@@ -108,12 +112,12 @@ namespace MoneyManager.Business.Services {
 
             await GetBackupId();
 
-            if (String.IsNullOrEmpty(_backupId)) {
+            if (string.IsNullOrEmpty(_backupId)) {
                 return DateTime.MinValue;
             }
 
             try {
-                LiveOperationResult operationResult =
+                var operationResult =
                     await _liveClient.GetAsync(_backupId);
                 dynamic result = operationResult.Result;
                 DateTime createdAt = Convert.ToDateTime(result.created_time);
@@ -129,18 +133,19 @@ namespace MoneyManager.Business.Services {
             await GetBackupFolder();
 
             try {
-                LiveOperationResult operationResultFolder = await _liveClient.GetAsync(_folderId + "/files");
+                var operationResultFolder = await _liveClient.GetAsync(_folderId + "/files");
                 dynamic files = operationResultFolder.Result.Values;
 
-                foreach (dynamic data in files) {
-                    foreach (dynamic file in data) {
+                foreach (var data in files) {
+                    foreach (var file in data) {
                         if (file.name == BACKUP_NAME) {
                             _backupId = file.id;
                             break;
                         }
                     }
                 }
-            } catch (LiveConnectException ex) {
+            }
+            catch (LiveConnectException ex) {
                 InsightHelper.Report(ex);
             }
         }
