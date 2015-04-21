@@ -59,7 +59,6 @@
     <Compile Include="Backup.cs" />
     <Compile Include="DatabaseLogic.cs" />
     <Compile Include="Logic\AccountLogic.cs" />
-    <Compile Include="Logic\BackupLogic.cs" />
     <Compile Include="Logic\CategoryLogic.cs" />
     <Compile Include="Manager\LicenseManager.cs" />
     <Compile Include="Logic\RegionLogic.cs" />
