@@ -1,9 +1,5 @@
-﻿#region
-
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.InteropServices;
-
-#endregion
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
@@ -29,6 +25,6 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("0.9.0.8")]
-[assembly: AssemblyFileVersion("0.9.0.8")]
+[assembly: AssemblyVersion("0.9.0.9")]
+[assembly: AssemblyFileVersion("0.9.0.9")]
 [assembly: ComVisible(false)]
