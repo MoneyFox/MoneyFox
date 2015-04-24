@@ -1,9 +1,5 @@
-﻿#region
-
-using MoneyManager.DataAccess;
+﻿using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Model;
-
-#endregion
 
 namespace MoneyManager.Business {
     public class DatabaseLogic {

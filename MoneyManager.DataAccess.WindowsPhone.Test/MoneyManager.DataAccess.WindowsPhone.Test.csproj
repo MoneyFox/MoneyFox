@@ -78,7 +78,7 @@
     <SDKReference Include="SQLite.WP81, Version=3.8.9">
       <Name>SQLite for Windows Phone 8.1 %28SQLite.WP81, Version=3.8.9%29</Name>
     </SDKReference>
-    <SDKReference Include="Telerik UI For Windows Universal, Version=2015.1.226.45">
+    <SDKReference Include="Telerik UI For Windows Universal, Version=2015.1.420.45">
       <Name>Telerik UI For Windows Phone 8.1</Name>
     </SDKReference>
     <SDKReference Include="TestPlatform, Version=12.0" />
