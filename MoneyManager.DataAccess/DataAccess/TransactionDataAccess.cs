@@ -42,8 +42,8 @@ namespace MoneyManager.DataAccess.DataAccess {
         /// </summary>
         /// <returns>List with all items.</returns>
         protected override List<FinancialTransaction> GetListFromDb() {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                return dbConn.GetAllWithChildren<FinancialTransaction>(recursive:true).ToList();
+            using (var db = SqlConnectionFactory.GetSqlConnection()) {
+                return db.GetAllWithChildren<FinancialTransaction>(recursive:true).ToList();
             }
         }
     }

@@ -30,7 +30,7 @@ namespace MoneyManager.Business.Logic {
             RecurringTransactionData.LoadList();
             List<FinancialTransaction> transactionList = transactionRepository.LoadRecurringList();
 
-            foreach (RecurringTransaction recTrans in AllRecurringTransactions) {
+            foreach (RecurringTransaction recTrans in AllRecurringTransactions.Where(x => x.ChargedAccount != null)) {
                 var relTransaction = new FinancialTransaction();
                 RecurringTransaction trans = recTrans;
                 IOrderedEnumerable<FinancialTransaction> transcationList = transactionList.Where(
@@ -72,27 +72,31 @@ namespace MoneyManager.Business.Logic {
         }
 
         private static void SaveTransaction(RecurringTransaction recurringTransaction) {
-            DateTime date = DateTime.Now;
+            try {
+                DateTime date = DateTime.Now;
 
-            if (recurringTransaction.Recurrence == (int) TransactionRecurrence.Monthly) {
-                date = DateTime.Now.AddDays(recurringTransaction.StartDate.Day - DateTime.Today.Day);
+                if (recurringTransaction.Recurrence == (int) TransactionRecurrence.Monthly) {
+                    date = DateTime.Now.AddDays(recurringTransaction.StartDate.Day - DateTime.Today.Day);
+                }
+
+                var newTransaction = new FinancialTransaction {
+                    ChargedAccount = recurringTransaction.ChargedAccount,
+                    TargetAccount = recurringTransaction.TargetAccount,
+                    Date = date,
+                    IsRecurring = true,
+                    Amount = recurringTransaction.Amount,
+                    AmountWithoutExchange = recurringTransaction.AmountWithoutExchange,
+                    Currency = recurringTransaction.Currency,
+                    CategoryId = recurringTransaction.CategoryId,
+                    Type = recurringTransaction.Type,
+                    ReccuringTransactionId = recurringTransaction.Id,
+                    Note = recurringTransaction.Note
+                };
+
+                transactionRepository.Save(newTransaction);
+            } catch (Exception ex) {
+                InsightHelper.Report(ex);
             }
-
-            var newTransaction = new FinancialTransaction {
-                ChargedAccount = recurringTransaction.ChargedAccount,
-                TargetAccount = recurringTransaction.TargetAccount,
-                Date = date,
-                IsRecurring = true,
-                Amount = recurringTransaction.Amount,
-                AmountWithoutExchange = recurringTransaction.AmountWithoutExchange,
-                Currency = recurringTransaction.Currency,
-                CategoryId = recurringTransaction.CategoryId,
-                Type = recurringTransaction.Type,
-                ReccuringTransactionId = recurringTransaction.Id,
-                Note = recurringTransaction.Note
-            };
-
-            transactionRepository.Save(newTransaction);
         }
 
         public static void Delete(RecurringTransaction recTransaction) {

@@ -28,7 +28,7 @@ namespace MoneyManager.DataAccess.DataAccess {
 
         protected override List<RecurringTransaction> GetListFromDb() {
             using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
-                return dbConn.Table<RecurringTransaction>().ToList();
+                return dbConn.GetAllWithChildren<RecurringTransaction>().ToList();
             }
         }
     }
