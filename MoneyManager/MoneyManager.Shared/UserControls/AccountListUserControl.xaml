@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
-             DataContext="{Binding AccountRepository, Source={StaticResource Locator}}">
+             DataContext="{Binding AccountListUserControlView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
         <converter:AmountConverter x:Key="AmountConverter" />
@@ -63,7 +63,7 @@
 
         <userControls:BalanceUserControl />
         <ListView Grid.Column="0"
-                  ItemsSource="{Binding Data}"
+                  ItemsSource="{Binding AllAccounts}"
                   ItemTemplate="{StaticResource AccountTemplate}"
                   HorizontalAlignment="Stretch"
                   x:Name="AccountList"

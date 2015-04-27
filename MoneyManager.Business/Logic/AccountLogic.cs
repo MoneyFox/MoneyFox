@@ -2,14 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Helper;
 using MoneyManager.Business.Manager;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
-using Xamarin;
 
 namespace MoneyManager.Business.Logic {
     public class AccountLogic {
@@ -19,14 +17,14 @@ namespace MoneyManager.Business.Logic {
             get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
         }
 
-        private static IDataAccess<FinancialTransaction> transactionData {
+        private static IDataAccess<FinancialTransaction> TransactionData {
             get { return ServiceLocator.Current.GetInstance<IDataAccess<FinancialTransaction>>(); }
         }
 
-        private static TransactionListViewModel transactionListView {
+        private static TransactionListViewModel TransactionListView {
             get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
         }
-        private static CurrencyManager currencyManager {
+        private static CurrencyManager CurrencyManager {
             get { return ServiceLocator.Current.GetInstance<CurrencyManager>(); }
         }
 
@@ -40,16 +38,8 @@ namespace MoneyManager.Business.Logic {
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
         }
 
-        public static async void DeleteAccount(Account account, bool skipConfirmation = false) {
-            if (skipConfirmation || await Utilities.IsDeletionConfirmed()) {
-                AccountRepository.Delete(account);
-                TransactionLogic.DeleteAssociatedTransactionsFromDatabase(account);
-                ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
-            }
-        }
-
         public static void RefreshRelatedTransactions() {
-            transactionListView.SetRelatedTransactions(AccountRepository.Selected);
+            TransactionListView.SetRelatedTransactions(AccountRepository.Selected);
         }
 
         public static async Task RemoveTransactionAmount(FinancialTransaction transaction) {
@@ -100,18 +90,18 @@ namespace MoneyManager.Business.Logic {
                 transaction.Cleared = true;
 
                 AccountRepository.Save(account);
-                transactionData.Save(transaction);
+                TransactionData.Save(transaction);
             }
             else {
                 transaction.Cleared = false;
-                transactionData.Save(transaction);
+                TransactionData.Save(transaction);
             }
         }
 
         private static async Task<double> GetAmount(double baseAmount, FinancialTransaction transaction, Account account) {
             try {
                 if (transaction.Currency != account.Currency) {
-                    double ratio = await currencyManager.GetCurrencyRatio(transaction.Currency, account.Currency);
+                    double ratio = await CurrencyManager.GetCurrencyRatio(transaction.Currency, account.Currency);
                     return baseAmount*ratio;
                 }
             }

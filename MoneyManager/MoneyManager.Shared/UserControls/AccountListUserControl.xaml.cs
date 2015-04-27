@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Logic;
+using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -40,14 +40,19 @@ namespace MoneyManager.UserControls {
             ((Frame) Window.Current.Content).Navigate(typeof (AddAccount));
         }
 
-        private void Delete_OnClick(object sender, RoutedEventArgs e) {
+        private async void Delete_OnClick(object sender, RoutedEventArgs e) {
+            if (!await Utilities.IsDeletionConfirmed()) {
+                return;
+            }
+
             var element = (FrameworkElement) sender;
             var account = element.DataContext as Account;
             if (account == null) {
                 return;
             }
 
-            AccountLogic.DeleteAccount(account);
+            ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>().Delete(account);
+            ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
         }
 
         private void NavigateToTransactionList(object sender, SelectionChangedEventArgs e) {

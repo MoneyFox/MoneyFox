@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Logic;
+using MoneyManager.Business.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -58,6 +61,8 @@ namespace MoneyManager.Business.Repositories {
         public void Delete(Account item) {
             _data.Remove(item);
             _dataAccess.Delete(item);
+
+            TransactionLogic.DeleteAssociatedTransactionsFromDatabase(item);
         }
     }
 }
