@@ -4,6 +4,9 @@ This is a simple and easy to use budget tool for Windows Phone 8.1 RT.
 
 **This app is work in progress. Every contribution is welcome.**
 
+Store link: https://www.windowsphone.com/en-us/store/app/money-fox/9d806f03-d2a3-48f6-91cc-bd97d919e39c
+
+
 # Currently in work
 
 - Refactor different parts of the code for a better usage of the dependency injection
