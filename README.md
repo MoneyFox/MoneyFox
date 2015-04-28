@@ -20,4 +20,5 @@ To Contribute to this project please fork it and create a pull request with your
 
 # Dependencies
 
-All dependencies are available via nugget.
+Installed SQLite Windows Runtime Extension (Available via Tools in Visual Studio)
+All other dependencies are available via nugget.
