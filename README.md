@@ -28,5 +28,5 @@ To Contribute to this project please fork it and create a pull request with your
 
 # Dependencies
 
-There is a dependency to the telerik universal framework. I try to remove this in the coming weeks. Feel free to help me with that.
+There is a dependency to the telerik universal framework. I try to remove this in the coming weeks. Feel free to help me with that. For the moment sign up for a trial at telerik. Until the trial is expired the controls should be replaced by a free available alternative.
 All other dependencies are available via nugget.
