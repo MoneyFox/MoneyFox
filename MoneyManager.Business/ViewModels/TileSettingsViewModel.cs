@@ -1,60 +1,58 @@
-﻿using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Helper;
-using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
-using MoneyManager.Business.Manager;
 using MoneyManager.DataAccess.DataAccess;
 using PropertyChanged;
 
 namespace MoneyManager.Business.ViewModels {
+    /// <summary>
+    ///     Provides the information for the TileSettingsView
+    /// </summary>
     [ImplementPropertyChanged]
     public class TileSettingsViewModel : ViewModelBase {
+        private readonly SettingDataAccess _settingDataAccess;
 
-        private readonly LicenseManager _licenseManager;
-
-        public TileSettingsViewModel(LicenseManager licenseManager) {
-            _licenseManager = licenseManager;
+        /// <summary>
+        ///     Creates a TileSettingsViewModel object
+        /// </summary>
+        /// <param name="settingDataAccess">Instance of settingDataAccess</param>
+        public TileSettingsViewModel(SettingDataAccess settingDataAccess) {
+            _settingDataAccess = settingDataAccess;
         }
 
+        /// <summary>
+        ///     Returns the setting if the Cash Flow shall be displayed on the tile
+        /// </summary>
         public bool ShowInfoOnMainTile {
             get {
-                if (_licenseManager.IsFeaturepackLicensed) {
-                    return ServiceLocator.Current.GetInstance<SettingDataAccess>().ShowCashFlowOnMainTile;
-                }
-                return false;
+                return _settingDataAccess.ShowCashFlowOnMainTile;
             }
             set { SetValue(value); }
         }
 
+        /// <summary>
+        ///     Creates an IncomeTile object
+        /// </summary>
         public IncomeTile IncomeTile {
             get { return new IncomeTile(); }
         }
 
+        /// <summary>
+        ///     Creates an SpendingTile object
+        /// </summary>
         public SpendingTile SpendingTile {
             get { return new SpendingTile(); }
         }
 
+        /// <summary>
+        ///     Creates a TransferTile Object
+        /// </summary>
         public TransferTile TransferTile {
             get { return new TransferTile(); }
         }
 
-        private async void SetValue(bool value) {
-            if (await CheckLicense()) {
-                ServiceLocator.Current.GetInstance<SettingDataAccess>().ShowCashFlowOnMainTile = value;
-            }
-        }
-
-        private async Task<bool> CheckLicense() {
-            if (!_licenseManager.IsFeaturepackLicensed) {
-                await ServiceLocator.Current.GetInstance<Utilities>().ShowFeatureNotLicensedMessage();
-            }
-            else {
-                Tile.UpdateMainTile();
-            }
-
-            return _licenseManager.IsFeaturepackLicensed;
+        private void SetValue(bool value) {
+            _settingDataAccess.ShowCashFlowOnMainTile = value;
         }
     }
 }

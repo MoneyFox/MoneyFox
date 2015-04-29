@@ -50,12 +50,8 @@ namespace MoneyManager {
             ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
-        private async void OpenStatisticClick(object sender, RoutedEventArgs e) {
+        private void OpenStatisticClick(object sender, RoutedEventArgs e) {
             ((Frame) Window.Current.Content).Navigate(typeof (StatisticView));
-        }
-
-        private void LicenseClick(object sender, RoutedEventArgs e) {
-            ((Frame) Window.Current.Content).Navigate(typeof (LicenseView));
         }
 
         #region NavigationHelper registration

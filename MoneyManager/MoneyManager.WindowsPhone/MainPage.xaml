@@ -38,11 +38,6 @@
                     </AppBarButton.Icon>
                 </AppBarButton>
                 <AppBarButton x:Uid="Settings" Label="settings" Click="SettingsClick" />
-                <AppBarButton x:Uid="LicenseLabel" Label="license" Click="LicenseClick">
-                    <AppBarButton.Icon>
-                        <BitmapIcon UriSource="ms-appx:///Images/dark/unlock.png" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
                 <AppBarButton x:Uid="AboutLabel" Label="about" Click="GoToAbout" />
             </CommandBar.SecondaryCommands>
         </CommandBar>

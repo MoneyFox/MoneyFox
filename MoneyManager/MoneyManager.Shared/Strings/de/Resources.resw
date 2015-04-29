@@ -516,12 +516,6 @@
   <data name="PurchasedLabel" xml:space="preserve">
     <value>Gekauft</value>
   </data>
-  <data name="LicenseLabel.Label" xml:space="preserve">
-    <value>Lizenz</value>
-  </data>
-  <data name="LicenseText.Text" xml:space="preserve">
-    <value>Lizenz</value>
-  </data>
   <data name="ProductNotFoundMessage" xml:space="preserve">
     <value>Wir konnten dieses Produkt nicht finden.</value>
   </data>

@@ -10,7 +10,6 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
-using MoneyManager.Views;
 
 namespace MoneyManager {
     public class ViewModelLocator {
@@ -35,7 +34,6 @@ namespace MoneyManager {
             SimpleIoc.Default.Register<Backup>();
 
             //Manager
-            SimpleIoc.Default.Register<LicenseManager>();
             SimpleIoc.Default.Register<CurrencyManager>();
 
             //Repositories
@@ -63,7 +61,8 @@ namespace MoneyManager {
 
         private static INavigationService CreateNavigationService() {
             var navigationService = new NavigationService();
-            navigationService.Configure("LicenseView", typeof (LicenseView));
+            //Just an example
+            //navigationService.Configure("LicenseView", typeof (LicenseView));
 
             return navigationService;
         }

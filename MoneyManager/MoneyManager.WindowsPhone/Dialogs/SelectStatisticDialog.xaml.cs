@@ -1,11 +1,6 @@
-﻿using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Manager;
 using MoneyManager.Business.ViewModels;
-using MoneyManager.Foundation;
-using MoneyManager.Views;
 
 namespace MoneyManager.Dialogs {
     public sealed partial class SelectStatisticDialog {
@@ -18,22 +13,9 @@ namespace MoneyManager.Dialogs {
         }
 
         private void LoadStatistic(ContentDialog sender, ContentDialogButtonClickEventArgs args) {
-            if (ServiceLocator.Current.GetInstance<LicenseManager>().IsFeaturepackLicensed) {
-                statisticView.SetCustomCashFlow();
-                statisticView.SetCustomSpreading();
-                statisticView.SetCagtegorySummary();
-            }
-            else {
-                var dialog = new MessageDialog(Translation.GetTranslation("ShowFeatureNotLicensedMessage"),
-                    Translation.GetTranslation("FeatureNotLicensedTitle"));
-                dialog.Commands.Add(new UICommand(Translation.GetTranslation("RedirectLabel"), GoToPurchase));
-                dialog.Commands.Add(new UICommand(Translation.GetTranslation("BackLabel")));
-                dialog.ShowAsync();
-            }
-        }
-
-        private void GoToPurchase(IUICommand command) {
-            ((Frame) Window.Current.Content).Navigate(typeof (LicenseView));
+            statisticView.SetCustomCashFlow();
+            statisticView.SetCustomSpreading();
+            statisticView.SetCagtegorySummary();
         }
     }
 }
