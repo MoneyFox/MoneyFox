@@ -8,6 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/AppStyles.xaml" />
+                <ResourceDictionary Source="Styles/DefaultTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <moneyManager:ViewModelLocator x:Key="Locator" />

@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Colors -->
+    <SolidColorBrush x:Name="ListItemSolidColorBrush"
+                     Color="#242424" />
+
+    <Color x:Key="AppAccentColor">#132b3b</Color>
+    <Color x:Key="StupidColor">#b4d37a</Color>
+
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="PhoneAccentBrush"
+                     Color="{StaticResource AppAccentColor}" />
+</ResourceDictionary>
