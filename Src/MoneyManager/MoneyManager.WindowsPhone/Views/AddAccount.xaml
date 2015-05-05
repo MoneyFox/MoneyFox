@@ -19,7 +19,8 @@
     </Page.Transitions>
 
     <Page.BottomAppBar>
-        <CommandBar Background="{StaticResource PhoneAccentBrush}">
+        <CommandBar Background="{StaticResource PhoneAccentBrush}"
+                    RequestedTheme="Dark">
             <AppBarButton Icon="Accept" x:Uid="Done" Label="Done" Click="DoneClick" />
             <AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" Click="CancelClick" />
         </CommandBar>

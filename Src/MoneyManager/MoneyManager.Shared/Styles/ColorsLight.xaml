@@ -8,7 +8,6 @@
             <Color x:Key="AppPageBackgroundColor">#f7e8e8</Color>
 
             <Color x:Key="AppListItemForegroundColor">#FFFFFF</Color>
-            
 
             <!-- Brushes -->
             <SolidColorBrush x:Name="ListItemSolidColorBrush"
@@ -59,7 +58,8 @@
                              Color="{StaticResource AppAccentColor}" />
 
             <SolidColorBrush x:Key="CheckBoxPressedForegroundThemeBrush"
-                             Color="#FFFFFFFF" />
+                             Color="#FFFFFFFF" />     
+        
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>
