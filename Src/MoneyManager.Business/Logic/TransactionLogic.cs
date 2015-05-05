@@ -34,6 +34,7 @@ namespace MoneyManager.Business.Logic {
         }
 
         public static void GoToAddTransaction(TransactionType transactionType, bool refreshRelatedList = false) {
+            ServiceLocator.Current.GetInstance<CategoryListViewModel>().IsSettingCall = false;
             AddTransactionView.IsEdit = false;
             AddTransactionView.IsEndless = true;
             AddTransactionView.RefreshRealtedList = refreshRelatedList;
@@ -43,6 +44,7 @@ namespace MoneyManager.Business.Logic {
         }
 
         public static void PrepareEdit(FinancialTransaction transaction) {
+            ServiceLocator.Current.GetInstance<CategoryListViewModel>().IsSettingCall = false;
             AddTransactionView.IsEdit = true;
             AddTransactionView.IsTransfer = transaction.Type == (int) TransactionType.Transfer;
             if (transaction.ReccuringTransactionId.HasValue && transaction.RecurringTransaction != null) {

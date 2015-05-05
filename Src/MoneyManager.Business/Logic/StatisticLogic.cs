@@ -128,7 +128,7 @@ namespace MoneyManager.Business.Logic {
             List<StatisticItem> tempStatisticList = AllCategories.Select(category => new StatisticItem {
                 Category = category.Name,
                 Value = transactionList
-                    .Where(x => x.Category == category)
+                    .Where(x => x.Category.Id == category.Id)
                     .Sum(x => x.Amount)
             }).ToList();
 

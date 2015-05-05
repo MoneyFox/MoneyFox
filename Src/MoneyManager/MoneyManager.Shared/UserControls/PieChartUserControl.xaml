@@ -10,7 +10,7 @@
     d:DesignWidth="400"
     DataContext="{Binding StatisticView, Source={StaticResource Locator}}">
 
-    <Grid VerticalAlignment="Top">
+    <Grid VerticalAlignment="Stretch">
 
         <charting:Chart HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
