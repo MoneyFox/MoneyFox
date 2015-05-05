@@ -50,8 +50,10 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <Hub x:Uid="ApplicationNameHeader" Header="Money Fox">
-            <HubSection x:Uid="AccountsMenu" Header="overview">
+        <Hub x:Uid="ApplicationNameHeader" Header="Money Fox"
+             Foreground="{StaticResource ApplicationForegroundThemeBrush}">
+            <HubSection x:Uid="AccountsMenu" Header="overview"
+                        Foreground="{StaticResource ApplicationForegroundThemeBrush}">
                 <DataTemplate>
                     <userControls:AccountListUserControl />
                 </DataTemplate>

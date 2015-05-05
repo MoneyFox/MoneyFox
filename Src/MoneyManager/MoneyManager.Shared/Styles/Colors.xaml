@@ -3,11 +3,17 @@
 
     <!-- Colors -->
     <SolidColorBrush x:Name="ListItemSolidColorBrush"
-                     Color="#242424" />
+                     Color="#000000" />
 
     <Color x:Key="AppAccentColor">#132b3b</Color>
 
+    <Color x:Key="AppPageBackgroundColor">#1e1e1e</Color>
+
+    
     <!-- Brushes -->
+    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
+                     Color="{StaticResource AppPageBackgroundColor}" />
+    
     <SolidColorBrush x:Key="PhoneAccentBrush"
                      Color="{StaticResource AppAccentColor}" />
     
@@ -51,20 +57,5 @@
 
     <SolidColorBrush x:Key="CheckBoxPressedForegroundThemeBrush"
                      Color="#FFFFFFFF" />
-
-    <SolidColorBrush x:Key="ApplicationForegroundThemeBrush"
-                     Color="#DEFFFFFF" />
-    
-    <SolidColorBrush x:Key="ApplicationHeaderForegroundThemeBrush"
-                     Color="#FFFFFFFF" />
-
-    <SolidColorBrush x:Key="ApplicationPointerOverForegroundThemeBrush"
-                     Color="#CCFFFFFF" />
-    
-    <SolidColorBrush x:Key="ApplicationPressedForegroundThemeBrush"
-                     Color="#66FFFFFF" />
-    
-    <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
-                     Color="#99FFFFFF" />
 
 </ResourceDictionary>
