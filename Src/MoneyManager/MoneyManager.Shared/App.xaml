@@ -6,10 +6,22 @@
 
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/AppStyles.xaml" />
-                <ResourceDictionary Source="Styles/Colors.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="Styles/ColorsDark.xaml" />
+                        <ResourceDictionary Source="Styles/AppStyles.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+                
+                <ResourceDictionary x:Key="Light">
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="Styles/ColorsLight.xaml" />
+                        <ResourceDictionary Source="Styles/AppStyles.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
 
             <moneyManager:ViewModelLocator x:Key="Locator" />
 

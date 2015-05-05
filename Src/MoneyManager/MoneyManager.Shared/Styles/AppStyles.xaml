@@ -2,6 +2,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+
+
+
     <!-- Text Styles -->
     <Style x:Key="BaseItemText" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource PhoneForegroundColor}" />
