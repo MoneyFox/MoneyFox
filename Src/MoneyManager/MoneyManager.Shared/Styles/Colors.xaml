@@ -10,4 +10,64 @@
     <!-- Brushes -->
     <SolidColorBrush x:Key="PhoneAccentBrush"
                      Color="{StaticResource AppAccentColor}" />
+    
+    <SolidColorBrush x:Key="ButtonPressedBackgroundThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+
+    <SolidColorBrush x:Key="ComboBoxHighlightedBorderThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+    
+    <SolidColorBrush x:Key="ComboBoxItemSelectedForegroundThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+    
+    <SolidColorBrush x:Key="ComboBoxPressedBackgroundThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+
+    <SolidColorBrush x:Key="ComboBoxItemSelectedBackgroundThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+
+    <SolidColorBrush x:Key="ComboBoxItemSelectedPointerOverBackgroundThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+
+    <SolidColorBrush x:Key="ComboBoxSelectedBackgroundThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+    
+    <SolidColorBrush x:Key="ComboBoxSelectedPointerOverBackgroundThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+
+    <SolidColorBrush x:Key="TextSelectionHighlightColorThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+
+    <SolidColorBrush x:Key="ToggleSwitchCurtainBackgroundThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+    
+    <SolidColorBrush x:Key="ToggleSwitchCurtainPointerOverBackgroundThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+    
+    <SolidColorBrush x:Key="ToggleSwitchCurtainPressedBackgroundThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+    <SolidColorBrush x:Key="CheckBoxPressedBackgroundThemeBrush"
+                     Color="{StaticResource AppAccentColor}" />
+
+    <SolidColorBrush x:Key="CheckBoxPressedForegroundThemeBrush"
+                     Color="#FFFFFFFF" />
+
+    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
+                     Color="#FF1D1D1D" />
+
+    <SolidColorBrush x:Key="ApplicationForegroundThemeBrush"
+                     Color="#DEFFFFFF" />
+    
+    <SolidColorBrush x:Key="ApplicationHeaderForegroundThemeBrush"
+                     Color="#FFFFFFFF" />
+
+    <SolidColorBrush x:Key="ApplicationPointerOverForegroundThemeBrush"
+                     Color="#CCFFFFFF" />
+    
+    <SolidColorBrush x:Key="ApplicationPressedForegroundThemeBrush"
+                     Color="#66FFFFFF" />
+    
+    <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
+                     Color="#99FFFFFF" />
+
 </ResourceDictionary>
