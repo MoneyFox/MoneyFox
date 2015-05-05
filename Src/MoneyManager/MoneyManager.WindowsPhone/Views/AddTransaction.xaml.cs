@@ -1,5 +1,4 @@
-﻿#region
-
+﻿
 using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -8,8 +7,6 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
 using MoneyManager.Foundation;
-
-#endregion
 
 namespace MoneyManager.Views {
     public sealed partial class AddTransaction {
@@ -38,24 +35,7 @@ namespace MoneyManager.Views {
         }
 
         private void DoneClick(object sender, RoutedEventArgs e) {
-            //TODO:Refactor
-            //if (AddTransactionView.SelectedTransaction.ChargedAccount == null) {
-            //    ShowAccountRequiredMessage();
-            //    return;
-            //}
-
             AddTransactionView.Save();
-        }
-
-        private async void ShowAccountRequiredMessage() {
-            var dialog = new MessageDialog
-                (
-                Translation.GetTranslation("AccountRequiredMessage"),
-                Translation.GetTranslation("MandatoryField")
-                );
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
-            dialog.DefaultCommandIndex = 1;
-            await dialog.ShowAsync();
         }
 
         private void CancelClick(object sender, RoutedEventArgs e) {

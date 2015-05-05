@@ -6,7 +6,6 @@
                      Color="#242424" />
 
     <Color x:Key="AppAccentColor">#132b3b</Color>
-    <Color x:Key="StupidColor">#b4d37a</Color>
 
     <!-- Brushes -->
     <SolidColorBrush x:Key="PhoneAccentBrush"

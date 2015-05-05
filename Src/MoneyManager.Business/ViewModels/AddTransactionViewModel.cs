@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MoneyManager.Business.Logic;
@@ -63,7 +64,7 @@ namespace MoneyManager.Business.ViewModels {
 
                 var type = TransactionTypeLogic.GetViewTitleForType(_transactionRepository.Selected.Type);
 
-                return String.Format(text, type);
+                return string.Format(text, type);
             }
         }
 
@@ -71,7 +72,7 @@ namespace MoneyManager.Business.ViewModels {
             get { return AmountWithoutExchange.ToString(); }
             set {
                 double amount;
-                if (Double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount)) {
+                if (double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount)) {
                     AmountWithoutExchange = amount;
                 }
             }
@@ -108,6 +109,11 @@ namespace MoneyManager.Business.ViewModels {
         }
 
         public async void Save() {
+            if (_transactionRepository.Selected.ChargedAccount == null) {
+                ShowAccountRequiredMessage();
+                return;
+            }
+
             if (IsEdit) {
                 await TransactionLogic.UpdateTransaction(_transactionRepository.Selected);
             }
@@ -118,11 +124,21 @@ namespace MoneyManager.Business.ViewModels {
             ((Frame) Window.Current.Content).GoBack();
         }
 
+        private async void ShowAccountRequiredMessage() {
+            var dialog = new MessageDialog
+                (
+                Translation.GetTranslation("AccountRequiredMessage"),
+                Translation.GetTranslation("MandatoryField")
+                );
+            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
+            dialog.DefaultCommandIndex = 1;
+            await dialog.ShowAsync();
+        }
+
         public async void Cancel() {
             if (IsEdit) {
                 await AccountLogic.AddTransactionAmount(_transactionRepository.Selected);
             }
-
             ((Frame) Window.Current.Content).GoBack();
         }
     }
