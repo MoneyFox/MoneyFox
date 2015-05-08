@@ -48,6 +48,7 @@
                     Header="amount"
                     InputScope="Number"
                     x:Name="TextBoxAmount"
+                    x:Uid="Amount"
                     TextAlignment="Right"
                     TextChanged="ReplaceSeparatorChar"
                     GotFocus="RemoveZeroOnFocus"
@@ -83,6 +84,7 @@
                 Margin="0,12,0,0" Header="date"
                 x:Uid="DateHeader" />
             <TextBox Header="Note"
+                     x:Uid="Notes"
                      Text="{Binding SelectedTransaction.Note, Mode=TwoWay}"
                      TextWrapping="Wrap" />
             <ToggleSwitch Header="repeat" x:Uid="Repeat"
