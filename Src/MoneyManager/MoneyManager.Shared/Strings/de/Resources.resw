@@ -534,7 +534,7 @@
   <data name="PurchasedFailedTitle" xml:space="preserve">
     <value>Kauf fehlgeschlagen</value>
   </data>
-  <data name="Filter" xml:space="preserve">
+  <data name="Filter.Label" xml:space="preserve">
     <value>Filter</value>
   </data>
   <data name="SelectStatisticText.Text" xml:space="preserve">
@@ -579,8 +579,8 @@
   <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
     <value>Ja</value>
   </data>
-  <data name="CategorySummary" xml:space="preserve">
-    <value>Kategory Zusammenfassung</value>
+  <data name="CategorySummary.Header" xml:space="preserve">
+    <value>Kategorie Zusammenfassung</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
     <value>Wir konnten Sie nicht einloggen. Bitte versuchen Sie es später nochmals.</value>
@@ -590,5 +590,29 @@
   </data>
   <data name="RestoreFailedMessage" xml:space="preserve">
     <value>Das Backup konnte nicht wiederhergestellt werden. Wenn dieser fehler erneut auftritt kontaktieren Sie uns bitte.</value>
+  </data>
+  <data name="Amount.Header" xml:space="preserve">
+    <value>Betrag</value>
+  </data>
+  <data name="CreateBackup.Content" xml:space="preserve">
+    <value>Sicherung erstellen</value>
+  </data>
+  <data name="LoginToOneDrive.Content" xml:space="preserve">
+    <value>In OneDrive einloggen</value>
+  </data>
+  <data name="RestoreBackup.Content" xml:space="preserve">
+    <value>Sicherung wiederherstellen</value>
+  </data>
+  <data name="SettingsOverviewTitle.Text" xml:space="preserve">
+    <value>EINSTELLUNGEN</value>
+  </data>
+  <data name="StatisticDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Fertig</value>
+  </data>
+  <data name="StatisticDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
+  <data name="StatisticDialog.Title" xml:space="preserve">
+    <value>STATISTIK AUSWÄHLEN</value>
   </data>
 </root>

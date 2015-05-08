@@ -540,7 +540,7 @@
   <data name="PurchasedFailedTitle" xml:space="preserve">
     <value>Purchase failed</value>
   </data>
-  <data name="Filter" xml:space="preserve">
+  <data name="Filter.Label" xml:space="preserve">
     <value>filter</value>
   </data>
   <data name="SelectStatisticText.Text" xml:space="preserve">
@@ -585,7 +585,7 @@
   <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
     <value>yes</value>
   </data>
-  <data name="CategorySummary" xml:space="preserve">
+  <data name="CategorySummary.Header" xml:space="preserve">
     <value>category summary</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
@@ -596,5 +596,29 @@
   </data>
   <data name="RestoreFailedMessage" xml:space="preserve">
     <value>Restore backup couldn't complete successfully. If this error persists please contact us.</value>
+  </data>
+  <data name="Amount.Header" xml:space="preserve">
+    <value>amount</value>
+  </data>
+  <data name="CreateBackup.Content" xml:space="preserve">
+    <value>Create Backup</value>
+  </data>
+  <data name="LoginToOneDrive.Content" xml:space="preserve">
+    <value>Login to OneDrive</value>
+  </data>
+  <data name="RestoreBackup.Content" xml:space="preserve">
+    <value>Restore Backup</value>
+  </data>
+  <data name="SettingsOverviewTitle.Text" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
+  <data name="StatisticDialog.PrimaryButtonText" xml:space="preserve">
+    <value>done</value>
+  </data>
+  <data name="StatisticDialog.SecondaryButtonText" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="StatisticDialog.Title" xml:space="preserve">
+    <value>SELECT STATISTIC</value>
   </data>
 </root>

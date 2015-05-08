@@ -34,7 +34,7 @@
             <TextBlock Text="MoneyTracker" x:Uid="ApplicationNameText"
                        Style="{ThemeResource TitleTextBlockStyle}"
                        Margin="0,12,0,0" />
-            <TextBlock Text="settings" x:Uid="SettingsOverviewTitle"
+            <TextBlock Text="settings" x:Uid="SettingsTitle"
                        Margin="0,-6.5,0,26.5"
                        Style="{ThemeResource HeaderTextBlockStyle}"
                        CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
