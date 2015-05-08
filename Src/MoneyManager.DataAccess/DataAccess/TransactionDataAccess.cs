@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
@@ -38,12 +40,13 @@ namespace MoneyManager.DataAccess.DataAccess {
         }
 
         /// <summary>
-        /// Loads all Transaction items from the database
+        ///     Loads a list of transactions from the database filtered by the expression
         /// </summary>
-        /// <returns>List with all items.</returns>
-        protected override List<FinancialTransaction> GetListFromDb() {
+        /// <param name="filter">filter expression.</param>
+        /// <returns>List of loaded transactions.</returns>
+        protected override List<FinancialTransaction> GetListFromDb(Expression<Func<FinancialTransaction, bool>> filter) {
             using (var db = SqlConnectionFactory.GetSqlConnection()) {
-                return db.GetAllWithChildren<FinancialTransaction>(recursive:true).ToList();
+                return db.GetAllWithChildren(filter, true).ToList();
             }
         }
     }

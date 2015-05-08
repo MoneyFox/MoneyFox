@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
@@ -16,7 +18,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Mocks {
             }
         }
 
-        public List<FinancialTransaction> LoadList() {
+        public List<FinancialTransaction> LoadList(Expression<Func<FinancialTransaction, bool>> filter = null) {
             return new List<FinancialTransaction>();
         }
     }
