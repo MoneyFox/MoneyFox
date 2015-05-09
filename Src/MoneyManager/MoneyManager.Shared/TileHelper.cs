@@ -1,13 +1,9 @@
-﻿#region
-
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
 using MoneyManager.Foundation;
 using MoneyManager.Views;
-
-#endregion
 
 namespace MoneyManager {
     public class TileHelper {
