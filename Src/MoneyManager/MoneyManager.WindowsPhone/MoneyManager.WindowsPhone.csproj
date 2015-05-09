@@ -354,8 +354,8 @@
     <SDKReference Include="Microsoft.VCLibs, version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.WP81, Version=3.8.9">
-      <Name>SQLite for Windows Phone 8.1 %28SQLite.WP81, Version=3.8.9%29</Name>
+    <SDKReference Include="SQLite.WP81, Version=3.8.10">
+      <Name>SQLite for Windows Phone 8.1</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
