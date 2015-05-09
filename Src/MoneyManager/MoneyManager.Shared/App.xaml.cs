@@ -24,7 +24,7 @@ namespace MoneyManager {
         protected override async void OnLaunched(LaunchActivatedEventArgs e) {
 #if DEBUG
             if (!Insights.IsInitialized) {
-                //Insights.Initialize("599ff6bfdc79368ff3d5f5629a57c995fe93352e"); 
+                Insights.Initialize("599ff6bfdc79368ff3d5f5629a57c995fe93352e");
             }
 #endif
             var rootFrame = Window.Current.Content as Frame;
