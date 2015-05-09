@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using MoneyManager.Foundation.OperationContracts;
-using Xamarin;
 
 namespace MoneyManager.Foundation {
     public abstract class AbstractDataAccess<T> : IDataAccess<T> {
@@ -36,9 +36,9 @@ namespace MoneyManager.Foundation {
         ///     Loads all medicines and returns a list
         /// </summary>
         /// <returns>The list from db.</returns>
-        public List<T> LoadList() {
+        public List<T> LoadList(Expression<Func<T, bool>> filter = null) {
             try {
-                return GetListFromDb();
+                return GetListFromDb(filter);
             }
             catch (Exception ex) {
                 InsightHelper.Report(ex);
@@ -48,6 +48,6 @@ namespace MoneyManager.Foundation {
 
         protected abstract void SaveToDb(T itemToAdd);
         protected abstract void DeleteFromDatabase(T itemToDelete);
-        protected abstract List<T> GetListFromDb();
+        protected abstract List<T> GetListFromDb(Expression<Func<T, bool>> filter);
     }
 }
