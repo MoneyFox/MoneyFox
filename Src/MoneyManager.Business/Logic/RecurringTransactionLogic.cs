@@ -6,7 +6,6 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
-using Xamarin;
 
 namespace MoneyManager.Business.Logic {
     public class RecurringTransactionLogic {

@@ -127,12 +127,6 @@
       <HintPath>..\packages\SQLiteNetExtensions.1.3.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\SQLiteNetExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Core">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Common\Telerik.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.UI.Xaml.Chart">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Universal Q1 2015\Binaries\Windows Phone 8.1\Telerik.UI.Xaml.Chart.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fonts\LiveSymbol.ttf" />
