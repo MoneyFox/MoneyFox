@@ -534,6 +534,12 @@
   <data name="ProductNotFoundTitle" xml:space="preserve">
     <value>Product not found</value>
   </data>
+  <data name="PurchasedCompletedMessage" xml:space="preserve">
+    <value>Your purchase is now finished. Thanks for your support!</value>
+  </data>
+  <data name="PurchasedCompletedTitle" xml:space="preserve">
+    <value>Done!</value>
+  </data>
   <data name="PurchasedFailedMessage" xml:space="preserve">
     <value>The purchase failed. Please try again later. If this error still occurs please contact us.</value>
   </data>

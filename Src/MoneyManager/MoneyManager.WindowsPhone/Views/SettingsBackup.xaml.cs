@@ -17,7 +17,7 @@ namespace MoneyManager.Views {
 
         #region NavigationHelper registration
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e) {
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
             _navigationHelper.OnNavigatedTo(e);
         }
 
