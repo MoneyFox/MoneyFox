@@ -5,7 +5,6 @@
             <!-- Colors -->
             <Color x:Key="AppListItemForegroundColor">#000000</Color>
 
-            <!--<Color x:Key="AppAccentColor">#132b3b</Color>-->
             <Color x:Key="AppAccentColor">#539fc0</Color>
 
             <Color x:Key="AppPageBackgroundColor">#1e1e1e</Color>

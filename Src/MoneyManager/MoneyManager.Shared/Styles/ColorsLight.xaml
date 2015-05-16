@@ -3,7 +3,7 @@
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Light">
             <!-- Colors -->
-            <Color x:Key="AppAccentColor">#132b3b</Color>
+            <Color x:Key="AppAccentColor">#539fc0</Color>
 
             <Color x:Key="AppPageBackgroundColor">#f7e8e8</Color>
 

@@ -513,27 +513,6 @@
   <data name="LanguageInformationText.Text" xml:space="preserve">
     <value>Bitte überprüfe das die Regioneinstellungen in den Einstellungen deines Telefons mit diesen Einstellungen übereinstimmen. Das vermeidet Probleme dem Regionalformat. Möglicherweise müssen Sie ein Sprachupdate herunterladen.</value>
   </data>
-  <data name="PurchasedLabel" xml:space="preserve">
-    <value>Gekauft</value>
-  </data>
-  <data name="ProductNotFoundMessage" xml:space="preserve">
-    <value>Wir konnten dieses Produkt nicht finden.</value>
-  </data>
-  <data name="ProductNotFoundTitle" xml:space="preserve">
-    <value>Produkt nicht gefunden</value>
-  </data>
-  <data name="PurchasedCompletedMessage" xml:space="preserve">
-    <value>Dein Einkauf wurde abgeschlossen. Vielen Dank für deine Unterstützung!</value>
-  </data>
-  <data name="PurchasedCompletedTitle" xml:space="preserve">
-    <value>Abgeschlossen!</value>
-  </data>
-  <data name="PurchasedFailedMessage" xml:space="preserve">
-    <value>Der Kauf ist fehlgeschlagen. Bitte versuche es später nochmals. Sollte das Problem weiterhin auftreten kontaktiere uns bitte.</value>
-  </data>
-  <data name="PurchasedFailedTitle" xml:space="preserve">
-    <value>Kauf fehlgeschlagen</value>
-  </data>
   <data name="Filter.Label" xml:space="preserve">
     <value>Filter</value>
   </data>
