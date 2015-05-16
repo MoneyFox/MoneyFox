@@ -25,7 +25,7 @@ namespace MoneyManager.Views {
             get { return navigationHelper; }
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e) {
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
             if (e.NavigationMode != NavigationMode.Back && AddTransactionView.IsEdit) {
                 //TODO:Refactor
                 //await AccountLogic.RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
