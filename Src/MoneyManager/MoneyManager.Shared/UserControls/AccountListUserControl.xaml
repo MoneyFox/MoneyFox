@@ -28,7 +28,7 @@
                                         Click="Delete_OnClick" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <StackPanel Margin="5">
+                <StackPanel Margin="6">
                     <Grid HorizontalAlignment="Stretch"
                           Margin="0,0,0,8">
                         <TextBlock Style="{StaticResource MenuItemText}"
