@@ -594,4 +594,13 @@
   <data name="StatisticDialog.Title" xml:space="preserve">
     <value>STATISTIK AUSWÄHLEN</value>
   </data>
+  <data name="DoYouWantToRate" xml:space="preserve">
+    <value>Es scheint als ob Sie diese App jetzt schon eine Weile benutzen und wir freuen uns ihre Kommentare darüber zu hören. Möchten Sie die App bewerten oder Feedback geben?</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
 </root>

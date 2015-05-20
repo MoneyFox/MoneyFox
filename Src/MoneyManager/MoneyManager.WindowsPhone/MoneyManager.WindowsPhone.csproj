@@ -89,6 +89,7 @@
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\ReviewHelper.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Dialogs\SearchDialog.xaml.cs">
       <DependentUpon>SearchDialog.xaml</DependentUpon>
