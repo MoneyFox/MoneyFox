@@ -22,3 +22,10 @@ To Contribute to this project please fork it and create a pull request with your
 
 Installed SQLite Windows Runtime Extension (Available via Tools in Visual Studio)
 All other dependencies are available via nugget.
+
+# Tools
+
+I use Visual studio 2015 RC Community. To avoid Problems you should use it aswell. Also If you have Resharper please try to load the settings from this project.
+
+# contact
+Feel free to contact me on twitter @NPadrutt or with my mail.
