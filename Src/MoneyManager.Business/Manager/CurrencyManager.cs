@@ -43,8 +43,7 @@ namespace MoneyManager.Business.Manager {
                 var dialog = new MessageDialog(Translation.GetTranslation("CheckInternetConnectionMessage"),
                     Translation.GetTranslation("CheckInternetConnectionTitle"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
-
-                dialog.ShowAsync();
+                await dialog.ShowAsync();
             }
             return new List<Country>();
         }
@@ -70,7 +69,7 @@ namespace MoneyManager.Business.Manager {
 
                 var currency = JsonConvert.DeserializeAnonymousType(jsonString, typeExample);
                 //use US culture info for parsing, since service uses us format
-                return Double.Parse(currency.Conversion.val, new CultureInfo("en-us"));
+                return double.Parse(currency.Conversion.val, new CultureInfo("en-us"));
             }
             catch (Exception ex) {
                 InsightHelper.Report(ex);
