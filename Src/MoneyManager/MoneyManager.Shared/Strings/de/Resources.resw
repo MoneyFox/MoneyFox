@@ -603,4 +603,7 @@
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>
   </data>
+  <data name="DoYouWantToRateTitle" xml:space="preserve">
+    <value>Feedback geben?</value>
+  </data>
 </root>

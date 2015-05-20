@@ -8,16 +8,14 @@ using MoneyManager.Views;
 
 namespace MoneyManager {
     public sealed partial class MainPage {
-        private readonly NavigationHelper navigationHelper;
+        private readonly NavigationHelper _navigationHelper;
 
         public MainPage() {
             InitializeComponent();
 
-            navigationHelper = new NavigationHelper(this);
-        }
+            _navigationHelper = new NavigationHelper(this);
 
-        public NavigationHelper NavigationHelper {
-            get { return navigationHelper; }
+            ReviewHelper.AskUserForReview();
         }
 
         private void AddAccountClick(object sender, RoutedEventArgs e) {
@@ -57,11 +55,11 @@ namespace MoneyManager {
         #region NavigationHelper registration
 
         protected override void OnNavigatedTo(NavigationEventArgs e) {
-            navigationHelper.OnNavigatedTo(e);
+            _navigationHelper.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e) {
-            navigationHelper.OnNavigatedFrom(e);
+            _navigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion NavigationHelper registration
