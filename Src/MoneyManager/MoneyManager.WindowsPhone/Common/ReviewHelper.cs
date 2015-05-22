@@ -9,40 +9,40 @@ namespace MoneyManager.Common
 {
     static class ReviewHelper
     {
-        private static string isRated = "rated";
-        private static string usesBeforeDialogString = "usesBeforeDialog";
-        private static string msStoreUrl = "ms-windows-store:reviewapp?appid=";
-        private static string reviewQuestion = "DoYouWantToRate";
-        private static string reviewTitle = "DoYouWantToRateTitle";
-        private static string positivAnswer = "Yes";
-        private static string negativAnswer = "No";
-        private static int usesBeforeDialogPopup = 5;
+        private const string IS_RATED = "rated";
+        private const string USES_BEFORE_DIALOG_STRING = "usesBeforeDialog";
+        private const string MS_STORE_URL = "ms-windows-store:reviewapp?appid=";
+        private const string REVIEW_QUESTION = "DoYouWantToRate";
+        private const string REVIEW_TITLE = "DoYouWantToRateTitle";
+        private const string POSITIV_ANSWER = "Yes";
+        private const string NEGATIV_ANSWER = "No";
+        private const int USES_BEFORE_DIALOG_POPUP = 5;
 
-        private static readonly ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+        private static readonly ApplicationDataContainer LocalSettings = ApplicationData.Current.LocalSettings;
 
         public static void AskUserForReview(){
-            if (localSettings.Values[usesBeforeDialogString] == null)
+            if (LocalSettings.Values[USES_BEFORE_DIALOG_STRING] == null)
             {
-                localSettings.Values[usesBeforeDialogString] = 1;
+                LocalSettings.Values[USES_BEFORE_DIALOG_STRING] = 1;
             }
             else
             {
-                localSettings.Values[usesBeforeDialogString] = (int)localSettings.Values[usesBeforeDialogString] + 1;
+                LocalSettings.Values[USES_BEFORE_DIALOG_STRING] = (int)LocalSettings.Values[USES_BEFORE_DIALOG_STRING] + 1;
             }
-            if ((int)localSettings.Values[usesBeforeDialogString] > usesBeforeDialogPopup) { 
-                if (localSettings.Values[isRated] == null || (bool)localSettings.Values[isRated] == false)
+            if ((int)LocalSettings.Values[USES_BEFORE_DIALOG_STRING] > USES_BEFORE_DIALOG_POPUP) { 
+                if (LocalSettings.Values[IS_RATED] == null || (bool)LocalSettings.Values[IS_RATED] == false)
                 {
                     ShowRateDialogBox();
-                    localSettings.Values[isRated] = true;
+                    LocalSettings.Values[IS_RATED] = true;
                 }
             }
         }
 
         private static async void ShowRateDialogBox()
         {
-            var messageDialog = new MessageDialog(Translation.GetTranslation(reviewQuestion), Translation.GetTranslation(reviewTitle));
-            messageDialog.Commands.Add(new UICommand(Translation.GetTranslation(positivAnswer), CommandInvokedHandler));
-            messageDialog.Commands.Add(new UICommand(Translation.GetTranslation(negativAnswer), CommandInvokedHandler));
+            var messageDialog = new MessageDialog(Translation.GetTranslation(REVIEW_QUESTION), Translation.GetTranslation(REVIEW_TITLE));
+            messageDialog.Commands.Add(new UICommand(Translation.GetTranslation(POSITIV_ANSWER), CommandInvokedHandler));
+            messageDialog.Commands.Add(new UICommand(Translation.GetTranslation(NEGATIV_ANSWER), CommandInvokedHandler));
             messageDialog.DefaultCommandIndex = 0;
             messageDialog.CancelCommandIndex = 1;
             await messageDialog.ShowAsync();
@@ -50,9 +50,9 @@ namespace MoneyManager.Common
 
         private static async void CommandInvokedHandler(IUICommand command)
         {
-            if (command.Label.Equals(Translation.GetTranslation(positivAnswer)))
+            if (command.Label.Equals(Translation.GetTranslation(POSITIV_ANSWER)))
             {
-                await Launcher.LaunchUriAsync(new Uri(msStoreUrl + CurrentApp.AppId));
+                await Launcher.LaunchUriAsync(new Uri(MS_STORE_URL + CurrentApp.AppId));
             }
         }
     }

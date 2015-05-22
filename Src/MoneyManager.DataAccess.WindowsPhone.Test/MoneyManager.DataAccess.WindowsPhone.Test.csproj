@@ -77,7 +77,7 @@
     <SDKReference Include="MSTestFramework, Version=14.0">
       <Name>MSTest for Managed Projects</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.WP81, Version=3.8.10">
+    <SDKReference Include="SQLite.WP81, Version=3.8.10.2">
       <Name>SQLite for Windows Phone 8.1</Name>
     </SDKReference>
     <SDKReference Include="TestPlatform, Version=14.0">
