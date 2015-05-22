@@ -615,4 +615,7 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="DoYouWantToRateTitle" xml:space="preserve">
+    <value>Review app?</value>
+  </data>
 </root>
