@@ -43,7 +43,7 @@ namespace MoneyManager.Business.Manager {
                 var dialog = new MessageDialog(Translation.GetTranslation("CheckInternetConnectionMessage"),
                     Translation.GetTranslation("CheckInternetConnectionTitle"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
-                await dialog.ShowAsync();
+                dialog.ShowAsync();
             }
             return new List<Country>();
         }

@@ -505,7 +505,7 @@
     <value>add income</value>
   </data>
   <data name="MandatoryField" xml:space="preserve">
-    <value>Pflichtfeld</value>
+    <value>Required field</value>
   </data>
   <data name="CheckInternetConnectionMessage" xml:space="preserve">
     <value>We could not reach the currency service. Please check your internet connection and try again.</value>
@@ -614,5 +614,17 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="DoYouWantToRateTitle" xml:space="preserve">
+    <value>Review app?</value>
+  </data>
+  <data name="RateThisApp.Content" xml:space="preserve">
+    <value>Rate this app</value>
+  </data>
+  <data name="InternetAdress" xml:space="preserve">
+    <value>http://www.apply-solutions.ch</value>
+  </data>
+  <data name="TwitterUrl" xml:space="preserve">
+    <value>http://twitter.com/npadrutt</value>
   </data>
 </root>

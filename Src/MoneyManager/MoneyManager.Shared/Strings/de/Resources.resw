@@ -606,4 +606,25 @@
   <data name="DoYouWantToRateTitle" xml:space="preserve">
     <value>Feedback geben?</value>
   </data>
+  <data name="ApplicationNameText.Text" xml:space="preserve">
+    <value>Money Fox</value>
+  </data>
+  <data name="ApplicationNameTitle.Header" xml:space="preserve">
+    <value>Money Fox</value>
+  </data>
+  <data name="MandatoryField" xml:space="preserve">
+    <value>Pflichtfeld</value>
+  </data>
+  <data name="SupportMail" xml:space="preserve">
+    <value>mobile.support@apply-solutions.ch</value>
+  </data>
+  <data name="RateThisApp.Content" xml:space="preserve">
+    <value>Bewerte diese App</value>
+  </data>
+  <data name="InternetAdress" xml:space="preserve">
+    <value>http://www.apply-solutions.ch</value>
+  </data>
+  <data name="TwitterUrl" xml:space="preserve">
+    <value>http://twitter.com/npadrutt</value>
+  </data>
 </root>

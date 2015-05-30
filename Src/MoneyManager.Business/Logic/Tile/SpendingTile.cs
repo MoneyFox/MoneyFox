@@ -11,7 +11,8 @@ namespace MoneyManager.Business.Logic.Tile {
     public class SpendingTile : Tile, ISecondTile {
         public const string Id = "AddSpendingTile";
 
-        public bool Exists {
+        public new bool Exists
+        {
             get { return Exists(Id); }
         }
 

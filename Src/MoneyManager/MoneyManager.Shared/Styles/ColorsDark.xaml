@@ -3,7 +3,7 @@
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
             <!-- Colors -->
-            <Color x:Key="AppListItemForegroundColor">#000000</Color>
+            <Color x:Key="AppListItemForegroundColor">#0F0F0F</Color>
 
             <Color x:Key="AppAccentColor">#539fc0</Color>
 
