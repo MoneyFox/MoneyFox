@@ -353,10 +353,6 @@
       <HintPath>..\..\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Xamarin.Insights, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Insights.1.10.0.108\lib\wpa\Xamarin.Insights.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

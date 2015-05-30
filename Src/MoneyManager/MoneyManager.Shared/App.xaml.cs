@@ -8,7 +8,6 @@ using Windows.UI.Xaml.Navigation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
 using MoneyManager.Tasks.TransactionsWp;
-using Xamarin;
 
 namespace MoneyManager {
     public sealed partial class App {
@@ -22,11 +21,6 @@ namespace MoneyManager {
         }
 
         protected override async void OnLaunched(LaunchActivatedEventArgs e) {
-#if DEBUG
-            if (!Insights.IsInitialized) {
-                Insights.Initialize("599ff6bfdc79368ff3d5f5629a57c995fe93352e");
-            }
-#endif
             var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
