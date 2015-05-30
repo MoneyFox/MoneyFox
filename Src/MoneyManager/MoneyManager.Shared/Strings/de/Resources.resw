@@ -618,4 +618,7 @@
   <data name="SupportMail" xml:space="preserve">
     <value>mobile.support@apply-solutions.ch</value>
   </data>
+  <data name="RateThisApp.Content" xml:space="preserve">
+    <value>Bewerte diese App</value>
+  </data>
 </root>

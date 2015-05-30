@@ -618,4 +618,7 @@
   <data name="DoYouWantToRateTitle" xml:space="preserve">
     <value>Review app?</value>
   </data>
+  <data name="RateThisApp.Content" xml:space="preserve">
+    <value>Rate this app</value>
+  </data>
 </root>

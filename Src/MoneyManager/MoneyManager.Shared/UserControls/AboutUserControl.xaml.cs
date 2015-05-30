@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.ApplicationModel.Email;
+using Windows.ApplicationModel.Store;
 using Windows.System;
 using Windows.UI.Xaml.Input;
 using MoneyManager.Business.Helper;
@@ -32,5 +33,12 @@ namespace MoneyManager.UserControls {
             const string url = "http://twitter.com/npadrutt";
             await Launcher.LaunchUriAsync(new Uri(url));
         }
+
+        private async void RateApp_OnTap(object sender, TappedRoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri( "ms-windows-store:reviewapp?appid=" + CurrentApp.AppId));
+        }
+
+
     }
 }

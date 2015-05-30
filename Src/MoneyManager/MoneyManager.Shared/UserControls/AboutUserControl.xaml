@@ -150,6 +150,13 @@
                                FontFamily="Segoe WP Light" />
                 </StackPanel>
             </StackPanel>
+            <Button
+                    x:Name="rateMeButton"
+                    x:Uid="RateThisApp"
+                    Margin="0,0,-14.333,0"
+                    Width="456"
+                    Tapped="RateApp_OnTap"
+                    VerticalAlignment="Center"></Button>
         </StackPanel>
     </Grid>
 </UserControl>
