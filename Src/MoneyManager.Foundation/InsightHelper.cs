@@ -1,27 +1,25 @@
 ﻿using System;
-using Xamarin;
+using Microsoft.ApplicationInsights;
 
-namespace MoneyManager.Foundation {
+namespace MoneyManager.Foundation
+{
     /// <summary>
-    /// Helperclass for Insights
+    ///     Helper for Insights
     /// </summary>
-    public class InsightHelper {
-        /// <summary>
-        /// Reports the passed exception if Insights are initialized with severity Error.
-        /// </summary>
-        /// <param name="exception">Excpetion to report.</param>
-        public static void Report(Exception exception) {
-            Report(exception, Insights.Severity.Error);
-        }
+    public static class InsightHelper
+    {
+        private static readonly TelemetryClient TelemetryClient = new TelemetryClient();
 
         /// <summary>
-        /// Reports the passed exception if Insights are initialized
+        ///     Reports the passed <paramref name="exception" /> if Insights are
+        ///     initialized with severity Error.
         /// </summary>
         /// <param name="exception">Excpetion to report.</param>
-        /// <param name="severity">Serverity for the to report the exception.</param>
-        public static void Report(Exception exception, Insights.Severity severity) {
-            if (Insights.IsInitialized) {
-                Insights.Report(exception, severity);
+        public static void Report(Exception exception)
+        {
+            if (TelemetryClient.IsEnabled())
+            {
+                TelemetryClient.TrackException(exception);
             }
         }
     }
