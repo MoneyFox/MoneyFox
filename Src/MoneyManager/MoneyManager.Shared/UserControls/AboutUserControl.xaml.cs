@@ -25,13 +25,11 @@ namespace MoneyManager.UserControls {
         }
 
         private async void GoToWebsite_OnTap(object sender, TappedRoutedEventArgs e) {
-            const string url = "http://www.apply-solutions.ch";
-            await Launcher.LaunchUriAsync(new Uri(url));
+            await Launcher.LaunchUriAsync(new Uri(Translation.GetTranslation("InternetAdress")));
         }
 
         private async void GoToTwitter_OnTap(object sender, TappedRoutedEventArgs e) {
-            const string url = "http://twitter.com/npadrutt";
-            await Launcher.LaunchUriAsync(new Uri(url));
+            await Launcher.LaunchUriAsync(new Uri(Translation.GetTranslation("TwitterUrl")));
         }
 
         private async void RateApp_OnTap(object sender, TappedRoutedEventArgs e)

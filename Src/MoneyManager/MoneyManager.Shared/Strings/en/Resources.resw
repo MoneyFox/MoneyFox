@@ -621,4 +621,10 @@
   <data name="RateThisApp.Content" xml:space="preserve">
     <value>Rate this app</value>
   </data>
+  <data name="InternetAdress" xml:space="preserve">
+    <value>http://www.apply-solutions.ch</value>
+  </data>
+  <data name="TwitterUrl" xml:space="preserve">
+    <value>http://twitter.com/npadrutt</value>
+  </data>
 </root>
