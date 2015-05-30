@@ -7,7 +7,6 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
-using MoneyManager.Tasks.TransactionsWp;
 
 namespace MoneyManager {
     public sealed partial class App {
@@ -66,7 +65,7 @@ namespace MoneyManager {
             RecurringTransactionLogic.CheckRecurringTransactions();
             await TransactionLogic.ClearTransactions();
 
-            BackgroundTaskLogic.RegisterBackgroundTask();
+            //BackgroundTaskLogic.RegisterBackgroundTask();
 
             Tile.UpdateMainTile();
         }

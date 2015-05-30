@@ -381,10 +381,6 @@
       <Project>{6936f4d3-8889-48c7-a676-80d59b2740ce}</Project>
       <Name>MoneyManager.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\MoneyManager.Tasks.TransactionsWp\MoneyManager.Tasks.TransactionsWp.csproj">
-      <Project>{44e9295b-acb7-458b-99a2-c8f1a941f87a}</Project>
-      <Name>MoneyManager.Tasks.TransactionsWp</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
