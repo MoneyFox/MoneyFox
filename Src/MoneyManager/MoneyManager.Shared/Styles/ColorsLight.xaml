@@ -5,9 +5,9 @@
             <!-- Colors -->
             <Color x:Key="AppAccentColor">#539fc0</Color>
 
-            <Color x:Key="AppPageBackgroundColor">#f7e8e8</Color>
+            <Color x:Key="AppPageBackgroundColor">#FFFFFF</Color>
 
-            <Color x:Key="AppListItemForegroundColor">#FFFFFF</Color>
+            <Color x:Key="AppListItemForegroundColor">#ededed</Color>
 
             <!-- Brushes -->
             <SolidColorBrush x:Name="ListItemSolidColorBrush"
