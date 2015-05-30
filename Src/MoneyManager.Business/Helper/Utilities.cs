@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Globalization;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.UI.Popups;
 using GalaSoft.MvvmLight.Views;
 using MoneyManager.Foundation;
@@ -20,7 +21,15 @@ namespace MoneyManager.Business.Helper {
         /// </summary>
         /// <returns>version string</returns>
         public static string GetVersion() {
-            return Assembly.Load(new AssemblyName("MoneyManager.WindowsPhone")).FullName.Split('=')[1].Split(',')[0];
+            var version = Package.Current.Id.Version;
+
+            return string.Format(
+                CultureInfo.InvariantCulture,
+                "{0}.{1}.{2}.{3}",
+                version.Major,
+                version.Minor,
+                version.Build,
+                version.Revision);
         }
 
         /// <summary>
@@ -46,23 +55,6 @@ namespace MoneyManager.Business.Helper {
         public static DateTime GetEndOfMonth() {
             DateTime today = DateTime.Today;
             return new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
-        }
-
-        /// <summary>
-        ///     Displays a dialog with a feature not licensed message
-        /// </summary>
-        public async Task ShowFeatureNotLicensedMessage() {
-            var dialog = new MessageDialog(Translation.GetTranslation("FeatureNotLicensedMessage"),
-                Translation.GetTranslation("FeatureNotLicensedTitle"));
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
-            dialog.DefaultCommandIndex = 1;
-
-            IUICommand result = await dialog.ShowAsync();
-
-            if (result.Label == Translation.GetTranslation("YesLabel")) {
-                _navigationService.NavigateTo("LicenseView");
-            }
         }
 
         /// <summary>
