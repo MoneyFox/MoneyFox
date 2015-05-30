@@ -505,7 +505,7 @@
     <value>add income</value>
   </data>
   <data name="MandatoryField" xml:space="preserve">
-    <value>Pflichtfeld</value>
+    <value>Required field</value>
   </data>
   <data name="CheckInternetConnectionMessage" xml:space="preserve">
     <value>We could not reach the currency service. Please check your internet connection and try again.</value>
