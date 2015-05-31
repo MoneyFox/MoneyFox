@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.ApplicationInsights.Extensibility;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
 
@@ -16,6 +17,13 @@ namespace MoneyManager {
 
         public App() {
             InitializeComponent();
+
+            TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = true;
+
+#if DEBUG
+            TelemetryConfiguration.Active.DisableTelemetry = true;
+#endif
+
             Suspending += OnSuspending;
         }
 
