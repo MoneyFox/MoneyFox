@@ -18,7 +18,8 @@
 
         <charting:Chart HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
-            <charting:ColumnSeries Margin="0"
+            <charting:ColumnSeries Title="Cash flow"
+                                Margin="0"
                                 ItemsSource="{Binding MonthlyCashFlow}"
                                 IndependentValuePath="Category"
                                 DependentValuePath="Value"

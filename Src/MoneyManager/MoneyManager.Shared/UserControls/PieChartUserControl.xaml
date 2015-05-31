@@ -14,7 +14,8 @@
 
         <charting:Chart HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
-            <charting:PieSeries Margin="0"
+            <charting:PieSeries Title="Monthly Spreading"
+                                Margin="0"
                                 ItemsSource="{Binding MonthlySpreading}"
                                 IndependentValuePath="Category"
                                 DependentValuePath="Value"
