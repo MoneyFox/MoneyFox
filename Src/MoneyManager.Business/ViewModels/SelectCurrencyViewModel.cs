@@ -1,6 +1,5 @@
 ﻿#region
 
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,22 +15,28 @@ using PropertyChanged;
 
 #endregion
 
-namespace MoneyManager.Business.ViewModels {
+namespace MoneyManager.Business.ViewModels
+{
     [ImplementPropertyChanged]
-    public class SelectCurrencyViewModel : ViewModelBase {
+    public class SelectCurrencyViewModel : ViewModelBase
+    {
         private readonly CurrencyManager _currencyManager;
         private string _searchText;
 
-        public SelectCurrencyViewModel(CurrencyManager currencyManager) {
+        public SelectCurrencyViewModel(CurrencyManager currencyManager)
+        {
             _currencyManager = currencyManager;
         }
 
         public ObservableCollection<Country> AllCountries { get; set; }
         public InvocationType InvocationType { get; set; }
 
-        public Country SelectedCountry {
-            set {
-                if (value == null) {
+        public Country SelectedCountry
+        {
+            set
+            {
+                if (value == null)
+                {
                     return;
                 }
 
@@ -40,16 +45,20 @@ namespace MoneyManager.Business.ViewModels {
             }
         }
 
-        public string SearchText {
+        public string SearchText
+        {
             get { return _searchText; }
-            set {
+            set
+            {
                 _searchText = value.ToUpper();
                 Search();
             }
         }
 
-        private void SetValue(Country value) {
-            switch (InvocationType) {
+        private void SetValue(Country value)
+        {
+            switch (InvocationType)
+            {
                 case InvocationType.Setting:
                     ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency = value.CurrencyID;
                     break;
@@ -64,19 +73,22 @@ namespace MoneyManager.Business.ViewModels {
             }
         }
 
-        public async Task LoadCountries() {
+        public async Task LoadCountries()
+        {
             AllCountries = new ObservableCollection<Country>(await _currencyManager.GetSupportedCountries());
         }
 
-        public async void Search() {
-            if (SearchText != String.Empty) {
+        public async void Search()
+        {
+            if (SearchText != string.Empty)
+            {
                 AllCountries =
                     new ObservableCollection<Country>(
                         AllCountries
                             .Where(x => x.ID.Contains(_searchText) || x.CurrencyID.Contains(SearchText))
                             .ToList());
-            }
-            else {
+            } else
+            {
                 await LoadCountries();
             }
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.ApplicationInsights;
-using Microsoft.ApplicationInsights.Extensibility;
 
 namespace MoneyManager.Foundation
 {

@@ -1,12 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.DataAccess;
 
-namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
+namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
+{
     [TestClass]
-    public class SettingsDataAccessTest {
+    public class SettingsDataAccessTest
+    {
         [TestMethod]
         [TestCategory("Integration")]
-        public void SettingsDataAccess_CrudSettings() {
+        public void SettingsDataAccess_CrudSettings()
+        {
             var settings = new SettingDataAccess();
             Assert.AreEqual("USD", settings.DefaultCurrency);
 

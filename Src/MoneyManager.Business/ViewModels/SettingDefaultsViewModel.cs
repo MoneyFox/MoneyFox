@@ -5,22 +5,29 @@ using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Business.ViewModels {
-    public class SettingDefaultsViewModel {
-        public ObservableCollection<Account> AllAccounts {
+namespace MoneyManager.Business.ViewModels
+{
+    public class SettingDefaultsViewModel
+    {
+        public ObservableCollection<Account> AllAccounts
+        {
             get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Data; }
         }
 
-        private SettingDataAccess settings {
+        private SettingDataAccess settings
+        {
             get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
 
-        private IAccountRepository AccountRepository {
+        private IAccountRepository AccountRepository
+        {
             get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
         }
 
-        public Account DefaultAccount {
-            get {
+        public Account DefaultAccount
+        {
+            get
+            {
                 return settings.DefaultAccount == -1
                     ? AccountRepository.Selected
                     : AllAccounts.First(x => x.Id == settings.DefaultAccount);

@@ -1,6 +1,5 @@
 ﻿#region
 
-using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
@@ -11,21 +10,25 @@ using MoneyManager.Foundation.Model;
 
 #endregion
 
-namespace MoneyManager.Views {
-    public sealed partial class AddAccount {
-        private readonly NavigationHelper navigationHelper;
-
-        public AddAccount() {
+namespace MoneyManager.Views
+{
+    public sealed partial class AddAccount
+    {
+        public AddAccount()
+        {
             InitializeComponent();
-            navigationHelper = new NavigationHelper(this);
+            NavigationHelper = new NavigationHelper(this);
         }
 
-        public Account SelectedAccount {
+        public Account SelectedAccount
+        {
             get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>().SelectedAccount; }
         }
 
-        private void DoneClick(object sender, RoutedEventArgs e) {
-            if (String.IsNullOrEmpty(SelectedAccount.Name)) {
+        private void DoneClick(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SelectedAccount.Name))
+            {
                 SelectedAccount.Name = Translation.GetTranslation("NoNamePlaceholderLabel");
             }
 
@@ -33,22 +36,23 @@ namespace MoneyManager.Views {
             ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
         }
 
-        private void CancelClick(object sender, RoutedEventArgs e) {
+        private void CancelClick(object sender, RoutedEventArgs e)
+        {
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().Cancel();
         }
 
         #region NavigationHelper registration
 
-        public NavigationHelper NavigationHelper {
-            get { return navigationHelper; }
+        public NavigationHelper NavigationHelper { get; }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            NavigationHelper.OnNavigatedTo(e);
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e) {
-            navigationHelper.OnNavigatedTo(e);
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e) {
-            navigationHelper.OnNavigatedFrom(e);
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            NavigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion NavigationHelper registration

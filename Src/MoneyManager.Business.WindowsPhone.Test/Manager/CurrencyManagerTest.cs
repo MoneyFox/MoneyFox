@@ -5,16 +5,19 @@ using MoneyManager.Business.Manager;
 using MoneyManager.Business.Services;
 using MoneyManager.Business.WindowsPhone.Test.Mocks;
 
-namespace MoneyManager.Business.WindowsPhone.Test.Manager {
+namespace MoneyManager.Business.WindowsPhone.Test.Manager
+{
     [TestClass]
-    public class CurrencyManagerTest {
+    public class CurrencyManagerTest
+    {
         /// <summary>
-        /// Checks if the currency service is reachable
+        ///     Checks if the currency service is reachable
         /// </summary>
         /// <returns>async task</returns>
         [TestMethod]
         [TestCategory("Integration")]
-        public async Task CurrencyManager_GetSupportedCountries_Integration() {
+        public async Task CurrencyManager_GetSupportedCountries_Integration()
+        {
             var currencyManager = new CurrencyManager(new JsonService());
             var list = await currencyManager.GetSupportedCountries();
 
@@ -23,18 +26,19 @@ namespace MoneyManager.Business.WindowsPhone.Test.Manager {
         }
 
         [TestMethod]
-        public async Task CurrencyManager_GetSupportedCountries() {
+        public async Task CurrencyManager_GetSupportedCountries()
+        {
             var currencyManager = new CurrencyManager(new JsonServiceMock());
             var list = await currencyManager.GetSupportedCountries();
 
             Assert.IsTrue(list.Any(x => x.ID == "CH"));
             Assert.IsTrue(list.Any(x => x.ID == "US"));
-        }        
-        
+        }
+
         [TestMethod]
         [Ignore]
-        public void CurrencyManager_GetCurrencyRatio() {
-            
+        public void CurrencyManager_GetCurrencyRatio()
+        {
         }
     }
 }

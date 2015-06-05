@@ -1,5 +1,7 @@
-﻿namespace MoneyManager.Foundation.Model {
-    public class Country {
+﻿namespace MoneyManager.Foundation.Model
+{
+    public class Country
+    {
         public string Abbreviation { get; set; }
         public string Alpha3 { get; set; }
         public string CurrencyID { get; set; }

@@ -7,18 +7,23 @@ using Windows.UI.Xaml.Media.Imaging;
 
 #endregion
 
-namespace MoneyManager.Business.Logic {
-    public static class ThemedImageConverterLogic {
+namespace MoneyManager.Business.Logic
+{
+    public static class ThemedImageConverterLogic
+    {
         private static readonly Dictionary<string, BitmapImage> ImageCache = new Dictionary<string, BitmapImage>();
 
-        public static BitmapImage GetImage(string path, bool negateResult = false) {
-            if (string.IsNullOrEmpty(path)) {
+        public static BitmapImage GetImage(string path, bool negateResult = false)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
                 return null;
             }
 
-            bool isDarkTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark;
+            var isDarkTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark;
 
-            if (negateResult) {
+            if (negateResult)
+            {
                 isDarkTheme = !isDarkTheme;
             }
 
@@ -26,7 +31,8 @@ namespace MoneyManager.Business.Logic {
             path = "ms-appx:" + string.Format(path, isDarkTheme ? "dark" : "light");
 
             // Check if we already cached the image
-            if (!ImageCache.TryGetValue(path, out result)) {
+            if (!ImageCache.TryGetValue(path, out result))
+            {
                 result = new BitmapImage(new Uri(path, UriKind.Absolute));
                 ImageCache.Add(path, result);
             }

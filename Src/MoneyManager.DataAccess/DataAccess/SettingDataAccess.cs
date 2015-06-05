@@ -7,9 +7,11 @@ using Windows.Globalization;
 using Windows.Storage;
 using PropertyChanged;
 
-namespace MoneyManager.DataAccess.DataAccess {
+namespace MoneyManager.DataAccess.DataAccess
+{
     [ImplementPropertyChanged]
-    public class SettingDataAccess : INotifyPropertyChanged {
+    public class SettingDataAccess : INotifyPropertyChanged
+    {
         private const string DEFAULT_CURRENCY_KEYNAME = "DefaultCurrency";
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
@@ -17,51 +19,65 @@ namespace MoneyManager.DataAccess.DataAccess {
         private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = false;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void AddOrUpdateValue(string key, object value) {
+        private void AddOrUpdateValue(string key, object value)
+        {
             ApplicationData.Current.RoamingSettings.Values[key] = value;
         }
 
-        private TValueType GetValueOrDefault<TValueType>(string key, TValueType defaultValue) {
+        private TValueType GetValueOrDefault<TValueType>(string key, TValueType defaultValue)
+        {
             TValueType value;
 
-            if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key)) {
-                object setting = ApplicationData.Current.RoamingSettings.Values[key];
+            if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key))
+            {
+                var setting = ApplicationData.Current.RoamingSettings.Values[key];
                 value = (TValueType) Convert.ChangeType(setting, typeof (TValueType), CultureInfo.InvariantCulture);
-            }
-            else {
+            } else
+            {
                 value = defaultValue;
             }
             return value;
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) {
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 
         #region Properties
 
-        public string DefaultCurrency {
+        public string DefaultCurrency
+        {
             get { return GetValueOrDefault(DEFAULT_CURRENCY_KEYNAME, new GeographicRegion().CurrenciesInUse.First()); }
-            set {
+            set
+            {
                 AddOrUpdateValue(DEFAULT_CURRENCY_KEYNAME, value);
                 OnPropertyChanged();
             }
         }
 
-        public int DefaultAccount {
+        public int DefaultAccount
+        {
             get { return GetValueOrDefault(DEFAULT_ACCOUNT_KEYNAME, DEFAULT_ACCOUNT_KEYDEFAULT); }
-            set {
+            set
+            {
                 AddOrUpdateValue(DEFAULT_ACCOUNT_KEYNAME, value);
                 OnPropertyChanged();
             }
         }
 
-        public bool ShowCashFlowOnMainTile {
-            get { return GetValueOrDefault(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT); }
-            set {
+        public bool ShowCashFlowOnMainTile
+        {
+            get
+            {
+                return GetValueOrDefault(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT);
+            }
+            set
+            {
                 AddOrUpdateValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value);
                 OnPropertyChanged();
             }

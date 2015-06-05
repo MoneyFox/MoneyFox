@@ -14,25 +14,31 @@ using PropertyChanged;
 
 #endregion
 
-namespace MoneyManager.Business.ViewModels {
+namespace MoneyManager.Business.ViewModels
+{
     [ImplementPropertyChanged]
-    public class BalanceViewModel : ViewModelBase {
+    public class BalanceViewModel : ViewModelBase
+    {
         public double TotalBalance { get; set; }
         public double EndOfMonthBalance { get; set; }
         public bool IsTransactionView { get; set; }
 
-        public string CurrencyCulture {
+        public string CurrencyCulture
+        {
             get { return settings.DefaultCurrency; }
         }
 
-        public void UpdateBalance() {
+        public void UpdateBalance()
+        {
             TotalBalance = GetTotalBalance();
 
             EndOfMonthBalance = GetEndOfMonthValue();
         }
 
-        private double GetTotalBalance() {
-            if (IsTransactionView) {
+        private double GetTotalBalance()
+        {
+            if (IsTransactionView)
+            {
                 return selectedAccount.CurrentBalance;
             }
 
@@ -41,12 +47,15 @@ namespace MoneyManager.Business.ViewModels {
                 : 0;
         }
 
-        private double GetEndOfMonthValue() {
-            double balance = TotalBalance;
-            IEnumerable<FinancialTransaction> unclearedTransactions = LoadUnclreadTransactions();
+        private double GetEndOfMonthValue()
+        {
+            var balance = TotalBalance;
+            var unclearedTransactions = LoadUnclreadTransactions();
 
-            foreach (FinancialTransaction transaction in unclearedTransactions) {
-                switch (transaction.Type) {
+            foreach (var transaction in unclearedTransactions)
+            {
+                switch (transaction.Type)
+                {
                     case (int) TransactionType.Spending:
                         balance -= transaction.Amount;
                         break;
@@ -64,18 +73,21 @@ namespace MoneyManager.Business.ViewModels {
             return balance;
         }
 
-        private double HandleTransferAmount(FinancialTransaction transaction, double balance) {
-            if (selectedAccount == transaction.ChargedAccount) {
+        private double HandleTransferAmount(FinancialTransaction transaction, double balance)
+        {
+            if (selectedAccount == transaction.ChargedAccount)
+            {
                 balance -= transaction.Amount;
-            }
-            else {
+            } else
+            {
                 balance += transaction.Amount;
             }
             return balance;
         }
 
-        private IEnumerable<FinancialTransaction> LoadUnclreadTransactions() {
-            IEnumerable<FinancialTransaction> unclearedTransactions =
+        private IEnumerable<FinancialTransaction> LoadUnclreadTransactions()
+        {
+            var unclearedTransactions =
                 TransactionRepository.GetUnclearedTransactions(Utilities.GetEndOfMonth());
 
             return IsTransactionView
@@ -86,19 +98,23 @@ namespace MoneyManager.Business.ViewModels {
 
         #region Properties
 
-        public ObservableCollection<Account> AllAccounts {
+        public ObservableCollection<Account> AllAccounts
+        {
             get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Data; }
         }
 
-        private Account selectedAccount {
+        private Account selectedAccount
+        {
             get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Selected; }
         }
 
-        private ITransactionRepository TransactionRepository {
+        private ITransactionRepository TransactionRepository
+        {
             get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
-        public SettingDataAccess settings {
+        public SettingDataAccess settings
+        {
             get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
 

@@ -7,7 +7,7 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Common
 {
-    static class ReviewHelper
+    internal static class ReviewHelper
     {
         private const string IS_RATED = "rated";
         private const string USES_BEFORE_DIALOG_STRING = "usesBeforeDialog";
@@ -17,20 +17,21 @@ namespace MoneyManager.Common
         private const string POSITIV_ANSWER = "Yes";
         private const string NEGATIV_ANSWER = "No";
         private const int USES_BEFORE_DIALOG_POPUP = 5;
-
         private static readonly ApplicationDataContainer LocalSettings = ApplicationData.Current.LocalSettings;
 
-        public static void AskUserForReview(){
+        public static void AskUserForReview()
+        {
             if (LocalSettings.Values[USES_BEFORE_DIALOG_STRING] == null)
             {
                 LocalSettings.Values[USES_BEFORE_DIALOG_STRING] = 1;
-            }
-            else
+            } else
             {
-                LocalSettings.Values[USES_BEFORE_DIALOG_STRING] = (int)LocalSettings.Values[USES_BEFORE_DIALOG_STRING] + 1;
+                LocalSettings.Values[USES_BEFORE_DIALOG_STRING] =
+                    (int) LocalSettings.Values[USES_BEFORE_DIALOG_STRING] + 1;
             }
-            if ((int)LocalSettings.Values[USES_BEFORE_DIALOG_STRING] > USES_BEFORE_DIALOG_POPUP) { 
-                if (LocalSettings.Values[IS_RATED] == null || (bool)LocalSettings.Values[IS_RATED] == false)
+            if ((int) LocalSettings.Values[USES_BEFORE_DIALOG_STRING] > USES_BEFORE_DIALOG_POPUP)
+            {
+                if (LocalSettings.Values[IS_RATED] == null || (bool) LocalSettings.Values[IS_RATED] == false)
                 {
                     ShowRateDialogBox();
                     LocalSettings.Values[IS_RATED] = true;
@@ -40,7 +41,8 @@ namespace MoneyManager.Common
 
         private static async void ShowRateDialogBox()
         {
-            var messageDialog = new MessageDialog(Translation.GetTranslation(REVIEW_QUESTION), Translation.GetTranslation(REVIEW_TITLE));
+            var messageDialog = new MessageDialog(Translation.GetTranslation(REVIEW_QUESTION),
+                Translation.GetTranslation(REVIEW_TITLE));
             messageDialog.Commands.Add(new UICommand(Translation.GetTranslation(POSITIV_ANSWER), CommandInvokedHandler));
             messageDialog.Commands.Add(new UICommand(Translation.GetTranslation(NEGATIV_ANSWER), CommandInvokedHandler));
             messageDialog.DefaultCommandIndex = 0;

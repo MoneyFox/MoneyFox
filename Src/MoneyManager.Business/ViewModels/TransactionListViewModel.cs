@@ -8,25 +8,31 @@ using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 using QKit.JumpList;
 
-namespace MoneyManager.Business.ViewModels {
+namespace MoneyManager.Business.ViewModels
+{
     [ImplementPropertyChanged]
-    public class TransactionListViewModel : ViewModelBase {
-        private ITransactionRepository transactionRepository {
+    public class TransactionListViewModel : ViewModelBase
+    {
+        private ITransactionRepository transactionRepository
+        {
             get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
-        private IAccountRepository AccountRepository {
+        private IAccountRepository AccountRepository
+        {
             get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
         }
 
-        public string Title {
+        public string Title
+        {
             get { return AccountRepository.Selected.Name; }
         }
 
         public List<JumpListGroup<FinancialTransaction>> RelatedTransactions { set; get; }
 
-        public void SetRelatedTransactions(Account account) {
-            IEnumerable<FinancialTransaction> related = transactionRepository.GetRelatedTransactions(account);
+        public void SetRelatedTransactions(Account account)
+        {
+            var related = transactionRepository.GetRelatedTransactions(account);
 
             var dateInfo = new DateTimeFormatInfo();
             RelatedTransactions = related.ToGroups(x => x.Date,
@@ -35,7 +41,8 @@ namespace MoneyManager.Business.ViewModels {
             RelatedTransactions =
                 RelatedTransactions.OrderByDescending(x => ((FinancialTransaction) x.First()).Date).ToList();
 
-            foreach (var list in RelatedTransactions) {
+            foreach (var list in RelatedTransactions)
+            {
                 list.Reverse();
             }
         }

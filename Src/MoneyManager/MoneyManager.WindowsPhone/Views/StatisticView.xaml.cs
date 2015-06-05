@@ -6,35 +6,37 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
 using MoneyManager.Dialogs;
 
-namespace MoneyManager.Views {
-    public sealed partial class StatisticView {
-        private readonly NavigationHelper navigationHelper;
-
-        public StatisticView() {
+namespace MoneyManager.Views
+{
+    public sealed partial class StatisticView
+    {
+        public StatisticView()
+        {
             InitializeComponent();
 
-            navigationHelper = new NavigationHelper(this);
+            NavigationHelper = new NavigationHelper(this);
         }
 
-        public NavigationHelper NavigationHelper {
-            get { return navigationHelper; }
-        }
+        public NavigationHelper NavigationHelper { get; }
 
-        private async void OpenFilter(object sender, RoutedEventArgs e) {
+        private async void OpenFilter(object sender, RoutedEventArgs e)
+        {
             await new SelectStatisticDialog().ShowAsync();
         }
 
         #region NavigationHelper registration
 
-        protected override void OnNavigatedTo(NavigationEventArgs e) {
-            navigationHelper.OnNavigatedTo(e);
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            NavigationHelper.OnNavigatedTo(e);
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e) {
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
             ServiceLocator.Current.GetInstance<StatisticViewModel>().SetDefaultCashFlow();
             ServiceLocator.Current.GetInstance<StatisticViewModel>().SetDefaultSpreading();
 
-            navigationHelper.OnNavigatedFrom(e);
+            NavigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion

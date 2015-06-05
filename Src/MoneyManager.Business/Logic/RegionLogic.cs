@@ -9,34 +9,41 @@ using Windows.UI.Popups;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
 #endregion
 
-namespace MoneyManager.Business.Logic {
-    public class RegionLogic {
-        private static ITransactionRepository TransactionRepository {
+namespace MoneyManager.Business.Logic
+{
+    public class RegionLogic
+    {
+        private static ITransactionRepository TransactionRepository
+        {
             get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
-        private static IAccountRepository AccountRepository {
+        private static IAccountRepository AccountRepository
+        {
             get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
         }
 
-        private static SettingDataAccess settings {
+        private static SettingDataAccess settings
+        {
             get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
 
-        public static List<String> GetSupportedLanguages() {
+        public static List<string> GetSupportedLanguages()
+        {
             return GlobalizationPreferences.Languages.ToList();
         }
 
-        public static void SetPrimaryLanguage(string lang) {
+        public static void SetPrimaryLanguage(string lang)
+        {
             ApplicationLanguages.PrimaryLanguageOverride = lang;
         }
 
-        public static async void SetNewCurrency(string currencyId) {
+        public static async void SetNewCurrency(string currencyId)
+        {
             settings.DefaultCurrency = currencyId;
 
             var dialog = new MessageDialog(Translation.GetTranslation("ChangeAllEntitiesMessage"),
@@ -45,29 +52,35 @@ namespace MoneyManager.Business.Logic {
             dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
             dialog.DefaultCommandIndex = 1;
 
-            IUICommand result = await dialog.ShowAsync();
+            var result = await dialog.ShowAsync();
 
-            if (result.Label == Translation.GetTranslation("YesLabel")) {
+            if (result.Label == Translation.GetTranslation("YesLabel"))
+            {
                 ChangeTransactions();
                 ChangeAccounts();
             }
         }
 
-        private static void ChangeTransactions() {
-            foreach (FinancialTransaction transaction in TransactionRepository.Data) {
+        private static void ChangeTransactions()
+        {
+            foreach (var transaction in TransactionRepository.Data)
+            {
                 transaction.Currency = settings.DefaultCurrency;
                 TransactionRepository.Save(transaction);
             }
         }
 
-        private static void ChangeAccounts() {
-            foreach (Account account in AccountRepository.Data) {
+        private static void ChangeAccounts()
+        {
+            foreach (var account in AccountRepository.Data)
+            {
                 account.Currency = settings.DefaultCurrency;
                 AccountRepository.Save(account);
             }
         }
 
-        public static string GetPrimaryLanguage() {
+        public static string GetPrimaryLanguage()
+        {
             return ApplicationLanguages.Languages.First();
         }
     }

@@ -9,18 +9,23 @@ using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Views;
 
-namespace MoneyManager.UserControls {
-    public partial class TransactionListUserControl {
-        public TransactionListUserControl() {
+namespace MoneyManager.UserControls
+{
+    public partial class TransactionListUserControl
+    {
+        public TransactionListUserControl()
+        {
             InitializeComponent();
 
             ServiceLocator.Current.GetInstance<BalanceViewModel>().IsTransactionView = true;
         }
 
-        private void EditTransaction(object sender, RoutedEventArgs e) {
+        private void EditTransaction(object sender, RoutedEventArgs e)
+        {
             var element = (FrameworkElement) sender;
             var transaction = element.DataContext as FinancialTransaction;
-            if (transaction == null) {
+            if (transaction == null)
+            {
                 return;
             }
 
@@ -28,10 +33,12 @@ namespace MoneyManager.UserControls {
             ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));
         }
 
-        private async void DeleteTransaction(object sender, RoutedEventArgs e) {
+        private async void DeleteTransaction(object sender, RoutedEventArgs e)
+        {
             var element = (FrameworkElement) sender;
             var transaction = element.DataContext as FinancialTransaction;
-            if (transaction == null) {
+            if (transaction == null)
+            {
                 return;
             }
 
@@ -39,27 +46,32 @@ namespace MoneyManager.UserControls {
             AddTransactionView.IsNavigationBlocked = false;
         }
 
-        private void OpenContextMenu(object sender, HoldingRoutedEventArgs e) {
+        private void OpenContextMenu(object sender, HoldingRoutedEventArgs e)
+        {
             AddTransactionView.IsNavigationBlocked = true;
             var senderElement = sender as FrameworkElement;
-            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
             flyoutBase.ShowAt(senderElement);
         }
 
-        private void UnloadPage(object sender, RoutedEventArgs e) {
+        private void UnloadPage(object sender, RoutedEventArgs e)
+        {
             BalanceView.IsTransactionView = false;
             AddTransactionView.IsNavigationBlocked = true;
             BalanceView.UpdateBalance();
         }
 
-        private void PageLoaded(object sender, RoutedEventArgs e) {
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {
             AddTransactionView.IsNavigationBlocked = false;
             ListViewTransactions.SelectedItem = null;
         }
 
-        private void LoadDetails(object sender, SelectionChangedEventArgs e) {
-            if (!AddTransactionView.IsNavigationBlocked && ListViewTransactions.SelectedItem != null) {
+        private void LoadDetails(object sender, SelectionChangedEventArgs e)
+        {
+            if (!AddTransactionView.IsNavigationBlocked && ListViewTransactions.SelectedItem != null)
+            {
                 TransactionRepository.Selected = ListViewTransactions.SelectedItem as FinancialTransaction;
 
                 TransactionLogic.PrepareEdit(TransactionRepository.Selected);
@@ -71,15 +83,18 @@ namespace MoneyManager.UserControls {
 
         #region Properties
 
-        public ITransactionRepository TransactionRepository {
+        public ITransactionRepository TransactionRepository
+        {
             get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
         }
 
-        public AddTransactionViewModel AddTransactionView {
+        public AddTransactionViewModel AddTransactionView
+        {
             get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
         }
 
-        public BalanceViewModel BalanceView {
+        public BalanceViewModel BalanceView
+        {
             get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
         }
 

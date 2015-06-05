@@ -1,10 +1,12 @@
 ﻿using PropertyChanged;
 using SQLite.Net.Attributes;
 
-namespace MoneyManager.Foundation.Model {
+namespace MoneyManager.Foundation.Model
+{
     [ImplementPropertyChanged]
     [Table("Accounts")]
-    public class Account {
+    public class Account
+    {
         [PrimaryKey, AutoIncrement, Indexed]
         public int Id { get; set; }
 

@@ -34,7 +34,7 @@
                 </PivotItem>
                 <PivotItem x:Uid="OverviewMenu" Header="overview">
                     <userControls:PieChartUserControl />
-                </PivotItem>                
+                </PivotItem>
                 <PivotItem x:Uid="CategorySummary" Header="category summary">
                     <userControls:CategorySummaryUserControl />
                 </PivotItem>

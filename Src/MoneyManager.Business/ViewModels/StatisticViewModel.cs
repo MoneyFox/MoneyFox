@@ -11,14 +11,17 @@ using PropertyChanged;
 
 #endregion
 
-namespace MoneyManager.Business.ViewModels {
+namespace MoneyManager.Business.ViewModels
+{
     [ImplementPropertyChanged]
-    public class StatisticViewModel : ViewModelBase {
+    public class StatisticViewModel : ViewModelBase
+    {
         private ObservableCollection<StatisticItem> _categorySummary;
         private ObservableCollection<StatisticItem> _monthlyCashFlow;
         private ObservableCollection<StatisticItem> _monthlySpreading;
 
-        public StatisticViewModel() {
+        public StatisticViewModel()
+        {
             StartDate = DateTime.Now.Date.AddMonths(-1);
             EndDate = DateTime.Now.Date;
         }
@@ -26,73 +29,92 @@ namespace MoneyManager.Business.ViewModels {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public ObservableCollection<StatisticItem> MonthlyCashFlow {
-            get {
+        public ObservableCollection<StatisticItem> MonthlyCashFlow
+        {
+            get
+            {
                 return _monthlyCashFlow == null || !_monthlyCashFlow.Any()
                     ? StatisticLogic.GetMonthlyCashFlow()
                     : _monthlyCashFlow;
             }
-            set {
-                if (value == null) {
+            set
+            {
+                if (value == null)
+                {
                     return;
                 }
                 _monthlyCashFlow = value;
             }
         }
 
-        public ObservableCollection<StatisticItem> MonthlySpreading {
-            get {
+        public ObservableCollection<StatisticItem> MonthlySpreading
+        {
+            get
+            {
                 return _monthlySpreading == null || !_monthlySpreading.Any()
                     ? StatisticLogic.GetSpreading()
                     : _monthlySpreading;
             }
-            set {
-                if (value == null) {
+            set
+            {
+                if (value == null)
+                {
                     return;
                 }
                 _monthlySpreading = value;
             }
         }
 
-        public ObservableCollection<StatisticItem> CategorySummary {
-            get {
+        public ObservableCollection<StatisticItem> CategorySummary
+        {
+            get
+            {
                 return _categorySummary == null || !_categorySummary.Any()
                     ? StatisticLogic.GetCategorySummary(StartDate, EndDate)
                     : _categorySummary;
             }
-            set {
-                if (value == null) {
+            set
+            {
+                if (value == null)
+                {
                     return;
                 }
                 _categorySummary = value;
             }
         }
 
-        public string Title {
-            get {
+        public string Title
+        {
+            get
+            {
                 return Translation.GetTranslation("StatistikTitle") + " " + StartDate.ToString("d") +
                        " - " +
                        EndDate.ToString("d");
             }
         }
 
-        public void SetDefaultCashFlow() {
+        public void SetDefaultCashFlow()
+        {
             MonthlyCashFlow = StatisticLogic.GetMonthlyCashFlow();
         }
 
-        public void SetDefaultSpreading() {
+        public void SetDefaultSpreading()
+        {
             MonthlySpreading = StatisticLogic.GetSpreading();
         }
 
-        public void SetCustomCashFlow() {
+        public void SetCustomCashFlow()
+        {
             MonthlyCashFlow = StatisticLogic.GetMonthlyCashFlow(StartDate, EndDate);
         }
 
-        public void SetCustomSpreading() {
+        public void SetCustomSpreading()
+        {
             MonthlySpreading = StatisticLogic.GetSpreading(StartDate, EndDate);
         }
 
-        public void SetCagtegorySummary() {
+        public void SetCagtegorySummary()
+        {
             CategorySummary = StatisticLogic.GetCategorySummary(StartDate, EndDate);
         }
     }

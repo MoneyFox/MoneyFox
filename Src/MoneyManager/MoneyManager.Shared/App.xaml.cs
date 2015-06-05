@@ -9,13 +9,16 @@ using Microsoft.ApplicationInsights.Extensibility;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
 
-namespace MoneyManager {
-    public sealed partial class App {
+namespace MoneyManager
+{
+    public sealed partial class App
+    {
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
 #endif
 
-        public App() {
+        public App()
+        {
             InitializeComponent();
 
             TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = true;
@@ -27,16 +30,19 @@ namespace MoneyManager {
             Suspending += OnSuspending;
         }
 
-        protected override async void OnLaunched(LaunchActivatedEventArgs e) {
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
+        {
             var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (rootFrame == null) {
+            if (rootFrame == null)
+            {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame {CacheSize = 1};
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated) {
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                {
                     // TODO: Load state from previously suspended application
                 }
 
@@ -44,12 +50,15 @@ namespace MoneyManager {
                 Window.Current.Content = rootFrame;
             }
 
-            if (rootFrame.Content == null) {
+            if (rootFrame.Content == null)
+            {
 #if WINDOWS_PHONE_APP
                 // Removes the turnstile navigation for startup.
-                if (rootFrame.ContentTransitions != null) {
+                if (rootFrame.ContentTransitions != null)
+                {
                     transitions = new TransitionCollection();
-                    foreach (Transition c in rootFrame.ContentTransitions) {
+                    foreach (var c in rootFrame.ContentTransitions)
+                    {
                         transitions.Add(c);
                     }
                 }
@@ -61,7 +70,8 @@ namespace MoneyManager {
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof (MainPage), e.Arguments)) {
+                if (!rootFrame.Navigate(typeof (MainPage), e.Arguments))
+                {
                     throw new Exception("Failed to create initial page");
                 }
             }
@@ -85,7 +95,8 @@ namespace MoneyManager {
         /// </summary>
         /// <param name="sender">The object where the handler is attached.</param>
         /// <param name="e">Details about the navigation event.</param>
-        private void RootFrame_FirstNavigated(object sender, NavigationEventArgs e) {
+        private void RootFrame_FirstNavigated(object sender, NavigationEventArgs e)
+        {
             var rootFrame = sender as Frame;
             rootFrame.ContentTransitions = transitions ?? new TransitionCollection {new NavigationThemeTransition()};
             rootFrame.Navigated -= RootFrame_FirstNavigated;
@@ -100,8 +111,9 @@ namespace MoneyManager {
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e) {
-            SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
+        private void OnSuspending(object sender, SuspendingEventArgs e)
+        {
+            var deferral = e.SuspendingOperation.GetDeferral();
 
             Tile.UpdateMainTile();
 

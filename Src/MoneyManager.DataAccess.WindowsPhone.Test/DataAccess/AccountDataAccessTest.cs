@@ -4,29 +4,34 @@ using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
-using SQLite.Net;
 
 #endregion
 
-namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
+namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
+{
     [TestClass]
-    public class AccountDataAccessTest {
+    public class AccountDataAccessTest
+    {
         [TestInitialize]
-        public void InitTests() {
-            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection()) {
+        public void InitTests()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
                 db.CreateTable<Account>();
             }
         }
 
         [TestMethod]
         [TestCategory("Integration")]
-        public void AccountDataAccess_CrudAccount() {
+        public void AccountDataAccess_CrudAccount()
+        {
             var accountDataAccess = new AccountDataAccess();
 
             const string firstName = "fooo Name";
             const string secondName = "new Foooo";
 
-            var account = new Account {
+            var account = new Account
+            {
                 CurrentBalance = 20,
                 Iban = "CHF20 0000 00000 000000",
                 Name = firstName,

@@ -8,11 +8,14 @@ using GalaSoft.MvvmLight.Views;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Business.Helper {
-    public class Utilities {
+namespace MoneyManager.Business.Helper
+{
+    public class Utilities
+    {
         private readonly INavigationService _navigationService;
 
-        public Utilities(INavigationService navigationService) {
+        public Utilities(INavigationService navigationService)
+        {
             _navigationService = navigationService;
         }
 
@@ -20,7 +23,8 @@ namespace MoneyManager.Business.Helper {
         ///     Get the version of the MoneyManager.WindowsPhone dll
         /// </summary>
         /// <returns>version string</returns>
-        public static string GetVersion() {
+        public static string GetVersion()
+        {
             var version = Package.Current.Id.Version;
 
             return string.Format(
@@ -33,17 +37,18 @@ namespace MoneyManager.Business.Helper {
         }
 
         /// <summary>
-        /// Shows a Dialog to confirm that the selected item really shall be deleted.
+        ///     Shows a Dialog to confirm that the selected item really shall be deleted.
         /// </summary>
         /// <returns>True or False if the user confirmed the deletion.</returns>
-        public static async Task<bool> IsDeletionConfirmed() {
+        public static async Task<bool> IsDeletionConfirmed()
+        {
             var dialog = new MessageDialog(Translation.GetTranslation("DeleteEntryQuestionMessage"),
                 Translation.GetTranslation("DeleteQuestionTitle"));
             dialog.Commands.Add(new UICommand(Translation.GetTranslation("YesLabel")));
             dialog.Commands.Add(new UICommand(Translation.GetTranslation("NoLabel")));
             dialog.DefaultCommandIndex = 1;
 
-            IUICommand result = await dialog.ShowAsync();
+            var result = await dialog.ShowAsync();
 
             return result.Label == Translation.GetTranslation("YesLabel");
         }
@@ -52,8 +57,9 @@ namespace MoneyManager.Business.Helper {
         ///     Returns the last day of the month
         /// </summary>
         /// <returns>Last day of the month</returns>
-        public static DateTime GetEndOfMonth() {
-            DateTime today = DateTime.Today;
+        public static DateTime GetEndOfMonth()
+        {
+            var today = DateTime.Today;
             return new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
         }
 
@@ -61,8 +67,10 @@ namespace MoneyManager.Business.Helper {
         ///     Will round all values of the passed statistic item list
         /// </summary>
         /// <param name="items">List of statistic items.</param>
-        public static void RoundStatisticItems(List<StatisticItem> items) {
-            foreach (StatisticItem item in items) {
+        public static void RoundStatisticItems(List<StatisticItem> items)
+        {
+            foreach (var item in items)
+            {
                 item.Value = Math.Round(item.Value, 2, MidpointRounding.AwayFromZero);
             }
         }

@@ -3,17 +3,19 @@ using PropertyChanged;
 using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
 
-namespace MoneyManager.Foundation.Model {
+namespace MoneyManager.Foundation.Model
+{
     [ImplementPropertyChanged]
     [Table("FinancialTransactions")]
-    public class FinancialTransaction {
+    public class FinancialTransaction
+    {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [ForeignKey(typeof(Account))]
+        [ForeignKey(typeof (Account))]
         public int ChargedAccountId { get; set; }
 
-        [ForeignKey(typeof(Account))]
+        [ForeignKey(typeof (Account))]
         public int TargetAccountId { get; set; }
 
         [ForeignKey(typeof (Category))]
@@ -42,16 +44,18 @@ namespace MoneyManager.Foundation.Model {
         [ManyToOne]
         public Category Category { get; set; }
 
-        [ManyToOne]        
+        [ManyToOne]
         public RecurringTransaction RecurringTransaction { get; set; }
 
         [Ignore]
-        public bool ClearTransactionNow {
+        public bool ClearTransactionNow
+        {
             get { return Date.Date <= DateTime.Now.Date; }
         }
 
         [Ignore]
-        public bool IsTransfer {
+        public bool IsTransfer
+        {
             get { return Type == (int) TransactionType.Transfer; }
         }
     }

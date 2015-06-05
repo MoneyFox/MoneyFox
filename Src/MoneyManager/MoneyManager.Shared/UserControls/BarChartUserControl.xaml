@@ -19,13 +19,13 @@
         <charting:Chart HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
             <charting:ColumnSeries Title="Cash flow"
-                                Margin="0"
-                                ItemsSource="{Binding MonthlyCashFlow}"
-                                IndependentValuePath="Category"
-                                DependentValuePath="Value"
-                                IsSelectionEnabled="True" />
+                                   Margin="0"
+                                   ItemsSource="{Binding MonthlyCashFlow}"
+                                   IndependentValuePath="Category"
+                                   DependentValuePath="Value"
+                                   IsSelectionEnabled="True" />
 
         </charting:Chart>
-        
+
     </Grid>
 </UserControl>

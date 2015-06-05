@@ -8,13 +8,16 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Business.Logic {
-    public class StatisticLogic {
+namespace MoneyManager.Business.Logic
+{
+    public class StatisticLogic
+    {
         /// <summary>
         ///     Get a list with income, spending and earnings for custom date range
         /// </summary>
         /// <returns>List with income, spending and earning item.</returns>
-        public static ObservableCollection<StatisticItem> GetMonthlyCashFlow(DateTime startDate, DateTime endDate) {
+        public static ObservableCollection<StatisticItem> GetMonthlyCashFlow(DateTime startDate, DateTime endDate)
+        {
             var transactionListFunc =
                 new Func<List<FinancialTransaction>>(() =>
                     AllTransaction
@@ -29,7 +32,8 @@ namespace MoneyManager.Business.Logic {
         ///     Get a list with income, spending and earnings for current month
         /// </summary>
         /// <returns>List with income, spending and earning item.</returns>
-        public static ObservableCollection<StatisticItem> GetMonthlyCashFlow() {
+        public static ObservableCollection<StatisticItem> GetMonthlyCashFlow()
+        {
             var transactionListFunc =
                 new Func<List<FinancialTransaction>>(() =>
                     AllTransaction
@@ -41,28 +45,35 @@ namespace MoneyManager.Business.Logic {
         }
 
         private static ObservableCollection<StatisticItem> GetCashFlowStatisticItems(
-            Func<List<FinancialTransaction>> getTransactionListFunc) {
-            List<FinancialTransaction> transactionList = getTransactionListFunc();
+            Func<List<FinancialTransaction>> getTransactionListFunc)
+        {
+            var transactionList = getTransactionListFunc();
 
             var itemList = new ObservableCollection<StatisticItem>();
 
-            var income = new StatisticItem {
+            var income = new StatisticItem
+            {
                 Category = Translation.GetTranslation("RevenuesLabel"),
                 Value = transactionList.Where(x => x.Type == (int) TransactionType.Income).Sum(x => x.Amount)
             };
-            income.Label = income.Category + ": " + Math.Round(income.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
+            income.Label = income.Category + ": " +
+                           Math.Round(income.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
 
-            var spent = new StatisticItem {
+            var spent = new StatisticItem
+            {
                 Category = Translation.GetTranslation("ExpensesLabel"),
                 Value = transactionList.Where(x => x.Type == (int) TransactionType.Spending).Sum(x => x.Amount)
             };
-            spent.Label = spent.Category + ": " + Math.Round(spent.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
+            spent.Label = spent.Category + ": " +
+                          Math.Round(spent.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
 
-            var increased = new StatisticItem {
+            var increased = new StatisticItem
+            {
                 Category = Translation.GetTranslation("IncreasesLabel"),
                 Value = income.Value - spent.Value
             };
-            increased.Label = increased.Category + ": " + Math.Round(increased.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
+            increased.Label = increased.Category + ": " +
+                              Math.Round(increased.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
 
             itemList.Add(income);
             itemList.Add(spent);
@@ -77,12 +88,15 @@ namespace MoneyManager.Business.Logic {
         /// <param name="startDate">minimum date</param>
         /// <param name="endDate">max date</param>
         /// <returns>List with statistic items.</returns>
-        public static ObservableCollection<StatisticItem> GetSpreading(DateTime startDate, DateTime endDate) {
-            if (AllTransaction == null) {
+        public static ObservableCollection<StatisticItem> GetSpreading(DateTime startDate, DateTime endDate)
+        {
+            if (AllTransaction == null)
+            {
                 TransactionData.LoadList();
             }
 
-            if (AllCategories == null) {
+            if (AllCategories == null)
+            {
                 CateogryData.LoadList();
             }
 
@@ -101,12 +115,15 @@ namespace MoneyManager.Business.Logic {
         ///     returns the spreading of the current month
         /// </summary>
         /// <returns>List with statistic items.</returns>
-        public static ObservableCollection<StatisticItem> GetSpreading() {
-            if (AllTransaction == null) {
+        public static ObservableCollection<StatisticItem> GetSpreading()
+        {
+            if (AllTransaction == null)
+            {
                 TransactionData.LoadList();
             }
 
-            if (AllCategories == null) {
+            if (AllCategories == null)
+            {
                 CateogryData.LoadList();
             }
 
@@ -122,10 +139,12 @@ namespace MoneyManager.Business.Logic {
         }
 
         private static ObservableCollection<StatisticItem> GetSpreadingStatisticItems(
-            Func<List<FinancialTransaction>> getTransactionListFunc) {
-            List<FinancialTransaction> transactionList = getTransactionListFunc();
+            Func<List<FinancialTransaction>> getTransactionListFunc)
+        {
+            var transactionList = getTransactionListFunc();
 
-            List<StatisticItem> tempStatisticList = AllCategories.Select(category => new StatisticItem {
+            var tempStatisticList = AllCategories.Select(category => new StatisticItem
+            {
                 Category = category.Name,
                 Value = transactionList
                     .Where(x => x.Category.Id == category.Id)
@@ -135,7 +154,7 @@ namespace MoneyManager.Business.Logic {
             RemoveNullList(tempStatisticList);
 
             tempStatisticList = tempStatisticList.OrderByDescending(x => x.Value).ToList();
-            List<StatisticItem> statisticList = tempStatisticList.Take(6).ToList();
+            var statisticList = tempStatisticList.Take(6).ToList();
 
             AddOtherItem(tempStatisticList, statisticList);
 
@@ -144,19 +163,24 @@ namespace MoneyManager.Business.Logic {
             return new ObservableCollection<StatisticItem>(statisticList);
         }
 
-        private static void RemoveNullList(ICollection<StatisticItem> tempStatisticList) {
-            List<StatisticItem> nullerList = tempStatisticList.Where(x => x.Value == 0).ToList();
-            foreach (StatisticItem statisticItem in nullerList) {
+        private static void RemoveNullList(ICollection<StatisticItem> tempStatisticList)
+        {
+            var nullerList = tempStatisticList.Where(x => x.Value == 0).ToList();
+            foreach (var statisticItem in nullerList)
+            {
                 tempStatisticList.Remove(statisticItem);
             }
         }
 
-        private static void SetLabel(StatisticItem item) {
+        private static void SetLabel(StatisticItem item)
+        {
             item.Label = item.Category + ": " + item.Value + " " + Settings.DefaultCurrency;
         }
 
-        private static void IncludeIncome(IEnumerable<StatisticItem> statisticList) {
-            foreach (StatisticItem statisticItem in statisticList) {
+        private static void IncludeIncome(IEnumerable<StatisticItem> statisticList)
+        {
+            foreach (var statisticItem in statisticList)
+            {
                 statisticItem.Value -= AllTransaction
                     .Where(x => x.Type == (int) TransactionType.Income)
                     .Where(x => x.Category != null)
@@ -165,19 +189,23 @@ namespace MoneyManager.Business.Logic {
 
                 SetLabel(statisticItem);
 
-                if (statisticItem.Value <= 0) {
+                if (statisticItem.Value <= 0)
+                {
                     statisticItem.Value = 0;
                 }
             }
         }
 
         private static void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
-            ICollection<StatisticItem> statisticList) {
-            if (statisticList.Count < 6) {
+            ICollection<StatisticItem> statisticList)
+        {
+            if (statisticList.Count < 6)
+            {
                 return;
             }
 
-            var othersItem = new StatisticItem {
+            var othersItem = new StatisticItem
+            {
                 Category = "Others",
                 Value = tempStatisticList
                     .Where(x => !statisticList.Contains(x))
@@ -185,7 +213,8 @@ namespace MoneyManager.Business.Logic {
             };
             othersItem.Label = othersItem.Category + ": " + othersItem.Value + " " + Settings.DefaultCurrency;
 
-            if (othersItem.Value > 0) {
+            if (othersItem.Value > 0)
+            {
                 statisticList.Add(othersItem);
             }
         }
@@ -196,11 +225,14 @@ namespace MoneyManager.Business.Logic {
         /// <param name="startDate">start date</param>
         /// <param name="endDate">enddate</param>
         /// <returns>List with statistic Items.</returns>
-        public static ObservableCollection<StatisticItem> GetCategorySummary(DateTime startDate, DateTime endDate) {
+        public static ObservableCollection<StatisticItem> GetCategorySummary(DateTime startDate, DateTime endDate)
+        {
             var categories = new ObservableCollection<StatisticItem>();
 
-            foreach (var category in AllCategories) {
-                categories.Add(new StatisticItem {
+            foreach (var category in AllCategories)
+            {
+                categories.Add(new StatisticItem
+                {
                     Category = category.Name,
                     Value = AllTransaction
                         .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
@@ -219,23 +251,28 @@ namespace MoneyManager.Business.Logic {
 
         #region Properties
 
-        private static IEnumerable<FinancialTransaction> AllTransaction {
+        private static IEnumerable<FinancialTransaction> AllTransaction
+        {
             get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Data; }
         }
 
-        private static IEnumerable<Category> AllCategories {
+        private static IEnumerable<Category> AllCategories
+        {
             get { return ServiceLocator.Current.GetInstance<IRepository<Category>>().Data; }
         }
 
-        private static IDataAccess<FinancialTransaction> TransactionData {
+        private static IDataAccess<FinancialTransaction> TransactionData
+        {
             get { return ServiceLocator.Current.GetInstance<IDataAccess<FinancialTransaction>>(); }
         }
 
-        private static IDataAccess<Category> CateogryData {
+        private static IDataAccess<Category> CateogryData
+        {
             get { return ServiceLocator.Current.GetInstance<IDataAccess<Category>>(); }
         }
 
-        private static SettingDataAccess Settings {
+        private static SettingDataAccess Settings
+        {
             get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
         }
 

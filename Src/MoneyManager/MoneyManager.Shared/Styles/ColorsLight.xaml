@@ -58,8 +58,8 @@
                              Color="{StaticResource AppAccentColor}" />
 
             <SolidColorBrush x:Key="CheckBoxPressedForegroundThemeBrush"
-                             Color="#FFFFFFFF" />     
-        
+                             Color="#FFFFFFFF" />
+
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

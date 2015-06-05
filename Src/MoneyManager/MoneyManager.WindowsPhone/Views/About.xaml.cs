@@ -5,28 +5,29 @@ using MoneyManager.Common;
 
 #endregion
 
-namespace MoneyManager.Views {
-    public sealed partial class About {
-        private readonly NavigationHelper navigationHelper;
-
-        public About() {
+namespace MoneyManager.Views
+{
+    public sealed partial class About
+    {
+        public About()
+        {
             InitializeComponent();
 
-            navigationHelper = new NavigationHelper(this);
+            NavigationHelper = new NavigationHelper(this);
         }
 
-        public NavigationHelper NavigationHelper {
-            get { return navigationHelper; }
-        }
+        public NavigationHelper NavigationHelper { get; }
 
         #region NavigationHelper registration
 
-        protected override void OnNavigatedTo(NavigationEventArgs e) {
-            navigationHelper.OnNavigatedTo(e);
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            NavigationHelper.OnNavigatedTo(e);
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e) {
-            navigationHelper.OnNavigatedFrom(e);
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            NavigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion NavigationHelper registration

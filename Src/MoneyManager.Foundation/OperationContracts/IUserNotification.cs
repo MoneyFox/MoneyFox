@@ -1,5 +1,7 @@
-﻿namespace MoneyManager.Foundation.OperationContracts {
-    public interface IUserNotification {
+﻿namespace MoneyManager.Foundation.OperationContracts
+{
+    public interface IUserNotification
+    {
         /// <summary>
         ///     Sets the MainTile with new Information
         /// </summary>

@@ -5,7 +5,8 @@ using System.Windows.Input;
 
 #endregion
 
-namespace MoneyManager.Common {
+namespace MoneyManager.Common
+{
     /// <summary>
     ///     A command whose sole purpose is to relay its functionality
     ///     to other objects by invoking delegates.
@@ -13,7 +14,8 @@ namespace MoneyManager.Common {
     ///     <see cref="RaiseCanExecuteChanged" /> needs to be called whenever
     ///     <see cref="CanExecute" /> is expected to return a different value.
     /// </summary>
-    public class RelayCommand : ICommand {
+    public class RelayCommand : ICommand
+    {
         private readonly Func<bool> _canExecute;
         private readonly Action _execute;
 
@@ -22,7 +24,8 @@ namespace MoneyManager.Common {
         /// </summary>
         /// <param name="execute">The execution logic.</param>
         public RelayCommand(Action execute)
-            : this(execute, null) {
+            : this(execute, null)
+        {
         }
 
         /// <summary>
@@ -30,8 +33,10 @@ namespace MoneyManager.Common {
         /// </summary>
         /// <param name="execute">The execution logic.</param>
         /// <param name="canExecute">The execution status logic.</param>
-        public RelayCommand(Action execute, Func<bool> canExecute) {
-            if (execute == null) {
+        public RelayCommand(Action execute, Func<bool> canExecute)
+        {
+            if (execute == null)
+            {
                 throw new ArgumentNullException("execute");
             }
             _execute = execute;
@@ -50,7 +55,8 @@ namespace MoneyManager.Common {
         ///     Data used by the command. If the command does not require data to be passed, this object can be set to null.
         /// </param>
         /// <returns>true if this command can be executed; otherwise, false.</returns>
-        public bool CanExecute(object parameter) {
+        public bool CanExecute(object parameter)
+        {
             return _canExecute == null ? true : _canExecute();
         }
 
@@ -60,7 +66,8 @@ namespace MoneyManager.Common {
         /// <param name="parameter">
         ///     Data used by the command. If the command does not require data to be passed, this object can be set to null.
         /// </param>
-        public void Execute(object parameter) {
+        public void Execute(object parameter)
+        {
             _execute();
         }
 
@@ -69,9 +76,11 @@ namespace MoneyManager.Common {
         ///     to indicate that the return value of the <see cref="CanExecute" />
         ///     method has changed.
         /// </summary>
-        public void RaiseCanExecuteChanged() {
-            EventHandler handler = CanExecuteChanged;
-            if (handler != null) {
+        public void RaiseCanExecuteChanged()
+        {
+            var handler = CanExecuteChanged;
+            if (handler != null)
+            {
                 handler(this, EventArgs.Empty);
             }
         }

@@ -5,10 +5,14 @@ using MoneyManager.Business.Logic.Tile;
 using MoneyManager.Foundation;
 using MoneyManager.Views;
 
-namespace MoneyManager {
-    public class TileHelper {
-        public static void DoNavigation(string tileId) {
-            switch (tileId) {
+namespace MoneyManager
+{
+    public class TileHelper
+    {
+        public static void DoNavigation(string tileId)
+        {
+            switch (tileId)
+            {
                 case IncomeTile.Id:
                     TransactionLogic.GoToAddTransaction(TransactionType.Income);
                     ((Frame) Window.Current.Content).Navigate(typeof (AddTransaction));

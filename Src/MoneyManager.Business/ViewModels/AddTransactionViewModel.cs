@@ -13,9 +13,11 @@ using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
-namespace MoneyManager.Business.ViewModels {
+namespace MoneyManager.Business.ViewModels
+{
     [ImplementPropertyChanged]
-    public class AddTransactionViewModel {
+    public class AddTransactionViewModel
+    {
         private readonly IAccountRepository _accountRepository;
         private readonly IRepository<Category> _categoryRepository;
         private readonly CurrencyManager _currencyManager;
@@ -26,7 +28,8 @@ namespace MoneyManager.Business.ViewModels {
             IAccountRepository accountRepository,
             IRepository<Category> categoryRepository,
             CurrencyManager currencyManager,
-            SettingDataAccess settings) {
+            SettingDataAccess settings)
+        {
             _transactionRepository = transactionRepository;
             _currencyManager = currencyManager;
             _settings = settings;
@@ -43,21 +46,26 @@ namespace MoneyManager.Business.ViewModels {
         public bool IsTransfer { get; set; }
         public bool RefreshRealtedList { get; set; }
 
-        public FinancialTransaction SelectedTransaction {
+        public FinancialTransaction SelectedTransaction
+        {
             get { return _transactionRepository.Selected; }
             set { _transactionRepository.Selected = value; }
         }
 
-        public ObservableCollection<Account> AllAccounts {
+        public ObservableCollection<Account> AllAccounts
+        {
             get { return _accountRepository.Data; }
         }
 
-        public ObservableCollection<Category> AllCategories {
+        public ObservableCollection<Category> AllCategories
+        {
             get { return _categoryRepository.Data; }
         }
 
-        public string Title {
-            get {
+        public string Title
+        {
+            get
+            {
                 var text = IsEdit
                     ? Translation.GetTranslation("EditTitle")
                     : Translation.GetTranslation("AddTitle");
@@ -68,63 +76,76 @@ namespace MoneyManager.Business.ViewModels {
             }
         }
 
-        public string AmountString {
+        public string AmountString
+        {
             get { return AmountWithoutExchange.ToString(); }
-            set {
+            set
+            {
                 double amount;
-                if (double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount)) {
+                if (double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount))
+                {
                     AmountWithoutExchange = amount;
                 }
             }
         }
 
-        public double AmountWithoutExchange {
+        public double AmountWithoutExchange
+        {
             get { return _transactionRepository.Selected.AmountWithoutExchange; }
-            set {
+            set
+            {
                 _transactionRepository.Selected.AmountWithoutExchange = value;
                 CalculateNewAmount(value);
             }
         }
 
-        private void CalculateNewAmount(double value) {
-            if (Math.Abs(_transactionRepository.Selected.ExchangeRatio) < 0.5) {
+        private void CalculateNewAmount(double value)
+        {
+            if (Math.Abs(_transactionRepository.Selected.ExchangeRatio) < 0.5)
+            {
                 _transactionRepository.Selected.ExchangeRatio = 1;
             }
 
             _transactionRepository.Selected.Amount = _transactionRepository.Selected.ExchangeRatio*value;
         }
 
-        public async void SetCurrency(string currency) {
+        public async void SetCurrency(string currency)
+        {
             _transactionRepository.Selected.Currency = currency;
             await LoadCurrencyRatio();
             _transactionRepository.Selected.IsExchangeModeActive = true;
             CalculateNewAmount(AmountWithoutExchange);
         }
 
-        public async Task LoadCurrencyRatio() {
+        public async Task LoadCurrencyRatio()
+        {
             _transactionRepository.Selected.ExchangeRatio =
                 await
                     _currencyManager.GetCurrencyRatio(_settings.DefaultCurrency,
                         _transactionRepository.Selected.Currency);
         }
 
-        public async void Save() {
-            if (_transactionRepository.Selected.ChargedAccount == null) {
+        public async void Save()
+        {
+            if (_transactionRepository.Selected.ChargedAccount == null)
+            {
                 ShowAccountRequiredMessage();
                 return;
             }
 
-            if (IsEdit) {
+            if (IsEdit)
+            {
                 await TransactionLogic.UpdateTransaction(_transactionRepository.Selected);
-            }
-            else {
+            } else
+            {
                 await TransactionLogic.SaveTransaction(_transactionRepository.Selected, RefreshRealtedList);
             }
 
             ((Frame) Window.Current.Content).GoBack();
         }
 
-        private async void ShowAccountRequiredMessage() {
+        private async void ShowAccountRequiredMessage()
+        {
             var dialog = new MessageDialog
                 (
                 Translation.GetTranslation("AccountRequiredMessage"),
@@ -135,8 +156,10 @@ namespace MoneyManager.Business.ViewModels {
             await dialog.ShowAsync();
         }
 
-        public async void Cancel() {
-            if (IsEdit) {
+        public async void Cancel()
+        {
+            if (IsEdit)
+            {
                 await AccountLogic.AddTransactionAmount(_transactionRepository.Selected);
             }
             ((Frame) Window.Current.Content).GoBack();

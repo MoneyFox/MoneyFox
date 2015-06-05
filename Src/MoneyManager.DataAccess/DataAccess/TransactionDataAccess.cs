@@ -5,36 +5,42 @@ using System.Linq.Expressions;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
-using SQLite.Net;
 using SQLiteNetExtensions.Extensions;
 
-namespace MoneyManager.DataAccess.DataAccess {
+namespace MoneyManager.DataAccess.DataAccess
+{
     /// <summary>
-    /// Handles the access to the transaction table on the database
+    ///     Handles the access to the transaction table on the database
     /// </summary>
     [ImplementPropertyChanged]
-    public class TransactionDataAccess : AbstractDataAccess<FinancialTransaction> {
+    public class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
+    {
         /// <summary>
-        /// Saves a new item or updates an existing
+        ///     Saves a new item or updates an existing
         /// </summary>
         /// <param name="itemToSave">Item to Save</param>
-        protected override void SaveToDb(FinancialTransaction itemToSave) {
-            using (var db = SqlConnectionFactory.GetSqlConnection()) {
-                if (itemToSave.Id == 0) {
+        protected override void SaveToDb(FinancialTransaction itemToSave)
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
+                if (itemToSave.Id == 0)
+                {
                     db.Insert(itemToSave);
-                }
-                else {
+                } else
+                {
                     db.UpdateWithChildren(itemToSave);
                 }
             }
         }
 
         /// <summary>
-        /// Deletes an item from the database
+        ///     Deletes an item from the database
         /// </summary>
         /// <param name="transaction">Item to Delete.</param>
-        protected override void DeleteFromDatabase(FinancialTransaction transaction) {
-            using (SQLiteConnection dbConn = SqlConnectionFactory.GetSqlConnection()) {
+        protected override void DeleteFromDatabase(FinancialTransaction transaction)
+        {
+            using (var dbConn = SqlConnectionFactory.GetSqlConnection())
+            {
                 dbConn.Delete(transaction);
             }
         }
@@ -44,8 +50,10 @@ namespace MoneyManager.DataAccess.DataAccess {
         /// </summary>
         /// <param name="filter">filter expression.</param>
         /// <returns>List of loaded transactions.</returns>
-        protected override List<FinancialTransaction> GetListFromDb(Expression<Func<FinancialTransaction, bool>> filter) {
-            using (var db = SqlConnectionFactory.GetSqlConnection()) {
+        protected override List<FinancialTransaction> GetListFromDb(Expression<Func<FinancialTransaction, bool>> filter)
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
                 return db.GetAllWithChildren(filter, true).ToList();
             }
         }

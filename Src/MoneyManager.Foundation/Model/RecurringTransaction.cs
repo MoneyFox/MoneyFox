@@ -3,10 +3,12 @@ using PropertyChanged;
 using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
 
-namespace MoneyManager.Foundation.Model {
+namespace MoneyManager.Foundation.Model
+{
     [ImplementPropertyChanged]
     [Table("RecurringTransactiont")]
-    public class RecurringTransaction {
+    public class RecurringTransaction
+    {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 

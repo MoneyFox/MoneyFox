@@ -9,27 +9,34 @@ using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Views;
 
-namespace MoneyManager.UserControls {
-    public sealed partial class AccountListUserControl {
-        public AccountListUserControl() {
+namespace MoneyManager.UserControls
+{
+    public sealed partial class AccountListUserControl
+    {
+        public AccountListUserControl()
+        {
             InitializeComponent();
         }
 
-        private IAccountRepository AccountRepository {
+        private IAccountRepository AccountRepository
+        {
             get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
         }
 
-        private void AccountList_Holding(object sender, HoldingRoutedEventArgs e) {
+        private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)
+        {
             var senderElement = sender as FrameworkElement;
-            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
             flyoutBase.ShowAt(senderElement);
         }
 
-        private void Edit_OnClick(object sender, RoutedEventArgs e) {
+        private void Edit_OnClick(object sender, RoutedEventArgs e)
+        {
             var element = (FrameworkElement) sender;
             var account = element.DataContext as Account;
-            if (account == null) {
+            if (account == null)
+            {
                 return;
             }
 
@@ -40,14 +47,17 @@ namespace MoneyManager.UserControls {
             ((Frame) Window.Current.Content).Navigate(typeof (AddAccount));
         }
 
-        private async void Delete_OnClick(object sender, RoutedEventArgs e) {
-            if (!await Utilities.IsDeletionConfirmed()) {
+        private async void Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!await Utilities.IsDeletionConfirmed())
+            {
                 return;
             }
 
             var element = (FrameworkElement) sender;
             var account = element.DataContext as Account;
-            if (account == null) {
+            if (account == null)
+            {
                 return;
             }
 
@@ -55,8 +65,10 @@ namespace MoneyManager.UserControls {
             ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
         }
 
-        private void NavigateToTransactionList(object sender, SelectionChangedEventArgs e) {
-            if (AccountList.SelectedItem != null) {
+        private void NavigateToTransactionList(object sender, SelectionChangedEventArgs e)
+        {
+            if (AccountList.SelectedItem != null)
+            {
                 AccountRepository.Selected = AccountList.SelectedItem as Account;
 
                 ServiceLocator.Current.GetInstance<TransactionListViewModel>()

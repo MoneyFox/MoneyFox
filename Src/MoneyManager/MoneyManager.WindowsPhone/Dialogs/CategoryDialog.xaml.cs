@@ -7,33 +7,42 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Dialogs {
-    public sealed partial class CategoryDialog {
-        public CategoryDialog(bool isEdit = false) {
+namespace MoneyManager.Dialogs
+{
+    public sealed partial class CategoryDialog
+    {
+        public CategoryDialog(bool isEdit = false)
+        {
             InitializeComponent();
 
             IsEdit = isEdit;
-            if (!isEdit) {
+            if (!isEdit)
+            {
                 CategoryRepository.Selected = new Category();
 
-                if (!String.IsNullOrEmpty(CategoryListView.SearchText)) {
+                if (!string.IsNullOrEmpty(CategoryListView.SearchText))
+                {
                     CategoryRepository.Selected.Name = CategoryListView.SearchText;
                 }
             }
         }
 
-        private IRepository<Category> CategoryRepository {
+        private IRepository<Category> CategoryRepository
+        {
             get { return ServiceLocator.Current.GetInstance<IRepository<Category>>(); }
         }
 
-        private CategoryListViewModel CategoryListView {
+        private CategoryListViewModel CategoryListView
+        {
             get { return ServiceLocator.Current.GetInstance<CategoryListViewModel>(); }
         }
 
         public bool IsEdit { get; set; }
 
-        private async void DoneOnClick(ContentDialog sender, ContentDialogButtonClickEventArgs args) {
-            if (CategoryRepository.Selected.Name == String.Empty) {
+        private async void DoneOnClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            if (CategoryRepository.Selected.Name == string.Empty)
+            {
                 var dialog = new MessageDialog(Translation.GetTranslation("NameRequiredMessage"),
                     Translation.GetTranslation("MandatoryField"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
@@ -44,7 +53,7 @@ namespace MoneyManager.Dialogs {
 
             CategoryRepository.Save(CategoryRepository.Selected);
 
-            CategoryListView.SearchText = String.Empty;
+            CategoryListView.SearchText = string.Empty;
             CategoryListView.Search();
         }
     }

@@ -9,25 +9,32 @@ using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using SQLiteNetExtensions.Extensions;
 
-namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
+namespace MoneyManager.Business.WindowsPhone.Test.Repositories
+{
     [TestClass]
-    public class RecurringTransactionRepositoryTest {
+    public class RecurringTransactionRepositoryTest
+    {
         private RecurringTransactionDataAccessMock _recurringTransactionDataAccessMock;
 
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             _recurringTransactionDataAccessMock = new RecurringTransactionDataAccessMock();
         }
 
         [TestMethod]
         [TestCategory("Integration")]
-        public void RecurringTransactionRepository_LoadDataFromDbThroughRepository() {
-            using (var db = SqlConnectionFactory.GetSqlConnection()) {
+        public void RecurringTransactionRepository_LoadDataFromDbThroughRepository()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
                 db.DeleteAll<RecurringTransaction>();
-                db.InsertWithChildren(new RecurringTransaction {
+                db.InsertWithChildren(new RecurringTransaction
+                {
                     Amount = 999,
                     AmountWithoutExchange = 777,
-                    ChargedAccount = new Account {
+                    ChargedAccount = new Account
+                    {
                         Name = "testAccount"
                     }
                 });
@@ -41,14 +48,17 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void RecurringTransactionRepository_Save() {
+        public void RecurringTransactionRepository_Save()
+        {
             var repository = new RecurringTransactionRepository(_recurringTransactionDataAccessMock);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "TestAccount"
             };
 
-            var transaction = new RecurringTransaction {
+            var transaction = new RecurringTransaction
+            {
                 ChargedAccount = account,
                 Amount = 20,
                 AmountWithoutExchange = 20
@@ -61,35 +71,41 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void TransactionRepository_SaveWithouthAccount() {
-            try {
+        public void TransactionRepository_SaveWithouthAccount()
+        {
+            try
+            {
                 var repository = new RecurringTransactionRepository(_recurringTransactionDataAccessMock);
 
-                var transaction = new RecurringTransaction {
+                var transaction = new RecurringTransaction
+                {
                     Amount = 20,
                     AmountWithoutExchange = 20
                 };
 
                 repository.Save(transaction);
-            }
-            catch (InvalidDataException) {
+            } catch (InvalidDataException)
+            {
                 return;
-            }
-            catch (Exception) {
+            } catch (Exception)
+            {
                 Assert.Fail("wrong exception.");
             }
             Assert.Fail("No excpetion thrown");
         }
 
         [TestMethod]
-        public void RecurringTransactionRepository_Delete() {
+        public void RecurringTransactionRepository_Delete()
+        {
             var repository = new RecurringTransactionRepository(_recurringTransactionDataAccessMock);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "TestAccount"
             };
 
-            var transaction = new RecurringTransaction {
+            var transaction = new RecurringTransaction
+            {
                 ChargedAccount = account,
                 Amount = 20,
                 AmountWithoutExchange = 20
@@ -105,25 +121,30 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void RecurringTransactionRepository_AccessCache() {
+        public void RecurringTransactionRepository_AccessCache()
+        {
             Assert.IsNotNull(new RecurringTransactionRepository(_recurringTransactionDataAccessMock).Data);
         }
 
         [TestMethod]
-        public void RecurringTransactionRepository_AddMultipleToCache() {
+        public void RecurringTransactionRepository_AddMultipleToCache()
+        {
             var repository = new RecurringTransactionRepository(_recurringTransactionDataAccessMock);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "TestAccount"
             };
 
-            var transaction = new RecurringTransaction {
+            var transaction = new RecurringTransaction
+            {
                 ChargedAccount = account,
                 Amount = 20,
                 AmountWithoutExchange = 20
             };
 
-            var secondTransaction = new RecurringTransaction {
+            var secondTransaction = new RecurringTransaction
+            {
                 ChargedAccount = account,
                 Amount = 60,
                 AmountWithoutExchange = 60
@@ -138,18 +159,22 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void RecurringTransactionRepository_Update() {
-            using (var db = SqlConnectionFactory.GetSqlConnection()) {
+        public void RecurringTransactionRepository_Update()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
                 db.DeleteAll<RecurringTransaction>();
             }
 
             var repository = new RecurringTransactionRepository(new RecurringTransactionDataAccess());
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "TestAccount"
             };
 
-            var transaction = new RecurringTransaction {
+            var transaction = new RecurringTransaction
+            {
                 ChargedAccount = account,
                 Amount = 20,
                 AmountWithoutExchange = 20

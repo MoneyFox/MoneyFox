@@ -4,29 +4,34 @@ using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
-using SQLite.Net;
 
 #endregion
 
-namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess {
+namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
+{
     [TestClass]
-    public class CategoryDataAccessTest {
+    public class CategoryDataAccessTest
+    {
         [TestInitialize]
-        public void TestInit() {
-            using (SQLiteConnection db = SqlConnectionFactory.GetSqlConnection()) {
+        public void TestInit()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
                 db.CreateTable<Category>();
             }
         }
 
         [TestMethod]
         [TestCategory("Integration")]
-        public void CategoryDataAccess_CrudCategory() {
+        public void CategoryDataAccess_CrudCategory()
+        {
             var categoryDataAccess = new CategoryDataAccess();
 
             const string firstName = "category";
             const string secondName = "new category";
 
-            var category = new Category {
+            var category = new Category
+            {
                 Name = firstName
             };
 

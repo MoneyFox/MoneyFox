@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Foundation {
-    public abstract class AbstractDataAccess<T> : IDataAccess<T> {
+namespace MoneyManager.Foundation
+{
+    public abstract class AbstractDataAccess<T> : IDataAccess<T>
+    {
         /// <summary>
         ///     Will insert the item to the database if not exists, otherwise will
         ///     update the existing
         /// </summary>
         /// <param name="itemToSave">item to save.</param>
-        public void Save(T itemToSave) {
-            try {
+        public void Save(T itemToSave)
+        {
+            try
+            {
                 SaveToDb(itemToSave);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex)
+            {
                 InsightHelper.Report(ex);
             }
         }
@@ -23,11 +27,13 @@ namespace MoneyManager.Foundation {
         ///     Deletes the passed item from the database
         /// </summary>
         /// <param name="itemToDelete">Item to delete.</param>
-        public void Delete(T itemToDelete) {
-            try {
+        public void Delete(T itemToDelete)
+        {
+            try
+            {
                 DeleteFromDatabase(itemToDelete);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex)
+            {
                 InsightHelper.Report(ex);
             }
         }
@@ -36,11 +42,13 @@ namespace MoneyManager.Foundation {
         ///     Loads all medicines and returns a list
         /// </summary>
         /// <returns>The list from db.</returns>
-        public List<T> LoadList(Expression<Func<T, bool>> filter = null) {
-            try {
+        public List<T> LoadList(Expression<Func<T, bool>> filter = null)
+        {
+            try
+            {
                 return GetListFromDb(filter);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex)
+            {
                 InsightHelper.Report(ex);
             }
             return new List<T>();

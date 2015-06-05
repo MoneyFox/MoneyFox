@@ -10,7 +10,8 @@ using Windows.UI.Xaml.Navigation;
 
 #endregion
 
-namespace MoneyManager.Common {
+namespace MoneyManager.Common
+{
     /// <summary>
     ///     NavigationHelper aids in navigation between pages.  It provides commands used to
     ///     navigate back and forward as well as registers for standard mouse and keyboard
@@ -54,10 +55,12 @@ namespace MoneyManager.Common {
     ///   </code>
     /// </example>
     [WebHostHidden]
-    public class NavigationHelper : DependencyObject {
-        private Page Page { get; set; }
+    public class NavigationHelper : DependencyObject
+    {
+        private Page Page { get; }
 
-        private Frame Frame {
+        private Frame Frame
+        {
             get { return Page.Frame; }
         }
 
@@ -69,13 +72,15 @@ namespace MoneyManager.Common {
         ///     This reference allows for frame manipulation and to ensure that keyboard
         ///     navigation requests only occur when the page is occupying the entire window.
         /// </param>
-        public NavigationHelper(Page page) {
+        public NavigationHelper(Page page)
+        {
             Page = page;
 
             // When this page is part of the visual tree make two changes:
             // 1) Map application view state to visual state for the page
             // 2) Handle hardware navigation requests
-            Page.Loaded += (sender, e) => {
+            Page.Loaded += (sender, e) =>
+            {
 #if WINDOWS_PHONE_APP
                 HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 #else
@@ -93,7 +98,8 @@ namespace MoneyManager.Common {
             };
 
             // Undo the same changes when the page is no longer visible
-            Page.Unloaded += (sender, e) => {
+            Page.Unloaded += (sender, e) =>
+            {
 #if WINDOWS_PHONE_APP
                 HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
 #else
@@ -117,9 +123,12 @@ namespace MoneyManager.Common {
         ///     The <see cref="RelayCommand" /> is set up to use the virtual method <see cref="GoBack" />
         ///     as the Execute Action and <see cref="CanGoBack" /> for CanExecute.
         /// </summary>
-        public RelayCommand GoBackCommand {
-            get {
-                if (_goBackCommand == null) {
+        public RelayCommand GoBackCommand
+        {
+            get
+            {
+                if (_goBackCommand == null)
+                {
                     _goBackCommand = new RelayCommand(
                         () => GoBack(),
                         () => CanGoBack());
@@ -135,9 +144,12 @@ namespace MoneyManager.Common {
         ///     The <see cref="RelayCommand" /> is set up to use the virtual method <see cref="GoForward" />
         ///     as the Execute Action and <see cref="CanGoForward" /> for CanExecute.
         /// </summary>
-        public RelayCommand GoForwardCommand {
-            get {
-                if (_goForwardCommand == null) {
+        public RelayCommand GoForwardCommand
+        {
+            get
+            {
+                if (_goForwardCommand == null)
+                {
                     _goForwardCommand = new RelayCommand(
                         () => GoForward(),
                         () => CanGoForward());
@@ -154,7 +166,8 @@ namespace MoneyManager.Common {
         ///     true if the <see cref="Frame" /> has at least one entry
         ///     in the back navigation history.
         /// </returns>
-        public virtual bool CanGoBack() {
+        public virtual bool CanGoBack()
+        {
             return Frame != null && Frame.CanGoBack;
         }
 
@@ -166,7 +179,8 @@ namespace MoneyManager.Common {
         ///     true if the <see cref="Frame" /> has at least one entry
         ///     in the forward navigation history.
         /// </returns>
-        public virtual bool CanGoForward() {
+        public virtual bool CanGoForward()
+        {
             return Frame != null && Frame.CanGoForward;
         }
 
@@ -174,8 +188,10 @@ namespace MoneyManager.Common {
         ///     Virtual method used by the <see cref="GoBackCommand" /> property
         ///     to invoke the <see cref="Windows.UI.Xaml.Controls.Frame.GoBack" /> method.
         /// </summary>
-        public virtual void GoBack() {
-            if (Frame != null && Frame.CanGoBack) {
+        public virtual void GoBack()
+        {
+            if (Frame != null && Frame.CanGoBack)
+            {
                 Frame.GoBack();
             }
         }
@@ -184,8 +200,10 @@ namespace MoneyManager.Common {
         ///     Virtual method used by the <see cref="GoForwardCommand" /> property
         ///     to invoke the <see cref="Windows.UI.Xaml.Controls.Frame.GoForward" /> method.
         /// </summary>
-        public virtual void GoForward() {
-            if (Frame != null && Frame.CanGoForward) {
+        public virtual void GoForward()
+        {
+            if (Frame != null && Frame.CanGoForward)
+            {
                 Frame.GoForward();
             }
         }
@@ -197,8 +215,10 @@ namespace MoneyManager.Common {
         /// </summary>
         /// <param name="sender">Instance that triggered the event.</param>
         /// <param name="e">Event data describing the conditions that led to the event.</param>
-        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e) {
-            if (GoBackCommand.CanExecute(null)) {
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            if (GoBackCommand.CanExecute(null))
+            {
                 e.Handled = true;
                 GoBackCommand.Execute(null);
             }
@@ -281,7 +301,7 @@ namespace MoneyManager.Common {
 
         #region Process lifetime management
 
-        private String _pageKey;
+        private string _pageKey;
 
         /// <summary>
         ///     Register this event on the current page to populate the page
@@ -307,32 +327,37 @@ namespace MoneyManager.Common {
         ///     Event data that describes how this page was reached.  The Parameter
         ///     property provides the group to be displayed.
         /// </param>
-        public void OnNavigatedTo(NavigationEventArgs e) {
-            Dictionary<string, object> frameState = SuspensionManager.SessionStateForFrame(Frame);
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var frameState = SuspensionManager.SessionStateForFrame(Frame);
             _pageKey = "Page-" + Frame.BackStackDepth;
 
-            if (e.NavigationMode == NavigationMode.New) {
+            if (e.NavigationMode == NavigationMode.New)
+            {
                 // Clear existing state for forward navigation when adding a new page to the
                 // navigation stack
-                string nextPageKey = _pageKey;
-                int nextPageIndex = Frame.BackStackDepth;
-                while (frameState.Remove(nextPageKey)) {
+                var nextPageKey = _pageKey;
+                var nextPageIndex = Frame.BackStackDepth;
+                while (frameState.Remove(nextPageKey))
+                {
                     nextPageIndex++;
                     nextPageKey = "Page-" + nextPageIndex;
                 }
 
                 // Pass the navigation parameter to the new page
-                if (LoadState != null) {
+                if (LoadState != null)
+                {
                     LoadState(this, new LoadStateEventArgs(e.Parameter, null));
                 }
-            }
-            else {
+            } else
+            {
                 // Pass the navigation parameter and preserved page state to the page, using
                 // the same strategy for loading suspended state and recreating pages discarded
                 // from cache
-                if (LoadState != null) {
+                if (LoadState != null)
+                {
                     LoadState(this,
-                        new LoadStateEventArgs(e.Parameter, (Dictionary<String, Object>) frameState[_pageKey]));
+                        new LoadStateEventArgs(e.Parameter, (Dictionary<string, object>) frameState[_pageKey]));
                 }
             }
         }
@@ -346,10 +371,12 @@ namespace MoneyManager.Common {
         ///     Event data that describes how this page was reached.  The Parameter
         ///     property provides the group to be displayed.
         /// </param>
-        public void OnNavigatedFrom(NavigationEventArgs e) {
-            Dictionary<string, object> frameState = SuspensionManager.SessionStateForFrame(Frame);
-            var pageState = new Dictionary<String, Object>();
-            if (SaveState != null) {
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            var frameState = SuspensionManager.SessionStateForFrame(Frame);
+            var pageState = new Dictionary<string, object>();
+            if (SaveState != null)
+            {
                 SaveState(this, new SaveStateEventArgs(pageState));
             }
             frameState[_pageKey] = pageState;
@@ -371,7 +398,8 @@ namespace MoneyManager.Common {
     /// <summary>
     ///     Class used to hold the event data required when a page attempts to load state.
     /// </summary>
-    public class LoadStateEventArgs : EventArgs {
+    public class LoadStateEventArgs : EventArgs
+    {
         /// <summary>
         ///     Initializes a new instance of the <see cref="LoadStateEventArgs" /> class.
         /// </summary>
@@ -383,7 +411,8 @@ namespace MoneyManager.Common {
         ///     A dictionary of state preserved by this page during an earlier
         ///     session.  This will be null the first time a page is visited.
         /// </param>
-        public LoadStateEventArgs(Object navigationParameter, Dictionary<string, Object> pageState) {
+        public LoadStateEventArgs(object navigationParameter, Dictionary<string, object> pageState)
+        {
             NavigationParameter = navigationParameter;
             PageState = pageState;
         }
@@ -392,30 +421,32 @@ namespace MoneyManager.Common {
         ///     The parameter value passed to <see cref="Frame.Navigate(Type, Object)" />
         ///     when this page was initially requested.
         /// </summary>
-        public Object NavigationParameter { get; private set; }
+        public object NavigationParameter { get; private set; }
 
         /// <summary>
         ///     A dictionary of state preserved by this page during an earlier
         ///     session.  This will be null the first time a page is visited.
         /// </summary>
-        public Dictionary<string, Object> PageState { get; private set; }
+        public Dictionary<string, object> PageState { get; private set; }
     }
 
     /// <summary>
     ///     Class used to hold the event data required when a page attempts to save state.
     /// </summary>
-    public class SaveStateEventArgs : EventArgs {
+    public class SaveStateEventArgs : EventArgs
+    {
         /// <summary>
         ///     Initializes a new instance of the <see cref="SaveStateEventArgs" /> class.
         /// </summary>
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
-        public SaveStateEventArgs(Dictionary<string, Object> pageState) {
+        public SaveStateEventArgs(Dictionary<string, object> pageState)
+        {
             PageState = pageState;
         }
 
         /// <summary>
         ///     An empty dictionary to be populated with serializable state.
         /// </summary>
-        public Dictionary<string, Object> PageState { get; private set; }
+        public Dictionary<string, object> PageState { get; private set; }
     }
 }

@@ -1,18 +1,24 @@
 ﻿using System;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Business.Logic {
-    public class TransactionTypeLogic {
-        public static TransactionType GetEnumFromString(string input) {
+namespace MoneyManager.Business.Logic
+{
+    public class TransactionTypeLogic
+    {
+        public static TransactionType GetEnumFromString(string input)
+        {
             return (TransactionType) Enum.Parse(typeof (TransactionType), input);
         }
 
-        public static string GetViewTitleForType(int type) {
+        public static string GetViewTitleForType(int type)
+        {
             return GetViewTitleForType((TransactionType) type);
         }
 
-        public static string GetViewTitleForType(TransactionType type) {
-            switch (type) {
+        public static string GetViewTitleForType(TransactionType type)
+        {
+            switch (type)
+            {
                 case TransactionType.Spending:
                     return Translation.GetTranslation("SpendingTitle");
 
@@ -23,7 +29,7 @@ namespace MoneyManager.Business.Logic {
                     return Translation.GetTranslation("TransferTitle");
 
                 default:
-                    return String.Empty;
+                    return string.Empty;
             }
         }
     }

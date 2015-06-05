@@ -6,19 +6,24 @@ using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
+namespace MoneyManager.Business.WindowsPhone.Test.Repositories
+{
     [TestClass]
-    public class AccountRepositoryTest {
+    public class AccountRepositoryTest
+    {
         private AccountDataAccessMock _accountDataAccessMock;
 
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             _accountDataAccessMock = new AccountDataAccessMock();
         }
 
         [TestMethod]
-        public void AccountRepository_Save() {
-            var account = new Account {
+        public void AccountRepository_Save()
+        {
+            var account = new Account
+            {
                 Name = "Sparkonto",
                 CurrentBalanceWithoutExchange = 6034,
                 CurrentBalance = 6034,
@@ -31,10 +36,12 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void AccountRepository_SaveWithoutName() {
+        public void AccountRepository_SaveWithoutName()
+        {
             var repository = new AccountRepository(_accountDataAccessMock);
 
-            var account = new Account {
+            var account = new Account
+            {
                 CurrentBalanceWithoutExchange = 6034,
                 CurrentBalance = 6034,
                 Currency = "CHF"
@@ -43,19 +50,23 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             repository.Save(account);
 
             Assert.AreSame(account, _accountDataAccessMock.AccountTestList[0]);
-            Assert.IsTrue(_accountDataAccessMock.AccountTestList[0].Name == Translation.GetTranslation("NoNamePlaceholderLabel"));
+            Assert.IsTrue(_accountDataAccessMock.AccountTestList[0].Name ==
+                          Translation.GetTranslation("NoNamePlaceholderLabel"));
         }
 
         [TestMethod]
-        public void AccountRepository_AccessCache() {
+        public void AccountRepository_AccessCache()
+        {
             Assert.IsNotNull(new AccountRepository(_accountDataAccessMock).Data);
         }
 
         [TestMethod]
-        public void AccountRepository_Delete() {
+        public void AccountRepository_Delete()
+        {
             var repository = new AccountRepository(_accountDataAccessMock);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "Sparkonto",
                 CurrentBalanceWithoutExchange = 6034,
                 CurrentBalance = 6034,
@@ -74,10 +85,12 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
 
         [TestMethod]
         [TestCategory("Integration")]
-        public void AccountRepository_Update() {
+        public void AccountRepository_Update()
+        {
             var repository = new AccountRepository(new AccountDataAccess());
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "Sparkonto",
                 CurrentBalanceWithoutExchange = 6034,
                 CurrentBalance = 6034,

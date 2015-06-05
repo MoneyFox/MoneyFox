@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
@@ -12,25 +11,32 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using SQLiteNetExtensions.Extensions;
 
-namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
+namespace MoneyManager.Business.WindowsPhone.Test.Repositories
+{
     [TestClass]
-    public class TransactionRepositoryTest {
+    public class TransactionRepositoryTest
+    {
         private TransactionDataAccessMock _transactionDataAccessMock;
 
         [TestInitialize]
-        public void Init() {
+        public void Init()
+        {
             _transactionDataAccessMock = new TransactionDataAccessMock();
         }
 
         [TestMethod]
         [TestCategory("Integration")]
-        public void TransactionRepository_LoadDataFromDbThroughRepository() {
-            using (var db = SqlConnectionFactory.GetSqlConnection()) {
+        public void TransactionRepository_LoadDataFromDbThroughRepository()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
                 db.DeleteAll<FinancialTransaction>();
-                db.InsertWithChildren(new FinancialTransaction {
+                db.InsertWithChildren(new FinancialTransaction
+                {
                     Amount = 999,
                     AmountWithoutExchange = 777,
-                    ChargedAccount = new Account {
+                    ChargedAccount = new Account
+                    {
                         Name = "testAccount"
                     }
                 });
@@ -44,35 +50,41 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void TransactionRepository_SaveWithouthAccount() {
-            try {
+        public void TransactionRepository_SaveWithouthAccount()
+        {
+            try
+            {
                 var repository = new TransactionRepository(_transactionDataAccessMock);
 
-                var transaction = new FinancialTransaction {
+                var transaction = new FinancialTransaction
+                {
                     Amount = 20,
                     AmountWithoutExchange = 20
                 };
 
                 repository.Save(transaction);
-            }
-            catch (InvalidDataException) {
+            } catch (InvalidDataException)
+            {
                 return;
-            }
-            catch (Exception) {
+            } catch (Exception)
+            {
                 Assert.Fail("wrong exception.");
             }
             Assert.Fail("No excpetion thrown");
         }
 
         [TestMethod]
-        public void TransactionRepository_Save() {
+        public void TransactionRepository_Save()
+        {
             var repository = new TransactionRepository(_transactionDataAccessMock);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "TestAccount"
             };
 
-            var transaction = new FinancialTransaction {
+            var transaction = new FinancialTransaction
+            {
                 ChargedAccount = account,
                 Amount = 20,
                 AmountWithoutExchange = 20
@@ -85,18 +97,22 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void TransactionRepository_SaveTransfer() {
+        public void TransactionRepository_SaveTransfer()
+        {
             var repository = new TransactionRepository(_transactionDataAccessMock);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "TestAccount"
             };
 
-            var targetAccount = new Account {
+            var targetAccount = new Account
+            {
                 Name = "targetAccount"
             };
 
-            var transaction = new FinancialTransaction {
+            var transaction = new FinancialTransaction
+            {
                 ChargedAccount = account,
                 TargetAccount = targetAccount,
                 Amount = 20,
@@ -112,14 +128,17 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void TransactionRepository_Delete() {
+        public void TransactionRepository_Delete()
+        {
             var repository = new TransactionRepository(_transactionDataAccessMock);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "TestAccount"
             };
 
-            var transaction = new FinancialTransaction {
+            var transaction = new FinancialTransaction
+            {
                 ChargedAccount = account,
                 Amount = 20,
                 AmountWithoutExchange = 20
@@ -135,25 +154,30 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void TransactionRepository_AccessCache() {
+        public void TransactionRepository_AccessCache()
+        {
             Assert.IsNotNull(new TransactionRepository(_transactionDataAccessMock).Data);
         }
 
         [TestMethod]
-        public void TransactionRepository_AddMultipleToCache() {
+        public void TransactionRepository_AddMultipleToCache()
+        {
             var repository = new TransactionRepository(_transactionDataAccessMock);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "TestAccount"
             };
 
-            var transaction = new FinancialTransaction {
+            var transaction = new FinancialTransaction
+            {
                 ChargedAccount = account,
                 Amount = 20,
                 AmountWithoutExchange = 20
             };
 
-            var secondTransaction = new FinancialTransaction {
+            var secondTransaction = new FinancialTransaction
+            {
                 ChargedAccount = account,
                 Amount = 60,
                 AmountWithoutExchange = 60
@@ -168,14 +192,17 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void TransactionRepository_AddItemToDataList() {
+        public void TransactionRepository_AddItemToDataList()
+        {
             var repository = new TransactionRepository(_transactionDataAccessMock);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "TestAccount"
             };
 
-            var transaction = new FinancialTransaction {
+            var transaction = new FinancialTransaction
+            {
                 ChargedAccount = account,
                 Amount = 20,
                 AmountWithoutExchange = 20,
@@ -188,17 +215,21 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
 
         [TestMethod]
         [TestCategory("Integration")]
-        public void TransactionRepository_Update() {
-            using (var db = SqlConnectionFactory.GetSqlConnection()) {
+        public void TransactionRepository_Update()
+        {
+            using (var db = SqlConnectionFactory.GetSqlConnection())
+            {
                 db.DeleteAll<FinancialTransaction>();
             }
 
             var repository = new TransactionRepository(new TransactionDataAccess());
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "TestAccount"
             };
 
-            var transaction = new FinancialTransaction {
+            var transaction = new FinancialTransaction
+            {
                 ChargedAccount = account,
                 Amount = 20,
                 AmountWithoutExchange = 20
@@ -217,14 +248,17 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void TransactionRepository_GetUnclearedTransactionsPast() {
+        public void TransactionRepository_GetUnclearedTransactionsPast()
+        {
             var repository = new TransactionRepository(_transactionDataAccessMock);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "TestAccount"
             };
 
-            repository.Save(new FinancialTransaction {
+            repository.Save(new FinancialTransaction
+            {
                 ChargedAccount = account,
                 Amount = 55,
                 Date = DateTime.Today.AddDays(-1),
@@ -233,7 +267,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             }
                 );
 
-            IEnumerable<FinancialTransaction> transactions = repository.GetUnclearedTransactions();
+            var transactions = repository.GetUnclearedTransactions();
 
             Assert.AreEqual(1, transactions.Count());
         }
@@ -242,14 +276,17 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         ///     This Test may fail if the date overlaps with the month transition.
         /// </summary>
         [TestMethod]
-        public void TransactionRepository_GetUnclearedTransactionsFuture() {
+        public void TransactionRepository_GetUnclearedTransactionsFuture()
+        {
             var repository = new TransactionRepository(_transactionDataAccessMock);
 
-            var account = new Account {
+            var account = new Account
+            {
                 Name = "TestAccount"
             };
 
-            repository.Save(new FinancialTransaction {
+            repository.Save(new FinancialTransaction
+            {
                 ChargedAccount = account,
                 Amount = 55,
                 Date = Utilities.GetEndOfMonth().AddDays(-1),
@@ -266,10 +303,12 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
         }
 
         [TestMethod]
-        public void TransactionRepository_GetUnclearedTransactions_AccountNull() {
+        public void TransactionRepository_GetUnclearedTransactions_AccountNull()
+        {
             var repository = new TransactionRepository(_transactionDataAccessMock);
 
-            repository.Data.Add(new FinancialTransaction {
+            repository.Data.Add(new FinancialTransaction
+            {
                 Amount = 55,
                 Date = DateTime.Today.AddDays(-1),
                 Note = "this is a note!!!",
@@ -277,14 +316,15 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories {
             }
                 );
 
-            IEnumerable<FinancialTransaction> transactions = repository.GetUnclearedTransactions();
+            var transactions = repository.GetUnclearedTransactions();
 
             Assert.AreEqual(1, transactions.Count());
         }
 
         [TestMethod]
         [Ignore]
-        public void TransactionRepository_GetRelatedTransaction() {
+        public void TransactionRepository_GetRelatedTransaction()
+        {
         }
     }
 }
