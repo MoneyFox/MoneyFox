@@ -1,3 +1,3 @@
-MainPackage=C:\Users\Nino\Documents\GitHub\MoneyManager\Src\MoneyManager\MoneyManager.WindowsPhone\bin\ARM\Release\MoneyManager.WindowsPhone_0.9.0.19_ARM.appx
-SymbolPackage=C:\Users\Nino\Documents\GitHub\MoneyManager\Src\MoneyManager\MoneyManager.WindowsPhone\AppPackages\MoneyManager.WindowsPhone_0.9.0.19_Test\MoneyManager.WindowsPhone_0.9.0.19_ARM.appxsym
-ResourcePack=C:\Users\Nino\Documents\GitHub\MoneyManager\Src\MoneyManager\MoneyManager.WindowsPhone\bin\ARM\Release\MoneyManager.WindowsPhone_0.9.0.19_language-de.appx
+MainPackage=C:\Users\Nino\Documents\GitHub\MoneyManager\Src\MoneyManager\MoneyManager.WindowsPhone\bin\ARM\Release\MoneyManager.WindowsPhone_0.9.0.20_ARM.appx
+SymbolPackage=C:\Users\Nino\Documents\GitHub\MoneyManager\Src\MoneyManager\MoneyManager.WindowsPhone\AppPackages\MoneyManager.WindowsPhone_0.9.0.20_Test\MoneyManager.WindowsPhone_0.9.0.20_ARM.appxsym
+ResourcePack=C:\Users\Nino\Documents\GitHub\MoneyManager\Src\MoneyManager\MoneyManager.WindowsPhone\bin\ARM\Release\MoneyManager.WindowsPhone_0.9.0.20_language-de.appx
