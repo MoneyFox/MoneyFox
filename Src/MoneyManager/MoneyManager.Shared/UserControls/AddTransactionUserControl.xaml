@@ -28,13 +28,11 @@
 
     <ScrollViewer>
         <StackPanel Margin="12,0">
-            <ComboBox Header="charged account" x:Uid="ChargedAccount"
+            <ComboBox Header="charged account"
+                      x:Uid="ChargedAccount"
                       ItemTemplate="{StaticResource ComboBoxTemplate}"
                       ItemsSource="{Binding AllAccounts, Mode=TwoWay}"
                       SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay}">
-                <ComboBox.Background>
-                    <ImageBrush Stretch="Fill" />
-                </ComboBox.Background>
             </ComboBox>
             <ComboBox Header="target account" x:Uid="TargetAccount"
                       ItemTemplate="{StaticResource ComboBoxTemplate}"
