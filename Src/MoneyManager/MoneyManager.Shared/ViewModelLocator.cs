@@ -75,94 +75,43 @@ namespace MoneyManager
 
         #region DataAccess
 
-        public IAccountRepository AccountRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
-        }
+        public IAccountRepository AccountRepository => ServiceLocator.Current.GetInstance<IAccountRepository>();
 
-        public IRepository<Category> CategoryRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>(); }
-        }
+        public IRepository<Category> CategoryRepository => ServiceLocator.Current.GetInstance<IRepository<Category>>();
 
-        public ITransactionRepository TransactionRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
-        }
+        public ITransactionRepository TransactionRepository => ServiceLocator.Current.GetInstance<ITransactionRepository>();
 
-        public IRecurringTransactionRepository RecurringTransactionRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>(); }
-        }
+        public IRecurringTransactionRepository RecurringTransactionRepository => ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>();
 
-        public SettingDataAccess SettingDataAccess
-        {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
+        public SettingDataAccess SettingDataAccess => ServiceLocator.Current.GetInstance<SettingDataAccess>();
 
         #endregion DataAccess
 
         #region Views
 
-        public AddAccountViewModel AddAccountView
-        {
-            get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>(); }
-        }
+        public AddAccountViewModel AddAccountView => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
 
-        public AccountListUserControlViewModel AccountListUserControlView
-        {
-            get { return ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>(); }
-        }
+        public AccountListUserControlViewModel AccountListUserControlView => ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>();
 
-        public AddTransactionViewModel AddTransactionView
-        {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
+        public AddTransactionViewModel AddTransactionView => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
 
-        public BalanceViewModel BalanceView
-        {
-            get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
-        }
+        public BalanceViewModel BalanceView => ServiceLocator.Current.GetInstance<BalanceViewModel>();
 
-        public CategoryListViewModel CategoryListView
-        {
-            get { return ServiceLocator.Current.GetInstance<CategoryListViewModel>(); }
-        }
+        public CategoryListViewModel CategoryListView => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
 
-        public TransactionListViewModel TransactionListView
-        {
-            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
-        }
+        public TransactionListViewModel TransactionListView => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
 
-        public TileSettingsViewModel TileSettingsView
-        {
-            get { return ServiceLocator.Current.GetInstance<TileSettingsViewModel>(); }
-        }
+        public TileSettingsViewModel TileSettingsView => ServiceLocator.Current.GetInstance<TileSettingsViewModel>();
 
-        public GeneralSettingViewModel GeneralSettingView
-        {
-            get { return ServiceLocator.Current.GetInstance<GeneralSettingViewModel>(); }
-        }
+        public GeneralSettingViewModel GeneralSettingView => ServiceLocator.Current.GetInstance<GeneralSettingViewModel>();
 
-        public SettingDefaultsViewModel SettingDefaultsView
-        {
-            get { return ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>(); }
-        }
+        public SettingDefaultsViewModel SettingDefaultsView => ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>();
 
-        public SelectCurrencyViewModel SelectCurrencyView
-        {
-            get { return ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>(); }
-        }
+        public SelectCurrencyViewModel SelectCurrencyView => ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>();
 
-        public StatisticViewModel StatisticView
-        {
-            get { return ServiceLocator.Current.GetInstance<StatisticViewModel>(); }
-        }
+        public StatisticViewModel StatisticView => ServiceLocator.Current.GetInstance<StatisticViewModel>();
 
-        public BackupViewModel BackupView
-        {
-            get { return ServiceLocator.Current.GetInstance<BackupViewModel>(); }
-        }
+        public BackupViewModel BackupView => ServiceLocator.Current.GetInstance<BackupViewModel>();
 
         #endregion Views
     }

@@ -14,7 +14,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
     public class AddTransactionViewModelTest
     {
         private IAccountRepository _accountRepository;
-        private IRepository<Category> _categoryRepository;
         private SettingDataAccess _settingRepository;
         private ITransactionRepository _transactionRepository;
 
@@ -25,7 +24,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
 
             _transactionRepository = ServiceLocator.Current.GetInstance<ITransactionRepository>();
             _accountRepository = ServiceLocator.Current.GetInstance<IAccountRepository>();
-            _categoryRepository = ServiceLocator.Current.GetInstance<IRepository<Category>>();
             _settingRepository = ServiceLocator.Current.GetInstance<SettingDataAccess>();
         }
 
@@ -35,7 +33,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Spending};
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                _categoryRepository,
                 new CurrencyManager(new JsonService()),
                 _settingRepository)
             {
@@ -52,7 +49,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Income};
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                _categoryRepository,
                 new CurrencyManager(new JsonService()),
                 _settingRepository)
             {
@@ -69,7 +65,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer};
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                _categoryRepository,
                 new CurrencyManager(new JsonService()),
                 _settingRepository)
             {
@@ -86,7 +81,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer};
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                _categoryRepository,
                 new CurrencyManager(new JsonService()),
                 _settingRepository) {IsEdit = false};
 
@@ -100,7 +94,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
 
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                _categoryRepository,
                 new CurrencyManager(new JsonService()),
                 _settingRepository);
 
@@ -113,7 +106,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Income};
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                _categoryRepository,
                 new CurrencyManager(new JsonService()),
                 _settingRepository);
 
@@ -126,7 +118,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer};
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                _categoryRepository,
                 new CurrencyManager(new JsonService()),
                 _settingRepository);
 
