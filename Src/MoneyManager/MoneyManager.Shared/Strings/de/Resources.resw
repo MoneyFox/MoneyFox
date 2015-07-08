@@ -627,4 +627,8 @@
   <data name="TwitterUrl" xml:space="preserve">
     <value>http://twitter.com/npadrutt</value>
   </data>
+  <data name="OpenSourceNote.Text" xml:space="preserve">
+    <value>Dieses Programm ist OpenSource. Wir freuen uns über Beiträge!
+Besuche das Repository:</value>
+  </data>
 </root>
