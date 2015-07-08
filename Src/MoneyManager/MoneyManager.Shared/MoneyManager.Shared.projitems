@@ -41,9 +41,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SelectStatisticUserControl.xaml.cs">
       <DependentUpon>SelectStatisticUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsDefaultsUserControl.xaml.cs">
-      <DependentUpon>SettingsDefaultsUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml.cs">
       <DependentUpon>SettingsOverviewUserControl.xaml</DependentUpon>
     </Compile>
@@ -98,10 +95,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)UserControls\SelectStatisticUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsDefaultsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

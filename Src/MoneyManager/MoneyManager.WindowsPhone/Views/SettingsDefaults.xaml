@@ -4,9 +4,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls="using:MoneyManager.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="ComboBoxTemplate">
+            <StackPanel Margin="0,0,0,12">
+                <TextBlock Text="{Binding Name}"
+                           FontSize="24" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
 
     <Page.Transitions>
         <TransitionCollection>
@@ -40,7 +48,13 @@
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <userControls:SettingsDefaultsUserControl />
+            <StackPanel>
+                <ComboBox Header="account"
+                          x:Uid="AccountHeader"
+                          ItemTemplate="{StaticResource ComboBoxTemplate}"
+                          ItemsSource="{Binding AllAccounts, Mode=TwoWay}"
+                          SelectedItem="{Binding DefaultAccount, Mode=TwoWay}" />
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

@@ -41,10 +41,34 @@
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="19,9.5,19,0">
-            <Frame Background="Transparent" x:Name="UserControlFrame">
-                <userControls:SettingsOverviewUserControl
-                    HorizontalAlignment="Left" VerticalAlignment="Top" />
-            </Frame>
+            <StackPanel HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
+                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
+                            x:Uid="DefaultsText"
+                            Text="defaults"
+                            Tapped="NavigateToDefaultSettings"
+                            Margin="0,0,0,20" />
+                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
+                            x:Uid="RegionText"
+                            Text="region"
+                            Tapped="NavigateToGeneralSettings"
+                            Margin="0,0,0,20" />
+                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
+                            x:Uid="BackupText"
+                            Text="backup"
+                            Tapped="NavigateToBackupSettings"
+                            Margin="0,0,0,20" />
+                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
+                            x:Uid="SettingCategory"
+                            Text="category"
+                            Tapped="NavigateToCategorySettings"
+                            Margin="0,0,0,20" />
+                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
+                            x:Uid="SettingTiles"
+                            Text="tiles"
+                            Tapped="NavigateToTilesSettings"
+                            Margin="0,0,0,20" />
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>
