@@ -1,16 +1,15 @@
-﻿#region
-
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
-
-#endregion
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Views
 {
     public sealed partial class SettingsRegion
     {
-        private readonly ObservableDictionary defaultViewModel = new ObservableDictionary();
-
         public SettingsRegion()
         {
             InitializeComponent();
@@ -18,7 +17,12 @@ namespace MoneyManager.Views
             NavigationHelper = new NavigationHelper(this);
         }
 
-        public NavigationHelper NavigationHelper { get; }
+        private NavigationHelper NavigationHelper { get; }
+
+        private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs routedEventArgs) {
+            ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().InvocationType = InvocationType.Setting;
+            ((Frame)Window.Current.Content).Navigate(typeof(SelectCurrency));
+        }
 
         #region NavigationHelper registration
 
