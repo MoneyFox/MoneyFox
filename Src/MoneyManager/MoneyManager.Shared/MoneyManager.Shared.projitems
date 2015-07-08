@@ -27,9 +27,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionStyleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StatisticDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\AboutUserControl.xaml.cs">
-      <DependentUpon>AboutUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>
@@ -94,10 +91,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Styles\ColorsDark.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\AboutUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
