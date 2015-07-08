@@ -627,4 +627,11 @@
   <data name="TwitterUrl" xml:space="preserve">
     <value>http://twitter.com/npadrutt</value>
   </data>
+  <data name="GithubRepository" xml:space="preserve">
+    <value>https://github.com/Apply-Solutions/MoneyManager</value>
+  </data>
+  <data name="OpenSourceNote.Text" xml:space="preserve">
+    <value>This programm is open source. We appreciate contribution!
+Visit Repository:</value>
+  </data>
 </root>
