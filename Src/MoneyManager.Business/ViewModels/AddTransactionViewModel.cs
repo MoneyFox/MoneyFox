@@ -69,6 +69,17 @@ namespace MoneyManager.Business.ViewModels
             }
         }
 
+        public DateTime Date
+        {
+            get
+            {
+                return IsEdit
+                    ? SelectedTransaction.Date
+                    : DateTime.Now;
+            }
+            set { SelectedTransaction.Date = value; }
+        }
+
         public string AmountString
         {
             get { return AmountWithoutExchange.ToString(); }

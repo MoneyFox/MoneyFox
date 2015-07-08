@@ -3,7 +3,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Business
 {
-    public class DatabaseLogic
+    public static class DatabaseLogic
     {
         public static void CreateDatabase()
         {

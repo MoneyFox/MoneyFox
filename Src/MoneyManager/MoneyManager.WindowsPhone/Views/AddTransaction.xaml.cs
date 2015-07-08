@@ -17,10 +17,6 @@ namespace MoneyManager.Views
         {
             InitializeComponent();
             NavigationHelper = new NavigationHelper(this);
-
-            if (!AddTransactionView.IsEdit) {
-                AddTransactionView.SelectedTransaction.Date = DateTime.Now;
-            }
         }
 
         private AddTransactionViewModel AddTransactionView => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
