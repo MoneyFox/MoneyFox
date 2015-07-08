@@ -16,12 +16,10 @@ namespace MoneyManager.Views
         public AddTransaction()
         {
             InitializeComponent();
-            NavigationHelper = new NavigationHelper(this);
+            new NavigationHelper(this);
         }
 
         private AddTransactionViewModel AddTransactionView => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
-
-        private NavigationHelper NavigationHelper { get; }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -64,12 +62,13 @@ namespace MoneyManager.Views
                 .Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
         }
 
-
+        //TODO: Handle in View Model
         private void DoneClick(object sender, RoutedEventArgs e)
         {
             AddTransactionView.Save();
         }
 
+        //TODO: Handle in View Model
         private void CancelClick(object sender, RoutedEventArgs e)
         {
             AddTransactionView.Cancel();
