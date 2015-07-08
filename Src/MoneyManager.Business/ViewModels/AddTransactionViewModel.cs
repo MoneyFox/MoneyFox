@@ -48,12 +48,10 @@ namespace MoneyManager.Business.ViewModels
         public FinancialTransaction SelectedTransaction
         {
             get { return _transactionRepository.Selected; }
-            set
-            {
-                _transactionRepository.Selected = value;
-                RaisePropertyChanged();
-            }
+            set { _transactionRepository.Selected = value; }
         }
+
+        public string DefaultCurrency => _settings.DefaultCurrency;
 
         public ObservableCollection<Account> AllAccounts => _accountRepository.Data;
 

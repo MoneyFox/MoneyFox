@@ -31,18 +31,18 @@
             <ComboBox Header="charged account"
                       x:Uid="ChargedAccount"
                       ItemTemplate="{StaticResource ComboBoxTemplate}"
-                      ItemsSource="{Binding AllAccounts, Mode=TwoWay}"
-                      SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay}">
+                      ItemsSource="{Binding AllAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             </ComboBox>
             <ComboBox Header="target account" x:Uid="TargetAccount"
                       ItemTemplate="{StaticResource ComboBoxTemplate}"
-                      ItemsSource="{Binding AllAccounts, Mode=TwoWay}"
-                      SelectedItem="{Binding SelectedTransaction.TargetAccount, Mode=TwoWay}"
+                      ItemsSource="{Binding AllAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelectedTransaction.TargetAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       Visibility="{Binding IsTransfer, Converter={StaticResource BooleanVisibilityConverter}}" />
             <Grid>
                 <TextBox
                     Text="{Binding AmountString, Mode=TwoWay, 
-                    Converter={StaticResource AmountConverter}, UpdateSourceTrigger=PropertyChanged}"
+                    Converter={StaticResource AmountConverter}, UpdateSourceTrigger=PropertyChanged }"
                     Header="amount"
                     InputScope="Number"
                     x:Name="TextBoxAmount"
@@ -70,7 +70,7 @@
                            Style="{StaticResource MenuItemSubSmallText}"
                            Margin="5,0,0,0"
                            TextAlignment="Right" />
-                <TextBlock Text="{Binding Settings.DefaultCurrency}"
+                <TextBlock Text="{Binding DefaultCurrency}"
                            Margin="5,0,0,0"
                            Style="{StaticResource MenuItemSubSmallText}" />
             </StackPanel>

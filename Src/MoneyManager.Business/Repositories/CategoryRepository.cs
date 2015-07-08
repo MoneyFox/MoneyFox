@@ -2,9 +2,11 @@
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using PropertyChanged;
 
 namespace MoneyManager.Business.Repositories
 {
+    [ImplementPropertyChanged]
     public class CategoryRepository : IRepository<Category>
     {
         private readonly IDataAccess<Category> _dataAccess;

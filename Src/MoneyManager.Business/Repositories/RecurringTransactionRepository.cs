@@ -2,9 +2,11 @@
 using System.IO;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using PropertyChanged;
 
 namespace MoneyManager.Business.Repositories
 {
+    [ImplementPropertyChanged]
     public class RecurringTransactionRepository : IRecurringTransactionRepository
     {
         private readonly IDataAccess<RecurringTransaction> _dataAccess;
