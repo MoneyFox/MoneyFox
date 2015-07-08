@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converter="using:MoneyManager.Converter"
+    xmlns:converter="using:MoneyManager.Business.Converter"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -34,7 +34,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-            <ScrollViewer Margin="12">
+            <ScrollViewer Margin="12,0, 12, 0">
                 <StackPanel>
                     <StackPanel>
                         <TextBlock Text="about"

@@ -15,16 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\AmountConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\BooleanToVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\CultureConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\DateTimeToDateTimeOffsetConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\NoteVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\RecurrenceConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\RevertVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\ThemedImageConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionAmountConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionStyleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StatisticDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\AccountListUserControl.xaml.cs">
@@ -32,9 +22,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\AddAccountUserControl.xaml.cs">
       <DependentUpon>AddAccountUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\AddTransactionUserControl.xaml.cs">
-      <DependentUpon>AddTransactionUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\BackupUserControl.xaml.cs">
       <DependentUpon>BackupUserControl.xaml</DependentUpon>
@@ -99,10 +86,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)UserControls\AddAccountUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\AddTransactionUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

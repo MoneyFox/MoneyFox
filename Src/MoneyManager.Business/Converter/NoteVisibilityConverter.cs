@@ -1,20 +1,21 @@
 ﻿using System;
-using System.Globalization;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace MoneyManager.Converter
+namespace MoneyManager.Business.Converter
 {
-    public class CultureConverter : IValueConverter
+    public class NoteVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var formatString = parameter as string;
-            if (!string.IsNullOrEmpty(formatString))
+            if (value == null)
             {
-                return string.Format(CultureInfo.CurrentCulture, formatString, value);
+                return Visibility.Collapsed;
             }
 
-            return value.ToString();
+            return string.IsNullOrEmpty(value.ToString())
+                ? Visibility.Collapsed
+                : Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

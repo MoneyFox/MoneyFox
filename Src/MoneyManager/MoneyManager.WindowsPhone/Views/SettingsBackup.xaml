@@ -4,13 +4,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:MoneyManager.UserControls"
-      xmlns:converter="using:MoneyManager.Converter"
+      xmlns:converter1="using:MoneyManager.Business.Converter"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       DataContext="{Binding BackupView, Source={StaticResource Locator}}">
 
     <Page.Resources>
-        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter1:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
     </Page.Resources>
 
     <Page.Transitions>

@@ -1,21 +1,21 @@
 ﻿using System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
+using MoneyManager.Business.Logic;
 
-namespace MoneyManager.Converter
+namespace MoneyManager.Business.Converter
 {
-    public class NoteVisibilityConverter : IValueConverter
+    public class ThemedImageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value == null)
+            var formatString = parameter as string;
+
+            if (string.IsNullOrEmpty(formatString))
             {
-                return Visibility.Collapsed;
+                formatString = value as string;
             }
 
-            return string.IsNullOrEmpty(value.ToString())
-                ? Visibility.Collapsed
-                : Visibility.Visible;
+            return ThemedImageConverterLogic.GetImage(formatString);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

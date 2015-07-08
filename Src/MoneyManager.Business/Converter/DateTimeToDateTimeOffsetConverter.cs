@@ -1,7 +1,7 @@
 using System;
 using Windows.UI.Xaml.Data;
 
-namespace MoneyManager.Converter
+namespace MoneyManager.Business.Converter
 {
     public class DateTimeToDateTimeOffsetConverter : IValueConverter
     {
@@ -11,7 +11,7 @@ namespace MoneyManager.Converter
             {
                 var date = (DateTime) value;
                 return new DateTimeOffset(date);
-            } catch (Exception)
+            } catch (ArgumentOutOfRangeException)
             {
                 return DateTimeOffset.MinValue;
             }

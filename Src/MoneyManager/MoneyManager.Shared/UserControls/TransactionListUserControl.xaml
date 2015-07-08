@@ -4,8 +4,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:qKit="using:QKit"
-             xmlns:converter="using:MoneyManager.Converter"
              xmlns:userControls="using:MoneyManager.UserControls"
+             xmlns:converter1="using:MoneyManager.Business.Converter"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -14,13 +14,13 @@
              Unloaded="UnloadPage">
 
     <UserControl.Resources>
-        <converter:AmountConverter x:Key="AmountConverter" />
-        <converter:CultureConverter x:Key="FormatConverter" />
-        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
-        <converter:TransactionAmountConverter x:Key="TransactionAmountConverter" />
-        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
-        <converter:TransactionStyleConverter x:Key="TransactionStyleConverter" />
+        <converter1:AmountConverter x:Key="AmountConverter" />
+        <converter1:CultureConverter x:Key="FormatConverter" />
+        <converter1:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter1:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
+        <converter1:TransactionAmountConverter x:Key="TransactionAmountConverter" />
+        <converter1:ThemedImageConverter x:Key="ThemedImageConverter" />
+        <converter1:TransactionStyleConverter x:Key="TransactionStyleConverter" />
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"

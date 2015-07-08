@@ -1,9 +1,13 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using System.Globalization;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Views
 {
@@ -13,14 +17,15 @@ namespace MoneyManager.Views
         {
             InitializeComponent();
             NavigationHelper = new NavigationHelper(this);
+
+            if (!AddTransactionView.IsEdit) {
+                AddTransactionView.SelectedTransaction.Date = DateTime.Now;
+            }
         }
 
-        private AddTransactionViewModel AddTransactionView
-        {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
+        private AddTransactionViewModel AddTransactionView => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
 
-        public NavigationHelper NavigationHelper { get; }
+        private NavigationHelper NavigationHelper { get; }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -31,6 +36,38 @@ namespace MoneyManager.Views
 
             base.OnNavigatedTo(e);
         }
+
+        private void RemoveZeroOnFocus(object sender, RoutedEventArgs e) {
+            if (TextBoxAmount.Text == "0") {
+                TextBoxAmount.Text = string.Empty;
+            }
+
+            TextBoxAmount.SelectAll();
+        }
+
+        private void AddZeroIfEmpty(object sender, RoutedEventArgs e) {
+            if (TextBoxAmount.Text == string.Empty) {
+                TextBoxAmount.Text = "0";
+            }
+        }
+
+        private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs routedEventArgs) {
+            ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().InvocationType = InvocationType.Transaction;
+            ((Frame)Window.Current.Content).Navigate(typeof(SelectCurrency));
+        }
+
+        private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e) {
+            if (e.OriginalSource == null) {
+                return;
+            }
+
+            TextBoxAmount.Text = e.OriginalSource.ToString()
+                .Replace(",", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
+
+            TextBoxAmount.Text = e.OriginalSource.ToString()
+                .Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
+        }
+
 
         private void DoneClick(object sender, RoutedEventArgs e)
         {

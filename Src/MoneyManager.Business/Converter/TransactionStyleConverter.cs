@@ -1,21 +1,23 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
-using MoneyManager.Business.Logic;
+using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Converter
+namespace MoneyManager.Business.Converter
 {
-    public class ThemedImageConverter : IValueConverter
+    public class TransactionStyleConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var formatString = parameter as string;
+            var transaction = value as FinancialTransaction;
 
-            if (string.IsNullOrEmpty(formatString))
+            if (transaction == null)
             {
-                formatString = value as string;
+                return 0;
             }
 
-            return ThemedImageConverterLogic.GetImage(formatString);
+            return transaction.Cleared
+                ? 1
+                : 0.7;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

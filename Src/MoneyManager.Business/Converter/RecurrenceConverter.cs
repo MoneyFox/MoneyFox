@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Data;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Converter
+namespace MoneyManager.Business.Converter
 {
     public class RecurrenceConverter : IValueConverter
     {

@@ -1,23 +1,20 @@
 ﻿using System;
+using System.Globalization;
 using Windows.UI.Xaml.Data;
-using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Converter
+namespace MoneyManager.Business.Converter
 {
-    public class TransactionStyleConverter : IValueConverter
+    public class CultureConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var transaction = value as FinancialTransaction;
-
-            if (transaction == null)
+            var formatString = parameter as string;
+            if (!string.IsNullOrEmpty(formatString))
             {
-                return 0;
+                return string.Format(CultureInfo.CurrentCulture, formatString, value);
             }
 
-            return transaction.Cleared
-                ? 1
-                : 0.7;
+            return value.ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

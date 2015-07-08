@@ -5,14 +5,12 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Converter
+namespace MoneyManager.Business.Converter
 {
     public class TransactionAmountConverter : IValueConverter
     {
-        private Account selectedAccount
-        {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Selected; }
-        }
+        //TODO: remove this and refactor with converter parameter
+        private Account selectedAccount => ServiceLocator.Current.GetInstance<IAccountRepository>().Selected;
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {

@@ -57,6 +57,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Backup.cs" />
+    <Compile Include="Converter\AmountConverter.cs" />
+    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converter\CultureConverter.cs" />
+    <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="Converter\NoteVisibilityConverter.cs" />
+    <Compile Include="Converter\RecurrenceConverter.cs" />
+    <Compile Include="Converter\RevertVisibilityConverter.cs" />
+    <Compile Include="Converter\ThemedImageConverter.cs" />
+    <Compile Include="Converter\TransactionAmountConverter.cs" />
+    <Compile Include="Converter\TransactionStyleConverter.cs" />
     <Compile Include="DatabaseLogic.cs" />
     <Compile Include="Logic\AccountLogic.cs" />
     <Compile Include="Logic\CategoryLogic.cs" />
