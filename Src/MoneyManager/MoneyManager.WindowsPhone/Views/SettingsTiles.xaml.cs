@@ -1,9 +1,12 @@
-﻿#region
-
+﻿using System;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
-
-#endregion
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Views
 {
@@ -16,12 +19,9 @@ namespace MoneyManager.Views
             NavigationHelper = new NavigationHelper(this);
         }
 
-        public NavigationHelper NavigationHelper { get; }
+        private NavigationHelper NavigationHelper { get; }
 
-        public TileSettingsViewModel TileSettingsView
-        {
-            get { return ServiceLocator.Current.GetInstance<TileSettingsViewModel>(); }
-        }
+        private TileSettingsViewModel TileSettingsView => ServiceLocator.Current.GetInstance<TileSettingsViewModel>();
 
         private void CreateIncomeTile(object sender, RoutedEventArgs e)
         {
