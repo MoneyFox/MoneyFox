@@ -13,20 +13,11 @@ namespace MoneyManager.Business.ViewModels
     [ImplementPropertyChanged]
     public class TransactionListViewModel : ViewModelBase
     {
-        private ITransactionRepository transactionRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
-        }
+        private ITransactionRepository transactionRepository => ServiceLocator.Current.GetInstance<ITransactionRepository>();
 
-        private IAccountRepository AccountRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
-        }
+        private IAccountRepository AccountRepository => ServiceLocator.Current.GetInstance<IAccountRepository>();
 
-        public string Title
-        {
-            get { return AccountRepository.Selected.Name; }
-        }
+        public string Title => AccountRepository.Selected.Name;
 
         public List<JumpListGroup<FinancialTransaction>> RelatedTransactions { set; get; }
 

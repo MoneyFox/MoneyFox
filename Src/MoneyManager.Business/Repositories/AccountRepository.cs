@@ -3,9 +3,11 @@ using MoneyManager.Business.Logic;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using PropertyChanged;
 
 namespace MoneyManager.Business.Repositories
 {
+    [ImplementPropertyChanged]
     public class AccountRepository : IAccountRepository
     {
         private readonly IDataAccess<Account> _dataAccess;

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using GalaSoft.MvvmLight;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Manager;
 using MoneyManager.DataAccess.DataAccess;
@@ -16,17 +17,15 @@ using PropertyChanged;
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
-    public class AddTransactionViewModel
+    public class AddTransactionViewModel : ViewModelBase
     {
         private readonly IAccountRepository _accountRepository;
-        private readonly IRepository<Category> _categoryRepository;
         private readonly CurrencyManager _currencyManager;
         private readonly SettingDataAccess _settings;
         private readonly ITransactionRepository _transactionRepository;
 
         public AddTransactionViewModel(ITransactionRepository transactionRepository,
             IAccountRepository accountRepository,
-            IRepository<Category> categoryRepository,
             CurrencyManager currencyManager,
             SettingDataAccess settings)
         {
@@ -34,7 +33,7 @@ namespace MoneyManager.Business.ViewModels
             _currencyManager = currencyManager;
             _settings = settings;
             _accountRepository = accountRepository;
-            _categoryRepository = categoryRepository;
+            
             IsNavigationBlocked = true;
         }
 
@@ -52,15 +51,9 @@ namespace MoneyManager.Business.ViewModels
             set { _transactionRepository.Selected = value; }
         }
 
-        public ObservableCollection<Account> AllAccounts
-        {
-            get { return _accountRepository.Data; }
-        }
+        public string DefaultCurrency => _settings.DefaultCurrency;
 
-        public ObservableCollection<Category> AllCategories
-        {
-            get { return _categoryRepository.Data; }
-        }
+        public ObservableCollection<Account> AllAccounts => _accountRepository.Data;
 
         public string Title
         {
@@ -89,7 +82,7 @@ namespace MoneyManager.Business.ViewModels
             }
         }
 
-        public double AmountWithoutExchange
+        private double AmountWithoutExchange
         {
             get { return _transactionRepository.Selected.AmountWithoutExchange; }
             set
@@ -117,7 +110,7 @@ namespace MoneyManager.Business.ViewModels
             CalculateNewAmount(AmountWithoutExchange);
         }
 
-        public async Task LoadCurrencyRatio()
+        private async Task LoadCurrencyRatio()
         {
             _transactionRepository.Selected.ExchangeRatio =
                 await

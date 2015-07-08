@@ -5,9 +5,11 @@ using System.IO;
 using System.Linq;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using PropertyChanged;
 
 namespace MoneyManager.Business.Repositories
 {
+    [ImplementPropertyChanged]
     public class TransactionRepository : ITransactionRepository
     {
         private readonly IDataAccess<FinancialTransaction> _dataAccess;
