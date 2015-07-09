@@ -73,9 +73,11 @@ namespace MoneyManager.Business.ViewModels
         {
             get
             {
-                return IsEdit
-                    ? SelectedTransaction.Date
-                    : DateTime.Now;
+                if (!IsEdit)
+                {
+                    SelectedTransaction.Date = DateTime.Now;
+                }
+                return SelectedTransaction.Date;
             }
             set { SelectedTransaction.Date = value; }
         }

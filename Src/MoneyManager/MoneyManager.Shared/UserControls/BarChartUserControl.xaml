@@ -22,10 +22,7 @@
                                    Margin="0"
                                    ItemsSource="{Binding MonthlyCashFlow}"
                                    IndependentValuePath="Category"
-                                   DependentValuePath="Value"
-                                   IsSelectionEnabled="True" />
-
+                                   DependentValuePath="Value" />
         </charting:Chart>
-
     </Grid>
 </UserControl>

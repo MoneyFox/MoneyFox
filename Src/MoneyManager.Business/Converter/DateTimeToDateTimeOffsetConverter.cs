@@ -9,7 +9,7 @@ namespace MoneyManager.Business.Converter
         {
             try
             {
-                var date = (DateTime) value;
+                var date = System.Convert.ToDateTime(value);
                 return new DateTimeOffset(date);
             } catch (ArgumentOutOfRangeException)
             {
