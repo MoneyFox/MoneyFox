@@ -1,14 +1,10 @@
-﻿#region
-
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
-
-#endregion
 
 namespace MoneyManager.Views
 {
@@ -20,30 +16,48 @@ namespace MoneyManager.Views
             NavigationHelper = new NavigationHelper(this);
         }
 
-        public Account SelectedAccount
-        {
-            get { return ServiceLocator.Current.GetInstance<AddAccountViewModel>().SelectedAccount; }
-        }
+        private AddAccountViewModel viewModel => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
 
-        private void DoneClick(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(SelectedAccount.Name))
-            {
-                SelectedAccount.Name = Translation.GetTranslation("NoNamePlaceholderLabel");
+        private void RemoveZeroOnFocus(object sender, RoutedEventArgs e) {
+            if (TextBoxCurrentBalance.Text == "0") {
+                TextBoxCurrentBalance.Text = string.Empty;
             }
 
-            ServiceLocator.Current.GetInstance<AddAccountViewModel>().Save();
+            TextBoxCurrentBalance.SelectAll();
+        }
+
+        private void AddZeroIfEmpty(object sender, RoutedEventArgs e) {
+            if (TextBoxCurrentBalance.Text == string.Empty) {
+                TextBoxCurrentBalance.Text = "0";
+            }
+        }
+
+        //TODO: Move to ViewModel
+        private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs e) {
+            ((Frame)Window.Current.Content).Navigate(typeof(SelectCurrency));
+        }
+
+        //TODO: Move to ViewModel
+        private void DoneClick(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(viewModel.SelectedAccount.Name))
+            {
+                viewModel.SelectedAccount.Name = Translation.GetTranslation("NoNamePlaceholderLabel");
+            }
+
+            viewModel.Save();
             ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
         }
 
+        //TODO: Move to ViewModel
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            ServiceLocator.Current.GetInstance<AddAccountViewModel>().Cancel();
+            viewModel.Cancel();
         }
 
         #region NavigationHelper registration
 
-        public NavigationHelper NavigationHelper { get; }
+        private NavigationHelper NavigationHelper { get; }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

@@ -14,6 +14,25 @@ namespace MoneyManager.Business.Logic
 {
     public class TransactionLogic
     {
+        #region Properties
+
+        private static IAccountRepository AccountRepository => ServiceLocator.Current.GetInstance<IAccountRepository>();
+
+        private static ITransactionRepository TransactionRepository => ServiceLocator.Current.GetInstance<ITransactionRepository>();
+
+        private static FinancialTransaction SelectedTransaction {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected; }
+            set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
+        }
+
+        private static IRecurringTransactionRepository RecurringTransactionRepository => ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>();
+
+        private static AddTransactionViewModel AddTransactionView => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
+
+        private static SettingDataAccess Settings => ServiceLocator.Current.GetInstance<SettingDataAccess>();
+
+        #endregion Properties
+
         public static async Task SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
             bool skipRecurring = false)
         {
@@ -58,6 +77,9 @@ namespace MoneyManager.Business.Logic
                 AddTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
             }
 
+            //Ultra dirty monkey patch for a problem with displaying the selected account.
+            //TODO: Do this in a nicer way!
+            transaction.ChargedAccount = AccountRepository.Data.First(x => x.Id == transaction.ChargedAccountId);
             TransactionRepository.Selected = transaction;
         }
 
@@ -163,7 +185,7 @@ namespace MoneyManager.Business.Logic
                 if (AccountRepository.Data.Any() && Settings.DefaultAccount != -1)
                 {
                     SelectedTransaction.ChargedAccount =
-                        AccountRepository.Data.First(x => x.Id == Settings.DefaultAccount);
+                        AccountRepository.Data.FirstOrDefault(x => x.Id == Settings.DefaultAccount);
                 }
 
                 if (AccountRepository.Selected != null)
@@ -190,40 +212,5 @@ namespace MoneyManager.Business.Logic
                 }
             }
         }
-
-        #region Properties
-
-        private static IAccountRepository AccountRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
-        }
-
-        private static ITransactionRepository TransactionRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
-        }
-
-        private static FinancialTransaction SelectedTransaction
-        {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected; }
-            set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
-        }
-
-        private static IRecurringTransactionRepository RecurringTransactionRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>(); }
-        }
-
-        private static AddTransactionViewModel AddTransactionView
-        {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
-
-        private static SettingDataAccess Settings
-        {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
-
-        #endregion Properties
     }
 }

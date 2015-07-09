@@ -19,8 +19,9 @@
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>80780831</NuGetPackageImportStamp>
     <AppxBundle>Always</AppxBundle>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -86,6 +87,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
@@ -97,10 +101,40 @@
     <Compile Include="Dialogs\SelectStatisticDialog.xaml.cs">
       <DependentUpon>SelectStatisticDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Src\TileHelper.cs" />
+    <Compile Include="UserControls\AccountListUserControl.xaml.cs">
+      <DependentUpon>AccountListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BalanceUserControl.xaml.cs">
+      <DependentUpon>BalanceUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BarChartUserControl.xaml.cs">
+      <DependentUpon>BarChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CategorySummaryUserControl.xaml.cs">
+      <DependentUpon>CategorySummaryUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PieChartUserControl.xaml.cs">
+      <DependentUpon>PieChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SelectCategoryListUserControl.xaml.cs">
+      <DependentUpon>SelectCategoryListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SelectCategoryUserControl.xaml.cs">
+      <DependentUpon>SelectCategoryUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SelectCurrencyUserControl.xaml.cs">
+      <DependentUpon>SelectCurrencyUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TransactionListUserControl.xaml.cs">
+      <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Src\UserNotification.cs" />
+    <Compile Include="Src\ViewModelLocator.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
@@ -220,8 +254,14 @@
     <Content Include="ApplicationInsights.config" />
     <None Include="app.config" />
     <None Include="Package.StoreAssociation.xml" />
+    <PRIResource Include="Strings\en\Resources.resw" />
+    <PRIResource Include="Strings\de\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
     <Page Include="Dialogs\SearchDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,9 +270,57 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="Views\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\AppStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ColorsDark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ColorsLight.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\AccountListUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\BalanceUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\BarChartUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\CategorySummaryUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\PieChartUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SelectCategoryListUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SelectCategoryUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SelectCurrencyUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TransactionListUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\About.xaml">
       <SubType>Designer</SubType>
@@ -389,7 +477,6 @@
   <PropertyGroup Condition=" '$(TargetPlatformIdentifier)' == '' ">
     <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
   </PropertyGroup>
-  <Import Project="..\MoneyManager.Shared\MoneyManager.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

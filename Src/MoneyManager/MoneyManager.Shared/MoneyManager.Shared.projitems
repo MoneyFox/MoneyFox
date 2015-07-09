@@ -15,32 +15,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\AmountConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\BooleanToVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\CultureConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\DateTimeToDateTimeOffsetConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\NoteVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\RecurrenceConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\RevertVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\ThemedImageConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionAmountConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converter\TransactionStyleConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)StatisticDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\AboutUserControl.xaml.cs">
-      <DependentUpon>AboutUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\AddAccountUserControl.xaml.cs">
-      <DependentUpon>AddAccountUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\AddTransactionUserControl.xaml.cs">
-      <DependentUpon>AddTransactionUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\BackupUserControl.xaml.cs">
-      <DependentUpon>BackupUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\BarChartUserControl.xaml.cs">
       <DependentUpon>BarChartUserControl.xaml</DependentUpon>
@@ -59,21 +36,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\SelectCurrencyUserControl.xaml.cs">
       <DependentUpon>SelectCurrencyUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SelectStatisticUserControl.xaml.cs">
-      <DependentUpon>SelectStatisticUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsDefaultsUserControl.xaml.cs">
-      <DependentUpon>SettingsDefaultsUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml.cs">
-      <DependentUpon>SettingsOverviewUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsRegionUserControl.xaml.cs">
-      <DependentUpon>SettingsRegionUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)UserControls\SettingsTilesUserControl.xaml.cs">
-      <DependentUpon>SettingsTilesUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
@@ -97,23 +59,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\AboutUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)UserControls\AccountListUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\AddAccountUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\AddTransactionUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\BackupUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -138,26 +84,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)UserControls\SelectCurrencyUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\SelectStatisticUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsDefaultsUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsOverviewUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsRegionUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControls\SettingsTilesUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
