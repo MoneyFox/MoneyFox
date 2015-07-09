@@ -1,22 +1,24 @@
 # Money Fox
 
-This is a simple and easy to use budget tool for Windows Phone 8.1 RT.
+We want a budget tool which is for everyone and keeps up the motivation to track you money. To reach this goal we try to make it as easy to use as possible and try to implement each feature as good as possible.
+Feel free to create issues or even better contribute code.
 
-Store link: https://www.windowsphone.com/en-us/store/app/money-fox/9d806f03-d2a3-48f6-91cc-bd97d919e39c
+This app is currently available for Windows Phone 8.1. There are plans to port it over to Windows 10 Mobile as well as desktop.
+
+Store link: 
+https://www.windowsphone.com/en-us/store/app/money-fox/9d806f03-d2a3-48f6-91cc-bd97d919e39c
 
 # Contributing
 
 Contributions are welcome and will be fully credited.
 
-To Contribute to this project please fork it and create a pull request with your changes. All work is done in the master branch. Once we release an update I will create a branch and afterwards a tag of it.
+To Contribute please create a pull request with your changes. All work is done in the master branch. Once we release an update we create a branch and afterwards a tag of it.
 
 ## Pull Request ##
 
-- Please create feature branches for the pull requests. This ensures you don't block yourself while waiting that the pull requests is merged.
-
 - Please add unit tests where possible for your code and ensure the existing unit tests are all still running
 
-- Please ensure you add code documentations at least to your public methods via the /// annotation.
+- Please ensure you add code documentations at least to your public methods
 
 # Dependencies
 
