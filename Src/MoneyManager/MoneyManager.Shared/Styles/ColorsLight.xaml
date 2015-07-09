@@ -10,7 +10,7 @@
             <Color x:Key="AppListItemForegroundColor">#ededed</Color>
 
             <!-- Brushes -->
-            <SolidColorBrush x:Name="ListItemSolidColorBrush"
+            <SolidColorBrush x:Key="ListItemSolidColorBrush"
                              Color="{StaticResource AppListItemForegroundColor}" />
 
             <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
