@@ -77,19 +77,17 @@
                                 HorizontalAlignment="Right">
                         <Grid HorizontalAlignment="Right"
                               Visibility="{Binding IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Image
-                                Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
-                                DataContext="/Images/{0}/transfer.png"
-                                Width="30"
-                                Height="30" />
+                            <Image Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
+                                   DataContext="/Images/{0}/transfer.png"
+                                   Width="30"
+                                   Height="30" />
                         </Grid>
                         <Grid HorizontalAlignment="Right"
                               Visibility="{Binding IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Image
-                                Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
-                                DataContext="/Images/{0}/repeat.png"
-                                Width="30"
-                                Height="30" />
+                            <Image Source="{Binding ConverterParameter={StaticResource PhoneBackgroundColor}, Converter={StaticResource ThemedImageConverter}}"
+                                   DataContext="/Images/{0}/repeat.png"
+                                   Width="30"
+                                   Height="30" />
                         </Grid>
                     </StackPanel>
                 </Grid>
