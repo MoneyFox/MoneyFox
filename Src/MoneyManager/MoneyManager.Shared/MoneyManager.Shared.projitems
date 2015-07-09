@@ -15,7 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)StatisticDataAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserControls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>

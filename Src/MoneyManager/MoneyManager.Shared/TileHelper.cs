@@ -7,7 +7,7 @@ using MoneyManager.Views;
 
 namespace MoneyManager
 {
-    public class TileHelper
+    public static class TileHelper
     {
         public static void DoNavigation(string tileId)
         {
