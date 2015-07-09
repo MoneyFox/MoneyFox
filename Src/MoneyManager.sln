@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoneyManager", "MoneyManager", "{40D4888B-FCFE-4C53-8B5C-1082881C3571}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MoneyManager.Shared", "MoneyManager\MoneyManager.Shared\MoneyManager.Shared.shproj", "{C2B4DF67-ABFD-4A73-A0C6-471516C01ECA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.WindowsPhone", "MoneyManager\MoneyManager.WindowsPhone\MoneyManager.WindowsPhone.csproj", "{01C92D11-9B98-4FF3-BF14-89917369AB92}"
 EndProject
@@ -33,10 +31,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Business.WindowsPhone.Test", "MoneyManager.Business.WindowsPhone.Test\MoneyManager.Business.WindowsPhone.Test.csproj", "{529E9009-6BE9-4630-84E4-0288A9CE4083}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		MoneyManager\MoneyManager.Shared\MoneyManager.Shared.projitems*{01c92d11-9b98-4ff3-bf14-89917369ab92}*SharedItemsImports = 4
-		MoneyManager\MoneyManager.Shared\MoneyManager.Shared.projitems*{c2b4df67-abfd-4a73-a0c6-471516c01eca}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
@@ -198,7 +192,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C2B4DF67-ABFD-4A73-A0C6-471516C01ECA} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
 		{01C92D11-9B98-4FF3-BF14-89917369AB92} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
 		{44E9295B-ACB7-458B-99A2-C8F1A941F87A} = {B7FFA231-24AE-4D98-8063-2A905CFDD8AA}
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}

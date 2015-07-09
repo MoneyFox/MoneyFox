@@ -4,9 +4,8 @@ using Windows.UI.Xaml.Navigation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Common;
 using MoneyManager.Foundation;
-using MoneyManager.Views;
 
-namespace MoneyManager
+namespace MoneyManager.Views
 {
     public sealed partial class MainPage
     {

@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.ApplicationInsights.Extensibility;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
+using MoneyManager.Views;
 
 namespace MoneyManager
 {
