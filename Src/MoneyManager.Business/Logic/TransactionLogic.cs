@@ -185,7 +185,7 @@ namespace MoneyManager.Business.Logic
                 if (AccountRepository.Data.Any() && Settings.DefaultAccount != -1)
                 {
                     SelectedTransaction.ChargedAccount =
-                        AccountRepository.Data.First(x => x.Id == Settings.DefaultAccount);
+                        AccountRepository.Data.FirstOrDefault(x => x.Id == Settings.DefaultAccount);
                 }
 
                 if (AccountRepository.Selected != null)

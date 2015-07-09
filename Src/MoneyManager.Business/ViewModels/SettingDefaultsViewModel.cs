@@ -9,20 +9,11 @@ namespace MoneyManager.Business.ViewModels
 {
     public class SettingDefaultsViewModel
     {
-        public ObservableCollection<Account> AllAccounts
-        {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Data; }
-        }
+        public ObservableCollection<Account> AllAccounts => ServiceLocator.Current.GetInstance<IAccountRepository>().Data;
 
-        private SettingDataAccess settings
-        {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
+        private SettingDataAccess settings => ServiceLocator.Current.GetInstance<SettingDataAccess>();
 
-        private IAccountRepository AccountRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
-        }
+        private IAccountRepository AccountRepository => ServiceLocator.Current.GetInstance<IAccountRepository>();
 
         public Account DefaultAccount
         {
@@ -30,7 +21,7 @@ namespace MoneyManager.Business.ViewModels
             {
                 return settings.DefaultAccount == -1
                     ? AccountRepository.Selected
-                    : AllAccounts.First(x => x.Id == settings.DefaultAccount);
+                    : AllAccounts.FirstOrDefault(x => x.Id == settings.DefaultAccount);
             }
             set { ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultAccount = value.Id; }
         }
