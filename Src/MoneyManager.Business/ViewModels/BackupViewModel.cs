@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.Popups;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Business.ViewModels
@@ -64,6 +65,7 @@ namespace MoneyManager.Business.ViewModels
 
             IsLoading = true;
             await _backup.RestoreBackup();
+
             await ShowCompletionNote();
             IsLoading = false;
         }
