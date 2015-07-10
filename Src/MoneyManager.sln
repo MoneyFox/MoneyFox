@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoneyManager", "MoneyManager", "{40D4888B-FCFE-4C53-8B5C-1082881C3571}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.WindowsPhone", "MoneyManager\MoneyManager.WindowsPhone\MoneyManager.WindowsPhone.csproj", "{01C92D11-9B98-4FF3-BF14-89917369AB92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.WindowsPhone", "MoneyManager.WindowsPhone\MoneyManager.WindowsPhone.csproj", "{01C92D11-9B98-4FF3-BF14-89917369AB92}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E43E3146-04DB-495E-AB4C-39D107DE8456}"
 	ProjectSection(SolutionItems) = preProject
