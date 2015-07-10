@@ -71,5 +71,13 @@ namespace MoneyManager.Business.Repositories
             _data.Remove(item);
             _dataAccess.Delete(item);
         }
+
+        /// <summary>
+        ///     Loads all categories from the database to the data collection
+        /// </summary>
+        public void Load()
+        {
+            Data = new ObservableCollection<Category>(_dataAccess.LoadList());
+        }
     }
 }

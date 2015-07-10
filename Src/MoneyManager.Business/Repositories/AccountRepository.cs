@@ -74,5 +74,13 @@ namespace MoneyManager.Business.Repositories
 
             TransactionLogic.DeleteAssociatedTransactionsFromDatabase(item);
         }
+
+        /// <summary>
+        ///     Loads all accounts from the database to the data collection
+        /// </summary>
+        public void Load()
+        {
+            Data = new ObservableCollection<Account>(_dataAccess.LoadList());
+        }
     }
 }

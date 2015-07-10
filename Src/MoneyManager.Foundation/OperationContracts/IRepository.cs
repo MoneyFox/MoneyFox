@@ -25,5 +25,10 @@ namespace MoneyManager.Foundation.OperationContracts
         /// </summary>
         /// <param name="item">Item.</param>
         void Delete(T item);
+
+        /// <summary>
+        ///     Loads the data from the database and fills it to the data collection.
+        /// </summary>
+        void Load();
     }
 }

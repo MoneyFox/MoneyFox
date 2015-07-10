@@ -23,16 +23,16 @@ namespace MoneyManager.Business.Manager
 
         public void ReloadData()
         {
-            _accountRepository.Data = null;
+            _accountRepository.Load();
             _accountRepository.Selected = null;
 
-            _transactionRepository.Data = null;
+            _transactionRepository.Load();
             _transactionRepository.Selected = null;
 
-            _recurringTransactionRepository.Data = null;
+            _recurringTransactionRepository.Load();
             _recurringTransactionRepository.Selected = null;
 
-            _categoryRepository.Data = null;
+            _categoryRepository.Load();
             _categoryRepository.Selected = null;
         }
     }

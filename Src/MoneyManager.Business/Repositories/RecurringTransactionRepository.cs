@@ -71,5 +71,12 @@ namespace MoneyManager.Business.Repositories
             _data.Remove(item);
             _dataAccess.Delete(item);
         }
+
+        /// <summary>
+        ///     Loads all recurring transactions from the database to the data collection
+        /// </summary>
+        public void Load() {
+            Data = new ObservableCollection<RecurringTransaction>(_dataAccess.LoadList());
+        }
     }
 }

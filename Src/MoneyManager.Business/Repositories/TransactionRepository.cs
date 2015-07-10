@@ -76,6 +76,13 @@ namespace MoneyManager.Business.Repositories
         }
 
         /// <summary>
+        ///     Loads all transactions from the database to the data collection
+        /// </summary>
+        public void Load() {
+            Data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList());
+        }
+
+        /// <summary>
         ///     Returns all transaction with date before today
         /// </summary>
         /// <returns>list of uncleared transactions</returns>
