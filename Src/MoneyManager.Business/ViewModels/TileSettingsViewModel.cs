@@ -34,26 +34,17 @@ namespace MoneyManager.Business.ViewModels
         /// <summary>
         ///     Creates an IncomeTile object
         /// </summary>
-        public IncomeTile IncomeTile
-        {
-            get { return new IncomeTile(); }
-        }
+        public IncomeTile IncomeTile => new IncomeTile();
 
         /// <summary>
         ///     Creates an SpendingTile object
         /// </summary>
-        public SpendingTile SpendingTile
-        {
-            get { return new SpendingTile(); }
-        }
+        public SpendingTile SpendingTile => new SpendingTile();
 
         /// <summary>
         ///     Creates a TransferTile Object
         /// </summary>
-        public TransferTile TransferTile
-        {
-            get { return new TransferTile(); }
-        }
+        public TransferTile TransferTile => new TransferTile();
 
         private void SetValue(bool value)
         {

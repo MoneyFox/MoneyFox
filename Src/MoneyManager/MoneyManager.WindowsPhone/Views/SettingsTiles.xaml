@@ -6,7 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converter="using:MoneyManager.Business.Converter"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding TileSettingsView, Source={StaticResource Locator}}">
 
     <Page.Resources>
         <converter:RevertVisibilityConverter x:Key="RevertVisibilityConverter" />
