@@ -58,56 +58,94 @@
 		              Stroke="{StaticResource PhoneAccentBrush}"
 		              StrokeThickness="2" />
 
-		        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-		            <Grid Background="{StaticResource PhoneAccentBrush}">
-		                <Image Source="/Images/incomeTileIcon.png"
-		                       Width="50" Height="50" />
-		            </Grid>
-		            <Button Content="create income tile" VerticalAlignment="Center"
-		                    x:Uid="AddIncomeTile"
-		                    Margin="20,0,0,0" Click="CreateIncomeTile"
-		                    Visibility="{Binding Visibility, ElementName=ButtonRemoveIncomeTile, Converter={StaticResource RevertVisibilityConverter}}"
-		                    Width="260" />
-		            <Button Content="remove income tile" x:Uid="RemoveIncomeTile"
-		                    VerticalAlignment="Center"
-		                    Click="RemoveIncomeTile" x:Name="ButtonRemoveIncomeTile"
-		                    Visibility="{Binding IncomeTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}"
-		                    Margin="40,0,0,0" Width="200" />
-		        </StackPanel>
+                <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*" />
+                        <ColumnDefinition Width="301*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="{StaticResource PhoneAccentBrush}"
+                          Grid.Column="0"
+                          VerticalAlignment="Stretch"
+                          HorizontalAlignment="Stretch">
+                        <Image Source="/Images/incomeTileIcon.png"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Stretch" />
+                    </Grid>
+                    <Button Content="create income tile"
+                            x:Uid="AddIncomeTile"
+                            Grid.Column="1"
+                            Click="CreateIncomeTile"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Visibility="{Binding Visibility, ElementName=ButtonRemoveIncomeTile, Converter={StaticResource RevertVisibilityConverter}}"
+                            Margin="12,0,0,0" />
+                    <Button Content="remove income tile"
+                            x:Uid="RemoveIncomeTile"
+                            Click="RemoveIncomeTile"
+                            x:Name="ButtonRemoveIncomeTile"
+                            Visibility="{Binding IncomeTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Grid.Column="1"
+                            Margin="12,0,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center" />
+                </Grid>
 
-		        <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-		            <Grid Background="{StaticResource PhoneAccentBrush}">
+                <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*" />
+                        <ColumnDefinition Width="301*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="{StaticResource PhoneAccentBrush}">
 		                <Image Source="/Images/spendingTileIcon.png"
-		                       Width="50" Height="50" />
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Stretch" />
 		            </Grid>
-		            <Button Content="create spending tile" x:Uid="AddSpendingTile"
-		                    VerticalAlignment="Center"
-		                    Margin="20,0,0,0" Click="CreateSpendingTile"
-		                    Visibility="{Binding Visibility, ElementName=ButtonRemoveSpendingTile, Converter={StaticResource RevertVisibilityConverter}}"
-		                    Width="260" />
-		            <Button Content="remove spending tile" x:Uid="RemoveSpendingTile"
-		                    VerticalAlignment="Center"
-		                    Click="RemoveSpendingTile" x:Name="ButtonRemoveSpendingTile"
-		                    Visibility="{Binding SpendingTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}"
-		                    Margin="40,0,0,0" Width="200" />
-		        </StackPanel>
+                    <Button Content="create spending tile"
+                            x:Uid="AddSpendingTile"
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Stretch"
+                            Margin="12,0,0,0"
+                            Click="CreateSpendingTile"
+                            Visibility="{Binding Visibility, ElementName=ButtonRemoveSpendingTile, Converter={StaticResource RevertVisibilityConverter}}" />
+                    <Button Content="remove spending tile" 
+                            x:Uid="RemoveSpendingTile"
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Stretch"
+                            Margin="12,0,0,0"
+                            Click="RemoveSpendingTile" x:Name="ButtonRemoveSpendingTile"
+		                    Visibility="{Binding SpendingTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </Grid>
 
-		        <StackPanel Orientation="Horizontal">
-		            <Grid Background="{StaticResource PhoneAccentBrush}">
+                <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*" />
+                        <ColumnDefinition Width="301*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="{StaticResource PhoneAccentBrush}">
 		                <Image Source="/Images/transferTileIcon.png"
-		                       Width="50" Height="50" />
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Stretch" />
 		            </Grid>
-		            <Button Content="create transfer tile" x:Uid="AddTransferTile"
-		                    VerticalAlignment="Center"
-		                    Margin="20,0,0,0" Click="CreateTransferTile"
-		                    Visibility="{Binding Visibility, ElementName=ButtonRemoveTransferTile, Converter={StaticResource RevertVisibilityConverter}}"
-		                    Width="260" />
-		            <Button Content="remove transfer tile" x:Uid="RemoveTransferTile"
-		                    VerticalAlignment="Center"
-		                    Click="RemoveTransferTile" x:Name="ButtonRemoveTransferTile"
-		                    Visibility="{Binding TransferTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}"
-		                    Margin="40,0,0,0" Width="200" />
-		        </StackPanel>
+                    <Button Content="create transfer tile"
+                            x:Uid="AddTransferTile"
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Stretch"
+                            Margin="12,0,0,0"
+                            Click="CreateTransferTile"
+                            Visibility="{Binding Visibility, ElementName=ButtonRemoveTransferTile, Converter={StaticResource RevertVisibilityConverter}}" />
+                    <Button Content="remove transfer tile" x:Uid="RemoveTransferTile"
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Stretch"
+                            Margin="12,0,0,0"
+                            Click="RemoveTransferTile" x:Name="ButtonRemoveTransferTile"
+		                    Visibility="{Binding TransferTile.Exists, Converter={StaticResource BooleanToVisibilityConverter}}" />
+		        </Grid>
 		    </StackPanel>
         </Grid>
     </Grid>
