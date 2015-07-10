@@ -1,0 +1,114 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Text Styles -->
+    <Style x:Key="BaseItemText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource PhoneForegroundColor}" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Typography.StylisticSet20" Value="True" />
+        <Setter Property="Typography.DiscretionaryLigatures" Value="True" />
+        <Setter Property="Typography.CaseSensitiveForms" Value="True" />
+        <Setter Property="LineHeight" Value="20" />
+        <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+        <Setter Property="TextLineBounds" Value="TrimToBaseline" />
+        <Setter Property="OpticalMarginAlignment" Value="TrimSideBearings" />
+    </Style>
+
+    <Style x:Key="SubHeaderText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="LineHeight" Value="32" />
+        <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
+        <Setter Property="MaxHeight" Value="110" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
+    <Style x:Key="ItemHeaderText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="TextWrapping" Value="NoWrap" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
+        <Setter Property="Typography.Capitals" Value="SmallCaps" />
+    </Style>
+
+    <Style x:Key="ItemHeaderWrapText" TargetType="TextBlock" BasedOn="{StaticResource ItemHeaderText}">
+        <Setter Property="LineHeight" Value="22" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style x:Key="ItemSubheaderText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontWeight" Value="SemiLight" />
+    </Style>
+
+    <Style x:Key="ItemSmallText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiLight" />
+        <Setter Property="LineHeight" Value="18" />
+    </Style>
+
+    <Style x:Key="ItemContentText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontWeight" Value="SemiLight" />
+        <Setter Property="LineHeight" Value="22" />
+    </Style>
+
+    <Style x:Key="MenuItemText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="26" />
+        <Setter Property="TextWrapping" Value="NoWrap" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
+    </Style>
+
+    <Style x:Key="MenuItemSmallText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontWeight" Value="SemiLight" />
+        <Setter Property="TextAlignment" Value="left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
+    <Style x:Key="MenuItemSubSmallText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="DarkGray" />
+        <Setter Property="FontWeight" Value="SemiLight" />
+        <Setter Property="TextAlignment" Value="left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
+    <Style x:Key="DeemphasizedText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="DarkGray" />
+        <Setter Property="TextAlignment" Value="left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
+    <Style x:Key="MenuItemSubText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Foreground" Value="Gray" />
+        <Setter Property="FontWeight" Value="SemiLight" />
+        <Setter Property="TextAlignment" Value="left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
+    <Style x:Key="ComboBoxItemSubText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Foreground" Value="Gray" />
+        <Setter Property="FontWeight" Value="SemiLight" />
+        <Setter Property="TextAlignment" Value="left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="MenuItemMediumSmallText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="TextAlignment" Value="left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
+    <Style x:Key="MenuItemMediumSmallDeemphasizeText" TargetType="TextBlock" BasedOn="{StaticResource BaseItemText}">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="Gray" />
+        <Setter Property="TextAlignment" Value="left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+</ResourceDictionary>
