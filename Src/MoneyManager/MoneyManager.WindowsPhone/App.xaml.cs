@@ -22,9 +22,8 @@ namespace MoneyManager
         {
             InitializeComponent();
 
-            TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = true;
-
 #if DEBUG
+            TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = true;
             TelemetryConfiguration.Active.DisableTelemetry = true;
 #endif
 
