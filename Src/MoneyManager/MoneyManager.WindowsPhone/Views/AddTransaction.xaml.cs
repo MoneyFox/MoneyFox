@@ -44,11 +44,6 @@ namespace MoneyManager.Views
             }
         }
 
-        private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs routedEventArgs) {
-            ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().InvocationType = InvocationType.Transaction;
-            ((Frame)Window.Current.Content).Navigate(typeof(SelectCurrency));
-        }
-
         private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e) {
             if (e.OriginalSource == null) {
                 return;

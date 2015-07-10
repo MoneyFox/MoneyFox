@@ -33,11 +33,6 @@ namespace MoneyManager.Views
         }
 
         //TODO: Move to ViewModel
-        private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs e) {
-            ((Frame)Window.Current.Content).Navigate(typeof(SelectCurrency));
-        }
-
-        //TODO: Move to ViewModel
         private void DoneClick(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(viewModel.SelectedAccount.Name))
