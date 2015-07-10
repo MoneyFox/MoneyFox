@@ -71,8 +71,7 @@ namespace MoneyManager.Business
         public async Task<string> GetCreationDateLastBackup()
         {
             var date = await _backupService.GetLastCreationDate();
-            return
-                _creationDate = date.ToString("f", new CultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName));
+            return _creationDate = date.ToString("f", new CultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName));
         }
     }
 }

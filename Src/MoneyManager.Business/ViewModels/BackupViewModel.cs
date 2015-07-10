@@ -21,13 +21,13 @@ namespace MoneyManager.Business.ViewModels
             RestoreCommand = new RelayCommand(RestoreBackup);
         }
 
-        public RelayCommand LoadedCommand { get; set; }
-        public RelayCommand LoginCommand { get; set; }
-        public RelayCommand BackupCommand { get; set; }
-        public RelayCommand RestoreCommand { get; set; }
-        public bool IsConnected { get; set; }
-        public bool IsLoading { get; set; }
-        public string CreationDate { get; set; }
+        public RelayCommand LoadedCommand { get; private set; }
+        public RelayCommand LoginCommand { get; private set; }
+        public RelayCommand BackupCommand { get; private set; }
+        public RelayCommand RestoreCommand { get; private set; }
+        public bool IsConnected { get; private set; }
+        public bool IsLoading { get; private set; }
+        public string CreationDate { get; private set; }
 
         private async void Loaded()
         {
@@ -58,6 +58,10 @@ namespace MoneyManager.Business.ViewModels
 
         private async void RestoreBackup()
         {
+            if (!await ShowOverwriteInfo()) {
+                return;
+            }
+
             IsLoading = true;
             await _backup.RestoreBackup();
             await ShowCompletionNote();

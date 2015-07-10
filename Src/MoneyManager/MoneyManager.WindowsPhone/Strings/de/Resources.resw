@@ -376,7 +376,7 @@
     <value>Überschreiben?</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Es existiert bereits eine Sicherung. Möchtest du diese überschreiben?</value>
+    <value>Bestehende Daten werden überschrieben. Möchtest du weiterfahren?</value>
   </data>
   <data name="RecurrenceHeader.Header" xml:space="preserve">
     <value>Wiederholung</value>
