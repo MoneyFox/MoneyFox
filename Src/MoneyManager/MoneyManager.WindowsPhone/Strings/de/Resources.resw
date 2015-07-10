@@ -253,10 +253,10 @@
     <value>Währung</value>
   </data>
   <data name="DailyContent.Content" xml:space="preserve">
-    <value>täglich</value>
+    <value>Täglich</value>
   </data>
   <data name="DailyWithoutWeekendContent.Content" xml:space="preserve">
-    <value>täglich ohne Wochenende</value>
+    <value>Täglich ohne Wochenende</value>
   </data>
   <data name="DateHeader.Header" xml:space="preserve">
     <value>Datum</value>
@@ -271,7 +271,7 @@
     <value>Möchtest du diesen Eintrag wirklich löschen?</value>
   </data>
   <data name="DeleteQuestionTitle" xml:space="preserve">
-    <value>löschen?</value>
+    <value>Löschen?</value>
   </data>
   <data name="Developer.Text" xml:space="preserve">
     <value>Entwickler: </value>
@@ -328,10 +328,10 @@
     <value>Letzte Sicherung wurde erstellt am: </value>
   </data>
   <data name="MonthlyContent.Content" xml:space="preserve">
-    <value>monatlich</value>
+    <value>Monatlich</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
-    <value>monatlich</value>
+    <value>Monatlich</value>
   </data>
   <data name="Name.Header" xml:space="preserve">
     <value>Name</value>
@@ -382,7 +382,7 @@
     <value>Wiederholung</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>wiederkehrend</value>
+    <value>Wiederkehrend</value>
   </data>
   <data name="RegionLabel.Label" xml:space="preserve">
     <value>Region</value>
@@ -481,16 +481,16 @@
     <value>Aktualisierung</value>
   </data>
   <data name="WeeklyContent.Content" xml:space="preserve">
-    <value>wöchentlich</value>
+    <value>Wöchentlich</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>wöchentlich</value>
+    <value>Wöchentlich</value>
   </data>
   <data name="YearlyContent.Content" xml:space="preserve">
-    <value>jährlich</value>
+    <value>Jährlich</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
-    <value>jährlich</value>
+    <value>Jährlich</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
     <value>Ja</value>
@@ -544,7 +544,7 @@
     <value>Nicht lizensiert</value>
   </data>
   <data name="RedirectLabel" xml:space="preserve">
-    <value>weiterleiten</value>
+    <value>Weiterleiten</value>
   </data>
   <data name="CashflowTileLabel" xml:space="preserve">
     <value>Kapitalfluss</value>
