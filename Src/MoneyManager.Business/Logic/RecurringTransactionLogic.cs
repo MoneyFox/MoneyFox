@@ -158,7 +158,7 @@ namespace MoneyManager.Business.Logic
 
         private static IEnumerable<RecurringTransaction> AllRecurringTransactions
         {
-            get { return ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>().Data; }
+            get { return ServiceLocator.Current.GetInstance<IRepository<RecurringTransaction>>().Data; }
         }
 
         #endregion Properties

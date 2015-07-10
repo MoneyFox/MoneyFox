@@ -18,7 +18,7 @@ namespace MoneyManager.UserControls
             InitializeComponent();
         }
 
-        private IAccountRepository AccountRepository => ServiceLocator.Current.GetInstance<IAccountRepository>();
+        private IRepository<Account> AccountRepository => ServiceLocator.Current.GetInstance<IRepository<Account>>();
 
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)
         {

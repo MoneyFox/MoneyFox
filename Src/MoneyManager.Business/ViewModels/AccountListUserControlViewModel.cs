@@ -7,9 +7,9 @@ namespace MoneyManager.Business.ViewModels
 {
     public class AccountListUserControlViewModel : ViewModelBase
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly IRepository<Account> _accountRepository;
 
-        public AccountListUserControlViewModel(IAccountRepository accountRepository)
+        public AccountListUserControlViewModel(IRepository<Account> accountRepository)
         {
             _accountRepository = accountRepository;
         }

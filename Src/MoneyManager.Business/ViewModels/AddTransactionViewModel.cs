@@ -19,13 +19,13 @@ namespace MoneyManager.Business.ViewModels
     [ImplementPropertyChanged]
     public class AddTransactionViewModel : ViewModelBase
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly IRepository<Account> _accountRepository;
         private readonly CurrencyManager _currencyManager;
         private readonly SettingDataAccess _settings;
         private readonly ITransactionRepository _transactionRepository;
 
         public AddTransactionViewModel(ITransactionRepository transactionRepository,
-            IAccountRepository accountRepository,
+            IRepository<Account> accountRepository,
             CurrencyManager currencyManager,
             SettingDataAccess settings)
         {

@@ -8,7 +8,7 @@ using PropertyChanged;
 namespace MoneyManager.Business.Repositories
 {
     [ImplementPropertyChanged]
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : IRepository<Account>
     {
         private readonly IDataAccess<Account> _dataAccess;
         private ObservableCollection<Account> _data;

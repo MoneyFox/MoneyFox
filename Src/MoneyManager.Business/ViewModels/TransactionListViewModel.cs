@@ -15,7 +15,7 @@ namespace MoneyManager.Business.ViewModels
     {
         private ITransactionRepository transactionRepository => ServiceLocator.Current.GetInstance<ITransactionRepository>();
 
-        private IAccountRepository AccountRepository => ServiceLocator.Current.GetInstance<IAccountRepository>();
+        private IRepository<Account> AccountRepository => ServiceLocator.Current.GetInstance<IRepository<Account>>();
 
         public string Title => AccountRepository.Selected.Name;
 

@@ -15,11 +15,11 @@ namespace MoneyManager.Business.ViewModels
     [ImplementPropertyChanged]
     public class AddAccountViewModel : ViewModelBase
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly IRepository<Account> _accountRepository;
         private readonly CurrencyManager _currencyManager;
         private readonly SettingDataAccess _settings;
 
-        public AddAccountViewModel(IAccountRepository accountRepository, CurrencyManager currencyManager,
+        public AddAccountViewModel(IRepository<Account> accountRepository, CurrencyManager currencyManager,
             SettingDataAccess settings)
         {
             _currencyManager = currencyManager;

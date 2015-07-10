@@ -7,7 +7,7 @@ using PropertyChanged;
 namespace MoneyManager.Business.Repositories
 {
     [ImplementPropertyChanged]
-    public class RecurringTransactionRepository : IRecurringTransactionRepository
+    public class RecurringTransactionRepository : IRepository<RecurringTransaction>
     {
         private readonly IDataAccess<RecurringTransaction> _dataAccess;
         private ObservableCollection<RecurringTransaction> _data;

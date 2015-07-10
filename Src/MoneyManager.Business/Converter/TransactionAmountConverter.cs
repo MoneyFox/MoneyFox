@@ -10,7 +10,7 @@ namespace MoneyManager.Business.Converter
     public class TransactionAmountConverter : IValueConverter
     {
         //TODO: remove this and refactor with converter parameter
-        private Account selectedAccount => ServiceLocator.Current.GetInstance<IAccountRepository>().Selected;
+        private Account selectedAccount => ServiceLocator.Current.GetInstance<IRepository<Account>>().Selected;
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {

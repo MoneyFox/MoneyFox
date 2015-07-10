@@ -57,11 +57,9 @@
     <Compile Include="Model\ProductItem.cs" />
     <Compile Include="Model\RecurringTransaction.cs" />
     <Compile Include="Model\StatisticItem.cs" />
-    <Compile Include="OperationContracts\IAccountRepository.cs" />
     <Compile Include="OperationContracts\IBackupService.cs" />
     <Compile Include="OperationContracts\IJsonService.cs" />
     <Compile Include="OperationContracts\IDataAccess.cs" />
-    <Compile Include="OperationContracts\IRecurringTransactionRepository.cs" />
     <Compile Include="OperationContracts\IRepository.cs" />
     <Compile Include="OperationContracts\ISecondTile.cs" />
     <Compile Include="OperationContracts\ITransactionRepository.cs" />

@@ -16,7 +16,7 @@ namespace MoneyManager.Business.Logic
     {
         #region Properties
 
-        private static IAccountRepository AccountRepository => ServiceLocator.Current.GetInstance<IAccountRepository>();
+        private static IRepository<Account> AccountRepository => ServiceLocator.Current.GetInstance<IRepository<Account>>();
 
         private static ITransactionRepository TransactionRepository => ServiceLocator.Current.GetInstance<ITransactionRepository>();
 
@@ -25,7 +25,7 @@ namespace MoneyManager.Business.Logic
             set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
         }
 
-        private static IRecurringTransactionRepository RecurringTransactionRepository => ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>();
+        private static IRepository<RecurringTransaction> RecurringTransactionRepository => ServiceLocator.Current.GetInstance<IRepository<RecurringTransaction>>();
 
         private static AddTransactionViewModel AddTransactionView => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
 

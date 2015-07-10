@@ -13,7 +13,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
     [TestClass]
     public class AddTransactionViewModelTest
     {
-        private IAccountRepository _accountRepository;
+        private IRepository<Account> _accountRepository;
         private SettingDataAccess _settingRepository;
         private ITransactionRepository _transactionRepository;
 
@@ -23,7 +23,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             new ViewModelLocator();
 
             _transactionRepository = ServiceLocator.Current.GetInstance<ITransactionRepository>();
-            _accountRepository = ServiceLocator.Current.GetInstance<IAccountRepository>();
+            _accountRepository = ServiceLocator.Current.GetInstance<IRepository<Account>>();
             _settingRepository = ServiceLocator.Current.GetInstance<SettingDataAccess>();
         }
 

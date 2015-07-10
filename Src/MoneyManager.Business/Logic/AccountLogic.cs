@@ -133,25 +133,13 @@ namespace MoneyManager.Business.Logic
 
         #region Properties
 
-        private static IAccountRepository AccountRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>(); }
-        }
+        private static IRepository<Account> AccountRepository => ServiceLocator.Current.GetInstance<IRepository<Account>>();
 
-        private static IDataAccess<FinancialTransaction> TransactionData
-        {
-            get { return ServiceLocator.Current.GetInstance<IDataAccess<FinancialTransaction>>(); }
-        }
+        private static IDataAccess<FinancialTransaction> TransactionData => ServiceLocator.Current.GetInstance<IDataAccess<FinancialTransaction>>();
 
-        private static TransactionListViewModel TransactionListView
-        {
-            get { return ServiceLocator.Current.GetInstance<TransactionListViewModel>(); }
-        }
+        private static TransactionListViewModel TransactionListView => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
 
-        private static CurrencyManager CurrencyManager
-        {
-            get { return ServiceLocator.Current.GetInstance<CurrencyManager>(); }
-        }
+        private static CurrencyManager CurrencyManager => ServiceLocator.Current.GetInstance<CurrencyManager>();
 
         #endregion Properties
     }

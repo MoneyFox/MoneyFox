@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.Popups;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Manager;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Business.ViewModels
@@ -11,10 +11,12 @@ namespace MoneyManager.Business.ViewModels
     public class BackupViewModel : ViewModelBase
     {
         private readonly Backup _backup;
+        private readonly RepositoryManager _repositoryManager;
 
-        public BackupViewModel(Backup backup)
+        public BackupViewModel(Backup backup, RepositoryManager repositoryManager)
         {
             _backup = backup;
+            _repositoryManager = repositoryManager;
 
             LoadedCommand = new RelayCommand(Loaded);
             LoginCommand = new RelayCommand(Login);
@@ -64,7 +66,9 @@ namespace MoneyManager.Business.ViewModels
             }
 
             IsLoading = true;
+
             await _backup.RestoreBackup();
+            _repositoryManager.ReloadData();
 
             await ShowCompletionNote();
             IsLoading = false;
