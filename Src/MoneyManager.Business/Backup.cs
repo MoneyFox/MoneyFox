@@ -10,7 +10,6 @@ namespace MoneyManager.Business
     public class Backup
     {
         private readonly IBackupService _backupService;
-        private string _creationDate;
 
         public Backup(IBackupService backupService)
         {
@@ -71,8 +70,7 @@ namespace MoneyManager.Business
         public async Task<string> GetCreationDateLastBackup()
         {
             var date = await _backupService.GetLastCreationDate();
-            return
-                _creationDate = date.ToString("f", new CultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName));
+            return date.ToString("f", new CultureInfo(CultureInfo.CurrentCulture.TwoLetterISOLanguageName));
         }
     }
 }

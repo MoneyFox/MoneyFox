@@ -8,11 +8,10 @@ namespace MoneyManager.Views
         public SettingsBackup()
         {
             InitializeComponent();
-
             NavigationHelper = new NavigationHelper(this);
         }
 
-        public NavigationHelper NavigationHelper { get; }
+        private NavigationHelper NavigationHelper { get; }
 
         #region NavigationHelper registration
 

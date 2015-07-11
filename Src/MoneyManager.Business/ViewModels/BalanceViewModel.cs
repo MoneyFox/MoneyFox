@@ -100,12 +100,12 @@ namespace MoneyManager.Business.ViewModels
 
         public ObservableCollection<Account> AllAccounts
         {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Data; }
+            get { return ServiceLocator.Current.GetInstance<IRepository<Account>>().Data; }
         }
 
         private Account selectedAccount
         {
-            get { return ServiceLocator.Current.GetInstance<IAccountRepository>().Selected; }
+            get { return ServiceLocator.Current.GetInstance<IRepository<Account>>().Selected; }
         }
 
         private ITransactionRepository TransactionRepository

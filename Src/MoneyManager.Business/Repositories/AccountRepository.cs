@@ -8,7 +8,7 @@ using PropertyChanged;
 namespace MoneyManager.Business.Repositories
 {
     [ImplementPropertyChanged]
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : IRepository<Account>
     {
         private readonly IDataAccess<Account> _dataAccess;
         private ObservableCollection<Account> _data;
@@ -73,6 +73,14 @@ namespace MoneyManager.Business.Repositories
             _dataAccess.Delete(item);
 
             TransactionLogic.DeleteAssociatedTransactionsFromDatabase(item);
+        }
+
+        /// <summary>
+        ///     Loads all accounts from the database to the data collection
+        /// </summary>
+        public void Load()
+        {
+            Data = new ObservableCollection<Account>(_dataAccess.LoadList());
         }
     }
 }

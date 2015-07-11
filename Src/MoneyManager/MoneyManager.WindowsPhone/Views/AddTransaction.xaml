@@ -99,7 +99,6 @@
                                 MinHeight="55"
                                 Background="#FF231E1E"
                                 BorderThickness="0"
-                                Click="OpenSelectCurrencyDialog"
                                 Content="{Binding SelectedTransaction.Currency}"
                                 Margin="2,28,0,6" />
                     </Grid>

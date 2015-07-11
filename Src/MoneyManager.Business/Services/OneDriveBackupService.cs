@@ -22,10 +22,7 @@ namespace MoneyManager.Business.Services
         /// <summary>
         ///     Indicates if the user is already logged in or not
         /// </summary>
-        public bool IsLoggedIn
-        {
-            get { return _liveClient == null; }
-        }
+        public bool IsLoggedIn => _liveClient == null;
 
         /// <summary>
         ///     Prompts a OneDrive login prompt to the user.

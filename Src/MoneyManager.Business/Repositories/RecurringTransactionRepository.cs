@@ -7,7 +7,7 @@ using PropertyChanged;
 namespace MoneyManager.Business.Repositories
 {
     [ImplementPropertyChanged]
-    public class RecurringTransactionRepository : IRecurringTransactionRepository
+    public class RecurringTransactionRepository : IRepository<RecurringTransaction>
     {
         private readonly IDataAccess<RecurringTransaction> _dataAccess;
         private ObservableCollection<RecurringTransaction> _data;
@@ -70,6 +70,13 @@ namespace MoneyManager.Business.Repositories
         {
             _data.Remove(item);
             _dataAccess.Delete(item);
+        }
+
+        /// <summary>
+        ///     Loads all recurring transactions from the database to the data collection
+        /// </summary>
+        public void Load() {
+            Data = new ObservableCollection<RecurringTransaction>(_dataAccess.LoadList());
         }
     }
 }

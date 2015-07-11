@@ -6,7 +6,6 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Common;
-using MoneyManager.Foundation;
 
 namespace MoneyManager.Views
 {
@@ -42,11 +41,6 @@ namespace MoneyManager.Views
             if (TextBoxAmount.Text == string.Empty) {
                 TextBoxAmount.Text = "0";
             }
-        }
-
-        private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs routedEventArgs) {
-            ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().InvocationType = InvocationType.Transaction;
-            ((Frame)Window.Current.Content).Navigate(typeof(SelectCurrency));
         }
 
         private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e) {

@@ -204,14 +204,14 @@
   </AccountPackageIdentityNames>
   <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9WZDNCRDKD4K">
     <PackageInfo>
-      <OsMinVersion>6.3.0.0</OsMinVersion>
-      <PackageArchitecture>Unknown</PackageArchitecture>
-      <PackageMaxArchitectureVersion>2015.606.946.0</PackageMaxArchitectureVersion>
+      <OsMinVersion>6.3.1.0</OsMinVersion>
+      <PackageArchitecture>Arm</PackageArchitecture>
+      <PackageMaxArchitectureVersion>2015.709.2214.0</PackageMaxArchitectureVersion>
     </PackageInfo>
     <PackageInfo>
-      <OsMinVersion>6.3.0.0</OsMinVersion>
-      <PackageArchitecture>Arm</PackageArchitecture>
-      <PackageMaxArchitectureVersion>2015.606.946.0</PackageMaxArchitectureVersion>
+      <OsMinVersion>6.3.1.0</OsMinVersion>
+      <PackageArchitecture>Neutral</PackageArchitecture>
+      <PackageMaxArchitectureVersion>2015.709.2214.0</PackageMaxArchitectureVersion>
     </PackageInfo>
   </PackageInfoList>
 </StoreAssociation>

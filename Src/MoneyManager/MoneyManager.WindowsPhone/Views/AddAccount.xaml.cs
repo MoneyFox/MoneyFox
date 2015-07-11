@@ -1,5 +1,4 @@
 ﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.ViewModels;
@@ -30,11 +29,6 @@ namespace MoneyManager.Views
             if (TextBoxCurrentBalance.Text == string.Empty) {
                 TextBoxCurrentBalance.Text = "0";
             }
-        }
-
-        //TODO: Move to ViewModel
-        private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs e) {
-            ((Frame)Window.Current.Content).Navigate(typeof(SelectCurrency));
         }
 
         //TODO: Move to ViewModel

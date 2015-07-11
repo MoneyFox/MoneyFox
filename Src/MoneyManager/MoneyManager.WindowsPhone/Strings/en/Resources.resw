@@ -430,7 +430,7 @@
     <value>Overwrite existing?</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>There is already an existing backup. Do you want to overwrite it?</value>
+    <value>Existing data will be overriden. Do you want to continue?</value>
   </data>
   <data name="AbortedTitle" xml:space="preserve">
     <value>Aborted!</value>

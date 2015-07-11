@@ -41,9 +41,12 @@ namespace MoneyManager
 
             //Repositories
             SimpleIoc.Default.Register<ITransactionRepository, TransactionRepository>();
-            SimpleIoc.Default.Register<IRecurringTransactionRepository, RecurringTransactionRepository>();
-            SimpleIoc.Default.Register<IAccountRepository, AccountRepository>();
+            SimpleIoc.Default.Register<IRepository<RecurringTransaction>, RecurringTransactionRepository>();
+            SimpleIoc.Default.Register<IRepository<Account>, AccountRepository>();
             SimpleIoc.Default.Register<IRepository<Category>, CategoryRepository>();
+
+            //Datadependent Logic
+            SimpleIoc.Default.Register<RepositoryManager>();
 
             //ViewModels
             SimpleIoc.Default.Register<AddAccountViewModel>();
@@ -75,13 +78,13 @@ namespace MoneyManager
 
         #region DataAccess
 
-        public IAccountRepository AccountRepository => ServiceLocator.Current.GetInstance<IAccountRepository>();
+        public IRepository<Account> AccountRepository => ServiceLocator.Current.GetInstance<IRepository<Account>>();
 
         public IRepository<Category> CategoryRepository => ServiceLocator.Current.GetInstance<IRepository<Category>>();
 
         public ITransactionRepository TransactionRepository => ServiceLocator.Current.GetInstance<ITransactionRepository>();
 
-        public IRecurringTransactionRepository RecurringTransactionRepository => ServiceLocator.Current.GetInstance<IRecurringTransactionRepository>();
+        public IRepository<RecurringTransaction> RecurringTransactionRepository => ServiceLocator.Current.GetInstance<IRepository<RecurringTransaction>>();
 
         public SettingDataAccess SettingDataAccess => ServiceLocator.Current.GetInstance<SettingDataAccess>();
 
