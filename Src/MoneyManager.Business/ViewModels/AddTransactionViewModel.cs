@@ -73,7 +73,7 @@ namespace MoneyManager.Business.ViewModels
         {
             get
             {
-                if (!IsEdit)
+                if (!IsEdit && SelectedTransaction.Date == DateTime.MinValue)
                 {
                     SelectedTransaction.Date = DateTime.Now;
                 }
