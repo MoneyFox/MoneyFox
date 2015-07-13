@@ -9,7 +9,7 @@
       mc:Ignorable="d">
 
     <Page.Resources>
-        <converter:AmountConverter x:Key="AmountConverter" />
+        <converter:AmountFormatConverter x:Key="AmountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
     </Page.Resources>
 
