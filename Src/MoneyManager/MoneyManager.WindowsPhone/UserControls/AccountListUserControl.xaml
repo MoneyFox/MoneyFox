@@ -4,14 +4,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:userControls="using:MoneyManager.UserControls"
-             xmlns:converter1="using:MoneyManager.Business.Converter"
+             xmlns:converter="using:MoneyManager.Business.Converter"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
              DataContext="{Binding AccountListUserControlView, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter1:AmountConverter x:Key="AmountConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="AccountTemplate">
             <StackPanel Margin="0,0,0,7"
                         HorizontalAlignment="Stretch"
@@ -37,14 +37,9 @@
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
                             <TextBlock Style="{StaticResource MenuItemText}"
-                                       Text="{Binding CurrentBalance, Converter={StaticResource AmountConverter}}"
+                                       Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
                                        HorizontalAlignment="Right"
                                        TextAlignment="Right" />
-                            <TextBlock Style="{StaticResource MenuItemText}"
-                                       Text="{Binding Currency}"
-                                       HorizontalAlignment="Right"
-                                       TextAlignment="Right"
-                                       Margin="10,0,0,0" />
                         </StackPanel>
                     </Grid>
                     <TextBlock Style="{StaticResource MenuItemSubSmallText}"
