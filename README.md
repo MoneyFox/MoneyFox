@@ -1,6 +1,6 @@
 ## Money Fox
 
-We want a budget tool which is for everyone and keeps up the motivation to track you money. To reach this goal we try to make it as easy to use as possible and try to implement each feature as good as possible.
+We want a budget tool which is for everyone and keeps up the motivation to track you money. To reach this goal we try to make it as easy to use as possible.
 Feel free to create issues or even better contribute code.
 
 This app is currently available for Windows Phone 8.1. There are plans to port it over to Windows 10 Mobile as well as desktop.
