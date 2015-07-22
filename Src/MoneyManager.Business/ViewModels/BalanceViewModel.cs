@@ -1,6 +1,4 @@
-﻿#region
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight;
@@ -12,8 +10,6 @@ using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
-#endregion
-
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
@@ -21,17 +17,12 @@ namespace MoneyManager.Business.ViewModels
     {
         public double TotalBalance { get; set; }
         public double EndOfMonthBalance { get; set; }
-        public bool IsTransactionView { get; set; }
-
-        public string CurrencyCulture
-        {
-            get { return settings.DefaultCurrency; }
-        }
+        public bool IsTransactionView { private get; set; }
+        public string CurrencyCulture => settings.DefaultCurrency;
 
         public void UpdateBalance()
         {
             TotalBalance = GetTotalBalance();
-
             EndOfMonthBalance = GetEndOfMonthValue();
         }
 
@@ -42,9 +33,7 @@ namespace MoneyManager.Business.ViewModels
                 return selectedAccount.CurrentBalance;
             }
 
-            return AllAccounts != null
-                ? AllAccounts.Sum(x => x.CurrentBalance)
-                : 0;
+            return AllAccounts?.Sum(x => x.CurrentBalance) ?? 0;
         }
 
         private double GetEndOfMonthValue()
@@ -78,7 +67,8 @@ namespace MoneyManager.Business.ViewModels
             if (selectedAccount == transaction.ChargedAccount)
             {
                 balance -= transaction.Amount;
-            } else
+            }
+            else
             {
                 balance += transaction.Amount;
             }
@@ -92,31 +82,21 @@ namespace MoneyManager.Business.ViewModels
 
             return IsTransactionView
                 ? unclearedTransactions.Where(
-                    x => x.ChargedAccount == selectedAccount || x.TargetAccount == selectedAccount).ToList()
+                    x => x.ChargedAccountId == selectedAccount.Id || x.TargetAccountId == selectedAccount.Id).ToList()
                 : unclearedTransactions;
         }
 
         #region Properties
 
-        public ObservableCollection<Account> AllAccounts
-        {
-            get { return ServiceLocator.Current.GetInstance<IRepository<Account>>().Data; }
-        }
+        private ObservableCollection<Account> AllAccounts
+            => ServiceLocator.Current.GetInstance<IRepository<Account>>().Data;
 
-        private Account selectedAccount
-        {
-            get { return ServiceLocator.Current.GetInstance<IRepository<Account>>().Selected; }
-        }
+        private Account selectedAccount => ServiceLocator.Current.GetInstance<IRepository<Account>>().Selected;
 
         private ITransactionRepository TransactionRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
-        }
+            => ServiceLocator.Current.GetInstance<ITransactionRepository>();
 
-        public SettingDataAccess settings
-        {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
+        private SettingDataAccess settings => ServiceLocator.Current.GetInstance<SettingDataAccess>();
 
         #endregion Properties
     }
