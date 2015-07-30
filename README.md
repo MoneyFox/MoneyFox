@@ -1,4 +1,4 @@
-
+[![Build status](https://ci.appveyor.com/api/projects/status/iysmq8dfwxnd7tro?svg=true)](https://ci.appveyor.com/project/NPadrutt/moneymanager)
 
 ## Money Fox
 
