@@ -255,7 +255,6 @@
     <None Include="app.config" />
     <Content Include="Fonts\LiveSymbol.ttf" />
     <None Include="Package.StoreAssociation.xml" />
-    <None Include="Service References\Application Insights\ConnectedService.json" />
     <PRIResource Include="Strings\en\Resources.resw" />
     <PRIResource Include="Strings\de\Resources.resw" />
   </ItemGroup>
