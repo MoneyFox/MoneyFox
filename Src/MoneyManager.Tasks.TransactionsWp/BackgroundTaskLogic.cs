@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Popups;
-using MoneyManager.Business;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Tasks.TransactionsWp {
