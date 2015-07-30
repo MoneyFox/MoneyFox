@@ -1,3 +1,5 @@
+https://ci.appveyor.com/api/github/webhook?id=iysmq8dfwxnd7tro
+
 ## Money Fox
 
 We want a budget tool which is for everyone and keeps up the motivation to track you money. To reach this goal we try to make it as easy to use as possible.
