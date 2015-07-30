@@ -8,7 +8,6 @@ using Windows.UI.Xaml.Navigation;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
 using MoneyManager.Views;
-using Xamarin;
 
 namespace MoneyManager
 {
@@ -21,13 +20,6 @@ namespace MoneyManager
         public App()
         {
             InitializeComponent();
-#if DEBUG
-            Insights.Initialize(Insights.DebugModeKey);
-#else
-            Insights.Initialize("599ff6bfdc79368ff3d5f5629a57c995fe93352e");
-#endif
-
-
             Suspending += OnSuspending;
         }
 

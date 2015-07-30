@@ -1,5 +1,5 @@
 ﻿using System;
-using Xamarin;
+using Microsoft.ApplicationInsights;
 
 namespace MoneyManager.Foundation
 {
@@ -8,14 +8,15 @@ namespace MoneyManager.Foundation
     /// </summary>
     public static class InsightHelper
     {
+        private static readonly TelemetryClient Telemetry = new TelemetryClient();
+
         /// <summary>
         ///     Reports the passed exception if Insights are initialized
         /// </summary>
         /// <param name="exception">Excpetion to report.</param>
-        /// <param name="serverity">Serverity for the to report the exception.</param>
-        public static void Report(Exception exception, Insights.Severity serverity = Insights.Severity.Error) {
-            if (Insights.IsInitialized) {
-                Insights.Report(exception, serverity);
+        public static void Report(Exception exception) {
+            if (Telemetry.IsEnabled()) {
+                Telemetry.TrackException(exception);
             }
         }
     }
