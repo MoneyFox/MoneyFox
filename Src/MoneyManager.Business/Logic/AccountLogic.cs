@@ -17,7 +17,6 @@ namespace MoneyManager.Business.Logic
         {
             AccountRepository.Selected = new Account
             {
-                IsExchangeModeActive = false,
                 Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
             };
             ServiceLocator.Current.GetInstance<AddAccountViewModel>().IsEdit = false;
@@ -77,7 +76,8 @@ namespace MoneyManager.Business.Logic
                 }
 
                 var amountWithoutExchange = amountFunc(transaction.Amount);
-                var amount = await GetAmount(amountWithoutExchange, transaction, account);
+                //Currently there is no support for currency exchanges
+                var amount = amountWithoutExchange;
 
                 account.CurrentBalanceWithoutExchange += amountWithoutExchange;
                 account.CurrentBalance += amount;
@@ -90,22 +90,6 @@ namespace MoneyManager.Business.Logic
                 transaction.Cleared = false;
                 TransactionData.Save(transaction);
             }
-        }
-
-        private static async Task<double> GetAmount(double baseAmount, FinancialTransaction transaction, Account account)
-        {
-            try
-            {
-                if (transaction.Currency != account.Currency)
-                {
-                    var ratio = await CurrencyManager.GetCurrencyRatio(transaction.Currency, account.Currency);
-                    return baseAmount*ratio;
-                }
-            } catch (Exception ex)
-            {
-                InsightHelper.Report(ex);
-            }
-            return baseAmount;
         }
 
         private static async void PrehandleAddIfTransfer(FinancialTransaction transaction)
@@ -138,8 +122,6 @@ namespace MoneyManager.Business.Logic
         private static IDataAccess<FinancialTransaction> TransactionData => ServiceLocator.Current.GetInstance<IDataAccess<FinancialTransaction>>();
 
         private static TransactionListViewModel TransactionListView => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
-
-        private static CurrencyManager CurrencyManager => ServiceLocator.Current.GetInstance<CurrencyManager>();
 
         #endregion Properties
     }

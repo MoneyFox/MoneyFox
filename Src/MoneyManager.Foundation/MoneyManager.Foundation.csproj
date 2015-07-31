@@ -53,7 +53,6 @@
     <Compile Include="InsightHelper.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\Country.cs" />
     <Compile Include="Model\FinancialTransaction.cs" />
     <Compile Include="Model\ProductItem.cs" />
     <Compile Include="Model\RecurringTransaction.cs" />

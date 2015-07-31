@@ -30,14 +30,10 @@ namespace MoneyManager
 
             //Logic
             SimpleIoc.Default.Register<IUserNotification, UserNotification>();
-            SimpleIoc.Default.Register<IJsonService, JsonService>();
             SimpleIoc.Default.Register<IBackupService, OneDriveBackupService>();
             SimpleIoc.Default.Register(CreateNavigationService);
             SimpleIoc.Default.Register<Utilities>();
             SimpleIoc.Default.Register<Backup>();
-
-            //Manager
-            SimpleIoc.Default.Register<CurrencyManager>();
 
             //Repositories
             SimpleIoc.Default.Register<ITransactionRepository, TransactionRepository>();
@@ -58,7 +54,6 @@ namespace MoneyManager
             SimpleIoc.Default.Register<TileSettingsViewModel>();
             SimpleIoc.Default.Register<GeneralSettingViewModel>();
             SimpleIoc.Default.Register<SettingDefaultsViewModel>();
-            SimpleIoc.Default.Register<SelectCurrencyViewModel>();
             SimpleIoc.Default.Register<StatisticViewModel>();
             SimpleIoc.Default.Register<BackupViewModel>();
         }
@@ -109,8 +104,6 @@ namespace MoneyManager
         public GeneralSettingViewModel GeneralSettingView => ServiceLocator.Current.GetInstance<GeneralSettingViewModel>();
 
         public SettingDefaultsViewModel SettingDefaultsView => ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>();
-
-        public SelectCurrencyViewModel SelectCurrencyView => ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>();
 
         public StatisticViewModel StatisticView => ServiceLocator.Current.GetInstance<StatisticViewModel>();
 

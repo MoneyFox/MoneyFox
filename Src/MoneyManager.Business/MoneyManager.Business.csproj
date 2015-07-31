@@ -75,7 +75,6 @@
     <Compile Include="Logic\StatisticLogic.cs" />
     <Compile Include="Manager\RepositoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Manager\CurrencyManager.cs" />
     <Compile Include="Logic\RecurringTransactionLogic.cs" />
     <Compile Include="Logic\ThemedImageConverterLogic.cs" />
     <Compile Include="Logic\TransactionLogic.cs" />
@@ -90,14 +89,12 @@
     <Compile Include="Repositories\RecurringTransactionRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="Services\OneDriveBackupService.cs" />
-    <Compile Include="Services\JsonService.cs" />
     <Compile Include="ViewModels\AccountListUserControlViewModel.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\AddTransactionViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />
     <Compile Include="ViewModels\GeneralSettingViewModel.cs" />
     <Compile Include="ViewModels\CategoryListViewModel.cs" />
-    <Compile Include="ViewModels\SelectCurrencyViewModel.cs" />
     <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
     <Compile Include="ViewModels\TileSettingsViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />

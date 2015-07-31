@@ -19,11 +19,6 @@ namespace MoneyManager.Views
 
         private NavigationHelper NavigationHelper { get; }
 
-        private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs routedEventArgs) {
-            ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().InvocationType = InvocationType.Setting;
-            ((Frame)Window.Current.Content).Navigate(typeof(SelectCurrency));
-        }
-
         #region NavigationHelper registration
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
