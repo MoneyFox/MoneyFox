@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.ApplicationInsights;
 using MoneyManager.Business.Logic;
 using MoneyManager.Business.Logic.Tile;
 using MoneyManager.Views;
@@ -19,6 +20,7 @@ namespace MoneyManager
 
         public App()
         {
+            WindowsAppInitializer.InitializeAsync();
             InitializeComponent();
             Suspending += OnSuspending;
         }
