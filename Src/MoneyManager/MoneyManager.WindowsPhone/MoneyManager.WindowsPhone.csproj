@@ -19,7 +19,7 @@
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>80780831</NuGetPackageImportStamp>
     <AppxBundle>Always</AppxBundle>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <ApplicationInsightsResourceId>/subscriptions/38a487ea-9b81-4df6-98c2-51f6ae419311/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/MoneyManager.WindowsPhone</ApplicationInsightsResourceId>
