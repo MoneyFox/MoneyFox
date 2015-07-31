@@ -14,25 +14,6 @@ namespace MoneyManager.Business.Logic
 {
     public class TransactionLogic
     {
-        #region Properties
-
-        private static IRepository<Account> AccountRepository => ServiceLocator.Current.GetInstance<IRepository<Account>>();
-
-        private static ITransactionRepository TransactionRepository => ServiceLocator.Current.GetInstance<ITransactionRepository>();
-
-        private static FinancialTransaction SelectedTransaction {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected; }
-            set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
-        }
-
-        private static IRepository<RecurringTransaction> RecurringTransactionRepository => ServiceLocator.Current.GetInstance<IRepository<RecurringTransaction>>();
-
-        private static AddTransactionViewModel AddTransactionView => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
-
-        private static SettingDataAccess Settings => ServiceLocator.Current.GetInstance<SettingDataAccess>();
-
-        #endregion Properties
-
         public static async Task SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
             bool skipRecurring = false)
         {
@@ -192,7 +173,8 @@ namespace MoneyManager.Business.Logic
                 {
                     SelectedTransaction.ChargedAccount = AccountRepository.Selected;
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 InsightHelper.Report(ex);
             }
@@ -206,11 +188,36 @@ namespace MoneyManager.Business.Logic
                 try
                 {
                     await AccountLogic.AddTransactionAmount(transaction);
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     InsightHelper.Report(ex);
                 }
             }
         }
+
+        #region Properties
+
+        private static IRepository<Account> AccountRepository
+            => ServiceLocator.Current.GetInstance<IRepository<Account>>();
+
+        private static ITransactionRepository TransactionRepository
+            => ServiceLocator.Current.GetInstance<ITransactionRepository>();
+
+        private static FinancialTransaction SelectedTransaction
+        {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected; }
+            set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
+        }
+
+        private static IRepository<RecurringTransaction> RecurringTransactionRepository
+            => ServiceLocator.Current.GetInstance<IRepository<RecurringTransaction>>();
+
+        private static AddTransactionViewModel AddTransactionView
+            => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
+
+        private static SettingDataAccess Settings => ServiceLocator.Current.GetInstance<SettingDataAccess>();
+
+        #endregion Properties
     }
 }

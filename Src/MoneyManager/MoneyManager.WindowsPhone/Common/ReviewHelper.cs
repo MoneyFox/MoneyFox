@@ -24,7 +24,8 @@ namespace MoneyManager.Common
             if (LocalSettings.Values[USES_BEFORE_DIALOG_STRING] == null)
             {
                 LocalSettings.Values[USES_BEFORE_DIALOG_STRING] = 1;
-            } else
+            }
+            else
             {
                 LocalSettings.Values[USES_BEFORE_DIALOG_STRING] =
                     (int) LocalSettings.Values[USES_BEFORE_DIALOG_STRING] + 1;

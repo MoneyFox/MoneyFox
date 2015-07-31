@@ -75,7 +75,8 @@ namespace MoneyManager.Business.Repositories
         /// <summary>
         ///     Loads all recurring transactions from the database to the data collection
         /// </summary>
-        public void Load() {
+        public void Load()
+        {
             Data = new ObservableCollection<RecurringTransaction>(_dataAccess.LoadList());
         }
     }

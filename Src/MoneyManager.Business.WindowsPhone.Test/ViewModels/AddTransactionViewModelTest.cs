@@ -1,7 +1,5 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.Business.Manager;
-using MoneyManager.Business.Services;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;

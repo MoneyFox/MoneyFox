@@ -17,7 +17,8 @@ namespace MoneyManager.Foundation
             try
             {
                 SaveToDb(itemToSave);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 InsightHelper.Report(ex);
             }
@@ -32,7 +33,8 @@ namespace MoneyManager.Foundation
             try
             {
                 DeleteFromDatabase(itemToDelete);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 InsightHelper.Report(ex);
             }
@@ -47,7 +49,8 @@ namespace MoneyManager.Foundation
             try
             {
                 return GetListFromDb(filter);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 InsightHelper.Report(ex);
             }

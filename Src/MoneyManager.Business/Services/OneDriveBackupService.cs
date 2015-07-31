@@ -67,11 +67,13 @@ namespace MoneyManager.Business.Services
                 var uploadResult = await uploadOperation.StartAsync();
 
                 return TaskCompletionType.Successful;
-            } catch (TaskCanceledException ex)
+            }
+            catch (TaskCanceledException ex)
             {
                 InsightHelper.Report(ex);
                 return TaskCompletionType.Aborted;
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 InsightHelper.Report(ex);
                 return TaskCompletionType.Unsuccessful;
@@ -98,7 +100,8 @@ namespace MoneyManager.Business.Services
 
                 await _liveClient.BackgroundDownloadAsync(_backupId + "/content", storageFile);
                 return TaskCompletionType.Successful;
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 InsightHelper.Report(ex);
                 return TaskCompletionType.Unsuccessful;
@@ -130,7 +133,8 @@ namespace MoneyManager.Business.Services
                 dynamic result = operationResult.Result;
                 DateTime createdAt = Convert.ToDateTime(result.created_time);
                 return createdAt;
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 InsightHelper.Report(ex);
                 return DateTime.MinValue;
@@ -157,7 +161,8 @@ namespace MoneyManager.Business.Services
                         }
                     }
                 }
-            } catch (LiveConnectException ex)
+            }
+            catch (LiveConnectException ex)
             {
                 InsightHelper.Report(ex);
             }
@@ -184,7 +189,8 @@ namespace MoneyManager.Business.Services
                         }
                     }
                 }
-            } catch (LiveConnectException ex)
+            }
+            catch (LiveConnectException ex)
             {
                 InsightHelper.Report(ex);
             }

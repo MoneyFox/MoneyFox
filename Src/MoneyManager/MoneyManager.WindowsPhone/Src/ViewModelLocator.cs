@@ -77,9 +77,11 @@ namespace MoneyManager
 
         public IRepository<Category> CategoryRepository => ServiceLocator.Current.GetInstance<IRepository<Category>>();
 
-        public ITransactionRepository TransactionRepository => ServiceLocator.Current.GetInstance<ITransactionRepository>();
+        public ITransactionRepository TransactionRepository
+            => ServiceLocator.Current.GetInstance<ITransactionRepository>();
 
-        public IRepository<RecurringTransaction> RecurringTransactionRepository => ServiceLocator.Current.GetInstance<IRepository<RecurringTransaction>>();
+        public IRepository<RecurringTransaction> RecurringTransactionRepository
+            => ServiceLocator.Current.GetInstance<IRepository<RecurringTransaction>>();
 
         public SettingDataAccess SettingDataAccess => ServiceLocator.Current.GetInstance<SettingDataAccess>();
 
@@ -89,21 +91,26 @@ namespace MoneyManager
 
         public AddAccountViewModel AddAccountView => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
 
-        public AccountListUserControlViewModel AccountListUserControlView => ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>();
+        public AccountListUserControlViewModel AccountListUserControlView
+            => ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>();
 
-        public AddTransactionViewModel AddTransactionView => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
+        public AddTransactionViewModel AddTransactionView
+            => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
 
         public BalanceViewModel BalanceView => ServiceLocator.Current.GetInstance<BalanceViewModel>();
 
         public CategoryListViewModel CategoryListView => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
 
-        public TransactionListViewModel TransactionListView => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
+        public TransactionListViewModel TransactionListView
+            => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
 
         public TileSettingsViewModel TileSettingsView => ServiceLocator.Current.GetInstance<TileSettingsViewModel>();
 
-        public GeneralSettingViewModel GeneralSettingView => ServiceLocator.Current.GetInstance<GeneralSettingViewModel>();
+        public GeneralSettingViewModel GeneralSettingView
+            => ServiceLocator.Current.GetInstance<GeneralSettingViewModel>();
 
-        public SettingDefaultsViewModel SettingDefaultsView => ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>();
+        public SettingDefaultsViewModel SettingDefaultsView
+            => ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>();
 
         public StatisticViewModel StatisticView => ServiceLocator.Current.GetInstance<StatisticViewModel>();
 

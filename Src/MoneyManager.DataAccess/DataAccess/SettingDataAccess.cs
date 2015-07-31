@@ -32,7 +32,8 @@ namespace MoneyManager.DataAccess.DataAccess
             {
                 var setting = ApplicationData.Current.RoamingSettings.Values[key];
                 value = (TValueType) Convert.ChangeType(setting, typeof (TValueType), CultureInfo.InvariantCulture);
-            } else
+            }
+            else
             {
                 value = defaultValue;
             }

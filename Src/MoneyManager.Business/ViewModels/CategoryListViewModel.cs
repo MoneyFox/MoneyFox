@@ -78,7 +78,8 @@ namespace MoneyManager.Business.ViewModels
                 Categories = new ObservableCollection<Category>
                     (AllCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(_searchText.ToLower()))
                         .ToList());
-            } else
+            }
+            else
             {
                 Categories = AllCategories;
             }

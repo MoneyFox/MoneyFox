@@ -14,8 +14,10 @@ namespace MoneyManager.Foundation
         ///     Reports the passed exception if Insights are initialized
         /// </summary>
         /// <param name="exception">Excpetion to report.</param>
-        public static void Report(Exception exception) {
-            if (Telemetry.IsEnabled()) {
+        public static void Report(Exception exception)
+        {
+            if (Telemetry.IsEnabled())
+            {
                 Telemetry.TrackException(exception);
             }
         }

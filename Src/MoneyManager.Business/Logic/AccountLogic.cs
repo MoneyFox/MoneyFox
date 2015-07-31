@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Manager;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
@@ -85,7 +84,8 @@ namespace MoneyManager.Business.Logic
 
                 AccountRepository.Save(account);
                 TransactionData.Save(transaction);
-            } else
+            }
+            else
             {
                 transaction.Cleared = false;
                 TransactionData.Save(transaction);
@@ -117,11 +117,14 @@ namespace MoneyManager.Business.Logic
 
         #region Properties
 
-        private static IRepository<Account> AccountRepository => ServiceLocator.Current.GetInstance<IRepository<Account>>();
+        private static IRepository<Account> AccountRepository
+            => ServiceLocator.Current.GetInstance<IRepository<Account>>();
 
-        private static IDataAccess<FinancialTransaction> TransactionData => ServiceLocator.Current.GetInstance<IDataAccess<FinancialTransaction>>();
+        private static IDataAccess<FinancialTransaction> TransactionData
+            => ServiceLocator.Current.GetInstance<IDataAccess<FinancialTransaction>>();
 
-        private static TransactionListViewModel TransactionListView => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
+        private static TransactionListViewModel TransactionListView
+            => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
 
         #endregion Properties
     }

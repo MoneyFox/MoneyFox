@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -29,7 +28,7 @@ namespace MoneyManager.Business.ViewModels
             _transactionRepository = transactionRepository;
             _settings = settings;
             _accountRepository = accountRepository;
-            
+
             IsNavigationBlocked = true;
         }
 
@@ -48,7 +47,6 @@ namespace MoneyManager.Business.ViewModels
         }
 
         public string DefaultCurrency => _settings.DefaultCurrency;
-
         public ObservableCollection<Account> AllAccounts => _accountRepository.Data;
 
         public string Title
@@ -128,7 +126,8 @@ namespace MoneyManager.Business.ViewModels
             if (IsEdit)
             {
                 await TransactionLogic.UpdateTransaction(_transactionRepository.Selected);
-            } else
+            }
+            else
             {
                 await TransactionLogic.SaveTransaction(_transactionRepository.Selected, RefreshRealtedList);
             }

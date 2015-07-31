@@ -25,7 +25,8 @@ namespace MoneyManager.Business
             try
             {
                 await _backupService.Login();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 InsightHelper.Report(ex);
                 throw new ConnectionException(Translation.GetTranslation("LoginFailedMessage"), ex);
@@ -40,7 +41,8 @@ namespace MoneyManager.Business
             try
             {
                 await _backupService.Upload();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 InsightHelper.Report(ex);
                 throw new BackupException(Translation.GetTranslation("BackupFailedMessage"), ex);
@@ -56,7 +58,8 @@ namespace MoneyManager.Business
             try
             {
                 await _backupService.Restore();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 InsightHelper.Report(ex);
                 throw new BackupException(Translation.GetTranslation("RestoreFailedMessage"), ex);
