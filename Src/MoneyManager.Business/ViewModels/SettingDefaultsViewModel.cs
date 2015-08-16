@@ -9,10 +9,10 @@ namespace MoneyManager.Business.ViewModels
 {
     public class SettingDefaultsViewModel
     {
-        public ObservableCollection<Account> AllAccounts => ServiceLocator.Current.GetInstance<IRepository<Account>>().Data;
+        public ObservableCollection<Account> AllAccounts
+            => ServiceLocator.Current.GetInstance<IRepository<Account>>().Data;
 
         private SettingDataAccess settings => ServiceLocator.Current.GetInstance<SettingDataAccess>();
-
         private IRepository<Account> AccountRepository => ServiceLocator.Current.GetInstance<IRepository<Account>>();
 
         public Account DefaultAccount

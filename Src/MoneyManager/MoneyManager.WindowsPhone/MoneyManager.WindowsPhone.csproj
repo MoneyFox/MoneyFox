@@ -19,7 +19,7 @@
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>80780831</NuGetPackageImportStamp>
     <AppxBundle>Always</AppxBundle>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <ApplicationInsightsResourceId>/subscriptions/38a487ea-9b81-4df6-98c2-51f6ae419311/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/MoneyManager.WindowsPhone</ApplicationInsightsResourceId>
@@ -128,9 +128,6 @@
     <Compile Include="UserControls\SelectCategoryUserControl.xaml.cs">
       <DependentUpon>SelectCategoryUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SelectCurrencyUserControl.xaml.cs">
-      <DependentUpon>SelectCurrencyUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\TransactionListUserControl.xaml.cs">
       <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
     </Compile>
@@ -150,9 +147,6 @@
     </Compile>
     <Compile Include="Views\SelectCategory.xaml.cs">
       <DependentUpon>SelectCategory.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SelectCurrency.xaml.cs">
-      <DependentUpon>SelectCurrency.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsBackup.xaml.cs">
       <DependentUpon>SettingsBackup.xaml</DependentUpon>
@@ -315,10 +309,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\SelectCurrencyUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UserControls\TransactionListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -340,10 +330,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SelectCategory.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SelectCurrency.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -393,16 +379,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\MvvmLightLibs.5.1.1.0\lib\wpa81\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ApplicationInsights, Version=1.0.0.4220, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.1.0.0\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.dll</HintPath>
+    <Reference Include="Microsoft.ApplicationInsights, Version=1.2.0.5639, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.1.2.0\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ApplicationInsights.Extensibility.Windows, Version=1.0.0.4225, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsApps.1.0.0\lib\wpa81\Microsoft.ApplicationInsights.Extensibility.Windows.dll</HintPath>
+    <Reference Include="Microsoft.ApplicationInsights.Extensibility.Windows, Version=1.1.0.1906, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsApps.1.1.0\lib\wpa81\Microsoft.ApplicationInsights.Extensibility.Windows.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ApplicationInsights.PersistenceChannel, Version=1.0.0.4223, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.PersistenceChannel.1.0.0\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.PersistenceChannel.dll</HintPath>
+    <Reference Include="Microsoft.ApplicationInsights.PersistenceChannel, Version=1.2.0.5639, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.PersistenceChannel.1.2.0\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.PersistenceChannel.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Live, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -471,9 +457,6 @@
       <Project>{6936f4d3-8889-48c7-a676-80d59b2740ce}</Project>
       <Name>MoneyManager.Foundation</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

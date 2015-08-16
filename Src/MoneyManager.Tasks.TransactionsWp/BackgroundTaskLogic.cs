@@ -5,13 +5,18 @@ using Windows.ApplicationModel.Background;
 using Windows.UI.Popups;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Tasks.TransactionsWp {
-    internal class BackgroundTaskLogic {
+namespace MoneyManager.Tasks.TransactionsWp
+{
+    internal class BackgroundTaskLogic
+    {
         private const string name = "RecurringTransactionTask";
 
-        public static async void RegisterBackgroundTask() {
-            try {
-                if (IsTaskExisting() || !await RequestAccess()) {
+        public static async void RegisterBackgroundTask()
+        {
+            try
+            {
+                if (IsTaskExisting() || !await RequestAccess())
+                {
                     return;
                 }
 
@@ -24,14 +29,17 @@ namespace MoneyManager.Tasks.TransactionsWp {
                 builder.SetTrigger(trigger);
                 builder.Register();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 InsightHelper.Report(ex);
             }
         }
 
-        private static async Task<bool> RequestAccess() {
-            BackgroundAccessStatus result = await BackgroundExecutionManager.RequestAccessAsync();
-            if (result == BackgroundAccessStatus.Denied) {
+        private static async Task<bool> RequestAccess()
+        {
+            var result = await BackgroundExecutionManager.RequestAccessAsync();
+            if (result == BackgroundAccessStatus.Denied)
+            {
                 var dialog = new MessageDialog("denied");
                 await dialog.ShowAsync();
 
@@ -40,7 +48,8 @@ namespace MoneyManager.Tasks.TransactionsWp {
             return true;
         }
 
-        private static bool IsTaskExisting() {
+        private static bool IsTaskExisting()
+        {
             return BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == name);
         }
     }

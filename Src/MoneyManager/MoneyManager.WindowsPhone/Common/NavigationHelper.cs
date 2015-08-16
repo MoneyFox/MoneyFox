@@ -345,7 +345,8 @@ namespace MoneyManager.Common
                 {
                     LoadState(this, new LoadStateEventArgs(e.Parameter, null));
                 }
-            } else
+            }
+            else
             {
                 // Pass the navigation parameter and preserved page state to the page, using
                 // the same strategy for loading suspended state and recreating pages discarded

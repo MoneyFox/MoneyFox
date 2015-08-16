@@ -26,7 +26,8 @@ namespace MoneyManager.DataAccess.DataAccess
                 if (itemToSave.Id == 0)
                 {
                     db.Insert(itemToSave);
-                } else
+                }
+                else
                 {
                     db.UpdateWithChildren(itemToSave);
                 }

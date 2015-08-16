@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
-using MoneyManager.Business.Manager;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -16,13 +14,11 @@ namespace MoneyManager.Business.ViewModels
     public class AddAccountViewModel : ViewModelBase
     {
         private readonly IRepository<Account> _accountRepository;
-        private readonly CurrencyManager _currencyManager;
         private readonly SettingDataAccess _settings;
 
-        public AddAccountViewModel(IRepository<Account> accountRepository, CurrencyManager currencyManager,
+        public AddAccountViewModel(IRepository<Account> accountRepository,
             SettingDataAccess settings)
         {
-            _currencyManager = currencyManager;
             _settings = settings;
             _accountRepository = accountRepository;
         }
@@ -58,11 +54,9 @@ namespace MoneyManager.Business.ViewModels
             }
         }
 
-        public async void SetCurrency(string currency)
+        public void SetCurrency(string currency)
         {
             _accountRepository.Selected.Currency = currency;
-            _accountRepository.Selected.IsExchangeModeActive = true;
-            await LoadCurrencyRatio();
             CalculateNewAmount(CurrentBalanceWithoutExchange);
         }
 
@@ -74,12 +68,6 @@ namespace MoneyManager.Business.ViewModels
             }
 
             _accountRepository.Selected.CurrentBalance = _accountRepository.Selected.ExchangeRatio*value;
-        }
-
-        public async Task LoadCurrencyRatio()
-        {
-            _accountRepository.Selected.ExchangeRatio =
-                await _currencyManager.GetCurrencyRatio(_settings.DefaultCurrency, _accountRepository.Selected.Currency);
         }
 
         public void Save()

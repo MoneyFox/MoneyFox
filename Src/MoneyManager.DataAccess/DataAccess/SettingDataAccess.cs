@@ -32,7 +32,8 @@ namespace MoneyManager.DataAccess.DataAccess
             {
                 var setting = ApplicationData.Current.RoamingSettings.Values[key];
                 value = (TValueType) Convert.ChangeType(setting, typeof (TValueType), CultureInfo.InvariantCulture);
-            } else
+            }
+            else
             {
                 value = defaultValue;
             }
@@ -42,10 +43,7 @@ namespace MoneyManager.DataAccess.DataAccess
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #region Properties

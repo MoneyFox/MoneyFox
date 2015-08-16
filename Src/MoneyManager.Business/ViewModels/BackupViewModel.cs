@@ -53,7 +53,8 @@ namespace MoneyManager.Business.ViewModels
         {
             Login();
 
-            if (!await ShowOverwriteInfo()) {
+            if (!await ShowOverwriteInfo())
+            {
                 return;
             }
 
@@ -65,8 +66,9 @@ namespace MoneyManager.Business.ViewModels
             await ShowCompletionNote();
             IsLoading = false;
         }
-        
-        private void Login() {
+
+        private void Login()
+        {
             IsLoading = true;
             _backup.Login();
             IsLoading = false;

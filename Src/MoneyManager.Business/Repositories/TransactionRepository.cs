@@ -78,7 +78,8 @@ namespace MoneyManager.Business.Repositories
         /// <summary>
         ///     Loads all transactions from the database to the data collection
         /// </summary>
-        public void Load() {
+        public void Load()
+        {
             Data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList());
         }
 

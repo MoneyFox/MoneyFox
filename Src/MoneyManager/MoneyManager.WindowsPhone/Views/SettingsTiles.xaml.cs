@@ -20,7 +20,6 @@ namespace MoneyManager.Views
         }
 
         private NavigationHelper NavigationHelper { get; }
-
         private TileSettingsViewModel TileSettingsView => ServiceLocator.Current.GetInstance<TileSettingsViewModel>();
 
         private void CreateIncomeTile(object sender, RoutedEventArgs e)

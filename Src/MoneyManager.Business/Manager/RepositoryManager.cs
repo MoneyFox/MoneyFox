@@ -6,13 +6,13 @@ namespace MoneyManager.Business.Manager
     public class RepositoryManager
     {
         private readonly IRepository<Account> _accountRepository;
-        private readonly ITransactionRepository _transactionRepository;
-        private readonly IRepository<RecurringTransaction> _recurringTransactionRepository;
         private readonly IRepository<Category> _categoryRepository;
+        private readonly IRepository<RecurringTransaction> _recurringTransactionRepository;
+        private readonly ITransactionRepository _transactionRepository;
 
         public RepositoryManager(IRepository<Account> accountRepository,
-            ITransactionRepository transactionRepository, 
-            IRepository<RecurringTransaction> recurringTransactionRepository, 
+            ITransactionRepository transactionRepository,
+            IRepository<RecurringTransaction> recurringTransactionRepository,
             IRepository<Category> categoryRepository)
         {
             _accountRepository = accountRepository;

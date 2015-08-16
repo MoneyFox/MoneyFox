@@ -19,6 +19,9 @@ namespace MoneyManager
 
         public App()
         {
+#if !DEBUG
+            WindowsAppInitializer.InitializeAsync();
+#endif
             InitializeComponent();
             Suspending += OnSuspending;
         }
