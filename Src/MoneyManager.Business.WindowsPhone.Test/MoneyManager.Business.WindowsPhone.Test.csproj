@@ -84,7 +84,6 @@
   <ItemGroup>
     <Compile Include="Helper\UtilitiesTest.cs" />
     <Compile Include="Logic\TransactionTypeLogicTest.cs" />
-    <Compile Include="Manager\CurrencyManagerTest.cs" />
     <Compile Include="Mocks\AccountDataAccessMock.cs" />
     <Compile Include="Mocks\CategoryDataAccessMock.cs" />
     <Compile Include="Mocks\JsonServiceMock.cs" />
@@ -95,7 +94,6 @@
     <Compile Include="Repositories\CategoryRepositoryTest.cs" />
     <Compile Include="Repositories\RecurringTransactionRepositoryTest.cs" />
     <Compile Include="Repositories\TransactionRepositoryTest.cs" />
-    <Compile Include="Service\JsonServiceTest.cs" />
     <Compile Include="ViewModels\AddTransactionViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>

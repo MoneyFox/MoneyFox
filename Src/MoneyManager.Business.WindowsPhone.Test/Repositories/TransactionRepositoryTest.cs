@@ -63,10 +63,12 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories
                 };
 
                 repository.Save(transaction);
-            } catch (InvalidDataException)
+            }
+            catch (InvalidDataException)
             {
                 return;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 Assert.Fail("wrong exception.");
             }

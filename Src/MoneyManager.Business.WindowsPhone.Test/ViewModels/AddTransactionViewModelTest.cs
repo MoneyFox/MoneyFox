@@ -1,7 +1,5 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.Business.Manager;
-using MoneyManager.Business.Services;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
@@ -33,7 +31,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Spending};
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                new CurrencyManager(new JsonService()),
                 _settingRepository)
             {
                 IsEdit = true,
@@ -49,7 +46,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Income};
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                new CurrencyManager(new JsonService()),
                 _settingRepository)
             {
                 IsEdit = true,
@@ -65,7 +61,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer};
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                new CurrencyManager(new JsonService()),
                 _settingRepository)
             {
                 IsEdit = true,
@@ -81,7 +76,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer};
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                new CurrencyManager(new JsonService()),
                 _settingRepository) {IsEdit = false};
 
             Assert.AreEqual("add transfer", viewModel.Title);
@@ -94,7 +88,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
 
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                new CurrencyManager(new JsonService()),
                 _settingRepository);
 
             Assert.AreEqual("add spending", viewModel.Title);
@@ -106,7 +99,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Income};
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                new CurrencyManager(new JsonService()),
                 _settingRepository);
 
             Assert.AreEqual("add income", viewModel.Title);
@@ -118,7 +110,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             _transactionRepository.Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer};
             var viewModel = new AddTransactionViewModel(_transactionRepository,
                 _accountRepository,
-                new CurrencyManager(new JsonService()),
                 _settingRepository);
 
             Assert.AreEqual("add transfer", viewModel.Title);

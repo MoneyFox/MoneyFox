@@ -24,7 +24,8 @@ namespace MoneyManager.Business.Logic
                     transaction.ReccuringTransactionId = null;
                     transactionRepository.Save(transaction);
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 InsightHelper.Report(ex);
             }
@@ -108,7 +109,8 @@ namespace MoneyManager.Business.Logic
                 };
 
                 transactionRepository.Save(newTransaction);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 InsightHelper.Report(ex);
             }

@@ -13,22 +13,6 @@ namespace MoneyManager.UserControls
 {
     public partial class TransactionListUserControl
     {
-        #region Properties
-
-        public ITransactionRepository TransactionRepository {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
-        }
-
-        public AddTransactionViewModel AddTransactionView {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
-        }
-
-        public BalanceViewModel BalanceView {
-            get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
-        }
-
-        #endregion
-
         public TransactionListUserControl()
         {
             InitializeComponent();
@@ -96,5 +80,24 @@ namespace MoneyManager.UserControls
                 ListViewTransactions.SelectedItem = null;
             }
         }
+
+        #region Properties
+
+        public ITransactionRepository TransactionRepository
+        {
+            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
+        }
+
+        public AddTransactionViewModel AddTransactionView
+        {
+            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+        }
+
+        public BalanceViewModel BalanceView
+        {
+            get { return ServiceLocator.Current.GetInstance<BalanceViewModel>(); }
+        }
+
+        #endregion
     }
 }

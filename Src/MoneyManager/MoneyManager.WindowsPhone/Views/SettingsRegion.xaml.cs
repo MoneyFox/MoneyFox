@@ -1,10 +1,5 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.ViewModels;
+﻿using Windows.UI.Xaml.Navigation;
 using MoneyManager.Common;
-using MoneyManager.Foundation;
 
 namespace MoneyManager.Views
 {
@@ -18,11 +13,6 @@ namespace MoneyManager.Views
         }
 
         private NavigationHelper NavigationHelper { get; }
-
-        private void OpenSelectCurrencyDialog(object sender, RoutedEventArgs routedEventArgs) {
-            ServiceLocator.Current.GetInstance<SelectCurrencyViewModel>().InvocationType = InvocationType.Setting;
-            ((Frame)Window.Current.Content).Navigate(typeof(SelectCurrency));
-        }
 
         #region NavigationHelper registration
 

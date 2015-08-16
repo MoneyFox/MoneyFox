@@ -11,7 +11,8 @@ namespace MoneyManager.Business.Converter
             {
                 var date = System.Convert.ToDateTime(value);
                 return new DateTimeOffset(date);
-            } catch (ArgumentOutOfRangeException)
+            }
+            catch (ArgumentOutOfRangeException)
             {
                 return DateTimeOffset.MinValue;
             }
@@ -23,7 +24,8 @@ namespace MoneyManager.Business.Converter
             {
                 var dto = (DateTimeOffset) value;
                 return dto.DateTime;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 return DateTime.MinValue;
             }

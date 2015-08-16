@@ -17,9 +17,10 @@ namespace MoneyManager.Views
             new NavigationHelper(this);
         }
 
-        private AddTransactionViewModel AddTransactionView => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
+        private AddTransactionViewModel AddTransactionView
+            => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.NavigationMode != NavigationMode.Back && AddTransactionView.IsEdit)
             {
@@ -29,22 +30,28 @@ namespace MoneyManager.Views
             base.OnNavigatedTo(e);
         }
 
-        private void RemoveZeroOnFocus(object sender, RoutedEventArgs e) {
-            if (TextBoxAmount.Text == "0") {
+        private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
+        {
+            if (TextBoxAmount.Text == "0")
+            {
                 TextBoxAmount.Text = string.Empty;
             }
 
             TextBoxAmount.SelectAll();
         }
 
-        private void AddZeroIfEmpty(object sender, RoutedEventArgs e) {
-            if (TextBoxAmount.Text == string.Empty) {
+        private void AddZeroIfEmpty(object sender, RoutedEventArgs e)
+        {
+            if (TextBoxAmount.Text == string.Empty)
+            {
                 TextBoxAmount.Text = "0";
             }
         }
 
-        private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e) {
-            if (e.OriginalSource == null) {
+        private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e)
+        {
+            if (e.OriginalSource == null)
+            {
                 return;
             }
 

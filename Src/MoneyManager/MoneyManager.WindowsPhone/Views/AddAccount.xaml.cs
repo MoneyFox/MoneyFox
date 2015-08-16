@@ -17,16 +17,20 @@ namespace MoneyManager.Views
 
         private AddAccountViewModel viewModel => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
 
-        private void RemoveZeroOnFocus(object sender, RoutedEventArgs e) {
-            if (TextBoxCurrentBalance.Text == "0") {
+        private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
+        {
+            if (TextBoxCurrentBalance.Text == "0")
+            {
                 TextBoxCurrentBalance.Text = string.Empty;
             }
 
             TextBoxCurrentBalance.SelectAll();
         }
 
-        private void AddZeroIfEmpty(object sender, RoutedEventArgs e) {
-            if (TextBoxCurrentBalance.Text == string.Empty) {
+        private void AddZeroIfEmpty(object sender, RoutedEventArgs e)
+        {
+            if (TextBoxCurrentBalance.Text == string.Empty)
+            {
                 TextBoxCurrentBalance.Text = "0";
             }
         }
