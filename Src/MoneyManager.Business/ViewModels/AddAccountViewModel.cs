@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using MoneyManager.DataAccess.DataAccess;
@@ -29,46 +27,7 @@ namespace MoneyManager.Business.ViewModels
         {
             get { return _accountRepository.Selected; }
             set { _accountRepository.Selected = value; }
-        }
-
-        public string CurrentBalanceString
-        {
-            get { return CurrentBalanceWithoutExchange.ToString(); }
-            set
-            {
-                double amount;
-                if (double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount))
-                {
-                    CurrentBalanceWithoutExchange = amount;
-                }
-            }
-        }
-
-        public double CurrentBalanceWithoutExchange
-        {
-            get { return _accountRepository.Selected.CurrentBalanceWithoutExchange; }
-            set
-            {
-                _accountRepository.Selected.CurrentBalanceWithoutExchange = value;
-                CalculateNewAmount(value);
-            }
-        }
-
-        public void SetCurrency(string currency)
-        {
-            _accountRepository.Selected.Currency = currency;
-            CalculateNewAmount(CurrentBalanceWithoutExchange);
-        }
-
-        private void CalculateNewAmount(double value)
-        {
-            if (Math.Abs(_accountRepository.Selected.ExchangeRatio) < 0.5)
-            {
-                _accountRepository.Selected.ExchangeRatio = 1;
-            }
-
-            _accountRepository.Selected.CurrentBalance = _accountRepository.Selected.ExchangeRatio*value;
-        }
+        }        
 
         public void Save()
         {
