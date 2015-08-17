@@ -76,45 +76,6 @@ namespace MoneyManager.Business.ViewModels
             set { SelectedTransaction.Date = value; }
         }
 
-        public string AmountString
-        {
-            get { return AmountWithoutExchange.ToString(); }
-            set
-            {
-                double amount;
-                if (double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentUICulture, out amount))
-                {
-                    AmountWithoutExchange = amount;
-                }
-            }
-        }
-
-        private double AmountWithoutExchange
-        {
-            get { return _transactionRepository.Selected.AmountWithoutExchange; }
-            set
-            {
-                _transactionRepository.Selected.AmountWithoutExchange = value;
-                CalculateNewAmount(value);
-            }
-        }
-
-        private void CalculateNewAmount(double value)
-        {
-            if (Math.Abs(_transactionRepository.Selected.ExchangeRatio) < 0.5)
-            {
-                _transactionRepository.Selected.ExchangeRatio = 1;
-            }
-
-            _transactionRepository.Selected.Amount = _transactionRepository.Selected.ExchangeRatio*value;
-        }
-
-        public void SetCurrency(string currency)
-        {
-            _transactionRepository.Selected.Currency = currency;
-            CalculateNewAmount(AmountWithoutExchange);
-        }
-
         public async void Save()
         {
             if (_transactionRepository.Selected.ChargedAccount == null)
