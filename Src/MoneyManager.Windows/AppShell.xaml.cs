@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using MoneyManager.Windows.Controls;
+using MoneyManager.Windows.Views;
 
 namespace MoneyManager.Windows
 {
@@ -50,8 +51,8 @@ namespace MoneyManager.Windows
                 new NavMenuItem
                 {
                     Symbol = Symbol.Account,
-                    Label = "About"
-                    //DestPage = typeof(DrillInPage)
+                    Label = "About",
+                    DestPage = typeof(About)
                 }
             });
 

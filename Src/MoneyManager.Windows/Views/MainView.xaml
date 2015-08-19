@@ -26,7 +26,7 @@
 
         <controls:PageHeader x:Name="pageHeader">
             <controls:PageHeader.HeaderContent>
-                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="APP OVERVIEW" />
+                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="Accounts" x:Uid="AccountTitle" />
             </controls:PageHeader.HeaderContent>
         </controls:PageHeader>
 
