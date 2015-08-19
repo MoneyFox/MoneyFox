@@ -1,13 +1,16 @@
 ﻿<Application
     x:Class="MoneyManager.Windows.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:windows="using:MoneyManager.Windows">
 
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Style/Styles.xaml" />
+                <ResourceDictionary Source="Style/TextStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <windows:ViewModelLocator x:Key="Locator" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

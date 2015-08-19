@@ -5,9 +5,32 @@
     xmlns:local="using:MoneyManager.Windows.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:MoneyManager.Windows.Controls"
     mc:Ignorable="d">
 
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Add" x:Uid="AddIncomeLabel" Label="add income"  />
+                <AppBarButton Icon="Remove" x:Uid="AddSpendingLabel" Label="add spending" />
+                <AppBarButton Icon="Switch"  x:Uid="AddTransferLabel" Label="add transfer" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader x:Name="pageHeader">
+            <controls:PageHeader.HeaderContent>
+                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="APP OVERVIEW" />
+            </controls:PageHeader.HeaderContent>
+        </controls:PageHeader>
+
+        <controls:AccountListUserControl Grid.Row="1" />
 
     </Grid>
 </Page>

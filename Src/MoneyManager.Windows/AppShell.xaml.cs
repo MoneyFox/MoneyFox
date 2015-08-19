@@ -26,20 +26,31 @@ namespace MoneyManager.Windows
             {
                 new NavMenuItem
                 {
-                    Symbol = Symbol.Contact,
-                    Label = "Basic Page"
+                    Symbol = Symbol.Library,
+                    Label = "Account"
                     //DestPage = typeof(BasicPage)
                 },
                 new NavMenuItem
                 {
-                    Symbol = Symbol.Edit,
-                    Label = "CommandBar Page"
+                    Symbol = Symbol.View,
+                    Label = "Statistics"
                     //DestPage = typeof(CommandBarPage)
                 },
                 new NavMenuItem
                 {
-                    Symbol = Symbol.Favorite,
-                    Label = "Drill In Page"
+                    Symbol = Symbol.SyncFolder,
+                    Label = "Backup"
+                    //DestPage = typeof(DrillInPage)
+                },new NavMenuItem
+                {
+                    Symbol = Symbol.Setting,
+                    Label = "Settings"
+                    //DestPage = typeof(DrillInPage)
+                },
+                new NavMenuItem
+                {
+                    Symbol = Symbol.Account,
+                    Label = "About"
                     //DestPage = typeof(DrillInPage)
                 }
             });
