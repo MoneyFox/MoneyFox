@@ -48,25 +48,25 @@
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Backup" x:Uid="BackupTitle" />
             </controls:PageHeader.HeaderContent>
         </controls:PageHeader>
-
-        <Grid Grid.Row="1"
+        
+        <StackPanel Grid.Row="1"
               Margin="19,9.5,19,0">
             <StackPanel>
-                <TextBlock Text="Last Backup created at:"
-                           x:Uid="LastBackupCreationDate"
-                           Margin="0,0,5,0" />
-                <TextBlock Text="{Binding CreationDate}"
-                           Margin="0,0,0,10" />
+                <TextBlock x:Uid="BackupInformation" 
+                           Text="Backupinformation" 
+                           Margin="0,0,0,12"
+                           TextWrapping="WrapWholeWords"/>
                 <Button Content="Create Backup"
                         x:Uid="CreateBackup"
                         Command="{Binding BackupCommand}"
-                        HorizontalAlignment="Stretch" />
+                        HorizontalAlignment="Stretch"
+                        Margin="0,0,0,7"/>
                 <Button Content="Restore"
                         x:Uid="RestoreBackup"
                         Command="{Binding RestoreCommand}"
                         HorizontalAlignment="Stretch" />
             </StackPanel>
-        </Grid>
+        </StackPanel>
 
         <Grid HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch"

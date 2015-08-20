@@ -138,6 +138,9 @@
   <data name="AddTransferLabel.Label" xml:space="preserve">
     <value>add transfer</value>
   </data>
+  <data name="BackupInformation.Text" xml:space="preserve">
+    <value>Your data will be saved to your OneDrive account. You find them in a new created folder "MoneyFoxBackup". </value>
+  </data>
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>Backup</value>
   </data>
