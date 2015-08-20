@@ -1598,12 +1598,23 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone/1.8.1": {
+        "dependencies": {
+          "WinRTXamlToolkit.WindowsPhone": "[1.8.1, )"
+        },
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
+        }
+      },
+      "WinRTXamlToolkit.WindowsPhone/1.8.1": {
+        "compile": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
+        },
+        "runtime": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
         }
       }
     },
@@ -3293,12 +3304,23 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone/1.8.1": {
+        "dependencies": {
+          "WinRTXamlToolkit.WindowsPhone": "[1.8.1, )"
+        },
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
+        }
+      },
+      "WinRTXamlToolkit.WindowsPhone/1.8.1": {
+        "compile": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
+        },
+        "runtime": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
         }
       }
     },
@@ -4960,12 +4982,23 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone/1.8.1": {
+        "dependencies": {
+          "WinRTXamlToolkit.WindowsPhone": "[1.8.1, )"
+        },
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
+        }
+      },
+      "WinRTXamlToolkit.WindowsPhone/1.8.1": {
+        "compile": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
+        },
+        "runtime": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
         }
       }
     },
@@ -6660,12 +6693,23 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone/1.8.1": {
+        "dependencies": {
+          "WinRTXamlToolkit.WindowsPhone": "[1.8.1, )"
+        },
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
+        }
+      },
+      "WinRTXamlToolkit.WindowsPhone/1.8.1": {
+        "compile": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
+        },
+        "runtime": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
         }
       }
     },
@@ -8327,12 +8371,23 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone/1.8.1": {
+        "dependencies": {
+          "WinRTXamlToolkit.WindowsPhone": "[1.8.1, )"
+        },
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
+        }
+      },
+      "WinRTXamlToolkit.WindowsPhone/1.8.1": {
+        "compile": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
+        },
+        "runtime": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
         }
       }
     },
@@ -10027,12 +10082,23 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone/1.8.1": {
+        "dependencies": {
+          "WinRTXamlToolkit.WindowsPhone": "[1.8.1, )"
+        },
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
+        }
+      },
+      "WinRTXamlToolkit.WindowsPhone/1.8.1": {
+        "compile": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
+        },
+        "runtime": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
         }
       }
     },
@@ -11694,12 +11760,23 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WinRTXamlToolkit/1.6.1.3": {
+      "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone/1.8.1": {
+        "dependencies": {
+          "WinRTXamlToolkit.WindowsPhone": "[1.8.1, )"
+        },
         "compile": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
         },
         "runtime": {
-          "lib/netcore451/WinRTXamlToolkit.dll": {}
+          "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll": {}
+        }
+      },
+      "WinRTXamlToolkit.WindowsPhone/1.8.1": {
+        "compile": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
+        },
+        "runtime": {
+          "lib/wpa/WinRTXamlToolkit.dll": {}
         }
       }
     }
@@ -15263,67 +15340,78 @@
         "[Content_Types].xml"
       ]
     },
-    "WinRTXamlToolkit/1.6.1.3": {
-      "sha512": "ukFKkiEHe2phThICFcRb4Bw/2S5mLCp3YibYt+/rC28qxbUPQdmu3XMPiUF7yOKJpsdmLDJFuq5/hehjQtg9GA==",
+    "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone/1.8.1": {
+      "sha512": "FOBBqwLU+Lw87ad6wKUBfq9P/NxdDllsTRpweHcf2igdbcW/Wvp2s0ZkUFwquGnIWsSFeBK/WssQq5ozkIpfyw==",
       "type": "Package",
       "files": [
         "_rels/.rels",
-        "WinRTXamlToolkit.nuspec",
-        "lib/netcore45/WinRTXamlToolkit.dll",
-        "lib/netcore45/WinRTXamlToolkit.pri",
-        "lib/netcore45/WinRTXamlToolkit/Controls/AlternativeFrame/AlternativeFrame.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/AnimatingContainer/AnimatingContainer.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/CameraCaptureControl/CameraCaptureControl.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/CascadingImageControl/CascadingImageControl.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/CascadingTextBlock/CascadingTextBlock.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/CountdownControl/CountdownControl.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/CustomAppBar/CustomAppBar.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/CustomGridSplitter/CustomGridSplitter.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/ImageButton/ImageButton.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/ImageToggleButton/ImageToggleButton.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/InputDialog/InputDialog.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/ListItemButton/ListItemButton.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/NumericUpDown/NumericUpDown.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/ToolWindow/ToolWindow.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/TreeView/TreeView.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/TreeView/TreeViewItem.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/TreeView/TreeViewTouch.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/WatermarkTextBox/WatermarkTextBox.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xaml",
-        "lib/netcore45/WinRTXamlToolkit/Themes/Generic.xaml",
-        "lib/netcore451/WinRTXamlToolkit.dll",
-        "lib/netcore451/WinRTXamlToolkit.pri",
-        "lib/netcore451/WinRTXamlToolkit/WinRTXamlToolkit.xr.xml",
-        "lib/netcore451/WinRTXamlToolkit/Controls/AlternativeFrame/AlternativeFrame.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/AnimatingContainer/AnimatingContainer.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/CameraCaptureControl/CameraCaptureControl.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/CascadingImageControl/CascadingImageControl.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/CascadingTextBlock/CascadingTextBlock.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/CountdownControl/CountdownControl.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/CustomAppBar/CustomAppBar.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/CustomGridSplitter/CustomGridSplitter.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/FxContentControl/FxContentControl.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/ImageButton/ImageButton.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/ImageToggleButton/ImageToggleButton.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/InputDialog/InputDialog.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/ListItemButton/ListItemButton.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/NumericUpDown/NumericUpDown.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/ToolWindow/ToolWindow.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/TreeView/TreeView.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/TreeView/TreeViewItem.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/TreeView/TreeViewTouch.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/WatermarkTextBox/WatermarkTextBox.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Controls/WebBrowser/WebBrowser.xbf",
-        "lib/netcore451/WinRTXamlToolkit/Themes/Generic.xbf",
-        "package/services/metadata/core-properties/fa1b487cab1142b2bcf06a0c2aedd6c5.psmdcp",
+        "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.nuspec",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.dll",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization.pri",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/WinRTXamlToolkit.Controls.DataVisualization.xr.xml",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Axis/AxisLabel.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Axis/DateTimeAxisLabel.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Axis/DisplayAxis.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Axis/NumericAxisLabel.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Axis/RangeAxis.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Chart/Chart.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/DataPoint/AreaDataPoint.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/DataPoint/BarDataPoint.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/DataPoint/BubbleDataPoint.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/DataPoint/ColumnDataPoint.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/DataPoint/LineDataPoint.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/DataPoint/PieDataPoint.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/DataPoint/ScatterDataPoint.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Primitives/DelegatingListBox.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Series/AreaSeries.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Series/DataPointSeries.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Series/DefinitionSeries.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Series/LegendItem.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Series/LineSeries.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Charting/Series/PieSeries.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Legend/Legend.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Themes/Generic.xbf",
+        "lib/wpa/WinRTXamlToolkit.Controls.DataVisualization/Title/Title.xbf",
+        "package/services/metadata/core-properties/c9da1d548c4949acacda1b7bd9d73252.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "WinRTXamlToolkit.WindowsPhone/1.8.1": {
+      "sha512": "sZ83sw94IQFG7UeRoeP3Oa0eEBmXHAiD5SQeGQqVTPxGN8pG0BRnx8zu/aNbir3YK2oXiTaNe9kzu9Y/Y5lFZA==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "WinRTXamlToolkit.WindowsPhone.nuspec",
+        "lib/wpa/WinRTXamlToolkit.dll",
+        "lib/wpa/WinRTXamlToolkit.pri",
+        "lib/wpa/WinRTXamlToolkit/WinRTXamlToolkit.xr.xml",
+        "lib/wpa/WinRTXamlToolkit/Controls/AlternativeFrame/AlternativeFrame.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/AnimatingContainer/AnimatingContainer.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/AutoCompleteTextBox/AutoCompleteTextBox.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/CameraCaptureControl/CameraCaptureControl.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/CascadingImageControl/CascadingImageControl.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/CascadingTextBlock/CascadingTextBlock.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/ColorPicker/ColorPicker.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/CountdownControl/CountdownControl.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/CustomGridSplitter/CustomGridSplitter.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/DelayedLoadControl/DelayedLoadControl.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/FocusVisualizer/FocusVisualizer.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/FxContentControl/FxContentControl.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/ImageButton/ImageButton.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/ImageToggleButton/ImageToggleButton.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/InputDialog/InputDialog.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/ListItemButton/ListItemButton.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/NumericUpDown/NumericUpDown.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/ToolStrip/ToolStrip.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/ToolWindow/ToolWindow.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/TreeView/TreeView.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/TreeView/TreeViewItem.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/TreeView/TreeViewMouse.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/TreeView/TreeViewTouch.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/WatermarkPasswordBox/WatermarkPasswordBox.xbf",
+        "lib/wpa/WinRTXamlToolkit/Controls/WatermarkTextBox/WatermarkTextBox.xbf",
+        "lib/wpa/WinRTXamlToolkit/Themes/Generic.xbf",
+        "package/services/metadata/core-properties/f0051d29c2d04f2cbe14fe603163cf55.psmdcp",
         "[Content_Types].xml"
       ]
     }
@@ -15337,7 +15425,7 @@
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "MvvmLightLibs >= 5.1.1",
       "NotificationsExtensions >= 1.0.0",
-      "WinRTXamlToolkit >= 1.6.1.3"
+      "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone >= 1.8.1"
     ],
     "UAP,Version=v10.0": []
   }
