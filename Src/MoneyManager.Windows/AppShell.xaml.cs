@@ -28,25 +28,25 @@ namespace MoneyManager.Windows
                 new NavMenuItem
                 {
                     Symbol = Symbol.Library,
-                    Label = "Account"
-                    //DestPage = typeof(BasicPage)
+                    Label = "Account",
+                    DestPage = typeof(MainView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.View,
                     Label = "Statistics"
-                    //DestPage = typeof(CommandBarPage)
+                    //DestPage = typeof(StatisticView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.SyncFolder,
                     Label = "Backup"
-                    //DestPage = typeof(DrillInPage)
+                    //DestPage = typeof(BackupView)
                 },new NavMenuItem
                 {
                     Symbol = Symbol.Setting,
                     Label = "Settings"
-                    //DestPage = typeof(DrillInPage)
+                    //DestPage = typeof(SettingsView)
                 },
                 new NavMenuItem
                 {
