@@ -8,7 +8,7 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Windows.UserControls
+namespace MoneyManager.Windows.Controls
 {
     public partial class TransactionListUserControl
     {

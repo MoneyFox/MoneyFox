@@ -110,12 +110,33 @@
     <Compile Include="Controls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BarChartUserControl.xaml.cs">
+      <DependentUpon>BarChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CategorySummaryUserControl.xaml.cs">
+      <DependentUpon>CategorySummaryUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PieChartUserControl.xaml.cs">
+      <DependentUpon>PieChartUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SelectCategoryListUserControl.xaml.cs">
+      <DependentUpon>SelectCategoryListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SelectCategoryUserControl.xaml.cs">
+      <DependentUpon>SelectCategoryUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TransactionListUserControl.xaml.cs">
       <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CategoryDialog.xaml.cs">
+      <DependentUpon>CategoryDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SelectStatisticDialog.xaml.cs">
+      <DependentUpon>SelectStatisticDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="NavMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -201,11 +222,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\BarChartUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CategorySummaryUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\PageHeader.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\PieChartUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SelectCategoryListUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SelectCategoryUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\TransactionListUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\CategoryDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\SelectStatisticDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -245,6 +294,11 @@
     <SDKReference Include="SQLite.UAP.2015, Version=3.8.11.1">
       <Name>SQLite for Universal App Platform</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="WinRTXamlToolkit.Controls.DataVisualization">
+      <HintPath>..\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
