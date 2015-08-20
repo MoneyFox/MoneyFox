@@ -44,11 +44,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
         <controls:PageHeader>
             <controls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Add Account" x:Uid="AddAccountTitle" />

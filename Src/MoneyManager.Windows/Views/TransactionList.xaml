@@ -20,15 +20,10 @@
     </Page.Transitions>
 
     <Page.BottomAppBar>
-        <CommandBar Background="{StaticResource PhoneAccentBrush}"
-                    RequestedTheme="Dark">
+        <CommandBar>
             <AppBarButton Icon="add" x:Uid="AddIncomeLabel" Label="add income" Click="AddIncomeClick" />
             <AppBarButton Icon="remove" x:Uid="AddSpendingLabel" Label="add spending" Click="AddSpendingClick" />
-            <AppBarButton x:Uid="AddTransferLabel" Label="add transfer" Click="AddTransferClick">
-                <AppBarButton.Icon>
-                    <BitmapIcon UriSource="ms-appx:///Images/dark/transfer.png" />
-                </AppBarButton.Icon>
-            </AppBarButton>
+            <AppBarButton Icon="Switch"  x:Uid="AddTransferLabel" Label="add transfer" />
         </CommandBar>
     </Page.BottomAppBar>
 

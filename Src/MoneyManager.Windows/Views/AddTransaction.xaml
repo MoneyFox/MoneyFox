@@ -58,11 +58,12 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="24,17,0,28">
-            <TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}"
-                       Typography.Capitals="SmallCaps" />
-        </StackPanel>
-
+        <userControls:PageHeader>
+            <userControls:PageHeader.HeaderContent>
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Add Transaction" x:Uid="AddTransactionTitle" />
+            </userControls:PageHeader.HeaderContent>
+        </userControls:PageHeader>
+        
         <Grid Grid.Row="1">
             <ScrollViewer>
                 <StackPanel Margin="12,0">

@@ -132,8 +132,14 @@
   <data name="AddSpendingLabel.Label" xml:space="preserve">
     <value>add spending</value>
   </data>
+  <data name="AddTransactionTitle.Text" xml:space="preserve">
+    <value>Add Transaction</value>
+  </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
     <value>add transfer</value>
+  </data>
+  <data name="BackupTitle.Text" xml:space="preserve">
+    <value>Backup</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
     <value>Contact:</value>
@@ -150,6 +156,9 @@ Visit Repository:</value>
   </data>
   <data name="RateThisApp.Content" xml:space="preserve">
     <value>Rate this App</value>
+  </data>
+  <data name="SelectCategoryTitle.Text" xml:space="preserve">
+    <value>Select Category</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
     <value>Version: </value>

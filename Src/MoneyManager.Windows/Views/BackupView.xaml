@@ -6,6 +6,7 @@
       xmlns:converter="using:MoneyManager.Business.Converter"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:MoneyManager.Windows.Controls"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       DataContext="{Binding BackupView, Source={StaticResource Locator}}">
@@ -42,16 +43,11 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0"
-                    Margin="19,0,0,0">
-            <TextBlock Text="Settings"
-                       x:Uid="SettingsOverviewTitle"
-                       Margin="0,12,0,0" />
-            <TextBlock Text="backup"
-                       x:Uid="BackupText"
-                       Margin="0,-6.5,0,26.5"
-                       CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" />
-        </StackPanel>
+        <controls:PageHeader>
+            <controls:PageHeader.HeaderContent>
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Backup" x:Uid="BackupTitle" />
+            </controls:PageHeader.HeaderContent>
+        </controls:PageHeader>
 
         <Grid Grid.Row="1"
               Margin="19,9.5,19,0">
