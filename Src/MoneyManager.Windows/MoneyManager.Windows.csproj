@@ -158,6 +158,9 @@
     <Compile Include="Views\SelectCategory.xaml.cs">
       <DependentUpon>SelectCategory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BackupView.xaml.cs">
+      <DependentUpon>BackupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TransactionList.xaml.cs">
       <DependentUpon>TransactionList.xaml</DependentUpon>
     </Compile>
@@ -297,6 +300,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\BackupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\TransactionList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -317,6 +324,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
     <SDKReference Include="SQLite.UAP.2015, Version=3.8.11.1">
       <Name>SQLite for Universal App Platform</Name>
     </SDKReference>

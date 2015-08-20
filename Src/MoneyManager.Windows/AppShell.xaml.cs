@@ -18,7 +18,7 @@ namespace MoneyManager.Windows
     ///     The "chrome" layer of the app that provides top-level navigation with
     ///     proper keyboarding navigation.
     /// </summary>
-    public sealed partial class AppShell : Page
+    public sealed partial class AppShell
     {
         public static AppShell Current;
         // Declare the top level nav items
@@ -40,8 +40,8 @@ namespace MoneyManager.Windows
                 new NavMenuItem
                 {
                     Symbol = Symbol.SyncFolder,
-                    Label = "Backup"
-                    //DestPage = typeof(BackupView)
+                    Label = "Backup",
+                    DestPage = typeof(BackupView)
                 },new NavMenuItem
                 {
                     Symbol = Symbol.Setting,
