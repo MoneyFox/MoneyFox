@@ -6,9 +6,9 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class AddAccount
+    public sealed partial class AddAccountView
     {
-        public AddAccount()
+        public AddAccountView()
         {
             InitializeComponent();
         }

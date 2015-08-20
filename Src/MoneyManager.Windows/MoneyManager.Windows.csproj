@@ -148,23 +148,23 @@
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddAccount.xaml.cs">
-      <DependentUpon>AddAccount.xaml</DependentUpon>
+    <Compile Include="Views\AddAccountView.xaml.cs">
+      <DependentUpon>AddAccountView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddTransaction.xaml.cs">
-      <DependentUpon>AddTransaction.xaml</DependentUpon>
+    <Compile Include="Views\AddTransactionView.xaml.cs">
+      <DependentUpon>AddTransactionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SelectCategory.xaml.cs">
-      <DependentUpon>SelectCategory.xaml</DependentUpon>
+    <Compile Include="Views\SelectCategoryView.xaml.cs">
+      <DependentUpon>SelectCategoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BackupView.xaml.cs">
       <DependentUpon>BackupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TransactionList.xaml.cs">
-      <DependentUpon>TransactionList.xaml</DependentUpon>
+    <Compile Include="Views\TransactionListView.xaml.cs">
+      <DependentUpon>TransactionListView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -286,11 +286,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AddAccount.xaml">
+    <Page Include="Views\AddAccountView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AddTransaction.xaml">
+    <Page Include="Views\AddTransactionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -298,7 +298,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SelectCategory.xaml">
+    <Page Include="Views\SelectCategoryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -306,7 +306,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\TransactionList.xaml">
+    <Page Include="Views\TransactionListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

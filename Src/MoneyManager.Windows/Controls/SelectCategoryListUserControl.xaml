@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
-             DataContext="{Binding CategoryListView, Source={StaticResource Locator}}">
+             DataContext="{Binding CategoryListViewModel, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
         <DataTemplate x:Key="CategoryTemplate">

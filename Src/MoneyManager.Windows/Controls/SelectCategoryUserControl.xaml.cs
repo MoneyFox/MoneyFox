@@ -23,7 +23,7 @@ namespace MoneyManager.Windows.Controls
         //TODO: Handle in View Model
         private void OpenSelectCategoryDialog(object sender, RoutedEventArgs routedEventArgs)
         {
-           ((Frame) Window.Current.Content).Navigate(typeof (SelectCategory));
+           ((Frame) Window.Current.Content).Navigate(typeof (SelectCategoryView));
         }
     }
 }

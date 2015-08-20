@@ -41,7 +41,7 @@ namespace MoneyManager.Windows.Controls
             viewModel.IsEdit = true;
             viewModel.SelectedAccount = account;
 
-            ((Frame) Window.Current.Content).Navigate(typeof (AddAccount));
+            ((Frame) Window.Current.Content).Navigate(typeof (AddAccountView));
         }
 
         private async void Delete_OnClick(object sender, RoutedEventArgs e)
@@ -71,7 +71,7 @@ namespace MoneyManager.Windows.Controls
                 ServiceLocator.Current.GetInstance<TransactionListViewModel>()
                     .SetRelatedTransactions(AccountRepository.Selected);
 
-                ((Frame) Window.Current.Content).Navigate(typeof (TransactionList));
+                ((Frame) Window.Current.Content).Navigate(typeof (TransactionListView));
                 AccountList.SelectedItem = null;
             }
         }

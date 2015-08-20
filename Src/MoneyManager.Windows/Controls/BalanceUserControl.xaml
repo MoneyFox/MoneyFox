@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
-             DataContext="{Binding BalanceView, Source={StaticResource Locator}}"
+             DataContext="{Binding BalanceViewModel, Source={StaticResource Locator}}"
              Loaded="BalanceUserControl_OnLoaded">
 
     <UserControl.Resources>

@@ -11,7 +11,7 @@
     PrimaryButtonText="done"
     SecondaryButtonText="cancel"
     PrimaryButtonClick="LoadStatistic"
-    DataContext="{Binding StatisticView, Source={StaticResource Locator}}">
+    DataContext="{Binding StatisticViewModel, Source={StaticResource Locator}}">
 
     <ContentDialog.Resources>
         <converter1:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />

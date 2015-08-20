@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
-             DataContext="{Binding StatisticView, Source={StaticResource Locator}}">
+             DataContext="{Binding StatisticViewModel, Source={StaticResource Locator}}">
 
     <Grid>
         <Grid.ChildrenTransitions>

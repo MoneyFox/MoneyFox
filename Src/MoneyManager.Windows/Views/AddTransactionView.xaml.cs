@@ -8,21 +8,21 @@ using MoneyManager.Business.ViewModels;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class AddTransaction
+    public sealed partial class AddTransactionView
     {
-        public AddTransaction()
+        public AddTransactionView()
         {
             InitializeComponent();
         }
 
-        private AddTransactionViewModel AddTransactionView
+        private AddTransactionViewModel AddTransactionViewModel
             => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.NavigationMode != NavigationMode.Back && AddTransactionView.IsEdit)
+            if (e.NavigationMode != NavigationMode.Back && AddTransactionViewModel.IsEdit)
             {
-                await AccountLogic.RemoveTransactionAmount(AddTransactionView.SelectedTransaction);
+                await AccountLogic.RemoveTransactionAmount(AddTransactionViewModel.SelectedTransaction);
             }
 
             base.OnNavigatedTo(e);
@@ -63,13 +63,13 @@ namespace MoneyManager.Windows.Views
         //TODO: Handle in View Model
         private void DoneClick(object sender, RoutedEventArgs e)
         {
-            AddTransactionView.Save();
+            AddTransactionViewModel.Save();
         }
 
         //TODO: Handle in View Model
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            AddTransactionView.Cancel();
+            AddTransactionViewModel.Cancel();
         }
     }
 }

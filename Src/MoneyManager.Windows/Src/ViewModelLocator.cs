@@ -10,6 +10,7 @@ using MoneyManager.Business.ViewModels;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Windows.Views;
 
 namespace MoneyManager.Windows
 {
@@ -45,6 +46,7 @@ namespace MoneyManager.Windows
             SimpleIoc.Default.Register<RepositoryManager>();
 
             //ViewModels
+            SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<AddAccountViewModel>();
             SimpleIoc.Default.Register<AccountListUserControlViewModel>();
             SimpleIoc.Default.Register<AddTransactionViewModel>();
@@ -65,6 +67,8 @@ namespace MoneyManager.Windows
             var navigationService = new NavigationService();
             //Just an example
             //navigationService.Configure("LicenseView", typeof (LicenseView));
+
+            navigationService.Configure("AddAccountView", typeof(AddAccountView));
 
             return navigationService;
         }
@@ -89,32 +93,29 @@ namespace MoneyManager.Windows
 
         #region Views
 
-        public AddAccountViewModel AddAccountView => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
+        public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
 
-        public AccountListUserControlViewModel AccountListUserControlView
-            => ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>();
+        public AddAccountViewModel AddAccountViewModel => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
 
-        public AddTransactionViewModel AddTransactionView
-            => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
+        public AccountListUserControlViewModel AccountListUserControlViewModel => ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>();
 
-        public BalanceViewModel BalanceView => ServiceLocator.Current.GetInstance<BalanceViewModel>();
+        public AddTransactionViewModel AddTransactionViewModel => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
 
-        public CategoryListViewModel CategoryListView => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
+        public BalanceViewModel BalanceViewModel => ServiceLocator.Current.GetInstance<BalanceViewModel>();
 
-        public TransactionListViewModel TransactionListView
-            => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
+        public CategoryListViewModel CategoryListViewModel => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
 
-        public TileSettingsViewModel TileSettingsView => ServiceLocator.Current.GetInstance<TileSettingsViewModel>();
+        public TransactionListViewModel TransactionListViewModel => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
 
-        public GeneralSettingViewModel GeneralSettingView
-            => ServiceLocator.Current.GetInstance<GeneralSettingViewModel>();
+        public TileSettingsViewModel TileSettingsViewModel => ServiceLocator.Current.GetInstance<TileSettingsViewModel>();
 
-        public SettingDefaultsViewModel SettingDefaultsView
-            => ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>();
+        public GeneralSettingViewModel GeneralSettingViewModel => ServiceLocator.Current.GetInstance<GeneralSettingViewModel>();
 
-        public StatisticViewModel StatisticView => ServiceLocator.Current.GetInstance<StatisticViewModel>();
+        public SettingDefaultsViewModel SettingDefaultsViewModel => ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>();
 
-        public BackupViewModel BackupView => ServiceLocator.Current.GetInstance<BackupViewModel>();
+        public StatisticViewModel StatisticViewModel => ServiceLocator.Current.GetInstance<StatisticViewModel>();
+
+        public BackupViewModel BackupViewModel => ServiceLocator.Current.GetInstance<BackupViewModel>();
 
         #endregion Views
     }
