@@ -1,32 +1,37 @@
-﻿#region
-
-using System.Collections.Generic;
-using Microsoft.Practices.ServiceLocation;
+﻿using System.Collections.Generic;
 using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess.DataAccess;
 using PropertyChanged;
-
-#endregion
 
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
     public class GeneralSettingViewModel
     {
-        public List<string> LanguageList
-        {
-            get { return RegionLogic.GetSupportedLanguages(); }
-        }
+        private readonly SettingDataAccess settingsDataAccess;
 
-        public string SelectedValue
+        public GeneralSettingViewModel(SettingDataAccess settingsDataAccess)
+        {
+            this.settingsDataAccess = settingsDataAccess;
+        }
+        
+        /// <summary>
+        ///     Gets or sets the default currency used in the system.
+        /// </summary>
+        public string DefaultCurrency => settingsDataAccess.DefaultCurrency;
+
+        /// <summary>
+        ///     returns all supported Languages
+        /// </summary>
+        public List<string> LanguageList => RegionLogic.GetSupportedLanguages();
+
+        /// <summary>
+        ///     gets or Sets the selected Language who is currently used
+        /// </summary>
+        public string SelectedLanguage
         {
             get { return RegionLogic.GetPrimaryLanguage(); }
             set { RegionLogic.SetPrimaryLanguage(value); }
-        }
-
-        public string DefaultCurrency
-        {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency; }
         }
     }
 }
