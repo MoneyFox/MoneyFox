@@ -7,6 +7,7 @@ using MoneyManager.Business.Helper;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Windows.Views;
 
 namespace MoneyManager.Windows.Controls
 {
@@ -40,8 +41,7 @@ namespace MoneyManager.Windows.Controls
             viewModel.IsEdit = true;
             viewModel.SelectedAccount = account;
 
-            //TODO: Uncomment
-            //((Frame) Window.Current.Content).Navigate(typeof (AddAccount));
+            ((Frame) Window.Current.Content).Navigate(typeof (AddAccount));
         }
 
         private async void Delete_OnClick(object sender, RoutedEventArgs e)
@@ -71,8 +71,7 @@ namespace MoneyManager.Windows.Controls
                 ServiceLocator.Current.GetInstance<TransactionListViewModel>()
                     .SetRelatedTransactions(AccountRepository.Selected);
 
-                //TODO:uncomment
-                //((Frame) Window.Current.Content).Navigate(typeof (TransactionList));
+                ((Frame) Window.Current.Content).Navigate(typeof (TransactionList));
                 AccountList.SelectedItem = null;
             }
         }
