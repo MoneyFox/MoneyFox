@@ -85,6 +85,9 @@ namespace MoneyManager.Windows.Controls
             for (var i = 0; i < Items.Count; i++)
             {
                 var lvi = (ListViewItem) ContainerFromIndex(i);
+
+                if(lvi == null) continue;
+
                 if (i != index)
                 {
                     lvi.IsSelected = false;
