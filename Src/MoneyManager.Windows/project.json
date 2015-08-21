@@ -6,8 +6,7 @@
     "Microsoft.ApplicationInsights.WindowsApps": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmLightLibs": "5.1.1",
-    "NotificationsExtensions": "1.0.0",
-    "WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone": "1.8.1"
+    "NotificationsExtensions": "1.0.0"
   },
   "frameworks": {
     "uap10.0": {}

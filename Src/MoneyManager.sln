@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoneyManager", "MoneyManager", "{40D4888B-FCFE-4C53-8B5C-1082881C3571}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.WindowsPhone", "MoneyManager\MoneyManager.WindowsPhone\MoneyManager.WindowsPhone.csproj", "{01C92D11-9B98-4FF3-BF14-89917369AB92}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E43E3146-04DB-495E-AB4C-39D107DE8456}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -46,32 +44,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|ARM.ActiveCfg = Debug|ARM
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|ARM.Build.0 = Debug|ARM
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|ARM.Deploy.0 = Debug|ARM
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|x86.ActiveCfg = Debug|x86
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|x86.Build.0 = Debug|x86
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Debug|x86.Deploy.0 = Debug|x86
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|ARM.ActiveCfg = Release|ARM
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|ARM.Build.0 = Release|ARM
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|ARM.Deploy.0 = Release|ARM
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|Mixed Platforms.Build.0 = Release|x86
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|Mixed Platforms.Deploy.0 = Release|x86
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|x64.ActiveCfg = Release|Any CPU
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|x86.ActiveCfg = Release|x86
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|x86.Build.0 = Release|x86
-		{01C92D11-9B98-4FF3-BF14-89917369AB92}.Release|x86.Deploy.0 = Release|x86
 		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Debug|ARM.ActiveCfg = Debug|ARM
@@ -220,7 +192,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{01C92D11-9B98-4FF3-BF14-89917369AB92} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
 		{44E9295B-ACB7-458B-99A2-C8F1A941F87A} = {B7FFA231-24AE-4D98-8063-2A905CFDD8AA}
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
 		{6936F4D3-8889-48C7-A676-80D59B2740CE} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
