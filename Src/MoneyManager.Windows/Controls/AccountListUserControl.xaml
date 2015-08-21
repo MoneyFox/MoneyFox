@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="MoneyManager.Windows.Controls.AccountListUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="using:MoneyManager.Business.Converter"
+             xmlns:controls="using:MoneyManager.Windows.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             DataContext="{Binding AccountListUserControlViewModel, Source={StaticResource Locator}}">
+
+    <UserControl.Resources>
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <DataTemplate x:Key="AccountTemplate">
+            <StackPanel Margin="0,0,0,7"
+                        HorizontalAlignment="Stretch"
+                        MinWidth="300"
+                        Holding="AccountList_Holding">
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Uid="Edit"
+                                        Text="Edit"
+                                        Click="Edit_OnClick" />
+                        <MenuFlyoutItem x:Uid="Delete"
+                                        Text="Delete"
+                                        Click="Delete_OnClick" />
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+                <StackPanel Margin="6">
+                    <Grid HorizontalAlignment="Stretch"
+                          Margin="0,0,0,8">
+                        <TextBlock Text="{Binding Name}"
+                                   TextTrimming="CharacterEllipsis" />
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
+                                       HorizontalAlignment="Right"
+                                       TextAlignment="Right" />
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Text="{Binding Iban}" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <controls:BalanceUserControl />
+        <ListView Grid.Column="0"
+                  ItemsSource="{Binding AllAccounts}"
+                  ItemTemplate="{StaticResource AccountTemplate}"
+                  HorizontalAlignment="Stretch"
+                  EntranceNavigationTransitionInfo.IsTargetElement="True"
+                  SelectionChanged="NavigateToTransactionList"
+                  Margin="0,30,-12,0"
+                  x:Name="AccountList">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+    </Grid>
+</UserControl>

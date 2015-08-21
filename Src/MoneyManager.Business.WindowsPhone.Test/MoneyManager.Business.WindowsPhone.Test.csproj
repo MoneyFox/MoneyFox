@@ -86,7 +86,6 @@
     <Compile Include="Logic\TransactionTypeLogicTest.cs" />
     <Compile Include="Mocks\AccountDataAccessMock.cs" />
     <Compile Include="Mocks\CategoryDataAccessMock.cs" />
-    <Compile Include="Mocks\JsonServiceMock.cs" />
     <Compile Include="Mocks\RecurringTransactionDataAccessMock.cs" />
     <Compile Include="Mocks\TransactionDataAccessMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

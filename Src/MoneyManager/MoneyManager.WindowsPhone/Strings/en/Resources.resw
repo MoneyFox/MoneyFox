@@ -634,4 +634,7 @@
     <value>This programm is open source. We appreciate contribution!
 Visit Repository:</value>
   </data>
+  <data name="Backupinformation.Text" xml:space="preserve">
+    <value>Your data will be saved to your OneDrive account. You find them in a new created folder "MoneyFoxBackup". </value>
+  </data>
 </root>

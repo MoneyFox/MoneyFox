@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoneyManager", "MoneyManager", "{40D4888B-FCFE-4C53-8B5C-1082881C3571}"
 EndProject
@@ -29,6 +29,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D6E6E944-C844-4882-A72A-F86C17196117}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Business.WindowsPhone.Test", "MoneyManager.Business.WindowsPhone.Test\MoneyManager.Business.WindowsPhone.Test.csproj", "{529E9009-6BE9-4630-84E4-0288A9CE4083}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Windows", "MoneyManager.Windows\MoneyManager.Windows.csproj", "{31D78E14-8DC1-490C-A401-F88F6E36DB96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -187,6 +189,32 @@ Global
 		{529E9009-6BE9-4630-84E4-0288A9CE4083}.Release|x86.ActiveCfg = Release|x86
 		{529E9009-6BE9-4630-84E4-0288A9CE4083}.Release|x86.Build.0 = Release|x86
 		{529E9009-6BE9-4630-84E4-0288A9CE4083}.Release|x86.Deploy.0 = Release|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|ARM.ActiveCfg = Debug|ARM
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|ARM.Build.0 = Debug|ARM
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|ARM.Deploy.0 = Debug|ARM
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|x64.ActiveCfg = Debug|x64
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|x64.Build.0 = Debug|x64
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|x64.Deploy.0 = Debug|x64
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|x86.ActiveCfg = Debug|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|x86.Build.0 = Debug|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Debug|x86.Deploy.0 = Debug|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|Any CPU.ActiveCfg = Release|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|ARM.ActiveCfg = Release|ARM
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|ARM.Build.0 = Release|ARM
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|ARM.Deploy.0 = Release|ARM
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|Mixed Platforms.Build.0 = Release|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|Mixed Platforms.Deploy.0 = Release|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|x64.ActiveCfg = Release|x64
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|x64.Build.0 = Release|x64
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|x64.Deploy.0 = Release|x64
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|x86.ActiveCfg = Release|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|x86.Build.0 = Release|x86
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,5 +227,6 @@ Global
 		{97C5FD49-1128-4FA5-B529-264562A416EF} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
 		{206C8CE3-628B-4CD1-8354-8F83546F6C7C} = {D6E6E944-C844-4882-A72A-F86C17196117}
 		{529E9009-6BE9-4630-84E4-0288A9CE4083} = {D6E6E944-C844-4882-A72A-F86C17196117}
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
 	EndGlobalSection
 EndGlobal

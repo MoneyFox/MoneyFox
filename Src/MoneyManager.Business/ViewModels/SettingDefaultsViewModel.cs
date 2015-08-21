@@ -12,15 +12,21 @@ namespace MoneyManager.Business.ViewModels
         public ObservableCollection<Account> AllAccounts
             => ServiceLocator.Current.GetInstance<IRepository<Account>>().Data;
 
-        private SettingDataAccess settings => ServiceLocator.Current.GetInstance<SettingDataAccess>();
-        private IRepository<Account> AccountRepository => ServiceLocator.Current.GetInstance<IRepository<Account>>();
+        private readonly SettingDataAccess settings;
+        private readonly IRepository<Account> accountRepository;
+
+        public SettingDefaultsViewModel(SettingDataAccess settings, IRepository<Account> accountRepository)
+        {
+            this.settings = settings;
+            this.accountRepository = accountRepository;
+        }
 
         public Account DefaultAccount
         {
             get
             {
                 return settings.DefaultAccount == -1
-                    ? AccountRepository.Selected
+                    ? accountRepository.Selected
                     : AllAccounts.FirstOrDefault(x => x.Id == settings.DefaultAccount);
             }
             set { ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultAccount = value.Id; }

@@ -1,7 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
-using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
@@ -11,27 +10,24 @@ namespace MoneyManager.Business.ViewModels
     [ImplementPropertyChanged]
     public class AddAccountViewModel : ViewModelBase
     {
-        private readonly IRepository<Account> _accountRepository;
-        private readonly SettingDataAccess _settings;
+        private readonly IRepository<Account> accountRepository;
 
-        public AddAccountViewModel(IRepository<Account> accountRepository,
-            SettingDataAccess settings)
+        public AddAccountViewModel(IRepository<Account> accountRepository)
         {
-            _settings = settings;
-            _accountRepository = accountRepository;
+            this.accountRepository = accountRepository;
         }
 
         public bool IsEdit { get; set; }
 
         public Account SelectedAccount
         {
-            get { return _accountRepository.Selected; }
-            set { _accountRepository.Selected = value; }
+            get { return accountRepository.Selected; }
+            set { accountRepository.Selected = value; }
         }        
 
         public void Save()
         {
-            _accountRepository.Save(_accountRepository.Selected);
+            accountRepository.Save(accountRepository.Selected);
             ((Frame) Window.Current.Content).GoBack();
         }
 
