@@ -10,33 +10,25 @@ namespace MoneyManager.Business.ViewModels
 {
     public class BackupViewModel : ViewModelBase
     {
-        private readonly Backup _backup;
-        private readonly RepositoryManager _repositoryManager;
+        private readonly Backup backup;
+        private readonly RepositoryManager repositoryManager;
 
         public BackupViewModel(Backup backup, RepositoryManager repositoryManager)
         {
-            _backup = backup;
-            _repositoryManager = repositoryManager;
+            this.backup = backup;
+            this.repositoryManager = repositoryManager;
 
-            LoadedCommand = new RelayCommand(Loaded);
             BackupCommand = new RelayCommand(CreateBackup);
             RestoreCommand = new RelayCommand(RestoreBackup);
         }
 
-        public RelayCommand LoadedCommand { get; private set; }
         public RelayCommand BackupCommand { get; private set; }
         public RelayCommand RestoreCommand { get; private set; }
         public bool IsLoading { get; private set; }
-        public string CreationDate { get; private set; }
-
-        private async void Loaded()
-        {
-            CreationDate = await _backup.GetCreationDateLastBackup();
-        }
 
         private async void CreateBackup()
         {
-            Login();
+            await Login();
 
             if (!await ShowOverwriteInfo())
             {
@@ -44,14 +36,14 @@ namespace MoneyManager.Business.ViewModels
             }
 
             IsLoading = true;
-            await _backup.UploadBackup();
+            await backup.UploadBackup();
             await ShowCompletionNote();
             IsLoading = false;
         }
 
         private async void RestoreBackup()
         {
-            Login();
+            await Login();
 
             if (!await ShowOverwriteInfo())
             {
@@ -60,17 +52,17 @@ namespace MoneyManager.Business.ViewModels
 
             IsLoading = true;
 
-            await _backup.RestoreBackup();
-            _repositoryManager.ReloadData();
+            await backup.RestoreBackup();
+            repositoryManager.ReloadData();
 
             await ShowCompletionNote();
             IsLoading = false;
         }
 
-        private void Login()
+        private async Task Login()
         {
             IsLoading = true;
-            _backup.Login();
+            await backup.Login();
             IsLoading = false;
         }
 

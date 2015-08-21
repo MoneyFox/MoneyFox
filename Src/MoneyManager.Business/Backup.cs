@@ -20,7 +20,7 @@ namespace MoneyManager.Business
         ///     Prompts a login screen to the user.
         /// </summary>
         /// <exception cref="ConnectionException">Is thrown if the user couldn't be logged in.</exception>
-        public async void Login()
+        public async Task Login()
         {
             try
             {

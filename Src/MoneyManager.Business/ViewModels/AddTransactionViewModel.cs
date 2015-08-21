@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -17,17 +16,17 @@ namespace MoneyManager.Business.ViewModels
     [ImplementPropertyChanged]
     public class AddTransactionViewModel : ViewModelBase
     {
-        private readonly IRepository<Account> _accountRepository;
-        private readonly SettingDataAccess _settings;
-        private readonly ITransactionRepository _transactionRepository;
+        private readonly IRepository<Account> accountRepository;
+        private readonly SettingDataAccess settings;
+        private readonly ITransactionRepository transactionRepository;
 
         public AddTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
             SettingDataAccess settings)
         {
-            _transactionRepository = transactionRepository;
-            _settings = settings;
-            _accountRepository = accountRepository;
+            this.transactionRepository = transactionRepository;
+            this.settings = settings;
+            this.accountRepository = accountRepository;
 
             IsNavigationBlocked = true;
         }
@@ -42,12 +41,12 @@ namespace MoneyManager.Business.ViewModels
 
         public FinancialTransaction SelectedTransaction
         {
-            get { return _transactionRepository.Selected; }
-            set { _transactionRepository.Selected = value; }
+            get { return transactionRepository.Selected; }
+            set { transactionRepository.Selected = value; }
         }
 
-        public string DefaultCurrency => _settings.DefaultCurrency;
-        public ObservableCollection<Account> AllAccounts => _accountRepository.Data;
+        public string DefaultCurrency => settings.DefaultCurrency;
+        public ObservableCollection<Account> AllAccounts => accountRepository.Data;
 
         public string Title
         {
@@ -57,7 +56,7 @@ namespace MoneyManager.Business.ViewModels
                     ? Translation.GetTranslation("EditTitle")
                     : Translation.GetTranslation("AddTitle");
 
-                var type = TransactionTypeLogic.GetViewTitleForType(_transactionRepository.Selected.Type);
+                var type = TransactionTypeLogic.GetViewTitleForType(transactionRepository.Selected.Type);
 
                 return string.Format(text, type);
             }
@@ -78,7 +77,7 @@ namespace MoneyManager.Business.ViewModels
 
         public async void Save()
         {
-            if (_transactionRepository.Selected.ChargedAccount == null)
+            if (transactionRepository.Selected.ChargedAccount == null)
             {
                 ShowAccountRequiredMessage();
                 return;
@@ -86,11 +85,11 @@ namespace MoneyManager.Business.ViewModels
 
             if (IsEdit)
             {
-                await TransactionLogic.UpdateTransaction(_transactionRepository.Selected);
+                await TransactionLogic.UpdateTransaction(transactionRepository.Selected);
             }
             else
             {
-                await TransactionLogic.SaveTransaction(_transactionRepository.Selected, RefreshRealtedList);
+                await TransactionLogic.SaveTransaction(transactionRepository.Selected, RefreshRealtedList);
             }
 
             ((Frame) Window.Current.Content).GoBack();
@@ -112,7 +111,7 @@ namespace MoneyManager.Business.ViewModels
         {
             if (IsEdit)
             {
-                await AccountLogic.AddTransactionAmount(_transactionRepository.Selected);
+                await AccountLogic.AddTransactionAmount(transactionRepository.Selected);
             }
             ((Frame) Window.Current.Content).GoBack();
         }
