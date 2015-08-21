@@ -1,3 +1,4 @@
+using Windows.ApplicationModel;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
@@ -20,6 +21,8 @@ namespace MoneyManager
             DatabaseLogic.CreateDatabase();
 
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
+            if (DesignMode.DesignModeEnabled) return;
 
             //DataAccess
             SimpleIoc.Default.Register<IDataAccess<Account>, AccountDataAccess>();
