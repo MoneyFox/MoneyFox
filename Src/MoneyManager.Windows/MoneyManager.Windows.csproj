@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="NavMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Src\PageNavigationService.cs" />
     <Compile Include="Src\TileHelper.cs" />
     <Compile Include="Src\UserNotification.cs" />
     <Compile Include="Src\ViewModelLocator.cs" />

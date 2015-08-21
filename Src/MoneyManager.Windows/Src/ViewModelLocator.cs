@@ -67,7 +67,7 @@ namespace MoneyManager.Windows
 
         private static INavigationService CreateNavigationService()
         {
-            var navigationService = new NavigationService();
+            var navigationService = new PageNavigationService();
 
             navigationService.Configure("AddAccountView", typeof(AddAccountView));
             navigationService.Configure("AddTransactionView", typeof(AddTransactionView));
