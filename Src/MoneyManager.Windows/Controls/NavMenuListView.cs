@@ -135,37 +135,16 @@ namespace MoneyManager.Windows.Controls
 
                         if (!shiftKeyDown)
                         {
-                            if (onlastitem)
-                            {
-                                TryMoveFocus(FocusNavigationDirection.Next);
-                            }
-                            else
-                            {
-                                TryMoveFocus(FocusNavigationDirection.Down);
-                            }
+                            TryMoveFocus(onlastitem ? FocusNavigationDirection.Next : FocusNavigationDirection.Down);
                         }
                         else // Shift + Tab
                         {
-                            if (onfirstitem)
-                            {
-                                TryMoveFocus(FocusNavigationDirection.Previous);
-                            }
-                            else
-                            {
-                                TryMoveFocus(FocusNavigationDirection.Up);
-                            }
+                            TryMoveFocus(onfirstitem ? FocusNavigationDirection.Previous : FocusNavigationDirection.Up);
                         }
                     }
                     else if (focusedItem is Control)
                     {
-                        if (!shiftKeyDown)
-                        {
-                            TryMoveFocus(FocusNavigationDirection.Down);
-                        }
-                        else // Shift + Tab
-                        {
-                            TryMoveFocus(FocusNavigationDirection.Up);
-                        }
+                        TryMoveFocus(!shiftKeyDown ? FocusNavigationDirection.Down : FocusNavigationDirection.Up);
                     }
 
                     e.Handled = true;

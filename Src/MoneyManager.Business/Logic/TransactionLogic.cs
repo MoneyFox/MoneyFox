@@ -36,6 +36,7 @@ namespace MoneyManager.Business.Logic
             await AccountLogic.AddTransactionAmount(transaction);
         }
 
+        //TODO: Move to VM / Refactor this
         public static void GoToAddTransaction(TransactionType transactionType, bool refreshRelatedList = false)
         {
             ServiceLocator.Current.GetInstance<CategoryListViewModel>().IsSettingCall = false;

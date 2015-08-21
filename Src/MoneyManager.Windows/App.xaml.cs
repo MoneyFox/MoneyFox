@@ -50,11 +50,6 @@ namespace MoneyManager.Windows
                 shell.Language = ApplicationLanguages.Languages[0];
 
                 shell.AppFrame.NavigationFailed += OnNavigationFailed;
-
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //TODO: Load state from previously suspended application
-                }
             }
 
             // Place our app shell in the current Window

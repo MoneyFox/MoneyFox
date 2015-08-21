@@ -1,3 +1,4 @@
+using Windows.ApplicationModel;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
@@ -21,6 +22,8 @@ namespace MoneyManager.Windows
             DatabaseLogic.CreateDatabase();
 
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
+            if (DesignMode.DesignModeEnabled) { return;}
 
             //DataAccess
             SimpleIoc.Default.Register<IDataAccess<Account>, AccountDataAccess>();
@@ -65,10 +68,9 @@ namespace MoneyManager.Windows
         private static INavigationService CreateNavigationService()
         {
             var navigationService = new NavigationService();
-            //Just an example
-            //navigationService.Configure("LicenseView", typeof (LicenseView));
 
             navigationService.Configure("AddAccountView", typeof(AddAccountView));
+            navigationService.Configure("AddTransactionView", typeof(AddTransactionView));
 
             return navigationService;
         }

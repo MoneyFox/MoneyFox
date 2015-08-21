@@ -83,10 +83,7 @@ namespace MoneyManager.Windows
             NavMenuList.ItemsSource = navlist;
         }
 
-        public Frame AppFrame
-        {
-            get { return frame; }
-        }
+        public Frame AppFrame => frame;
 
         public Rect TogglePaneButtonRect { get; private set; }
 
@@ -176,11 +173,8 @@ namespace MoneyManager.Windows
             }
 
             var handler = TogglePaneButtonRectChanged;
-            if (handler != null)
-            {
-                // handler(this, this.TogglePaneButtonRect);
-                handler.DynamicInvoke(this, TogglePaneButtonRect);
-            }
+            // handler(this, this.TogglePaneButtonRect);
+            handler?.DynamicInvoke(this, TogglePaneButtonRect);
         }
 
         /// <summary>
@@ -191,7 +185,7 @@ namespace MoneyManager.Windows
         /// <param name="args"></param>
         private void NavMenuItemContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
         {
-            if (!args.InRecycleQueue && args.Item != null && args.Item is NavMenuItem)
+            if (!args.InRecycleQueue && args.Item is NavMenuItem)
             {
                 args.ItemContainer.SetValue(AutomationProperties.NameProperty, ((NavMenuItem) args.Item).Label);
             }
@@ -245,13 +239,10 @@ namespace MoneyManager.Windows
         {
             var item = (NavMenuItem) ((NavMenuListView) sender).ItemFromContainer(listViewItem);
 
-            if (item != null)
+            if (item?.DestPage != null &&
+                item.DestPage != AppFrame.CurrentSourcePageType)
             {
-                if (item.DestPage != null &&
-                    item.DestPage != AppFrame.CurrentSourcePageType)
-                {
-                    AppFrame.Navigate(item.DestPage, item.Arguments);
-                }
+                AppFrame.Navigate(item.DestPage, item.Arguments);
             }
         }
 
@@ -292,7 +283,7 @@ namespace MoneyManager.Windows
         private void OnNavigatedToPage(object sender, NavigationEventArgs e)
         {
             // After a successful navigation set keyboard focus to the loaded page
-            if (e.Content is Page && e.Content != null)
+            if (e.Content is Page)
             {
                 var control = (Page) e.Content;
                 control.Loaded += Page_Loaded;
