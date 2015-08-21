@@ -4,6 +4,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Views;
 using MoneyManager.Business.Logic;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
@@ -19,13 +20,16 @@ namespace MoneyManager.Business.ViewModels
         private readonly IRepository<Account> accountRepository;
         private readonly SettingDataAccess settings;
         private readonly ITransactionRepository transactionRepository;
+        private readonly INavigationService navigationService;
 
         public AddTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
-            SettingDataAccess settings)
+            SettingDataAccess settings,
+            INavigationService navigationService)
         {
             this.transactionRepository = transactionRepository;
             this.settings = settings;
+            this.navigationService = navigationService;
             this.accountRepository = accountRepository;
 
             IsNavigationBlocked = true;
@@ -33,8 +37,8 @@ namespace MoneyManager.Business.ViewModels
 
         public bool IsNavigationBlocked { get; set; }
         public DateTime EndDate { get; set; }
-        public bool IsEndless { get; set; }
-        public bool IsEdit { get; set; }
+        public bool IsEndless { get; set; } = true;
+        public bool IsEdit { get; set; } = false;
         public int Recurrence { get; set; }
         public bool IsTransfer { get; set; }
         public bool RefreshRealtedList { get; set; }
@@ -113,7 +117,7 @@ namespace MoneyManager.Business.ViewModels
             {
                 await AccountLogic.AddTransactionAmount(transactionRepository.Selected);
             }
-            ((Frame) Window.Current.Content).GoBack();
+            navigationService.GoBack();
         }
     }
 }

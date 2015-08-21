@@ -1,20 +1,30 @@
 ﻿<Page x:Class="MoneyManager.Windows.Views.MainView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:MoneyManager.Windows.Views"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:MoneyManager.Windows.Controls"
       mc:Ignorable="d"
       DataContext="{Binding MainViewModel, Source={StaticResource Locator}}">
 
-
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Add" x:Uid="AddIncomeLabel" Label="add income"  />
-                <AppBarButton Icon="Remove" x:Uid="AddSpendingLabel" Label="add spending" />
-                <AppBarButton Icon="Switch"  x:Uid="AddTransferLabel" Label="add transfer" />
+                <AppBarButton Icon="Add" 
+                              x:Uid="AddIncomeLabel" 
+                             Label="add income" 
+                              Command="{Binding GoToAddTransactionCommand}" 
+                              CommandParameter="Income" />
+                <AppBarButton Icon="Remove"
+                              x:Uid="AddSpendingLabel"
+                              Label="add spending"
+                              Command="{Binding GoToAddTransactionCommand}"
+                              CommandParameter="Spending" />
+                <AppBarButton Icon="Switch"
+                              x:Uid="AddTransferLabel"
+                              Label="add transfer"
+                              Command="{Binding GoToAddTransactionCommand}"
+                              CommandParameter="Transfer" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add"

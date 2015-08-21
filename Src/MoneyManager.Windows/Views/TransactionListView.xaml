@@ -21,9 +21,21 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="add" x:Uid="AddIncomeLabel" Label="add income" Click="AddIncomeClick" />
-            <AppBarButton Icon="remove" x:Uid="AddSpendingLabel" Label="add spending" Click="AddSpendingClick" />
-            <AppBarButton Icon="Switch"  x:Uid="AddTransferLabel" Label="add transfer" />
+            <AppBarButton Icon="Add"
+                          x:Uid="AddIncomeLabel"
+                          Label="add income"
+                          Command="{Binding GoToAddTransactionCommand}"
+                          CommandParameter="Income" />
+            <AppBarButton Icon="Remove"
+                          x:Uid="AddSpendingLabel"
+                          Label="add spending"
+                          Command="{Binding GoToAddTransactionCommand}"
+                          CommandParameter="Spending" />
+            <AppBarButton Icon="Switch"
+                          x:Uid="AddTransferLabel"
+                          Label="add transfer"
+                          Command="{Binding GoToAddTransactionCommand}"
+                          CommandParameter="Transfer" />
         </CommandBar>
     </Page.BottomAppBar>
 
