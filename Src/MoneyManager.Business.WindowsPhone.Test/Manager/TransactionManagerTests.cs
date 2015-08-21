@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Windows.Globalization;
+using GalaSoft.MvvmLight;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Business.Manager;
 using MoneyManager.Business.Repositories;
@@ -8,12 +9,11 @@ using MoneyManager.Business.WindowsPhone.Test.Stubs;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
+namespace MoneyManager.Business.WindowsPhone.Test.Manager
 {
     [TestClass]
-    public class MainViewModelTests
+    public class TransactionManagerTests : ViewModelBase
     {
-        //TODO:Refactor to check navigation with mock
         [TestMethod]
         public void GoToAddTransaction_Income_CorrectPreparation()
         {
@@ -27,9 +27,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
 
-            var mainViewModel = new MainViewModel(transactionManager, new NavigationServiceStub());
-
-            mainViewModel.GoToAddTransactionCommand.Execute("Income");
+            transactionManager.PrepareCreation("Income");
 
             Assert.IsFalse(addTransactionViewModel.IsEdit);
             Assert.IsTrue(addTransactionViewModel.IsEndless);
@@ -39,7 +37,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             Assert.AreEqual(new GeographicRegion().CurrenciesInUse.First(), addTransactionViewModel.SelectedTransaction.Currency);
         }
 
-        //TODO:Refactor to check navigation with mock
         [TestMethod]
         public void GoToAddTransaction_Spending_CorrectPreparation()
         {
@@ -53,9 +50,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
 
-            var mainViewModel = new MainViewModel(transactionManager, new NavigationServiceStub());
-
-            mainViewModel.GoToAddTransactionCommand.Execute("Spending");
+            transactionManager.PrepareCreation("Spending");
 
             Assert.IsFalse(addTransactionViewModel.IsEdit);
             Assert.IsTrue(addTransactionViewModel.IsEndless);
@@ -65,7 +60,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
             Assert.AreEqual(new GeographicRegion().CurrenciesInUse.First(), addTransactionViewModel.SelectedTransaction.Currency);
         }
 
-        //TODO:Refactor to check navigation with mock
         [TestMethod]
         public void GoToAddTransaction_Transfer_CorrectPreparation()
         {
@@ -77,11 +71,9 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
                     settings,
                     new NavigationServiceStub());
 
-            var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
+            var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository,  settings);
 
-            var mainViewModel = new MainViewModel(transactionManager, new NavigationServiceStub());
-
-            mainViewModel.GoToAddTransactionCommand.Execute("Transfer");
+            transactionManager.PrepareCreation("Transfer");
 
             Assert.IsFalse(addTransactionViewModel.IsEdit);
             Assert.IsTrue(addTransactionViewModel.IsEndless);

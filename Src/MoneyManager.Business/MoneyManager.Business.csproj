@@ -91,6 +91,7 @@
     <Compile Include="Services\OneDriveBackupService.cs" />
     <Compile Include="ViewModels\AccountListUserControlViewModel.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
+    <Compile Include="Manager\TransactionManager.cs" />
     <Compile Include="ViewModels\AddTransactionViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />
     <Compile Include="ViewModels\GeneralSettingViewModel.cs" />

@@ -7,11 +7,14 @@
       mc:Ignorable="d"
       DataContext="{Binding MainViewModel, Source={StaticResource Locator}}">
 
-
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Add" x:Uid="AddIncomeLabel" Label="add income" Command="{Binding GoToAddTransactionCommand}" CommandParameter="Income" />
+                <AppBarButton Icon="Add" 
+                              x:Uid="AddIncomeLabel" 
+                             Label="add income" 
+                              Command="{Binding GoToAddTransactionCommand}" 
+                              CommandParameter="Income" />
                 <AppBarButton Icon="Remove"
                               x:Uid="AddSpendingLabel"
                               Label="add spending"
