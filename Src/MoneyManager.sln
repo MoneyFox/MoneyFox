@@ -12,10 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E43E31
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasks", "Tasks", "{B7FFA231-24AE-4D98-8063-2A905CFDD8AA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Tasks.TransactionsWp", "MoneyManager.Tasks.TransactionsWp\MoneyManager.Tasks.TransactionsWp.csproj", "{44E9295B-ACB7-458B-99A2-C8F1A941F87A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.DataAccess", "MoneyManager.DataAccess\MoneyManager.DataAccess.csproj", "{217BA6C1-A9CA-426D-B8D3-D891AA59A308}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Foundation", "MoneyManager.Foundation\MoneyManager.Foundation.csproj", "{6936F4D3-8889-48C7-A676-80D59B2740CE}"
@@ -44,25 +40,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Debug|ARM.ActiveCfg = Debug|ARM
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Debug|ARM.Build.0 = Debug|ARM
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Debug|x86.ActiveCfg = Debug|x86
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Debug|x86.Build.0 = Debug|x86
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|ARM.ActiveCfg = Release|ARM
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|ARM.Build.0 = Release|ARM
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|ARM.Deploy.0 = Release|ARM
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|Mixed Platforms.Build.0 = Release|x86
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|x64.ActiveCfg = Release|Any CPU
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|x86.ActiveCfg = Release|x86
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A}.Release|x86.Build.0 = Release|x86
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -192,7 +169,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{44E9295B-ACB7-458B-99A2-C8F1A941F87A} = {B7FFA231-24AE-4D98-8063-2A905CFDD8AA}
 		{217BA6C1-A9CA-426D-B8D3-D891AA59A308} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
 		{6936F4D3-8889-48C7-A676-80D59B2740CE} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
 		{97C5FD49-1128-4FA5-B529-264562A416EF} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}

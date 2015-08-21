@@ -8,7 +8,6 @@ using MoneyManager.Business.Manager;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
-using QKit.JumpList;
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -35,7 +34,7 @@ namespace MoneyManager.Business.ViewModels
         /// <summary>
         ///     Returns all Transaction who are assigned to this repository
         /// </summary>
-        public List<JumpListGroup<FinancialTransaction>> RelatedTransactions { set; get; }
+        public List<FinancialTransaction> RelatedTransactions { set; get; }
         
         /// <summary>
         ///     Returns the name of the account title for the current page
@@ -44,19 +43,10 @@ namespace MoneyManager.Business.ViewModels
 
         public void SetRelatedTransactions(Account account)
         {
-            var related = transactionRepository.GetRelatedTransactions(account);
-
-            var dateInfo = new DateTimeFormatInfo();
-            RelatedTransactions = related.ToGroups(x => x.Date,
-                x => dateInfo.GetMonthName(x.Date.Month) + " " + x.Date.Year);
-
-            RelatedTransactions =
-                RelatedTransactions.OrderByDescending(x => ((FinancialTransaction) x.First()).Date).ToList();
-
-            foreach (var list in RelatedTransactions)
-            {
-                list.Reverse();
-            }
+            RelatedTransactions = transactionRepository
+                .GetRelatedTransactions(account)
+                .OrderByDescending(x => x.Date)
+                .ToList();
         }
 
         private void GoToAddTransaction(string type)
