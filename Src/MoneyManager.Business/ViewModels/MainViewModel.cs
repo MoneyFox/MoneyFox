@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
+using Windows.Globalization;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using Microsoft.Practices.ServiceLocation;
 using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -36,7 +36,6 @@ namespace MoneyManager.Business.ViewModels
         {
             var type = (TransactionType) Enum.Parse(typeof (TransactionType), transactionType);
 
-            ServiceLocator.Current.GetInstance<CategoryListViewModel>().IsSettingCall = false;
             addTransactionViewModel.IsEdit = false;
             addTransactionViewModel.IsEndless = true;
 
@@ -58,7 +57,8 @@ namespace MoneyManager.Business.ViewModels
             {
                 Type = (int)transactionType,
                 IsExchangeModeActive = false,
-                Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
+                //Todo: move this to own class
+                Currency = new GeographicRegion().CurrenciesInUse.First()
             };
         }
 

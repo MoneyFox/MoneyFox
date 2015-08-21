@@ -33,8 +33,8 @@ namespace MoneyManager.Business.ViewModels
 
         public bool IsNavigationBlocked { get; set; }
         public DateTime EndDate { get; set; }
-        public bool IsEndless { get; set; }
-        public bool IsEdit { get; set; }
+        public bool IsEndless { get; set; } = true;
+        public bool IsEdit { get; set; } = false;
         public int Recurrence { get; set; }
         public bool IsTransfer { get; set; }
         public bool RefreshRealtedList { get; set; }

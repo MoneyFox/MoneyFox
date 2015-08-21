@@ -94,6 +94,8 @@
     <Compile Include="Repositories\RecurringTransactionRepositoryTest.cs" />
     <Compile Include="Repositories\TransactionRepositoryTest.cs" />
     <Compile Include="ViewModels\AddTransactionViewModelTest.cs" />
+    <Compile Include="ViewModels\MainViewModelTests.cs" />
+    <Compile Include="Stubs\NavigationServiceStub.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
