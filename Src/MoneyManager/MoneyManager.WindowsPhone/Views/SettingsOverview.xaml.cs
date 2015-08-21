@@ -22,11 +22,6 @@ namespace MoneyManager.Views
             ((Frame) Window.Current.Content).Navigate(typeof (SettingsDefaults));
         }
 
-        private void NavigateToGeneralSettings(object sender, TappedRoutedEventArgs e)
-        {
-            ((Frame) Window.Current.Content).Navigate(typeof (SettingsRegion));
-        }
-
         private void NavigateToBackupSettings(object sender, TappedRoutedEventArgs e)
         {
             ((Frame) Window.Current.Content).Navigate(typeof (SettingsBackup));

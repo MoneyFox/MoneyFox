@@ -22,6 +22,8 @@ namespace MoneyManager.Tasks.TransactionsWp
             SimpleIoc.Default.Register<TransactionListViewModel>();
         }
 
+        //TODO: Remove these properties since they are only used for xaml bindings?
+
         #region Views
 
         public TransactionListViewModel TransactionListView

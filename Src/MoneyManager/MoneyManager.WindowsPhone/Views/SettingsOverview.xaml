@@ -49,11 +49,6 @@
                            Tapped="NavigateToDefaultSettings"
                            Margin="0,0,0,20" />
                 <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
-                           x:Uid="RegionText"
-                           Text="region"
-                           Tapped="NavigateToGeneralSettings"
-                           Margin="0,0,0,20" />
-                <TextBlock Style="{StaticResource ListViewItemTextBlockStyle }"
                            x:Uid="BackupText"
                            Text="backup"
                            Tapped="NavigateToBackupSettings"
