@@ -1,27 +1,20 @@
-﻿#region
-
-using System;
+﻿using System;
 using Windows.UI.StartScreen;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
 
-#endregion
-
-namespace MoneyManager.Business.Logic.Tile
+namespace MoneyManager.Windows.Tile
 {
     public class SpendingTile : Tile, ISecondTile
     {
-        public const string Id = "AddSpendingTile";
+        public const string ID = "AddSpendingTile";
 
-        public bool Exists
-        {
-            get { return Exists(Id); }
-        }
+        public bool Exists => TileExists(ID);
 
         public async void Create()
         {
             await Create(new SecondaryTile(
-                Id,
+                ID,
                 Translation.GetTranslation("AddSpendingTileText"),
                 "intake",
                 new Uri("ms-appx:///Images/spendingTileIcon.png", UriKind.Absolute),
@@ -30,7 +23,7 @@ namespace MoneyManager.Business.Logic.Tile
 
         public async void Remove()
         {
-            await Remove(new SecondaryTile(Id));
+            await Remove(new SecondaryTile(ID));
         }
     }
 }

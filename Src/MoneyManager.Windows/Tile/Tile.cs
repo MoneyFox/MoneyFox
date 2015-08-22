@@ -2,13 +2,14 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Business.Logic;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Business.Logic.Tile
+namespace MoneyManager.Windows.Tile
 {
     public abstract class Tile
     {
-        protected bool Exists(string id)
+        protected bool TileExists(string id)
         {
             return SecondaryTile.Exists(id);
         }

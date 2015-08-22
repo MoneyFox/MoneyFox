@@ -3,21 +3,18 @@ using Windows.UI.StartScreen;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Business.Logic.Tile
+namespace MoneyManager.Windows.Tile
 {
-    public class TransferTile : Tile, ISecondTile
+    public class TransferTile : Windows.Tile.Tile, ISecondTile
     {
-        public const string Id = "AddTransferTile";
+        public const string ID = "AddTransferTile";
 
-        public bool Exists
-        {
-            get { return Exists(Id); }
-        }
+        public bool Exists => TileExists(ID);
 
         public async void Create()
         {
             await Create(new SecondaryTile(
-                Id,
+                ID,
                 Translation.GetTranslation("AddTransferTileText"),
                 "intake",
                 new Uri("ms-appx:///Images/transferTileIcon.png", UriKind.Absolute),
@@ -26,7 +23,7 @@ namespace MoneyManager.Business.Logic.Tile
 
         public async void Remove()
         {
-            await Remove(new SecondaryTile(Id));
+            await Remove(new SecondaryTile(ID));
         }
     }
 }

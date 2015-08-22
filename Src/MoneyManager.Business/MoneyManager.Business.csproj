@@ -64,10 +64,6 @@
     <Compile Include="Logic\RecurringTransactionLogic.cs" />
     <Compile Include="Logic\TransactionLogic.cs" />
     <Compile Include="Logic\TransactionTypeLogic.cs" />
-    <Compile Include="Logic\Tile\IncomeTile.cs" />
-    <Compile Include="Logic\Tile\SpendingTile.cs" />
-    <Compile Include="Logic\Tile\Tile.cs" />
-    <Compile Include="Logic\Tile\TransferTile.cs" />
     <Compile Include="Helper\Utilities.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />

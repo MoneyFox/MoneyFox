@@ -3,21 +3,18 @@ using Windows.UI.StartScreen;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Business.Logic.Tile
+namespace MoneyManager.Windows.Tile
 {
     public class IncomeTile : Tile, ISecondTile
     {
-        public const string Id = "AddIncomeTile";
+        public const string ID = "AddIncomeTile";
 
-        public bool Exists
-        {
-            get { return Exists(Id); }
-        }
+        public bool Exists => TileExists(ID);
 
         public async void Create()
         {
             await Create(new SecondaryTile(
-                Id,
+                ID,
                 Translation.GetTranslation("AddIncomeTileText"),
                 "intake",
                 new Uri("ms-appx:///Images/incomeTileIcon.png", UriKind.Absolute),
@@ -26,7 +23,7 @@ namespace MoneyManager.Business.Logic.Tile
 
         public async void Remove()
         {
-            await Remove(new SecondaryTile(Id));
+            await Remove(new SecondaryTile(ID));
         }
     }
 }
