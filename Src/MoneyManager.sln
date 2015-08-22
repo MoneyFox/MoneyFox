@@ -3,16 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoneyManager", "MoneyManager", "{40D4888B-FCFE-4C53-8B5C-1082881C3571}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E43E3146-04DB-495E-AB4C-39D107DE8456}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.DataAccess", "MoneyManager.DataAccess\MoneyManager.DataAccess.csproj", "{217BA6C1-A9CA-426D-B8D3-D891AA59A308}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Foundation", "MoneyManager.Foundation\MoneyManager.Foundation.csproj", "{6936F4D3-8889-48C7-A676-80D59B2740CE}"
 EndProject
@@ -25,6 +21,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Business.WindowsPhone.Test", "MoneyManager.Business.WindowsPhone.Test\MoneyManager.Business.WindowsPhone.Test.csproj", "{529E9009-6BE9-4630-84E4-0288A9CE4083}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyManager.Windows", "MoneyManager.Windows\MoneyManager.Windows.csproj", "{31D78E14-8DC1-490C-A401-F88F6E36DB96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{60ABB8E8-B9ED-46A7-83D4-318DC8BFE878}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{AB1FA939-5161-4DDF-8470-A44658E86BC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,24 +40,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Debug|ARM.Build.0 = Debug|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Debug|x86.Build.0 = Debug|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|Any CPU.Build.0 = Release|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|ARM.ActiveCfg = Release|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|ARM.Build.0 = Release|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|x64.ActiveCfg = Release|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|x86.ActiveCfg = Release|Any CPU
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308}.Release|x86.Build.0 = Release|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -169,11 +151,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{217BA6C1-A9CA-426D-B8D3-D891AA59A308} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
-		{6936F4D3-8889-48C7-A676-80D59B2740CE} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
-		{97C5FD49-1128-4FA5-B529-264562A416EF} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
+		{6936F4D3-8889-48C7-A676-80D59B2740CE} = {60ABB8E8-B9ED-46A7-83D4-318DC8BFE878}
+		{97C5FD49-1128-4FA5-B529-264562A416EF} = {60ABB8E8-B9ED-46A7-83D4-318DC8BFE878}
 		{206C8CE3-628B-4CD1-8354-8F83546F6C7C} = {D6E6E944-C844-4882-A72A-F86C17196117}
 		{529E9009-6BE9-4630-84E4-0288A9CE4083} = {D6E6E944-C844-4882-A72A-F86C17196117}
-		{31D78E14-8DC1-490C-A401-F88F6E36DB96} = {40D4888B-FCFE-4C53-8B5C-1082881C3571}
+		{31D78E14-8DC1-490C-A401-F88F6E36DB96} = {AB1FA939-5161-4DDF-8470-A44658E86BC2}
 	EndGlobalSection
 EndGlobal

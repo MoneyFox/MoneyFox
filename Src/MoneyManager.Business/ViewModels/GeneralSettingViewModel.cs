@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using MoneyManager.Business.DataAccess;
 using MoneyManager.Business.Logic;
-using MoneyManager.DataAccess.DataAccess;
 using PropertyChanged;
 
 namespace MoneyManager.Business.ViewModels

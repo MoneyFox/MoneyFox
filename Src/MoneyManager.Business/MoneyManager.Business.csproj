@@ -43,10 +43,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\MoneyManager.DataAccess\MoneyManager.DataAccess.csproj">
-      <Project>{217ba6c1-a9ca-426d-b8d3-d891aa59a308}</Project>
-      <Name>MoneyManager.DataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
       <Project>{6936F4D3-8889-48C7-A676-80D59B2740CE}</Project>
       <Name>MoneyManager.Foundation</Name>
@@ -68,7 +64,11 @@
     <Compile Include="Converter\ThemedImageConverter.cs" />
     <Compile Include="Converter\TransactionAmountConverter.cs" />
     <Compile Include="Converter\TransactionStyleConverter.cs" />
-    <Compile Include="DatabaseLogic.cs" />
+    <Compile Include="DataAccess\AccountDataAccess.cs" />
+    <Compile Include="DataAccess\CategoryDataAccess.cs" />
+    <Compile Include="DataAccess\RecurringTransactionDataAccess.cs" />
+    <Compile Include="DataAccess\SettingDataAccess.cs" />
+    <Compile Include="DataAccess\TransactionDataAccess.cs" />
     <Compile Include="Logic\AccountLogic.cs" />
     <Compile Include="Logic\CategoryLogic.cs" />
     <Compile Include="Logic\RegionLogic.cs" />
@@ -89,6 +89,7 @@
     <Compile Include="Repositories\RecurringTransactionRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="Services\OneDriveBackupService.cs" />
+    <Compile Include="DbHelper.cs" />
     <Compile Include="ViewModels\AccountListUserControlViewModel.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="Manager\TransactionManager.cs" />
