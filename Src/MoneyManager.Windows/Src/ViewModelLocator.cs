@@ -37,6 +37,9 @@ namespace MoneyManager.Windows
             SimpleIoc.Default.Register<IDataAccess<RecurringTransaction>, RecurringTransactionDataAccess>();
             SimpleIoc.Default.Register<SettingDataAccess>();
 
+            //Plattform specfic Logic
+            SimpleIoc.Default.Register<Foundation.OperationContracts.IDialogService, DialogService>()§;
+
             //Logic
             SimpleIoc.Default.Register<IUserNotification, UserNotification>();
             SimpleIoc.Default.Register<IBackupService, OneDriveBackupService>();

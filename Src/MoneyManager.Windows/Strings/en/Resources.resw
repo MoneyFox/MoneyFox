@@ -156,6 +156,12 @@
   <data name="InfoLabel.Text" xml:space="preserve">
     <value>Info</value>
   </data>
+  <data name="NoLabel" xml:space="preserve">
+    <value>no</value>
+  </data>
+  <data name="OkLabel" xml:space="preserve">
+    <value>ok</value>
+  </data>
   <data name="OpenSourceNote.Text" xml:space="preserve">
     <value>This programm is open source. We appreciate contribution!
 Visit Repository:</value>
@@ -168,5 +174,8 @@ Visit Repository:</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
     <value>Version: </value>
+  </data>
+  <data name="YesLabel" xml:space="preserve">
+    <value>yes</value>
   </data>
 </root>

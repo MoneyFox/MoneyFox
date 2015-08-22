@@ -37,7 +37,7 @@ namespace MoneyManager.Windows.Dialogs
         {
             if (CategoryRepository.Selected.Name == string.Empty)
             {
-                var dialog = new MessageDialog(Translation.GetTranslation("NameRequiredMessage"),
+                var dialog = new DialogService(Translation.GetTranslation("NameRequiredMessage"),
                     Translation.GetTranslation("MandatoryField"));
                 dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
                 dialog.DefaultCommandIndex = 1;
