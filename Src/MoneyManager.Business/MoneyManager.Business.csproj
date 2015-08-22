@@ -69,7 +69,6 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\RecurringTransactionRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
-    <Compile Include="Services\OneDriveBackupService.cs" />
     <Compile Include="DbHelper.cs" />
     <Compile Include="ViewModels\AccountListUserControlViewModel.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />

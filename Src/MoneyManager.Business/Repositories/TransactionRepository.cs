@@ -12,8 +12,8 @@ namespace MoneyManager.Business.Repositories
     [ImplementPropertyChanged]
     public class TransactionRepository : ITransactionRepository
     {
-        private readonly IDataAccess<FinancialTransaction> _dataAccess;
-        private ObservableCollection<FinancialTransaction> _data;
+        private readonly IDataAccess<FinancialTransaction> dataAccess;
+        private ObservableCollection<FinancialTransaction> data;
 
         /// <summary>
         ///     Creates a TransactionRepository Object
@@ -21,8 +21,8 @@ namespace MoneyManager.Business.Repositories
         /// <param name="dataAccess">Instanced financial transaction data Access</param>
         public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess)
         {
-            _dataAccess = dataAccess;
-            _data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList());
+            this.dataAccess = dataAccess;
+            data = new ObservableCollection<FinancialTransaction>(this.dataAccess.LoadList());
         }
 
         /// <summary>
@@ -30,18 +30,18 @@ namespace MoneyManager.Business.Repositories
         /// </summary>
         public ObservableCollection<FinancialTransaction> Data
         {
-            get { return _data ?? (_data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList())); }
+            get { return data ?? (data = new ObservableCollection<FinancialTransaction>(dataAccess.LoadList())); }
             set
             {
-                if (_data == null)
+                if (data == null)
                 {
-                    _data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList());
+                    data = new ObservableCollection<FinancialTransaction>(dataAccess.LoadList());
                 }
-                if (Equals(_data, value))
+                if (Equals(data, value))
                 {
                     return;
                 }
-                _data = value;
+                data = value;
             }
         }
 
@@ -60,9 +60,9 @@ namespace MoneyManager.Business.Repositories
 
             if (item.Id == 0)
             {
-                _data.Add(item);
+                data.Add(item);
             }
-            _dataAccess.Save(item);
+            dataAccess.Save(item);
         }
 
         /// <summary>
@@ -71,8 +71,8 @@ namespace MoneyManager.Business.Repositories
         /// <param name="item">item to delete</param>
         public void Delete(FinancialTransaction item)
         {
-            _data.Remove(item);
-            _dataAccess.Delete(item);
+            data.Remove(item);
+            dataAccess.Delete(item);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace MoneyManager.Business.Repositories
         /// </summary>
         public void Load()
         {
-            Data = new ObservableCollection<FinancialTransaction>(_dataAccess.LoadList());
+            Data = new ObservableCollection<FinancialTransaction>(dataAccess.LoadList());
         }
 
         /// <summary>

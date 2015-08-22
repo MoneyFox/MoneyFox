@@ -5,7 +5,7 @@ using Microsoft.Live;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Business.Services
+namespace MoneyManager.Windows.Services
 {
     /// <summary>
     ///     Provides basic operation to create a db backup to OneDrive.
@@ -15,14 +15,14 @@ namespace MoneyManager.Business.Services
         private const string BACKUP_FOLDER_NAME = "MoneyFoxBackup";
         private const string DB_NAME = "moneyfox.sqlite";
         private const string BACKUP_NAME = "backupmoneyfox.sqlite";
-        private string _backupId;
-        private string _folderId;
-        private LiveConnectClient _liveClient;
+        private string backupId;
+        private string folderId;
+        private LiveConnectClient liveClient;
 
         /// <summary>
         ///     Indicates if the user is already logged in or not
         /// </summary>
-        public bool IsLoggedIn => _liveClient == null;
+        public bool IsLoggedIn => liveClient == null;
 
         /// <summary>
         ///     Prompts a OneDrive login prompt to the user.
@@ -34,7 +34,7 @@ namespace MoneyManager.Business.Services
 
             if (result.Status == LiveConnectSessionStatus.Connected)
             {
-                _liveClient = new LiveConnectClient(result.Session);
+                liveClient = new LiveConnectClient(result.Session);
             }
         }
 
@@ -44,14 +44,14 @@ namespace MoneyManager.Business.Services
         /// <returns>State if the task succeed successfully</returns>
         public async Task<TaskCompletionType> Upload()
         {
-            if (_liveClient == null)
+            if (liveClient == null)
             {
                 await Login();
             }
 
             await GetBackupFolder();
 
-            if (string.IsNullOrEmpty(_folderId))
+            if (string.IsNullOrEmpty(folderId))
             {
                 return TaskCompletionType.Unsuccessful;
             }
@@ -61,8 +61,8 @@ namespace MoneyManager.Business.Services
                 var localFolder = ApplicationData.Current.LocalFolder;
                 var storageFile = await localFolder.GetFileAsync(DB_NAME);
 
-                var uploadOperation = await _liveClient.CreateBackgroundUploadAsync(
-                    _folderId, BACKUP_NAME, storageFile, OverwriteOption.Overwrite);
+                var uploadOperation = await liveClient.CreateBackgroundUploadAsync(
+                    folderId, BACKUP_NAME, storageFile, OverwriteOption.Overwrite);
 
                 var uploadResult = await uploadOperation.StartAsync();
 
@@ -86,7 +86,7 @@ namespace MoneyManager.Business.Services
         /// <returns>TaskCompletionType wether the task was successful or not.</returns>
         public async Task<TaskCompletionType> Restore()
         {
-            if (_liveClient == null)
+            if (liveClient == null)
             {
                 await Login();
             }
@@ -98,7 +98,7 @@ namespace MoneyManager.Business.Services
                 var storageFile =
                     await localFolder.CreateFileAsync(DB_NAME, CreationCollisionOption.ReplaceExisting);
 
-                await _liveClient.BackgroundDownloadAsync(_backupId + "/content", storageFile);
+                await liveClient.BackgroundDownloadAsync(backupId + "/content", storageFile);
                 return TaskCompletionType.Successful;
             }
             catch (Exception ex)
@@ -114,14 +114,14 @@ namespace MoneyManager.Business.Services
         /// <returns>Creationtime as DateTime</returns>
         public async Task<DateTime> GetLastCreationDate()
         {
-            if (_liveClient == null)
+            if (liveClient == null)
             {
                 await Login();
             }
 
             await GetBackupId();
 
-            if (string.IsNullOrEmpty(_backupId))
+            if (string.IsNullOrEmpty(backupId))
             {
                 return DateTime.MinValue;
             }
@@ -129,7 +129,7 @@ namespace MoneyManager.Business.Services
             try
             {
                 var operationResult =
-                    await _liveClient.GetAsync(_backupId);
+                    await liveClient.GetAsync(backupId);
                 dynamic result = operationResult.Result;
                 DateTime createdAt = Convert.ToDateTime(result.created_time);
                 return createdAt;
@@ -147,7 +147,7 @@ namespace MoneyManager.Business.Services
 
             try
             {
-                var operationResultFolder = await _liveClient.GetAsync(_folderId + "/files");
+                var operationResultFolder = await liveClient.GetAsync(folderId + "/files");
                 dynamic files = operationResultFolder.Result.Values;
 
                 foreach (var data in files)
@@ -156,7 +156,7 @@ namespace MoneyManager.Business.Services
                     {
                         if (file.name == BACKUP_NAME)
                         {
-                            _backupId = file.id;
+                            backupId = file.id;
                             break;
                         }
                     }
@@ -172,10 +172,10 @@ namespace MoneyManager.Business.Services
         {
             try
             {
-                var operationResultFolder = await _liveClient.GetAsync("me/skydrive/");
+                var operationResultFolder = await liveClient.GetAsync("me/skydrive/");
                 dynamic toplevelfolder = operationResultFolder.Result;
 
-                operationResultFolder = await _liveClient.GetAsync(toplevelfolder.id + "/files");
+                operationResultFolder = await liveClient.GetAsync(toplevelfolder.id + "/files");
                 dynamic folders = operationResultFolder.Result.Values;
 
                 foreach (var data in folders)
@@ -184,7 +184,7 @@ namespace MoneyManager.Business.Services
                     {
                         if (folder.name == BACKUP_FOLDER_NAME)
                         {
-                            _folderId = folder.id;
+                            folderId = folder.id;
                             break;
                         }
                     }
