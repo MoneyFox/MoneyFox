@@ -156,6 +156,7 @@
     <Compile Include="Src\DatabasePath.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\PageNavigationService.cs" />
+    <Compile Include="Src\RegionLogic.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\TileHelper.cs" />
     <Compile Include="Src\UserNotification.cs" />

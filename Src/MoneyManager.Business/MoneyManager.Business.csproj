@@ -57,7 +57,6 @@
     <Compile Include="DataAccess\TransactionDataAccess.cs" />
     <Compile Include="Logic\AccountLogic.cs" />
     <Compile Include="Logic\CategoryLogic.cs" />
-    <Compile Include="Logic\RegionLogic.cs" />
     <Compile Include="Logic\StatisticLogic.cs" />
     <Compile Include="Manager\RepositoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -3,8 +3,9 @@ using System.Linq;
 using Windows.Globalization;
 using Windows.System.UserProfile;
 
-namespace MoneyManager.Business.Logic
+namespace MoneyManager.Windows
 {
+    //TODO: check if still used
     public class RegionLogic
     {
         public static List<string> GetSupportedLanguages()

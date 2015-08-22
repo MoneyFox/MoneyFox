@@ -38,7 +38,7 @@ namespace MoneyManager.Windows
             SimpleIoc.Default.Register<SettingDataAccess>();
 
             //Plattform specfic Logic
-            SimpleIoc.Default.Register<Foundation.OperationContracts.IDialogService, DialogService>()§;
+            SimpleIoc.Default.Register<Foundation.OperationContracts.IDialogService, DialogService>();
 
             //Logic
             SimpleIoc.Default.Register<IUserNotification, UserNotification>();
