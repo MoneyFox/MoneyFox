@@ -8,7 +8,7 @@
     d:DesignHeight="100"
     d:DesignWidth="400">
 
-    <Grid>
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <TextBox Header="category" x:Uid="CategoryHeader"
                  Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
                  GotFocus="OpenSelectCategoryDialog"

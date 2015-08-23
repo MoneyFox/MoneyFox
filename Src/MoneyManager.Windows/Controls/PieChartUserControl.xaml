@@ -9,7 +9,8 @@
              d:DesignWidth="400"
              DataContext="{Binding StatisticViewModel, Source={StaticResource Locator}}">
 
-    <Grid VerticalAlignment="Stretch">
+    <Grid VerticalAlignment="Stretch"
+          EntranceNavigationTransitionInfo.IsTargetElement="True">
 
         <charting:Chart HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">

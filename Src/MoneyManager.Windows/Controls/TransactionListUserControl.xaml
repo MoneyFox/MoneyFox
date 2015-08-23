@@ -87,7 +87,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <controls:BalanceUserControl />
         <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
                   ItemTemplate="{StaticResource TransactionTemplate}"

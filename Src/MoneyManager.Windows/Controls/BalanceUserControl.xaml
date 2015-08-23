@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converter1="using:MoneyManager.Windows.Converter"
+             xmlns:converter="using:MoneyManager.Windows.Converter"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -11,10 +11,11 @@
              Loaded="BalanceUserControl_OnLoaded">
 
     <UserControl.Resources>
-        <converter1:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </UserControl.Resources>
 
-    <StackPanel Orientation="Horizontal">
+    <StackPanel Orientation="Horizontal"
+                EntranceNavigationTransitionInfo.IsTargetElement="True">
         <TextBlock Text="Total: "
                    Margin="0,0,5,10" />
         <TextBlock Text="{Binding TotalBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}}"

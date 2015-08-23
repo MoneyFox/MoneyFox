@@ -4,25 +4,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:MoneyManager.Windows.Controls"
-      xmlns:converter1="using:MoneyManager.Windows.Converter"
+      xmlns:converter="using:MoneyManager.Windows.Converter"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       DataContext="{Binding AddAccountViewModel, Source={StaticResource Locator}}"
       mc:Ignorable="d">
 
     <Page.Resources>
-        <converter1:AmountFormatConverter x:Key="AmountConverter" />
-        <converter1:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:AmountFormatConverter x:Key="AmountConverter" />
     </Page.Resources>
-
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition>
-                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <ContinuumNavigationTransitionInfo />
-                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-            </NavigationThemeTransition>
-        </TransitionCollection>
-    </Page.Transitions>
 
     <Page.BottomAppBar>
         <CommandBar>
@@ -38,12 +27,6 @@
     </Page.BottomAppBar>
 
     <Grid>
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition />
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -58,7 +41,8 @@
         </controls:PageHeader>
 
         <StackPanel Grid.Row="1"
-                    Margin="12,0,12,0">
+                    Margin="12,0,12,0"
+                    EntranceNavigationTransitionInfo.IsTargetElement="True">
             <TextBox Text="{Binding SelectedAccount.Name, Mode=TwoWay}"
                      Header="Name"
                      VerticalAlignment="Top"

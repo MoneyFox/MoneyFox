@@ -9,16 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding TransactionListViewModel, Source={StaticResource Locator}}">
 
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition>
-                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <ContinuumNavigationTransitionInfo />
-                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-            </NavigationThemeTransition>
-        </TransitionCollection>
-    </Page.Transitions>
-
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Icon="Add"
@@ -40,12 +30,6 @@
     </Page.BottomAppBar>
 
     <Grid>
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition />
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -56,7 +40,9 @@
                        Margin="0,12,0,0" />
         </StackPanel>
 
-        <Grid Grid.Row="1" Margin="19,9.5,19,0">
+        <Grid Grid.Row="1"
+              Margin="19,9.5,19,0"
+              EntranceNavigationTransitionInfo.IsTargetElement="True">
             <userControls:TransactionListUserControl />
         </Grid>
     </Grid>
