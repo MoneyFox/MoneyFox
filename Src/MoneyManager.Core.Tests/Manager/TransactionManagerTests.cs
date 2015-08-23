@@ -1,26 +1,25 @@
-﻿using System.Linq;
-using Windows.Globalization;
-using GalaSoft.MvvmLight;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Business.DataAccess;
 using MoneyManager.Business.Manager;
 using MoneyManager.Business.Repositories;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Business.WindowsPhone.Test.Stubs;
+using MoneyManager.Core.Tests.Stubs;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Business.WindowsPhone.Test.Manager
+namespace MoneyManager.Core.Tests.Manager
 {
     [TestClass]
-    public class TransactionManagerTests : ViewModelBase
+    public class TransactionManagerTests
     {
         [TestMethod]
         public void GoToAddTransaction_Income_CorrectPreparation()
         {
-            var accountRepository = new AccountRepository(new AccountDataAccess());
+            var dbHelper = new DbHelperStub();
+            var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var addTransactionViewModel =
-                new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess()),
+                new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
                     new NavigationServiceStub());
@@ -34,16 +33,16 @@ namespace MoneyManager.Business.WindowsPhone.Test.Manager
             Assert.IsFalse(addTransactionViewModel.IsTransfer);
             Assert.AreEqual((int)TransactionType.Income, addTransactionViewModel.SelectedTransaction.Type);
             Assert.IsFalse(addTransactionViewModel.SelectedTransaction.IsExchangeModeActive);
-            Assert.AreEqual(new GeographicRegion().CurrenciesInUse.First(), addTransactionViewModel.SelectedTransaction.Currency);
         }
 
         [TestMethod]
         public void GoToAddTransaction_Spending_CorrectPreparation()
         {
-            var accountRepository = new AccountRepository(new AccountDataAccess());
+            var dbHelper = new DbHelperStub();
+            var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var addTransactionViewModel =
-                new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess()),
+                new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
                     new NavigationServiceStub());
@@ -57,16 +56,16 @@ namespace MoneyManager.Business.WindowsPhone.Test.Manager
             Assert.IsFalse(addTransactionViewModel.IsTransfer);
             Assert.AreEqual((int)TransactionType.Spending, addTransactionViewModel.SelectedTransaction.Type);
             Assert.IsFalse(addTransactionViewModel.SelectedTransaction.IsExchangeModeActive);
-            Assert.AreEqual(new GeographicRegion().CurrenciesInUse.First(), addTransactionViewModel.SelectedTransaction.Currency);
         }
 
         [TestMethod]
         public void GoToAddTransaction_Transfer_CorrectPreparation()
         {
-            var accountRepository = new AccountRepository(new AccountDataAccess());
+            var dbHelper = new DbHelperStub();
+            var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var addTransactionViewModel =
-                new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess()),
+                new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
                     new NavigationServiceStub());
@@ -80,7 +79,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.Manager
             Assert.IsTrue(addTransactionViewModel.IsTransfer);
             Assert.AreEqual((int)TransactionType.Transfer, addTransactionViewModel.SelectedTransaction.Type);
             Assert.IsFalse(addTransactionViewModel.SelectedTransaction.IsExchangeModeActive);
-            Assert.AreEqual(new GeographicRegion().CurrenciesInUse.First(), addTransactionViewModel.SelectedTransaction.Currency);
         }
     }
 }

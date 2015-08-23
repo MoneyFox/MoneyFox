@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Business.DataAccess;
 
-namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
+namespace MoneyManager.Windows.Core.Tests.DataAccess
 {
     [TestClass]
     public class SettingsDataAccessTest

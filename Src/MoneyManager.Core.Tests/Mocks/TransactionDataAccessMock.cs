@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Business.WindowsPhone.Test.Mocks
+namespace MoneyManager.Core.Tests.Mocks
 {
     public class TransactionDataAccessMock : IDataAccess<FinancialTransaction>
     {

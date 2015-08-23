@@ -1,10 +1,8 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Business.Logic;
 using MoneyManager.Foundation;
 
-
-namespace MoneyManager.Business.WindowsPhone.Test.Logic
+namespace MoneyManager.Core.Tests.Logic
 {
     [TestClass]
     public class TransactionTypeLogicTest

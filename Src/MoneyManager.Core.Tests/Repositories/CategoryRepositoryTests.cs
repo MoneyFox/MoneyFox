@@ -1,15 +1,15 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Business.DataAccess;
 using MoneyManager.Business.Repositories;
-using MoneyManager.Business.WindowsPhone.Test.Mocks;
+using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Business.WindowsPhone.Test.Repositories
+namespace MoneyManager.Core.Tests.Repositories
 {
     [TestClass]
-    public class CategoryRepositoryTest
+    public class CategoryRepositoryTests
     {
         private CategoryDataAccessMock _categoryDataAccessMock;
 
@@ -17,25 +17,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories
         public void Init()
         {
             _categoryDataAccessMock = new CategoryDataAccessMock();
-        }
-
-        [TestMethod]
-        [TestCategory("Integration")]
-        public void CategoryRepositor_LoadDataFromDbThroughRepository()
-        {
-            using (var db = SqlConnectionFactory.GetSqlConnection())
-            {
-                db.DeleteAll<Category>();
-                db.InsertWithChildren(new Category
-                {
-                    Name = "Foooo"
-                });
-            }
-
-            var repository = new CategoryRepository(new CategoryDataAccess());
-
-            Assert.IsTrue(repository.Data.Any());
-            Assert.AreEqual("Foooo", repository.Data[0].Name);
         }
 
         [TestMethod]
@@ -62,7 +43,7 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories
             repository.Save(category);
 
             Assert.AreSame(category, repository.Data[0]);
-            Assert.IsTrue(Translation.GetTranslation("NoNamePlaceholderLabel") == repository.Data[0].Name);
+            Assert.IsTrue(Strings.NoNamePlaceholderLabel == repository.Data[0].Name);
         }
 
         [TestMethod]
@@ -110,34 +91,6 @@ namespace MoneyManager.Business.WindowsPhone.Test.Repositories
             Assert.AreEqual(2, repository.Data.Count);
             Assert.AreSame(category, repository.Data[0]);
             Assert.AreSame(secondCategory, repository.Data[1]);
-        }
-
-        [TestMethod]
-        [TestCategory("Integration")]
-        public void CategoryRepository_Update()
-        {
-            using (var db = SqlConnectionFactory.GetSqlConnection())
-            {
-                db.DeleteAll<Category>();
-            }
-
-            var repository = new CategoryRepository(new CategoryDataAccess());
-
-            var category = new Category
-            {
-                Name = "Ausgang"
-            };
-
-            repository.Save(category);
-            Assert.AreEqual(1, repository.Data.Count);
-            Assert.AreSame(category, repository.Data[0]);
-
-            category.Name = "newName";
-
-            repository.Save(category);
-
-            Assert.AreEqual(1, repository.Data.Count);
-            Assert.AreEqual("newName", repository.Data[0].Name);
         }
     }
 }

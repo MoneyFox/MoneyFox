@@ -1,12 +1,13 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Business.DataAccess;
 using MoneyManager.Business.Repositories;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Business.WindowsPhone.Test.Stubs;
+using MoneyManager.Core.Tests.Stubs;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
+namespace MoneyManager.Core.Tests.ViewModels
 {
     [TestClass]
     public class AddTransactionViewModelTest
@@ -14,13 +15,14 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnEditSpendingTitle()
         {
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess())
+            var dbHelper = new DbHelperStub();
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Spending}
             };
 
             var viewModel = new AddTransactionViewModel(transactionRepository,
-                new AccountRepository(new AccountDataAccess()), 
+                new AccountRepository(new AccountDataAccess(dbHelper)), 
                 new SettingDataAccess(), 
                 new NavigationServiceStub())
             {
@@ -34,13 +36,15 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnEditIncomeTitle()
         {
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess())
+            var dbHelper = new DbHelperStub();
+
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction { Type = (int)TransactionType.Income }
             };
 
             var viewModel = new AddTransactionViewModel(transactionRepository,
-                new AccountRepository(new AccountDataAccess()),
+                new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new NavigationServiceStub())
             {
@@ -54,13 +58,15 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnEditTransferTitle()
         {
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess())
+            var dbHelper = new DbHelperStub();
+
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction { Type = (int)TransactionType.Transfer }
             };
 
             var viewModel = new AddTransactionViewModel(transactionRepository,
-                new AccountRepository(new AccountDataAccess()),
+                new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new NavigationServiceStub())
             {
@@ -74,13 +80,15 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnAddTransferTitle()
         {
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess())
+            var dbHelper = new DbHelperStub();
+
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction { Type = (int)TransactionType.Transfer }
             };
 
             var viewModel = new AddTransactionViewModel(transactionRepository,
-                new AccountRepository(new AccountDataAccess()),
+                new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new NavigationServiceStub())
             { IsEdit = false};
@@ -91,13 +99,15 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnSpendingDefaultTitle()
         {
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess())
+            var dbHelper = new DbHelperStub();
+
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction { Type = (int)TransactionType.Spending }
             };
 
             var viewModel = new AddTransactionViewModel(transactionRepository,
-                new AccountRepository(new AccountDataAccess()),
+                new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new NavigationServiceStub());
             
@@ -108,13 +118,15 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnIncomeDefault()
         {
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess())
+            var dbHelper = new DbHelperStub();
+
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction { Type = (int)TransactionType.Income }
             };
 
             var viewModel = new AddTransactionViewModel(transactionRepository,
-                new AccountRepository(new AccountDataAccess()),
+                new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new NavigationServiceStub());
             Assert.AreEqual("add income", viewModel.Title);
@@ -123,13 +135,15 @@ namespace MoneyManager.Business.WindowsPhone.Test.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnTransferDefault()
         {
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess())
+            var dbHelper = new DbHelperStub();
+
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction { Type = (int)TransactionType.Transfer }
             };
 
             var viewModel = new AddTransactionViewModel(transactionRepository,
-                new AccountRepository(new AccountDataAccess()),
+                new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new NavigationServiceStub());
 

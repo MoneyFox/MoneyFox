@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyManager.Business.Helper;
+using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Tests.Helper
 {

@@ -1,32 +1,22 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Business;
+using MoneyManager.Business.DataAccess;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Windows.Core.Tests.Helper;
+using SQLite.Net.Platform.WinRT;
 
-#endregion
-
-namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
+namespace MoneyManager.Windows.Core.Tests.DataAccess
 {
     [TestClass]
     public class TransactionDataAccessTest
     {
-        [TestInitialize]
-        public void InitTests()
-        {
-            using (var db = SqlConnectionFactory.GetSqlConnection())
-            {
-                db.CreateTable<FinancialTransaction>();
-            }
-        }
-
         [TestMethod]
         [TestCategory("Integration")]
         public void TransactionDataAccess_CrudTransaction()
         {
-            var transactionDataAccess = new TransactionDataAccess();
+            var transactionDataAccess = new TransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
 
             const double firstAmount = 76.30;
             const double secondAmount = 22.90;
@@ -68,7 +58,7 @@ namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
         [TestCategory("Integration")]
         public void TransactionDataAccess_CrudTransactionWithoutAccount()
         {
-            var transactionDataAccess = new TransactionDataAccess();
+            var transactionDataAccess = new TransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
 
             const double firstAmount = 76.30;
             const double secondAmount = 22.90;

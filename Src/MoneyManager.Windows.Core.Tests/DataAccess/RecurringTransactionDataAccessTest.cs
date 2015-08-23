@@ -1,32 +1,22 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Business;
+using MoneyManager.Business.DataAccess;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Windows.Core.Tests.Helper;
+using SQLite.Net.Platform.WinRT;
 
-#endregion
-
-namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
+namespace MoneyManager.Windows.Core.Tests.DataAccess
 {
     [TestClass]
     public class RecurringTransactionDataAccessTest
     {
-        [TestInitialize]
-        public void TestInit()
-        {
-            using (var db = SqlConnectionFactory.GetSqlConnection())
-            {
-                db.CreateTable<RecurringTransaction>();
-            }
-        }
-
         [TestMethod]
         [TestCategory("Integration")]
         public void RecurringTransactionDataAccess_CrudRecurringTransaction()
         {
-            var recurringTransactionDataAccess = new RecurringTransactionDataAccess();
+            var recurringTransactionDataAccess = new RecurringTransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
 
             const double firstAmount = 100.70;
             const double secondAmount = 80.45;
