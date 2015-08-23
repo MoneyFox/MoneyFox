@@ -42,12 +42,12 @@ namespace MoneyManager.Windows
         public async Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null, string negativeButtonText = null)
         {
             var dialog = new MessageDialog(message, title);
-            dialog.Commands.Add(new UICommand(positiveButtonText ?? Translation.GetTranslation("YesLabel")));
-            dialog.Commands.Add(new UICommand(negativeButtonText ?? Translation.GetTranslation("NoLabel")));
+            dialog.Commands.Add(new UICommand(positiveButtonText ?? Strings.YesLabel));
+            dialog.Commands.Add(new UICommand(negativeButtonText ?? Strings.NoLabel));
 
             var result = await dialog.ShowAsync();
 
-            return result.Label == Translation.GetTranslation("YesLabel");
+            return result.Label == Strings.YesLabel;
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace MoneyManager.Windows
         public async Task ShowMessage(string title, string message)
         {
             var dialog = new MessageDialog(message, title);
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
+            dialog.Commands.Add(new UICommand(Strings.OkLabel));
 
             await dialog.ShowAsync();
         }

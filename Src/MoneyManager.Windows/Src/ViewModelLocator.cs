@@ -39,6 +39,7 @@ namespace MoneyManager.Windows
 
             //Plattform specfic Logic
             SimpleIoc.Default.Register<Foundation.OperationContracts.IDialogService, DialogService>();
+            SimpleIoc.Default.Register<IAppInformation, AppInformation>();
 
             //Logic
             SimpleIoc.Default.Register<IUserNotification, UserNotification>();

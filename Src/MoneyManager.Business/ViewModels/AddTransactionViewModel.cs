@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 using MoneyManager.Business.DataAccess;
@@ -11,6 +8,7 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
+using IDialogService = MoneyManager.Foundation.OperationContracts.IDialogService;
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -20,6 +18,7 @@ namespace MoneyManager.Business.ViewModels
         private readonly IRepository<Account> accountRepository;
         private readonly SettingDataAccess settings;
         private readonly ITransactionRepository transactionRepository;
+        private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
 
         public AddTransactionViewModel(ITransactionRepository transactionRepository,
@@ -95,20 +94,13 @@ namespace MoneyManager.Business.ViewModels
             {
                 await TransactionLogic.SaveTransaction(transactionRepository.Selected, RefreshRealtedList);
             }
-
-            ((Frame) Window.Current.Content).GoBack();
+            navigationService.GoBack();
         }
 
         private async void ShowAccountRequiredMessage()
         {
-            var dialog = new MessageDialog
-                (
-                Translation.GetTranslation("AccountRequiredMessage"),
-                Translation.GetTranslation("MandatoryField")
-                );
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
-            dialog.DefaultCommandIndex = 1;
-            await dialog.ShowAsync();
+            await dialogService.ShowMessage(Translation.GetTranslation("MandatoryField"),
+                Translation.GetTranslation("AccountRequiredMessage"));
         }
 
         public async void Cancel()

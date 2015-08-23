@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Windows.Globalization;
 using MoneyManager.Business.DataAccess;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Foundation;
@@ -47,8 +46,8 @@ namespace MoneyManager.Business.Manager
             {
                 Type = (int)transactionType,
                 IsExchangeModeActive = false,
-                //Todo: move this to own class
-                Currency = new GeographicRegion().CurrenciesInUse.First()
+                //Todo: refactor this / move this to own class
+                //Currency = new GeographicRegion().CurrenciesInUse.First()
             };
         }
 

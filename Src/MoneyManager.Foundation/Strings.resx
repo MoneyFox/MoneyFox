@@ -117,56 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutTitle.Text" xml:space="preserve">
-    <value>About</value>
+  <data name="NoLabel" xml:space="preserve">
+    <value>no</value>
   </data>
-  <data name="AccountTitle.Text" xml:space="preserve">
-    <value>Accounts</value>
+  <data name="OkLabel" xml:space="preserve">
+    <value>ok</value>
   </data>
-  <data name="AddAccountLabel.Label" xml:space="preserve">
-    <value>Add Account</value>
-  </data>
-  <data name="AddAccountTitle.Text" xml:space="preserve">
-    <value>Add Account</value>
-  </data>
-  <data name="AddIncomeLabel.Label" xml:space="preserve">
-    <value>add income</value>
-  </data>
-  <data name="AddSpendingLabel.Label" xml:space="preserve">
-    <value>add spending</value>
-  </data>
-  <data name="AddTransactionTitle.Text" xml:space="preserve">
-    <value>Add Transaction</value>
-  </data>
-  <data name="AddTransferLabel.Label" xml:space="preserve">
-    <value>add transfer</value>
-  </data>
-  <data name="BackupInformation.Text" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive account. You find them in a new created folder "MoneyFoxBackup". </value>
-  </data>
-  <data name="BackupTitle.Text" xml:space="preserve">
-    <value>Backup</value>
-  </data>
-  <data name="ContactLabel.Text" xml:space="preserve">
-    <value>Contact:</value>
-  </data>
-  <data name="DeveloperLabel.Text" xml:space="preserve">
-    <value>Developer</value>
-  </data>
-  <data name="InfoLabel.Text" xml:space="preserve">
-    <value>Info</value>
-  </data>
-  <data name="OpenSourceNote.Text" xml:space="preserve">
-    <value>This programm is open source. We appreciate contribution!
-Visit Repository:</value>
-  </data>
-  <data name="RateThisApp.Content" xml:space="preserve">
-    <value>Rate this App</value>
-  </data>
-  <data name="SelectCategoryTitle.Text" xml:space="preserve">
-    <value>Select Category</value>
-  </data>
-  <data name="VersionLabel.Text" xml:space="preserve">
-    <value>Version: </value>
+  <data name="YesLabel" xml:space="preserve">
+    <value>yes</value>
   </data>
 </root>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.UI.Popups;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.DataAccess;
 using MoneyManager.Business.Helper;
@@ -67,7 +66,8 @@ namespace MoneyManager.Business.Logic
 
         public static async Task DeleteTransaction(FinancialTransaction transaction, bool skipConfirmation = false)
         {
-            if (skipConfirmation || await Utilities.IsDeletionConfirmed())
+            //TODO: refactor
+            if (skipConfirmation) //|| await Utilities.IsDeletionConfirmed())
             {
                 await CheckForRecurringTransaction(transaction,
                     () => RecurringTransactionLogic.Delete(transaction.RecurringTransaction));
