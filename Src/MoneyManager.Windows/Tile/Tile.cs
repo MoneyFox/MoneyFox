@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Logic;
+using MoneyManager.Core.Logic;
 using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Windows.Tile

@@ -1,8 +1,6 @@
-﻿using System;
-using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.ViewModels;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;

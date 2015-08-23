@@ -26,8 +26,14 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Accept" x:Uid="Done" Label="Done" Click="DoneClick" />
-            <AppBarButton Icon="Cancel" x:Uid="Cancel" Label="Cancel" Click="CancelClick" />
+            <AppBarButton Icon="Accept"
+                          x:Uid="Done"
+                          Label="Done"
+                          Click="DoneClick" />
+            <AppBarButton Icon="Cancel"
+                          x:Uid="Cancel"
+                          Label="Cancel"
+                          Click="CancelClick" />
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -45,11 +51,14 @@
 
         <controls:PageHeader>
             <controls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Add Account" x:Uid="AddAccountViewTitle" />
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
+                           Text="Add Account"
+                           x:Uid="AddAccountViewTitle" />
             </controls:PageHeader.HeaderContent>
         </controls:PageHeader>
 
-        <StackPanel Grid.Row="1" Margin="12,0,12,0">
+        <StackPanel Grid.Row="1"
+                    Margin="12,0,12,0">
             <TextBox Text="{Binding SelectedAccount.Name, Mode=TwoWay}"
                      Header="Name"
                      VerticalAlignment="Top"
@@ -70,12 +79,12 @@
                          GotFocus="RemoveZeroOnFocus"
                          LostFocus="AddZeroIfEmpty" />
 
-                <Button MinWidth="40"
-                        MinHeight="55"
+                <Button Height="28"
+                        Width="28"
                         Background="#FF231E1E"
                         BorderThickness="0"
                         Content="{Binding SelectedAccount.Currency}"
-                        Margin="2,28,0,6" />
+                        Margin="2,30,0,2" />
             </Grid>
             <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
                      Header="Notes"

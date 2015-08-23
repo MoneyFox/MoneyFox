@@ -3,8 +3,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.Logic;
-using MoneyManager.Business.ViewModels;
+using MoneyManager.Core.Logic;
+using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views
 {

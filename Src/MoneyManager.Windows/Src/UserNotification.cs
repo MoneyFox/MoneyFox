@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Notifications;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.ViewModels;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
 using NotificationsExtensions.TileContent;

@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using MoneyManager.Business.Logic;
+using MoneyManager.Core.Logic;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Windows.Views

@@ -2,18 +2,18 @@ using Windows.ApplicationModel;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business;
-using MoneyManager.Business.DataAccess;
-using MoneyManager.Business.Helper;
-using MoneyManager.Business.Manager;
-using MoneyManager.Business.Repositories;
-using MoneyManager.Business.ViewModels;
+using MoneyManager.Core;
+using MoneyManager.Core.DataAccess;
+using MoneyManager.Core.Helper;
+using MoneyManager.Core.Manager;
+using MoneyManager.Core.Repositories;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Views;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.WinRT;
+using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows
 {

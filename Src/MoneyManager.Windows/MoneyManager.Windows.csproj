@@ -331,9 +331,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyManager.Business\MoneyManager.Business.csproj">
-      <Project>{97C5FD49-1128-4FA5-B529-264562A416EF}</Project>
-      <Name>MoneyManager.Business</Name>
+    <ProjectReference Include="..\MoneyManager.Core\MoneyManager.Core.csproj">
+      <Project>{64f3a03f-44c2-44fa-bd29-fa23c35c95f0}</Project>
+      <Name>MoneyManager.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
       <Project>{6936F4D3-8889-48C7-A676-80D59B2740CE}</Project>
