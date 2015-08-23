@@ -1,3 +1,0 @@
-MainPackage=C:\Users\ninop\Documents\GitHub\MoneyManager\Src\MoneyManager\MoneyManager.WindowsPhone\bin\ARM\Release\MoneyManager.WindowsPhone_2015.731.1556.38_ARM.appx
-SymbolPackage=C:\Users\ninop\Documents\GitHub\MoneyManager\Src\MoneyManager\MoneyManager.WindowsPhone\AppPackages\MoneyManager.WindowsPhone_2015.731.1556.38_Test\MoneyManager.WindowsPhone_2015.731.1556.38_ARM.appxsym
-ResourcePack=C:\Users\ninop\Documents\GitHub\MoneyManager\Src\MoneyManager\MoneyManager.WindowsPhone\bin\ARM\Release\MoneyManager.WindowsPhone_2015.731.1556.38_language-de.appx

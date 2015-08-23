@@ -1,5 +1,3 @@
-#region
-
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,16 +7,15 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
-#endregion
 
 namespace MoneyManager.Business.ViewModels
 {
     [ImplementPropertyChanged]
     public class StatisticViewModel : ViewModelBase
     {
-        private ObservableCollection<StatisticItem> _categorySummary;
-        private ObservableCollection<StatisticItem> _monthlyCashFlow;
-        private ObservableCollection<StatisticItem> _monthlySpreading;
+        private ObservableCollection<StatisticItem> categorySummary;
+        private ObservableCollection<StatisticItem> monthlyCashFlow;
+        private ObservableCollection<StatisticItem> monthlySpreading;
 
         public StatisticViewModel()
         {
@@ -33,9 +30,9 @@ namespace MoneyManager.Business.ViewModels
         {
             get
             {
-                return _monthlyCashFlow == null || !_monthlyCashFlow.Any()
+                return monthlyCashFlow == null || !monthlyCashFlow.Any()
                     ? StatisticLogic.GetMonthlyCashFlow()
-                    : _monthlyCashFlow;
+                    : monthlyCashFlow;
             }
             set
             {
@@ -43,7 +40,7 @@ namespace MoneyManager.Business.ViewModels
                 {
                     return;
                 }
-                _monthlyCashFlow = value;
+                monthlyCashFlow = value;
             }
         }
 
@@ -51,9 +48,9 @@ namespace MoneyManager.Business.ViewModels
         {
             get
             {
-                return _monthlySpreading == null || !_monthlySpreading.Any()
+                return monthlySpreading == null || !monthlySpreading.Any()
                     ? StatisticLogic.GetSpreading()
-                    : _monthlySpreading;
+                    : monthlySpreading;
             }
             set
             {
@@ -61,7 +58,7 @@ namespace MoneyManager.Business.ViewModels
                 {
                     return;
                 }
-                _monthlySpreading = value;
+                monthlySpreading = value;
             }
         }
 
@@ -69,9 +66,9 @@ namespace MoneyManager.Business.ViewModels
         {
             get
             {
-                return _categorySummary == null || !_categorySummary.Any()
+                return categorySummary == null || !categorySummary.Any()
                     ? StatisticLogic.GetCategorySummary(StartDate, EndDate)
-                    : _categorySummary;
+                    : categorySummary;
             }
             set
             {
@@ -79,19 +76,13 @@ namespace MoneyManager.Business.ViewModels
                 {
                     return;
                 }
-                _categorySummary = value;
+                categorySummary = value;
             }
         }
 
-        public string Title
-        {
-            get
-            {
-                return Translation.GetTranslation("StatistikTitle") + " " + StartDate.ToString("d") +
-                       " - " +
-                       EndDate.ToString("d");
-            }
-        }
+        public string Title => Strings.StatisticTitle + " " + StartDate.ToString("d") +
+                               " - " +
+                               EndDate.ToString("d");
 
         public void SetDefaultCashFlow()
         {

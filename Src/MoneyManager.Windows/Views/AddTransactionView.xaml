@@ -5,15 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:MoneyManager.Windows.Controls"
-    xmlns:converter="using:MoneyManager.Business.Converter"
+    xmlns:converter1="using:MoneyManager.Windows.Converter"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding AddTransactionViewModel, Source={StaticResource Locator}}">
 
     <Page.Resources>
-        <converter:AmountFormatConverter x:Key="AmountConverter" />
-        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter1:AmountFormatConverter x:Key="AmountConverter" />
+        <converter1:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <converter1:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate">
             <StackPanel Margin="0,0,0,12"
                         Orientation="Horizontal">

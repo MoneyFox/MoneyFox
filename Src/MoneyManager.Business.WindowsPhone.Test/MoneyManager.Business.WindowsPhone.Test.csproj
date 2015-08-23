@@ -122,10 +122,6 @@
       <Project>{6936F4D3-8889-48C7-A676-80D59B2740CE}</Project>
       <Name>MoneyManager.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyManager\MoneyManager.WindowsPhone\MoneyManager.WindowsPhone.csproj">
-      <Project>{01C92D11-9B98-4FF3-BF14-89917369AB92}</Project>
-      <Name>MoneyManager.WindowsPhone</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.1.1.35049, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">

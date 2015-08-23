@@ -52,7 +52,7 @@ namespace MoneyManager.Business.Repositories
         {
             if (string.IsNullOrWhiteSpace(item.Name))
             {
-                item.Name = Translation.GetTranslation("NoNamePlaceholderLabel");
+                item.Name = Strings.NoNamePlaceholderLabel;
             }
 
             if (item.Id == 0)

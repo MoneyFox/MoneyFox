@@ -20,13 +20,13 @@ namespace MoneyManager.Business.Logic
             switch (type)
             {
                 case TransactionType.Spending:
-                    return Translation.GetTranslation("SpendingTitle");
+                    return Strings.SpendingTitle;
 
                 case TransactionType.Income:
-                    return Translation.GetTranslation("IncomeTitle");
+                    return Strings.IncomeTitle;
 
                 case TransactionType.Transfer:
-                    return Translation.GetTranslation("TransferTitle");
+                    return Strings.TransferTitle;
 
                 default:
                     return string.Empty;

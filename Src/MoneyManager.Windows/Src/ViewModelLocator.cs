@@ -3,15 +3,17 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business;
+using MoneyManager.Business.DataAccess;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.Manager;
 using MoneyManager.Business.Repositories;
-using MoneyManager.Business.Services;
 using MoneyManager.Business.ViewModels;
-using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Views;
+using SQLite.Net.Interop;
+using SQLite.Net.Platform.WinRT;
 
 namespace MoneyManager.Windows
 {
@@ -19,11 +21,14 @@ namespace MoneyManager.Windows
     {
         static ViewModelLocator()
         {
-            DatabaseLogic.CreateDatabase();
-
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             if (DesignMode.DesignModeEnabled) { return;}
+
+            //Prepare Platform specifics for creating the database and a DbHelper
+            SimpleIoc.Default.Register<ISQLitePlatform, SQLitePlatformWinRT>();
+            SimpleIoc.Default.Register<IDatabasePath, DatabasePath>();
+            SimpleIoc.Default.Register<IDbHelper, DbHelper>();
 
             //DataAccess
             SimpleIoc.Default.Register<IDataAccess<Account>, AccountDataAccess>();
@@ -31,6 +36,10 @@ namespace MoneyManager.Windows
             SimpleIoc.Default.Register<IDataAccess<FinancialTransaction>, TransactionDataAccess>();
             SimpleIoc.Default.Register<IDataAccess<RecurringTransaction>, RecurringTransactionDataAccess>();
             SimpleIoc.Default.Register<SettingDataAccess>();
+
+            //Plattform specfic Logic
+            SimpleIoc.Default.Register<Foundation.OperationContracts.IDialogService, DialogService>();
+            SimpleIoc.Default.Register<IAppInformation, AppInformation>();
 
             //Logic
             SimpleIoc.Default.Register<IUserNotification, UserNotification>();
@@ -47,6 +56,7 @@ namespace MoneyManager.Windows
 
             //Datadependent Logic
             SimpleIoc.Default.Register<RepositoryManager>();
+            SimpleIoc.Default.Register<TransactionManager>();
 
             //ViewModels
             SimpleIoc.Default.Register<MainViewModel>();
@@ -57,7 +67,6 @@ namespace MoneyManager.Windows
             SimpleIoc.Default.Register<CategoryListViewModel>();
             SimpleIoc.Default.Register<TransactionListViewModel>();
             SimpleIoc.Default.Register<TileSettingsViewModel>();
-            SimpleIoc.Default.Register<GeneralSettingViewModel>();
             SimpleIoc.Default.Register<SettingDefaultsViewModel>();
             SimpleIoc.Default.Register<StatisticViewModel>();
             SimpleIoc.Default.Register<BackupViewModel>();
@@ -77,6 +86,7 @@ namespace MoneyManager.Windows
 
         #endregion
 
+        // TODO: Remove this, shouldn't be needed.
         #region DataAccess
 
         public IRepository<Account> AccountRepository => ServiceLocator.Current.GetInstance<IRepository<Account>>();
@@ -110,8 +120,6 @@ namespace MoneyManager.Windows
         public TransactionListViewModel TransactionListViewModel => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
 
         public TileSettingsViewModel TileSettingsViewModel => ServiceLocator.Current.GetInstance<TileSettingsViewModel>();
-
-        public GeneralSettingViewModel GeneralSettingViewModel => ServiceLocator.Current.GetInstance<GeneralSettingViewModel>();
 
         public SettingDefaultsViewModel SettingDefaultsViewModel => ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>();
 

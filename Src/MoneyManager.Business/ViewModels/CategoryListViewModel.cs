@@ -1,9 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
-using Microsoft.Practices.ServiceLocation;
+using GalaSoft.MvvmLight.Views;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
@@ -13,38 +11,33 @@ namespace MoneyManager.Business.ViewModels
     [ImplementPropertyChanged]
     public class CategoryListViewModel : ViewModelBase
     {
-        private string _searchText;
+        private readonly IRepository<Category> categoryRepository;
+        private readonly INavigationService navigationService;
+        private readonly ITransactionRepository transactionRepository;
 
-        public CategoryListViewModel()
+        private string searchText;
+
+        public CategoryListViewModel(IRepository<Category> categoryRepository,
+            ITransactionRepository transactionRepository, INavigationService navigationService)
         {
+            this.categoryRepository = categoryRepository;
+            this.transactionRepository = transactionRepository;
+            this.navigationService = navigationService;
             Categories = AllCategories;
         }
 
         public bool IsSettingCall { get; set; }
-        public ObservableCollection<Category> Categories { get; set; }
+        public ObservableCollection<Category> Categories { get; set; } 
 
-        private IRepository<Category> CategoryRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>(); }
-        }
-
-        private ITransactionRepository TransactionRepository
-        {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
-        }
-
-        private ObservableCollection<Category> AllCategories
-        {
-            get { return CategoryRepository.Data; }
-        }
+        private ObservableCollection<Category> AllCategories => categoryRepository.Data;
 
         public Category SelectedCategory
         {
             get
             {
-                return TransactionRepository.Selected == null
+                return transactionRepository.Selected == null
                     ? new Category()
-                    : TransactionRepository.Selected.Category;
+                    : transactionRepository.Selected.Category;
             }
             set
             {
@@ -55,18 +48,18 @@ namespace MoneyManager.Business.ViewModels
 
                 if (!IsSettingCall)
                 {
-                    TransactionRepository.Selected.Category = value;
-                    ((Frame) Window.Current.Content).GoBack();
+                    transactionRepository.Selected.Category = value;
+                    navigationService.GoBack();
                 }
             }
         }
 
         public string SearchText
         {
-            get { return _searchText; }
+            get { return searchText; }
             set
             {
-                _searchText = value;
+                searchText = value;
                 Search();
             }
         }
@@ -76,7 +69,7 @@ namespace MoneyManager.Business.ViewModels
             if (SearchText != string.Empty)
             {
                 Categories = new ObservableCollection<Category>
-                    (AllCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(_searchText.ToLower()))
+                    (AllCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
                         .ToList());
             }
             else

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Business.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -53,7 +53,7 @@ namespace MoneyManager.Business.Logic
 
             var income = new StatisticItem
             {
-                Category = Translation.GetTranslation("RevenuesLabel"),
+                Category = Strings.RevenueLabel,
                 Value = transactionList.Where(x => x.Type == (int) TransactionType.Income).Sum(x => x.Amount)
             };
             income.Label = income.Category + ": " +
@@ -61,7 +61,7 @@ namespace MoneyManager.Business.Logic
 
             var spent = new StatisticItem
             {
-                Category = Translation.GetTranslation("ExpensesLabel"),
+                Category = Strings.ExpenseLabel,
                 Value = transactionList.Where(x => x.Type == (int) TransactionType.Spending).Sum(x => x.Amount)
             };
             spent.Label = spent.Category + ": " +
@@ -69,7 +69,7 @@ namespace MoneyManager.Business.Logic
 
             var increased = new StatisticItem
             {
-                Category = Translation.GetTranslation("IncreasesLabel"),
+                Category = Strings.IncreaseLabel,
                 Value = income.Value - spent.Value
             };
             increased.Label = increased.Category + ": " +

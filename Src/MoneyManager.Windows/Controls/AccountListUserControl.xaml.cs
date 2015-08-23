@@ -46,10 +46,11 @@ namespace MoneyManager.Windows.Controls
 
         private async void Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!await Utilities.IsDeletionConfirmed())
-            {
-                return;
-            }
+            //TODO: refactor this
+            //if (!await Utilities.IsDeletionConfirmed())
+            //{
+            //    return;
+            //}
 
             var element = (FrameworkElement) sender;
             var account = element.DataContext as Account;

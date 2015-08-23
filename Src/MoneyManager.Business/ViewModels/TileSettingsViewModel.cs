@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using MoneyManager.Business.Logic.Tile;
-using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Business.DataAccess;
 using PropertyChanged;
 
 namespace MoneyManager.Business.ViewModels
@@ -34,17 +33,20 @@ namespace MoneyManager.Business.ViewModels
         /// <summary>
         ///     Creates an IncomeTile object
         /// </summary>
-        public IncomeTile IncomeTile => new IncomeTile();
+        //TODO: Refactor this that it can be used for android aswell
+        //public IncomeTile IncomeTile => new IncomeTile();
 
         /// <summary>
         ///     Creates an SpendingTile object
         /// </summary>
-        public SpendingTile SpendingTile => new SpendingTile();
+        //TODO: Refactor this that it can be used for android aswell
+        //public SpendingTile SpendingTile => new SpendingTile();
 
         /// <summary>
         ///     Creates a TransferTile Object
         /// </summary>
-        public TransferTile TransferTile => new TransferTile();
+        //TODO: Refactor this that it can be used for android aswell
+        //public TransferTile TransferTile => new TransferTile();
 
         private void SetValue(bool value)
         {
