@@ -35,7 +35,8 @@ namespace MoneyManager.Windows.Controls
             {
                 return;
             }
-
+            
+            //TODO refactor this / move to a viewmodel
             var viewModel = ServiceLocator.Current.GetInstance<AddAccountViewModel>();
             viewModel.IsEdit = true;
             viewModel.SelectedAccount = account;
@@ -58,6 +59,7 @@ namespace MoneyManager.Windows.Controls
                 return;
             }
 
+            //TODO Refactor
             ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>().Delete(account);
             ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
         }
@@ -71,6 +73,7 @@ namespace MoneyManager.Windows.Controls
                 ServiceLocator.Current.GetInstance<TransactionListViewModel>()
                     .SetRelatedTransactions(AccountRepository.Selected);
 
+                //TODO move toviewmodel
                 ((Frame) Window.Current.Content).Navigate(typeof (TransactionListView));
                 AccountList.SelectedItem = null;
             }
