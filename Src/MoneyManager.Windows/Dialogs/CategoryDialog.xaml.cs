@@ -15,6 +15,7 @@ namespace MoneyManager.Windows.Dialogs
         {
             InitializeComponent();
 
+            //TODO Refactor
             IsEdit = isEdit;
             if (!isEdit)
             {
@@ -27,6 +28,7 @@ namespace MoneyManager.Windows.Dialogs
             }
         }
 
+        //TODO: refactor
         private IRepository<Category> CategoryRepository => ServiceLocator.Current.GetInstance<IRepository<Category>>();
 
         private CategoryListViewModel CategoryListView => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
@@ -37,12 +39,9 @@ namespace MoneyManager.Windows.Dialogs
         {
             if (CategoryRepository.Selected.Name == string.Empty)
             {
-                var dialog = new MessageDialog(Translation.GetTranslation("NameRequiredMessage"),
-                    Translation.GetTranslation("MandatoryField"));
-                dialog.Commands.Add(new UICommand(Translation.GetTranslation("OkLabel")));
-                dialog.DefaultCommandIndex = 1;
+                var dialogService = ServiceLocator.Current.GetInstance<IDialogService>();
 
-                await dialog.ShowAsync();
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptryTitle, Strings.NameRequiredMessage);
             }
 
             CategoryRepository.Save(CategoryRepository.Selected);

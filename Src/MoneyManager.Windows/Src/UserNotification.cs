@@ -24,7 +24,7 @@ namespace MoneyManager.Windows
                 var tileContent =
                     TileContentFactory.CreateTileSquare310x310SmallImagesAndTextList04();
                 tileContent.Image1.Src = "ms-appx:///Assets/Logo.png";
-                tileContent.TextHeading1.Text = Translation.GetTranslation("CashflowTileLabel");
+                tileContent.TextHeading1.Text = Strings.CashflowLabel;
                 tileContent.TextWrap1.Text = income;
                 tileContent.TextWrap2.Text = spending;
                 tileContent.TextWrap3.Text = earnings;
@@ -33,7 +33,7 @@ namespace MoneyManager.Windows
                 var wide310x150Content =
                     TileContentFactory.CreateTileWide310x150SmallImageAndText02();
                 wide310x150Content.Image.Src = "ms-appx:///Assets/Logo.png";
-                wide310x150Content.TextHeading.Text = Translation.GetTranslation("CashflowTileLabel");
+                wide310x150Content.TextHeading.Text = Strings.CashflowLabel;
                 wide310x150Content.TextBody1.Text = income;
                 wide310x150Content.TextBody2.Text = spending;
                 wide310x150Content.TextBody3.Text = earnings;
@@ -42,7 +42,7 @@ namespace MoneyManager.Windows
                 var square150x150Content =
                     TileContentFactory.CreateTileSquare150x150PeekImageAndText01();
                 square150x150Content.Image.Src = "ms-appx:///Assets/Logo.png";
-                square150x150Content.TextHeading.Text = Translation.GetTranslation("CashflowTileLabel");
+                square150x150Content.TextHeading.Text = Strings.CashflowLabel;
                 square150x150Content.TextBody1.Text = income;
                 square150x150Content.TextBody2.Text = spending;
                 square150x150Content.TextBody3.Text = earnings;

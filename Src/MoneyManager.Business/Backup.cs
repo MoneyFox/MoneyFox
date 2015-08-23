@@ -29,7 +29,7 @@ namespace MoneyManager.Business
             catch (Exception ex)
             {
                 InsightHelper.Report(ex);
-                throw new ConnectionException(Translation.GetTranslation("LoginFailedMessage"), ex);
+                throw new ConnectionException(Strings.LoginFailedMessage, ex);
             }
         }
 
@@ -45,7 +45,7 @@ namespace MoneyManager.Business
             catch (Exception ex)
             {
                 InsightHelper.Report(ex);
-                throw new BackupException(Translation.GetTranslation("BackupFailedMessage"), ex);
+                throw new BackupException(Strings.BackupFailedMessage, ex);
             }
         }
 
@@ -62,7 +62,7 @@ namespace MoneyManager.Business
             catch (Exception ex)
             {
                 InsightHelper.Report(ex);
-                throw new BackupException(Translation.GetTranslation("RestoreFailedMessage"), ex);
+                throw new BackupException(Strings.RestoreFailedMessage, ex);
             }
         }
 

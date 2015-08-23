@@ -1,10 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using Windows.Globalization;
-using Windows.Storage;
 using PropertyChanged;
 
 namespace MoneyManager.Business.DataAccess
@@ -21,22 +18,24 @@ namespace MoneyManager.Business.DataAccess
 
         private void AddOrUpdateValue(string key, object value)
         {
-            ApplicationData.Current.RoamingSettings.Values[key] = value;
+            //TODO Refactor: DB or replace with Interface
+            //ApplicationData.Current.RoamingSettings.Values[key] = value;
         }
 
         private TValueType GetValueOrDefault<TValueType>(string key, TValueType defaultValue)
         {
-            TValueType value;
+            TValueType value = defaultValue;
 
-            if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key))
-            {
-                var setting = ApplicationData.Current.RoamingSettings.Values[key];
-                value = (TValueType) Convert.ChangeType(setting, typeof (TValueType), CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                value = defaultValue;
-            }
+            //TODO Refactor: DB or replace with Interface
+            //if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key))
+            //{
+            //    var setting = ApplicationData.Current.RoamingSettings.Values[key];
+            //    value = (TValueType) Convert.ChangeType(setting, typeof (TValueType), CultureInfo.InvariantCulture);
+            //}
+            //else
+            //{
+            //    value = defaultValue;
+            //}
             return value;
         }
 
@@ -48,9 +47,11 @@ namespace MoneyManager.Business.DataAccess
 
         #region Properties
 
+        //TODO Refactor: DB or replace with Interface
         public string DefaultCurrency
         {
-            get { return GetValueOrDefault(DEFAULT_CURRENCY_KEYNAME, new GeographicRegion().CurrenciesInUse.First()); }
+            get { return string.Empty; }
+            //GetValueOrDefault(DEFAULT_CURRENCY_KEYNAME, new GeographicRegion().CurrenciesInUse.First()); }
             set
             {
                 AddOrUpdateValue(DEFAULT_CURRENCY_KEYNAME, value);

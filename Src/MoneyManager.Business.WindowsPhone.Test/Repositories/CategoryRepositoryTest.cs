@@ -1,12 +1,10 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.Business.DataAccess;
 using MoneyManager.Business.Repositories;
 using MoneyManager.Business.WindowsPhone.Test.Mocks;
-using MoneyManager.DataAccess;
-using MoneyManager.DataAccess.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-using SQLiteNetExtensions.Extensions;
 
 namespace MoneyManager.Business.WindowsPhone.Test.Repositories
 {

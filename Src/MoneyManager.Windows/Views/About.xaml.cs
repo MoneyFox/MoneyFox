@@ -3,7 +3,6 @@ using Windows.ApplicationModel.Email;
 using Windows.ApplicationModel.Store;
 using Windows.System;
 using Windows.UI.Xaml.Input;
-using MoneyManager.Business.Helper;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Windows.Views
@@ -14,7 +13,8 @@ namespace MoneyManager.Windows.Views
         {
             InitializeComponent();
 
-            lblVersion.Text = Utilities.GetVersion();
+            //TODO: move to VM
+            //lblVersion.Text = Utilities.GetVersion();
         }
 
 
@@ -22,22 +22,17 @@ namespace MoneyManager.Windows.Views
         {
             var sendTo = new EmailRecipient
             {
-                Address = Translation.GetTranslation("SupportMail")
+                Address = Strings.SupportMail
             };
 
-            var mail = new EmailMessage {Subject = Translation.GetTranslation("Feedback")};
+            var mail = new EmailMessage {Subject = Strings.FeedbackLabel};
             mail.To.Add(sendTo);
             await EmailManager.ShowComposeNewEmailAsync(mail);
         }
 
         private async void GoToWebsite_OnTap(object sender, TappedRoutedEventArgs e)
         {
-            await Launcher.LaunchUriAsync(new Uri(Translation.GetTranslation("InternetAdress")));
-        }
-
-        private async void GoToTwitter_OnTap(object sender, TappedRoutedEventArgs e)
-        {
-            await Launcher.LaunchUriAsync(new Uri(Translation.GetTranslation("TwitterUrl")));
+            await Launcher.LaunchUriAsync(new Uri(Strings.Homepage));
         }
 
         private async void RateApp_OnTap(object sender, TappedRoutedEventArgs e)
@@ -47,7 +42,7 @@ namespace MoneyManager.Windows.Views
 
         private async void GoToRepository_Tap(object sender, TappedRoutedEventArgs e)
         {
-            await Launcher.LaunchUriAsync(new Uri(Translation.GetTranslation("GithubRepository")));
+            await Launcher.LaunchUriAsync(new Uri(Strings.GitHubRepositoryUrl));
         }
     }
 }

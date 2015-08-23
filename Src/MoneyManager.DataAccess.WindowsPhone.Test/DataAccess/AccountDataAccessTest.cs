@@ -1,11 +1,7 @@
-﻿#region
-
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.DataAccess.DataAccess;
+using MoneyManager.Business.DataAccess;
 using MoneyManager.Foundation.Model;
-
-#endregion
 
 namespace MoneyManager.DataAccess.WindowsPhone.Test.DataAccess
 {

@@ -1,6 +1,5 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Views;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
@@ -11,10 +10,12 @@ namespace MoneyManager.Business.ViewModels
     public class AddAccountViewModel : ViewModelBase
     {
         private readonly IRepository<Account> accountRepository;
+        private readonly INavigationService navigationService;
 
-        public AddAccountViewModel(IRepository<Account> accountRepository)
+        public AddAccountViewModel(IRepository<Account> accountRepository, INavigationService navigationService)
         {
             this.accountRepository = accountRepository;
+            this.navigationService = navigationService;
         }
 
         public bool IsEdit { get; set; }
@@ -28,12 +29,12 @@ namespace MoneyManager.Business.ViewModels
         public void Save()
         {
             accountRepository.Save(accountRepository.Selected);
-            ((Frame) Window.Current.Content).GoBack();
+            navigationService.GoBack();
         }
 
         public void Cancel()
         {
-            ((Frame) Window.Current.Content).GoBack();
+            navigationService.GoBack();
         }
     }
 }

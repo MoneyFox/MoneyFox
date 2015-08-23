@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.UI.Popups;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Business.DataAccess;
 using MoneyManager.Business.Helper;
@@ -67,7 +66,8 @@ namespace MoneyManager.Business.Logic
 
         public static async Task DeleteTransaction(FinancialTransaction transaction, bool skipConfirmation = false)
         {
-            if (skipConfirmation || await Utilities.IsDeletionConfirmed())
+            //TODO: refactor
+            if (skipConfirmation) //|| await Utilities.IsDeletionConfirmed())
             {
                 await CheckForRecurringTransaction(transaction,
                     () => RecurringTransactionLogic.Delete(transaction.RecurringTransaction));
@@ -119,21 +119,22 @@ namespace MoneyManager.Business.Logic
                 return;
             }
 
-            var dialog =
-                new MessageDialog(Translation.GetTranslation("ChangeSubsequentTransactionsMessage"),
-                    Translation.GetTranslation("ChangeSubsequentTransactionsTitle"));
+            //TODO: refactor this to use the dialog service
+            //var dialog =
+            //    new MessageDialog(Translation.GetTranslation("ChangeSubsequentTransactionsMessage"),
+            //        Translation.GetTranslation("ChangeSubsequentTransactionsTitle"));
 
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("RecurringLabel")));
-            dialog.Commands.Add(new UICommand(Translation.GetTranslation("JustThisLabel")));
+            //dialog.Commands.Add(new UICommand(Translation.GetTranslation("RecurringLabel")));
+            //dialog.Commands.Add(new UICommand(Translation.GetTranslation("JustThisLabel")));
 
-            dialog.DefaultCommandIndex = 1;
+            //dialog.DefaultCommandIndex = 1;
 
-            var result = await dialog.ShowAsync();
+            //var result = await dialog.ShowAsync();
 
-            if (result.Label == Translation.GetTranslation("RecurringLabel"))
-            {
-                recurringTransactionAction();
-            }
+            //if (result.Label == Translation.GetTranslation("RecurringLabel"))
+            //{
+            //    recurringTransactionAction();
+            //}
         }
 
         private static void CheckIfRecurringWasRemoved(FinancialTransaction transaction)

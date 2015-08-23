@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.ApplicationInsights;
 
 namespace MoneyManager.Foundation
 {
@@ -8,7 +7,8 @@ namespace MoneyManager.Foundation
     /// </summary>
     public static class InsightHelper
     {
-        private static readonly TelemetryClient Telemetry = new TelemetryClient();
+        //TODO: Use another loggin service.
+        //private static readonly TelemetryClient Telemetry = new TelemetryClient();
 
         /// <summary>
         ///     Reports the passed exception if Insights are initialized
@@ -16,10 +16,10 @@ namespace MoneyManager.Foundation
         /// <param name="exception">Excpetion to report.</param>
         public static void Report(Exception exception)
         {
-            if (Telemetry.IsEnabled())
-            {
-                Telemetry.TrackException(exception);
-            }
+            //if (Telemetry.IsEnabled())
+            //{
+            //    Telemetry.TrackException(exception);
+            //}
         }
     }
 }

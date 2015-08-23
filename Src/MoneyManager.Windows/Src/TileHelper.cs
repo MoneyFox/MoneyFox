@@ -1,6 +1,6 @@
 ﻿using MoneyManager.Business.Logic;
-using MoneyManager.Business.Logic.Tile;
 using MoneyManager.Foundation;
+using MoneyManager.Windows.Tile;
 
 namespace MoneyManager.Windows
 {
@@ -10,19 +10,19 @@ namespace MoneyManager.Windows
         {
             switch (tileId)
             {
-                case IncomeTile.Id:
+                case IncomeTile.ID:
                     TransactionLogic.GoToAddTransaction(TransactionType.Income);
                     //TODO:uncomment
                     //((Frame) Window.Current.Content).Navigate(typeof (AddTransactionView));
                     break;
 
-                case SpendingTile.Id:
+                case SpendingTile.ID:
                     TransactionLogic.GoToAddTransaction(TransactionType.Spending);
                     //TODO:uncomment
                     //((Frame) Window.Current.Content).Navigate(typeof (AddTransactionView));
                     break;
 
-                case TransferTile.Id:
+                case TransferTile.ID:
                     TransactionLogic.GoToAddTransaction(TransactionType.Transfer);
                     //TODO:uncomment
                     //((Frame) Window.Current.Content).Navigate(typeof (AddTransactionView));

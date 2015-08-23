@@ -7,10 +7,10 @@ using MoneyManager.Business.DataAccess;
 using MoneyManager.Business.Helper;
 using MoneyManager.Business.Manager;
 using MoneyManager.Business.Repositories;
-using MoneyManager.Business.Services;
 using MoneyManager.Business.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Views;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.WinRT;
@@ -36,6 +36,10 @@ namespace MoneyManager.Windows
             SimpleIoc.Default.Register<IDataAccess<FinancialTransaction>, TransactionDataAccess>();
             SimpleIoc.Default.Register<IDataAccess<RecurringTransaction>, RecurringTransactionDataAccess>();
             SimpleIoc.Default.Register<SettingDataAccess>();
+
+            //Plattform specfic Logic
+            SimpleIoc.Default.Register<Foundation.OperationContracts.IDialogService, DialogService>();
+            SimpleIoc.Default.Register<IAppInformation, AppInformation>();
 
             //Logic
             SimpleIoc.Default.Register<IUserNotification, UserNotification>();
@@ -63,7 +67,6 @@ namespace MoneyManager.Windows
             SimpleIoc.Default.Register<CategoryListViewModel>();
             SimpleIoc.Default.Register<TransactionListViewModel>();
             SimpleIoc.Default.Register<TileSettingsViewModel>();
-            SimpleIoc.Default.Register<GeneralSettingViewModel>();
             SimpleIoc.Default.Register<SettingDefaultsViewModel>();
             SimpleIoc.Default.Register<StatisticViewModel>();
             SimpleIoc.Default.Register<BackupViewModel>();
@@ -117,8 +120,6 @@ namespace MoneyManager.Windows
         public TransactionListViewModel TransactionListViewModel => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
 
         public TileSettingsViewModel TileSettingsViewModel => ServiceLocator.Current.GetInstance<TileSettingsViewModel>();
-
-        public GeneralSettingViewModel GeneralSettingViewModel => ServiceLocator.Current.GetInstance<GeneralSettingViewModel>();
 
         public SettingDefaultsViewModel SettingDefaultsViewModel => ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>();
 

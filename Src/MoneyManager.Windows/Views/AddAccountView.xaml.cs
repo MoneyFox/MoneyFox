@@ -37,7 +37,7 @@ namespace MoneyManager.Windows.Views
         {
             if (string.IsNullOrEmpty(viewModel.SelectedAccount.Name))
             {
-                viewModel.SelectedAccount.Name = Translation.GetTranslation("NoNamePlaceholderLabel");
+                viewModel.SelectedAccount.Name = Strings.NoNamePlaceholderLabel;
             }
 
             viewModel.Save();

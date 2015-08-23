@@ -11,6 +11,14 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "LiveSDK/5.6.3": {
+        "compile": {
+          "lib/Windows8/_._": {}
+        },
+        "runtime": {
+          "lib/Windows8/_._": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -1635,6 +1643,14 @@
         },
         "runtime": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
+      "LiveSDK/5.6.3": {
+        "compile": {
+          "lib/Windows8/_._": {}
+        },
+        "runtime": {
+          "lib/Windows8/_._": {}
         }
       },
       "Microsoft.ApplicationInsights/1.0.0": {
@@ -3353,6 +3369,14 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "LiveSDK/5.6.3": {
+        "compile": {
+          "lib/Windows8/_._": {}
+        },
+        "runtime": {
+          "lib/Windows8/_._": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -5039,6 +5063,14 @@
         },
         "runtime": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
+      "LiveSDK/5.6.3": {
+        "compile": {
+          "lib/Windows8/_._": {}
+        },
+        "runtime": {
+          "lib/Windows8/_._": {}
         }
       },
       "Microsoft.ApplicationInsights/1.0.0": {
@@ -6762,6 +6794,14 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "LiveSDK/5.6.3": {
+        "compile": {
+          "lib/Windows8/_._": {}
+        },
+        "runtime": {
+          "lib/Windows8/_._": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -8448,6 +8488,14 @@
         },
         "runtime": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
+      "LiveSDK/5.6.3": {
+        "compile": {
+          "lib/Windows8/_._": {}
+        },
+        "runtime": {
+          "lib/Windows8/_._": {}
         }
       },
       "Microsoft.ApplicationInsights/1.0.0": {
@@ -10171,6 +10219,14 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "LiveSDK/5.6.3": {
+        "compile": {
+          "lib/Windows8/_._": {}
+        },
+        "runtime": {
+          "lib/Windows8/_._": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -11864,6 +11920,82 @@
         "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.XML",
         "package/services/metadata/core-properties/99be0c88b2fd41c8b07c42071005ee47.psmdcp",
         "package/services/metadata/core-properties/8a82b9e5a63a439481bfa8d4ec335002.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "LiveSDK/5.6.3": {
+      "sha512": "H4WZZzmrBIvCHb0m+zmHLbYDuyU3vPojN/sZ3JKxrg9qtY+BLqokGRd/+PQYlSHIMLAG4VoH50wH4z4FhzzB/Q==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "LiveSDK.nuspec",
+        "content/Fonts/LiveSymbol.ttf",
+        "lib/net40/Microsoft.Live.dll",
+        "lib/net45/Microsoft.Live.dll",
+        "lib/Windows8/_._",
+        "lib/WindowsPhone8/cs/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/da/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/de/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/el/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/en/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/en-gb/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/es/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/fi/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/fr/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/hu/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/id/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/it/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/ja/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/ko/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/ms/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/nb-no/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/nl/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/pl/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/pt-br/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/pt-pt/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/ru/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/sv/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/zh-cn/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/zh-tw/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone8/Microsoft.Live.Controls.dll",
+        "lib/WindowsPhone8/Microsoft.Live.dll",
+        "lib/WindowsPhone81/cs/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/da/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/de/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/el/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/en/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/en-gb/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/es/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/fi/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/fr/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/hu/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/id/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/it/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/ja/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/ko/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/ms/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/nb-no/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/nl/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/pl/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/pt-br/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/pt-pt/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/ru/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/sv/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/zh-cn/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/zh-tw/Microsoft.Live.Controls.resources.dll",
+        "lib/WindowsPhone81/Microsoft.Live.Controls.dll",
+        "lib/WindowsPhone81/Microsoft.Live.dll",
+        "tools/Windows8/install.ps1",
+        "tools/Windows8/uninstall.ps1",
+        "tools/Windows81/install.ps1",
+        "tools/Windows81/uninstall.ps1",
+        "tools/WindowsPhoneApp/install.ps1",
+        "tools/WindowsPhoneApp/uninstall.ps1",
+        "WindowsHTML/wl.js",
+        "WindowsPhone8/Microsoft.Live.Controls.Design.dll",
+        "WindowsPhone81/Microsoft.Live.Controls.Design.dll",
+        "WindowsXAML/Microsoft.Live.dll",
+        "package/services/metadata/core-properties/ffd0f25f2cfc40a28fa39b6a274371d1.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -15568,6 +15700,7 @@
   "projectFileDependencyGroups": {
     "": [
       "CommonServiceLocator >= 1.3.0",
+      "LiveSDK >= 5.6.3",
       "Microsoft.ApplicationInsights >= 1.0.0",
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.0.0",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
