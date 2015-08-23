@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Diagnostics;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Globalization;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.ApplicationInsights;
 using MoneyManager.Windows.Views;
+using Xamarin;
 
 namespace MoneyManager.Windows
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App
     {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -23,11 +21,8 @@ namespace MoneyManager.Windows
         /// </summary>
         public App()
         {
-            WindowsAppInitializer.InitializeAsync(
-                WindowsCollectors.Metadata |
-                WindowsCollectors.Session);
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         /// <summary>
@@ -37,6 +32,14 @@ namespace MoneyManager.Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+#if DEBUG
+            if (!Insights.IsInitialized)
+            {
+                Insights.Initialize("e5c4ac56bb1ca47559bc8d4973d0a8c4d78c7648");
+            }
+#endif
+
+
             var shell = Window.Current.Content as AppShell;
 
             // Do not repeat app initialization when the Window already has content,

@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin;
 
 namespace MoneyManager.Foundation
 {
@@ -7,19 +8,17 @@ namespace MoneyManager.Foundation
     /// </summary>
     public static class InsightHelper
     {
-        //TODO: Use another loggin service.
-        //private static readonly TelemetryClient Telemetry = new TelemetryClient();
-
         /// <summary>
         ///     Reports the passed exception if Insights are initialized
         /// </summary>
         /// <param name="exception">Excpetion to report.</param>
-        public static void Report(Exception exception)
+        /// <param name="serverity">Serverity for the to report the exception.</param>
+        public static void Report(Exception exception, Insights.Severity serverity = Insights.Severity.Error)
         {
-            //if (Telemetry.IsEnabled())
-            //{
-            //    Telemetry.TrackException(exception);
-            //}
+            if (Insights.IsInitialized)
+            {
+                Insights.Report(exception, serverity);
+            }
         }
     }
 }
