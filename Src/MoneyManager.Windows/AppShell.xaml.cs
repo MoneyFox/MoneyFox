@@ -46,8 +46,8 @@ namespace MoneyManager.Windows
                 new NavMenuItem
                 {
                     Symbol = Symbol.Setting,
-                    Label = "Settings"
-                    //DestPage = typeof(SettingsView)
+                    Label = "Settings",
+                    DestPage = typeof(SettingsView)
                 },
                 new NavMenuItem
                 {

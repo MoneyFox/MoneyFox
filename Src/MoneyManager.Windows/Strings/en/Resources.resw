@@ -166,6 +166,9 @@ Visit Repository:</value>
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
     <value>Select Category</value>
   </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="VersionLabel.Text" xml:space="preserve">
     <value>Version: </value>
   </data>
