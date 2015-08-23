@@ -14,6 +14,12 @@ namespace MoneyManager.Core.Manager
         private readonly AddTransactionViewModel addTransactionViewModel;
         private readonly SettingDataAccess settings;
 
+        /// <summary>
+        ///     Creates an TransactionManager object.
+        /// </summary>
+        /// <param name="addTransactionViewModel">Instance of <see cref="AddTransactionViewModel"/></param>
+        /// <param name="accountRepository">Instance of <see cref="IRepository{T}"/></param>
+        /// <param name="settings">Instance of <see cref="SettingDataAccess"/></param>
         public TransactionManager(AddTransactionViewModel addTransactionViewModel,
             IRepository<Account> accountRepository,
             SettingDataAccess settings)
@@ -23,6 +29,10 @@ namespace MoneyManager.Core.Manager
             this.settings = settings;
         }
 
+        /// <summary>
+        ///     Prepares everything to creat a new transaction.
+        /// </summary>
+        /// <param name="transactionType">Type of the transaction who shall be prepared.</param>
         public void PrepareCreation(string transactionType)
         {
             var type = (TransactionType) Enum.Parse(typeof (TransactionType), transactionType);

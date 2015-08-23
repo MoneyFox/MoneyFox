@@ -85,7 +85,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Helper\UtilitiesTest.cs" />
-    <Compile Include="Logic\TransactionTypeLogicTest.cs" />
+    <Compile Include="Helper\TransactionTypeLogicTest.cs" />
     <Compile Include="Manager\TransactionManagerTests.cs" />
     <Compile Include="Mocks\AccountDataAccessMock.cs" />
     <Compile Include="Mocks\CategoryDataAccessMock.cs" />
@@ -122,6 +122,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logic\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

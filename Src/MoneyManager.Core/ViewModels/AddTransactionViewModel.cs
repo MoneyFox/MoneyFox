@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 using MoneyManager.Core.DataAccess;
+using MoneyManager.Core.Helper;
 using MoneyManager.Core.Logic;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -60,7 +61,7 @@ namespace MoneyManager.Core.ViewModels
                     ? Strings.EditTitle
                     : Strings.AddTitle;
 
-                var type = TransactionTypeLogic.GetViewTitleForType(transactionRepository.Selected.Type);
+                var type = TransactionTypeHelper.GetViewTitleForType(transactionRepository.Selected.Type);
 
                 return string.Format(text, type);
             }
