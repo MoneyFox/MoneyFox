@@ -27,6 +27,7 @@ namespace MoneyManager.Windows.Core.Tests
         }
 
         [TestMethod]
+        [TestCategory("Integration")]
         public void SqlConnectionFactory_GetSqlConnectionWithouthParams()
         {
             var connection = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection();
@@ -34,6 +35,7 @@ namespace MoneyManager.Windows.Core.Tests
         }
 
         [TestMethod]
+        [TestCategory("Integration")]
         public void SqlConnectionFactory_GetSqlConnectionWithParams()
         {
             var connection = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection();

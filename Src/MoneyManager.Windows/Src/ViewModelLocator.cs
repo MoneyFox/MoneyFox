@@ -74,6 +74,7 @@ namespace MoneyManager.Windows
             SimpleIoc.Default.Register<SettingDefaultsViewModel>();
             SimpleIoc.Default.Register<StatisticViewModel>();
             SimpleIoc.Default.Register<BackupViewModel>();
+            SimpleIoc.Default.Register<SelectCategoryViewModel>();
         }
 
         #region Logic
@@ -84,6 +85,7 @@ namespace MoneyManager.Windows
 
             navigationService.Configure("AddAccountView", typeof (AddAccountView));
             navigationService.Configure("AddTransactionView", typeof (AddTransactionView));
+            navigationService.Configure("SelectCategoryView", typeof (SelectCategoryView));
 
             return navigationService;
         }
@@ -137,6 +139,8 @@ namespace MoneyManager.Windows
         public StatisticViewModel StatisticViewModel => ServiceLocator.Current.GetInstance<StatisticViewModel>();
 
         public BackupViewModel BackupViewModel => ServiceLocator.Current.GetInstance<BackupViewModel>();
+
+        public SelectCategoryViewModel SelectCategoryViewModel => ServiceLocator.Current.GetInstance<SelectCategoryViewModel>();
 
         #endregion Views
     }

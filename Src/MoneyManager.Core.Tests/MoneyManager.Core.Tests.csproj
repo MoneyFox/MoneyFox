@@ -101,6 +101,7 @@
     <Compile Include="Stubs\NavigationServiceStub.cs" />
     <Compile Include="ViewModels\AddTransactionViewModelTest.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />
+    <Compile Include="ViewModels\SelectCategoryViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestData\CountryTestData.txt">
