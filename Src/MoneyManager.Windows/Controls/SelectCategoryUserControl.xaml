@@ -8,7 +8,7 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              DataContext="{Binding SelectCategoryViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d"
-    d:DesignHeight="100"
+    d:DesignHeight="68"
     d:DesignWidth="400">
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
@@ -22,11 +22,9 @@
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
         </TextBox>
-        <Image Height="35"
-               Width="35"
-               Source="/Assets/light/close.png"
-               Margin="0,36,0,0"
-               VerticalAlignment="Top"
+        <Image Source="/Assets/light/close.png"
+               Height="35"
+               VerticalAlignment="Bottom"
                HorizontalAlignment="Right">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="Tapped">
