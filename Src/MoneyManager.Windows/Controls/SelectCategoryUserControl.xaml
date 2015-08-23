@@ -15,7 +15,6 @@
         <TextBox Header="category"
                  x:Uid="CategoryHeader"
                  Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
-                 GotFocus="OpenSelectCategoryDialog"
                  IsReadOnly="True">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="GotFocus">
