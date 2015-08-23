@@ -2,8 +2,6 @@
 
 ## Money Fox
 
-[![Join the chat at https://gitter.im/NPadrutt/MoneyManager](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NPadrutt/MoneyManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 We want a budget tool which is for everyone and keeps up the motivation to track you money. To reach this goal we try to make it as easy to use as possible.
 Feel free to create issues or even better contribute code.
 
