@@ -34,8 +34,8 @@ namespace MoneyManager.Windows
                 new NavMenuItem
                 {
                     Symbol = Symbol.View,
-                    Label = "Statistics"
-                    //DestPage = typeof(StatisticView)
+                    Label = "Statistics",
+                    DestPage = typeof(StatisticsView)
                 },
                 new NavMenuItem
                 {
