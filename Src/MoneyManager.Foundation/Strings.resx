@@ -138,6 +138,12 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>Cashflow</value>
   </data>
+  <data name="DeleteConfirmationMessage" xml:space="preserve">
+    <value>Do you wanna Delete this entry?</value>
+  </data>
+  <data name="DeleteTitle" xml:space="preserve">
+    <value>Delete?</value>
+  </data>
   <data name="EditTitle" xml:space="preserve">
     <value>Edit</value>
   </data>

@@ -45,7 +45,6 @@
     <Compile Include="DbHelper.cs" />
     <Compile Include="Helper\Utilities.cs" />
     <Compile Include="Logic\AccountLogic.cs" />
-    <Compile Include="Logic\CategoryLogic.cs" />
     <Compile Include="Logic\RecurringTransactionLogic.cs" />
     <Compile Include="Logic\StatisticLogic.cs" />
     <Compile Include="Logic\TransactionLogic.cs" />

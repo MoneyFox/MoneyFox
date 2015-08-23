@@ -3,9 +3,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Core.Logic;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Windows.Dialogs;
 
 namespace MoneyManager.Windows.Controls
@@ -33,9 +32,7 @@ namespace MoneyManager.Windows.Controls
             {
                 return;
             }
-
-            var repository = ServiceLocator.Current.GetInstance<IRepository<Category>>();
-            repository.Selected = category;
+            ((CategoryListViewModel) DataContext).SelectedCategory = category;
 
             var dialog = new CategoryDialog(true);
             await dialog.ShowAsync();
@@ -50,7 +47,7 @@ namespace MoneyManager.Windows.Controls
                 return;
             }
 
-            CategoryLogic.DeleteCategory(category);
+            ((CategoryListViewModel)DataContext).DeleteCategoryCommand.Execute(category);
         }
     }
 }
