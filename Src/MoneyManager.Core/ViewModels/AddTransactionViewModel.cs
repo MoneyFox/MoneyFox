@@ -16,10 +16,10 @@ namespace MoneyManager.Core.ViewModels
     public class AddTransactionViewModel : ViewModelBase
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly SettingDataAccess settings;
-        private readonly ITransactionRepository transactionRepository;
         private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
+        private readonly SettingDataAccess settings;
+        private readonly ITransactionRepository transactionRepository;
 
         public AddTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,

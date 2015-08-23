@@ -10,8 +10,8 @@ namespace MoneyManager.Core.ViewModels
     public class BackupViewModel : ViewModelBase
     {
         private readonly Backup backup;
-        private readonly RepositoryManager repositoryManager;
         private readonly IDialogService dialogService;
+        private readonly RepositoryManager repositoryManager;
 
         public BackupViewModel(Backup backup, RepositoryManager repositoryManager, IDialogService dialogService)
         {

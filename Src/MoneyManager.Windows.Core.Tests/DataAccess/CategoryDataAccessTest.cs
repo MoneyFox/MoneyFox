@@ -15,7 +15,8 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         [TestCategory("Integration")]
         public void CategoryDataAccess_CrudCategory()
         {
-            var categoryDataAccess = new CategoryDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+            var categoryDataAccess =
+                new CategoryDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
 
             const string firstName = "category";
             const string secondName = "new category";

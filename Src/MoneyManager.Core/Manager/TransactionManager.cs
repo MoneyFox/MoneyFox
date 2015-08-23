@@ -10,8 +10,8 @@ namespace MoneyManager.Core.Manager
 {
     public class TransactionManager
     {
-        private readonly AddTransactionViewModel addTransactionViewModel;
         private readonly IRepository<Account> accountRepository;
+        private readonly AddTransactionViewModel addTransactionViewModel;
         private readonly SettingDataAccess settings;
 
         public TransactionManager(AddTransactionViewModel addTransactionViewModel,
@@ -25,7 +25,7 @@ namespace MoneyManager.Core.Manager
 
         public void PrepareCreation(string transactionType)
         {
-            var type = (TransactionType)Enum.Parse(typeof(TransactionType), transactionType);
+            var type = (TransactionType) Enum.Parse(typeof (TransactionType), transactionType);
 
             addTransactionViewModel.IsEdit = false;
             addTransactionViewModel.IsEndless = true;
@@ -44,8 +44,8 @@ namespace MoneyManager.Core.Manager
         {
             addTransactionViewModel.SelectedTransaction = new FinancialTransaction
             {
-                Type = (int)transactionType,
-                IsExchangeModeActive = false,
+                Type = (int) transactionType,
+                IsExchangeModeActive = false
                 //Todo: refactor this / move this to own class
                 //Currency = new GeographicRegion().CurrenciesInUse.First()
             };

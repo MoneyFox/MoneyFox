@@ -57,10 +57,10 @@ namespace MoneyManager.Core.ViewModels
             get { return categoryRepository.Data; }
             set { categoryRepository.Data = value; }
         }
-        
+
         /// <summary>
-        ///     The currently selected category. If IsSettingsCall is set ît will 
-        ///     return and set the selected item in the CategoryRepository, otherwise 
+        ///     The currently selected category. If IsSettingsCall is set ît will
+        ///     return and set the selected item in the CategoryRepository, otherwise
         ///     the category of the selected transaction.
         /// </summary>
         public Category SelectedCategory
@@ -115,7 +115,8 @@ namespace MoneyManager.Core.ViewModels
             if (SearchText != string.Empty)
             {
                 Categories = new ObservableCollection<Category>
-                    (categoryRepository.Data.Where(x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
+                    (categoryRepository.Data.Where(
+                        x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
                         .ToList());
             }
             else

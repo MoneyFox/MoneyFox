@@ -6,7 +6,6 @@ namespace MoneyManager.Windows.Views
 {
     public sealed partial class SelectCategoryView
     {
-
         public SelectCategoryView()
         {
             InitializeComponent();

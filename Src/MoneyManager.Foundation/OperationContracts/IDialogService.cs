@@ -21,7 +21,8 @@ namespace MoneyManager.Foundation.OperationContracts
         /// <param name="negativeButtonText">Text for the no button.</param>
         /// <param name="positivAction">Action who shall be executed on the positive button click.</param>
         /// <param name="negativAction">Action who shall be executed on the negative button click.</param>
-        Task ShowConfirmMessage(string title, string message, Action positivAction, string positiveButtonText=null, string negativeButtonText=null, Action negativAction = null);
+        Task ShowConfirmMessage(string title, string message, Action positivAction, string positiveButtonText = null,
+            string negativeButtonText = null, Action negativAction = null);
 
         /// <summary>
         ///     Show a dialog with two buttons with customizable Texts. Returns the answer.
@@ -30,6 +31,7 @@ namespace MoneyManager.Foundation.OperationContracts
         /// <param name="message">Message for the dialog.</param>
         /// <param name="positiveButtonText">Text for the yes button.</param>
         /// <param name="negativeButtonText">Text for the no button.</param>
-        Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText=null, string negativeButtonText=null);
+        Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
+            string negativeButtonText = null);
     }
 }

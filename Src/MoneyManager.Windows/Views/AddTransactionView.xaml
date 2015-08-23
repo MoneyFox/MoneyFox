@@ -86,16 +86,17 @@
                               SelectedItem="{Binding SelectedTransaction.TargetAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Visibility="{Binding IsTransfer, Converter={StaticResource BooleanVisibilityConverter}}" />
                     <Grid>
-                        <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay, 
+                        <TextBox
+                            Text="{Binding SelectedTransaction.Amount, Mode=TwoWay, 
                     Converter={StaticResource AmountConverter}, UpdateSourceTrigger=PropertyChanged }"
-                                 Header="amount"
-                                 InputScope="Number"
-                                 x:Name="TextBoxAmount"
-                                 x:Uid="Amount"
-                                 TextAlignment="Right"
-                                 TextChanged="ReplaceSeparatorChar"
-                                 GotFocus="RemoveZeroOnFocus"
-                                 LostFocus="AddZeroIfEmpty" />
+                            Header="amount"
+                            InputScope="Number"
+                            x:Name="TextBoxAmount"
+                            x:Uid="Amount"
+                            TextAlignment="Right"
+                            TextChanged="ReplaceSeparatorChar"
+                            GotFocus="RemoveZeroOnFocus"
+                            LostFocus="AddZeroIfEmpty" />
 
                         <Button Background="#FF231E1E"
                                 BorderThickness="0"
@@ -108,10 +109,11 @@
                     <Grid>
                         <userControls:SelectCategoryUserControl />
                     </Grid>
-                    <DatePicker Date="{Binding Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                Margin="0,12,0,0"
-                                Header="date"
-                                x:Uid="DateHeader" />
+                    <DatePicker
+                        Date="{Binding Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Margin="0,12,0,0"
+                        Header="date"
+                        x:Uid="DateHeader" />
                     <TextBox Header="Note"
                              x:Uid="Notes"
                              Text="{Binding SelectedTransaction.Note, Mode=TwoWay}"
@@ -120,7 +122,8 @@
                                   x:Uid="Repeat"
                                   VerticalAlignment="Stretch"
                                   IsOn="{Binding SelectedTransaction.IsRecurring, Mode=TwoWay}" />
-                    <StackPanel Visibility="{Binding SelectedTransaction.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
+                    <StackPanel
+                        Visibility="{Binding SelectedTransaction.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
                         <ComboBox Header="Reccurence"
                                   x:Uid="RecurrenceHeader"
                                   SelectedIndex="{Binding Recurrence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -138,11 +141,12 @@
                         <CheckBox Content="Endless"
                                   x:Uid="EndlessContent"
                                   IsChecked="{Binding IsEndless, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        <DatePicker Date="{Binding EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    Margin="0,12,0,0"
-                                    Header="enddate"
-                                    Visibility="{Binding IsEndless, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert}"
-                                    x:Uid="EnddateHeader" />
+                        <DatePicker
+                            Date="{Binding EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,12,0,0"
+                            Header="enddate"
+                            Visibility="{Binding IsEndless, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert}"
+                            x:Uid="EnddateHeader" />
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>

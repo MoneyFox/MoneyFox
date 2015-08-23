@@ -86,7 +86,7 @@ namespace MoneyManager.Windows.Controls
             {
                 var lvi = (ListViewItem) ContainerFromIndex(i);
 
-                if(lvi == null) continue;
+                if (lvi == null) continue;
 
                 if (i != index)
                 {

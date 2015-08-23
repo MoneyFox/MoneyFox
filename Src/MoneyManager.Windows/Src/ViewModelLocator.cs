@@ -7,13 +7,14 @@ using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Views;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.WinRT;
-using MoneyManager.Core.ViewModels;
+using IDialogService = MoneyManager.Foundation.OperationContracts.IDialogService;
 
 namespace MoneyManager.Windows
 {
@@ -23,7 +24,10 @@ namespace MoneyManager.Windows
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            if (DesignMode.DesignModeEnabled) { return;}
+            if (DesignMode.DesignModeEnabled)
+            {
+                return;
+            }
 
             //Prepare Platform specifics for creating the database and a DbHelper
             SimpleIoc.Default.Register<ISQLitePlatform, SQLitePlatformWinRT>();
@@ -38,7 +42,7 @@ namespace MoneyManager.Windows
             SimpleIoc.Default.Register<SettingDataAccess>();
 
             //Plattform specfic Logic
-            SimpleIoc.Default.Register<Foundation.OperationContracts.IDialogService, DialogService>();
+            SimpleIoc.Default.Register<IDialogService, DialogService>();
             SimpleIoc.Default.Register<IAppInformation, AppInformation>();
 
             //Logic
@@ -78,8 +82,8 @@ namespace MoneyManager.Windows
         {
             var navigationService = new PageNavigationService();
 
-            navigationService.Configure("AddAccountView", typeof(AddAccountView));
-            navigationService.Configure("AddTransactionView", typeof(AddTransactionView));
+            navigationService.Configure("AddAccountView", typeof (AddAccountView));
+            navigationService.Configure("AddTransactionView", typeof (AddTransactionView));
 
             return navigationService;
         }
@@ -87,6 +91,7 @@ namespace MoneyManager.Windows
         #endregion
 
         // TODO: Remove this, shouldn't be needed.
+
         #region DataAccess
 
         public IRepository<Account> AccountRepository => ServiceLocator.Current.GetInstance<IRepository<Account>>();
@@ -109,19 +114,25 @@ namespace MoneyManager.Windows
 
         public AddAccountViewModel AddAccountViewModel => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
 
-        public AccountListUserControlViewModel AccountListUserControlViewModel => ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>();
+        public AccountListUserControlViewModel AccountListUserControlViewModel
+            => ServiceLocator.Current.GetInstance<AccountListUserControlViewModel>();
 
-        public AddTransactionViewModel AddTransactionViewModel => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
+        public AddTransactionViewModel AddTransactionViewModel
+            => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
 
         public BalanceViewModel BalanceViewModel => ServiceLocator.Current.GetInstance<BalanceViewModel>();
 
-        public CategoryListViewModel CategoryListViewModel => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
+        public CategoryListViewModel CategoryListViewModel
+            => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
 
-        public TransactionListViewModel TransactionListViewModel => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
+        public TransactionListViewModel TransactionListViewModel
+            => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
 
-        public TileSettingsViewModel TileSettingsViewModel => ServiceLocator.Current.GetInstance<TileSettingsViewModel>();
+        public TileSettingsViewModel TileSettingsViewModel
+            => ServiceLocator.Current.GetInstance<TileSettingsViewModel>();
 
-        public SettingDefaultsViewModel SettingDefaultsViewModel => ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>();
+        public SettingDefaultsViewModel SettingDefaultsViewModel
+            => ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>();
 
         public StatisticViewModel StatisticViewModel => ServiceLocator.Current.GetInstance<StatisticViewModel>();
 

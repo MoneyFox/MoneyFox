@@ -11,13 +11,15 @@ namespace MoneyManager.Core.Tests.Stubs
             //Just do nothing
         }
 
-        public async Task ShowConfirmMessage(string title, string message, Action positivAction, string positiveButtonText = null,
+        public async Task ShowConfirmMessage(string title, string message, Action positivAction,
+            string positiveButtonText = null,
             string negativeButtonText = null, Action negativAction = null)
         {
             //Just do nothing
         }
 
-        public async Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null, string negativeButtonText = null)
+        public async Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
+            string negativeButtonText = null)
         {
             return true;
             //Just do nothing

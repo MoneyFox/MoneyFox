@@ -13,12 +13,14 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class TransactionListViewModel : ViewModelBase
     {
-        private readonly ITransactionRepository transactionRepository;
         private readonly IRepository<Account> accountRepository;
-        private readonly TransactionManager transactionManager;
         private readonly INavigationService navigationService;
+        private readonly TransactionManager transactionManager;
+        private readonly ITransactionRepository transactionRepository;
 
-        public TransactionListViewModel(ITransactionRepository transactionRepository, IRepository<Account> accountRepository, TransactionManager transactionManager, INavigationService navigationService)
+        public TransactionListViewModel(ITransactionRepository transactionRepository,
+            IRepository<Account> accountRepository, TransactionManager transactionManager,
+            INavigationService navigationService)
         {
             this.transactionRepository = transactionRepository;
             this.accountRepository = accountRepository;
@@ -29,12 +31,12 @@ namespace MoneyManager.Core.ViewModels
         }
 
         public RelayCommand<string> GoToAddTransactionCommand { get; private set; }
-        
+
         /// <summary>
         ///     Returns all Transaction who are assigned to this repository
         /// </summary>
         public List<FinancialTransaction> RelatedTransactions { set; get; }
-        
+
         /// <summary>
         ///     Returns the name of the account title for the current page
         /// </summary>

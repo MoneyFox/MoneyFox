@@ -32,7 +32,8 @@
 
         <controls:PageHeader x:Name="pageHeader">
             <controls:PageHeader.HeaderContent>
-                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="About" x:Uid="AboutTitle" />
+                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="About"
+                           x:Uid="AboutTitle" />
             </controls:PageHeader.HeaderContent>
         </controls:PageHeader>
 
@@ -61,7 +62,7 @@
                                        HorizontalAlignment="Right"
                                        Width="181"
                                        Margin="0"
-                                       VerticalAlignment="Top"/>
+                                       VerticalAlignment="Top" />
                         </StackPanel>
                     </StackPanel>
                     <Path Data="M9,242 L456,242"
@@ -83,7 +84,7 @@
                                    HorizontalAlignment="Left"
                                    Margin="5,0,0,0"
                                    VerticalAlignment="Center"
-                                   x:Uid="VersionLabel"/>
+                                   x:Uid="VersionLabel" />
                         <TextBlock Name="lblVersion"
                                    TextWrapping="Wrap"
                                    Text="1"

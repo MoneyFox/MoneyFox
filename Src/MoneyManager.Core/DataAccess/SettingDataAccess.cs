@@ -22,7 +22,7 @@ namespace MoneyManager.Core.DataAccess
 
         private TValueType GetValueOrDefault<TValueType>(string key, TValueType defaultValue)
         {
-            TValueType value = defaultValue;
+            var value = defaultValue;
 
             //TODO Refactor: DB or replace with Interface
             //if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key))

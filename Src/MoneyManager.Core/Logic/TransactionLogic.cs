@@ -115,7 +115,6 @@ namespace MoneyManager.Core.Logic
         {
             if (!transaction.IsRecurring)
             {
-                return;
             }
 
             //TODO: refactor this to use the dialog service

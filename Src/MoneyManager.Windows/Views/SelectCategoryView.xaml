@@ -32,10 +32,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Select Category" x:Uid="SelectCategoryViewTitle" />
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Select Category"
+                           x:Uid="SelectCategoryViewTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 

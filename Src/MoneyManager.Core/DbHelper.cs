@@ -7,8 +7,8 @@ namespace MoneyManager.Core
 {
     public class DbHelper : IDbHelper
     {
-        private readonly ISQLitePlatform platform;
         private readonly IDatabasePath path;
+        private readonly ISQLitePlatform platform;
 
         /// <summary>
         ///     Creates an instance of a DbHelper

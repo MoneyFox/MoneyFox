@@ -30,7 +30,7 @@ namespace MoneyManager.Windows.Core.Tests
         public void SqlConnectionFactory_GetSqlConnectionWithouthParams()
         {
             var connection = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection();
-            Assert.IsInstanceOfType(connection, typeof(SQLiteConnection));
+            Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
         }
 
         [TestMethod]
@@ -38,8 +38,7 @@ namespace MoneyManager.Windows.Core.Tests
         {
             var connection = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection();
 
-            Assert.IsInstanceOfType(connection, typeof(SQLiteConnection));
+            Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
         }
-
     }
 }

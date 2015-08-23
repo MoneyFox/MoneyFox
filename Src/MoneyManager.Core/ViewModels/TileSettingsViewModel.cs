@@ -33,21 +33,14 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Creates an IncomeTile object
         /// </summary>
-        //TODO: Refactor this that it can be used for android aswell
-        //public IncomeTile IncomeTile => new IncomeTile();
-
         /// <summary>
         ///     Creates an SpendingTile object
         /// </summary>
-        //TODO: Refactor this that it can be used for android aswell
-        //public SpendingTile SpendingTile => new SpendingTile();
-
         /// <summary>
         ///     Creates a TransferTile Object
         /// </summary>
         //TODO: Refactor this that it can be used for android aswell
         //public TransferTile TransferTile => new TransferTile();
-
         private void SetValue(bool value)
         {
             settingDataAccess.ShowCashFlowOnMainTile = value;

@@ -34,9 +34,10 @@
                                    TextTrimming="CharacterEllipsis" />
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
-                            <TextBlock Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
-                                       HorizontalAlignment="Right"
-                                       TextAlignment="Right" />
+                            <TextBlock
+                                Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
+                                HorizontalAlignment="Right"
+                                TextAlignment="Right" />
                         </StackPanel>
                     </Grid>
                     <TextBlock Text="{Binding Iban}" />
