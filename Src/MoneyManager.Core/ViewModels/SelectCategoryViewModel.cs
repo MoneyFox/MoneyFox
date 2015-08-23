@@ -7,6 +7,8 @@ namespace MoneyManager.Core.ViewModels
 {
     public class SelectCategoryViewModel :  ViewModelBase
     {
+        private readonly INavigationService navigationService;
+
         /// <summary>
         ///     Creates an SelectCategoryViewModel instance
         /// </summary>
@@ -14,8 +16,15 @@ namespace MoneyManager.Core.ViewModels
         /// <param name="navigationService">An instance of <see cref="INavigationService"/></param>
         public SelectCategoryViewModel(ITransactionRepository transactionRepository, INavigationService navigationService)
         {
+            this.navigationService = navigationService;
+
             ResetCategoryCommand = new RelayCommand(() => transactionRepository.Selected.Category = null);
-            GoToSelectCategorydialogCommand = new RelayCommand(() => navigationService.NavigateTo("SelectCategoryView"));
+            GoToSelectCategorydialogCommand = new RelayCommand(Navigate);
+        }
+
+        private void Navigate()
+        {
+            navigationService.NavigateTo("SelectCategoryView");
         }
 
         /// <summary>

@@ -59,6 +59,7 @@ namespace MoneyManager.Windows
             SimpleIoc.Default.Register<IRepository<Category>, CategoryRepository>();
 
             //Datadependent Logic
+            SimpleIoc.Default.Register<AccountManager>();
             SimpleIoc.Default.Register<RepositoryManager>();
             SimpleIoc.Default.Register<TransactionManager>();
 
