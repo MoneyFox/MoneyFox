@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Business.DataAccess;
-using MoneyManager.Business.Manager;
-using MoneyManager.Business.Repositories;
-using MoneyManager.Business.ViewModels;
 using MoneyManager.Business.WindowsPhone.Test.Stubs;
+using MoneyManager.Core.DataAccess;
+using MoneyManager.Core.Manager;
+using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Stubs;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Core.Tests.ViewModels
@@ -23,7 +23,8 @@ namespace MoneyManager.Core.Tests.ViewModels
                 new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
-                    new NavigationServiceStub());
+                    new NavigationServiceStub(),
+                    new DialogServiceStub());
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
 
@@ -34,7 +35,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             Assert.IsFalse(addTransactionViewModel.IsEdit);
             Assert.IsTrue(addTransactionViewModel.IsEndless);
             Assert.IsFalse(addTransactionViewModel.IsTransfer);
-            Assert.AreEqual((int)TransactionType.Income, addTransactionViewModel.SelectedTransaction.Type);
+            Assert.AreEqual((int) TransactionType.Income, addTransactionViewModel.SelectedTransaction.Type);
             Assert.IsFalse(addTransactionViewModel.SelectedTransaction.IsExchangeModeActive);
         }
 
@@ -49,7 +50,8 @@ namespace MoneyManager.Core.Tests.ViewModels
                 new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
-                    new NavigationServiceStub());
+                    new NavigationServiceStub(),
+                    new DialogServiceStub());
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
 
@@ -60,7 +62,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             Assert.IsFalse(addTransactionViewModel.IsEdit);
             Assert.IsTrue(addTransactionViewModel.IsEndless);
             Assert.IsFalse(addTransactionViewModel.IsTransfer);
-            Assert.AreEqual((int)TransactionType.Spending, addTransactionViewModel.SelectedTransaction.Type);
+            Assert.AreEqual((int) TransactionType.Spending, addTransactionViewModel.SelectedTransaction.Type);
             Assert.IsFalse(addTransactionViewModel.SelectedTransaction.IsExchangeModeActive);
         }
 
@@ -75,7 +77,8 @@ namespace MoneyManager.Core.Tests.ViewModels
                 new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
-                    new NavigationServiceStub());
+                    new NavigationServiceStub(),
+                    new DialogServiceStub());
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
 
@@ -86,7 +89,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             Assert.IsFalse(addTransactionViewModel.IsEdit);
             Assert.IsTrue(addTransactionViewModel.IsEndless);
             Assert.IsTrue(addTransactionViewModel.IsTransfer);
-            Assert.AreEqual((int)TransactionType.Transfer, addTransactionViewModel.SelectedTransaction.Type);
+            Assert.AreEqual((int) TransactionType.Transfer, addTransactionViewModel.SelectedTransaction.Type);
             Assert.IsFalse(addTransactionViewModel.SelectedTransaction.IsExchangeModeActive);
         }
     }

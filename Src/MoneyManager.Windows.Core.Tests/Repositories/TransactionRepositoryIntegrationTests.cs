@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.Business;
-using MoneyManager.Business.DataAccess;
-using MoneyManager.Business.Repositories;
+using MoneyManager.Core;
+using MoneyManager.Core.DataAccess;
+using MoneyManager.Core.Repositories;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Core.Tests.Helper;
 using SQLite.Net.Platform.WinRT;

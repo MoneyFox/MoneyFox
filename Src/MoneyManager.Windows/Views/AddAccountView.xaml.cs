@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Business.ViewModels;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Windows.Views

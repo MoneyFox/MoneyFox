@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Business.Logic;
+using MoneyManager.Core.Logic;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Core.Tests.Logic

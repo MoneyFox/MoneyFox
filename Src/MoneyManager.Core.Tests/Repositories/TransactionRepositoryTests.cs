@@ -2,9 +2,8 @@
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Business.DataAccess;
-using MoneyManager.Business.Helper;
-using MoneyManager.Business.Repositories;
+using MoneyManager.Core.Helper;
+using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;

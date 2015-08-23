@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.Business.DataAccess;
+using MoneyManager.Core.DataAccess;
 
 namespace MoneyManager.Windows.Core.Tests.DataAccess
 {

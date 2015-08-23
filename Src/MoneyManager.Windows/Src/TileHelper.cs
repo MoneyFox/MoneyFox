@@ -1,4 +1,4 @@
-﻿using MoneyManager.Business.Logic;
+﻿using MoneyManager.Core.Logic;
 using MoneyManager.Foundation;
 using MoneyManager.Windows.Tile;
 
