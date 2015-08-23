@@ -15,7 +15,7 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Accept"
+            <AppBarButton Icon="Save"
                           x:Uid="Done"
                           Label="Done"
                           Click="DoneClick" />

@@ -45,6 +45,9 @@ namespace MoneyManager.Core.Repositories
             }
         }
 
+        /// <summary>
+        ///     The currently selected Transaction
+        /// </summary>
         public FinancialTransaction Selected { get; set; }
 
         /// <summary>
