@@ -67,7 +67,6 @@ namespace MoneyManager.Windows
             SimpleIoc.Default.Register<CategoryListViewModel>();
             SimpleIoc.Default.Register<TransactionListViewModel>();
             SimpleIoc.Default.Register<TileSettingsViewModel>();
-            SimpleIoc.Default.Register<GeneralSettingViewModel>();
             SimpleIoc.Default.Register<SettingDefaultsViewModel>();
             SimpleIoc.Default.Register<StatisticViewModel>();
             SimpleIoc.Default.Register<BackupViewModel>();
@@ -121,8 +120,6 @@ namespace MoneyManager.Windows
         public TransactionListViewModel TransactionListViewModel => ServiceLocator.Current.GetInstance<TransactionListViewModel>();
 
         public TileSettingsViewModel TileSettingsViewModel => ServiceLocator.Current.GetInstance<TileSettingsViewModel>();
-
-        public GeneralSettingViewModel GeneralSettingViewModel => ServiceLocator.Current.GetInstance<GeneralSettingViewModel>();
 
         public SettingDefaultsViewModel SettingDefaultsViewModel => ServiceLocator.Current.GetInstance<SettingDefaultsViewModel>();
 
