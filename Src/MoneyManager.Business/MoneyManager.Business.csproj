@@ -74,7 +74,6 @@
     <Compile Include="Manager\TransactionManager.cs" />
     <Compile Include="ViewModels\AddTransactionViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />
-    <Compile Include="ViewModels\GeneralSettingViewModel.cs" />
     <Compile Include="ViewModels\CategoryListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />

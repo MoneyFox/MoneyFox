@@ -5,7 +5,7 @@ using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Windows.Tile
 {
-    public class TransferTile : Windows.Tile.Tile, ISecondTile
+    public class TransferTile : Tile, ISecondTile
     {
         public const string ID = "AddTransferTile";
 
@@ -15,7 +15,7 @@ namespace MoneyManager.Windows.Tile
         {
             await Create(new SecondaryTile(
                 ID,
-                Translation.GetTranslation("AddTransferTileText"),
+                Strings.AddTransferLabel,
                 "intake",
                 new Uri("ms-appx:///Images/transferTileIcon.png", UriKind.Absolute),
                 TileSize.Default));

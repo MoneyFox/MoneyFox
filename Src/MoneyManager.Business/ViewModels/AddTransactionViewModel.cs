@@ -8,7 +8,7 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
-using IDialogService = MoneyManager.Foundation.OperationContracts.IDialogService;
+using IDialogService = GalaSoft.MvvmLight.Views.IDialogService;
 
 namespace MoneyManager.Business.ViewModels
 {
@@ -56,8 +56,8 @@ namespace MoneyManager.Business.ViewModels
             get
             {
                 var text = IsEdit
-                    ? Translation.GetTranslation("EditTitle")
-                    : Translation.GetTranslation("AddTitle");
+                    ? Strings.EditTitle
+                    : Strings.AddTitle;
 
                 var type = TransactionTypeLogic.GetViewTitleForType(transactionRepository.Selected.Type);
 
@@ -99,8 +99,8 @@ namespace MoneyManager.Business.ViewModels
 
         private async void ShowAccountRequiredMessage()
         {
-            await dialogService.ShowMessage(Translation.GetTranslation("MandatoryField"),
-                Translation.GetTranslation("AccountRequiredMessage"));
+            await dialogService.ShowMessage(Strings.MandatoryFieldEmptryTitle,
+                Strings.AccountRequiredMessage);
         }
 
         public async void Cancel()

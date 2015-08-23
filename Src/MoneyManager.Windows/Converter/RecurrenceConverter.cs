@@ -13,16 +13,16 @@ namespace MoneyManager.Windows.Converter
             switch (enumInt)
             {
                 case (int) TransactionRecurrence.Weekly:
-                    return Translation.GetTranslation("WeeklyLabel");
+                    return Strings.WeeklyLabel;
 
                 case (int) TransactionRecurrence.Monthly:
-                    return Translation.GetTranslation("MonthlyLabel");
+                    return Strings.MonthlyLabel;
 
                 case (int) TransactionRecurrence.Yearly:
-                    return Translation.GetTranslation("YearlyLabel");
+                    return Strings.YearlyLabel;
             }
 
-            return Translation.GetTranslation("NoneLabel");
+            return Strings.YearlyLabel;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

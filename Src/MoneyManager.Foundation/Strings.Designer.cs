@@ -62,7 +62,169 @@ namespace MoneyManager.Foundation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to no.
+        ///   Looks up a localized string similar to Please select an account..
+        /// </summary>
+        public static string AccountRequiredMessage {
+            get {
+                return ResourceManager.GetString("AccountRequiredMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Income.
+        /// </summary>
+        public static string AddIncomeLabel {
+            get {
+                return ResourceManager.GetString("AddIncomeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Spending.
+        /// </summary>
+        public static string AddSpendingLabel {
+            get {
+                return ResourceManager.GetString("AddSpendingLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AddTitle {
+            get {
+                return ResourceManager.GetString("AddTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Transfer.
+        /// </summary>
+        public static string AddTransferLabel {
+            get {
+                return ResourceManager.GetString("AddTransferLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup failed!.
+        /// </summary>
+        public static string BackupFailedMessage {
+            get {
+                return ResourceManager.GetString("BackupFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cashflow.
+        /// </summary>
+        public static string CashflowLabel {
+            get {
+                return ResourceManager.GetString("CashflowLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string EditTitle {
+            get {
+                return ResourceManager.GetString("EditTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expense.
+        /// </summary>
+        public static string ExpenseLabel {
+            get {
+                return ResourceManager.GetString("ExpenseLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feedback.
+        /// </summary>
+        public static string FeedbackLabel {
+            get {
+                return ResourceManager.GetString("FeedbackLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://github.com/Apply-Solutions/MoneyManager.
+        /// </summary>
+        public static string GitHubRepositoryUrl {
+            get {
+                return ResourceManager.GetString("GitHubRepositoryUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to www.apply-solutions.ch.
+        /// </summary>
+        public static string Homepage {
+            get {
+                return ResourceManager.GetString("Homepage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Income.
+        /// </summary>
+        public static string IncomeTitle {
+            get {
+                return ResourceManager.GetString("IncomeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increase.
+        /// </summary>
+        public static string IncreaseLabel {
+            get {
+                return ResourceManager.GetString("IncreaseLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login failed!.
+        /// </summary>
+        public static string LoginFailedMessage {
+            get {
+                return ResourceManager.GetString("LoginFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mandatory field.
+        /// </summary>
+        public static string MandatoryFieldEmptryTitle {
+            get {
+                return ResourceManager.GetString("MandatoryFieldEmptryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monthly.
+        /// </summary>
+        public static string MonthlyLabel {
+            get {
+                return ResourceManager.GetString("MonthlyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please insert a name..
+        /// </summary>
+        public static string NameRequiredMessage {
+            get {
+                return ResourceManager.GetString("NameRequiredMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
         /// </summary>
         public static string NoLabel {
             get {
@@ -71,7 +233,25 @@ namespace MoneyManager.Foundation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ok.
+        ///   Looks up a localized string similar to [No Name].
+        /// </summary>
+        public static string NoNamePlaceholderLabel {
+            get {
+                return ResourceManager.GetString("NoNamePlaceholderLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string NoneLabel {
+            get {
+                return ResourceManager.GetString("NoneLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
         /// </summary>
         public static string OkLabel {
             get {
@@ -80,7 +260,124 @@ namespace MoneyManager.Foundation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to yes.
+        ///   Looks up a localized string similar to Existing backups will be overwritten. Do you wanna continue?.
+        /// </summary>
+        public static string OverwriteBackupMessage {
+            get {
+                return ResourceManager.GetString("OverwriteBackupMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overwrite?.
+        /// </summary>
+        public static string OverwriteTitle {
+            get {
+                return ResourceManager.GetString("OverwriteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore failed!.
+        /// </summary>
+        public static string RestoreFailedMessage {
+            get {
+                return ResourceManager.GetString("RestoreFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revenue.
+        /// </summary>
+        public static string RevenueLabel {
+            get {
+                return ResourceManager.GetString("RevenueLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spending.
+        /// </summary>
+        public static string SpendingTitle {
+            get {
+                return ResourceManager.GetString("SpendingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistic.
+        /// </summary>
+        public static string StatisticTitle {
+            get {
+                return ResourceManager.GetString("StatisticTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success!.
+        /// </summary>
+        public static string SuccessTitle {
+            get {
+                return ResourceManager.GetString("SuccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mobile.support@apply-solutions.ch.
+        /// </summary>
+        public static string SupportMail {
+            get {
+                return ResourceManager.GetString("SupportMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task was successful completed..
+        /// </summary>
+        public static string TaskSuccessfulMessage {
+            get {
+                return ResourceManager.GetString("TaskSuccessfulMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer.
+        /// </summary>
+        public static string TransferTitle {
+            get {
+                return ResourceManager.GetString("TransferTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weekly.
+        /// </summary>
+        public static string WeeklyLabel {
+            get {
+                return ResourceManager.GetString("WeeklyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yearly.
+        /// </summary>
+        public static string YearlyLabel {
+            get {
+                return ResourceManager.GetString("YearlyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
         /// </summary>
         public static string YesLabel {
             get {

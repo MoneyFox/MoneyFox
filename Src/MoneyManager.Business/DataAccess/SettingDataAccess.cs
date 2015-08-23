@@ -24,7 +24,7 @@ namespace MoneyManager.Business.DataAccess
 
         private TValueType GetValueOrDefault<TValueType>(string key, TValueType defaultValue)
         {
-            TValueType value;
+            TValueType value = defaultValue;
 
             //TODO Refactor: DB or replace with Interface
             //if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key))
@@ -48,15 +48,16 @@ namespace MoneyManager.Business.DataAccess
         #region Properties
 
         //TODO Refactor: DB or replace with Interface
-        //public string DefaultCurrency
-        //{
-        //    get { return GetValueOrDefault(DEFAULT_CURRENCY_KEYNAME, new GeographicRegion().CurrenciesInUse.First()); }
-        //    set
-        //    {
-        //        AddOrUpdateValue(DEFAULT_CURRENCY_KEYNAME, value);
-        //        OnPropertyChanged();
-        //    }
-        //}
+        public string DefaultCurrency
+        {
+            get { return string.Empty; }
+            //GetValueOrDefault(DEFAULT_CURRENCY_KEYNAME, new GeographicRegion().CurrenciesInUse.First()); }
+            set
+            {
+                AddOrUpdateValue(DEFAULT_CURRENCY_KEYNAME, value);
+                OnPropertyChanged();
+            }
+        }
 
         public int DefaultAccount
         {

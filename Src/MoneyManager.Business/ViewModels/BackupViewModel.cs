@@ -70,14 +70,12 @@ namespace MoneyManager.Business.ViewModels
         private async Task<bool> ShowOverwriteInfo()
         {
             return await dialogService
-                .ShowConfirmMessage(Translation.GetTranslation("OverwriteBackup"),
-                    Translation.GetTranslation("OverwriteBackupMessage"));
+                .ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
         }
 
         private async Task ShowCompletionNote()
         {
-            await dialogService.ShowMessage(Translation.GetTranslation("SuccessfulTitle"),
-                Translation.GetTranslation("TaskSuccessfulMessage"));
+            await dialogService.ShowMessage(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
         }
     }
 }

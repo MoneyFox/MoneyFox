@@ -100,16 +100,6 @@
                                VerticalAlignment="Top" />
                     <StackPanel Orientation="Horizontal"
                                 Margin="0,0,0,20"
-                                Tapped="GoToTwitter_OnTap">
-
-                        <TextBlock x:Name="lblTwitter"
-                                   TextWrapping="Wrap"
-                                   Text="@NPadrutt"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Margin="0,0,0,20"
                                 Tapped="GoToWebsite_OnTap">
                         <TextBlock x:Name="lblWebsite"
                                    TextWrapping="Wrap"
