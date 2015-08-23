@@ -14,8 +14,9 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         [TestMethod]
         [TestCategory("Integration")]
         public void AccountDataAccess_CrudAccount()
-        {            
-            var accountDataAccess = new AccountDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+        {
+            var accountDataAccess =
+                new AccountDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
 
             const string firstName = "fooo Name";
             const string secondName = "new Foooo";

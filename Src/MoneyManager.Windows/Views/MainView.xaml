@@ -10,10 +10,10 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Add" 
-                              x:Uid="AddIncomeLabel" 
-                             Label="add income" 
-                              Command="{Binding GoToAddTransactionCommand}" 
+                <AppBarButton Icon="Add"
+                              x:Uid="AddIncomeLabel"
+                              Label="add income"
+                              Command="{Binding GoToAddTransactionCommand}"
                               CommandParameter="Income" />
                 <AppBarButton Icon="Remove"
                               x:Uid="AddSpendingLabel"
@@ -41,13 +41,18 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <controls:PageHeader x:Name="pageHeader">
+        <controls:PageHeader>
             <controls:PageHeader.HeaderContent>
-                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="Accounts" x:Uid="AccountTitle" />
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Accounts"
+                           x:Uid="AccountTitle" />
             </controls:PageHeader.HeaderContent>
         </controls:PageHeader>
 
-        <controls:AccountListUserControl Grid.Row="1" />
+        <Grid Grid.Row="1"
+              Margin="19,9.5,19,0"
+            EntranceNavigationTransitionInfo.IsTargetElement="True">
+            <controls:AccountListUserControl />
+        </Grid>
 
     </Grid>
 </Page>

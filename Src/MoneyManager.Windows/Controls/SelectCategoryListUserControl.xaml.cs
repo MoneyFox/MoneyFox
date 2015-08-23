@@ -2,7 +2,6 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
-using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Dialogs;
@@ -47,7 +46,7 @@ namespace MoneyManager.Windows.Controls
                 return;
             }
 
-            ((CategoryListViewModel)DataContext).DeleteCategoryCommand.Execute(category);
+            ((CategoryListViewModel) DataContext).DeleteCategoryCommand.Execute(category);
         }
     }
 }

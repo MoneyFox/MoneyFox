@@ -1,4 +1,5 @@
-﻿using MoneyManager.Foundation.OperationContracts;
+﻿using System;
+using MoneyManager.Foundation.OperationContracts;
 using SQLite.Net;
 
 namespace MoneyManager.Core.Tests.Stubs
@@ -7,12 +8,12 @@ namespace MoneyManager.Core.Tests.Stubs
     {
         public SQLiteConnection GetSqlConnection()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void CreateDatabase()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

@@ -8,16 +8,6 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition>
-                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <SlideNavigationTransitionInfo />
-                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-            </NavigationThemeTransition>
-        </TransitionCollection>
-    </Page.Transitions>
-
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Icon="Add"
@@ -27,19 +17,21 @@
     </Page.BottomAppBar>
 
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Select Category" x:Uid="SelectCategoryViewTitle" />
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Select Category"
+                           x:Uid="SelectCategoryViewTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
-        <Grid Grid.Row="1" Margin="19,9.5,19,0">
+        <Grid Grid.Row="1"
+              Margin="19,9.5,19,0"
+              EntranceNavigationTransitionInfo.IsTargetElement="True">
             <userControls:CategoryListUserControl />
         </Grid>
     </Grid>

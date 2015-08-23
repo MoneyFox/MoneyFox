@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.Logic;
+using MoneyManager.Core.Helper;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Core.Tests.Logic
+namespace MoneyManager.Core.Tests.Helper
 {
     [TestClass]
     public class TransactionTypeLogicTest
@@ -10,9 +10,9 @@ namespace MoneyManager.Core.Tests.Logic
         [TestMethod]
         public void GetEnumFromString_String_Title()
         {
-            var typeSpending = TransactionTypeLogic.GetEnumFromString("Spending");
-            var typeIncome = TransactionTypeLogic.GetEnumFromString("Income");
-            var typeTransfer = TransactionTypeLogic.GetEnumFromString("Transfer");
+            var typeSpending = TransactionTypeHelper.GetEnumFromString("Spending");
+            var typeIncome = TransactionTypeHelper.GetEnumFromString("Income");
+            var typeTransfer = TransactionTypeHelper.GetEnumFromString("Transfer");
 
             Assert.AreEqual(TransactionType.Spending, typeSpending);
             Assert.AreEqual(TransactionType.Income, typeIncome);
@@ -22,9 +22,9 @@ namespace MoneyManager.Core.Tests.Logic
         [TestMethod]
         public void GetViewTitleForType_Int_Title()
         {
-            var typeSpending = TransactionTypeLogic.GetViewTitleForType(0);
-            var typeIncome = TransactionTypeLogic.GetViewTitleForType(1);
-            var typeTransfer = TransactionTypeLogic.GetViewTitleForType(2);
+            var typeSpending = TransactionTypeHelper.GetViewTitleForType(0);
+            var typeIncome = TransactionTypeHelper.GetViewTitleForType(1);
+            var typeTransfer = TransactionTypeHelper.GetViewTitleForType(2);
 
             Assert.AreEqual(TransactionType.Spending, typeSpending);
             Assert.AreEqual(TransactionType.Income, typeIncome);
@@ -34,9 +34,9 @@ namespace MoneyManager.Core.Tests.Logic
         [TestMethod]
         public void GetViewTitleForType_TransactionType_Title()
         {
-            var typeSpending = TransactionTypeLogic.GetViewTitleForType(TransactionType.Spending);
-            var typeIncome = TransactionTypeLogic.GetViewTitleForType(TransactionType.Income);
-            var typeTransfer = TransactionTypeLogic.GetViewTitleForType(TransactionType.Spending);
+            var typeSpending = TransactionTypeHelper.GetViewTitleForType(TransactionType.Spending);
+            var typeIncome = TransactionTypeHelper.GetViewTitleForType(TransactionType.Income);
+            var typeTransfer = TransactionTypeHelper.GetViewTitleForType(TransactionType.Spending);
 
             Assert.AreEqual(TransactionType.Spending, typeSpending);
             Assert.AreEqual(TransactionType.Income, typeIncome);

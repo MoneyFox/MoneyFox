@@ -9,13 +9,7 @@
              d:DesignWidth="400"
              DataContext="{Binding StatisticViewModel, Source={StaticResource Locator}}">
 
-    <Grid>
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition />
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <charting:Chart HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
             <charting:ColumnSeries Title="Cash flow"

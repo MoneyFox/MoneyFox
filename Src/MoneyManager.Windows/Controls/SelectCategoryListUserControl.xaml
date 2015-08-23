@@ -29,7 +29,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <TextBox Header="search"
                  x:Uid="SearchHeader"
                  Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

@@ -29,7 +29,7 @@ namespace MoneyManager.Windows
                 {
                     Symbol = Symbol.Library,
                     Label = "Account",
-                    DestPage = typeof(MainView)
+                    DestPage = typeof (MainView)
                 },
                 new NavMenuItem
                 {
@@ -41,8 +41,9 @@ namespace MoneyManager.Windows
                 {
                     Symbol = Symbol.SyncFolder,
                     Label = "Backup",
-                    DestPage = typeof(BackupView)
-                },new NavMenuItem
+                    DestPage = typeof (BackupView)
+                },
+                new NavMenuItem
                 {
                     Symbol = Symbol.Setting,
                     Label = "Settings"
@@ -52,7 +53,7 @@ namespace MoneyManager.Windows
                 {
                     Symbol = Symbol.Account,
                     Label = "About",
-                    DestPage = typeof(About)
+                    DestPage = typeof (About)
                 }
             });
 

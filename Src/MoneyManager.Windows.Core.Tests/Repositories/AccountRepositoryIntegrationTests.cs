@@ -16,7 +16,9 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         [TestCategory("Integration")]
         public void AccountRepository_Update()
         {
-            var repository = new AccountRepository(new AccountDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath())));
+            var repository =
+                new AccountRepository(
+                    new AccountDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath())));
 
             var account = new Account
             {

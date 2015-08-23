@@ -4,14 +4,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:MoneyManager.Windows.Controls"
-             xmlns:converter1="using:MoneyManager.Windows.Converter"
+             xmlns:converter="using:MoneyManager.Windows.Converter"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
              DataContext="{Binding AccountListUserControlViewModel, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
-        <converter1:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="AccountTemplate">
             <StackPanel Margin="0,0,0,7"
                         HorizontalAlignment="Stretch"
@@ -34,9 +34,10 @@
                                    TextTrimming="CharacterEllipsis" />
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
-                            <TextBlock Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
-                                       HorizontalAlignment="Right"
-                                       TextAlignment="Right" />
+                            <TextBlock
+                                Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
+                                HorizontalAlignment="Right"
+                                TextAlignment="Right" />
                         </StackPanel>
                     </Grid>
                     <TextBlock Text="{Binding Iban}" />
@@ -45,13 +46,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition />
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <controls:BalanceUserControl />
         <ListView Grid.Column="0"
                   ItemsSource="{Binding AllAccounts}"

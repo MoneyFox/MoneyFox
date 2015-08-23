@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
-             DataContext="{Binding TransactionListViewModel, Source={StaticResource Locator}}" >
+             DataContext="{Binding TransactionListViewModel, Source={StaticResource Locator}}">
 
     <UserControl.Resources>
         <converter1:AmountFormatConverter x:Key="AmountFormatConverter" />
@@ -18,13 +18,13 @@
         <converter1:TransactionAmountConverter x:Key="TransactionAmountConverter" />
         <converter1:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter1:TransactionStyleConverter x:Key="TransactionStyleConverter" />
-        
+
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
                         Holding="OpenContextMenu"
-                        Opacity="{Binding Converter={StaticResource TransactionStyleConverter}}" >
+                        Opacity="{Binding Converter={StaticResource TransactionStyleConverter}}">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
@@ -37,14 +37,16 @@
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch"
                       Margin="0,0,10,3">
-                    <TextBlock Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}"
-                               Margin="12,0,0,0" />
+                    <TextBlock
+                        Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}"
+                        Margin="12,0,0,0" />
 
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right">
                         <TextBlock Text="{Binding Converter={StaticResource TransactionAmountConverter}}"
                                    Margin="0,0,3,0" />
-                        <TextBlock Text="{Binding AmountWithoutExchange, Converter={StaticResource AmountFormatConverter}}" />
+                        <TextBlock
+                            Text="{Binding AmountWithoutExchange, Converter={StaticResource AmountFormatConverter}}" />
                     </StackPanel>
                 </Grid>
                 <Grid>
@@ -85,18 +87,18 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <controls:BalanceUserControl />
         <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
-                      ItemTemplate="{StaticResource TransactionTemplate}"
-                      HorizontalAlignment="Stretch"
-                      x:Name="ListViewTransactions"
-                      ShowsScrollingPlaceholders="True"
-                      SelectionChanged="LoadDetails">
+                  ItemTemplate="{StaticResource TransactionTemplate}"
+                  HorizontalAlignment="Stretch"
+                  x:Name="ListViewTransactions"
+                  ShowsScrollingPlaceholders="True"
+                  SelectionChanged="LoadDetails">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
+                            Value="Stretch" />
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>

@@ -16,7 +16,8 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         [TestCategory("Integration")]
         public void TransactionDataAccess_CrudTransaction()
         {
-            var transactionDataAccess = new TransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+            var transactionDataAccess =
+                new TransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
 
             const double firstAmount = 76.30;
             const double secondAmount = 22.90;
@@ -58,7 +59,8 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         [TestCategory("Integration")]
         public void TransactionDataAccess_CrudTransactionWithoutAccount()
         {
-            var transactionDataAccess = new TransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+            var transactionDataAccess =
+                new TransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
 
             const double firstAmount = 76.30;
             const double secondAmount = 22.90;

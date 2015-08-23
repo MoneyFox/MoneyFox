@@ -39,8 +39,6 @@ namespace MoneyManager.Core.ViewModels
             this.dialogService = dialogService;
 
             DeleteCategoryCommand = new RelayCommand<Category>(DeleteCategory);
-
-            Categories = AllCategories;
         }
 
         /// <summary>
@@ -53,12 +51,15 @@ namespace MoneyManager.Core.ViewModels
         ///     or from the transaction modificatio nto select a category.
         /// </summary>
         public bool IsSettingCall { get; set; }
-        public ObservableCollection<Category> Categories { get; set; }
 
-        private ObservableCollection<Category> AllCategories => categoryRepository.Data;
-        
+        public ObservableCollection<Category> Categories
+        {
+            get { return categoryRepository.Data; }
+            set { categoryRepository.Data = value; }
+        }
+
         /// <summary>
-        ///     The currently selected category. If IsSettingsCall is set ît will 
+        ///     The currently selected category. If IsSettingsCall is set ît will
         ///     return and set the selected item in the CategoryRepository, otherwise
         ///     the category of the selected transaction.
         /// </summary>
@@ -114,12 +115,13 @@ namespace MoneyManager.Core.ViewModels
             if (SearchText != string.Empty)
             {
                 Categories = new ObservableCollection<Category>
-                    (AllCategories.Where(x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
+                    (categoryRepository.Data.Where(
+                        x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
                         .ToList());
             }
             else
             {
-                Categories = AllCategories;
+                Categories = categoryRepository.Data;
             }
         }
 

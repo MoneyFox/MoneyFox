@@ -22,7 +22,7 @@ namespace MoneyManager.Core.Tests.Repositories
                 Currency = "CHF"
             };
 
-             accountDataAccessMock.Save(account);
+            accountDataAccessMock.Save(account);
 
             Assert.IsTrue(account == accountDataAccessMock.AccountTestList[0]);
         }

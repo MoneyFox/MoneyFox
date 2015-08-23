@@ -6,13 +6,13 @@
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:controls="using:MoneyManager.Windows.Controls"
-      xmlns:converter1="using:MoneyManager.Windows.Converter"
+      xmlns:converter="using:MoneyManager.Windows.Converter"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       DataContext="{Binding BackupViewModel, Source={StaticResource Locator}}">
 
     <Page.Resources>
-        <converter1:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
     </Page.Resources>
 
     <interactivity:Interaction.Behaviors>
@@ -21,23 +21,7 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition>
-                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <ContinuumNavigationTransitionInfo />
-                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-            </NavigationThemeTransition>
-        </TransitionCollection>
-    </Page.Transitions>
-
     <Grid>
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition />
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -48,19 +32,20 @@
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Backup" x:Uid="BackupTitle" />
             </controls:PageHeader.HeaderContent>
         </controls:PageHeader>
-        
+
         <StackPanel Grid.Row="1"
-              Margin="19,9.5,19,0">
+                    Margin="19,9.5,19,0"
+                    EntranceNavigationTransitionInfo.IsTargetElement="True">
             <StackPanel>
-                <TextBlock x:Uid="BackupInformation" 
-                           Text="Backupinformation" 
+                <TextBlock x:Uid="BackupInformation"
+                           Text="Backupinformation"
                            Margin="0,0,0,12"
-                           TextWrapping="WrapWholeWords"/>
+                           TextWrapping="WrapWholeWords" />
                 <Button Content="Create Backup"
                         x:Uid="CreateBackup"
                         Command="{Binding BackupCommand}"
                         HorizontalAlignment="Stretch"
-                        Margin="0,0,0,7"/>
+                        Margin="0,0,0,7" />
                 <Button Content="Restore"
                         x:Uid="RestoreBackup"
                         Command="{Binding RestoreCommand}"

@@ -4,18 +4,33 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             DataContext="{Binding SelectCategoryViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d"
-    d:DesignHeight="100"
+    d:DesignHeight="68"
     d:DesignWidth="400">
 
-    <Grid>
-        <TextBox Header="category" x:Uid="CategoryHeader"
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+        <TextBox Header="category"
+                 x:Uid="CategoryHeader"
                  Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
-                 GotFocus="OpenSelectCategoryDialog"
-                 IsReadOnly="True" />
-        <Image Height="35" Width="35"
-               Source="/Assets/light/close.png"
-               Margin="0,36,0,0"
-               Tapped="ResetCategory" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                 IsReadOnly="True">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="GotFocus">
+                    <core:InvokeCommandAction Command="{Binding GoToSelectCategorydialogCommand, Mode=OneWay}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+        </TextBox>
+        <Image Source="/Assets/light/close.png"
+               Height="35"
+               VerticalAlignment="Bottom"
+               HorizontalAlignment="Right">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="Tapped">
+                    <core:InvokeCommandAction Command="{Binding ResetCategoryCommand, Mode=OneWay}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+        </Image>
     </Grid>
 </UserControl>

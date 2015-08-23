@@ -27,19 +27,20 @@ namespace MoneyManager.Windows.Core.Tests
         }
 
         [TestMethod]
+        [TestCategory("Integration")]
         public void SqlConnectionFactory_GetSqlConnectionWithouthParams()
         {
             var connection = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection();
-            Assert.IsInstanceOfType(connection, typeof(SQLiteConnection));
+            Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
         }
 
         [TestMethod]
+        [TestCategory("Integration")]
         public void SqlConnectionFactory_GetSqlConnectionWithParams()
         {
             var connection = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection();
 
-            Assert.IsInstanceOfType(connection, typeof(SQLiteConnection));
+            Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
         }
-
     }
 }

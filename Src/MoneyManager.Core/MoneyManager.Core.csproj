@@ -48,7 +48,7 @@
     <Compile Include="Logic\RecurringTransactionLogic.cs" />
     <Compile Include="Logic\StatisticLogic.cs" />
     <Compile Include="Logic\TransactionLogic.cs" />
-    <Compile Include="Logic\TransactionTypeLogic.cs" />
+    <Compile Include="Helper\TransactionTypeHelper.cs" />
     <Compile Include="Manager\RepositoryManager.cs" />
     <Compile Include="Manager\TransactionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +63,7 @@
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\CategoryListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SelectCategoryViewModel.cs" />
     <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
     <Compile Include="ViewModels\TileSettingsViewModel.cs" />

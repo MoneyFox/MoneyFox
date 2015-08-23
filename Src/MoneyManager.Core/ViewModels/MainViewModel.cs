@@ -5,14 +5,11 @@ using MoneyManager.Core.Manager;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class MainViewModel: ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
-        private readonly TransactionManager transactionManager;
         private readonly INavigationService navigationService;
+        private readonly TransactionManager transactionManager;
 
-        public RelayCommand<string> GoToAddTransactionCommand { get; private set; }
-        public RelayCommand GoToAddAccountCommand { get; private set; }
-        
         public MainViewModel(TransactionManager transactionManager, INavigationService navigationService)
         {
             this.navigationService = navigationService;
@@ -21,6 +18,9 @@ namespace MoneyManager.Core.ViewModels
             GoToAddTransactionCommand = new RelayCommand<string>(GoToAddTransaction);
             GoToAddAccountCommand = new RelayCommand(() => navigationService.NavigateTo("AddAccountView"));
         }
+
+        public RelayCommand<string> GoToAddTransactionCommand { get; private set; }
+        public RelayCommand GoToAddAccountCommand { get; private set; }
 
         private void GoToAddTransaction(string type)
         {

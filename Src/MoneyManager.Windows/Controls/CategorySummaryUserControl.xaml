@@ -34,7 +34,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <ScrollViewer>
             <ListView ItemsSource="{Binding CategorySummary}"
                       ItemTemplate="{StaticResource CategoryTemplate}">

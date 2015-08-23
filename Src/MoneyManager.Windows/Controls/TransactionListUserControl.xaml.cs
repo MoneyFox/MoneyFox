@@ -87,9 +87,11 @@ namespace MoneyManager.Windows.Controls
 
         #region Properties
 
-        public ITransactionRepository TransactionRepository => ServiceLocator.Current.GetInstance<ITransactionRepository>();
+        public ITransactionRepository TransactionRepository
+            => ServiceLocator.Current.GetInstance<ITransactionRepository>();
 
-        public AddTransactionViewModel AddTransactionView => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
+        public AddTransactionViewModel AddTransactionView
+            => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
 
         public BalanceViewModel BalanceView => ServiceLocator.Current.GetInstance<BalanceViewModel>();
 

@@ -16,7 +16,8 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         [TestCategory("Integration")]
         public void RecurringTransactionDataAccess_CrudRecurringTransaction()
         {
-            var recurringTransactionDataAccess = new RecurringTransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+            var recurringTransactionDataAccess =
+                new RecurringTransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
 
             const double firstAmount = 100.70;
             const double secondAmount = 80.45;

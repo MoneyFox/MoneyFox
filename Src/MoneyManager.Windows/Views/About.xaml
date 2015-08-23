@@ -1,42 +1,28 @@
-﻿<Page
-    x:Class="MoneyManager.Windows.Views.About"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:MoneyManager.Windows.Controls"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition>
-                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <ContinuumNavigationTransitionInfo />
-                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-            </NavigationThemeTransition>
-        </TransitionCollection>
-    </Page.Transitions>
+﻿<Page x:Class="MoneyManager.Windows.Views.About"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:MoneyManager.Windows.Controls"
+      mc:Ignorable="d"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition />
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <controls:PageHeader x:Name="pageHeader">
+        <controls:PageHeader>
             <controls:PageHeader.HeaderContent>
-                <TextBlock x:Name="title" Style="{ThemeResource PageTitleTextBlockStyle}" Text="About" x:Uid="AboutTitle" />
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="About"
+                           x:Uid="AboutTitle" />
             </controls:PageHeader.HeaderContent>
         </controls:PageHeader>
 
-        <ScrollViewer Margin="12,0, 12, 0" Grid.Row="1">
+        <ScrollViewer Margin="12,0, 12, 0"
+                      Grid.Row="1"
+                      EntranceNavigationTransitionInfo.IsTargetElement="True">
             <StackPanel>
 
                 <StackPanel>
@@ -61,7 +47,7 @@
                                        HorizontalAlignment="Right"
                                        Width="181"
                                        Margin="0"
-                                       VerticalAlignment="Top"/>
+                                       VerticalAlignment="Top" />
                         </StackPanel>
                     </StackPanel>
                     <Path Data="M9,242 L456,242"
@@ -83,7 +69,7 @@
                                    HorizontalAlignment="Left"
                                    Margin="5,0,0,0"
                                    VerticalAlignment="Center"
-                                   x:Uid="VersionLabel"/>
+                                   x:Uid="VersionLabel" />
                         <TextBlock Name="lblVersion"
                                    TextWrapping="Wrap"
                                    Text="1"

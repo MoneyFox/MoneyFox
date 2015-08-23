@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 using MoneyManager.Core.DataAccess;
+using MoneyManager.Core.Helper;
 using MoneyManager.Core.Logic;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -16,10 +17,10 @@ namespace MoneyManager.Core.ViewModels
     public class AddTransactionViewModel : ViewModelBase
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly SettingDataAccess settings;
-        private readonly ITransactionRepository transactionRepository;
         private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
+        private readonly SettingDataAccess settings;
+        private readonly ITransactionRepository transactionRepository;
 
         public AddTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
@@ -60,7 +61,7 @@ namespace MoneyManager.Core.ViewModels
                     ? Strings.EditTitle
                     : Strings.AddTitle;
 
-                var type = TransactionTypeLogic.GetViewTitleForType(transactionRepository.Selected.Type);
+                var type = TransactionTypeHelper.GetViewTitleForType(transactionRepository.Selected.Type);
 
                 return string.Format(text, type);
             }

@@ -24,7 +24,7 @@ namespace MoneyManager.Core.ViewModels
         {
             get { return accountRepository.Selected; }
             set { accountRepository.Selected = value; }
-        }        
+        }
 
         public void Save()
         {
