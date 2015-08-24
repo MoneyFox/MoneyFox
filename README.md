@@ -21,6 +21,7 @@ We use Visual Studio 2015. If you use resharper please ensure to use the setting
 Xamarin Studio is suitable aswell for the Android and IOS parts.
 
 If you don't have an Xamarin Subscription, you may apply for an open source license directly by xamarin. [Application Formula](https://resources.xamarin.com/open-source-contributor.html)
+
 NOTE: I assume they will only offer this to contributor of the project.
 
 ### contact
