@@ -24,4 +24,4 @@ If you don't have an Xamarin Subscription, you may apply for an open source lice
 NOTE: I assume they will only offer this to contributor of the project.
 
 ### contact
-Feel free to contact me on twitter @NPadrutt or with my mail.
+Feel free to contact me. Just write me a mail or join our gitter chat. 
