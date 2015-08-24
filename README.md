@@ -10,10 +10,9 @@ This app is currently available in the Marketplace for Windows Phone 8.1.
 We work currently to port the app over to Windows 10 Desktop and Mobile. Also we work on an port to Android and IOS via Xamarin.
 
 ### Contribution
-
 We’re looking forward to receiving a lot of AWESOME contributions. No pressure.
 
-# Dependencies
+### Dependencies
 To start you must have the Sqlite for UAP installed. All other dependencies will be restored via NuGet.
 
 ### Tools
