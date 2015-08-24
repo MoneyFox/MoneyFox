@@ -1,37 +1,27 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/iysmq8dfwxnd7tro?svg=true)](https://ci.appveyor.com/project/NPadrutt/moneymanager)
-
 ## Money Fox
-
 [![Join the chat at https://gitter.im/Apply-Solutions/MoneyManager](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Apply-Solutions/MoneyManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-We want a budget tool which is for everyone and keeps up the motivation to track you money. To reach this goal we try to make it as easy to use as possible.
-Feel free to create issues or even better contribute code.
+A way to make budgeting easy. A basic idea for the community, made even better by the community.
 
-This app is currently available for Windows Phone 8.1. There are plans to port it over to Windows 10 Mobile as well as desktop.
+### Next steps
+This app is currently available in the Marketplace for Windows Phone 8.1.
+[Store link](https://www.windowsphone.com/en-us/store/app/money-fox/9d806f03-d2a3-48f6-91cc-bd97d919e39c)
 
-Store link: 
-https://www.windowsphone.com/en-us/store/app/money-fox/9d806f03-d2a3-48f6-91cc-bd97d919e39c
+We work currently to port the app over to Windows 10 Desktop and Mobile. Also we work on an port to Android and IOS via Xamarin.
 
-## Contributing
+### Contribution
+We’re looking forward to receiving a lot of AWESOME contributions. No pressure.
 
-Contributions are welcome and will be fully credited.
+### Dependencies
+To start you must have the Sqlite for UAP installed. All other dependencies will be restored via NuGet.
 
-To Contribute please create a pull request with your changes. All work is done in the master branch. Once we release an update we create a branch and afterwards a tag of it.
+### Tools
+We use Visual Studio 2015. If you use resharper please ensure to use the settings in the repository for this project.
+Xamarin Studio is suitable aswell for the Android and IOS parts.
 
-### Pull Request
+If you don't have an Xamarin Subscription, you may apply for an open source license directly by xamarin. [Application Formula](https://resources.xamarin.com/open-source-contributor.html)
 
-- Please add unit tests where possible for your code and ensure the existing unit tests are all still running
+NOTE: I assume they will only offer this to contributor of the project.
 
-- Please ensure you add code documentations at least to your public methods
-
-## Dependencies
-
-Installed SQLite Windows Runtime Extension (Available via Tools in Visual Studio)
-All other dependencies are available via nugget.
-
-## Tools
-
-I use Visual studio 2015 RC Community. To avoid Problems you should use it aswell. Also If you have Resharper please try to load the settings from this project.
-
-## contact
-Feel free to contact me on twitter @NPadrutt or with my mail.
+### contact
+Feel free to contact me. Just write me a mail or join our gitter chat. 
