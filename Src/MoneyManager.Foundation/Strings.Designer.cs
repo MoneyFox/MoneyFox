@@ -62,11 +62,29 @@ namespace MoneyManager.Foundation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string AboutLabel {
+            get {
+                return ResourceManager.GetString("AboutLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select an account..
         /// </summary>
         public static string AccountRequiredMessage {
             get {
                 return ResourceManager.GetString("AccountRequiredMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accounts.
+        /// </summary>
+        public static string AccountsLabel {
+            get {
+                return ResourceManager.GetString("AccountsLabel", resourceCulture);
             }
         }
         
@@ -112,6 +130,15 @@ namespace MoneyManager.Foundation {
         public static string BackupFailedMessage {
             get {
                 return ResourceManager.GetString("BackupFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup.
+        /// </summary>
+        public static string BackupLabel {
+            get {
+                return ResourceManager.GetString("BackupLabel", resourceCulture);
             }
         }
         
@@ -224,6 +251,15 @@ namespace MoneyManager.Foundation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        public static string MenuTitle {
+            get {
+                return ResourceManager.GetString("MenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Monthly.
         /// </summary>
         public static string MonthlyLabel {
@@ -314,11 +350,29 @@ namespace MoneyManager.Foundation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string SettingsLabel {
+            get {
+                return ResourceManager.GetString("SettingsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Spending.
         /// </summary>
         public static string SpendingTitle {
             get {
                 return ResourceManager.GetString("SpendingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string StatisticsLabel {
+            get {
+                return ResourceManager.GetString("StatisticsLabel", resourceCulture);
             }
         }
         

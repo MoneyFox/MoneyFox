@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-
-<resources>
-  <color name="accent_color">#FF03A9F4</color>
-  <color name="status_bar_color">#3779a4</color>
-  <color name="drawer_font_color">#FFFFFF</color>
-  <color name="font_color">#000000</color>
-</resources>
