@@ -7,7 +7,7 @@ A way to make budgeting easy. A basic idea for the community, made even better b
 This app is currently available in the Marketplace for Windows Phone 8.1.
 [Store link](https://www.windowsphone.com/en-us/store/app/money-fox/9d806f03-d2a3-48f6-91cc-bd97d919e39c)
 
-We work currently to port the app over to Windows 10 Desktop and Mobile. Also we work on an port to Android and IOS via Xamarin.
+We’re in the process of porting the app over to Windows 10 Desktop and Mobile. We’re also working towards a release on Android and iOS via Xamarin.
 
 ### Contribution
 We’re looking forward to receiving a lot of AWESOME contributions. No pressure.
@@ -17,11 +17,10 @@ To start you must have the Sqlite for UAP installed. All other dependencies will
 
 ### Tools
 We use Visual Studio 2015. If you use resharper please ensure to use the settings in the repository for this project.
-Xamarin Studio is suitable aswell for the Android and IOS parts.
 
-If you don't have an Xamarin Subscription, you may apply for an open source license directly by xamarin. [Application Formula](https://resources.xamarin.com/open-source-contributor.html)
+If you don't have a Xamarin Subscription, you may apply for an open source license directly at Xamarin. [Application Formula](https://resources.xamarin.com/open-source-contributor.html)
 
-NOTE: I assume they will only offer this to contributor of the project.
+NOTE: I assume they will only offer this to contributors of an open source project.
 
 ### contact
 Feel free to contact me. Just write me a mail or join our gitter chat. 
