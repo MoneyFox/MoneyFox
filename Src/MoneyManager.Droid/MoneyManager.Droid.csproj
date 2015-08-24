@@ -55,10 +55,14 @@
     <AndroidLinkMode>Full</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\packages\MvvmLightLibs.5.1.1.0\lib\wpa81\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -104,6 +108,10 @@
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyManager.Core\MoneyManager.Core.csproj">
+      <Project>{64F3A03F-44C2-44FA-BD29-FA23C35C95F0}</Project>
+      <Name>MoneyManager.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
       <Project>{6936F4D3-8889-48C7-A676-80D59B2740CE}</Project>
       <Name>MoneyManager.Foundation</Name>
