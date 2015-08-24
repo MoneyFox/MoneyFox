@@ -17,7 +17,7 @@ namespace MoneyManager.Droid.Activities
         private SlidingPaneLayout slidingLayout;
         private ListView menuListView;
 
-        private List<string> menuItems = new List<string>
+        private readonly List<string> menuItems = new List<string>
         {
             Strings.AccountsLabel,
             Strings.StatisticTitle,
