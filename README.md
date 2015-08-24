@@ -22,5 +22,5 @@ If you don't have a Xamarin Subscription, you may apply for an open source licen
 
 NOTE: I assume they will only offer this to contributors of an open source project.
 
-### contact
+### Contact
 Feel free to contact me. Just write me a mail or join our gitter chat. 
