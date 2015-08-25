@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="app_name">Money Fox</string>
+
+  <!--actions-->
+  <string name="action_add_income">add income</string>
+  <string name="action_add_spending">add spending</string>
+  <string name="action_add_transfer">add transfer</string>
+  <string name="action_add_account">add account</string>
+  <string name="action_delete">delete</string>
+  <string name="action_save">save</string>
+</resources>

@@ -12,6 +12,6 @@ namespace MoneyManager.Windows
         /// <summary>
         ///     Provides the platform specific database path
         /// </summary>
-        public string DbPath => Path.Combine(ApplicationData.Current.LocalFolder.Path, "moneyfox.sqlite");
+        public string DbPath => ApplicationData.Current.LocalFolder.Path;
     }
 }
