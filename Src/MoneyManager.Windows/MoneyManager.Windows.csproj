@@ -152,6 +152,7 @@
     <Compile Include="NavMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\OneDriveBackupService.cs" />
+    <Compile Include="Setup.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DatabasePath.cs" />
     <Compile Include="Src\DialogService.cs" />
