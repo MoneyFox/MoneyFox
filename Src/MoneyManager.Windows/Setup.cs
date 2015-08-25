@@ -1,7 +1,11 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsCommon.Platform;
+using MoneyManager.Foundation.OperationContracts;
+using SQLite.Net.Interop;
+using SQLite.Net.Platform.WinRT;
 using Xamarin;
 
 namespace MoneyManager.Windows
@@ -12,6 +16,18 @@ namespace MoneyManager.Windows
             : base(frame)
         {
         }
+
+        protected override void InitializeFirstChance()
+        {
+            base.InitializeFirstChance();
+
+            Mvx.RegisterType<ISQLitePlatform, SQLitePlatformWinRT>();
+            Mvx.RegisterType<IDatabasePath, DatabasePath>();
+            Mvx.RegisterType<IDialogService, DialogService>();
+            Mvx.RegisterType<IAppInformation, AppInformation>();
+        }
+
+
 
         protected override IMvxApplication CreateApp()
         {

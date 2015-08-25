@@ -1,8 +1,13 @@
+using System.ComponentModel;
 using Android.App;
 using Android.Content;
+using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Droid.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
+using MoneyManager.Foundation.OperationContracts;
+using SQLite.Net.Interop;
+using SQLite.Net.Platform.XamarinAndroid;
 using Xamarin;
 
 namespace MoneyManager.Droid
@@ -17,7 +22,13 @@ namespace MoneyManager.Droid
         protected override void InitializeFirstChance()
         {
             base.InitializeFirstChance();
+
+            Mvx.RegisterType<ISQLitePlatform, SQLitePlatformAndroid>();
+            Mvx.RegisterType<IDatabasePath, DatabasePath>();
+            Mvx.RegisterType<IDialogService, DialogService>();
+            Mvx.RegisterType<IAppInformation, AppInformation>();
         }
+
 
         protected override IMvxApplication CreateApp()
         {
