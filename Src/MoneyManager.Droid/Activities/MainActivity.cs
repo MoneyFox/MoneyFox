@@ -99,6 +99,7 @@ namespace MoneyManager.Droid.Activities
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
+            MenuInflater.Inflate(Resource.Menu.MainMenu, menu);
             return true;
         }
 

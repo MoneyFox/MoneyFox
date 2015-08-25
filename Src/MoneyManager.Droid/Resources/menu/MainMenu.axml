@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/action_add_income"
+        android:icon="@drawable/ic_add_circle"
+        android:title="@string/action_add_income"
+        android:showAsAction="ifRoom|withText" />
+  
+  <item android:id="@+id/action_add_spending"
+        android:icon="@drawable/ic_remove_circle"
+        android:title="@string/action_add_spending"
+        android:showAsAction="ifRoom|withText" />
+
+  <item android:id="@+id/action_add_transfer"
+      android:icon="@drawable/ic_forward"
+      android:title="@string/action_add_transfer"
+      android:showAsAction="ifRoom|withText" />
+
+  <item android:id="@+id/action_add_account"
+        android:title="@string/action_add_account"
+        android:showAsAction="withText" />
+</menu>
