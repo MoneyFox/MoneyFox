@@ -91,6 +91,9 @@
   </PropertyGroup>
   <ItemGroup>
     <!--A reference to the entire .Net Framework and Windows SDK are automatically included-->
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="project.json" />
     <SDKReference Include="MSTestFramework.Universal, Version=$(UnitTestPlatformVersion)" />
     <SDKReference Include="SQLite.UAP.2015, Version=3.8.11.1">
