@@ -16,24 +16,29 @@ namespace MoneyManager.Core
             Mvx.RegisterType<IDbHelper, DbHelper>();
 
             CreatableTypes()
+                .EndingWith("Service")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
+            CreatableTypes()
                 .EndingWith("DataAccess")
                 .AsInterfaces()
-                .RegisterAsSingleton();
+                .RegisterAsLazySingleton();
 
             CreatableTypes()
                 .EndingWith("Repository")
                 .AsInterfaces()
-                .RegisterAsSingleton();
+                .RegisterAsLazySingleton();
 
             CreatableTypes()
                 .EndingWith("Manager")
                 .AsTypes()
-                .RegisterAsSingleton();
+                .RegisterAsLazySingleton();
 
             CreatableTypes()
                 .EndingWith("ViewModel")
                 .AsTypes()
-                .RegisterAsSingleton();
+                .RegisterAsLazySingleton();
 
             // Start the app with the Main View Model.
             RegisterAppStart<MainViewModel>();

@@ -26,9 +26,7 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IAppInformation, AppInformation>();
         }
-
-
-
+        
         protected override IMvxApplication CreateApp()
         {
             string insightKey = "e5c4ac56bb1ca47559bc8d4973d0a8c4d78c7648";
