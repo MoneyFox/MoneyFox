@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/action_add_transfer"
+        android:title="@string/action_add_transfer"
+        android:showAsAction="ifRoom|withText" />  
+  
+  <item android:id="@+id/action_add_income"
+        android:title="@string/action_add_income"
+        android:showAsAction="ifRoom|withText" />
+  
+  <item android:id="@+id/action_add_spending"
+        android:title="@string/action_add_spending"
+        android:showAsAction="ifRoom|withText" />
+
+  <item android:id="@+id/action_add_account"
+        android:title="@string/action_add_account"
+        android:showAsAction="withText" />
+</menu>

@@ -76,14 +76,26 @@ namespace MoneyManager.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050002
-			public const int content_pane = 2131034114;
+			// aapt resource value: 0x7f060006
+			public const int action_add_account = 2131099654;
 			
-			// aapt resource value: 0x7f050001
-			public const int left_pane = 2131034113;
+			// aapt resource value: 0x7f060004
+			public const int action_add_income = 2131099652;
 			
-			// aapt resource value: 0x7f050000
-			public const int main_layout = 2131034112;
+			// aapt resource value: 0x7f060005
+			public const int action_add_spending = 2131099653;
+			
+			// aapt resource value: 0x7f060003
+			public const int action_add_transfer = 2131099651;
+			
+			// aapt resource value: 0x7f060002
+			public const int content_pane = 2131099650;
+			
+			// aapt resource value: 0x7f060001
+			public const int left_pane = 2131099649;
+			
+			// aapt resource value: 0x7f060000
+			public const int main_layout = 2131099648;
 			
 			static Id()
 			{
@@ -111,6 +123,22 @@ namespace MoneyManager.Droid
 			}
 		}
 		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int MainMenu = 2131034112;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
+			{
+			}
+		}
+		
 		public partial class String
 		{
 			
@@ -119,6 +147,27 @@ namespace MoneyManager.Droid
 			
 			// aapt resource value: 0x7f040000
 			public const int Hello = 2130968576;
+			
+			// aapt resource value: 0x7f040006
+			public const int action_add_account = 2130968582;
+			
+			// aapt resource value: 0x7f040003
+			public const int action_add_income = 2130968579;
+			
+			// aapt resource value: 0x7f040004
+			public const int action_add_spending = 2130968580;
+			
+			// aapt resource value: 0x7f040005
+			public const int action_add_transfer = 2130968581;
+			
+			// aapt resource value: 0x7f040007
+			public const int action_delete = 2130968583;
+			
+			// aapt resource value: 0x7f040008
+			public const int action_save = 2130968584;
+			
+			// aapt resource value: 0x7f040002
+			public const int app_name = 2130968578;
 			
 			static String()
 			{
