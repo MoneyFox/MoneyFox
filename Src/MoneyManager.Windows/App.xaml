@@ -9,7 +9,6 @@
                 <ResourceDictionary Source="Style/Styles.xaml" />
                 <ResourceDictionary Source="Style/TextStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <windows:ViewModelLocator x:Key="Locator" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

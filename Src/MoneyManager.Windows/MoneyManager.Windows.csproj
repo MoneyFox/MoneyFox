@@ -161,7 +161,6 @@
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\TileHelper.cs" />
     <Compile Include="Src\UserNotification.cs" />
-    <Compile Include="Src\ViewModelLocator.cs" />
     <Compile Include="Tile\IncomeTile.cs" />
     <Compile Include="Tile\SpendingTile.cs" />
     <Compile Include="Tile\Tile.cs" />
