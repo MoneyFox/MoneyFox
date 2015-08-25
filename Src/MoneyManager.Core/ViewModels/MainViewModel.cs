@@ -1,11 +1,10 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyManager.Core.Manager;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : BaseViewModel
     {
         private readonly INavigationService navigationService;
         private readonly TransactionManager transactionManager;
