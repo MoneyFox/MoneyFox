@@ -1,11 +1,8 @@
-using System.ComponentModel;
 using Android.App;
 using Android.Content;
-using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Droid.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
-using MoneyManager.Foundation.OperationContracts;
 using Xamarin;
 
 namespace MoneyManager.Droid
@@ -24,12 +21,15 @@ namespace MoneyManager.Droid
 
         protected override IMvxApplication CreateApp()
         {
+            string insightKey = "e5c4ac56bb1ca47559bc8d4973d0a8c4d78c7648";
+
 #if DEBUG
+            insightKey = Insights.DebugModeKey;
+#endif
             if (!Insights.IsInitialized)
             {
-                Insights.Initialize("e5c4ac56bb1ca47559bc8d4973d0a8c4d78c7648", Application.Context);
+                Insights.Initialize(insightKey, Application.Context);
             }
-#endif
 
             return new App();
         }

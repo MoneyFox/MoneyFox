@@ -1,6 +1,8 @@
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsCommon.Platform;
+using Xamarin;
 
 namespace MoneyManager.Windows
 {
@@ -13,12 +15,15 @@ namespace MoneyManager.Windows
 
         protected override IMvxApplication CreateApp()
         {
+            string insightKey = "e5c4ac56bb1ca47559bc8d4973d0a8c4d78c7648";
+
 #if DEBUG
+            insightKey = Insights.DebugModeKey;
+#endif
             if (!Insights.IsInitialized)
             {
-                Insights.Initialize("e5c4ac56bb1ca47559bc8d4973d0a8c4d78c7648", Application.Context);
+                Insights.Initialize(insightKey);
             }
-#endif
 
             return new Core.App();
         }
