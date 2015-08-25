@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using Cirrious.MvvmCross.ViewModels;
 using GalaSoft.MvvmLight.Views;
 using MoneyManager.Core.Manager;
 
@@ -22,19 +22,19 @@ namespace MoneyManager.Core.ViewModels
             this.accountManager = accountManager;
             this.transactionManager = transactionManager;
 
-            GoToAddTransactionCommand = new RelayCommand<string>(GoToAddTransaction);
-            GoToAddAccountCommand = new RelayCommand(GoToAddAccount);
+            GoToAddTransactionCommand = new MvxCommand<string>(GoToAddTransaction);
+            GoToAddAccountCommand = new MvxCommand(GoToAddAccount);
         }
 
         /// <summary>
         ///     Prepare everything and navigate to AddTransactionView
         /// </summary>
-        public RelayCommand<string> GoToAddTransactionCommand { get; private set; }
+        public MvxCommand<string> GoToAddTransactionCommand { get; private set; }
 
         /// <summary>
         ///     Prepare everything and navigate to AddAccountView
         /// </summary>
-        public RelayCommand GoToAddAccountCommand { get; private set; }
+        public MvxCommand GoToAddAccountCommand { get; private set; }
 
         private void GoToAddTransaction(string type)
         {
