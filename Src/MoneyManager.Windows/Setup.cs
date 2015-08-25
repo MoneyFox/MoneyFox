@@ -1,15 +1,14 @@
+using Windows.UI.Xaml.Controls;
+using Cirrious.MvvmCross.ViewModels;
+using Cirrious.MvvmCross.WindowsCommon.Platform;
+
 namespace MoneyManager.Windows
 {
     public class Setup : MvxWindowsSetup
     {
-        public Setup(Context applicationContext)
-            : base(applicationContext)
+        public Setup(Frame frame)
+            : base(frame)
         {
-        }
-
-        protected override void InitializeFirstChance()
-        {
-            base.InitializeFirstChance();
         }
 
         protected override IMvxApplication CreateApp()
@@ -23,11 +22,6 @@ namespace MoneyManager.Windows
 
             return new Core.App();
         }
-
-        protected override void InitializeLastChance()
-        {
-            base.InitializeLastChance();
-            //Mvx.RegisterSingleton<IAppInformation>(new AppInformation());
-        }
+        
     }
 }
