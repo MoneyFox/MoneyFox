@@ -49,19 +49,28 @@ namespace MoneyManager.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int action_delete = 2130837504;
+			public const int apply_logo = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int action_save = 2130837505;
+			public const int ic_add_circle = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int action_submit = 2130837506;
+			public const int ic_delete = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int apply_logo = 2130837507;
+			public const int ic_done = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int Icon = 2130837508;
+			public const int ic_forward = 2130837508;
+			
+			// aapt resource value: 0x7f020005
+			public const int ic_remove_circle = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public const int ic_save = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public const int Icon = 2130837511;
 			
 			static Drawable()
 			{
@@ -79,14 +88,14 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f060006
 			public const int action_add_account = 2131099654;
 			
+			// aapt resource value: 0x7f060003
+			public const int action_add_income = 2131099651;
+			
 			// aapt resource value: 0x7f060004
-			public const int action_add_income = 2131099652;
+			public const int action_add_spending = 2131099652;
 			
 			// aapt resource value: 0x7f060005
-			public const int action_add_spending = 2131099653;
-			
-			// aapt resource value: 0x7f060003
-			public const int action_add_transfer = 2131099651;
+			public const int action_add_transfer = 2131099653;
 			
 			// aapt resource value: 0x7f060002
 			public const int content_pane = 2131099650;

@@ -34,7 +34,6 @@ namespace MoneyManager.Droid
             SimpleIoc.Default.Register<IDataAccess<RecurringTransaction>, RecurringTransactionDataAccess>();
             SimpleIoc.Default.Register<SettingDataAccess>();
 
-            //TODO Add implementation
             //Plattform specfic Logic
             SimpleIoc.Default.Register<IDialogService, DialogService>();
             SimpleIoc.Default.Register<IAppInformation, AppInformation>();
