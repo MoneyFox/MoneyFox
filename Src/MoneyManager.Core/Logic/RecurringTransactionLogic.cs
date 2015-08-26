@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Practices.ServiceLocation;
+using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -145,22 +145,22 @@ namespace MoneyManager.Core.Logic
 
         private static IDataAccess<RecurringTransaction> RecurringTransactionData
         {
-            get { return ServiceLocator.Current.GetInstance<IDataAccess<RecurringTransaction>>(); }
+            get { return Mvx.Resolve<IDataAccess<RecurringTransaction>>(); }
         }
 
         private static ITransactionRepository transactionRepository
         {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>(); }
+            get { return Mvx.Resolve<ITransactionRepository>(); }
         }
 
         private static AddTransactionViewModel addTransactionView
         {
-            get { return ServiceLocator.Current.GetInstance<AddTransactionViewModel>(); }
+            get { return Mvx.Resolve<AddTransactionViewModel>(); }
         }
 
         private static IEnumerable<RecurringTransaction> AllRecurringTransactions
         {
-            get { return ServiceLocator.Current.GetInstance<IRepository<RecurringTransaction>>().Data; }
+            get { return Mvx.Resolve<IRepository<RecurringTransaction>>().Data; }
         }
 
         #endregion Properties

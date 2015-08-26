@@ -1,7 +1,6 @@
 ﻿using Cirrious.CrossCore;
 using Cirrious.CrossCore.IoC;
 using Cirrious.MvvmCross.ViewModels;
-using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.OperationContracts;
 

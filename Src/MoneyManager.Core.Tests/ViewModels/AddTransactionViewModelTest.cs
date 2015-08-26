@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Business.WindowsPhone.Test.Stubs;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Stubs;
@@ -24,7 +23,6 @@ namespace MoneyManager.Core.Tests.ViewModels
             var viewModel = new AddTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
-                new NavigationServiceStub(),
                 new DialogServiceStub())
             {
                 IsEdit = true,
@@ -47,7 +45,6 @@ namespace MoneyManager.Core.Tests.ViewModels
             var viewModel = new AddTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
-                new NavigationServiceStub(),
                 new DialogServiceStub())
             {
                 IsEdit = true,
@@ -70,7 +67,6 @@ namespace MoneyManager.Core.Tests.ViewModels
             var viewModel = new AddTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
-                new NavigationServiceStub(),
                 new DialogServiceStub())
             {
                 IsEdit = true,
@@ -93,7 +89,6 @@ namespace MoneyManager.Core.Tests.ViewModels
             var viewModel = new AddTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
-                new NavigationServiceStub(),
                 new DialogServiceStub())
             {IsEdit = false};
 
@@ -113,7 +108,6 @@ namespace MoneyManager.Core.Tests.ViewModels
             var viewModel = new AddTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
-                new NavigationServiceStub(),
                 new DialogServiceStub());
 
 
@@ -133,7 +127,6 @@ namespace MoneyManager.Core.Tests.ViewModels
             var viewModel = new AddTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
-                new NavigationServiceStub(),
                 new DialogServiceStub());
             Assert.AreEqual("add income", viewModel.Title);
         }
@@ -151,7 +144,6 @@ namespace MoneyManager.Core.Tests.ViewModels
             var viewModel = new AddTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
-                new NavigationServiceStub(),
                 new DialogServiceStub());
 
             Assert.AreEqual("add transfer", viewModel.Title);

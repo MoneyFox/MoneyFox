@@ -118,7 +118,6 @@
     <Compile Include="Repositories\TransactionRepositoryTests.cs" />
     <Compile Include="Stubs\DbHelperStub.cs" />
     <Compile Include="Stubs\DialogServiceStub.cs" />
-    <Compile Include="Stubs\NavigationServiceStub.cs" />
     <Compile Include="ViewModels\AddTransactionViewModelTest.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />
     <Compile Include="ViewModels\SelectCategoryViewModelTests.cs" />

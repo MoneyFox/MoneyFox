@@ -1,7 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using GalaSoft.MvvmLight;
 using MoneyManager.Core.Logic;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -10,7 +9,7 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class StatisticViewModel : ViewModelBase
+    public class StatisticViewModel : BaseViewModel
     {
         private ObservableCollection<StatisticItem> categorySummary;
         private ObservableCollection<StatisticItem> monthlyCashFlow;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Microsoft.Practices.ServiceLocation;
+using Cirrious.CrossCore;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -241,7 +241,7 @@ namespace MoneyManager.Core.Logic
                         .Sum(x => x.Type == (int) TransactionType.Spending
                             ? -x.Amount
                             : x.Amount),
-                    Label = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
+                    Label = Mvx.Resolve<SettingDataAccess>().DefaultCurrency
                 });
             }
 
@@ -251,30 +251,15 @@ namespace MoneyManager.Core.Logic
 
         #region Properties
 
-        private static IEnumerable<FinancialTransaction> AllTransaction
-        {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Data; }
-        }
+        private static IEnumerable<FinancialTransaction> AllTransaction => Mvx.Resolve<ITransactionRepository>().Data;
 
-        private static IEnumerable<Category> AllCategories
-        {
-            get { return ServiceLocator.Current.GetInstance<IRepository<Category>>().Data; }
-        }
+        private static IEnumerable<Category> AllCategories => Mvx.Resolve<IRepository<Category>>().Data;
 
-        private static IDataAccess<FinancialTransaction> TransactionData
-        {
-            get { return ServiceLocator.Current.GetInstance<IDataAccess<FinancialTransaction>>(); }
-        }
+        private static IDataAccess<FinancialTransaction> TransactionData => Mvx.Resolve<IDataAccess<FinancialTransaction>>();
 
-        private static IDataAccess<Category> CateogryData
-        {
-            get { return ServiceLocator.Current.GetInstance<IDataAccess<Category>>(); }
-        }
+        private static IDataAccess<Category> CateogryData => Mvx.Resolve<IDataAccess<Category>>();
 
-        private static SettingDataAccess Settings
-        {
-            get { return ServiceLocator.Current.GetInstance<SettingDataAccess>(); }
-        }
+        private static SettingDataAccess Settings => Mvx.Resolve<SettingDataAccess>();
 
         #endregion
     }

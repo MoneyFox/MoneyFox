@@ -1,13 +1,12 @@
 ﻿using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Manager;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class BackupViewModel : ViewModelBase
+    public class BackupViewModel : BaseViewModel
     {
         private readonly Backup backup;
         private readonly IDialogService dialogService;
@@ -19,12 +18,12 @@ namespace MoneyManager.Core.ViewModels
             this.repositoryManager = repositoryManager;
             this.dialogService = dialogService;
 
-            BackupCommand = new RelayCommand(CreateBackup);
-            RestoreCommand = new RelayCommand(RestoreBackup);
+            BackupCommand = new MvxCommand(CreateBackup);
+            RestoreCommand = new MvxCommand(RestoreBackup);
         }
 
-        public RelayCommand BackupCommand { get; private set; }
-        public RelayCommand RestoreCommand { get; private set; }
+        public MvxCommand BackupCommand { get; private set; }
+        public MvxCommand RestoreCommand { get; private set; }
         public bool IsLoading { get; private set; }
 
         private async void CreateBackup()

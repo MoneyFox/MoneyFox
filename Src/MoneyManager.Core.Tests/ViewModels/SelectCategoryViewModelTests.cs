@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Business.WindowsPhone.Test.Stubs;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Stubs;
@@ -15,7 +14,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         public void ResetCategoryCommand_FilledProperty_PropertyIsNull()
         {
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(new DbHelperStub()));
-            var viewModel = new SelectCategoryViewModel(transactionRepository, new NavigationServiceStub());
+            var viewModel = new SelectCategoryViewModel(transactionRepository);
 
             transactionRepository.Selected = new FinancialTransaction
             {

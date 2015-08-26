@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Views;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.Logic;
@@ -14,22 +12,20 @@ using IDialogService = MoneyManager.Foundation.OperationContracts.IDialogService
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class AddTransactionViewModel : ViewModelBase
+    public class AddTransactionViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
         private readonly IDialogService dialogService;
-        private readonly INavigationService navigationService;
         private readonly SettingDataAccess settings;
         private readonly ITransactionRepository transactionRepository;
 
         public AddTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
             SettingDataAccess settings,
-            INavigationService navigationService, IDialogService dialogService)
+            IDialogService dialogService)
         {
             this.transactionRepository = transactionRepository;
             this.settings = settings;
-            this.navigationService = navigationService;
             this.dialogService = dialogService;
             this.accountRepository = accountRepository;
 
@@ -96,7 +92,7 @@ namespace MoneyManager.Core.ViewModels
             {
                 await TransactionLogic.SaveTransaction(transactionRepository.Selected, RefreshRealtedList);
             }
-            navigationService.GoBack();
+            Close(this);
         }
 
         private async void ShowAccountRequiredMessage()
@@ -111,7 +107,7 @@ namespace MoneyManager.Core.ViewModels
             {
                 await AccountLogic.AddTransactionAmount(transactionRepository.Selected);
             }
-            navigationService.GoBack();
+            Close(this);
         }
     }
 }
