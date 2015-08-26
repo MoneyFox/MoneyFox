@@ -47,8 +47,6 @@ namespace MoneyManager.Droid
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView = global::MoneyManager.Droid.Resource.Styleable.MvxListView;
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
-			global::GalaSoft.MvvmLight.Resource.String.ApplicationName = global::MoneyManager.Droid.Resource.String.ApplicationName;
-			global::GalaSoft.MvvmLight.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::MoneyManager.Droid.Resource.String.ApplicationName;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
 		}
