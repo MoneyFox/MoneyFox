@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
-using Microsoft.Practices.ServiceLocation;
+using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -27,9 +27,9 @@ namespace MoneyManager.Windows.Dialogs
         }
 
         //TODO: refactor
-        private IRepository<Category> CategoryRepository => ServiceLocator.Current.GetInstance<IRepository<Category>>();
+        private IRepository<Category> CategoryRepository => Mvx.Resolve<IRepository<Category>>();
 
-        private CategoryListViewModel CategoryListView => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
+        private CategoryListViewModel CategoryListView => Mvx.Resolve<CategoryListViewModel>();
 
         public bool IsEdit { get; set; }
 
@@ -37,7 +37,7 @@ namespace MoneyManager.Windows.Dialogs
         {
             if (CategoryRepository.Selected.Name == string.Empty)
             {
-                var dialogService = ServiceLocator.Current.GetInstance<IDialogService>();
+                var dialogService = Mvx.Resolve<IDialogService>();
 
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptryTitle, Strings.NameRequiredMessage);
             }

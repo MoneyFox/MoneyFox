@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
+using Cirrious.CrossCore;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Core.Logic;
 using MoneyManager.Foundation.OperationContracts;
@@ -29,7 +30,7 @@ namespace MoneyManager.Windows.Tile
         {
             var cashFlow = StatisticLogic.GetMonthlyCashFlow();
 
-            ServiceLocator.Current.GetInstance<IUserNotification>()
+            Mvx.Resolve<IUserNotification>()
                 .UpdateMainTile(cashFlow[0].Label, cashFlow[1].Label, cashFlow[2].Label);
         }
     }

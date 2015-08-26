@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Cirrious.CrossCore;
 using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Core.Logic;
 using MoneyManager.Core.ViewModels;
@@ -16,7 +17,7 @@ namespace MoneyManager.Windows.Views
         }
 
         private AddTransactionViewModel AddTransactionViewModel
-            => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
+            => Mvx.Resolve<AddTransactionViewModel>();
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {

@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Notifications;
-using Microsoft.Practices.ServiceLocation;
+using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
@@ -19,7 +19,7 @@ namespace MoneyManager.Windows
         {
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 
-            if (ServiceLocator.Current.GetInstance<TileSettingsViewModel>().ShowInfoOnMainTile)
+            if (Mvx.Resolve<TileSettingsViewModel>().ShowInfoOnMainTile)
             {
                 var tileContent =
                     TileContentFactory.CreateTileSquare310x310SmallImagesAndTextList04();

@@ -110,7 +110,6 @@ namespace MoneyManager.Core.Tests.ViewModels
                 new SettingDataAccess(),
                 new DialogServiceStub());
 
-
             Assert.AreEqual("add spending", viewModel.Title);
         }
 

@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Xaml;
-using Microsoft.Practices.ServiceLocation;
+using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Controls
@@ -13,7 +13,7 @@ namespace MoneyManager.Windows.Controls
 
         private void BalanceUserControl_OnLoaded(object sender, RoutedEventArgs e)
         {
-            ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
+            Mvx.Resolve<BalanceViewModel>().UpdateBalance();
         }
     }
 }
