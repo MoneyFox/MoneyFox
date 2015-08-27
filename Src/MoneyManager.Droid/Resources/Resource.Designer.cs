@@ -47,6 +47,29 @@ namespace MoneyManager.Droid
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView = global::MoneyManager.Droid.Resource.Styleable.MvxListView;
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Attribute.MvxBind = global::MoneyManager.Droid.Resource.Attribute.MvxBind;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxDropDownItemTemplate;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Attribute.MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxGroupItemTemplate;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Attribute.MvxItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxItemTemplate;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Attribute.MvxLang = global::MoneyManager.Droid.Resource.Attribute.MvxLang;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Attribute.MvxSource = global::MoneyManager.Droid.Resource.Attribute.MvxSource;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Attribute.MvxTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxTemplate;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Id.MvvmCrossTagId = global::MoneyManager.Droid.Resource.Id.MvvmCrossTagId;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Id.MvxBindingTagUnique = global::MoneyManager.Droid.Resource.Id.MvxBindingTagUnique;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.String.ApplicationName = global::MoneyManager.Droid.Resource.String.ApplicationName;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxBinding = global::MoneyManager.Droid.Resource.Styleable.MvxBinding;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxBinding_MvxBind = global::MoneyManager.Droid.Resource.Styleable.MvxBinding_MvxBind;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxBinding_MvxLang = global::MoneyManager.Droid.Resource.Styleable.MvxBinding_MvxLang;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxControl = global::MoneyManager.Droid.Resource.Styleable.MvxControl;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxControl_MvxTemplate;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxExpandableListView = global::MoneyManager.Droid.Resource.Styleable.MvxExpandableListView;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxImageView = global::MoneyManager.Droid.Resource.Styleable.MvxImageView;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxImageView_MvxSource = global::MoneyManager.Droid.Resource.Styleable.MvxImageView_MvxSource;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxListView = global::MoneyManager.Droid.Resource.Styleable.MvxListView;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
+			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::MoneyManager.Droid.Resource.String.ApplicationName;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
 		}
@@ -131,32 +154,35 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f050001
 			public const int MvxBindingTagUnique = 2131034113;
 			
-			// aapt resource value: 0x7f050009
-			public const int action_add_account = 2131034121;
-			
-			// aapt resource value: 0x7f050006
-			public const int action_add_income = 2131034118;
+			// aapt resource value: 0x7f05000a
+			public const int action_add_account = 2131034122;
 			
 			// aapt resource value: 0x7f050007
-			public const int action_add_spending = 2131034119;
+			public const int action_add_income = 2131034119;
 			
 			// aapt resource value: 0x7f050008
-			public const int action_add_transfer = 2131034120;
+			public const int action_add_spending = 2131034120;
 			
-			// aapt resource value: 0x7f050004
-			public const int content_pane = 2131034116;
-			
-			// aapt resource value: 0x7f05000a
-			public const int ic_delete = 2131034122;
+			// aapt resource value: 0x7f050009
+			public const int action_add_transfer = 2131034121;
 			
 			// aapt resource value: 0x7f050005
-			public const int ic_save = 2131034117;
+			public const int content_pane = 2131034117;
+			
+			// aapt resource value: 0x7f05000b
+			public const int ic_delete = 2131034123;
+			
+			// aapt resource value: 0x7f050006
+			public const int ic_save = 2131034118;
+			
+			// aapt resource value: 0x7f050004
+			public const int left_pane = 2131034116;
 			
 			// aapt resource value: 0x7f050003
-			public const int left_pane = 2131034115;
+			public const int main_layout = 2131034115;
 			
 			// aapt resource value: 0x7f050002
-			public const int main_layout = 2131034114;
+			public const int medicine_list_fragment = 2131034114;
 			
 			static Id()
 			{
@@ -175,10 +201,13 @@ namespace MoneyManager.Droid
 			public const int AccountListItem = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Main = 2130903041;
+			public const int AccountListLayout = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int ModifyAccount = 2130903042;
+			public const int Main = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int ModifyAccount = 2130903043;
 			
 			static Layout()
 			{

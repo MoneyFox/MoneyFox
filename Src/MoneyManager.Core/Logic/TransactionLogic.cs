@@ -26,11 +26,6 @@ namespace MoneyManager.Core.Logic
 
             TransactionRepository.Save(transaction);
 
-            if (refreshRelatedList)
-            {
-                Mvx.Resolve<TransactionListViewModel>()
-                    .SetRelatedTransactions(AccountRepository.Selected);
-            }
             AccountLogic.AddTransactionAmount(transaction);
         }
 
@@ -74,7 +69,6 @@ namespace MoneyManager.Core.Logic
                 TransactionRepository.Delete(transaction);
 
                 AccountLogic.RemoveTransactionAmount(transaction);
-                AccountLogic.RefreshRelatedTransactions();
                 Mvx.Resolve<BalanceViewModel>().UpdateBalance();
             }
         }
@@ -106,8 +100,6 @@ namespace MoneyManager.Core.Logic
             await
                 CheckForRecurringTransaction(transaction,
                     () => RecurringTransactionRepository.Save(recurringTransaction));
-
-            AccountLogic.RefreshRelatedTransactions();
         }
 
         private static async Task CheckForRecurringTransaction(FinancialTransaction transaction,

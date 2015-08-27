@@ -10,11 +10,6 @@ namespace MoneyManager.Core.Logic
 {
     public class AccountLogic
     {
-        public static void RefreshRelatedTransactions()
-        {
-            TransactionListView.SetRelatedTransactions(AccountRepository.Selected);
-        }
-
         public static void RemoveTransactionAmount(FinancialTransaction transaction)
         {
             if (transaction.Cleared)
