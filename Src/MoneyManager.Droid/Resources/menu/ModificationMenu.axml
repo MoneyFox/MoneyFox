@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@+id/ic_save"
-        android:icon="@drawable/action_save"
+        android:icon="@drawable/ic_save"
         android:title="@string/action_save"
         android:showAsAction="ifRoom|withText" />
   

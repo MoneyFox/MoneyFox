@@ -29,10 +29,7 @@ namespace MoneyManager.Core.Manager
         /// </summary>
         public void PrepareCreation()
         {
-            accountRepository.Selected = new Account
-            {
-                Currency = settings.DefaultCurrency
-            };
+            accountRepository.Selected = new Account();
             addAccountViewModel.IsEdit = false;
         }
 

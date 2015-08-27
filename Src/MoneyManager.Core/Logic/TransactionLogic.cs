@@ -12,7 +12,7 @@ namespace MoneyManager.Core.Logic
 {
     public class TransactionLogic
     {
-        public static async Task SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
+        public static void SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
             bool skipRecurring = false)
         {
             if (transaction.IsRecurring && !skipRecurring)
@@ -31,7 +31,7 @@ namespace MoneyManager.Core.Logic
                 Mvx.Resolve<TransactionListViewModel>()
                     .SetRelatedTransactions(AccountRepository.Selected);
             }
-            await AccountLogic.AddTransactionAmount(transaction);
+            AccountLogic.AddTransactionAmount(transaction);
         }
 
         //TODO: Move to VM / Refactor this
@@ -73,7 +73,7 @@ namespace MoneyManager.Core.Logic
 
                 TransactionRepository.Delete(transaction);
 
-                await AccountLogic.RemoveTransactionAmount(transaction);
+                AccountLogic.RemoveTransactionAmount(transaction);
                 AccountLogic.RefreshRelatedTransactions();
                 Mvx.Resolve<BalanceViewModel>().UpdateBalance();
             }
@@ -97,7 +97,7 @@ namespace MoneyManager.Core.Logic
         public static async Task UpdateTransaction(FinancialTransaction transaction)
         {
             CheckIfRecurringWasRemoved(transaction);
-            await AccountLogic.AddTransactionAmount(transaction);
+            AccountLogic.AddTransactionAmount(transaction);
             TransactionRepository.Save(transaction);
 
             var recurringTransaction =
@@ -180,14 +180,14 @@ namespace MoneyManager.Core.Logic
             }
         }
 
-        public static async Task ClearTransactions()
+        public static void ClearTransactions()
         {
             var transactions = TransactionRepository.GetUnclearedTransactions();
             foreach (var transaction in transactions)
             {
                 try
                 {
-                    await AccountLogic.AddTransactionAmount(transaction);
+                    AccountLogic.AddTransactionAmount(transaction);
                 }
                 catch (Exception ex)
                 {

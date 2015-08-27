@@ -131,20 +131,26 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f050001
 			public const int MvxBindingTagUnique = 2131034113;
 			
-			// aapt resource value: 0x7f050008
-			public const int action_add_account = 2131034120;
-			
-			// aapt resource value: 0x7f050005
-			public const int action_add_income = 2131034117;
+			// aapt resource value: 0x7f050009
+			public const int action_add_account = 2131034121;
 			
 			// aapt resource value: 0x7f050006
-			public const int action_add_spending = 2131034118;
+			public const int action_add_income = 2131034118;
 			
 			// aapt resource value: 0x7f050007
-			public const int action_add_transfer = 2131034119;
+			public const int action_add_spending = 2131034119;
+			
+			// aapt resource value: 0x7f050008
+			public const int action_add_transfer = 2131034120;
 			
 			// aapt resource value: 0x7f050004
 			public const int content_pane = 2131034116;
+			
+			// aapt resource value: 0x7f05000a
+			public const int ic_delete = 2131034122;
+			
+			// aapt resource value: 0x7f050005
+			public const int ic_save = 2131034117;
 			
 			// aapt resource value: 0x7f050003
 			public const int left_pane = 2131034115;
@@ -168,6 +174,9 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f030000
 			public const int Main = 2130903040;
 			
+			// aapt resource value: 0x7f030001
+			public const int ModifyAccount = 2130903041;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -186,6 +195,9 @@ namespace MoneyManager.Droid
 			
 			// aapt resource value: 0x7f060001
 			public const int MainMenu = 2131099649;
+			
+			// aapt resource value: 0x7f060002
+			public const int ModificationMenu = 2131099650;
 			
 			static Menu()
 			{
@@ -226,6 +238,15 @@ namespace MoneyManager.Droid
 			
 			// aapt resource value: 0x7f040002
 			public const int app_name = 2130968578;
+			
+			// aapt resource value: 0x7f040009
+			public const int hint_account_name = 2130968585;
+			
+			// aapt resource value: 0x7f04000a
+			public const int hint_current_balance = 2130968586;
+			
+			// aapt resource value: 0x7f04000b
+			public const int hint_note = 2130968587;
 			
 			static String()
 			{

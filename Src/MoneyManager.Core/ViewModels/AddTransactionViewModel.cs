@@ -90,7 +90,7 @@ namespace MoneyManager.Core.ViewModels
             }
             else
             {
-                await TransactionLogic.SaveTransaction(transactionRepository.Selected, RefreshRealtedList);
+                TransactionLogic.SaveTransaction(transactionRepository.Selected, RefreshRealtedList);
             }
             Close(this);
         }
@@ -101,11 +101,11 @@ namespace MoneyManager.Core.ViewModels
                 Strings.AccountRequiredMessage);
         }
 
-        public async void Cancel()
+        public void Cancel()
         {
             if (IsEdit)
             {
-                await AccountLogic.AddTransactionAmount(transactionRepository.Selected);
+                AccountLogic.AddTransactionAmount(transactionRepository.Selected);
             }
             Close(this);
         }
