@@ -26,6 +26,11 @@ namespace MoneyManager.Core
                 .RegisterAsLazySingleton();
 
             CreatableTypes()
+                .EndingWith("DataAccess")
+                .AsTypes()
+                .RegisterAsLazySingleton();
+
+            CreatableTypes()
                 .EndingWith("Repository")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
