@@ -3,6 +3,7 @@
     "CommonServiceLocator": "1.3.0",
     "LiveSDK": "5.6.3",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "MvvmCross.HotTuna.MvvmCrossLibraries": "4.0.0-beta1",
     "MvvmLightLibs": "5.1.1",
     "NotificationsExtensions": "1.0.0",
     "SQLite.Net-PCL": "3.0.5",

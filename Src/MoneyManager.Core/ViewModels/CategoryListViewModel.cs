@@ -1,8 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
+using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -12,11 +10,10 @@ using IDialogService = MoneyManager.Foundation.OperationContracts.IDialogService
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class CategoryListViewModel : ViewModelBase
+    public class CategoryListViewModel : BaseViewModel
     {
         private readonly IRepository<Category> categoryRepository;
         private readonly IDialogService dialogService;
-        private readonly INavigationService navigationService;
         private readonly ITransactionRepository transactionRepository;
 
         private string searchText;
@@ -30,21 +27,19 @@ namespace MoneyManager.Core.ViewModels
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         public CategoryListViewModel(IRepository<Category> categoryRepository,
             ITransactionRepository transactionRepository,
-            INavigationService navigationService,
             IDialogService dialogService)
         {
             this.categoryRepository = categoryRepository;
             this.transactionRepository = transactionRepository;
-            this.navigationService = navigationService;
             this.dialogService = dialogService;
 
-            DeleteCategoryCommand = new RelayCommand<Category>(DeleteCategory);
+            DeleteCategoryCommand = new MvxCommand<Category>(DeleteCategory);
         }
 
         /// <summary>
         ///     Deletes the passed Category after show a confirmation dialog.
         /// </summary>
-        public RelayCommand<Category> DeleteCategoryCommand { get; set; }
+        public MvxCommand<Category> DeleteCategoryCommand { get; set; }
 
         /// <summary>
         ///     Indicates wether the view is shown from the settings to adjust something
@@ -89,7 +84,7 @@ namespace MoneyManager.Core.ViewModels
                 else
                 {
                     transactionRepository.Selected.Category = value;
-                    navigationService.GoBack();
+                    Close(this);
                 }
             }
         }

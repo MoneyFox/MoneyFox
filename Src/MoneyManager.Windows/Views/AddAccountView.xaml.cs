@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Xaml;
-using Microsoft.Practices.ServiceLocation;
+using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 
@@ -12,7 +12,7 @@ namespace MoneyManager.Windows.Views
             InitializeComponent();
         }
 
-        private AddAccountViewModel viewModel => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
+        private AddAccountViewModel viewModel => Mvx.Resolve<AddAccountViewModel>();
 
         private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
         {
@@ -41,7 +41,7 @@ namespace MoneyManager.Windows.Views
             }
 
             viewModel.Save();
-            ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
+            Mvx.Resolve<BalanceViewModel>().UpdateBalance();
         }
 
         //TODO: Move to ViewModel

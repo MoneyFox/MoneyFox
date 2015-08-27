@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
-using Microsoft.Practices.ServiceLocation;
+using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Dialogs
@@ -11,7 +11,7 @@ namespace MoneyManager.Windows.Dialogs
             InitializeComponent();
         }
 
-        private StatisticViewModel statisticView => ServiceLocator.Current.GetInstance<StatisticViewModel>();
+        private StatisticViewModel statisticView => Mvx.Resolve<StatisticViewModel>();
 
         private void LoadStatistic(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {

@@ -1,40 +1,33 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
+﻿using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class SelectCategoryViewModel :  ViewModelBase
+    public class SelectCategoryViewModel :  BaseViewModel
     {
-        private readonly INavigationService navigationService;
-
         /// <summary>
         ///     Creates an SelectCategoryViewModel instance
         /// </summary>
         /// <param name="transactionRepository">An instance of <see cref="ITransactionRepository"/></param>
-        /// <param name="navigationService">An instance of <see cref="INavigationService"/></param>
-        public SelectCategoryViewModel(ITransactionRepository transactionRepository, INavigationService navigationService)
+        public SelectCategoryViewModel(ITransactionRepository transactionRepository)
         {
-            this.navigationService = navigationService;
-
-            ResetCategoryCommand = new RelayCommand(() => transactionRepository.Selected.Category = null);
-            GoToSelectCategorydialogCommand = new RelayCommand(Navigate);
+            ResetCategoryCommand = new MvxCommand(() => transactionRepository.Selected.Category = null);
+            GoToSelectCategorydialogCommand = new MvxCommand(Navigate);
         }
 
         private void Navigate()
         {
-            navigationService.NavigateTo("SelectCategoryView");
+            ShowViewModel<SelectCategoryViewModel>();
         }
 
         /// <summary>
         ///     Resets the category of the currently selected transaction
         /// </summary>
-        public RelayCommand ResetCategoryCommand { get; set; }
+        public MvxCommand ResetCategoryCommand { get; set; }
 
         /// <summary>
         ///     Opens to the SelectCategoryView
         /// </summary>
-        public RelayCommand GoToSelectCategorydialogCommand { get; set; }
+        public MvxCommand GoToSelectCategorydialogCommand { get; set; }
     }
 }

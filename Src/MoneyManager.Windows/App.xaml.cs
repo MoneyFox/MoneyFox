@@ -5,6 +5,8 @@ using Windows.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Cirrious.CrossCore;
+using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Windows.Views;
 using Xamarin;
 
@@ -32,14 +34,6 @@ namespace MoneyManager.Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-#if DEBUG
-            if (!Insights.IsInitialized)
-            {
-                Insights.Initialize("e5c4ac56bb1ca47559bc8d4973d0a8c4d78c7648");
-            }
-#endif
-
-
             var shell = Window.Current.Content as AppShell;
 
             // Do not repeat app initialization when the Window already has content,
@@ -62,7 +56,11 @@ namespace MoneyManager.Windows
             {
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                shell.AppFrame.Navigate(typeof (MainView), e.Arguments, new SuppressNavigationTransitionInfo());
+                var setup = new Setup(shell.AppFrame);
+                setup.Initialize();
+
+                var start = Mvx.Resolve<IMvxAppStart>();
+                start.Start();
             }
 
             // Ensure the current window is active

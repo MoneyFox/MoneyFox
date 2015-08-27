@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Practices.ServiceLocation;
+using Cirrious.CrossCore;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
@@ -28,7 +28,7 @@ namespace MoneyManager.Core.Logic
 
             if (refreshRelatedList)
             {
-                ServiceLocator.Current.GetInstance<TransactionListViewModel>()
+                Mvx.Resolve<TransactionListViewModel>()
                     .SetRelatedTransactions(AccountRepository.Selected);
             }
             await AccountLogic.AddTransactionAmount(transaction);
@@ -37,7 +37,7 @@ namespace MoneyManager.Core.Logic
         //TODO: Move to VM / Refactor this
         public static void GoToAddTransaction(TransactionType transactionType, bool refreshRelatedList = false)
         {
-            ServiceLocator.Current.GetInstance<CategoryListViewModel>().IsSettingCall = false;
+            Mvx.Resolve<CategoryListViewModel>().IsSettingCall = false;
             AddTransactionView.IsEdit = false;
             AddTransactionView.IsEndless = true;
             AddTransactionView.RefreshRealtedList = refreshRelatedList;
@@ -48,7 +48,7 @@ namespace MoneyManager.Core.Logic
 
         public static void PrepareEdit(FinancialTransaction transaction)
         {
-            ServiceLocator.Current.GetInstance<CategoryListViewModel>().IsSettingCall = false;
+            Mvx.Resolve<CategoryListViewModel>().IsSettingCall = false;
             AddTransactionView.IsEdit = true;
             AddTransactionView.IsTransfer = transaction.Type == (int) TransactionType.Transfer;
             if (transaction.ReccuringTransactionId.HasValue && transaction.RecurringTransaction != null)
@@ -75,7 +75,7 @@ namespace MoneyManager.Core.Logic
 
                 await AccountLogic.RemoveTransactionAmount(transaction);
                 AccountLogic.RefreshRelatedTransactions();
-                ServiceLocator.Current.GetInstance<BalanceViewModel>().UpdateBalance();
+                Mvx.Resolve<BalanceViewModel>().UpdateBalance();
             }
         }
 
@@ -150,7 +150,7 @@ namespace MoneyManager.Core.Logic
             {
                 Type = (int) transactionType,
                 IsExchangeModeActive = false,
-                Currency = ServiceLocator.Current.GetInstance<SettingDataAccess>().DefaultCurrency
+                Currency = Mvx.Resolve<SettingDataAccess>().DefaultCurrency
             };
         }
 
@@ -199,24 +199,24 @@ namespace MoneyManager.Core.Logic
         #region Properties
 
         private static IRepository<Account> AccountRepository
-            => ServiceLocator.Current.GetInstance<IRepository<Account>>();
+            => Mvx.Resolve<IRepository<Account>>();
 
         private static ITransactionRepository TransactionRepository
-            => ServiceLocator.Current.GetInstance<ITransactionRepository>();
+            => Mvx.Resolve<ITransactionRepository>();
 
         private static FinancialTransaction SelectedTransaction
         {
-            get { return ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected; }
-            set { ServiceLocator.Current.GetInstance<ITransactionRepository>().Selected = value; }
+            get { return Mvx.Resolve<ITransactionRepository>().Selected; }
+            set { Mvx.Resolve<ITransactionRepository>().Selected = value; }
         }
 
         private static IRepository<RecurringTransaction> RecurringTransactionRepository
-            => ServiceLocator.Current.GetInstance<IRepository<RecurringTransaction>>();
+            => Mvx.Resolve<IRepository<RecurringTransaction>>();
 
         private static AddTransactionViewModel AddTransactionView
-            => ServiceLocator.Current.GetInstance<AddTransactionViewModel>();
+            => Mvx.Resolve<AddTransactionViewModel>();
 
-        private static SettingDataAccess Settings => ServiceLocator.Current.GetInstance<SettingDataAccess>();
+        private static SettingDataAccess Settings => Mvx.Resolve<SettingDataAccess>();
 
         #endregion Properties
     }

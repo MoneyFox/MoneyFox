@@ -1,11 +1,10 @@
 ﻿using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class AccountListUserControlViewModel : ViewModelBase
+    public class AccountListUserControlViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
 

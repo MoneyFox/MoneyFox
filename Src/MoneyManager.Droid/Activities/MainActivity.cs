@@ -5,12 +5,14 @@ using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Widget;
+using Cirrious.MvvmCross.Droid.Views;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "MoneyManager", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : Activity
+    public class MainActivity : MvxActivity
     {
         private string title;
         private string drawerTitle;
@@ -25,6 +27,12 @@ namespace MoneyManager.Droid.Activities
             Strings.SettingsLabel,
             Strings.AboutLabel
         };
+
+        public new MainViewModel ViewModel
+        {
+            get { return (MainViewModel)base.ViewModel; }
+            set { base.ViewModel = value; }
+        }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -99,6 +107,7 @@ namespace MoneyManager.Droid.Activities
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
+            MenuInflater.Inflate(Resource.Menu.MainMenu, menu);
             return true;
         }
 
@@ -114,6 +123,22 @@ namespace MoneyManager.Droid.Activities
             {
                 case Android.Resource.Id.Home:
                     slidingLayout.OpenPane();
+                    return true;
+
+                case Resource.Id.action_add_income:
+                    ViewModel.GoToAddTransactionCommand.Execute("Income");
+                    return true;
+
+                case Resource.Id.action_add_spending:
+                    ViewModel.GoToAddTransactionCommand.Execute("Spending");
+                    return true;
+
+                case Resource.Id.action_add_transfer:
+                    ViewModel.GoToAddTransactionCommand.Execute("Transfer");
+                    return true;
+
+                case Resource.Id.action_add_account:
+                    ViewModel.GoToAddAccountCommand.Execute();
                     return true;
 
                 default:

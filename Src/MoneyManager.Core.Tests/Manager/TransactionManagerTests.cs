@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Business.WindowsPhone.Test.Stubs;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
@@ -22,7 +21,6 @@ namespace MoneyManager.Core.Tests.Manager
                 new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
-                    new NavigationServiceStub(),
                     new DialogServiceStub());
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
@@ -46,7 +44,6 @@ namespace MoneyManager.Core.Tests.Manager
                 new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
-                    new NavigationServiceStub(),
                     new DialogServiceStub());
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
@@ -70,7 +67,6 @@ namespace MoneyManager.Core.Tests.Manager
                 new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
-                    new NavigationServiceStub(),
                     new DialogServiceStub());
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);

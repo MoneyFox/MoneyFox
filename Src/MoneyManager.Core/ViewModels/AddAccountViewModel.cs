@@ -1,21 +1,17 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Views;
-using MoneyManager.Foundation.Model;
+﻿using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class AddAccountViewModel : ViewModelBase
+    public class AddAccountViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly INavigationService navigationService;
 
-        public AddAccountViewModel(IRepository<Account> accountRepository, INavigationService navigationService)
+        public AddAccountViewModel(IRepository<Account> accountRepository)
         {
             this.accountRepository = accountRepository;
-            this.navigationService = navigationService;
         }
 
         public bool IsEdit { get; set; }
@@ -29,12 +25,12 @@ namespace MoneyManager.Core.ViewModels
         public void Save()
         {
             accountRepository.Save(accountRepository.Selected);
-            navigationService.GoBack();
+            Close(this);
         }
 
         public void Cancel()
         {
-            navigationService.GoBack();
+            Close(this);
         }
     }
 }
