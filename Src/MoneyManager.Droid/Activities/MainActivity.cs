@@ -74,7 +74,6 @@ namespace MoneyManager.Droid.Activities
             var fragmenTransaction = SupportFragmentManager.BeginTransaction();
             fragmenTransaction.Add(Resource.Id.content_pane, accountListFragment);
             fragmenTransaction.Commit();
-
         }
 
         private void NavigationClick(object sender, AdapterView.ItemClickEventArgs e)
