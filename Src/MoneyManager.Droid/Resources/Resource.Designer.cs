@@ -182,7 +182,10 @@ namespace MoneyManager.Droid
 		{
 			
 			// aapt resource value: 0x7f060000
-			public const int MainMenu = 2131099648;
+			public const int AddMenu = 2131099648;
+			
+			// aapt resource value: 0x7f060001
+			public const int MainMenu = 2131099649;
 			
 			static Menu()
 			{
