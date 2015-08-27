@@ -5,14 +5,14 @@ using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Widget;
-using Cirrious.MvvmCross.Droid.Views;
+using Cirrious.MvvmCross.Droid.Support.Fragging;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "MoneyManager", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : MvxActivity
+    public class MainActivity : MvxFragmentActivity
     {
         private string title;
         private string drawerTitle;
@@ -67,6 +67,10 @@ namespace MoneyManager.Droid.Activities
             drawerTitle = Strings.MenuTitle;
 
             slidingLayout.ViewTreeObserver.GlobalLayout += FirstLayoutListener;
+
+            var transaction = SupportFragmentManager.BeginTransaction();
+            transaction.Replace(Resource.Id.content_pane, _medicineListFragment);
+            transaction.Commit();
         }
 
         private void NavigationClick(object sender, AdapterView.ItemClickEventArgs e)
