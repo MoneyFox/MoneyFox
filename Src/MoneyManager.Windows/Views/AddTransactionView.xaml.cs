@@ -3,7 +3,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
-using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Core.Logic;
 using MoneyManager.Core.ViewModels;
 
@@ -19,11 +18,11 @@ namespace MoneyManager.Windows.Views
         private AddTransactionViewModel AddTransactionViewModel
             => Mvx.Resolve<AddTransactionViewModel>();
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.NavigationMode != NavigationMode.Back && AddTransactionViewModel.IsEdit)
             {
-                await AccountLogic.RemoveTransactionAmount(AddTransactionViewModel.SelectedTransaction);
+                AccountLogic.RemoveTransactionAmount(AddTransactionViewModel.SelectedTransaction);
             }
 
             base.OnNavigatedTo(e);
