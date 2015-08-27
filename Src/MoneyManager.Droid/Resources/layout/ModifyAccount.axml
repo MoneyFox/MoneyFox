@@ -12,8 +12,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_account_name"
-        local:MvxBind="Text SelectedAccount.Name" />
+        android:hint="@string/hint_iban"
+        local:MvxBind="Text SelectedAccount.Iban" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
