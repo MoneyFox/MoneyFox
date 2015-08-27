@@ -61,7 +61,7 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\RecurringTransactionRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
-    <Compile Include="ViewModels\AccountListUserControlViewModel.cs" />
+    <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\AddTransactionViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />

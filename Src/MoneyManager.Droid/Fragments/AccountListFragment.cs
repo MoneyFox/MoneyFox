@@ -8,9 +8,9 @@ namespace MoneyManager.Droid.Fragments
 {
     public class AccountListFragment : MvxFragment
     {
-        public new AccountListUserControlViewModel ViewModel
+        public new AccountListViewModel ViewModel
         {
-            get { return (AccountListUserControlViewModel)base.ViewModel; }
+            get { return (AccountListViewModel)base.ViewModel; }
             set { base.ViewModel = value; }
         }
 

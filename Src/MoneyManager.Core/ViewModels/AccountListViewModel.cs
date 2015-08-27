@@ -5,12 +5,11 @@ using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Core.ViewModels
 {
-    //TODO Rename this to AccountListViewModel
-    public class AccountListUserControlViewModel : BaseViewModel
+    public class AccountListViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
 
-        public AccountListUserControlViewModel(IRepository<Account> accountRepository)
+        public AccountListViewModel(IRepository<Account> accountRepository)
         {
             this.accountRepository = accountRepository;
             OpenOverviewCommand = new MvxCommand<Account>(GoToTransactionOverView);

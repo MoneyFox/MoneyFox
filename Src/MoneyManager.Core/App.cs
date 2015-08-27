@@ -49,7 +49,7 @@ namespace MoneyManager.Core
 
         public AddAccountViewModel AddAccountViewModel => Mvx.Resolve<AddAccountViewModel>();
 
-        public AccountListUserControlViewModel AccountListUserControlViewModel => Mvx.Resolve<AccountListUserControlViewModel>();
+        public AccountListViewModel AccountListViewModel => Mvx.Resolve<AccountListViewModel>();
 
         public AddTransactionViewModel AddTransactionViewModel => Mvx.Resolve<AddTransactionViewModel>();
 

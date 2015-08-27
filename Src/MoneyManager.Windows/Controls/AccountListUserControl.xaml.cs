@@ -60,7 +60,7 @@ namespace MoneyManager.Windows.Controls
             }
 
             //TODO Refactor
-            Mvx.Resolve<AccountListUserControlViewModel>().DeleteAccountCommand.Execute(account);
+            Mvx.Resolve<AccountListViewModel>().DeleteAccountCommand.Execute(account);
             Mvx.Resolve<BalanceViewModel>().UpdateBalance();
         }
 
