@@ -87,6 +87,7 @@
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta2\lib\MonoAndroid\Cirrious.MvvmCross.Localization.dll</HintPath>
+    </Reference>
     <Reference Include="Cirrious.MvvmCross.Droid.Support.Fragging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Cirrious.MvvmCross.Droid.Support.Fragging.4.0.0-beta2\lib\MonoAndroid403\Cirrious.MvvmCross.Droid.Support.Fragging.dll</HintPath>
       <Private>True</Private>
