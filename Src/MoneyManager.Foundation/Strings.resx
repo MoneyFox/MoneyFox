@@ -225,9 +225,6 @@
   <data name="StatisticTitle" xml:space="preserve">
     <value>Statistic</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="SuccessTitle" xml:space="preserve">
     <value>Success!</value>
   </data>
@@ -248,5 +245,14 @@
   </data>
   <data name="YesLabel" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="FeedbackSubject" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="WebsiteUrl" xml:space="preserve">
+    <value>www.apply-solutions.ch</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About</value>
   </data>
 </root>

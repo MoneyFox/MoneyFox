@@ -71,6 +71,15 @@ namespace MoneyManager.Foundation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string AboutTitle {
+            get {
+                return ResourceManager.GetString("AboutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select an account..
         /// </summary>
         public static string AccountRequiredMessage {
@@ -193,6 +202,15 @@ namespace MoneyManager.Foundation {
         public static string FeedbackLabel {
             get {
                 return ResourceManager.GetString("FeedbackLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feedback.
+        /// </summary>
+        public static string FeedbackSubject {
+            get {
+                return ResourceManager.GetString("FeedbackSubject", resourceCulture);
             }
         }
         
@@ -386,15 +404,6 @@ namespace MoneyManager.Foundation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Success!.
         /// </summary>
         public static string SuccessTitle {
@@ -427,6 +436,15 @@ namespace MoneyManager.Foundation {
         public static string TransferTitle {
             get {
                 return ResourceManager.GetString("TransferTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to www.apply-solutions.ch.
+        /// </summary>
+        public static string WebsiteUrl {
+            get {
+                return ResourceManager.GetString("WebsiteUrl", resourceCulture);
             }
         }
         
