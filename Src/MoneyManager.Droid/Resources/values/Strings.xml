@@ -15,4 +15,14 @@
   <string name="hint_account_name">account name</string>
   <string name="hint_current_balance">current balance</string>
   <string name="hint_note">note</string>
+  
+  <!--text views-->
+  <string name="textview_version">Version</string>
+  <string name="textview_contact">Contact</string>
+  <string name="textview_github">GitHub</string>
+  <string name="textview_opensource">This programm is open source. To contribute visit the repository:</string>
+  
+  <!--buttons-->
+  <string name="button_rate">rate us!</string>
+
 </resources>

@@ -112,28 +112,28 @@ namespace MoneyManager.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int apply_logo = 2130837504;
+			public const int ic_add_circle = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int ic_add_circle = 2130837505;
+			public const int ic_delete = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int ic_delete = 2130837506;
+			public const int ic_done = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int ic_done = 2130837507;
+			public const int ic_forward = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int ic_forward = 2130837508;
+			public const int ic_remove_circle = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int ic_remove_circle = 2130837509;
+			public const int ic_save = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int ic_save = 2130837510;
+			public const int Icon = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int Icon = 2130837511;
+			public const int logo = 2130837511;
 			
 			static Drawable()
 			{
@@ -274,6 +274,9 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f040002
 			public const int app_name = 2130968578;
 			
+			// aapt resource value: 0x7f040010
+			public const int button_rate = 2130968592;
+			
 			// aapt resource value: 0x7f040009
 			public const int hint_account_name = 2130968585;
 			
@@ -282,6 +285,18 @@ namespace MoneyManager.Droid
 			
 			// aapt resource value: 0x7f04000b
 			public const int hint_note = 2130968587;
+			
+			// aapt resource value: 0x7f04000d
+			public const int textview_contact = 2130968589;
+			
+			// aapt resource value: 0x7f04000e
+			public const int textview_github = 2130968590;
+			
+			// aapt resource value: 0x7f04000f
+			public const int textview_opensource = 2130968591;
+			
+			// aapt resource value: 0x7f04000c
+			public const int textview_version = 2130968588;
 			
 			static String()
 			{
