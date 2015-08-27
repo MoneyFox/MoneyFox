@@ -5,6 +5,8 @@ using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Stubs;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.OperationContracts;
+using Moq;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
@@ -15,7 +17,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         [TestMethod]
         public void GoToAddTransaction_Income_CorrectPreparation()
         {
-            var dbHelper = new DbHelperStub();
+            var dbHelper = new Mock<IDbHelper>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var addTransactionViewModel =
@@ -43,7 +45,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         [TestMethod]
         public void GoToAddTransaction_Spending_CorrectPreparation()
         {
-            var dbHelper = new DbHelperStub();
+            var dbHelper = new Mock<IDbHelper>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var addTransactionViewModel =
@@ -72,7 +74,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         [TestMethod]
         public void GoToAddTransaction_Transfer_CorrectPreparation()
         {
-            var dbHelper = new DbHelperStub();
+            var dbHelper = new Mock<IDbHelper>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var addTransactionViewModel =
