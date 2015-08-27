@@ -98,6 +98,15 @@ namespace MoneyManager.Foundation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Account.
+        /// </summary>
+        public static string AddAccountTitle {
+            get {
+                return ResourceManager.GetString("AddAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Income.
         /// </summary>
         public static string AddIncomeLabel {

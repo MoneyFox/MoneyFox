@@ -166,14 +166,14 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f050009
 			public const int action_add_transfer = 2131034121;
 			
-			// aapt resource value: 0x7f050005
-			public const int content_pane = 2131034117;
-			
 			// aapt resource value: 0x7f05000b
-			public const int ic_delete = 2131034123;
+			public const int action_delete = 2131034123;
 			
 			// aapt resource value: 0x7f050006
-			public const int ic_save = 2131034118;
+			public const int action_save = 2131034118;
+			
+			// aapt resource value: 0x7f050005
+			public const int content_pane = 2131034117;
 			
 			// aapt resource value: 0x7f050004
 			public const int left_pane = 2131034116;

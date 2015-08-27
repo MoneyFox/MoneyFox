@@ -255,4 +255,7 @@
   <data name="AboutTitle" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="AddAccountTitle" xml:space="preserve">
+    <value>Add Account</value>
+  </data>
 </root>
