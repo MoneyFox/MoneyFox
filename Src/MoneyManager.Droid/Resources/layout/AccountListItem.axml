@@ -13,7 +13,6 @@
         android:layout_alignParentBottom="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginTop="5dp"
-        android:text="Sparkonto"
         local:MvxBind="Text Name" />
     <TextView
         android:layout_width="wrap_content"
@@ -23,6 +22,5 @@
         android:layout_alignParentBottom="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_marginTop="5dp"
-        android:text="AL90208110080000001039531801"
         local:MvxBind="Text Iban" />
 </LinearLayout>

@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Widget;
+using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Droid.Support.Fragging;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Fragments;
@@ -45,7 +46,10 @@ namespace MoneyManager.Droid.Activities
 
             slidingLayout = FindViewById<SlidingPaneLayout>(Resource.Id.main_layout);
             menuListView = FindViewById<ListView>(Resource.Id.left_pane);
-            accountListFragment = new AccountListFragment();
+            accountListFragment = new AccountListFragment
+            {
+                ViewModel = Mvx.Resolve<AccountListViewModel>()
+            };
 
             slidingLayout.PanelOpened += (sender, e) =>
             {
@@ -85,7 +89,7 @@ namespace MoneyManager.Droid.Activities
                 case 0:
                     SupportFragmentManager.BeginTransaction()
                         .Replace(Resource.Id.content_pane, accountListFragment)
-                        .AddToBackStack("medicineList")
+                        .AddToBackStack("accountList")
                         .Commit();
                     break;
 
