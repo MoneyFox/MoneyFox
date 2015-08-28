@@ -1,7 +1,10 @@
+using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Android.App;
 using Android.Content;
 using Cirrious.CrossCore;
+using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Droid.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
@@ -12,7 +15,7 @@ using Xamarin;
 
 namespace MoneyManager.Droid
 {
-    public class Setup : MvxAndroidSetup
+    public class Setup : MvxAndroidSetup, IMvxTrace
     {
         public Setup(Context applicationContext)
             : base(applicationContext)
@@ -45,10 +48,26 @@ namespace MoneyManager.Droid
             return new App();
         }
 
-        protected override void InitializeLastChance()
+        public void Trace(MvxTraceLevel level, string tag, Func<string> message)
         {
-            base.InitializeLastChance();
-            //Mvx.RegisterSingleton<IAppInformation>(new AppInformation());
+            Debug.WriteLine(tag + ":" + level + ":" + message());
+        }
+
+        public void Trace(MvxTraceLevel level, string tag, string message)
+        {
+            Debug.WriteLine(tag + ":" + level + ":" + message);
+        }
+
+        public void Trace(MvxTraceLevel level, string tag, string message, params object[] args)
+        {
+            try
+            {
+                Debug.WriteLine(string.Format(tag + ":" + level + ":" + message, args));
+            }
+            catch (FormatException)
+            {
+                Trace(MvxTraceLevel.Error, tag, "Exception during trace of {0} {1} {2}", level, message);
+            }
         }
     }
 }

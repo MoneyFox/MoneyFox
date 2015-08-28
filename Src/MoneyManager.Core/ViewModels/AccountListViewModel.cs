@@ -24,11 +24,7 @@ namespace MoneyManager.Core.ViewModels
         public ObservableCollection<Account> AllAccounts
         {
             get { return accountRepository.Data; }
-            set
-            {
-                accountRepository.Data = value;
-                RaisePropertyChanged();
-            }
+            set { accountRepository.Data = value; }
         }
 
         /// <summary>
