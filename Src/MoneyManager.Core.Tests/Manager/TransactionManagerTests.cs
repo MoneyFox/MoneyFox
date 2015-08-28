@@ -20,7 +20,7 @@ namespace MoneyManager.Core.Tests.Manager
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var addTransactionViewModel =
-                new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
+                new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
                     new DialogServiceStub());
@@ -43,7 +43,7 @@ namespace MoneyManager.Core.Tests.Manager
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var addTransactionViewModel =
-                new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
+                new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
                     new DialogServiceStub());
@@ -66,7 +66,7 @@ namespace MoneyManager.Core.Tests.Manager
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var addTransactionViewModel =
-                new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
+                new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
                     new DialogServiceStub());

@@ -6,11 +6,11 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class AddAccountViewModel : BaseViewModel
+    public class ModifyAccountViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
 
-        public AddAccountViewModel(IRepository<Account> accountRepository)
+        public ModifyAccountViewModel(IRepository<Account> accountRepository)
         {
             this.accountRepository = accountRepository;
 

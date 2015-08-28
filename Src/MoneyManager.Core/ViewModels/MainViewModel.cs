@@ -41,13 +41,13 @@ namespace MoneyManager.Core.ViewModels
         private void GoToAddTransaction(string type)
         {
             transactionManager.PrepareCreation(type);
-            ShowViewModel<AddTransactionViewModel>();
+            ShowViewModel<ModifyTransactionViewModel>();
         }
 
         private void GoToAddAccount()
         {
             accountManager.PrepareCreation();
-            ShowViewModel<AddAccountViewModel>();
+            ShowViewModel<ModifyAccountViewModel>();
         }
 
         private void GoToAbout()

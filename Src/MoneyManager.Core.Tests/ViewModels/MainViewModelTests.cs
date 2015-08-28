@@ -21,12 +21,12 @@ namespace MoneyManager.Core.Tests.ViewModels
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var addTransactionViewModel =
-                new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
+                new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
                     new DialogServiceStub());
 
-            var addAccountViewModel = new AddAccountViewModel(accountRepository);
+            var addAccountViewModel = new ModifyAccountViewModel(accountRepository);
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
             var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);
@@ -49,12 +49,12 @@ namespace MoneyManager.Core.Tests.ViewModels
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var addTransactionViewModel =
-                new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
+                new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
                     new DialogServiceStub());
 
-            var addAccountViewModel = new AddAccountViewModel(accountRepository);
+            var addAccountViewModel = new ModifyAccountViewModel(accountRepository);
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
             var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);
@@ -78,12 +78,12 @@ namespace MoneyManager.Core.Tests.ViewModels
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var addTransactionViewModel =
-                new AddTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
+                new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     settings,
                     new DialogServiceStub());
 
-            var addAccountViewModel = new AddAccountViewModel(accountRepository);
+            var addAccountViewModel = new ModifyAccountViewModel(accountRepository);
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
             var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);

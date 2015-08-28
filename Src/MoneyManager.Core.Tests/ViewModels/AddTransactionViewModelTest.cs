@@ -22,7 +22,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Spending}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub())
@@ -44,7 +44,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Income}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub())
@@ -66,7 +66,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub())
@@ -88,7 +88,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub())
@@ -107,7 +107,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Spending}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub());
@@ -125,7 +125,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Income}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub());
@@ -142,7 +142,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub());

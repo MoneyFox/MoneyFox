@@ -9,7 +9,7 @@ using MoneyManager.Foundation;
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "About", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class AboutView : MvxActivity
+    public class AboutActivity : MvxActivity
     {
         public new AboutViewModel ViewModel
         {

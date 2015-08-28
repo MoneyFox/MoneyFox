@@ -7,12 +7,12 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Droid.Activities
 {
-    [Activity(Label = "AddAccountActivity")]
-    public class AddAccountActivity : MvxActivity
+    [Activity(Label = "ModifyAccountActivity")]
+    public class ModifyAccountActivity : MvxActivity
     {
-        public new AddAccountViewModel ViewModel
+        public new ModifyAccountViewModel ViewModel
         {
-            get { return (AddAccountViewModel)base.ViewModel; }
+            get { return (ModifyAccountViewModel)base.ViewModel; }
             set { base.ViewModel = value; }
         }
 

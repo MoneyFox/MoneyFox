@@ -63,8 +63,8 @@
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
-    <Compile Include="ViewModels\AddAccountViewModel.cs" />
-    <Compile Include="ViewModels\AddTransactionViewModel.cs" />
+    <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
+    <Compile Include="ViewModels\ModifyTransactionViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

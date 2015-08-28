@@ -33,10 +33,10 @@ namespace MoneyManager.Core.Logic
         public static void GoToAddTransaction(TransactionType transactionType, bool refreshRelatedList = false)
         {
             Mvx.Resolve<CategoryListViewModel>().IsSettingCall = false;
-            AddTransactionView.IsEdit = false;
-            AddTransactionView.IsEndless = true;
-            AddTransactionView.RefreshRealtedList = refreshRelatedList;
-            AddTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
+            ModifyTransactionView.IsEdit = false;
+            ModifyTransactionView.IsEndless = true;
+            ModifyTransactionView.RefreshRealtedList = refreshRelatedList;
+            ModifyTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
             SetDefaultTransaction(transactionType);
             SetDefaultAccount();
         }
@@ -44,12 +44,12 @@ namespace MoneyManager.Core.Logic
         public static void PrepareEdit(FinancialTransaction transaction)
         {
             Mvx.Resolve<CategoryListViewModel>().IsSettingCall = false;
-            AddTransactionView.IsEdit = true;
-            AddTransactionView.IsTransfer = transaction.Type == (int) TransactionType.Transfer;
+            ModifyTransactionView.IsEdit = true;
+            ModifyTransactionView.IsTransfer = transaction.Type == (int) TransactionType.Transfer;
             if (transaction.ReccuringTransactionId.HasValue && transaction.RecurringTransaction != null)
             {
-                AddTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
-                AddTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
+                ModifyTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
+                ModifyTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
             }
 
             //Ultra dirty monkey patch for a problem with displaying the selected account.
@@ -205,8 +205,8 @@ namespace MoneyManager.Core.Logic
         private static IRepository<RecurringTransaction> RecurringTransactionRepository
             => Mvx.Resolve<IRepository<RecurringTransaction>>();
 
-        private static AddTransactionViewModel AddTransactionView
-            => Mvx.Resolve<AddTransactionViewModel>();
+        private static ModifyTransactionViewModel ModifyTransactionView
+            => Mvx.Resolve<ModifyTransactionViewModel>();
 
         private static SettingDataAccess Settings => Mvx.Resolve<SettingDataAccess>();
 

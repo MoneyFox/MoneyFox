@@ -52,11 +52,11 @@ namespace MoneyManager.Core
         //This properties are used to bind the view model to the datacontext directly in xaml (windows only)
         public MainViewModel MainViewModel => Mvx.Resolve<MainViewModel>();
 
-        public AddAccountViewModel AddAccountViewModel => Mvx.Resolve<AddAccountViewModel>();
+        public ModifyAccountViewModel ModifyAccountViewModel => Mvx.Resolve<ModifyAccountViewModel>();
 
         public AccountListViewModel AccountListViewModel => Mvx.Resolve<AccountListViewModel>();
 
-        public AddTransactionViewModel AddTransactionViewModel => Mvx.Resolve<AddTransactionViewModel>();
+        public ModifyTransactionViewModel ModifyTransactionViewModel => Mvx.Resolve<ModifyTransactionViewModel>();
 
         public BalanceViewModel BalanceViewModel => Mvx.Resolve<BalanceViewModel>();
 

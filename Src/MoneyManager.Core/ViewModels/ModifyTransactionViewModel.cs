@@ -12,14 +12,14 @@ using IDialogService = MoneyManager.Foundation.OperationContracts.IDialogService
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class AddTransactionViewModel : BaseViewModel
+    public class ModifyTransactionViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
         private readonly IDialogService dialogService;
         private readonly SettingDataAccess settings;
         private readonly ITransactionRepository transactionRepository;
 
-        public AddTransactionViewModel(ITransactionRepository transactionRepository,
+        public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
             SettingDataAccess settings,
             IDialogService dialogService)

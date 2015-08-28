@@ -8,19 +8,19 @@ namespace MoneyManager.Core.Manager
     public class AccountManager
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly AddAccountViewModel addAccountViewModel;
+        private readonly ModifyAccountViewModel modifyAccountViewModel;
         private readonly SettingDataAccess settings;
 
         /// <summary>
         ///     Creates an AccountManager object.
         /// </summary>
-        /// <param name="addAccountViewModel">Instance of <cref="AddAccountViewModel"/></param>
+        /// <param name="modifyAccountViewModel">Instance of <cref="ModifyAccountViewModel"/></param>
         /// <param name="accountRepository">Instance of <see cref="IRepository{T}"/></param>
         /// <param name="settings">Instance of <see cref="SettingDataAccess"/></param>
-        public AccountManager(IRepository<Account> accountRepository, AddAccountViewModel addAccountViewModel, SettingDataAccess settings)
+        public AccountManager(IRepository<Account> accountRepository, ModifyAccountViewModel modifyAccountViewModel, SettingDataAccess settings)
         {
             this.accountRepository = accountRepository;
-            this.addAccountViewModel = addAccountViewModel;
+            this.modifyAccountViewModel = modifyAccountViewModel;
             this.settings = settings;
         }
 
@@ -30,7 +30,7 @@ namespace MoneyManager.Core.Manager
         public void PrepareCreation()
         {
             accountRepository.Selected = new Account();
-            addAccountViewModel.IsEdit = false;
+            modifyAccountViewModel.IsEdit = false;
         }
 
     }
