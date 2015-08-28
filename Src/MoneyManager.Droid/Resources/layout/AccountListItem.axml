@@ -6,18 +6,18 @@
     android:layout_height="match_parent"
     android:background="?android:attr/activatedBackgroundIndicator">
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginTop="5dp"
         local:MvxBind="Text Name" />
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:textAppearance="?android:attr/textAppearanceSmall"

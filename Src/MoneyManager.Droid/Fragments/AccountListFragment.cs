@@ -17,7 +17,8 @@ namespace MoneyManager.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var ignore = base.OnCreateView(inflater, container, savedInstanceState);
+            base.OnCreateView(inflater, container, savedInstanceState);
+
             var view = this.BindingInflate(Resource.Layout.AccountListLayout, null);
 
             //TODO: Move this to binding
