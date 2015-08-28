@@ -12,7 +12,8 @@
   <string name="action_save">save</string>
   
   <!--hints-->
-  <string name="hint_account_name">account name</string>
+  <string name="hint_account_name">account name</string>  
+  <string name="hint_iban">iban</string>
   <string name="hint_current_balance">current balance</string>
   <string name="hint_note">note</string>
   

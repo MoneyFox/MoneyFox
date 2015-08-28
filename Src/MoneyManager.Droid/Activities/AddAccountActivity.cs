@@ -1,7 +1,7 @@
 using Android.App;
 using Android.OS;
 using Android.Views;
-using Cirrious.MvvmCross.Droid.FullFragging.Views;
+using Cirrious.MvvmCross.Droid.Views;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 
