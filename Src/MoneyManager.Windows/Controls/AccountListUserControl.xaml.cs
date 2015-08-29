@@ -37,7 +37,7 @@ namespace MoneyManager.Windows.Controls
             }
             
             //TODO refactor this / move to a viewmodel
-            var viewModel = Mvx.Resolve<AddAccountViewModel>();
+            var viewModel = Mvx.Resolve<ModifyAccountViewModel>();
             viewModel.IsEdit = true;
             viewModel.SelectedAccount = account;
 

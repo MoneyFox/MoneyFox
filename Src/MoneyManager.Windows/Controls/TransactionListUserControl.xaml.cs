@@ -90,8 +90,8 @@ namespace MoneyManager.Windows.Controls
         public ITransactionRepository TransactionRepository
             => Mvx.Resolve<ITransactionRepository>();
 
-        public AddTransactionViewModel AddTransactionView
-            => Mvx.Resolve<AddTransactionViewModel>();
+        public ModifyTransactionViewModel AddTransactionView
+            => Mvx.Resolve<ModifyTransactionViewModel>();
 
         public BalanceViewModel BalanceView => Mvx.Resolve<BalanceViewModel>();
 

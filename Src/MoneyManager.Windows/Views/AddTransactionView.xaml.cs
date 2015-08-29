@@ -15,14 +15,14 @@ namespace MoneyManager.Windows.Views
             InitializeComponent();
         }
 
-        private AddTransactionViewModel AddTransactionViewModel
-            => Mvx.Resolve<AddTransactionViewModel>();
+        private ModifyTransactionViewModel ModifyTransactionViewModel
+            => Mvx.Resolve<ModifyTransactionViewModel>();
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.NavigationMode != NavigationMode.Back && AddTransactionViewModel.IsEdit)
+            if (e.NavigationMode != NavigationMode.Back && ModifyTransactionViewModel.IsEdit)
             {
-                AccountLogic.RemoveTransactionAmount(AddTransactionViewModel.SelectedTransaction);
+                AccountLogic.RemoveTransactionAmount(ModifyTransactionViewModel.SelectedTransaction);
             }
 
             base.OnNavigatedTo(e);
@@ -63,13 +63,13 @@ namespace MoneyManager.Windows.Views
         //TODO: Handle in View Model
         private void DoneClick(object sender, RoutedEventArgs e)
         {
-            AddTransactionViewModel.Save();
+            ModifyTransactionViewModel.Save();
         }
 
         //TODO: Handle in View Model
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            AddTransactionViewModel.Cancel();
+            ModifyTransactionViewModel.Cancel();
         }
     }
 }
