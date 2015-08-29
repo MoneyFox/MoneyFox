@@ -20,28 +20,39 @@ namespace MoneyManager.Core.ViewModels
 
             GoToAddTransactionCommand = new MvxCommand<string>(GoToAddTransaction);
             GoToAddAccountCommand = new MvxCommand(GoToAddAccount);
+            GoToAboutCommand = new MvxCommand(GoToAbout);
         }
 
         /// <summary>
-        ///     Prepare everything and navigate to AddTransactionView
+        ///     Prepare everything and navigate to AddTransaction view
         /// </summary>
         public MvxCommand<string> GoToAddTransactionCommand { get; private set; }
 
         /// <summary>
-        ///     Prepare everything and navigate to AddAccountView
+        ///     Navigates to the About view
+        /// </summary>
+        public MvxCommand GoToAboutCommand { get; private set; }
+
+        /// <summary>
+        ///     Prepare everything and navigate to AddAccount view
         /// </summary>
         public MvxCommand GoToAddAccountCommand { get; private set; }
 
         private void GoToAddTransaction(string type)
         {
             transactionManager.PrepareCreation(type);
-            ShowViewModel<AddTransactionViewModel>();
+            ShowViewModel<ModifyTransactionViewModel>();
         }
 
         private void GoToAddAccount()
         {
             accountManager.PrepareCreation();
-            ShowViewModel<AddAccountViewModel>();
+            ShowViewModel<ModifyAccountViewModel>();
+        }
+
+        private void GoToAbout()
+        {
+            ShowViewModel<AboutViewModel>();
         }
     }
 }

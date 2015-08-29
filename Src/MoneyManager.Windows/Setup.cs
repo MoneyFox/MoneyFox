@@ -1,4 +1,3 @@
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
@@ -13,9 +12,7 @@ namespace MoneyManager.Windows
     public class Setup : MvxWindowsSetup
     {
         public Setup(Frame frame)
-            : base(frame)
-        {
-        }
+            : base(frame) { }
 
         protected override void InitializeFirstChance()
         {
@@ -41,6 +38,5 @@ namespace MoneyManager.Windows
 
             return new Core.App();
         }
-        
     }
 }

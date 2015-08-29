@@ -26,6 +26,11 @@ namespace MoneyManager.Core
                 .RegisterAsLazySingleton();
 
             CreatableTypes()
+                .EndingWith("DataAccess")
+                .AsTypes()
+                .RegisterAsLazySingleton();
+
+            CreatableTypes()
                 .EndingWith("Repository")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
@@ -47,11 +52,11 @@ namespace MoneyManager.Core
         //This properties are used to bind the view model to the datacontext directly in xaml (windows only)
         public MainViewModel MainViewModel => Mvx.Resolve<MainViewModel>();
 
-        public AddAccountViewModel AddAccountViewModel => Mvx.Resolve<AddAccountViewModel>();
+        public ModifyAccountViewModel ModifyAccountViewModel => Mvx.Resolve<ModifyAccountViewModel>();
 
-        public AccountListUserControlViewModel AccountListUserControlViewModel => Mvx.Resolve<AccountListUserControlViewModel>();
+        public AccountListViewModel AccountListViewModel => Mvx.Resolve<AccountListViewModel>();
 
-        public AddTransactionViewModel AddTransactionViewModel => Mvx.Resolve<AddTransactionViewModel>();
+        public ModifyTransactionViewModel ModifyTransactionViewModel => Mvx.Resolve<ModifyTransactionViewModel>();
 
         public BalanceViewModel BalanceViewModel => Mvx.Resolve<BalanceViewModel>();
 

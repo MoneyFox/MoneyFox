@@ -5,6 +5,8 @@ using MoneyManager.Core.Tests.Stubs;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
+using Moq;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
@@ -14,13 +16,13 @@ namespace MoneyManager.Core.Tests.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnEditSpendingTitle()
         {
-            var dbHelper = new DbHelperStub();
+            var dbHelper = new Mock<IDbHelper>().Object;
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Spending}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub())
@@ -35,14 +37,14 @@ namespace MoneyManager.Core.Tests.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnEditIncomeTitle()
         {
-            var dbHelper = new DbHelperStub();
+            var dbHelper = new Mock<IDbHelper>().Object;
 
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Income}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub())
@@ -57,14 +59,14 @@ namespace MoneyManager.Core.Tests.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnEditTransferTitle()
         {
-            var dbHelper = new DbHelperStub();
+            var dbHelper = new Mock<IDbHelper>().Object;
 
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub())
@@ -79,14 +81,14 @@ namespace MoneyManager.Core.Tests.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnAddTransferTitle()
         {
-            var dbHelper = new DbHelperStub();
+            var dbHelper = new Mock<IDbHelper>().Object;
 
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub())
@@ -98,14 +100,14 @@ namespace MoneyManager.Core.Tests.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnSpendingDefaultTitle()
         {
-            var dbHelper = new DbHelperStub();
+            var dbHelper = new Mock<IDbHelper>().Object;
 
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Spending}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub());
@@ -116,14 +118,14 @@ namespace MoneyManager.Core.Tests.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnIncomeDefault()
         {
-            var dbHelper = new DbHelperStub();
+            var dbHelper = new Mock<IDbHelper>().Object;
 
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Income}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub());
@@ -133,14 +135,14 @@ namespace MoneyManager.Core.Tests.ViewModels
         [TestMethod]
         public void AddTransactionViewModel_ReturnTransferDefault()
         {
-            var dbHelper = new DbHelperStub();
+            var dbHelper = new Mock<IDbHelper>().Object;
 
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer}
             };
 
-            var viewModel = new AddTransactionViewModel(transactionRepository,
+            var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new SettingDataAccess(),
                 new DialogServiceStub());

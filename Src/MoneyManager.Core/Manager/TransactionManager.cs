@@ -11,20 +11,20 @@ namespace MoneyManager.Core.Manager
     public class TransactionManager
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly AddTransactionViewModel addTransactionViewModel;
+        private readonly ModifyTransactionViewModel modifyTransactionViewModel;
         private readonly SettingDataAccess settings;
 
         /// <summary>
         ///     Creates an TransactionManager object.
         /// </summary>
-        /// <param name="addTransactionViewModel">Instance of <see cref="AddTransactionViewModel"/></param>
+        /// <param name="modifyTransactionViewModel">Instance of <see cref="ModifyTransactionViewModel"/></param>
         /// <param name="accountRepository">Instance of <see cref="IRepository{T}"/></param>
         /// <param name="settings">Instance of <see cref="SettingDataAccess"/></param>
-        public TransactionManager(AddTransactionViewModel addTransactionViewModel,
+        public TransactionManager(ModifyTransactionViewModel modifyTransactionViewModel,
             IRepository<Account> accountRepository,
             SettingDataAccess settings)
         {
-            this.addTransactionViewModel = addTransactionViewModel;
+            this.modifyTransactionViewModel = modifyTransactionViewModel;
             this.accountRepository = accountRepository;
             this.settings = settings;
         }
@@ -37,12 +37,12 @@ namespace MoneyManager.Core.Manager
         {
             var type = (TransactionType) Enum.Parse(typeof (TransactionType), transactionType);
 
-            addTransactionViewModel.IsEdit = false;
-            addTransactionViewModel.IsEndless = true;
+            modifyTransactionViewModel.IsEdit = false;
+            modifyTransactionViewModel.IsEndless = true;
 
             //TODO: Find a way to properly refresh this list
-            //addTransactionViewModel.RefreshRealtedList = refreshRelatedList;
-            addTransactionViewModel.IsTransfer = type == TransactionType.Transfer;
+            //ModifyTransactionViewModel.RefreshRealtedList = refreshRelatedList;
+            modifyTransactionViewModel.IsTransfer = type == TransactionType.Transfer;
 
             //TODO: Move this to the add Transaction ViewModel
             //set default that the selection is properly
@@ -52,7 +52,7 @@ namespace MoneyManager.Core.Manager
 
         private void SetDefaultTransaction(TransactionType transactionType)
         {
-            addTransactionViewModel.SelectedTransaction = new FinancialTransaction
+            modifyTransactionViewModel.SelectedTransaction = new FinancialTransaction
             {
                 Type = (int) transactionType,
                 IsExchangeModeActive = false
@@ -65,18 +65,18 @@ namespace MoneyManager.Core.Manager
         {
             if (accountRepository.Data.Any())
             {
-                addTransactionViewModel.SelectedTransaction.ChargedAccount = accountRepository.Data.First();
+                modifyTransactionViewModel.SelectedTransaction.ChargedAccount = accountRepository.Data.First();
             }
 
             if (accountRepository.Data.Any() && settings.DefaultAccount != -1)
             {
-                addTransactionViewModel.SelectedTransaction.ChargedAccount =
+                modifyTransactionViewModel.SelectedTransaction.ChargedAccount =
                     accountRepository.Data.FirstOrDefault(x => x.Id == settings.DefaultAccount);
             }
 
             if (accountRepository.Selected != null)
             {
-                addTransactionViewModel.SelectedTransaction.ChargedAccount = accountRepository.Selected;
+                modifyTransactionViewModel.SelectedTransaction.ChargedAccount = accountRepository.Selected;
             }
         }
     }

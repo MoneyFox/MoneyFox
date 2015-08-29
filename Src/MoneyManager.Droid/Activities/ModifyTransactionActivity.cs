@@ -3,8 +3,8 @@ using Android.OS;
 
 namespace MoneyManager.Droid.Activities
 {
-    [Activity(Label = "AddAccountActivity")]
-    public class AddAccountActivity : Activity
+    [Activity(Label = "ModifyTransactionActivity")]
+    public class ModifyTransactionActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
         {

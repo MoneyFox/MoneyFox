@@ -12,7 +12,7 @@ namespace MoneyManager.Core.Logic
 {
     public class TransactionLogic
     {
-        public static async Task SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
+        public static void SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,
             bool skipRecurring = false)
         {
             if (transaction.IsRecurring && !skipRecurring)
@@ -26,22 +26,17 @@ namespace MoneyManager.Core.Logic
 
             TransactionRepository.Save(transaction);
 
-            if (refreshRelatedList)
-            {
-                Mvx.Resolve<TransactionListViewModel>()
-                    .SetRelatedTransactions(AccountRepository.Selected);
-            }
-            await AccountLogic.AddTransactionAmount(transaction);
+            AccountLogic.AddTransactionAmount(transaction);
         }
 
         //TODO: Move to VM / Refactor this
         public static void GoToAddTransaction(TransactionType transactionType, bool refreshRelatedList = false)
         {
             Mvx.Resolve<CategoryListViewModel>().IsSettingCall = false;
-            AddTransactionView.IsEdit = false;
-            AddTransactionView.IsEndless = true;
-            AddTransactionView.RefreshRealtedList = refreshRelatedList;
-            AddTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
+            ModifyTransactionView.IsEdit = false;
+            ModifyTransactionView.IsEndless = true;
+            ModifyTransactionView.RefreshRealtedList = refreshRelatedList;
+            ModifyTransactionView.IsTransfer = transactionType == TransactionType.Transfer;
             SetDefaultTransaction(transactionType);
             SetDefaultAccount();
         }
@@ -49,12 +44,12 @@ namespace MoneyManager.Core.Logic
         public static void PrepareEdit(FinancialTransaction transaction)
         {
             Mvx.Resolve<CategoryListViewModel>().IsSettingCall = false;
-            AddTransactionView.IsEdit = true;
-            AddTransactionView.IsTransfer = transaction.Type == (int) TransactionType.Transfer;
+            ModifyTransactionView.IsEdit = true;
+            ModifyTransactionView.IsTransfer = transaction.Type == (int) TransactionType.Transfer;
             if (transaction.ReccuringTransactionId.HasValue && transaction.RecurringTransaction != null)
             {
-                AddTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
-                AddTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
+                ModifyTransactionView.IsEndless = transaction.RecurringTransaction.IsEndless;
+                ModifyTransactionView.Recurrence = transaction.RecurringTransaction.Recurrence;
             }
 
             //Ultra dirty monkey patch for a problem with displaying the selected account.
@@ -73,8 +68,7 @@ namespace MoneyManager.Core.Logic
 
                 TransactionRepository.Delete(transaction);
 
-                await AccountLogic.RemoveTransactionAmount(transaction);
-                AccountLogic.RefreshRelatedTransactions();
+                AccountLogic.RemoveTransactionAmount(transaction);
                 Mvx.Resolve<BalanceViewModel>().UpdateBalance();
             }
         }
@@ -97,7 +91,7 @@ namespace MoneyManager.Core.Logic
         public static async Task UpdateTransaction(FinancialTransaction transaction)
         {
             CheckIfRecurringWasRemoved(transaction);
-            await AccountLogic.AddTransactionAmount(transaction);
+            AccountLogic.AddTransactionAmount(transaction);
             TransactionRepository.Save(transaction);
 
             var recurringTransaction =
@@ -106,8 +100,6 @@ namespace MoneyManager.Core.Logic
             await
                 CheckForRecurringTransaction(transaction,
                     () => RecurringTransactionRepository.Save(recurringTransaction));
-
-            AccountLogic.RefreshRelatedTransactions();
         }
 
         private static async Task CheckForRecurringTransaction(FinancialTransaction transaction,
@@ -180,14 +172,14 @@ namespace MoneyManager.Core.Logic
             }
         }
 
-        public static async Task ClearTransactions()
+        public static void ClearTransactions()
         {
             var transactions = TransactionRepository.GetUnclearedTransactions();
             foreach (var transaction in transactions)
             {
                 try
                 {
-                    await AccountLogic.AddTransactionAmount(transaction);
+                    AccountLogic.AddTransactionAmount(transaction);
                 }
                 catch (Exception ex)
                 {
@@ -213,8 +205,8 @@ namespace MoneyManager.Core.Logic
         private static IRepository<RecurringTransaction> RecurringTransactionRepository
             => Mvx.Resolve<IRepository<RecurringTransaction>>();
 
-        private static AddTransactionViewModel AddTransactionView
-            => Mvx.Resolve<AddTransactionViewModel>();
+        private static ModifyTransactionViewModel ModifyTransactionView
+            => Mvx.Resolve<ModifyTransactionViewModel>();
 
         private static SettingDataAccess Settings => Mvx.Resolve<SettingDataAccess>();
 

@@ -12,14 +12,14 @@ using IDialogService = MoneyManager.Foundation.OperationContracts.IDialogService
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class AddTransactionViewModel : BaseViewModel
+    public class ModifyTransactionViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
         private readonly IDialogService dialogService;
         private readonly SettingDataAccess settings;
         private readonly ITransactionRepository transactionRepository;
 
-        public AddTransactionViewModel(ITransactionRepository transactionRepository,
+        public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
             SettingDataAccess settings,
             IDialogService dialogService)
@@ -90,7 +90,7 @@ namespace MoneyManager.Core.ViewModels
             }
             else
             {
-                await TransactionLogic.SaveTransaction(transactionRepository.Selected, RefreshRealtedList);
+                TransactionLogic.SaveTransaction(transactionRepository.Selected, RefreshRealtedList);
             }
             Close(this);
         }
@@ -101,11 +101,11 @@ namespace MoneyManager.Core.ViewModels
                 Strings.AccountRequiredMessage);
         }
 
-        public async void Cancel()
+        public void Cancel()
         {
             if (IsEdit)
             {
-                await AccountLogic.AddTransactionAmount(transactionRepository.Selected);
+                AccountLogic.AddTransactionAmount(transactionRepository.Selected);
             }
             Close(this);
         }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Cirrious.CrossCore;
-using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -12,21 +10,7 @@ namespace MoneyManager.Core.Logic
 {
     public class AccountLogic
     {
-        public static void PrepareAddAccount()
-        {
-            AccountRepository.Selected = new Account
-            {
-                Currency = Mvx.Resolve<SettingDataAccess>().DefaultCurrency
-            };
-            Mvx.Resolve<AddAccountViewModel>().IsEdit = false;
-        }
-
-        public static void RefreshRelatedTransactions()
-        {
-            TransactionListView.SetRelatedTransactions(AccountRepository.Selected);
-        }
-
-        public static async Task RemoveTransactionAmount(FinancialTransaction transaction)
+        public static void RemoveTransactionAmount(FinancialTransaction transaction)
         {
             if (transaction.Cleared)
             {
@@ -37,11 +21,11 @@ namespace MoneyManager.Core.Logic
                         ? -x
                         : x;
 
-                await HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+                HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
             }
         }
 
-        public static async Task AddTransactionAmount(FinancialTransaction transaction)
+        public static void AddTransactionAmount(FinancialTransaction transaction)
         {
             PrehandleAddIfTransfer(transaction);
 
@@ -50,19 +34,19 @@ namespace MoneyManager.Core.Logic
                     ? x
                     : -x;
 
-            await HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+            HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
         }
 
-        private static async void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
+        private static void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
         {
             if (transaction.Type == (int) TransactionType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
-                await HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
+                HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
             }
         }
 
-        private static async Task HandleTransactionAmount(FinancialTransaction transaction,
+        private static void HandleTransactionAmount(FinancialTransaction transaction,
             Func<double, double> amountFunc,
             Func<FinancialTransaction, Account> getAccountFunc)
         {
@@ -74,12 +58,7 @@ namespace MoneyManager.Core.Logic
                     return;
                 }
 
-                var amountWithoutExchange = amountFunc(transaction.Amount);
-                //Currently there is no support for currency exchanges
-                var amount = amountWithoutExchange;
-
-                account.CurrentBalanceWithoutExchange += amountWithoutExchange;
-                account.CurrentBalance += amount;
+                account.CurrentBalance += amountFunc(transaction.Amount); ;
                 transaction.Cleared = true;
 
                 AccountRepository.Save(account);
@@ -92,12 +71,12 @@ namespace MoneyManager.Core.Logic
             }
         }
 
-        private static async void PrehandleAddIfTransfer(FinancialTransaction transaction)
+        private static void PrehandleAddIfTransfer(FinancialTransaction transaction)
         {
             if (transaction.Type == (int) TransactionType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
-                await HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
+                HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
             }
         }
 

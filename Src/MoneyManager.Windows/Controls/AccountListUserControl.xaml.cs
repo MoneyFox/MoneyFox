@@ -37,7 +37,7 @@ namespace MoneyManager.Windows.Controls
             }
             
             //TODO refactor this / move to a viewmodel
-            var viewModel = Mvx.Resolve<AddAccountViewModel>();
+            var viewModel = Mvx.Resolve<ModifyAccountViewModel>();
             viewModel.IsEdit = true;
             viewModel.SelectedAccount = account;
 
@@ -60,7 +60,7 @@ namespace MoneyManager.Windows.Controls
             }
 
             //TODO Refactor
-            Mvx.Resolve<AccountListUserControlViewModel>().Delete(account);
+            Mvx.Resolve<AccountListViewModel>().DeleteAccountCommand.Execute(account);
             Mvx.Resolve<BalanceViewModel>().UpdateBalance();
         }
 
@@ -71,7 +71,7 @@ namespace MoneyManager.Windows.Controls
                 AccountRepository.Selected = AccountList.SelectedItem as Account;
 
                 Mvx.Resolve<TransactionListViewModel>()
-                    .SetRelatedTransactions(AccountRepository.Selected);
+                    .LoadTransactionsCommand.Execute(AccountRepository.Selected);
 
                 //TODO move toviewmodel
                 ((Frame) Window.Current.Content).Navigate(typeof (TransactionListView));

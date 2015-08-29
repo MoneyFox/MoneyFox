@@ -1,19 +1,19 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.DataAccess;
+﻿using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Repositories;
-using MoneyManager.Core.Tests.Stubs;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
+using Moq;
+using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    [TestClass]
     public class SelectCategoryViewModelTests
     {
-        [TestMethod]
+        [Fact]
         public void ResetCategoryCommand_FilledProperty_PropertyIsNull()
         {
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(new DbHelperStub()));
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(new Mock<IDbHelper>().Object));
             var viewModel = new SelectCategoryViewModel(transactionRepository);
 
             transactionRepository.Selected = new FinancialTransaction
@@ -21,11 +21,11 @@ namespace MoneyManager.Core.Tests.ViewModels
                 Category = new Category()
             };
 
-            Assert.IsNotNull(transactionRepository.Selected.Category);
+            Assert.NotNull(transactionRepository.Selected.Category);
 
             viewModel.ResetCategoryCommand.Execute(null);
 
-            Assert.IsNull(transactionRepository.Selected.Category);
+            Assert.Null(transactionRepository.Selected.Category);
         }
     }
 }

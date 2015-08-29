@@ -23,9 +23,7 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
             var account = new Account
             {
                 Name = "Sparkonto",
-                CurrentBalanceWithoutExchange = 6034,
                 CurrentBalance = 6034,
-                Currency = "CHF"
             };
 
             repository.Save(account);

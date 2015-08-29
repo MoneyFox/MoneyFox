@@ -52,8 +52,8 @@ namespace MoneyManager.Windows
                 new NavMenuItem
                 {
                     Symbol = Symbol.Account,
-                    Label = "About",
-                    DestPage = typeof (About)
+                    Label = "AboutView",
+                    DestPage = typeof (AboutView)
                 }
             });
 

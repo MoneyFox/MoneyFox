@@ -12,7 +12,7 @@ namespace MoneyManager.Windows.Views
             InitializeComponent();
         }
 
-        private AddAccountViewModel viewModel => Mvx.Resolve<AddAccountViewModel>();
+        private ModifyAccountViewModel viewModel => Mvx.Resolve<ModifyAccountViewModel>();
 
         private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
         {
@@ -40,14 +40,14 @@ namespace MoneyManager.Windows.Views
                 viewModel.SelectedAccount.Name = Strings.NoNamePlaceholderLabel;
             }
 
-            viewModel.Save();
+            viewModel.SaveCommand.Execute();
             Mvx.Resolve<BalanceViewModel>().UpdateBalance();
         }
 
         //TODO: Move to ViewModel
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            viewModel.Cancel();
+            viewModel.CancelCommand.Execute();
         }
     }
 }

@@ -17,9 +17,7 @@ namespace MoneyManager.Core.Tests.Repositories
             var account = new Account
             {
                 Name = "Sparkonto",
-                CurrentBalanceWithoutExchange = 6034,
-                CurrentBalance = 6034,
-                Currency = "CHF"
+                CurrentBalance = 6034
             };
 
             accountDataAccessMock.Save(account);
@@ -35,9 +33,7 @@ namespace MoneyManager.Core.Tests.Repositories
 
             var account = new Account
             {
-                CurrentBalanceWithoutExchange = 6034,
-                CurrentBalance = 6034,
-                Currency = "CHF"
+                CurrentBalance = 6034
             };
 
             repository.Save(account);
@@ -61,9 +57,7 @@ namespace MoneyManager.Core.Tests.Repositories
             var account = new Account
             {
                 Name = "Sparkonto",
-                CurrentBalanceWithoutExchange = 6034,
-                CurrentBalance = 6034,
-                Currency = "CHF"
+                CurrentBalance = 6034
             };
 
             repository.Save(account);

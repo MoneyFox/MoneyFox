@@ -129,14 +129,14 @@ namespace MoneyManager.Core.Logic
                 ChargedAccount = transaction.ChargedAccount,
                 TargetAccount = transaction.TargetAccount,
                 StartDate = transaction.Date,
-                EndDate = addTransactionView.EndDate,
-                IsEndless = addTransactionView.IsEndless,
+                EndDate = ModifyTransactionView.EndDate,
+                IsEndless = ModifyTransactionView.IsEndless,
                 Amount = transaction.Amount,
                 AmountWithoutExchange = transaction.AmountWithoutExchange,
                 Currency = transaction.Currency,
                 CategoryId = transaction.CategoryId,
                 Type = transaction.Type,
-                Recurrence = addTransactionView.Recurrence,
+                Recurrence = ModifyTransactionView.Recurrence,
                 Note = transaction.Note
             };
         }
@@ -153,9 +153,9 @@ namespace MoneyManager.Core.Logic
             get { return Mvx.Resolve<ITransactionRepository>(); }
         }
 
-        private static AddTransactionViewModel addTransactionView
+        private static ModifyTransactionViewModel ModifyTransactionView
         {
-            get { return Mvx.Resolve<AddTransactionViewModel>(); }
+            get { return Mvx.Resolve<ModifyTransactionViewModel>(); }
         }
 
         private static IEnumerable<RecurringTransaction> AllRecurringTransactions

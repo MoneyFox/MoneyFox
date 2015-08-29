@@ -5,19 +5,22 @@ using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Widget;
-using Cirrious.MvvmCross.Droid.Views;
+using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Droid.Support.Fragging;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Droid.Fragments;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "MoneyManager", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : MvxActivity
+    public class MainActivity : MvxFragmentActivity
     {
         private string title;
         private string drawerTitle;
         private SlidingPaneLayout slidingLayout;
         private ListView menuListView;
+        private AccountListFragment accountListFragment;
 
         private readonly List<string> menuItems = new List<string>
         {
@@ -43,6 +46,10 @@ namespace MoneyManager.Droid.Activities
 
             slidingLayout = FindViewById<SlidingPaneLayout>(Resource.Id.main_layout);
             menuListView = FindViewById<ListView>(Resource.Id.left_pane);
+            accountListFragment = new AccountListFragment
+            {
+                ViewModel = Mvx.Resolve<AccountListViewModel>()
+            };
 
             slidingLayout.PanelOpened += (sender, e) =>
             {
@@ -67,6 +74,10 @@ namespace MoneyManager.Droid.Activities
             drawerTitle = Strings.MenuTitle;
 
             slidingLayout.ViewTreeObserver.GlobalLayout += FirstLayoutListener;
+
+            var fragmenTransaction = SupportFragmentManager.BeginTransaction();
+            fragmenTransaction.Add(Resource.Id.content_pane, accountListFragment);
+            fragmenTransaction.Commit();
         }
 
         private void NavigationClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -76,12 +87,23 @@ namespace MoneyManager.Droid.Activities
             switch (e.Position)
             {
                 case 0:
+                    SupportFragmentManager.BeginTransaction()
+                        .Replace(Resource.Id.content_pane, accountListFragment)
+                        .AddToBackStack("accountList")
+                        .Commit();
                     break;
 
                 case 1:
                     break;
 
                 case 2:
+                    break;
+
+                case 3:
+                    break;
+
+                case 4:
+                    ViewModel.GoToAboutCommand.Execute(null);
                     break;
             }
             slidingLayout.ClosePane();

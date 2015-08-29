@@ -24,9 +24,11 @@ namespace MoneyManager.Core.ViewModels
             this.transactionManager = transactionManager;
 
             GoToAddTransactionCommand = new MvxCommand<string>(GoToAddTransaction);
+            LoadTransactionsCommand = new MvxCommand(LoadTransactions);
         }
 
         public MvxCommand<string> GoToAddTransactionCommand { get; private set; }
+        public MvxCommand LoadTransactionsCommand { get; private set; }
 
         /// <summary>
         ///     Returns all Transaction who are assigned to this repository
@@ -38,10 +40,10 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public string Title => accountRepository.Selected.Name;
 
-        public void SetRelatedTransactions(Account account)
+        public void LoadTransactions()
         {
             RelatedTransactions = transactionRepository
-                .GetRelatedTransactions(account)
+                .GetRelatedTransactions(accountRepository.Selected)
                 .OrderByDescending(x => x.Date)
                 .ToList();
         }
@@ -49,7 +51,7 @@ namespace MoneyManager.Core.ViewModels
         private void GoToAddTransaction(string type)
         {
             transactionManager.PrepareCreation(type);
-            ShowViewModel<AddTransactionViewModel>();
+            ShowViewModel<ModifyTransactionViewModel>();
         }
     }
 }
