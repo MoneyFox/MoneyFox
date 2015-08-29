@@ -7,9 +7,9 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class About
+    public sealed partial class AboutView
     {
-        public About()
+        public AboutView()
         {
             InitializeComponent();
 

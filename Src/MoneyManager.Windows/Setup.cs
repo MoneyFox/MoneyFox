@@ -1,8 +1,8 @@
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsCommon.Platform;
+using Cirrious.MvvmCross.WindowsCommon.Views;
 using MoneyManager.Foundation.OperationContracts;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.WinRT;
@@ -12,9 +12,12 @@ namespace MoneyManager.Windows
 {
     public class Setup : MvxWindowsSetup
     {
+        private Frame frame;
+
         public Setup(Frame frame)
             : base(frame)
         {
+            this.frame = frame;
         }
 
         protected override void InitializeFirstChance()
@@ -41,6 +44,5 @@ namespace MoneyManager.Windows
 
             return new Core.App();
         }
-        
     }
 }

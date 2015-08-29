@@ -164,8 +164,8 @@
     <Compile Include="Tile\SpendingTile.cs" />
     <Compile Include="Tile\Tile.cs" />
     <Compile Include="Tile\TransferTile.cs" />
-    <Compile Include="Views\About.xaml.cs">
-      <DependentUpon>About.xaml</DependentUpon>
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddAccountView.xaml.cs">
       <DependentUpon>AddAccountView.xaml</DependentUpon>
@@ -306,7 +306,7 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
-    <Page Include="Views\About.xaml">
+    <Page Include="Views\AboutView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
