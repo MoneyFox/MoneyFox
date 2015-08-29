@@ -13,6 +13,7 @@ namespace MoneyManager.Windows.Views
         public ModifyTransactionView()
         {
             InitializeComponent();
+            DataContext = Mvx.Resolve<ModifyTransactionViewModel>();
         }
 
         private ModifyTransactionViewModel ModifyTransactionViewModel

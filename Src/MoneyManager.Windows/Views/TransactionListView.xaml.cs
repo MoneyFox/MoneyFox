@@ -1,6 +1,8 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Cirrious.CrossCore;
 using MoneyManager.Core.Logic;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Windows.Views
@@ -10,6 +12,7 @@ namespace MoneyManager.Windows.Views
         public TransactionListView()
         {
             InitializeComponent();
+            DataContext = Mvx.Resolve<TransactionListViewModel>();
         }
 
         //TODO: move to view model

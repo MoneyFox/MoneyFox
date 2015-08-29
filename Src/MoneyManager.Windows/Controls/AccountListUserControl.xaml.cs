@@ -15,6 +15,7 @@ namespace MoneyManager.Windows.Controls
         public AccountListUserControl()
         {
             InitializeComponent();
+            DataContext = Mvx.Resolve<AccountListViewModel>();
         }
 
         private IRepository<Account> AccountRepository => Mvx.Resolve<IRepository<Account>>();

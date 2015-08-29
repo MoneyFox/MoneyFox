@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Dialogs;
@@ -13,6 +14,7 @@ namespace MoneyManager.Windows.Controls
         public CategoryListUserControl()
         {
             InitializeComponent();
+            DataContext = Mvx.Resolve<CategoryListViewModel>();
         }
 
         private void CategoryListHolding(object sender, HoldingRoutedEventArgs e)

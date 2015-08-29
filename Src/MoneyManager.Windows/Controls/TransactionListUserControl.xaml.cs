@@ -16,6 +16,7 @@ namespace MoneyManager.Windows.Controls
         public TransactionListUserControl()
         {
             InitializeComponent();
+            DataContext = Mvx.Resolve<TransactionListViewModel>();
 
             //TODO: Handle in View Model
             Mvx.Resolve<BalanceViewModel>().IsTransactionView = true;

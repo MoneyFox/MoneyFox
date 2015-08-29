@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-             DataContext="{Binding SelectCategoryViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d"
     d:DesignHeight="68"
     d:DesignWidth="400">

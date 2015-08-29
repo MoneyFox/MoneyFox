@@ -10,6 +10,7 @@ namespace MoneyManager.Windows.Views
         public ModifyAccountView()
         {
             InitializeComponent();
+            DataContext = Mvx.Resolve<ModifyAccountViewModel>();
         }
 
         private ModifyAccountViewModel viewModel => Mvx.Resolve<ModifyAccountViewModel>();

@@ -9,10 +9,12 @@ namespace MoneyManager.Windows.Controls
         public BalanceUserControl()
         {
             InitializeComponent();
+            DataContext = Mvx.Resolve<BalanceViewModel>();
         }
 
         private void BalanceUserControl_OnLoaded(object sender, RoutedEventArgs e)
         {
+            //TODO Move to viewmodel
             Mvx.Resolve<BalanceViewModel>().UpdateBalance();
         }
     }

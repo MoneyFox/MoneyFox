@@ -7,7 +7,6 @@
       xmlns:converter="using:MoneyManager.Windows.Converter"
       xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-      DataContext="{Binding AddAccountViewModel, Source={StaticResource Locator}}"
       mc:Ignorable="d">
 
     <Page.Resources>
