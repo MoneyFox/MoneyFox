@@ -37,12 +37,12 @@ namespace MoneyManager.Windows
                     Label = "Statistics",
                     DestPage = typeof(StatisticsView)
                 },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.SyncFolder,
-                    Label = "Backup",
-                    DestPage = typeof (BackupView)
-                },
+                //new NavMenuItem
+                //{
+                //    Symbol = Symbol.SyncFolder,
+                //    Label = "Backup",
+                //    DestPage = typeof (BackupView)
+                //},
                 new NavMenuItem
                 {
                     Symbol = Symbol.Setting,

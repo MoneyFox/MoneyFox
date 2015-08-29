@@ -5,9 +5,9 @@ using MoneyManager.Foundation;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class AddAccountView
+    public sealed partial class ModifyAccountView
     {
-        public AddAccountView()
+        public ModifyAccountView()
         {
             InitializeComponent();
         }
@@ -41,7 +41,6 @@ namespace MoneyManager.Windows.Views
             }
 
             viewModel.SaveCommand.Execute();
-            Mvx.Resolve<BalanceViewModel>().UpdateBalance();
         }
 
         //TODO: Move to ViewModel

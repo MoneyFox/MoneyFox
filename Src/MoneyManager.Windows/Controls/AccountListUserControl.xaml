@@ -31,16 +31,18 @@
                     <Grid HorizontalAlignment="Stretch"
                           Margin="0,0,0,8">
                         <TextBlock Text="{Binding Name}"
+                                   
                                    TextTrimming="CharacterEllipsis" />
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
-                            <TextBlock
-                                Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
-                                HorizontalAlignment="Right"
-                                TextAlignment="Right" />
+                            <TextBlock TextAlignment="Right"
+                                       Style="{ThemeResource SubtitleTextBlockStyle}"
+                                       Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
+                                       HorizontalAlignment="Right"/>
                         </StackPanel>
                     </Grid>
-                    <TextBlock Text="{Binding Iban}" />
+                    <TextBlock Text="{Binding Iban}"
+                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}"/>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>

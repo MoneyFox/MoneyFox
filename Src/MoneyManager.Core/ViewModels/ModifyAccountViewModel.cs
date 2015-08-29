@@ -9,10 +9,12 @@ namespace MoneyManager.Core.ViewModels
     public class ModifyAccountViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
+        private readonly BalanceViewModel balanceViewModel;
 
-        public ModifyAccountViewModel(IRepository<Account> accountRepository)
+        public ModifyAccountViewModel(IRepository<Account> accountRepository, BalanceViewModel balanceViewModel)
         {
             this.accountRepository = accountRepository;
+            this.balanceViewModel = balanceViewModel;
 
             SaveCommand = new MvxCommand(SaveAccount);
             DeleteCommand = new MvxCommand(DeleteAccount);
@@ -54,6 +56,8 @@ namespace MoneyManager.Core.ViewModels
         private void SaveAccount()
         {
             accountRepository.Save(accountRepository.Selected);
+            balanceViewModel.UpdateBalance();
+
             Close(this);
         }
 

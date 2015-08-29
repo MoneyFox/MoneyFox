@@ -8,9 +8,9 @@ using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class AddTransactionView
+    public sealed partial class ModifyTransactionView
     {
-        public AddTransactionView()
+        public ModifyTransactionView()
         {
             InitializeComponent();
         }

@@ -169,6 +169,9 @@ Visit Repository:</value>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="TotalLabel.Text" xml:space="preserve">
+    <value>Total: </value>
+  </data>
   <data name="VersionLabel.Text" xml:space="preserve">
     <value>Version: </value>
   </data>

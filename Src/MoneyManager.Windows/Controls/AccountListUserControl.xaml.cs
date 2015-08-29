@@ -41,7 +41,7 @@ namespace MoneyManager.Windows.Controls
             viewModel.IsEdit = true;
             viewModel.SelectedAccount = account;
 
-            ((Frame) Window.Current.Content).Navigate(typeof (AddAccountView));
+            ((Frame) Window.Current.Content).Navigate(typeof (ModifyAccountView));
         }
 
         private async void Delete_OnClick(object sender, RoutedEventArgs e)

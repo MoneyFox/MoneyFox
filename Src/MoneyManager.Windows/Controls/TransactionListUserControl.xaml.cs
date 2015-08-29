@@ -31,7 +31,7 @@ namespace MoneyManager.Windows.Controls
             }
 
             TransactionLogic.PrepareEdit(transaction);
-            ((Frame) Window.Current.Content).Navigate(typeof (AddTransactionView));
+            ((Frame) Window.Current.Content).Navigate(typeof (ModifyTransactionView));
         }
 
         private async void DeleteTransaction(object sender, RoutedEventArgs e)
@@ -80,7 +80,7 @@ namespace MoneyManager.Windows.Controls
 
                 TransactionLogic.PrepareEdit(TransactionRepository.Selected);
 
-                ((Frame) Window.Current.Content).Navigate(typeof (AddTransactionView));
+                ((Frame) Window.Current.Content).Navigate(typeof (ModifyTransactionView));
                 ListViewTransactions.SelectedItem = null;
             }
         }
