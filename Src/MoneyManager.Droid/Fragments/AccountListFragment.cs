@@ -1,7 +1,6 @@
 using Android.OS;
 using Android.Views;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
-using Cirrious.MvvmCross.Binding.Droid.Views;
 using Cirrious.MvvmCross.Droid.Support.Fragging.Fragments;
 using MoneyManager.Core.ViewModels;
 
@@ -19,13 +18,7 @@ namespace MoneyManager.Droid.Fragments
         {
             base.OnCreateView(inflater, container, savedInstanceState);
 
-            var view = this.BindingInflate(Resource.Layout.AccountListLayout, null);
-
-            //TODO: Move this to binding
-            var list = view.FindViewById<MvxListView>(Resource.Id.accountList);
-            list.ItemsSource = ViewModel.AllAccounts;
-
-            return view;
+            return this.BindingInflate(Resource.Layout.AccountListLayout, null);
         }
     }
 }
