@@ -3,12 +3,10 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Globalization;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Windows.Views;
-using Xamarin;
 
 namespace MoneyManager.Windows
 {
@@ -62,6 +60,8 @@ namespace MoneyManager.Windows
                 var start = Mvx.Resolve<IMvxAppStart>();
                 start.Start();
             }
+
+            shell.AppFrame.Navigate(typeof (MainView));
 
             // Ensure the current window is active
             Window.Current.Activate();
