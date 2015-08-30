@@ -19,7 +19,7 @@ namespace MoneyManager.Core.ViewModels
         }
 
         /// <summary>
-        /// All existing accounts.
+        ///     All existing accounts.
         /// </summary>
         public ObservableCollection<Account> AllAccounts
         {
@@ -33,10 +33,10 @@ namespace MoneyManager.Core.ViewModels
         public MvxCommand<Account> OpenOverviewCommand { get; set; }
 
         /// <summary>
-        /// Deletes the selected account
+        ///     Deletes the selected account
         /// </summary>
         public MvxCommand<Account> DeleteAccountCommand { get; set; }
-        
+
         private void GoToTransactionOverView(Account selectedAccount)
         {
             accountRepository.Selected = selectedAccount;

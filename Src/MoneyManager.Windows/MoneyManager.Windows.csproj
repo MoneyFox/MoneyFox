@@ -102,6 +102,9 @@
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
+    <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
+    <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Controls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,8 @@
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DatabasePath.cs" />
     <Compile Include="Src\DialogService.cs" />
+    <Compile Include="Src\IStoreFeatures.cs" />
+    <Compile Include="Src\StoreFeatures.cs" />
     <Compile Include="Src\PageNavigationService.cs" />
     <Compile Include="Src\RegionLogic.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
@@ -354,6 +359,10 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Email, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta1\lib\portable-win+net45+wp8+win8+wpa81\Cirrious.MvvmCross.Plugins.Email.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Live, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LiveSDK.5.6.3\WindowsXAML\Microsoft.Live.dll</HintPath>

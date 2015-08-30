@@ -14,10 +14,11 @@ namespace MoneyManager.Core.Manager
         /// <summary>
         ///     Creates an AccountManager object.
         /// </summary>
-        /// <param name="modifyAccountViewModel">Instance of <cref="ModifyAccountViewModel"/></param>
-        /// <param name="accountRepository">Instance of <see cref="IRepository{T}"/></param>
-        /// <param name="settings">Instance of <see cref="SettingDataAccess"/></param>
-        public AccountManager(IRepository<Account> accountRepository, ModifyAccountViewModel modifyAccountViewModel, SettingDataAccess settings)
+        /// <param name="modifyAccountViewModel">Instance of <cref="ModifyAccountViewModel" /></param>
+        /// <param name="accountRepository">Instance of <see cref="IRepository{T}" /></param>
+        /// <param name="settings">Instance of <see cref="SettingDataAccess" /></param>
+        public AccountManager(IRepository<Account> accountRepository, ModifyAccountViewModel modifyAccountViewModel,
+            SettingDataAccess settings)
         {
             this.accountRepository = accountRepository;
             this.modifyAccountViewModel = modifyAccountViewModel;
@@ -32,6 +33,5 @@ namespace MoneyManager.Core.Manager
             accountRepository.Selected = new Account();
             modifyAccountViewModel.IsEdit = false;
         }
-
     }
 }

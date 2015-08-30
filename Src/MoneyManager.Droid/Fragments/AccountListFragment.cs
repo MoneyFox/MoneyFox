@@ -10,7 +10,7 @@ namespace MoneyManager.Droid.Fragments
     {
         public new AccountListViewModel ViewModel
         {
-            get { return (AccountListViewModel)base.ViewModel; }
+            get { return (AccountListViewModel) base.ViewModel; }
             set { base.ViewModel = value; }
         }
 

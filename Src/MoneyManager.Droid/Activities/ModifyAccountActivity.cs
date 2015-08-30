@@ -12,7 +12,7 @@ namespace MoneyManager.Droid.Activities
     {
         public new ModifyAccountViewModel ViewModel
         {
-            get { return (ModifyAccountViewModel)base.ViewModel; }
+            get { return (ModifyAccountViewModel) base.ViewModel; }
             set { base.ViewModel = value; }
         }
 

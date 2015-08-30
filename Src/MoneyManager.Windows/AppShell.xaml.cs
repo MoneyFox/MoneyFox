@@ -28,14 +28,14 @@ namespace MoneyManager.Windows
                 new NavMenuItem
                 {
                     Symbol = Symbol.Library,
-                    Label = "Account",
+                    Label = "Accounts",
                     DestPage = typeof (MainView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.View,
                     Label = "Statistics",
-                    DestPage = typeof(StatisticsView)
+                    DestPage = typeof (StatisticsView)
                 },
                 //new NavMenuItem
                 //{
@@ -47,12 +47,12 @@ namespace MoneyManager.Windows
                 {
                     Symbol = Symbol.Setting,
                     Label = "Settings",
-                    DestPage = typeof(SettingsView)
+                    DestPage = typeof (SettingsView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.Account,
-                    Label = "AboutView",
+                    Label = "About",
                     DestPage = typeof (AboutView)
                 }
             });

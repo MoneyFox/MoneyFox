@@ -5,14 +5,14 @@ namespace MoneyManager.Core.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private readonly TransactionManager transactionManager;
         private readonly AccountManager accountManager;
+        private readonly TransactionManager transactionManager;
 
         /// <summary>
         ///     Creates an MainViewModel object.
         /// </summary>
-        /// <param name="transactionManager">Instance of <see cref="TransactionManager"/></param>
-        /// <param name="accountManager">Instance of <see cref="AccountManager"/></param>
+        /// <param name="transactionManager">Instance of <see cref="TransactionManager" /></param>
+        /// <param name="accountManager">Instance of <see cref="AccountManager" /></param>
         public MainViewModel(TransactionManager transactionManager, AccountManager accountManager)
         {
             this.accountManager = accountManager;

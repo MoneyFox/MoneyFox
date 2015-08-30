@@ -58,7 +58,8 @@ namespace MoneyManager.Core.Logic
                     return;
                 }
 
-                account.CurrentBalance += amountFunc(transaction.Amount); ;
+                account.CurrentBalance += amountFunc(transaction.Amount);
+                ;
                 transaction.Cleared = true;
 
                 AccountRepository.Save(account);

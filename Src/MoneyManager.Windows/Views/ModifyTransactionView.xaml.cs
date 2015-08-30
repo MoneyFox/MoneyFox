@@ -1,9 +1,7 @@
 ﻿using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
-using MoneyManager.Core.Logic;
 using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views
@@ -14,19 +12,6 @@ namespace MoneyManager.Windows.Views
         {
             InitializeComponent();
             DataContext = Mvx.Resolve<ModifyTransactionViewModel>();
-        }
-
-        private ModifyTransactionViewModel ModifyTransactionViewModel
-            => Mvx.Resolve<ModifyTransactionViewModel>();
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if (e.NavigationMode != NavigationMode.Back && ModifyTransactionViewModel.IsEdit)
-            {
-                AccountLogic.RemoveTransactionAmount(ModifyTransactionViewModel.SelectedTransaction);
-            }
-
-            base.OnNavigatedTo(e);
         }
 
         private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
@@ -59,18 +44,6 @@ namespace MoneyManager.Windows.Views
 
             TextBoxAmount.Text = e.OriginalSource.ToString()
                 .Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
-        }
-
-        //TODO: Handle in View Model
-        private void DoneClick(object sender, RoutedEventArgs e)
-        {
-            ModifyTransactionViewModel.Save();
-        }
-
-        //TODO: Handle in View Model
-        private void CancelClick(object sender, RoutedEventArgs e)
-        {
-            ModifyTransactionViewModel.Cancel();
         }
     }
 }

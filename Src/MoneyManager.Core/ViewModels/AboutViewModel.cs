@@ -10,24 +10,29 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly IAppInformation appInformation;
         private readonly IMvxComposeEmailTask composeEmailTask;
+        private readonly IStoreFeatures storeFeatures;
         private readonly IMvxWebBrowserTask webBrowserTask;
 
         /// <summary>
         ///     Creates an AboutViewModel Object
         /// </summary>
-        /// <param name="appInformation">Instance of a <see cref="IAppInformation"/> implementation.</param>
-        /// <param name="composeEmailTask">Instance of a <see cref="IMvxComposeEmailTask"/> implementation.</param>
-        /// <param name="webBrowserTask">Instance of a <see cref="IMvxWebBrowserTask"/> implementation.</param>
+        /// <param name="appInformation">Instance of a <see cref="IAppInformation" /> implementation.</param>
+        /// <param name="composeEmailTask">Instance of a <see cref="IMvxComposeEmailTask" /> implementation.</param>
+        /// <param name="webBrowserTask">Instance of a <see cref="IMvxWebBrowserTask" /> implementation.</param>
+        /// <param name="storeFeatures">Instance of a <see cref="IStoreFeatures" /> implementation.</param>
         public AboutViewModel(IAppInformation appInformation,
-            IMvxComposeEmailTask composeEmailTask, 
-            IMvxWebBrowserTask webBrowserTask)
+            IMvxComposeEmailTask composeEmailTask,
+            IMvxWebBrowserTask webBrowserTask,
+            IStoreFeatures storeFeatures)
         {
             this.appInformation = appInformation;
             this.composeEmailTask = composeEmailTask;
             this.webBrowserTask = webBrowserTask;
+            this.storeFeatures = storeFeatures;
 
             GoToWebsiteCommand = new MvxCommand(GoToWebsite);
             SendMailCommand = new MvxCommand(SendMail);
+            RateAppCommand = new MvxCommand(RateApp);
             GoToRepositoryCommand = new MvxCommand(GoToRepository);
         }
 
@@ -42,6 +47,11 @@ namespace MoneyManager.Core.ViewModels
         ///     mail address
         /// </summary>
         public MvxCommand SendMailCommand { get; set; }
+
+        /// <summary>
+        ///     Opens the store to rate the app.
+        /// </summary>
+        public MvxCommand RateAppCommand { get; set; }
 
         /// <summary>
         ///     Opens the webbrowser and loads repository page
@@ -71,17 +81,22 @@ namespace MoneyManager.Core.ViewModels
             webBrowserTask.ShowWebPage(Strings.WebsiteUrl);
         }
 
-        private void GoToRepository()
-        {
-            webBrowserTask.ShowWebPage(Strings.WebsiteUrl);
-        }
-
         private void SendMail()
         {
             composeEmailTask.ComposeEmail(Strings.SupportMail,
                 string.Empty,
                 Strings.FeedbackSubject,
                 string.Empty, true);
+        }
+
+        private void RateApp()
+        {
+            storeFeatures.RateApp();
+        }
+
+        private void GoToRepository()
+        {
+            webBrowserTask.ShowWebPage(Strings.GitHubRepositoryUrl);
         }
     }
 }

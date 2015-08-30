@@ -1,4 +1,4 @@
-﻿<views:MvxWindowsPage
+﻿<Page
     x:Class="MoneyManager.Windows.Views.StatisticsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -12,15 +12,15 @@
         <Pivot Margin="0,30,0,0">
             <PivotItem Header="Foo1">
                 <controls:BarChartUserControl />
-            </PivotItem>            
-            
+            </PivotItem>
+
             <PivotItem Header="Foo2">
                 <controls:PieChartUserControl />
-            </PivotItem> 
-            
+            </PivotItem>
+
             <PivotItem Header="Foo3">
                 <controls:CategorySummaryUserControl />
             </PivotItem>
         </Pivot>
     </Grid>
-</views:MvxWindowsPage>
+</Page>

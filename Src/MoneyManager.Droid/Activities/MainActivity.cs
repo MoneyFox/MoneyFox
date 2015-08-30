@@ -16,12 +16,6 @@ namespace MoneyManager.Droid.Activities
     [Activity(Label = "MoneyManager", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : MvxFragmentActivity
     {
-        private string title;
-        private string drawerTitle;
-        private SlidingPaneLayout slidingLayout;
-        private ListView menuListView;
-        private AccountListFragment accountListFragment;
-
         private readonly List<string> menuItems = new List<string>
         {
             Strings.AccountsLabel,
@@ -31,9 +25,15 @@ namespace MoneyManager.Droid.Activities
             Strings.AboutLabel
         };
 
+        private AccountListFragment accountListFragment;
+        private string drawerTitle;
+        private ListView menuListView;
+        private SlidingPaneLayout slidingLayout;
+        private string title;
+
         public new MainViewModel ViewModel
         {
-            get { return (MainViewModel)base.ViewModel; }
+            get { return (MainViewModel) base.ViewModel; }
             set { base.ViewModel = value; }
         }
 
@@ -167,6 +167,5 @@ namespace MoneyManager.Droid.Activities
                     return base.OnOptionsItemSelected(item);
             }
         }
-
     }
 }

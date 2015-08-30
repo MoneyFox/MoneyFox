@@ -26,7 +26,8 @@ namespace MoneyManager.Core.Tests.ViewModels
                     settings,
                     new DialogServiceStub());
 
-            var addAccountViewModel = new ModifyAccountViewModel(accountRepository, new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
+            var addAccountViewModel = new ModifyAccountViewModel(accountRepository,
+                new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
             var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);
@@ -54,7 +55,8 @@ namespace MoneyManager.Core.Tests.ViewModels
                     settings,
                     new DialogServiceStub());
 
-            var addAccountViewModel = new ModifyAccountViewModel(accountRepository, new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
+            var addAccountViewModel = new ModifyAccountViewModel(accountRepository,
+                new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
             var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);
@@ -83,7 +85,8 @@ namespace MoneyManager.Core.Tests.ViewModels
                     settings,
                     new DialogServiceStub());
 
-            var addAccountViewModel = new ModifyAccountViewModel(accountRepository, new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings)    );
+            var addAccountViewModel = new ModifyAccountViewModel(accountRepository,
+                new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
 
             var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
             var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);

@@ -57,6 +57,7 @@
     <Compile Include="OperationContracts\IDialogService.cs" />
     <Compile Include="OperationContracts\IRepository.cs" />
     <Compile Include="OperationContracts\ISecondTile.cs" />
+    <Compile Include="OperationContracts\IStoreFeatures.cs" />
     <Compile Include="OperationContracts\ITransactionRepository.cs" />
     <Compile Include="OperationContracts\IUserNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

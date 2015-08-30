@@ -5,7 +5,6 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
-using IDialogService = MoneyManager.Foundation.OperationContracts.IDialogService;
 
 namespace MoneyManager.Core.ViewModels
 {
