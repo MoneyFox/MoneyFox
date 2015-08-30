@@ -48,30 +48,5 @@ namespace MoneyManager.Core
             // Start the app with the Main View Model.
             RegisterAppStart<MainViewModel>();
         }
-
-        //This properties are used to bind the view model to the datacontext directly in xaml (windows only)
-        public MainViewModel MainViewModel => Mvx.Resolve<MainViewModel>();
-
-        public ModifyAccountViewModel ModifyAccountViewModel => Mvx.Resolve<ModifyAccountViewModel>();
-
-        public AccountListViewModel AccountListViewModel => Mvx.Resolve<AccountListViewModel>();
-
-        public ModifyTransactionViewModel ModifyTransactionViewModel => Mvx.Resolve<ModifyTransactionViewModel>();
-
-        public BalanceViewModel BalanceViewModel => Mvx.Resolve<BalanceViewModel>();
-
-        public CategoryListViewModel CategoryListViewModel => Mvx.Resolve<CategoryListViewModel>();
-
-        public TransactionListViewModel TransactionListViewModel => Mvx.Resolve<TransactionListViewModel>();
-
-        public TileSettingsViewModel TileSettingsViewModel => Mvx.Resolve<TileSettingsViewModel>();
-
-        public SettingDefaultsViewModel SettingDefaultsViewModel => Mvx.Resolve<SettingDefaultsViewModel>();
-
-        public StatisticViewModel StatisticViewModel => Mvx.Resolve<StatisticViewModel>();
-
-        public BackupViewModel BackupViewModel => Mvx.Resolve<BackupViewModel>();
-
-        public SelectCategoryViewModel SelectCategoryViewModel => Mvx.Resolve<SelectCategoryViewModel>();
     }
 }

@@ -1,14 +1,12 @@
 ﻿<Application x:Class="MoneyManager.Windows.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:core="using:MoneyManager.Core">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Style/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <core:App x:Key="Locator"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

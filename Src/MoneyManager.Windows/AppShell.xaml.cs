@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using Cirrious.MvvmCross.WindowsCommon.Views;
 using MoneyManager.Windows.Controls;
 using MoneyManager.Windows.Views;
 
@@ -28,7 +29,7 @@ namespace MoneyManager.Windows
                 new NavMenuItem
                 {
                     Symbol = Symbol.Library,
-                    Label = "Account",
+                    Label = "Accounts",
                     DestPage = typeof (MainView)
                 },
                 new NavMenuItem
@@ -52,7 +53,7 @@ namespace MoneyManager.Windows
                 new NavMenuItem
                 {
                     Symbol = Symbol.Account,
-                    Label = "AboutView",
+                    Label = "About",
                     DestPage = typeof (AboutView)
                 }
             });

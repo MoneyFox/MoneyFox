@@ -449,7 +449,7 @@ namespace MoneyManager.Foundation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to www.apply-solutions.ch.
+        ///   Looks up a localized string similar to http://www.apply-solutions.ch.
         /// </summary>
         public static string WebsiteUrl {
             get {

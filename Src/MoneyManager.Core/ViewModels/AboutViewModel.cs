@@ -28,6 +28,7 @@ namespace MoneyManager.Core.ViewModels
 
             GoToWebsiteCommand = new MvxCommand(GoToWebsite);
             SendMailCommand = new MvxCommand(SendMail);
+            RateAppCommand = new MvxCommand(RateApp);
             GoToRepositoryCommand = new MvxCommand(GoToRepository);
         }
 
@@ -42,6 +43,11 @@ namespace MoneyManager.Core.ViewModels
         ///     mail address
         /// </summary>
         public MvxCommand SendMailCommand { get; set; }
+
+        /// <summary>
+        ///     Opens the store to rate the app.
+        /// </summary>
+        public MvxCommand RateAppCommand { get; set; }
 
         /// <summary>
         ///     Opens the webbrowser and loads repository page
@@ -71,17 +77,21 @@ namespace MoneyManager.Core.ViewModels
             webBrowserTask.ShowWebPage(Strings.WebsiteUrl);
         }
 
-        private void GoToRepository()
-        {
-            webBrowserTask.ShowWebPage(Strings.WebsiteUrl);
-        }
-
         private void SendMail()
         {
             composeEmailTask.ComposeEmail(Strings.SupportMail,
                 string.Empty,
                 Strings.FeedbackSubject,
                 string.Empty, true);
+        }
+
+        private void RateApp()
+        {
+        }
+
+        private void GoToRepository()
+        {
+            webBrowserTask.ShowWebPage(Strings.GitHubRepositoryUrl);
         }
     }
 }
