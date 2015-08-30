@@ -6,8 +6,16 @@
       xmlns:userControls="using:MoneyManager.Windows.Controls"
       xmlns:converter1="using:MoneyManager.Windows.Converter"
       xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
         <converter1:AmountFormatConverter x:Key="AmountConverter" />
@@ -33,11 +41,11 @@
             <AppBarButton Icon="Save"
                           Label="Done"
                           x:Uid="Done"
-                          Click="DoneClick" />
+                          Command="{Binding SaveCommand}"/>
             <AppBarButton Icon="Cancel"
                           Label="Cancel"
                           x:Uid="Cancel"
-                          Click="CancelClick" />
+                          Command="{Binding CancelCommand}" />
         </CommandBar>
     </Page.BottomAppBar>
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.Logic;
@@ -7,7 +8,6 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
-using IDialogService = MoneyManager.Foundation.OperationContracts.IDialogService;
 
 namespace MoneyManager.Core.ViewModels
 {
@@ -30,7 +30,26 @@ namespace MoneyManager.Core.ViewModels
             this.accountRepository = accountRepository;
 
             IsNavigationBlocked = true;
+
+            LoadedCommand = new MvxCommand(Loaded);
+            SaveCommand = new MvxCommand(Save);
+            CancelCommand = new MvxCommand(Cancel);
         }
+
+        /// <summary>
+        ///     Handels everything when the page is loaded.
+        /// </summary>
+        public MvxCommand LoadedCommand { get; set; }
+
+        /// <summary>
+        ///     Saves the transaction or updates the existing depending on the IsEdit Flag.
+        /// </summary>
+        public MvxCommand SaveCommand { get; set; }
+
+        /// <summary>
+        ///     Cancels the operations.
+        /// </summary>
+        public MvxCommand CancelCommand { get; set; }
 
         public bool IsNavigationBlocked { get; set; }
         public DateTime EndDate { get; set; }
@@ -40,15 +59,23 @@ namespace MoneyManager.Core.ViewModels
         public bool IsTransfer { get; set; }
         public bool RefreshRealtedList { get; set; }
 
+        /// <summary>
+        ///     The selected transaction
+        /// </summary>
         public FinancialTransaction SelectedTransaction
         {
             get { return transactionRepository.Selected; }
             set { transactionRepository.Selected = value; }
         }
 
-        public string DefaultCurrency => settings.DefaultCurrency;
+        /// <summary>
+        ///     Gives access to all accounts
+        /// </summary>
         public ObservableCollection<Account> AllAccounts => accountRepository.Data;
 
+        /// <summary>
+        ///     Returns the Title for the page
+        /// </summary>
         public string Title
         {
             get
@@ -63,6 +90,9 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
+        /// <summary>
+        ///     The transaction date
+        /// </summary>
         public DateTime Date
         {
             get
@@ -76,7 +106,15 @@ namespace MoneyManager.Core.ViewModels
             set { SelectedTransaction.Date = value; }
         }
 
-        public async void Save()
+        private void Loaded()
+        {
+            if (IsEdit)
+            {
+                AccountLogic.RemoveTransactionAmount(SelectedTransaction);
+            }
+        }
+
+        private async void Save()
         {
             if (transactionRepository.Selected.ChargedAccount == null)
             {
@@ -101,7 +139,7 @@ namespace MoneyManager.Core.ViewModels
                 Strings.AccountRequiredMessage);
         }
 
-        public void Cancel()
+        private void Cancel()
         {
             if (IsEdit)
             {
