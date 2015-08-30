@@ -15,9 +15,6 @@ namespace MoneyManager.Windows.Views
         {
             InitializeComponent();
             DataContext = Mvx.Resolve<AboutViewModel>();
-
-            //TODO: move to VM
-            //lblVersion.Text = Utilities.GetVersion();
         }
 
 
@@ -40,7 +37,7 @@ namespace MoneyManager.Windows.Views
 
         private async void RateApp_OnTap(object sender, TappedRoutedEventArgs e)
         {
-            await Launcher.LaunchUriAsync(new Uri("ms-windows-store:reviewapp?appid=" + CurrentApp.AppId));
+            
         }
 
         private async void GoToRepository_Tap(object sender, TappedRoutedEventArgs e)

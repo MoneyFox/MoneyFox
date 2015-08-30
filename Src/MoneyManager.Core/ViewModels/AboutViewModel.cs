@@ -11,6 +11,7 @@ namespace MoneyManager.Core.ViewModels
         private readonly IAppInformation appInformation;
         private readonly IMvxComposeEmailTask composeEmailTask;
         private readonly IMvxWebBrowserTask webBrowserTask;
+        private readonly IStoreFeatures storeFeatures;
 
         /// <summary>
         ///     Creates an AboutViewModel Object
@@ -18,13 +19,16 @@ namespace MoneyManager.Core.ViewModels
         /// <param name="appInformation">Instance of a <see cref="IAppInformation"/> implementation.</param>
         /// <param name="composeEmailTask">Instance of a <see cref="IMvxComposeEmailTask"/> implementation.</param>
         /// <param name="webBrowserTask">Instance of a <see cref="IMvxWebBrowserTask"/> implementation.</param>
+        /// <param name="storeFeatures">Instance of a <see cref="IStoreFeatures"/> implementation.</param>
         public AboutViewModel(IAppInformation appInformation,
             IMvxComposeEmailTask composeEmailTask, 
-            IMvxWebBrowserTask webBrowserTask)
+            IMvxWebBrowserTask webBrowserTask, 
+            IStoreFeatures storeFeatures)
         {
             this.appInformation = appInformation;
             this.composeEmailTask = composeEmailTask;
             this.webBrowserTask = webBrowserTask;
+            this.storeFeatures = storeFeatures;
 
             GoToWebsiteCommand = new MvxCommand(GoToWebsite);
             SendMailCommand = new MvxCommand(SendMail);
@@ -87,6 +91,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void RateApp()
         {
+            storeFeatures.RateApp();
         }
 
         private void GoToRepository()

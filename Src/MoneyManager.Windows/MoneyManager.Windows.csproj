@@ -155,6 +155,8 @@
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DatabasePath.cs" />
     <Compile Include="Src\DialogService.cs" />
+    <Compile Include="Src\IStoreFeatures.cs" />
+    <Compile Include="Src\StoreFeatures.cs" />
     <Compile Include="Src\PageNavigationService.cs" />
     <Compile Include="Src\RegionLogic.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
