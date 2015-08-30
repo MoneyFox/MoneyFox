@@ -161,8 +161,6 @@
                 Value="Left" />
         <Setter Property="VerticalAlignment"
                 Value="Top" />
-        <Setter Property="Margin"
-                Value="12, 14, 12, 4" />
         <Setter Property="Foreground" Value="Gray" />
     </Style>
 

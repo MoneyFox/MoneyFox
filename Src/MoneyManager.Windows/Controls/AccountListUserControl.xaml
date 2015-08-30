@@ -12,9 +12,7 @@
     <UserControl.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="AccountTemplate">
-            <StackPanel Margin="0,0,0,7"
-                        HorizontalAlignment="Stretch"
-                        MinWidth="300"
+            <StackPanel HorizontalAlignment="Stretch"
                         Holding="AccountList_Holding">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
@@ -26,11 +24,9 @@
                                         Click="Delete_OnClick" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <StackPanel Margin="6">
-                    <Grid HorizontalAlignment="Stretch"
-                          Margin="0,0,0,8">
+                <StackPanel >
+                    <Grid HorizontalAlignment="Stretch">
                         <TextBlock Text="{Binding Name}"
-                                   
                                    TextTrimming="CharacterEllipsis" />
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">

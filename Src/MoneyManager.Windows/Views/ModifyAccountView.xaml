@@ -18,11 +18,11 @@
             <AppBarButton Icon="Save"
                           x:Uid="Done"
                           Label="Done"
-                          Click="DoneClick" />
+                          Command="{Binding SaveCommand}"/>
             <AppBarButton Icon="Cancel"
                           x:Uid="Cancel"
                           Label="Cancel"
-                          Click="CancelClick" />
+                          Command="{Binding CancelCommand}" />
         </CommandBar>
     </Page.BottomAppBar>
 
