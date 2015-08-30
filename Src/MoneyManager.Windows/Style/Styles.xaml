@@ -152,7 +152,7 @@
            TargetType="TextBlock"
            BasedOn="{StaticResource BodyTextBlockStyle}">
         <Setter Property="FontSize"
-                Value="12"/>
+                Value="12" />
         <Setter Property="TextWrapping"
                 Value="NoWrap" />
         <Setter Property="CharacterSpacing"

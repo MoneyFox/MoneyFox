@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Cirrious.CrossCore;
-using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Core.Logic;
 using MoneyManager.Foundation.OperationContracts;
 

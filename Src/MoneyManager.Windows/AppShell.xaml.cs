@@ -35,7 +35,7 @@ namespace MoneyManager.Windows
                 {
                     Symbol = Symbol.View,
                     Label = "Statistics",
-                    DestPage = typeof(StatisticsView)
+                    DestPage = typeof (StatisticsView)
                 },
                 //new NavMenuItem
                 //{
@@ -47,7 +47,7 @@ namespace MoneyManager.Windows
                 {
                     Symbol = Symbol.Setting,
                     Label = "Settings",
-                    DestPage = typeof(SettingsView)
+                    DestPage = typeof (SettingsView)
                 },
                 new NavMenuItem
                 {

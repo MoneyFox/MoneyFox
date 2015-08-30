@@ -24,7 +24,7 @@
                                         Click="Delete_OnClick" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <StackPanel >
+                <StackPanel>
                     <Grid HorizontalAlignment="Stretch">
                         <TextBlock Text="{Binding Name}"
                                    TextTrimming="CharacterEllipsis" />
@@ -33,11 +33,11 @@
                             <TextBlock TextAlignment="Right"
                                        Style="{ThemeResource SubtitleTextBlockStyle}"
                                        Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
-                                       HorizontalAlignment="Right"/>
+                                       HorizontalAlignment="Right" />
                         </StackPanel>
                     </Grid>
                     <TextBlock Text="{Binding Iban}"
-                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}"/>
+                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
                 </StackPanel>
             </StackPanel>
         </DataTemplate>

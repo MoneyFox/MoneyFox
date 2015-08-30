@@ -10,19 +10,19 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly IAppInformation appInformation;
         private readonly IMvxComposeEmailTask composeEmailTask;
-        private readonly IMvxWebBrowserTask webBrowserTask;
         private readonly IStoreFeatures storeFeatures;
+        private readonly IMvxWebBrowserTask webBrowserTask;
 
         /// <summary>
         ///     Creates an AboutViewModel Object
         /// </summary>
-        /// <param name="appInformation">Instance of a <see cref="IAppInformation"/> implementation.</param>
-        /// <param name="composeEmailTask">Instance of a <see cref="IMvxComposeEmailTask"/> implementation.</param>
-        /// <param name="webBrowserTask">Instance of a <see cref="IMvxWebBrowserTask"/> implementation.</param>
-        /// <param name="storeFeatures">Instance of a <see cref="IStoreFeatures"/> implementation.</param>
+        /// <param name="appInformation">Instance of a <see cref="IAppInformation" /> implementation.</param>
+        /// <param name="composeEmailTask">Instance of a <see cref="IMvxComposeEmailTask" /> implementation.</param>
+        /// <param name="webBrowserTask">Instance of a <see cref="IMvxWebBrowserTask" /> implementation.</param>
+        /// <param name="storeFeatures">Instance of a <see cref="IStoreFeatures" /> implementation.</param>
         public AboutViewModel(IAppInformation appInformation,
-            IMvxComposeEmailTask composeEmailTask, 
-            IMvxWebBrowserTask webBrowserTask, 
+            IMvxComposeEmailTask composeEmailTask,
+            IMvxWebBrowserTask webBrowserTask,
             IStoreFeatures storeFeatures)
         {
             this.appInformation = appInformation;

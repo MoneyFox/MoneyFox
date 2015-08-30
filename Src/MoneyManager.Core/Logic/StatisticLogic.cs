@@ -255,7 +255,8 @@ namespace MoneyManager.Core.Logic
 
         private static IEnumerable<Category> AllCategories => Mvx.Resolve<IRepository<Category>>().Data;
 
-        private static IDataAccess<FinancialTransaction> TransactionData => Mvx.Resolve<IDataAccess<FinancialTransaction>>();
+        private static IDataAccess<FinancialTransaction> TransactionData
+            => Mvx.Resolve<IDataAccess<FinancialTransaction>>();
 
         private static IDataAccess<Category> CateogryData => Mvx.Resolve<IDataAccess<Category>>();
 

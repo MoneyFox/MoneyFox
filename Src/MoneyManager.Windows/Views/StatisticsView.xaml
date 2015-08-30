@@ -12,12 +12,12 @@
         <Pivot Margin="0,30,0,0">
             <PivotItem Header="Foo1">
                 <controls:BarChartUserControl />
-            </PivotItem>            
-            
+            </PivotItem>
+
             <PivotItem Header="Foo2">
                 <controls:PieChartUserControl />
-            </PivotItem> 
-            
+            </PivotItem>
+
             <PivotItem Header="Foo3">
                 <controls:CategorySummaryUserControl />
             </PivotItem>

@@ -17,9 +17,9 @@ namespace MoneyManager.Core.Manager
         /// <summary>
         ///     Creates an TransactionManager object.
         /// </summary>
-        /// <param name="modifyTransactionViewModel">Instance of <see cref="ModifyTransactionViewModel"/></param>
-        /// <param name="accountRepository">Instance of <see cref="IRepository{T}"/></param>
-        /// <param name="settings">Instance of <see cref="SettingDataAccess"/></param>
+        /// <param name="modifyTransactionViewModel">Instance of <see cref="ModifyTransactionViewModel" /></param>
+        /// <param name="accountRepository">Instance of <see cref="IRepository{T}" /></param>
+        /// <param name="settings">Instance of <see cref="SettingDataAccess" /></param>
         public TransactionManager(ModifyTransactionViewModel modifyTransactionViewModel,
             IRepository<Account> accountRepository,
             SettingDataAccess settings)

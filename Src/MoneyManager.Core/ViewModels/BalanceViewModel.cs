@@ -16,7 +16,8 @@ namespace MoneyManager.Core.ViewModels
         private readonly SettingDataAccess settings;
         private readonly ITransactionRepository transactionRepository;
 
-        public BalanceViewModel(IRepository<Account> accountRepository, ITransactionRepository transactionRepository, SettingDataAccess settings)
+        public BalanceViewModel(IRepository<Account> accountRepository, ITransactionRepository transactionRepository,
+            SettingDataAccess settings)
         {
             this.accountRepository = accountRepository;
             this.transactionRepository = transactionRepository;
@@ -93,7 +94,9 @@ namespace MoneyManager.Core.ViewModels
 
             return IsTransactionView
                 ? unclearedTransactions.Where(
-                    x => x.ChargedAccountId == accountRepository.Selected.Id || x.TargetAccountId == accountRepository.Selected.Id).ToList()
+                    x =>
+                        x.ChargedAccountId == accountRepository.Selected.Id ||
+                        x.TargetAccountId == accountRepository.Selected.Id).ToList()
                 : unclearedTransactions;
         }
     }

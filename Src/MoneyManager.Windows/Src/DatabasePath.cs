@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Windows.Storage;
+﻿using Windows.Storage;
 using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Windows

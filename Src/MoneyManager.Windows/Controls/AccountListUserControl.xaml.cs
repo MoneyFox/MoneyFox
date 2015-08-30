@@ -36,7 +36,7 @@ namespace MoneyManager.Windows.Controls
             {
                 return;
             }
-            
+
             //TODO refactor this / move to a viewmodel
             var viewModel = Mvx.Resolve<ModifyAccountViewModel>();
             viewModel.IsEdit = true;

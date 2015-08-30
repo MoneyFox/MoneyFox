@@ -13,7 +13,8 @@ namespace MoneyManager.Core.Tests.ViewModels
         [Fact]
         public void ResetCategoryCommand_FilledProperty_PropertyIsNull()
         {
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(new Mock<IDbHelper>().Object));
+            var transactionRepository =
+                new TransactionRepository(new TransactionDataAccess(new Mock<IDbHelper>().Object));
             var viewModel = new SelectCategoryViewModel(transactionRepository);
 
             transactionRepository.Selected = new FinancialTransaction

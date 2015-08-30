@@ -16,7 +16,7 @@ namespace MoneyManager.Core.ViewModels
         private readonly ITransactionRepository transactionRepository;
 
         public TransactionListViewModel(ITransactionRepository transactionRepository,
-            IRepository<Account> accountRepository, 
+            IRepository<Account> accountRepository,
             TransactionManager transactionManager)
         {
             this.transactionRepository = transactionRepository;

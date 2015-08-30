@@ -3,7 +3,7 @@ using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class SettingsView 
+    public sealed partial class SettingsView
     {
         public SettingsView()
         {

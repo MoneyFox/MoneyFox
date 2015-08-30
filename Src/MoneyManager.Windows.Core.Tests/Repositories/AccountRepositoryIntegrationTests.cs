@@ -23,7 +23,7 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
             var account = new Account
             {
                 Name = "Sparkonto",
-                CurrentBalance = 6034,
+                CurrentBalance = 6034
             };
 
             repository.Save(account);
