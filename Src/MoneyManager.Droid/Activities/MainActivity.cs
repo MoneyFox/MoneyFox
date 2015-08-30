@@ -42,7 +42,7 @@ namespace MoneyManager.Droid.Activities
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
+            SetContentView(Resource.Layout.MainLayout);
 
             slidingLayout = FindViewById<SlidingPaneLayout>(Resource.Id.main_layout);
             menuListView = FindViewById<ListView>(Resource.Id.left_pane);

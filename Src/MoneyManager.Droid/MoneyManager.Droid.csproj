@@ -147,7 +147,6 @@
   <ItemGroup>
     <Compile Include="Activities\AboutView.cs" />
     <Compile Include="Activities\ModifyAccountActivity.cs" />
-    <Compile Include="Activities\AddTransactionView.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\ModifyTransactionActivity.cs" />
     <Compile Include="Activities\SelectCategoryActivity.cs" />
@@ -176,9 +175,6 @@
     <AndroidResource Include="Resources\menu\ModificationMenu.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\ModifyAccount.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\AccountListItem.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -186,9 +182,10 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AboutLayout.axml" />
+    <AndroidResource Include="Resources\layout\ModifyAccountLayout.axml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\layout\MainLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

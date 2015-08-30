@@ -16,6 +16,7 @@ namespace MoneyManager.Windows.Controls
         public TransactionListUserControl()
         {
             InitializeComponent();
+            DataContext = Mvx.Resolve<TransactionListViewModel>();
 
             //TODO: Handle in View Model
             Mvx.Resolve<BalanceViewModel>().IsTransactionView = true;
@@ -31,7 +32,7 @@ namespace MoneyManager.Windows.Controls
             }
 
             TransactionLogic.PrepareEdit(transaction);
-            ((Frame) Window.Current.Content).Navigate(typeof (AddTransactionView));
+            ((Frame) Window.Current.Content).Navigate(typeof (ModifyTransactionView));
         }
 
         private async void DeleteTransaction(object sender, RoutedEventArgs e)
@@ -80,7 +81,7 @@ namespace MoneyManager.Windows.Controls
 
                 TransactionLogic.PrepareEdit(TransactionRepository.Selected);
 
-                ((Frame) Window.Current.Content).Navigate(typeof (AddTransactionView));
+                ((Frame) Window.Current.Content).Navigate(typeof (ModifyTransactionView));
                 ListViewTransactions.SelectedItem = null;
             }
         }

@@ -6,8 +6,7 @@
              xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
              mc:Ignorable="d"
              d:DesignHeight="300"
-             d:DesignWidth="400"
-             DataContext="{Binding StatisticViewModel, Source={StaticResource Locator}}">
+             d:DesignWidth="400">
 
     <Grid VerticalAlignment="Stretch"
           EntranceNavigationTransitionInfo.IsTargetElement="True">

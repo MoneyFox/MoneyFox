@@ -7,7 +7,6 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
-             DataContext="{Binding BalanceViewModel, Source={StaticResource Locator}}"
              Loaded="BalanceUserControl_OnLoaded">
 
     <UserControl.Resources>
@@ -17,12 +16,17 @@
     <StackPanel Orientation="Horizontal"
                 EntranceNavigationTransitionInfo.IsTargetElement="True">
         <TextBlock Text="Total: "
+                   x:Uid="TotalLabel"
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    Margin="0,0,5,10" />
         <TextBlock Text="{Binding TotalBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}}"
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    Margin="0,0,5,0" />
         <TextBlock Text=" / "
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    Margin="0,0,5,0" />
         <TextBlock Text="{Binding EndOfMonthBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}}"
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    Margin="0,0,5,0" />
     </StackPanel>
 </UserControl>

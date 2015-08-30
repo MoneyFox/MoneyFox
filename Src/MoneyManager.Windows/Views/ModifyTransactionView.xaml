@@ -1,4 +1,4 @@
-﻿<views:MvxWindowsPage x:Class="MoneyManager.Windows.Views.AddTransactionView"
+﻿<views:MvxWindowsPage x:Class="MoneyManager.Windows.Views.ModifyTransactionView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,8 +7,7 @@
       xmlns:converter1="using:MoneyManager.Windows.Converter"
       xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
       mc:Ignorable="d"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-      DataContext="{Binding AddTransactionViewModel, Source={StaticResource Locator}}">
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
         <converter1:AmountFormatConverter x:Key="AmountConverter" />
@@ -52,7 +51,7 @@
             <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="Add Transaction"
-                           x:Uid="AddTransactionViewTitle" />
+                           x:Uid="ModifyTransactionViewTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 

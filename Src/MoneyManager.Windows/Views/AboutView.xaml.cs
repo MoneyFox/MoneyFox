@@ -3,6 +3,8 @@ using Windows.ApplicationModel.Email;
 using Windows.ApplicationModel.Store;
 using Windows.System;
 using Windows.UI.Xaml.Input;
+using Cirrious.CrossCore;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 
 namespace MoneyManager.Windows.Views
@@ -12,6 +14,7 @@ namespace MoneyManager.Windows.Views
         public AboutView()
         {
             InitializeComponent();
+            DataContext = Mvx.Resolve<AboutViewModel>();
 
             //TODO: move to VM
             //lblVersion.Text = Utilities.GetVersion();

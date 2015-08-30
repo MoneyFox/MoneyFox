@@ -9,8 +9,7 @@
       xmlns:converter="using:MoneyManager.Windows.Converter"
       xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
       mc:Ignorable="d"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-      DataContext="{Binding BackupViewModel, Source={StaticResource Locator}}">
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />

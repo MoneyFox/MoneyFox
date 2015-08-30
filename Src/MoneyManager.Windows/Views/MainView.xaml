@@ -5,8 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:MoneyManager.Windows.Controls"
       xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
-      mc:Ignorable="d"
-      DataContext="{Binding MainViewModel, Source={StaticResource Locator}}">
+      mc:Ignorable="d">
 
     <Page.BottomAppBar>
         <CommandBar>

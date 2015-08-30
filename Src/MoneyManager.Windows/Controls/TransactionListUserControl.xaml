@@ -7,8 +7,7 @@
              xmlns:converter1="using:MoneyManager.Windows.Converter"
              mc:Ignorable="d"
              d:DesignHeight="300"
-             d:DesignWidth="400"
-             DataContext="{Binding TransactionListViewModel, Source={StaticResource Locator}}">
+             d:DesignWidth="400">
 
     <UserControl.Resources>
         <converter1:AmountFormatConverter x:Key="AmountFormatConverter" />

@@ -7,8 +7,7 @@
     xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
     x:Class="MoneyManager.Windows.Views.TransactionListView"
     mc:Ignorable="d" NavigationCacheMode="Disabled"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    DataContext="{Binding TransactionListViewModel, Source={StaticResource Locator}}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.BottomAppBar>
         <CommandBar>
