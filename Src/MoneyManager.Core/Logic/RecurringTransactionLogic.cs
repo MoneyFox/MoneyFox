@@ -100,8 +100,6 @@ namespace MoneyManager.Core.Logic
                     Date = date,
                     IsRecurring = true,
                     Amount = recurringTransaction.Amount,
-                    AmountWithoutExchange = recurringTransaction.AmountWithoutExchange,
-                    Currency = recurringTransaction.Currency,
                     CategoryId = recurringTransaction.CategoryId,
                     Type = recurringTransaction.Type,
                     ReccuringTransactionId = recurringTransaction.Id,
@@ -132,8 +130,6 @@ namespace MoneyManager.Core.Logic
                 EndDate = ModifyTransactionView.EndDate,
                 IsEndless = ModifyTransactionView.IsEndless,
                 Amount = transaction.Amount,
-                AmountWithoutExchange = transaction.AmountWithoutExchange,
-                Currency = transaction.Currency,
                 CategoryId = transaction.CategoryId,
                 Type = transaction.Type,
                 Recurrence = ModifyTransactionView.Recurrence,
@@ -143,25 +139,13 @@ namespace MoneyManager.Core.Logic
 
         #region Properties
 
-        private static IDataAccess<RecurringTransaction> RecurringTransactionData
-        {
-            get { return Mvx.Resolve<IDataAccess<RecurringTransaction>>(); }
-        }
+        private static IDataAccess<RecurringTransaction> RecurringTransactionData => Mvx.Resolve<IDataAccess<RecurringTransaction>>();
 
-        private static ITransactionRepository transactionRepository
-        {
-            get { return Mvx.Resolve<ITransactionRepository>(); }
-        }
+        private static ITransactionRepository transactionRepository => Mvx.Resolve<ITransactionRepository>();
 
-        private static ModifyTransactionViewModel ModifyTransactionView
-        {
-            get { return Mvx.Resolve<ModifyTransactionViewModel>(); }
-        }
+        private static ModifyTransactionViewModel ModifyTransactionView => Mvx.Resolve<ModifyTransactionViewModel>();
 
-        private static IEnumerable<RecurringTransaction> AllRecurringTransactions
-        {
-            get { return Mvx.Resolve<IRepository<RecurringTransaction>>().Data; }
-        }
+        private static IEnumerable<RecurringTransaction> AllRecurringTransactions => Mvx.Resolve<IRepository<RecurringTransaction>>().Data;
 
         #endregion Properties
     }

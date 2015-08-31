@@ -23,8 +23,7 @@ namespace MoneyManager.Core.Tests.Repositories
 
                 var transaction = new FinancialTransaction
                 {
-                    Amount = 20,
-                    AmountWithoutExchange = 20
+                    Amount = 20
                 };
 
                 repository.Save(transaction);
@@ -54,8 +53,7 @@ namespace MoneyManager.Core.Tests.Repositories
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = account,
-                Amount = 20,
-                AmountWithoutExchange = 20
+                Amount = 20
             };
 
             repository.Save(transaction);
@@ -85,7 +83,6 @@ namespace MoneyManager.Core.Tests.Repositories
                 ChargedAccount = account,
                 TargetAccount = targetAccount,
                 Amount = 20,
-                AmountWithoutExchange = 20,
                 Type = (int) TransactionType.Transfer
             };
 
@@ -111,7 +108,6 @@ namespace MoneyManager.Core.Tests.Repositories
             {
                 ChargedAccount = account,
                 Amount = 20,
-                AmountWithoutExchange = 20
             };
 
             repository.Save(transaction);
@@ -143,14 +139,12 @@ namespace MoneyManager.Core.Tests.Repositories
             {
                 ChargedAccount = account,
                 Amount = 20,
-                AmountWithoutExchange = 20
             };
 
             var secondTransaction = new FinancialTransaction
             {
                 ChargedAccount = account,
                 Amount = 60,
-                AmountWithoutExchange = 60
             };
 
             repository.Save(transaction);
@@ -175,7 +169,6 @@ namespace MoneyManager.Core.Tests.Repositories
             {
                 ChargedAccount = account,
                 Amount = 20,
-                AmountWithoutExchange = 20,
                 Type = (int) TransactionType.Transfer
             };
 

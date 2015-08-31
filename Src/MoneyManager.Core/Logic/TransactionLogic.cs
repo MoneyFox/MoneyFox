@@ -141,8 +141,6 @@ namespace MoneyManager.Core.Logic
             SelectedTransaction = new FinancialTransaction
             {
                 Type = (int) transactionType,
-                IsExchangeModeActive = false,
-                Currency = Mvx.Resolve<SettingDataAccess>().DefaultCurrency
             };
         }
 

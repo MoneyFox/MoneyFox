@@ -22,11 +22,7 @@ namespace MoneyManager.Foundation.Model
         public int? CategoryId { get; set; }
 
         public DateTime Date { get; set; }
-        public double AmountWithoutExchange { get; set; }
         public double Amount { get; set; }
-        public bool IsExchangeModeActive { get; set; }
-        public double ExchangeRatio { get; set; }
-        public string Currency { get; set; }
         public bool Cleared { get; set; }
         public int Type { get; set; }
         public string Note { get; set; }

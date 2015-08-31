@@ -55,9 +55,6 @@ namespace MoneyManager.Core.Manager
             modifyTransactionViewModel.SelectedTransaction = new FinancialTransaction
             {
                 Type = (int) transactionType,
-                IsExchangeModeActive = false
-                //Todo: refactor this / move this to own class
-                //Currency = new GeographicRegion().CurrenciesInUse.First()
             };
         }
 

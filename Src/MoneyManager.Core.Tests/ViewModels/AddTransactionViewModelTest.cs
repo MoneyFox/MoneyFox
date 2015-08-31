@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Repositories;
-using MoneyManager.Core.Tests.Stubs;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -24,8 +23,7 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
-                new SettingDataAccess(),
-                new DialogServiceStub())
+                new Mock<IDialogService>().Object)
             {
                 IsEdit = true,
                 IsTransfer = true
@@ -46,8 +44,7 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
-                new SettingDataAccess(),
-                new DialogServiceStub())
+                new Mock<IDialogService>().Object)
             {
                 IsEdit = true,
                 IsTransfer = true
@@ -68,8 +65,7 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
-                new SettingDataAccess(),
-                new DialogServiceStub())
+                new Mock<IDialogService>().Object)
             {
                 IsEdit = true,
                 IsTransfer = true
@@ -90,8 +86,7 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
-                new SettingDataAccess(),
-                new DialogServiceStub())
+                new Mock<IDialogService>().Object)
             {IsEdit = false};
 
             Assert.AreEqual("add transfer", viewModel.Title);
@@ -109,8 +104,7 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
-                new SettingDataAccess(),
-                new DialogServiceStub());
+                new Mock<IDialogService>().Object);
 
             Assert.AreEqual("add spending", viewModel.Title);
         }
@@ -127,8 +121,7 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
-                new SettingDataAccess(),
-                new DialogServiceStub());
+                new Mock<IDialogService>().Object);
             Assert.AreEqual("add income", viewModel.Title);
         }
 
@@ -144,8 +137,7 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
-                new SettingDataAccess(),
-                new DialogServiceStub());
+                new Mock<IDialogService>().Object);
 
             Assert.AreEqual("add transfer", viewModel.Title);
         }

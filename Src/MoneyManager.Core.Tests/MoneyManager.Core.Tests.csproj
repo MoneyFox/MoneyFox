@@ -120,7 +120,6 @@
     <Compile Include="Repositories\CategoryRepositoryTests.cs" />
     <Compile Include="Repositories\RecurringTransactionRepositoryTest.cs" />
     <Compile Include="Repositories\TransactionRepositoryTests.cs" />
-    <Compile Include="Stubs\DialogServiceStub.cs" />
     <Compile Include="ViewModels\AddTransactionViewModelTest.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />
     <Compile Include="ViewModels\SelectCategoryViewModelTests.cs" />

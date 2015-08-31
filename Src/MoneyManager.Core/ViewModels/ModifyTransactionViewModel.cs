@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.Logic;
 using MoneyManager.Foundation;
@@ -16,16 +15,13 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly IRepository<Account> accountRepository;
         private readonly IDialogService dialogService;
-        private readonly SettingDataAccess settings;
         private readonly ITransactionRepository transactionRepository;
 
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
-            SettingDataAccess settings,
             IDialogService dialogService)
         {
             this.transactionRepository = transactionRepository;
-            this.settings = settings;
             this.dialogService = dialogService;
             this.accountRepository = accountRepository;
 
