@@ -1,46 +1,36 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.Helper;
+﻿using MoneyManager.Core.Helper;
 using MoneyManager.Foundation;
+using Xunit;
 
 namespace MoneyManager.Core.Tests.Helper
 {
-    [TestClass]
     public class TransactionTypeLogicTest
     {
-        [TestMethod]
-        public void GetEnumFromString_String_Title()
+        [Theory]
+        [InlineData("Spending", TransactionType.Spending)]
+        [InlineData("Income", TransactionType.Income)]
+        [InlineData("Transfer", TransactionType.Transfer)]
+        public void GetEnumFrostring_String_Titel(string inputString, TransactionType expectedType)
         {
-            var typeSpending = TransactionTypeHelper.GetEnumFromString("Spending");
-            var typeIncome = TransactionTypeHelper.GetEnumFromString("Income");
-            var typeTransfer = TransactionTypeHelper.GetEnumFromString("Transfer");
-
-            Assert.AreEqual(TransactionType.Spending, typeSpending);
-            Assert.AreEqual(TransactionType.Income, typeIncome);
-            Assert.AreEqual(TransactionType.Transfer, typeTransfer);
+            TransactionTypeHelper.GetEnumFromString(inputString).ShouldBe(expectedType);
         }
 
-        [TestMethod]
-        public void GetViewTitleForType_Int_Title()
+        [Theory]
+        [InlineData(0, "Spending")]
+        [InlineData(1, "Income")]
+        [InlineData(2, "Transfer")]
+        public void GetEnumFrostring_Int_Titel(int input, string expectedTitle)
         {
-            var typeSpending = TransactionTypeHelper.GetViewTitleForType(0);
-            var typeIncome = TransactionTypeHelper.GetViewTitleForType(1);
-            var typeTransfer = TransactionTypeHelper.GetViewTitleForType(2);
-
-            Assert.AreEqual(TransactionType.Spending, typeSpending);
-            Assert.AreEqual(TransactionType.Income, typeIncome);
-            Assert.AreEqual(TransactionType.Transfer, typeTransfer);
+            TransactionTypeHelper.GetViewTitleForType(input).ShouldBe(expectedTitle);
         }
-
-        [TestMethod]
-        public void GetViewTitleForType_TransactionType_Title()
+        
+        [Theory]
+        [InlineData(TransactionType.Spending, "Spending")]
+        [InlineData(TransactionType.Income, "Income")]
+        [InlineData(TransactionType.Transfer, "Transfer")]
+        public void GetEnumFrostring_Type_Titel(TransactionType input, string expectedTitle)
         {
-            var typeSpending = TransactionTypeHelper.GetViewTitleForType(TransactionType.Spending);
-            var typeIncome = TransactionTypeHelper.GetViewTitleForType(TransactionType.Income);
-            var typeTransfer = TransactionTypeHelper.GetViewTitleForType(TransactionType.Spending);
-
-            Assert.AreEqual(TransactionType.Spending, typeSpending);
-            Assert.AreEqual(TransactionType.Income, typeIncome);
-            Assert.AreEqual(TransactionType.Transfer, typeTransfer);
+            TransactionTypeHelper.GetViewTitleForType(input).ShouldBe(expectedTitle);
         }
     }
 }

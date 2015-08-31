@@ -1,73 +1,78 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
+using Moq;
+using Xunit;
 
 namespace MoneyManager.Core.Tests.Repositories
 {
-    [TestClass]
     public class AccountRepositoryTests
     {
-        [TestMethod]
-        public void AccountRepository_Save()
+        [Theory]
+        [InlineData("Sparkonto", "Sparkonto")]
+        [InlineData("", "[No Name]")]
+        public void Save_InputName_CorrectNameAssigned(string nameInput, string nameExpected)
         {
-            var accountDataAccessMock = new AccountDataAccessMock();
+            var testList = new List<Account>();
+
+            var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
+            accountDataAccessSetup.Setup(x => x.Save(It.IsAny<Account>()))
+                .Callback((Account acc) => testList.Add(acc));
+
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
+            var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
+
+            var account = new Account
+            {
+                Name = nameInput,
+                CurrentBalance = 6034
+            };
+
+            accountRepository.Save(account);
+
+            testList[0].ShouldBeSameAs(account);
+            testList[0].Name.ShouldBe(nameExpected);
+        }
+
+        [Fact]
+        public void AccessCache()
+        {
+            new AccountRepository(new AccountDataAccessMock()).Data.ShouldNotBeNull();
+        }
+
+        [Fact]
+        public void Delete_None_AccountDeleted()
+        {
+            var testList = new List<Account>();
+
+            var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
+            accountDataAccessSetup.Setup(x => x.Save(It.IsAny<Account>()))
+                .Callback((Account acc) => testList.Add(acc));
+        
             var account = new Account
             {
                 Name = "Sparkonto",
                 CurrentBalance = 6034
             };
 
-            accountDataAccessMock.Save(account);
-
-            Assert.IsTrue(account == accountDataAccessMock.AccountTestList[0]);
-        }
-
-        [TestMethod]
-        public void AccountRepository_SaveWithoutName()
-        {
-            var accountDataAccessMock = new AccountDataAccessMock();
-            var repository = new AccountRepository(accountDataAccessMock);
-
-            var account = new Account
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>
             {
-                CurrentBalance = 6034
-            };
+                account
+            });
 
-            repository.Save(account);
-
-            Assert.AreSame(account, accountDataAccessMock.AccountTestList[0]);
-            Assert.IsTrue(accountDataAccessMock.AccountTestList[0].Name == Strings.NoNamePlaceholderLabel);
-        }
-
-        [TestMethod]
-        public void AccountRepository_AccessCache()
-        {
-            Assert.IsNotNull(new AccountRepository(new AccountDataAccessMock()).Data);
-        }
-
-        [TestMethod]
-        public void AccountRepository_Delete()
-        {
-            var accountDataAccessMock = new AccountDataAccessMock();
-            var repository = new AccountRepository(accountDataAccessMock);
-
-            var account = new Account
-            {
-                Name = "Sparkonto",
-                CurrentBalance = 6034
-            };
-
-            repository.Save(account);
-
-            Assert.IsTrue(account == accountDataAccessMock.AccountTestList[0]);
+            var repository = new AccountRepository(accountDataAccessSetup.Object);
 
             repository.Delete(account);
 
-            Assert.IsFalse(accountDataAccessMock.AccountTestList.Any());
-            Assert.IsFalse(repository.Data.Any());
+            testList.Any().ShouldBeFalse();
+            repository.Data.Any().ShouldBeFalse();
         }
     }
 }
