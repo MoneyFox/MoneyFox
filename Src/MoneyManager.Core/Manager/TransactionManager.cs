@@ -55,7 +55,7 @@ namespace MoneyManager.Core.Manager
         {
             modifyTransactionViewModel.SelectedTransaction = new FinancialTransaction
             {
-                Type = (int) transactionType,
+                Type = (int) transactionType
             };
         }
 

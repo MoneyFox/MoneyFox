@@ -43,8 +43,15 @@ namespace MoneyManager.Core.Tests.Manager
 
             addTransactionViewModel.IsEdit.ShouldBeFalse();
             addTransactionViewModel.IsEndless.ShouldBeTrue();
-            addTransactionViewModel.IsTransfer.ShouldBeFalse();
-            addTransactionViewModel.SelectedTransaction.Type.ShouldBe(transactionTypeInt);
+            if (transactionTypeString == "Transfer")
+            {
+                addTransactionViewModel.IsTransfer.ShouldBeTrue();
+            }
+            else
+            {
+                addTransactionViewModel.IsTransfer.ShouldBeFalse();
+            }
+            selectedTransaction.Type.ShouldBe(transactionTypeInt);
         }
     }
 }
