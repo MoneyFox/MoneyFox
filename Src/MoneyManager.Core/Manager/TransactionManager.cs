@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.ViewModels;
@@ -54,15 +55,17 @@ namespace MoneyManager.Core.Manager
         {
             modifyTransactionViewModel.SelectedTransaction = new FinancialTransaction
             {
-                Type = (int) transactionType,
-                IsExchangeModeActive = false
-                //Todo: refactor this / move this to own class
-                //Currency = new GeographicRegion().CurrenciesInUse.First()
+                Type = (int) transactionType
             };
         }
 
         private void SetDefaultAccount()
         {
+            if (accountRepository.Data == null)
+            {
+                accountRepository.Data = new ObservableCollection<Account>();
+            }
+
             if (accountRepository.Data.Any())
             {
                 modifyTransactionViewModel.SelectedTransaction.ChargedAccount = accountRepository.Data.First();

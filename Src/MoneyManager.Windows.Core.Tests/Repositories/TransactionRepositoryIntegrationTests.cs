@@ -25,7 +25,6 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
                 db.InsertWithChildren(new FinancialTransaction
                 {
                     Amount = 999,
-                    AmountWithoutExchange = 777,
                     ChargedAccount = new Account
                     {
                         Name = "testAccount"
@@ -37,7 +36,6 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
 
             Assert.IsTrue(repository.Data.Any());
             Assert.AreEqual(999, repository.Data[0].Amount);
-            Assert.AreEqual(777, repository.Data[0].AmountWithoutExchange);
         }
 
         [TestMethod]
@@ -60,8 +58,7 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = account,
-                Amount = 20,
-                AmountWithoutExchange = 20
+                Amount = 20
             };
 
             repository.Save(transaction);

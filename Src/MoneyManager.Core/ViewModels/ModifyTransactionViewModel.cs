@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.Logic;
 using MoneyManager.Foundation;
@@ -16,42 +15,32 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly IRepository<Account> accountRepository;
         private readonly IDialogService dialogService;
-        private readonly SettingDataAccess settings;
         private readonly ITransactionRepository transactionRepository;
 
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
-            SettingDataAccess settings,
             IDialogService dialogService)
         {
             this.transactionRepository = transactionRepository;
-            this.settings = settings;
             this.dialogService = dialogService;
             this.accountRepository = accountRepository;
-
-            IsNavigationBlocked = true;
-
-            LoadedCommand = new MvxCommand(Loaded);
-            SaveCommand = new MvxCommand(Save);
-            CancelCommand = new MvxCommand(Cancel);
         }
 
         /// <summary>
         ///     Handels everything when the page is loaded.
         /// </summary>
-        public MvxCommand LoadedCommand { get; set; }
+        public IMvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
         ///     Saves the transaction or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        public MvxCommand SaveCommand { get; set; }
+        public IMvxCommand SaveCommand => new MvxCommand(Save);
 
         /// <summary>
         ///     Cancels the operations.
         /// </summary>
-        public MvxCommand CancelCommand { get; set; }
+        public IMvxCommand CancelCommand => new MvxCommand(Cancel);
 
-        public bool IsNavigationBlocked { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsEndless { get; set; } = true;
         public bool IsEdit { get; set; } = false;

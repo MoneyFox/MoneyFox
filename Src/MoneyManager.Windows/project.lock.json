@@ -217,7 +217,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -225,9 +225,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta2": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -266,9 +266,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.dll": {},
@@ -279,9 +279,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
@@ -290,21 +290,6 @@
         "runtime": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmLightLibs/5.1.1": {
-        "dependencies": {
-          "CommonServiceLocator": "[1.3.0, )"
-        },
-        "compile": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
-        },
-        "runtime": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
         }
       },
       "NotificationsExtensions/1.0.0": {
@@ -1946,7 +1931,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -1954,9 +1939,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta2": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -1995,9 +1980,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.dll": {},
@@ -2008,9 +1993,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
@@ -2019,21 +2004,6 @@
         "runtime": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmLightLibs/5.1.1": {
-        "dependencies": {
-          "CommonServiceLocator": "[1.3.0, )"
-        },
-        "compile": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
-        },
-        "runtime": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
         }
       },
       "NotificationsExtensions/1.0.0": {
@@ -3708,7 +3678,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -3716,9 +3686,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta2": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -3757,9 +3727,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.dll": {},
@@ -3770,9 +3740,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
@@ -3781,21 +3751,6 @@
         "runtime": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmLightLibs/5.1.1": {
-        "dependencies": {
-          "CommonServiceLocator": "[1.3.0, )"
-        },
-        "compile": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
-        },
-        "runtime": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
         }
       },
       "NotificationsExtensions/1.0.0": {
@@ -5475,7 +5430,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -5483,9 +5438,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta2": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -5524,9 +5479,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.dll": {},
@@ -5537,9 +5492,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
@@ -5548,21 +5503,6 @@
         "runtime": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmLightLibs/5.1.1": {
-        "dependencies": {
-          "CommonServiceLocator": "[1.3.0, )"
-        },
-        "compile": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
-        },
-        "runtime": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
         }
       },
       "NotificationsExtensions/1.0.0": {
@@ -7237,7 +7177,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -7245,9 +7185,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta2": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -7286,9 +7226,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.dll": {},
@@ -7299,9 +7239,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
@@ -7310,21 +7250,6 @@
         "runtime": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmLightLibs/5.1.1": {
-        "dependencies": {
-          "CommonServiceLocator": "[1.3.0, )"
-        },
-        "compile": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
-        },
-        "runtime": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
         }
       },
       "NotificationsExtensions/1.0.0": {
@@ -9004,7 +8929,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -9012,9 +8937,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta2": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -9053,9 +8978,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.dll": {},
@@ -9066,9 +8991,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
@@ -9077,21 +9002,6 @@
         "runtime": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmLightLibs/5.1.1": {
-        "dependencies": {
-          "CommonServiceLocator": "[1.3.0, )"
-        },
-        "compile": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
-        },
-        "runtime": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
         }
       },
       "NotificationsExtensions/1.0.0": {
@@ -10766,7 +10676,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -10774,9 +10684,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta2": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -10815,9 +10725,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.dll": {},
@@ -10828,9 +10738,9 @@
           "lib/win81/Cirrious.MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta2": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta1": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta2, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
         },
         "compile": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
@@ -10839,21 +10749,6 @@
         "runtime": {
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/Cirrious.MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmLightLibs/5.1.1": {
-        "dependencies": {
-          "CommonServiceLocator": "[1.3.0, )"
-        },
-        "compile": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
-        },
-        "runtime": {
-          "lib/windows81/GalaSoft.MvvmLight.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Extras.dll": {},
-          "lib/windows81/GalaSoft.MvvmLight.Platform.dll": {}
         }
       },
       "NotificationsExtensions/1.0.0": {
@@ -13016,14 +12911,13 @@
         "[Content_Types].xml"
       ]
     },
-    "MvvmCross.HotTuna.Binding/4.0.0-beta2": {
-      "sha512": "/kxlN1lBxMWxzOILmyQ1udAIPZ7AKAc+Zn42cTfKJTe/sl3UWmGKxU75VT2T323IllM+EyFPqRE5ZSU7E/k5sA==",
+    "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
+      "sha512": "py04hBHZI1HyaBofITMCPZqIALn8aVLoYR14ZbqaxX1wejq+proGI/9c/YOKXhbZymP/tpN5GahHayPj0Enptw==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "MvvmCross.HotTuna.Binding.nuspec",
         "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.Binding.dll",
-        "lib/dotnet/Cirrious.MvvmCross.Binding.dll",
         "lib/MonoAndroid/Cirrious.MvvmCross.Binding.Droid.dll",
         "lib/MonoAndroid/Cirrious.MvvmCross.Binding.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Binding.Touch.dll",
@@ -13031,20 +12925,18 @@
         "lib/wp8/Cirrious.MvvmCross.Binding.dll",
         "lib/netcore45/Cirrious.MvvmCross.Binding.dll",
         "lib/net45/Cirrious.MvvmCross.Binding.dll",
-        "package/services/metadata/core-properties/1bc9c53a42754ab7b55596d629115469.psmdcp",
+        "package/services/metadata/core-properties/c4a334a5fccb47479da00aff75617af3.psmdcp",
         "[Content_Types].xml"
       ]
     },
-    "MvvmCross.HotTuna.CrossCore/4.0.0-beta2": {
-      "sha512": "fmrRdUM4qigfmrdSt1J+wLn6dYeE+nfDVpmzvOpvabRGQjU9OAX7mCpSgM0K5CXqZRYnXCQ982wvchHpQryTBA==",
+    "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
+      "sha512": "wwU/NwH6Pr11YW8vnTZuAfS76wcK0/d0F/8sPKT4j0dG1ITWpOEr9F8K3+zzVCEzlFtCaDrgndI6YbUpksev+w==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "MvvmCross.HotTuna.CrossCore.nuspec",
         "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.CrossCore.dll",
         "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.Localization.dll",
-        "lib/dotnet/Cirrious.CrossCore.dll",
-        "lib/dotnet/Cirrious.MvvmCross.Localization.dll",
         "lib/net45/Cirrious.CrossCore.Wpf.dll",
         "lib/net45/Cirrious.CrossCore.dll",
         "lib/net45/Cirrious.MvvmCross.Localization.dll",
@@ -13073,7 +12965,7 @@
         "lib/Xamarin.iOS10/Cirrious.CrossCore.Touch.dll",
         "lib/Xamarin.iOS10/Cirrious.CrossCore.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Localization.dll",
-        "package/services/metadata/core-properties/aae0bb9f040d470c832e9efdcbca66da.psmdcp",
+        "package/services/metadata/core-properties/423a835f5fa0464ba91d22db334216a4.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -13146,14 +13038,13 @@
         "[Content_Types].xml"
       ]
     },
-    "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta2": {
-      "sha512": "RQpQ3xIE2bg6RJyqnqVesG5RCmrIAondYwMZsIZhPdY22fnKqkHR0hwArd+DsgQ+Fm/QBZ6/s+Vtl49Ip3HoMg==",
+    "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta1": {
+      "sha512": "sxDtlRo16OldgdzN+ukRvgBF0h2QP1KylqU5gUuH6OrI3mfXGHvKFmiSj0obrUzwgCiBtT0VwCaEjeNa6FASpQ==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "MvvmCross.HotTuna.Plugin.Visibility.nuspec",
         "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.Plugins.Visibility.dll",
-        "lib/dotnet/Cirrious.MvvmCross.Plugins.Visibility.dll",
         "lib/net45/Cirrious.MvvmCross.Plugins.Visibility.dll",
         "lib/net45/Cirrious.MvvmCross.Plugins.Visibility.Wpf.dll",
         "content/net45/Bootstrap/VisibilityPluginBootstrap.cs.pp",
@@ -13181,18 +13072,17 @@
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Plugins.Visibility.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Plugins.Visibility.Touch.dll",
         "content/Xamarin.iOS10/Bootstrap/VisibilityPluginBootstrap.cs.pp",
-        "package/services/metadata/core-properties/6f4ad254382b44b4bfcf8adaa0d51999.psmdcp",
+        "package/services/metadata/core-properties/8e3886f76a0a4b99a59877c9d15b8610.psmdcp",
         "[Content_Types].xml"
       ]
     },
-    "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta2": {
-      "sha512": "jYIb6/t5AwaJi9IKYGWVsq0MFdQwrpYWM+ly8TJ6M5piTrtEGCrZNmVSMn+62PwyfGZQPwsuh4/eSUDsIL+Dlw==",
+    "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta1": {
+      "sha512": "9YTZrr3AgH/j/MxXktZjHzeW+bis3G1Fvd51abcK4bwd95G088dG6T4I8M4pH1D6xcZE/SPp6gpZt32x8ntTcw==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "MvvmCross.HotTuna.Plugin.WebBrowser.nuspec",
         "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.Plugins.WebBrowser.dll",
-        "lib/dotnet/Cirrious.MvvmCross.Plugins.WebBrowser.dll",
         "lib/netcore45/Cirrious.MvvmCross.Plugins.WebBrowser.dll",
         "lib/netcore45/Cirrious.MvvmCross.Plugins.WebBrowser.WindowsStore.dll",
         "lib/netcore45/Cirrious.MvvmCross.Plugins.WebBrowser.WindowsStore.pri",
@@ -13217,141 +13107,7 @@
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Plugins.WebBrowser.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Plugins.WebBrowser.Touch.dll",
         "content/Xamarin.iOS10/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "package/services/metadata/core-properties/874d77a975314533a54597f3077368dc.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
-    "MvvmLightLibs/5.1.1": {
-      "sha512": "8UZt2fAbAcLDpc1XrL1I6r38nWrrTQFuEeabmgJNouBA56PzsXWjrFoj9PXP0ouQzaPf64mOxL+ygr1CefRVIA==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "MvvmLightLibs.nuspec",
-        "lib/net35/GalaSoft.MvvmLight.dll",
-        "lib/net35/GalaSoft.MvvmLight.Extras.dll",
-        "lib/net35/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/net35/GalaSoft.MvvmLight.Extras.xml",
-        "lib/net35/GalaSoft.MvvmLight.pdb",
-        "lib/net35/GalaSoft.MvvmLight.xml",
-        "lib/net35/System.Windows.Interactivity.dll",
-        "lib/net35/System.Windows.Interactivity.xml",
-        "lib/net40/GalaSoft.MvvmLight.dll",
-        "lib/net40/GalaSoft.MvvmLight.Extras.dll",
-        "lib/net40/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/net40/GalaSoft.MvvmLight.Extras.xml",
-        "lib/net40/GalaSoft.MvvmLight.pdb",
-        "lib/net40/GalaSoft.MvvmLight.xml",
-        "lib/net40/System.Windows.Interactivity.dll",
-        "lib/net40/System.Windows.Interactivity.xml",
-        "lib/net45/GalaSoft.MvvmLight.dll",
-        "lib/net45/GalaSoft.MvvmLight.Extras.dll",
-        "lib/net45/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/net45/GalaSoft.MvvmLight.Extras.xml",
-        "lib/net45/GalaSoft.MvvmLight.pdb",
-        "lib/net45/GalaSoft.MvvmLight.Platform.dll",
-        "lib/net45/GalaSoft.MvvmLight.Platform.pdb",
-        "lib/net45/GalaSoft.MvvmLight.Platform.xml",
-        "lib/net45/GalaSoft.MvvmLight.xml",
-        "lib/net45/System.Windows.Interactivity.dll",
-        "lib/windows8/GalaSoft.MvvmLight.dll",
-        "lib/windows8/GalaSoft.MvvmLight.Extras.dll",
-        "lib/windows8/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/windows8/GalaSoft.MvvmLight.Extras.xml",
-        "lib/windows8/GalaSoft.MvvmLight.Platform.dll",
-        "lib/windows8/GalaSoft.MvvmLight.Platform.pdb",
-        "lib/windows8/GalaSoft.MvvmLight.Platform.pri",
-        "lib/windows8/GalaSoft.MvvmLight.Platform.xml",
-        "lib/windows8/GalaSoft.MvvmLight.pdb",
-        "lib/windows8/GalaSoft.MvvmLight.xml",
-        "lib/windows81/GalaSoft.MvvmLight.dll",
-        "lib/windows81/GalaSoft.MvvmLight.Extras.dll",
-        "lib/windows81/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/windows81/GalaSoft.MvvmLight.Extras.xml",
-        "lib/windows81/GalaSoft.MvvmLight.Platform.dll",
-        "lib/windows81/GalaSoft.MvvmLight.Platform.pdb",
-        "lib/windows81/GalaSoft.MvvmLight.Platform.pri",
-        "lib/windows81/GalaSoft.MvvmLight.Platform.xml",
-        "lib/windows81/GalaSoft.MvvmLight.pdb",
-        "lib/windows81/GalaSoft.MvvmLight.xml",
-        "lib/SL4/GalaSoft.MvvmLight.Extras.dll",
-        "lib/SL4/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/SL4/GalaSoft.MvvmLight.Extras.xml",
-        "lib/SL4/GalaSoft.MvvmLight.dll",
-        "lib/SL4/GalaSoft.MvvmLight.pdb",
-        "lib/SL4/GalaSoft.MvvmLight.xml",
-        "lib/SL4/System.Windows.Interactivity.dll",
-        "lib/SL4/System.Windows.Interactivity.xml",
-        "lib/sl4-wp71/GalaSoft.MvvmLight.Extras.dll",
-        "lib/sl4-wp71/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/sl4-wp71/GalaSoft.MvvmLight.Extras.xml",
-        "lib/sl4-wp71/GalaSoft.MvvmLight.dll",
-        "lib/sl4-wp71/GalaSoft.MvvmLight.pdb",
-        "lib/sl4-wp71/GalaSoft.MvvmLight.xml",
-        "lib/sl4-wp71/Microsoft.Practices.ServiceLocation.dll",
-        "lib/sl4-wp71/Microsoft.Practices.ServiceLocation.xml",
-        "lib/sl4-wp71/System.Windows.Interactivity.dll",
-        "lib/sl4-wp71/System.Windows.Interactivity.xml",
-        "lib/SL5/GalaSoft.MvvmLight.dll",
-        "lib/SL5/GalaSoft.MvvmLight.Extras.dll",
-        "lib/SL5/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/SL5/GalaSoft.MvvmLight.Extras.xml",
-        "lib/SL5/GalaSoft.MvvmLight.pdb",
-        "lib/SL5/GalaSoft.MvvmLight.xml",
-        "lib/SL5/System.Windows.Interactivity.dll",
-        "lib/wp8/GalaSoft.MvvmLight.dll",
-        "lib/wp8/GalaSoft.MvvmLight.Extras.dll",
-        "lib/wp8/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/wp8/GalaSoft.MvvmLight.Extras.xml",
-        "lib/wp8/GalaSoft.MvvmLight.pdb",
-        "lib/wp8/GalaSoft.MvvmLight.Platform.dll",
-        "lib/wp8/GalaSoft.MvvmLight.Platform.pdb",
-        "lib/wp8/GalaSoft.MvvmLight.Platform.xml",
-        "lib/wp8/GalaSoft.MvvmLight.xml",
-        "lib/wp8/System.Windows.Interactivity.dll",
-        "lib/wp81/GalaSoft.MvvmLight.dll",
-        "lib/wp81/GalaSoft.MvvmLight.Extras.dll",
-        "lib/wp81/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/wp81/GalaSoft.MvvmLight.Extras.xml",
-        "lib/wp81/GalaSoft.MvvmLight.pdb",
-        "lib/wp81/GalaSoft.MvvmLight.Platform.dll",
-        "lib/wp81/GalaSoft.MvvmLight.Platform.pdb",
-        "lib/wp81/GalaSoft.MvvmLight.Platform.xml",
-        "lib/wp81/GalaSoft.MvvmLight.xml",
-        "lib/wp81/System.Windows.Interactivity.dll",
-        "lib/wpa81/GalaSoft.MvvmLight.dll",
-        "lib/wpa81/GalaSoft.MvvmLight.Extras.dll",
-        "lib/wpa81/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/wpa81/GalaSoft.MvvmLight.Extras.XML",
-        "lib/wpa81/GalaSoft.MvvmLight.pdb",
-        "lib/wpa81/GalaSoft.MvvmLight.Platform.dll",
-        "lib/wpa81/GalaSoft.MvvmLight.Platform.pdb",
-        "lib/wpa81/GalaSoft.MvvmLight.Platform.pri",
-        "lib/wpa81/GalaSoft.MvvmLight.Platform.XML",
-        "lib/wpa81/GalaSoft.MvvmLight.XML",
-        "lib/monoandroid1/GalaSoft.MvvmLight.dll",
-        "lib/monoandroid1/GalaSoft.MvvmLight.Extras.dll",
-        "lib/monoandroid1/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/monoandroid1/GalaSoft.MvvmLight.Extras.XML",
-        "lib/monoandroid1/GalaSoft.MvvmLight.pdb",
-        "lib/monoandroid1/GalaSoft.MvvmLight.Platform.dll",
-        "lib/monoandroid1/GalaSoft.MvvmLight.Platform.pdb",
-        "lib/monoandroid1/GalaSoft.MvvmLight.Platform.XML",
-        "lib/monoandroid1/GalaSoft.MvvmLight.XML",
-        "lib/xamarin.ios10/GalaSoft.MvvmLight.dll",
-        "lib/xamarin.ios10/GalaSoft.MvvmLight.Extras.dll",
-        "lib/xamarin.ios10/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/xamarin.ios10/GalaSoft.MvvmLight.Extras.XML",
-        "lib/xamarin.ios10/GalaSoft.MvvmLight.pdb",
-        "lib/xamarin.ios10/GalaSoft.MvvmLight.Platform.dll",
-        "lib/xamarin.ios10/GalaSoft.MvvmLight.Platform.XML",
-        "lib/xamarin.ios10/GalaSoft.MvvmLight.XML",
-        "lib/portable-net45+wp8+wpa81+netcore45+monoandroid1+xamarin.ios10/GalaSoft.MvvmLight.dll",
-        "lib/portable-net45+wp8+wpa81+netcore45+monoandroid1+xamarin.ios10/GalaSoft.MvvmLight.Extras.dll",
-        "lib/portable-net45+wp8+wpa81+netcore45+monoandroid1+xamarin.ios10/GalaSoft.MvvmLight.Extras.pdb",
-        "lib/portable-net45+wp8+wpa81+netcore45+monoandroid1+xamarin.ios10/GalaSoft.MvvmLight.Extras.XML",
-        "lib/portable-net45+wp8+wpa81+netcore45+monoandroid1+xamarin.ios10/GalaSoft.MvvmLight.pdb",
-        "lib/portable-net45+wp8+wpa81+netcore45+monoandroid1+xamarin.ios10/GalaSoft.MvvmLight.XML",
-        "package/services/metadata/core-properties/cd0bdb956a004f6c81020dabe6399aab.psmdcp",
+        "package/services/metadata/core-properties/eba9e805d6514913b803f6c0548afad9.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -16269,11 +16025,11 @@
       "CommonServiceLocator >= 1.3.0",
       "LiveSDK >= 5.6.3",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "MvvmCross.HotTuna.CrossCore >= 4.0.0-beta1",
       "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta1",
       "MvvmCross.HotTuna.Plugin.Email >= 4.0.0-beta1",
-      "MvvmCross.HotTuna.Plugin.Visibility >= 4.0.0-beta2",
-      "MvvmCross.HotTuna.Plugin.WebBrowser >= 4.0.0-beta2",
-      "MvvmLightLibs >= 5.1.1",
+      "MvvmCross.HotTuna.Plugin.Visibility >= 4.0.0-beta1",
+      "MvvmCross.HotTuna.Plugin.WebBrowser >= 4.0.0-beta1",
       "NotificationsExtensions >= 1.0.0",
       "SQLite.Net-PCL >= 3.0.5",
       "WinRTXamlToolkit.Controls.DataVisualization >= 1.6.1.3",
