@@ -24,30 +24,23 @@ namespace MoneyManager.Core.ViewModels
             this.transactionRepository = transactionRepository;
             this.dialogService = dialogService;
             this.accountRepository = accountRepository;
-
-            IsNavigationBlocked = true;
-
-            LoadedCommand = new MvxCommand(Loaded);
-            SaveCommand = new MvxCommand(Save);
-            CancelCommand = new MvxCommand(Cancel);
         }
 
         /// <summary>
         ///     Handels everything when the page is loaded.
         /// </summary>
-        public MvxCommand LoadedCommand { get; set; }
+        public IMvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
         ///     Saves the transaction or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        public MvxCommand SaveCommand { get; set; }
+        public IMvxCommand SaveCommand => new MvxCommand(Save);
 
         /// <summary>
         ///     Cancels the operations.
         /// </summary>
-        public MvxCommand CancelCommand { get; set; }
+        public IMvxCommand CancelCommand => new MvxCommand(Cancel);
 
-        public bool IsNavigationBlocked { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsEndless { get; set; } = true;
         public bool IsEdit { get; set; } = false;

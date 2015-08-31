@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.ViewModels;
@@ -60,6 +61,11 @@ namespace MoneyManager.Core.Manager
 
         private void SetDefaultAccount()
         {
+            if (accountRepository.Data == null)
+            {
+                accountRepository.Data = new ObservableCollection<Account>();
+            }
+
             if (accountRepository.Data.Any())
             {
                 modifyTransactionViewModel.SelectedTransaction.ChargedAccount = accountRepository.Data.First();
