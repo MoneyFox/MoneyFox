@@ -45,12 +45,10 @@ namespace MoneyManager.Windows.Controls
             }
 
             await TransactionLogic.DeleteTransaction(transaction);
-            AddTransactionView.IsNavigationBlocked = false;
         }
 
         private void OpenContextMenu(object sender, HoldingRoutedEventArgs e)
         {
-            AddTransactionView.IsNavigationBlocked = true;
             var senderElement = sender as FrameworkElement;
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
@@ -61,21 +59,19 @@ namespace MoneyManager.Windows.Controls
         private void UnloadPage(object sender, RoutedEventArgs e)
         {
             BalanceView.IsTransactionView = false;
-            AddTransactionView.IsNavigationBlocked = true;
             BalanceView.UpdateBalance();
         }
 
         //TODO: Handle in View Model
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
-            AddTransactionView.IsNavigationBlocked = false;
             ListViewTransactions.SelectedItem = null;
         }
 
         //TODO: Handle in View Model
         private void LoadDetails(object sender, SelectionChangedEventArgs e)
         {
-            if (!AddTransactionView.IsNavigationBlocked && ListViewTransactions.SelectedItem != null)
+            if (ListViewTransactions.SelectedItem != null)
             {
                 TransactionRepository.Selected = ListViewTransactions.SelectedItem as FinancialTransaction;
 
