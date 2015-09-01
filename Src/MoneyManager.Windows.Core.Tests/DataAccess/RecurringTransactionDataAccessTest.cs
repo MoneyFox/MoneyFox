@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Core;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Core.Tests.Helper;
 using SQLite.Net.Platform.WinRT;
+using Xunit;
 
 namespace MoneyManager.Windows.Core.Tests.DataAccess
 {
-    [TestClass]
     public class RecurringTransactionDataAccessTest
     {
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void RecurringTransactionDataAccess_CrudRecurringTransaction()
         {
             var recurringTransactionDataAccess =
@@ -36,8 +35,8 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
 
             var list = recurringTransactionDataAccess.LoadList();
 
-            Assert.AreEqual(1, list.Count);
-            Assert.AreEqual(firstAmount, list.First().Amount);
+            Assert.Equal(1, list.Count);
+            Assert.Equal(firstAmount, list.First().Amount);
 
             transaction.Amount = secondAmount;
 
@@ -46,14 +45,14 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
             recurringTransactionDataAccess.LoadList();
             list = recurringTransactionDataAccess.LoadList();
 
-            Assert.AreEqual(1, list.Count);
-            Assert.AreEqual(secondAmount, list.First().Amount);
+            Assert.Equal(1, list.Count);
+            Assert.Equal(secondAmount, list.First().Amount);
 
             recurringTransactionDataAccess.Delete(transaction);
 
             recurringTransactionDataAccess.LoadList();
             list = recurringTransactionDataAccess.LoadList();
-            Assert.IsFalse(list.Any());
+            Assert.False(list.Any());
         }
     }
 }

@@ -1,20 +1,20 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Core;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Repositories;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Core.Tests.Helper;
 using SQLite.Net.Platform.WinRT;
 using SQLiteNetExtensions.Extensions;
+using Xunit;
 
 namespace MoneyManager.Windows.Core.Tests.Repositories
 {
-    [TestClass]
     public class TransactionRepositoryIntegrationTests
     {
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void TransactionRepository_LoadDataFromDbThroughRepository()
         {
             var dbHelper = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath());
@@ -34,12 +34,12 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
 
             var repository = new TransactionRepository(new TransactionDataAccess(dbHelper));
 
-            Assert.IsTrue(repository.Data.Any());
-            Assert.AreEqual(999, repository.Data[0].Amount);
+            repository.Data.Any().ShouldBeTrue();
+            repository.Data[0].Amount.ShouldBe(999);
         }
 
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void TransactionRepository_Update()
         {
             var dbHelper = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath());
@@ -62,15 +62,15 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
             };
 
             repository.Save(transaction);
-            Assert.AreEqual(1, repository.Data.Count);
-            Assert.AreSame(transaction, repository.Data[0]);
+            repository.Data.Count.ShouldBe(1);
+            repository.Data[0].ShouldBeSameAs(transaction);
 
             transaction.Amount = 30;
 
             repository.Save(transaction);
 
-            Assert.AreEqual(1, repository.Data.Count);
-            Assert.AreEqual(30, repository.Data[0].Amount);
+            repository.Data.Count.ShouldBe(1);
+            repository.Data[0].Amount.ShouldBe(30);
         }
     }
 }
