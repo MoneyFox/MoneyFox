@@ -1,4 +1,5 @@
-﻿using MoneyManager.Core.ViewModels;
+﻿using Cirrious.MvvmCross.Test.Core;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using Moq;
@@ -6,8 +7,13 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    public class SelectCategoryViewModelTests
+    public class SelectCategoryViewModelTests : MvxIoCSupportingTest
     {
+        public SelectCategoryViewModelTests()
+        {
+            Setup();
+        }
+
         [Fact]
         public void ResetCategoryCommand_FilledProperty_PropertyIsNull()
         {

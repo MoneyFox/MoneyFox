@@ -1,4 +1,5 @@
-﻿using MoneyManager.Core.DataAccess;
+﻿using Cirrious.MvvmCross.Test.Core;
+using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.ViewModels;
@@ -9,8 +10,13 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    public class MainViewModelTests
+    public class MainViewModelTests : MvxIoCSupportingTest
     {
+        public MainViewModelTests()
+        {
+            Setup();
+        }
+
         //TODO:Refactor to check navigation with mock
         [Theory]
         [InlineData(TransactionType.Spending)]

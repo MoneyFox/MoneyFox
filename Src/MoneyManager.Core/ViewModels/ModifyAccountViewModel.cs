@@ -15,10 +15,6 @@ namespace MoneyManager.Core.ViewModels
         {
             this.accountRepository = accountRepository;
             this.balanceViewModel = balanceViewModel;
-
-            SaveCommand = new MvxCommand(SaveAccount);
-            DeleteCommand = new MvxCommand(DeleteAccount);
-            CancelCommand = new MvxCommand(Cancel);
         }
 
         /// <summary>
@@ -26,17 +22,17 @@ namespace MoneyManager.Core.ViewModels
         ///     or creates a new account depending on
         ///     the <see cref="IsEdit" /> property
         /// </summary>
-        public MvxCommand SaveCommand { get; set; }
+        public MvxCommand SaveCommand => new MvxCommand(SaveAccount);
 
         /// <summary>
         ///     Deletes the selected account from the database
         /// </summary>
-        public MvxCommand DeleteCommand { get; set; }
+        public MvxCommand DeleteCommand => new MvxCommand(DeleteAccount);
 
         /// <summary>
         ///     Cancels the operation and will revert the changes
         /// </summary>
-        public MvxCommand CancelCommand { get; set; }
+        public MvxCommand CancelCommand => new MvxCommand(Cancel);
 
         /// <summary>
         ///     indicates if the account already exists and shall

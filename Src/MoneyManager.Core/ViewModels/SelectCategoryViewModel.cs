@@ -25,12 +25,12 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Resets the category of the currently selected transaction
         /// </summary>
-        public MvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
+        public IMvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
 
         /// <summary>
         ///     Opens to the SelectCategoryView
         /// </summary>
-        public MvxCommand GoToSelectCategorydialogCommand => new MvxCommand(Navigate);
+        public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(Navigate);
 
         private void ResetSelection()
         {
