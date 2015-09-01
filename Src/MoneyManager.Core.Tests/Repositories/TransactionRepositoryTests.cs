@@ -1,45 +1,32 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using Xunit;
 
 namespace MoneyManager.Core.Tests.Repositories
 {
-    [TestClass]
     public class TransactionRepositoryTests
     {
-        [TestMethod]
+        [Fact]
         public void TransactionRepository_SaveWithouthAccount()
         {
-            try
-            {
-                var transactionDataAccessMock = new TransactionDataAccessMock();
-                var repository = new TransactionRepository(transactionDataAccessMock);
+            var transactionDataAccessMock = new TransactionDataAccessMock();
+            var repository = new TransactionRepository(transactionDataAccessMock);
 
-                var transaction = new FinancialTransaction
-                {
-                    Amount = 20
-                };
+            var transaction = new FinancialTransaction
+            {
+                Amount = 20
+            };
 
-                repository.Save(transaction);
-            }
-            catch (InvalidDataException)
-            {
-                return;
-            }
-            catch (Exception)
-            {
-                Assert.Fail("wrong exception.");
-            }
-            Assert.Fail("No excpetion thrown");
+            Assert.Throws<InvalidDataException>(() => repository.Save(transaction));
         }
 
-        [TestMethod]
+        [Fact]
         public void TransactionRepository_Save()
         {
             var transactionDataAccessMock = new TransactionDataAccessMock();
@@ -58,11 +45,11 @@ namespace MoneyManager.Core.Tests.Repositories
 
             repository.Save(transaction);
 
-            Assert.IsTrue(transaction == transactionDataAccessMock.FinancialTransactionTestList[0]);
-            Assert.IsTrue(account == transactionDataAccessMock.FinancialTransactionTestList[0].ChargedAccount);
+            transactionDataAccessMock.FinancialTransactionTestList[0].ShouldBeSameAs(transaction);
+            transactionDataAccessMock.FinancialTransactionTestList[0].ChargedAccount.ShouldBeSameAs(account);
         }
 
-        [TestMethod]
+        [Fact]
         public void TransactionRepository_SaveTransfer()
         {
             var transactionDataAccessMock = new TransactionDataAccessMock();
@@ -88,12 +75,12 @@ namespace MoneyManager.Core.Tests.Repositories
 
             repository.Save(transaction);
 
-            Assert.IsTrue(transaction == transactionDataAccessMock.FinancialTransactionTestList[0]);
-            Assert.IsTrue(account == transactionDataAccessMock.FinancialTransactionTestList[0].ChargedAccount);
-            Assert.IsTrue(targetAccount == transactionDataAccessMock.FinancialTransactionTestList[0].TargetAccount);
+            transactionDataAccessMock.FinancialTransactionTestList[0].ShouldBeSameAs(transaction);
+            transactionDataAccessMock.FinancialTransactionTestList[0].ChargedAccount.ShouldBeSameAs(account);
+            transactionDataAccessMock.FinancialTransactionTestList[0].TargetAccount.ShouldBeSameAs(targetAccount);
         }
 
-        [TestMethod]
+        [Fact]
         public void TransactionRepository_Delete()
         {
             var transactionDataAccessMock = new TransactionDataAccessMock();
@@ -111,21 +98,21 @@ namespace MoneyManager.Core.Tests.Repositories
             };
 
             repository.Save(transaction);
-            Assert.AreSame(transaction, transactionDataAccessMock.FinancialTransactionTestList[0]);
+            transactionDataAccessMock.FinancialTransactionTestList[0].ShouldBeSameAs(transaction);
 
             repository.Delete(transaction);
 
-            Assert.IsFalse(transactionDataAccessMock.FinancialTransactionTestList.Any());
-            Assert.IsFalse(repository.Data.Any());
+            transactionDataAccessMock.FinancialTransactionTestList.Any().ShouldBeFalse();
+            repository.Data.Any().ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void TransactionRepository_AccessCache()
         {
-            Assert.IsNotNull(new TransactionRepository(new TransactionDataAccessMock()).Data);
+            new TransactionRepository(new TransactionDataAccessMock()).Data.ShouldNotBeNull();
         }
 
-        [TestMethod]
+        [Fact]
         public void TransactionRepository_AddMultipleToCache()
         {
             var repository = new TransactionRepository(new TransactionDataAccessMock());
@@ -150,12 +137,12 @@ namespace MoneyManager.Core.Tests.Repositories
             repository.Save(transaction);
             repository.Save(secondTransaction);
 
-            Assert.AreEqual(2, repository.Data.Count);
-            Assert.AreSame(transaction, repository.Data[0]);
-            Assert.AreSame(secondTransaction, repository.Data[1]);
+            repository.Data.Count.ShouldBe(2);
+            repository.Data[0].ShouldBeSameAs(transaction);
+            repository.Data[1].ShouldBeSameAs(secondTransaction);
         }
 
-        [TestMethod]
+        [Fact]
         public void TransactionRepository_AddItemToDataList()
         {
             var repository = new TransactionRepository(new TransactionDataAccessMock());
@@ -173,10 +160,10 @@ namespace MoneyManager.Core.Tests.Repositories
             };
 
             repository.Save(transaction);
-            Assert.IsTrue(repository.Data.Contains(transaction));
+            repository.Data.Contains(transaction).ShouldBeTrue();
         }
 
-        [TestMethod]
+        [Fact]
         public void TransactionRepository_GetUnclearedTransactionsPast()
         {
             var repository = new TransactionRepository(new TransactionDataAccessMock());
@@ -198,13 +185,13 @@ namespace MoneyManager.Core.Tests.Repositories
 
             var transactions = repository.GetUnclearedTransactions();
 
-            Assert.AreEqual(1, transactions.Count());
+            transactions.Count().ShouldBe(1);
         }
 
         /// <summary>
         ///     This Test may fail if the date overlaps with the month transition.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void TransactionRepository_GetUnclearedTransactionsFuture()
         {
             var repository = new TransactionRepository(new TransactionDataAccessMock());
@@ -225,13 +212,13 @@ namespace MoneyManager.Core.Tests.Repositories
                 );
 
             var transactions = repository.GetUnclearedTransactions();
-            Assert.AreEqual(0, transactions.Count());
+            transactions.Count().ShouldBe(0);
 
             transactions = repository.GetUnclearedTransactions(Utilities.GetEndOfMonth());
-            Assert.AreEqual(1, transactions.Count());
+            transactions.Count().ShouldBe(1);
         }
 
-        [TestMethod]
+        [Fact]
         public void TransactionRepository_GetUnclearedTransactions_AccountNull()
         {
             var repository = new TransactionRepository(new TransactionDataAccessMock());
@@ -246,8 +233,7 @@ namespace MoneyManager.Core.Tests.Repositories
                 );
 
             var transactions = repository.GetUnclearedTransactions();
-
-            Assert.AreEqual(1, transactions.Count());
+            transactions.Count().ShouldBe(1);
         }
     }
 }

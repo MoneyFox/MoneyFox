@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels;
@@ -11,7 +10,6 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.Manager
 {
-    [TestClass]
     public class TransactionManagerTests
     {
         [Theory]

@@ -1,17 +1,16 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using Xunit;
 
 namespace MoneyManager.Core.Tests.Repositories
 {
-    [TestClass]
     public class RecurringTransactionRepositoryTest
     {
-        [TestMethod]
+        [Fact]
         public void RecurringTransactionRepository_Save()
         {
             var recurringTransactionDataAccessMock = new RecurringTransactionDataAccessMock();
@@ -31,15 +30,13 @@ namespace MoneyManager.Core.Tests.Repositories
 
             repository.Save(transaction);
 
-            Assert.IsTrue(transaction == recurringTransactionDataAccessMock.RecurringTransactionTestList[0]);
-            Assert.IsTrue(account == recurringTransactionDataAccessMock.RecurringTransactionTestList[0].ChargedAccount);
+            recurringTransactionDataAccessMock.RecurringTransactionTestList[0].ShouldBeSameAs(transaction);
+            recurringTransactionDataAccessMock.RecurringTransactionTestList[0].ChargedAccount.ShouldBeSameAs(account);
         }
 
-        [TestMethod]
+        [Fact]
         public void TransactionRepository_SaveWithouthAccount()
         {
-            try
-            {
                 var recurringTransactionDataAccessMock = new RecurringTransactionDataAccessMock();
                 var repository = new RecurringTransactionRepository(recurringTransactionDataAccessMock);
 
@@ -49,20 +46,11 @@ namespace MoneyManager.Core.Tests.Repositories
                     AmountWithoutExchange = 20
                 };
 
-                repository.Save(transaction);
-            }
-            catch (InvalidDataException)
-            {
-                return;
-            }
-            catch (Exception)
-            {
-                Assert.Fail("wrong exception.");
-            }
-            Assert.Fail("No excpetion thrown");
+                Assert.Throws<InvalidDataException>(() => repository.Save(transaction));
+
         }
 
-        [TestMethod]
+        [Fact]
         public void RecurringTransactionRepository_Delete()
         {
             var recurringTransactionDataAccessMock = new RecurringTransactionDataAccessMock();
@@ -81,21 +69,21 @@ namespace MoneyManager.Core.Tests.Repositories
             };
 
             repository.Save(transaction);
-            Assert.AreSame(transaction, recurringTransactionDataAccessMock.RecurringTransactionTestList[0]);
+            recurringTransactionDataAccessMock.RecurringTransactionTestList[0].ShouldBeSameAs(transaction);
 
             repository.Delete(transaction);
 
-            Assert.IsFalse(recurringTransactionDataAccessMock.RecurringTransactionTestList.Any());
-            Assert.IsFalse(repository.Data.Any());
+            recurringTransactionDataAccessMock.RecurringTransactionTestList.Any().ShouldBeFalse();
+            repository.Data.Any().ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void RecurringTransactionRepository_AccessCache()
         {
-            Assert.IsNotNull(new RecurringTransactionRepository(new RecurringTransactionDataAccessMock()).Data);
+            new RecurringTransactionRepository(new RecurringTransactionDataAccessMock()).Data.ShouldNotBeNull();
         }
 
-        [TestMethod]
+        [Fact]
         public void RecurringTransactionRepository_AddMultipleToCache()
         {
             var recurringTransactionDataAccessMock = new RecurringTransactionDataAccessMock();
@@ -123,9 +111,9 @@ namespace MoneyManager.Core.Tests.Repositories
             repository.Save(transaction);
             repository.Save(secondTransaction);
 
-            Assert.AreEqual(2, repository.Data.Count);
-            Assert.AreSame(transaction, repository.Data[0]);
-            Assert.AreSame(secondTransaction, repository.Data[1]);
+            repository.Data.Count.ShouldBe(2);
+            repository.Data[0].ShouldBeSameAs(transaction);
+            repository.Data[1].ShouldBeSameAs(secondTransaction);
         }
     }
 }
