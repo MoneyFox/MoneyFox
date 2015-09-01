@@ -6,19 +6,22 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using Moq;
+using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    [TestClass]
     public class AddTransactionViewModelTest
     {
-        [TestMethod]
-        public void AddTransactionViewModel_ReturnEditSpendingTitle()
+        [Theory]
+        [InlineData(TransactionType.Spending, "Edit Spending")]
+        [InlineData(TransactionType.Income, "Edit Income")]
+        [InlineData(TransactionType.Transfer, "Edit Transfer")]
+        public void Title_EditTransactionType_CorrectTitle(TransactionType type, string result)
         {
             var dbHelper = new Mock<IDbHelper>().Object;
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
-                Selected = new FinancialTransaction {Type = (int) TransactionType.Spending}
+                Selected = new FinancialTransaction {Type = (int) type}
             };
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
@@ -29,59 +32,20 @@ namespace MoneyManager.Core.Tests.ViewModels
                 IsTransfer = true
             };
 
-            Assert.AreEqual("edit spending", viewModel.Title);
+            viewModel.Title.ShouldBe(result);
         }
 
-        [TestMethod]
-        public void AddTransactionViewModel_ReturnEditIncomeTitle()
+        [Theory]
+        [InlineData(TransactionType.Spending, "Add Spending")]
+        [InlineData(TransactionType.Income, "Add Income")]
+        [InlineData(TransactionType.Transfer, "Add Transfer")]
+        public void Title_AddTransactionType_CorrectTitle(TransactionType type, string result)
         {
             var dbHelper = new Mock<IDbHelper>().Object;
 
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
             {
-                Selected = new FinancialTransaction {Type = (int) TransactionType.Income}
-            };
-
-            var viewModel = new ModifyTransactionViewModel(transactionRepository,
-                new AccountRepository(new AccountDataAccess(dbHelper)),
-                new Mock<IDialogService>().Object)
-            {
-                IsEdit = true,
-                IsTransfer = true
-            };
-
-            Assert.AreEqual("edit income", viewModel.Title);
-        }
-
-        [TestMethod]
-        public void AddTransactionViewModel_ReturnEditTransferTitle()
-        {
-            var dbHelper = new Mock<IDbHelper>().Object;
-
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
-            {
-                Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer}
-            };
-
-            var viewModel = new ModifyTransactionViewModel(transactionRepository,
-                new AccountRepository(new AccountDataAccess(dbHelper)),
-                new Mock<IDialogService>().Object)
-            {
-                IsEdit = true,
-                IsTransfer = true
-            };
-
-            Assert.AreEqual("edit transfer", viewModel.Title);
-        }
-
-        [TestMethod]
-        public void AddTransactionViewModel_ReturnAddTransferTitle()
-        {
-            var dbHelper = new Mock<IDbHelper>().Object;
-
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
-            {
-                Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer}
+                Selected = new FinancialTransaction {Type = (int)type }
             };
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
@@ -89,57 +53,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 new Mock<IDialogService>().Object)
             {IsEdit = false};
 
-            Assert.AreEqual("add transfer", viewModel.Title);
-        }
-
-        [TestMethod]
-        public void AddTransactionViewModel_ReturnSpendingDefaultTitle()
-        {
-            var dbHelper = new Mock<IDbHelper>().Object;
-
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
-            {
-                Selected = new FinancialTransaction {Type = (int) TransactionType.Spending}
-            };
-
-            var viewModel = new ModifyTransactionViewModel(transactionRepository,
-                new AccountRepository(new AccountDataAccess(dbHelper)),
-                new Mock<IDialogService>().Object);
-
-            Assert.AreEqual("add spending", viewModel.Title);
-        }
-
-        [TestMethod]
-        public void AddTransactionViewModel_ReturnIncomeDefault()
-        {
-            var dbHelper = new Mock<IDbHelper>().Object;
-
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
-            {
-                Selected = new FinancialTransaction {Type = (int) TransactionType.Income}
-            };
-
-            var viewModel = new ModifyTransactionViewModel(transactionRepository,
-                new AccountRepository(new AccountDataAccess(dbHelper)),
-                new Mock<IDialogService>().Object);
-            Assert.AreEqual("add income", viewModel.Title);
-        }
-
-        [TestMethod]
-        public void AddTransactionViewModel_ReturnTransferDefault()
-        {
-            var dbHelper = new Mock<IDbHelper>().Object;
-
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
-            {
-                Selected = new FinancialTransaction {Type = (int) TransactionType.Transfer}
-            };
-
-            var viewModel = new ModifyTransactionViewModel(transactionRepository,
-                new AccountRepository(new AccountDataAccess(dbHelper)),
-                new Mock<IDialogService>().Object);
-
-            Assert.AreEqual("add transfer", viewModel.Title);
+            viewModel.Title.ShouldBe(result);
         }
     }
 }

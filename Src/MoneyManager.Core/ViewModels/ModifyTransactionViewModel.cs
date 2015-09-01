@@ -75,7 +75,7 @@ namespace MoneyManager.Core.ViewModels
 
                 var type = TransactionTypeHelper.GetViewTitleForType(transactionRepository.Selected.Type);
 
-                return string.Format(text, type);
+                return string.Join(" ", text, type);
             }
         }
 
