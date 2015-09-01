@@ -1,18 +1,17 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Core;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Core.Tests.Helper;
 using SQLite.Net;
 using SQLite.Net.Platform.WinRT;
+using Xunit;
 
 namespace MoneyManager.Windows.Core.Tests
 {
-    [TestClass]
     public class DbHelperTests
     {
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void DatabaseLogic_CreateDatabase()
         {
             var dbHelper = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath());
@@ -26,21 +25,18 @@ namespace MoneyManager.Windows.Core.Tests
             }
         }
 
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void SqlConnectionFactory_GetSqlConnectionWithouthParams()
         {
-            var connection = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection();
-            Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
+            Assert.IsType<SQLiteConnection>(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection());
         }
 
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void SqlConnectionFactory_GetSqlConnectionWithParams()
         {
-            var connection = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection();
-
-            Assert.IsInstanceOfType(connection, typeof (SQLiteConnection));
+            Assert.IsType<SQLiteConnection>(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection());
         }
     }
 }

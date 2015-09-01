@@ -25,8 +25,7 @@ namespace MoneyManager.Core.Tests.Repositories
             var transaction = new RecurringTransaction
             {
                 ChargedAccount = account,
-                Amount = 20,
-                AmountWithoutExchange = 20
+                Amount = 20
             };
 
             repository.Save(transaction);
@@ -45,8 +44,7 @@ namespace MoneyManager.Core.Tests.Repositories
 
                 var transaction = new RecurringTransaction
                 {
-                    Amount = 20,
-                    AmountWithoutExchange = 20
+                    Amount = 20
                 };
 
                 repository.Save(transaction);
@@ -76,8 +74,7 @@ namespace MoneyManager.Core.Tests.Repositories
             var transaction = new RecurringTransaction
             {
                 ChargedAccount = account,
-                Amount = 20,
-                AmountWithoutExchange = 20
+                Amount = 20
             };
 
             repository.Save(transaction);
@@ -109,15 +106,13 @@ namespace MoneyManager.Core.Tests.Repositories
             var transaction = new RecurringTransaction
             {
                 ChargedAccount = account,
-                Amount = 20,
-                AmountWithoutExchange = 20
+                Amount = 20
             };
 
             var secondTransaction = new RecurringTransaction
             {
                 ChargedAccount = account,
-                Amount = 60,
-                AmountWithoutExchange = 60
+                Amount = 60
             };
 
             repository.Save(transaction);
