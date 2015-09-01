@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using MoneyManager.Core.Logic;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -72,7 +71,8 @@ namespace MoneyManager.Core.Repositories
             data.Remove(item);
             dataAccess.Delete(item);
 
-            TransactionLogic.DeleteAssociatedTransactionsFromDatabase(item);
+            //TODO refactor this
+            //transactionManager.DeleteAssociatedTransactionsFromDatabase(item);
         }
 
         /// <summary>

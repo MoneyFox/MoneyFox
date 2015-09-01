@@ -1,97 +1,52 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.DataAccess;
+﻿using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
 using Moq;
+using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    [TestClass]
     public class MainViewModelTests
     {
         //TODO:Refactor to check navigation with mock
-        [TestMethod]
-        public void GoToAddTransaction_Income_CorrectPreparation()
+        [Theory]
+        [InlineData("Income", TransactionType.Income)]
+        [InlineData("Spending", TransactionType.Spending)]
+        [InlineData("Transfer", TransactionType.Transfer)]
+        public void GoToAddTransaction_Income_CorrectPreparation(string typestring, TransactionType type)
         {
             var dbHelper = new Mock<IDbHelper>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper));
+            var recurringTransactionRepository = new RecurringTransactionRepository(new RecurringTransactionDataAccess(dbHelper));
             var settings = new SettingDataAccess();
+            var transactionManager = new TransactionManager(transactionRepository, accountRepository, recurringTransactionRepository, settings);
             var addTransactionViewModel =
                 new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
-                    new Mock<IDialogService>().Object);
+                    new Mock<IDialogService>().Object,
+                    transactionManager);
 
             var addAccountViewModel = new ModifyAccountViewModel(accountRepository,
                 new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
+            var mainViewModel = new MainViewModel(transactionManager, addAccountViewModel);
 
-            var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
-            var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);
+            mainViewModel.GoToAddTransactionCommand.Execute(typestring);
 
-            var mainViewModel = new MainViewModel(transactionManager, accountManager);
-            mainViewModel.GoToAddTransactionCommand.Execute("Income");
-
-            Assert.IsFalse(addTransactionViewModel.IsEdit);
-            Assert.IsTrue(addTransactionViewModel.IsEndless);
-            Assert.IsFalse(addTransactionViewModel.IsTransfer);
-            Assert.AreEqual((int) TransactionType.Income, addTransactionViewModel.SelectedTransaction.Type);
-        }
-
-        //TODO:Refactor to check navigation with mock
-        [TestMethod]
-        public void GoToAddTransaction_Spending_CorrectPreparation()
-        {
-            var dbHelper = new Mock<IDbHelper>().Object;
-            var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
-            var settings = new SettingDataAccess();
-            var addTransactionViewModel =
-                new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
-                    accountRepository,
-                    new Mock<IDialogService>().Object);
-
-            var addAccountViewModel = new ModifyAccountViewModel(accountRepository,
-                new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
-
-            var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
-            var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);
-
-            var mainViewModel = new MainViewModel(transactionManager, accountManager);
-
-            mainViewModel.GoToAddTransactionCommand.Execute("Spending");
-
-            Assert.IsFalse(addTransactionViewModel.IsEdit);
-            Assert.IsTrue(addTransactionViewModel.IsEndless);
-            Assert.IsFalse(addTransactionViewModel.IsTransfer);
-            Assert.AreEqual((int) TransactionType.Spending, addTransactionViewModel.SelectedTransaction.Type);
-        }
-
-        //TODO:Refactor to check navigation with mock
-        [TestMethod]
-        public void GoToAddTransaction_Transfer_CorrectPreparation()
-        {
-            var dbHelper = new Mock<IDbHelper>().Object;
-            var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
-            var settings = new SettingDataAccess();
-            var addTransactionViewModel =
-                new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
-                    accountRepository,
-                    new Mock<IDialogService>().Object);
-
-            var addAccountViewModel = new ModifyAccountViewModel(accountRepository,
-                new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
-
-            var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
-            var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);
-
-            var mainViewModel = new MainViewModel(transactionManager, accountManager);
-            mainViewModel.GoToAddTransactionCommand.Execute("Transfer");
-
-            Assert.IsFalse(addTransactionViewModel.IsEdit);
-            Assert.IsTrue(addTransactionViewModel.IsEndless);
-            Assert.IsTrue(addTransactionViewModel.IsTransfer);
-            Assert.AreEqual((int) TransactionType.Transfer, addTransactionViewModel.SelectedTransaction.Type);
+            Assert.False(addTransactionViewModel.IsEdit);
+            Assert.True(addTransactionViewModel.IsEndless);
+            if (type == TransactionType.Transfer)
+            {
+                Assert.True(addTransactionViewModel.IsTransfer);
+            }
+            else
+            {
+                Assert.False(addTransactionViewModel.IsTransfer);
+            }
+            Assert.Equal((int)type, addTransactionViewModel.SelectedTransaction.Type);
         }
     }
 }

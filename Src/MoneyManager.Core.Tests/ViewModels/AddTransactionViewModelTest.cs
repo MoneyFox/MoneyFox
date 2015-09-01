@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.DataAccess;
+using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
@@ -21,9 +22,12 @@ namespace MoneyManager.Core.Tests.ViewModels
                 Selected = new FinancialTransaction {Type = (int) TransactionType.Spending}
             };
 
+            //var transactionManager = new TransactionManager(transactionRepository, new Mock<IRepository<Account>>().Object, new Mock<IRepository<RecurringTransaction>>().Object, new SettingDataAccess());
+
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
-                new Mock<IDialogService>().Object)
+                new Mock<IDialogService>().Object,
+                transactionManager)
             {
                 IsEdit = true,
                 IsTransfer = true
