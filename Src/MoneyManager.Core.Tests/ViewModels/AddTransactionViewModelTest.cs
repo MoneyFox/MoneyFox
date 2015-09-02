@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.DataAccess;
+﻿using MoneyManager.Core.DataAccess;
+using MoneyManager.Core.Logic;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.ViewModels;
@@ -20,13 +20,14 @@ namespace MoneyManager.Core.Tests.ViewModels
         public void Title_EditTransactionType_CorrectTitle(TransactionType type, string result)
         {
             var dbHelper = new Mock<IDbHelper>().Object;
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper), new RecurringTransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int) type}
             };
 
             var transactionManager = new TransactionManager(transactionRepository,
-                new Mock<IRepository<Account>>().Object);
+                new Mock<IRepository<Account>>().Object,
+                new RecurringTransactionLogic(transactionRepository));
 
             var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess());
 
@@ -51,13 +52,14 @@ namespace MoneyManager.Core.Tests.ViewModels
         {
             var dbHelper = new Mock<IDbHelper>().Object;
 
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper))
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper), new RecurringTransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int)type }
             };
 
             var transactionManager = new TransactionManager(transactionRepository,
-                new Mock<IRepository<Account>>().Object);
+                new Mock<IRepository<Account>>().Object,
+                new RecurringTransactionLogic(transactionRepository));
 
             var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess());
 

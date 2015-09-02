@@ -146,7 +146,7 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
-        private async void Save()
+        private void Save()
         {
             if (transactionRepository.Selected.ChargedAccount == null)
             {
@@ -156,7 +156,7 @@ namespace MoneyManager.Core.ViewModels
 
             if (IsEdit)
             {
-                await transactionManager.UpdateTransaction(transactionRepository.Selected);
+                transactionManager.SaveTransaction(transactionRepository.Selected);
             }
             else
             {

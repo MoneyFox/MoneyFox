@@ -9,6 +9,6 @@ namespace MoneyManager.Foundation.OperationContracts
         IEnumerable<FinancialTransaction> GetUnclearedTransactions();
         IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date);
         IEnumerable<FinancialTransaction> GetRelatedTransactions(Account account);
-        List<FinancialTransaction> LoadRecurringList();
+        IEnumerable<FinancialTransaction> LoadRecurringList(Func<FinancialTransaction, bool> filter = null);
     }
 }

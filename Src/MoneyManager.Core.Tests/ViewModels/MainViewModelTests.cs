@@ -1,5 +1,6 @@
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.DataAccess;
+using MoneyManager.Core.Logic;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.ViewModels;
@@ -26,14 +27,14 @@ namespace MoneyManager.Core.Tests.ViewModels
         {
             var dbHelper = new Mock<IDbHelper>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper));
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper), new RecurringTransactionDataAccess(dbHelper));
             var settings = new SettingDataAccess();
-            var transactionManager = new TransactionManager(transactionRepository, accountRepository);
+            var transactionManager = new TransactionManager(transactionRepository, accountRepository, new RecurringTransactionLogic(transactionRepository));
 
             var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess());
 
             var modifyTransactionViewModel =
-                new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
+                new ModifyTransactionViewModel(transactionRepository,
                     accountRepository,
                     new Mock<IDialogService>().Object,
                     transactionManager,

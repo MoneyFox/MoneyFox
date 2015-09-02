@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq.Expressions;
 
 namespace MoneyManager.Foundation.OperationContracts
 {
@@ -29,6 +31,6 @@ namespace MoneyManager.Foundation.OperationContracts
         /// <summary>
         ///     Loads the data from the database and fills it to the data collection.
         /// </summary>
-        void Load();
+        void Load(Expression<Func<T, bool>> filter = null);
     }
 }

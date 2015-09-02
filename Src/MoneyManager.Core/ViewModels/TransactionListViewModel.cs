@@ -82,9 +82,9 @@ namespace MoneyManager.Core.ViewModels
             ShowViewModel<ModifyTransactionViewModel>();
         }
 
-        private async void Delete(FinancialTransaction transaction)
+        private void Delete(FinancialTransaction transaction)
         {
-            await transactionManager.DeleteTransaction(transaction);
+            transactionManager.DeleteTransaction(transaction);
             balanceViewModel.UpdateBalance();
         }
     }

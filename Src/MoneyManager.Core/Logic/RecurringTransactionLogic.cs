@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Cirrious.CrossCore;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -11,37 +9,25 @@ namespace MoneyManager.Core.Logic
 {
     public class RecurringTransactionLogic
     {
-        public static void RemoveRecurringForTransactions(RecurringTransaction recTrans)
-        {
-            try
-            {
-                var relatedTrans =
-                    transactionRepository.Data.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
+        private readonly ITransactionRepository transactionRepository;
 
-                foreach (var transaction in relatedTrans)
-                {
-                    transaction.IsRecurring = false;
-                    transaction.ReccuringTransactionId = null;
-                    transactionRepository.Save(transaction);
-                }
-            }
-            catch (Exception ex)
-            {
-                InsightHelper.Report(ex);
-            }
+        public RecurringTransactionLogic(ITransactionRepository transactionRepository)
+        {
+            this.transactionRepository = transactionRepository;
         }
 
-        public static void CheckRecurringTransactions()
+        public void CheckRecurringTransactions()
         {
-            RecurringTransactionData.LoadList();
             var transactionList = transactionRepository.LoadRecurringList();
 
-            foreach (var recTrans in AllRecurringTransactions.Where(x => x.ChargedAccount != null))
+            foreach (var transaction in transactionRepository.LoadRecurringList(x => x.ChargedAccount != null))
             {
                 var relTransaction = new FinancialTransaction();
-                var trans = recTrans;
-                var transcationList = transactionList.Where(
-                    x => x.ReccuringTransactionId == trans.Id)
+
+                var financialTransactions = transactionList as IList<FinancialTransaction>;
+
+                var transcationList = financialTransactions.Where(
+                    x => x.ReccuringTransactionId == transaction.Id)
                     .OrderBy(x => x.Date);
 
                 if (transcationList.Any())
@@ -49,14 +35,14 @@ namespace MoneyManager.Core.Logic
                     relTransaction = transcationList.Last();
                 }
 
-                if (CheckIfRepeatable(recTrans, relTransaction))
+                if (CheckIfRepeatable(transaction.RecurringTransaction, relTransaction))
                 {
-                    SaveTransaction(recTrans);
+                    SaveTransaction(transaction.RecurringTransaction);
                 }
             }
         }
 
-        private static bool CheckIfRepeatable(RecurringTransaction recTrans, FinancialTransaction relTransaction)
+        private bool CheckIfRepeatable(RecurringTransaction recTrans, FinancialTransaction relTransaction)
         {
             switch (recTrans.Recurrence)
             {
@@ -82,7 +68,7 @@ namespace MoneyManager.Core.Logic
             return false;
         }
 
-        private static void SaveTransaction(RecurringTransaction recurringTransaction)
+        private void SaveTransaction(RecurringTransaction recurringTransaction)
         {
             try
             {
@@ -113,23 +99,5 @@ namespace MoneyManager.Core.Logic
                 InsightHelper.Report(ex);
             }
         }
-
-        public static void Delete(RecurringTransaction recTransaction)
-        {
-            RecurringTransactionData.Delete(recTransaction);
-            RemoveRecurringForTransactions(recTransaction);
-        }
-
-        #region Properties
-
-        private static IDataAccess<RecurringTransaction> RecurringTransactionData => Mvx.Resolve<IDataAccess<RecurringTransaction>>();
-
-        private static ITransactionRepository transactionRepository => Mvx.Resolve<ITransactionRepository>();
-
-        private static ModifyTransactionViewModel ModifyTransactionView => Mvx.Resolve<ModifyTransactionViewModel>();
-
-        private static IEnumerable<RecurringTransaction> AllRecurringTransactions => Mvx.Resolve<IRepository<RecurringTransaction>>().Data;
-
-        #endregion Properties
     }
 }
