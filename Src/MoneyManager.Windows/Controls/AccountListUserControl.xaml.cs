@@ -1,12 +1,10 @@
 ﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
-using MoneyManager.Windows.Views;
 
 namespace MoneyManager.Windows.Controls
 {
@@ -17,8 +15,6 @@ namespace MoneyManager.Windows.Controls
             InitializeComponent();
             DataContext = Mvx.Resolve<AccountListViewModel>();
         }
-
-        private IRepository<Account> AccountRepository => Mvx.Resolve<IRepository<Account>>();
 
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)
         {
@@ -37,21 +33,15 @@ namespace MoneyManager.Windows.Controls
                 return;
             }
 
-            //TODO refactor this / move to a viewmodel
-            var viewModel = Mvx.Resolve<ModifyAccountViewModel>();
-            viewModel.IsEdit = true;
-            viewModel.SelectedAccount = account;
-
-            ((Frame) Window.Current.Content).Navigate(typeof (ModifyAccountView));
+            (DataContext as AccountListViewModel)?.EditAccountCommand.Execute(account);
         }
 
         private async void Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            //TODO: refactor this
-            //if (!await Utilities.IsDeletionConfirmed())
-            //{
-            //    return;
-            //}
+            if (!await new DialogService().ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteConfirmationMessage))
+            {
+                return;
+            }
 
             var element = (FrameworkElement) sender;
             var account = element.DataContext as Account;
@@ -60,24 +50,7 @@ namespace MoneyManager.Windows.Controls
                 return;
             }
 
-            //TODO Refactor
-            Mvx.Resolve<AccountListViewModel>().DeleteAccountCommand.Execute(account);
-            Mvx.Resolve<BalanceViewModel>().UpdateBalance();
-        }
-
-        private void NavigateToTransactionList(object sender, SelectionChangedEventArgs e)
-        {
-            if (AccountList.SelectedItem != null)
-            {
-                AccountRepository.Selected = AccountList.SelectedItem as Account;
-
-                Mvx.Resolve<TransactionListViewModel>()
-                    .LoadTransactionsCommand.Execute(AccountRepository.Selected);
-
-                //TODO move toviewmodel
-                ((Frame) Window.Current.Content).Navigate(typeof (TransactionListView));
-                AccountList.SelectedItem = null;
-            }
+            (DataContext as AccountListViewModel)?.DeleteAccountCommand.Execute(account);
         }
     }
 }

@@ -1,18 +1,17 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Core;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Core.Tests.Helper;
 using SQLite.Net.Platform.WinRT;
+using Xunit;
 
 namespace MoneyManager.Windows.Core.Tests.DataAccess
 {
-    [TestClass]
     public class CategoryDataAccessTest
     {
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void CategoryDataAccess_CrudCategory()
         {
             var categoryDataAccess =
@@ -31,21 +30,21 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
             categoryDataAccess.LoadList();
             var list = categoryDataAccess.LoadList();
 
-            Assert.AreEqual(1, list.Count);
-            Assert.AreEqual(firstName, list.First().Name);
+            Assert.Equal(1, list.Count);
+            Assert.Equal(firstName, list.First().Name);
 
             category.Name = secondName;
             categoryDataAccess.Save(category);
 
             list = categoryDataAccess.LoadList();
 
-            Assert.AreEqual(1, list.Count);
-            Assert.AreEqual(secondName, list.First().Name);
+            Assert.Equal(1, list.Count);
+            Assert.Equal(secondName, list.First().Name);
 
             categoryDataAccess.Delete(category);
 
             list = categoryDataAccess.LoadList();
-            Assert.IsFalse(list.Any());
+            Assert.False(list.Any());
         }
     }
 }

@@ -1,22 +1,20 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.Manager;
+using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private readonly AccountManager accountManager;
-        private readonly TransactionManager transactionManager;
+        private readonly ModifyAccountViewModel modifyAccountViewModel;
+        private readonly ModifyTransactionViewModel modifyTransactionViewModel;
 
         /// <summary>
         ///     Creates an MainViewModel object.
         /// </summary>
-        /// <param name="transactionManager">Instance of <see cref="TransactionManager" /></param>
-        /// <param name="accountManager">Instance of <see cref="AccountManager" /></param>
-        public MainViewModel(TransactionManager transactionManager, AccountManager accountManager)
+        public MainViewModel(ModifyAccountViewModel modifyAccountViewModel, ModifyTransactionViewModel modifyTransactionViewModel)
         {
-            this.accountManager = accountManager;
-            this.transactionManager = transactionManager;
+            this.modifyAccountViewModel = modifyAccountViewModel;
+            this.modifyTransactionViewModel = modifyTransactionViewModel;
 
             GoToAddTransactionCommand = new MvxCommand<string>(GoToAddTransaction);
             GoToAddAccountCommand = new MvxCommand(GoToAddAccount);
@@ -38,15 +36,17 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public MvxCommand GoToAddAccountCommand { get; private set; }
 
-        private void GoToAddTransaction(string type)
+        private void GoToAddTransaction(string transactionType)
         {
-            transactionManager.PrepareCreation(type);
+            modifyTransactionViewModel.IsEdit = false;
             ShowViewModel<ModifyTransactionViewModel>();
         }
 
         private void GoToAddAccount()
         {
-            accountManager.PrepareCreation();
+            modifyAccountViewModel.IsEdit = false;
+            modifyAccountViewModel.SelectedAccount = new Account();
+
             ShowViewModel<ModifyAccountViewModel>();
         }
 

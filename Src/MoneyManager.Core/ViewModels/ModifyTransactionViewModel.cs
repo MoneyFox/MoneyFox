@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helper;
-using MoneyManager.Core.Logic;
+using MoneyManager.Core.Manager;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -16,13 +16,16 @@ namespace MoneyManager.Core.ViewModels
         private readonly IRepository<Account> accountRepository;
         private readonly IDialogService dialogService;
         private readonly ITransactionRepository transactionRepository;
+        private readonly TransactionManager transactionManager;
 
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
-            IDialogService dialogService)
+            IDialogService dialogService,
+            TransactionManager transactionManager)
         {
             this.transactionRepository = transactionRepository;
             this.dialogService = dialogService;
+            this.transactionManager = transactionManager;
             this.accountRepository = accountRepository;
         }
 
@@ -95,11 +98,40 @@ namespace MoneyManager.Core.ViewModels
             set { SelectedTransaction.Date = value; }
         }
 
+        public void PrepareViewModel(string transactionType)
+        {
+            IsEndless = true;
+
+            if (IsEdit)
+            {
+                var type = (TransactionType) Enum.Parse(typeof (TransactionType), transactionType);
+
+                //TODO: Find a way to properly refresh this list
+                //ModifyTransactionViewModel.RefreshRealtedList = refreshRelatedList;
+                IsTransfer = type == TransactionType.Transfer;
+
+                SetDefaultTransaction(type);
+                SelectedTransaction.ChargedAccount = transactionManager.GetDefaultAccount();
+            }
+            else
+            {
+                IsTransfer = SelectedTransaction.IsTransfer;
+            }
+        }
+        
+        private void SetDefaultTransaction(TransactionType transactionType)
+        {
+            SelectedTransaction = new FinancialTransaction
+            {
+                Type = (int)transactionType
+            };
+        }
+
         private void Loaded()
         {
             if (IsEdit)
             {
-                AccountLogic.RemoveTransactionAmount(SelectedTransaction);
+                transactionManager.RemoveTransactionAmount(SelectedTransaction);
             }
         }
 
@@ -113,11 +145,11 @@ namespace MoneyManager.Core.ViewModels
 
             if (IsEdit)
             {
-                await TransactionLogic.UpdateTransaction(transactionRepository.Selected);
+                await transactionManager.UpdateTransaction(transactionRepository.Selected);
             }
             else
             {
-                TransactionLogic.SaveTransaction(transactionRepository.Selected, RefreshRealtedList);
+                transactionManager.SaveTransaction(transactionRepository.Selected, RefreshRealtedList);
             }
             Close(this);
         }
@@ -132,7 +164,7 @@ namespace MoneyManager.Core.ViewModels
         {
             if (IsEdit)
             {
-                AccountLogic.AddTransactionAmount(transactionRepository.Selected);
+                transactionManager.AddTransactionAmount(transactionRepository.Selected);
             }
             Close(this);
         }

@@ -1,4 +1,4 @@
-﻿using Cirrious.MvvmCross.Test.Core;
+using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
@@ -17,41 +17,44 @@ namespace MoneyManager.Core.Tests.ViewModels
             Setup();
         }
 
+    public class MainViewModelTests
+    {
         //TODO:Refactor to check navigation with mock
         [Theory]
-        [InlineData(TransactionType.Spending)]
-        [InlineData(TransactionType.Income)]
-        [InlineData(TransactionType.Transfer)]
-        public void GoToAddTransaction_Type_CorrectPreparation(TransactionType type)
+        [InlineData("Income", TransactionType.Income)]
+        [InlineData("Spending", TransactionType.Spending)]
+        [InlineData("Transfer", TransactionType.Transfer)]
+        public void GoToAddTransaction_Income_CorrectPreparation(string typestring, TransactionType type)
         {
             var dbHelper = new Mock<IDbHelper>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper));
+            var recurringTransactionRepository = new RecurringTransactionRepository(new RecurringTransactionDataAccess(dbHelper));
             var settings = new SettingDataAccess();
+            var transactionManager = new TransactionManager(transactionRepository, accountRepository, recurringTransactionRepository, settings);
             var addTransactionViewModel =
                 new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
-                    new Mock<IDialogService>().Object);
+                    new Mock<IDialogService>().Object,
+                    transactionManager);
 
             var addAccountViewModel = new ModifyAccountViewModel(accountRepository,
                 new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
+            var mainViewModel = new MainViewModel(transactionManager, addAccountViewModel);
 
-            var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
-            var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);
+            mainViewModel.GoToAddTransactionCommand.Execute(typestring);
 
-            var mainViewModel = new MainViewModel(transactionManager, accountManager);
-            mainViewModel.GoToAddTransactionCommand.Execute(type.ToString());
-
-            addTransactionViewModel.IsEdit.ShouldBeFalse();
-            addTransactionViewModel.IsEndless.ShouldBeTrue();
-
+            Assert.False(addTransactionViewModel.IsEdit);
+            Assert.True(addTransactionViewModel.IsEndless);
             if (type == TransactionType.Transfer)
             {
-                addTransactionViewModel.IsTransfer.ShouldBeTrue();
+                Assert.True(addTransactionViewModel.IsTransfer);
             }
             else
             {
-                addTransactionViewModel.IsTransfer.ShouldBeFalse();
+                Assert.False(addTransactionViewModel.IsTransfer);
             }
+            Assert.Equal((int)type, addTransactionViewModel.SelectedTransaction.Type);
         }
     }
 }

@@ -1,20 +1,20 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Core;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Repositories;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Core.Tests.Helper;
 using SQLite.Net.Platform.WinRT;
 using SQLiteNetExtensions.Extensions;
+using Xunit;
 
 namespace MoneyManager.Windows.Core.Tests.Repositories
 {
-    [TestClass]
     public class RecurringTransactionRepositoryIntegrationTests
     {
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void RecurringTransactionRepository_LoadDataFromDbThroughRepository()
         {
             var dbHelper = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath());
@@ -25,7 +25,6 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
                 db.InsertWithChildren(new RecurringTransaction
                 {
                     Amount = 999,
-                    AmountWithoutExchange = 777,
                     ChargedAccount = new Account
                     {
                         Name = "testAccount"
@@ -35,13 +34,13 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
 
             var repository = new RecurringTransactionRepository(new RecurringTransactionDataAccess(dbHelper));
 
-            Assert.IsTrue(repository.Data.Any());
-            Assert.AreEqual(999, repository.Data[0].Amount);
-            Assert.AreEqual(777, repository.Data[0].AmountWithoutExchange);
+
+            repository.Data.Any().ShouldBeTrue();
+            repository.Data[0].Amount.ShouldBe(999);
         }
 
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void RecurringTransactionRepository_Update()
         {
             var dbHelper = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath());
@@ -62,21 +61,20 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
             var transaction = new RecurringTransaction
             {
                 ChargedAccount = account,
-                Amount = 20,
-                AmountWithoutExchange = 20
+                Amount = 20
             };
 
 
             repository.Save(transaction);
-            Assert.AreEqual(1, repository.Data.Count);
-            Assert.AreSame(transaction, repository.Data[0]);
+            repository.Data.Count.ShouldBe(1);
+            repository.Data[0].ShouldBeSameAs(transaction);
 
             transaction.Amount = 789;
 
             repository.Save(transaction);
 
-            Assert.AreEqual(1, repository.Data.Count);
-            Assert.AreEqual(789, repository.Data[0].Amount);
+            repository.Data.Any().ShouldBeTrue();
+            repository.Data[0].Amount.ShouldBe(789);
         }
     }
 }
