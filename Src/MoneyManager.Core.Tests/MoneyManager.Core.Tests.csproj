@@ -112,6 +112,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Helper\RecurringTransactionHelperTests.cs" />
     <Compile Include="Helper\UtilitiesTest.cs" />
     <Compile Include="Helper\TransactionTypeLogicTest.cs" />
     <Compile Include="Manager\TransactionManagerTests.cs" />

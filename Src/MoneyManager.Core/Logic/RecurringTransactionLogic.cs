@@ -120,23 +120,6 @@ namespace MoneyManager.Core.Logic
             RemoveRecurringForTransactions(recTransaction);
         }
 
-        public static RecurringTransaction GetRecurringFromFinancialTransaction(FinancialTransaction transaction)
-        {
-            return new RecurringTransaction
-            {
-                ChargedAccount = transaction.ChargedAccount,
-                TargetAccount = transaction.TargetAccount,
-                StartDate = transaction.Date,
-                EndDate = ModifyTransactionView.EndDate,
-                IsEndless = ModifyTransactionView.IsEndless,
-                Amount = transaction.Amount,
-                CategoryId = transaction.CategoryId,
-                Type = transaction.Type,
-                Recurrence = ModifyTransactionView.Recurrence,
-                Note = transaction.Note
-            };
-        }
-
         #region Properties
 
         private static IDataAccess<RecurringTransaction> RecurringTransactionData => Mvx.Resolve<IDataAccess<RecurringTransaction>>();

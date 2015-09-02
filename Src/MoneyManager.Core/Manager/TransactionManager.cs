@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Logic;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -22,7 +20,6 @@ namespace MoneyManager.Core.Manager
         /// <param name="transactionRepository">Instance of <see cref="ITransactionRepository" /></param>
         /// <param name="accountRepository">Instance of <see cref="IRepository{T}" /></param>
         /// <param name="recurringTransactionRepository">Instance of <see cref="IRepository{T}" /></param>
-        /// <param name="settings">Instance of <see cref="SettingDataAccess" /></param>
         public TransactionManager(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
             IRepository<RecurringTransaction> recurringTransactionRepository)
@@ -37,11 +34,10 @@ namespace MoneyManager.Core.Manager
         {
             if (transaction.IsRecurring && !skipRecurring)
             {
-                var recurringTransaction =
-                    RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
-                recurringTransactionRepository.Save(recurringTransaction);
-                transactionRepository.Save(transaction);
-                transaction.RecurringTransaction = recurringTransaction;
+                //TODO: refactor
+                //var recurringTransaction = RecurringTransactionHelper.GetRecurringFromFinancialTransaction(transaction);
+                //recurringTransactionRepository.Save(recurringTransaction);
+                //transaction.RecurringTransaction = recurringTransaction;
             }
 
             transactionRepository.Save(transaction);
@@ -83,12 +79,21 @@ namespace MoneyManager.Core.Manager
             AddTransactionAmount(transaction);
             transactionRepository.Save(transaction);
 
-            var recurringTransaction =
-                RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
+            //TODO: refactor
+            //var recurringTransaction = RecurringTransactionLogic.GetRecurringFromFinancialTransaction(transaction);
 
-            await
-                CheckForRecurringTransaction(transaction,
-                    () => recurringTransactionRepository.Save(recurringTransaction));
+            //await
+            //    CheckForRecurringTransaction(transaction,
+            //        () => recurringTransactionRepository.Save(recurringTransaction));
+        }
+
+        private void CheckIfRecurringWasRemoved(FinancialTransaction transaction)
+        {
+            if (!transaction.IsRecurring && transaction.ReccuringTransactionId.HasValue)
+            {
+                recurringTransactionRepository.Delete(transaction.RecurringTransaction);
+                transaction.ReccuringTransactionId = null;
+            }
         }
 
         private async Task CheckForRecurringTransaction(FinancialTransaction transaction,
@@ -114,15 +119,6 @@ namespace MoneyManager.Core.Manager
             //{
             //    recurringTransactionAction();
             //}
-        }
-
-        private void CheckIfRecurringWasRemoved(FinancialTransaction transaction)
-        {
-            if (!transaction.IsRecurring && transaction.ReccuringTransactionId.HasValue)
-            {
-                recurringTransactionRepository.Delete(transaction.RecurringTransaction);
-                transaction.ReccuringTransactionId = null;
-            }
         }
 
         public void ClearTransactions()

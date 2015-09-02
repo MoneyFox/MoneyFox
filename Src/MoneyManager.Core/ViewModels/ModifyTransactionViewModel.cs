@@ -117,17 +117,17 @@ namespace MoneyManager.Core.ViewModels
 
             if (IsEdit)
             {
-                //TODO: Find a way to properly refresh this list
-                //ModifyTransactionViewModel.RefreshRealtedList = refreshRelatedList;
-                IsTransfer = type == TransactionType.Transfer;
-
-                SetDefaultTransaction(type);
-                SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
+                IsTransfer = SelectedTransaction.IsTransfer;
             }
             else
             {
-                IsTransfer = SelectedTransaction.IsTransfer;
+                SetDefaultTransaction(type);
+                SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
+                IsTransfer = type == TransactionType.Transfer;
             }
+
+            //TODO: Find a way to properly refresh this list
+            //ModifyTransactionViewModel.RefreshRealtedList = refreshRelatedList;
         }
 
         private void SetDefaultTransaction(TransactionType transactionType)
