@@ -22,7 +22,6 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
         /// <param name="transactionRepository">An instance of <see cref="ITransactionRepository" />.</param>
-        /// <param name="navigationService">An instance of <see cref="INavigationService" /></param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         public CategoryListViewModel(IRepository<Category> categoryRepository,
             ITransactionRepository transactionRepository,
@@ -31,14 +30,12 @@ namespace MoneyManager.Core.ViewModels
             this.categoryRepository = categoryRepository;
             this.transactionRepository = transactionRepository;
             this.dialogService = dialogService;
-
-            DeleteCategoryCommand = new MvxCommand<Category>(DeleteCategory);
         }
 
         /// <summary>
         ///     Deletes the passed Category after show a confirmation dialog.
         /// </summary>
-        public MvxCommand<Category> DeleteCategoryCommand { get; set; }
+        public MvxCommand<Category> DeleteCategoryCommand => new MvxCommand<Category>(DeleteCategory);
 
         /// <summary>
         ///     Indicates wether the view is shown from the settings to adjust something

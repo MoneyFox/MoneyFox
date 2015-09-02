@@ -12,18 +12,17 @@ namespace MoneyManager.Core.ViewModels
         private readonly IDialogService dialogService;
         private readonly RepositoryManager repositoryManager;
 
-        public BackupViewModel(Backup backup, RepositoryManager repositoryManager, IDialogService dialogService)
+        public BackupViewModel(Backup backup,
+            RepositoryManager repositoryManager,
+            IDialogService dialogService)
         {
             this.backup = backup;
             this.repositoryManager = repositoryManager;
             this.dialogService = dialogService;
-
-            BackupCommand = new MvxCommand(CreateBackup);
-            RestoreCommand = new MvxCommand(RestoreBackup);
         }
 
-        public MvxCommand BackupCommand { get; private set; }
-        public MvxCommand RestoreCommand { get; private set; }
+        public MvxCommand BackupCommand => new MvxCommand(CreateBackup);
+        public MvxCommand RestoreCommand => new MvxCommand(RestoreBackup);
         public bool IsLoading { get; private set; }
 
         private async void CreateBackup()

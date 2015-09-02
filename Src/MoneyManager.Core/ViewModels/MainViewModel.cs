@@ -15,26 +15,22 @@ namespace MoneyManager.Core.ViewModels
         {
             this.modifyAccountViewModel = modifyAccountViewModel;
             this.modifyTransactionViewModel = modifyTransactionViewModel;
-
-            GoToAddTransactionCommand = new MvxCommand<string>(GoToAddTransaction);
-            GoToAddAccountCommand = new MvxCommand(GoToAddAccount);
-            GoToAboutCommand = new MvxCommand(GoToAbout);
         }
 
         /// <summary>
         ///     Prepare everything and navigate to AddTransaction view
         /// </summary>
-        public MvxCommand<string> GoToAddTransactionCommand { get; private set; }
+        public MvxCommand<string> GoToAddTransactionCommand => new MvxCommand<string>(GoToAddTransaction);
 
         /// <summary>
         ///     Navigates to the About view
         /// </summary>
-        public MvxCommand GoToAboutCommand { get; private set; }
+        public MvxCommand GoToAboutCommand => new MvxCommand(GoToAbout);
 
         /// <summary>
         ///     Prepare everything and navigate to AddAccount view
         /// </summary>
-        public MvxCommand GoToAddAccountCommand { get; private set; }
+        public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
 
         private void GoToAddTransaction(string transactionType)
         {

@@ -14,7 +14,8 @@ namespace MoneyManager.Core.ViewModels
         private readonly BalanceViewModel balanceViewModel;
         private readonly ModifyAccountViewModel modifyAccountViewModel;
 
-        public AccountListViewModel(IRepository<Account> accountRepository, TransactionListViewModel transactionListViewModel,
+        public AccountListViewModel(IRepository<Account> accountRepository,
+            TransactionListViewModel transactionListViewModel,
             BalanceViewModel balanceViewModel, ModifyAccountViewModel modifyAccountViewModel)
         {
             this.accountRepository = accountRepository;

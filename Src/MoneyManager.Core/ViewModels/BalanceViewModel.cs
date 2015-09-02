@@ -16,7 +16,8 @@ namespace MoneyManager.Core.ViewModels
         private readonly SettingDataAccess settings;
         private readonly ITransactionRepository transactionRepository;
 
-        public BalanceViewModel(IRepository<Account> accountRepository, ITransactionRepository transactionRepository,
+        public BalanceViewModel(IRepository<Account> accountRepository,
+            ITransactionRepository transactionRepository,
             SettingDataAccess settings)
         {
             this.accountRepository = accountRepository;
