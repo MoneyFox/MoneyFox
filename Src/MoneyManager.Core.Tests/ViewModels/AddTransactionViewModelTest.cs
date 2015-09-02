@@ -26,8 +26,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             };
 
             var transactionManager = new TransactionManager(transactionRepository,
-                new Mock<IRepository<Account>>().Object,
-                new Mock<IRepository<RecurringTransaction>>().Object);
+                new Mock<IRepository<Account>>().Object);
 
             var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess());
 
@@ -58,8 +57,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             };
 
             var transactionManager = new TransactionManager(transactionRepository,
-                new Mock<IRepository<Account>>().Object,
-                new Mock<IRepository<RecurringTransaction>>().Object);
+                new Mock<IRepository<Account>>().Object);
 
             var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess());
 

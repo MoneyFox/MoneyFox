@@ -123,7 +123,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepositoryTests.cs" />
     <Compile Include="Repositories\CategoryRepositoryTests.cs" />
-    <Compile Include="Repositories\RecurringTransactionRepositoryTest.cs" />
     <Compile Include="Repositories\TransactionRepositoryTests.cs" />
     <Compile Include="ViewModels\AddTransactionViewModelTest.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />

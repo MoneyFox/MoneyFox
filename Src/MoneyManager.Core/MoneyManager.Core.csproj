@@ -58,7 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
-    <Compile Include="Repositories\RecurringTransactionRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />

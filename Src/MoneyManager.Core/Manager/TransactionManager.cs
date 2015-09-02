@@ -19,13 +19,10 @@ namespace MoneyManager.Core.Manager
         /// </summary>
         /// <param name="transactionRepository">Instance of <see cref="ITransactionRepository" /></param>
         /// <param name="accountRepository">Instance of <see cref="IRepository{T}" /></param>
-        /// <param name="recurringTransactionRepository">Instance of <see cref="IRepository{T}" /></param>
         public TransactionManager(ITransactionRepository transactionRepository,
-            IRepository<Account> accountRepository,
-            IRepository<RecurringTransaction> recurringTransactionRepository)
+            IRepository<Account> accountRepository)
         {
             this.accountRepository = accountRepository;
-            this.recurringTransactionRepository = recurringTransactionRepository;
             this.transactionRepository = transactionRepository;
         }
 

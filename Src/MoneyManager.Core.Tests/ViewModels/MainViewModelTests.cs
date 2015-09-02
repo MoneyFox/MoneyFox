@@ -27,9 +27,8 @@ namespace MoneyManager.Core.Tests.ViewModels
             var dbHelper = new Mock<IDbHelper>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper));
-            var recurringTransactionRepository = new RecurringTransactionRepository(new RecurringTransactionDataAccess(dbHelper));
             var settings = new SettingDataAccess();
-            var transactionManager = new TransactionManager(transactionRepository, accountRepository, recurringTransactionRepository);
+            var transactionManager = new TransactionManager(transactionRepository, accountRepository);
 
             var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess());
 
