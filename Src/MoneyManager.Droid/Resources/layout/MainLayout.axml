@@ -10,11 +10,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="left"
         android:background="@android:color/background_dark" />
-    <cirrious.mvvmcross.binding.droid.views.MvxListView
-        android:id="@+id/accountList"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        local:MvxItemTemplate="@layout/accountlistitem"
-        local:MvxBind="ItemsSource AllAccounts" />
+    <FrameLayout
+        android:id="@+id/content_pane"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent" />
 </android.support.v4.widget.SlidingPaneLayout>

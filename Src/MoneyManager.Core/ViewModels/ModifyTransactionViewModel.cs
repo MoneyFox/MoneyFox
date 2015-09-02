@@ -98,14 +98,23 @@ namespace MoneyManager.Core.ViewModels
             set { SelectedTransaction.Date = value; }
         }
 
+        public void PrepareViewModel(int transactionType)
+        {
+        
+            PrepareViewModel((TransactionType)Enum.ToObject(typeof(TransactionType), transactionType));
+        }
+
         public void PrepareViewModel(string transactionType)
+        {
+            PrepareViewModel((TransactionType)Enum.Parse(typeof(TransactionType), transactionType));
+        }
+
+        private void PrepareViewModel(TransactionType type)
         {
             IsEndless = true;
 
             if (IsEdit)
             {
-                var type = (TransactionType) Enum.Parse(typeof (TransactionType), transactionType);
-
                 //TODO: Find a way to properly refresh this list
                 //ModifyTransactionViewModel.RefreshRealtedList = refreshRelatedList;
                 IsTransfer = type == TransactionType.Transfer;
@@ -118,7 +127,7 @@ namespace MoneyManager.Core.ViewModels
                 IsTransfer = SelectedTransaction.IsTransfer;
             }
         }
-        
+
         private void SetDefaultTransaction(TransactionType transactionType)
         {
             SelectedTransaction = new FinancialTransaction

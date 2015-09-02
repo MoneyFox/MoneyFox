@@ -77,7 +77,7 @@ namespace MoneyManager.Core.ViewModels
         {
             if (transaction == null) return;
 
-            transactionManager.PrepareEdit(transaction);
+            modifyTransactionViewModel.PrepareViewModel(transaction.Type);
             SelectedTransaction = null;
             ShowViewModel<ModifyTransactionViewModel>();
         }

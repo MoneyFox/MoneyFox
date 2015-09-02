@@ -71,7 +71,7 @@ namespace MoneyManager.Core.Manager
 
             transactionRepository.Save(transaction);
 
-            transactionManager.AddTransactionAmount(transaction);
+            AddTransactionAmount(transaction);
         }
 
         public async Task DeleteTransaction(FinancialTransaction transaction, bool skipConfirmation = false)

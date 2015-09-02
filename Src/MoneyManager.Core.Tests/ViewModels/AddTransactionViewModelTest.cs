@@ -25,7 +25,10 @@ namespace MoneyManager.Core.Tests.ViewModels
                 Selected = new FinancialTransaction {Type = (int) type}
             };
 
-            //var transactionManager = new TransactionManager(transactionRepository, new Mock<IRepository<Account>>().Object, new Mock<IRepository<RecurringTransaction>>().Object, new SettingDataAccess());
+            var transactionManager = new TransactionManager(transactionRepository,
+                new Mock<IRepository<Account>>().Object,
+                new Mock<IRepository<RecurringTransaction>>().Object,
+                new SettingDataAccess());
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
@@ -52,9 +55,15 @@ namespace MoneyManager.Core.Tests.ViewModels
                 Selected = new FinancialTransaction {Type = (int)type }
             };
 
+            var transactionManager = new TransactionManager(transactionRepository,
+                new Mock<IRepository<Account>>().Object,
+                new Mock<IRepository<RecurringTransaction>>().Object,
+                new SettingDataAccess());
+
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
-                new Mock<IDialogService>().Object)
+                new Mock<IDialogService>().Object,
+                transactionManager)
             {IsEdit = false};
 
             viewModel.Title.ShouldBe(result);
