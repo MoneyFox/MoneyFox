@@ -8,19 +8,32 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Core.Logic
+namespace MoneyManager.Core.Manager
 {
-    public class StatisticLogic
+    public class StatisticManager
     {
+        private readonly ITransactionRepository transactionRepository;
+        private readonly IRepository<Category> categoryRepository;
+        private readonly SettingDataAccess settings;
+
+        public StatisticManager(ITransactionRepository transactionRepository,
+            IRepository<Category> categoryRepository,
+            SettingDataAccess settings)
+        {
+            this.transactionRepository = transactionRepository;
+            this.categoryRepository = categoryRepository;
+            this.settings = settings;
+        }
+
         /// <summary>
         ///     Get a list with income, spending and earnings for custom date range
         /// </summary>
         /// <returns>List with income, spending and earning item.</returns>
-        public static ObservableCollection<StatisticItem> GetMonthlyCashFlow(DateTime startDate, DateTime endDate)
+        public ObservableCollection<StatisticItem> GetMonthlyCashFlow(DateTime startDate, DateTime endDate)
         {
             var transactionListFunc =
                 new Func<List<FinancialTransaction>>(() =>
-                    AllTransaction
+                    transactionRepository.Data
                         .Where(x => x.Type != (int) TransactionType.Transfer)
                         .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
                         .ToList());
@@ -32,11 +45,11 @@ namespace MoneyManager.Core.Logic
         ///     Get a list with income, spending and earnings for current month
         /// </summary>
         /// <returns>List with income, spending and earning item.</returns>
-        public static ObservableCollection<StatisticItem> GetMonthlyCashFlow()
+        public ObservableCollection<StatisticItem> GetMonthlyCashFlow()
         {
             var transactionListFunc =
                 new Func<List<FinancialTransaction>>(() =>
-                    AllTransaction
+                    transactionRepository.Data
                         .Where(x => x.Type != (int) TransactionType.Transfer)
                         .Where(x => x.Date.Month == DateTime.Now.Month)
                         .ToList());
@@ -44,7 +57,7 @@ namespace MoneyManager.Core.Logic
             return GetCashFlowStatisticItems(transactionListFunc);
         }
 
-        private static ObservableCollection<StatisticItem> GetCashFlowStatisticItems(
+        private ObservableCollection<StatisticItem> GetCashFlowStatisticItems(
             Func<List<FinancialTransaction>> getTransactionListFunc)
         {
             var transactionList = getTransactionListFunc();
@@ -88,21 +101,21 @@ namespace MoneyManager.Core.Logic
         /// <param name="startDate">minimum date</param>
         /// <param name="endDate">max date</param>
         /// <returns>List with statistic items.</returns>
-        public static ObservableCollection<StatisticItem> GetSpreading(DateTime startDate, DateTime endDate)
+        public ObservableCollection<StatisticItem> GetSpreading(DateTime startDate, DateTime endDate)
         {
-            if (AllTransaction == null)
+            if (transactionRepository.Data == null)
             {
-                TransactionData.LoadList();
+                transactionRepository.Load();
             }
 
-            if (AllCategories == null)
+            if (categoryRepository.Data == null)
             {
-                CateogryData.LoadList();
+                categoryRepository.Load();
             }
 
             var transactionListFunc =
                 new Func<List<FinancialTransaction>>(() =>
-                    AllTransaction
+                    transactionRepository.Data
                         .Where(x => x.Category != null)
                         .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
                         .Where(x => x.Type == (int) TransactionType.Spending)
@@ -115,21 +128,21 @@ namespace MoneyManager.Core.Logic
         ///     returns the spreading of the current month
         /// </summary>
         /// <returns>List with statistic items.</returns>
-        public static ObservableCollection<StatisticItem> GetSpreading()
+        public ObservableCollection<StatisticItem> GetSpreading()
         {
-            if (AllTransaction == null)
+            if (transactionRepository.Data == null)
             {
-                TransactionData.LoadList();
+                transactionRepository.Load();
             }
 
-            if (AllCategories == null)
+            if (categoryRepository.Data == null)
             {
-                CateogryData.LoadList();
+                categoryRepository.Load();
             }
 
             var transactionListFunc =
                 new Func<List<FinancialTransaction>>(() =>
-                    AllTransaction
+                    transactionRepository.Data
                         .Where(x => x.Category != null)
                         .Where(x => x.Date.Month == DateTime.Today.Date.Month)
                         .Where(x => x.Type == (int) TransactionType.Spending)
@@ -138,12 +151,12 @@ namespace MoneyManager.Core.Logic
             return GetSpreadingStatisticItems(transactionListFunc);
         }
 
-        private static ObservableCollection<StatisticItem> GetSpreadingStatisticItems(
+        private ObservableCollection<StatisticItem> GetSpreadingStatisticItems(
             Func<List<FinancialTransaction>> getTransactionListFunc)
         {
             var transactionList = getTransactionListFunc();
 
-            var tempStatisticList = AllCategories.Select(category => new StatisticItem
+            var tempStatisticList = categoryRepository.Data.Select(category => new StatisticItem
             {
                 Category = category.Name,
                 Value = transactionList
@@ -163,7 +176,7 @@ namespace MoneyManager.Core.Logic
             return new ObservableCollection<StatisticItem>(statisticList);
         }
 
-        private static void RemoveNullList(ICollection<StatisticItem> tempStatisticList)
+        private void RemoveNullList(ICollection<StatisticItem> tempStatisticList)
         {
             var nullerList = tempStatisticList.Where(x => x.Value == 0).ToList();
             foreach (var statisticItem in nullerList)
@@ -172,16 +185,16 @@ namespace MoneyManager.Core.Logic
             }
         }
 
-        private static void SetLabel(StatisticItem item)
+        private void SetLabel(StatisticItem item)
         {
-            item.Label = item.Category + ": " + item.Value + " " + Settings.DefaultCurrency;
+            item.Label = item.Category + ": " + item.Value + " " + settings.DefaultCurrency;
         }
 
-        private static void IncludeIncome(IEnumerable<StatisticItem> statisticList)
+        private void IncludeIncome(IEnumerable<StatisticItem> statisticList)
         {
             foreach (var statisticItem in statisticList)
             {
-                statisticItem.Value -= AllTransaction
+                statisticItem.Value -= transactionRepository.Data
                     .Where(x => x.Type == (int) TransactionType.Income)
                     .Where(x => x.Category != null)
                     .Where(x => x.Category.Name == statisticItem.Category)
@@ -196,7 +209,7 @@ namespace MoneyManager.Core.Logic
             }
         }
 
-        private static void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
+        private void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
             ICollection<StatisticItem> statisticList)
         {
             if (statisticList.Count < 6)
@@ -211,7 +224,7 @@ namespace MoneyManager.Core.Logic
                     .Where(x => !statisticList.Contains(x))
                     .Sum(x => x.Value)
             };
-            othersItem.Label = othersItem.Category + ": " + othersItem.Value + " " + Settings.DefaultCurrency;
+            othersItem.Label = othersItem.Category + ": " + othersItem.Value + " " + settings.DefaultCurrency;
 
             if (othersItem.Value > 0)
             {
@@ -225,16 +238,16 @@ namespace MoneyManager.Core.Logic
         /// <param name="startDate">start date</param>
         /// <param name="endDate">enddate</param>
         /// <returns>List with statistic Items.</returns>
-        public static ObservableCollection<StatisticItem> GetCategorySummary(DateTime startDate, DateTime endDate)
+        public ObservableCollection<StatisticItem> GetCategorySummary(DateTime startDate, DateTime endDate)
         {
             var categories = new ObservableCollection<StatisticItem>();
 
-            foreach (var category in AllCategories)
+            foreach (var category in categoryRepository.Data)
             {
                 categories.Add(new StatisticItem
                 {
                     Category = category.Name,
-                    Value = AllTransaction
+                    Value = transactionRepository.Data
                         .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .Where(x => x.CategoryId == category.Id)
                         .Where(x => x.Type != (int) TransactionType.Transfer)
@@ -248,20 +261,5 @@ namespace MoneyManager.Core.Logic
             return new ObservableCollection<StatisticItem>(
                 categories.Where(x => Math.Abs(x.Value) > 0.1).OrderBy(x => x.Value).ToList());
         }
-
-        #region Properties
-
-        private static IEnumerable<FinancialTransaction> AllTransaction => Mvx.Resolve<ITransactionRepository>().Data;
-
-        private static IEnumerable<Category> AllCategories => Mvx.Resolve<IRepository<Category>>().Data;
-
-        private static IDataAccess<FinancialTransaction> TransactionData
-            => Mvx.Resolve<IDataAccess<FinancialTransaction>>();
-
-        private static IDataAccess<Category> CateogryData => Mvx.Resolve<IDataAccess<Category>>();
-
-        private static SettingDataAccess Settings => Mvx.Resolve<SettingDataAccess>();
-
-        #endregion
     }
 }

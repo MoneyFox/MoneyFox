@@ -5,13 +5,13 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 
-namespace MoneyManager.Core.Logic
+namespace MoneyManager.Core.Manager
 {
-    public class RecurringTransactionLogic
+    public class RecurringTransactionManager
     {
         private readonly ITransactionRepository transactionRepository;
 
-        public RecurringTransactionLogic(ITransactionRepository transactionRepository)
+        public RecurringTransactionManager(ITransactionRepository transactionRepository)
         {
             this.transactionRepository = transactionRepository;
         }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using MoneyManager.Core.Logic;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -12,7 +11,7 @@ namespace MoneyManager.Core.Manager
     {
         private readonly IRepository<Account> accountRepository;
         private readonly ITransactionRepository transactionRepository;
-        private readonly RecurringTransactionLogic recurringTransactionLogic;
+        private readonly RecurringTransactionManager recurringTransactionManager;
 
         /// <summary>
         ///     Creates an TransactionManager object.
@@ -21,10 +20,10 @@ namespace MoneyManager.Core.Manager
         /// <param name="accountRepository">Instance of <see cref="IRepository{T}" /></param>
         public TransactionManager(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
-            RecurringTransactionLogic recurringTransactionLogic)
+            RecurringTransactionManager recurringTransactionManager)
         {
             this.accountRepository = accountRepository;
-            this.recurringTransactionLogic = recurringTransactionLogic;
+            this.recurringTransactionManager = recurringTransactionManager;
             this.transactionRepository = transactionRepository;
         }
 

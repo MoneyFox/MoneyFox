@@ -49,8 +49,8 @@
     <Compile Include="DbHelper.cs" />
     <Compile Include="Helper\RecurringTransactionHelper.cs" />
     <Compile Include="Helper\Utilities.cs" />
-    <Compile Include="Logic\RecurringTransactionLogic.cs" />
-    <Compile Include="Logic\StatisticLogic.cs" />
+    <Compile Include="Manager\RecurringTransactionManager.cs" />
+    <Compile Include="Manager\StatisticManager.cs" />
     <Compile Include="Helper\TransactionTypeHelper.cs" />
     <Compile Include="Manager\DefaultManager.cs" />
     <Compile Include="Manager\RepositoryManager.cs" />
