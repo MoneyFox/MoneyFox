@@ -4,6 +4,7 @@ using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using Moq;
 using Xunit;
@@ -28,12 +29,16 @@ namespace MoneyManager.Core.Tests.ViewModels
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper));
             var recurringTransactionRepository = new RecurringTransactionRepository(new RecurringTransactionDataAccess(dbHelper));
             var settings = new SettingDataAccess();
-            var transactionManager = new TransactionManager(transactionRepository, accountRepository, recurringTransactionRepository, settings);
+            var transactionManager = new TransactionManager(transactionRepository, accountRepository, recurringTransactionRepository);
+
+            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess());
+
             var modifyTransactionViewModel =
                 new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
                     accountRepository,
                     new Mock<IDialogService>().Object,
-                    transactionManager);
+                    transactionManager,
+                    defaultManager);
 
             var modifyAccountViewModel = new ModifyAccountViewModel(accountRepository,
                 new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));

@@ -17,15 +17,17 @@ namespace MoneyManager.Core.ViewModels
         private readonly IDialogService dialogService;
         private readonly ITransactionRepository transactionRepository;
         private readonly TransactionManager transactionManager;
+        private readonly DefaultManager defaultManager;
 
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
             IDialogService dialogService,
-            TransactionManager transactionManager)
+            TransactionManager transactionManager, DefaultManager defaultManager)
         {
             this.transactionRepository = transactionRepository;
             this.dialogService = dialogService;
             this.transactionManager = transactionManager;
+            this.defaultManager = defaultManager;
             this.accountRepository = accountRepository;
         }
 
@@ -120,7 +122,7 @@ namespace MoneyManager.Core.ViewModels
                 IsTransfer = type == TransactionType.Transfer;
 
                 SetDefaultTransaction(type);
-                SelectedTransaction.ChargedAccount = transactionManager.GetDefaultAccount();
+                SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
             }
             else
             {

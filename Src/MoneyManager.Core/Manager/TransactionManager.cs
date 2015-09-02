@@ -2,10 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Cirrious.CrossCore;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Logic;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -16,7 +14,6 @@ namespace MoneyManager.Core.Manager
     {
         private readonly IRepository<Account> accountRepository;
         private readonly IRepository<RecurringTransaction> recurringTransactionRepository;
-        private readonly SettingDataAccess settings;
         private readonly ITransactionRepository transactionRepository;
 
         /// <summary>
@@ -28,33 +25,11 @@ namespace MoneyManager.Core.Manager
         /// <param name="settings">Instance of <see cref="SettingDataAccess" /></param>
         public TransactionManager(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
-            IRepository<RecurringTransaction> recurringTransactionRepository,
-            SettingDataAccess settings)
+            IRepository<RecurringTransaction> recurringTransactionRepository)
         {
             this.accountRepository = accountRepository;
-            this.settings = settings;
             this.recurringTransactionRepository = recurringTransactionRepository;
             this.transactionRepository = transactionRepository;
-        }
-
-        public Account GetDefaultAccount()
-        {
-            if (accountRepository.Data == null)
-            {
-                accountRepository.Data = new ObservableCollection<Account>();
-            }
-
-            if (accountRepository.Data.Any())
-            {
-                return accountRepository.Data.First();
-            }
-
-            if (accountRepository.Data.Any() && settings.DefaultAccount != -1)
-            {
-                return accountRepository.Data.FirstOrDefault(x => x.Id == settings.DefaultAccount);
-            }
-
-            return accountRepository.Selected ?? new Account();
         }
 
         public void SaveTransaction(FinancialTransaction transaction, bool refreshRelatedList = false,

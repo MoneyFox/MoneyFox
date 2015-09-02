@@ -27,13 +27,15 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var transactionManager = new TransactionManager(transactionRepository,
                 new Mock<IRepository<Account>>().Object,
-                new Mock<IRepository<RecurringTransaction>>().Object,
-                new SettingDataAccess());
+                new Mock<IRepository<RecurringTransaction>>().Object);
+
+            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess());
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new Mock<IDialogService>().Object,
-                transactionManager)
+                transactionManager, 
+                defaultManager)
             {
                 IsEdit = true,
                 IsTransfer = true
@@ -57,14 +59,15 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var transactionManager = new TransactionManager(transactionRepository,
                 new Mock<IRepository<Account>>().Object,
-                new Mock<IRepository<RecurringTransaction>>().Object,
-                new SettingDataAccess());
+                new Mock<IRepository<RecurringTransaction>>().Object);
+
+            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess());
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new Mock<IDialogService>().Object,
-                transactionManager)
-            {IsEdit = false};
+                transactionManager,
+                defaultManager) {IsEdit = false};
 
             viewModel.Title.ShouldBe(result);
         }

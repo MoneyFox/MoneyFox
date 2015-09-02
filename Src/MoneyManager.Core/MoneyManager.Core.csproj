@@ -51,6 +51,7 @@
     <Compile Include="Logic\RecurringTransactionLogic.cs" />
     <Compile Include="Logic\StatisticLogic.cs" />
     <Compile Include="Helper\TransactionTypeHelper.cs" />
+    <Compile Include="Manager\DefaultManager.cs" />
     <Compile Include="Manager\RepositoryManager.cs" />
     <Compile Include="Manager\TransactionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
