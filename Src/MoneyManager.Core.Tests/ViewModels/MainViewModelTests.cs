@@ -4,7 +4,6 @@ using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using Moq;
 using Xunit;
@@ -13,24 +12,20 @@ namespace MoneyManager.Core.Tests.ViewModels
 {
     public class MainViewModelTests : MvxIoCSupportingTest
     {
-        public MainViewModelTests()
-        {
-            Setup();
-        }
-
         [Theory]
         [InlineData("Income", TransactionType.Income)]
         [InlineData("Spending", TransactionType.Spending)]
         [InlineData("Transfer", TransactionType.Transfer)]
-        public void GoToAddTransaction_Income_CorrectPreparation(string typestring, TransactionType type)
+        public void GoToAddTransaction_Transactiontype_CorrectPreparation(string typestring, TransactionType type)
         {
+            Setup();
             var dbHelper = new Mock<IDbHelper>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper), new RecurringTransactionDataAccess(dbHelper));
             var settings = new SettingDataAccess();
             var transactionManager = new TransactionManager(transactionRepository, accountRepository, new RecurringTransactionManager(transactionRepository));
 
-            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess());
+            var defaultManager = new DefaultManager(accountRepository, new SettingDataAccess());
 
             var modifyTransactionViewModel =
                 new ModifyTransactionViewModel(transactionRepository,
