@@ -27,7 +27,7 @@ namespace MoneyManager.Core.Manager
             this.transactionRepository = transactionRepository;
         }
 
-        public void SaveTransaction(FinancialTransaction transaction, bool updateRecurring = false,  bool refreshRelatedList = false)
+        public void SaveTransaction(FinancialTransaction transaction, bool updateRecurring = false)
         {
             if (transaction.IsRecurring && updateRecurring)
             {
@@ -38,7 +38,6 @@ namespace MoneyManager.Core.Manager
             }
 
             transactionRepository.Save(transaction);
-
             AddTransactionAmount(transaction);
         }
 

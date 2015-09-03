@@ -14,10 +14,10 @@ namespace MoneyManager.Core.ViewModels
     public class ModifyTransactionViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly IDialogService dialogService;
-        private readonly ITransactionRepository transactionRepository;
-        private readonly TransactionManager transactionManager;
         private readonly DefaultManager defaultManager;
+        private readonly IDialogService dialogService;
+        private readonly TransactionManager transactionManager;
+        private readonly ITransactionRepository transactionRepository;
 
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
@@ -51,7 +51,6 @@ namespace MoneyManager.Core.ViewModels
         public bool IsEdit { get; set; } = false;
         public int Recurrence { get; set; }
         public bool IsTransfer { get; set; }
-        public bool RefreshRealtedList { get; set; }
 
         /// <summary>
         ///     The selected transaction
@@ -100,15 +99,24 @@ namespace MoneyManager.Core.ViewModels
             set { SelectedTransaction.Date = value; }
         }
 
+        /// <summary>
+        ///     Prepares the viewmodle based on the transaction type.
+        ///     The type is passed as int and will be converted to an TransactionType Enum.
+        /// </summary>
+        /// <param name="transactionType">The type for which the viewmodel shall be prepared</param>
         public void PrepareViewModel(int transactionType)
         {
-        
-            PrepareViewModel((TransactionType)Enum.ToObject(typeof(TransactionType), transactionType));
+            PrepareViewModel((TransactionType) Enum.ToObject(typeof (TransactionType), transactionType));
         }
 
+        /// <summary>
+        ///     Prepares the viewmodle based on the transaction type.
+        ///     The type is passed as string and will be converted to an TransactionType Enum.
+        /// </summary>
+        /// <param name="transactionType">The type for which the viewmodel shall be prepared</param>
         public void PrepareViewModel(string transactionType)
         {
-            PrepareViewModel((TransactionType)Enum.Parse(typeof(TransactionType), transactionType));
+            PrepareViewModel((TransactionType) Enum.Parse(typeof (TransactionType), transactionType));
         }
 
         private void PrepareViewModel(TransactionType type)
@@ -125,16 +133,13 @@ namespace MoneyManager.Core.ViewModels
                 SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
                 IsTransfer = type == TransactionType.Transfer;
             }
-
-            //TODO: Find a way to properly refresh this list
-            //ModifyTransactionViewModel.RefreshRealtedList = refreshRelatedList;
         }
 
         private void SetDefaultTransaction(TransactionType transactionType)
         {
             SelectedTransaction = new FinancialTransaction
             {
-                Type = (int)transactionType
+                Type = (int) transactionType
             };
         }
 
@@ -160,7 +165,7 @@ namespace MoneyManager.Core.ViewModels
             }
             else
             {
-                transactionManager.SaveTransaction(transactionRepository.Selected, RefreshRealtedList);
+                transactionManager.SaveTransaction(transactionRepository.Selected);
             }
             Close(this);
         }
