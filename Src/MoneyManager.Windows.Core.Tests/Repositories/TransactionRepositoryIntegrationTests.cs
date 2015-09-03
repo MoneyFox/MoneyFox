@@ -32,7 +32,7 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
                 });
             }
 
-            var repository = new TransactionRepository(new TransactionDataAccess(dbHelper));
+            var repository = new TransactionRepository(new TransactionDataAccess(dbHelper), new RecurringTransactionDataAccess(dbHelper));
 
             repository.Data.Any().ShouldBeTrue();
             repository.Data[0].Amount.ShouldBe(999);
@@ -49,7 +49,7 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
                 db.DeleteAll<FinancialTransaction>();
             }
 
-            var repository = new TransactionRepository(new TransactionDataAccess(dbHelper));
+            var repository = new TransactionRepository(new TransactionDataAccess(dbHelper), new RecurringTransactionDataAccess(dbHelper));
             var account = new Account
             {
                 Name = "TestAccount"
