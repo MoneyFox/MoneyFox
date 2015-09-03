@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.Helper;
 using MoneyManager.Core.Manager;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
@@ -12,14 +14,14 @@ namespace MoneyManager.Core.ViewModels
     public class TransactionListViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly TransactionManager transactionManager;
-        private readonly ITransactionRepository transactionRepository;
         private readonly BalanceViewModel balanceViewModel;
         private readonly ModifyTransactionViewModel modifyTransactionViewModel;
+        private readonly TransactionManager transactionManager;
+        private readonly ITransactionRepository transactionRepository;
 
         public TransactionListViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
-            TransactionManager transactionManager, 
+            TransactionManager transactionManager,
             BalanceViewModel balanceViewModel,
             ModifyTransactionViewModel modifyTransactionViewModel)
         {
@@ -60,7 +62,7 @@ namespace MoneyManager.Core.ViewModels
                 .OrderByDescending(x => x.Date)
                 .ToList();
         }
-        
+
         private void UnloadTransactions()
         {
             balanceViewModel.IsTransactionView = false;
@@ -77,10 +79,10 @@ namespace MoneyManager.Core.ViewModels
         {
             if (transaction == null) return;
 
-            modifyTransactionViewModel.PrepareViewModel(transaction.Type);
             SelectedTransaction = null;
-            ShowViewModel<ModifyTransactionViewModel>();
+            ShowViewModel<ModifyTransactionViewModel>(new { typeString = TransactionTypeHelper.GetTypeString(transaction.Type) });
         }
+
 
         private void Delete(FinancialTransaction transaction)
         {

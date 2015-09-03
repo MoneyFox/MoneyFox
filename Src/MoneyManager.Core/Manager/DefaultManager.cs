@@ -24,14 +24,14 @@ namespace MoneyManager.Core.Manager
                 accountRepository.Data = new ObservableCollection<Account>();
             }
 
-            if (accountRepository.Data.Any())
-            {
-                return accountRepository.Data.First();
-            }
-
             if (accountRepository.Data.Any() && settings.DefaultAccount != -1)
             {
                 return accountRepository.Data.FirstOrDefault(x => x.Id == settings.DefaultAccount);
+            }
+
+            if (accountRepository.Data.Any())
+            {
+                return accountRepository.Data.First();
             }
 
             return accountRepository.Selected ?? new Account();

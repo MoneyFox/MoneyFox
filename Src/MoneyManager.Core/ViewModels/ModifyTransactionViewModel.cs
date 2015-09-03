@@ -31,6 +31,31 @@ namespace MoneyManager.Core.ViewModels
             this.accountRepository = accountRepository;
         }
 
+        public void Init(string typeString)
+        {
+            var type = ((TransactionType)Enum.Parse(typeof(TransactionType), typeString));
+            IsEndless = true;
+
+            if (IsEdit)
+            {
+                IsTransfer = SelectedTransaction.IsTransfer;
+            }
+            else
+            {
+                SetDefaultTransaction(type);
+                SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
+                IsTransfer = type == TransactionType.Transfer;
+            }
+        }
+
+        private void SetDefaultTransaction(TransactionType transactionType)
+        {
+            SelectedTransaction = new FinancialTransaction
+            {
+                Type = (int)transactionType
+            };
+        }
+
         /// <summary>
         ///     Handels everything when the page is loaded.
         /// </summary>
@@ -97,50 +122,6 @@ namespace MoneyManager.Core.ViewModels
                 return SelectedTransaction.Date;
             }
             set { SelectedTransaction.Date = value; }
-        }
-
-        /// <summary>
-        ///     Prepares the viewmodle based on the transaction type.
-        ///     The type is passed as int and will be converted to an TransactionType Enum.
-        /// </summary>
-        /// <param name="transactionType">The type for which the viewmodel shall be prepared</param>
-        public void PrepareViewModel(int transactionType)
-        {
-            PrepareViewModel((TransactionType) Enum.ToObject(typeof (TransactionType), transactionType));
-        }
-
-        /// <summary>
-        ///     Prepares the viewmodle based on the transaction type.
-        ///     The type is passed as string and will be converted to an TransactionType Enum.
-        /// </summary>
-        /// <param name="transactionType">The type for which the viewmodel shall be prepared</param>
-        public void PrepareViewModel(string transactionType)
-        {
-            PrepareViewModel((TransactionType) Enum.Parse(typeof (TransactionType), transactionType));
-        }
-
-        private void PrepareViewModel(TransactionType type)
-        {
-            IsEndless = true;
-
-            if (IsEdit)
-            {
-                IsTransfer = SelectedTransaction.IsTransfer;
-            }
-            else
-            {
-                SetDefaultTransaction(type);
-                SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
-                IsTransfer = type == TransactionType.Transfer;
-            }
-        }
-
-        private void SetDefaultTransaction(TransactionType transactionType)
-        {
-            SelectedTransaction = new FinancialTransaction
-            {
-                Type = (int) transactionType
-            };
         }
 
         private void Loaded()

@@ -50,5 +50,28 @@ namespace MoneyManager.Core.Helper
                     return string.Empty;
             }
         }
+
+        /// <summary>
+        ///     Determines the string for transaction type based on the passed int.
+        /// </summary>
+        /// <param name="type">The Transaction type as int.</param>
+        /// <returns>The string for the determined type.</returns>
+        public static string GetTypeString(int type)
+        {
+            switch (type)
+            {
+                case (int)TransactionType.Income:
+                    return TransactionType.Income.ToString();
+
+                case (int)TransactionType.Spending:
+                    return TransactionType.Spending.ToString();
+
+                case (int)TransactionType.Transfer:
+                    return TransactionType.Transfer.ToString();
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), "Passed Number didn't match to a transaction type.");
+            }
+        }
     }
 }

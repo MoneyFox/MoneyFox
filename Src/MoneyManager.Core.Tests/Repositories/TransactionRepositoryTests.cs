@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
+using Moq;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Repositories
@@ -13,7 +17,7 @@ namespace MoneyManager.Core.Tests.Repositories
     public class TransactionRepositoryTests
     {
         [Fact]
-        public void TransactionRepository_SaveWithouthAccount()
+        public void SaveWithouthAccount_NoAccount_InvalidDataException()
         {
             var repository = new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock());
 
@@ -25,8 +29,9 @@ namespace MoneyManager.Core.Tests.Repositories
             Assert.Throws<InvalidDataException>(() => repository.Save(transaction));
         }
 
-        [Fact]
-        public void TransactionRepository_Save()
+        [Theory]
+        [InlineData(TransactionType.Income)]
+        public void Save_DifferentTransactionTypes_CorrectlySaved(TransactionType type)
         {
             var transactionDataAccessMock = new TransactionDataAccessMock();
             var repository = new TransactionRepository(transactionDataAccessMock, new RecurringTransactionDataAccessMock());
@@ -39,17 +44,21 @@ namespace MoneyManager.Core.Tests.Repositories
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = account,
-                Amount = 20
+                TargetAccount = null,
+                Amount = 20,
+                Type = (int)type
             };
 
             repository.Save(transaction);
 
             transactionDataAccessMock.FinancialTransactionTestList[0].ShouldBeSameAs(transaction);
             transactionDataAccessMock.FinancialTransactionTestList[0].ChargedAccount.ShouldBeSameAs(account);
+            transactionDataAccessMock.FinancialTransactionTestList[0].TargetAccount.ShouldBeNull();
+            transactionDataAccessMock.FinancialTransactionTestList[0].Type.ShouldBe((int)type);
         }
 
         [Fact]
-        public void TransactionRepository_SaveTransfer()
+        public void Save_TransferTransaction_CorrectlySaved()
         {
             var transactionDataAccessMock = new TransactionDataAccessMock();
             var repository = new TransactionRepository(transactionDataAccessMock, new RecurringTransactionDataAccessMock());
@@ -77,6 +86,7 @@ namespace MoneyManager.Core.Tests.Repositories
             transactionDataAccessMock.FinancialTransactionTestList[0].ShouldBeSameAs(transaction);
             transactionDataAccessMock.FinancialTransactionTestList[0].ChargedAccount.ShouldBeSameAs(account);
             transactionDataAccessMock.FinancialTransactionTestList[0].TargetAccount.ShouldBeSameAs(targetAccount);
+            transactionDataAccessMock.FinancialTransactionTestList[0].Type.ShouldBe((int)TransactionType.Transfer);
         }
 
         [Fact]
@@ -142,7 +152,7 @@ namespace MoneyManager.Core.Tests.Repositories
         }
 
         [Fact]
-        public void TransactionRepository_AddItemToDataList()
+        public void AddItemToDataList_SaveAccount_IsAddedToData()
         {
             var repository = new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock());
 
@@ -163,7 +173,7 @@ namespace MoneyManager.Core.Tests.Repositories
         }
 
         [Fact]
-        public void TransactionRepository_GetUnclearedTransactionsPast()
+        public void GetUnclearedTransactions_PastDate_PastTransactions()
         {
             var repository = new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock());
 
@@ -191,7 +201,7 @@ namespace MoneyManager.Core.Tests.Repositories
         ///     This Test may fail if the date overlaps with the month transition.
         /// </summary>
         [Fact]
-        public void TransactionRepository_GetUnclearedTransactionsFuture()
+        public void GetUnclearedTransactions_FutureDate_PastTransactions()
         {
             var repository = new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock());
 
@@ -218,7 +228,7 @@ namespace MoneyManager.Core.Tests.Repositories
         }
 
         [Fact]
-        public void TransactionRepository_GetUnclearedTransactions_AccountNull()
+        public void GetUnclearedTransactions_AccountNull()
         {
             var repository = new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock());
 
@@ -234,5 +244,29 @@ namespace MoneyManager.Core.Tests.Repositories
             var transactions = repository.GetUnclearedTransactions();
             transactions.Count().ShouldBe(1);
         }
+
+        //TODO: Move to platformspecific project
+        //[Fact]
+        //public void LoadRecurringList_ListWithRecurringTransaction()
+        //{
+        //    var transacitonList = new List<FinancialTransaction>
+        //    {
+        //        new FinancialTransaction {Id = 3, Amount = 999, IsRecurring = false},
+        //        new FinancialTransaction {Id = 4, Amount = 123, IsRecurring = true, RecurringTransaction = new RecurringTransaction {Id = 12}},
+        //    };
+
+        //    var transDataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
+        //    transDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<FinancialTransaction, bool>>>()))
+        //        .Returns<Expression<Func<FinancialTransaction, bool>>>(action => transacitonList.Where(x => action.Compile().Invoke(x)).ToList());
+
+        //    var repository = new TransactionRepository(transDataAccessSetup.Object, new Mock<IDataAccess<RecurringTransaction>>().Object);
+
+        //    var result = repository.LoadRecurringList().ToList();
+
+        //    result.Count.ShouldBe(1);
+
+        //    result.First().Id.ShouldBe(4);
+        //    result.First().RecurringTransaction.Id.ShouldBe(12);
+        //}
     }
 }

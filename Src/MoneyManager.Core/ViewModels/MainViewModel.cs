@@ -35,8 +35,7 @@ namespace MoneyManager.Core.ViewModels
         private void GoToAddTransaction(string transactionType)
         {
             modifyTransactionViewModel.IsEdit = false;
-            modifyTransactionViewModel.PrepareViewModel(transactionType);
-            ShowViewModel<ModifyTransactionViewModel>();
+            ShowViewModel<ModifyTransactionViewModel>(new { typeString = transactionType });
         }
 
         private void GoToAddAccount()

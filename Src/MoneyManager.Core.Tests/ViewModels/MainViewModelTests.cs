@@ -1,3 +1,4 @@
+using Cirrious.MvvmCross.Platform;
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Manager;
@@ -10,7 +11,7 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    public class MainViewModelTests : MvxIoCSupportingTest
+    class MainViewModelTests : MvxIoCSupportingTest
     {
         [Theory]
         [InlineData("Income", TransactionType.Income)]
@@ -19,6 +20,9 @@ namespace MoneyManager.Core.Tests.ViewModels
         public void GoToAddTransaction_Transactiontype_CorrectPreparation(string typestring, TransactionType type)
         {
             Setup();
+            // for navigation parsing
+            Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
+
             var dbHelper = new Mock<IDbHelper>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper), new RecurringTransactionDataAccess(dbHelper));
@@ -36,6 +40,7 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var modifyAccountViewModel = new ModifyAccountViewModel(accountRepository,
                 new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
+
             var mainViewModel = new MainViewModel(modifyAccountViewModel, modifyTransactionViewModel);
 
             mainViewModel.GoToAddTransactionCommand.Execute(typestring);
