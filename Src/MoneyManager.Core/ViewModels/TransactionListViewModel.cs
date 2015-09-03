@@ -34,7 +34,7 @@ namespace MoneyManager.Core.ViewModels
         public MvxCommand<string> GoToAddTransactionCommand => new MvxCommand<string>(GoToAddTransaction);
         public MvxCommand LoadedCommand => new MvxCommand(LoadTransactions);
         public MvxCommand UnloadedCommand => new MvxCommand(UnloadTransactions);
-        public MvxCommand<FinancialTransaction> EditCommand => new MvxCommand<FinancialTransaction>(Edit);
+        public MvxCommand EditCommand => new MvxCommand(Edit);
         public MvxCommand<FinancialTransaction> DeleteCommand => new MvxCommand<FinancialTransaction>(Delete);
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace MoneyManager.Core.ViewModels
         public string Title => accountRepository.Selected.Name;
 
         /// <summary>
-        ///     Currentli selected Item
+        ///     Currently selected Item
         /// </summary>
         public FinancialTransaction SelectedTransaction { get; set; }
 
@@ -74,12 +74,17 @@ namespace MoneyManager.Core.ViewModels
             ShowViewModel<ModifyTransactionViewModel>();
         }
 
-        private void Edit(FinancialTransaction transaction)
+        private void Edit()
         {
-            if (transaction == null) return;
+            if (SelectedTransaction == null)
+            {
+                return;
+            }
 
+            transactionRepository.Selected = SelectedTransaction;
+
+            ShowViewModel<ModifyTransactionViewModel>(new { typeString = TransactionTypeHelper.GetTypeString(SelectedTransaction.Type) });
             SelectedTransaction = null;
-            ShowViewModel<ModifyTransactionViewModel>(new { typeString = TransactionTypeHelper.GetTypeString(transaction.Type) });
         }
 
 
