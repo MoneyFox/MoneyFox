@@ -3,7 +3,6 @@ using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.Manager;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;

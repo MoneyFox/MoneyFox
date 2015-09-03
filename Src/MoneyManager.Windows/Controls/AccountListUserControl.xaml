@@ -44,27 +44,27 @@
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <controls:BalanceUserControl />
-        <ListView Grid.Column="0"
-                  ItemsSource="{Binding AllAccounts}"
-                  ItemTemplate="{StaticResource AccountTemplate}"
-                  HorizontalAlignment="Stretch"
-                  EntranceNavigationTransitionInfo.IsTargetElement="True"
-                  Margin="0,30,-12,0"
-                  SelectedItem="{Binding SelectedAccount, Mode=TwoWay}">
+        <StackPanel>
+            <controls:BalanceUserControl />
+            <ListView ItemsSource="{Binding AllAccounts}"
+                      ItemTemplate="{StaticResource AccountTemplate}"
+                      HorizontalAlignment="Stretch"
+                      EntranceNavigationTransitionInfo.IsTargetElement="True"
+                      SelectedItem="{Binding SelectedAccount, Mode=TwoWay}">
 
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
 
-            <interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" />
-                </core:EventTriggerBehavior>
-            </interactivity:Interaction.Behaviors>
-        </ListView>
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                        <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </ListView>
+        </StackPanel>
     </Grid>
 </UserControl>

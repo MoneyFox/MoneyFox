@@ -66,7 +66,7 @@ namespace MoneyManager.Core.ViewModels
             }
 
             accountRepository.Selected = SelectedAccount;
-            transactionListViewModel.LoadedCommand.Execute(accountRepository.Selected);
+            transactionListViewModel.LoadedCommand.Execute();
 
             SelectedAccount = null;
 
