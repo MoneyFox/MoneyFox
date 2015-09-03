@@ -24,6 +24,7 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IDatabasePath, DatabasePath>();
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IAppInformation, AppInformation>();
+            Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
         }
 
         protected override IMvxApplication CreateApp()

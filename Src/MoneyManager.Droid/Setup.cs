@@ -1,9 +1,6 @@
-using System;
-using System.Diagnostics;
 using Android.App;
 using Android.Content;
 using Cirrious.CrossCore;
-using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Droid.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
@@ -29,8 +26,8 @@ namespace MoneyManager.Droid
             Mvx.RegisterType<IDatabasePath, DatabasePath>();
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IAppInformation, AppInformation>();
+            Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
         }
-
 
         protected override IMvxApplication CreateApp()
         {

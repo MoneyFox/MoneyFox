@@ -1,13 +1,9 @@
-﻿#region
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 
-#endregion
-
-namespace MoneyManager.Business.Logic
+namespace MoneyManager.Windows
 {
     public static class ThemedImageConverterLogic
     {
