@@ -29,14 +29,12 @@
                 <StackPanel>
                     <Grid HorizontalAlignment="Stretch">
                         <TextBlock Text="{Binding Name}"
-                                   TextTrimming="CharacterEllipsis" />
-                        <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Right">
-                            <TextBlock TextAlignment="Right"
-                                       Style="{ThemeResource SubtitleTextBlockStyle}"
-                                       Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
-                                       HorizontalAlignment="Right" />
-                        </StackPanel>
+                                   TextTrimming="CharacterEllipsis"
+                                   Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                        <TextBlock TextAlignment="Right"
+                                    Style="{ThemeResource SubtitleTextBlockStyle}"
+                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
+                                    HorizontalAlignment="Right" />
                     </Grid>
                     <TextBlock Text="{Binding Iban}"
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
