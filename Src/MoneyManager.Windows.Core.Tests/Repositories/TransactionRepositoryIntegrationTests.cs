@@ -1,9 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using MoneyManager.Core;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Windows.Core.Tests.Helper;
 using SQLite.Net.Platform.WinRT;
 using SQLiteNetExtensions.Extensions;
@@ -72,5 +76,24 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
             repository.Data.Count.ShouldBe(1);
             repository.Data[0].Amount.ShouldBe(30);
         }
+
+        [Fact]
+        public void LoadRecurringList_ListWithRecurringTransaction()
+        {
+            var transactionDataAccess = new TransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+            var recTransactionDataAccess = new RecurringTransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+            var repository = new TransactionRepository(transactionDataAccess, recTransactionDataAccess);
+
+            transactionDataAccess.Save(new FinancialTransaction { Id = 3, Amount = 999, IsRecurring = false });
+            transactionDataAccess.Save(new FinancialTransaction { Id = 4, Amount = 123, IsRecurring = true, RecurringTransaction = new RecurringTransaction { Id = 12 } });
+
+            var result = repository.LoadRecurringList().ToList();
+
+            result.Count.ShouldBe(1);
+
+            result.First().Id.ShouldBe(4);
+            result.First().RecurringTransaction.Id.ShouldBe(12);
+        }
+
     }
 }

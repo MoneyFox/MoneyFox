@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
-using Cirrious.CrossCore;
-using MoneyManager.Core.Logic;
-using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Windows.Tile
 {
@@ -27,10 +24,11 @@ namespace MoneyManager.Windows.Tile
 
         public static void UpdateMainTile()
         {
-            var cashFlow = StatisticLogic.GetMonthlyCashFlow();
+            //TODO: Refactor tile stuff
+            //var cashFlow = StatisticLogic.GetMonthlyCashFlow();
 
-            Mvx.Resolve<IUserNotification>()
-                .UpdateMainTile(cashFlow[0].Label, cashFlow[1].Label, cashFlow[2].Label);
+            //Mvx.Resolve<IUserNotification>()
+            //    .UpdateMainTile(cashFlow[0].Label, cashFlow[1].Label, cashFlow[2].Label);
         }
     }
 }

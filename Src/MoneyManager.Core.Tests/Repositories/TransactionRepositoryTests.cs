@@ -244,29 +244,5 @@ namespace MoneyManager.Core.Tests.Repositories
             var transactions = repository.GetUnclearedTransactions();
             transactions.Count().ShouldBe(1);
         }
-
-        //TODO: Move to platformspecific project
-        //[Fact]
-        //public void LoadRecurringList_ListWithRecurringTransaction()
-        //{
-        //    var transacitonList = new List<FinancialTransaction>
-        //    {
-        //        new FinancialTransaction {Id = 3, Amount = 999, IsRecurring = false},
-        //        new FinancialTransaction {Id = 4, Amount = 123, IsRecurring = true, RecurringTransaction = new RecurringTransaction {Id = 12}},
-        //    };
-
-        //    var transDataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
-        //    transDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<FinancialTransaction, bool>>>()))
-        //        .Returns<Expression<Func<FinancialTransaction, bool>>>(action => transacitonList.Where(x => action.Compile().Invoke(x)).ToList());
-
-        //    var repository = new TransactionRepository(transDataAccessSetup.Object, new Mock<IDataAccess<RecurringTransaction>>().Object);
-
-        //    var result = repository.LoadRecurringList().ToList();
-
-        //    result.Count.ShouldBe(1);
-
-        //    result.First().Id.ShouldBe(4);
-        //    result.First().RecurringTransaction.Id.ShouldBe(12);
-        //}
     }
 }
