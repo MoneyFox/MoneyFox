@@ -1,0 +1,2 @@
+MainPackage=C:\Users\ninop\Documents\GitHub\MoneyManager\Src\MoneyManager.Windows\bin\x64\Release\MoneyManager.Windows_0.1.0.0_x64.appx
+SymbolPackage=C:\Users\ninop\Documents\GitHub\MoneyManager\Src\MoneyManager.Windows\AppPackages\MoneyManager.Windows_0.1.0.0\MoneyManager.Windows_0.1.0.0_x64.appxsym

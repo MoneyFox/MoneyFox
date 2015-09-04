@@ -10,7 +10,7 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    public class AddTransactionViewModelTest
+    public class ModifyTransactionViewModelTest
     {
         [Theory]
         [InlineData(TransactionType.Spending, "Edit Spending")]

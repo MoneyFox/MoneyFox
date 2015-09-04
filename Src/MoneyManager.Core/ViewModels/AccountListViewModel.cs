@@ -32,11 +32,13 @@ namespace MoneyManager.Core.ViewModels
             get { return accountRepository.Data; }
             set { accountRepository.Data = value; }
         }
+        
+        public Account SelectedAccount { get; set; }
 
         /// <summary>
         ///     Open the transaction overview for this account.
         /// </summary>
-        public MvxCommand<Account> OpenOverviewCommand => new MvxCommand<Account>(Delete);
+        public MvxCommand OpenOverviewCommand => new MvxCommand(GoToTransactionOverView);
 
         /// <summary>
         ///     Edit the selected account
@@ -46,7 +48,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Deletes the selected account
         /// </summary>
-        public MvxCommand<Account> DeleteAccountCommand=> new MvxCommand<Account>(GoToTransactionOverView);
+        public MvxCommand<Account> DeleteAccountCommand=> new MvxCommand<Account>(Delete);
 
         private void EditAccount(Account account)
         {
@@ -56,17 +58,17 @@ namespace MoneyManager.Core.ViewModels
             ShowViewModel<ModifyAccountViewModel>();
         }
 
-        private void GoToTransactionOverView(Account selectedAccount)
+        private void GoToTransactionOverView()
         {
-            if (selectedAccount == null)
+            if (SelectedAccount == null)
             {
                 return;
             }
 
-            accountRepository.Selected = selectedAccount;
-            transactionListViewModel.LoadedCommand.Execute(accountRepository.Selected);
+            accountRepository.Selected = SelectedAccount;
+            transactionListViewModel.LoadedCommand.Execute();
 
-            accountRepository.Selected = null;
+            SelectedAccount = null;
 
             ShowViewModel<TransactionListViewModel>();
         }

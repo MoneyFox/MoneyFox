@@ -26,10 +26,8 @@
                         Orientation="Horizontal">
                 <TextBlock Text="{Binding Name}" />
                 <TextBlock Text=" (" />
-                <TextBlock Text="{Binding CurrentBalance}"
-                           Margin="5,0,0,0" />
-                <TextBlock Text="{Binding Currency}"
-                           Margin="5,0,5,0" />
+                <TextBlock Text="{Binding CurrentBalance}" />
+                <TextBlock Text="{Binding Currency}" />
                 <TextBlock Text=")" />
             </StackPanel>
         </DataTemplate>
