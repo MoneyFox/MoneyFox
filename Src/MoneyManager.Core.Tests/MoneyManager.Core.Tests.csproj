@@ -125,6 +125,7 @@
     <Compile Include="Repositories\AccountRepositoryTests.cs" />
     <Compile Include="Repositories\CategoryRepositoryTests.cs" />
     <Compile Include="Repositories\TransactionRepositoryTests.cs" />
+    <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyTransactionViewModelTest.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />
     <Compile Include="ViewModels\SelectCategoryViewModelTests.cs" />
