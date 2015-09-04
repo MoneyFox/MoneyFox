@@ -47,6 +47,69 @@ namespace MoneyManager.Droid
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView = global::MoneyManager.Droid.Resource.Styleable.MvxListView;
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Attribute.MvxBind = global::MoneyManager.Droid.Resource.Attribute.MvxBind;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxDropDownItemTemplate;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Attribute.MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxGroupItemTemplate;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Attribute.MvxItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxItemTemplate;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Attribute.MvxLang = global::MoneyManager.Droid.Resource.Attribute.MvxLang;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Attribute.MvxSource = global::MoneyManager.Droid.Resource.Attribute.MvxSource;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Attribute.MvxTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxTemplate;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Drawable.dialog_disclosure = global::MoneyManager.Droid.Resource.Drawable.dialog_disclosure;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Drawable.dialog_expander_ic_minimized = global::MoneyManager.Droid.Resource.Drawable.dialog_expander_ic_minimized;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Drawable.dialog_icon = global::MoneyManager.Droid.Resource.Drawable.dialog_icon;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Drawable.dialog_spinner_default_holo_dark = global::MoneyManager.Droid.Resource.Drawable.dialog_spinner_default_holo_dark;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Drawable.dialog_spinner_default_holo_light = global::MoneyManager.Droid.Resource.Drawable.dialog_spinner_default_holo_light;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.MvvmCrossTagId = global::MoneyManager.Droid.Resource.Id.MvvmCrossTagId;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.MvxBindingTagUnique = global::MoneyManager.Droid.Resource.Id.MvxBindingTagUnique;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_BoolField = global::MoneyManager.Droid.Resource.Id.dialog_BoolField;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_Button = global::MoneyManager.Droid.Resource.Id.dialog_Button;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_DisclosureField = global::MoneyManager.Droid.Resource.Id.dialog_DisclosureField;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_HtmlField = global::MoneyManager.Droid.Resource.Id.dialog_HtmlField;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_ImageLeft = global::MoneyManager.Droid.Resource.Id.dialog_ImageLeft;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_ImageRight = global::MoneyManager.Droid.Resource.Id.dialog_ImageRight;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_LabelField = global::MoneyManager.Droid.Resource.Id.dialog_LabelField;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_LabelPercentageField = global::MoneyManager.Droid.Resource.Id.dialog_LabelPercentageField;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_LabelSubtextField = global::MoneyManager.Droid.Resource.Id.dialog_LabelSubtextField;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_Panel = global::MoneyManager.Droid.Resource.Id.dialog_Panel;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_RadioButtonList = global::MoneyManager.Droid.Resource.Id.dialog_RadioButtonList;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_SliderField = global::MoneyManager.Droid.Resource.Id.dialog_SliderField;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_Spinner = global::MoneyManager.Droid.Resource.Id.dialog_Spinner;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.dialog_ValueField = global::MoneyManager.Droid.Resource.Id.dialog_ValueField;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Id.iFormFieldValue = global::MoneyManager.Droid.Resource.Id.iFormFieldValue;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_achievements = global::MoneyManager.Droid.Resource.Layout.dialog_achievements;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_boolfieldleft = global::MoneyManager.Droid.Resource.Layout.dialog_boolfieldleft;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_boolfieldright = global::MoneyManager.Droid.Resource.Layout.dialog_boolfieldright;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_boolfieldsubleft = global::MoneyManager.Droid.Resource.Layout.dialog_boolfieldsubleft;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_boolfieldsubright = global::MoneyManager.Droid.Resource.Layout.dialog_boolfieldsubright;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_button = global::MoneyManager.Droid.Resource.Layout.dialog_button;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_datefield = global::MoneyManager.Droid.Resource.Layout.dialog_datefield;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_fieldsetlabel = global::MoneyManager.Droid.Resource.Layout.dialog_fieldsetlabel;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_floatimage = global::MoneyManager.Droid.Resource.Layout.dialog_floatimage;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_html = global::MoneyManager.Droid.Resource.Layout.dialog_html;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_labeldisclosure = global::MoneyManager.Droid.Resource.Layout.dialog_labeldisclosure;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_labelfieldbelow = global::MoneyManager.Droid.Resource.Layout.dialog_labelfieldbelow;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_labelfieldright = global::MoneyManager.Droid.Resource.Layout.dialog_labelfieldright;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_multiline_labelfieldbelow = global::MoneyManager.Droid.Resource.Layout.dialog_multiline_labelfieldbelow;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_onofffieldright = global::MoneyManager.Droid.Resource.Layout.dialog_onofffieldright;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_panel = global::MoneyManager.Droid.Resource.Layout.dialog_panel;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_root = global::MoneyManager.Droid.Resource.Layout.dialog_root;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_selectlist = global::MoneyManager.Droid.Resource.Layout.dialog_selectlist;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_selectlistfield = global::MoneyManager.Droid.Resource.Layout.dialog_selectlistfield;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_textarea = global::MoneyManager.Droid.Resource.Layout.dialog_textarea;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_textfieldbelow = global::MoneyManager.Droid.Resource.Layout.dialog_textfieldbelow;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Layout.dialog_textfieldright = global::MoneyManager.Droid.Resource.Layout.dialog_textfieldright;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Styleable.MvxBinding = global::MoneyManager.Droid.Resource.Styleable.MvxBinding;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Styleable.MvxBinding_MvxBind = global::MoneyManager.Droid.Resource.Styleable.MvxBinding_MvxBind;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Styleable.MvxBinding_MvxLang = global::MoneyManager.Droid.Resource.Styleable.MvxBinding_MvxLang;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Styleable.MvxControl = global::MoneyManager.Droid.Resource.Styleable.MvxControl;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxControl_MvxTemplate;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Styleable.MvxExpandableListView = global::MoneyManager.Droid.Resource.Styleable.MvxExpandableListView;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Styleable.MvxImageView = global::MoneyManager.Droid.Resource.Styleable.MvxImageView;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Styleable.MvxImageView_MvxSource = global::MoneyManager.Droid.Resource.Styleable.MvxImageView_MvxSource;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Styleable.MvxListView = global::MoneyManager.Droid.Resource.Styleable.MvxListView;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
+			global::Cirrious.MvvmCross.Dialog.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
 			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Attribute.MvxBind = global::MoneyManager.Droid.Resource.Attribute.MvxBind;
 			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxDropDownItemTemplate;
 			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Attribute.MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxGroupItemTemplate;
@@ -70,6 +133,8 @@ namespace MoneyManager.Droid
 			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxListView = global::MoneyManager.Droid.Resource.Styleable.MvxListView;
 			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
 			global::Cirrious.MvvmCross.Droid.FullFragging.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::Cirrious.MvvmCross.Plugins.Network.Droid.Resource.String.ApplicationName = global::MoneyManager.Droid.Resource.String.ApplicationName;
+			global::Cirrious.MvvmCross.Plugins.Network.Droid.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::MoneyManager.Droid.Resource.String.ApplicationName;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
 		}
@@ -112,28 +177,43 @@ namespace MoneyManager.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int ic_add_circle = 2130837504;
+			public const int dialog_disclosure = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int ic_delete = 2130837505;
+			public const int dialog_expander_ic_minimized = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int ic_done = 2130837506;
+			public const int dialog_icon = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int ic_forward = 2130837507;
+			public const int dialog_spinner_default_holo_dark = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int ic_remove_circle = 2130837508;
+			public const int dialog_spinner_default_holo_light = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int ic_save = 2130837509;
+			public const int ic_add_circle = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int Icon = 2130837510;
+			public const int ic_delete = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int logo = 2130837511;
+			public const int ic_done = 2130837511;
+			
+			// aapt resource value: 0x7f020008
+			public const int ic_forward = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int ic_remove_circle = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public const int ic_save = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public const int Icon = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public const int logo = 2130837516;
 			
 			static Drawable()
 			{
@@ -148,8 +228,8 @@ namespace MoneyManager.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050006
-			public const int ChargedAccount = 2131034118;
+			// aapt resource value: 0x7f050015
+			public const int ChargedAccount = 2131034133;
 			
 			// aapt resource value: 0x7f050000
 			public const int MvvmCrossTagId = 2131034112;
@@ -157,38 +237,83 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f050001
 			public const int MvxBindingTagUnique = 2131034113;
 			
-			// aapt resource value: 0x7f050007
-			public const int TargetAccount = 2131034119;
+			// aapt resource value: 0x7f050016
+			public const int TargetAccount = 2131034134;
 			
 			// aapt resource value: 0x7f050002
 			public const int accountList = 2131034114;
 			
-			// aapt resource value: 0x7f05000c
-			public const int action_add_account = 2131034124;
+			// aapt resource value: 0x7f05001b
+			public const int action_add_account = 2131034139;
 			
-			// aapt resource value: 0x7f050009
-			public const int action_add_income = 2131034121;
+			// aapt resource value: 0x7f050018
+			public const int action_add_income = 2131034136;
 			
-			// aapt resource value: 0x7f05000a
-			public const int action_add_spending = 2131034122;
+			// aapt resource value: 0x7f050019
+			public const int action_add_spending = 2131034137;
 			
-			// aapt resource value: 0x7f05000b
-			public const int action_add_transfer = 2131034123;
+			// aapt resource value: 0x7f05001a
+			public const int action_add_transfer = 2131034138;
 			
-			// aapt resource value: 0x7f05000d
-			public const int action_delete = 2131034125;
+			// aapt resource value: 0x7f05001c
+			public const int action_delete = 2131034140;
+			
+			// aapt resource value: 0x7f050017
+			public const int action_save = 2131034135;
+			
+			// aapt resource value: 0x7f050014
+			public const int content_pane = 2131034132;
+			
+			// aapt resource value: 0x7f050007
+			public const int dialog_BoolField = 2131034119;
 			
 			// aapt resource value: 0x7f050008
-			public const int action_save = 2131034120;
+			public const int dialog_Button = 2131034120;
+			
+			// aapt resource value: 0x7f05000d
+			public const int dialog_DisclosureField = 2131034125;
+			
+			// aapt resource value: 0x7f05000c
+			public const int dialog_HtmlField = 2131034124;
+			
+			// aapt resource value: 0x7f05000a
+			public const int dialog_ImageLeft = 2131034122;
 			
 			// aapt resource value: 0x7f050005
-			public const int content_pane = 2131034117;
-			
-			// aapt resource value: 0x7f050004
-			public const int left_pane = 2131034116;
+			public const int dialog_ImageRight = 2131034117;
 			
 			// aapt resource value: 0x7f050003
-			public const int main_layout = 2131034115;
+			public const int dialog_LabelField = 2131034115;
+			
+			// aapt resource value: 0x7f050006
+			public const int dialog_LabelPercentageField = 2131034118;
+			
+			// aapt resource value: 0x7f050004
+			public const int dialog_LabelSubtextField = 2131034116;
+			
+			// aapt resource value: 0x7f05000e
+			public const int dialog_Panel = 2131034126;
+			
+			// aapt resource value: 0x7f05000f
+			public const int dialog_RadioButtonList = 2131034127;
+			
+			// aapt resource value: 0x7f05000b
+			public const int dialog_SliderField = 2131034123;
+			
+			// aapt resource value: 0x7f050010
+			public const int dialog_Spinner = 2131034128;
+			
+			// aapt resource value: 0x7f050009
+			public const int dialog_ValueField = 2131034121;
+			
+			// aapt resource value: 0x7f050011
+			public const int iFormFieldValue = 2131034129;
+			
+			// aapt resource value: 0x7f050013
+			public const int left_pane = 2131034131;
+			
+			// aapt resource value: 0x7f050012
+			public const int main_layout = 2131034130;
 			
 			static Id()
 			{
@@ -213,13 +338,79 @@ namespace MoneyManager.Droid
 			public const int AccountListLayout = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int MainLayout = 2130903043;
+			public const int dialog_achievements = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int ModifyAccountLayout = 2130903044;
+			public const int dialog_boolfieldleft = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int ModifyTransactionLayout = 2130903045;
+			public const int dialog_boolfieldright = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int dialog_boolfieldsubleft = 2130903046;
+			
+			// aapt resource value: 0x7f030007
+			public const int dialog_boolfieldsubright = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int dialog_button = 2130903048;
+			
+			// aapt resource value: 0x7f030009
+			public const int dialog_datefield = 2130903049;
+			
+			// aapt resource value: 0x7f03000a
+			public const int dialog_fieldsetlabel = 2130903050;
+			
+			// aapt resource value: 0x7f03000b
+			public const int dialog_floatimage = 2130903051;
+			
+			// aapt resource value: 0x7f03000c
+			public const int dialog_html = 2130903052;
+			
+			// aapt resource value: 0x7f03000d
+			public const int dialog_labeldisclosure = 2130903053;
+			
+			// aapt resource value: 0x7f03000e
+			public const int dialog_labelfieldbelow = 2130903054;
+			
+			// aapt resource value: 0x7f03000f
+			public const int dialog_labelfieldright = 2130903055;
+			
+			// aapt resource value: 0x7f030010
+			public const int dialog_multiline_labelfieldbelow = 2130903056;
+			
+			// aapt resource value: 0x7f030011
+			public const int dialog_onofffieldright = 2130903057;
+			
+			// aapt resource value: 0x7f030012
+			public const int dialog_panel = 2130903058;
+			
+			// aapt resource value: 0x7f030013
+			public const int dialog_root = 2130903059;
+			
+			// aapt resource value: 0x7f030014
+			public const int dialog_selectlist = 2130903060;
+			
+			// aapt resource value: 0x7f030015
+			public const int dialog_selectlistfield = 2130903061;
+			
+			// aapt resource value: 0x7f030016
+			public const int dialog_textarea = 2130903062;
+			
+			// aapt resource value: 0x7f030017
+			public const int dialog_textfieldbelow = 2130903063;
+			
+			// aapt resource value: 0x7f030018
+			public const int dialog_textfieldright = 2130903064;
+			
+			// aapt resource value: 0x7f030019
+			public const int MainLayout = 2130903065;
+			
+			// aapt resource value: 0x7f03001a
+			public const int ModifyAccountLayout = 2130903066;
+			
+			// aapt resource value: 0x7f03001b
+			public const int ModifyTransactionLayout = 2130903067;
 			
 			static Layout()
 			{
