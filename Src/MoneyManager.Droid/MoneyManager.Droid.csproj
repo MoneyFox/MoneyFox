@@ -56,6 +56,9 @@
     <DevInstrumentationEnabled>False</DevInstrumentationEnabled>
     <AndroidLinkMode>Full</AndroidLinkMode>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)' != 'Unix'">
+    <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cirrious.CrossCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e16445fd9b451819, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta2\lib\MonoAndroid\Cirrious.CrossCore.dll</HintPath>
@@ -248,7 +251,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Xamarin.Insights.1.10.6\build\MonoAndroid10\Xamarin.Insights.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Insights.1.10.6\build\MonoAndroid10\Xamarin.Insights.targets'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
      Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
