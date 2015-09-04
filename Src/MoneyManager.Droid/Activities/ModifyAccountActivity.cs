@@ -3,7 +3,6 @@ using Android.OS;
 using Android.Views;
 using Cirrious.MvvmCross.Droid.Views;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation;
 
 namespace MoneyManager.Droid.Activities
 {
@@ -26,7 +25,7 @@ namespace MoneyManager.Droid.Activities
 
             SetContentView(Resource.Layout.ModifyAccountLayout);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.Title = Strings.AddAccountTitle;
+            ActionBar.Title = ViewModel.Title;
         }
 
         /// <summary>

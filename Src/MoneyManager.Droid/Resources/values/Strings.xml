@@ -16,6 +16,7 @@
   <string name="hint_iban">iban</string>
   <string name="hint_current_balance">current balance</string>
   <string name="hint_note">note</string>
+  <string name="hint_amount">amount</string>
 
   <!--text views-->
   <string name="textview_version">Version</string>

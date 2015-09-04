@@ -1,4 +1,6 @@
-﻿using Cirrious.MvvmCross.ViewModels;
+﻿using System;
+using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
@@ -39,6 +41,10 @@ namespace MoneyManager.Core.ViewModels
         ///     be updated or new created
         /// </summary>
         public bool IsEdit { get; set; }
+
+        public string Title => IsEdit
+            ? $"{Strings.EditTitle} {SelectedAccount.Name}"
+            : Strings.AddAccountTitle;
 
         /// <summary>
         ///     The currently selected account

@@ -67,6 +67,11 @@ namespace MoneyManager.Core.ViewModels
         public IMvxCommand SaveCommand => new MvxCommand(Save);
 
         /// <summary>
+        ///     Delets the transaction or updates the existing depending on the IsEdit Flag.
+        /// </summary>
+        public IMvxCommand DeleteCommand => new MvxCommand(Delete);
+
+        /// <summary>
         ///     Cancels the operations.
         /// </summary>
         public IMvxCommand CancelCommand => new MvxCommand(Cancel);
@@ -148,6 +153,12 @@ namespace MoneyManager.Core.ViewModels
             {
                 transactionManager.SaveTransaction(transactionRepository.Selected);
             }
+            Close(this);
+        }
+
+        private void Delete()
+        {
+            transactionManager.DeleteTransaction(transactionRepository.Selected);
             Close(this);
         }
 

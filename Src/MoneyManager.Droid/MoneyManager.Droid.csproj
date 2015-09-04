@@ -189,6 +189,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AboutLayout.axml" />
     <AndroidResource Include="Resources\layout\ModifyAccountLayout.axml" />
+    <AndroidResource Include="Resources\layout\ModifyTransactionLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MainLayout.axml" />
