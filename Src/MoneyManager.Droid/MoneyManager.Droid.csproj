@@ -165,6 +165,7 @@
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DatabasePath.cs" />
     <Compile Include="Src\DialogService.cs" />
+    <Compile Include="Src\StoreFeatures.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -188,6 +189,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AboutLayout.axml" />
     <AndroidResource Include="Resources\layout\ModifyAccountLayout.axml" />
+    <AndroidResource Include="Resources\layout\ModifyTransactionLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MainLayout.axml" />

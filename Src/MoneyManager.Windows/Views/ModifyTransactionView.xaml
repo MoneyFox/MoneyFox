@@ -95,7 +95,7 @@
                     <userControls:SelectCategoryUserControl Margin="0,7,0,0" />
                     <DatePicker Date="{Binding Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 Margin="0,12,0,0"
-                                HorizontalAlignment="Stretch"
+                                HorizontalAlignment="Left"
                                 Header="date"
                                 x:Uid="DateHeader" />
                     <TextBox Header="Note"

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Cirrious.MvvmCross.Platform;
+using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
@@ -6,92 +7,55 @@ using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
 using Moq;
+using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    [TestClass]
-    public class MainViewModelTests
+    class MainViewModelTests : MvxIoCSupportingTest
     {
-        //TODO:Refactor to check navigation with mock
-        [TestMethod]
-        public void GoToAddTransaction_Income_CorrectPreparation()
+        [Theory]
+        [InlineData("Income", TransactionType.Income)]
+        [InlineData("Spending", TransactionType.Spending)]
+        [InlineData("Transfer", TransactionType.Transfer)]
+        public void GoToAddTransaction_Transactiontype_CorrectPreparation(string typestring, TransactionType type)
         {
+            Setup();
+            // for navigation parsing
+            Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
+
             var dbHelper = new Mock<IDbHelper>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper), new RecurringTransactionDataAccess(dbHelper));
             var settings = new SettingDataAccess();
-            var addTransactionViewModel =
-                new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
-                    accountRepository,
-                    new Mock<IDialogService>().Object);
+            var transactionManager = new TransactionManager(transactionRepository, accountRepository, new RecurringTransactionManager(transactionRepository));
 
-            var addAccountViewModel = new ModifyAccountViewModel(accountRepository,
+            var defaultManager = new DefaultManager(accountRepository, new SettingDataAccess());
+
+            var modifyTransactionViewModel =
+                new ModifyTransactionViewModel(transactionRepository,
+                    accountRepository,
+                    new Mock<IDialogService>().Object,
+                    transactionManager,
+                    defaultManager);
+
+            var modifyAccountViewModel = new ModifyAccountViewModel(accountRepository,
                 new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
 
-            var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
-            var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);
+            var mainViewModel = new MainViewModel(modifyAccountViewModel, modifyTransactionViewModel);
 
-            var mainViewModel = new MainViewModel(transactionManager, accountManager);
-            mainViewModel.GoToAddTransactionCommand.Execute("Income");
+            mainViewModel.GoToAddTransactionCommand.Execute(typestring);
 
-            Assert.IsFalse(addTransactionViewModel.IsEdit);
-            Assert.IsTrue(addTransactionViewModel.IsEndless);
-            Assert.IsFalse(addTransactionViewModel.IsTransfer);
-            Assert.AreEqual((int) TransactionType.Income, addTransactionViewModel.SelectedTransaction.Type);
-        }
-
-        //TODO:Refactor to check navigation with mock
-        [TestMethod]
-        public void GoToAddTransaction_Spending_CorrectPreparation()
-        {
-            var dbHelper = new Mock<IDbHelper>().Object;
-            var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
-            var settings = new SettingDataAccess();
-            var addTransactionViewModel =
-                new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
-                    accountRepository,
-                    new Mock<IDialogService>().Object);
-
-            var addAccountViewModel = new ModifyAccountViewModel(accountRepository,
-                new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
-
-            var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
-            var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);
-
-            var mainViewModel = new MainViewModel(transactionManager, accountManager);
-
-            mainViewModel.GoToAddTransactionCommand.Execute("Spending");
-
-            Assert.IsFalse(addTransactionViewModel.IsEdit);
-            Assert.IsTrue(addTransactionViewModel.IsEndless);
-            Assert.IsFalse(addTransactionViewModel.IsTransfer);
-            Assert.AreEqual((int) TransactionType.Spending, addTransactionViewModel.SelectedTransaction.Type);
-        }
-
-        //TODO:Refactor to check navigation with mock
-        [TestMethod]
-        public void GoToAddTransaction_Transfer_CorrectPreparation()
-        {
-            var dbHelper = new Mock<IDbHelper>().Object;
-            var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
-            var settings = new SettingDataAccess();
-            var addTransactionViewModel =
-                new ModifyTransactionViewModel(new TransactionRepository(new TransactionDataAccess(dbHelper)),
-                    accountRepository,
-                    new Mock<IDialogService>().Object);
-
-            var addAccountViewModel = new ModifyAccountViewModel(accountRepository,
-                new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
-
-            var transactionManager = new TransactionManager(addTransactionViewModel, accountRepository, settings);
-            var accountManager = new AccountManager(accountRepository, addAccountViewModel, settings);
-
-            var mainViewModel = new MainViewModel(transactionManager, accountManager);
-            mainViewModel.GoToAddTransactionCommand.Execute("Transfer");
-
-            Assert.IsFalse(addTransactionViewModel.IsEdit);
-            Assert.IsTrue(addTransactionViewModel.IsEndless);
-            Assert.IsTrue(addTransactionViewModel.IsTransfer);
-            Assert.AreEqual((int) TransactionType.Transfer, addTransactionViewModel.SelectedTransaction.Type);
+            Assert.False(modifyTransactionViewModel.IsEdit);
+            Assert.True(modifyTransactionViewModel.IsEndless);
+            if (type == TransactionType.Transfer)
+            {
+                Assert.True(modifyTransactionViewModel.IsTransfer);
+            }
+            else
+            {
+                Assert.False(modifyTransactionViewModel.IsTransfer);
+            }
+            Assert.Equal((int)type, modifyTransactionViewModel.SelectedTransaction.Type);
         }
     }
 }

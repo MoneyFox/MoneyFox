@@ -1,13 +1,9 @@
 ﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Cirrious.CrossCore;
-using MoneyManager.Core.Logic;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
-using MoneyManager.Windows.Views;
 
 namespace MoneyManager.Windows.Controls
 {
@@ -17,9 +13,6 @@ namespace MoneyManager.Windows.Controls
         {
             InitializeComponent();
             DataContext = Mvx.Resolve<TransactionListViewModel>();
-
-            //TODO: Handle in View Model
-            Mvx.Resolve<BalanceViewModel>().IsTransactionView = true;
         }
 
         private void EditTransaction(object sender, RoutedEventArgs e)
@@ -31,11 +24,10 @@ namespace MoneyManager.Windows.Controls
                 return;
             }
 
-            TransactionLogic.PrepareEdit(transaction);
-            ((Frame) Window.Current.Content).Navigate(typeof (ModifyTransactionView));
+            (DataContext as TransactionListViewModel)?.EditCommand.Execute(transaction);
         }
 
-        private async void DeleteTransaction(object sender, RoutedEventArgs e)
+        private void DeleteTransaction(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
             var transaction = element.DataContext as FinancialTransaction;
@@ -43,8 +35,7 @@ namespace MoneyManager.Windows.Controls
             {
                 return;
             }
-
-            await TransactionLogic.DeleteTransaction(transaction);
+            (DataContext as TransactionListViewModel)?.DeleteCommand.Execute(transaction);
         }
 
         private void OpenContextMenu(object sender, HoldingRoutedEventArgs e)
@@ -54,44 +45,5 @@ namespace MoneyManager.Windows.Controls
 
             flyoutBase.ShowAt(senderElement);
         }
-
-        //TODO: Handle in View Model
-        private void UnloadPage(object sender, RoutedEventArgs e)
-        {
-            BalanceView.IsTransactionView = false;
-            BalanceView.UpdateBalance();
-        }
-
-        //TODO: Handle in View Model
-        private void PageLoaded(object sender, RoutedEventArgs e)
-        {
-            ListViewTransactions.SelectedItem = null;
-        }
-
-        //TODO: Handle in View Model
-        private void LoadDetails(object sender, SelectionChangedEventArgs e)
-        {
-            if (ListViewTransactions.SelectedItem != null)
-            {
-                TransactionRepository.Selected = ListViewTransactions.SelectedItem as FinancialTransaction;
-
-                TransactionLogic.PrepareEdit(TransactionRepository.Selected);
-
-                ((Frame) Window.Current.Content).Navigate(typeof (ModifyTransactionView));
-                ListViewTransactions.SelectedItem = null;
-            }
-        }
-
-        #region Properties
-
-        public ITransactionRepository TransactionRepository
-            => Mvx.Resolve<ITransactionRepository>();
-
-        public ModifyTransactionViewModel AddTransactionView
-            => Mvx.Resolve<ModifyTransactionViewModel>();
-
-        public BalanceViewModel BalanceView => Mvx.Resolve<BalanceViewModel>();
-
-        #endregion
     }
 }

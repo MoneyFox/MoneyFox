@@ -1,5 +1,4 @@
-﻿using MoneyManager.Core.DataAccess;
-using MoneyManager.Core.Repositories;
+﻿using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -8,25 +7,29 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    public class SelectCategoryViewModelTests
+    public class SelectCategoryViewModelTests : MvxIoCSupportingTest
     {
+        public SelectCategoryViewModelTests()
+        {
+            Setup();
+        }
+
         [Fact]
         public void ResetCategoryCommand_FilledProperty_PropertyIsNull()
         {
-            var transactionRepository =
-                new TransactionRepository(new TransactionDataAccess(new Mock<IDbHelper>().Object));
-            var viewModel = new SelectCategoryViewModel(transactionRepository);
+            var transactionSetup = new Mock<ITransactionRepository>();
 
-            transactionRepository.Selected = new FinancialTransaction
+            var transaction = new FinancialTransaction
             {
                 Category = new Category()
             };
 
-            Assert.NotNull(transactionRepository.Selected.Category);
+            transactionSetup.SetupGet(x => x.Selected).Returns(transaction);
+            var transactionRepository = transactionSetup.Object;
 
-            viewModel.ResetCategoryCommand.Execute(null);
+            new SelectCategoryViewModel(transactionRepository).ResetCategoryCommand.Execute();
 
-            Assert.Null(transactionRepository.Selected.Category);
+            Assert.Null(transaction.Category);
         }
     }
 }

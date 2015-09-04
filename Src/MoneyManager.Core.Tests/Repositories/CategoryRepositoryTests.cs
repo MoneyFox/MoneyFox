@@ -1,54 +1,38 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using Xunit;
 
 namespace MoneyManager.Core.Tests.Repositories
 {
-    [TestClass]
     public class CategoryRepositoryTests
     {
-        private CategoryDataAccessMock _categoryDataAccessMock;
-
-        [TestInitialize]
-        public void Init()
+        [Theory]
+        [InlineData("Ausgang", "Ausgang")]
+        [InlineData("", "[No Name]")]
+        public void Save_InputName_CorrectNameAssigned(string inputName, string expectedResult)
         {
-            _categoryDataAccessMock = new CategoryDataAccessMock();
-        }
-
-        [TestMethod]
-        public void CategoryRepository_Save()
-        {
-            var repository = new CategoryRepository(_categoryDataAccessMock);
+            var categoryDataAccessMock = new CategoryDataAccessMock();
+            var repository = new CategoryRepository(categoryDataAccessMock);
 
             var category = new Category
             {
-                Name = "Ausgang"
+                Name = inputName
             };
 
             repository.Save(category);
 
-            Assert.IsTrue(category == _categoryDataAccessMock.CategoryTestList[0]);
+            categoryDataAccessMock.CategoryTestList[0].ShouldBeSameAs(category);
+            categoryDataAccessMock.CategoryTestList[0].Name.ShouldBe(expectedResult);
         }
 
-        [TestMethod]
-        public void CategoryRepository_SaveWithouthName()
-        {
-            var repository = new CategoryRepository(_categoryDataAccessMock);
-            var category = new Category();
-
-            repository.Save(category);
-
-            Assert.AreSame(category, repository.Data[0]);
-            Assert.IsTrue(Strings.NoNamePlaceholderLabel == repository.Data[0].Name);
-        }
-
-        [TestMethod]
+        [Fact]
         public void CategoryRepository_Delete()
         {
-            var repository = new CategoryRepository(_categoryDataAccessMock);
+            var categoryDataAccessMock = new CategoryDataAccessMock();
+            var repository = new CategoryRepository(categoryDataAccessMock);
 
             var category = new Category
             {
@@ -56,24 +40,25 @@ namespace MoneyManager.Core.Tests.Repositories
             };
 
             repository.Save(category);
-            Assert.AreSame(category, _categoryDataAccessMock.CategoryTestList[0]);
+
+            categoryDataAccessMock.CategoryTestList[0].ShouldBeSameAs(category);
 
             repository.Delete(category);
 
-            Assert.IsFalse(_categoryDataAccessMock.CategoryTestList.Any());
-            Assert.IsFalse(repository.Data.Any());
+            categoryDataAccessMock.CategoryTestList.Any().ShouldBeFalse();
+            repository.Data.Any().ShouldBeFalse();
         }
 
-        [TestMethod]
+        [Fact]
         public void CategoryRepository_AccessCache()
         {
-            Assert.IsNotNull(new CategoryRepository(_categoryDataAccessMock).Data);
+            new CategoryRepository(new CategoryDataAccessMock()).Data.ShouldNotBeNull();
         }
 
-        [TestMethod]
+        [Fact]
         public void CategoryRepository_AddMultipleToCache()
         {
-            var repository = new CategoryRepository(_categoryDataAccessMock);
+            var repository = new CategoryRepository(new CategoryDataAccessMock());
             var category = new Category
             {
                 Name = "Ausgang"
@@ -87,9 +72,9 @@ namespace MoneyManager.Core.Tests.Repositories
             repository.Save(category);
             repository.Save(secondCategory);
 
-            Assert.AreEqual(2, repository.Data.Count);
-            Assert.AreSame(category, repository.Data[0]);
-            Assert.AreSame(secondCategory, repository.Data[1]);
+            repository.Data.Count.ShouldBe(2);
+            repository.Data[0].ShouldBeSameAs(category);
+            repository.Data[1].ShouldBeSameAs(secondCategory);
         }
     }
 }

@@ -1,9 +1,6 @@
-using System;
-using System.Diagnostics;
 using Android.App;
 using Android.Content;
 using Cirrious.CrossCore;
-using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Droid.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
@@ -14,33 +11,11 @@ using Xamarin;
 
 namespace MoneyManager.Droid
 {
-    public class Setup : MvxAndroidSetup, IMvxTrace
+    public class Setup : MvxAndroidSetup
     {
         public Setup(Context applicationContext)
             : base(applicationContext)
         {
-        }
-
-        public void Trace(MvxTraceLevel level, string tag, Func<string> message)
-        {
-            Debug.WriteLine(tag + ":" + level + ":" + message());
-        }
-
-        public void Trace(MvxTraceLevel level, string tag, string message)
-        {
-            Debug.WriteLine(tag + ":" + level + ":" + message);
-        }
-
-        public void Trace(MvxTraceLevel level, string tag, string message, params object[] args)
-        {
-            try
-            {
-                Debug.WriteLine(tag + ":" + level + ":" + message, args);
-            }
-            catch (FormatException)
-            {
-                Trace(MvxTraceLevel.Error, tag, "Exception during trace of {0} {1} {2}", level, message);
-            }
         }
 
         protected override void InitializeFirstChance()
@@ -51,8 +26,8 @@ namespace MoneyManager.Droid
             Mvx.RegisterType<IDatabasePath, DatabasePath>();
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IAppInformation, AppInformation>();
+            Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
         }
-
 
         protected override IMvxApplication CreateApp()
         {

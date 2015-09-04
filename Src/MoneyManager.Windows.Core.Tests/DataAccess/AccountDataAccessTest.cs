@@ -1,18 +1,17 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.Core;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Core.Tests.Helper;
 using SQLite.Net.Platform.WinRT;
+using Xunit;
 
 namespace MoneyManager.Windows.Core.Tests.DataAccess
 {
-    [TestClass]
     public class AccountDataAccessTest
     {
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Fact]
+        [Trait("Category", "Integration")]
         public void AccountDataAccess_CrudAccount()
         {
             var accountDataAccess =
@@ -34,8 +33,8 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
             accountDataAccess.LoadList();
             var list = accountDataAccess.LoadList();
 
-            Assert.AreEqual(1, list.Count);
-            Assert.AreEqual(firstName, list.First().Name);
+            Assert.Equal(1, list.Count);
+            Assert.Equal(firstName, list.First().Name);
 
             account.Name = secondName;
 
@@ -43,14 +42,14 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
 
             list = accountDataAccess.LoadList();
 
-            Assert.AreEqual(1, list.Count);
-            Assert.AreEqual(secondName, list.First().Name);
+            Assert.Equal(1, list.Count);
+            Assert.Equal(secondName, list.First().Name);
 
             accountDataAccess.Delete(account);
 
             list = accountDataAccess.LoadList();
 
-            Assert.IsFalse(list.Any());
+            Assert.False(list.Any());
         }
     }
 }

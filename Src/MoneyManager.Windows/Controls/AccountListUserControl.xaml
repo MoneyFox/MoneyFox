@@ -5,6 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:MoneyManager.Windows.Controls"
              xmlns:converter="using:MoneyManager.Windows.Converter"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -50,7 +52,6 @@
                   ItemTemplate="{StaticResource AccountTemplate}"
                   HorizontalAlignment="Stretch"
                   EntranceNavigationTransitionInfo.IsTargetElement="True"
-                  SelectionChanged="NavigateToTransactionList"
                   Margin="0,30,-12,0"
                   x:Name="AccountList">
 
@@ -60,6 +61,12 @@
                             Value="Stretch" />
                 </Style>
             </ListView.ItemContainerStyle>
+
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
+                    <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
         </ListView>
     </Grid>
 </UserControl>

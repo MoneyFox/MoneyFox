@@ -1,5 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using MoneyManager.Core.Logic;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq.Expressions;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -72,15 +73,16 @@ namespace MoneyManager.Core.Repositories
             data.Remove(item);
             dataAccess.Delete(item);
 
-            TransactionLogic.DeleteAssociatedTransactionsFromDatabase(item);
+            //TODO refactor this
+            //transactionManager.DeleteAssociatedTransactionsFromDatabase(item);
         }
 
         /// <summary>
         ///     Loads all accounts from the database to the data collection
         /// </summary>
-        public void Load()
+        public void Load(Expression<Func<Account, bool>> filter = null)
         {
-            Data = new ObservableCollection<Account>(dataAccess.LoadList());
+            Data = new ObservableCollection<Account>(dataAccess.LoadList(filter));
         }
     }
 }

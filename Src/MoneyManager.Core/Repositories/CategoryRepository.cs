@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq.Expressions;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -75,9 +77,9 @@ namespace MoneyManager.Core.Repositories
         /// <summary>
         ///     Loads all categories from the database to the data collection
         /// </summary>
-        public void Load()
+        public void Load(Expression<Func<Category, bool>> filter = null)
         {
-            Data = new ObservableCollection<Category>(dataAccess.LoadList());
+            Data = new ObservableCollection<Category>(dataAccess.LoadList(filter));
         }
     }
 }

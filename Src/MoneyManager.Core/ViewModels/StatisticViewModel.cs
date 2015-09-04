@@ -1,7 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyManager.Core.Logic;
+using MoneyManager.Core.Manager;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
@@ -11,12 +11,15 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class StatisticViewModel : BaseViewModel
     {
+        private readonly StatisticManager statisticManager;
         private ObservableCollection<StatisticItem> categorySummary;
         private ObservableCollection<StatisticItem> monthlyCashFlow;
         private ObservableCollection<StatisticItem> monthlySpreading;
 
-        public StatisticViewModel()
+        public StatisticViewModel(StatisticManager statisticManager)
         {
+            this.statisticManager = statisticManager;
+
             StartDate = DateTime.Now.Date.AddMonths(-1);
             EndDate = DateTime.Now.Date;
         }
@@ -29,7 +32,7 @@ namespace MoneyManager.Core.ViewModels
             get
             {
                 return monthlyCashFlow == null || !monthlyCashFlow.Any()
-                    ? StatisticLogic.GetMonthlyCashFlow()
+                    ? statisticManager.GetMonthlyCashFlow()
                     : monthlyCashFlow;
             }
             set
@@ -47,7 +50,7 @@ namespace MoneyManager.Core.ViewModels
             get
             {
                 return monthlySpreading == null || !monthlySpreading.Any()
-                    ? StatisticLogic.GetSpreading()
+                    ? statisticManager.GetSpreading()
                     : monthlySpreading;
             }
             set
@@ -65,7 +68,7 @@ namespace MoneyManager.Core.ViewModels
             get
             {
                 return categorySummary == null || !categorySummary.Any()
-                    ? StatisticLogic.GetCategorySummary(StartDate, EndDate)
+                    ? statisticManager.GetCategorySummary(StartDate, EndDate)
                     : categorySummary;
             }
             set
@@ -84,27 +87,27 @@ namespace MoneyManager.Core.ViewModels
 
         public void SetDefaultCashFlow()
         {
-            MonthlyCashFlow = StatisticLogic.GetMonthlyCashFlow();
+            MonthlyCashFlow = statisticManager.GetMonthlyCashFlow();
         }
 
         public void SetDefaultSpreading()
         {
-            MonthlySpreading = StatisticLogic.GetSpreading();
+            MonthlySpreading = statisticManager.GetSpreading();
         }
 
         public void SetCustomCashFlow()
         {
-            MonthlyCashFlow = StatisticLogic.GetMonthlyCashFlow(StartDate, EndDate);
+            MonthlyCashFlow = statisticManager.GetMonthlyCashFlow(StartDate, EndDate);
         }
 
         public void SetCustomSpreading()
         {
-            MonthlySpreading = StatisticLogic.GetSpreading(StartDate, EndDate);
+            MonthlySpreading = statisticManager.GetSpreading(StartDate, EndDate);
         }
 
         public void SetCagtegorySummary()
         {
-            CategorySummary = StatisticLogic.GetCategorySummary(StartDate, EndDate);
+            CategorySummary = statisticManager.GetCategorySummary(StartDate, EndDate);
         }
     }
 }

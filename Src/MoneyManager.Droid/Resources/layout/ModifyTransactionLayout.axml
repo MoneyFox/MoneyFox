@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <Mvx.MvxSpinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ChargedAccount"
+        local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedTransaction.ChargedAccount" />
+    <Mvx.MvxSpinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TargetAccount"
+        local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedTransaction.TargetAccount" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_amount"
+        android:numeric="decimal"
+        local:MvxBind="Text SelectedTransaction.Amount" />
+</LinearLayout>
