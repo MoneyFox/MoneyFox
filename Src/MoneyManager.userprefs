@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.SelectDevice" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MoneyManager.Core\ViewModels\AboutViewModel.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="MoneyManager.Core\ViewModels\AboutViewModel.cs" Line="65" Column="33" />
     </Files>
