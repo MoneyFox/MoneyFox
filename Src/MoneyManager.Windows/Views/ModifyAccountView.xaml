@@ -55,7 +55,7 @@
                      Margin="0,0,0,12" />
             <Grid>
                 <TextBox
-                    Text="{Binding SelectedAccount.Amount, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
+                    Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
                     Header="amount"
                     InputScope="Number"
                     x:Uid="Balance"
@@ -63,13 +63,6 @@
                     TextAlignment="Right"
                     GotFocus="RemoveZeroOnFocus"
                     LostFocus="AddZeroIfEmpty" />
-
-                <Button Height="28"
-                        Width="28"
-                        Background="#FF231E1E"
-                        BorderThickness="0"
-                        Content="{Binding SelectedAccount.Currency}"
-                        Margin="2,30,0,2" />
             </Grid>
             <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
                      Header="Notes"

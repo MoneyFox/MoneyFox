@@ -27,7 +27,7 @@
                                         Click="Delete_OnClick" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <StackPanel>
+                <StackPanel Margin="0,0,0, 12" >
                     <Grid HorizontalAlignment="Stretch">
                         <TextBlock Text="{Binding Name}"
                                    TextTrimming="CharacterEllipsis"
