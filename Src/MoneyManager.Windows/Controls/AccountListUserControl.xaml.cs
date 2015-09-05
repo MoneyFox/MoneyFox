@@ -23,6 +23,14 @@ namespace MoneyManager.Windows.Controls
 
             flyoutBase.ShowAt(senderElement);
         }
+        
+        private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            var senderElement = sender as FrameworkElement;
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+
+            flyoutBase.ShowAt(senderElement);
+        }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)
         {

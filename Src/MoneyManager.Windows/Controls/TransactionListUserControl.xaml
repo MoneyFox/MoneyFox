@@ -33,7 +33,8 @@
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
-                        Holding="OpenContextMenu"
+                        Holding="TransactionList_Holding"
+                        RightTapped="TransactionList_RightTapped"
                         Opacity="{Binding Converter={StaticResource TransactionStyleConverter}}">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>

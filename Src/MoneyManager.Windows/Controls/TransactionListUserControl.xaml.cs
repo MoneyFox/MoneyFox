@@ -38,7 +38,15 @@ namespace MoneyManager.Windows.Controls
             (DataContext as TransactionListViewModel)?.DeleteCommand.Execute(transaction);
         }
 
-        private void OpenContextMenu(object sender, HoldingRoutedEventArgs e)
+        private void TransactionList_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            var senderElement = sender as FrameworkElement;
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+
+            flyoutBase.ShowAt(senderElement);
+        }
+
+        private void TransactionList_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);

@@ -15,7 +15,8 @@
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="AccountTemplate">
             <StackPanel HorizontalAlignment="Stretch"
-                        Holding="AccountList_Holding">
+                        Holding="AccountList_Holding"
+                        RightTapped="AccountList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
