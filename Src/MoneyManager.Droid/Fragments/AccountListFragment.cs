@@ -1,7 +1,6 @@
 using Android.OS;
 using Android.Views;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
-using Cirrious.MvvmCross.Binding.Droid.Views;
 using Cirrious.MvvmCross.Droid.Support.Fragging.Fragments;
 using MoneyManager.Core.ViewModels;
 
@@ -18,13 +17,7 @@ namespace MoneyManager.Droid.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-            var view = this.BindingInflate(Resource.Layout.AccountListLayout, null);
-
-            var list = view.FindViewById<MvxListView>(Resource.Id.accountList);
-            list.ItemsSource = ViewModel.AllAccounts;
-            list.ItemTemplateId = Resource.Layout.AccountListItem;
-
-            return view;
+            return this.BindingInflate(Resource.Layout.AccountListLayout, null);
         }
     }
 }

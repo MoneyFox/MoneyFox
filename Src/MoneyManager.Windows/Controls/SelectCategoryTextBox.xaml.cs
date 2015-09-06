@@ -3,12 +3,12 @@ using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Controls
 {
-    public sealed partial class SelectCategoryUserControl
+    public sealed partial class SelectCategoryTextBox
     {
-        public SelectCategoryUserControl()
+        public SelectCategoryTextBox()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<SelectCategoryViewModel>();
+            DataContext = Mvx.Resolve<SelectCategoryTextBoxViewModel>();
         }
     }
 }

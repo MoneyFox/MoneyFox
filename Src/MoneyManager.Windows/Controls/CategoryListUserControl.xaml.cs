@@ -33,9 +33,8 @@ namespace MoneyManager.Windows.Controls
             {
                 return;
             }
-            ((CategoryListViewModel) DataContext).SelectedCategory = category;
 
-            var dialog = new CategoryDialog(true);
+            var dialog = new CategoryDialog(category);
             await dialog.ShowAsync();
         }
 

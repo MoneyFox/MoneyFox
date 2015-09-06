@@ -10,13 +10,13 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         public void SettingsDataAccess_CrudSettings()
         {
             var settings = new SettingDataAccess();
-            Assert.Equal("USD", settings.DefaultCurrency);
+            Assert.Equal(-1, settings.DefaultAccount);
 
-            settings.DefaultCurrency = "CHF";
-            Assert.Equal("CHF", settings.DefaultCurrency);
+            settings.DefaultAccount = 3;
+            Assert.Equal(3, settings.DefaultAccount);
 
             var settings2 = new SettingDataAccess();
-            Assert.Equal("CHF", settings2.DefaultCurrency);
+            Assert.Equal(-1, settings2.DefaultAccount);
         }
     }
 }

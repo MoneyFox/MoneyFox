@@ -37,10 +37,10 @@ namespace MoneyManager.Core
         {
             using (var db = GetSqlConnection())
             {
-                db.CreateTable<Account>();
-                db.CreateTable<FinancialTransaction>();
-                db.CreateTable<RecurringTransaction>();
-                db.CreateTable<Category>();
+                db.CreateTable<Account>(CreateFlags.AllImplicit);
+                db.CreateTable<FinancialTransaction>(CreateFlags.AllImplicit);
+                db.CreateTable<RecurringTransaction>(CreateFlags.AllImplicit);
+                db.CreateTable<Category>(CreateFlags.AllImplicit);
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿<views:MvxWindowsPage
-    x:Class="MoneyManager.Windows.Views.SelectCategoryView"
+    x:Class="MoneyManager.Windows.Views.CategoryListView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -26,7 +26,7 @@
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Select Category"
-                           x:Uid="SelectCategoryViewTitle" />
+                           x:Uid="CategoryListViewTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 

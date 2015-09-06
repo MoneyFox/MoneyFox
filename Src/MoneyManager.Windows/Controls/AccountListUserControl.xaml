@@ -4,18 +4,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:MoneyManager.Windows.Controls"
-             xmlns:converter="using:MoneyManager.Windows.Converter"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:converter="using:MoneyManager.Windows.Converter"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
 
     <UserControl.Resources>
-        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
         <DataTemplate x:Key="AccountTemplate">
             <StackPanel HorizontalAlignment="Stretch"
-                        Holding="AccountList_Holding">
+                        Holding="AccountList_Holding"
+                        RightTapped="AccountList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
@@ -26,14 +28,14 @@
                                         Click="Delete_OnClick" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <StackPanel>
+                <StackPanel Margin="0,0,0, 12" >
                     <Grid HorizontalAlignment="Stretch">
                         <TextBlock Text="{Binding Name}"
                                    TextTrimming="CharacterEllipsis"
                                    Style="{ThemeResource SubtitleTextBlockStyle}"/>
                         <TextBlock TextAlignment="Right"
                                     Style="{ThemeResource SubtitleTextBlockStyle}"
-                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
+                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                     HorizontalAlignment="Right" />
                     </Grid>
                     <TextBlock Text="{Binding Iban}"
@@ -49,8 +51,7 @@
             <ListView ItemsSource="{Binding AllAccounts}"
                       ItemTemplate="{StaticResource AccountTemplate}"
                       HorizontalAlignment="Stretch"
-                      EntranceNavigationTransitionInfo.IsTargetElement="True"
-                      SelectedItem="{Binding SelectedAccount, Mode=TwoWay}">
+                      EntranceNavigationTransitionInfo.IsTargetElement="True">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -61,7 +62,8 @@
 
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" />
+                        <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
+                                                  InputConverter="{StaticResource SelectedAccountConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </ListView>

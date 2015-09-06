@@ -4,9 +4,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:MoneyManager.Windows.Controls"
-             xmlns:converter1="using:MoneyManager.Windows.Converter"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:converter="using:MoneyManager.Windows.Converter"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -21,19 +21,20 @@
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
-        <converter1:AmountFormatConverter x:Key="AmountFormatConverter" />
-        <converter1:CultureConverter x:Key="FormatConverter" />
-        <converter1:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <converter1:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
-        <converter1:TransactionAmountConverter x:Key="TransactionAmountConverter" />
-        <converter1:ThemedImageConverter x:Key="ThemedImageConverter" />
-        <converter1:TransactionStyleConverter x:Key="TransactionStyleConverter" />
+        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:CultureConverter x:Key="FormatConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
+        <converter:NativeTransactionAmountConverter x:Key="TransactionAmountConverter" />
+        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
+        <converter:TransactionStyleConverter x:Key="TransactionStyleConverter" />
 
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
-                        Holding="OpenContextMenu"
+                        Holding="TransactionList_Holding"
+                        RightTapped="TransactionList_RightTapped"
                         Opacity="{Binding Converter={StaticResource TransactionStyleConverter}}">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
@@ -56,7 +57,7 @@
                         <TextBlock Text="{Binding Converter={StaticResource TransactionAmountConverter}}"
                                    Margin="0,0,3,0" />
                         <TextBlock
-                            Text="{Binding AmountWithoutExchange, Converter={StaticResource AmountFormatConverter}}" />
+                            Text="{Binding Amount, Converter={StaticResource AmountFormatConverter}}" />
                     </StackPanel>
                 </Grid>
                 <Grid>

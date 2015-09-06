@@ -412,6 +412,12 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f03001b
 			public const int ModifyTransactionLayout = 2130903067;
 			
+			// aapt resource value: 0x7f03001c
+			public const int TransactionListItem = 2130903068;
+			
+			// aapt resource value: 0x7f03001d
+			public const int TransactionListLayout = 2130903069;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

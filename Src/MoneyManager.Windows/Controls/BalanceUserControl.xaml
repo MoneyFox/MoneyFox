@@ -10,7 +10,7 @@
              Loaded="BalanceUserControl_OnLoaded">
 
     <UserControl.Resources>
-        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
     </UserControl.Resources>
 
     <StackPanel Orientation="Horizontal"

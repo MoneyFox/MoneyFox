@@ -4,13 +4,13 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:controls="using:MoneyManager.Windows.Controls"
-                      xmlns:converter="using:MoneyManager.Windows.Converter"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
+                      xmlns:converter="using:MoneyManager.Windows.Converter"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       mc:Ignorable="d">
 
     <Page.Resources>
-        <converter:AmountFormatConverter x:Key="AmountConverter" />
+        <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
     </Page.Resources>
 
     <Page.BottomAppBar>
@@ -55,7 +55,7 @@
                      Margin="0,0,0,12" />
             <Grid>
                 <TextBox
-                    Text="{Binding SelectedAccount.Amount, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
+                    Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
                     Header="amount"
                     InputScope="Number"
                     x:Uid="Balance"
@@ -63,13 +63,6 @@
                     TextAlignment="Right"
                     GotFocus="RemoveZeroOnFocus"
                     LostFocus="AddZeroIfEmpty" />
-
-                <Button Height="28"
-                        Width="28"
-                        Background="#FF231E1E"
-                        BorderThickness="0"
-                        Content="{Binding SelectedAccount.Currency}"
-                        Margin="2,30,0,2" />
             </Grid>
             <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
                      Header="Notes"

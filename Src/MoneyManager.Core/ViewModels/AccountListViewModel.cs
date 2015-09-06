@@ -32,13 +32,11 @@ namespace MoneyManager.Core.ViewModels
             get { return accountRepository.Data; }
             set { accountRepository.Data = value; }
         }
-        
-        public Account SelectedAccount { get; set; }
 
         /// <summary>
         ///     Open the transaction overview for this account.
         /// </summary>
-        public MvxCommand OpenOverviewCommand => new MvxCommand(GoToTransactionOverView);
+        public MvxCommand<Account> OpenOverviewCommand => new MvxCommand<Account>(GoToTransactionOverView);
 
         /// <summary>
         ///     Edit the selected account
@@ -58,17 +56,15 @@ namespace MoneyManager.Core.ViewModels
             ShowViewModel<ModifyAccountViewModel>();
         }
 
-        private void GoToTransactionOverView()
+        private void GoToTransactionOverView(Account account)
         {
-            if (SelectedAccount == null)
+            if (account == null)
             {
                 return;
             }
 
-            accountRepository.Selected = SelectedAccount;
+            accountRepository.Selected = account;
             transactionListViewModel.LoadedCommand.Execute();
-
-            SelectedAccount = null;
 
             ShowViewModel<TransactionListViewModel>();
         }

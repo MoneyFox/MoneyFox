@@ -4,10 +4,10 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyManager.Windows.Controls"
-                      xmlns:converter1="using:MoneyManager.Windows.Converter"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:converter="using:MoneyManager.Windows.Converter"
                       mc:Ignorable="d"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -18,16 +18,15 @@
     </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
-        <converter1:AmountFormatConverter x:Key="AmountConverter" />
-        <converter1:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-        <converter1:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate">
             <StackPanel Margin="0,0,0,12"
                         Orientation="Horizontal">
                 <TextBlock Text="{Binding Name}" />
                 <TextBlock Text=" (" />
-                <TextBlock Text="{Binding CurrentBalance}" />
-                <TextBlock Text="{Binding Currency}" />
+                <TextBlock Text="{Binding CurrentBalance, Converter={StaticResource AmountConverter}}" />
                 <TextBlock Text=")" />
             </StackPanel>
         </DataTemplate>
@@ -90,7 +89,7 @@
                              GotFocus="RemoveZeroOnFocus"
                              LostFocus="AddZeroIfEmpty"
                              Margin="0,7,0,0" />
-                    <userControls:SelectCategoryUserControl Margin="0,7,0,0" />
+                    <userControls:SelectCategoryTextBox Margin="0,7,0,0" />
                     <DatePicker Date="{Binding Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 Margin="0,12,0,0"
                                 HorizontalAlignment="Left"

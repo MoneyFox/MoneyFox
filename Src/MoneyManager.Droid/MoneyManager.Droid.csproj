@@ -171,6 +171,7 @@
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\ModifyTransactionActivity.cs" />
     <Compile Include="Activities\SelectCategoryActivity.cs" />
+    <Compile Include="Activities\TransactionListActivity.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
@@ -206,6 +207,10 @@
     <AndroidResource Include="Resources\layout\AboutLayout.axml" />
     <AndroidResource Include="Resources\layout\ModifyAccountLayout.axml" />
     <AndroidResource Include="Resources\layout\ModifyTransactionLayout.axml" />
+    <AndroidResource Include="Resources\layout\TransactionListLayout.axml" />
+    <AndroidResource Include="Resources\layout\TransactionListItem.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MainLayout.axml" />

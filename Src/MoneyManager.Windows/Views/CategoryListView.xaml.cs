@@ -6,12 +6,12 @@ using MoneyManager.Windows.Dialogs;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class SelectCategoryView
+    public sealed partial class CategoryListView
     {
-        public SelectCategoryView()
+        public CategoryListView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<SelectCategoryViewModel>();
+            DataContext = Mvx.Resolve<CategoryListViewModel>();
         }
 
         private async void AddCategory(object sender, RoutedEventArgs e)

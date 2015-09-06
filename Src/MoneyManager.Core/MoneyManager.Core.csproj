@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Backup.cs" />
+    <Compile Include="Converter\AmountFormatConverter.cs" />
+    <Compile Include="Converter\TransactionAmountConverter.cs" />
     <Compile Include="DataAccess\AccountDataAccess.cs" />
     <Compile Include="DataAccess\CategoryDataAccess.cs" />
     <Compile Include="DataAccess\RecurringTransactionDataAccess.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
+    <Compile Include="ViewModels\CategoryDialogViewModel.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyTransactionViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />
@@ -71,7 +74,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoryListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\SelectCategoryViewModel.cs" />
+    <Compile Include="ViewModels\SelectCategoryTextBoxViewModel.cs" />
     <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
     <Compile Include="ViewModels\TileSettingsViewModel.cs" />

@@ -129,26 +129,27 @@
     <Compile Include="Controls\PieChartUserControl.xaml.cs">
       <DependentUpon>PieChartUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SelectCategoryListUserControl.xaml.cs">
-      <DependentUpon>SelectCategoryListUserControl.xaml</DependentUpon>
+    <Compile Include="Controls\CategoryListUserControl.xaml.cs">
+      <DependentUpon>CategoryListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SelectCategoryUserControl.xaml.cs">
-      <DependentUpon>SelectCategoryUserControl.xaml</DependentUpon>
+    <Compile Include="Controls\SelectCategoryTextBox.xaml.cs">
+      <DependentUpon>SelectCategoryTextBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TransactionListUserControl.xaml.cs">
       <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\CultureConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="Converter\NativeAmountFormatConverter.cs" />
+    <Compile Include="Converter\NativeTransactionAmountConverter.cs" />
     <Compile Include="Converter\NoteVisibilityConverter.cs" />
     <Compile Include="Converter\RecurrenceConverter.cs" />
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
+    <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
-    <Compile Include="Converter\TransactionAmountConverter.cs" />
     <Compile Include="Converter\TransactionStyleConverter.cs" />
-    <Compile Include="Dialogs\CategoryDialog.xaml.cs">
+    <Compile Include="Dialogs\CategoryDialog.cs">
       <DependentUpon>CategoryDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SelectStatisticDialog.xaml.cs">
@@ -180,8 +181,8 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SelectCategoryView.xaml.cs">
-      <DependentUpon>SelectCategoryView.xaml</DependentUpon>
+    <Compile Include="Views\CategoryListView.xaml.cs">
+      <DependentUpon>CategoryListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BackupView.xaml.cs">
       <DependentUpon>BackupView.xaml</DependentUpon>
@@ -282,11 +283,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SelectCategoryListUserControl.xaml">
+    <Page Include="Controls\CategoryListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SelectCategoryUserControl.xaml">
+    <Page Include="Controls\SelectCategoryTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -322,7 +323,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SelectCategoryView.xaml">
+    <Page Include="Views\CategoryListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
