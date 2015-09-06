@@ -148,7 +148,7 @@
     <Compile Include="Converter\ThemedImageConverter.cs" />
     <Compile Include="Converter\TransactionAmountConverter.cs" />
     <Compile Include="Converter\TransactionStyleConverter.cs" />
-    <Compile Include="Dialogs\CategoryDialog.xaml.cs">
+    <Compile Include="Dialogs\CategoryDialog.cs">
       <DependentUpon>CategoryDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SelectStatisticDialog.xaml.cs">

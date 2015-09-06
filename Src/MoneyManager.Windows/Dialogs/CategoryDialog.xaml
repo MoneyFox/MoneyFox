@@ -4,13 +4,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d"
     Title="ADD CATEGORY"
     x:Uid="CategoryDialog"
     PrimaryButtonText="done"
     SecondaryButtonText="cancel"
-    PrimaryButtonClick="DoneOnClick"
-    DataContext="{Binding CategoryRepository, Source={StaticResource Locator}}">
+    PrimaryButtonCommand="{Binding DoneCommand}">
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors> 
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <TextBox Header="name" x:Uid="Name"
