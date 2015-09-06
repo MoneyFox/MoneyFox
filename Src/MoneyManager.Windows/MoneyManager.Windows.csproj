@@ -129,11 +129,11 @@
     <Compile Include="Controls\PieChartUserControl.xaml.cs">
       <DependentUpon>PieChartUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SelectCategoryListUserControl.xaml.cs">
-      <DependentUpon>SelectCategoryListUserControl.xaml</DependentUpon>
+    <Compile Include="Controls\CategoryListUserControl.xaml.cs">
+      <DependentUpon>CategoryListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SelectCategoryUserControl.xaml.cs">
-      <DependentUpon>SelectCategoryUserControl.xaml</DependentUpon>
+    <Compile Include="Controls\SelectCategoryTextBox.xaml.cs">
+      <DependentUpon>SelectCategoryTextBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TransactionListUserControl.xaml.cs">
       <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
@@ -181,8 +181,8 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SelectCategoryView.xaml.cs">
-      <DependentUpon>SelectCategoryView.xaml</DependentUpon>
+    <Compile Include="Views\CategoryListView.xaml.cs">
+      <DependentUpon>CategoryListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BackupView.xaml.cs">
       <DependentUpon>BackupView.xaml</DependentUpon>
@@ -283,11 +283,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SelectCategoryListUserControl.xaml">
+    <Page Include="Controls\CategoryListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SelectCategoryUserControl.xaml">
+    <Page Include="Controls\SelectCategoryTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -323,7 +323,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SelectCategoryView.xaml">
+    <Page Include="Views\CategoryListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

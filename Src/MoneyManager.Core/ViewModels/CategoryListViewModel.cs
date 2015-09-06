@@ -38,6 +38,11 @@ namespace MoneyManager.Core.ViewModels
         public MvxCommand<Category> DeleteCategoryCommand => new MvxCommand<Category>(DeleteCategory);
 
         /// <summary>
+        ///     Opens to the SelectCategoryView
+        /// </summary>
+        public IMvxCommand SelectCategoryCommand => new MvxCommand(SelectCategory);
+
+        /// <summary>
         ///     Indicates wether the view is shown from the settings to adjust something
         ///     or from the transaction modificatio nto select a category.
         /// </summary>
@@ -109,12 +114,18 @@ namespace MoneyManager.Core.ViewModels
                     (categoryRepository.Data.Where(
                         x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
                         .ToList());
-            }
-            else
+            } else
             {
                 Categories = categoryRepository.Data;
             }
         }
+
+        private void SelectCategory()
+        {
+            transactionRepository.Selected.Category = SelectedCategory;
+            Close(this);
+        }
+
 
         private async void DeleteCategory(Category categoryToDelete)
         {

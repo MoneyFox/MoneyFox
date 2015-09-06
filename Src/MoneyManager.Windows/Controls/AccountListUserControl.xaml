@@ -35,7 +35,7 @@
                                    Style="{ThemeResource SubtitleTextBlockStyle}"/>
                         <TextBlock TextAlignment="Right"
                                     Style="{ThemeResource SubtitleTextBlockStyle}"
-                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}, ConverterParameter={Binding Currency}}"
+                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                     HorizontalAlignment="Right" />
                     </Grid>
                     <TextBlock Text="{Binding Iban}"

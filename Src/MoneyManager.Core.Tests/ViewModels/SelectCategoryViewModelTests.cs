@@ -27,7 +27,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             transactionSetup.SetupGet(x => x.Selected).Returns(transaction);
             var transactionRepository = transactionSetup.Object;
 
-            new SelectCategoryViewModel(transactionRepository).ResetCategoryCommand.Execute();
+            new SelectCategoryTextBoxViewModel(transactionRepository).ResetCategoryCommand.Execute();
 
             Assert.Null(transaction.Category);
         }

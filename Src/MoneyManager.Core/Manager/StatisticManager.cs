@@ -187,7 +187,7 @@ namespace MoneyManager.Core.Manager
 
         private void SetLabel(StatisticItem item)
         {
-            item.Label = item.Category + ": " + item.Value + " " + settings.DefaultCurrency;
+            item.Label = item.Category + ": " + item.Value;
         }
 
         private void IncludeIncome(IEnumerable<StatisticItem> statisticList)
@@ -224,7 +224,7 @@ namespace MoneyManager.Core.Manager
                     .Where(x => !statisticList.Contains(x))
                     .Sum(x => x.Value)
             };
-            othersItem.Label = othersItem.Category + ": " + othersItem.Value + " " + settings.DefaultCurrency;
+            othersItem.Label = othersItem.Category + ": " + othersItem.Value;
 
             if (othersItem.Value > 0)
             {
@@ -253,8 +253,7 @@ namespace MoneyManager.Core.Manager
                         .Where(x => x.Type != (int) TransactionType.Transfer)
                         .Sum(x => x.Type == (int) TransactionType.Spending
                             ? -x.Amount
-                            : x.Amount),
-                    Label = Mvx.Resolve<SettingDataAccess>().DefaultCurrency
+                            : x.Amount)
                 });
             }
 

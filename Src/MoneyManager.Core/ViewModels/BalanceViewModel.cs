@@ -28,7 +28,6 @@ namespace MoneyManager.Core.ViewModels
         public double TotalBalance { get; set; }
         public double EndOfMonthBalance { get; set; }
         public bool IsTransactionView { private get; set; }
-        public string CurrencyCulture => settings.DefaultCurrency;
 
         /// <summary>
         ///     Refreshes the balances

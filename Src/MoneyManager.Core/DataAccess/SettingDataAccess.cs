@@ -7,7 +7,6 @@ namespace MoneyManager.Core.DataAccess
     [ImplementPropertyChanged]
     public class SettingDataAccess : INotifyPropertyChanged
     {
-        private const string DEFAULT_CURRENCY_KEYNAME = "DefaultCurrency";
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
         private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
@@ -44,18 +43,6 @@ namespace MoneyManager.Core.DataAccess
         }
 
         #region Properties
-
-        //TODO Refactor: DB or replace with Interface
-        public string DefaultCurrency
-        {
-            get { return string.Empty; }
-            //GetValueOrDefault(DEFAULT_CURRENCY_KEYNAME, new GeographicRegion().CurrenciesInUse.First()); }
-            set
-            {
-                AddOrUpdateValue(DEFAULT_CURRENCY_KEYNAME, value);
-                OnPropertyChanged();
-            }
-        }
 
         public int DefaultAccount
         {

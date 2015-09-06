@@ -4,15 +4,15 @@ using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class SelectCategoryViewModel : BaseViewModel
+    public class SelectCategoryTextBoxViewModel : BaseViewModel
     {
         private readonly ITransactionRepository transactionRepository;
 
         /// <summary>
-        ///     Creates an SelectCategoryViewModel instance
+        ///     Creates an SelectCategoryTextBoxViewModel instance
         /// </summary>
         /// <param name="transactionRepository">An instance of <see cref="ITransactionRepository" /></param>
-        public SelectCategoryViewModel(ITransactionRepository transactionRepository)
+        public SelectCategoryTextBoxViewModel(ITransactionRepository transactionRepository)
         {
             this.transactionRepository = transactionRepository;
 
@@ -20,6 +20,14 @@ namespace MoneyManager.Core.ViewModels
             {
                 transactionRepository.Selected = new FinancialTransaction();
             }
+        }
+
+        public Category SelectedCategory { get; set; }
+
+        public FinancialTransaction SelectedTransaction
+        {
+            get { return transactionRepository.Selected; }
+            set { transactionRepository.Selected = value; }
         }
 
         /// <summary>
@@ -39,7 +47,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void Navigate()
         {
-            ShowViewModel<SelectCategoryViewModel>();
+            ShowViewModel<CategoryListViewModel>();
         }
     }
 }
