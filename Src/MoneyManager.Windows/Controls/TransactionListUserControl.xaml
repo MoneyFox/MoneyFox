@@ -57,7 +57,7 @@
                         <TextBlock Text="{Binding Converter={StaticResource TransactionAmountConverter}}"
                                    Margin="0,0,3,0" />
                         <TextBlock
-                            Text="{Binding AmountWithoutExchange, Converter={StaticResource AmountFormatConverter}}" />
+                            Text="{Binding Amount, Converter={StaticResource AmountFormatConverter}}" />
                     </StackPanel>
                 </Grid>
                 <Grid>
