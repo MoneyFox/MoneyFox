@@ -22,7 +22,7 @@
             android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_marginTop="5dp"
-            local:MvxBind="Text CurrentBalance" />
+            local:MvxBind="Text CurrentBalance, Converter=AmountFormat" />
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"
