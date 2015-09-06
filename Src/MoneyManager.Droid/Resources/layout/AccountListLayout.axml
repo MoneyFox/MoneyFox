@@ -10,5 +10,5 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         local:MvxItemTemplate="@layout/accountlistitem"
-        local:MvxBind="ItemsSource AllAccounts" />
+        local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand; SelectedItem SelectedAccount" />
 </LinearLayout>
