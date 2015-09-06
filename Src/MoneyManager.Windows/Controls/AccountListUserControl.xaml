@@ -13,6 +13,7 @@
 
     <UserControl.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
         <DataTemplate x:Key="AccountTemplate">
             <StackPanel HorizontalAlignment="Stretch"
                         Holding="AccountList_Holding"
@@ -50,8 +51,7 @@
             <ListView ItemsSource="{Binding AllAccounts}"
                       ItemTemplate="{StaticResource AccountTemplate}"
                       HorizontalAlignment="Stretch"
-                      EntranceNavigationTransitionInfo.IsTargetElement="True"
-                      SelectedItem="{Binding SelectedAccount, Mode=TwoWay}">
+                      EntranceNavigationTransitionInfo.IsTargetElement="True">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -62,7 +62,8 @@
 
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" />
+                        <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
+                                                  InputConverter="{StaticResource SelectedAccountConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </ListView>

@@ -146,6 +146,7 @@
     <Compile Include="Converter\NoteVisibilityConverter.cs" />
     <Compile Include="Converter\RecurrenceConverter.cs" />
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
+    <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
     <Compile Include="Converter\TransactionStyleConverter.cs" />
     <Compile Include="Dialogs\CategoryDialog.cs">
