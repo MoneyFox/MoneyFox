@@ -206,6 +206,10 @@
     <AndroidResource Include="Resources\layout\AboutLayout.axml" />
     <AndroidResource Include="Resources\layout\ModifyAccountLayout.axml" />
     <AndroidResource Include="Resources\layout\ModifyTransactionLayout.axml" />
+    <AndroidResource Include="Resources\layout\TransactionListLayout.axml" />
+    <AndroidResource Include="Resources\layout\TransactionListItem.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MainLayout.axml" />

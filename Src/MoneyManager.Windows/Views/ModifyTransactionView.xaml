@@ -8,6 +8,7 @@
                       xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:converter="using:MoneyManager.Core.Converter"
                       mc:Ignorable="d"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -18,7 +19,7 @@
     </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
-        <converter1:AmountFormatConverter x:Key="AmountConverter" />
+        <converter:AmountFormatConverter x:Key="AmountConverter" />
         <converter1:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter1:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate">
