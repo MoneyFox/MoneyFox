@@ -179,11 +179,29 @@ namespace MoneyManager.Foundation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteLabel {
+            get {
+                return ResourceManager.GetString("DeleteLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete?.
         /// </summary>
         public static string DeleteTitle {
             get {
                 return ResourceManager.GetString("DeleteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string EditLabel {
+            get {
+                return ResourceManager.GetString("EditLabel", resourceCulture);
             }
         }
         
@@ -373,6 +391,15 @@ namespace MoneyManager.Foundation {
         public static string RevenueLabel {
             get {
                 return ResourceManager.GetString("RevenueLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select operation.
+        /// </summary>
+        public static string SelectOperationLabel {
+            get {
+                return ResourceManager.GetString("SelectOperationLabel", resourceCulture);
             }
         }
         
