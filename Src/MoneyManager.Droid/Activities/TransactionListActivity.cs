@@ -1,7 +1,7 @@
 using Android.App;
 using Android.OS;
 using Android.Views;
-using Cirrious.MvvmCross.Droid.FullFragging.Views;
+using Cirrious.MvvmCross.Droid.Views;
 using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Droid.Activities
@@ -24,6 +24,8 @@ namespace MoneyManager.Droid.Activities
         {
             base.OnCreate(bundle);
 
+            ViewModel.LoadedCommand.Execute();
+
             SetContentView(Resource.Layout.TransactionListLayout);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.Title = ViewModel.Title;
@@ -44,6 +46,13 @@ namespace MoneyManager.Droid.Activities
                 default:
                     return false;
             }
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            ViewModel.UnloadedCommand.Execute();
         }
     }
 }

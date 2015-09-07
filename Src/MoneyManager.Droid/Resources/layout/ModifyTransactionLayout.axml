@@ -10,15 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ChargedAccount"
+        local:MvxItemTemplate="@layout/accountcomboboxitem"
+        local:MvxDropDownItemTemplate="@layout/accountcomboboxitem"
         local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedTransaction.ChargedAccount" />
     <Mvx.MvxSpinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/TargetAccount"
-        local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedTransaction.TargetAccount" />
+        android:layout_marginTop="5dp"
+        local:MvxItemTemplate="@layout/accountcomboboxitem"
+        local:MvxDropDownItemTemplate="@layout/accountcomboboxitem"
+        local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedTransaction.TargetAccount; Visible IsTransfer" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:hint="@string/hint_amount"
         android:numeric="decimal"
         local:MvxBind="Text SelectedTransaction.Amount" />

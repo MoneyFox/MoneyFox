@@ -19,7 +19,7 @@
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <ReleaseVersion>1.0.0.2</ReleaseVersion>
+    <ReleaseVersion>0.3.0.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Platform)' != 'Unix'">
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
@@ -74,19 +74,19 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.CrossCore">
-      <HintPath>..\..\packages\Portable\Cirrious.CrossCore.dll</HintPath>
+      <HintPath>..\..\Libs\Portable\Cirrious.CrossCore.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross">
-      <HintPath>..\..\packages\Portable\Cirrious.MvvmCross.dll</HintPath>
+      <HintPath>..\..\Libs\Portable\Cirrious.MvvmCross.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Binding">
-      <HintPath>..\..\packages\Portable\Cirrious.MvvmCross.Binding.dll</HintPath>
+      <HintPath>..\..\Libs\Portable\Cirrious.MvvmCross.Binding.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Localization">
-      <HintPath>..\..\packages\Portable\Cirrious.MvvmCross.Localization.dll</HintPath>
+      <HintPath>..\..\Libs\Portable\Cirrious.MvvmCross.Localization.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Plugins.WebBrowser">
-      <HintPath>..\..\packages\Portable\Cirrious.MvvmCross.Plugins.WebBrowser.dll</HintPath>
+      <HintPath>..\..\Libs\Portable\Cirrious.MvvmCross.Plugins.WebBrowser.dll</HintPath>
     </Reference>
     <Reference Include="xunit.assert">
       <HintPath>..\packages\xunit.assert.2.1.0-beta4-build3109\lib\dotnet\xunit.assert.dll</HintPath>

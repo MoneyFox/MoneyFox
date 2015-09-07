@@ -194,7 +194,7 @@ Global
 		{505CEE6A-E069-44BE-9DD2-4F609C1A2FC4} = {AB1FA939-5161-4DDF-8470-A44658E86BC2}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		version = 1.0.0.2
+		version = 0.3.0.0
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
