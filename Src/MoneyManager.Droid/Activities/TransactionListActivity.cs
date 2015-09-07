@@ -24,6 +24,8 @@ namespace MoneyManager.Droid.Activities
         {
             base.OnCreate(bundle);
 
+            ViewModel.LoadedCommand.Execute();
+
             SetContentView(Resource.Layout.TransactionListLayout);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.Title = ViewModel.Title;
@@ -44,6 +46,13 @@ namespace MoneyManager.Droid.Activities
                 default:
                     return false;
             }
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            ViewModel.UnloadedCommand.Execute();
         }
     }
 }
