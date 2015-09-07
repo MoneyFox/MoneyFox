@@ -42,31 +42,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cirrious.CrossCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e16445fd9b451819, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta1\lib\net45\Cirrious.CrossCore.dll</HintPath>
+      <HintPath>..\Libs\MvvmCross.HotTuna.CrossCore.4.0.0-beta1\lib\net45\Cirrious.CrossCore.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.CrossCore.Wpf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta1\lib\net45\Cirrious.CrossCore.Wpf.dll</HintPath>
+      <HintPath>..\Libs\MvvmCross.HotTuna.CrossCore.4.0.0-beta1\lib\net45\Cirrious.CrossCore.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.MvvmCross, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e16445fd9b451819, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta1\lib\net45\Cirrious.MvvmCross.dll</HintPath>
+      <HintPath>..\Libs\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta1\lib\net45\Cirrious.MvvmCross.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Binding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Binding.4.0.0-beta1\lib\net45\Cirrious.MvvmCross.Binding.dll</HintPath>
+      <HintPath>..\Libs\MvvmCross.HotTuna.Binding.4.0.0-beta1\lib\net45\Cirrious.MvvmCross.Binding.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Localization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta1\lib\net45\Cirrious.MvvmCross.Localization.dll</HintPath>
+      <HintPath>..\Libs\MvvmCross.HotTuna.CrossCore.4.0.0-beta1\lib\net45\Cirrious.MvvmCross.Localization.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Test.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Tests.4.0.0-beta1\lib\net45\Cirrious.MvvmCross.Test.Core.dll</HintPath>
+      <HintPath>..\Libs\MvvmCross.HotTuna.Tests.4.0.0-beta1\lib\net45\Cirrious.MvvmCross.Test.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Wpf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta1\lib\net45\Cirrious.MvvmCross.Wpf.dll</HintPath>
+      <HintPath>..\Libs\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta1\lib\net45\Cirrious.MvvmCross.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Moq, Version=4.2.1507.118, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
@@ -172,7 +172,7 @@
     <Error Condition="!Exists('..\packages\xunit.core.2.1.0-beta4-build3109\build\portable-net45+netcore45+wp8+wpa81\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.1.0-beta4-build3109\build\portable-net45+netcore45+wp8+wpa81\xunit.core.props'))" />
     <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.1.0-beta4-build1109\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.1.0-beta4-build1109\build\net20\xunit.runner.visualstudio.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

@@ -60,29 +60,30 @@
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cirrious.CrossCore.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\Droid\Cirrious.CrossCore.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\Droid\Cirrious.MvvmCross.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Binding.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\Droid\Cirrious.MvvmCross.Binding.Droid.dll</HintPath>
+    </Reference>
     <Reference Include="Cirrious.MvvmCross.Dialog.Droid">
-      <HintPath>..\..\packages\Droid\Cirrious.MvvmCross.Dialog.Droid.dll</HintPath>
+      <HintPath>..\..\Libs\Droid\Cirrious.MvvmCross.Dialog.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta2\lib\MonoAndroid\Cirrious.MvvmCross.Droid.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Plugins.File">
-      <HintPath>..\..\packages\Droid\Cirrious.MvvmCross.Plugins.File.dll</HintPath>
+      <HintPath>..\..\Libs\Droid\Cirrious.MvvmCross.Plugins.File.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Plugins.File.Droid">
-      <HintPath>..\..\packages\Droid\Cirrious.MvvmCross.Plugins.File.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Plugins.Network.Droid">
-      <HintPath>..\..\packages\Droid\Cirrious.MvvmCross.Plugins.Network.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Plugins.Share">
-      <HintPath>..\..\packages\Droid\Cirrious.MvvmCross.Plugins.Share.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Plugins.Share.Droid">
-      <HintPath>..\..\packages\Droid\Cirrious.MvvmCross.Plugins.Share.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="CrossUI.Core">
-      <HintPath>..\..\packages\Droid\CrossUI.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="CrossUI.Droid">
-      <HintPath>..\..\packages\Droid\CrossUI.Droid.dll</HintPath>
+      <HintPath>..\..\Libs\Droid\Cirrious.MvvmCross.Plugins.File.Droid.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Export" />
@@ -111,23 +112,8 @@
     <Reference Include="Cirrious.CrossCore">
       <HintPath>..\..\packages\Droid\Cirrious.CrossCore.dll</HintPath>
     </Reference>
-    <Reference Include="Cirrious.CrossCore.Droid">
-      <HintPath>..\..\packages\Droid\Cirrious.CrossCore.Droid.dll</HintPath>
-    </Reference>
     <Reference Include="Cirrious.MvvmCross">
       <HintPath>..\..\packages\Droid\Cirrious.MvvmCross.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Binding">
-      <HintPath>..\..\packages\Droid\Cirrious.MvvmCross.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Binding.Droid">
-      <HintPath>..\..\packages\Droid\Cirrious.MvvmCross.Binding.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Droid">
-      <HintPath>..\..\packages\Droid\Cirrious.MvvmCross.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Droid.FullFragging">
-      <HintPath>..\..\packages\Droid\Cirrious.MvvmCross.Droid.FullFragging.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Droid.Support.Fragging">
       <HintPath>..\..\packages\Cirrious.MvvmCross.Droid.Support.Fragging.dll</HintPath>

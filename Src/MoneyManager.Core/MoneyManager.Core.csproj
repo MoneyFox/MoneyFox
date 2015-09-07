@@ -82,19 +82,19 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.CrossCore">
-      <HintPath>..\..\packages\Portable\Cirrious.CrossCore.dll</HintPath>
+      <HintPath>..\..\Libs\Portable\Cirrious.CrossCore.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross">
-      <HintPath>..\..\packages\Portable\Cirrious.MvvmCross.dll</HintPath>
+      <HintPath>..\..\Libs\Portable\Cirrious.MvvmCross.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Binding">
-      <HintPath>..\..\packages\Portable\Cirrious.MvvmCross.Binding.dll</HintPath>
+      <HintPath>..\..\Libs\Portable\Cirrious.MvvmCross.Binding.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Plugins.Email">
-      <HintPath>..\..\packages\Portable\Cirrious.MvvmCross.Plugins.Email.dll</HintPath>
+      <HintPath>..\..\Libs\Portable\Cirrious.MvvmCross.Plugins.Email.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Plugins.WebBrowser">
-      <HintPath>..\..\packages\Portable\Cirrious.MvvmCross.Plugins.WebBrowser.dll</HintPath>
+      <HintPath>..\..\Libs\Portable\Cirrious.MvvmCross.Plugins.WebBrowser.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.50.3\lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
