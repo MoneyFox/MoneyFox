@@ -33,7 +33,7 @@ namespace MoneyManager.Core.DataAccess
             {
                 if (itemToSave.Id == 0)
                 {
-                    db.InsertWithChildren(itemToSave);
+                    db.Insert(itemToSave);
                 }
                 else
                 {
