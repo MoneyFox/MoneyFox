@@ -39,10 +39,7 @@ namespace MoneyManager.Windows
             if (shell == null)
             {
                 // Create a AppShell to act as the navigation context and navigate to the first page
-                shell = new AppShell();
-
-                // Set the default language
-                shell.Language = ApplicationLanguages.Languages[0];
+                shell = new AppShell {Language = ApplicationLanguages.Languages[0]};
 
                 shell.AppFrame.NavigationFailed += OnNavigationFailed;
             }
