@@ -40,11 +40,6 @@
                 <ListView ItemsSource="{Binding Categories}"
                           ItemTemplate="{StaticResource CategoryTemplate }"
                           SelectedItem="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="SelectionChanged">
-                            <core:InvokeCommandAction Command="{Binding SelectCategoryCommand, Mode=OneWay}" />
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
                 </ListView>
             </ScrollViewer>
         </StackPanel>
