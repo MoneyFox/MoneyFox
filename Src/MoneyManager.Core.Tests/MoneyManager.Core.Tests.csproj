@@ -107,6 +107,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Converter\DateFormatConverterTests.cs" />
     <Compile Include="Helper\RecurringTransactionHelperTests.cs" />
     <Compile Include="Helper\UtilitiesTest.cs" />
     <Compile Include="Helper\TransactionTypeLogicTest.cs" />

@@ -34,5 +34,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/button_date"
-        local:MvxBind="Text SelectedTransaction.Date" />
+        local:MvxBind="Text SelectedTransaction.Date, Converter=DateTimeFormat" />
 </LinearLayout>
