@@ -45,7 +45,7 @@ namespace MoneyManager.Core
                 .EndingWith("ViewModel")
                 .AsTypes()
                 .RegisterAsLazySingleton();
-            
+
             Mvx.Resolve<TransactionManager>().ClearTransactions();
             Mvx.Resolve<RecurringTransactionManager>().CheckRecurringTransactions();
 

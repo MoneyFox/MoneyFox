@@ -59,6 +59,7 @@
     <Compile Include="OperationContracts\IDatabasePath.cs" />
     <Compile Include="OperationContracts\IDbHelper.cs" />
     <Compile Include="OperationContracts\IDialogService.cs" />
+    <Compile Include="OperationContracts\ILocalize.cs" />
     <Compile Include="OperationContracts\IRepository.cs" />
     <Compile Include="OperationContracts\ISecondTile.cs" />
     <Compile Include="OperationContracts\IStoreFeatures.cs" />
