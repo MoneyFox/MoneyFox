@@ -16,6 +16,9 @@ namespace MoneyManager.Core.Manager
             this.transactionRepository = transactionRepository;
         }
 
+        /// <summary>
+        ///     Checks if one of the recurring transaction has to be repeated
+        /// </summary>
         public void CheckRecurringTransactions()
         {
             var transactionList = transactionRepository.LoadRecurringList();

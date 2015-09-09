@@ -1,6 +1,7 @@
 ﻿using Cirrious.CrossCore;
 using Cirrious.CrossCore.IoC;
 using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.OperationContracts;
 
@@ -44,6 +45,9 @@ namespace MoneyManager.Core
                 .EndingWith("ViewModel")
                 .AsTypes()
                 .RegisterAsLazySingleton();
+            
+            Mvx.Resolve<TransactionManager>().ClearTransactions();
+            Mvx.Resolve<RecurringTransactionManager>().CheckRecurringTransactions();
 
             // Start the app with the Main View Model.
             RegisterAppStart<MainViewModel>();
