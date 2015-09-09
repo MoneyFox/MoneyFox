@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Android.App;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Droid
 {

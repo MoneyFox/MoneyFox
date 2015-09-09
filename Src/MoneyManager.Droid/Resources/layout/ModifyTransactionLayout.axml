@@ -9,14 +9,12 @@
     <Mvx.MvxSpinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ChargedAccount"
         local:MvxItemTemplate="@layout/accountcomboboxitem"
         local:MvxDropDownItemTemplate="@layout/accountcomboboxitem"
         local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedTransaction.ChargedAccount" />
     <Mvx.MvxSpinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/TargetAccount"
         android:layout_marginTop="5dp"
         local:MvxItemTemplate="@layout/accountcomboboxitem"
         local:MvxDropDownItemTemplate="@layout/accountcomboboxitem"
@@ -28,4 +26,46 @@
         android:hint="@string/hint_amount"
         android:numeric="decimal"
         local:MvxBind="Text SelectedTransaction.Amount" />
+    <Button
+        android:id="@+id/transactiondate"
+        android:inputType="date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/button_date"
+        local:MvxBind="Text SelectedTransaction.Date, Converter=DateTimeFormat" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/hint_note"
+        local:MvxBind="Text SelectedTransaction.Note" />
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_recurring"
+        local:MvxBind="Checked SelectedTransaction.IsRecurring" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <Mvx.MvxSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recurrence_spinner"
+            local:MvxBind="ItemsSource RecurrenceList" />
+        <CheckBox
+            android:text="CheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_endless"
+            android:checked="true"
+            local:MvxBind="Checked IsEndless" />
+        <Button
+            android:id="@+id/enddate"
+            android:inputType="date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/button_date"
+            local:MvxBind="Text EndDate, Converter=DateTimeFormat" />
+    </LinearLayout>
 </LinearLayout>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MoneyManager.Foundation {
+namespace MoneyManager.Localization {
     using System;
     using System.Reflection;
     
@@ -40,7 +40,7 @@ namespace MoneyManager.Foundation {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MoneyManager.Foundation.Strings", typeof(Strings).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MoneyManager.Localization.Strings", typeof(Strings).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -166,6 +166,24 @@ namespace MoneyManager.Foundation {
         public static string CashflowLabel {
             get {
                 return ResourceManager.GetString("CashflowLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daily.
+        /// </summary>
+        public static string DailyLabel {
+            get {
+                return ResourceManager.GetString("DailyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daily without weekend.
+        /// </summary>
+        public static string DailyWithoutWeekendLabel {
+            get {
+                return ResourceManager.GetString("DailyWithoutWeekendLabel", resourceCulture);
             }
         }
         
@@ -391,6 +409,15 @@ namespace MoneyManager.Foundation {
         public static string RevenueLabel {
             get {
                 return ResourceManager.GetString("RevenueLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Date.
+        /// </summary>
+        public static string SelectDateTitle {
+            get {
+                return ResourceManager.GetString("SelectDateTitle", resourceCulture);
             }
         }
         

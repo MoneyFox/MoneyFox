@@ -2,6 +2,17 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Color x:Key="AppColor">#FF225F83</Color>
+    <Color x:Key="ListColorDark">#FF000000</Color>
+    <Color x:Key="ListColorLight">#FF171717</Color>
+    
+    
+    <SolidColorBrush x:Key="AppColorBrush" Color="{StaticResource AppColor}" />
+    <SolidColorBrush x:Key="ListViewBackgroundEvenBrush"
+                     Color="{StaticResource ListColorDark}" />
+    <SolidColorBrush x:Key="ListViewBackgroundOddBrush"
+                     Color="{StaticResource ListColorLight}" />
+
     <Style x:Key="SplitViewTogglePaneButtonStyle"
            TargetType="ToggleButton">
         <Setter Property="FontSize"

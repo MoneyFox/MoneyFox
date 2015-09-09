@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Manager;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Core.ViewModels
 {

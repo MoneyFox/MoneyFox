@@ -4,20 +4,22 @@
   <string name="app_name">Money Fox</string>
 
   <!--actions-->
-  <string name="action_add_income">add income</string>
-  <string name="action_add_spending">add spending</string>
-  <string name="action_add_transfer">add transfer</string>
-  <string name="action_add_account">add account</string>
-  <string name="action_delete">delete</string>
-  <string name="action_save">save</string>
+  <string name="action_add_income">Add Income</string>
+  <string name="action_add_spending">Add Spending</string>
+  <string name="action_add_transfer">Add Transfer</string>
+  <string name="action_add_account">Add Account</string>
+  <string name="action_delete">Delete</string>
+  <string name="action_save">Save</string>
 
   <!--hints-->
-  <string name="hint_account_name">account name</string>
+  <string name="hint_account_name">Account Name</string>
   <string name="hint_iban">iban</string>
-  <string name="hint_current_balance">current balance</string>
-  <string name="hint_note">note</string>
-  <string name="hint_amount">amount</string>
-
+  <string name="hint_current_balance">Current Balance</string>
+  <string name="hint_note">Note</string>
+  <string name="hint_amount">Amount</string>
+  <string name="hint_recurring">Is Recurring</string>
+  <string name="hint_endless">Is Endless</string>
+  
   <!--text views-->
   <string name="textview_version">Version</string>
   <string name="textview_contact">Contact</string>
@@ -25,6 +27,7 @@
   <string name="textview_opensource">This programm is open source. To contribute visit the repository:</string>
 
   <!--buttons-->
-  <string name="button_rate">rate us!</string>
+  <string name="button_date">Date</string>
+  <string name="button_rate">Rate us!</string>
 
 </resources>

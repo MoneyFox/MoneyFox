@@ -4,7 +4,7 @@ using Android.OS;
 using Android.Views;
 using Cirrious.MvvmCross.Droid.Views;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Droid.Activities
 {

@@ -147,6 +147,12 @@
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>Backup</value>
   </data>
+  <data name="CashFlowTitle.Header" xml:space="preserve">
+    <value>Cash Flow</value>
+  </data>
+  <data name="CategorySummaryTitle.Header" xml:space="preserve">
+    <value>Category Summary</value>
+  </data>
   <data name="ContactLabel.Text" xml:space="preserve">
     <value>Contact:</value>
   </data>
@@ -168,6 +174,9 @@ Visit Repository:</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="SpreadingTitle.Header" xml:space="preserve">
+    <value>Spreading</value>
   </data>
   <data name="TotalLabel.Text" xml:space="preserve">
     <value>Total: </value>

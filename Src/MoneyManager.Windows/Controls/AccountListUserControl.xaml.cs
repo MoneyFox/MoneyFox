@@ -3,8 +3,8 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Windows.Controls
 {
@@ -46,14 +46,15 @@ namespace MoneyManager.Windows.Controls
 
         private async void Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!await new DialogService().ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteConfirmationMessage))
+            //this has to be called before the dialog service since otherwise the datacontext is reseted and the account will be null
+            var element = (FrameworkElement)sender;
+            var account = element.DataContext as Account;
+            if (account == null)
             {
                 return;
             }
 
-            var element = (FrameworkElement) sender;
-            var account = element.DataContext as Account;
-            if (account == null)
+            if (!await new DialogService().ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteConfirmationMessage))
             {
                 return;
             }

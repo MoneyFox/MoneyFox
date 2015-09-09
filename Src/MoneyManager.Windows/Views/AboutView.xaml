@@ -23,7 +23,7 @@
             </controls:PageHeader.HeaderContent>
         </controls:PageHeader>
 
-        <ScrollViewer Margin="12,0, 12, 0"
+        <ScrollViewer Margin="12,12,12,0"
                       Grid.Row="1"
                       EntranceNavigationTransitionInfo.IsTargetElement="True"
                       HorizontalAlignment="Center">
@@ -31,10 +31,12 @@
 
                 <StackPanel>
                     <Grid Margin="0,0,10,0">
-                        <Image Source="/Assets/ApplyLogo.png"
-                               Width="150"
-                               Margin="5,0"
-                               HorizontalAlignment="Center" />
+                        <Grid Background="{StaticResource AppColorBrush}"
+                              Width="160"
+                              Margin="5,0"
+                              HorizontalAlignment="Center">
+                            <Image Source="/Assets/ApplyLogo.png" Margin="5"/> 
+                        </Grid>
                     </Grid>
                     <Path Data="M9,242 L456,242"
                           Height="15"

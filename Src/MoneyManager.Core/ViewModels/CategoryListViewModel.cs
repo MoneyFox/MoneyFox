@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -37,10 +37,7 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public MvxCommand<Category> DeleteCategoryCommand => new MvxCommand<Category>(DeleteCategory);
 
-        /// <summary>
-        ///     Opens to the SelectCategoryView
-        /// </summary>
-        public IMvxCommand SelectCategoryCommand => new MvxCommand(SelectCategory);
+        public MvxCommand DoneCommand => new MvxCommand(Done);
 
         /// <summary>
         ///     Indicates wether the view is shown from the settings to adjust something
@@ -85,7 +82,6 @@ namespace MoneyManager.Core.ViewModels
                 else
                 {
                     transactionRepository.Selected.Category = value;
-                    Close(this);
                 }
             }
         }
@@ -120,19 +116,18 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
-        private void SelectCategory()
-        {
-            transactionRepository.Selected.Category = SelectedCategory;
-            Close(this);
-        }
-
-
         private async void DeleteCategory(Category categoryToDelete)
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteConfirmationMessage))
             {
                 categoryRepository.Delete(categoryToDelete);
             }
+        }
+        
+        private void Done()
+        {
+            transactionRepository.Selected.Category = SelectedCategory;
+            Close(this);
         }
     }
 }

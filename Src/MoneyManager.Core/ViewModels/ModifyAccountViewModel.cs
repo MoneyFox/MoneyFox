@@ -3,6 +3,7 @@ using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels

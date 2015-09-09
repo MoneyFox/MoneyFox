@@ -1,5 +1,6 @@
 ﻿using System;
 using MoneyManager.Foundation;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Core.Helper
 {

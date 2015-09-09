@@ -11,6 +11,10 @@
 
     <Page.BottomAppBar>
         <CommandBar>
+            <AppBarButton Icon="Accept"
+                          Label="Done"
+                          x:Uid="DoneLabel"
+                          Command="{Binding DoneCommand}"/>
             <AppBarButton Icon="Add"
                           Label="add" x:Uid="AddLabel"
                           Click="AddCategory" />

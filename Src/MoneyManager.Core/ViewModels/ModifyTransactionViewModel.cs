@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helper;
@@ -6,6 +7,7 @@ using MoneyManager.Core.Manager;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -31,8 +33,16 @@ namespace MoneyManager.Core.ViewModels
             this.accountRepository = accountRepository;
         }
 
+        /// <summary>
+        ///     Locker to ensure that Init isn't executed when navigate back
+        /// </summary>
+        //TODO: Find another way than this...
+        private static bool isInitCall = true;
+
         public void Init(string typeString)
         {
+            if (!isInitCall) return;
+
             var type = ((TransactionType)Enum.Parse(typeof(TransactionType), typeString));
             IsEndless = true;
 
@@ -40,12 +50,14 @@ namespace MoneyManager.Core.ViewModels
             {
                 IsTransfer = SelectedTransaction.IsTransfer;
             }
-            else
+            else 
             {
                 SetDefaultTransaction(type);
                 SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
                 IsTransfer = type == TransactionType.Transfer;
             }
+
+            isInitCall = false;
         }
 
         private void SetDefaultTransaction(TransactionType transactionType)
@@ -81,6 +93,15 @@ namespace MoneyManager.Core.ViewModels
         public bool IsEdit { get; set; } = false;
         public int Recurrence { get; set; }
         public bool IsTransfer { get; set; }
+
+        public List<string> RecurrenceList => new List<string>
+        {
+            Strings.DailyLabel,
+            Strings.DailyWithoutWeekendLabel,
+            Strings.WeeklyLabel,
+            Strings.MonthlyLabel,
+            Strings.YearlyLabel
+        };
 
         /// <summary>
         ///     The selected transaction
@@ -153,12 +174,14 @@ namespace MoneyManager.Core.ViewModels
             {
                 transactionManager.SaveTransaction(transactionRepository.Selected);
             }
+            ResetInitLocker();
             Close(this);
         }
 
         private void Delete()
         {
             transactionManager.DeleteTransaction(transactionRepository.Selected);
+            ResetInitLocker();
             Close(this);
         }
 
@@ -172,9 +195,20 @@ namespace MoneyManager.Core.ViewModels
         {
             if (IsEdit)
             {
+                //readd the previously removed transaction amount
+                //TODO: check if here will be added too much if you changed the amount of the transaction
                 transactionManager.AddTransactionAmount(transactionRepository.Selected);
             }
+            ResetInitLocker();
             Close(this);
+        }
+
+        /// <summary>
+        /// Reset locker to enusre init gets called again
+        /// </summary>
+        private void ResetInitLocker()
+        {
+            isInitCall = true;
         }
     }
 }

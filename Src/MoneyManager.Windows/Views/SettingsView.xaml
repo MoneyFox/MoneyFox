@@ -21,5 +21,8 @@
             </controls:PageHeader.HeaderContent>
         </controls:PageHeader>
 
+        <Grid Grid.Row="1">
+            <controls:TileSettingsUserControl />
+        </Grid>
     </Grid>
 </Page>

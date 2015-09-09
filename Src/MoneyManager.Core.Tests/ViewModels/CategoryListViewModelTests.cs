@@ -7,9 +7,9 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    public class SelectCategoryViewModelTests : MvxIoCSupportingTest
+    public class CategoryListViewModelTests : MvxIoCSupportingTest
     {
-        public SelectCategoryViewModelTests()
+        public CategoryListViewModelTests()
         {
             Setup();
         }

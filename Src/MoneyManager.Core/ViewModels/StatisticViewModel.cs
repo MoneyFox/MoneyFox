@@ -4,6 +4,7 @@ using System.Linq;
 using MoneyManager.Core.Manager;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Localization;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels

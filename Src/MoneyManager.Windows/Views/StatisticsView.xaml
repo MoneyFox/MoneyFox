@@ -5,20 +5,22 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:MoneyManager.Windows.Controls"
-    xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot Margin="0,30,0,0">
-            <PivotItem Header="Foo1">
+            <PivotItem Header="Cash Flow"
+                       x:Uid="CashFlowTitle">
                 <controls:BarChartUserControl />
             </PivotItem>
 
-            <PivotItem Header="Foo2">
+            <PivotItem Header="Spreading"
+                       x:Uid="SpreadingTitle">
                 <controls:PieChartUserControl />
             </PivotItem>
 
-            <PivotItem Header="Foo3">
+            <PivotItem Header="Category Summary"
+                       x:Uid="CategorySummaryTitle">
                 <controls:CategorySummaryUserControl />
             </PivotItem>
         </Pivot>

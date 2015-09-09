@@ -9,7 +9,7 @@ using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Droid.Support.Fragging;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Fragments;
-using MoneyManager.Foundation;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Droid.Activities
 {

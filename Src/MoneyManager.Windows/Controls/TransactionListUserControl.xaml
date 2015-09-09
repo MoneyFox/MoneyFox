@@ -22,10 +22,10 @@
 
     <UserControl.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:NativeTransactionAmountConverter x:Key="TransactionAmountConverter" />
         <converter:CultureConverter x:Key="FormatConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
-        <converter:NativeTransactionAmountConverter x:Key="TransactionAmountConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:TransactionStyleConverter x:Key="TransactionStyleConverter" />
 
@@ -54,7 +54,7 @@
 
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right">
-                        <TextBlock Text="{Binding Converter={StaticResource TransactionAmountConverter}}"
+                        <TextBlock Text="{Binding Converter={StaticResource TransactionAmountConverter}, ConverterParameter={Binding ChargedAccount}}"
                                    Margin="0,0,3,0" />
                         <TextBlock
                             Text="{Binding Amount, Converter={StaticResource AmountFormatConverter}}" />
@@ -101,24 +101,26 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <StackPanel>
             <controls:BalanceUserControl />
-            <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
-                      ItemTemplate="{StaticResource TransactionTemplate}"
-                      HorizontalAlignment="Stretch"
-                      ShowsScrollingPlaceholders="True"
-                      SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
+            <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                                             EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                             ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
+                                             ItemTemplate="{StaticResource TransactionTemplate}"
+                                             HorizontalAlignment="Stretch"
+                                             ShowsScrollingPlaceholders="True"
+                                             SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
                         <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-            
+
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment"
                                 Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
-            </ListView>
+            </controls:AlternatingRowListView>
         </StackPanel>
     </Grid>
 </UserControl>

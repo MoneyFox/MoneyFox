@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Core
 {

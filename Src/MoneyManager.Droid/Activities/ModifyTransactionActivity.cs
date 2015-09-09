@@ -1,19 +1,31 @@
+using System;
 using Android.App;
 using Android.OS;
 using Android.Views;
+using Android.Widget;
 using Cirrious.MvvmCross.Droid.Views;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Droid.Fragments;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "ModifyTransactionActivity")]
-    public class ModifyTransactionActivity : MvxActivity
+    public class ModifyTransactionActivity : MvxActivity, DatePickerDialog.IOnDateSetListener
     {
         public new ModifyTransactionViewModel ViewModel
         {
             get { return (ModifyTransactionViewModel)base.ViewModel; }
             set { base.ViewModel = value; }
         }
+
+        private Button transactionDateButton;
+        private Button enddateButton;
+
+        /// <summary>
+        ///     Used to determine which button called the date picker
+        /// </summary>
+        private Button callerButton;
 
         /// <summary>
         ///     Raises the create event.
@@ -26,8 +38,21 @@ namespace MoneyManager.Droid.Activities
             SetContentView(Resource.Layout.ModifyTransactionLayout);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.Title = ViewModel.Title;
+
+            transactionDateButton = FindViewById<Button>(Resource.Id.transactiondate);
+            enddateButton = FindViewById<Button>(Resource.Id.enddate);
+
+            transactionDateButton.Click += ShowDatePicker;
+            enddateButton.Click += ShowDatePicker;
         }
-        
+
+        private void ShowDatePicker(object sender, EventArgs eventArgs)
+        {
+            callerButton = sender as Button;
+            var dialog = new DatePickerDialogFragment(this, DateTime.Now, this);
+            dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
+        }
+
         /// <summary>
         ///     Initialize the contents of the Activity's standard options menu.
         /// </summary>
@@ -62,6 +87,20 @@ namespace MoneyManager.Droid.Activities
 
                 default:
                     return false;
+            }
+        }
+
+        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+        {
+            var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
+
+            if (callerButton == transactionDateButton)
+            {
+                ViewModel.SelectedTransaction.Date = date;
+            }
+            else if (callerButton == enddateButton)
+            {
+                ViewModel.EndDate = date;
             }
         }
     }

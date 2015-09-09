@@ -5,6 +5,7 @@ using Cirrious.MvvmCross.Droid.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.XamarinAndroid;
 using Xamarin;
@@ -40,6 +41,8 @@ namespace MoneyManager.Droid
             {
                 Insights.Initialize(insightKey, Application.Context);
             }
+
+            Strings.Culture = new Localize().GetCurrentCultureInfo();
 
             return new App();
         }
