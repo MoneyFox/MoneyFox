@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.SelectDevice" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MoneyManager.Core\ViewModels\AboutViewModel.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.169.254.249.147:5555" />
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="MoneyManager.Core\ViewModels\AboutViewModel.cs" Line="65" Column="33" />
+      <File FileName="MoneyManager.Core\ViewModels\AboutViewModel.cs" Line="65" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

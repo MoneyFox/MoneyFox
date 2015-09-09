@@ -136,6 +136,9 @@
     <Compile Include="Controls\SelectCategoryTextBox.xaml.cs">
       <DependentUpon>SelectCategoryTextBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TileSettingsUserControl.xaml.cs">
+      <DependentUpon>TileSettingsUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TransactionListUserControl.xaml.cs">
       <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
     </Compile>
@@ -329,6 +332,10 @@
     <Page Include="Controls\SelectCategoryTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TileSettingsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\TransactionListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
