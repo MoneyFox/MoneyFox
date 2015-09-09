@@ -1,8 +1,8 @@
 ﻿using Windows.UI.Notifications;
 using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 using NotificationsExtensions.TileContent;
 
 namespace MoneyManager.Windows

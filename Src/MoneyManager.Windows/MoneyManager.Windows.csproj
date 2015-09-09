@@ -112,6 +112,7 @@
     <Compile Include="Controls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\AlternatingRowListView.cs" />
     <Compile Include="Controls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
     </Compile>
@@ -389,6 +390,10 @@
     <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
       <Project>{6936F4D3-8889-48C7-A676-80D59B2740CE}</Project>
       <Name>MoneyManager.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyManager.Localization\MoneyManager.Localization.csproj">
+      <Project>{90644219-756f-45cc-ab90-253463c5bc5e}</Project>
+      <Name>MoneyManager.Localization</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

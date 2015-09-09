@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.StartScreen;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Windows.Tile
 {

@@ -48,10 +48,12 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <StackPanel>
             <controls:BalanceUserControl />
-            <ListView ItemsSource="{Binding AllAccounts}"
-                      ItemTemplate="{StaticResource AccountTemplate}"
-                      HorizontalAlignment="Stretch"
-                      EntranceNavigationTransitionInfo.IsTargetElement="True">
+            <controls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
+                                             OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                                             EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                             ItemTemplate="{StaticResource AccountTemplate}"
+                                             HorizontalAlignment="Stretch"
+                                             EntranceNavigationTransitionInfo.IsTargetElement="True">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -66,7 +68,7 @@
                                                   InputConverter="{StaticResource SelectedAccountConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-            </ListView>
+            </controls:AlternatingRowListView>
         </StackPanel>
     </Grid>
 </UserControl>
