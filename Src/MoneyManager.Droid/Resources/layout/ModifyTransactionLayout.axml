@@ -28,4 +28,11 @@
         android:hint="@string/hint_amount"
         android:numeric="decimal"
         local:MvxBind="Text SelectedTransaction.Amount" />
+    <Button
+        android:id="@+id/date"
+        android:inputType="date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/button_date"
+        local:MvxBind="Text SelectedTransaction.Date" />
 </LinearLayout>

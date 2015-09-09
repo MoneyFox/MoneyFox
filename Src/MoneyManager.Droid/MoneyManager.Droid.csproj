@@ -177,6 +177,7 @@
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Fragments\AccountListFragment.cs" />
+    <Compile Include="Fragments\DatePickerDialogFragment.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />

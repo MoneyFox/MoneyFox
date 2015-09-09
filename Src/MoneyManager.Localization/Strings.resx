@@ -267,4 +267,7 @@
   <data name="SelectOperationLabel" xml:space="preserve">
     <value>select operation</value>
   </data>
+  <data name="SelectDateTitle" xml:space="preserve">
+    <value>Select Date</value>
+  </data>
 </root>

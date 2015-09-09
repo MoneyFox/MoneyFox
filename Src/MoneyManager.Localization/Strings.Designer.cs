@@ -395,6 +395,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Date.
+        /// </summary>
+        public static string SelectDateTitle {
+            get {
+                return ResourceManager.GetString("SelectDateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to select operation.
         /// </summary>
         public static string SelectOperationLabel {

@@ -140,26 +140,29 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f050002
 			public const int accountList = 2131034114;
 			
-			// aapt resource value: 0x7f05000c
-			public const int action_add_account = 2131034124;
-			
-			// aapt resource value: 0x7f050009
-			public const int action_add_income = 2131034121;
+			// aapt resource value: 0x7f05000d
+			public const int action_add_account = 2131034125;
 			
 			// aapt resource value: 0x7f05000a
-			public const int action_add_spending = 2131034122;
+			public const int action_add_income = 2131034122;
 			
 			// aapt resource value: 0x7f05000b
-			public const int action_add_transfer = 2131034123;
+			public const int action_add_spending = 2131034123;
 			
-			// aapt resource value: 0x7f05000d
-			public const int action_delete = 2131034125;
+			// aapt resource value: 0x7f05000c
+			public const int action_add_transfer = 2131034124;
 			
-			// aapt resource value: 0x7f050008
-			public const int action_save = 2131034120;
+			// aapt resource value: 0x7f05000e
+			public const int action_delete = 2131034126;
+			
+			// aapt resource value: 0x7f050009
+			public const int action_save = 2131034121;
 			
 			// aapt resource value: 0x7f050005
 			public const int content_pane = 2131034117;
+			
+			// aapt resource value: 0x7f050008
+			public const int date = 2131034120;
 			
 			// aapt resource value: 0x7f050004
 			public const int left_pane = 2131034116;
@@ -270,7 +273,10 @@ namespace MoneyManager.Droid
 			public const int app_name = 2130968578;
 			
 			// aapt resource value: 0x7f040012
-			public const int button_rate = 2130968594;
+			public const int button_date = 2130968594;
+			
+			// aapt resource value: 0x7f040013
+			public const int button_rate = 2130968595;
 			
 			// aapt resource value: 0x7f040009
 			public const int hint_account_name = 2130968585;

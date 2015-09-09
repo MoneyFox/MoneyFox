@@ -1,19 +1,25 @@
+using System;
 using Android.App;
 using Android.OS;
 using Android.Views;
+using Android.Widget;
 using Cirrious.MvvmCross.Droid.Views;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Droid.Fragments;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "ModifyTransactionActivity")]
-    public class ModifyTransactionActivity : MvxActivity
+    public class ModifyTransactionActivity : MvxActivity, DatePickerDialog.IOnDateSetListener
     {
         public new ModifyTransactionViewModel ViewModel
         {
             get { return (ModifyTransactionViewModel)base.ViewModel; }
             set { base.ViewModel = value; }
         }
+
+        private Button intakeDateButton;
 
         /// <summary>
         ///     Raises the create event.
@@ -26,6 +32,14 @@ namespace MoneyManager.Droid.Activities
             SetContentView(Resource.Layout.ModifyTransactionLayout);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.Title = ViewModel.Title;
+
+            intakeDateButton = FindViewById<Button>(Resource.Id.date);
+
+            intakeDateButton.Click += (sender, args) =>
+            {
+                var dialog = new DatePickerDialogFragment(this, DateTime.Now, this);
+                dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
+            };
         }
         
         /// <summary>
@@ -63,6 +77,12 @@ namespace MoneyManager.Droid.Activities
                 default:
                     return false;
             }
+        }
+
+        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+        {
+            var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
+            ViewModel.SelectedTransaction.Date = date;
         }
     }
 }

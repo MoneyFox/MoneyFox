@@ -25,6 +25,7 @@
   <string name="textview_opensource">This programm is open source. To contribute visit the repository:</string>
 
   <!--buttons-->
+  <string name="button_date">date</string>
   <string name="button_rate">rate us!</string>
 
 </resources>
