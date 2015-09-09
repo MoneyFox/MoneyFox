@@ -19,7 +19,13 @@ namespace MoneyManager.Droid.Activities
             set { base.ViewModel = value; }
         }
 
-        private Button intakeDateButton;
+        private Button transactionDateButton;
+        private Button enddateButton;
+
+        /// <summary>
+        ///     Used to determine which button called the date picker
+        /// </summary>
+        private Button callerButton;
 
         /// <summary>
         ///     Raises the create event.
@@ -33,15 +39,20 @@ namespace MoneyManager.Droid.Activities
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.Title = ViewModel.Title;
 
-            intakeDateButton = FindViewById<Button>(Resource.Id.date);
+            transactionDateButton = FindViewById<Button>(Resource.Id.transactiondate);
+            enddateButton = FindViewById<Button>(Resource.Id.enddate);
 
-            intakeDateButton.Click += (sender, args) =>
-            {
-                var dialog = new DatePickerDialogFragment(this, DateTime.Now, this);
-                dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
-            };
+            transactionDateButton.Click += ShowDatePicker;
+            enddateButton.Click += ShowDatePicker;
         }
-        
+
+        private void ShowDatePicker(object sender, EventArgs eventArgs)
+        {
+            callerButton = sender as Button;
+            var dialog = new DatePickerDialogFragment(this, DateTime.Now, this);
+            dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
+        }
+
         /// <summary>
         ///     Initialize the contents of the Activity's standard options menu.
         /// </summary>
@@ -82,7 +93,15 @@ namespace MoneyManager.Droid.Activities
         public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
         {
             var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
-            ViewModel.SelectedTransaction.Date = date;
+
+            if (callerButton == transactionDateButton)
+            {
+                ViewModel.SelectedTransaction.Date = date;
+            }
+            else if (callerButton == enddateButton)
+            {
+                ViewModel.EndDate = date;
+            }
         }
     }
 }

@@ -270,4 +270,10 @@
   <data name="SelectDateTitle" xml:space="preserve">
     <value>Select Date</value>
   </data>
+  <data name="DailyLabel" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="DailyWithoutWeekendLabel" xml:space="preserve">
+    <value>Daily without weekend</value>
+  </data>
 </root>

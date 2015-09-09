@@ -170,6 +170,24 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Daily.
+        /// </summary>
+        public static string DailyLabel {
+            get {
+                return ResourceManager.GetString("DailyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daily without weekend.
+        /// </summary>
+        public static string DailyWithoutWeekendLabel {
+            get {
+                return ResourceManager.GetString("DailyWithoutWeekendLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you wanna Delete this entry?.
         /// </summary>
         public static string DeleteConfirmationMessage {

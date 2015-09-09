@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helper;
@@ -92,6 +93,15 @@ namespace MoneyManager.Core.ViewModels
         public bool IsEdit { get; set; } = false;
         public int Recurrence { get; set; }
         public bool IsTransfer { get; set; }
+
+        public List<string> RecurrenceList => new List<string>
+        {
+            Strings.DailyLabel,
+            Strings.DailyWithoutWeekendLabel,
+            Strings.WeeklyLabel,
+            Strings.MonthlyLabel,
+            Strings.YearlyLabel
+        };
 
         /// <summary>
         ///     The selected transaction
