@@ -101,11 +101,13 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <StackPanel>
             <controls:BalanceUserControl />
-            <ListView ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
-                      ItemTemplate="{StaticResource TransactionTemplate}"
-                      HorizontalAlignment="Stretch"
-                      ShowsScrollingPlaceholders="True"
-                      SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
+            <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                                             EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                             ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
+                                             ItemTemplate="{StaticResource TransactionTemplate}"
+                                             HorizontalAlignment="Stretch"
+                                             ShowsScrollingPlaceholders="True"
+                                             SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
                         <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}" />
@@ -118,7 +120,7 @@
                                 Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
-            </ListView>
+            </controls:AlternatingRowListView>
         </StackPanel>
     </Grid>
 </UserControl>

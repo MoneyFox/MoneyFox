@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="using:MoneyManager.Windows.Controls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -35,15 +36,17 @@
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <ScrollViewer>
-            <ListView ItemsSource="{Binding CategorySummary}"
-                      ItemTemplate="{StaticResource CategoryTemplate}">
+            <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                                             EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                             ItemsSource="{Binding CategorySummary}"
+                                             ItemTemplate="{StaticResource CategoryTemplate}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment"
                                 Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
-            </ListView>
+            </controls:AlternatingRowListView>
         </ScrollViewer>
     </Grid>
 </UserControl>
