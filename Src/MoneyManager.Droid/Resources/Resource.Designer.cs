@@ -137,23 +137,23 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f050002
 			public const int accountList = 2131034114;
 			
-			// aapt resource value: 0x7f05000d
-			public const int action_add_account = 2131034125;
-			
-			// aapt resource value: 0x7f05000a
-			public const int action_add_income = 2131034122;
+			// aapt resource value: 0x7f05000e
+			public const int action_add_account = 2131034126;
 			
 			// aapt resource value: 0x7f05000b
-			public const int action_add_spending = 2131034123;
+			public const int action_add_income = 2131034123;
 			
 			// aapt resource value: 0x7f05000c
-			public const int action_add_transfer = 2131034124;
+			public const int action_add_spending = 2131034124;
 			
-			// aapt resource value: 0x7f05000e
-			public const int action_delete = 2131034126;
+			// aapt resource value: 0x7f05000d
+			public const int action_add_transfer = 2131034125;
 			
-			// aapt resource value: 0x7f050009
-			public const int action_save = 2131034121;
+			// aapt resource value: 0x7f05000f
+			public const int action_delete = 2131034127;
+			
+			// aapt resource value: 0x7f05000a
+			public const int action_save = 2131034122;
 			
 			// aapt resource value: 0x7f050005
 			public const int content_pane = 2131034117;
@@ -166,6 +166,9 @@ namespace MoneyManager.Droid
 			
 			// aapt resource value: 0x7f050003
 			public const int main_layout = 2131034115;
+			
+			// aapt resource value: 0x7f050009
+			public const int plotViewModel = 2131034121;
 			
 			// aapt resource value: 0x7f050007
 			public const int recurrence_spinner = 2131034119;
@@ -208,10 +211,13 @@ namespace MoneyManager.Droid
 			public const int ModifyTransactionLayout = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int TransactionListItem = 2130903047;
+			public const int StatisticLayout = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int TransactionListLayout = 2130903048;
+			public const int TransactionListItem = 2130903048;
+			
+			// aapt resource value: 0x7f030009
+			public const int TransactionListLayout = 2130903049;
 			
 			static Layout()
 			{

@@ -26,6 +26,7 @@ namespace MoneyManager.Droid.Activities
         };
 
         private AccountListFragment accountListFragment;
+        private StatisticFragment statisticFragment;
         private AboutFragment aboutFragment;
 
         private string drawerTitle;
@@ -51,6 +52,11 @@ namespace MoneyManager.Droid.Activities
             accountListFragment = new AccountListFragment
             {
                 ViewModel = Mvx.Resolve<AccountListViewModel>()
+            };
+
+            statisticFragment = new StatisticFragment
+            {
+                ViewModel = Mvx.Resolve<StatisticViewModel>()
             };
 
             aboutFragment = new AboutFragment
@@ -101,7 +107,10 @@ namespace MoneyManager.Droid.Activities
                     break;
 
                 case 1:
-                    break;
+                    SupportFragmentManager.BeginTransaction()
+                                            .Replace(Resource.Id.content_pane, statisticFragment)
+                                            .AddToBackStack("Statistic")
+                                            .Commit(); break;
 
                 case 2:
                     break;
