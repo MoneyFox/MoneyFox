@@ -5,7 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Cirrious.CrossCore.Plugins;
-using Cirrious.MvvmCross.Plugins.Email;
+using MvvmCross.Plugins.Email;
 
 namespace MoneyManager.Windows.Bootstrap
 {

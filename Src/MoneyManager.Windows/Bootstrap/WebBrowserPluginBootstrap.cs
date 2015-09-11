@@ -5,7 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Cirrious.CrossCore.Plugins;
-using Cirrious.MvvmCross.Plugins.WebBrowser;
+using MvvmCross.Plugins.WebBrowser;
 
 namespace MoneyManager.Windows.Bootstrap
 {

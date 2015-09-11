@@ -4,8 +4,8 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:controls="using:MoneyManager.Windows.Controls"
-                      xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
                       xmlns:converter="using:MoneyManager.Windows.Converter"
+                      xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       mc:Ignorable="d">
 
