@@ -69,21 +69,6 @@
     <Compile Include="ShouldExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cirrious.CrossCore">
-      <HintPath>..\..\Libs\Portable\Cirrious.CrossCore.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross">
-      <HintPath>..\..\Libs\Portable\Cirrious.MvvmCross.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Binding">
-      <HintPath>..\..\Libs\Portable\Cirrious.MvvmCross.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Localization">
-      <HintPath>..\..\Libs\Portable\Cirrious.MvvmCross.Localization.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Plugins.WebBrowser">
-      <HintPath>..\..\Libs\Portable\Cirrious.MvvmCross.Plugins.WebBrowser.dll</HintPath>
-    </Reference>
     <Reference Include="xunit.assert">
       <HintPath>..\packages\xunit.assert.2.1.0-beta4-build3109\lib\dotnet\xunit.assert.dll</HintPath>
     </Reference>
