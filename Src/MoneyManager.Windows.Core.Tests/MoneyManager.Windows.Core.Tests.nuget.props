@@ -4,7 +4,7 @@
     <NuGetPackageRoot>C:\Users\ninop\.nuget\packages\</NuGetPackageRoot>
   </PropertyGroup>
   <ImportGroup>
-    <Import Project="$(NuGetPackageRoot)\xunit.core\2.1.0-beta4-build3109\build\portable-win81+wpa81\xunit.core.props" Condition="Exists('$(NuGetPackageRoot)\xunit.core\2.1.0-beta4-build3109\build\portable-win81+wpa81\xunit.core.props')" />
+    <Import Project="$(NuGetPackageRoot)\xunit.core\2.1.0-rc1-build3168\build\win81\xunit.core.props" Condition="Exists('$(NuGetPackageRoot)\xunit.core\2.1.0-rc1-build3168\build\win81\xunit.core.props')" />
     <Import Project="$(NuGetPackageRoot)\xunit.runner.visualstudio\2.1.0-beta4-build1109\build\uap10.0\xunit.runner.visualstudio.props" Condition="Exists('$(NuGetPackageRoot)\xunit.runner.visualstudio\2.1.0-beta4-build1109\build\uap10.0\xunit.runner.visualstudio.props')" />
   </ImportGroup>
 </Project>

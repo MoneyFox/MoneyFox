@@ -1,5 +1,5 @@
 using Cirrious.CrossCore.Plugins;
-using Cirrious.MvvmCross.Plugins.Visibility;
+using MvvmCross.Plugins.Visibility;
 
 namespace MoneyManager.Windows.Bootstrap
 {

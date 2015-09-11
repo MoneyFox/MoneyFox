@@ -4,10 +4,10 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyManager.Windows.Controls"
-                      xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:converter="using:MoneyManager.Windows.Converter"
+                      xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
                       mc:Ignorable="d"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
