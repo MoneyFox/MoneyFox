@@ -48,7 +48,7 @@
         </controls:PageHeader>
 
         <Grid Grid.Row="1"
-              Margin="19,9.5,19,0"
+              Margin="0,9.5,0,0"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
             <controls:AccountListUserControl />
         </Grid>
