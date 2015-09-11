@@ -26,6 +26,8 @@ namespace MoneyManager.Droid.Activities
         };
 
         private AccountListFragment accountListFragment;
+        private AboutFragment aboutFragment;
+
         private string drawerTitle;
         private ListView menuListView;
         private SlidingPaneLayout slidingLayout;
@@ -49,6 +51,11 @@ namespace MoneyManager.Droid.Activities
             accountListFragment = new AccountListFragment
             {
                 ViewModel = Mvx.Resolve<AccountListViewModel>()
+            };
+
+            aboutFragment = new AboutFragment
+            {
+                ViewModel = Mvx.Resolve<AboutViewModel>()
             };
 
             slidingLayout.PanelOpened += (sender, e) =>
@@ -89,7 +96,7 @@ namespace MoneyManager.Droid.Activities
                 case 0:
                     SupportFragmentManager.BeginTransaction()
                         .Replace(Resource.Id.content_pane, accountListFragment)
-                        .AddToBackStack("accountList")
+                        .AddToBackStack("AccountList")
                         .Commit();
                     break;
 
@@ -103,8 +110,10 @@ namespace MoneyManager.Droid.Activities
                     break;
 
                 case 4:
-                    ViewModel.GoToAboutCommand.Execute(null);
-                    break;
+                    SupportFragmentManager.BeginTransaction()
+                                            .Replace(Resource.Id.content_pane, aboutFragment)
+                                            .AddToBackStack("About")
+                                            .Commit(); break;
             }
             slidingLayout.ClosePane();
         }
