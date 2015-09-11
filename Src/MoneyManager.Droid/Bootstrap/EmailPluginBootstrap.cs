@@ -5,7 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Cirrious.CrossCore.Plugins;
-using MvvmCross.Plugins.Email;
+using Cirrious.MvvmCross.Plugins.Email;
 
 namespace MoneyManager.Droid.Bootstrap
 {

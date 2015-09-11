@@ -40,32 +40,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cirrious.CrossCore, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta3\lib\net45\Cirrious.CrossCore.dll</HintPath>
+    <Reference Include="Cirrious.CrossCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e16445fd9b451819, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta2\lib\net45\Cirrious.CrossCore.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.CrossCore.Wpf, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta3\lib\net45\Cirrious.CrossCore.Wpf.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta2\lib\net45\Cirrious.CrossCore.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Cirrious.MvvmCross, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta3\lib\net45\Cirrious.MvvmCross.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Cirrious.MvvmCross">
+      <HintPath>..\..\Libs\Wpf\Cirrious.MvvmCross.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Binding.4.0.0-beta3\lib\net45\Cirrious.MvvmCross.Binding.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.Binding.4.0.0-beta2\lib\net45\Cirrious.MvvmCross.Binding.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta3\lib\net45\Cirrious.MvvmCross.Localization.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta2\lib\net45\Cirrious.MvvmCross.Localization.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Test.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Tests.4.0.0-beta3\lib\net45\Cirrious.MvvmCross.Test.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Wpf, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta3\lib\net45\Cirrious.MvvmCross.Wpf.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.Tests.4.0.0-beta2\lib\net45\Cirrious.MvvmCross.Test.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Moq, Version=4.2.1507.118, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">

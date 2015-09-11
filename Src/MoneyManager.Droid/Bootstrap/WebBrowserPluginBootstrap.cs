@@ -5,7 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Cirrious.CrossCore.Plugins;
-using MvvmCross.Plugins.WebBrowser;
+using Cirrious.MvvmCross.Plugins.WebBrowser;
 
 namespace MoneyManager.Droid.Bootstrap
 {

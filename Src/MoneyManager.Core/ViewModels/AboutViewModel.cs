@@ -1,8 +1,9 @@
-﻿using Cirrious.MvvmCross.ViewModels;
+﻿using Cirrious.MvvmCross.Plugins.Email;
+using Cirrious.MvvmCross.Plugins.WebBrowser;
+using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Localization;
-using MvvmCross.Plugins.Email;
-using MvvmCross.Plugins.WebBrowser;
 
 namespace MoneyManager.Core.ViewModels
 {

@@ -1,5 +1,5 @@
 using Cirrious.CrossCore.Plugins;
-using MvvmCross.Plugins.Visibility;
+using Cirrious.MvvmCross.Plugins.Visibility;
 
 namespace MoneyManager.Droid.Bootstrap
 {
