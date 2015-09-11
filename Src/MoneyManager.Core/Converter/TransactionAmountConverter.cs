@@ -11,17 +11,22 @@ namespace MoneyManager.Core.Converter
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var transaction = (FinancialTransaction) value;
+            string sign;
 
-            if (transaction.Type == (int)TransactionType.Transfer)
+            if (transaction.Type == (int) TransactionType.Transfer)
             {
-                return (Account) parameter == transaction.ChargedAccount
+                sign = (Account) parameter == transaction.ChargedAccount
+                    ? "-"
+                    : "+";
+            }
+            else
+            {
+                sign = transaction.Type == (int) TransactionType.Spending
                     ? "-"
                     : "+";
             }
 
-            return transaction.Type == (int)TransactionType.Spending
-                ? "-"
-                : "+";
+            return sign + " "+ $"{transaction.Amount:C2}";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

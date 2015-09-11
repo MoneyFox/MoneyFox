@@ -21,7 +21,6 @@
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
-        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:NativeTransactionAmountConverter x:Key="TransactionAmountConverter" />
         <converter:CultureConverter x:Key="FormatConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -51,14 +50,8 @@
                     <TextBlock
                         Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}"
                         Margin="12,0,0,0" />
-
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Right">
-                        <TextBlock Text="{Binding Converter={StaticResource TransactionAmountConverter}, ConverterParameter={Binding ChargedAccount}}"
-                                   Margin="0,0,3,0" />
-                        <TextBlock
-                            Text="{Binding Amount, Converter={StaticResource AmountFormatConverter}}" />
-                    </StackPanel>
+                    <TextBlock Text="{Binding Converter={StaticResource TransactionAmountConverter}, ConverterParameter={Binding ChargedAccount}}"
+                               HorizontalAlignment="Right" />
                 </Grid>
                 <Grid>
                     <StackPanel Orientation="Horizontal"
