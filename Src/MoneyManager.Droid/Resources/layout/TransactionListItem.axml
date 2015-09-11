@@ -32,4 +32,27 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_marginTop="5dp"
         local:MvxBind="Text Category.Name" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_marginTop="5dp"
+            android:text="@string/label_cleared" />
+        <ImageView
+            android:src="@drawable/ic_done"
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            local:MvxBind="Visible Cleared" />
+        <ImageView
+            android:src="@drawable/ic_recurring"
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            local:MvxBind="Visible IsRecurring" />
+    </LinearLayout>
 </LinearLayout>

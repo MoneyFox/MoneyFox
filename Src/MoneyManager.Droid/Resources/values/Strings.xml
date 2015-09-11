@@ -29,5 +29,8 @@
   <!--buttons-->
   <string name="button_date">Date</string>
   <string name="button_rate">Rate us!</string>
+  
+  <!--labels-->
+  <string name="label_cleared">Cleared: </string>
 
 </resources>
