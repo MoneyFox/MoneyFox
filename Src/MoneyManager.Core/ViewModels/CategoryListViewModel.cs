@@ -62,7 +62,7 @@ namespace MoneyManager.Core.ViewModels
             {
                 var selected = IsSettingCall
                     ? categoryRepository.Selected
-                    : transactionRepository.Selected.Category;
+                    : transactionRepository.Selected?.Category;
 
                 return selected == null
                     ? new Category()

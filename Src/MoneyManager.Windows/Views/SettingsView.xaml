@@ -12,17 +12,18 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <controls:PageHeader>
-            <controls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Settings"
-                           x:Uid="SettingsTitle" />
-            </controls:PageHeader.HeaderContent>
-        </controls:PageHeader>
-
         <Grid Grid.Row="1">
-            <controls:TileSettingsUserControl />
+            <Pivot Margin="0,30,0,0">
+                <PivotItem Header="Tiles"
+                           x:Uid="TilesHeader">
+                    <controls:TileSettingsUserControl />
+                </PivotItem>
+
+                <PivotItem Header="Categories"
+                           x:Uid="CategoriesHeader">
+                    <controls:CategoryListUserControl IsSettingsCall="True" />
+                </PivotItem>
+            </Pivot>
         </Grid>
     </Grid>
 </Page>
