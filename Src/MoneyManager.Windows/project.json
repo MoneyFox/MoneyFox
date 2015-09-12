@@ -5,7 +5,6 @@
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmCross.HotTuna.MvvmCrossLibraries": "4.0.0-beta3",
     "MvvmCross.HotTuna.Plugin.Email": "4.0.0-beta3",
-    "MvvmCross.HotTuna.Plugin.Visibility": "4.0.0-beta3",
     "MvvmCross.HotTuna.Plugin.WebBrowser": "4.0.0-beta3",
     "NotificationsExtensions": "1.0.0",
     "SQLite.Net-PCL": "3.0.5",

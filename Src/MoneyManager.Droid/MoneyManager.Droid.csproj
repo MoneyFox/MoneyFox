@@ -96,14 +96,6 @@
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta3\lib\MonoAndroid\MvvmCross.Plugins.Email.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.Visibility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Visibility.4.0.0-beta3\lib\MonoAndroid\MvvmCross.Plugins.Visibility.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.Visibility.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Visibility.4.0.0-beta3\lib\MonoAndroid\MvvmCross.Plugins.Visibility.Droid.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="MvvmCross.Plugins.WebBrowser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.WebBrowser.4.0.0-beta3\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.dll</HintPath>
       <Private>True</Private>
@@ -149,7 +141,6 @@
     <Compile Include="Activities\SelectCategoryActivity.cs" />
     <Compile Include="Activities\TransactionListActivity.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Fragments\AboutFragment.cs" />
     <Compile Include="Fragments\AccountListFragment.cs" />
