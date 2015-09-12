@@ -52,7 +52,7 @@ namespace MoneyManager.Core.ViewModels
         }
 
         /// <summary>
-        ///     The currently selected category. If IsSettingsCall is set ît will
+        ///     The currently selected category. If IsSettingsCall is set it will
         ///     return and set the selected item in the CategoryRepository, otherwise
         ///     the category of the selected transaction.
         /// </summary>
@@ -64,9 +64,7 @@ namespace MoneyManager.Core.ViewModels
                     ? categoryRepository.Selected
                     : transactionRepository.Selected?.Category;
 
-                return selected == null
-                    ? new Category()
-                    : transactionRepository.Selected.Category;
+                return selected ?? new Category();
             }
             set
             {

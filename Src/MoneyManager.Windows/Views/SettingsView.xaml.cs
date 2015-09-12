@@ -9,6 +9,8 @@ namespace MoneyManager.Windows.Views
         {
             InitializeComponent();
             DataContext = Mvx.Resolve<SettingDefaultsViewModel>();
+
+            Mvx.Resolve<CategoryListViewModel>().IsSettingCall = true;
         }
     }
 }

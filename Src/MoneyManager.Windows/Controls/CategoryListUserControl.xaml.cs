@@ -11,22 +11,11 @@ namespace MoneyManager.Windows.Controls
 {
     public partial class CategoryListUserControl
     {
-        public static readonly DependencyProperty IsSettingsCallProperty =
-            DependencyProperty.Register("IsSettingsCall", typeof(bool), typeof(CategoryListUserControl), null);
-
         public CategoryListUserControl()
         {
             InitializeComponent();
-            var viewmodel = Mvx.Resolve<CategoryListViewModel>();
-            viewmodel.IsSettingCall = IsSettingsCall;
 
-            DataContext = viewmodel;
-        }
-
-        public bool IsSettingsCall
-        {
-            get { return (bool)GetValue(IsSettingsCallProperty); }
-            set { SetValue(IsSettingsCallProperty, value); }
+            DataContext = Mvx.Resolve<CategoryListViewModel>();
         }
 
         private void CategoryListHolding(object sender, HoldingRoutedEventArgs e)

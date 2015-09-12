@@ -21,7 +21,7 @@
 
                 <PivotItem Header="Categories"
                            x:Uid="CategoriesHeader">
-                    <controls:CategoryListUserControl IsSettingsCall="True" />
+                    <controls:CategoryListUserControl />
                 </PivotItem>
             </Pivot>
         </Grid>
