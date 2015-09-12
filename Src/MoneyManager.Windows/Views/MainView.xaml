@@ -27,7 +27,7 @@
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add"
-                              x:Uid="AddAccountViewLabel"
+                              x:Uid="AddAccountLabel"
                               Label="Add Account"
                               Command="{Binding GoToAddAccountCommand}" />
             </CommandBar.SecondaryCommands>
@@ -50,7 +50,7 @@
         <Grid Grid.Row="1"
               Margin="0,9.5,0,0"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <controls:AccountListUserControl />
+            <controls:AccountListUserControl VerticalAlignment="Stretch"/>
         </Grid>
 
     </Grid>

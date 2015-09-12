@@ -126,6 +126,9 @@
   <data name="AddAccountLabel.Label" xml:space="preserve">
     <value>Add Account</value>
   </data>
+  <data name="AddAccountText.Text" xml:space="preserve">
+    <value>Add Account</value>
+  </data>
   <data name="AddAccountTitle.Text" xml:space="preserve">
     <value>Add Account</value>
   </data>

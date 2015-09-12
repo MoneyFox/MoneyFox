@@ -1,4 +1,5 @@
-﻿using Cirrious.CrossCore;
+﻿using Windows.UI.Xaml.Input;
+using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views
