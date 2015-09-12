@@ -21,8 +21,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Version"
-        android:gravity="center" />
+        android:gravity="center"
+        local:MvxBind="Text Version"/>
     <TextView
         android:text="@string/textview_contact"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -35,16 +35,16 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text Website"
-        android:gravity="center" />
+        android:gravity="center" 
+        local:MvxBind="Text Website"/>
     <TextView
         android:text="Supportmail"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        local:MvxBind="Text SupportMail"
         android:gravity="center"
-        android:layout_marginTop="7dp" />
+        android:layout_marginTop="7dp"
+        local:MvxBind="Text SupportMail"/>
     <Button
         android:text="@string/button_rate"
         android:layout_width="match_parent"
