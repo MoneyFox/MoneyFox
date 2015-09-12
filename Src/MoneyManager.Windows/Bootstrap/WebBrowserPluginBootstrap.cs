@@ -1,11 +1,4 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <summary>
-//    Defines the WebBrowserPluginBootstrap type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
 using Cirrious.CrossCore.Plugins;
-using MvvmCross.Plugins.WebBrowser;
 
 namespace MoneyManager.Windows.Bootstrap
 {
@@ -13,7 +6,7 @@ namespace MoneyManager.Windows.Bootstrap
     ///     Defines the WebBrowserPluginBootstrap type.
     /// </summary>
     public class WebBrowserPluginBootstrap
-        : MvxPluginBootstrapAction<PluginLoader>
+        : MvxPluginBootstrapAction<MvvmCross.Plugins.WebBrowser.PluginLoader>
     {
     }
 }
