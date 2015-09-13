@@ -132,6 +132,9 @@
   <data name="AddAccountTitle.Text" xml:space="preserve">
     <value>Add Account</value>
   </data>
+  <data name="AddCategoryLabel.Label" xml:space="preserve">
+    <value>New Category</value>
+  </data>
   <data name="AddIncomeLabel.Label" xml:space="preserve">
     <value>add income</value>
   </data>

@@ -38,6 +38,7 @@ namespace MoneyManager.Core.ViewModels
         public MvxCommand<Category> DeleteCategoryCommand => new MvxCommand<Category>(DeleteCategory);
 
         public MvxCommand DoneCommand => new MvxCommand(Done);
+        public MvxCommand CancelCommand => new MvxCommand(Cancel);
 
         /// <summary>
         ///     Indicates wether the view is shown from the settings to adjust something
@@ -125,6 +126,11 @@ namespace MoneyManager.Core.ViewModels
         private void Done()
         {
             transactionRepository.Selected.Category = SelectedCategory;
+            Close(this);
+        }
+
+        private void Cancel()
+        {
             Close(this);
         }
     }
