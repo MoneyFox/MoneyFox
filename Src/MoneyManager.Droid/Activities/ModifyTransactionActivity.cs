@@ -19,6 +19,7 @@ namespace MoneyManager.Droid.Activities
             set { base.ViewModel = value; }
         }
 
+        private Button categoryButton;
         private Button transactionDateButton;
         private Button enddateButton;
 
@@ -39,11 +40,18 @@ namespace MoneyManager.Droid.Activities
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.Title = ViewModel.Title;
 
+            categoryButton = FindViewById<Button>(Resource.Id.category);
             transactionDateButton = FindViewById<Button>(Resource.Id.transactiondate);
             enddateButton = FindViewById<Button>(Resource.Id.enddate);
 
+            categoryButton.Click += SelectCategory;
             transactionDateButton.Click += ShowDatePicker;
             enddateButton.Click += ShowDatePicker;
+        }
+
+        private void SelectCategory(object sender, EventArgs e)
+        {
+            ViewModel.GoToSelectCategorydialogCommand.Execute();
         }
 
         private void ShowDatePicker(object sender, EventArgs eventArgs)

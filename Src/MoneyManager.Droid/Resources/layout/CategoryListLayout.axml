@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cirrious.mvvmcross.binding.droid.views.MvxListView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:background="?android:windowBackground"
+    android:id="@+id/accountList"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    local:MvxItemTemplate="@layout/categorylistitem"
+    local:MvxBind="ItemsSource Categories; SelectedItem SelectedCategory" />

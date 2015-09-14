@@ -201,7 +201,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -209,9 +209,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -224,17 +224,17 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta1": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
         },
         "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         },
         "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
       "Newtonsoft.Json/6.0.8": {
@@ -1602,10 +1602,10 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-beta4-build3109": {
+      "xunit/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]",
-          "xunit.assert": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -1616,7 +1616,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-beta4-build3109": {
+      "xunit.assert/2.1.0-rc1-build3168": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -1624,20 +1624,32 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-beta4-build3109": {
+      "xunit.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
-      "xunit.extensibility.core/2.1.0-beta4-build3109": {
+      "xunit.extensibility.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.abstractions": "[2.0.0, )"
+          "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
         "compile": {
           "lib/dotnet/xunit.core.dll": {}
         },
         "runtime": {
           "lib/dotnet/xunit.core.dll": {}
+        }
+      },
+      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+        "dependencies": {
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+        },
+        "compile": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
+        },
+        "runtime": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
       "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
@@ -1884,7 +1896,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -1892,9 +1904,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -1907,17 +1919,17 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta1": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
         },
         "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         },
         "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
       "Newtonsoft.Json/6.0.8": {
@@ -3332,10 +3344,10 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-beta4-build3109": {
+      "xunit/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]",
-          "xunit.assert": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -3346,7 +3358,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-beta4-build3109": {
+      "xunit.assert/2.1.0-rc1-build3168": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -3354,20 +3366,32 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-beta4-build3109": {
+      "xunit.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
-      "xunit.extensibility.core/2.1.0-beta4-build3109": {
+      "xunit.extensibility.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.abstractions": "[2.0.0, )"
+          "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
         "compile": {
           "lib/dotnet/xunit.core.dll": {}
         },
         "runtime": {
           "lib/dotnet/xunit.core.dll": {}
+        }
+      },
+      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+        "dependencies": {
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+        },
+        "compile": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
+        },
+        "runtime": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
       "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
@@ -3600,7 +3624,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -3608,9 +3632,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -3623,17 +3647,17 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta1": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
         },
         "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         },
         "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
       "Newtonsoft.Json/6.0.8": {
@@ -5034,10 +5058,10 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-beta4-build3109": {
+      "xunit/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]",
-          "xunit.assert": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -5048,7 +5072,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-beta4-build3109": {
+      "xunit.assert/2.1.0-rc1-build3168": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -5056,20 +5080,32 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-beta4-build3109": {
+      "xunit.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
-      "xunit.extensibility.core/2.1.0-beta4-build3109": {
+      "xunit.extensibility.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.abstractions": "[2.0.0, )"
+          "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
         "compile": {
           "lib/dotnet/xunit.core.dll": {}
         },
         "runtime": {
           "lib/dotnet/xunit.core.dll": {}
+        }
+      },
+      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+        "dependencies": {
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+        },
+        "compile": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
+        },
+        "runtime": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
       "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
@@ -5321,7 +5357,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -5329,9 +5365,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -5344,17 +5380,17 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta1": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
         },
         "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         },
         "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
       "Newtonsoft.Json/6.0.8": {
@@ -6769,10 +6805,10 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-beta4-build3109": {
+      "xunit/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]",
-          "xunit.assert": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -6783,7 +6819,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-beta4-build3109": {
+      "xunit.assert/2.1.0-rc1-build3168": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -6791,20 +6827,32 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-beta4-build3109": {
+      "xunit.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
-      "xunit.extensibility.core/2.1.0-beta4-build3109": {
+      "xunit.extensibility.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.abstractions": "[2.0.0, )"
+          "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
         "compile": {
           "lib/dotnet/xunit.core.dll": {}
         },
         "runtime": {
           "lib/dotnet/xunit.core.dll": {}
+        }
+      },
+      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+        "dependencies": {
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+        },
+        "compile": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
+        },
+        "runtime": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
       "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
@@ -7037,7 +7085,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -7045,9 +7093,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -7060,17 +7108,17 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta1": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
         },
         "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         },
         "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
       "Newtonsoft.Json/6.0.8": {
@@ -8471,10 +8519,10 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-beta4-build3109": {
+      "xunit/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]",
-          "xunit.assert": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -8485,7 +8533,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-beta4-build3109": {
+      "xunit.assert/2.1.0-rc1-build3168": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -8493,20 +8541,32 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-beta4-build3109": {
+      "xunit.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
-      "xunit.extensibility.core/2.1.0-beta4-build3109": {
+      "xunit.extensibility.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.abstractions": "[2.0.0, )"
+          "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
         "compile": {
           "lib/dotnet/xunit.core.dll": {}
         },
         "runtime": {
           "lib/dotnet/xunit.core.dll": {}
+        }
+      },
+      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+        "dependencies": {
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+        },
+        "compile": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
+        },
+        "runtime": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
       "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
@@ -8758,7 +8818,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -8766,9 +8826,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -8781,17 +8841,17 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta1": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
         },
         "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         },
         "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
       "Newtonsoft.Json/6.0.8": {
@@ -10206,10 +10266,10 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-beta4-build3109": {
+      "xunit/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]",
-          "xunit.assert": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -10220,7 +10280,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-beta4-build3109": {
+      "xunit.assert/2.1.0-rc1-build3168": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -10228,20 +10288,32 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-beta4-build3109": {
+      "xunit.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
-      "xunit.extensibility.core/2.1.0-beta4-build3109": {
+      "xunit.extensibility.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.abstractions": "[2.0.0, )"
+          "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
         "compile": {
           "lib/dotnet/xunit.core.dll": {}
         },
         "runtime": {
           "lib/dotnet/xunit.core.dll": {}
+        }
+      },
+      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+        "dependencies": {
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+        },
+        "compile": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
+        },
+        "runtime": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
       "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
@@ -10474,7 +10546,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -10482,9 +10554,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
@@ -10497,17 +10569,17 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta1": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta1, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
         },
         "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         },
         "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
+          "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
       "Newtonsoft.Json/6.0.8": {
@@ -11908,10 +11980,10 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-beta4-build3109": {
+      "xunit/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]",
-          "xunit.assert": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -11922,7 +11994,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-beta4-build3109": {
+      "xunit.assert/2.1.0-rc1-build3168": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -11930,20 +12002,32 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-beta4-build3109": {
+      "xunit.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-beta4-build3109, 2.1.0-beta4-build3109]"
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
+          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
         }
       },
-      "xunit.extensibility.core/2.1.0-beta4-build3109": {
+      "xunit.extensibility.core/2.1.0-rc1-build3168": {
         "dependencies": {
-          "xunit.abstractions": "[2.0.0, )"
+          "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
         "compile": {
           "lib/dotnet/xunit.core.dll": {}
         },
         "runtime": {
           "lib/dotnet/xunit.core.dll": {}
+        }
+      },
+      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+        "dependencies": {
+          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+        },
+        "compile": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
+        },
+        "runtime": {
+          "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
       "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
@@ -12603,13 +12687,14 @@
         "[Content_Types].xml"
       ]
     },
-    "MvvmCross.HotTuna.Binding/4.0.0-beta1": {
-      "sha512": "py04hBHZI1HyaBofITMCPZqIALn8aVLoYR14ZbqaxX1wejq+proGI/9c/YOKXhbZymP/tpN5GahHayPj0Enptw==",
+    "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
+      "sha512": "1fATO1zZjpKZQu8ijw9kMeOwVmuhax/Ijg3zF97VkYU1tb/XHCDwlpWm3EOB1QiqDzjWM72/g53zQHyIgtB+Ig==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "MvvmCross.HotTuna.Binding.nuspec",
         "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.Binding.dll",
+        "lib/dotnet/Cirrious.MvvmCross.Binding.dll",
         "lib/MonoAndroid/Cirrious.MvvmCross.Binding.Droid.dll",
         "lib/MonoAndroid/Cirrious.MvvmCross.Binding.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Binding.Touch.dll",
@@ -12617,18 +12702,20 @@
         "lib/wp8/Cirrious.MvvmCross.Binding.dll",
         "lib/netcore45/Cirrious.MvvmCross.Binding.dll",
         "lib/net45/Cirrious.MvvmCross.Binding.dll",
-        "package/services/metadata/core-properties/c4a334a5fccb47479da00aff75617af3.psmdcp",
+        "package/services/metadata/core-properties/a9e7dde1e2a042b6976c3f7b78bb7723.psmdcp",
         "[Content_Types].xml"
       ]
     },
-    "MvvmCross.HotTuna.CrossCore/4.0.0-beta1": {
-      "sha512": "wwU/NwH6Pr11YW8vnTZuAfS76wcK0/d0F/8sPKT4j0dG1ITWpOEr9F8K3+zzVCEzlFtCaDrgndI6YbUpksev+w==",
+    "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
+      "sha512": "OIB2h/JZb2rnicOi+0+1zm2OqnYzYyzFihDHAZTZinrZ190fCLQneFwYezaHMZEn+G87NVt+C7MDihIidC/Xtg==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "MvvmCross.HotTuna.CrossCore.nuspec",
         "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.CrossCore.dll",
         "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.Localization.dll",
+        "lib/dotnet/Cirrious.CrossCore.dll",
+        "lib/dotnet/Cirrious.MvvmCross.Localization.dll",
         "lib/net45/Cirrious.CrossCore.Wpf.dll",
         "lib/net45/Cirrious.CrossCore.dll",
         "lib/net45/Cirrious.MvvmCross.Localization.dll",
@@ -12657,21 +12744,20 @@
         "lib/Xamarin.iOS10/Cirrious.CrossCore.Touch.dll",
         "lib/Xamarin.iOS10/Cirrious.CrossCore.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Localization.dll",
-        "package/services/metadata/core-properties/423a835f5fa0464ba91d22db334216a4.psmdcp",
+        "package/services/metadata/core-properties/76ee352521764b01bb6dee15cfba6ea7.psmdcp",
         "[Content_Types].xml"
       ]
     },
-    "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta1": {
-      "sha512": "ugDYE1OVXgMXDEKuJcQfN+YXfKQg/QSPMN/labmP2QrcjYNBzJR4NoiomnDexyS5jjL6HuCQIWBk57x5qN4xNg==",
+    "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
+      "sha512": "tpZwmbrxURpefAJKjAk/mCeq/W7l2SqEjehCDc4Tb9mLcvatuJDNRdBuxBd2QjtgAHSBS2L8tDvNKvSWONNpxw==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "MvvmCross.HotTuna.MvvmCrossLibraries.nuspec",
         "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.dll",
+        "lib/dotnet/Cirrious.MvvmCross.dll",
         "lib/net45/Cirrious.MvvmCross.Wpf.dll",
         "lib/net45/Cirrious.MvvmCross.dll",
-        "lib/netcore45/Cirrious.MvvmCross.WindowsStore.dll",
-        "lib/netcore45/Cirrious.MvvmCross.WindowsStore.pri",
         "lib/netcore45/Cirrious.MvvmCross.dll",
         "lib/wp8/Cirrious.MvvmCross.WindowsPhone.dll",
         "lib/wp8/Cirrious.MvvmCross.dll",
@@ -12684,11 +12770,15 @@
         "lib/win81/Cirrious.MvvmCross.dll",
         "lib/wpa81/Cirrious.MvvmCross.dll",
         "lib/portable-win81+wpa81/Cirrious.MvvmCross.dll",
+        "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll",
+        "lib/uap/Cirrious.MvvmCross.WindowsUWP.pri",
+        "lib/uap/Cirrious.MvvmCross.WindowsUWP/Properties/Cirrious.MvvmCross.WindowsUWP.rd.xml",
+        "lib/uap/Cirrious.MvvmCross.dll",
         "lib/MonoAndroid/Cirrious.MvvmCross.Droid.dll",
         "lib/MonoAndroid/Cirrious.MvvmCross.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Touch.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.dll",
-        "package/services/metadata/core-properties/71192e16b46a4545a96907ec649c87f9.psmdcp",
+        "package/services/metadata/core-properties/1b2ecd52152f4ba6a0eaf3d0c1b3486d.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -15472,13 +15562,13 @@
         "[Content_Types].xml"
       ]
     },
-    "xunit/2.1.0-beta4-build3109": {
-      "sha512": "mbZVcx4H/rDoiPOaiR9TRQgiBTXiStvjBRemGn96jTEePu7jUS3RDMU7EN0CkrVbw4GNXOqMdafblEOo6U4/NA==",
+    "xunit/2.1.0-rc1-build3168": {
+      "sha512": "dVnDKBCIpLE5GaxLALnbnobqtDyTTDKJSRbqhLGrx0Ptc/n3VQRUby/CDx6v+y7xNVPqtqj0XMeDO1DVT8E3tA==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "xunit.nuspec",
-        "package/services/metadata/core-properties/272e8825b1914d2d8e866cb165d3cad0.psmdcp",
+        "package/services/metadata/core-properties/c7931b7f3887423dbf4970aaa1c1dc7b.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -15496,66 +15586,102 @@
         "[Content_Types].xml"
       ]
     },
-    "xunit.assert/2.1.0-beta4-build3109": {
-      "sha512": "P6cyWlPboKWil9u7DTrDgIJQcK9WFef4+o2D++sEpvBvKoD2BINDc9SBRtEPt9z8mcOKbs1LH1+TJHKd2nASnQ==",
+    "xunit.assert/2.1.0-rc1-build3168": {
+      "sha512": "lsTK4OaNGt5IOoKO3ZQ0gSFngjWSHZ5xNurNtLd0MxZv5onv66xlNmWBYCVNt4sZLknQ+RfiqYm1EZ9ZrA0SDw==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "xunit.assert.nuspec",
-        "lib/portable-net45+netcore45+wp8+wpa81/xunit.assert.dll",
-        "lib/portable-net45+netcore45+wp8+wpa81/xunit.assert.pdb",
-        "lib/portable-net45+netcore45+wp8+wpa81/xunit.assert.xml",
+        "lib/portable-net45+win8+wp8+wpa81/xunit.assert.dll",
+        "lib/portable-net45+win8+wp8+wpa81/xunit.assert.pdb",
+        "lib/portable-net45+win8+wp8+wpa81/xunit.assert.xml",
         "lib/dotnet/xunit.assert.dll",
         "lib/dotnet/xunit.assert.pdb",
         "lib/dotnet/xunit.assert.xml",
-        "package/services/metadata/core-properties/ba68c680aca7471ea9ac9cc557fee3dc.psmdcp",
+        "package/services/metadata/core-properties/25b1754808374eeb82f38a86833d4d61.psmdcp",
         "[Content_Types].xml"
       ]
     },
-    "xunit.core/2.1.0-beta4-build3109": {
-      "sha512": "Z/tl35u6DASv0X3yFxO0CyHQPE1QH84X9y8bcpEVBai0byC1DSAk3heayxGFHrvuNbnA3bVYxD5t+CnAxKUZuQ==",
+    "xunit.core/2.1.0-rc1-build3168": {
+      "sha512": "IcQo+pNEDYBC9HJfzY08k0NhLZMX8WXudrlhcrIAzkT2szhrLbGhUi1k6vU5n9crsVv+IxosvIH28kYf6/Z32w==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "xunit.core.nuspec",
-        "build/_Desktop/xunit.execution.desktop.dll",
-        "build/monoandroid/xunit.core.props",
-        "build/monoandroid/xunit.execution.MonoAndroid.dll",
-        "build/monotouch/xunit.core.props",
-        "build/monotouch/xunit.execution.MonoTouch.dll",
-        "build/portable-net45+netcore45+wp8+wpa81/xunit.core.props",
-        "build/portable-win81+wpa81/xunit.core.props",
-        "build/portable-win81+wpa81/xunit.core.targets",
-        "build/portable-win81+wpa81/xunit.execution.universal.dll",
-        "build/portable-win81+wpa81/xunit.execution.universal.pri",
-        "build/wp8/xunit.core.props",
-        "build/wp8/xunit.core.targets",
-        "build/wp8/xunit.execution.wp8.dll",
-        "build/xamarinios/xunit.core.props",
-        "build/xamarinios/xunit.execution.iOS-Universal.dll",
-        "package/services/metadata/core-properties/2a5b204e6182455c99ce548be2a3b755.psmdcp",
+        "build/_desktop/xunit.execution.desktop.dll",
+        "build/dnx451/_._",
+        "build/monoandroid/_._",
+        "build/monotouch/_._",
+        "build/net45/_._",
+        "build/portable-net45+win8+wp8+wpa81/xunit.core.props",
+        "build/win8/_._",
+        "build/win81/xunit.core.props",
+        "build/wp8/_._",
+        "build/wpa81/xunit.core.props",
+        "build/xamarinios/_._",
+        "package/services/metadata/core-properties/c4f15e74cde14a09b99e736e49571ec0.psmdcp",
         "[Content_Types].xml"
       ]
     },
-    "xunit.extensibility.core/2.1.0-beta4-build3109": {
-      "sha512": "B7K5N6aVf2QV+dWEkGqtgbybkCL7YjAy/TiH8xBiL0Zorf3lUGVP5P/3Bo1OY9OLobRYkTriRTGmqbDdRXqOrA==",
+    "xunit.extensibility.core/2.1.0-rc1-build3168": {
+      "sha512": "8KZaq1mdeaiZxo1ScsGzhkeQRwLLS6+WIno+9gtnYccWmTjCJ/XSYz2fAAlB5mUeyw0vqqrFc+TfNZELs5QiZQ==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "xunit.extensibility.core.nuspec",
-        "lib/portable-net45+netcore45+wp8+wpa81/xunit.core.dll",
-        "lib/portable-net45+netcore45+wp8+wpa81/xunit.core.dll.tdnet",
-        "lib/portable-net45+netcore45+wp8+wpa81/xunit.core.pdb",
-        "lib/portable-net45+netcore45+wp8+wpa81/xunit.core.xml",
-        "lib/portable-net45+netcore45+wp8+wpa81/xunit.runner.tdnet.dll",
-        "lib/portable-net45+netcore45+wp8+wpa81/xunit.runner.utility.desktop.dll",
         "lib/dotnet/xunit.core.dll",
         "lib/dotnet/xunit.core.dll.tdnet",
         "lib/dotnet/xunit.core.pdb",
         "lib/dotnet/xunit.core.xml",
         "lib/dotnet/xunit.runner.tdnet.dll",
         "lib/dotnet/xunit.runner.utility.desktop.dll",
-        "package/services/metadata/core-properties/456bba8eee5d4253a271c9933a6aefdf.psmdcp",
+        "lib/portable-net45+win8+wp8+wpa81/xunit.core.dll",
+        "lib/portable-net45+win8+wp8+wpa81/xunit.core.dll.tdnet",
+        "lib/portable-net45+win8+wp8+wpa81/xunit.core.pdb",
+        "lib/portable-net45+win8+wp8+wpa81/xunit.core.xml",
+        "lib/portable-net45+win8+wp8+wpa81/xunit.runner.tdnet.dll",
+        "lib/portable-net45+win8+wp8+wpa81/xunit.runner.utility.desktop.dll",
+        "package/services/metadata/core-properties/f5b0a8a6af3a41e7abbb1c4e08ab5e31.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+      "sha512": "1w0u3eB7i25hca60r/53oSVb0blMOEm2eVqvwTg9jhMSe/A9raj6UZAVzUnFtA3xLssP4K1udOGTC1qrZ9/VoA==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "xunit.extensibility.execution.nuspec",
+        "lib/dotnet/xunit.execution.dotnet.dll",
+        "lib/dotnet/xunit.execution.dotnet.pdb",
+        "lib/dotnet/xunit.execution.dotnet.xml",
+        "lib/dnx451/xunit.execution.dotnet.dll",
+        "lib/dnx451/xunit.execution.dotnet.pdb",
+        "lib/dnx451/xunit.execution.dotnet.xml",
+        "lib/monoandroid/xunit.execution.dotnet.dll",
+        "lib/monoandroid/xunit.execution.dotnet.pdb",
+        "lib/monoandroid/xunit.execution.dotnet.xml",
+        "lib/monotouch/xunit.execution.dotnet.dll",
+        "lib/monotouch/xunit.execution.dotnet.pdb",
+        "lib/monotouch/xunit.execution.dotnet.xml",
+        "lib/net35/xunit.execution.desktop.dll",
+        "lib/net35/xunit.execution.desktop.pdb",
+        "lib/net35/xunit.execution.desktop.xml",
+        "lib/portable-net45+win8+wp8+wpa81/xunit.execution.dotnet.dll",
+        "lib/portable-net45+win8+wp8+wpa81/xunit.execution.dotnet.pdb",
+        "lib/portable-net45+win8+wp8+wpa81/xunit.execution.dotnet.xml",
+        "lib/win8/xunit.execution.dotnet.dll",
+        "lib/win8/xunit.execution.dotnet.pdb",
+        "lib/win8/xunit.execution.dotnet.xml",
+        "lib/wp8/xunit.execution.dotnet.dll",
+        "lib/wp8/xunit.execution.dotnet.pdb",
+        "lib/wp8/xunit.execution.dotnet.xml",
+        "lib/wpa81/xunit.execution.dotnet.dll",
+        "lib/wpa81/xunit.execution.dotnet.pdb",
+        "lib/wpa81/xunit.execution.dotnet.xml",
+        "lib/xamarinios/xunit.execution.dotnet.dll",
+        "lib/xamarinios/xunit.execution.dotnet.pdb",
+        "lib/xamarinios/xunit.execution.dotnet.xml",
+        "package/services/metadata/core-properties/3ba0c9def4ed43d782df6b4b2c8fef45.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -15593,10 +15719,10 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta1",
+      "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta3",
       "SQLite.Net-PCL >= 3.0.5",
       "SQLiteNetExtensions >= 1.3.0",
-      "xunit >= 2.1.0-beta4-build3109",
+      "xunit >= 2.1.0-rc1-build3168",
       "xunit.runner.visualstudio >= 2.1.0-beta4-build1109"
     ],
     "UAP,Version=v10.0": []

@@ -27,6 +27,12 @@
         android:numeric="decimal"
         local:MvxBind="Text SelectedTransaction.Amount" />
     <Button
+        android:id="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/button_category"
+        local:MvxBind="Text SelectedTransaction.Category.Name" />
+    <Button
         android:id="@+id/transactiondate"
         android:inputType="date"
         android:layout_width="match_parent"
@@ -47,7 +53,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        local:MvxBind="Visible SelectedTransaction.IsRecurring">
         <Mvx.MvxSpinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

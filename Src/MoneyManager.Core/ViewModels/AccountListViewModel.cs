@@ -48,6 +48,11 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public MvxCommand<Account> DeleteAccountCommand=> new MvxCommand<Account>(Delete);
 
+        /// <summary>
+        ///     Prepare everything and navigate to AddAccount view
+        /// </summary>
+        public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
+
         private void EditAccount(Account account)
         {
             modifyAccountViewModel.IsEdit = true;
@@ -73,6 +78,14 @@ namespace MoneyManager.Core.ViewModels
         {
             balanceViewModel.UpdateBalance();
             accountRepository.Delete(item);
+        }
+
+        private void GoToAddAccount()
+        {
+            modifyAccountViewModel.IsEdit = false;
+            modifyAccountViewModel.SelectedAccount = new Account();
+
+            ShowViewModel<ModifyAccountViewModel>();
         }
     }
 }

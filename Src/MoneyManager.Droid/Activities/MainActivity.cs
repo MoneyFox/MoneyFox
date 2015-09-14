@@ -26,6 +26,9 @@ namespace MoneyManager.Droid.Activities
         };
 
         private AccountListFragment accountListFragment;
+        private StatisticFragment statisticFragment;
+        private AboutFragment aboutFragment;
+
         private string drawerTitle;
         private ListView menuListView;
         private SlidingPaneLayout slidingLayout;
@@ -49,6 +52,16 @@ namespace MoneyManager.Droid.Activities
             accountListFragment = new AccountListFragment
             {
                 ViewModel = Mvx.Resolve<AccountListViewModel>()
+            };
+
+            statisticFragment = new StatisticFragment
+            {
+                ViewModel = Mvx.Resolve<StatisticViewModel>()
+            };
+
+            aboutFragment = new AboutFragment
+            {
+                ViewModel = Mvx.Resolve<AboutViewModel>()
             };
 
             slidingLayout.PanelOpened += (sender, e) =>
@@ -89,12 +102,15 @@ namespace MoneyManager.Droid.Activities
                 case 0:
                     SupportFragmentManager.BeginTransaction()
                         .Replace(Resource.Id.content_pane, accountListFragment)
-                        .AddToBackStack("accountList")
+                        .AddToBackStack("AccountList")
                         .Commit();
                     break;
 
                 case 1:
-                    break;
+                    SupportFragmentManager.BeginTransaction()
+                                            .Replace(Resource.Id.content_pane, statisticFragment)
+                                            .AddToBackStack("Statistic")
+                                            .Commit(); break;
 
                 case 2:
                     break;
@@ -103,8 +119,10 @@ namespace MoneyManager.Droid.Activities
                     break;
 
                 case 4:
-                    ViewModel.GoToAboutCommand.Execute(null);
-                    break;
+                    SupportFragmentManager.BeginTransaction()
+                                            .Replace(Resource.Id.content_pane, aboutFragment)
+                                            .AddToBackStack("About")
+                                            .Commit(); break;
             }
             slidingLayout.ClosePane();
         }

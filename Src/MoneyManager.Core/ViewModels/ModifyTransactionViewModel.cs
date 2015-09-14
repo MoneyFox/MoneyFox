@@ -64,7 +64,8 @@ namespace MoneyManager.Core.ViewModels
         {
             SelectedTransaction = new FinancialTransaction
             {
-                Type = (int)transactionType
+                Type = (int)transactionType,
+                Date = DateTime.Now
             };
         }
 
@@ -77,6 +78,11 @@ namespace MoneyManager.Core.ViewModels
         ///     Saves the transaction or updates the existing depending on the IsEdit Flag.
         /// </summary>
         public IMvxCommand SaveCommand => new MvxCommand(Save);
+
+        /// <summary>
+        ///     Opens to the SelectCategoryView
+        /// </summary>
+        public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
 
         /// <summary>
         ///     Delets the transaction or updates the existing depending on the IsEdit Flag.
@@ -176,6 +182,11 @@ namespace MoneyManager.Core.ViewModels
             }
             ResetInitLocker();
             Close(this);
+        }
+
+        private void OpenSelectCategoryList()
+        {
+            ShowViewModel<CategoryListViewModel>();
         }
 
         private void Delete()

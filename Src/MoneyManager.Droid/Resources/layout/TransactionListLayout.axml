@@ -10,5 +10,5 @@
         android:layout_height="fill_parent"
         android:id="@+id/accountList"
         local:MvxItemTemplate="@layout/transactionlistitem"
-        local:MvxBind="ItemsSource RelatedTransactions" />
+        local:MvxBind="ItemsSource RelatedTransactions;SelectedItem SelectedTransaction;ItemClick EditCommand" />
 </LinearLayout>
