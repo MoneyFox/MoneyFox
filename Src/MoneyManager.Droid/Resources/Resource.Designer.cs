@@ -137,6 +137,9 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f050002
 			public const int accountList = 2131034114;
 			
+			// aapt resource value: 0x7f050011
+			public const int action_add = 2131034129;
+			
 			// aapt resource value: 0x7f05000e
 			public const int action_add_account = 2131034126;
 			
@@ -151,6 +154,9 @@ namespace MoneyManager.Droid
 			
 			// aapt resource value: 0x7f05000f
 			public const int action_delete = 2131034127;
+			
+			// aapt resource value: 0x7f050010
+			public const int action_done = 2131034128;
 			
 			// aapt resource value: 0x7f05000a
 			public const int action_save = 2131034122;
@@ -202,22 +208,28 @@ namespace MoneyManager.Droid
 			public const int AccountListLayout = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int MainLayout = 2130903044;
+			public const int CategoryListItem = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int ModifyAccountLayout = 2130903045;
+			public const int CategoryListLayout = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int ModifyTransactionLayout = 2130903046;
+			public const int MainLayout = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int StatisticLayout = 2130903047;
+			public const int ModifyAccountLayout = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int TransactionListItem = 2130903048;
+			public const int ModifyTransactionLayout = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int TransactionListLayout = 2130903049;
+			public const int StatisticLayout = 2130903049;
+			
+			// aapt resource value: 0x7f03000a
+			public const int TransactionListItem = 2130903050;
+			
+			// aapt resource value: 0x7f03000b
+			public const int TransactionListLayout = 2130903051;
 			
 			static Layout()
 			{
@@ -241,6 +253,9 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f060002
 			public const int ModificationMenu = 2131099650;
 			
+			// aapt resource value: 0x7f060003
+			public const int SelectMenu = 2131099651;
+			
 			static Menu()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -260,6 +275,9 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f040000
 			public const int Hello = 2130968576;
 			
+			// aapt resource value: 0x7f040007
+			public const int action_add = 2130968583;
+			
 			// aapt resource value: 0x7f040006
 			public const int action_add_account = 2130968582;
 			
@@ -272,56 +290,59 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f040005
 			public const int action_add_transfer = 2130968581;
 			
-			// aapt resource value: 0x7f040007
-			public const int action_delete = 2130968583;
-			
 			// aapt resource value: 0x7f040008
-			public const int action_save = 2130968584;
+			public const int action_delete = 2130968584;
+			
+			// aapt resource value: 0x7f04000a
+			public const int action_done = 2130968586;
+			
+			// aapt resource value: 0x7f040009
+			public const int action_save = 2130968585;
 			
 			// aapt resource value: 0x7f040002
 			public const int app_name = 2130968578;
 			
-			// aapt resource value: 0x7f040014
-			public const int button_date = 2130968596;
+			// aapt resource value: 0x7f040016
+			public const int button_date = 2130968598;
 			
-			// aapt resource value: 0x7f040015
-			public const int button_rate = 2130968597;
-			
-			// aapt resource value: 0x7f040009
-			public const int hint_account_name = 2130968585;
-			
-			// aapt resource value: 0x7f04000d
-			public const int hint_amount = 2130968589;
+			// aapt resource value: 0x7f040017
+			public const int button_rate = 2130968599;
 			
 			// aapt resource value: 0x7f04000b
-			public const int hint_current_balance = 2130968587;
+			public const int hint_account_name = 2130968587;
 			
 			// aapt resource value: 0x7f04000f
-			public const int hint_endless = 2130968591;
+			public const int hint_amount = 2130968591;
 			
-			// aapt resource value: 0x7f04000a
-			public const int hint_iban = 2130968586;
-			
-			// aapt resource value: 0x7f04000c
-			public const int hint_note = 2130968588;
-			
-			// aapt resource value: 0x7f04000e
-			public const int hint_recurring = 2130968590;
-			
-			// aapt resource value: 0x7f040016
-			public const int label_cleared = 2130968598;
+			// aapt resource value: 0x7f04000d
+			public const int hint_current_balance = 2130968589;
 			
 			// aapt resource value: 0x7f040011
-			public const int textview_contact = 2130968593;
+			public const int hint_endless = 2130968593;
 			
-			// aapt resource value: 0x7f040012
-			public const int textview_github = 2130968594;
+			// aapt resource value: 0x7f04000c
+			public const int hint_iban = 2130968588;
 			
-			// aapt resource value: 0x7f040013
-			public const int textview_opensource = 2130968595;
+			// aapt resource value: 0x7f04000e
+			public const int hint_note = 2130968590;
 			
 			// aapt resource value: 0x7f040010
-			public const int textview_version = 2130968592;
+			public const int hint_recurring = 2130968592;
+			
+			// aapt resource value: 0x7f040018
+			public const int label_cleared = 2130968600;
+			
+			// aapt resource value: 0x7f040013
+			public const int textview_contact = 2130968595;
+			
+			// aapt resource value: 0x7f040014
+			public const int textview_github = 2130968596;
+			
+			// aapt resource value: 0x7f040015
+			public const int textview_opensource = 2130968597;
+			
+			// aapt resource value: 0x7f040012
+			public const int textview_version = 2130968594;
 			
 			static String()
 			{

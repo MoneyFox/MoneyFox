@@ -135,10 +135,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\CategoryListActivity.cs" />
     <Compile Include="Activities\ModifyAccountActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\ModifyTransactionActivity.cs" />
-    <Compile Include="Activities\SelectCategoryActivity.cs" />
     <Compile Include="Activities\TransactionListActivity.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
@@ -184,6 +184,11 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AccountComboBoxItem.axml" />
     <AndroidResource Include="Resources\layout\StatisticLayout.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CategoryListLayout.axml" />
+    <AndroidResource Include="Resources\layout\CategoryListItem.axml" />
+    <AndroidResource Include="Resources\menu\SelectMenu.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
