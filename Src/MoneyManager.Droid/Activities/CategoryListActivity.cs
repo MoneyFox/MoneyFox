@@ -21,7 +21,7 @@ namespace MoneyManager.Droid.Activities
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.ModifyTransactionLayout);
+            SetContentView(Resource.Layout.CategoryListLayout);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
         }
 

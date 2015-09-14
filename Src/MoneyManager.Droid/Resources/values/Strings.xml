@@ -30,6 +30,7 @@
 
   <!--buttons-->
   <string name="button_date">Date</string>
+  <string name="button_category">Category</string>
   <string name="button_rate">Rate us!</string>
   
   <!--labels-->

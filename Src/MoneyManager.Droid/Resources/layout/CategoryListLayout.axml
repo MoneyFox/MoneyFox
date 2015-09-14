@@ -6,5 +6,5 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    local:MvxItemTemplate="@layout/accountlistitem"
-    local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />
+    local:MvxItemTemplate="@layout/categorylistitem"
+    local:MvxBind="ItemsSource Categories; SelectedItem SelectedCategory" />

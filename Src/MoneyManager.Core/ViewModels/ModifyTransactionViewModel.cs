@@ -79,6 +79,11 @@ namespace MoneyManager.Core.ViewModels
         public IMvxCommand SaveCommand => new MvxCommand(Save);
 
         /// <summary>
+        ///     Opens to the SelectCategoryView
+        /// </summary>
+        public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
+
+        /// <summary>
         ///     Delets the transaction or updates the existing depending on the IsEdit Flag.
         /// </summary>
         public IMvxCommand DeleteCommand => new MvxCommand(Delete);
@@ -176,6 +181,11 @@ namespace MoneyManager.Core.ViewModels
             }
             ResetInitLocker();
             Close(this);
+        }
+
+        private void OpenSelectCategoryList()
+        {
+            ShowViewModel<CategoryListViewModel>();
         }
 
         private void Delete()
