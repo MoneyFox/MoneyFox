@@ -3,6 +3,8 @@ using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsUWP.Platform;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.OperationContracts.Shotcuts;
+using MoneyManager.Windows.Shortcut;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.WinRT;
 using Xamarin;
@@ -25,6 +27,10 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IAppInformation, AppInformation>();
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
+
+            Mvx.RegisterType<ISpendingShortcut, SpendingTile>();
+            Mvx.RegisterType<IIncomeShortcut, IncomeTile>();
+            Mvx.RegisterType<ITransferShortcut, TransferTile>();
         }
 
         protected override IMvxApplication CreateApp()
