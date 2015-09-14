@@ -41,10 +41,12 @@ namespace MoneyManager.Core.Helper
         /// <returns>The new created Financial Transaction</returns>
         public static FinancialTransaction GetFinancialTransactionFromRecurring(RecurringTransaction recurringTransaction)
         {
-            var date = DateTime.Now;
+            var date = DateTime.Today;
+            
+            //If the transaction is monthly we want it on the same day of month again.
             if (recurringTransaction.Recurrence == (int)TransactionRecurrence.Monthly)
             {
-                date = DateTime.Now.AddDays(recurringTransaction.StartDate.Day - DateTime.Today.Day);
+                date = DateTime.Today.AddDays(recurringTransaction.StartDate.Day - DateTime.Today.Day);
             }
 
             return new FinancialTransaction
@@ -56,6 +58,7 @@ namespace MoneyManager.Core.Helper
                 Date = date,
                 IsRecurring = true,
                 Amount = recurringTransaction.Amount,
+                Category = recurringTransaction.Category,
                 CategoryId = recurringTransaction.CategoryId,
                 Type = recurringTransaction.Type,
                 ReccuringTransactionId = recurringTransaction.Id,
