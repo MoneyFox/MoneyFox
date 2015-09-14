@@ -149,7 +149,6 @@
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
-    <Compile Include="Converter\TransactionStyleConverter.cs" />
     <Compile Include="Dialogs\CategoryDialog.cs">
       <DependentUpon>CategoryDialog.xaml</DependentUpon>
     </Compile>
@@ -214,6 +213,7 @@
     <Content Include="Assets\dark\close.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\dark\done.png" />
     <Content Include="Assets\dark\filter.png" />
     <Content Include="Assets\dark\internet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -228,11 +228,11 @@
     <Content Include="Assets\dark\twitter.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\dark\unlock.png" />
     <Content Include="Assets\IncomeTileIcon.png" />
     <Content Include="Assets\light\close.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\light\done.png" />
     <Content Include="Assets\light\filter.png" />
     <Content Include="Assets\light\internet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -247,7 +247,6 @@
     <Content Include="Assets\light\twitter.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\light\unlock.png" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\SpendingTileIcon.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
