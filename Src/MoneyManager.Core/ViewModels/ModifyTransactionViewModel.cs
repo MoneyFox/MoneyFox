@@ -64,7 +64,8 @@ namespace MoneyManager.Core.ViewModels
         {
             SelectedTransaction = new FinancialTransaction
             {
-                Type = (int)transactionType
+                Type = (int)transactionType,
+                Date = DateTime.Now
             };
         }
 
