@@ -31,7 +31,7 @@
                 <Grid Grid.Column="0"
                       VerticalAlignment="Stretch"
                       HorizontalAlignment="Stretch">
-                    <Image Source="/Images/incomeTileIcon.png"
+                    <Image Source="/Assets/incomeTileIcon.png"
                            VerticalAlignment="Stretch"
                            HorizontalAlignment="Stretch" />
                 </Grid>
@@ -56,7 +56,7 @@
                     <ColumnDefinition Width="301*" />
                 </Grid.ColumnDefinitions>
                 <Grid>
-                    <Image Source="/Images/spendingTileIcon.png"
+                    <Image Source="/Assets/spendingTileIcon.png"
                            Grid.Column="0"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Stretch" />
@@ -81,7 +81,7 @@
                     <ColumnDefinition Width="301*" />
                 </Grid.ColumnDefinitions>
                 <Grid >
-                    <Image Source="/Images/transferTileIcon.png"
+                    <Image Source="/Assets/transferTileIcon.png"
                            Grid.Column="0"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Stretch" />
