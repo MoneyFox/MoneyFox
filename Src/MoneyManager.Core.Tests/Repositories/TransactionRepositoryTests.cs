@@ -188,7 +188,7 @@ namespace MoneyManager.Core.Tests.Repositories
                 Amount = 55,
                 Date = DateTime.Today.AddDays(-1),
                 Note = "this is a note!!!",
-                Cleared = false
+                IsCleared = false
             }
                 );
 
@@ -216,7 +216,7 @@ namespace MoneyManager.Core.Tests.Repositories
                 Amount = 55,
                 Date = Utilities.GetEndOfMonth().AddDays(-1),
                 Note = "this is a note!!!",
-                Cleared = false
+                IsCleared = false
             }
                 );
 
@@ -237,7 +237,7 @@ namespace MoneyManager.Core.Tests.Repositories
                 Amount = 55,
                 Date = DateTime.Today.AddDays(-1),
                 Note = "this is a note!!!",
-                Cleared = false
+                IsCleared = false
             }
                 );
 

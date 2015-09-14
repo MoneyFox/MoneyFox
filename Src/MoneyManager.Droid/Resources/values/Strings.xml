@@ -34,6 +34,6 @@
   <string name="button_rate">Rate us!</string>
   
   <!--labels-->
-  <string name="label_cleared">Cleared: </string>
+  <string name="label_cleared">IsCleared: </string>
 
 </resources>

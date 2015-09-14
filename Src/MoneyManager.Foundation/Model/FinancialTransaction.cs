@@ -23,7 +23,7 @@ namespace MoneyManager.Foundation.Model
 
         public DateTime Date { get; set; }
         public double Amount { get; set; }
-        public bool Cleared { get; set; }
+        public bool IsCleared { get; set; }
         public int Type { get; set; }
         public string Note { get; set; }
         public bool IsRecurring { get; set; }

@@ -26,7 +26,7 @@ namespace MoneyManager.Core.Tests.Helper
                 Category = new Category {Id = 16},
                 Date = startDate,
                 Amount = 2135,
-                Cleared = false,
+                IsCleared = false,
                 Type = type,
                 IsRecurring = true
             };

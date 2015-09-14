@@ -115,7 +115,7 @@ namespace MoneyManager.Core.Manager
         /// <param name="transaction">Transaction to remove the account from.</param>
         public void RemoveTransactionAmount(FinancialTransaction transaction)
         {
-            if (transaction.Cleared)
+            if (transaction.IsCleared)
             {
                 PrehandleRemoveIfTransfer(transaction);
 
@@ -166,12 +166,12 @@ namespace MoneyManager.Core.Manager
                 }
 
                 account.CurrentBalance += amountFunc(transaction.Amount);
-                transaction.Cleared = true;
+                transaction.IsCleared = true;
 
                 accountRepository.Save(account);
             } else
             {
-                transaction.Cleared = false;
+                transaction.IsCleared = false;
             }
             transactionRepository.Save(transaction);
 
