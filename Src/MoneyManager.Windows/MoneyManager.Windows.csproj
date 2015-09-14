@@ -165,6 +165,7 @@
     <Compile Include="Src\StoreFeatures.cs" />
     <Compile Include="Src\RegionLogic.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
+    <Compile Include="Src\TileHelper.cs" />
     <Compile Include="Src\UserNotification.cs" />
     <Compile Include="Src\Shortcut\IncomeTile.cs" />
     <Compile Include="Src\Shortcut\SpendingTile.cs" />
@@ -427,7 +428,6 @@
   <ItemGroup>
     <Folder Include="Bootstrap\" />
     <Folder Include="Services\" />
-    <Folder Include="Tile\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

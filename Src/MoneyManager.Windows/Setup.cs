@@ -1,3 +1,4 @@
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;

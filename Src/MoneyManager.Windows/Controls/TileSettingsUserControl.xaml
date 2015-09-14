@@ -44,7 +44,7 @@
                         Grid.Column="1"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
-                        Command="{Binding CreateIncomeCommand}"
+                        Command="{Binding CreateIncomeShortcutCommand}"
                         Visibility="{Binding IsIncomeShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
                         Margin="12,0,0,0" />
                 <Button Content="remove income tile"
@@ -52,7 +52,7 @@
                         Grid.Column="1"
                         Margin="12,0,0,0"
                         Visibility="{Binding IsIncomeShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{Binding RemoveIncomeCommand}"
+                        Command="{Binding RemoveIncomeShortcutCommand}"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center" />
             </Grid>
@@ -73,14 +73,14 @@
                         Grid.Column="1"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Stretch"
-                        Command="{Binding CreateSpendingCommand}"
+                        Command="{Binding CreateSpendingShortcutCommand}"
                         Visibility="{Binding IsSpendingShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
                         Margin="12,0,0,0" />
                 <Button Content="remove spending tile"
                         x:Uid="RemoveSpendingTile"
                         Grid.Column="1"
                         Visibility="{Binding IsSpendingShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        Command="{Binding RemoveSpendingCommand}"
+                        Command="{Binding RemoveSpendingShortcutCommand}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Stretch"
                         Margin="12,0,0,0"/>
@@ -102,13 +102,13 @@
                         Grid.Column="1"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Stretch"
-                        Command="{Binding CreateTransferCommand}"
+                        Command="{Binding CreateTransferShortcutCommand}"
                         Visibility="{Binding IsTransferShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
                         Margin="12,0,0,0" />
                 <Button Content="remove transfer tile"
                         x:Uid="RemoveTransferTile"
                         Grid.Column="1"
-                        Command="{Binding RemoveTransferCommand}"
+                        Command="{Binding RemoveTransferShortcutCommand}"
                         Visibility="{Binding IsTransferShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Stretch"
