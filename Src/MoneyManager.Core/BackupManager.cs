@@ -8,11 +8,11 @@ using MoneyManager.Localization;
 
 namespace MoneyManager.Core
 {
-    public class Backup
+    public class BackupManager
     {
         private readonly IBackupService backupService;
 
-        public Backup(IBackupService backupService)
+        public BackupManager(IBackupService backupService)
         {
             this.backupService = backupService;
         }

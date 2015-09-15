@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using MoneyManager.Localization;
 using MoneyManager.Windows.Controls;
 using MoneyManager.Windows.Views;
 
@@ -28,31 +29,31 @@ namespace MoneyManager.Windows
                 new NavMenuItem
                 {
                     Symbol = Symbol.Library,
-                    Label = "Accounts",
+                    Label = Strings.AccountsLabel,
                     DestPage = typeof (MainView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.View,
-                    Label = "Statistics",
+                    Label = Strings.StatisticsLabel,
                     DestPage = typeof (StatisticsView)
                 },
-                //new NavMenuItem
-                //{
-                //    Symbol = Symbol.SyncFolder,
-                //    Label = "Backup",
-                //    DestPage = typeof (BackupView)
-                //},
+                new NavMenuItem
+                {
+                    Symbol = Symbol.SyncFolder,
+                    Label = Strings.BackupLabel,
+                    DestPage = typeof (BackupView)
+                },
                 new NavMenuItem
                 {
                     Symbol = Symbol.Setting,
-                    Label = "Settings",
+                    Label = Strings.SettingsLabel,
                     DestPage = typeof (SettingsView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.Account,
-                    Label = "About",
+                    Label = Strings.AboutLabel,
                     DestPage = typeof (AboutView)
                 }
             });

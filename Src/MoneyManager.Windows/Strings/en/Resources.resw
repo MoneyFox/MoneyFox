@@ -148,10 +148,10 @@
     <value>add transfer</value>
   </data>
   <data name="BackupInformation.Text" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive account. You find them in a new created folder "MoneyFoxBackup". </value>
+    <value>Your data will be saved to your OneDrive account. You find them in a new created folder "MoneyFoxBackupManager". </value>
   </data>
   <data name="BackupTitle.Text" xml:space="preserve">
-    <value>Backup</value>
+    <value>BackupManager</value>
   </data>
   <data name="CashFlowTitle.Header" xml:space="preserve">
     <value>Cash Flow</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
     <value>Contact:</value>
+  </data>
+  <data name="DeleteAccountLabel.Label" xml:space="preserve">
+    <value>Delete Account</value>
   </data>
   <data name="DeveloperLabel.Text" xml:space="preserve">
     <value>Developer</value>

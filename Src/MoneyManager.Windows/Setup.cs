@@ -1,10 +1,10 @@
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsUWP.Platform;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Foundation.OperationContracts.Shotcuts;
+using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.WinRT;
@@ -28,6 +28,7 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IAppInformation, AppInformation>();
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
+            Mvx.RegisterType<IBackupService, OneDriveBackupService>();
 
             Mvx.RegisterType<ISpendingShortcut, SpendingTile>();
             Mvx.RegisterType<IIncomeShortcut, IncomeTile>();

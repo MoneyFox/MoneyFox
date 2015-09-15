@@ -8,15 +8,15 @@ namespace MoneyManager.Core.ViewModels
 {
     public class BackupViewModel : BaseViewModel
     {
-        private readonly Backup backup;
+        private readonly BackupManager backupManager;
         private readonly IDialogService dialogService;
         private readonly RepositoryManager repositoryManager;
 
-        public BackupViewModel(Backup backup,
+        public BackupViewModel(BackupManager backupManager,
             RepositoryManager repositoryManager,
             IDialogService dialogService)
         {
-            this.backup = backup;
+            this.backupManager = backupManager;
             this.repositoryManager = repositoryManager;
             this.dialogService = dialogService;
         }
@@ -35,7 +35,7 @@ namespace MoneyManager.Core.ViewModels
             }
 
             IsLoading = true;
-            await backup.UploadBackup();
+            await backupManager.UploadBackup();
             await ShowCompletionNote();
             IsLoading = false;
         }
@@ -51,7 +51,7 @@ namespace MoneyManager.Core.ViewModels
 
             IsLoading = true;
 
-            await backup.RestoreBackup();
+            await backupManager.RestoreBackup();
             repositoryManager.ReloadData();
 
             await ShowCompletionNote();
@@ -61,7 +61,7 @@ namespace MoneyManager.Core.ViewModels
         private async Task Login()
         {
             IsLoading = true;
-            await backup.Login();
+            await backupManager.Login();
             IsLoading = false;
         }
 

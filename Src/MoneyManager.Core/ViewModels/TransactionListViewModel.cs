@@ -32,6 +32,7 @@ namespace MoneyManager.Core.ViewModels
         }
 
         public MvxCommand<string> GoToAddTransactionCommand => new MvxCommand<string>(GoToAddTransaction);
+        public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
         public MvxCommand LoadedCommand => new MvxCommand(LoadTransactions);
         public MvxCommand UnloadedCommand => new MvxCommand(UnloadTransactions);
         public MvxCommand EditCommand => new MvxCommand(Edit);
@@ -71,8 +72,13 @@ namespace MoneyManager.Core.ViewModels
         private void GoToAddTransaction(string type)
         {
             modifyTransactionViewModel.IsEdit = false;
-
             ShowViewModel<ModifyTransactionViewModel>(new { typeString = type });
+        }
+
+        private void DeleteAccount()
+        {
+            accountRepository.Delete(accountRepository.Selected);
+            Close(this);
         }
 
         private void Edit()
