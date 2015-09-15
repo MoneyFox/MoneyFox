@@ -36,8 +36,8 @@
                     Margin="19,9.5,19,0"
                     EntranceNavigationTransitionInfo.IsTargetElement="True">
             <StackPanel>
-                <TextBlock x:Uid="BackupManagerInformation"
-                           Text="BackupManagerinformation"
+                <TextBlock x:Uid="BackupInformation"
+                           Text="BackupInformation"
                            Margin="0,0,0,12"
                            TextWrapping="WrapWholeWords" />
                 <Button Content="Create BackupManager"
