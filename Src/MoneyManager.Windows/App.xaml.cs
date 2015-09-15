@@ -63,6 +63,8 @@ namespace MoneyManager.Windows
             shell.AppFrame.Navigate(typeof(MainView));
             new TileHelper(Mvx.Resolve<ModifyTransactionViewModel>()).DoNavigation(e.TileId);
 
+            Tile.UpdateMainTile();
+
             // Ensure the current window is active
             Window.Current.Activate();
         }

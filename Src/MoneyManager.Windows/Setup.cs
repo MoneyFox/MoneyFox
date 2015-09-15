@@ -30,6 +30,7 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
             Mvx.RegisterType<IBackupService, OneDriveBackupService>();
             Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
+            Mvx.RegisterType<IUserNotification, UserNotification>();
 
             Mvx.RegisterType<ISpendingShortcut, SpendingTile>();
             Mvx.RegisterType<IIncomeShortcut, IncomeTile>();

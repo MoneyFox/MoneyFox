@@ -288,4 +288,7 @@
   <data name="RecurringLabel" xml:space="preserve">
     <value>Update All</value>
   </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Money Fox</value>
+  </data>
 </root>
