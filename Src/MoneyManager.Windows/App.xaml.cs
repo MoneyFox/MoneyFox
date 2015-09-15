@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Windows.Shortcut;
 using MoneyManager.Windows.Views;
 
 namespace MoneyManager.Windows
@@ -85,6 +86,8 @@ namespace MoneyManager.Windows
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
+            Tile.UpdateMainTile();
+
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();

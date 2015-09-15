@@ -1,4 +1,5 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.DataAccess;
 using MoneyManager.Foundation.OperationContracts.Shotcuts;
 
 namespace MoneyManager.Core.ViewModels
@@ -11,19 +12,29 @@ namespace MoneyManager.Core.ViewModels
         private readonly IIncomeShortcut incomeShortcut;
         private readonly ISpendingShortcut spendingShortcut;
         private readonly ITransferShortcut transferShortcut;
+        private readonly SettingDataAccess settingsDataAccess;
 
         /// <summary>
         ///     Creates a TileSettingsViewModel object
         /// </summary>
         public TileSettingsViewModel(ISpendingShortcut spendingShortcut, IIncomeShortcut incomeShortcut,
-            ITransferShortcut transferShortcut)
+            ITransferShortcut transferShortcut, SettingDataAccess settingsDataAccess)
         {
             this.spendingShortcut = spendingShortcut;
             this.incomeShortcut = incomeShortcut;
             this.transferShortcut = transferShortcut;
+            this.settingsDataAccess = settingsDataAccess;
         }
 
-        public bool ShowInfoOnMainTile { get; set; }
+        public bool ShowInfoOnMainTile
+        {
+            get { return  settingsDataAccess.ShowCashFlowOnMainTile; }
+            set
+            {
+                settingsDataAccess.ShowCashFlowOnMainTile = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Creates a Spending Shortcut
