@@ -24,7 +24,8 @@ namespace MoneyManager.Core.ViewModels
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
             IDialogService dialogService,
-            TransactionManager transactionManager, DefaultManager defaultManager)
+            TransactionManager transactionManager,
+            DefaultManager defaultManager)
         {
             this.transactionRepository = transactionRepository;
             this.dialogService = dialogService;
@@ -174,12 +175,20 @@ namespace MoneyManager.Core.ViewModels
 
             if (IsEdit)
             {
-                transactionManager.SaveTransaction(transactionRepository.Selected);
+                //Update the recurring transaction based on the transaction.
+                if (transactionRepository.Selected.IsRecurring)
+                {
+                    var recurringTransaction = RecurringTransactionHelper.
+                        GetRecurringFromFinancialTransaction(transactionRepository.Selected, IsEndless, Recurrence, EndDate);
+                    transactionRepository.Selected.RecurringTransaction = recurringTransaction;
+                }
+                transactionRepository.Save(transactionRepository.Selected);
+                transactionManager.AddTransactionAmount(transactionRepository.Selected);
             }
-            else
-            {
-                transactionManager.SaveTransaction(transactionRepository.Selected);
-            }
+            // Save or update the transaction and add the amount to the account
+            transactionRepository.Save(transactionRepository.Selected);
+            transactionManager.AddTransactionAmount(transactionRepository.Selected);
+
             ResetInitLocker();
             Close(this);
         }
@@ -207,7 +216,7 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 //readd the previously removed transaction amount
-                //TODO: check if here will be added too much if you changed the amount of the transaction
+                //TODO: check if here will be added the wrong amount if you changed the amount of the transaction
                 transactionManager.AddTransactionAmount(transactionRepository.Selected);
             }
             ResetInitLocker();

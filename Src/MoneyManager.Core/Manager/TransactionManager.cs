@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyManager.Core.Helper;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
@@ -25,20 +26,6 @@ namespace MoneyManager.Core.Manager
             this.accountRepository = accountRepository;
             this.recurringTransactionManager = recurringTransactionManager;
             this.transactionRepository = transactionRepository;
-        }
-
-        public void SaveTransaction(FinancialTransaction transaction, bool updateRecurring = false)
-        {
-            if (transaction.IsRecurring && updateRecurring)
-            {
-                //TODO: refactor
-                //var recurringTransaction = RecurringTransactionHelper.GetRecurringFromFinancialTransaction(transaction);
-                //recurringTransactionRepository.Save(recurringTransaction);
-                //transaction.RecurringTransaction = recurringTransaction;
-            }
-
-            transactionRepository.Save(transaction);
-            AddTransactionAmount(transaction);
         }
 
         public void DeleteTransaction(FinancialTransaction transaction)
