@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-namespace MoneyManager.Core.Tests.Manager
+﻿namespace MoneyManager.Core.Tests.Manager
 {
     public class TransactionManagerTests
     {

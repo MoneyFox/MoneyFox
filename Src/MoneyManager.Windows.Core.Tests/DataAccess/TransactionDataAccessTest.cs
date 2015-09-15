@@ -27,7 +27,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
                 Amount = firstAmount,
                 Date = DateTime.Today,
                 Note = "this is a note!!!",
-                Cleared = false
+                IsCleared = false
             };
 
             transactionDataAccess.Save(transaction);
@@ -69,7 +69,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
                 Amount = firstAmount,
                 Date = DateTime.Today,
                 Note = "this is a note!!!",
-                Cleared = false
+                IsCleared = false
             };
 
             transactionDataAccess.Save(transaction);

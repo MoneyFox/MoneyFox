@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<cirrious.mvvmcross.binding.droid.views.MvxListView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:background="?android:windowBackground"
+    android:id="@+id/accountList"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="?android:windowBackground">
-    <cirrious.mvvmcross.binding.droid.views.MvxListView
-        android:id="@+id/accountList"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        local:MvxItemTemplate="@layout/accountlistitem"
-        local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />
-</LinearLayout>
+    android:orientation="vertical"
+    local:MvxItemTemplate="@layout/accountlistitem"
+    local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />

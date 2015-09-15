@@ -15,6 +15,7 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+[Bb]undleArtifacts/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/

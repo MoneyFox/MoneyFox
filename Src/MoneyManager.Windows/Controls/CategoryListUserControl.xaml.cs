@@ -14,6 +14,7 @@ namespace MoneyManager.Windows.Controls
         public CategoryListUserControl()
         {
             InitializeComponent();
+
             DataContext = Mvx.Resolve<CategoryListViewModel>();
         }
 

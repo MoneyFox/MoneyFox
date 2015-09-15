@@ -6,6 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Windows.Views;
 
 namespace MoneyManager.Windows
@@ -58,7 +59,8 @@ namespace MoneyManager.Windows
                 start.Start();
             }
 
-            shell.AppFrame.Navigate(typeof (MainView));
+            shell.AppFrame.Navigate(typeof(MainView));
+            new TileHelper(Mvx.Resolve<ModifyTransactionViewModel>()).DoNavigation(e.TileId);
 
             // Ensure the current window is active
             Window.Current.Activate();

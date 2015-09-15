@@ -26,7 +26,7 @@ namespace MoneyManager.Core.Tests.Helper
                 Category = new Category {Id = 16},
                 Date = startDate,
                 Amount = 2135,
-                Cleared = false,
+                IsCleared = false,
                 Type = type,
                 IsRecurring = true
             };
@@ -61,6 +61,79 @@ namespace MoneyManager.Core.Tests.Helper
         {
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => TransactionTypeHelper.GetTypeString(typeInt));
             exception.Message.StartsWith("Passed Number didn't match to a transaction type.").ShouldBeTrue();
+        }
+
+        [Theory]
+        [InlineData(TransactionRecurrence.Daily)]
+        [InlineData(TransactionRecurrence.DailyWithoutWeekend)]
+        [InlineData(TransactionRecurrence.Weekly)]
+        [InlineData(TransactionRecurrence.Yearly)]
+        public void GetFinancialTransactionFromRecurring_RecurringTransaction_CorrectMappedFinancialTrans(TransactionRecurrence recurrence)
+        {
+            var account = new Account {Id = 2};
+
+            var recTrans = new RecurringTransaction
+            {
+                Id = 4,
+                Recurrence = (int) recurrence,
+                StartDate = new DateTime(2015, 08, 25),
+                ChargedAccountId = 2,
+                ChargedAccount = account,
+                Amount = 105
+            };
+
+            var result = RecurringTransactionHelper.GetFinancialTransactionFromRecurring(recTrans);
+
+            result.ChargedAccount.ShouldBe(account);
+            result.ChargedAccountId.ShouldBe(account.Id);
+            result.Amount.ShouldBe(105);
+            result.Date.ShouldBe(DateTime.Today);
+        }
+
+        [Fact]
+        public void GetFinancialTransactionFromRecurring_MonthlyTransaction_CorrectMappedFinancialTrans()
+        {
+            var account = new Account {Id = 2};
+            var dayOfMonth = 26;
+
+            var recTrans = new RecurringTransaction
+            {
+                Id = 4,
+                Recurrence = (int) TransactionRecurrence.Monthly,
+                StartDate = new DateTime(2015, 08, dayOfMonth),
+                ChargedAccountId = 2,
+                ChargedAccount = account,
+                Amount = 105
+            };
+
+            var result = RecurringTransactionHelper.GetFinancialTransactionFromRecurring(recTrans);
+
+            result.ChargedAccount.ShouldBe(account);
+            result.ChargedAccountId.ShouldBe(account.Id);
+            result.Amount.ShouldBe(105);
+            result.Date.ShouldBe(new DateTime(DateTime.Today.Year, DateTime.Today.Month, dayOfMonth));
+        }
+
+        [Theory]
+        [InlineData(TransactionRecurrence.Daily, 1)]
+        [InlineData(TransactionRecurrence.Weekly, 7)]
+        [InlineData(TransactionRecurrence.Monthly, 35)]
+        [InlineData(TransactionRecurrence.Yearly, 380)]
+        public void CheckIfRepeatable_DivRecurrences_ValidatedRecurrence(TransactionRecurrence recurrence, int amountOfDaysBack)
+        {
+            var account = new Account { Id = 2 };
+
+            var recTrans = new RecurringTransaction
+            {
+                Id = 4,
+                Recurrence = (int)recurrence,
+                StartDate = new DateTime(2015, 08, 25),
+                ChargedAccountId = 2,
+                ChargedAccount = account,
+                Amount = 105
+            };
+
+            RecurringTransactionHelper.CheckIfRepeatable(recTrans, new FinancialTransaction {Date = DateTime.Today.AddDays(-amountOfDaysBack) });
         }
     }
 }

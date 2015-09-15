@@ -9,7 +9,6 @@ namespace MoneyManager.Droid.Activities
     [Activity(Label = "TransactionListActivity")]
     public class TransactionListActivity : MvxActivity
     {
-
         public new TransactionListViewModel ViewModel
         {
             get { return (TransactionListViewModel)base.ViewModel; }

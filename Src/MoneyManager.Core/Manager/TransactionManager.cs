@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Core.Manager
 {
@@ -11,7 +12,7 @@ namespace MoneyManager.Core.Manager
     {
         private readonly IRepository<Account> accountRepository;
         private readonly ITransactionRepository transactionRepository;
-        private readonly RecurringTransactionManager recurringTransactionManager;
+        private readonly IDialogService dialogService;
 
         /// <summary>
         ///     Creates an TransactionManager object.
@@ -19,26 +20,11 @@ namespace MoneyManager.Core.Manager
         /// <param name="transactionRepository">Instance of <see cref="ITransactionRepository" /></param>
         /// <param name="accountRepository">Instance of <see cref="IRepository{T}" /></param>
         public TransactionManager(ITransactionRepository transactionRepository,
-            IRepository<Account> accountRepository,
-            RecurringTransactionManager recurringTransactionManager)
+            IRepository<Account> accountRepository, IDialogService dialogService)
         {
             this.accountRepository = accountRepository;
-            this.recurringTransactionManager = recurringTransactionManager;
+            this.dialogService = dialogService;
             this.transactionRepository = transactionRepository;
-        }
-
-        public void SaveTransaction(FinancialTransaction transaction, bool updateRecurring = false)
-        {
-            if (transaction.IsRecurring && updateRecurring)
-            {
-                //TODO: refactor
-                //var recurringTransaction = RecurringTransactionHelper.GetRecurringFromFinancialTransaction(transaction);
-                //recurringTransactionRepository.Save(recurringTransaction);
-                //transaction.RecurringTransaction = recurringTransaction;
-            }
-
-            transactionRepository.Save(transaction);
-            AddTransactionAmount(transaction);
         }
 
         public void DeleteTransaction(FinancialTransaction transaction)
@@ -68,29 +54,15 @@ namespace MoneyManager.Core.Manager
             }
         }
 
-        private async Task CheckForRecurringTransaction(FinancialTransaction transaction,
-            Action recurringTransactionAction)
+        public async Task<bool> CheckForRecurringTransaction(FinancialTransaction transaction)
         {
             if (!transaction.IsRecurring)
             {
+                return false;
             }
 
-            //TODO: refactor this to use the dialog service
-            //var dialog =
-            //    new MessageDialog(Translation.GetTranslation("ChangeSubsequentTransactionsMessage"),
-            //        Translation.GetTranslation("ChangeSubsequentTransactionsTitle"));
-
-            //dialog.Commands.Add(new UICommand(Translation.GetTranslation("RecurringLabel")));
-            //dialog.Commands.Add(new UICommand(Translation.GetTranslation("JustThisLabel")));
-
-            //dialog.DefaultCommandIndex = 1;
-
-            //var result = await dialog.ShowAsync();
-
-            //if (result.Label == Translation.GetTranslation("RecurringLabel"))
-            //{
-            //    recurringTransactionAction();
-            //}
+            return await dialogService.ShowConfirmMessage(Strings.ChangeSubsequentTransactionsTitle, Strings.ChangeSubsequentTransactionsMessage,
+                Strings.RecurringLabel, Strings.JustThisLabel);
         }
 
         public void ClearTransactions()
@@ -115,7 +87,7 @@ namespace MoneyManager.Core.Manager
         /// <param name="transaction">Transaction to remove the account from.</param>
         public void RemoveTransactionAmount(FinancialTransaction transaction)
         {
-            if (transaction.Cleared)
+            if (transaction.IsCleared)
             {
                 PrehandleRemoveIfTransfer(transaction);
 
@@ -166,12 +138,12 @@ namespace MoneyManager.Core.Manager
                 }
 
                 account.CurrentBalance += amountFunc(transaction.Amount);
-                transaction.Cleared = true;
+                transaction.IsCleared = true;
 
                 accountRepository.Save(account);
             } else
             {
-                transaction.Cleared = false;
+                transaction.IsCleared = false;
             }
             transactionRepository.Save(transaction);
 

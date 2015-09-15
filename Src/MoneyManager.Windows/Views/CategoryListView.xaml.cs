@@ -11,6 +11,7 @@ namespace MoneyManager.Windows.Views
         public CategoryListView()
         {
             InitializeComponent();
+            Mvx.Resolve<CategoryListViewModel>().IsSettingCall = false;
             DataContext = Mvx.Resolve<CategoryListViewModel>();
         }
 

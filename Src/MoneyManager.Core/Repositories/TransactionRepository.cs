@@ -119,7 +119,7 @@ namespace MoneyManager.Core.Repositories
         /// <returns>list of uncleared transactions</returns>
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date)
         {
-            return Data.Where(x => x.Cleared == false
+            return Data.Where(x => x.IsCleared == false
                                    && x.Date.Date <= date.Date).ToList();
         }
 

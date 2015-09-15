@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 
-namespace MoneyManager.Windows.Tile
+namespace MoneyManager.Windows.Shortcut
 {
     public abstract class Tile
     {

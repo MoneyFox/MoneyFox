@@ -24,7 +24,8 @@ namespace MoneyManager.Core.ViewModels
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
             IDialogService dialogService,
-            TransactionManager transactionManager, DefaultManager defaultManager)
+            TransactionManager transactionManager,
+            DefaultManager defaultManager)
         {
             this.transactionRepository = transactionRepository;
             this.dialogService = dialogService;
@@ -64,7 +65,8 @@ namespace MoneyManager.Core.ViewModels
         {
             SelectedTransaction = new FinancialTransaction
             {
-                Type = (int)transactionType
+                Type = (int)transactionType,
+                Date = DateTime.Now
             };
         }
 
@@ -77,6 +79,11 @@ namespace MoneyManager.Core.ViewModels
         ///     Saves the transaction or updates the existing depending on the IsEdit Flag.
         /// </summary>
         public IMvxCommand SaveCommand => new MvxCommand(Save);
+
+        /// <summary>
+        ///     Opens to the SelectCategoryView
+        /// </summary>
+        public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
 
         /// <summary>
         ///     Delets the transaction or updates the existing depending on the IsEdit Flag.
@@ -158,7 +165,7 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
-        private void Save()
+        private async void Save()
         {
             if (transactionRepository.Selected.ChargedAccount == null)
             {
@@ -166,16 +173,24 @@ namespace MoneyManager.Core.ViewModels
                 return;
             }
 
-            if (IsEdit)
+            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction))
             {
-                transactionManager.SaveTransaction(transactionRepository.Selected);
+                //Update the recurring transaction based on the transaction.
+                var recurringTransaction = RecurringTransactionHelper.
+                    GetRecurringFromFinancialTransaction(SelectedTransaction, IsEndless, Recurrence, EndDate);
+                SelectedTransaction.RecurringTransaction = recurringTransaction;
             }
-            else
-            {
-                transactionManager.SaveTransaction(transactionRepository.Selected);
-            }
+            // Save or update the transaction and add the amount to the account
+            transactionRepository.Save(SelectedTransaction);
+            transactionManager.AddTransactionAmount(SelectedTransaction);
+
             ResetInitLocker();
             Close(this);
+        }
+
+        private void OpenSelectCategoryList()
+        {
+            ShowViewModel<CategoryListViewModel>();
         }
 
         private void Delete()
@@ -196,7 +211,7 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 //readd the previously removed transaction amount
-                //TODO: check if here will be added too much if you changed the amount of the transaction
+                //TODO: check if here will be added the wrong amount if you changed the amount of the transaction
                 transactionManager.AddTransactionAmount(transactionRepository.Selected);
             }
             ResetInitLocker();

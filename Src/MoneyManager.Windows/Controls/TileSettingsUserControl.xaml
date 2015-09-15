@@ -4,10 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:MoneyManager.Windows.Converter"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
+    <UserControl.Resources>
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
     <Grid>
         <StackPanel>
             <ToggleSwitch VerticalAlignment="Center"
@@ -31,7 +35,7 @@
                 <Grid Grid.Column="0"
                       VerticalAlignment="Stretch"
                       HorizontalAlignment="Stretch">
-                    <Image Source="/Images/incomeTileIcon.png"
+                    <Image Source="/Assets/incomeTileIcon.png"
                            VerticalAlignment="Stretch"
                            HorizontalAlignment="Stretch" />
                 </Grid>
@@ -40,12 +44,15 @@
                         Grid.Column="1"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
+                        Command="{Binding CreateIncomeShortcutCommand}"
+                        Visibility="{Binding IsIncomeShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
                         Margin="12,0,0,0" />
                 <Button Content="remove income tile"
                         x:Uid="RemoveIncomeTile"
-                        x:Name="ButtonRemoveIncomeTile"
                         Grid.Column="1"
                         Margin="12,0,0,0"
+                        Visibility="{Binding IsIncomeShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding RemoveIncomeShortcutCommand}"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center" />
             </Grid>
@@ -56,7 +63,7 @@
                     <ColumnDefinition Width="301*" />
                 </Grid.ColumnDefinitions>
                 <Grid>
-                    <Image Source="/Images/spendingTileIcon.png"
+                    <Image Source="/Assets/spendingTileIcon.png"
                            Grid.Column="0"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Stretch" />
@@ -66,10 +73,14 @@
                         Grid.Column="1"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Stretch"
+                        Command="{Binding CreateSpendingShortcutCommand}"
+                        Visibility="{Binding IsSpendingShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
                         Margin="12,0,0,0" />
                 <Button Content="remove spending tile"
                         x:Uid="RemoveSpendingTile"
                         Grid.Column="1"
+                        Visibility="{Binding IsSpendingShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Command="{Binding RemoveSpendingShortcutCommand}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Stretch"
                         Margin="12,0,0,0"/>
@@ -81,7 +92,7 @@
                     <ColumnDefinition Width="301*" />
                 </Grid.ColumnDefinitions>
                 <Grid >
-                    <Image Source="/Images/transferTileIcon.png"
+                    <Image Source="/Assets/transferTileIcon.png"
                            Grid.Column="0"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Stretch" />
@@ -91,10 +102,14 @@
                         Grid.Column="1"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Stretch"
+                        Command="{Binding CreateTransferShortcutCommand}"
+                        Visibility="{Binding IsTransferShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
                         Margin="12,0,0,0" />
                 <Button Content="remove transfer tile"
                         x:Uid="RemoveTransferTile"
                         Grid.Column="1"
+                        Command="{Binding RemoveTransferShortcutCommand}"
+                        Visibility="{Binding IsTransferShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Stretch"
                         Margin="12,0,0,0" />
