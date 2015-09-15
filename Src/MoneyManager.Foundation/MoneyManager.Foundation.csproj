@@ -62,6 +62,7 @@
     <Compile Include="OperationContracts\IDialogService.cs" />
     <Compile Include="OperationContracts\ILocalize.cs" />
     <Compile Include="OperationContracts\IRepository.cs" />
+    <Compile Include="OperationContracts\IRoamingSettings.cs" />
     <Compile Include="OperationContracts\Shotcuts\IShortcut.cs" />
     <Compile Include="OperationContracts\Shotcuts\ITransferShortcut.cs" />
     <Compile Include="OperationContracts\Shotcuts\IIncomeShortcut.cs" />

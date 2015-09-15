@@ -28,7 +28,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 new Mock<IRepository<Account>>().Object,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess());
+            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
@@ -60,7 +60,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 new Mock<IRepository<Account>>().Object,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess());
+            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),

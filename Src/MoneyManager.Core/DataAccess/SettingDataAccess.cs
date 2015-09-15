@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
 namespace MoneyManager.Core.DataAccess
@@ -7,33 +8,25 @@ namespace MoneyManager.Core.DataAccess
     [ImplementPropertyChanged]
     public class SettingDataAccess : INotifyPropertyChanged
     {
+        // Settings Names
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
+
+        // Default Settings
         private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
         private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = false;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void AddOrUpdateValue(string key, object value)
+        private readonly IRoamingSettings roamingSettings;
+
+        public SettingDataAccess(IRoamingSettings roamingSettings)
         {
-            //TODO Refactor: DB or replace with Interface
-            //ApplicationData.Current.RoamingSettings.Values[key] = value;
+            this.roamingSettings = roamingSettings;
         }
 
-        private TValueType GetValueOrDefault<TValueType>(string key, TValueType defaultValue)
+        private void AddOrUpdateValue(string key, object value)
         {
-            var value = defaultValue;
-
-            //TODO Refactor: DB or replace with Interface
-            //if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key))
-            //{
-            //    var setting = ApplicationData.Current.RoamingSettings.Values[key];
-            //    value = (TValueType) Convert.ChangeType(setting, typeof (TValueType), CultureInfo.InvariantCulture);
-            //}
-            //else
-            //{
-            //    value = defaultValue;
-            //}
-            return value;
+            roamingSettings.AddOrUpdateValue(key, value);
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -46,7 +39,7 @@ namespace MoneyManager.Core.DataAccess
 
         public int DefaultAccount
         {
-            get { return GetValueOrDefault(DEFAULT_ACCOUNT_KEYNAME, DEFAULT_ACCOUNT_KEYDEFAULT); }
+            get { return roamingSettings.GetValueOrDefault(DEFAULT_ACCOUNT_KEYNAME, DEFAULT_ACCOUNT_KEYDEFAULT); }
             set
             {
                 AddOrUpdateValue(DEFAULT_ACCOUNT_KEYNAME, value);
@@ -58,7 +51,7 @@ namespace MoneyManager.Core.DataAccess
         {
             get
             {
-                return GetValueOrDefault(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT);
+                return roamingSettings.GetValueOrDefault(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT);
             }
             set
             {

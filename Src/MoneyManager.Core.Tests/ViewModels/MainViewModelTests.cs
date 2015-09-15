@@ -26,10 +26,10 @@ namespace MoneyManager.Core.Tests.ViewModels
             var dbHelper = new Mock<IDbHelper>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper), new RecurringTransactionDataAccess(dbHelper));
-            var settings = new SettingDataAccess();
+            var settings = new SettingDataAccess(new Mock<IRoamingSettings>().Object);
             var transactionManager = new TransactionManager(transactionRepository, accountRepository, new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(accountRepository, new SettingDataAccess());
+            var defaultManager = new DefaultManager(accountRepository, new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
             var modifyTransactionViewModel =
                 new ModifyTransactionViewModel(transactionRepository,

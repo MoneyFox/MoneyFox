@@ -163,6 +163,7 @@
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DatabasePath.cs" />
     <Compile Include="Src\DialogService.cs" />
+    <Compile Include="Src\RoamingSettings.cs" />
     <Compile Include="Src\StoreFeatures.cs" />
     <Compile Include="Src\RegionLogic.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
