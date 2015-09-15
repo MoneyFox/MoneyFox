@@ -253,32 +253,6 @@
           "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
       "NotificationsExtensions/1.0.0": {
         "compile": {
           "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
@@ -1952,32 +1926,6 @@
         "runtime": {
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
           "lib/uap/Cirrious.MvvmCross.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
       "NotificationsExtensions/1.0.0": {
@@ -3686,32 +3634,6 @@
         "runtime": {
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
           "lib/uap/Cirrious.MvvmCross.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
       "NotificationsExtensions/1.0.0": {
@@ -5427,32 +5349,6 @@
           "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
       "NotificationsExtensions/1.0.0": {
         "compile": {
           "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
@@ -7159,32 +7055,6 @@
         "runtime": {
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
           "lib/uap/Cirrious.MvvmCross.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
       "NotificationsExtensions/1.0.0": {
@@ -8900,32 +8770,6 @@
           "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
       "NotificationsExtensions/1.0.0": {
         "compile": {
           "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
@@ -10632,32 +10476,6 @@
         "runtime": {
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {},
           "lib/uap/Cirrious.MvvmCross.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
       "NotificationsExtensions/1.0.0": {
@@ -12912,81 +12730,6 @@
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Touch.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.dll",
         "package/services/metadata/core-properties/1b2ecd52152f4ba6a0eaf3d0c1b3486d.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
-    "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
-      "sha512": "CiFP/TKWtOrKqhCnrSoGbAU3IT14tzFm3EQlWRHQ60Nb2UldcxfxRqYfsl4tP/UWzAGLDa/i9i79ANUbUOobpg==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "MvvmCross.HotTuna.Plugin.Email.nuspec",
-        "lib/portable-win+net45+wp8+win8+wpa81/MvvmCross.Plugins.Email.dll",
-        "lib/dotnet/MvvmCross.Plugins.Email.dll",
-        "lib/net45/MvvmCross.Plugins.Email.dll",
-        "lib/net45/MvvmCross.Plugins.Email.Wpf.dll",
-        "content/net45/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "lib/netcore45/MvvmCross.Plugins.Email.dll",
-        "lib/netcore45/MvvmCross.Plugins.Email.WindowsStore.dll",
-        "lib/netcore45/MvvmCross.Plugins.Email.WindowsStore.pri",
-        "content/netcore45/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "lib/wp8/MvvmCross.Plugins.Email.dll",
-        "lib/wp8/MvvmCross.Plugins.Email.WindowsPhone.dll",
-        "content/wp8/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "lib/win81/MvvmCross.Plugins.Email.dll",
-        "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll",
-        "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.pri",
-        "content/win81/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "lib/wpa81/MvvmCross.Plugins.Email.dll",
-        "lib/wpa81/MvvmCross.Plugins.Email.WindowsCommon.dll",
-        "lib/wpa81/MvvmCross.Plugins.Email.WindowsCommon.pri",
-        "content/wpa81/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.WindowsCommon.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.WindowsCommon.pri",
-        "lib/MonoAndroid/MvvmCross.Plugins.Email.dll",
-        "lib/MonoAndroid/MvvmCross.Plugins.Email.Droid.dll",
-        "content/MonoAndroid/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.dll",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.Touch.dll",
-        "content/Xamarin.iOS10/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "package/services/metadata/core-properties/3a53d8378636489aba895e037a01643d.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
-    "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
-      "sha512": "x/IOsk/ZUdd54WAdrpZb57h6pkMNkFAAbP8poWBjFU/W51W8KtUJBSVIrZwRkIonoKOygVWbqcitTZE29X+edA==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "MvvmCross.HotTuna.Plugin.WebBrowser.nuspec",
-        "lib/portable-win+net45+wp8+win8+wpa81/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/dotnet/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/netcore45/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/netcore45/MvvmCross.Plugins.WebBrowser.WindowsStore.dll",
-        "lib/netcore45/MvvmCross.Plugins.WebBrowser.WindowsStore.pri",
-        "content/netcore45/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "lib/wp8/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/wp8/MvvmCross.Plugins.WebBrowser.WindowsPhone.dll",
-        "content/wp8/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "lib/win81/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
-        "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
-        "content/win81/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "lib/wpa81/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
-        "lib/wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
-        "content/wpa81/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
-        "lib/MonoAndroid/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/MonoAndroid/MvvmCross.Plugins.WebBrowser.Droid.dll",
-        "content/MonoAndroid/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.Touch.dll",
-        "content/Xamarin.iOS10/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "package/services/metadata/core-properties/ce9da581fe3c48d992cf070d9746f6d1.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -15905,8 +15648,6 @@
       "LiveSDK >= 5.6.3",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta3",
-      "MvvmCross.HotTuna.Plugin.Email >= 4.0.0-beta3",
-      "MvvmCross.HotTuna.Plugin.WebBrowser >= 4.0.0-beta3",
       "NotificationsExtensions >= 1.0.0",
       "SQLite.Net-PCL >= 3.0.5",
       "WinRTXamlToolkit.Controls.DataVisualization >= 1.6.1.3",

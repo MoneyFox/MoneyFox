@@ -8,6 +8,7 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly ITransactionRepository transactionRepository;
 
+        //TODO: maybe refactor this to use just a button instead of a own control.
         /// <summary>
         ///     Creates an SelectCategoryTextBoxViewModel instance
         /// </summary>

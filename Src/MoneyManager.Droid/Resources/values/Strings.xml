@@ -8,8 +8,10 @@
   <string name="action_add_spending">Add Spending</string>
   <string name="action_add_transfer">Add Transfer</string>
   <string name="action_add_account">Add Account</string>
+  <string name="action_add">Add</string>
   <string name="action_delete">Delete</string>
   <string name="action_save">Save</string>
+  <string name="action_done">Done</string>
 
   <!--hints-->
   <string name="hint_account_name">Account Name</string>
@@ -28,9 +30,10 @@
 
   <!--buttons-->
   <string name="button_date">Date</string>
+  <string name="button_category">Category</string>
   <string name="button_rate">Rate us!</string>
   
   <!--labels-->
-  <string name="label_cleared">Cleared: </string>
+  <string name="label_cleared">IsCleared: </string>
 
 </resources>

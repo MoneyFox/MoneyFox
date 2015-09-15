@@ -10,13 +10,22 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Accept"
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Accept"
                           Label="Done"
                           x:Uid="DoneLabel"
                           Command="{Binding DoneCommand}"/>
-            <AppBarButton Icon="Add"
-                          Label="add" x:Uid="AddLabel"
-                          Click="AddCategory" />
+                <AppBarButton Icon="Cancel"
+                              x:Uid="Cancel"
+                              Label="Cancel"
+                              Command="{Binding CancelCommand}" />
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Add"
+                              Label="add"
+                              x:Uid="AddLabel"
+                              Click="AddCategory" />
+            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -36,7 +45,7 @@
         <Grid Grid.Row="1"
               Margin="0,9.5,0,0"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <userControls:CategoryListUserControl />
+            <userControls:CategoryListUserControl/>
         </Grid>
     </Grid>
 </views:MvxWindowsPage>

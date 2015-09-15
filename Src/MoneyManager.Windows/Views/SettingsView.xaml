@@ -7,22 +7,34 @@
     xmlns:controls="using:MoneyManager.Windows.Controls"
     mc:Ignorable="d">
 
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Add"
+                              Label="New Category"
+                              x:Uid="AddCategoryLabel"
+                              Click="AddCategory" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <controls:PageHeader>
-            <controls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Settings"
-                           x:Uid="SettingsTitle" />
-            </controls:PageHeader.HeaderContent>
-        </controls:PageHeader>
-
         <Grid Grid.Row="1">
-            <controls:TileSettingsUserControl />
+            <Pivot Margin="0,30,0,0">
+                <PivotItem Header="Tiles"
+                           x:Uid="TilesHeader">
+                    <controls:TileSettingsUserControl />
+                </PivotItem>
+
+                <PivotItem Header="Categories"
+                           x:Uid="CategoriesHeader">
+                    <controls:CategoryListUserControl />
+                </PivotItem>
+            </Pivot>
         </Grid>
     </Grid>
 </Page>

@@ -26,6 +26,10 @@
                         <MenuFlyoutItem x:Uid="Delete"
                                         Text="Delete"
                                         Click="Delete_OnClick" />
+                        <MenuFlyoutSeparator />
+                        <MenuFlyoutItem x:Uid="AddAccountText"
+                                        Text="Add Account"
+                                        Command="{Binding GoToAddAccountCommand}" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <StackPanel Margin="0,0,0, 12" >

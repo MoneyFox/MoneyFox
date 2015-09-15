@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/action_done"
+        android:icon="@drawable/ic_done"
+        android:title="@string/action_done"
+        android:showAsAction="ifRoom|withText" />
+  <item android:id="@+id/action_add"
+      android:icon="@drawable/ic_add_circle"
+      android:title="@string/action_add"
+      android:showAsAction="withText" />
+</menu>

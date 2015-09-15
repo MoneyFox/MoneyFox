@@ -26,15 +26,13 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
-        <converter:TransactionStyleConverter x:Key="TransactionStyleConverter" />
 
         <DataTemplate x:Key="TransactionTemplate">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
                         Holding="TransactionList_Holding"
-                        RightTapped="TransactionList_RightTapped"
-                        Opacity="{Binding Converter={StaticResource TransactionStyleConverter}}">
+                        RightTapped="TransactionList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
@@ -76,6 +74,13 @@
                                 DataContext="/Assets/{0}/transfer.png"
                                 Width="30"
                                 Height="30" />
+                        </Grid>
+                        <Grid HorizontalAlignment="Right"
+                              Visibility="{Binding IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Image Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
+                                   DataContext="/Assets/{0}/done.png"
+                                   Width="30"
+                                   Height="30" />
                         </Grid>
                         <Grid HorizontalAlignment="Right"
                               Visibility="{Binding IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
