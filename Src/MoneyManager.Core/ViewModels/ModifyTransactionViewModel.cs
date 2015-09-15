@@ -165,7 +165,7 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
-        private void Save()
+        private async void Save()
         {
             if (transactionRepository.Selected.ChargedAccount == null)
             {
@@ -173,21 +173,16 @@ namespace MoneyManager.Core.ViewModels
                 return;
             }
 
-            if (IsEdit)
+            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction))
             {
                 //Update the recurring transaction based on the transaction.
-                if (transactionRepository.Selected.IsRecurring)
-                {
-                    var recurringTransaction = RecurringTransactionHelper.
-                        GetRecurringFromFinancialTransaction(transactionRepository.Selected, IsEndless, Recurrence, EndDate);
-                    transactionRepository.Selected.RecurringTransaction = recurringTransaction;
-                }
-                transactionRepository.Save(transactionRepository.Selected);
-                transactionManager.AddTransactionAmount(transactionRepository.Selected);
+                var recurringTransaction = RecurringTransactionHelper.
+                    GetRecurringFromFinancialTransaction(SelectedTransaction, IsEndless, Recurrence, EndDate);
+                SelectedTransaction.RecurringTransaction = recurringTransaction;
             }
             // Save or update the transaction and add the amount to the account
-            transactionRepository.Save(transactionRepository.Selected);
-            transactionManager.AddTransactionAmount(transactionRepository.Selected);
+            transactionRepository.Save(SelectedTransaction);
+            transactionManager.AddTransactionAmount(SelectedTransaction);
 
             ResetInitLocker();
             Close(this);

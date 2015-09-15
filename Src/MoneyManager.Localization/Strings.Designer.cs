@@ -170,6 +170,24 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This transaction is recurring. Do you want to update the future transactions aswell or just this occurence?.
+        /// </summary>
+        public static string ChangeSubsequentTransactionsMessage {
+            get {
+                return ResourceManager.GetString("ChangeSubsequentTransactionsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Recurrence?.
+        /// </summary>
+        public static string ChangeSubsequentTransactionsTitle {
+            get {
+                return ResourceManager.GetString("ChangeSubsequentTransactionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Daily.
         /// </summary>
         public static string DailyLabel {
@@ -296,6 +314,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Just This.
+        /// </summary>
+        public static string JustThisLabel {
+            get {
+                return ResourceManager.GetString("JustThisLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login failed!.
         /// </summary>
         public static string LoginFailedMessage {
@@ -391,6 +418,15 @@ namespace MoneyManager.Localization {
         public static string OverwriteTitle {
             get {
                 return ResourceManager.GetString("OverwriteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update All.
+        /// </summary>
+        public static string RecurringLabel {
+            get {
+                return ResourceManager.GetString("RecurringLabel", resourceCulture);
             }
         }
         
