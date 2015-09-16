@@ -164,6 +164,7 @@ namespace MoneyManager.Core.ViewModels
         {
             if (IsEdit)
             {
+                //remove transaction on edit, on save or cancel the amount is added again.
                 transactionManager.RemoveTransactionAmount(SelectedTransaction);
             }
         }
