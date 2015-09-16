@@ -39,7 +39,7 @@ namespace MoneyManager.Windows
 
         protected override IMvxApplication CreateApp()
         {
-            var insightKey = "e5c4ac56bb1ca47559bc8d4973d0a8c4d78c7648";
+            var insightKey = "599ff6bfdc79368ff3d5f5629a57c995fe93352e";
 
 #if DEBUG
             insightKey = Insights.DebugModeKey;
