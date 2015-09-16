@@ -44,17 +44,12 @@ namespace MoneyManager.Windows.Controls
             (DataContext as AccountListViewModel)?.EditAccountCommand.Execute(account);
         }
 
-        private async void Delete_OnClick(object sender, RoutedEventArgs e)
+        private void Delete_OnClick(object sender, RoutedEventArgs e)
         {
             //this has to be called before the dialog service since otherwise the datacontext is reseted and the account will be null
             var element = (FrameworkElement)sender;
             var account = element.DataContext as Account;
             if (account == null)
-            {
-                return;
-            }
-
-            if (!await new DialogService().ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteConfirmationMessage))
             {
                 return;
             }
