@@ -147,9 +147,6 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>Cashflow</value>
   </data>
-  <data name="DeleteConfirmationMessage" xml:space="preserve">
-    <value>Do you wanna Delete this entry?</value>
-  </data>
   <data name="DeleteTitle" xml:space="preserve">
     <value>Delete?</value>
   </data>
@@ -290,5 +287,14 @@
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
+  </data>
+  <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this account?</value>
+  </data>
+  <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this category?</value>
+  </data>
+  <data name="DeleteTransactionConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this transaction?</value>
   </data>
 </root>

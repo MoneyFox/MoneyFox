@@ -2,6 +2,7 @@
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -10,18 +11,21 @@ namespace MoneyManager.Core.ViewModels
     public class AccountListViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly TransactionListViewModel transactionListViewModel;
         private readonly BalanceViewModel balanceViewModel;
+        private readonly IDialogService dialogService;
         private readonly ModifyAccountViewModel modifyAccountViewModel;
+        private readonly TransactionListViewModel transactionListViewModel;
 
         public AccountListViewModel(IRepository<Account> accountRepository,
             TransactionListViewModel transactionListViewModel,
-            BalanceViewModel balanceViewModel, ModifyAccountViewModel modifyAccountViewModel)
+            BalanceViewModel balanceViewModel, ModifyAccountViewModel modifyAccountViewModel,
+            IDialogService dialogService)
         {
             this.accountRepository = accountRepository;
             this.transactionListViewModel = transactionListViewModel;
             this.balanceViewModel = balanceViewModel;
             this.modifyAccountViewModel = modifyAccountViewModel;
+            this.dialogService = dialogService;
         }
 
         /// <summary>
@@ -46,7 +50,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Deletes the selected account
         /// </summary>
-        public MvxCommand<Account> DeleteAccountCommand=> new MvxCommand<Account>(Delete);
+        public MvxCommand<Account> DeleteAccountCommand => new MvxCommand<Account>(Delete);
 
         /// <summary>
         ///     Prepare everything and navigate to AddAccount view
@@ -74,10 +78,13 @@ namespace MoneyManager.Core.ViewModels
             ShowViewModel<TransactionListViewModel>();
         }
 
-        private void Delete(Account item)
+        private async void Delete(Account item)
         {
-            balanceViewModel.UpdateBalance();
-            accountRepository.Delete(item);
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            {
+                balanceViewModel.UpdateBalance();
+                accountRepository.Delete(item);
+            }
         }
 
         private void GoToAddAccount()

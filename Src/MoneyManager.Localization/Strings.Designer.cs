@@ -215,11 +215,20 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wanna Delete this entry?.
+        ///   Looks up a localized string similar to Do you really want to delete this account?.
         /// </summary>
-        public static string DeleteConfirmationMessage {
+        public static string DeleteAccountConfirmationMessage {
             get {
-                return ResourceManager.GetString("DeleteConfirmationMessage", resourceCulture);
+                return ResourceManager.GetString("DeleteAccountConfirmationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete this category?.
+        /// </summary>
+        public static string DeleteCategoryConfirmationMessage {
+            get {
+                return ResourceManager.GetString("DeleteCategoryConfirmationMessage", resourceCulture);
             }
         }
         
@@ -238,6 +247,15 @@ namespace MoneyManager.Localization {
         public static string DeleteTitle {
             get {
                 return ResourceManager.GetString("DeleteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete this transaction?.
+        /// </summary>
+        public static string DeleteTransactionConfirmationMessage {
+            get {
+                return ResourceManager.GetString("DeleteTransactionConfirmationMessage", resourceCulture);
             }
         }
         

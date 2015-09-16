@@ -183,6 +183,7 @@ namespace MoneyManager.Core.ViewModels
                     GetRecurringFromFinancialTransaction(SelectedTransaction, IsEndless, Recurrence, EndDate);
                 SelectedTransaction.RecurringTransaction = recurringTransaction;
             }
+
             // Save or update the transaction and add the amount to the account
             transactionRepository.Save(SelectedTransaction);
             transactionManager.AddTransactionAmount(SelectedTransaction);
@@ -196,11 +197,14 @@ namespace MoneyManager.Core.ViewModels
             ShowViewModel<CategoryListViewModel>();
         }
 
-        private void Delete()
+        private async void Delete()
         {
-            transactionManager.DeleteTransaction(transactionRepository.Selected);
-            ResetInitLocker();
-            Close(this);
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+            {
+                transactionManager.DeleteTransaction(transactionRepository.Selected);
+                ResetInitLocker();
+                Close(this);
+            }
         }
 
         private async void ShowAccountRequiredMessage()

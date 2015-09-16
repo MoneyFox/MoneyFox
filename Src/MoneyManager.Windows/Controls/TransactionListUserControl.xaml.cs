@@ -35,7 +35,7 @@ namespace MoneyManager.Windows.Controls
             {
                 return;
             }
-            (DataContext as TransactionListViewModel)?.DeleteCommand.Execute(transaction);
+            (DataContext as TransactionListViewModel)?.DeleteTransactionCommand.Execute(transaction);
         }
 
         private void TransactionList_Holding(object sender, HoldingRoutedEventArgs e)
