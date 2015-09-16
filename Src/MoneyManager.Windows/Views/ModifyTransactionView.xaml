@@ -62,7 +62,7 @@
         <Grid Grid.Row="1"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
             <ScrollViewer>
-                <StackPanel Margin="12,0,24,0">
+                <StackPanel Margin="12,0,12,0">
                     <ComboBox Header="charged account"
                               x:Uid="ChargedAccount"
                               HorizontalAlignment="Stretch"
@@ -78,8 +78,7 @@
                               SelectedItem="{Binding SelectedTransaction.TargetAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Visibility="{Binding IsTransfer, Converter={StaticResource BooleanVisibilityConverter}}"
                               Margin="0,7,0,0" />
-                    <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay, 
-                    Converter={StaticResource AmountConverter}, UpdateSourceTrigger=PropertyChanged }"
+                    <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay}"
                              Header="amount"
                              InputScope="Number"
                              x:Name="TextBoxAmount"

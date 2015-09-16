@@ -40,9 +40,12 @@ namespace MoneyManager.Core.ViewModels
         //TODO: Find another way than this...
         private static bool isInitCall = true;
 
-        public void Init(string typeString)
+        public void Init(string typeString, bool isEdit)
         {
+            //Ensure that init is only called once
             if (!isInitCall) return;
+
+            IsEdit = isEdit;
 
             var type = ((TransactionType)Enum.Parse(typeof(TransactionType), typeString));
             IsEndless = true;

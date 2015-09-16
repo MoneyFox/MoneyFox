@@ -40,13 +40,13 @@
                            Text="BackupInformation"
                            Margin="0,0,0,12"
                            TextWrapping="WrapWholeWords" />
-                <Button Content="Create BackupManager"
-                        x:Uid="CreateBackupManager"
+                <Button Content="Create Backup"
+                        x:Uid="CreateBackup"
                         Command="{Binding BackupCommand}"
                         HorizontalAlignment="Stretch"
                         Margin="0,0,0,7" />
                 <Button Content="Restore"
-                        x:Uid="RestoreBackupManager"
+                        x:Uid="RestoreBackup"
                         Command="{Binding RestoreCommand}"
                         HorizontalAlignment="Stretch" />
             </StackPanel>

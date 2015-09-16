@@ -90,7 +90,7 @@ namespace MoneyManager.Core.ViewModels
 
             transactionRepository.Selected = SelectedTransaction;
 
-            ShowViewModel<ModifyTransactionViewModel>(new { typeString = TransactionTypeHelper.GetTypeString(SelectedTransaction.Type) });
+            ShowViewModel<ModifyTransactionViewModel>(new { typeString = TransactionTypeHelper.GetTypeString(SelectedTransaction.Type), isEdit = true });
             SelectedTransaction = null;
         }
 
