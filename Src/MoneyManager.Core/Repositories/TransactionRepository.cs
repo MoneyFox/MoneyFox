@@ -146,9 +146,10 @@ namespace MoneyManager.Core.Repositories
         /// <returns>list of recurring transactions</returns>
         public IEnumerable<FinancialTransaction> LoadRecurringList(Func<FinancialTransaction, bool> filter = null)
         {
-            return dataAccess.LoadList(x => x.IsRecurring && x.RecurringTransaction != null
+            return Data.Where(x => x.IsRecurring && x.RecurringTransaction != null
                                      && (x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date)
-                                     && filter.Invoke(x));
+                                     && (filter == null || filter.Invoke(x)))
+                                     .ToList();
         }
     }
 }

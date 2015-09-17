@@ -177,7 +177,7 @@ namespace MoneyManager.Core.ViewModels
                 return;
             }
 
-            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction))
+            if ((IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction)) || SelectedTransaction.IsRecurring)
             {
                 //Update the recurring transaction based on the transaction.
                 var recurringTransaction = RecurringTransactionHelper.

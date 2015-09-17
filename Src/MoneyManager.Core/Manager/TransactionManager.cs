@@ -146,7 +146,6 @@ namespace MoneyManager.Core.Manager
                 transaction.IsCleared = false;
             }
             transactionRepository.Save(transaction);
-
         }
 
         private void PrehandleAddIfTransfer(FinancialTransaction transaction)

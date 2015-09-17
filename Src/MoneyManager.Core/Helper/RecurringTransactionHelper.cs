@@ -22,7 +22,9 @@ namespace MoneyManager.Core.Helper
             return new RecurringTransaction
             {
                 ChargedAccount = transaction.ChargedAccount,
+                ChargedAccountId = transaction.ChargedAccountId,
                 TargetAccount = transaction.TargetAccount,
+                TargetAccountId = transaction.TargetAccountId,
                 StartDate = transaction.Date,
                 EndDate = enddate,
                 IsEndless = isEndless,
