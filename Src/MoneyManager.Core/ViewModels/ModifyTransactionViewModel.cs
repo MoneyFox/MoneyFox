@@ -191,6 +191,7 @@ namespace MoneyManager.Core.ViewModels
             // Save or update the transaction and add the amount to the account
             transactionRepository.Save(SelectedTransaction);
             transactionManager.AddTransactionAmount(SelectedTransaction);
+           
 
             ResetInitLocker();
             Close(this);

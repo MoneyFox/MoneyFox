@@ -4,7 +4,6 @@ using Windows.UI.Xaml.Input;
 using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
 
 namespace MoneyManager.Windows.Controls
 {

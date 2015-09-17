@@ -106,6 +106,7 @@ namespace MoneyManager.Core.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
             {
                 transactionManager.DeleteTransaction(transaction);
+                RelatedTransactions.Remove(transaction);
                 balanceViewModel.UpdateBalance();
             }
         }
