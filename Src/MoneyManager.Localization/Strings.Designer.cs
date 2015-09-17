@@ -143,6 +143,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Money Fox.
+        /// </summary>
+        public static string ApplicationTitle {
+            get {
+                return ResourceManager.GetString("ApplicationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup failed!.
         /// </summary>
         public static string BackupFailedMessage {
@@ -170,6 +179,24 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This transaction is recurring. Do you want to update the future transactions aswell or just this occurence?.
+        /// </summary>
+        public static string ChangeSubsequentTransactionsMessage {
+            get {
+                return ResourceManager.GetString("ChangeSubsequentTransactionsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Recurrence?.
+        /// </summary>
+        public static string ChangeSubsequentTransactionsTitle {
+            get {
+                return ResourceManager.GetString("ChangeSubsequentTransactionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Daily.
         /// </summary>
         public static string DailyLabel {
@@ -188,11 +215,20 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you wanna Delete this entry?.
+        ///   Looks up a localized string similar to Do you really want to delete this account?.
         /// </summary>
-        public static string DeleteConfirmationMessage {
+        public static string DeleteAccountConfirmationMessage {
             get {
-                return ResourceManager.GetString("DeleteConfirmationMessage", resourceCulture);
+                return ResourceManager.GetString("DeleteAccountConfirmationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete this category?.
+        /// </summary>
+        public static string DeleteCategoryConfirmationMessage {
+            get {
+                return ResourceManager.GetString("DeleteCategoryConfirmationMessage", resourceCulture);
             }
         }
         
@@ -211,6 +247,15 @@ namespace MoneyManager.Localization {
         public static string DeleteTitle {
             get {
                 return ResourceManager.GetString("DeleteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete this transaction?.
+        /// </summary>
+        public static string DeleteTransactionConfirmationMessage {
+            get {
+                return ResourceManager.GetString("DeleteTransactionConfirmationMessage", resourceCulture);
             }
         }
         
@@ -292,6 +337,15 @@ namespace MoneyManager.Localization {
         public static string IncreaseLabel {
             get {
                 return ResourceManager.GetString("IncreaseLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Just This.
+        /// </summary>
+        public static string JustThisLabel {
+            get {
+                return ResourceManager.GetString("JustThisLabel", resourceCulture);
             }
         }
         
@@ -391,6 +445,15 @@ namespace MoneyManager.Localization {
         public static string OverwriteTitle {
             get {
                 return ResourceManager.GetString("OverwriteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update All.
+        /// </summary>
+        public static string RecurringLabel {
+            get {
+                return ResourceManager.GetString("RecurringLabel", resourceCulture);
             }
         }
         

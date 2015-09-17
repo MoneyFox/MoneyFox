@@ -5,6 +5,7 @@ using MoneyManager.Core.Helper;
 using MoneyManager.Core.Manager;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -14,6 +15,7 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly IRepository<Account> accountRepository;
         private readonly BalanceViewModel balanceViewModel;
+        private readonly IDialogService dialogService;
         private readonly ModifyTransactionViewModel modifyTransactionViewModel;
         private readonly TransactionManager transactionManager;
         private readonly ITransactionRepository transactionRepository;
@@ -22,20 +24,22 @@ namespace MoneyManager.Core.ViewModels
             IRepository<Account> accountRepository,
             TransactionManager transactionManager,
             BalanceViewModel balanceViewModel,
-            ModifyTransactionViewModel modifyTransactionViewModel)
+            ModifyTransactionViewModel modifyTransactionViewModel, IDialogService dialogService)
         {
             this.transactionRepository = transactionRepository;
             this.accountRepository = accountRepository;
             this.transactionManager = transactionManager;
             this.balanceViewModel = balanceViewModel;
             this.modifyTransactionViewModel = modifyTransactionViewModel;
+            this.dialogService = dialogService;
         }
 
         public MvxCommand<string> GoToAddTransactionCommand => new MvxCommand<string>(GoToAddTransaction);
+        public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
         public MvxCommand LoadedCommand => new MvxCommand(LoadTransactions);
         public MvxCommand UnloadedCommand => new MvxCommand(UnloadTransactions);
         public MvxCommand EditCommand => new MvxCommand(Edit);
-        public MvxCommand<FinancialTransaction> DeleteCommand => new MvxCommand<FinancialTransaction>(Delete);
+        public MvxCommand<FinancialTransaction> DeleteTransactionCommand => new MvxCommand<FinancialTransaction>(DeleteTransaction);
 
         /// <summary>
         ///     Returns all Transaction who are assigned to this repository
@@ -71,8 +75,16 @@ namespace MoneyManager.Core.ViewModels
         private void GoToAddTransaction(string type)
         {
             modifyTransactionViewModel.IsEdit = false;
+            ShowViewModel<ModifyTransactionViewModel>(new {typeString = type});
+        }
 
-            ShowViewModel<ModifyTransactionViewModel>(new { typeString = type });
+        private async void DeleteAccount()
+        {
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            {
+                accountRepository.Delete(accountRepository.Selected);
+                Close(this);
+            }
         }
 
         private void Edit()
@@ -84,15 +96,19 @@ namespace MoneyManager.Core.ViewModels
 
             transactionRepository.Selected = SelectedTransaction;
 
-            ShowViewModel<ModifyTransactionViewModel>(new { typeString = TransactionTypeHelper.GetTypeString(SelectedTransaction.Type) });
+            ShowViewModel<ModifyTransactionViewModel>(new {typeString = TransactionTypeHelper.GetTypeString(SelectedTransaction.Type), isEdit = true});
             SelectedTransaction = null;
         }
 
 
-        private void Delete(FinancialTransaction transaction)
+        private async void DeleteTransaction(FinancialTransaction transaction)
         {
-            transactionManager.DeleteTransaction(transaction);
-            balanceViewModel.UpdateBalance();
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+            {
+                transactionManager.DeleteTransaction(transaction);
+                RelatedTransactions.Remove(transaction);
+                balanceViewModel.UpdateBalance();
+            }
         }
     }
 }

@@ -34,6 +34,10 @@ namespace MoneyManager.Core.DataAccess
                 if (itemToSave.Id == 0)
                 {
                     db.Insert(itemToSave);
+                    if (itemToSave.IsRecurring)
+                    {
+                        db.Insert(itemToSave.RecurringTransaction);
+                    }
                 }
                 else
                 {
@@ -63,7 +67,14 @@ namespace MoneyManager.Core.DataAccess
         {
             using (var db = dbHelper.GetSqlConnection())
             {
-                return db.GetAllWithChildren(filter, true).ToList();
+                var list = db.GetAllWithChildren(filter, true).ToList();
+
+                foreach (var transaction in list.Where(x => x.IsRecurring && x.ReccuringTransactionId != null))
+                {
+                    transaction.RecurringTransaction = db.GetWithChildren<RecurringTransaction>(transaction.ReccuringTransactionId);
+                }
+
+                return list;
             }
         }
     }

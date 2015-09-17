@@ -113,6 +113,7 @@
     <Compile Include="Repositories\AccountRepositoryIntegrationTests.cs" />
     <Compile Include="Repositories\CategoryRepositoryIntegrationTests.cs" />
     <Compile Include="Repositories\TransactionRepositoryIntegrationTests.cs" />
+    <Compile Include="Stubs\RoamingSettingsStub.cs" />
     <Compile Include="UnitTestApp.xaml.cs">
       <DependentUpon>UnitTestApp.xaml</DependentUpon>
     </Compile>

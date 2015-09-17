@@ -115,7 +115,11 @@ namespace MoneyManager.Core.Tests.Helper
         }
 
         [Theory]
-        public void CheckIfRepeatable_RecurringTransaction_ValidatedRecurrnce(TransactionRecurrence recurrence)
+        [InlineData(TransactionRecurrence.Daily, 1)]
+        [InlineData(TransactionRecurrence.Weekly, 7)]
+        [InlineData(TransactionRecurrence.Monthly, 35)]
+        [InlineData(TransactionRecurrence.Yearly, 380)]
+        public void CheckIfRepeatable_DivRecurrences_ValidatedRecurrence(TransactionRecurrence recurrence, int amountOfDaysBack)
         {
             var account = new Account { Id = 2 };
 
@@ -129,7 +133,7 @@ namespace MoneyManager.Core.Tests.Helper
                 Amount = 105
             };
 
-            RecurringTransactionHelper.CheckIfRepeatable(recTrans, new FinancialTransaction {Date = new DateTime(2015, 07, 25) });
+            RecurringTransactionHelper.CheckIfRepeatable(recTrans, new FinancialTransaction {Date = DateTime.Today.AddDays(-amountOfDaysBack) });
         }
     }
 }

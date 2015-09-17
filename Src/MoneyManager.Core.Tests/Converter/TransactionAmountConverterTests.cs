@@ -8,8 +8,8 @@ namespace MoneyManager.Core.Tests.Converter
     public class TransactionAmountConverterTests
     {
         [Theory]
-        [InlineData(TransactionType.Spending, "- Fr. 80.00")]
-        [InlineData(TransactionType.Income, "+ Fr. 80.00")]
+        [InlineData(TransactionType.Spending, "- CHF 80.00")]
+        [InlineData(TransactionType.Income, "+ CHF 80.00")]
         public void Converter_Transaction_AmountSign(TransactionType type, string result)
         {
             new TransactionAmountConverter().Convert(new FinancialTransaction {Amount = 80, Type = (int) type}, null, null, null).ShouldBe(result);
@@ -31,7 +31,7 @@ namespace MoneyManager.Core.Tests.Converter
                     Type = (int) TransactionType.Transfer,
                     ChargedAccount = account
                 }, null, account, null)
-                .ShouldBe("- Fr. 80.00");
+                .ShouldBe("- CHF 80.00");
         }
 
         [Fact]
@@ -48,7 +48,7 @@ namespace MoneyManager.Core.Tests.Converter
                         CurrentBalance = 400
                     }
                 }, null, new Account(), null)
-                .ShouldBe("+ Fr. 80.00");
+                .ShouldBe("+ CHF 80.00");
         }
     }
 }

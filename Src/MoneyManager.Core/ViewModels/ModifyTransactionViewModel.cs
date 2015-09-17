@@ -24,7 +24,8 @@ namespace MoneyManager.Core.ViewModels
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
             IDialogService dialogService,
-            TransactionManager transactionManager, DefaultManager defaultManager)
+            TransactionManager transactionManager,
+            DefaultManager defaultManager)
         {
             this.transactionRepository = transactionRepository;
             this.dialogService = dialogService;
@@ -39,9 +40,12 @@ namespace MoneyManager.Core.ViewModels
         //TODO: Find another way than this...
         private static bool isInitCall = true;
 
-        public void Init(string typeString)
+        public void Init(string typeString, bool isEdit)
         {
+            //Ensure that init is only called once
             if (!isInitCall) return;
+
+            IsEdit = isEdit;
 
             var type = ((TransactionType)Enum.Parse(typeof(TransactionType), typeString));
             IsEndless = true;
@@ -49,6 +53,7 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 IsTransfer = SelectedTransaction.IsTransfer;
+                oldAmount = SelectedTransaction.Amount;
             }
             else 
             {
@@ -96,9 +101,11 @@ namespace MoneyManager.Core.ViewModels
 
         public DateTime EndDate { get; set; }
         public bool IsEndless { get; set; } = true;
-        public bool IsEdit { get; set; } = false;
+        public bool IsEdit { get; set; }
         public int Recurrence { get; set; }
         public bool IsTransfer { get; set; }
+
+        private double oldAmount = 0;
 
         public List<string> RecurrenceList => new List<string>
         {
@@ -160,11 +167,12 @@ namespace MoneyManager.Core.ViewModels
         {
             if (IsEdit)
             {
+                //remove transaction on edit, on save or cancel the amount is added again.
                 transactionManager.RemoveTransactionAmount(SelectedTransaction);
             }
         }
 
-        private void Save()
+        private async void Save()
         {
             if (transactionRepository.Selected.ChargedAccount == null)
             {
@@ -172,14 +180,19 @@ namespace MoneyManager.Core.ViewModels
                 return;
             }
 
-            if (IsEdit)
+            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction) || SelectedTransaction.IsRecurring)
             {
-                transactionManager.SaveTransaction(transactionRepository.Selected);
+                //Update the recurring transaction based on the transaction.
+                var recurringTransaction = RecurringTransactionHelper.
+                    GetRecurringFromFinancialTransaction(SelectedTransaction, IsEndless, Recurrence, EndDate);
+                SelectedTransaction.RecurringTransaction = recurringTransaction;
             }
-            else
-            {
-                transactionManager.SaveTransaction(transactionRepository.Selected);
-            }
+
+            // Save or update the transaction and add the amount to the account
+            transactionRepository.Save(SelectedTransaction);
+            transactionManager.AddTransactionAmount(SelectedTransaction);
+           
+
             ResetInitLocker();
             Close(this);
         }
@@ -189,11 +202,14 @@ namespace MoneyManager.Core.ViewModels
             ShowViewModel<CategoryListViewModel>();
         }
 
-        private void Delete()
+        private async void Delete()
         {
-            transactionManager.DeleteTransaction(transactionRepository.Selected);
-            ResetInitLocker();
-            Close(this);
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+            {
+                transactionManager.DeleteTransaction(transactionRepository.Selected);
+                ResetInitLocker();
+                Close(this);
+            }
         }
 
         private async void ShowAccountRequiredMessage()
@@ -207,8 +223,8 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 //readd the previously removed transaction amount
-                //TODO: check if here will be added too much if you changed the amount of the transaction
-                transactionManager.AddTransactionAmount(transactionRepository.Selected);
+                SelectedTransaction.Amount = oldAmount;
+                transactionManager.AddTransactionAmount(SelectedTransaction);
             }
             ResetInitLocker();
             Close(this);

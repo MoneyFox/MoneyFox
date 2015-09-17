@@ -4,15 +4,9 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:controls="using:MoneyManager.Windows.Controls"
-                      xmlns:converter="using:MoneyManager.Windows.Converter"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       mc:Ignorable="d">
-
-    <Page.Resources>
-        <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
-    </Page.Resources>
-
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Icon="Save"
@@ -55,7 +49,7 @@
                      Margin="0,0,0,12" />
             <Grid>
                 <TextBox
-                    Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay, Converter={StaticResource AmountConverter}}"
+                    Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay}"
                     Header="amount"
                     InputScope="Number"
                     x:Uid="Balance"

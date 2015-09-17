@@ -147,9 +147,6 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>Cashflow</value>
   </data>
-  <data name="DeleteConfirmationMessage" xml:space="preserve">
-    <value>Do you wanna Delete this entry?</value>
-  </data>
   <data name="DeleteTitle" xml:space="preserve">
     <value>Delete?</value>
   </data>
@@ -275,5 +272,29 @@
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
     <value>Daily without weekend</value>
+  </data>
+  <data name="ChangeSubsequentTransactionsMessage" xml:space="preserve">
+    <value>This transaction is recurring. Do you want to update the future transactions aswell or just this occurence?</value>
+  </data>
+  <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
+    <value>Update Recurrence?</value>
+  </data>
+  <data name="JustThisLabel" xml:space="preserve">
+    <value>Just This</value>
+  </data>
+  <data name="RecurringLabel" xml:space="preserve">
+    <value>Update All</value>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Money Fox</value>
+  </data>
+  <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this account?</value>
+  </data>
+  <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this category?</value>
+  </data>
+  <data name="DeleteTransactionConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this transaction?</value>
   </data>
 </root>

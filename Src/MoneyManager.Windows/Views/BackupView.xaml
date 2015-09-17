@@ -28,7 +28,7 @@
 
         <controls:PageHeader>
             <controls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Backup" x:Uid="BackupTitle" />
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="BackupManager" x:Uid="BackupManagerTitle" />
             </controls:PageHeader.HeaderContent>
         </controls:PageHeader>
 
@@ -37,7 +37,7 @@
                     EntranceNavigationTransitionInfo.IsTargetElement="True">
             <StackPanel>
                 <TextBlock x:Uid="BackupInformation"
-                           Text="Backupinformation"
+                           Text="BackupInformation"
                            Margin="0,0,0,12"
                            TextWrapping="WrapWholeWords" />
                 <Button Content="Create Backup"

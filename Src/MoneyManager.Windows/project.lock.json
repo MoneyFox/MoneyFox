@@ -3,22 +3,6 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
-      "CommonServiceLocator/1.3.0": {
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        }
-      },
-      "LiveSDK/5.6.3": {
-        "compile": {
-          "lib/Windows8/_._": {}
-        },
-        "runtime": {
-          "lib/Windows8/_._": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -253,12 +237,12 @@
           "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
-      "NotificationsExtensions/1.0.0": {
+      "NotificationsExtensions.Win10/10240.0.6": {
         "compile": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.0.5": {
@@ -1635,22 +1619,6 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
-      "CommonServiceLocator/1.3.0": {
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        }
-      },
-      "LiveSDK/5.6.3": {
-        "compile": {
-          "lib/Windows8/_._": {}
-        },
-        "runtime": {
-          "lib/Windows8/_._": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -1928,12 +1896,12 @@
           "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
-      "NotificationsExtensions/1.0.0": {
+      "NotificationsExtensions.Win10/10240.0.6": {
         "compile": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.0.5": {
@@ -3357,22 +3325,6 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
-      "CommonServiceLocator/1.3.0": {
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        }
-      },
-      "LiveSDK/5.6.3": {
-        "compile": {
-          "lib/Windows8/_._": {}
-        },
-        "runtime": {
-          "lib/Windows8/_._": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -3636,12 +3588,12 @@
           "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
-      "NotificationsExtensions/1.0.0": {
+      "NotificationsExtensions.Win10/10240.0.6": {
         "compile": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.0.5": {
@@ -5051,22 +5003,6 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
-      "CommonServiceLocator/1.3.0": {
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        }
-      },
-      "LiveSDK/5.6.3": {
-        "compile": {
-          "lib/Windows8/_._": {}
-        },
-        "runtime": {
-          "lib/Windows8/_._": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -5349,12 +5285,12 @@
           "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
-      "NotificationsExtensions/1.0.0": {
+      "NotificationsExtensions.Win10/10240.0.6": {
         "compile": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.0.5": {
@@ -6778,22 +6714,6 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
-      "CommonServiceLocator/1.3.0": {
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        }
-      },
-      "LiveSDK/5.6.3": {
-        "compile": {
-          "lib/Windows8/_._": {}
-        },
-        "runtime": {
-          "lib/Windows8/_._": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -7057,12 +6977,12 @@
           "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
-      "NotificationsExtensions/1.0.0": {
+      "NotificationsExtensions.Win10/10240.0.6": {
         "compile": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.0.5": {
@@ -8472,22 +8392,6 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
-      "CommonServiceLocator/1.3.0": {
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        }
-      },
-      "LiveSDK/5.6.3": {
-        "compile": {
-          "lib/Windows8/_._": {}
-        },
-        "runtime": {
-          "lib/Windows8/_._": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -8770,12 +8674,12 @@
           "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
-      "NotificationsExtensions/1.0.0": {
+      "NotificationsExtensions.Win10/10240.0.6": {
         "compile": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.0.5": {
@@ -10199,22 +10103,6 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
-      "CommonServiceLocator/1.3.0": {
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
-        }
-      },
-      "LiveSDK/5.6.3": {
-        "compile": {
-          "lib/Windows8/_._": {}
-        },
-        "runtime": {
-          "lib/Windows8/_._": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -10478,12 +10366,12 @@
           "lib/uap/Cirrious.MvvmCross.dll": {}
         }
       },
-      "NotificationsExtensions/1.0.0": {
+      "NotificationsExtensions.Win10/10240.0.6": {
         "compile": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
-          "lib/portable-wpa81+win81/NotificationsExtensions.winmd": {}
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.0.5": {
@@ -11894,97 +11782,6 @@
     }
   },
   "libraries": {
-    "CommonServiceLocator/1.3.0": {
-      "sha512": "fbjO0SNwbOFPdwVfyqv+B7gIJ2CVBOFPKqn1mDDECK7KER8jFaOdcvroFYoAHa0ktPbxi5s+15qOLnA96f8GSA==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "CommonServiceLocator.nuspec",
-        "[Content_Types].xml",
-        "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll",
-        "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.pdb",
-        "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.XML",
-        "package/services/metadata/core-properties/99be0c88b2fd41c8b07c42071005ee47.psmdcp",
-        "package/services/metadata/core-properties/8a82b9e5a63a439481bfa8d4ec335002.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
-    "LiveSDK/5.6.3": {
-      "sha512": "H4WZZzmrBIvCHb0m+zmHLbYDuyU3vPojN/sZ3JKxrg9qtY+BLqokGRd/+PQYlSHIMLAG4VoH50wH4z4FhzzB/Q==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "LiveSDK.nuspec",
-        "content/Fonts/LiveSymbol.ttf",
-        "lib/net40/Microsoft.Live.dll",
-        "lib/net45/Microsoft.Live.dll",
-        "lib/Windows8/_._",
-        "lib/WindowsPhone8/cs/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/da/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/de/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/el/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/en/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/en-gb/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/es/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/fi/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/fr/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/hu/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/id/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/it/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/ja/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/ko/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/ms/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/nb-no/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/nl/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/pl/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/pt-br/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/pt-pt/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/ru/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/sv/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/zh-cn/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/zh-tw/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone8/Microsoft.Live.Controls.dll",
-        "lib/WindowsPhone8/Microsoft.Live.dll",
-        "lib/WindowsPhone81/cs/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/da/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/de/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/el/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/en/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/en-gb/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/es/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/fi/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/fr/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/hu/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/id/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/it/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/ja/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/ko/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/ms/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/nb-no/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/nl/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/pl/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/pt-br/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/pt-pt/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/ru/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/sv/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/zh-cn/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/zh-tw/Microsoft.Live.Controls.resources.dll",
-        "lib/WindowsPhone81/Microsoft.Live.Controls.dll",
-        "lib/WindowsPhone81/Microsoft.Live.dll",
-        "tools/Windows8/install.ps1",
-        "tools/Windows8/uninstall.ps1",
-        "tools/Windows81/install.ps1",
-        "tools/Windows81/uninstall.ps1",
-        "tools/WindowsPhoneApp/install.ps1",
-        "tools/WindowsPhoneApp/uninstall.ps1",
-        "WindowsHTML/wl.js",
-        "WindowsPhone8/Microsoft.Live.Controls.Design.dll",
-        "WindowsPhone81/Microsoft.Live.Controls.Design.dll",
-        "WindowsXAML/Microsoft.Live.dll",
-        "package/services/metadata/core-properties/ffd0f25f2cfc40a28fa39b6a274371d1.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
     "Microsoft.CSharp/4.0.0": {
       "sha512": "oWqeKUxHXdK6dL2CFjgMcaBISbkk+AqEg+yvJHE4DElNzS4QaTsCflgkkqZwVlWby1Dg9zo9n+iCAMFefFdJ/A==",
       "type": "Package",
@@ -12733,14 +12530,24 @@
         "[Content_Types].xml"
       ]
     },
-    "NotificationsExtensions/1.0.0": {
-      "sha512": "Xae9eltquOiBk+XxgsPLB3heTs8zOLpjy2Af/7u8WBM3WwDgNt5zXGh0dzgdczAzmF/GeZiyQr//SfOoQBIRbQ==",
+    "NotificationsExtensions.Win10/10240.0.6": {
+      "sha512": "kh33b5LBs1jLRpYZ66SaicwcSg/vwhdZGfmKGuBTBgf7AwoycYYsN5DgkaJjJhxDaak1D21/ZzhLH3HHjiRQaw==",
       "type": "Package",
       "files": [
         "_rels/.rels",
-        "NotificationsExtensions.nuspec",
-        "lib/portable-wpa81+win81/NotificationsExtensions.winmd",
-        "package/services/metadata/core-properties/f0fb5871d757491abc2d64580f6b9cfe.psmdcp",
+        "NotificationsExtensions.Win10.nuspec",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.dll",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.pdb",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.XML",
+        "lib/uap10.0/NotificationsExtensions.winmd",
+        "lib/uap10.0/NotificationsExtensions.pri",
+        "lib/uap10.0/NotificationsExtensions.pdb",
+        "lib/uap10.0/NotificationsExtensions.xml",
+        "lib/uap10.0/NotificationsExtensions.winmd.xml",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.dll",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.pdb",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.XML",
+        "package/services/metadata/core-properties/f4c9f1cad9444e4abe5b980736afea18.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -15644,11 +15451,9 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "CommonServiceLocator >= 1.3.0",
-      "LiveSDK >= 5.6.3",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta3",
-      "NotificationsExtensions >= 1.0.0",
+      "NotificationsExtensions.Win10 >= 10240.0.6",
       "SQLite.Net-PCL >= 3.0.5",
       "WinRTXamlToolkit.Controls.DataVisualization >= 1.6.1.3",
       "Xamarin.Insights >= 1.10.6"

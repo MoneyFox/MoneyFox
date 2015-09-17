@@ -28,7 +28,7 @@ namespace MoneyManager.Core.Tests.Manager
                     new Account {Id = 3, CurrentBalance = 65, Name = "The Rest"}
                 }));
 
-            var settings = new SettingDataAccess {DefaultAccount = defaultAccountId};
+            var settings = new SettingDataAccess(new Mock<IRoamingSettings>().Object) {DefaultAccount = defaultAccountId};
 
             var manager = new DefaultManager(accountRepositorySetup.Object, settings);
 
@@ -44,7 +44,7 @@ namespace MoneyManager.Core.Tests.Manager
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
             accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 5});
 
-            var settings = new SettingDataAccess { DefaultAccount = -1 };
+            var settings = new SettingDataAccess(new Mock<IRoamingSettings>().Object) { DefaultAccount = -1 };
 
             var manager = new DefaultManager(accountRepositorySetup.Object, settings);
 
@@ -59,7 +59,7 @@ namespace MoneyManager.Core.Tests.Manager
             var accountRepositorySetup = new Mock<IRepository<Account>>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
-            var settings = new SettingDataAccess { DefaultAccount = -1 };
+            var settings = new SettingDataAccess(new Mock<IRoamingSettings>().Object) { DefaultAccount = -1 };
 
             var manager = new DefaultManager(accountRepositorySetup.Object, settings);
 

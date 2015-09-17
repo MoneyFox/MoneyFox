@@ -117,7 +117,7 @@ namespace MoneyManager.Core.ViewModels
 
         private async void DeleteCategory(Category categoryToDelete)
         {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteConfirmationMessage))
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
                 categoryRepository.Delete(categoryToDelete);
             }
