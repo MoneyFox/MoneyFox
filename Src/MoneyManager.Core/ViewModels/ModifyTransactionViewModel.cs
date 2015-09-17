@@ -53,6 +53,7 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 IsTransfer = SelectedTransaction.IsTransfer;
+                SelectedTransaction = transactionRepository.Selected;
             }
             else 
             {
@@ -116,11 +117,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     The selected transaction
         /// </summary>
-        public FinancialTransaction SelectedTransaction
-        {
-            get { return transactionRepository.Selected; }
-            set { transactionRepository.Selected = value; }
-        }
+        public FinancialTransaction SelectedTransaction { get; set; }
 
         /// <summary>
         ///     Gives access to all accounts
@@ -165,7 +162,7 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 //remove transaction on edit, on save or cancel the amount is added again.
-                transactionManager.RemoveTransactionAmount(SelectedTransaction);
+                transactionManager.RemoveTransactionAmount(transactionRepository.Selected);
             }
         }
 
@@ -219,7 +216,6 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 //readd the previously removed transaction amount
-                //TODO: check if here will be added the wrong amount if you changed the amount of the transaction
                 transactionManager.AddTransactionAmount(transactionRepository.Selected);
             }
             ResetInitLocker();
