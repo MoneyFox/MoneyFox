@@ -43,7 +43,7 @@ namespace MoneyManager.Windows
                         },
                         new TileText
                         {
-                            Text = spending,
+                            Text = earnings,
                             Wrap = true,
                             Style = TileTextStyle.Body
                         }

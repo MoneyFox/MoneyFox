@@ -53,7 +53,7 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 IsTransfer = SelectedTransaction.IsTransfer;
-                SelectedTransaction = transactionRepository.Selected;
+                oldAmount = SelectedTransaction.Amount;
             }
             else 
             {
@@ -101,9 +101,11 @@ namespace MoneyManager.Core.ViewModels
 
         public DateTime EndDate { get; set; }
         public bool IsEndless { get; set; } = true;
-        public bool IsEdit { get; set; } = false;
+        public bool IsEdit { get; set; }
         public int Recurrence { get; set; }
         public bool IsTransfer { get; set; }
+
+        private double oldAmount = 0;
 
         public List<string> RecurrenceList => new List<string>
         {
@@ -117,7 +119,11 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     The selected transaction
         /// </summary>
-        public FinancialTransaction SelectedTransaction { get; set; }
+        public FinancialTransaction SelectedTransaction
+        {
+            get { return transactionRepository.Selected; }
+            set { transactionRepository.Selected = value; }
+        }
 
         /// <summary>
         ///     Gives access to all accounts
@@ -162,7 +168,7 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 //remove transaction on edit, on save or cancel the amount is added again.
-                transactionManager.RemoveTransactionAmount(transactionRepository.Selected);
+                transactionManager.RemoveTransactionAmount(SelectedTransaction);
             }
         }
 
@@ -174,7 +180,7 @@ namespace MoneyManager.Core.ViewModels
                 return;
             }
 
-            if ((IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction)) || SelectedTransaction.IsRecurring)
+            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction) || SelectedTransaction.IsRecurring)
             {
                 //Update the recurring transaction based on the transaction.
                 var recurringTransaction = RecurringTransactionHelper.
@@ -216,7 +222,8 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 //readd the previously removed transaction amount
-                transactionManager.AddTransactionAmount(transactionRepository.Selected);
+                SelectedTransaction.Amount = oldAmount;
+                transactionManager.AddTransactionAmount(SelectedTransaction);
             }
             ResetInitLocker();
             Close(this);
