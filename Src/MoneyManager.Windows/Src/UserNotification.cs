@@ -26,7 +26,7 @@ namespace MoneyManager.Windows
                 {
                     PeekImage = new TilePeekImage
                     {
-                        Source = new TileImageSource("Assets/BadgeLogo.scale-200.png")
+                        Source = new TileImageSource("Assets/Square310x310Logo.scale-400.png")
                     },
 
                     Children =
@@ -66,11 +66,8 @@ namespace MoneyManager.Windows
                         TileLarge = binding
                     }
                 };
-
-                XmlDocument doc = content.GetXml();
-
                 // Update Tile
-                TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(doc));
+                TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(content.GetXml()));
             }
         }
     }
