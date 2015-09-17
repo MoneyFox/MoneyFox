@@ -46,8 +46,8 @@ namespace MoneyManager.Core
                 .AsTypes()
                 .RegisterAsLazySingleton();
 
-            Mvx.Resolve<TransactionManager>().ClearTransactions();
             Mvx.Resolve<RecurringTransactionManager>().CheckRecurringTransactions();
+            Mvx.Resolve<TransactionManager>().ClearTransactions();
 
             // Start the app with the Main View Model.
             RegisterAppStart<MainViewModel>();

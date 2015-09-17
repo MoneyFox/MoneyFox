@@ -71,7 +71,7 @@ namespace MoneyManager.Core.DataAccess
 
                 foreach (var transaction in list.Where(x => x.IsRecurring))
                 {
-                    transaction.RecurringTransaction = db.Get<RecurringTransaction>(transaction.ReccuringTransactionId);
+                    transaction.RecurringTransaction = db.GetWithChildren<RecurringTransaction>(transaction.ReccuringTransactionId);
                 }
 
                 return list;
