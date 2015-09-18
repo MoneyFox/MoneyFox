@@ -120,11 +120,17 @@
   <data name="AboutLabel" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About</value>
+  </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Please select an account.</value>
   </data>
   <data name="AccountsLabel" xml:space="preserve">
     <value>Accounts</value>
+  </data>
+  <data name="AddAccountTitle" xml:space="preserve">
+    <value>Add Account</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
     <value>Add Income</value>
@@ -138,6 +144,9 @@
   <data name="AddTransferLabel" xml:space="preserve">
     <value>Add Transfer</value>
   </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Money Fox</value>
+  </data>
   <data name="BackupFailedMessage" xml:space="preserve">
     <value>Backup failed!</value>
   </data>
@@ -147,8 +156,35 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>Cashflow</value>
   </data>
+  <data name="ChangeSubsequentTransactionsMessage" xml:space="preserve">
+    <value>This transaction is recurring. Do you want to update the future transactions aswell or just this occurence?</value>
+  </data>
+  <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
+    <value>Update Recurrence?</value>
+  </data>
+  <data name="DailyLabel" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="DailyWithoutWeekendLabel" xml:space="preserve">
+    <value>Daily without weekend</value>
+  </data>
+  <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this account?</value>
+  </data>
+  <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this category?</value>
+  </data>
+  <data name="DeleteLabel" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="DeleteTitle" xml:space="preserve">
     <value>Delete?</value>
+  </data>
+  <data name="DeleteTransactionConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this transaction?</value>
+  </data>
+  <data name="EditLabel" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="EditTitle" xml:space="preserve">
     <value>Edit</value>
@@ -157,6 +193,9 @@
     <value>Expense</value>
   </data>
   <data name="FeedbackLabel" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="FeedbackSubject" xml:space="preserve">
     <value>Feedback</value>
   </data>
   <data name="GitHubRepositoryUrl" xml:space="preserve">
@@ -171,7 +210,13 @@
   <data name="IncreaseLabel" xml:space="preserve">
     <value>Increase</value>
   </data>
+  <data name="JustThisLabel" xml:space="preserve">
+    <value>Just This</value>
+  </data>
   <data name="LoginFailedMessage" xml:space="preserve">
+    <value>We couldn't log you in. Please ensure you have an active internet connection.</value>
+  </data>
+  <data name="LoginFailedTitle" xml:space="preserve">
     <value>Login failed!</value>
   </data>
   <data name="MandatoryFieldEmptryTitle" xml:space="preserve">
@@ -204,11 +249,20 @@
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Overwrite?</value>
   </data>
+  <data name="RecurringLabel" xml:space="preserve">
+    <value>Update All</value>
+  </data>
   <data name="RestoreFailedMessage" xml:space="preserve">
     <value>Restore failed!</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Revenue</value>
+  </data>
+  <data name="SelectDateTitle" xml:space="preserve">
+    <value>Select Date</value>
+  </data>
+  <data name="SelectOperationLabel" xml:space="preserve">
+    <value>select operation</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
     <value>Settings</value>
@@ -234,6 +288,9 @@
   <data name="TransferTitle" xml:space="preserve">
     <value>Transfer</value>
   </data>
+  <data name="WebsiteUrl" xml:space="preserve">
+    <value>http://www.apply-solutions.ch</value>
+  </data>
   <data name="WeeklyLabel" xml:space="preserve">
     <value>Weekly</value>
   </data>
@@ -242,59 +299,5 @@
   </data>
   <data name="YesLabel" xml:space="preserve">
     <value>Yes</value>
-  </data>
-  <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback</value>
-  </data>
-  <data name="WebsiteUrl" xml:space="preserve">
-    <value>http://www.apply-solutions.ch</value>
-  </data>
-  <data name="AboutTitle" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="AddAccountTitle" xml:space="preserve">
-    <value>Add Account</value>
-  </data>
-  <data name="DeleteLabel" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="EditLabel" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="SelectOperationLabel" xml:space="preserve">
-    <value>select operation</value>
-  </data>
-  <data name="SelectDateTitle" xml:space="preserve">
-    <value>Select Date</value>
-  </data>
-  <data name="DailyLabel" xml:space="preserve">
-    <value>Daily</value>
-  </data>
-  <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Daily without weekend</value>
-  </data>
-  <data name="ChangeSubsequentTransactionsMessage" xml:space="preserve">
-    <value>This transaction is recurring. Do you want to update the future transactions aswell or just this occurence?</value>
-  </data>
-  <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
-    <value>Update Recurrence?</value>
-  </data>
-  <data name="JustThisLabel" xml:space="preserve">
-    <value>Just This</value>
-  </data>
-  <data name="RecurringLabel" xml:space="preserve">
-    <value>Update All</value>
-  </data>
-  <data name="ApplicationTitle" xml:space="preserve">
-    <value>Money Fox</value>
-  </data>
-  <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this account?</value>
-  </data>
-  <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this category?</value>
-  </data>
-  <data name="DeleteTransactionConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this transaction?</value>
   </data>
 </root>

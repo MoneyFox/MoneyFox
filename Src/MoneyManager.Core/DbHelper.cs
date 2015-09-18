@@ -30,17 +30,17 @@ namespace MoneyManager.Core
         /// <returns>Established database connection.</returns>
         public SQLiteConnection GetSqlConnection()
         {
-            return new SQLiteConnection(platform, Path.Combine(path.DbPath, DATABASE_NAME));
+            return new SQLiteConnection(platform, Path.Combine(path.DbPath, DATABASE_NAME), false);
         }
 
         public void CreateDatabase()
         {
             using (var db = GetSqlConnection())
             {
-                db.CreateTable<Account>(CreateFlags.AllImplicit);
-                db.CreateTable<FinancialTransaction>(CreateFlags.AllImplicit);
-                db.CreateTable<RecurringTransaction>(CreateFlags.AllImplicit);
-                db.CreateTable<Category>(CreateFlags.AllImplicit);
+                db.CreateTable<Account>();
+                db.CreateTable<FinancialTransaction>();
+                db.CreateTable<RecurringTransaction>();
+                db.CreateTable<Category>();
             }
         }
     }

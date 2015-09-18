@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Manager;
+using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Localization;
 
@@ -58,11 +59,20 @@ namespace MoneyManager.Core.ViewModels
             IsLoading = false;
         }
 
-        private async Task Login()
+        private async Task<bool> Login()
         {
-            IsLoading = true;
-            await backupManager.Login();
-            IsLoading = false;
+            try
+            {
+                IsLoading = true;
+                await backupManager.Login();
+                IsLoading = false;
+                return true;
+            }
+            catch (ConnectionException)
+            {
+                await dialogService.ShowMessage(Strings.LoginFailedTitle, Strings.LoginFailedMessage);
+                return false;
+            }
         }
 
         private async Task<bool> ShowOverwriteInfo()

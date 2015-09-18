@@ -2,7 +2,10 @@
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Globalization;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
@@ -65,8 +68,37 @@ namespace MoneyManager.Windows
 
             Tile.UpdateMainTile();
 
+            OverrideTitleBarColor();
+
             // Ensure the current window is active
             Window.Current.Activate();
+        }
+
+        private void OverrideTitleBarColor()
+        {
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+
+            // set up our brushes
+            var bkgColor = Current.Resources["AppColorBrush"] as SolidColorBrush;
+            var btnHoverColor = Current.Resources["TitleBarButtonHoverThemeBrush"] as SolidColorBrush;
+            var btnPressedColor = Current.Resources["TitleBarButtonPressedThemeBrush"] as SolidColorBrush;
+
+            // override colors!
+            if (bkgColor != null && btnHoverColor != null && btnPressedColor != null)
+            {
+                titleBar.BackgroundColor = bkgColor.Color;
+                titleBar.ForegroundColor = Colors.White;
+                titleBar.ButtonBackgroundColor = bkgColor.Color;
+                titleBar.ButtonForegroundColor = Colors.White;
+                titleBar.ButtonHoverBackgroundColor = btnHoverColor.Color;
+                titleBar.ButtonHoverForegroundColor = Colors.White;
+                titleBar.ButtonPressedBackgroundColor = btnPressedColor.Color;
+                titleBar.ButtonPressedForegroundColor = Colors.White;
+                titleBar.InactiveBackgroundColor = bkgColor.Color;
+                titleBar.InactiveForegroundColor = Colors.White;
+                titleBar.ButtonInactiveBackgroundColor = bkgColor.Color;
+            }
+            titleBar.ButtonInactiveForegroundColor = Colors.White;
         }
 
         /// <summary>

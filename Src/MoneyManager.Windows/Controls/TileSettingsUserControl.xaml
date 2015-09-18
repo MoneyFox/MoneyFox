@@ -34,7 +34,8 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0"
                       VerticalAlignment="Stretch"
-                      HorizontalAlignment="Stretch">
+                      HorizontalAlignment="Stretch"
+                      Background="{ThemeResource SystemControlHighlightAccentBrush}">
                     <Image Source="/Assets/incomeTileIcon.png"
                            VerticalAlignment="Stretch"
                            HorizontalAlignment="Stretch" />
@@ -62,7 +63,7 @@
                     <ColumnDefinition Width="50*" />
                     <ColumnDefinition Width="301*" />
                 </Grid.ColumnDefinitions>
-                <Grid>
+                <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}">
                     <Image Source="/Assets/spendingTileIcon.png"
                            Grid.Column="0"
                            VerticalAlignment="Center"
@@ -91,7 +92,7 @@
                     <ColumnDefinition Width="50*" />
                     <ColumnDefinition Width="301*" />
                 </Grid.ColumnDefinitions>
-                <Grid >
+                <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}">
                     <Image Source="/Assets/transferTileIcon.png"
                            Grid.Column="0"
                            VerticalAlignment="Center"
