@@ -30,7 +30,7 @@ namespace MoneyManager.Core
             catch (Exception ex)
             {
                 InsightHelper.Report(ex);
-                throw new ConnectionException(Strings.LoginFailedMessage, ex);
+                throw new ConnectionException(Strings.LoginFailedTitle, ex);
             }
         }
 
