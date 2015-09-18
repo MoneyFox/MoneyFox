@@ -13,6 +13,15 @@
     <SolidColorBrush x:Key="ListViewBackgroundOddBrush"
                      Color="{StaticResource ListColorLight}" />
 
+    <SolidColorBrush x:Key="TitleBarBackgroundThemeBrush"
+                     Color="#FF171717" />
+
+    <SolidColorBrush x:Key="TitleBarButtonHoverThemeBrush"
+                     Color="#FF343434" />
+
+    <SolidColorBrush x:Key="TitleBarButtonPressedThemeBrush"
+                     Color="#FF4C4C4C" />
+
     <Style x:Key="SplitViewTogglePaneButtonStyle"
            TargetType="ToggleButton">
         <Setter Property="FontSize"
