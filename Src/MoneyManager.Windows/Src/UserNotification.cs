@@ -26,7 +26,7 @@ namespace MoneyManager.Windows
                 {
                     PeekImage = new TilePeekImage
                     {
-                        Source = new TileImageSource("Assets/Square310x310Logo.scale-400.png")
+                        Source = new TileImageSource("Assets/BadgeLogo.scale-400.png")
                     },
 
                     Children =

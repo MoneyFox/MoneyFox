@@ -181,7 +181,7 @@ namespace MoneyManager.Core.Manager
                 foreach (var transaction in relatedTrans)
                 {
                     transaction.IsRecurring = false;
-                    transaction.ReccuringTransactionId = null;
+                    transaction.ReccuringTransactionId = 0;
                     transactionRepository.Save(transaction);
                 }
             }

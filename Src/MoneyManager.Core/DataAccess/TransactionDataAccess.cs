@@ -36,7 +36,7 @@ namespace MoneyManager.Core.DataAccess
                     db.Insert(itemToSave);
                     if (itemToSave.IsRecurring)
                     {
-                        db.Insert(itemToSave.RecurringTransaction);
+                        db.InsertOrReplace(itemToSave.RecurringTransaction);
                     }
                 }
                 else

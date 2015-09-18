@@ -70,10 +70,10 @@ namespace MoneyManager.Core.Repositories
             }
 
             //delete recurring transaction if isRecurring is no longer set.
-            if (!item.IsRecurring && item.ReccuringTransactionId.HasValue)
+            if (!item.IsRecurring && item.ReccuringTransactionId != 0)
             {
                 recurringDataAccess.Delete(item.RecurringTransaction);
-                item.ReccuringTransactionId = null;
+                item.ReccuringTransactionId = 0;
             }
 
             dataAccess.Save(item);
