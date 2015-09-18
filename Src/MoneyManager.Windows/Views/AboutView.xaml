@@ -31,7 +31,7 @@
 
                 <StackPanel>
                     <Grid Margin="0,0,10,0">
-                        <Grid Background="{StaticResource AppColorBrush}"
+                        <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}"
                               Width="160"
                               Margin="5,0"
                               HorizontalAlignment="Center">
@@ -43,7 +43,7 @@
                           Margin="0,10"
                           Stretch="Fill"
                           UseLayoutRounding="False"
-                          Stroke="{StaticResource ApplicationForegroundThemeBrush}"
+                          Stroke="{ThemeResource SystemControlBackgroundAccentBrush}"
                           StrokeThickness="2" />
                     <TextBlock TextWrapping="Wrap"
                                Style="{ThemeResource SubtitleTextBlockStyle}"
