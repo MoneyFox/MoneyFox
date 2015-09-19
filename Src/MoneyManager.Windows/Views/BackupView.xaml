@@ -28,7 +28,7 @@
 
         <controls:PageHeader>
             <controls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="BackupManager" x:Uid="BackupManagerTitle" />
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Backup" x:Uid="BackupTitle" />
             </controls:PageHeader.HeaderContent>
         </controls:PageHeader>
 

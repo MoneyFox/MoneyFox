@@ -449,6 +449,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your local data will be deleted. Are you sure you wanna proceed?.
+        /// </summary>
+        public static string OverwriteDataMessage {
+            get {
+                return ResourceManager.GetString("OverwriteDataMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Overwrite?.
         /// </summary>
         public static string OverwriteTitle {

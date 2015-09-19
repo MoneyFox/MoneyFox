@@ -300,4 +300,7 @@
   <data name="YesLabel" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="OverwriteDataMessage" xml:space="preserve">
+    <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
+  </data>
 </root>

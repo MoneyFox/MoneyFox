@@ -30,7 +30,7 @@ namespace MoneyManager.Core.ViewModels
         {
             await Login();
 
-            if (!await ShowOverwriteInfo())
+            if (!await ShowOverwriteBackupInfo())
             {
                 return;
             }
@@ -45,7 +45,7 @@ namespace MoneyManager.Core.ViewModels
         {
             await Login();
 
-            if (!await ShowOverwriteInfo())
+            if (!await ShowOverwriteDataInfo())
             {
                 return;
             }
@@ -75,7 +75,13 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
-        private async Task<bool> ShowOverwriteInfo()
+        private async Task<bool> ShowOverwriteBackupInfo()
+        {
+            return await dialogService
+                .ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
+        }
+
+        private async Task<bool> ShowOverwriteDataInfo()
         {
             return await dialogService
                 .ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
