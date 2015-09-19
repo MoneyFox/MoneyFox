@@ -8,19 +8,31 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot Margin="0,30,0,0">
-            <PivotItem Header="Cash Flow"
-                       x:Uid="CashFlowTitle">
+        <Pivot Style="{StaticResource TabsStylePivotStyle}" >
+            <PivotItem>
+                <PivotItem.Header>
+                    <controls:TabHeader Label="Cash Flow"
+                                        x:Uid="CashFlowTitle"
+                                        Glyph="&#xE908;" />
+                </PivotItem.Header>
                 <controls:BarChartUserControl />
             </PivotItem>
 
-            <PivotItem Header="Spreading"
-                       x:Uid="SpreadingTitle">
+            <PivotItem>
+                <PivotItem.Header>
+                    <controls:TabHeader Label="Spreading"
+                                    x:Uid="SpreadingTitle"
+                                        Glyph="&#xE774;" />
+                </PivotItem.Header>
                 <controls:PieChartUserControl />
             </PivotItem>
 
-            <PivotItem Header="Category Summary"
-                       x:Uid="CategorySummaryTitle">
+            <PivotItem>
+                <PivotItem.Header>
+                    <controls:TabHeader Label="Category Summary"
+                                        x:Uid="CategorySummaryTitle"
+                                        Glyph="&#xE8EC;" />
+                </PivotItem.Header>
                 <controls:CategorySummaryUserControl />
             </PivotItem>
         </Pivot>
