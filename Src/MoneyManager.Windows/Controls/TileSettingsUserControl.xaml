@@ -29,16 +29,18 @@
 
             <Grid Margin="0,0,0,12">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="301*" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0"
                       VerticalAlignment="Stretch"
                       HorizontalAlignment="Stretch"
+                      Width="50"
+                      Height="50"
                       Background="{ThemeResource SystemControlHighlightAccentBrush}">
                     <Image Source="/Assets/incomeTileIcon.png"
                            VerticalAlignment="Stretch"
-                           HorizontalAlignment="Stretch" />
+                           HorizontalAlignment="Stretch"/>
                 </Grid>
                 <Button Content="create income tile"
                         x:Uid="AddIncomeTile"
@@ -60,10 +62,12 @@
 
             <Grid Margin="0,0,0,12">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="301*" />
                 </Grid.ColumnDefinitions>
-                <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}">
+                <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch">
                     <Image Source="/Assets/spendingTileIcon.png"
                            Grid.Column="0"
                            VerticalAlignment="Center"
@@ -89,10 +93,12 @@
 
             <Grid Margin="0,0,0,12">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="301*" />
                 </Grid.ColumnDefinitions>
-                <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}">
+                <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch">
                     <Image Source="/Assets/transferTileIcon.png"
                            Grid.Column="0"
                            VerticalAlignment="Center"

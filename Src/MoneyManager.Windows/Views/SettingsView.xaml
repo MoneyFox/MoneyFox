@@ -27,7 +27,7 @@
             <Pivot Margin="0,30,0,0">
                 <PivotItem Header="Tiles"
                            x:Uid="TilesHeader">
-                    <controls:TileSettingsUserControl />
+                    <controls:TileSettingsUserControl HorizontalAlignment="Left"/>
                 </PivotItem>
 
                 <PivotItem Header="Categories"
