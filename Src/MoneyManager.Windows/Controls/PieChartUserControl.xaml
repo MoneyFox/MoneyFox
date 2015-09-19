@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+             xmlns:windows="using:OxyPlot.Windows"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -11,14 +11,6 @@
     <Grid VerticalAlignment="Stretch"
           EntranceNavigationTransitionInfo.IsTargetElement="True">
 
-        <charting:Chart HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
-            <charting:PieSeries Title="Monthly Spreading"
-                                Margin="0"
-                                ItemsSource="{Binding MonthlySpreading}"
-                                IndependentValuePath="Category"
-                                DependentValuePath="Value" />
-
-        </charting:Chart>
+        <windows:PlotView Model="{Binding PieModel}" />
     </Grid>
 </UserControl>

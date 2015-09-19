@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:MoneyManager.Windows.Controls"
+    xmlns:windows="using:OxyPlot.Windows"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -15,7 +16,7 @@
                                         x:Uid="CashFlowTitle"
                                         Glyph="&#xE908;" />
                 </PivotItem.Header>
-                <controls:BarChartUserControl />
+                <windows:PlotView Model="{Binding CashFlowModel}"/>
             </PivotItem>
 
             <PivotItem>
@@ -24,7 +25,7 @@
                                     x:Uid="SpreadingTitle"
                                         Glyph="&#xE774;" />
                 </PivotItem.Header>
-                <controls:PieChartUserControl />
+                <windows:PlotView Model="{Binding SpreadingModel}" />
             </PivotItem>
 
             <PivotItem>

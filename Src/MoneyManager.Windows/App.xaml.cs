@@ -79,7 +79,7 @@ namespace MoneyManager.Windows
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
 
             // set up our brushes
-            var bkgColor = Current.Resources["AppColorBrush"] as SolidColorBrush;
+            var bkgColor = Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush;
             var btnHoverColor = Current.Resources["TitleBarButtonHoverThemeBrush"] as SolidColorBrush;
             var btnPressedColor = Current.Resources["TitleBarButtonPressedThemeBrush"] as SolidColorBrush;
 
