@@ -5,22 +5,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:MoneyManager.Windows.Controls"
+    xmlns:windows="using:OxyPlot.Windows"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot Margin="0,30,0,0">
-            <PivotItem Header="Cash Flow"
-                       x:Uid="CashFlowTitle">
-                <controls:BarChartUserControl />
+        <Pivot Style="{StaticResource TabsStylePivotStyle}" >
+            <PivotItem>
+                <PivotItem.Header>
+                    <controls:TabHeader Label="Cash Flow"
+                                        x:Uid="CashFlowTitle"
+                                        Glyph="&#xE908;" />
+                </PivotItem.Header>
+                <windows:PlotView Model="{Binding CashFlowModel}"/>
             </PivotItem>
 
-            <PivotItem Header="Spreading"
-                       x:Uid="SpreadingTitle">
-                <controls:PieChartUserControl />
+            <PivotItem>
+                <PivotItem.Header>
+                    <controls:TabHeader Label="Spreading"
+                                    x:Uid="SpreadingTitle"
+                                        Glyph="&#xE774;" />
+                </PivotItem.Header>
+                <windows:PlotView Model="{Binding SpreadingModel}" />
             </PivotItem>
 
-            <PivotItem Header="Category Summary"
-                       x:Uid="CategorySummaryTitle">
+            <PivotItem>
+                <PivotItem.Header>
+                    <controls:TabHeader Label="Category Summary"
+                                        x:Uid="CategorySummaryTitle"
+                                        Glyph="&#xE8EC;" />
+                </PivotItem.Header>
                 <controls:CategorySummaryUserControl />
             </PivotItem>
         </Pivot>

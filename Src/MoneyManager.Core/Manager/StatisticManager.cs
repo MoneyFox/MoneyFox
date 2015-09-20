@@ -30,7 +30,7 @@ namespace MoneyManager.Core.Manager
         ///     Get a list with income, spending and earnings for custom date range
         /// </summary>
         /// <returns>List with income, spending and earning item.</returns>
-        public ObservableCollection<StatisticItem> GetMonthlyCashFlow(DateTime startDate, DateTime endDate)
+        public List<StatisticItem> GetMonthlyCashFlow(DateTime startDate, DateTime endDate)
         {
             var transactionListFunc =
                 new Func<List<FinancialTransaction>>(() =>
@@ -46,7 +46,7 @@ namespace MoneyManager.Core.Manager
         ///     Get a list with income, spending and earnings for current month
         /// </summary>
         /// <returns>List with income, spending and earning item.</returns>
-        public ObservableCollection<StatisticItem> GetMonthlyCashFlow()
+        public List<StatisticItem> GetMonthlyCashFlow()
         {
             var transactionListFunc =
                 new Func<List<FinancialTransaction>>(() =>
@@ -58,12 +58,12 @@ namespace MoneyManager.Core.Manager
             return GetCashFlowStatisticItems(transactionListFunc);
         }
 
-        private ObservableCollection<StatisticItem> GetCashFlowStatisticItems(
+        private List<StatisticItem> GetCashFlowStatisticItems(
             Func<List<FinancialTransaction>> getTransactionListFunc)
         {
             var transactionList = getTransactionListFunc();
 
-            var itemList = new ObservableCollection<StatisticItem>();
+            var itemList = new List<StatisticItem>();
 
             var income = new StatisticItem
             {
@@ -102,7 +102,7 @@ namespace MoneyManager.Core.Manager
         /// <param name="startDate">minimum date</param>
         /// <param name="endDate">max date</param>
         /// <returns>List with statistic items.</returns>
-        public ObservableCollection<StatisticItem> GetSpreading(DateTime startDate, DateTime endDate)
+        public List<StatisticItem> GetSpreading(DateTime startDate, DateTime endDate)
         {
             if (transactionRepository.Data == null)
             {
@@ -129,7 +129,7 @@ namespace MoneyManager.Core.Manager
         ///     returns the spreading of the current month
         /// </summary>
         /// <returns>List with statistic items.</returns>
-        public ObservableCollection<StatisticItem> GetSpreading()
+        public List<StatisticItem> GetSpreading()
         {
             if (transactionRepository.Data == null)
             {
@@ -152,7 +152,7 @@ namespace MoneyManager.Core.Manager
             return GetSpreadingStatisticItems(transactionListFunc);
         }
 
-        private ObservableCollection<StatisticItem> GetSpreadingStatisticItems(
+        private List<StatisticItem> GetSpreadingStatisticItems(
             Func<List<FinancialTransaction>> getTransactionListFunc)
         {
             var transactionList = getTransactionListFunc();
@@ -174,7 +174,7 @@ namespace MoneyManager.Core.Manager
 
             IncludeIncome(statisticList);
 
-            return new ObservableCollection<StatisticItem>(statisticList);
+            return statisticList;
         }
 
         private void RemoveNullList(ICollection<StatisticItem> tempStatisticList)

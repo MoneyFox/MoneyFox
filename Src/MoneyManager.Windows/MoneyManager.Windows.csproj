@@ -40,11 +40,11 @@
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>ARM</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -115,9 +115,6 @@
     <Compile Include="Controls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\BarChartUserControl.xaml.cs">
-      <DependentUpon>BarChartUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\CategorySummaryUserControl.xaml.cs">
       <DependentUpon>CategorySummaryUserControl.xaml</DependentUpon>
     </Compile>
@@ -125,14 +122,14 @@
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\PieChartUserControl.xaml.cs">
-      <DependentUpon>PieChartUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\CategoryListUserControl.xaml.cs">
       <DependentUpon>CategoryListUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SelectCategoryTextBox.xaml.cs">
       <DependentUpon>SelectCategoryTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TabHeader.xaml.cs">
+      <DependentUpon>TabHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TileSettingsUserControl.xaml.cs">
       <DependentUpon>TileSettingsUserControl.xaml</DependentUpon>
@@ -312,19 +309,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\BarChartUserControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\CategorySummaryUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\PageHeader.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\PieChartUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -335,6 +324,10 @@
     <Page Include="Controls\SelectCategoryTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TabHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\TileSettingsUserControl.xaml">
       <SubType>Designer</SubType>
