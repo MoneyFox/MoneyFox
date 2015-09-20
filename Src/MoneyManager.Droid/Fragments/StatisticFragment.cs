@@ -4,7 +4,6 @@ using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Support.Fragging.Fragments;
 using MoneyManager.Core.ViewModels;
 using OxyPlot;
-using OxyPlot.Series;
 using OxyPlot.Xamarin.Android;
 
 namespace MoneyManager.Droid.Fragments
@@ -26,22 +25,7 @@ namespace MoneyManager.Droid.Fragments
             var view = this.BindingInflate(Resource.Layout.StatisticLayout, null);
 
             plotViewModel = view.FindViewById<PlotView>(Resource.Id.plotViewModel);
-
-            //Model Allocation Pie char
-            var model = new PlotModel();
-            var pieSeries = new PieSeries();
-
-            foreach (var item in ViewModel.MonthlySpreading)
-            {
-                pieSeries.Slices.Add(new PieSlice(item.Label, item.Value));
-            }
-
-            model.IsLegendVisible = true;
-            model.LegendPosition = LegendPosition.BottomLeft;
-
-            model.Series.Add(pieSeries);
-            MyModel = model;
-            plotViewModel.Model = MyModel;
+            plotViewModel.Model = ViewModel.CashFlowModel;
 
             return view;
         }
