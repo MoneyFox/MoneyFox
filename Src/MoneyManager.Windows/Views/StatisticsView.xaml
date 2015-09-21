@@ -6,7 +6,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:MoneyManager.Windows.Controls"
     xmlns:windows="using:OxyPlot.Windows"
+    xmlns:converter="using:MoneyManager.Windows.Converter"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot Style="{StaticResource TabsStylePivotStyle}" >
@@ -16,8 +21,18 @@
                                         x:Uid="CashFlowTitle"
                                         Glyph="&#xE908;" />
                 </PivotItem.Header>
-                <windows:PlotView Model="{Binding CashFlowModel}"
-                                  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+                <Grid>
+                    <TextBlock x:Uid="NoDataAvailableLabel"
+                               Text="No Data Available"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}" />
+                    <windows:PlotView Model="{Binding CashFlowModel}"
+                                      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                      Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch" />
+                </Grid>
             </PivotItem>
 
             <PivotItem>
@@ -26,8 +41,18 @@
                                     x:Uid="SpreadingTitle"
                                         Glyph="&#xE774;" />
                 </PivotItem.Header>
-                <windows:PlotView Model="{Binding SpreadingModel}"
-                                  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+                <Grid>
+                    <TextBlock x:Uid="NoDataAvailableLabel"
+                               Text="No Data Available"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}" />
+                    <windows:PlotView Model="{Binding SpreadingModel}"
+                                      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                      Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch" />
+                </Grid>
             </PivotItem>
 
             <PivotItem>

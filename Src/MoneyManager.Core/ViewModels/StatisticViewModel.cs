@@ -30,9 +30,27 @@ namespace MoneyManager.Core.ViewModels
         {
             this.statisticManager = statisticManager;
 
+            IsCashFlowModelAvailable = false;
+            IsSpreadingModelAvailable = false;
+
             StartDate = DateTime.Now.Date.AddMonths(-1);
             EndDate = DateTime.Now.Date;
         }
+
+        /// <summary>
+        ///     Indicates wether a cashflow model is available or not
+        /// </summary>
+        public bool IsCashFlowModelAvailable { get; set; }
+
+        /// <summary>
+        ///     Indicates wether a spreading model is available or not
+        /// </summary>
+        public bool IsSpreadingModelAvailable { get; set; }
+
+        /// <summary>
+        ///     Indicates wether a CategorySummary is available or not
+        /// </summary>
+        public bool IsCategorySummarylAvailable => CategorySummary.Any();
 
         /// <summary>
         ///     Contains the PlotModel for the CashFlow graph
@@ -130,6 +148,13 @@ namespace MoneyManager.Core.ViewModels
 
         private void SetSpreadingModel(IEnumerable<StatisticItem> items)
         {
+            var statisticItems = items as IList<StatisticItem> ?? items.ToList();
+            if (!statisticItems.Any())
+            {
+                IsSpreadingModelAvailable = false;
+                return;
+            }
+
             var model = new PlotModel
             {
                 Background = OxyColors.Black,
@@ -137,14 +162,12 @@ namespace MoneyManager.Core.ViewModels
             };
             var pieSeries = new PieSeries();
 
-            foreach (var item in items)
+            foreach (var item in statisticItems)
             {
                 pieSeries.Slices.Add(new PieSlice(item.Label, item.Value));
             }
 
-            model.IsLegendVisible = true;
-            model.LegendPosition = LegendPosition.BottomLeft;
-
+            IsSpreadingModelAvailable = true;
             model.Series.Add(pieSeries);
             SpreadingModel = model;
         }
@@ -159,6 +182,13 @@ namespace MoneyManager.Core.ViewModels
 
         private void SetCashFlowModel(IEnumerable<StatisticItem> items)
         {
+            var statisticItems = items as IList<StatisticItem> ?? items.ToList();
+            if (!statisticItems.Any())
+            {
+                IsCashFlowModelAvailable = false;
+                return;
+            }
+
             var model = new PlotModel
             {
                 Background = OxyColors.Black,
@@ -171,7 +201,7 @@ namespace MoneyManager.Core.ViewModels
                 TextColor = OxyColors.White
             };
 
-            foreach (var item in items)
+            foreach (var item in statisticItems)
             {
                 barSeries.Items.Add(new ColumnItem(item.Value));
                 axe.Labels.Add(item.Label);
@@ -181,11 +211,9 @@ namespace MoneyManager.Core.ViewModels
             barSeries.Items[1].Color = OxyColors.Red;
             barSeries.Items[2].Color = OxyColors.Cyan;
 
-            model.IsLegendVisible = true;
-            model.LegendPosition = LegendPosition.BottomLeft;
-
             model.Axes.Add(axe);
 
+            IsSpreadingModelAvailable = true;
             model.Series.Add(barSeries);
             CashFlowModel = model;
         }

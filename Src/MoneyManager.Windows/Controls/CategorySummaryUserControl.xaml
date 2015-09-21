@@ -4,11 +4,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:MoneyManager.Windows.Controls"
+             xmlns:converter="using:MoneyManager.Windows.Converter"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
 
     <UserControl.Resources>
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <DataTemplate x:Key="CategoryTemplate">
             <StackPanel Margin="0,0,0,7"
                         HorizontalAlignment="Stretch"
@@ -35,9 +37,15 @@
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+        <TextBlock x:Uid="NoDataAvailableLabel"
+                   Text="No Data Available"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}" />
         <ScrollViewer>
             <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
                                              EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                             Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                                              ItemsSource="{Binding CategorySummary}"
                                              ItemTemplate="{StaticResource CategoryTemplate}">
                 <ListView.ItemContainerStyle>
