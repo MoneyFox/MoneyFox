@@ -83,6 +83,7 @@ namespace MoneyManager.Core.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 accountRepository.Delete(accountRepository.Selected);
+                balanceViewModel.UpdateBalance();
                 Close(this);
             }
         }
