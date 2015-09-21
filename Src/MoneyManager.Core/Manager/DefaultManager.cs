@@ -34,7 +34,7 @@ namespace MoneyManager.Core.Manager
                 return accountRepository.Data.First();
             }
 
-            return accountRepository.Selected ?? new Account();
+            return accountRepository.Selected;
         }
     }
 }

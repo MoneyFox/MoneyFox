@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Android.App;
+using Cirrious.CrossCore;
+using Cirrious.CrossCore.Droid.Platform;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Localization;
 
@@ -8,6 +10,8 @@ namespace MoneyManager.Droid
 {
     public class DialogService : IDialogService
     {
+        protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
+
         /// <summary>
         ///     Shows a dialog with title and message. Contains only an OK button.
         /// </summary>
@@ -15,7 +19,7 @@ namespace MoneyManager.Droid
         /// <param name="message">Text to display.</param>
         public async Task ShowMessage(string title, string message)
         {
-            var builder = new AlertDialog.Builder(Application.Context);
+            var builder = new AlertDialog.Builder(CurrentActivity);
             builder.SetTitle(title);
             builder.SetMessage(message);
             builder.Show();
