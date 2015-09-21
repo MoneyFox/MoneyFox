@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.UI;
 using Windows.UI.ViewManagement;
@@ -82,23 +83,33 @@ namespace MoneyManager.Windows
             var bkgColor = Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush;
             var btnHoverColor = Current.Resources["TitleBarButtonHoverThemeBrush"] as SolidColorBrush;
             var btnPressedColor = Current.Resources["TitleBarButtonPressedThemeBrush"] as SolidColorBrush;
+            var backgroundColor = Current.Resources["TitleBarBackgroundThemeBrush"] as SolidColorBrush;
+            var appForegroundColor = Current.Resources["AppForegroundBrush"] as SolidColorBrush;
 
             // override colors!
-            if (bkgColor != null && btnHoverColor != null && btnPressedColor != null)
+            if (bkgColor != null && btnHoverColor != null && btnPressedColor != null && appForegroundColor != null)
             {
                 titleBar.BackgroundColor = bkgColor.Color;
-                titleBar.ForegroundColor = Colors.White;
+                titleBar.ForegroundColor = appForegroundColor.Color;
                 titleBar.ButtonBackgroundColor = bkgColor.Color;
-                titleBar.ButtonForegroundColor = Colors.White;
+                titleBar.ButtonForegroundColor = appForegroundColor.Color;
                 titleBar.ButtonHoverBackgroundColor = btnHoverColor.Color;
-                titleBar.ButtonHoverForegroundColor = Colors.White;
+                titleBar.ButtonHoverForegroundColor = appForegroundColor.Color;
                 titleBar.ButtonPressedBackgroundColor = btnPressedColor.Color;
-                titleBar.ButtonPressedForegroundColor = Colors.White;
+                titleBar.ButtonPressedForegroundColor = appForegroundColor.Color;
                 titleBar.InactiveBackgroundColor = bkgColor.Color;
-                titleBar.InactiveForegroundColor = Colors.White;
+                titleBar.InactiveForegroundColor = appForegroundColor.Color;
                 titleBar.ButtonInactiveBackgroundColor = bkgColor.Color;
+                
+                // If on a mobile device set the status bar
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                {
+                    StatusBar.GetForCurrentView().BackgroundColor = backgroundColor?.Color;
+                    StatusBar.GetForCurrentView().BackgroundOpacity = 1;
+                    StatusBar.GetForCurrentView().ForegroundColor = appForegroundColor.Color;
+                }
+                titleBar.ButtonInactiveForegroundColor = appForegroundColor.Color;
             }
-            titleBar.ButtonInactiveForegroundColor = Colors.White;
         }
 
         /// <summary>

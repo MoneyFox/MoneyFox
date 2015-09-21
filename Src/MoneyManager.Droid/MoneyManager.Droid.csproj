@@ -111,11 +111,11 @@
     <Reference Include="SQLite.Net, Version=3.0.5.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\SQLite.Net-PCL.3.0.5\lib\MonoAndroid\SQLite.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Insights, Version=1.10.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Xamarin.Insights.1.10.6\lib\MonoAndroid10\Xamarin.Insights.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\Components\xamandroidsupportv4-18-22.2.0.0\lib\android\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Insights, Version=1.10.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xamarin.Insights.1.10.6\lib\MonoAndroid10\Xamarin.Insights.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

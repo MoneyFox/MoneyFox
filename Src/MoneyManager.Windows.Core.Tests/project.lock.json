@@ -1602,10 +1602,10 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-rc1-build3168": {
+      "xunit/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.assert": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -1616,7 +1616,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-rc1-build3168": {
+      "xunit.assert/2.1.0-rc2-build3176": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -1624,13 +1624,13 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-rc1-build3168": {
+      "xunit.core/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.extensibility.execution": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
-      "xunit.extensibility.core/2.1.0-rc1-build3168": {
+      "xunit.extensibility.core/2.1.0-rc2-build3176": {
         "dependencies": {
           "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
@@ -1641,9 +1641,9 @@
           "lib/dotnet/xunit.core.dll": {}
         }
       },
-      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+      "xunit.extensibility.execution/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         },
         "compile": {
           "lib/win8/xunit.execution.dotnet.dll": {}
@@ -1652,7 +1652,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
+      "xunit.runner.visualstudio/2.1.0-rc2-build1126": {}
     },
     "UAP,Version=v10.0/win10-arm": {
       "Microsoft.CSharp/4.0.0": {
@@ -3344,10 +3344,10 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-rc1-build3168": {
+      "xunit/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.assert": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -3358,7 +3358,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-rc1-build3168": {
+      "xunit.assert/2.1.0-rc2-build3176": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -3366,13 +3366,13 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-rc1-build3168": {
+      "xunit.core/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.extensibility.execution": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
-      "xunit.extensibility.core/2.1.0-rc1-build3168": {
+      "xunit.extensibility.core/2.1.0-rc2-build3176": {
         "dependencies": {
           "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
@@ -3383,9 +3383,9 @@
           "lib/dotnet/xunit.core.dll": {}
         }
       },
-      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+      "xunit.extensibility.execution/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         },
         "compile": {
           "lib/win8/xunit.execution.dotnet.dll": {}
@@ -3394,7 +3394,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
+      "xunit.runner.visualstudio/2.1.0-rc2-build1126": {}
     },
     "UAP,Version=v10.0/win10-arm-aot": {
       "Microsoft.CSharp/4.0.0": {
@@ -5058,10 +5058,10 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-rc1-build3168": {
+      "xunit/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.assert": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -5072,7 +5072,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-rc1-build3168": {
+      "xunit.assert/2.1.0-rc2-build3176": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -5080,13 +5080,13 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-rc1-build3168": {
+      "xunit.core/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.extensibility.execution": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
-      "xunit.extensibility.core/2.1.0-rc1-build3168": {
+      "xunit.extensibility.core/2.1.0-rc2-build3176": {
         "dependencies": {
           "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
@@ -5097,9 +5097,9 @@
           "lib/dotnet/xunit.core.dll": {}
         }
       },
-      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+      "xunit.extensibility.execution/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         },
         "compile": {
           "lib/win8/xunit.execution.dotnet.dll": {}
@@ -5108,7 +5108,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
+      "xunit.runner.visualstudio/2.1.0-rc2-build1126": {}
     },
     "UAP,Version=v10.0/win10-x86": {
       "Microsoft.CSharp/4.0.0": {
@@ -6805,10 +6805,10 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-rc1-build3168": {
+      "xunit/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.assert": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -6819,7 +6819,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-rc1-build3168": {
+      "xunit.assert/2.1.0-rc2-build3176": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -6827,13 +6827,13 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-rc1-build3168": {
+      "xunit.core/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.extensibility.execution": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
-      "xunit.extensibility.core/2.1.0-rc1-build3168": {
+      "xunit.extensibility.core/2.1.0-rc2-build3176": {
         "dependencies": {
           "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
@@ -6844,9 +6844,9 @@
           "lib/dotnet/xunit.core.dll": {}
         }
       },
-      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+      "xunit.extensibility.execution/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         },
         "compile": {
           "lib/win8/xunit.execution.dotnet.dll": {}
@@ -6855,7 +6855,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
+      "xunit.runner.visualstudio/2.1.0-rc2-build1126": {}
     },
     "UAP,Version=v10.0/win10-x86-aot": {
       "Microsoft.CSharp/4.0.0": {
@@ -8519,10 +8519,10 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-rc1-build3168": {
+      "xunit/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.assert": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -8533,7 +8533,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-rc1-build3168": {
+      "xunit.assert/2.1.0-rc2-build3176": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -8541,13 +8541,13 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-rc1-build3168": {
+      "xunit.core/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.extensibility.execution": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
-      "xunit.extensibility.core/2.1.0-rc1-build3168": {
+      "xunit.extensibility.core/2.1.0-rc2-build3176": {
         "dependencies": {
           "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
@@ -8558,9 +8558,9 @@
           "lib/dotnet/xunit.core.dll": {}
         }
       },
-      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+      "xunit.extensibility.execution/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         },
         "compile": {
           "lib/win8/xunit.execution.dotnet.dll": {}
@@ -8569,7 +8569,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
+      "xunit.runner.visualstudio/2.1.0-rc2-build1126": {}
     },
     "UAP,Version=v10.0/win10-x64": {
       "Microsoft.CSharp/4.0.0": {
@@ -10266,10 +10266,10 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-rc1-build3168": {
+      "xunit/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.assert": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -10280,7 +10280,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-rc1-build3168": {
+      "xunit.assert/2.1.0-rc2-build3176": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -10288,13 +10288,13 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-rc1-build3168": {
+      "xunit.core/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.extensibility.execution": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
-      "xunit.extensibility.core/2.1.0-rc1-build3168": {
+      "xunit.extensibility.core/2.1.0-rc2-build3176": {
         "dependencies": {
           "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
@@ -10305,9 +10305,9 @@
           "lib/dotnet/xunit.core.dll": {}
         }
       },
-      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+      "xunit.extensibility.execution/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         },
         "compile": {
           "lib/win8/xunit.execution.dotnet.dll": {}
@@ -10316,7 +10316,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
+      "xunit.runner.visualstudio/2.1.0-rc2-build1126": {}
     },
     "UAP,Version=v10.0/win10-x64-aot": {
       "Microsoft.CSharp/4.0.0": {
@@ -11980,10 +11980,10 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "xunit/2.1.0-rc1-build3168": {
+      "xunit/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.assert": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.assert": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
       "xunit.abstractions/2.0.0": {
@@ -11994,7 +11994,7 @@
           "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
         }
       },
-      "xunit.assert/2.1.0-rc1-build3168": {
+      "xunit.assert/2.1.0-rc2-build3176": {
         "compile": {
           "lib/dotnet/xunit.assert.dll": {}
         },
@@ -12002,13 +12002,13 @@
           "lib/dotnet/xunit.assert.dll": {}
         }
       },
-      "xunit.core/2.1.0-rc1-build3168": {
+      "xunit.core/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]",
-          "xunit.extensibility.execution": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]",
+          "xunit.extensibility.execution": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         }
       },
-      "xunit.extensibility.core/2.1.0-rc1-build3168": {
+      "xunit.extensibility.core/2.1.0-rc2-build3176": {
         "dependencies": {
           "xunit.abstractions": "[2.0.0, 2.0.0]"
         },
@@ -12019,9 +12019,9 @@
           "lib/dotnet/xunit.core.dll": {}
         }
       },
-      "xunit.extensibility.execution/2.1.0-rc1-build3168": {
+      "xunit.extensibility.execution/2.1.0-rc2-build3176": {
         "dependencies": {
-          "xunit.extensibility.core": "[2.1.0-rc1-build3168, 2.1.0-rc1-build3168]"
+          "xunit.extensibility.core": "[2.1.0-rc2-build3176, 2.1.0-rc2-build3176]"
         },
         "compile": {
           "lib/win8/xunit.execution.dotnet.dll": {}
@@ -12030,7 +12030,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0-beta4-build1109": {}
+      "xunit.runner.visualstudio/2.1.0-rc2-build1126": {}
     }
   },
   "libraries": {
@@ -15562,13 +15562,13 @@
         "[Content_Types].xml"
       ]
     },
-    "xunit/2.1.0-rc1-build3168": {
-      "sha512": "dVnDKBCIpLE5GaxLALnbnobqtDyTTDKJSRbqhLGrx0Ptc/n3VQRUby/CDx6v+y7xNVPqtqj0XMeDO1DVT8E3tA==",
+    "xunit/2.1.0-rc2-build3176": {
+      "sha512": "VDTmsLhIbHt0G3b2Izb2v3nHF/WeoCdv8m57RIBNzm/UCNHcJ8ucwFbaFnlD3TtHNE4kc7jDtCiJSux2LNAT6w==",
       "type": "Package",
       "files": [
         "_rels/.rels",
         "xunit.nuspec",
-        "package/services/metadata/core-properties/c7931b7f3887423dbf4970aaa1c1dc7b.psmdcp",
+        "package/services/metadata/core-properties/fb4dfaa1a6a34d68a05a54b732237409.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -15586,8 +15586,8 @@
         "[Content_Types].xml"
       ]
     },
-    "xunit.assert/2.1.0-rc1-build3168": {
-      "sha512": "lsTK4OaNGt5IOoKO3ZQ0gSFngjWSHZ5xNurNtLd0MxZv5onv66xlNmWBYCVNt4sZLknQ+RfiqYm1EZ9ZrA0SDw==",
+    "xunit.assert/2.1.0-rc2-build3176": {
+      "sha512": "D93fToGBKvUfOadAICF9QMu6rbKeMmEmk/stxRFjvVK7q9MKokZRBboG5JlSFKWGxsR9C3KaI0bBRY7Pmb61mQ==",
       "type": "Package",
       "files": [
         "_rels/.rels",
@@ -15598,12 +15598,12 @@
         "lib/dotnet/xunit.assert.dll",
         "lib/dotnet/xunit.assert.pdb",
         "lib/dotnet/xunit.assert.xml",
-        "package/services/metadata/core-properties/25b1754808374eeb82f38a86833d4d61.psmdcp",
+        "package/services/metadata/core-properties/055848002a884f449a9c5b48a1267f04.psmdcp",
         "[Content_Types].xml"
       ]
     },
-    "xunit.core/2.1.0-rc1-build3168": {
-      "sha512": "IcQo+pNEDYBC9HJfzY08k0NhLZMX8WXudrlhcrIAzkT2szhrLbGhUi1k6vU5n9crsVv+IxosvIH28kYf6/Z32w==",
+    "xunit.core/2.1.0-rc2-build3176": {
+      "sha512": "CCU5hm7qAzox4vdXbs8uEwGyTnEQ0lJGGj9OhvkawJmIjtPLvinrMgF1bamd39soJ+zUROY42sQxG16a/fdzcQ==",
       "type": "Package",
       "files": [
         "_rels/.rels",
@@ -15619,12 +15619,12 @@
         "build/wp8/_._",
         "build/wpa81/xunit.core.props",
         "build/xamarinios/_._",
-        "package/services/metadata/core-properties/c4f15e74cde14a09b99e736e49571ec0.psmdcp",
+        "package/services/metadata/core-properties/3c0aa539dc9c4bdd9a8b92ac64724ccd.psmdcp",
         "[Content_Types].xml"
       ]
     },
-    "xunit.extensibility.core/2.1.0-rc1-build3168": {
-      "sha512": "8KZaq1mdeaiZxo1ScsGzhkeQRwLLS6+WIno+9gtnYccWmTjCJ/XSYz2fAAlB5mUeyw0vqqrFc+TfNZELs5QiZQ==",
+    "xunit.extensibility.core/2.1.0-rc2-build3176": {
+      "sha512": "u2Xo5H67JvpJ21DGbPc5yJptN4fJXtbHXr/Dn2dFGSjxScecA2lZ0dRlBJac4DQymWXhYSXnet+9pWIPtV/wnA==",
       "type": "Package",
       "files": [
         "_rels/.rels",
@@ -15641,12 +15641,12 @@
         "lib/portable-net45+win8+wp8+wpa81/xunit.core.xml",
         "lib/portable-net45+win8+wp8+wpa81/xunit.runner.tdnet.dll",
         "lib/portable-net45+win8+wp8+wpa81/xunit.runner.utility.desktop.dll",
-        "package/services/metadata/core-properties/f5b0a8a6af3a41e7abbb1c4e08ab5e31.psmdcp",
+        "package/services/metadata/core-properties/2d2618dd0e324dc8ad1162326d6c94df.psmdcp",
         "[Content_Types].xml"
       ]
     },
-    "xunit.extensibility.execution/2.1.0-rc1-build3168": {
-      "sha512": "1w0u3eB7i25hca60r/53oSVb0blMOEm2eVqvwTg9jhMSe/A9raj6UZAVzUnFtA3xLssP4K1udOGTC1qrZ9/VoA==",
+    "xunit.extensibility.execution/2.1.0-rc2-build3176": {
+      "sha512": "DA+lmoANhlBTdbEH9WUHtI1vfqAPUaS7BdzwihCUDkgUrHDjqLHaXDwjEpiLVocZJOosU6wbL0wf+aTRObDEjA==",
       "type": "Package",
       "files": [
         "_rels/.rels",
@@ -15663,9 +15663,9 @@
         "lib/monotouch/xunit.execution.dotnet.dll",
         "lib/monotouch/xunit.execution.dotnet.pdb",
         "lib/monotouch/xunit.execution.dotnet.xml",
-        "lib/net35/xunit.execution.desktop.dll",
-        "lib/net35/xunit.execution.desktop.pdb",
-        "lib/net35/xunit.execution.desktop.xml",
+        "lib/net45/xunit.execution.desktop.dll",
+        "lib/net45/xunit.execution.desktop.pdb",
+        "lib/net45/xunit.execution.desktop.xml",
         "lib/portable-net45+win8+wp8+wpa81/xunit.execution.dotnet.dll",
         "lib/portable-net45+win8+wp8+wpa81/xunit.execution.dotnet.pdb",
         "lib/portable-net45+win8+wp8+wpa81/xunit.execution.dotnet.xml",
@@ -15681,12 +15681,12 @@
         "lib/xamarinios/xunit.execution.dotnet.dll",
         "lib/xamarinios/xunit.execution.dotnet.pdb",
         "lib/xamarinios/xunit.execution.dotnet.xml",
-        "package/services/metadata/core-properties/3ba0c9def4ed43d782df6b4b2c8fef45.psmdcp",
+        "package/services/metadata/core-properties/663b5bce22b241b0a3ea91e55a12fdbf.psmdcp",
         "[Content_Types].xml"
       ]
     },
-    "xunit.runner.visualstudio/2.1.0-beta4-build1109": {
-      "sha512": "dvc/f34M6/RcLvu6s+n5+sLT0EKOoEVot0uFbAsl19uHrifIhdC+M0WPeRrhj27JFOApveX4ZJn3BHA7zHmKmw==",
+    "xunit.runner.visualstudio/2.1.0-rc2-build1126": {
+      "sha512": "KquV3ZS+YgjKjONO/DKaKRYE6IdQBFp6iv2EFfMHpz9sm7IfSAqW4c7g0PEEwrhJEQnwxtYR1fmbrHkoC2ZkKw==",
       "type": "Package",
       "files": [
         "_rels/.rels",
@@ -15694,10 +15694,13 @@
         "build/_common/xunit.abstractions.dll",
         "build/_common/xunit.runner.utility.desktop.dll",
         "build/_common/xunit.runner.visualstudio.testadapter.dll",
-        "build/_universal/xunit.runner.utility.universal.dll",
-        "build/_universal/xunit.runner.utility.universal.pri",
+        "build/_common/xunit.runner.utility.dotnet.dll",
         "build/net20/xunit.runner.visualstudio.props",
-        "build/portable-net45+netcore45+wp8+wpa81/xunit.runner.visualstudio.props",
+        "build/portable-net45+win8+wp8+wpa81/xunit.runner.visualstudio.props",
+        "build/uap10.0/xunit.runner.visualstudio.props",
+        "build/uap10.0/xunit.runner.visualstudio.targets",
+        "build/uap10.0/xunit.runner.visualstudio.uwp.dll",
+        "build/uap10.0/xunit.runner.visualstudio.uwp.pri",
         "build/win81/xunit.runner.visualstudio.props",
         "build/win81/xunit.runner.visualstudio.targets",
         "build/win81/xunit.runner.visualstudio.win81.dll",
@@ -15706,12 +15709,12 @@
         "build/wpa81/xunit.runner.visualstudio.targets",
         "build/wpa81/xunit.runner.visualstudio.wpa81.dll",
         "build/wpa81/xunit.runner.visualstudio.wpa81.pri",
-        "build/uap10.0/xunit.runner.visualstudio.props",
-        "build/uap10.0/xunit.runner.visualstudio.targets",
-        "build/uap10.0/xunit.runner.visualstudio.uwp.dll",
-        "build/uap10.0/xunit.runner.visualstudio.uwp.pri",
-        "build/uap10.0/Properties/xunit.runner.visualstudio.uwp.rd.xml",
-        "package/services/metadata/core-properties/ca3ef34753a3427e909ee036707fb0f7.psmdcp",
+        "build/monoandroid/_._",
+        "build/monotouch/_._",
+        "build/win8/_._",
+        "build/wp8/_._",
+        "build/xamarinios/_._",
+        "package/services/metadata/core-properties/0641e9f1de034209a7a24d07d0141bf3.psmdcp",
         "[Content_Types].xml"
       ]
     }
@@ -15722,8 +15725,8 @@
       "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta3",
       "SQLite.Net-PCL >= 3.0.5",
       "SQLiteNetExtensions >= 1.3.0",
-      "xunit >= 2.1.0-rc1-build3168",
-      "xunit.runner.visualstudio >= 2.1.0-beta4-build1109"
+      "xunit >= 2.1.0-rc2-build3176",
+      "xunit.runner.visualstudio >= 2.1.0-rc2-build1126"
     ],
     "UAP,Version=v10.0": []
   }

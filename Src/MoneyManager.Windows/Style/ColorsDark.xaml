@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="ListEvenColor">#FF000000</Color>
+    <Color x:Key="ListOddColor">#FF171717</Color>
+    <Color x:Key="AppForegroundColor">White</Color>
+
+    <SolidColorBrush x:Key="ListViewBackgroundEvenBrush"
+                     Color="{StaticResource ListEvenColor}" />
+
+    <SolidColorBrush x:Key="ListViewBackgroundOddBrush"
+                     Color="{StaticResource ListOddColor}" />
+
+    <SolidColorBrush x:Key="AppForegroundBrush"
+                     Color="{StaticResource AppForegroundColor}" />
+
+    <SolidColorBrush x:Key="TitleBarBackgroundThemeBrush"
+                     Color="#FF171717" />
+
+    <SolidColorBrush x:Key="TitleBarButtonHoverThemeBrush"
+                     Color="#FF343434" />
+
+    <SolidColorBrush x:Key="TitleBarButtonPressedThemeBrush"
+                     Color="#FF4C4C4C" />
+
+</ResourceDictionary>

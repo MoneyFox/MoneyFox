@@ -74,13 +74,13 @@ namespace MoneyManager.Windows
                 TogglePaneButton.Focus(FocusState.Programmatic);
             };
 
-            SystemNavigationManager.GetForCurrentView().BackRequested += SystemNavigationManager_BackRequested;
+            var currentView = SystemNavigationManager.GetForCurrentView();
+            currentView.BackRequested += SystemNavigationManager_BackRequested;
 
             // If on a phone device that has hardware buttons then we hide the app's back button.
-            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
-            {
-                BackButton.Visibility = Visibility.Collapsed;
-            }
+            currentView.AppViewBackButtonVisibility = ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons") 
+                ? AppViewBackButtonVisibility.Collapsed 
+                : AppViewBackButtonVisibility.Visible;
 
             NavMenuList.ItemsSource = navlist;
         }
