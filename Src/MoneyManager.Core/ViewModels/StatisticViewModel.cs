@@ -16,8 +16,16 @@ namespace MoneyManager.Core.ViewModels
     public class StatisticViewModel : BaseViewModel
     {
         private readonly StatisticManager statisticManager;
+
+        private PlotModel cashFlowModel;
         private ObservableCollection<StatisticItem> categorySummary;
 
+        private PlotModel spreadingModel;
+
+        /// <summary>
+        ///     Creates a StatisticViewModel Object.
+        /// </summary>
+        /// <param name="statisticManager">Instance of <see cref="StatisticManager"/>/></param>
         public StatisticViewModel(StatisticManager statisticManager)
         {
             this.statisticManager = statisticManager;
@@ -26,7 +34,9 @@ namespace MoneyManager.Core.ViewModels
             EndDate = DateTime.Now.Date;
         }
 
-        private PlotModel cashFlowModel;
+        /// <summary>
+        ///     Contains the PlotModel for the CashFlow graph
+        /// </summary>
         public PlotModel CashFlowModel
         {
             get
@@ -44,7 +54,9 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
-        private PlotModel spreadingModel;
+        /// <summary>
+        ///     Contains the PlotModel for the CategorySpreading graph
+        /// </summary>
         public PlotModel SpreadingModel
         {
             get
@@ -62,9 +74,19 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
+        /// <summary>
+        ///     Startdate for a custom statistic
+        /// </summary>
         public DateTime StartDate { get; set; }
+
+        /// <summary>
+        ///     Enddate for a custom statistic
+        /// </summary>
         public DateTime EndDate { get; set; }
 
+        /// <summary>
+        ///     Returns the Category Summary
+        /// </summary>
         public ObservableCollection<StatisticItem> CategorySummary
         {
             get
@@ -83,15 +105,24 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
+        /// <summary>
+        ///     Returns the title for the category view
+        /// </summary>
         public string Title => Strings.StatisticTitle + " " + StartDate.ToString("d") +
                                " - " +
                                EndDate.ToString("d");
 
+        /// <summary>
+        ///     Set  a default CashFlowModel with the set Start and Enddate
+        /// </summary>
         public void SetDefaultCashFlow()
         {
             SetCashFlowModel(statisticManager.GetMonthlyCashFlow());
         }
 
+        /// <summary>
+        ///     Set  a default CategprySpreadingModel with the set Start and Enddate
+        /// </summary>
         public void SetDefaultSpreading()
         {
             SetSpreadingModel(statisticManager.GetSpreading());
@@ -102,7 +133,7 @@ namespace MoneyManager.Core.ViewModels
             var model = new PlotModel
             {
                 Background = OxyColors.Black,
-                TextColor = OxyColors.White,
+                TextColor = OxyColors.White
             };
             var pieSeries = new PieSeries();
 
@@ -118,6 +149,9 @@ namespace MoneyManager.Core.ViewModels
             SpreadingModel = model;
         }
 
+        /// <summary>
+        ///     Set a custom CashFlowModel with the set Start and Enddate
+        /// </summary>
         public void SetCustomCashFlow()
         {
             SetCashFlowModel(statisticManager.GetMonthlyCashFlow(StartDate, EndDate));
@@ -128,7 +162,7 @@ namespace MoneyManager.Core.ViewModels
             var model = new PlotModel
             {
                 Background = OxyColors.Black,
-                TextColor = OxyColors.White,
+                TextColor = OxyColors.White
             };
             var barSeries = new ColumnSeries();
             var axe = new CategoryAxis
@@ -156,11 +190,17 @@ namespace MoneyManager.Core.ViewModels
             CashFlowModel = model;
         }
 
+        /// <summary>
+        ///     Set a custom CategprySpreadingModel with the set Start and Enddate
+        /// </summary>
         public void SetCustomSpreading()
         {
             SetSpreadingModel(statisticManager.GetSpreading(StartDate, EndDate));
         }
 
+        /// <summary>
+        ///     Set a custom CategoryModel with the set Start and Enddate
+        /// </summary>
         public void SetCagtegorySummary()
         {
             CategorySummary = statisticManager.GetCategorySummary(StartDate, EndDate);
