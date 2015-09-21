@@ -29,12 +29,9 @@ namespace MoneyManager.Core.Manager
                 return accountRepository.Data.FirstOrDefault(x => x.Id == settings.DefaultAccount);
             }
 
-            if (accountRepository.Data.Any())
-            {
-                return accountRepository.Data.First();
-            }
-
-            return accountRepository.Selected;
+            return accountRepository.Data.Any() 
+                ? accountRepository.Data.First() 
+                : accountRepository.Selected;
         }
     }
 }

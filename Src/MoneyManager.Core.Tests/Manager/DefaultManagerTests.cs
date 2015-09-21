@@ -65,7 +65,7 @@ namespace MoneyManager.Core.Tests.Manager
 
             var account = manager.GetDefaultAccount();
 
-            account.Id.ShouldBe(0);
+            account.ShouldBeNull();
         }
     }
 }
