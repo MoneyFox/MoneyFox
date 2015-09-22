@@ -37,15 +37,9 @@
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <TextBlock x:Uid="NoDataAvailableLabel"
-                   Text="No Data Available"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}" />
         <ScrollViewer>
             <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
                                              EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                             Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                                              ItemsSource="{Binding CategorySummary}"
                                              ItemTemplate="{StaticResource CategoryTemplate}">
                 <ListView.ItemContainerStyle>
