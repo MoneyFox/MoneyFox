@@ -17,7 +17,9 @@
         <DataTemplate x:Key="AccountTemplate">
             <StackPanel HorizontalAlignment="Stretch"
                         Holding="AccountList_Holding"
-                        RightTapped="AccountList_RightTapped">
+                        RightTapped="AccountList_RightTapped"
+                        Background="Transparent"
+                        Margin="0,0,0, 12">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
@@ -28,19 +30,17 @@
                                         Click="Delete_OnClick" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <StackPanel Margin="0,0,0, 12" >
-                    <Grid HorizontalAlignment="Stretch">
-                        <TextBlock Text="{Binding Name}"
-                                   TextTrimming="CharacterEllipsis"
-                                   Style="{ThemeResource SubtitleTextBlockStyle}"/>
-                        <TextBlock TextAlignment="Right"
-                                    Style="{ThemeResource SubtitleTextBlockStyle}"
-                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                                    HorizontalAlignment="Right" />
-                    </Grid>
-                    <TextBlock Text="{Binding Iban}"
-                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-                </StackPanel>
+                <Grid HorizontalAlignment="Stretch">
+                    <TextBlock Text="{Binding Name}"
+                               TextTrimming="CharacterEllipsis"
+                               Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    <TextBlock TextAlignment="Right"
+                               Style="{ThemeResource SubtitleTextBlockStyle}"
+                               Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                               HorizontalAlignment="Right" />
+                </Grid>
+                <TextBlock Text="{Binding Iban}"
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
@@ -49,8 +49,8 @@
         <StackPanel>
             <controls:BalanceUserControl />
             <controls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
-                                             OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
-                                             EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                             OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
                                              ItemTemplate="{StaticResource AccountTemplate}"
                                              HorizontalAlignment="Stretch"
                                              EntranceNavigationTransitionInfo.IsTargetElement="True">
@@ -58,6 +58,8 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment"
                                 Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>

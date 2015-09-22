@@ -47,8 +47,9 @@
                       Margin="0,0,0,3">
                     <TextBlock
                         Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
-                    <TextBlock Text="{Binding Converter={StaticResource TransactionAmountConverter}, ConverterParameter={Binding ChargedAccount}}"
-                               HorizontalAlignment="Right" />
+                    <TextBlock
+                        Text="{Binding Converter={StaticResource TransactionAmountConverter}, ConverterParameter={Binding ChargedAccount}}"
+                        HorizontalAlignment="Right" />
                 </Grid>
                 <Grid>
                     <StackPanel Orientation="Horizontal"
@@ -76,10 +77,11 @@
                         </Grid>
                         <Grid HorizontalAlignment="Right"
                               Visibility="{Binding IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Image Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
-                                   DataContext="/Assets/{0}/done.png"
-                                   Width="30"
-                                   Height="30" />
+                            <Image
+                                Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
+                                DataContext="/Assets/{0}/done.png"
+                                Width="30"
+                                Height="30" />
                         </Grid>
                         <Grid HorizontalAlignment="Right"
                               Visibility="{Binding IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -96,27 +98,29 @@
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <controls:BalanceUserControl />
-            <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
-                                             EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
-                                             ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
-                                             ItemTemplate="{StaticResource TransactionTemplate}"
-                                             HorizontalAlignment="Stretch"
-                                             ShowsScrollingPlaceholders="True"
-                                             Margin="0,20,0,0"
-                                             SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}" />
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
+        <controls:BalanceUserControl />
+        <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                                         EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                         ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
+                                         ItemTemplate="{StaticResource TransactionTemplate}"
+                                         HorizontalAlignment="Stretch"
+                                         ShowsScrollingPlaceholders="True"
+                                         Margin="0,20,0,0"
+                                         SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
+                    <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
 
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </controls:AlternatingRowListView>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                    <Setter Property="VerticalContentAlignment"
+                            Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </controls:AlternatingRowListView>
     </Grid>
 </UserControl>

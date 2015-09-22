@@ -43,14 +43,16 @@
                    VerticalAlignment="Center"
                    Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}" />
         <ScrollViewer>
-            <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
-                                             EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+            <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
                                              Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                                              ItemsSource="{Binding CategorySummary}"
                                              ItemTemplate="{StaticResource CategoryTemplate}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment"
                                 Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
