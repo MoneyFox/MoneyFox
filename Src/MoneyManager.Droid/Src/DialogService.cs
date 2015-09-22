@@ -62,7 +62,7 @@ namespace MoneyManager.Droid
         {
             var isPositivAnswer = false;
 
-            var builder = new AlertDialog.Builder(Application.Context);
+            var builder = new AlertDialog.Builder(CurrentActivity);
             builder.SetTitle(title);
             builder.SetMessage(message);
             builder.SetPositiveButton(Strings.YesLabel, (s, e) => isPositivAnswer = true);

@@ -19,6 +19,11 @@ namespace MoneyManager.Core.Manager
 
         public Account GetDefaultAccount()
         {
+            if (accountRepository.Selected != null)
+            {
+                return accountRepository.Selected;
+            }
+
             if (accountRepository.Data == null)
             {
                 accountRepository.Data = new ObservableCollection<Account>();
@@ -29,9 +34,7 @@ namespace MoneyManager.Core.Manager
                 return accountRepository.Data.FirstOrDefault(x => x.Id == settings.DefaultAccount);
             }
 
-            return accountRepository.Data.Any() 
-                ? accountRepository.Data.First() 
-                : accountRepository.Selected;
+            return accountRepository.Data.FirstOrDefault();
         }
     }
 }

@@ -30,27 +30,9 @@ namespace MoneyManager.Core.ViewModels
         {
             this.statisticManager = statisticManager;
 
-            IsCashFlowModelAvailable = false;
-            IsSpreadingModelAvailable = false;
-
             StartDate = DateTime.Now.Date.AddMonths(-1);
             EndDate = DateTime.Now.Date;
         }
-
-        /// <summary>
-        ///     Indicates wether a cashflow model is available or not
-        /// </summary>
-        public bool IsCashFlowModelAvailable { get; set; }
-
-        /// <summary>
-        ///     Indicates wether a spreading model is available or not
-        /// </summary>
-        public bool IsSpreadingModelAvailable { get; set; }
-
-        /// <summary>
-        ///     Indicates wether a CategorySummary is available or not
-        /// </summary>
-        public bool IsCategorySummarylAvailable => CategorySummary.Any();
 
         /// <summary>
         ///     Contains the PlotModel for the CashFlow graph
@@ -120,6 +102,7 @@ namespace MoneyManager.Core.ViewModels
                     return;
                 }
                 categorySummary = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -151,7 +134,6 @@ namespace MoneyManager.Core.ViewModels
             var statisticItems = items as IList<StatisticItem> ?? items.ToList();
             if (!statisticItems.Any())
             {
-                IsSpreadingModelAvailable = false;
                 return;
             }
 
@@ -167,7 +149,9 @@ namespace MoneyManager.Core.ViewModels
                 pieSeries.Slices.Add(new PieSlice(item.Label, item.Value));
             }
 
-            IsSpreadingModelAvailable = true;
+            model.IsLegendVisible = true;
+            model.LegendPosition = LegendPosition.BottomLeft;
+
             model.Series.Add(pieSeries);
             SpreadingModel = model;
         }
@@ -185,7 +169,6 @@ namespace MoneyManager.Core.ViewModels
             var statisticItems = items as IList<StatisticItem> ?? items.ToList();
             if (!statisticItems.Any())
             {
-                IsCashFlowModelAvailable = false;
                 return;
             }
 
@@ -198,7 +181,9 @@ namespace MoneyManager.Core.ViewModels
             var axe = new CategoryAxis
             {
                 AxislineColor = OxyColors.White,
-                TextColor = OxyColors.White
+                TextColor = OxyColors.White,
+                IsPanEnabled = false,
+                IsZoomEnabled = false
             };
 
             foreach (var item in statisticItems)
@@ -212,8 +197,6 @@ namespace MoneyManager.Core.ViewModels
             barSeries.Items[2].Color = OxyColors.Cyan;
 
             model.Axes.Add(axe);
-
-            IsSpreadingModelAvailable = true;
             model.Series.Add(barSeries);
             CashFlowModel = model;
         }

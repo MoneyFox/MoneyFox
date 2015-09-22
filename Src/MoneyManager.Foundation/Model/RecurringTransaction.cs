@@ -6,7 +6,7 @@ using SQLiteNetExtensions.Attributes;
 namespace MoneyManager.Foundation.Model
 {
     [ImplementPropertyChanged]
-    [Table("RecurringTransactiont")]
+    [Table("RecurringTransaction")]
     public class RecurringTransaction
     {
         [PrimaryKey, AutoIncrement]

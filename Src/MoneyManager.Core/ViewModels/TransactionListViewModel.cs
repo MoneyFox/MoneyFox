@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helper;
@@ -44,7 +45,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Returns all Transaction who are assigned to this repository
         /// </summary>
-        public List<FinancialTransaction> RelatedTransactions { set; get; }
+        public ObservableCollection<FinancialTransaction> RelatedTransactions { set; get; }
 
         /// <summary>
         ///     Returns the name of the account title for the current page
@@ -60,10 +61,10 @@ namespace MoneyManager.Core.ViewModels
         {
             balanceViewModel.IsTransactionView = true;
             SelectedTransaction = null;
-            RelatedTransactions = transactionRepository
+            RelatedTransactions = new ObservableCollection<FinancialTransaction>(transactionRepository
                 .GetRelatedTransactions(accountRepository.Selected)
                 .OrderByDescending(x => x.Date)
-                .ToList();
+                .ToList());
         }
 
         private void UnloadTransactions()

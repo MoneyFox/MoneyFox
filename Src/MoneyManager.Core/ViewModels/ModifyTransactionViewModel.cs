@@ -53,6 +53,9 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 IsTransfer = SelectedTransaction.IsTransfer;
+                Recurrence = SelectedTransaction.IsRecurring
+                    ? SelectedTransaction.RecurringTransaction.Recurrence
+                    : 0;
                 oldAmount = SelectedTransaction.Amount;
             }
             else 
@@ -105,7 +108,7 @@ namespace MoneyManager.Core.ViewModels
         public int Recurrence { get; set; }
         public bool IsTransfer { get; set; }
 
-        private double oldAmount = 0;
+        private double oldAmount;
 
         public List<string> RecurrenceList => new List<string>
         {
@@ -180,19 +183,21 @@ namespace MoneyManager.Core.ViewModels
                 return;
             }
 
-            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction) || SelectedTransaction.IsRecurring)
+            //Create a recurring transaction based on the financial transaction or update an existing
+            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction) 
+                || SelectedTransaction.IsRecurring)
             {
-                //Update the recurring transaction based on the transaction.
-                var recurringTransaction = RecurringTransactionHelper.
-                    GetRecurringFromFinancialTransaction(SelectedTransaction, IsEndless, Recurrence, EndDate);
-                SelectedTransaction.RecurringTransaction = recurringTransaction;
+                SelectedTransaction.RecurringTransaction = RecurringTransactionHelper.
+                    GetRecurringFromFinancialTransaction(SelectedTransaction,
+                        IsEndless,
+                        Recurrence,
+                        EndDate);
             }
 
             // Save or update the transaction and add the amount to the account
             transactionRepository.Save(SelectedTransaction);
             transactionManager.AddTransactionAmount(SelectedTransaction);
            
-
             ResetInitLocker();
             Close(this);
         }

@@ -40,7 +40,7 @@ namespace MoneyManager.Foundation.Model
         [ManyToOne]
         public Category Category { get; set; }
 
-        [ManyToOne]
+        [ManyToOne("ReccuringTransactionId", CascadeOperations = CascadeOperation.All)]
         public RecurringTransaction RecurringTransaction { get; set; }
 
         [Ignore]

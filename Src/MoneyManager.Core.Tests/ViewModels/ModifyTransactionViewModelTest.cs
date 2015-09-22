@@ -1,4 +1,6 @@
-﻿using MoneyManager.Core.DataAccess;
+﻿using System.Collections.Generic;
+using Cirrious.MvvmCross.Test.Core;
+using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.ViewModels;
@@ -10,7 +12,7 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    public class ModifyTransactionViewModelTest
+    public class ModifyTransactionViewModelTest : MvxIoCSupportingTest
     {
         [Theory]
         [InlineData(TransactionType.Spending, "Edit Spending")]

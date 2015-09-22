@@ -22,14 +22,8 @@
                                         Glyph="&#xE908;" />
                 </PivotItem.Header>
                 <Grid>
-                    <TextBlock x:Uid="NoDataAvailableLabel"
-                               Text="No Data Available"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}" />
                     <windows:PlotView Model="{Binding CashFlowModel}"
                                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                                      Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Stretch" />
                 </Grid>
@@ -41,15 +35,9 @@
                                     x:Uid="SpreadingTitle"
                                         Glyph="&#xE774;" />
                 </PivotItem.Header>
-                <Grid>
-                    <TextBlock x:Uid="NoDataAvailableLabel"
-                               Text="No Data Available"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}" />
+                <Grid Margin="20">
                     <windows:PlotView Model="{Binding SpreadingModel}"
                                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                                      Visibility="{Binding IsCategorySummarylAvailable, Converter={StaticResource BooleanToVisibilityConverter}}"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Stretch" />
                 </Grid>

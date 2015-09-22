@@ -6,6 +6,7 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
+using SQLite.Net;
 using SQLiteNetExtensions.Extensions;
 
 namespace MoneyManager.Core.DataAccess
@@ -31,17 +32,32 @@ namespace MoneyManager.Core.DataAccess
         {
             using (var db = dbHelper.GetSqlConnection())
             {
+                SaveRecurringTransaction(itemToSave, db);
+
+                //Check if the transaction is new or an updated one
                 if (itemToSave.Id == 0)
                 {
                     db.Insert(itemToSave);
-                    if (itemToSave.IsRecurring)
-                    {
-                        db.InsertOrReplace(itemToSave.RecurringTransaction);
-                    }
                 }
                 else
                 {
                     db.UpdateWithChildren(itemToSave);
+                }
+            }
+        }
+
+        private void SaveRecurringTransaction(FinancialTransaction itemToSave, SQLiteConnection db)
+        {
+            if (itemToSave.IsRecurring)
+            {
+                //Check if the recurring transaction is new or an updated one
+                if (itemToSave.RecurringTransaction.Id == 0)
+                {
+                    db.Insert(itemToSave.RecurringTransaction);
+                }
+                else
+                {
+                    db.Update(itemToSave.RecurringTransaction);
                 }
             }
         }
@@ -69,7 +85,7 @@ namespace MoneyManager.Core.DataAccess
             {
                 var list = db.GetAllWithChildren(filter, true).ToList();
 
-                foreach (var transaction in list.Where(x => x.IsRecurring && x.ReccuringTransactionId != null))
+                foreach (var transaction in list.Where(x => x.IsRecurring && x.ReccuringTransactionId != 0))
                 {
                     transaction.RecurringTransaction = db.GetWithChildren<RecurringTransaction>(transaction.ReccuringTransactionId);
                 }

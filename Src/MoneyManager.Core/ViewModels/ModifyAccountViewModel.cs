@@ -1,6 +1,4 @@
-﻿using System;
-using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Foundation;
+﻿using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Localization;

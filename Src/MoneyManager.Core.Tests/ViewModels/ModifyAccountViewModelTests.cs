@@ -1,4 +1,5 @@
-﻿using MoneyManager.Core.DataAccess;
+﻿using System.Globalization;
+using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -14,6 +15,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         [Fact]
         public void Title_EditAccount_CorrectTitle()
         {
+            Strings.Culture = new CultureInfo("en-US");
             string accountname = "Sparkonto";
 
             var accountRepositorySetup = new Mock<IRepository<Account>>();
@@ -28,6 +30,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         [Fact]
         public void Title_AddAccount_CorrectTitle()
         {
+            Strings.Culture = new CultureInfo("en-US");
             string accountname = "Sparkonto";
 
             var accountRepositorySetup = new Mock<IRepository<Account>>();
