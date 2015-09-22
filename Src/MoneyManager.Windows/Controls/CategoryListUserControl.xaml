@@ -10,7 +10,7 @@
 
     <UserControl.Resources>
         <DataTemplate x:Key="CategoryTemplate">
-            <StackPanel Margin="0,0,0,12"
+            <StackPanel Margin="0,6,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="300"
                         Holding="CategoryListHolding">

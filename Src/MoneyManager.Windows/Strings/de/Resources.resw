@@ -174,9 +174,6 @@
   <data name="InfoLabel.Text" xml:space="preserve">
     <value>Info</value>
   </data>
-  <data name="NoDataAvailableLabel.Text" xml:space="preserve">
-    <value>Keine Daten verfügbar</value>
-  </data>
   <data name="OpenSourceNote.Text" xml:space="preserve">
     <value>Dieses Programm ist Open Source. Wir freuen uns über jeden Beitrag!</value>
   </data>
