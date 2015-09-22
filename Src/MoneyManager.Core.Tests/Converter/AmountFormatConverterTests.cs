@@ -7,11 +7,11 @@ namespace MoneyManager.Core.Tests.Converter
     public class AmountFormatConverterTests
     {
         [Theory]
-        [InlineData(123.45, "CHF 123.45")]
-        [InlineData(123, "CHF 123.00")]
-        public void Convert_DateTime_ValidString(double amount, string result)
+        [InlineData(123.45)]
+        [InlineData(123)]
+        public void Convert_DateTime_ValidString(double amount)
         {
-            new AmountFormatConverter().Convert(amount, null, null, null).ShouldBe(result);
+            new AmountFormatConverter().Convert(amount, null, null, null).ShouldBe(amount.ToString("C"));
         }
     }
 }

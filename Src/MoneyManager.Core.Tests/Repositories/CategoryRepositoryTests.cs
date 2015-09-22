@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Localization;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Repositories
@@ -14,6 +16,7 @@ namespace MoneyManager.Core.Tests.Repositories
         [InlineData("", "[No Name]")]
         public void Save_InputName_CorrectNameAssigned(string inputName, string expectedResult)
         {
+            Strings.Culture = new CultureInfo("en-US");
             var categoryDataAccessMock = new CategoryDataAccessMock();
             var repository = new CategoryRepository(categoryDataAccessMock);
 
