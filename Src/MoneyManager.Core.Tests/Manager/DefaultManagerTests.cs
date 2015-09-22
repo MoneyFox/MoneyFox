@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Manager;
@@ -10,7 +11,7 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.Manager
 {
-    class DefaultManagerTests
+    public class DefaultManagerTests
     {
         [Theory]
         [InlineData(1, 1)]
@@ -28,10 +29,14 @@ namespace MoneyManager.Core.Tests.Manager
                     new Account {Id = 3, CurrentBalance = 65, Name = "The Rest"}
                 }));
 
-            var settings = new SettingDataAccess(new Mock<IRoamingSettings>().Object) {DefaultAccount = defaultAccountId};
+            int value = 500;
 
+            var roamingSettingsSetup = new Mock<IRoamingSettings>();
+            roamingSettingsSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<object>()));
+            roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), It.IsAny<int>())).Returns(defaultAccountId);
+
+            var settings = new SettingDataAccess(roamingSettingsSetup.Object);
             var manager = new DefaultManager(accountRepositorySetup.Object, settings);
-
             var account = manager.GetDefaultAccount();
 
             account.Id.ShouldBe(result);

@@ -180,9 +180,10 @@ namespace MoneyManager.Core.ViewModels
                 return;
             }
 
-            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction) || SelectedTransaction.IsRecurring)
+            //Create a recurring transaction based on the financial transaction or update an existing
+            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction) 
+                || SelectedTransaction.IsRecurring)
             {
-                //Update the recurring transaction based on the transaction.
                 var recurringTransaction = RecurringTransactionHelper.
                     GetRecurringFromFinancialTransaction(SelectedTransaction, IsEndless, Recurrence, EndDate);
                 SelectedTransaction.RecurringTransaction = recurringTransaction;
@@ -192,7 +193,6 @@ namespace MoneyManager.Core.ViewModels
             transactionRepository.Save(SelectedTransaction);
             transactionManager.AddTransactionAmount(SelectedTransaction);
            
-
             ResetInitLocker();
             Close(this);
         }
