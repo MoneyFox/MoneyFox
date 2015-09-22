@@ -50,7 +50,7 @@ namespace MoneyManager.Core.DataAccess
         {
             if (itemToSave.IsRecurring)
             {
-                //Check if the transaction is new or an updated one
+                //Check if the recurring transaction is new or an updated one
                 if (itemToSave.RecurringTransaction.Id == 0)
                 {
                     db.Insert(itemToSave.RecurringTransaction);
