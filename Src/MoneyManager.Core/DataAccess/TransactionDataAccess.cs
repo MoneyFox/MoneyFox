@@ -32,10 +32,11 @@ namespace MoneyManager.Core.DataAccess
         {
             using (var db = dbHelper.GetSqlConnection())
             {
+                SaveRecurringTransaction(itemToSave, db);
+
                 //Check if the transaction is new or an updated one
                 if (itemToSave.Id == 0)
                 {
-                    SaveRecurringTransaction(itemToSave, db);
                     db.Insert(itemToSave);
                 }
                 else
@@ -52,11 +53,11 @@ namespace MoneyManager.Core.DataAccess
                 //Check if the transaction is new or an updated one
                 if (itemToSave.RecurringTransaction.Id == 0)
                 {
-                    db.Update(itemToSave.RecurringTransaction);
+                    db.Insert(itemToSave.RecurringTransaction);
                 }
                 else
                 {
-                    db.Insert(itemToSave.RecurringTransaction);
+                    db.Update(itemToSave.RecurringTransaction);
                 }
             }
         }
