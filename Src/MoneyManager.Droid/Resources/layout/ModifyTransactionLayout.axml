@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/recurrence_spinner"
-            local:MvxBind="ItemsSource RecurrenceList" />
+            local:MvxBind="ItemsSource RecurrenceList;SelectedIndex Recurrence" />
         <CheckBox
             android:text="CheckBox"
             android:layout_width="match_parent"

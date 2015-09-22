@@ -184,9 +184,11 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction) 
                 || SelectedTransaction.IsRecurring)
             {
-                var recurringTransaction = RecurringTransactionHelper.
-                    GetRecurringFromFinancialTransaction(SelectedTransaction, IsEndless, Recurrence, EndDate);
-                SelectedTransaction.RecurringTransaction = recurringTransaction;
+                SelectedTransaction.RecurringTransaction = RecurringTransactionHelper.
+                    GetRecurringFromFinancialTransaction(SelectedTransaction,
+                        IsEndless,
+                        Recurrence,
+                        EndDate);
             }
 
             // Save or update the transaction and add the amount to the account

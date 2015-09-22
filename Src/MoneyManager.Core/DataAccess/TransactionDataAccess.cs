@@ -6,6 +6,7 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
+using SQLite.Net;
 using SQLiteNetExtensions.Extensions;
 
 namespace MoneyManager.Core.DataAccess
@@ -31,17 +32,31 @@ namespace MoneyManager.Core.DataAccess
         {
             using (var db = dbHelper.GetSqlConnection())
             {
+                //Check if the transaction is new or an updated one
                 if (itemToSave.Id == 0)
                 {
+                    SaveRecurringTransaction(itemToSave, db);
                     db.Insert(itemToSave);
-                    if (itemToSave.IsRecurring)
-                    {
-                        db.InsertOrReplace(itemToSave.RecurringTransaction);
-                    }
                 }
                 else
                 {
                     db.UpdateWithChildren(itemToSave);
+                }
+            }
+        }
+
+        private void SaveRecurringTransaction(FinancialTransaction itemToSave, SQLiteConnection db)
+        {
+            if (itemToSave.IsRecurring)
+            {
+                //Check if the transaction is new or an updated one
+                if (itemToSave.RecurringTransaction.Id == 0)
+                {
+                    db.Update(itemToSave.RecurringTransaction);
+                }
+                else
+                {
+                    db.Insert(itemToSave.RecurringTransaction);
                 }
             }
         }
