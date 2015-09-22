@@ -49,29 +49,52 @@ namespace MoneyManager.Core.Tests.Manager
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
             accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 5});
 
-            var settings = new SettingDataAccess(new Mock<IRoamingSettings>().Object) { DefaultAccount = -1 };
-
             //Execute
-            var manager = new DefaultManager(accountRepositorySetup.Object, settings);
-
-            var account = manager.GetDefaultAccount();
+            var account = new DefaultManager(accountRepositorySetup.Object,
+                new SettingDataAccess(new Mock<IRoamingSettings>().Object) {DefaultAccount = -1})
+                .GetDefaultAccount();
              
             //Assert
             account.Id.ShouldBe(5);
         }
 
         [Fact]
+        public void GetDefaultAccount_SelectedAndDataNoSettings_CorrectFallbackValue()
+        {
+            //Setup
+            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>(
+                new List<Account>
+                {
+                    new Account {Id = 1, CurrentBalance = 1230, Name = "Sparkonto"},
+                    new Account {Id = 2, CurrentBalance = 999, Name = "Jugendkonto"},
+                    new Account {Id = 3, CurrentBalance = 65, Name = "The Rest"}
+                })); accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+            accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2});
+
+            //Execute
+            var account = new DefaultManager(accountRepositorySetup.Object,
+                new SettingDataAccess(new Mock<IRoamingSettings>().Object) {DefaultAccount = -1})
+                .GetDefaultAccount();
+             
+            //Assert
+            account.Id.ShouldBe(2);
+        }
+
+        [Fact]
         public void GetDefaultAccount_NoSettingsNoDataNoSelected_CorrectFallbackValue()
         {
+            //Setup
             var accountRepositorySetup = new Mock<IRepository<Account>>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
-            var settings = new SettingDataAccess(new Mock<IRoamingSettings>().Object) { DefaultAccount = -1 };
-
-            var manager = new DefaultManager(accountRepositorySetup.Object, settings);
+            //Execute
+            var manager = new DefaultManager(accountRepositorySetup.Object,
+                new SettingDataAccess(new Mock<IRoamingSettings>().Object) { DefaultAccount = -1 });
 
             var account = manager.GetDefaultAccount();
 
+            //Assert
             account.ShouldBeNull();
         }
     }
