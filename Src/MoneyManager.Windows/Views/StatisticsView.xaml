@@ -35,7 +35,7 @@
                                     x:Uid="SpreadingTitle"
                                         Glyph="&#xE774;" />
                 </PivotItem.Header>
-                <Grid>
+                <Grid Margin="20">
                     <windows:PlotView Model="{Binding SpreadingModel}"
                                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                                       HorizontalAlignment="Stretch"
