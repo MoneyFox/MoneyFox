@@ -53,6 +53,9 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 IsTransfer = SelectedTransaction.IsTransfer;
+                Recurrence = SelectedTransaction.IsRecurring
+                    ? SelectedTransaction.RecurringTransaction.Recurrence
+                    : 0;
                 oldAmount = SelectedTransaction.Amount;
             }
             else 
@@ -105,7 +108,7 @@ namespace MoneyManager.Core.ViewModels
         public int Recurrence { get; set; }
         public bool IsTransfer { get; set; }
 
-        private double oldAmount = 0;
+        private double oldAmount;
 
         public List<string> RecurrenceList => new List<string>
         {
