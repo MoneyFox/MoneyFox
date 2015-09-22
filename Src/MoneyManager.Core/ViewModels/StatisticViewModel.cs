@@ -167,6 +167,9 @@ namespace MoneyManager.Core.ViewModels
                 pieSeries.Slices.Add(new PieSlice(item.Label, item.Value));
             }
 
+            model.IsLegendVisible = true;
+            model.LegendPosition = LegendPosition.BottomLeft;
+
             IsSpreadingModelAvailable = true;
             model.Series.Add(pieSeries);
             SpreadingModel = model;
@@ -198,7 +201,9 @@ namespace MoneyManager.Core.ViewModels
             var axe = new CategoryAxis
             {
                 AxislineColor = OxyColors.White,
-                TextColor = OxyColors.White
+                TextColor = OxyColors.White,
+                IsPanEnabled = false,
+                IsZoomEnabled = false
             };
 
             foreach (var item in statisticItems)
@@ -212,10 +217,10 @@ namespace MoneyManager.Core.ViewModels
             barSeries.Items[2].Color = OxyColors.Cyan;
 
             model.Axes.Add(axe);
-
-            IsSpreadingModelAvailable = true;
             model.Series.Add(barSeries);
             CashFlowModel = model;
+
+            IsSpreadingModelAvailable = true;
         }
 
         /// <summary>
