@@ -9,10 +9,10 @@ namespace MoneyManager.Core.Tests.Helper
     public class TransactionTypeLogicTest
     {
         [Theory]
-        [InlineData("Spending", "en-US", TransactionType.Spending)]
-        [InlineData("Income", "en-US", TransactionType.Income)]
-        [InlineData("Transfer", "en-US", TransactionType.Transfer)]
-        public void GetEnumFrostring_String_Titel(string inputString, string culture, TransactionType expectedType)
+        [InlineData("Spending", TransactionType.Spending)]
+        [InlineData("Income", TransactionType.Income)]
+        [InlineData("Transfer", TransactionType.Transfer)]
+        public void GetEnumFrostring_String_Titel(string inputString, TransactionType expectedType)
         {
             TransactionTypeHelper.GetEnumFromString(inputString).ShouldBe(expectedType);
         }
@@ -23,6 +23,7 @@ namespace MoneyManager.Core.Tests.Helper
         [InlineData(2, "en-US", "Transfer")]
         public void GetEnumFrostring_Int_Titel(int input, string culture, string expectedTitle)
         {
+            Strings.Culture = new CultureInfo(culture);
             TransactionTypeHelper.GetViewTitleForType(input).ShouldBe(expectedTitle);
         }
         

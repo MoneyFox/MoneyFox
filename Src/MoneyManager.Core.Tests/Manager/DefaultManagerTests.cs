@@ -20,6 +20,7 @@ namespace MoneyManager.Core.Tests.Manager
         [InlineData(-1, 1)]
         public void GetDefaultAccount_DefaultAccountSettings_CorrectlySelectedAccount(int defaultAccountId, int result)
         {
+            //Setup
             var accountRepositorySetup = new Mock<IRepository<Account>>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>(
                 new List<Account>
@@ -29,32 +30,33 @@ namespace MoneyManager.Core.Tests.Manager
                     new Account {Id = 3, CurrentBalance = 65, Name = "The Rest"}
                 }));
 
-            int value = 500;
-
             var roamingSettingsSetup = new Mock<IRoamingSettings>();
             roamingSettingsSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<object>()));
             roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), It.IsAny<int>())).Returns(defaultAccountId);
 
-            var settings = new SettingDataAccess(roamingSettingsSetup.Object);
-            var manager = new DefaultManager(accountRepositorySetup.Object, settings);
-            var account = manager.GetDefaultAccount();
+            //Execute
+            var account = new DefaultManager(accountRepositorySetup.Object, new SettingDataAccess(roamingSettingsSetup.Object)).GetDefaultAccount();
 
+            //Assert
             account.Id.ShouldBe(result);
         }
 
         [Fact]
         public void GetDefaultAccount_NoSettingsNoData_CorrectFallbackValue()
         {
+            //Setup
             var accountRepositorySetup = new Mock<IRepository<Account>>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
             accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 5});
 
             var settings = new SettingDataAccess(new Mock<IRoamingSettings>().Object) { DefaultAccount = -1 };
 
+            //Execute
             var manager = new DefaultManager(accountRepositorySetup.Object, settings);
 
             var account = manager.GetDefaultAccount();
-
+             
+            //Assert
             account.Id.ShouldBe(5);
         }
 
