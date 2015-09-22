@@ -23,8 +23,11 @@ namespace MoneyManager.Windows.Controls
             {
                 return;
             }
+            var viewmodel = (DataContext as TransactionListViewModel);
 
-            (DataContext as TransactionListViewModel)?.EditCommand.Execute(transaction);
+            if (viewmodel == null) return;
+            viewmodel.SelectedTransaction = transaction;
+            viewmodel.EditCommand.Execute();
         }
 
         private void DeleteTransaction(object sender, RoutedEventArgs e)
