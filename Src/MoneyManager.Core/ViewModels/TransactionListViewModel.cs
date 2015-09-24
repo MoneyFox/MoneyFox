@@ -59,7 +59,10 @@ namespace MoneyManager.Core.ViewModels
 
         private void LoadTransactions()
         {
+            //Refresh balance control with the current account
             balanceViewModel.IsTransactionView = true;
+            balanceViewModel.UpdateBalance();
+
             SelectedTransaction = null;
             RelatedTransactions = new ObservableCollection<FinancialTransaction>(transactionRepository
                 .GetRelatedTransactions(accountRepository.Selected)
@@ -69,6 +72,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void UnloadTransactions()
         {
+            //Set balance control back to all accounts
             balanceViewModel.IsTransactionView = false;
             balanceViewModel.UpdateBalance();
         }
