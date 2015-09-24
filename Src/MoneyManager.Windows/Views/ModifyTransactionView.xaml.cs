@@ -1,7 +1,9 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Cirrious.CrossCore;
+using MoneyManager.Core.Helper;
 using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views
@@ -30,20 +32,22 @@ namespace MoneyManager.Windows.Views
             {
                 TextBoxAmount.Text = "0";
             }
+            TextBoxAmount.Text = Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxAmount.Text, CultureInfo.CurrentCulture));
         }
 
         private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e)
-        {
-            if (e.OriginalSource == null)
-            {
-                return;
-            }
+        { 
+            if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
+            var cursorposition = TextBoxAmount.SelectionStart;
 
-            TextBoxAmount.Text = e.OriginalSource.ToString()
+            TextBoxAmount.Text = TextBoxAmount.Text
                 .Replace(",", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
 
-            TextBoxAmount.Text = e.OriginalSource.ToString()
+            if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
+            TextBoxAmount.Text = TextBoxAmount.Text
                 .Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
+
+            TextBoxAmount.Select(cursorposition, 0);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using MoneyManager.Core.Converter;
 using MoneyManager.Core.Helper;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -43,6 +45,17 @@ namespace MoneyManager.Core.Tests.Helper
         public void GetEndOfMonth_NoneInput_LastDayOfMonth()
         {
             Utilities.GetEndOfMonth().ShouldBeInstanceOf<DateTime>();
+        }
+
+        [Theory]
+        [InlineData(6000000, "de-CH", "6 000 000,00")]
+        [InlineData(6000000.45, "de-CH", "6 000 000,45")]
+        [InlineData(6000000, "de-DE", "6.000.000,00")]
+        [InlineData(6000000, "en-US", "6,000,000.00")]
+        public void FormatLargeNumbers_AmountShort_ValidString(double amount, string culture, string result)
+        {
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
+            new AmountFormatConverter().Convert(amount, null, "short", null).ShouldBe(result);
         }
     }
 }
