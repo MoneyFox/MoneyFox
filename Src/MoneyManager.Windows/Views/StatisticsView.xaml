@@ -49,7 +49,9 @@
                                         x:Uid="CategorySummaryTitle"
                                         Glyph="&#xE8EC;" />
                 </PivotItem.Header>
-                <controls:CategorySummaryUserControl />
+                <controls:CategorySummaryUserControl HorizontalAlignment="Stretch"
+                                                     VerticalAlignment="Stretch"
+                                                     Margin="-12,0,-12,0"/>
             </PivotItem>
         </Pivot>
     </Grid>
