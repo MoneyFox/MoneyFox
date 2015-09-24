@@ -32,10 +32,10 @@
             <PivotItem>
                 <PivotItem.Header>
                     <controls:TabHeader Label="Spreading"
-                                    x:Uid="SpreadingTitle"
+                                        x:Uid="SpreadingTitle"
                                         Glyph="&#xE774;" />
                 </PivotItem.Header>
-                <Grid Margin="20">
+                <Grid Margin="30">
                     <windows:PlotView Model="{Binding SpreadingModel}"
                                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                                       HorizontalAlignment="Stretch"
