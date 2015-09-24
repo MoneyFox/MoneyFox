@@ -10,29 +10,24 @@
              d:DesignWidth="400">
 
     <UserControl.Resources>
-        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="CategoryTemplate">
-            <StackPanel Margin="0,0,0,7"
-                        HorizontalAlignment="Stretch"
-                        MinWidth="300">
-                <StackPanel Margin="5">
-                    <Grid HorizontalAlignment="Stretch"
-                          Margin="0,0,0,8">
-                        <TextBlock Text="{Binding Category}"
-                                   TextTrimming="CharacterEllipsis" />
-                        <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Right">
-                            <TextBlock Text="{Binding Value}"
-                                       HorizontalAlignment="Right"
-                                       TextAlignment="Right" />
-                            <TextBlock Text="{Binding Label}"
-                                       HorizontalAlignment="Right"
-                                       TextAlignment="Right"
-                                       Margin="10,0,0,0" />
-                        </StackPanel>
-                    </Grid>
+            <Grid HorizontalAlignment="Stretch"
+                  VerticalAlignment="Center"
+                  Background="Transparent">
+                <TextBlock Text="{Binding Category}"
+                           TextTrimming="CharacterEllipsis" />
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}"
+                               HorizontalAlignment="Right"
+                               TextAlignment="Right" />
+                    <TextBlock Text="{Binding Label}"
+                               HorizontalAlignment="Right"
+                               TextAlignment="Right"
+                               Margin="5,0,0,0" />
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </DataTemplate>
     </UserControl.Resources>
 

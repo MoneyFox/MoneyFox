@@ -126,6 +126,7 @@ namespace MoneyManager.Core.ViewModels
         private void Done()
         {
             transactionRepository.Selected.Category = SelectedCategory;
+            Categories = categoryRepository.Data;
             Close(this);
         }
 
