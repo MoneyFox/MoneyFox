@@ -6,12 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:MoneyManager.Windows.Controls"
     xmlns:windows="using:OxyPlot.Windows"
-    xmlns:converter="using:MoneyManager.Windows.Converter"
     mc:Ignorable="d">
-
-    <Page.Resources>
-        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot Style="{StaticResource TabsStylePivotStyle}" >
