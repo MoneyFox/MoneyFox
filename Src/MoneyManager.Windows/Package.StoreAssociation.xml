@@ -27,6 +27,7 @@
     <Language Code="ar-ye" InMinimumRequirementSet="true" />
     <Language Code="as" InMinimumRequirementSet="true" />
     <Language Code="as-in" InMinimumRequirementSet="true" />
+    <Language Code="az" InMinimumRequirementSet="true" />
     <Language Code="az-arab" InMinimumRequirementSet="true" />
     <Language Code="az-arab-az" InMinimumRequirementSet="true" />
     <Language Code="az-cyrl" InMinimumRequirementSet="true" />
@@ -92,6 +93,7 @@
     <Language Code="en-us" InMinimumRequirementSet="true" />
     <Language Code="en-vn" InMinimumRequirementSet="true" />
     <Language Code="en-za" InMinimumRequirementSet="true" />
+    <Language Code="en-zw" InMinimumRequirementSet="true" />
     <Language Code="es" InMinimumRequirementSet="true" />
     <Language Code="es-019" InMinimumRequirementSet="true" />
     <Language Code="es-419" InMinimumRequirementSet="true" />
@@ -155,6 +157,7 @@
     <Language Code="gl-es" InMinimumRequirementSet="true" />
     <Language Code="gu" InMinimumRequirementSet="true" />
     <Language Code="gu-in" InMinimumRequirementSet="true" />
+    <Language Code="ha" InMinimumRequirementSet="true" />
     <Language Code="ha-latn" InMinimumRequirementSet="true" />
     <Language Code="ha-latn-ng" InMinimumRequirementSet="true" />
     <Language Code="he" InMinimumRequirementSet="true" />
@@ -274,6 +277,7 @@
     <Language Code="sl-si" InMinimumRequirementSet="true" />
     <Language Code="sq" InMinimumRequirementSet="true" />
     <Language Code="sq-al" InMinimumRequirementSet="true" />
+    <Language Code="sr" InMinimumRequirementSet="true" />
     <Language Code="sr-cyrl" InMinimumRequirementSet="true" />
     <Language Code="sr-cyrl-ba" InMinimumRequirementSet="true" />
     <Language Code="sr-cyrl-cs" InMinimumRequirementSet="true" />
@@ -323,6 +327,7 @@
     <Language Code="uk-ua" InMinimumRequirementSet="true" />
     <Language Code="ur" InMinimumRequirementSet="true" />
     <Language Code="ur-pk" InMinimumRequirementSet="true" />
+    <Language Code="uz" InMinimumRequirementSet="true" />
     <Language Code="uz-cyrl" InMinimumRequirementSet="true" />
     <Language Code="uz-latn" InMinimumRequirementSet="true" />
     <Language Code="uz-latn-uz" InMinimumRequirementSet="true" />
@@ -334,6 +339,7 @@
     <Language Code="xh-za" InMinimumRequirementSet="true" />
     <Language Code="yo-latn" InMinimumRequirementSet="true" />
     <Language Code="yo-ng" InMinimumRequirementSet="true" />
+    <Language Code="zh" InMinimumRequirementSet="true" />
     <Language Code="zh-cn" InMinimumRequirementSet="true" />
     <Language Code="zh-hans" InMinimumRequirementSet="true" />
     <Language Code="zh-hans-cn" InMinimumRequirementSet="true" />
@@ -343,6 +349,8 @@
     <Language Code="zh-hant-mo" InMinimumRequirementSet="true" />
     <Language Code="zh-hant-tw" InMinimumRequirementSet="true" />
     <Language Code="zh-hk" InMinimumRequirementSet="true" />
+    <Language Code="zh-mo" InMinimumRequirementSet="true" />
+    <Language Code="zh-sg" InMinimumRequirementSet="true" />
     <Language Code="zh-tw" InMinimumRequirementSet="true" />
     <Language Code="zu" InMinimumRequirementSet="true" />
     <Language Code="zu-za" InMinimumRequirementSet="true" />
