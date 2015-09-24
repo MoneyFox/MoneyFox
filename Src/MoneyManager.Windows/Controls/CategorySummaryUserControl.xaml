@@ -10,7 +10,7 @@
              d:DesignWidth="400">
 
     <UserControl.Resources>
-        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="CategoryTemplate">
             <StackPanel Margin="0,0,0,7"
                         HorizontalAlignment="Stretch"
@@ -22,7 +22,7 @@
                                    TextTrimming="CharacterEllipsis" />
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
-                            <TextBlock Text="{Binding Value}"
+                            <TextBlock Text="{Binding Value, Converter={StaticResource AmountFormatConverter}}"
                                        HorizontalAlignment="Right"
                                        TextAlignment="Right" />
                             <TextBlock Text="{Binding Label}"
