@@ -17,7 +17,7 @@
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors> 
+    </interactivity:Interaction.Behaviors>
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <TextBox Header="name" x:Uid="Name"

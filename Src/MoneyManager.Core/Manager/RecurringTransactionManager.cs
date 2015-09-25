@@ -32,7 +32,8 @@ namespace MoneyManager.Core.Manager
 
                 if (RecurringTransactionHelper.CheckIfRepeatable(transaction.RecurringTransaction, relTransaction))
                 {
-                    transactionRepository.Save(RecurringTransactionHelper.GetFinancialTransactionFromRecurring(transaction.RecurringTransaction));
+                    transactionRepository.Save(
+                        RecurringTransactionHelper.GetFinancialTransactionFromRecurring(transaction.RecurringTransaction));
                 }
             }
         }
@@ -40,9 +41,9 @@ namespace MoneyManager.Core.Manager
         private FinancialTransaction GetLastOccurence(FinancialTransaction transaction)
         {
             var transcationList = transactionRepository.Data
-                    .Where(x => x.ReccuringTransactionId == transaction.ReccuringTransactionId)
-                    .OrderBy(x => x.Date)
-                    .ToList();
+                .Where(x => x.ReccuringTransactionId == transaction.ReccuringTransactionId)
+                .OrderBy(x => x.Date)
+                .ToList();
 
             return transcationList.Any() ? transcationList.Last() : new FinancialTransaction();
         }

@@ -56,7 +56,7 @@
                                 HorizontalAlignment="Left">
                         <TextBlock Text="{Binding Category.Name}"
                                    Margin="0,0,2,10"
-                                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"/>
+                                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
                         <TextBlock Text="/"
                                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                                    Visibility="{Binding Note, Converter={StaticResource NoteVisibilityConverter}}" />

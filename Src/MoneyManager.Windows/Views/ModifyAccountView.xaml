@@ -55,7 +55,7 @@
                     x:Uid="Balance"
                     x:Name="TextBoxCurrentBalance"
                     TextAlignment="Right"
-                         TextChanged="ReplaceSeparatorChar"
+                    TextChanged="ReplaceSeparatorChar"
                     GotFocus="RemoveZeroOnFocus"
                     LostFocus="AddZeroIfEmpty" />
             </Grid>

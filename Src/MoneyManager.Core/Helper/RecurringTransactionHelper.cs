@@ -42,12 +42,13 @@ namespace MoneyManager.Core.Helper
         /// </summary>
         /// <param name="recurringTransaction">The Recurring Transaction the new Transaction shall be based on.</param>
         /// <returns>The new created Financial Transaction</returns>
-        public static FinancialTransaction GetFinancialTransactionFromRecurring(RecurringTransaction recurringTransaction)
+        public static FinancialTransaction GetFinancialTransactionFromRecurring(
+            RecurringTransaction recurringTransaction)
         {
             var date = DateTime.Today;
-            
+
             //If the transaction is monthly we want it on the same day of month again.
-            if (recurringTransaction.Recurrence == (int)TransactionRecurrence.Monthly)
+            if (recurringTransaction.Recurrence == (int) TransactionRecurrence.Monthly)
             {
                 date = DateTime.Today.AddDays(recurringTransaction.StartDate.Day - DateTime.Today.Day);
             }
@@ -69,6 +70,7 @@ namespace MoneyManager.Core.Helper
                 Note = recurringTransaction.Note
             };
         }
+
         /// <summary>
         ///     Checks if the recurring Transaction is up for a repetition based on the passed Financial Transaction
         /// </summary>
@@ -79,22 +81,22 @@ namespace MoneyManager.Core.Helper
         {
             switch (recTrans.Recurrence)
             {
-                case (int)TransactionRecurrence.Daily:
+                case (int) TransactionRecurrence.Daily:
                     return DateTime.Today.Date != relTransaction.Date.Date;
 
-                case (int)TransactionRecurrence.DailyWithoutWeekend:
+                case (int) TransactionRecurrence.DailyWithoutWeekend:
                     return DateTime.Today.Date != relTransaction.Date.Date
                            && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
                            && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
 
-                case (int)TransactionRecurrence.Weekly:
+                case (int) TransactionRecurrence.Weekly:
                     var days = DateTime.Now - relTransaction.Date;
                     return days.Days >= 7;
 
-                case (int)TransactionRecurrence.Monthly:
+                case (int) TransactionRecurrence.Monthly:
                     return DateTime.Now.Month != relTransaction.Date.Month;
 
-                case (int)TransactionRecurrence.Yearly:
+                case (int) TransactionRecurrence.Yearly:
                     return DateTime.Now.Year != relTransaction.Date.Year
                            && DateTime.Now.Month == relTransaction.Date.Month;
 

@@ -24,7 +24,7 @@ namespace MoneyManager.Windows.Shortcut
         {
             await secondTile.RequestDeleteAsync();
         }
-        
+
         /// <summary>
         ///     Will get the statistic manager and updates the main tile with the current cash flow.
         /// </summary>

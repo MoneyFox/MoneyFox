@@ -1,5 +1,4 @@
-﻿using Windows.Data.Xml.Dom;
-using Windows.UI.Notifications;
+﻿using Windows.UI.Notifications;
 using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.OperationContracts;
@@ -22,18 +21,17 @@ namespace MoneyManager.Windows
 
             if (Mvx.Resolve<TileSettingsViewModel>().ShowInfoOnMainTile)
             {
-                var bindingContent = new TileBindingContentAdaptive()
+                var bindingContent = new TileBindingContentAdaptive
                 {
                     PeekImage = new TilePeekImage
                     {
                         Source = new TileImageSource("Assets/BadgeLogo.scale-400.png")
                     },
-
                     Children =
                     {
                         new TileText
                         {
-                            Text =income,
+                            Text = income,
                             Style = TileTextStyle.CaptionSubtle
                         },
                         new TileText

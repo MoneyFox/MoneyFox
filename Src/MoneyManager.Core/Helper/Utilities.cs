@@ -30,7 +30,7 @@ namespace MoneyManager.Core.Helper
         }
 
         /// <summary>
-        /// Returns the double converted to a string in a proper format for this culture.
+        ///     Returns the double converted to a string in a proper format for this culture.
         /// </summary>
         /// <param name="value">Double who shall be converted</param>
         /// <returns>Formated string.</returns>

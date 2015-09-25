@@ -1,3 +1,4 @@
+using System;
 using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Droid
@@ -6,7 +7,7 @@ namespace MoneyManager.Droid
     {
         public void RateApp()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

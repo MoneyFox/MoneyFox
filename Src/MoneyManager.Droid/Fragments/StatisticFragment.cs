@@ -10,13 +10,14 @@ namespace MoneyManager.Droid.Fragments
 {
     public class StatisticFragment : MvxFragment
     {
+        private PlotView plotViewModel;
+
         public new StatisticViewModel ViewModel
         {
-            get { return (StatisticViewModel)base.ViewModel; }
+            get { return (StatisticViewModel) base.ViewModel; }
             set { base.ViewModel = value; }
         }
 
-        private PlotView plotViewModel;
         public PlotModel MyModel { get; set; }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

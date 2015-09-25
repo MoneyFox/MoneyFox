@@ -13,20 +13,34 @@ namespace MoneyManager.Droid.Activities
     [Activity(Label = "ModifyTransactionActivity")]
     public class ModifyTransactionActivity : MvxActivity, DatePickerDialog.IOnDateSetListener
     {
-        public new ModifyTransactionViewModel ViewModel
-        {
-            get { return (ModifyTransactionViewModel)base.ViewModel; }
-            set { base.ViewModel = value; }
-        }
-
-        private Button categoryButton;
-        private Button transactionDateButton;
-        private Button enddateButton;
-
         /// <summary>
         ///     Used to determine which button called the date picker
         /// </summary>
         private Button callerButton;
+
+        private Button categoryButton;
+        private Button enddateButton;
+        private Button transactionDateButton;
+
+        public new ModifyTransactionViewModel ViewModel
+        {
+            get { return (ModifyTransactionViewModel) base.ViewModel; }
+            set { base.ViewModel = value; }
+        }
+
+        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+        {
+            var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
+
+            if (callerButton == transactionDateButton)
+            {
+                ViewModel.SelectedTransaction.Date = date;
+            }
+            else if (callerButton == enddateButton)
+            {
+                ViewModel.EndDate = date;
+            }
+        }
 
         /// <summary>
         ///     Raises the create event.
@@ -95,20 +109,6 @@ namespace MoneyManager.Droid.Activities
 
                 default:
                     return false;
-            }
-        }
-
-        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-        {
-            var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
-
-            if (callerButton == transactionDateButton)
-            {
-                ViewModel.SelectedTransaction.Date = date;
-            }
-            else if (callerButton == enddateButton)
-            {
-                ViewModel.EndDate = date;
             }
         }
     }

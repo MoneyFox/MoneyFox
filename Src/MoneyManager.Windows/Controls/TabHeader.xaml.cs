@@ -4,7 +4,18 @@ namespace MoneyManager.Windows.Controls
 {
     public sealed partial class TabHeader
     {
-        public static readonly DependencyProperty GlyphProperty = DependencyProperty.Register("Glyph", typeof(string), typeof(TabHeader), null);
+        public static readonly DependencyProperty GlyphProperty = DependencyProperty.Register("Glyph", typeof (string),
+            typeof (TabHeader), null);
+
+        public static readonly DependencyProperty LabelProperty = DependencyProperty.Register("Label", typeof (string),
+            typeof (TabHeader), null);
+
+
+        public TabHeader()
+        {
+            InitializeComponent();
+            DataContext = this;
+        }
 
         public string Glyph
         {
@@ -12,19 +23,10 @@ namespace MoneyManager.Windows.Controls
             set { SetValue(GlyphProperty, value); }
         }
 
-        public static readonly DependencyProperty LabelProperty = DependencyProperty.Register("Label", typeof(string), typeof(TabHeader), null);
-
         public string Label
         {
             get { return GetValue(LabelProperty) as string; }
             set { SetValue(LabelProperty, value); }
-        }
-
-
-        public TabHeader()
-        {
-            InitializeComponent();
-            DataContext = this;
         }
     }
 }

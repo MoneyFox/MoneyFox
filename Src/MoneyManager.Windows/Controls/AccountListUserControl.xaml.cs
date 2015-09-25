@@ -22,7 +22,7 @@ namespace MoneyManager.Windows.Controls
 
             flyoutBase.ShowAt(senderElement);
         }
-        
+
         private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;
@@ -46,7 +46,7 @@ namespace MoneyManager.Windows.Controls
         private void Delete_OnClick(object sender, RoutedEventArgs e)
         {
             //this has to be called before the dialog service since otherwise the datacontext is reseted and the account will be null
-            var element = (FrameworkElement)sender;
+            var element = (FrameworkElement) sender;
             var account = element.DataContext as Account;
             if (account == null)
             {

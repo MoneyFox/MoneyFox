@@ -15,7 +15,6 @@ namespace MoneyManager.Core.DataAccess
         // Default Settings
         private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
         private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = false;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private readonly IRoamingSettings roamingSettings;
 
@@ -23,6 +22,8 @@ namespace MoneyManager.Core.DataAccess
         {
             this.roamingSettings = roamingSettings;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void AddOrUpdateValue(string key, object value)
         {
@@ -51,7 +52,8 @@ namespace MoneyManager.Core.DataAccess
         {
             get
             {
-                return roamingSettings.GetValueOrDefault(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT);
+                return roamingSettings.GetValueOrDefault(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME,
+                    SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT);
             }
             set
             {

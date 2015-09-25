@@ -29,14 +29,16 @@ namespace MoneyManager.Windows.Core.Tests
         [Trait("Category", "Integration")]
         public void SqlConnectionFactory_GetSqlConnectionWithouthParams()
         {
-            Assert.IsType<SQLiteConnection>(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection());
+            Assert.IsType<SQLiteConnection>(
+                new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection());
         }
 
         [Fact]
         [Trait("Category", "Integration")]
         public void SqlConnectionFactory_GetSqlConnectionWithParams()
         {
-            Assert.IsType<SQLiteConnection>(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection());
+            Assert.IsType<SQLiteConnection>(
+                new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()).GetSqlConnection());
         }
     }
 }

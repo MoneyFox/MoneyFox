@@ -52,8 +52,9 @@ namespace MoneyManager.Windows.Views
 
             if (string.IsNullOrEmpty(TextBoxCurrentBalance.Text)) return;
 
-            var formattedText = Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxCurrentBalance.Text, CultureInfo.CurrentCulture));
-            
+            var formattedText =
+                Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxCurrentBalance.Text, CultureInfo.CurrentCulture));
+
             cursorposition = AdjustCursorPosition(formattedText, cursorposition);
 
             TextBoxCurrentBalance.Text = formattedText;
@@ -63,17 +64,18 @@ namespace MoneyManager.Windows.Views
         }
 
         /// <summary>
-        /// When the text is formated there may be more chars and the cursors positon isn't the same as befor.
-        /// That will cause a jumping cursor and uncontrolled order of input. Therefore we need to adjust the
-        /// cursor position after formating.
+        ///     When the text is formated there may be more chars and the cursors positon isn't the same as befor.
+        ///     That will cause a jumping cursor and uncontrolled order of input. Therefore we need to adjust the
+        ///     cursor position after formating.
         /// </summary>
         /// <param name="formattedText">Text after formatting.</param>
         /// <param name="cursorposition">Position of the cursor before formatting.</param>
         /// <returns>New Cursor position.</returns>
         private int AdjustCursorPosition(string formattedText, int cursorposition)
         {
-            var oldIndex = TextBoxCurrentBalance.Text.IndexOf(CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator,
-                StringComparison.Ordinal);
+            var oldIndex =
+                TextBoxCurrentBalance.Text.IndexOf(CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator,
+                    StringComparison.Ordinal);
             var newIndex = formattedText.IndexOf(CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator,
                 StringComparison.Ordinal);
 

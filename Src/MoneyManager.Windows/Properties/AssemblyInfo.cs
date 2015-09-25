@@ -6,7 +6,9 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("MoneyManager.Windows")]
-[assembly: AssemblyDescription("A way to make budgeting easy. A basic idea for the community, made even better by the community.")]
+[assembly:
+    AssemblyDescription(
+        "A way to make budgeting easy. A basic idea for the community, made even better by the community.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Apply Solutions")]
 [assembly: AssemblyProduct("MoneyManager.Windows")]

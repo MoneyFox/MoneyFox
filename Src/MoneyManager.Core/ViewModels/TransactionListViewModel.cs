@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helper;
@@ -40,7 +39,9 @@ namespace MoneyManager.Core.ViewModels
         public MvxCommand LoadedCommand => new MvxCommand(LoadTransactions);
         public MvxCommand UnloadedCommand => new MvxCommand(UnloadTransactions);
         public MvxCommand EditCommand => new MvxCommand(Edit);
-        public MvxCommand<FinancialTransaction> DeleteTransactionCommand => new MvxCommand<FinancialTransaction>(DeleteTransaction);
+
+        public MvxCommand<FinancialTransaction> DeleteTransactionCommand
+            => new MvxCommand<FinancialTransaction>(DeleteTransaction);
 
         /// <summary>
         ///     Returns all Transaction who are assigned to this repository
@@ -102,14 +103,17 @@ namespace MoneyManager.Core.ViewModels
 
             transactionRepository.Selected = SelectedTransaction;
 
-            ShowViewModel<ModifyTransactionViewModel>(new {typeString = TransactionTypeHelper.GetTypeString(SelectedTransaction.Type), isEdit = true});
+            ShowViewModel<ModifyTransactionViewModel>(
+                new {typeString = TransactionTypeHelper.GetTypeString(SelectedTransaction.Type), isEdit = true});
             SelectedTransaction = null;
         }
 
 
         private async void DeleteTransaction(FinancialTransaction transaction)
         {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+            if (
+                await
+                    dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
             {
                 transactionManager.DeleteTransaction(transaction);
                 RelatedTransactions.Remove(transaction);

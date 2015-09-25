@@ -31,7 +31,7 @@ namespace MoneyManager.Windows.Services
         public async Task Login()
         {
             var result = await new LiveAuthClient()
-                .LoginAsync(new List<string> { "wl.basic", "wl.skydrive", "wl.skydrive_update", "wl.offline_access"});
+                .LoginAsync(new List<string> {"wl.basic", "wl.skydrive", "wl.skydrive_update", "wl.offline_access"});
 
             if (result.Status == LiveConnectSessionStatus.Connected)
             {

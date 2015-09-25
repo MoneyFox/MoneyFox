@@ -52,7 +52,8 @@ namespace MoneyManager.Windows.Views
 
             if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
 
-            var formattedText = Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxAmount.Text, CultureInfo.CurrentCulture));
+            var formattedText =
+                Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxAmount.Text, CultureInfo.CurrentCulture));
 
             cursorposition = AdjustCursorPosition(formattedText, cursorposition);
 
@@ -63,9 +64,9 @@ namespace MoneyManager.Windows.Views
         }
 
         /// <summary>
-        /// When the text is formated there may be more chars and the cursors positon isn't the same as befor.
-        /// That will cause a jumping cursor and uncontrolled order of input. Therefore we need to adjust the
-        /// cursor position after formating.
+        ///     When the text is formated there may be more chars and the cursors positon isn't the same as befor.
+        ///     That will cause a jumping cursor and uncontrolled order of input. Therefore we need to adjust the
+        ///     cursor position after formating.
         /// </summary>
         /// <param name="formattedText">Text after formatting.</param>
         /// <param name="cursorposition">Position of the cursor before formatting.</param>

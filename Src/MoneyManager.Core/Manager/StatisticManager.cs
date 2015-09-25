@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Cirrious.CrossCore;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -13,9 +12,9 @@ namespace MoneyManager.Core.Manager
 {
     public class StatisticManager
     {
-        private readonly ITransactionRepository transactionRepository;
         private readonly IRepository<Category> categoryRepository;
         private readonly SettingDataAccess settings;
+        private readonly ITransactionRepository transactionRepository;
 
         public StatisticManager(ITransactionRepository transactionRepository,
             IRepository<Category> categoryRepository,

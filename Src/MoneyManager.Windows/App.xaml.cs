@@ -3,7 +3,6 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
-using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -64,7 +63,7 @@ namespace MoneyManager.Windows
                 start.Start();
             }
 
-            shell.AppFrame.Navigate(typeof(MainView));
+            shell.AppFrame.Navigate(typeof (MainView));
             new TileHelper(Mvx.Resolve<ModifyTransactionViewModel>()).DoNavigation(e.TileId);
 
             Tile.UpdateMainTile();
@@ -100,7 +99,7 @@ namespace MoneyManager.Windows
                 titleBar.InactiveBackgroundColor = bkgColor.Color;
                 titleBar.InactiveForegroundColor = appForegroundColor.Color;
                 titleBar.ButtonInactiveBackgroundColor = bkgColor.Color;
-                
+
                 // If on a mobile device set the status bar
                 if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                 {

@@ -26,7 +26,7 @@ namespace MoneyManager.Core.Tests.Helper
             Strings.Culture = new CultureInfo(culture);
             TransactionTypeHelper.GetViewTitleForType(input).ShouldBe(expectedTitle);
         }
-        
+
         [Theory]
         [InlineData(TransactionType.Spending, "en-US", "Spending")]
         [InlineData(TransactionType.Income, "en-US", "Income")]

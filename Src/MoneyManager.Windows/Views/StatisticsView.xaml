@@ -9,7 +9,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot Style="{StaticResource TabsStylePivotStyle}" >
+        <Pivot Style="{StaticResource TabsStylePivotStyle}">
             <PivotItem>
                 <PivotItem.Header>
                     <controls:TabHeader Label="Cash Flow"
@@ -46,7 +46,7 @@
                 </PivotItem.Header>
                 <controls:CategorySummaryUserControl HorizontalAlignment="Stretch"
                                                      VerticalAlignment="Stretch"
-                                                     Margin="-12,0,-12,0"/>
+                                                     Margin="-12,0,-12,0" />
             </PivotItem>
         </Pivot>
     </Grid>

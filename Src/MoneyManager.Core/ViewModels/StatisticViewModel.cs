@@ -25,7 +25,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Creates a StatisticViewModel Object.
         /// </summary>
-        /// <param name="statisticManager">Instance of <see cref="StatisticManager"/>/></param>
+        /// <param name="statisticManager">Instance of <see cref="StatisticManager" />/></param>
         public StatisticViewModel(StatisticManager statisticManager)
         {
             this.statisticManager = statisticManager;

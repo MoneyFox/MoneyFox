@@ -1,4 +1,5 @@
 using System.Globalization;
+using Java.Util;
 using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Droid
@@ -7,7 +8,7 @@ namespace MoneyManager.Droid
     {
         public CultureInfo GetCurrentCultureInfo()
         {
-            var androidLocale = Java.Util.Locale.Default;
+            var androidLocale = Locale.Default;
             var netLanguage = androidLocale.ToString().Replace("_", "-"); // turns pt_BR into pt-BR
             return new CultureInfo(netLanguage);
         }

@@ -21,7 +21,8 @@ namespace MoneyManager.Core.Repositories
         ///     Creates a TransactionRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced financial transaction data Access</param>
-        public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess, IDataAccess<RecurringTransaction> recurringDataAccess)
+        public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess,
+            IDataAccess<RecurringTransaction> recurringDataAccess)
         {
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
@@ -147,9 +148,11 @@ namespace MoneyManager.Core.Repositories
         public IEnumerable<FinancialTransaction> LoadRecurringList(Func<FinancialTransaction, bool> filter = null)
         {
             var list = Data.Where(x => x.IsRecurring && x.RecurringTransaction != null
-                                     && (x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date)
-                                     && (filter == null || filter.Invoke(x)))
-                                     .ToList();
+                                       &&
+                                       (x.RecurringTransaction.IsEndless ||
+                                        x.RecurringTransaction.EndDate >= DateTime.Now.Date)
+                                       && (filter == null || filter.Invoke(x)))
+                .ToList();
 
             var recurringIds = list.Select(x => x.ReccuringTransactionId).Distinct().ToList();
 

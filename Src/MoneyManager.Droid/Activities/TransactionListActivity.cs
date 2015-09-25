@@ -11,7 +11,7 @@ namespace MoneyManager.Droid.Activities
     {
         public new TransactionListViewModel ViewModel
         {
-            get { return (TransactionListViewModel)base.ViewModel; }
+            get { return (TransactionListViewModel) base.ViewModel; }
             set { base.ViewModel = value; }
         }
 

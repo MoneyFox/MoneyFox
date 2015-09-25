@@ -107,7 +107,8 @@ namespace MoneyManager.Core.ViewModels
                     (categoryRepository.Data.Where(
                         x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
                         .ToList());
-            } else
+            }
+            else
             {
                 Categories = categoryRepository.Data;
             }
@@ -120,7 +121,7 @@ namespace MoneyManager.Core.ViewModels
                 categoryRepository.Delete(categoryToDelete);
             }
         }
-        
+
         private void Done()
         {
             transactionRepository.Selected.Category = SelectedCategory;

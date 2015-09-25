@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
-using Moq;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Repositories
@@ -19,7 +15,8 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void SaveWithouthAccount_NoAccount_InvalidDataException()
         {
-            var repository = new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock());
+            var repository = new TransactionRepository(new TransactionDataAccessMock(),
+                new RecurringTransactionDataAccessMock());
 
             var transaction = new FinancialTransaction
             {
@@ -34,7 +31,8 @@ namespace MoneyManager.Core.Tests.Repositories
         public void Save_DifferentTransactionTypes_CorrectlySaved(TransactionType type)
         {
             var transactionDataAccessMock = new TransactionDataAccessMock();
-            var repository = new TransactionRepository(transactionDataAccessMock, new RecurringTransactionDataAccessMock());
+            var repository = new TransactionRepository(transactionDataAccessMock,
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -46,7 +44,7 @@ namespace MoneyManager.Core.Tests.Repositories
                 ChargedAccount = account,
                 TargetAccount = null,
                 Amount = 20,
-                Type = (int)type
+                Type = (int) type
             };
 
             repository.Save(transaction);
@@ -54,14 +52,15 @@ namespace MoneyManager.Core.Tests.Repositories
             transactionDataAccessMock.FinancialTransactionTestList[0].ShouldBeSameAs(transaction);
             transactionDataAccessMock.FinancialTransactionTestList[0].ChargedAccount.ShouldBeSameAs(account);
             transactionDataAccessMock.FinancialTransactionTestList[0].TargetAccount.ShouldBeNull();
-            transactionDataAccessMock.FinancialTransactionTestList[0].Type.ShouldBe((int)type);
+            transactionDataAccessMock.FinancialTransactionTestList[0].Type.ShouldBe((int) type);
         }
 
         [Fact]
         public void Save_TransferTransaction_CorrectlySaved()
         {
             var transactionDataAccessMock = new TransactionDataAccessMock();
-            var repository = new TransactionRepository(transactionDataAccessMock, new RecurringTransactionDataAccessMock());
+            var repository = new TransactionRepository(transactionDataAccessMock,
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -86,14 +85,15 @@ namespace MoneyManager.Core.Tests.Repositories
             transactionDataAccessMock.FinancialTransactionTestList[0].ShouldBeSameAs(transaction);
             transactionDataAccessMock.FinancialTransactionTestList[0].ChargedAccount.ShouldBeSameAs(account);
             transactionDataAccessMock.FinancialTransactionTestList[0].TargetAccount.ShouldBeSameAs(targetAccount);
-            transactionDataAccessMock.FinancialTransactionTestList[0].Type.ShouldBe((int)TransactionType.Transfer);
+            transactionDataAccessMock.FinancialTransactionTestList[0].Type.ShouldBe((int) TransactionType.Transfer);
         }
 
         [Fact]
         public void TransactionRepository_Delete()
         {
             var transactionDataAccessMock = new TransactionDataAccessMock();
-            var repository = new TransactionRepository(transactionDataAccessMock, new RecurringTransactionDataAccessMock());
+            var repository = new TransactionRepository(transactionDataAccessMock,
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -103,7 +103,7 @@ namespace MoneyManager.Core.Tests.Repositories
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = account,
-                Amount = 20,
+                Amount = 20
             };
 
             repository.Save(transaction);
@@ -118,13 +118,15 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void TransactionRepository_AccessCache()
         {
-            new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock()).Data.ShouldNotBeNull();
+            new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock()).Data
+                .ShouldNotBeNull();
         }
 
         [Fact]
         public void TransactionRepository_AddMultipleToCache()
         {
-            var repository = new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock());
+            var repository = new TransactionRepository(new TransactionDataAccessMock(),
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -134,13 +136,13 @@ namespace MoneyManager.Core.Tests.Repositories
             var transaction = new FinancialTransaction
             {
                 ChargedAccount = account,
-                Amount = 20,
+                Amount = 20
             };
 
             var secondTransaction = new FinancialTransaction
             {
                 ChargedAccount = account,
-                Amount = 60,
+                Amount = 60
             };
 
             repository.Save(transaction);
@@ -154,7 +156,8 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void AddItemToDataList_SaveAccount_IsAddedToData()
         {
-            var repository = new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock());
+            var repository = new TransactionRepository(new TransactionDataAccessMock(),
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -175,7 +178,8 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void GetUnclearedTransactions_PastDate_PastTransactions()
         {
-            var repository = new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock());
+            var repository = new TransactionRepository(new TransactionDataAccessMock(),
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -203,7 +207,8 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void GetUnclearedTransactions_FutureDate_PastTransactions()
         {
-            var repository = new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock());
+            var repository = new TransactionRepository(new TransactionDataAccessMock(),
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -230,7 +235,8 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void GetUnclearedTransactions_AccountNull()
         {
-            var repository = new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock());
+            var repository = new TransactionRepository(new TransactionDataAccessMock(),
+                new RecurringTransactionDataAccessMock());
 
             repository.Data.Add(new FinancialTransaction
             {

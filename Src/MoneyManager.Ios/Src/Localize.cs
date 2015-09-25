@@ -18,7 +18,7 @@ namespace MoneyManager.Ios
                 {
                     // get the correct Brazilian language strings from the PCL RESX
                     //(note the local iOS folder is still "pt")
-                    pref = "pt-BR"; 
+                    pref = "pt-BR";
                 }
             }
             return new CultureInfo(netLanguage);

@@ -10,9 +10,9 @@ namespace MoneyManager.Core.ViewModels
     public class TileSettingsViewModel : BaseViewModel
     {
         private readonly IIncomeShortcut incomeShortcut;
+        private readonly SettingDataAccess settingsDataAccess;
         private readonly ISpendingShortcut spendingShortcut;
         private readonly ITransferShortcut transferShortcut;
-        private readonly SettingDataAccess settingsDataAccess;
 
         /// <summary>
         ///     Creates a TileSettingsViewModel object
@@ -28,7 +28,7 @@ namespace MoneyManager.Core.ViewModels
 
         public bool ShowInfoOnMainTile
         {
-            get { return  settingsDataAccess.ShowCashFlowOnMainTile; }
+            get { return settingsDataAccess.ShowCashFlowOnMainTile; }
             set
             {
                 settingsDataAccess.ShowCashFlowOnMainTile = value;
