@@ -25,13 +25,14 @@ namespace MoneyManager.Droid.Activities
             Strings.AboutLabel
         };
 
-        private AccountListFragment accountListFragment;
-        private StatisticFragment statisticFragment;
         private AboutFragment aboutFragment;
+
+        private AccountListFragment accountListFragment;
 
         private string drawerTitle;
         private ListView menuListView;
         private SlidingPaneLayout slidingLayout;
+        private StatisticFragment statisticFragment;
         private string title;
 
         public new MainViewModel ViewModel
@@ -108,9 +109,10 @@ namespace MoneyManager.Droid.Activities
 
                 case 1:
                     SupportFragmentManager.BeginTransaction()
-                                            .Replace(Resource.Id.content_pane, statisticFragment)
-                                            .AddToBackStack("Statistic")
-                                            .Commit(); break;
+                        .Replace(Resource.Id.content_pane, statisticFragment)
+                        .AddToBackStack("Statistic")
+                        .Commit();
+                    break;
 
                 case 2:
                     break;
@@ -120,9 +122,10 @@ namespace MoneyManager.Droid.Activities
 
                 case 4:
                     SupportFragmentManager.BeginTransaction()
-                                            .Replace(Resource.Id.content_pane, aboutFragment)
-                                            .AddToBackStack("About")
-                                            .Commit(); break;
+                        .Replace(Resource.Id.content_pane, aboutFragment)
+                        .AddToBackStack("About")
+                        .Commit();
+                    break;
             }
             slidingLayout.ClosePane();
         }

@@ -7,10 +7,10 @@ namespace MoneyManager.Ios
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : UIApplicationDelegate
+    public class AppDelegate : UIApplicationDelegate
     {
         // class-level declarations
-        UIWindow window;
+        private UIWindow window;
 
         //
         // This method is invoked when the application has loaded and is ready to run. In this 

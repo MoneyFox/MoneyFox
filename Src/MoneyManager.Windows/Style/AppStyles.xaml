@@ -380,8 +380,9 @@
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightBaseMediumBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                           Storyboard.TargetProperty="Foreground">
+                                                            <ObjectAnimationUsingKeyFrames
+                                                                Storyboard.TargetName="Arrow"
+                                                                Storyboard.TargetProperty="Foreground">
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightAltAltMediumHighBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
@@ -394,8 +395,9 @@
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightBaseMediumHighBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                           Storyboard.TargetProperty="Foreground">
+                                                            <ObjectAnimationUsingKeyFrames
+                                                                Storyboard.TargetName="Arrow"
+                                                                Storyboard.TargetProperty="Foreground">
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightAltAltMediumHighBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
@@ -430,8 +432,9 @@
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightBaseMediumBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                           Storyboard.TargetProperty="Foreground">
+                                                            <ObjectAnimationUsingKeyFrames
+                                                                Storyboard.TargetName="Arrow"
+                                                                Storyboard.TargetProperty="Foreground">
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightAltAltMediumHighBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
@@ -444,8 +447,9 @@
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightBaseMediumHighBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                           Storyboard.TargetProperty="Foreground">
+                                                            <ObjectAnimationUsingKeyFrames
+                                                                Storyboard.TargetName="Arrow"
+                                                                Storyboard.TargetProperty="Foreground">
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightAltAltMediumHighBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>

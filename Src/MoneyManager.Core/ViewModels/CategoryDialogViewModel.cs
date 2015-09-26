@@ -1,19 +1,19 @@
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Localization;
 
 namespace MoneyManager.Windows.Dialogs
 {
-    public class CategoryDialogViewModel: BaseViewModel
+    public class CategoryDialogViewModel : BaseViewModel
     {
+        private readonly CategoryListViewModel categoryListView;
         private readonly IRepository<Category> categoryRepository;
         private readonly IDialogService dialogService;
-        private readonly CategoryListViewModel categoryListView;
 
-        public CategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService, CategoryListViewModel categoryListView)
+        public CategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService,
+            CategoryListViewModel categoryListView)
         {
             this.categoryRepository = categoryRepository;
             this.dialogService = dialogService;
@@ -25,6 +25,8 @@ namespace MoneyManager.Windows.Dialogs
         public bool IsEdit { get; set; }
 
         public IMvxCommand LoadedCommand => new MvxCommand(Loaded);
+
+        public IMvxCommand DoneCommand => new MvxCommand(Done);
 
         private void Loaded()
         {
@@ -38,8 +40,6 @@ namespace MoneyManager.Windows.Dialogs
                 }
             }
         }
-
-        public IMvxCommand DoneCommand => new MvxCommand(Done);
 
         private async void Done()
         {

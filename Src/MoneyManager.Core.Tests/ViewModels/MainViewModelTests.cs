@@ -11,7 +11,7 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    class MainViewModelTests : MvxIoCSupportingTest
+    internal class MainViewModelTests : MvxIoCSupportingTest
     {
         [Theory]
         [InlineData("Income", TransactionType.Income)]
@@ -25,11 +25,14 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var dbHelper = new Mock<IDbHelper>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper), new RecurringTransactionDataAccess(dbHelper));
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
+                new RecurringTransactionDataAccess(dbHelper));
             var settings = new SettingDataAccess(new Mock<IRoamingSettings>().Object);
-            var transactionManager = new TransactionManager(transactionRepository, accountRepository, new Mock<IDialogService>().Object);
+            var transactionManager = new TransactionManager(transactionRepository, accountRepository,
+                new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(accountRepository, new SettingDataAccess(new Mock<IRoamingSettings>().Object));
+            var defaultManager = new DefaultManager(accountRepository,
+                new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
             var modifyTransactionViewModel =
                 new ModifyTransactionViewModel(transactionRepository,
@@ -55,7 +58,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             {
                 Assert.False(modifyTransactionViewModel.IsTransfer);
             }
-            Assert.Equal((int)type, modifyTransactionViewModel.SelectedTransaction.Type);
+            Assert.Equal((int) type, modifyTransactionViewModel.SelectedTransaction.Type);
         }
     }
 }

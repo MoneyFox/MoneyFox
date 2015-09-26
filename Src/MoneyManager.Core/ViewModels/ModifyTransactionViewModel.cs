@@ -15,11 +15,19 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class ModifyTransactionViewModel : BaseViewModel
     {
+        /// <summary>
+        ///     Locker to ensure that Init isn't executed when navigate back
+        /// </summary>
+        //TODO: Find another way than this...
+        private static bool isInitCall = true;
+
         private readonly IRepository<Account> accountRepository;
         private readonly DefaultManager defaultManager;
         private readonly IDialogService dialogService;
         private readonly TransactionManager transactionManager;
         private readonly ITransactionRepository transactionRepository;
+
+        private double oldAmount;
 
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository,
@@ -32,49 +40,6 @@ namespace MoneyManager.Core.ViewModels
             this.transactionManager = transactionManager;
             this.defaultManager = defaultManager;
             this.accountRepository = accountRepository;
-        }
-
-        /// <summary>
-        ///     Locker to ensure that Init isn't executed when navigate back
-        /// </summary>
-        //TODO: Find another way than this...
-        private static bool isInitCall = true;
-
-        public void Init(string typeString, bool isEdit)
-        {
-            //Ensure that init is only called once
-            if (!isInitCall) return;
-
-            IsEdit = isEdit;
-
-            var type = ((TransactionType)Enum.Parse(typeof(TransactionType), typeString));
-            IsEndless = true;
-
-            if (IsEdit)
-            {
-                IsTransfer = SelectedTransaction.IsTransfer;
-                Recurrence = SelectedTransaction.IsRecurring
-                    ? SelectedTransaction.RecurringTransaction.Recurrence
-                    : 0;
-                oldAmount = SelectedTransaction.Amount;
-            }
-            else 
-            {
-                SetDefaultTransaction(type);
-                SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
-                IsTransfer = type == TransactionType.Transfer;
-            }
-
-            isInitCall = false;
-        }
-
-        private void SetDefaultTransaction(TransactionType transactionType)
-        {
-            SelectedTransaction = new FinancialTransaction
-            {
-                Type = (int)transactionType,
-                Date = DateTime.Now
-            };
         }
 
         /// <summary>
@@ -107,8 +72,6 @@ namespace MoneyManager.Core.ViewModels
         public bool IsEdit { get; set; }
         public int Recurrence { get; set; }
         public bool IsTransfer { get; set; }
-
-        private double oldAmount;
 
         public List<string> RecurrenceList => new List<string>
         {
@@ -166,6 +129,43 @@ namespace MoneyManager.Core.ViewModels
             set { SelectedTransaction.Date = value; }
         }
 
+        public void Init(string typeString, bool isEdit)
+        {
+            //Ensure that init is only called once
+            if (!isInitCall) return;
+
+            IsEdit = isEdit;
+
+            var type = ((TransactionType) Enum.Parse(typeof (TransactionType), typeString));
+            IsEndless = true;
+
+            if (IsEdit)
+            {
+                IsTransfer = SelectedTransaction.IsTransfer;
+                Recurrence = SelectedTransaction.IsRecurring
+                    ? SelectedTransaction.RecurringTransaction.Recurrence
+                    : 0;
+                oldAmount = SelectedTransaction.Amount;
+            }
+            else
+            {
+                SetDefaultTransaction(type);
+                SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
+                IsTransfer = type == TransactionType.Transfer;
+            }
+
+            isInitCall = false;
+        }
+
+        private void SetDefaultTransaction(TransactionType transactionType)
+        {
+            SelectedTransaction = new FinancialTransaction
+            {
+                Type = (int) transactionType,
+                Date = DateTime.Now
+            };
+        }
+
         private void Loaded()
         {
             if (IsEdit)
@@ -184,7 +184,7 @@ namespace MoneyManager.Core.ViewModels
             }
 
             //Create a recurring transaction based on the financial transaction or update an existing
-            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction) 
+            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction)
                 || SelectedTransaction.IsRecurring)
             {
                 SelectedTransaction.RecurringTransaction = RecurringTransactionHelper.
@@ -197,7 +197,7 @@ namespace MoneyManager.Core.ViewModels
             // Save or update the transaction and add the amount to the account
             transactionRepository.Save(SelectedTransaction);
             transactionManager.AddTransactionAmount(SelectedTransaction);
-           
+
             ResetInitLocker();
             Close(this);
         }
@@ -209,7 +209,9 @@ namespace MoneyManager.Core.ViewModels
 
         private async void Delete()
         {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+            if (
+                await
+                    dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
             {
                 transactionManager.DeleteTransaction(transactionRepository.Selected);
                 ResetInitLocker();
@@ -236,7 +238,7 @@ namespace MoneyManager.Core.ViewModels
         }
 
         /// <summary>
-        /// Reset locker to enusre init gets called again
+        ///     Reset locker to enusre init gets called again
         /// </summary>
         private void ResetInitLocker()
         {

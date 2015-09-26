@@ -11,12 +11,14 @@ namespace MoneyManager.Ios
             throw new NotImplementedException();
         }
 
-        public Task ShowConfirmMessage(string title, string message, Action positivAction, string positiveButtonText = null, string negativeButtonText = null, Action negativAction = null)
+        public Task ShowConfirmMessage(string title, string message, Action positivAction,
+            string positiveButtonText = null, string negativeButtonText = null, Action negativAction = null)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null, string negativeButtonText = null)
+        public Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
+            string negativeButtonText = null)
         {
             throw new NotImplementedException();
         }

@@ -8,19 +8,20 @@ using MoneyManager.Localization;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.XamarinIOS;
 using UIKit;
-using Xamarin;
 
 namespace MoneyManager.Ios
 {
     public class Setup : MvxTouchSetup
     {
-        public Setup(IMvxApplicationDelegate applicationDelegate, UIWindow window) 
+        public Setup(IMvxApplicationDelegate applicationDelegate, UIWindow window)
             : base(applicationDelegate, window)
-        {}
+        {
+        }
 
-        public Setup(IMvxApplicationDelegate applicationDelegate, IMvxTouchViewPresenter presenter) 
+        public Setup(IMvxApplicationDelegate applicationDelegate, IMvxTouchViewPresenter presenter)
             : base(applicationDelegate, presenter)
-        {}
+        {
+        }
 
         protected override void InitializeFirstChance()
         {

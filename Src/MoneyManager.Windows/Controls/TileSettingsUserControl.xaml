@@ -40,7 +40,7 @@
                       Background="{ThemeResource SystemControlHighlightAccentBrush}">
                     <Image Source="/Assets/incomeTileIcon.png"
                            VerticalAlignment="Stretch"
-                           HorizontalAlignment="Stretch"/>
+                           HorizontalAlignment="Stretch" />
                 </Grid>
                 <Button Content="create income tile"
                         x:Uid="AddIncomeTile"
@@ -88,7 +88,7 @@
                         Command="{Binding RemoveSpendingShortcutCommand}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Stretch"
-                        Margin="12,0,0,0"/>
+                        Margin="12,0,0,0" />
             </Grid>
 
             <Grid Margin="0,0,0,12">

@@ -35,7 +35,7 @@
                               Width="160"
                               Margin="5,0"
                               HorizontalAlignment="Center">
-                            <Image Source="/Assets/ApplyLogo.png" Margin="5"/> 
+                            <Image Source="/Assets/ApplyLogo.png" Margin="5" />
                         </Grid>
                     </Grid>
                     <Path Data="M9,242 L456,242"

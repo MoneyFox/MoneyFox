@@ -78,9 +78,10 @@ namespace MoneyManager.Windows
             currentView.BackRequested += SystemNavigationManager_BackRequested;
 
             // If on a phone device that has hardware buttons then we hide the app's back button.
-            currentView.AppViewBackButtonVisibility = ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons") 
-                ? AppViewBackButtonVisibility.Collapsed 
-                : AppViewBackButtonVisibility.Visible;
+            currentView.AppViewBackButtonVisibility =
+                ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons")
+                    ? AppViewBackButtonVisibility.Collapsed
+                    : AppViewBackButtonVisibility.Visible;
 
             NavMenuList.ItemsSource = navlist;
         }

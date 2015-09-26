@@ -1,4 +1,5 @@
-﻿using MoneyManager.Foundation.OperationContracts;
+﻿using System;
+using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Ios
 {
@@ -6,7 +7,7 @@ namespace MoneyManager.Ios
     {
         public void RateApp()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

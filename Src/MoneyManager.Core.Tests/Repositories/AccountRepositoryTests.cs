@@ -53,7 +53,7 @@ namespace MoneyManager.Core.Tests.Repositories
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
             accountDataAccessSetup.Setup(x => x.Save(It.IsAny<Account>()))
                 .Callback((Account acc) => testList.Add(acc));
-        
+
             var account = new Account
             {
                 Name = "Sparkonto",

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Cirrious.MvvmCross.Test.Core;
+﻿using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
@@ -21,7 +20,8 @@ namespace MoneyManager.Core.Tests.ViewModels
         public void Title_EditTransactionType_CorrectTitle(TransactionType type, string result)
         {
             var dbHelper = new Mock<IDbHelper>().Object;
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper), new RecurringTransactionDataAccess(dbHelper))
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
+                new RecurringTransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int) type}
             };
@@ -30,12 +30,13 @@ namespace MoneyManager.Core.Tests.ViewModels
                 new Mock<IRepository<Account>>().Object,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess(new Mock<IRoamingSettings>().Object));
+            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object,
+                new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),
                 new Mock<IDialogService>().Object,
-                transactionManager, 
+                transactionManager,
                 defaultManager)
             {
                 IsEdit = true,
@@ -53,16 +54,18 @@ namespace MoneyManager.Core.Tests.ViewModels
         {
             var dbHelper = new Mock<IDbHelper>().Object;
 
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper), new RecurringTransactionDataAccess(dbHelper))
+            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
+                new RecurringTransactionDataAccess(dbHelper))
             {
-                Selected = new FinancialTransaction {Type = (int)type }
+                Selected = new FinancialTransaction {Type = (int) type}
             };
 
             var transactionManager = new TransactionManager(transactionRepository,
                 new Mock<IRepository<Account>>().Object,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object, new SettingDataAccess(new Mock<IRoamingSettings>().Object));
+            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object,
+                new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
                 new AccountRepository(new AccountDataAccess(dbHelper)),

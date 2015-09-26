@@ -4,6 +4,6 @@
     <NuGetPackageRoot>C:\Users\ninop\.nuget\packages\</NuGetPackageRoot>
   </PropertyGroup>
   <ImportGroup>
-    <Import Project="$(NuGetPackageRoot)\Xamarin.Insights\1.10.6\build\windows8\Xamarin.Insights.targets" Condition="Exists('$(NuGetPackageRoot)\Xamarin.Insights\1.10.6\build\windows8\Xamarin.Insights.targets')" />
+    <Import Project="$(NuGetPackageRoot)\Xamarin.Insights\1.11.1\build\windows8\Xamarin.Insights.targets" Condition="Exists('$(NuGetPackageRoot)\Xamarin.Insights\1.11.1\build\windows8\Xamarin.Insights.targets')" />
   </ImportGroup>
 </Project>

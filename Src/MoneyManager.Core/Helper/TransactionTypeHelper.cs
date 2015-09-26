@@ -61,17 +61,18 @@ namespace MoneyManager.Core.Helper
         {
             switch (type)
             {
-                case (int)TransactionType.Income:
+                case (int) TransactionType.Income:
                     return TransactionType.Income.ToString();
 
-                case (int)TransactionType.Spending:
+                case (int) TransactionType.Spending:
                     return TransactionType.Spending.ToString();
 
-                case (int)TransactionType.Transfer:
+                case (int) TransactionType.Transfer:
                     return TransactionType.Transfer.ToString();
 
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(type), "Passed Number didn't match to a transaction type.");
+                    throw new ArgumentOutOfRangeException(nameof(type),
+                        "Passed Number didn't match to a transaction type.");
             }
         }
     }

@@ -17,15 +17,12 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly StatisticManager statisticManager;
 
-        private PlotModel cashFlowModel;
         private ObservableCollection<StatisticItem> categorySummary;
-
-        private PlotModel spreadingModel;
 
         /// <summary>
         ///     Creates a StatisticViewModel Object.
         /// </summary>
-        /// <param name="statisticManager">Instance of <see cref="StatisticManager"/>/></param>
+        /// <param name="statisticManager">Instance of <see cref="StatisticManager" />/></param>
         public StatisticViewModel(StatisticManager statisticManager)
         {
             this.statisticManager = statisticManager;
@@ -37,42 +34,13 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Contains the PlotModel for the CashFlow graph
         /// </summary>
-        public PlotModel CashFlowModel
-        {
-            get
-            {
-                if (cashFlowModel == null)
-                {
-                    SetDefaultCashFlow();
-                }
-                return cashFlowModel;
-            }
-            set
-            {
-                cashFlowModel = value;
-                RaisePropertyChanged();
-            }
-        }
+        public PlotModel CashFlowModel => GetDefaultCashFlow();
 
         /// <summary>
         ///     Contains the PlotModel for the CategorySpreading graph
         /// </summary>
-        public PlotModel SpreadingModel
-        {
-            get
-            {
-                if (spreadingModel == null)
-                {
-                    SetDefaultSpreading();
-                }
-                return spreadingModel;
-            }
-            set
-            {
-                spreadingModel = value;
-                RaisePropertyChanged();
-            }
-        }
+        public PlotModel SpreadingModel => GetDefaultSpreading();
+
 
         /// <summary>
         ///     Startdate for a custom statistic
@@ -116,25 +84,25 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Set  a default CashFlowModel with the set Start and Enddate
         /// </summary>
-        public void SetDefaultCashFlow()
+        public PlotModel GetDefaultCashFlow()
         {
-            SetCashFlowModel(statisticManager.GetMonthlyCashFlow());
+            return SetCashFlowModel(statisticManager.GetMonthlyCashFlow());
         }
 
         /// <summary>
         ///     Set  a default CategprySpreadingModel with the set Start and Enddate
         /// </summary>
-        public void SetDefaultSpreading()
+        public PlotModel GetDefaultSpreading()
         {
-            SetSpreadingModel(statisticManager.GetSpreading());
+            return SetSpreadingModel(statisticManager.GetSpreading());
         }
 
-        private void SetSpreadingModel(IEnumerable<StatisticItem> items)
+        private PlotModel SetSpreadingModel(IEnumerable<StatisticItem> items)
         {
             var statisticItems = items as IList<StatisticItem> ?? items.ToList();
             if (!statisticItems.Any())
             {
-                return;
+                return new PlotModel();
             }
 
             var model = new PlotModel
@@ -153,7 +121,7 @@ namespace MoneyManager.Core.ViewModels
             model.LegendPosition = LegendPosition.BottomLeft;
 
             model.Series.Add(pieSeries);
-            SpreadingModel = model;
+            return model;
         }
 
         /// <summary>
@@ -164,12 +132,12 @@ namespace MoneyManager.Core.ViewModels
             SetCashFlowModel(statisticManager.GetMonthlyCashFlow(StartDate, EndDate));
         }
 
-        private void SetCashFlowModel(IEnumerable<StatisticItem> items)
+        private PlotModel SetCashFlowModel(IEnumerable<StatisticItem> items)
         {
             var statisticItems = items as IList<StatisticItem> ?? items.ToList();
             if (!statisticItems.Any())
             {
-                return;
+                return new PlotModel();
             }
 
             var model = new PlotModel
@@ -177,7 +145,8 @@ namespace MoneyManager.Core.ViewModels
                 Background = OxyColors.Black,
                 TextColor = OxyColors.White
             };
-            var barSeries = new ColumnSeries();
+
+            var columnSeries = new ColumnSeries();
             var axe = new CategoryAxis
             {
                 AxislineColor = OxyColors.White,
@@ -188,17 +157,17 @@ namespace MoneyManager.Core.ViewModels
 
             foreach (var item in statisticItems)
             {
-                barSeries.Items.Add(new ColumnItem(item.Value));
+                columnSeries.Items.Add(new ColumnItem(item.Value));
                 axe.Labels.Add(item.Label);
             }
 
-            barSeries.Items[0].Color = OxyColors.LightGreen;
-            barSeries.Items[1].Color = OxyColors.Red;
-            barSeries.Items[2].Color = OxyColors.Cyan;
+            columnSeries.Items[0].Color = OxyColors.LightGreen;
+            columnSeries.Items[1].Color = OxyColors.Red;
+            columnSeries.Items[2].Color = OxyColors.Cyan;
 
             model.Axes.Add(axe);
-            model.Series.Add(barSeries);
-            CashFlowModel = model;
+            model.Series.Add(columnSeries);
+            return model;
         }
 
         /// <summary>

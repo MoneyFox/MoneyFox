@@ -11,8 +11,8 @@ namespace MoneyManager.Core.Manager
     public class TransactionManager
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly ITransactionRepository transactionRepository;
         private readonly IDialogService dialogService;
+        private readonly ITransactionRepository transactionRepository;
 
         /// <summary>
         ///     Creates an TransactionManager object.
@@ -61,8 +61,11 @@ namespace MoneyManager.Core.Manager
                 return false;
             }
 
-            return await dialogService.ShowConfirmMessage(Strings.ChangeSubsequentTransactionsTitle, Strings.ChangeSubsequentTransactionsMessage,
-                Strings.RecurringLabel, Strings.JustThisLabel);
+            return
+                await
+                    dialogService.ShowConfirmMessage(Strings.ChangeSubsequentTransactionsTitle,
+                        Strings.ChangeSubsequentTransactionsMessage,
+                        Strings.RecurringLabel, Strings.JustThisLabel);
         }
 
         public void ClearTransactions()
@@ -92,7 +95,7 @@ namespace MoneyManager.Core.Manager
                 PrehandleRemoveIfTransfer(transaction);
 
                 Func<double, double> amountFunc = x =>
-                    transaction.Type == (int)TransactionType.Income
+                    transaction.Type == (int) TransactionType.Income
                         ? -x
                         : x;
 
@@ -109,7 +112,7 @@ namespace MoneyManager.Core.Manager
             PrehandleAddIfTransfer(transaction);
 
             Func<double, double> amountFunc = x =>
-                transaction.Type == (int)TransactionType.Income
+                transaction.Type == (int) TransactionType.Income
                     ? x
                     : -x;
 
@@ -118,7 +121,7 @@ namespace MoneyManager.Core.Manager
 
         private void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
         {
-            if (transaction.Type == (int)TransactionType.Transfer)
+            if (transaction.Type == (int) TransactionType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
                 HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
@@ -141,7 +144,8 @@ namespace MoneyManager.Core.Manager
                 transaction.IsCleared = true;
 
                 accountRepository.Save(account);
-            } else
+            }
+            else
             {
                 transaction.IsCleared = false;
             }
@@ -150,7 +154,7 @@ namespace MoneyManager.Core.Manager
 
         private void PrehandleAddIfTransfer(FinancialTransaction transaction)
         {
-            if (transaction.Type == (int)TransactionType.Transfer)
+            if (transaction.Type == (int) TransactionType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
                 HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
@@ -175,7 +179,7 @@ namespace MoneyManager.Core.Manager
         {
             try
             {
-               var relatedTrans =
+                var relatedTrans =
                     transactionRepository.Data.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
 
                 foreach (var transaction in relatedTrans)

@@ -3,23 +3,23 @@
 namespace MoneyManager.Foundation.OperationContracts.Shotcuts
 {
     /// <summary>
-    /// Defines a interface to handling Shortcut
+    ///     Defines a interface to handling Shortcut
     /// </summary>
     public interface IShortcut
     {
         /// <summary>
-        /// Indicates if the shortcut exists
+        ///     Indicates if the shortcut exists
         /// </summary>
         bool IsShortcutExisting { get; }
 
         /// <summary>
-        /// Creates the Shortcut.
+        ///     Creates the Shortcut.
         /// </summary>
         /// <returns>Task to make the method awaitable.</returns>
         Task CreateShortCut();
 
         /// <summary>
-        /// Removes an existing Shortcut.
+        ///     Removes an existing Shortcut.
         /// </summary>
         /// <returns>Task to make the method awaitable.</returns>
         Task RemoveShortcut();

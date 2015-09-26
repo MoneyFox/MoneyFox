@@ -30,6 +30,8 @@ namespace MoneyManager.Core.ViewModels
             this.categoryRepository = categoryRepository;
             this.transactionRepository = transactionRepository;
             this.dialogService = dialogService;
+
+            Categories = categoryRepository.Data;
         }
 
         /// <summary>
@@ -46,11 +48,7 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public bool IsSettingCall { get; set; }
 
-        public ObservableCollection<Category> Categories
-        {
-            get { return categoryRepository.Data; }
-            set { categoryRepository.Data = value; }
-        }
+        public ObservableCollection<Category> Categories { get; set; }
 
         /// <summary>
         ///     The currently selected category. If IsSettingsCall is set it will
@@ -109,7 +107,8 @@ namespace MoneyManager.Core.ViewModels
                     (categoryRepository.Data.Where(
                         x => x.Name != null && x.Name.ToLower().Contains(searchText.ToLower()))
                         .ToList());
-            } else
+            }
+            else
             {
                 Categories = categoryRepository.Data;
             }
@@ -122,7 +121,7 @@ namespace MoneyManager.Core.ViewModels
                 categoryRepository.Delete(categoryToDelete);
             }
         }
-        
+
         private void Done()
         {
             transactionRepository.Selected.Category = SelectedCategory;

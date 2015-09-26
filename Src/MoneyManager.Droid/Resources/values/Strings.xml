@@ -21,7 +21,7 @@
   <string name="hint_amount">Amount</string>
   <string name="hint_recurring">Is Recurring</string>
   <string name="hint_endless">Is Endless</string>
-  
+
   <!--text views-->
   <string name="textview_version">Version</string>
   <string name="textview_contact">Contact</string>
@@ -32,7 +32,7 @@
   <string name="button_date">Date</string>
   <string name="button_category">Category</string>
   <string name="button_rate">Rate us!</string>
-  
+
   <!--labels-->
   <string name="label_cleared">IsCleared: </string>
 

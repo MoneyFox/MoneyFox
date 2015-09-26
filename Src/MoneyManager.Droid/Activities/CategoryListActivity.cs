@@ -53,7 +53,7 @@ namespace MoneyManager.Droid.Activities
                     return true;
 
                 case Resource.Id.action_add:
-                    
+
                     return true;
 
                 default:
@@ -73,7 +73,7 @@ namespace MoneyManager.Droid.Activities
 
         public override bool OnContextItemSelected(IMenuItem item)
         {
-            var selected = ViewModel.Categories[((AdapterView.AdapterContextMenuInfo)item.MenuInfo).Position];
+            var selected = ViewModel.Categories[((AdapterView.AdapterContextMenuInfo) item.MenuInfo).Position];
 
             switch (item.ItemId)
             {

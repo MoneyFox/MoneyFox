@@ -11,7 +11,8 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Creates an MainViewModel object.
         /// </summary>
-        public MainViewModel(ModifyAccountViewModel modifyAccountViewModel, ModifyTransactionViewModel modifyTransactionViewModel)
+        public MainViewModel(ModifyAccountViewModel modifyAccountViewModel,
+            ModifyTransactionViewModel modifyTransactionViewModel)
         {
             this.modifyAccountViewModel = modifyAccountViewModel;
             this.modifyTransactionViewModel = modifyTransactionViewModel;
@@ -35,7 +36,7 @@ namespace MoneyManager.Core.ViewModels
         private void GoToAddTransaction(string transactionType)
         {
             modifyTransactionViewModel.IsEdit = false;
-            ShowViewModel<ModifyTransactionViewModel>(new { typeString = transactionType });
+            ShowViewModel<ModifyTransactionViewModel>(new {typeString = transactionType});
         }
 
         private void GoToAddAccount()

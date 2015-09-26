@@ -1,7 +1,9 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Cirrious.CrossCore;
+using MoneyManager.Core.Helper;
 using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views
@@ -34,16 +36,53 @@ namespace MoneyManager.Windows.Views
 
         private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e)
         {
-            if (e.OriginalSource == null)
-            {
-                return;
-            }
+            if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
 
-            TextBoxAmount.Text = e.OriginalSource.ToString()
+            //cursorpositon to set the position back after the formating
+            var cursorposition = TextBoxAmount.SelectionStart;
+
+            //replace either a comma with the decimal separator for the current culture to avoid parsing errors.
+            TextBoxAmount.Text = TextBoxAmount.Text
                 .Replace(",", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
 
-            TextBoxAmount.Text = e.OriginalSource.ToString()
+            if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
+            //replace either a dot with the decimal separator for the current culture to avoid parsing errors.
+            TextBoxAmount.Text = TextBoxAmount.Text
                 .Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
+
+            if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
+
+            var formattedText =
+                Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxAmount.Text, CultureInfo.CurrentCulture));
+
+            cursorposition = AdjustCursorPosition(formattedText, cursorposition);
+
+            TextBoxAmount.Text = formattedText;
+
+            //set the cursor back to the last positon to avoid jumping around
+            TextBoxAmount.Select(cursorposition, 0);
+        }
+
+        /// <summary>
+        ///     When the text is formated there may be more chars and the cursors positon isn't the same as befor.
+        ///     That will cause a jumping cursor and uncontrolled order of input. Therefore we need to adjust the
+        ///     cursor position after formating.
+        /// </summary>
+        /// <param name="formattedText">Text after formatting.</param>
+        /// <param name="cursorposition">Position of the cursor before formatting.</param>
+        /// <returns>New Cursor position.</returns>
+        private int AdjustCursorPosition(string formattedText, int cursorposition)
+        {
+            var oldIndex = TextBoxAmount.Text.IndexOf(CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator,
+                StringComparison.Ordinal);
+            var newIndex = formattedText.IndexOf(CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator,
+                StringComparison.Ordinal);
+
+            if (oldIndex != -1 && oldIndex < newIndex)
+            {
+                cursorposition += newIndex - oldIndex;
+            }
+            return cursorposition;
         }
     }
 }

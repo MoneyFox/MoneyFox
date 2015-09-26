@@ -26,7 +26,7 @@ namespace MoneyManager.Core.Converter
                     : "+";
             }
 
-            return sign + " "+ $"{transaction.Amount:C2}";
+            return sign + " " + $"{transaction.Amount:C2}";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

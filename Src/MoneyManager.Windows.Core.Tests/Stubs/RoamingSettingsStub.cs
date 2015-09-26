@@ -1,4 +1,5 @@
-﻿using MoneyManager.Foundation.OperationContracts;
+﻿using System;
+using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Windows.Core.Tests.Stubs
 {
@@ -6,12 +7,12 @@ namespace MoneyManager.Windows.Core.Tests.Stubs
     {
         public void AddOrUpdateValue(string key, object value)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public TValueType GetValueOrDefault<TValueType>(string key, TValueType defaultValue)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Helper
@@ -26,6 +27,16 @@ namespace MoneyManager.Core.Helper
             {
                 item.Value = Math.Round(item.Value, 2, MidpointRounding.AwayFromZero);
             }
+        }
+
+        /// <summary>
+        ///     Returns the double converted to a string in a proper format for this culture.
+        /// </summary>
+        /// <param name="value">Double who shall be converted</param>
+        /// <returns>Formated string.</returns>
+        public static string FormatLargeNumbers(double value)
+        {
+            return value.ToString("N", CultureInfo.CurrentCulture);
         }
     }
 }
