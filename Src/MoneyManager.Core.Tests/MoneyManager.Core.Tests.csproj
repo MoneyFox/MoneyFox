@@ -119,7 +119,6 @@
     <Compile Include="Helper\TransactionTypeLogicTest.cs" />
     <Compile Include="Manager\DefaultManagerTests.cs" />
     <Compile Include="Manager\RecurringTransactionManagerTests.cs" />
-    <Compile Include="Manager\TransactionManagerTests.cs" />
     <Compile Include="Mocks\AccountDataAccessMock.cs" />
     <Compile Include="Mocks\CategoryDataAccessMock.cs" />
     <Compile Include="Mocks\RecurringTransactionDataAccessMock.cs" />

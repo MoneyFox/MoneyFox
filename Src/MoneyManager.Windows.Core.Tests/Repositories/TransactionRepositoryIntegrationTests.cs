@@ -76,6 +76,7 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         }
 
         [Fact]
+        [Trait("Category", "Integration")]
         public void LoadRecurringList_ListWithRecurringTransaction()
         {
             var transactionDataAccess =

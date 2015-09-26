@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using MoneyManager.Core.Converter;
 using MoneyManager.Core.Helper;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -55,7 +54,8 @@ namespace MoneyManager.Core.Tests.Helper
         public void FormatLargeNumbers_AmountShort_ValidString(double amount, string culture, string result)
         {
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
-            new AmountFormatConverter().Convert(amount, null, "short", null).ShouldBe(result);
+            Utilities.FormatLargeNumbers(amount).ShouldBe(result);
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
         }
     }
 }

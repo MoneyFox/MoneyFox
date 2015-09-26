@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
@@ -13,11 +14,14 @@ namespace MoneyManager.Core.Tests.Repositories
     public class AccountRepositoryTests
     {
         [Theory]
-        [InlineData("Sparkonto", "Sparkonto")]
-        [InlineData("", "[No Name]")]
-        public void Save_InputName_CorrectNameAssigned(string nameInput, string nameExpected)
+        [InlineData("Sparkonto", "Sparkonto", "de-CH")]
+        [InlineData("", "[No Name]", "en-US")]
+        [InlineData("", "[Kein Name]", "de-CH")]
+        public void Save_InputName_CorrectNameAssigned(string nameInput, string nameExpected, string culture)
         {
             var testList = new List<Account>();
+
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
 
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
             accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>()))
@@ -37,6 +41,8 @@ namespace MoneyManager.Core.Tests.Repositories
 
             testList[0].ShouldBeSameAs(account);
             testList[0].Name.ShouldBe(nameExpected);
+
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
         }
 
         [Fact]

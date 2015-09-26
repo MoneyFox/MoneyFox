@@ -116,6 +116,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Income.
+        /// </summary>
+        public static string AddIncomeTitle {
+            get {
+                return ResourceManager.GetString("AddIncomeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Spending.
         /// </summary>
         public static string AddSpendingLabel {
@@ -125,11 +134,11 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add.
+        ///   Looks up a localized string similar to Add Spending.
         /// </summary>
-        public static string AddTitle {
+        public static string AddSpendingTitle {
             get {
-                return ResourceManager.GetString("AddTitle", resourceCulture);
+                return ResourceManager.GetString("AddSpendingTitle", resourceCulture);
             }
         }
         
@@ -139,6 +148,15 @@ namespace MoneyManager.Localization {
         public static string AddTransferLabel {
             get {
                 return ResourceManager.GetString("AddTransferLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Transfer.
+        /// </summary>
+        public static string AddTransferTitle {
+            get {
+                return ResourceManager.GetString("AddTransferTitle", resourceCulture);
             }
         }
         
@@ -260,6 +278,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Income.
+        /// </summary>
+        public static string EditIncomeTitle {
+            get {
+                return ResourceManager.GetString("EditIncomeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string EditLabel {
@@ -269,11 +296,29 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Spending.
+        /// </summary>
+        public static string EditSpendingTitle {
+            get {
+                return ResourceManager.GetString("EditSpendingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string EditTitle {
             get {
                 return ResourceManager.GetString("EditTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Transfer.
+        /// </summary>
+        public static string EditTransferTitle {
+            get {
+                return ResourceManager.GetString("EditTransferTitle", resourceCulture);
             }
         }
         
@@ -319,15 +364,6 @@ namespace MoneyManager.Localization {
         public static string Homepage {
             get {
                 return ResourceManager.GetString("Homepage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Income.
-        /// </summary>
-        public static string IncomeTitle {
-            get {
-                return ResourceManager.GetString("IncomeTitle", resourceCulture);
             }
         }
         
@@ -521,15 +557,6 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Spending.
-        /// </summary>
-        public static string SpendingTitle {
-            get {
-                return ResourceManager.GetString("SpendingTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Statistics.
         /// </summary>
         public static string StatisticsLabel {
@@ -571,15 +598,6 @@ namespace MoneyManager.Localization {
         public static string TaskSuccessfulMessage {
             get {
                 return ResourceManager.GetString("TaskSuccessfulMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Transfer.
-        /// </summary>
-        public static string TransferTitle {
-            get {
-                return ResourceManager.GetString("TransferTitle", resourceCulture);
             }
         }
         
