@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.SelectDevice" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="MoneyManager.Core\App.cs">
     <Files>
       <File FileName="MoneyManager.Core\App.cs" Line="1" Column="1" />
     </Files>

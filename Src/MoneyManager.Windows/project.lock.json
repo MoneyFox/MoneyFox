@@ -1609,7 +1609,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.0": {
+      "Xamarin.Insights/1.11.1": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -3315,7 +3315,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.0": {
+      "Xamarin.Insights/1.11.1": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -4993,7 +4993,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.0": {
+      "Xamarin.Insights/1.11.1": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -6704,7 +6704,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.0": {
+      "Xamarin.Insights/1.11.1": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -8382,7 +8382,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.0": {
+      "Xamarin.Insights/1.11.1": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -10093,7 +10093,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.0": {
+      "Xamarin.Insights/1.11.1": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -11771,7 +11771,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.0": {
+      "Xamarin.Insights/1.11.1": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -15326,8 +15326,8 @@
         "System.Xml.XmlSerializer.nuspec"
       ]
     },
-    "Xamarin.Insights/1.11.0": {
-      "sha512": "ZcrBopculY74jfeW6xbr1MInJLHLK0+Nly5/ARM1Pm/J6poyfsI7ynTFMPYBdzgUsue6FDwA+UPLtFcyNwt8CQ==",
+    "Xamarin.Insights/1.11.1": {
+      "sha512": "rny4nYSA5Gem7rjCTU/lctNFcbthcB8vKitQh6A/dpT7xeoYDXFkTJSbGMW6ZNZzb4o4p5DWlYZ11U1AKm2AKQ==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -15370,7 +15370,7 @@
         "lib/Xamarin.iOS10/Xamarin.Insights.XML",
         "lib/Xamarin.Mac20/Xamarin.Insights.dll",
         "lib/Xamarin.Mac20/Xamarin.Insights.XML",
-        "package/services/metadata/core-properties/6ef5fdf70eb64102a539deca325da848.psmdcp",
+        "package/services/metadata/core-properties/9cee73148854477083d2a40f907d99db.psmdcp",
         "Xamarin.Insights.nuspec"
       ]
     }
@@ -15382,7 +15382,7 @@
       "NotificationsExtensions.Win10 >= 10240.0.6",
       "OxyPlot.Windows >= 2015.1.1033-alpha",
       "SQLite.Net-PCL >= 3.0.5",
-      "Xamarin.Insights >= 1.11.0"
+      "Xamarin.Insights >= 1.11.1"
     ],
     "UAP,Version=v10.0": []
   }
