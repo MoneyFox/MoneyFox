@@ -12,7 +12,7 @@ namespace MoneyManager.Foundation
         ///     update the existing
         /// </summary>
         /// <param name="itemToSave">item to save.</param>
-        public void Save(T itemToSave)
+        public void SaveItem(T itemToSave)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace MoneyManager.Foundation
         ///     Deletes the passed item from the database
         /// </summary>
         /// <param name="itemToDelete">Item to delete.</param>
-        public void Delete(T itemToDelete)
+        public void DeleteItem(T itemToDelete)
         {
             try
             {

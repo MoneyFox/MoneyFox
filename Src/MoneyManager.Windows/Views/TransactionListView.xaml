@@ -30,8 +30,8 @@
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add"
-                              x:Uid="DeleteAccountLabel"
-                              Label="Delete Account"
+                              x:Uid="DeleteItemAccountLabel"
+                              Label="DeleteItem Account"
                               Command="{Binding DeleteAccountCommand}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>

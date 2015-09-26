@@ -10,12 +10,12 @@ namespace MoneyManager.Core.Tests.Mocks
     {
         public List<FinancialTransaction> FinancialTransactionTestList = new List<FinancialTransaction>();
 
-        public void Save(FinancialTransaction itemToSave)
+        public void SaveItem(FinancialTransaction itemToSave)
         {
             FinancialTransactionTestList.Add(itemToSave);
         }
 
-        public void Delete(FinancialTransaction item)
+        public void DeleteItem(FinancialTransaction item)
         {
             if (FinancialTransactionTestList.Contains(item))
             {

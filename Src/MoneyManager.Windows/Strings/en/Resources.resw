@@ -166,7 +166,7 @@
     <value>Contact:</value>
   </data>
   <data name="DeleteAccountLabel.Label" xml:space="preserve">
-    <value>Delete Account</value>
+    <value>DeleteItem Account</value>
   </data>
   <data name="DeveloperLabel.Text" xml:space="preserve">
     <value>Developer</value>

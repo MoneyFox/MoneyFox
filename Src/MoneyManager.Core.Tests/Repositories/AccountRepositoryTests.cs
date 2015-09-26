@@ -20,7 +20,7 @@ namespace MoneyManager.Core.Tests.Repositories
             var testList = new List<Account>();
 
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
-            accountDataAccessSetup.Setup(x => x.Save(It.IsAny<Account>()))
+            accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>()))
                 .Callback((Account acc) => testList.Add(acc));
 
             accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
@@ -51,7 +51,7 @@ namespace MoneyManager.Core.Tests.Repositories
             var testList = new List<Account>();
 
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
-            accountDataAccessSetup.Setup(x => x.Save(It.IsAny<Account>()))
+            accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>()))
                 .Callback((Account acc) => testList.Add(acc));
 
             var account = new Account

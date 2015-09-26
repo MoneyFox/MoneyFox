@@ -84,8 +84,8 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
                 new RecurringTransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
             var repository = new TransactionRepository(transactionDataAccess, recTransactionDataAccess);
 
-            transactionDataAccess.Save(new FinancialTransaction {Id = 3, Amount = 999, IsRecurring = false});
-            transactionDataAccess.Save(new FinancialTransaction
+            transactionDataAccess.SaveItem(new FinancialTransaction {Id = 3, Amount = 999, IsRecurring = false});
+            transactionDataAccess.SaveItem(new FinancialTransaction
             {
                 Id = 4,
                 Amount = 123,

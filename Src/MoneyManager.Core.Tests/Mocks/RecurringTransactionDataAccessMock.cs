@@ -10,12 +10,12 @@ namespace MoneyManager.Core.Tests.Mocks
     {
         public List<RecurringTransaction> RecurringTransactionTestList = new List<RecurringTransaction>();
 
-        public void Save(RecurringTransaction itemToSave)
+        public void SaveItem(RecurringTransaction itemToSave)
         {
             RecurringTransactionTestList.Add(itemToSave);
         }
 
-        public void Delete(RecurringTransaction item)
+        public void DeleteItem(RecurringTransaction item)
         {
             if (RecurringTransactionTestList.Contains(item))
             {

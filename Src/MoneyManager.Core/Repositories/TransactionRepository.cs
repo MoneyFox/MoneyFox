@@ -55,7 +55,7 @@ namespace MoneyManager.Core.Repositories
         public FinancialTransaction Selected { get; set; }
 
         /// <summary>
-        ///     Save a new item or update an existin one.
+        ///     SaveItem a new item or update an existin one.
         /// </summary>
         /// <param name="item">item to save</param>
         public void Save(FinancialTransaction item)
@@ -73,11 +73,11 @@ namespace MoneyManager.Core.Repositories
             //delete recurring transaction if isRecurring is no longer set.
             if (!item.IsRecurring && item.ReccuringTransactionId != 0)
             {
-                recurringDataAccess.Delete(item.RecurringTransaction);
+                recurringDataAccess.DeleteItem(item.RecurringTransaction);
                 item.ReccuringTransactionId = 0;
             }
 
-            dataAccess.Save(item);
+            dataAccess.SaveItem(item);
         }
 
         /// <summary>
@@ -90,11 +90,11 @@ namespace MoneyManager.Core.Repositories
 
             foreach (var recTrans in reucurringList)
             {
-                recurringDataAccess.Delete(recTrans);
+                recurringDataAccess.DeleteItem(recTrans);
             }
 
             data.Remove(item);
-            dataAccess.Delete(item);
+            dataAccess.DeleteItem(item);
         }
 
         /// <summary>

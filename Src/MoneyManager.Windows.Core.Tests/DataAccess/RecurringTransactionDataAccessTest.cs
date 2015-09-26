@@ -30,7 +30,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
                 Note = "this is a note!!!"
             };
 
-            recurringTransactionDataAccess.Save(transaction);
+            recurringTransactionDataAccess.SaveItem(transaction);
 
 
             var list = recurringTransactionDataAccess.LoadList();
@@ -40,7 +40,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
 
             transaction.Amount = secondAmount;
 
-            recurringTransactionDataAccess.Save(transaction);
+            recurringTransactionDataAccess.SaveItem(transaction);
 
             recurringTransactionDataAccess.LoadList();
             list = recurringTransactionDataAccess.LoadList();
@@ -48,7 +48,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
             Assert.Equal(1, list.Count);
             Assert.Equal(secondAmount, list.First().Amount);
 
-            recurringTransactionDataAccess.Delete(transaction);
+            recurringTransactionDataAccess.DeleteItem(transaction);
 
             recurringTransactionDataAccess.LoadList();
             list = recurringTransactionDataAccess.LoadList();

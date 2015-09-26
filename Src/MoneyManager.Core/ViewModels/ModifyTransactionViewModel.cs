@@ -194,7 +194,7 @@ namespace MoneyManager.Core.ViewModels
                         EndDate);
             }
 
-            // Save or update the transaction and add the amount to the account
+            // SaveItem or update the transaction and add the amount to the account
             transactionRepository.Save(SelectedTransaction);
             transactionManager.AddTransactionAmount(SelectedTransaction);
 
