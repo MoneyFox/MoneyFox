@@ -6,6 +6,7 @@ using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 using Moq;
 using Xunit;
 
@@ -21,7 +22,9 @@ namespace MoneyManager.Core.Tests.Repositories
         {
             var testList = new List<Account>();
 
+            // Set test culture
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
+            Strings.Culture = new CultureInfo(culture);
 
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
             accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>()))
@@ -42,7 +45,9 @@ namespace MoneyManager.Core.Tests.Repositories
             testList[0].ShouldBeSameAs(account);
             testList[0].Name.ShouldBe(nameExpected);
 
+            // Reset Culture
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
+            Strings.Culture = CultureInfo.CurrentCulture;
         }
 
         [Fact]
