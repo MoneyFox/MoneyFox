@@ -177,7 +177,8 @@ namespace MoneyManager.Core.ViewModels
                 Background = OxyColors.Black,
                 TextColor = OxyColors.White
             };
-            var barSeries = new ColumnSeries();
+
+            var columnSeries = new ColumnSeries();
             var axe = new CategoryAxis
             {
                 AxislineColor = OxyColors.White,
@@ -188,16 +189,16 @@ namespace MoneyManager.Core.ViewModels
 
             foreach (var item in statisticItems)
             {
-                barSeries.Items.Add(new ColumnItem(item.Value));
+                columnSeries.Items.Add(new ColumnItem(item.Value));
                 axe.Labels.Add(item.Label);
             }
 
-            barSeries.Items[0].Color = OxyColors.LightGreen;
-            barSeries.Items[1].Color = OxyColors.Red;
-            barSeries.Items[2].Color = OxyColors.Cyan;
+            columnSeries.Items[0].Color = OxyColors.LightGreen;
+            columnSeries.Items[1].Color = OxyColors.Red;
+            columnSeries.Items[2].Color = OxyColors.Cyan;
 
             model.Axes.Add(axe);
-            model.Series.Add(barSeries);
+            model.Series.Add(columnSeries);
             CashFlowModel = model;
         }
 
