@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Cirrious.CrossCore;
 using MoneyManager.Core.Manager;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Windows.Shortcut
 {
