@@ -221,6 +221,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_recurring.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.NETNative.Analyzer.1.0.0\analyzers\dotnet\cs\NativeGatekeeper.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.11.1\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.1\build\MonoAndroid10\Xamarin.Insights.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

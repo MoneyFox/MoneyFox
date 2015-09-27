@@ -163,6 +163,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -1822,6 +1823,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -3514,6 +3516,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -5211,6 +5214,7 @@
           "runtimes/win10-x64/native/_._": {}
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -6903,6 +6907,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -8600,6 +8605,7 @@
           "runtimes/win10-x86/native/_._": {}
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -10292,6 +10298,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -12370,6 +12377,20 @@
         "runtimes/win8-x86/native/api-ms-win-security-cryptoapi-l1-1-0.dll",
         "runtimes/win8-x86/native/api-ms-win-security-lsalookup-l2-1-1.dll",
         "runtimes/win8-x86/native/api-ms-win-service-private-l1-1-1.dll"
+      ]
+    },
+    "Microsoft.NETNative.Analyzer/1.0.0": {
+      "sha512": "fU5kNj59Kdkats3mZ1CaZJCjTPSb1fxgIsIRFWZH7bzT0dRQih09qXlh4G9PowAwKOtLOQxyOOjtDZi6T7HRAg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "analyzers/dotnet/cs/NativeGatekeeper.dll",
+        "Microsoft.NETNative.Analyzer.1.0.0.nupkg.sha512",
+        "Microsoft.NETNative.Analyzer.nuspec",
+        "package/services/metadata/core-properties/5dd9a3149be14fc795a7718dacbee757.psmdcp",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
       ]
     },
     "Microsoft.VisualBasic/10.0.0": {
@@ -15378,6 +15399,7 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "Microsoft.NETNative.Analyzer >= 1.0.0",
       "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta3",
       "NotificationsExtensions.Win10 >= 10240.0.6",
       "OxyPlot.Windows >= 2015.1.1033-alpha",

@@ -158,7 +158,9 @@
   <ItemGroup>
     <Content Include="Entitlements.plist" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.NETNative.Analyzer.1.0.0\analyzers\dotnet\cs\NativeGatekeeper.dll" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyManager.Core\MoneyManager.Core.csproj">
       <Project>{64F3A03F-44C2-44FA-BD29-FA23C35C95F0}</Project>

@@ -47,11 +47,6 @@
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
     <Compile Include="Converter\TransactionAmountConverter.cs" />
-    <Compile Include="DataAccess\AccountDataAccess.cs" />
-    <Compile Include="DataAccess\CategoryDataAccess.cs" />
-    <Compile Include="DataAccess\RecurringTransactionDataAccess.cs" />
-    <Compile Include="DataAccess\SettingDataAccess.cs" />
-    <Compile Include="DataAccess\TransactionDataAccess.cs" />
     <Compile Include="DbHelper.cs" />
     <Compile Include="Helper\RecurringTransactionHelper.cs" />
     <Compile Include="Helper\Utilities.cs" />
