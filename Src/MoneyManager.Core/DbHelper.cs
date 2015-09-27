@@ -33,6 +33,9 @@ namespace MoneyManager.Core
             return new SQLiteConnection(platform, Path.Combine(path.DbPath, DATABASE_NAME), false);
         }
 
+        /// <summary>
+        ///     Creates the database.
+        /// </summary>
         public void CreateDatabase()
         {
             using (var db = GetSqlConnection())
