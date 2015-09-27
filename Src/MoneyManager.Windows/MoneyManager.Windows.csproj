@@ -132,6 +132,7 @@
     <Compile Include="Controls\SelectCategoryTextBox.xaml.cs">
       <DependentUpon>SelectCategoryTextBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SwipeableSplitView.cs" />
     <Compile Include="Controls\TabHeader.xaml.cs">
       <DependentUpon>TabHeader.xaml</DependentUpon>
     </Compile>

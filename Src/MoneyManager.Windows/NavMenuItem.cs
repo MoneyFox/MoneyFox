@@ -11,10 +11,7 @@ namespace MoneyManager.Windows
         public string Label { get; set; }
         public Symbol Symbol { get; set; }
 
-        public char SymbolAsChar
-        {
-            get { return (char) Symbol; }
-        }
+        public char SymbolAsChar => (char) Symbol;
 
         public Type DestPage { get; set; }
         public object Arguments { get; set; }

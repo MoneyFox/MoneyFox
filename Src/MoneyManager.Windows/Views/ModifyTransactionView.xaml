@@ -34,7 +34,7 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="SaveItem"
+            <AppBarButton Icon="Save"
                           Label="Done"
                           x:Uid="Done"
                           Command="{Binding SaveCommand}" />
