@@ -2,7 +2,7 @@
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Manager;
 using MoneyManager.Foundation.Exceptions;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 
 namespace MoneyManager.Core.ViewModels

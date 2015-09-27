@@ -5,7 +5,7 @@ using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.DataAccess;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Core
 {

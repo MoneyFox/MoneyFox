@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Ios
 {

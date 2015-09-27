@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using Windows.ApplicationModel;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Windows
 {

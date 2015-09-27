@@ -3,7 +3,7 @@ using Cirrious.MvvmCross.Touch.Platform;
 using Cirrious.MvvmCross.Touch.Views.Presenters;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.XamarinIOS;

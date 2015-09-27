@@ -5,7 +5,7 @@ using MoneyManager.Core.Repositories;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 using Moq;
 using Xunit;
 

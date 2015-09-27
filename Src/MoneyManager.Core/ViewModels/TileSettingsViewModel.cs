@@ -1,6 +1,6 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.DataAccess;
-using MoneyManager.Foundation.OperationContracts.Shotcuts;
+using MoneyManager.Foundation.Interfaces.Shotcuts;
 
 namespace MoneyManager.Core.ViewModels
 {

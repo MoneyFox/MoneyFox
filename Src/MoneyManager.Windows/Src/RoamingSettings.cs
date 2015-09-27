@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using Windows.Storage;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Windows
 {

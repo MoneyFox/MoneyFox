@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace MoneyManager.Foundation.OperationContracts
+namespace MoneyManager.Foundation.Interfaces
 {
     public interface IBackupService
     {

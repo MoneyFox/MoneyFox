@@ -1,6 +1,6 @@
 ﻿using System.IO;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
 using SQLite.Net;
 using SQLite.Net.Interop;
 

@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 
-namespace MoneyManager.Foundation.OperationContracts
+namespace MoneyManager.Foundation.Interfaces
 {
     public interface IRepository<T>
     {

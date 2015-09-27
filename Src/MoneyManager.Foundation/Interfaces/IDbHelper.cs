@@ -1,6 +1,6 @@
 ﻿using SQLite.Net;
 
-namespace MoneyManager.Foundation.OperationContracts
+namespace MoneyManager.Foundation.Interfaces
 {
     public interface IDbHelper
     {

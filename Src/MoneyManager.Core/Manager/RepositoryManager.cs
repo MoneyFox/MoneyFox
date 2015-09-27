@@ -1,5 +1,5 @@
-﻿using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
+﻿using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Manager
 {

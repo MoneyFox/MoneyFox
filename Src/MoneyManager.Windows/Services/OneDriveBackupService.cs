@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Microsoft.Live;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Windows.Services
 {

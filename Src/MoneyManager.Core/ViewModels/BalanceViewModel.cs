@@ -3,8 +3,8 @@ using System.Linq;
 using MoneyManager.Core.Helper;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels

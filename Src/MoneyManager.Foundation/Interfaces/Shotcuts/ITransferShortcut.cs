@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.Foundation.OperationContracts.Shotcuts
+﻿namespace MoneyManager.Foundation.Interfaces.Shotcuts
 {
     /// <summary>
     ///     Interface for managing transfer shortcuts

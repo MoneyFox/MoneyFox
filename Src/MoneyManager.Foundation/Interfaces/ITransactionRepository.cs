@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Foundation.OperationContracts
+namespace MoneyManager.Foundation.Interfaces
 {
     public interface ITransactionRepository : IRepository<FinancialTransaction>
     {

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace MoneyManager.Foundation.OperationContracts.Shotcuts
+namespace MoneyManager.Foundation.Interfaces.Shotcuts
 {
     /// <summary>
     ///     Defines a interface to handling Shortcut
