@@ -23,7 +23,7 @@ namespace MoneyManager.Foundation.OperationContracts
         void Save(T item);
 
         /// <summary>
-        ///     Delete the specified item.
+        ///     DeleteItem the specified item.
         /// </summary>
         /// <param name="item">Item.</param>
         void Delete(T item);

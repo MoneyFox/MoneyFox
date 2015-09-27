@@ -47,7 +47,7 @@ namespace MoneyManager.Core.Repositories
         public Account Selected { get; set; }
 
         /// <summary>
-        ///     Save a new item or update an existin one.
+        ///     SaveItem a new item or update an existin one.
         /// </summary>
         /// <param name="item">item to save</param>
         public void Save(Account item)
@@ -61,7 +61,7 @@ namespace MoneyManager.Core.Repositories
             {
                 data.Add(item);
             }
-            dataAccess.Save(item);
+            dataAccess.SaveItem(item);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace MoneyManager.Core.Repositories
         public void Delete(Account item)
         {
             data.Remove(item);
-            dataAccess.Delete(item);
+            dataAccess.DeleteItem(item);
 
             //TODO refactor this
             //transactionManager.DeleteAssociatedTransactionsFromDatabase(item);

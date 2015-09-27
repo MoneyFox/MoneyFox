@@ -55,7 +55,7 @@ namespace MoneyManager.Core.Repositories
         public FinancialTransaction Selected { get; set; }
 
         /// <summary>
-        ///     Save a new item or update an existin one.
+        ///     SaveItem a new item or update an existin one.
         /// </summary>
         /// <param name="item">item to save</param>
         public void Save(FinancialTransaction item)
@@ -73,11 +73,11 @@ namespace MoneyManager.Core.Repositories
             //delete recurring transaction if isRecurring is no longer set.
             if (!item.IsRecurring && item.ReccuringTransactionId != 0)
             {
-                recurringDataAccess.Delete(item.RecurringTransaction);
+                recurringDataAccess.DeleteItem(item.RecurringTransaction);
                 item.ReccuringTransactionId = 0;
             }
 
-            dataAccess.Save(item);
+            dataAccess.SaveItem(item);
         }
 
         /// <summary>
@@ -90,11 +90,11 @@ namespace MoneyManager.Core.Repositories
 
             foreach (var recTrans in reucurringList)
             {
-                recurringDataAccess.Delete(recTrans);
+                recurringDataAccess.DeleteItem(recTrans);
             }
 
             data.Remove(item);
-            dataAccess.Delete(item);
+            dataAccess.DeleteItem(item);
         }
 
         /// <summary>
@@ -148,9 +148,7 @@ namespace MoneyManager.Core.Repositories
         public IEnumerable<FinancialTransaction> LoadRecurringList(Func<FinancialTransaction, bool> filter = null)
         {
             var list = Data.Where(x => x.IsRecurring && x.RecurringTransaction != null
-                                       &&
-                                       (x.RecurringTransaction.IsEndless ||
-                                        x.RecurringTransaction.EndDate >= DateTime.Now.Date)
+                                       && (x.RecurringTransaction.IsEndless ||x.RecurringTransaction.EndDate >= DateTime.Now.Date)
                                        && (filter == null || filter.Invoke(x)))
                 .ToList();
 

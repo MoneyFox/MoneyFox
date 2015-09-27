@@ -27,7 +27,7 @@ namespace MoneyManager.Core.DataAccess
         /// <summary>
         ///     Saves a new item or updates an existing
         /// </summary>
-        /// <param name="itemToSave">Item to Save</param>
+        /// <param name="itemToSave">Item to SaveItem</param>
         protected override void SaveToDb(FinancialTransaction itemToSave)
         {
             using (var db = dbHelper.GetSqlConnection())
@@ -65,7 +65,7 @@ namespace MoneyManager.Core.DataAccess
         /// <summary>
         ///     Deletes an item from the database
         /// </summary>
-        /// <param name="transaction">Item to Delete.</param>
+        /// <param name="transaction">Item to DeleteItem.</param>
         protected override void DeleteFromDatabase(FinancialTransaction transaction)
         {
             using (var dbConn = dbHelper.GetSqlConnection())

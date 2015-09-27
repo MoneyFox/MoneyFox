@@ -138,9 +138,6 @@
   <data name="AddSpendingLabel" xml:space="preserve">
     <value>Add Spending</value>
   </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>Add</value>
-  </data>
   <data name="AddTransferLabel" xml:space="preserve">
     <value>Add Transfer</value>
   </data>
@@ -186,9 +183,6 @@
   <data name="EditLabel" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="EditTitle" xml:space="preserve">
-    <value>Edit</value>
-  </data>
   <data name="ExpenseLabel" xml:space="preserve">
     <value>Expense</value>
   </data>
@@ -204,8 +198,8 @@
   <data name="Homepage" xml:space="preserve">
     <value>www.apply-solutions.ch</value>
   </data>
-  <data name="IncomeTitle" xml:space="preserve">
-    <value>Income</value>
+  <data name="EditIncomeTitle" xml:space="preserve">
+    <value>Edit Income</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
     <value>Increase</value>
@@ -267,8 +261,8 @@
   <data name="SettingsLabel" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="SpendingTitle" xml:space="preserve">
-    <value>Spending</value>
+  <data name="EditSpendingTitle" xml:space="preserve">
+    <value>Edit Spending</value>
   </data>
   <data name="StatisticsLabel" xml:space="preserve">
     <value>Statistics</value>
@@ -285,8 +279,8 @@
   <data name="TaskSuccessfulMessage" xml:space="preserve">
     <value>Task was successful completed.</value>
   </data>
-  <data name="TransferTitle" xml:space="preserve">
-    <value>Transfer</value>
+  <data name="EditTransferTitle" xml:space="preserve">
+    <value>Edit Transfer</value>
   </data>
   <data name="WebsiteUrl" xml:space="preserve">
     <value>http://www.apply-solutions.ch</value>
@@ -302,5 +296,17 @@
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
     <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
+  </data>
+  <data name="AddIncomeTitle" xml:space="preserve">
+    <value>Add Income</value>
+  </data>
+  <data name="AddSpendingTitle" xml:space="preserve">
+    <value>Add Spending</value>
+  </data>
+  <data name="AddTransferTitle" xml:space="preserve">
+    <value>Add Transfer</value>
+  </data>
+  <data name="EditTitle" xml:space="preserve">
+    <value>Edit</value>
   </data>
 </root>

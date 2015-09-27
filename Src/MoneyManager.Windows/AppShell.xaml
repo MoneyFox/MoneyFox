@@ -60,11 +60,11 @@
         </VisualStateManager.VisualStateGroups>
 
         <!-- Top-level navigation menu + app content -->
-        <SplitView x:Name="RootSplitView"
-                   DisplayMode="Inline"
-                   OpenPaneLength="256"
-                   IsTabStop="False">
-            <SplitView.Pane>
+        <controls:SwipeableSplitView x:Name="RootSplitView"
+                                     DisplayMode="Inline"
+                                     OpenPaneLength="256"
+                                     IsTabStop="False">
+            <controls:SwipeableSplitView.Pane>
                 <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
                 <controls:NavMenuListView x:Name="NavMenuList"
                                           TabIndex="3"
@@ -73,30 +73,30 @@
                                           ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
                                           ItemTemplate="{StaticResource NavMenuItemTemplate}"
                                           ItemInvoked="NavMenuList_ItemInvoked" />
-            </SplitView.Pane>
+            </controls:SwipeableSplitView.Pane>
+            <controls:SwipeableSplitView.Content>
+                <Frame x:Name="frame"
+                       Navigating="OnNavigatingToPage"
+                       Navigated="OnNavigatedToPage">
+                    <Frame.ContentTransitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition>
+                                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                                    <EntranceNavigationTransitionInfo />
+                                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                            </NavigationThemeTransition>
+                        </TransitionCollection>
+                    </Frame.ContentTransitions>
+                </Frame>
+            </controls:SwipeableSplitView.Content>
 
-            <!-- OnNavigatingToPage we synchronize the selected item in the nav menu with the current page.
-                 OnNavigatedToPage we move keyboard focus to the first item on the page after it's loaded. -->
-            <Frame x:Name="frame"
-                   Navigating="OnNavigatingToPage"
-                   Navigated="OnNavigatedToPage">
-                <Frame.ContentTransitions>
-                    <TransitionCollection>
-                        <NavigationThemeTransition>
-                            <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                                <EntranceNavigationTransitionInfo />
-                            </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                        </NavigationThemeTransition>
-                    </TransitionCollection>
-                </Frame.ContentTransitions>
-            </Frame>
-        </SplitView>
+        </controls:SwipeableSplitView>
 
         <!-- Declared last to have it rendered above everything else, but it needs to be the first item in the tab sequence. -->
         <ToggleButton x:Name="TogglePaneButton"
                       TabIndex="1"
                       Style="{StaticResource SplitViewTogglePaneButtonStyle}"
-                      IsChecked="{Binding IsPaneOpen, ElementName=RootSplitView, Mode=TwoWay}"
+                      IsChecked="{Binding IsSwipeablePaneOpen, ElementName=RootSplitView, Mode=TwoWay}"
                       Unchecked="TogglePaneButton_Checked"
                       ToolTipService.ToolTip="Menu" />
     </Grid>

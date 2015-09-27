@@ -10,12 +10,12 @@ namespace MoneyManager.Core.Tests.Mocks
     {
         public List<Account> AccountTestList = new List<Account>();
 
-        public void Save(Account itemToSave)
+        public void SaveItem(Account itemToSave)
         {
             AccountTestList.Add(itemToSave);
         }
 
-        public void Delete(Account item)
+        public void DeleteItem(Account item)
         {
             if (AccountTestList.Contains(item))
             {

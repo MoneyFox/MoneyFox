@@ -40,7 +40,7 @@ namespace MoneyManager.Core.DataAccess
         }
 
         /// <summary>
-        ///     Delete an item from the database
+        ///     DeleteItem an item from the database
         /// </summary>
         /// <param name="category">Category to delete.</param>
         protected override void DeleteFromDatabase(Category category)

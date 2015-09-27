@@ -28,7 +28,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
                 Note = "this is a note"
             };
 
-            accountDataAccess.Save(account);
+            accountDataAccess.SaveItem(account);
 
             accountDataAccess.LoadList();
             var list = accountDataAccess.LoadList();
@@ -38,14 +38,14 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
 
             account.Name = secondName;
 
-            accountDataAccess.Save(account);
+            accountDataAccess.SaveItem(account);
 
             list = accountDataAccess.LoadList();
 
             Assert.Equal(1, list.Count);
             Assert.Equal(secondName, list.First().Name);
 
-            accountDataAccess.Delete(account);
+            accountDataAccess.DeleteItem(account);
 
             list = accountDataAccess.LoadList();
 

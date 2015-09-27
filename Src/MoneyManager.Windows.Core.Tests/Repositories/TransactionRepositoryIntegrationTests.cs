@@ -76,6 +76,7 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         }
 
         [Fact]
+        [Trait("Category", "Integration")]
         public void LoadRecurringList_ListWithRecurringTransaction()
         {
             var transactionDataAccess =
@@ -84,21 +85,21 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
                 new RecurringTransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
             var repository = new TransactionRepository(transactionDataAccess, recTransactionDataAccess);
 
-            transactionDataAccess.Save(new FinancialTransaction {Id = 3, Amount = 999, IsRecurring = false});
-            transactionDataAccess.Save(new FinancialTransaction
+            transactionDataAccess.SaveItem(new FinancialTransaction {Amount = 999, IsRecurring = false});
+            transactionDataAccess.SaveItem(new FinancialTransaction
             {
-                Id = 4,
                 Amount = 123,
                 IsRecurring = true,
-                RecurringTransaction = new RecurringTransaction {Id = 12}
+                RecurringTransaction = new RecurringTransaction { IsEndless = true}
             });
 
+            repository.Load();
             var result = repository.LoadRecurringList().ToList();
 
             result.Count.ShouldBe(1);
 
-            result.First().Id.ShouldBe(4);
-            result.First().RecurringTransaction.Id.ShouldBe(12);
+            result.First().Id.ShouldBe(2);
+            result.First().RecurringTransaction.Id.ShouldBe(1);
         }
     }
 }

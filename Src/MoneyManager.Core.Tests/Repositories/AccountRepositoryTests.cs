@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Localization;
 using Moq;
 using Xunit;
 
@@ -13,14 +15,19 @@ namespace MoneyManager.Core.Tests.Repositories
     public class AccountRepositoryTests
     {
         [Theory]
-        [InlineData("Sparkonto", "Sparkonto")]
-        [InlineData("", "[No Name]")]
-        public void Save_InputName_CorrectNameAssigned(string nameInput, string nameExpected)
+        [InlineData("Sparkonto", "Sparkonto", "de-CH")]
+        [InlineData("", "[No Name]", "en-US")]
+        [InlineData("", "[Kein Name]", "de-CH")]
+        public void Save_InputName_CorrectNameAssigned(string nameInput, string nameExpected, string culture)
         {
             var testList = new List<Account>();
 
+            // Set test culture
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
+            Strings.Culture = new CultureInfo(culture);
+
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
-            accountDataAccessSetup.Setup(x => x.Save(It.IsAny<Account>()))
+            accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>()))
                 .Callback((Account acc) => testList.Add(acc));
 
             accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
@@ -37,6 +44,10 @@ namespace MoneyManager.Core.Tests.Repositories
 
             testList[0].ShouldBeSameAs(account);
             testList[0].Name.ShouldBe(nameExpected);
+
+            // Reset Culture
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
+            Strings.Culture = CultureInfo.CurrentCulture;
         }
 
         [Fact]
@@ -51,7 +62,7 @@ namespace MoneyManager.Core.Tests.Repositories
             var testList = new List<Account>();
 
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
-            accountDataAccessSetup.Setup(x => x.Save(It.IsAny<Account>()))
+            accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>()))
                 .Callback((Account acc) => testList.Add(acc));
 
             var account = new Account

@@ -204,8 +204,8 @@
   <data name="Homepage" xml:space="preserve">
     <value>www.apply-solutions.ch</value>
   </data>
-  <data name="IncomeTitle" xml:space="preserve">
-    <value>Einkommen</value>
+  <data name="EditIncomeTitle" xml:space="preserve">
+    <value>Einkommen bearbeiten</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
     <value>Steigern</value>
@@ -267,8 +267,8 @@
   <data name="SettingsLabel" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
-  <data name="SpendingTitle" xml:space="preserve">
-    <value>Ausgabe</value>
+  <data name="EditSpendingTitle" xml:space="preserve">
+    <value>Ausgabe bearbeiten</value>
   </data>
   <data name="StatisticsLabel" xml:space="preserve">
     <value>Statistiken</value>
@@ -285,8 +285,8 @@
   <data name="TaskSuccessfulMessage" xml:space="preserve">
     <value>Auftrag erfolgreich abgeschlossen.</value>
   </data>
-  <data name="TransferTitle" xml:space="preserve">
-    <value>Überweisung</value>
+  <data name="EditTransferTitle" xml:space="preserve">
+    <value>Überweisung bearbeiten</value>
   </data>
   <data name="WebsiteUrl" xml:space="preserve">
     <value>http://www.apply-solutions.ch</value>
@@ -302,5 +302,14 @@
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
     <value />
+  </data>
+  <data name="AddIncomeTitle" xml:space="preserve">
+    <value>Einkommen hinzufügen</value>
+  </data>
+  <data name="AddSpendingTitle" xml:space="preserve">
+    <value>Ausgabe hinzufügen</value>
+  </data>
+  <data name="AddTransferTitle" xml:space="preserve">
+    <value>Überweisung hinzufügen</value>
   </data>
 </root>

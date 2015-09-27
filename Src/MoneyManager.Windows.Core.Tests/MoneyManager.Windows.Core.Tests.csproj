@@ -105,7 +105,6 @@
     <Compile Include="DataAccess\AccountDataAccessTest.cs" />
     <Compile Include="DataAccess\CategoryDataAccessTest.cs" />
     <Compile Include="DataAccess\RecurringTransactionDataAccessTest.cs" />
-    <Compile Include="DataAccess\SettingsDataAccessTest.cs" />
     <Compile Include="DataAccess\TransactionDataAccessTest.cs" />
     <Compile Include="DbHelperTests.cs" />
     <Compile Include="Helper\TestDatabasePath.cs" />
@@ -113,7 +112,6 @@
     <Compile Include="Repositories\AccountRepositoryIntegrationTests.cs" />
     <Compile Include="Repositories\CategoryRepositoryIntegrationTests.cs" />
     <Compile Include="Repositories\TransactionRepositoryIntegrationTests.cs" />
-    <Compile Include="Stubs\RoamingSettingsStub.cs" />
     <Compile Include="UnitTestApp.xaml.cs">
       <DependentUpon>UnitTestApp.xaml</DependentUpon>
     </Compile>

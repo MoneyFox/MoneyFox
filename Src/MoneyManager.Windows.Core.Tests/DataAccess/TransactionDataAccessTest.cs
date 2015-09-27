@@ -30,7 +30,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
                 IsCleared = false
             };
 
-            transactionDataAccess.Save(transaction);
+            transactionDataAccess.SaveItem(transaction);
 
             var list = transactionDataAccess.LoadList();
 
@@ -39,7 +39,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
 
             transaction.Amount = secondAmount;
 
-            transactionDataAccess.Save(transaction);
+            transactionDataAccess.SaveItem(transaction);
 
             transactionDataAccess.LoadList();
             list = transactionDataAccess.LoadList();
@@ -47,7 +47,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
             Assert.Equal(1, list.Count);
             Assert.Equal(secondAmount, list.First().Amount);
 
-            transactionDataAccess.Delete(transaction);
+            transactionDataAccess.DeleteItem(transaction);
 
             transactionDataAccess.LoadList();
             list = transactionDataAccess.LoadList();
@@ -72,7 +72,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
                 IsCleared = false
             };
 
-            transactionDataAccess.Save(transaction);
+            transactionDataAccess.SaveItem(transaction);
 
             var list = transactionDataAccess.LoadList();
 
@@ -81,7 +81,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
 
             transaction.Amount = secondAmount;
 
-            transactionDataAccess.Save(transaction);
+            transactionDataAccess.SaveItem(transaction);
 
             transactionDataAccess.LoadList();
             list = transactionDataAccess.LoadList();
@@ -89,7 +89,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
             Assert.Equal(1, list.Count);
             Assert.Equal(secondAmount, list.First().Amount);
 
-            transactionDataAccess.Delete(transaction);
+            transactionDataAccess.DeleteItem(transaction);
 
             transactionDataAccess.LoadList();
             list = transactionDataAccess.LoadList();

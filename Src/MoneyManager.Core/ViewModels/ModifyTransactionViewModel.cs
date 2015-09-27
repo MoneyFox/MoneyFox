@@ -99,19 +99,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Returns the Title for the page
         /// </summary>
-        public string Title
-        {
-            get
-            {
-                var text = IsEdit
-                    ? Strings.EditTitle
-                    : Strings.AddTitle;
-
-                var type = TransactionTypeHelper.GetViewTitleForType(transactionRepository.Selected.Type);
-
-                return string.Join(" ", text, type);
-            }
-        }
+        public string Title => TransactionTypeHelper.GetViewTitleForType(transactionRepository.Selected.Type, IsEdit);
 
         /// <summary>
         ///     The transaction date
@@ -194,7 +182,7 @@ namespace MoneyManager.Core.ViewModels
                         EndDate);
             }
 
-            // Save or update the transaction and add the amount to the account
+            // SaveItem or update the transaction and add the amount to the account
             transactionRepository.Save(SelectedTransaction);
             transactionManager.AddTransactionAmount(SelectedTransaction);
 

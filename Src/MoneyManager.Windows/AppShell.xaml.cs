@@ -126,6 +126,13 @@ namespace MoneyManager.Windows
                 case VirtualKey.NavigationDown:
                     direction = FocusNavigationDirection.Down;
                     break;
+
+                case VirtualKey.Escape:
+                case VirtualKey.Back:
+                case VirtualKey.B:
+                    bool temp = false;
+                    BackRequested(ref temp);
+                    break;
             }
 
             if (direction != FocusNavigationDirection.None)
@@ -205,12 +212,6 @@ namespace MoneyManager.Windows
             var handled = e.Handled;
             BackRequested(ref handled);
             e.Handled = handled;
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            var ignored = false;
-            BackRequested(ref ignored);
         }
 
         private void BackRequested(ref bool handled)
@@ -298,6 +299,7 @@ namespace MoneyManager.Windows
             ((Page) sender).Focus(FocusState.Programmatic);
             ((Page) sender).Loaded -= Page_Loaded;
             CheckTogglePaneButtonSizeChanged();
+            RootSplitView.IsSwipeablePaneOpen = false;
         }
 
         #endregion

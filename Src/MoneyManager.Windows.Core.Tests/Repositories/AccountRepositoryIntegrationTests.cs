@@ -16,6 +16,8 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         [Trait("Category", "Integration")]
         public void AccountRepository_Update()
         {
+            const string newName = "newName";
+
             var repository =
                 new AccountRepository(
                     new AccountDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath())));
@@ -30,12 +32,12 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
 
             repository.Data[0].ShouldBeSameAs(account);
 
-            account.Name = "newName";
+            account.Name = newName;
 
             repository.Save(account);
 
             repository.Data.Count().ShouldBe(1);
-            repository.Data[0].Name.ShouldBe("newname");
+            repository.Data[0].Name.ShouldBe(newName);
         }
     }
 }

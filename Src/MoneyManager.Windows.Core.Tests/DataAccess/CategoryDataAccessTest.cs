@@ -25,7 +25,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
                 Name = firstName
             };
 
-            categoryDataAccess.Save(category);
+            categoryDataAccess.SaveItem(category);
 
             categoryDataAccess.LoadList();
             var list = categoryDataAccess.LoadList();
@@ -34,14 +34,14 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
             Assert.Equal(firstName, list.First().Name);
 
             category.Name = secondName;
-            categoryDataAccess.Save(category);
+            categoryDataAccess.SaveItem(category);
 
             list = categoryDataAccess.LoadList();
 
             Assert.Equal(1, list.Count);
             Assert.Equal(secondName, list.First().Name);
 
-            categoryDataAccess.Delete(category);
+            categoryDataAccess.DeleteItem(category);
 
             list = categoryDataAccess.LoadList();
             Assert.False(list.Any());
