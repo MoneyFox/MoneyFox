@@ -61,9 +61,9 @@
 
         <!-- Top-level navigation menu + app content -->
         <controls:SwipeableSplitView x:Name="RootSplitView"
-                   DisplayMode="Inline"
-                   OpenPaneLength="256"
-                   IsTabStop="False">
+                                     DisplayMode="Inline"
+                                     OpenPaneLength="256"
+                                     IsTabStop="False">
             <controls:SwipeableSplitView.Pane>
                 <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
                 <controls:NavMenuListView x:Name="NavMenuList"

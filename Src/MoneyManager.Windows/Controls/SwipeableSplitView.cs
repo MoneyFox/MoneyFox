@@ -13,30 +13,138 @@ namespace MoneyManager.Windows.Controls
 {
     public sealed class SwipeableSplitView : SplitView
     {
-        #region private variables
+        public SwipeableSplitView()
+        {
+            DefaultStyleKey = typeof (SwipeableSplitView);
+        }
 
-        Grid paneRoot;
-        Grid overlayRoot;
-        Rectangle panArea;
-        Rectangle dismissLayer;
-        CompositeTransform paneRootTransform;
-        CompositeTransform panAreaTransform;
-        Storyboard openSwipeablePane;
-        Storyboard closeSwipeablePane;
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
 
-        Selector menuHost;
-        readonly IList<SelectorItem> menuItems = new List<SelectorItem>();
-        int toBeSelectedIndex;
-        static readonly double TOTAL_PANNING_DISTANCE = 160d;
-        double distancePerItem;
-        double startingDistance;
+            PaneRoot = GetTemplateChild("PaneRoot") as Grid;
+            overlayRoot = GetTemplateChild("OverlayRoot") as Grid;
+            PanArea = GetTemplateChild("PanArea") as Rectangle;
+            DismissLayer = GetTemplateChild("DismissLayer") as Rectangle;
+
+            if (PaneRoot == null || overlayRoot == null || PanArea == null || DismissLayer == null)
+            {
+                throw new ArgumentException("Make sure you have copied the default style to Generic.xaml!!");
+            }
+
+            var rootGrid = paneRoot.Parent as Grid;
+
+            if (rootGrid == null)
+            {
+                throw new ArgumentException("Make sure you have copied the default style to Generic.xaml!!");
+            }
+
+            OpenSwipeablePaneAnimation = rootGrid.Resources["OpenSwipeablePane"] as Storyboard;
+            CloseSwipeablePaneAnimation = rootGrid.Resources["CloseSwipeablePane"] as Storyboard;
+
+            if (OpenSwipeablePaneAnimation == null || CloseSwipeablePaneAnimation == null)
+            {
+                throw new ArgumentException("Make sure you have copied the default style to Generic.xaml!!");
+            }
+
+            // initialization
+            OnDisplayModeChanged(null, null);
+
+            RegisterPropertyChangedCallback(DisplayModeProperty, OnDisplayModeChanged);
+
+            // disable ScrollViewer as it will prevent finger from panning
+            if (Pane is ListView || Pane is ListBox)
+            {
+                ScrollViewer.SetVerticalScrollMode(Pane, ScrollMode.Disabled);
+            }
+        }
+
+        #region native property change handlers
+
+        private void OnDisplayModeChanged(DependencyObject sender, DependencyProperty dp)
+        {
+            switch (DisplayMode)
+            {
+                case SplitViewDisplayMode.Inline:
+                case SplitViewDisplayMode.CompactOverlay:
+                case SplitViewDisplayMode.CompactInline:
+                    PanAreaInitialTranslateX = 0d;
+                    overlayRoot.Visibility = Visibility.Collapsed;
+                    break;
+
+                case SplitViewDisplayMode.Overlay:
+                    PanAreaInitialTranslateX = OpenPaneLength*-1;
+                    overlayRoot.Visibility = Visibility.Visible;
+                    break;
+            }
+
+            if (sender != null)
+            {
+                CloseSwipeablePane();
+            }
+        }
 
         #endregion
 
-        public SwipeableSplitView()
+        #region DismissLayer tap event handlers
+
+        private void OnDismissLayerTapped(object sender, TappedRoutedEventArgs e)
         {
-            DefaultStyleKey = typeof(SwipeableSplitView);
+            CloseSwipeablePane();
         }
+
+        #endregion
+
+        #region loaded event handlers
+
+        private void OnPaneRootLoaded(object sender, RoutedEventArgs e)
+        {
+            // fill the local menu items collection for later use
+            if (IsPanSelectorEnabled)
+            {
+                var border = (Border) PaneRoot.Children[0];
+                menuHost = border.Child as Selector;
+
+                if (menuHost == null)
+                {
+                    throw new ArgumentException(
+                        "For the bottom panning to work, the Pane's Child needs to be of type Selector!!");
+                }
+
+                foreach (var item in menuHost.Items)
+                {
+                    var container = (SelectorItem) menuHost.ContainerFromItem(item);
+                    menuItems.Add(container);
+                }
+
+                distancePerItem = TOTAL_PANNING_DISTANCE/menuItems.Count;
+
+                // calculate the initial starting distance
+                startingDistance = distancePerItem*menuHost.SelectedIndex;
+            }
+        }
+
+        #endregion
+
+        #region private variables
+
+        private Grid paneRoot;
+        private Grid overlayRoot;
+        private Rectangle panArea;
+        private Rectangle dismissLayer;
+        private CompositeTransform paneRootTransform;
+        private CompositeTransform panAreaTransform;
+        private Storyboard openSwipeablePane;
+        private Storyboard closeSwipeablePane;
+
+        private Selector menuHost;
+        private readonly IList<SelectorItem> menuItems = new List<SelectorItem>();
+        private int toBeSelectedIndex;
+        private static readonly double TOTAL_PANNING_DISTANCE = 160d;
+        private double distancePerItem;
+        private double startingDistance;
+
+        #endregion
 
         #region properties
 
@@ -105,7 +213,8 @@ namespace MoneyManager.Windows.Controls
 
                 if (dismissLayer != null)
                 {
-                    dismissLayer.Tapped += OnDismissLayerTapped; ;
+                    dismissLayer.Tapped += OnDismissLayerTapped;
+                    ;
                 }
             }
         }
@@ -152,31 +261,34 @@ namespace MoneyManager.Windows.Controls
 
         public bool IsSwipeablePaneOpen
         {
-            get { return (bool)GetValue(IsSwipeablePaneOpenProperty); }
+            get { return (bool) GetValue(IsSwipeablePaneOpenProperty); }
             set { SetValue(IsSwipeablePaneOpenProperty, value); }
         }
 
         public static readonly DependencyProperty IsSwipeablePaneOpenProperty =
-            DependencyProperty.Register("IsSwipeablePaneOpen", typeof(bool), typeof(SwipeableSplitView), new PropertyMetadata(false, OnIsSwipeablePaneOpenChanged));
+            DependencyProperty.Register("IsSwipeablePaneOpen", typeof (bool), typeof (SwipeableSplitView),
+                new PropertyMetadata(false, OnIsSwipeablePaneOpenChanged));
 
-        static void OnIsSwipeablePaneOpenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsSwipeablePaneOpenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var splitView = (SwipeableSplitView)d;
+            var splitView = (SwipeableSplitView) d;
 
             switch (splitView.DisplayMode)
             {
                 case SplitViewDisplayMode.Inline:
                 case SplitViewDisplayMode.CompactOverlay:
                 case SplitViewDisplayMode.CompactInline:
-                    splitView.IsPaneOpen = (bool)e.NewValue;
+                    splitView.IsPaneOpen = (bool) e.NewValue;
                     break;
 
                 case SplitViewDisplayMode.Overlay:
-                    if (splitView.OpenSwipeablePaneAnimation == null || splitView.CloseSwipeablePaneAnimation == null) return;
-                    if ((bool)e.NewValue)
+                    if (splitView.OpenSwipeablePaneAnimation == null || splitView.CloseSwipeablePaneAnimation == null)
+                        return;
+                    if ((bool) e.NewValue)
                     {
                         splitView.OpenSwipeablePane();
-                    } else
+                    }
+                    else
                     {
                         splitView.CloseSwipeablePane();
                     }
@@ -186,110 +298,45 @@ namespace MoneyManager.Windows.Controls
 
         public double PanAreaInitialTranslateX
         {
-            get { return (double)GetValue(PanAreaInitialTranslateXProperty); }
+            get { return (double) GetValue(PanAreaInitialTranslateXProperty); }
             set { SetValue(PanAreaInitialTranslateXProperty, value); }
         }
 
         public static readonly DependencyProperty PanAreaInitialTranslateXProperty =
-            DependencyProperty.Register("PanAreaInitialTranslateX", typeof(double), typeof(SwipeableSplitView), new PropertyMetadata(0d));
+            DependencyProperty.Register("PanAreaInitialTranslateX", typeof (double), typeof (SwipeableSplitView),
+                new PropertyMetadata(0d));
 
         public double PanAreaThreshold
         {
-            get { return (double)GetValue(PanAreaThresholdProperty); }
+            get { return (double) GetValue(PanAreaThresholdProperty); }
             set { SetValue(PanAreaThresholdProperty, value); }
         }
 
         public static readonly DependencyProperty PanAreaThresholdProperty =
-            DependencyProperty.Register("PanAreaThreshold", typeof(double), typeof(SwipeableSplitView), new PropertyMetadata(36d));
+            DependencyProperty.Register("PanAreaThreshold", typeof (double), typeof (SwipeableSplitView),
+                new PropertyMetadata(36d));
 
 
         /// <summary>
-        /// enabling this will allow users to select a menu item by panning up/down on the bottom area of the left pane,
-        /// this could be particularly helpful when holding large phones since users don't need to stretch their fingers to
-        /// reach the top part of the screen to select a different menu item.
+        ///     enabling this will allow users to select a menu item by panning up/down on the bottom area of the left pane,
+        ///     this could be particularly helpful when holding large phones since users don't need to stretch their fingers to
+        ///     reach the top part of the screen to select a different menu item.
         /// </summary>
         public bool IsPanSelectorEnabled
         {
-            get { return (bool)GetValue(IsPanSelectorEnabledProperty); }
+            get { return (bool) GetValue(IsPanSelectorEnabledProperty); }
             set { SetValue(IsPanSelectorEnabledProperty, value); }
         }
 
         public static readonly DependencyProperty IsPanSelectorEnabledProperty =
-            DependencyProperty.Register("IsPanSelectorEnabled", typeof(bool), typeof(SwipeableSplitView), new PropertyMetadata(true));
-
-        #endregion
-
-        protected override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-
-            PaneRoot = GetTemplateChild("PaneRoot") as Grid;
-            overlayRoot = GetTemplateChild("OverlayRoot") as Grid;
-            PanArea = GetTemplateChild("PanArea") as Rectangle;
-            DismissLayer = GetTemplateChild("DismissLayer") as Rectangle;
-
-            if (PaneRoot == null || overlayRoot == null || PanArea == null || DismissLayer == null)
-            {
-                throw new ArgumentException("Make sure you have copied the default style to Generic.xaml!!");
-            }
-
-            var rootGrid = paneRoot.Parent as Grid;
-
-            if (rootGrid == null)
-            {
-                throw new ArgumentException("Make sure you have copied the default style to Generic.xaml!!");
-            }
-
-            OpenSwipeablePaneAnimation = rootGrid.Resources["OpenSwipeablePane"] as Storyboard;
-            CloseSwipeablePaneAnimation = rootGrid.Resources["CloseSwipeablePane"] as Storyboard;
-
-            if (OpenSwipeablePaneAnimation == null || CloseSwipeablePaneAnimation == null)
-            {
-                throw new ArgumentException("Make sure you have copied the default style to Generic.xaml!!");
-            }
-
-            // initialization
-            OnDisplayModeChanged(null, null);
-
-            RegisterPropertyChangedCallback(DisplayModeProperty, OnDisplayModeChanged);
-
-            // disable ScrollViewer as it will prevent finger from panning
-            if (Pane is ListView || Pane is ListBox)
-            {
-                ScrollViewer.SetVerticalScrollMode(Pane, ScrollMode.Disabled);
-            }
-        }
-
-        #region native property change handlers
-
-        void OnDisplayModeChanged(DependencyObject sender, DependencyProperty dp)
-        {
-            switch (DisplayMode)
-            {
-                case SplitViewDisplayMode.Inline:
-                case SplitViewDisplayMode.CompactOverlay:
-                case SplitViewDisplayMode.CompactInline:
-                    PanAreaInitialTranslateX = 0d;
-                    overlayRoot.Visibility = Visibility.Collapsed;
-                    break;
-
-                case SplitViewDisplayMode.Overlay:
-                    PanAreaInitialTranslateX = OpenPaneLength * -1;
-                    overlayRoot.Visibility = Visibility.Visible;
-                    break;
-            }
-
-            if (sender != null)
-            {
-                CloseSwipeablePane();
-            }
-        }
+            DependencyProperty.Register("IsPanSelectorEnabled", typeof (bool), typeof (SwipeableSplitView),
+                new PropertyMetadata(true));
 
         #endregion
 
         #region manipulation event handlers
 
-        void OnManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+        private void OnManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
         {
             panAreaTransform = PanArea.RenderTransform as CompositeTransform;
             paneRootTransform = PaneRoot.RenderTransform as CompositeTransform;
@@ -300,7 +347,7 @@ namespace MoneyManager.Windows.Controls
             }
         }
 
-        void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
             var x = panAreaTransform.TranslateX + e.Delta.Translation.X;
 
@@ -310,7 +357,7 @@ namespace MoneyManager.Windows.Controls
             // while we are panning the PanArea on X axis, let's sync the PaneRoot's position X too
             paneRootTransform.TranslateX = panAreaTransform.TranslateX = x;
 
-            if (sender == paneRoot && this.IsPanSelectorEnabled)
+            if (sender == paneRoot && IsPanSelectorEnabled)
             {
                 // un-highlight everything first
                 foreach (var item in menuItems)
@@ -318,11 +365,15 @@ namespace MoneyManager.Windows.Controls
                     VisualStateManager.GoToState(item, "Normal", true);
                 }
 
-                toBeSelectedIndex = (int)Math.Round((e.Cumulative.Translation.Y + startingDistance) / distancePerItem, MidpointRounding.AwayFromZero);
+                toBeSelectedIndex =
+                    (int)
+                        Math.Round((e.Cumulative.Translation.Y + startingDistance)/distancePerItem,
+                            MidpointRounding.AwayFromZero);
                 if (toBeSelectedIndex < 0)
                 {
                     toBeSelectedIndex = 0;
-                } else if (toBeSelectedIndex >= menuItems.Count)
+                }
+                else if (toBeSelectedIndex >= menuItems.Count)
                 {
                     toBeSelectedIndex = menuItems.Count - 1;
                 }
@@ -333,7 +384,7 @@ namespace MoneyManager.Windows.Controls
             }
         }
 
-        async void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        private async void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
             var x = e.Velocities.Linear.X;
 
@@ -341,21 +392,24 @@ namespace MoneyManager.Windows.Controls
             if (x <= -0.1)
             {
                 CloseSwipeablePane();
-            } else if (x > -0.1 && x < 0.1)
+            }
+            else if (x > -0.1 && x < 0.1)
             {
-                if (Math.Abs(panAreaTransform.TranslateX) > Math.Abs(PanAreaInitialTranslateX) / 2)
+                if (Math.Abs(panAreaTransform.TranslateX) > Math.Abs(PanAreaInitialTranslateX)/2)
                 {
                     CloseSwipeablePane();
-                } else
+                }
+                else
                 {
                     OpenSwipeablePane();
                 }
-            } else
+            }
+            else
             {
                 OpenSwipeablePane();
             }
 
-            if (this.IsPanSelectorEnabled)
+            if (IsPanSelectorEnabled)
             {
                 if (sender == paneRoot)
                 {
@@ -385,88 +439,52 @@ namespace MoneyManager.Windows.Controls
                     // do a selection after a short delay to allow visual effect takes place first
                     await Task.Delay(250);
                     menuHost.SelectedIndex = toBeSelectedIndex;
-                } else
+                }
+                else
                 {
                     // recalculate the starting distance
-                    startingDistance = distancePerItem * menuHost.SelectedIndex;
+                    startingDistance = distancePerItem*menuHost.SelectedIndex;
                 }
             }
-        }
-
-        #endregion
-
-        #region DismissLayer tap event handlers
-
-        void OnDismissLayerTapped(object sender, TappedRoutedEventArgs e)
-        {
-            CloseSwipeablePane();
         }
 
         #endregion
 
         #region animation completed event handlers
 
-        void OnOpenSwipeablePaneCompleted(object sender, object e)
+        private void OnOpenSwipeablePaneCompleted(object sender, object e)
         {
-            this.DismissLayer.IsHitTestVisible = true;
+            DismissLayer.IsHitTestVisible = true;
         }
 
-        void OnCloseSwipeablePaneCompleted(object sender, object e)
+        private void OnCloseSwipeablePaneCompleted(object sender, object e)
         {
-            this.DismissLayer.IsHitTestVisible = false;
-        }
-
-        #endregion
-
-        #region loaded event handlers
-
-        void OnPaneRootLoaded(object sender, RoutedEventArgs e)
-        {
-            // fill the local menu items collection for later use
-            if (this.IsPanSelectorEnabled)
-            {
-                var border = (Border)this.PaneRoot.Children[0];
-                menuHost = border.Child as Selector;
-
-                if (menuHost == null)
-                {
-                    throw new ArgumentException("For the bottom panning to work, the Pane's Child needs to be of type Selector!!");
-                }
-
-                foreach (var item in menuHost.Items)
-                {
-                    var container = (SelectorItem)menuHost.ContainerFromItem(item);
-                    menuItems.Add(container);
-                }
-
-                distancePerItem = TOTAL_PANNING_DISTANCE / menuItems.Count;
-
-                // calculate the initial starting distance
-                startingDistance = distancePerItem * menuHost.SelectedIndex;
-            }
+            DismissLayer.IsHitTestVisible = false;
         }
 
         #endregion
 
         #region private methods
 
-        void OpenSwipeablePane()
+        private void OpenSwipeablePane()
         {
             if (IsSwipeablePaneOpen)
             {
                 OpenSwipeablePaneAnimation.Begin();
-            } else
+            }
+            else
             {
                 IsSwipeablePaneOpen = true;
             }
         }
 
-        void CloseSwipeablePane()
+        private void CloseSwipeablePane()
         {
             if (!IsSwipeablePaneOpen)
             {
                 CloseSwipeablePaneAnimation.Begin();
-            } else
+            }
+            else
             {
                 IsSwipeablePaneOpen = false;
             }
