@@ -207,12 +207,6 @@ namespace MoneyManager.Windows
             e.Handled = handled;
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            var ignored = false;
-            BackRequested(ref ignored);
-        }
-
         private void BackRequested(ref bool handled)
         {
             // Get a hold of the current frame so that we can inspect the app back stack.
@@ -298,6 +292,7 @@ namespace MoneyManager.Windows
             ((Page) sender).Focus(FocusState.Programmatic);
             ((Page) sender).Loaded -= Page_Loaded;
             CheckTogglePaneButtonSizeChanged();
+            RootSplitView.IsSwipeablePaneOpen = false;
         }
 
         #endregion
