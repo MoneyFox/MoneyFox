@@ -137,6 +137,10 @@
       <Project>{64F3A03F-44C2-44FA-BD29-FA23C35C95F0}</Project>
       <Name>MoneyManager.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyManager.DataAccess\MoneyManager.DataAccess.csproj">
+      <Project>{038DFD1B-3B87-4098-8B16-8BC011B9EEFC}</Project>
+      <Name>MoneyManager.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
       <Project>{6936F4D3-8889-48C7-A676-80D59B2740CE}</Project>
       <Name>MoneyManager.Foundation</Name>

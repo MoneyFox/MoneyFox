@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
-using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Foundation.OperationContracts;

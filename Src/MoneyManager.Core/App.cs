@@ -1,8 +1,10 @@
-﻿using Cirrious.CrossCore;
+﻿using System.Reflection;
+using Cirrious.CrossCore;
 using Cirrious.CrossCore.IoC;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation.OperationContracts;
 
 namespace MoneyManager.Core
@@ -21,12 +23,12 @@ namespace MoneyManager.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            CreatableTypes()
+            CreatableTypes(typeof(AccountDataAccess).GetTypeInfo().Assembly)
                 .EndingWith("DataAccess")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            CreatableTypes()
+            CreatableTypes(typeof(AccountDataAccess).GetTypeInfo().Assembly)
                 .EndingWith("DataAccess")
                 .AsTypes()
                 .RegisterAsLazySingleton();

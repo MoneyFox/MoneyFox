@@ -1,9 +1,9 @@
 using Cirrious.MvvmCross.Platform;
 using Cirrious.MvvmCross.Test.Core;
-using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.OperationContracts;
 using Moq;

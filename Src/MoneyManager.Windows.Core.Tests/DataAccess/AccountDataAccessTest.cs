@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using MoneyManager.Core;
-using MoneyManager.Core.DataAccess;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Core.Tests.Helper;
 using SQLite.Net.Platform.WinRT;

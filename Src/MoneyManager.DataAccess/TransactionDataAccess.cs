@@ -9,7 +9,7 @@ using PropertyChanged;
 using SQLite.Net;
 using SQLiteNetExtensions.Extensions;
 
-namespace MoneyManager.Core.DataAccess
+namespace MoneyManager.DataAccess
 {
     /// <summary>
     ///     Handles the access to the transaction table on the database

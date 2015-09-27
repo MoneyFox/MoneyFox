@@ -8,7 +8,7 @@ using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 using SQLiteNetExtensions.Extensions;
 
-namespace MoneyManager.Core.DataAccess
+namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
     public class AccountDataAccess : AbstractDataAccess<Account>

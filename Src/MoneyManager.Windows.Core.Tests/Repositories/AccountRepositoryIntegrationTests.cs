@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using MoneyManager.Core;
-using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Repositories;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Core.Tests.Helper;
