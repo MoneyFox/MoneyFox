@@ -126,6 +126,13 @@ namespace MoneyManager.Windows
                 case VirtualKey.NavigationDown:
                     direction = FocusNavigationDirection.Down;
                     break;
+
+                case VirtualKey.Escape:
+                case VirtualKey.Back:
+                case VirtualKey.B:
+                    bool temp = false;
+                    BackRequested(ref temp);
+                    break;
             }
 
             if (direction != FocusNavigationDirection.None)
