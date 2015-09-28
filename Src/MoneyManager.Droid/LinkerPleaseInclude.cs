@@ -108,6 +108,11 @@ namespace MoneyManager.Droid
                 };
         }
 
+        public void Include(LinearLayout layout)
+        {
+            layout.Click += (s, e) => layout.Visibility = layout.Visibility - 1;
+        }
+
         /// <summary>
         ///     Includes the specified command.
         /// </summary>

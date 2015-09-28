@@ -73,6 +73,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/button_date"
-            local:MvxBind="Text EndDate, Converter=DateTimeFormat; Visible IsEndless, Converter=BooleanToVisibility, ConverterParameter=revert" />
+            local:MvxBind="Text EndDate, Converter=DateTimeFormat;Visibility InvertedVisibility(IsEndless)" />
     </LinearLayout>
 </LinearLayout>

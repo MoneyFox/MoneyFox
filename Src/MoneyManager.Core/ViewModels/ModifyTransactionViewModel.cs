@@ -68,7 +68,7 @@ namespace MoneyManager.Core.ViewModels
         public IMvxCommand CancelCommand => new MvxCommand(Cancel);
 
         public DateTime EndDate { get; set; }
-        public bool IsEndless { get; set; } = true;
+        public bool IsEndless { get; set; }
         public bool IsEdit { get; set; }
         public int Recurrence { get; set; }
         public bool IsTransfer { get; set; }
@@ -134,12 +134,16 @@ namespace MoneyManager.Core.ViewModels
                     ? SelectedTransaction.RecurringTransaction.Recurrence
                     : 0;
                 oldAmount = SelectedTransaction.Amount;
+                EndDate = SelectedTransaction.IsRecurring
+                        ? SelectedTransaction.RecurringTransaction.EndDate
+                        : DateTime.Now;
             }
             else
             {
                 SetDefaultTransaction(type);
                 SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
                 IsTransfer = type == TransactionType.Transfer;
+                EndDate = DateTime.Now;
             }
 
             isInitCall = false;
