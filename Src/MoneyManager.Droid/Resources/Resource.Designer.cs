@@ -338,6 +338,9 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f040019
 			public const int label_cleared = 2130968601;
 			
+			// aapt resource value: 0x7f04001a
+			public const int text_endless = 2130968602;
+			
 			// aapt resource value: 0x7f040013
 			public const int textview_contact = 2130968595;
 			
