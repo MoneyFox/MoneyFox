@@ -3,7 +3,7 @@ using MoneyManager.Core.Converter;
 
 namespace MoneyManager.Windows.Converter
 {
-    public class NativeAmountFormatConverter : MvxNativeValueConverter<BooleanToVisibilityConverter>
+    public class NativeBooleanToVisibilityConverter : MvxNativeValueConverter<BooleanToVisibilityConverter>
     {
     }
 }

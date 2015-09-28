@@ -130,7 +130,6 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\OneDriveClient.cs" />
     <Compile Include="Services\OneDriveAuthListener.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Src\AppInformation.cs" />

@@ -1,10 +1,6 @@
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.SelectDevice" />
-  <MonoDevelop.Ide.Workbench>
-    <Files>
-      <File FileName="MoneyManager.DataAccess\SettingDataAccess.cs" Line="44" Column="34" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
