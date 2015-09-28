@@ -121,6 +121,8 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\OneDriveClient.cs" />
+    <Compile Include="Services\OneDriveAuthListener.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DatabasePath.cs" />
@@ -193,6 +195,10 @@
     <ProjectReference Include="..\MoneyManager.Localization\MoneyManager.Localization.csproj">
       <Project>{90644219-756F-45CC-AB90-253463C5BC5E}</Project>
       <Name>MoneyManager.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OneDriveSdk.Android\OneDriveSdk.Android.csproj">
+      <Project>{51A8089E-8713-45B9-93E8-BFF4C3AC0EAD}</Project>
+      <Name>OneDriveSdk.Android</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

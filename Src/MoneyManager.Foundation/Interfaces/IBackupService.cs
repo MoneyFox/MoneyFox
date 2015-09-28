@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 
 namespace MoneyManager.Foundation.Interfaces
@@ -26,11 +25,5 @@ namespace MoneyManager.Foundation.Interfaces
         /// </summary>
         /// <returns>Returns a TaskCompletionType which indicates if the task was successful or not</returns>
         Task<TaskCompletionType> Restore();
-
-        /// <summary>
-        ///     Gets the creation date of the current database backup.
-        /// </summary>
-        /// <returns>Creation date of the current backup</returns>
-        Task<DateTime> GetLastCreationDate();
     }
 }

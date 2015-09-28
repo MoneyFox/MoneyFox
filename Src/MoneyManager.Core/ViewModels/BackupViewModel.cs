@@ -9,15 +9,12 @@ namespace MoneyManager.Core.ViewModels
 {
     public class BackupViewModel : BaseViewModel
     {
-        private readonly BackupManager backupManager;
         private readonly IDialogService dialogService;
         private readonly RepositoryManager repositoryManager;
 
-        public BackupViewModel(BackupManager backupManager,
-            RepositoryManager repositoryManager,
+        public BackupViewModel(RepositoryManager repositoryManager,
             IDialogService dialogService)
         {
-            this.backupManager = backupManager;
             this.repositoryManager = repositoryManager;
             this.dialogService = dialogService;
         }
@@ -25,6 +22,12 @@ namespace MoneyManager.Core.ViewModels
         public MvxCommand BackupCommand => new MvxCommand(CreateBackup);
         public MvxCommand RestoreCommand => new MvxCommand(RestoreBackup);
         public bool IsLoading { get; private set; }
+
+        /// <summary>
+        ///     The Backup Service for the current platform.
+        ///     This has to be set before a upload can be made.
+        /// </summary>
+        public IBackupService BackupService { get; set; }
 
         private async void CreateBackup()
         {
@@ -36,7 +39,7 @@ namespace MoneyManager.Core.ViewModels
             }
 
             IsLoading = true;
-            await backupManager.UploadBackup();
+            await BackupService.Upload();
             await ShowCompletionNote();
             IsLoading = false;
         }
@@ -52,7 +55,7 @@ namespace MoneyManager.Core.ViewModels
 
             IsLoading = true;
 
-            await backupManager.RestoreBackup();
+            await BackupService.Restore();
             repositoryManager.ReloadData();
 
             await ShowCompletionNote();
@@ -64,7 +67,7 @@ namespace MoneyManager.Core.ViewModels
             try
             {
                 IsLoading = true;
-                await backupManager.Login();
+                await BackupService.Login();
                 IsLoading = false;
                 return true;
             }
