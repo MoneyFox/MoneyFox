@@ -20,7 +20,7 @@
     <Page.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:NativeBooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate">
             <StackPanel Margin="0,0,0,12"
                         Orientation="Horizontal">

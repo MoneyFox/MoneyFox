@@ -23,7 +23,7 @@
     <UserControl.Resources>
         <converter:NativeTransactionAmountConverter x:Key="TransactionAmountConverter" />
         <converter:CultureConverter x:Key="FormatConverter" />
-        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:NativeBooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
 

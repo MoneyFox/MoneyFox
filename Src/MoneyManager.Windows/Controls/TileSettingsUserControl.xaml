@@ -10,7 +10,7 @@
     d:DesignWidth="400">
 
     <UserControl.Resources>
-        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:NativeBooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
     <Grid>
         <StackPanel>
