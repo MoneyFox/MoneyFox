@@ -76,6 +76,8 @@ namespace MoneyManager.Windows.Controls
         /// <param name="item"></param>
         public void SetSelectedItem(ListViewItem item)
         {
+            if (Items == null) return;
+
             var index = -1;
             if (item != null)
             {
@@ -130,9 +132,10 @@ namespace MoneyManager.Windows.Controls
                     var shiftKeyDown = (shiftKeyState & CoreVirtualKeyStates.Down) == CoreVirtualKeyStates.Down;
 
                     // If we're on the header item then this will be null and we'll still get the default behavior.
-                    if (focusedItem is ListViewItem)
+                    var item = focusedItem as ListViewItem;
+                    if (item != null)
                     {
-                        var currentItem = (ListViewItem) focusedItem;
+                        var currentItem = item;
                         var onlastitem = currentItem != null && IndexFromContainer(currentItem) == Items.Count - 1;
                         var onfirstitem = currentItem != null && IndexFromContainer(currentItem) == 0;
 
@@ -179,10 +182,7 @@ namespace MoneyManager.Windows.Controls
             else
             {
                 var control = FocusManager.FindNextFocusableElement(direction) as Control;
-                if (control != null)
-                {
-                    control.Focus(FocusState.Programmatic);
-                }
+                control?.Focus(FocusState.Programmatic);
             }
         }
 
@@ -203,10 +203,8 @@ namespace MoneyManager.Windows.Controls
                 splitViewHost.DisplayMode == SplitViewDisplayMode.Overlay))
             {
                 splitViewHost.IsPaneOpen = false;
-                if (focusedItem is ListViewItem)
-                {
-                    ((ListViewItem) focusedItem).Focus(FocusState.Programmatic);
-                }
+                var item = focusedItem as ListViewItem;
+                item?.Focus(FocusState.Programmatic);
             }
         }
 
@@ -218,14 +216,20 @@ namespace MoneyManager.Windows.Controls
         {
             if (splitViewHost.IsPaneOpen)
             {
-                ItemsPanelRoot.ClearValue(WidthProperty);
-                ItemsPanelRoot.ClearValue(HorizontalAlignmentProperty);
+                if (ItemsPanelRoot != null)
+                {
+                    ItemsPanelRoot.ClearValue(WidthProperty);
+                    ItemsPanelRoot.ClearValue(HorizontalAlignmentProperty);
+                }
             }
             else if (splitViewHost.DisplayMode == SplitViewDisplayMode.CompactInline ||
                      splitViewHost.DisplayMode == SplitViewDisplayMode.CompactOverlay)
             {
-                ItemsPanelRoot.SetValue(WidthProperty, splitViewHost.CompactPaneLength);
-                ItemsPanelRoot.SetValue(HorizontalAlignmentProperty, HorizontalAlignment.Left);
+                if (ItemsPanelRoot != null)
+                {
+                    ItemsPanelRoot.SetValue(WidthProperty, splitViewHost.CompactPaneLength);
+                    ItemsPanelRoot.SetValue(HorizontalAlignmentProperty, HorizontalAlignment.Left);
+                }
             }
         }
     }

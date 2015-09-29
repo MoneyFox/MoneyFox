@@ -11,13 +11,13 @@ namespace MoneyManager.Windows.Dialogs
             InitializeComponent();
         }
 
-        private StatisticViewModel statisticView => Mvx.Resolve<StatisticViewModel>();
+        private StatisticViewModel StatisticView => Mvx.Resolve<StatisticViewModel>();
 
         private void LoadStatistic(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            statisticView.SetCustomCashFlow();
-            statisticView.SetCustomSpreading();
-            statisticView.SetCagtegorySummary();
+            StatisticView.SetCustomCashFlow();
+            StatisticView.SetCustomSpreading();
+            StatisticView.SetCagtegorySummary();
         }
     }
 }

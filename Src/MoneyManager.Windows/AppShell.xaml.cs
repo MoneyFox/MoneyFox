@@ -287,9 +287,10 @@ namespace MoneyManager.Windows
         private void OnNavigatedToPage(object sender, NavigationEventArgs e)
         {
             // After a successful navigation set keyboard focus to the loaded page
-            if (e.Content is Page)
+            var page = e.Content as Page;
+            if (page != null)
             {
-                var control = (Page) e.Content;
+                var control = page;
                 control.Loaded += Page_Loaded;
             }
         }

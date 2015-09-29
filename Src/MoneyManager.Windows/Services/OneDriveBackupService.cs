@@ -65,7 +65,7 @@ namespace MoneyManager.Windows.Services
                 var uploadOperation = await liveClient.CreateBackgroundUploadAsync(
                     folderId, BACKUP_NAME, storageFile, OverwriteOption.Overwrite);
 
-                var uploadResult = await uploadOperation.StartAsync();
+                await uploadOperation.StartAsync();
 
                 return TaskCompletionType.Successful;
             }
