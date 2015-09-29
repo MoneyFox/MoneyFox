@@ -10,24 +10,21 @@ namespace MoneyManager.Core.ViewModels
     public class BackupViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
+        private readonly IBackupService backupService;
         private readonly RepositoryManager repositoryManager;
 
         public BackupViewModel(RepositoryManager repositoryManager,
+            IBackupService backupService,
             IDialogService dialogService)
         {
             this.repositoryManager = repositoryManager;
+            this.backupService = backupService;
             this.dialogService = dialogService;
         }
 
         public MvxCommand BackupCommand => new MvxCommand(CreateBackup);
         public MvxCommand RestoreCommand => new MvxCommand(RestoreBackup);
         public bool IsLoading { get; private set; }
-
-        /// <summary>
-        ///     The Backup Service for the current platform.
-        ///     This has to be set before a upload can be made.
-        /// </summary>
-        public IBackupService BackupService { get; set; }
 
         private async void CreateBackup()
         {
@@ -39,7 +36,7 @@ namespace MoneyManager.Core.ViewModels
             }
 
             IsLoading = true;
-            await BackupService.Upload();
+            await backupService.Upload();
             await ShowCompletionNote();
             IsLoading = false;
         }
@@ -55,7 +52,7 @@ namespace MoneyManager.Core.ViewModels
 
             IsLoading = true;
 
-            await BackupService.Restore();
+            await backupService.Restore();
             repositoryManager.ReloadData();
 
             await ShowCompletionNote();
@@ -67,7 +64,7 @@ namespace MoneyManager.Core.ViewModels
             try
             {
                 IsLoading = true;
-                await BackupService.Login();
+                await backupService.Login();
                 IsLoading = false;
                 return true;
             }
