@@ -163,7 +163,6 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\OneDriveAuthListener.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DatabasePath.cs" />
@@ -237,10 +236,6 @@
       <Project>{90644219-756F-45CC-AB90-253463C5BC5E}</Project>
       <Name>MoneyManager.Localization</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OneDriveSdk.Android\OneDriveSdk.Android.csproj">
-      <Project>{51A8089E-8713-45B9-93E8-BFF4C3AC0EAD}</Project>
-      <Name>OneDriveSdk.Android</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -271,6 +266,9 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.NETNative.Analyzer.1.0.0\analyzers\dotnet\cs\NativeGatekeeper.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.11.1\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.1\build\MonoAndroid10\Xamarin.Insights.targets')" />
