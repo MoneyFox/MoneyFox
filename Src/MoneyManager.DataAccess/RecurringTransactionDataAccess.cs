@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using MvvmCross.Plugins.Sqlite;
 using PropertyChanged;
 using SQLiteNetExtensions.Extensions;
 
@@ -13,11 +13,11 @@ namespace MoneyManager.DataAccess
     [ImplementPropertyChanged]
     public class RecurringTransactionDataAccess : AbstractDataAccess<RecurringTransaction>
     {
-        private readonly IDbHelper dbHelper;
+        private readonly IMvxSqliteConnectionFactory connectionFactory;
 
-        public RecurringTransactionDataAccess(IDbHelper dbHelper)
+        public RecurringTransactionDataAccess(IMvxSqliteConnectionFactory connectionFactory)
         {
-            this.dbHelper = dbHelper;
+            this.connectionFactory = connectionFactory;
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace MoneyManager.DataAccess
         /// <param name="itemToSave">Recurring Transaction to save.</param>
         protected override void SaveToDb(RecurringTransaction itemToSave)
         {
-            using (var db = dbHelper.GetSqlConnection())
+            using (var db = connectionFactory.GetConnection(Constants.DB_NAME))
             {
                 if (itemToSave.Id == 0)
                 {
@@ -45,7 +45,7 @@ namespace MoneyManager.DataAccess
         /// <param name="recurringTransaction">recurring transaction to delete.</param>
         protected override void DeleteFromDatabase(RecurringTransaction recurringTransaction)
         {
-            using (var db = dbHelper.GetSqlConnection())
+            using (var db = connectionFactory.GetConnection(Constants.DB_NAME))
             {
                 db.Delete(recurringTransaction);
             }
@@ -58,7 +58,7 @@ namespace MoneyManager.DataAccess
         /// <returns>List of loaded recurring transactions.</returns>
         protected override List<RecurringTransaction> GetListFromDb(Expression<Func<RecurringTransaction, bool>> filter)
         {
-            using (var dbConn = dbHelper.GetSqlConnection())
+            using (var dbConn = connectionFactory.GetConnection(Constants.DB_NAME))
             {
                 return dbConn.GetAllWithChildren<RecurringTransaction>().ToList();
             }

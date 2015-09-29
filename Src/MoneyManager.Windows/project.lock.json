@@ -251,6 +251,19 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
@@ -1935,6 +1948,19 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
       "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
@@ -3654,6 +3680,19 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
       "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
@@ -5380,6 +5419,19 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
@@ -7097,6 +7149,19 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
       "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
@@ -8823,6 +8888,19 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
@@ -10540,6 +10618,19 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
+          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
       "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
@@ -12770,6 +12861,32 @@
         "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.Touch.dll",
         "MvvmCross.HotTuna.Plugin.Email.nuspec",
         "package/services/metadata/core-properties/3a53d8378636489aba895e037a01643d.psmdcp"
+      ]
+    },
+    "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+      "sha512": "8slI5jZjxMqfZMqSy/N9HOV35xcuSM+neOEDDz4guI868e/0HtsFPnX2WdbWBySadTIsVKJ3KbXSHe7exkZYXA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "content/MonoAndroid/Bootstrap/SqlitePluginBootstrap.cs.pp",
+        "content/uap10.0/Bootstrap/SqlitePluginBootstrap.cs.pp",
+        "content/win81/Bootstrap/SqlitePluginBootstrap.cs.pp",
+        "content/wpa81/Bootstrap/SqlitePluginBootstrap.cs.pp",
+        "content/Xamarin.iOS10/Bootstrap/SqlitePluginBootstrap.cs.pp",
+        "lib/MonoAndroid/MvvmCross.Plugins.Sqlite.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.Sqlite.Droid.dll",
+        "lib/portable-win+net45+wp8+win8+wpa81+win81+dotnet/MvvmCross.Plugins.Sqlite.dll",
+        "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll",
+        "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll",
+        "lib/win81/MvvmCross.Plugins.Sqlite.dll",
+        "lib/win81/MvvmCross.Plugins.Sqlite.WindowsCommon.dll",
+        "lib/wpa81/MvvmCross.Plugins.Sqlite.dll",
+        "lib/wpa81/MvvmCross.Plugins.Sqlite.WindowsCommon.dll",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.Sqlite.dll",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.Sqlite.Touch.dll",
+        "MvvmCross.HotTuna.Plugin.SQLitePCL.nuspec",
+        "package/services/metadata/core-properties/d2e767a58748426eacc7a254a5350e38.psmdcp"
       ]
     },
     "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
@@ -15659,6 +15776,7 @@
       "Microsoft.NETNative.Analyzer >= 1.0.0",
       "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta3",
       "MvvmCross.HotTuna.Plugin.Email >= 4.0.0-beta3",
+      "MvvmCross.HotTuna.Plugin.SQLitePCL >= 4.0.0-beta4",
       "MvvmCross.HotTuna.Plugin.WebBrowser >= 4.0.0-beta3",
       "NotificationsExtensions.Win10 >= 10240.0.6",
       "OxyPlot.Windows >= 2015.1.1033-alpha",

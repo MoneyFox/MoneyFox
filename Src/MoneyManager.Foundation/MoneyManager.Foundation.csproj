@@ -45,6 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AbstractDataAccess.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\BackupException.cs" />
     <Compile Include="Exceptions\ConnectionException.cs" />

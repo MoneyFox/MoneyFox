@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using MvvmCross.Plugins.Sqlite;
 using PropertyChanged;
 using SQLiteNetExtensions.Extensions;
 
@@ -13,11 +13,11 @@ namespace MoneyManager.DataAccess
     [ImplementPropertyChanged]
     public class CategoryDataAccess : AbstractDataAccess<Category>
     {
-        private readonly IDbHelper dbHelper;
+        private readonly IMvxSqliteConnectionFactory connectionFactory;
 
-        public CategoryDataAccess(IDbHelper dbHelper)
+        public CategoryDataAccess(IMvxSqliteConnectionFactory connectionFactory)
         {
-            this.dbHelper = dbHelper;
+            this.connectionFactory = connectionFactory;
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace MoneyManager.DataAccess
         /// <param name="itemToSave">Category to save.</param>
         protected override void SaveToDb(Category itemToSave)
         {
-            using (var db = dbHelper.GetSqlConnection())
+            using (var db = connectionFactory.GetConnection(Constants.DB_NAME))
             {
                 if (itemToSave.Id == 0)
                 {
@@ -45,7 +45,7 @@ namespace MoneyManager.DataAccess
         /// <param name="category">Category to delete.</param>
         protected override void DeleteFromDatabase(Category category)
         {
-            using (var dbConn = dbHelper.GetSqlConnection())
+            using (var dbConn = connectionFactory.GetConnection(Constants.DB_NAME))
             {
                 dbConn.Delete(category);
             }
@@ -58,7 +58,7 @@ namespace MoneyManager.DataAccess
         /// <returns>Loaded categories.</returns>
         protected override List<Category> GetListFromDb(Expression<Func<Category, bool>> filter)
         {
-            using (var dbConn = dbHelper.GetSqlConnection())
+            using (var dbConn = connectionFactory.GetConnection(Constants.DB_NAME))
             {
                 return dbConn.Table<Category>()
                     .OrderBy(x => x.Name)

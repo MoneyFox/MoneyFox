@@ -13,9 +13,6 @@ namespace MoneyManager.Windows.Services
     /// </summary>
     public class OneDriveBackupService : IBackupService
     {
-        private const string BACKUP_FOLDER_NAME = "MoneyFoxBackup";
-        private const string DB_NAME = "moneyfox.sqlite";
-        private const string BACKUP_NAME = "backupmoneyfox.sqlite";
         private string backupId;
         private string folderId;
         private LiveConnectClient liveClient;
@@ -62,10 +59,10 @@ namespace MoneyManager.Windows.Services
             try
             {
                 var localFolder = ApplicationData.Current.LocalFolder;
-                var storageFile = await localFolder.GetFileAsync(DB_NAME);
+                var storageFile = await localFolder.GetFileAsync(Constants.DB_NAME);
 
                 var uploadOperation = await liveClient.CreateBackgroundUploadAsync(
-                    folderId, BACKUP_NAME, storageFile, OverwriteOption.Overwrite);
+                    folderId, Constants.BACKUP_NAME, storageFile, OverwriteOption.Overwrite);
 
                 await uploadOperation.StartAsync();
 
@@ -101,7 +98,7 @@ namespace MoneyManager.Windows.Services
                 await GetBackupId();
                 var localFolder = ApplicationData.Current.LocalFolder;
                 var storageFile =
-                    await localFolder.CreateFileAsync(DB_NAME, CreationCollisionOption.ReplaceExisting);
+                    await localFolder.CreateFileAsync(Constants.DB_NAME, CreationCollisionOption.ReplaceExisting);
 
                 await liveClient.BackgroundDownloadAsync(backupId + "/content", storageFile);
                 return TaskCompletionType.Successful;
@@ -126,7 +123,7 @@ namespace MoneyManager.Windows.Services
                 {
                     foreach (var file in data)
                     {
-                        if (file.name == BACKUP_NAME)
+                        if (file.name == Constants.BACKUP_NAME)
                         {
                             backupId = file.id;
                             break;
@@ -154,7 +151,7 @@ namespace MoneyManager.Windows.Services
                 {
                     foreach (var folder in data)
                     {
-                        if (folder.name == BACKUP_FOLDER_NAME)
+                        if (folder.name == Constants.BACKUP_FOLDER_NAME)
                         {
                             folderId = folder.id;
                             break;

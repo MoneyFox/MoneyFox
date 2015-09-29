@@ -9,6 +9,8 @@ using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
+using MvvmCross.Plugins.Sqlite;
+using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Plugins.WebBrowser.WindowsCommon;
 using SQLite.Net.Interop;
@@ -48,6 +50,7 @@ namespace MoneyManager.Windows
 
             Mvx.RegisterType<IMvxComposeEmailTask, MvxComposeEmailTask>();
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
+            Mvx.RegisterType<IMvxSqliteConnectionFactory, WindowsSqliteConnectionFactory>();
         }
 
         protected override IMvxApplication CreateApp()

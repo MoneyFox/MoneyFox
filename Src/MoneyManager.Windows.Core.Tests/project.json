@@ -3,6 +3,7 @@
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Microsoft.NETNative.Analyzer": "1.0.0",
     "MvvmCross.HotTuna.MvvmCrossLibraries": "4.0.0-beta3",
+    "MvvmCross.HotTuna.Plugin.SQLitePCL": "4.0.0-beta4",
     "SQLite.Net-PCL": "3.0.5",
     "SQLiteNetExtensions": "1.3.0",
     "xunit": "2.1.0",

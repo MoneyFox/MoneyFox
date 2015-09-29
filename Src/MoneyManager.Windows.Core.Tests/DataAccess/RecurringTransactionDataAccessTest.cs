@@ -4,6 +4,7 @@ using MoneyManager.Core;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Core.Tests.Helper;
+using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using SQLite.Net.Platform.WinRT;
 using Xunit;
 
@@ -16,7 +17,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         public void RecurringTransactionDataAccess_CrudRecurringTransaction()
         {
             var recurringTransactionDataAccess =
-                new RecurringTransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+                new RecurringTransactionDataAccess(new WindowsSqliteConnectionFactory());
 
             const double firstAmount = 100.70;
             const double secondAmount = 80.45;
