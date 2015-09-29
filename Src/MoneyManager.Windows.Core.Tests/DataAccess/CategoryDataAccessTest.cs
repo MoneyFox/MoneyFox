@@ -1,9 +1,7 @@
 ﻿using System.Linq;
-using MoneyManager.Core;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Windows.Core.Tests.Helper;
-using SQLite.Net.Platform.WinRT;
+using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using Xunit;
 
 namespace MoneyManager.Windows.Core.Tests.DataAccess
@@ -15,7 +13,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         public void CategoryDataAccess_CrudCategory()
         {
             var categoryDataAccess =
-                new CategoryDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+                new CategoryDataAccess(new WindowsSqliteConnectionFactory());
 
             const string firstName = "category";
             const string secondName = "new category";

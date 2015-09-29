@@ -7,6 +7,7 @@ using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using Moq;
+using MvvmCross.Plugins.Sqlite;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
@@ -23,7 +24,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             // for navigation parsing
             Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
 
-            var dbHelper = new Mock<IDbHelper>().Object;
+            var dbHelper = new Mock<IMvxSqliteConnectionFactory>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
                 new RecurringTransactionDataAccess(dbHelper));

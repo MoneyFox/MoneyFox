@@ -12,6 +12,7 @@ using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 using Moq;
+using MvvmCross.Plugins.Sqlite;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
@@ -39,7 +40,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
             Strings.Culture = new CultureInfo(culture);
 
-            var dbHelper = new Mock<IDbHelper>().Object;
+            var dbHelper = new Mock<IMvxSqliteConnectionFactory>().Object;
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
                 new RecurringTransactionDataAccess(dbHelper))
             {
@@ -75,7 +76,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         public void Init_SpendingNotEditing_PropertiesSetupCorrectly()
         {
             //Setup
-            var dbHelper = new Mock<IDbHelper>().Object;
+            var dbHelper = new Mock<IMvxSqliteConnectionFactory>().Object;
             var transactionRepositorySetup = new Mock<ITransactionRepository>();
             transactionRepositorySetup.SetupProperty(x => x.Selected);
 
@@ -110,7 +111,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             //Setup
             var testEndDate = new DateTime(2099, 1, 31);
 
-            var dbHelper = new Mock<IDbHelper>().Object;
+            var dbHelper = new Mock<IMvxSqliteConnectionFactory>().Object;
             var transactionRepositorySetup = new Mock<ITransactionRepository>();
             transactionRepositorySetup.SetupGet(x => x.Selected).Returns(new FinancialTransaction
             {

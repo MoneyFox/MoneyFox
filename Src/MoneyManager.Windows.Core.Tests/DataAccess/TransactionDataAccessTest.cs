@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
-using MoneyManager.Core;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Windows.Core.Tests.Helper;
-using SQLite.Net.Platform.WinRT;
+using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using Xunit;
 
 namespace MoneyManager.Windows.Core.Tests.DataAccess
@@ -16,7 +14,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         public void TransactionDataAccess_CrudTransaction()
         {
             var transactionDataAccess =
-                new TransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+                new TransactionDataAccess(new WindowsSqliteConnectionFactory());
 
             const double firstAmount = 76.30;
             const double secondAmount = 22.90;
@@ -59,7 +57,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         public void TransactionDataAccess_CrudTransactionWithoutAccount()
         {
             var transactionDataAccess =
-                new TransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+                new TransactionDataAccess(new WindowsSqliteConnectionFactory());
 
             const double firstAmount = 76.30;
             const double secondAmount = 22.90;

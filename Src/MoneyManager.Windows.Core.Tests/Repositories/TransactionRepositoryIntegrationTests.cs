@@ -5,6 +5,7 @@ using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Core.Tests.Helper;
+using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using SQLite.Net.Platform.WinRT;
 using SQLiteNetExtensions.Extensions;
 using Xunit;
@@ -17,9 +18,9 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         [Trait("Category", "Integration")]
         public void TransactionRepository_LoadDataFromDbThroughRepository()
         {
-            var dbHelper = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath());
+            var dbHelper = new WindowsSqliteConnectionFactory();
 
-            using (var db = dbHelper.GetSqlConnection())
+            using (var db = dbHelper.GetConnection(Constants.DB_NAME))
             {
                 db.DeleteAll<FinancialTransaction>();
                 db.InsertWithChildren(new FinancialTransaction
@@ -43,9 +44,9 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         [Trait("Category", "Integration")]
         public void TransactionRepository_Update()
         {
-            var dbHelper = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath());
+            var dbHelper = new WindowsSqliteConnectionFactory();
 
-            using (var db = dbHelper.GetSqlConnection())
+            using (var db = dbHelper.GetConnection(Constants.DB_NAME))
             {
                 db.DeleteAll<FinancialTransaction>();
             }
@@ -79,10 +80,12 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         [Trait("Category", "Integration")]
         public void LoadRecurringList_ListWithRecurringTransaction()
         {
+            var dbHelper = new WindowsSqliteConnectionFactory();
+
             var transactionDataAccess =
-                new TransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+                new TransactionDataAccess(dbHelper);
             var recTransactionDataAccess =
-                new RecurringTransactionDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+                new RecurringTransactionDataAccess(dbHelper);
             var repository = new TransactionRepository(transactionDataAccess, recTransactionDataAccess);
 
             transactionDataAccess.SaveItem(new FinancialTransaction {Amount = 999, IsRecurring = false});
