@@ -20,9 +20,9 @@ namespace MoneyManager.Core.Repositories
         /// <summary>
         ///     Creates a TransactionRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced financial transaction data Access</param>
-        public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess,
-            IDataAccess<RecurringTransaction> recurringDataAccess)
+        /// <param name="dataAccess">Instanced <see cref="IDataAccess<see cref="FinancialTransaction" />>"/></param>
+        /// <param name="recurringDataAccess">Instanced <see cref="IDataAccess<see cref="RecurringTransaction" />>"/></param>
+        public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess, IDataAccess<RecurringTransaction> recurringDataAccess)
         {
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
@@ -106,7 +106,7 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     Returns all transaction with date before today
+        ///     Returns all uncleared transaction up to today
         /// </summary>
         /// <returns>list of uncleared transactions</returns>
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions()
@@ -115,7 +115,7 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     Returns all transaction with date in this month
+        ///     Returns all uncleared transaction up to the passed date from the database.
         /// </summary>
         /// <returns>list of uncleared transactions</returns>
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date)
@@ -125,7 +125,7 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     returns a list with transaction who is related to this account
+        ///     returns a list with transactions who are related to this account
         /// </summary>
         /// <param name="account">account to search the related</param>
         /// <returns>List of transactions</returns>
@@ -133,10 +133,8 @@ namespace MoneyManager.Core.Repositories
         {
             return Data
                 .Where(x => x.ChargedAccount != null)
-                .Where(
-                    x =>
-                        x.ChargedAccount.Id == account.Id ||
-                        (x.TargetAccount != null && x.TargetAccount.Id == account.Id))
+                .Where(x => x.ChargedAccount.Id == account.Id
+                            || (x.TargetAccount != null && x.TargetAccount.Id == account.Id))
                 .OrderByDescending(x => x.Date)
                 .ToList();
         }
@@ -148,13 +146,13 @@ namespace MoneyManager.Core.Repositories
         public IEnumerable<FinancialTransaction> LoadRecurringList(Func<FinancialTransaction, bool> filter = null)
         {
             var list = Data.Where(x => x.IsRecurring && x.RecurringTransaction != null
-                                       && (x.RecurringTransaction.IsEndless ||x.RecurringTransaction.EndDate >= DateTime.Now.Date)
+                                       && (x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date)
                                        && (filter == null || filter.Invoke(x)))
                 .ToList();
 
-            var recurringIds = list.Select(x => x.ReccuringTransactionId).Distinct().ToList();
-
-            return recurringIds
+            return list
+                .Select(x => x.ReccuringTransactionId)
+                .Distinct()
                 .Select(id => list.Where(x => x.ReccuringTransactionId == id)
                     .OrderByDescending(x => x.Date)
                     .Last())

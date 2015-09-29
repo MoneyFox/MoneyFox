@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.Manager;
@@ -41,8 +42,147 @@ namespace MoneyManager.Core.ViewModels
             this.accountRepository = accountRepository;
         }
 
+        /// <summary>
+        ///     Init the view. Is executed after the constructor call
+        /// </summary>
+        /// <param name="typeString">Type of the transaction.</param>
+        /// <param name="isEdit">Weather the transaction is in edit mode or not.</param>
+        public void Init(bool isEdit, string typeString)
+        {
+            //Ensure that init is only called once
+            if (!isInitCall) return;
+
+            IsEdit = isEdit;
+            IsEndless = true;
+
+            if (IsEdit)
+            {
+                PrepareEdit();
+            }
+            else
+            {
+                PrepareDefault(typeString);
+            }
+
+            isInitCall = false;
+        }
+
+        private void PrepareEdit()
+        {
+            IsTransfer = SelectedTransaction.IsTransfer;
+            Recurrence = SelectedTransaction.IsRecurring
+                ? SelectedTransaction.RecurringTransaction.Recurrence
+                : 0;
+            oldAmount = SelectedTransaction.Amount;
+            EndDate = SelectedTransaction.IsRecurring
+                ? SelectedTransaction.RecurringTransaction.EndDate
+                : DateTime.Now;
+            IsEndless = !SelectedTransaction.IsRecurring || SelectedTransaction.RecurringTransaction.IsEndless;
+        }
+
+        private void PrepareDefault(string typeString)
+        {
+            var type = ((TransactionType)Enum.Parse(typeof(TransactionType), typeString));
+
+            SetDefaultTransaction(type);
+            SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
+            IsTransfer = type == TransactionType.Transfer;
+            EndDate = DateTime.Now;
+        }
+
+        private void SetDefaultTransaction(TransactionType transactionType)
+        {
+            SelectedTransaction = new FinancialTransaction
+            {
+                Type = (int) transactionType,
+                Date = DateTime.Now
+            };
+        }
+
+        private void Loaded()
+        {
+            if (IsEdit)
+            {
+                //remove transaction on edit, on save or cancel the amount is added again.
+                transactionManager.RemoveTransactionAmount(SelectedTransaction);
+            }
+        }
+
+        private async void Save()
+        {
+            if (SelectedTransaction.ChargedAccount == null)
+            {
+                ShowAccountRequiredMessage();
+                return;
+            }
+
+            //Create a recurring transaction based on the financial transaction or update an existing
+            await SaveRecurringTransaction();
+
+            // SaveItem or update the transaction and add the amount to the account
+            transactionRepository.Save(SelectedTransaction);
+            transactionManager.AddTransactionAmount(SelectedTransaction);
+
+            ResetInitLocker();
+            Close(this);
+        }
+
+        private async Task SaveRecurringTransaction()
+        {
+            if ((IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction))
+                || SelectedTransaction.IsRecurring)
+            {
+                SelectedTransaction.RecurringTransaction = RecurringTransactionHelper.
+                    GetRecurringFromFinancialTransaction(SelectedTransaction,
+                        IsEndless,
+                        Recurrence,
+                        EndDate);
+            }
+        }
+
+        private void OpenSelectCategoryList()
+        {
+            ShowViewModel<CategoryListViewModel>();
+        }
+
+        private async void Delete()
+        {
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+            {
+                transactionManager.DeleteTransaction(transactionRepository.Selected);
+                ResetInitLocker();
+                Close(this);
+            }
+        }
+
+        private async void ShowAccountRequiredMessage()
+        {
+            await dialogService.ShowMessage(Strings.MandatoryFieldEmptryTitle,
+                Strings.AccountRequiredMessage);
+        }
+
+        private void Cancel()
+        {
+            if (IsEdit)
+            {
+                //readd the previously removed transaction amount
+                SelectedTransaction.Amount = oldAmount;
+                transactionManager.AddTransactionAmount(SelectedTransaction);
+            }
+            ResetInitLocker();
+            Close(this);
+        }
+
+        /// <summary>
+        ///     Reset locker to enusre init gets called again
+        /// </summary>
+        private void ResetInitLocker()
+        {
+            isInitCall = true;
+        }
+
         #region Commands
-        
+
         /// <summary>
         ///     Handels everything when the page is loaded.
         /// </summary>
@@ -143,132 +283,7 @@ namespace MoneyManager.Core.ViewModels
             }
             set { SelectedTransaction.Date = value; }
         }
-        
+
         #endregion
-
-        /// <summary>
-        ///     Init the view. Is executed after the constructor call
-        /// </summary>
-        /// <param name="typeString">Type of the transaction.</param>
-        /// <param name="isEdit">Weather the transaction is in edit mode or not.</param>
-        public void Init(bool isEdit, string typeString)
-        {
-            //Ensure that init is only called once
-            if (!isInitCall) return;
-
-            IsEdit = isEdit;
-
-            IsEndless = true;
-
-            if (IsEdit)
-            {
-                IsTransfer = SelectedTransaction.IsTransfer;
-                Recurrence = SelectedTransaction.IsRecurring
-                    ? SelectedTransaction.RecurringTransaction.Recurrence
-                    : 0;
-                oldAmount = SelectedTransaction.Amount;
-                EndDate = SelectedTransaction.IsRecurring
-                        ? SelectedTransaction.RecurringTransaction.EndDate
-                        : DateTime.Now;
-                IsEndless = !SelectedTransaction.IsRecurring || SelectedTransaction.RecurringTransaction.IsEndless;
-            }
-            else
-            {
-                var type = ((TransactionType)Enum.Parse(typeof(TransactionType), typeString));
-
-                SetDefaultTransaction(type);
-                SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
-                IsTransfer = type == TransactionType.Transfer;
-                EndDate = DateTime.Now;
-            }
-
-            isInitCall = false;
-        }
-
-        private void SetDefaultTransaction(TransactionType transactionType)
-        {
-            SelectedTransaction = new FinancialTransaction
-            {
-                Type = (int) transactionType,
-                Date = DateTime.Now
-            };
-        }
-
-        private void Loaded()
-        {
-            if (IsEdit)
-            {
-                //remove transaction on edit, on save or cancel the amount is added again.
-                transactionManager.RemoveTransactionAmount(SelectedTransaction);
-            }
-        }
-
-        private async void Save()
-        {
-            if (SelectedTransaction.ChargedAccount == null)
-            {
-                ShowAccountRequiredMessage();
-                return;
-            }
-
-            //Create a recurring transaction based on the financial transaction or update an existing
-            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction)
-                || SelectedTransaction.IsRecurring)
-            {
-                SelectedTransaction.RecurringTransaction = RecurringTransactionHelper.
-                    GetRecurringFromFinancialTransaction(SelectedTransaction,
-                        IsEndless,
-                        Recurrence,
-                        EndDate);
-            }
-
-            // SaveItem or update the transaction and add the amount to the account
-            transactionRepository.Save(SelectedTransaction);
-            transactionManager.AddTransactionAmount(SelectedTransaction);
-
-            ResetInitLocker();
-            Close(this);
-        }
-
-        private void OpenSelectCategoryList()
-        {
-            ShowViewModel<CategoryListViewModel>();
-        }
-
-        private async void Delete()
-        {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
-            {
-                transactionManager.DeleteTransaction(transactionRepository.Selected);
-                ResetInitLocker();
-                Close(this);
-            }
-        }
-
-        private async void ShowAccountRequiredMessage()
-        {
-            await dialogService.ShowMessage(Strings.MandatoryFieldEmptryTitle,
-                Strings.AccountRequiredMessage);
-        }
-
-        private void Cancel()
-        {
-            if (IsEdit)
-            {
-                //readd the previously removed transaction amount
-                SelectedTransaction.Amount = oldAmount;
-                transactionManager.AddTransactionAmount(SelectedTransaction);
-            }
-            ResetInitLocker();
-            Close(this);
-        }
-
-        /// <summary>
-        ///     Reset locker to enusre init gets called again
-        /// </summary>
-        private void ResetInitLocker()
-        {
-            isInitCall = true;
-        }
     }
 }
