@@ -1,11 +1,16 @@
 using Windows.UI.Xaml.Controls;
 using Cirrious.CrossCore;
+using Cirrious.CrossCore.Plugins;
+using Cirrious.MvvmCross.Plugins.Email;
+using Cirrious.MvvmCross.Plugins.Email.WindowsCommon;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsUWP.Platform;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
+using MvvmCross.Plugins.WebBrowser;
+using MvvmCross.Plugins.WebBrowser.WindowsCommon;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.WinRT;
 using Xamarin;
@@ -35,6 +40,14 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<ISpendingShortcut, SpendingTile>();
             Mvx.RegisterType<IIncomeShortcut, IncomeTile>();
             Mvx.RegisterType<ITransferShortcut, TransferTile>();
+        }
+
+        public override void LoadPlugins(IMvxPluginManager pluginManager)
+        {
+            base.LoadPlugins(pluginManager);
+
+            Mvx.RegisterType<IMvxComposeEmailTask, MvxComposeEmailTask>();
+            Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
         }
 
         protected override IMvxApplication CreateApp()
