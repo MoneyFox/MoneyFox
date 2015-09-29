@@ -15,9 +15,9 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         [Trait("Category", "Integration")]
         public void CategoryRepositor_LoadDataFromDbThroughRepository()
         {
-            var dbHelper = new WindowsSqliteConnectionFactory();
+            var dbHelper = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
 
-            using (var db = dbHelper.GetConnection(Constants.DB_NAME))
+            using (var db = dbHelper.GetConnection())
             {
                 db.DeleteAll<Category>();
                 db.InsertWithChildren(new Category
@@ -36,9 +36,9 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         [Trait("Category", "Integration")]
         public void CategoryRepository_Update()
         {
-            var dbHelper = new WindowsSqliteConnectionFactory();
+            var dbHelper = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
 
-            using (var db = dbHelper.GetConnection(Constants.DB_NAME))
+            using (var db = dbHelper.GetConnection())
             {
                 db.DeleteAll<Category>();
             }

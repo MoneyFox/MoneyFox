@@ -31,7 +31,6 @@ namespace MoneyManager.Windows
             base.InitializeFirstChance();
 
             Mvx.RegisterType<ISQLitePlatform, SQLitePlatformWinRT>();
-            Mvx.RegisterType<IDatabasePath, DatabasePath>();
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IAppInformation, AppInformation>();
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();

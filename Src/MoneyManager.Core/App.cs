@@ -5,9 +5,8 @@ using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.DataAccess;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
-using MvvmCross.Plugins.Sqlite;
 
 namespace MoneyManager.Core
 {
@@ -18,7 +17,7 @@ namespace MoneyManager.Core
         /// </summary>
         public override void Initialize()
         {
-            CreateDatabase();
+            Mvx.RegisterType<ISqliteConnectionCreator, SqliteConnectionCreator>();
 
             CreatableTypes()
                 .EndingWith("Service")
@@ -55,19 +54,6 @@ namespace MoneyManager.Core
 
             // Start the app with the Main View Model.
             RegisterAppStart<MainViewModel>();
-        }
-
-        private void CreateDatabase()
-        {
-            var factory = Mvx.Resolve<IMvxSqliteConnectionFactory>();
-
-            using (var db = factory.GetConnection("moneyfox.sqlite"))
-            {
-                db.CreateTable<Account>();
-                db.CreateTable<FinancialTransaction>();
-                db.CreateTable<RecurringTransaction>();
-                db.CreateTable<Category>();
-            }
         }
     }
 }

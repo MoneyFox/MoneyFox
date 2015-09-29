@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MvvmCross.Plugins.Sqlite;
 using PropertyChanged;
 using SQLite.Net;
 using SQLiteNetExtensions.Extensions;
@@ -17,11 +17,11 @@ namespace MoneyManager.DataAccess
     [ImplementPropertyChanged]
     public class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
     {
-        private readonly IMvxSqliteConnectionFactory connectionFactory;
+        private readonly ISqliteConnectionCreator connectionCreator;
 
-        public TransactionDataAccess(IMvxSqliteConnectionFactory connectionFactory)
+        public TransactionDataAccess(ISqliteConnectionCreator connectionCreator)
         {
-            this.connectionFactory = connectionFactory;
+            this.connectionCreator = connectionCreator;
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace MoneyManager.DataAccess
         /// <param name="itemToSave">Item to SaveItem</param>
         protected override void SaveToDb(FinancialTransaction itemToSave)
         {
-            using (var db = connectionFactory.GetConnection(Constants.DB_NAME))
+            using (var db = connectionCreator.GetConnection())
             {
                 SaveRecurringTransaction(itemToSave, db);
 
@@ -68,7 +68,7 @@ namespace MoneyManager.DataAccess
         /// <param name="transaction">Item to DeleteItem.</param>
         protected override void DeleteFromDatabase(FinancialTransaction transaction)
         {
-            using (var dbConn = connectionFactory.GetConnection(Constants.DB_NAME))
+            using (var dbConn = connectionCreator.GetConnection())
             {
                 dbConn.Delete(transaction);
             }
@@ -81,7 +81,7 @@ namespace MoneyManager.DataAccess
         /// <returns>List of loaded transactions.</returns>
         protected override List<FinancialTransaction> GetListFromDb(Expression<Func<FinancialTransaction, bool>> filter)
         {
-            using (var db = connectionFactory.GetConnection(Constants.DB_NAME))
+            using (var db = connectionCreator.GetConnection())
             {
                 var list = db.GetAllWithChildren(filter, true).ToList();
 

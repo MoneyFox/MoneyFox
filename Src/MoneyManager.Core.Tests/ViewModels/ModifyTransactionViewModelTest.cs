@@ -40,7 +40,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
             Strings.Culture = new CultureInfo(culture);
 
-            var dbHelper = new Mock<IMvxSqliteConnectionFactory>().Object;
+            var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
                 new RecurringTransactionDataAccess(dbHelper))
             {
@@ -76,7 +76,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         public void Init_SpendingNotEditing_PropertiesSetupCorrectly()
         {
             //Setup
-            var dbHelper = new Mock<IMvxSqliteConnectionFactory>().Object;
+            var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var transactionRepositorySetup = new Mock<ITransactionRepository>();
             transactionRepositorySetup.SetupProperty(x => x.Selected);
 
@@ -111,7 +111,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             //Setup
             var testEndDate = new DateTime(2099, 1, 31);
 
-            var dbHelper = new Mock<IMvxSqliteConnectionFactory>().Object;
+            var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var transactionRepositorySetup = new Mock<ITransactionRepository>();
             transactionRepositorySetup.SetupGet(x => x.Selected).Returns(new FinancialTransaction
             {

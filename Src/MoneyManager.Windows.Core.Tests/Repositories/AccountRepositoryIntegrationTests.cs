@@ -18,7 +18,7 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
 
             var repository =
                 new AccountRepository(
-                    new AccountDataAccess(new WindowsSqliteConnectionFactory()));
+                    new AccountDataAccess(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory())));
 
             var account = new Account
             {

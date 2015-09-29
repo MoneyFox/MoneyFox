@@ -24,7 +24,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             // for navigation parsing
             Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
 
-            var dbHelper = new Mock<IMvxSqliteConnectionFactory>().Object;
+            var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
                 new RecurringTransactionDataAccess(dbHelper));

@@ -46,9 +46,11 @@
   <ItemGroup>
     <Compile Include="AbstractDataAccess.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="SqliteConnectionCreator.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\BackupException.cs" />
     <Compile Include="Exceptions\ConnectionException.cs" />
+    <Compile Include="Interfaces\ISqliteConnectionCreator.cs" />
     <Compile Include="InsightHelper.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Category.cs" />
@@ -59,7 +61,6 @@
     <Compile Include="Interfaces\IBackupService.cs" />
     <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IDatabasePath.cs" />
-    <Compile Include="Interfaces\IDbHelper.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Interfaces\IRepository.cs" />

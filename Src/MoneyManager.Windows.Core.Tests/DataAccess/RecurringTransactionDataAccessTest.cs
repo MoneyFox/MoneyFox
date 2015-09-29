@@ -2,6 +2,7 @@
 using System.Linq;
 using MoneyManager.Core;
 using MoneyManager.DataAccess;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Core.Tests.Helper;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
@@ -17,7 +18,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         public void RecurringTransactionDataAccess_CrudRecurringTransaction()
         {
             var recurringTransactionDataAccess =
-                new RecurringTransactionDataAccess(new WindowsSqliteConnectionFactory());
+                new RecurringTransactionDataAccess(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory()));
 
             const double firstAmount = 100.70;
             const double secondAmount = 80.45;

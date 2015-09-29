@@ -18,9 +18,9 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         [Trait("Category", "Integration")]
         public void TransactionRepository_LoadDataFromDbThroughRepository()
         {
-            var dbHelper = new WindowsSqliteConnectionFactory();
+            var dbHelper = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
 
-            using (var db = dbHelper.GetConnection(Constants.DB_NAME))
+            using (var db = dbHelper.GetConnection())
             {
                 db.DeleteAll<FinancialTransaction>();
                 db.InsertWithChildren(new FinancialTransaction
@@ -44,9 +44,9 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         [Trait("Category", "Integration")]
         public void TransactionRepository_Update()
         {
-            var dbHelper = new WindowsSqliteConnectionFactory();
+            var dbHelper = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
 
-            using (var db = dbHelper.GetConnection(Constants.DB_NAME))
+            using (var db = dbHelper.GetConnection())
             {
                 db.DeleteAll<FinancialTransaction>();
             }
@@ -80,7 +80,7 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         [Trait("Category", "Integration")]
         public void LoadRecurringList_ListWithRecurringTransaction()
         {
-            var dbHelper = new WindowsSqliteConnectionFactory();
+            var dbHelper = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
 
             var transactionDataAccess =
                 new TransactionDataAccess(dbHelper);

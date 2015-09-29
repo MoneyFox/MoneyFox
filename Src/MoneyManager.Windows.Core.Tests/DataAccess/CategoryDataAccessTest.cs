@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using MoneyManager.DataAccess;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using Xunit;
@@ -13,7 +14,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         public void CategoryDataAccess_CrudCategory()
         {
             var categoryDataAccess =
-                new CategoryDataAccess(new WindowsSqliteConnectionFactory());
+                new CategoryDataAccess(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory()));
 
             const string firstName = "category";
             const string secondName = "new category";
