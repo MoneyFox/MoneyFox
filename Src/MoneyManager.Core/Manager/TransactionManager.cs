@@ -165,14 +165,14 @@ namespace MoneyManager.Core.Manager
         private Func<FinancialTransaction, Account> GetTargetAccountFunc()
         {
             Func<FinancialTransaction, Account> targetAccountFunc =
-                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.TargetAccount.Id);
+                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.TargetAccountId);
             return targetAccountFunc;
         }
 
         private Func<FinancialTransaction, Account> GetChargedAccountFunc()
         {
             Func<FinancialTransaction, Account> accountFunc =
-                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.ChargedAccount.Id);
+                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
             return accountFunc;
         }
 
@@ -180,8 +180,9 @@ namespace MoneyManager.Core.Manager
         {
             try
             {
-                var relatedTrans =
-                    transactionRepository.Data.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
+                var relatedTrans = transactionRepository
+                    .Data
+                    .Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
 
                 foreach (var transaction in relatedTrans)
                 {
