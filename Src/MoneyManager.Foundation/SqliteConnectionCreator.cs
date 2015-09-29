@@ -16,6 +16,15 @@ namespace MoneyManager.Foundation
             CreateDb();
         }
 
+        /// <summary>
+        ///     Creates the config and establishe the connection to the sqlite database.
+        /// </summary>
+        /// <returns>Established SQLiteConnection.</returns>
+        public SQLiteConnection GetConnection()
+        {
+            return connectionFactory.GetConnection(new SqLiteConfig(Constants.DB_NAME, false));
+        }
+
         private void CreateDb()
         {
             using (var db = connectionFactory.GetConnection("moneyfox.sqlite"))
@@ -25,15 +34,6 @@ namespace MoneyManager.Foundation
                 db.CreateTable<RecurringTransaction>();
                 db.CreateTable<Category>();
             }
-        }
-
-        /// <summary>
-        ///     Creates the config and establishe the connection to the sqlite database.
-        /// </summary>
-        /// <returns>Established SQLiteConnection.</returns>
-        public SQLiteConnection GetConnection()
-        {
-            return connectionFactory.GetConnection(new SqLiteConfig(Constants.DB_NAME, false));
         }
     }
 }

@@ -130,7 +130,7 @@ namespace MoneyManager.Windows
                 case VirtualKey.Escape:
                 case VirtualKey.Back:
                 case VirtualKey.B:
-                    bool temp = false;
+                    var temp = false;
                     BackRequested(ref temp);
                     break;
             }

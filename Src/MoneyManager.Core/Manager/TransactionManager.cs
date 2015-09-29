@@ -17,9 +17,9 @@ namespace MoneyManager.Core.Manager
         /// <summary>
         ///     Creates an TransactionManager object.
         /// </summary>
-        /// <param name="transactionRepository">Instance of <see cref="ITransactionRepository"/></param>
-        /// <param name="accountRepository">Instance of <see cref="IRepository{T}"/></param>
-        /// <param name="dialogService">Instance of <see cref="IDialogService"/></param>
+        /// <param name="transactionRepository">Instance of <see cref="ITransactionRepository" /></param>
+        /// <param name="accountRepository">Instance of <see cref="IRepository{T}" /></param>
+        /// <param name="dialogService">Instance of <see cref="IDialogService" /></param>
         public TransactionManager(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository, IDialogService dialogService)
         {

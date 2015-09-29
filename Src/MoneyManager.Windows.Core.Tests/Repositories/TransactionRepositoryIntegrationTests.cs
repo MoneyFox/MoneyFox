@@ -1,12 +1,9 @@
 ﻿using System.Linq;
-using MoneyManager.Core;
 using MoneyManager.Core.Repositories;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Windows.Core.Tests.Helper;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using SQLite.Net.Platform.WinRT;
 using SQLiteNetExtensions.Extensions;
 using Xunit;
 
@@ -93,7 +90,7 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
             {
                 Amount = 123,
                 IsRecurring = true,
-                RecurringTransaction = new RecurringTransaction { IsEndless = true}
+                RecurringTransaction = new RecurringTransaction {IsEndless = true}
             });
 
             repository.Load();

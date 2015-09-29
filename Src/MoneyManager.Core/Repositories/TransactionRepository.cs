@@ -20,9 +20,12 @@ namespace MoneyManager.Core.Repositories
         /// <summary>
         ///     Creates a TransactionRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced <see cref="IDataAccess{T}"/> for <see cref="FinancialTransaction"/></param>
-        /// <param name="recurringDataAccess">Instanced <see cref="IDataAccess{T}"/> for <see cref="RecurringTransaction"/></param>
-        public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess, IDataAccess<RecurringTransaction> recurringDataAccess)
+        /// <param name="dataAccess">Instanced <see cref="IDataAccess{T}" /> for <see cref="FinancialTransaction" /></param>
+        /// <param name="recurringDataAccess">
+        ///     Instanced <see cref="IDataAccess{T}" /> for <see cref="RecurringTransaction" />
+        /// </param>
+        public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess,
+            IDataAccess<RecurringTransaction> recurringDataAccess)
         {
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
@@ -146,7 +149,9 @@ namespace MoneyManager.Core.Repositories
         public IEnumerable<FinancialTransaction> LoadRecurringList(Func<FinancialTransaction, bool> filter = null)
         {
             var list = Data.Where(x => x.IsRecurring && x.RecurringTransaction != null
-                                       && (x.RecurringTransaction.IsEndless || x.RecurringTransaction.EndDate >= DateTime.Now.Date)
+                                       &&
+                                       (x.RecurringTransaction.IsEndless ||
+                                        x.RecurringTransaction.EndDate >= DateTime.Now.Date)
                                        && (filter == null || filter.Invoke(x)))
                 .ToList();
 

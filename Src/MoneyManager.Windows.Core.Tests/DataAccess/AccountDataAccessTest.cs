@@ -1,11 +1,8 @@
 ﻿using System.Linq;
-using MoneyManager.Core;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Windows.Core.Tests.Helper;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using SQLite.Net.Platform.WinRT;
 using Xunit;
 
 namespace MoneyManager.Windows.Core.Tests.DataAccess

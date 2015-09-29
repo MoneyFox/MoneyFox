@@ -8,6 +8,6 @@ namespace MoneyManager.Windows.Core.Tests.Helper
         /// <summary>
         ///     Provides the platform specific database path for test purpose
         /// </summary>
-        public string DbPath =>ApplicationData.Current.LocalFolder.Path;
+        public string DbPath => ApplicationData.Current.LocalFolder.Path;
     }
 }

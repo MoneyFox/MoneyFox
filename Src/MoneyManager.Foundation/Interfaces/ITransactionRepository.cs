@@ -18,7 +18,7 @@ namespace MoneyManager.Foundation.Interfaces
         /// <param name="date">Date to which transactions shall be selected.</param>
         /// <returns>List of uncleared transactions.</returns>
         IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date);
-        
+
         /// <summary>
         ///     returns a list with transactions who are related to this account
         /// </summary>

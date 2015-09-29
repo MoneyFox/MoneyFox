@@ -7,7 +7,8 @@ namespace MoneyManager.Droid.Services
 {
     public class OneDriveAuthListener : Object, ILiveAuthListener
     {
-        private readonly TaskCompletionSource<LiveConnectSession> source = new TaskCompletionSource<LiveConnectSession>();
+        private readonly TaskCompletionSource<LiveConnectSession> source =
+            new TaskCompletionSource<LiveConnectSession>();
 
         public Task<LiveConnectSession> Task => source.Task;
 

@@ -11,15 +11,15 @@ namespace MoneyManager.Core.Converter
         {
             if (parameter != null && parameter.ToString() == "revert")
             {
-                return (bool)value ? MvxVisibility.Collapsed : MvxVisibility.Visible;
+                return (bool) value ? MvxVisibility.Collapsed : MvxVisibility.Visible;
             }
 
-            return (bool)value ? MvxVisibility.Visible : MvxVisibility.Collapsed;
+            return (bool) value ? MvxVisibility.Visible : MvxVisibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? MvxVisibility.Collapsed : MvxVisibility.Visible;
+            return (bool) value ? MvxVisibility.Collapsed : MvxVisibility.Visible;
         }
     }
 }

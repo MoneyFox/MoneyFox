@@ -92,7 +92,7 @@ namespace MoneyManager.Windows.Services
             }
 
             if (liveClient == null) return TaskCompletionType.Unsuccessful;
-            
+
             try
             {
                 await GetBackupId();

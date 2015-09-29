@@ -35,9 +35,7 @@ namespace MoneyManager.Droid
         /// <param name="changed">INotifyPropertyChanged.</param>
         public void Include(INotifyPropertyChanged changed)
         {
-            changed.PropertyChanged += (sender, e) => {
-                var test = e.PropertyName;
-            };
+            changed.PropertyChanged += (sender, e) => { var test = e.PropertyName; };
         }
 
         /// <summary>
@@ -102,10 +100,7 @@ namespace MoneyManager.Droid
         public void Include(INotifyCollectionChanged changed)
         {
             changed.CollectionChanged +=
-                (s, e) =>
-                {
-                    var test = $"{e.Action}{e.NewItems}{e.NewStartingIndex}{e.OldItems}{e.OldStartingIndex}";
-                };
+                (s, e) => { var test = $"{e.Action}{e.NewItems}{e.NewStartingIndex}{e.OldItems}{e.OldStartingIndex}"; };
         }
 
         public void Include(LinearLayout layout)

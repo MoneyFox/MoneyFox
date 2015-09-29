@@ -35,8 +35,8 @@
 
   <!--labels-->
   <string name="label_cleared">IsCleared: </string>
-  
+
   <!--text-->
   <string name="text_endless">Is Endless</string>
-  
+
 </resources>

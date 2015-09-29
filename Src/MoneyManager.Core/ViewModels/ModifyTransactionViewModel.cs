@@ -82,7 +82,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void PrepareDefault(string typeString)
         {
-            var type = ((TransactionType)Enum.Parse(typeof(TransactionType), typeString));
+            var type = ((TransactionType) Enum.Parse(typeof (TransactionType), typeString));
 
             SetDefaultTransaction(type);
             SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
@@ -147,7 +147,9 @@ namespace MoneyManager.Core.ViewModels
 
         private async void Delete()
         {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+            if (
+                await
+                    dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
             {
                 transactionManager.DeleteTransaction(transactionRepository.Selected);
                 ResetInitLocker();

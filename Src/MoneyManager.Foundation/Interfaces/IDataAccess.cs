@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 namespace MoneyManager.Foundation.Interfaces
 {
     /// <summary>
-    /// Defines the basic Input / Output Operations for the database
+    ///     Defines the basic Input / Output Operations for the database
     /// </summary>
     /// <typeparam name="T">Entity Type</typeparam>
     public interface IDataAccess<T>

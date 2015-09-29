@@ -3,6 +3,7 @@ using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 
 // ReSharper disable ExplicitCallerInfoArgument
+
 namespace MoneyManager.Core.ViewModels
 {
     /// <summary>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
@@ -12,7 +11,6 @@ using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 using Moq;
-using MvvmCross.Plugins.Sqlite;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
@@ -21,7 +19,7 @@ namespace MoneyManager.Core.Tests.ViewModels
     {
         [Theory]
         //Edit Titles
-        [InlineData(TransactionType.Spending, true,  "Edit Spending", "en-US")]
+        [InlineData(TransactionType.Spending, true, "Edit Spending", "en-US")]
         [InlineData(TransactionType.Income, true, "Edit Income", "en-US")]
         [InlineData(TransactionType.Transfer, true, "Edit Transfer", "en-US")]
         [InlineData(TransactionType.Spending, true, "Ausgabe bearbeiten", "de-CH")]
@@ -34,7 +32,8 @@ namespace MoneyManager.Core.Tests.ViewModels
         [InlineData(TransactionType.Spending, false, "Ausgabe hinzufügen", "de-CH")]
         [InlineData(TransactionType.Income, false, "Einkommen hinzufügen", "de-CH")]
         [InlineData(TransactionType.Transfer, false, "Überweisung hinzufügen", "de-CH")]
-        public void Title_TransactionTypeDifferentModes_CorrectTitle(TransactionType type, bool isEditMode, string result, string culture)
+        public void Title_TransactionTypeDifferentModes_CorrectTitle(TransactionType type, bool isEditMode,
+            string result, string culture)
         {
             //Setup
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
@@ -100,7 +99,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             viewmodel.SelectedTransaction.ShouldBeNull();
 
             viewmodel.Init(false, "Spending");
-            viewmodel.SelectedTransaction.Type.ShouldBe((int)TransactionType.Spending);
+            viewmodel.SelectedTransaction.Type.ShouldBe((int) TransactionType.Spending);
             viewmodel.SelectedTransaction.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedTransaction.IsRecurring.ShouldBeFalse();
         }
@@ -115,7 +114,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             var transactionRepositorySetup = new Mock<ITransactionRepository>();
             transactionRepositorySetup.SetupGet(x => x.Selected).Returns(new FinancialTransaction
             {
-                Type = (int)TransactionType.Income,
+                Type = (int) TransactionType.Income,
                 IsRecurring = true,
                 RecurringTransaction = new RecurringTransaction
                 {
@@ -143,7 +142,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             viewmodel.SelectedTransaction.ShouldNotBeNull();
 
             viewmodel.Init(true, "Income");
-            viewmodel.SelectedTransaction.Type.ShouldBe((int)TransactionType.Income);
+            viewmodel.SelectedTransaction.Type.ShouldBe((int) TransactionType.Income);
             viewmodel.SelectedTransaction.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedTransaction.IsRecurring.ShouldBeTrue();
             viewmodel.SelectedTransaction.RecurringTransaction.EndDate.ShouldBe(testEndDate);

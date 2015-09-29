@@ -10,8 +10,8 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly IAppInformation appInformation;
         private readonly IMvxComposeEmailTask composeEmailTask;
-        private readonly IMvxWebBrowserTask webBrowserTask;
         private readonly IStoreFeatures storeFeatures;
+        private readonly IMvxWebBrowserTask webBrowserTask;
 
         /// <summary>
         ///     Creates an AboutViewModel Object

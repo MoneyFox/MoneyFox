@@ -7,7 +7,6 @@ using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using Moq;
-using MvvmCross.Plugins.Sqlite;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels

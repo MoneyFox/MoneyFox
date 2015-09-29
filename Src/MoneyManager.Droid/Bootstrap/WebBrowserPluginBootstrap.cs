@@ -1,9 +1,10 @@
 using Cirrious.CrossCore.Plugins;
+using MvvmCross.Plugins.WebBrowser;
 
 namespace MoneyManager.Droid.Bootstrap
 {
     public class WebBrowserPluginBootstrap
-        : MvxPluginBootstrapAction<MvvmCross.Plugins.WebBrowser.PluginLoader>
+        : MvxPluginBootstrapAction<PluginLoader>
     {
     }
 }

@@ -24,12 +24,12 @@ namespace MoneyManager.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            CreatableTypes(typeof(AccountDataAccess).GetTypeInfo().Assembly)
+            CreatableTypes(typeof (AccountDataAccess).GetTypeInfo().Assembly)
                 .EndingWith("DataAccess")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            CreatableTypes(typeof(AccountDataAccess).GetTypeInfo().Assembly)
+            CreatableTypes(typeof (AccountDataAccess).GetTypeInfo().Assembly)
                 .EndingWith("DataAccess")
                 .AsTypes()
                 .RegisterAsLazySingleton();
