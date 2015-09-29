@@ -98,7 +98,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             //Execute and Assert
             viewmodel.SelectedTransaction.ShouldBeNull();
 
-            viewmodel.Init("Spending");
+            viewmodel.Init(false, "Spending");
             viewmodel.SelectedTransaction.Type.ShouldBe((int)TransactionType.Spending);
             viewmodel.SelectedTransaction.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedTransaction.IsRecurring.ShouldBeFalse();
@@ -141,7 +141,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             //Execute and Assert
             viewmodel.SelectedTransaction.ShouldNotBeNull();
 
-            viewmodel.Init(true);
+            viewmodel.Init(true, "Income");
             viewmodel.SelectedTransaction.Type.ShouldBe((int)TransactionType.Income);
             viewmodel.SelectedTransaction.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedTransaction.IsRecurring.ShouldBeTrue();

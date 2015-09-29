@@ -18,6 +18,7 @@ namespace MoneyManager.Core.Tests.Repositories
         [InlineData("Sparkonto", "Sparkonto", "de-CH")]
         [InlineData("", "[No Name]", "en-US")]
         [InlineData("", "[Kein Name]", "de-CH")]
+        [Trait("volatile", "")]
         public void Save_InputName_CorrectNameAssigned(string nameInput, string nameExpected, string culture)
         {
             var testList = new List<Account>();
