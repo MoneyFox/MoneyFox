@@ -70,6 +70,8 @@ namespace MoneyManager.Core.ViewModels
 
         #endregion
 
+        #region Properties
+
         /// <summary>
         ///     Indicates if the view is in Edit mode.
         /// </summary>
@@ -141,22 +143,41 @@ namespace MoneyManager.Core.ViewModels
             }
             set { SelectedTransaction.Date = value; }
         }
+        
+        #endregion
 
         /// <summary>
-        ///     Init the view. Is executed after the constructor call
+        ///     Init the view for a new transaction.
+        ///     Is executed after the constructor call
         /// </summary>
         /// <param name="typeString">Type of the transaction.</param>
+        public void Init(string typeString)
+        {
+            //Ensure that init is only called once
+            if (!isInitCall) return;
+
+            var type = ((TransactionType) Enum.Parse(typeof (TransactionType), typeString));
+            IsEndless = true;
+
+            SetDefaultTransaction(type);
+            SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
+            IsTransfer = type == TransactionType.Transfer;
+            EndDate = DateTime.Now;
+
+            isInitCall = false;
+        }
+
+        /// <summary>
+        ///     Init the view to edit a transaction.
+        ///     Is executed after the constructor call
+        /// </summary>
         /// <param name="isEdit">Weather the transaction is in edit mode or not.</param>
-        public void Init(string typeString, bool isEdit)
+        public void Init(bool isEdit)
         {
             //Ensure that init is only called once
             if (!isInitCall) return;
 
             IsEdit = isEdit;
-
-            var type = ((TransactionType) Enum.Parse(typeof (TransactionType), typeString));
-            IsEndless = true;
-
             if (IsEdit)
             {
                 IsTransfer = SelectedTransaction.IsTransfer;
@@ -168,13 +189,6 @@ namespace MoneyManager.Core.ViewModels
                         ? SelectedTransaction.RecurringTransaction.EndDate
                         : DateTime.Now;
                 IsEndless = !SelectedTransaction.IsRecurring || SelectedTransaction.RecurringTransaction.IsEndless;
-            }
-            else
-            {
-                SetDefaultTransaction(type);
-                SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
-                IsTransfer = type == TransactionType.Transfer;
-                EndDate = DateTime.Now;
             }
 
             isInitCall = false;
