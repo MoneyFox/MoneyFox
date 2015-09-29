@@ -18,7 +18,6 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Locker to ensure that Init isn't executed when navigate back
         /// </summary>
-        //TODO: Find another way than this...
         private static bool isInitCall = true;
 
         private readonly IRepository<Account> accountRepository;
@@ -42,6 +41,8 @@ namespace MoneyManager.Core.ViewModels
             this.accountRepository = accountRepository;
         }
 
+        #region Commands
+        
         /// <summary>
         ///     Handels everything when the page is loaded.
         /// </summary>
@@ -67,12 +68,36 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public IMvxCommand CancelCommand => new MvxCommand(Cancel);
 
-        public DateTime EndDate { get; set; }
-        public bool IsEndless { get; set; }
+        #endregion
+
+        /// <summary>
+        ///     Indicates if the view is in Edit mode.
+        /// </summary>
         public bool IsEdit { get; set; }
-        public int Recurrence { get; set; }
+
+        /// <summary>
+        ///     Indicates if the transaction is a transfer.
+        /// </summary>
         public bool IsTransfer { get; set; }
 
+        /// <summary>
+        ///     Indicates if the reminder is endless
+        /// </summary>
+        public bool IsEndless { get; set; }
+
+        /// <summary>
+        ///     The Enddate for recurring transaction
+        /// </summary>
+        public DateTime EndDate { get; set; }
+
+        /// <summary>
+        ///     The selected recurrence
+        /// </summary>
+        public int Recurrence { get; set; }
+
+        /// <summary>
+        ///     List with the different recurrence types.
+        /// </summary>
         public List<string> RecurrenceList => new List<string>
         {
             Strings.DailyLabel,
@@ -99,7 +124,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Returns the Title for the page
         /// </summary>
-        public string Title => TransactionTypeHelper.GetViewTitleForType(transactionRepository.Selected.Type, IsEdit);
+        public string Title => TransactionTypeHelper.GetViewTitleForType(SelectedTransaction.Type, IsEdit);
 
         /// <summary>
         ///     The transaction date
@@ -117,6 +142,11 @@ namespace MoneyManager.Core.ViewModels
             set { SelectedTransaction.Date = value; }
         }
 
+        /// <summary>
+        ///     Init the view. Is executed after the constructor call
+        /// </summary>
+        /// <param name="typeString">Type of the transaction.</param>
+        /// <param name="isEdit">Weather the transaction is in edit mode or not.</param>
         public void Init(string typeString, bool isEdit)
         {
             //Ensure that init is only called once
@@ -137,6 +167,7 @@ namespace MoneyManager.Core.ViewModels
                 EndDate = SelectedTransaction.IsRecurring
                         ? SelectedTransaction.RecurringTransaction.EndDate
                         : DateTime.Now;
+                IsEndless = !SelectedTransaction.IsRecurring || SelectedTransaction.RecurringTransaction.IsEndless;
             }
             else
             {
@@ -169,7 +200,7 @@ namespace MoneyManager.Core.ViewModels
 
         private async void Save()
         {
-            if (transactionRepository.Selected.ChargedAccount == null)
+            if (SelectedTransaction.ChargedAccount == null)
             {
                 ShowAccountRequiredMessage();
                 return;
@@ -201,9 +232,7 @@ namespace MoneyManager.Core.ViewModels
 
         private async void Delete()
         {
-            if (
-                await
-                    dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
             {
                 transactionManager.DeleteTransaction(transactionRepository.Selected);
                 ResetInitLocker();

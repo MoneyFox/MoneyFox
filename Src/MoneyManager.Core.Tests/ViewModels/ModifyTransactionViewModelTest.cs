@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
+using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
@@ -66,6 +68,37 @@ namespace MoneyManager.Core.Tests.ViewModels
             // Reset culture to current culture
             Strings.Culture = CultureInfo.CurrentCulture;
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
+        }
+
+        [Fact]
+        public void Init_SpendingNotEditing_PropertiesSetupCorrectly()
+        {
+            //Setup
+            var dbHelper = new Mock<IDbHelper>().Object;
+            var transactionRepositorySetup = new Mock<ITransactionRepository>();
+            transactionRepositorySetup.SetupProperty(x => x.Selected);
+
+            var transactionManager = new TransactionManager(transactionRepositorySetup.Object,
+                new Mock<IRepository<Account>>().Object,
+                new Mock<IDialogService>().Object);
+
+            var accountRepoSetup = new Mock<IRepository<Account>>();
+            accountRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var defaultManager = new DefaultManager(accountRepoSetup.Object,
+                new SettingDataAccess(new Mock<IRoamingSettings>().Object));
+
+            var viewmodel = new ModifyTransactionViewModel(transactionRepositorySetup.Object,
+                new AccountRepository(new AccountDataAccess(dbHelper)),
+                new Mock<IDialogService>().Object,
+                transactionManager,
+                defaultManager);
+
+            //Execute and Assert
+            viewmodel.SelectedTransaction.ShouldBeNull();
+
+            viewmodel.Init("Spending", false);
+            viewmodel.SelectedTransaction.Type.ShouldBe((int)TransactionType.Spending);
         }
     }
 }

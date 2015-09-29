@@ -10,7 +10,6 @@ namespace MoneyManager.Core.ViewModels
     public class BackupViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
-        private readonly IBackupService backupService;
         private readonly RepositoryManager repositoryManager;
 
         public BackupViewModel(RepositoryManager repositoryManager,
@@ -18,12 +17,33 @@ namespace MoneyManager.Core.ViewModels
             IDialogService dialogService)
         {
             this.repositoryManager = repositoryManager;
-            this.backupService = backupService;
             this.dialogService = dialogService;
+
+            BackupService = backupService;
         }
 
+        /// <summary>
+        ///     The Backup Service for the current platform.
+        ///     On Android this needs to be overwritten with an
+        ///     instance with the current activity setup.
+        /// </summary>
+        private IBackupService BackupService { get; }
+
+        /// <summary>
+        ///     Will create a backup of the database and upload it to onedrive
+        /// </summary>
         public MvxCommand BackupCommand => new MvxCommand(CreateBackup);
+
+        /// <summary>
+        ///     Will download the database backup from onedrive and overwrite the
+        ///     local database with the downloaded.
+        ///     All datamodels are then reloaded.
+        /// </summary>
         public MvxCommand RestoreCommand => new MvxCommand(RestoreBackup);
+
+        /// <summary>
+        ///     Indicator if something is in work.
+        /// </summary>
         public bool IsLoading { get; private set; }
 
         private async void CreateBackup()
@@ -36,7 +56,7 @@ namespace MoneyManager.Core.ViewModels
             }
 
             IsLoading = true;
-            await backupService.Upload();
+            await BackupService.Upload();
             await ShowCompletionNote();
             IsLoading = false;
         }
@@ -52,7 +72,7 @@ namespace MoneyManager.Core.ViewModels
 
             IsLoading = true;
 
-            await backupService.Restore();
+            await BackupService.Restore();
             repositoryManager.ReloadData();
 
             await ShowCompletionNote();
@@ -64,7 +84,7 @@ namespace MoneyManager.Core.ViewModels
             try
             {
                 IsLoading = true;
-                await backupService.Login();
+                await BackupService.Login();
                 IsLoading = false;
                 return true;
             }
