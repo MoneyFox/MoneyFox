@@ -75,7 +75,7 @@
                                           ItemInvoked="NavMenuList_ItemInvoked" />
             </controls:SwipeableSplitView.Pane>
             <controls:SwipeableSplitView.Content>
-                <Frame x:Name="frame"
+                <Frame x:Name="Frame"
                        Navigating="OnNavigatingToPage"
                        Navigated="OnNavigatedToPage">
                     <Frame.ContentTransitions>

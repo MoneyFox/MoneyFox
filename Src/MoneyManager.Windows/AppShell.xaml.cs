@@ -86,7 +86,7 @@ namespace MoneyManager.Windows
             NavMenuList.ItemsSource = navlist;
         }
 
-        public Frame AppFrame => frame;
+        public Frame AppFrame => Frame;
 
         public Rect TogglePaneButtonRect { get; private set; }
 
@@ -216,7 +216,7 @@ namespace MoneyManager.Windows
 
         private void BackRequested(ref bool handled)
         {
-            // Get a hold of the current frame so that we can inspect the app back stack.
+            // Get a hold of the current Frame so that we can inspect the app back stack.
 
             if (AppFrame == null)
                 return;

@@ -1271,7 +1271,7 @@
                         </Grid>
                         <Grid x:Name="PaneRoot"
                               ManipulationMode="TranslateX,TranslateY"
-                              Grid.ColumnSpan="2"
+                              Grid.ColumnSpan="2" Grid.Column="0"
                               HorizontalAlignment="Left"
                               Background="{TemplateBinding PaneBackground}"
                               Width="{Binding TemplateSettings.OpenPaneLength, RelativeSource={RelativeSource Mode=TemplatedParent}}">
@@ -1297,7 +1297,7 @@
 
                         <!--a new layer here to handle all the gestures -->
                         <Grid x:Name="OverlayRoot"
-                              Grid.ColumnSpan="2">
+                              Grid.ColumnSpan="2" Grid.Column="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition
                                     Width="{Binding TemplateSettings.OpenPaneGridLength, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
