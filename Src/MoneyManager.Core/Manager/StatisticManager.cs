@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyManager.Core.DataAccess;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Localization;
 
 namespace MoneyManager.Core.Manager
@@ -13,16 +12,13 @@ namespace MoneyManager.Core.Manager
     public class StatisticManager
     {
         private readonly IRepository<Category> categoryRepository;
-        private readonly SettingDataAccess settings;
         private readonly ITransactionRepository transactionRepository;
 
         public StatisticManager(ITransactionRepository transactionRepository,
-            IRepository<Category> categoryRepository,
-            SettingDataAccess settings)
+            IRepository<Category> categoryRepository)
         {
             this.transactionRepository = transactionRepository;
             this.categoryRepository = categoryRepository;
-            this.settings = settings;
         }
 
         /// <summary>
@@ -178,7 +174,7 @@ namespace MoneyManager.Core.Manager
 
         private void RemoveNullList(ICollection<StatisticItem> tempStatisticList)
         {
-            var nullerList = tempStatisticList.Where(x => x.Value == 0).ToList();
+            var nullerList = tempStatisticList.Where(x => Math.Abs(x.Value) < 0.001).ToList();
             foreach (var statisticItem in nullerList)
             {
                 tempStatisticList.Remove(statisticItem);

@@ -1,10 +1,9 @@
 using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Localization;
 
-namespace MoneyManager.Windows.Dialogs
+namespace MoneyManager.Core.ViewModels
 {
     public class CategoryDialogViewModel : BaseViewModel
     {
@@ -30,14 +29,13 @@ namespace MoneyManager.Windows.Dialogs
 
         private void Loaded()
         {
-            if (!IsEdit)
-            {
-                Selected = new Category();
+            if (IsEdit) return;
 
-                if (!string.IsNullOrEmpty(categoryListView.SearchText))
-                {
-                    Selected.Name = categoryListView.SearchText;
-                }
+            Selected = new Category();
+
+            if (!string.IsNullOrEmpty(categoryListView.SearchText))
+            {
+                Selected.Name = categoryListView.SearchText;
             }
         }
 

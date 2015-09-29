@@ -1,7 +1,7 @@
 using System;
 using Android.App;
 using Android.Preferences;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Droid
 {

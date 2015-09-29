@@ -1,11 +1,9 @@
 ﻿using System.Linq;
-using MoneyManager.Core;
-using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Repositories;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Windows.Core.Tests.Helper;
-using SQLite.Net.Platform.WinRT;
+using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using Xunit;
 
 namespace MoneyManager.Windows.Core.Tests.Repositories
@@ -20,7 +18,7 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
 
             var repository =
                 new AccountRepository(
-                    new AccountDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath())));
+                    new AccountDataAccess(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory())));
 
             var account = new Account
             {

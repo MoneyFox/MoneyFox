@@ -1,11 +1,9 @@
 ﻿using System.Linq;
-using MoneyManager.Core;
-using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Repositories;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Windows.Core.Tests.Helper;
-using SQLite.Net.Platform.WinRT;
+using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using SQLiteNetExtensions.Extensions;
 using Xunit;
 
@@ -17,9 +15,9 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         [Trait("Category", "Integration")]
         public void CategoryRepositor_LoadDataFromDbThroughRepository()
         {
-            var dbHelper = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath());
+            var dbHelper = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
 
-            using (var db = dbHelper.GetSqlConnection())
+            using (var db = dbHelper.GetConnection())
             {
                 db.DeleteAll<Category>();
                 db.InsertWithChildren(new Category
@@ -38,9 +36,9 @@ namespace MoneyManager.Windows.Core.Tests.Repositories
         [Trait("Category", "Integration")]
         public void CategoryRepository_Update()
         {
-            var dbHelper = new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath());
+            var dbHelper = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
 
-            using (var db = dbHelper.GetSqlConnection())
+            using (var db = dbHelper.GetConnection())
             {
                 db.DeleteAll<Category>();
             }

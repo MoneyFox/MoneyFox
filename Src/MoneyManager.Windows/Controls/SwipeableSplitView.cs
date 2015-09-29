@@ -111,10 +111,13 @@ namespace MoneyManager.Windows.Controls
                         "For the bottom panning to work, the Pane's Child needs to be of type Selector!!");
                 }
 
-                foreach (var item in menuHost.Items)
+                if (menuHost.Items != null)
                 {
-                    var container = (SelectorItem) menuHost.ContainerFromItem(item);
-                    menuItems.Add(container);
+                    foreach (var item in menuHost.Items)
+                    {
+                        var container = (SelectorItem) menuHost.ContainerFromItem(item);
+                        menuItems.Add(container);
+                    }
                 }
 
                 distancePerItem = TOTAL_PANNING_DISTANCE/menuItems.Count;
@@ -214,7 +217,6 @@ namespace MoneyManager.Windows.Controls
                 if (dismissLayer != null)
                 {
                     dismissLayer.Tapped += OnDismissLayerTapped;
-                    ;
                 }
             }
         }

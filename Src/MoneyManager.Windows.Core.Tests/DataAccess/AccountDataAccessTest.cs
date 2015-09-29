@@ -1,9 +1,8 @@
 ﻿using System.Linq;
-using MoneyManager.Core;
-using MoneyManager.Core.DataAccess;
+using MoneyManager.DataAccess;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Windows.Core.Tests.Helper;
-using SQLite.Net.Platform.WinRT;
+using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using Xunit;
 
 namespace MoneyManager.Windows.Core.Tests.DataAccess
@@ -15,7 +14,7 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
         public void AccountDataAccess_CrudAccount()
         {
             var accountDataAccess =
-                new AccountDataAccess(new DbHelper(new SQLitePlatformWinRT(), new TestDatabasePath()));
+                new AccountDataAccess(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory()));
 
             const string firstName = "fooo Name";
             const string secondName = "new Foooo";

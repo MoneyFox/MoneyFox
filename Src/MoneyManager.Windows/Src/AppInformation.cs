@@ -1,11 +1,17 @@
 ﻿using System.Globalization;
 using Windows.ApplicationModel;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Windows
 {
+    /// <summary>
+    ///     Grants access to package information
+    /// </summary>
     public class AppInformation : IAppInformation
     {
+        /// <summary>
+        ///     Reads the version from the AppManifest and returns it formated.
+        /// </summary>
         public string GetVersion
         {
             get

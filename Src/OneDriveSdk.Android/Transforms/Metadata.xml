@@ -1,0 +1,884 @@
+<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+
+  <!-- Remove nested classes that are private to LiveAuthClient -->
+  <remove-node path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient.ListenerCallerObserver']" />
+  <remove-node path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient.RefreshTokenWriter']" />
+  <remove-node path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient.SessionRefresher']" />
+  <remove-node path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient.ContentLengthObserver']" />
+  <remove-node path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient.DownloadObserver']" />
+  <remove-node path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient.FileDownloadObserver']" />
+  <remove-node path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient.OperationObserver']" />
+  <remove-node path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient.UploadRequestListener']" />
+  <remove-node
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient.FileDownloadObserver.OnErrorRunnable']" />
+
+  <!-- Namespace -->
+  <attr path="/api/package[@name='com.microsoft.live']" name="managedName">Microsoft.Live</attr>
+
+  <!-- Paramenter normalization -->
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/constructor[@name='LiveAuthClient' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String']]/parameter[@name='p0']"
+    name="name">
+    context
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/constructor[@name='LiveAuthClient' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.lang.String']]/parameter[@name='p1']"
+    name="name">
+    clientId
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='initialize' and count(parameter)=1 and parameter[1][@type='com.microsoft.live.LiveAuthListener']]/parameter[@name='p0']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='initialize' and count(parameter)=2 and parameter[1][@type='com.microsoft.live.LiveAuthListener'] and parameter[2][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='initialize' and count(parameter)=2 and parameter[1][@type='com.microsoft.live.LiveAuthListener'] and parameter[2][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='logout' and count(parameter)=1 and parameter[1][@type='com.microsoft.live.LiveAuthListener']]/parameter[@name='p0']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='logout' and count(parameter)=2 and parameter[1][@type='com.microsoft.live.LiveAuthListener'] and parameter[2][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='logout' and count(parameter)=2 and parameter[1][@type='com.microsoft.live.LiveAuthListener'] and parameter[2][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='login' and count(parameter)=3]/parameter[@name='p0']"
+    name="name">
+    activity
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='login' and count(parameter)=3]/parameter[@name='p1']"
+    name="name">
+    scopes
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='login' and count(parameter)=3]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='login' and count(parameter)=4]/parameter[@name='p0']"
+    name="name">
+    activity
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='login' and count(parameter)=4]/parameter[@name='p1']"
+    name="name">
+    scopes
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='login' and count(parameter)=4]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='login' and count(parameter)=4]/parameter[@name='p3']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='initialize' and count(parameter)=2]/parameter[@name='p0']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='initialize' and count(parameter)=2]/parameter[@name='p1']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='initialize' and count(parameter)=3]/parameter[@name='p0']"
+    name="name">
+    scopes
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='initialize' and count(parameter)=3]/parameter[@name='p1']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveAuthClient']/method[@name='initialize' and count(parameter)=3]/parameter[@name='p2']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectSession']/method[@name='addPropertyChangeListener' and count(parameter)=1 and parameter[1][@type='java.beans.PropertyChangeListener']]/parameter[@name='p0']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectSession']/method[@name='addPropertyChangeListener' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.beans.PropertyChangeListener']]/parameter[@name='p0']"
+    name="name">
+    propertyName
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectSession']/method[@name='addPropertyChangeListener' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.beans.PropertyChangeListener']]/parameter[@name='p1']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectSession']/method[@name='getPropertyChangeListeners' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[@name='p0']"
+    name="name">
+    propertyName
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectSession']/method[@name='removePropertyChangeListener' and count(parameter)=1 and parameter[1][@type='java.beans.PropertyChangeListener']]/parameter[@name='p0']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectSession']/method[@name='removePropertyChangeListener' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.beans.PropertyChangeListener']]/parameter[@name='p0']"
+    name="name">
+    propertyName
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectSession']/method[@name='removePropertyChangeListener' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.beans.PropertyChangeListener']]/parameter[@name='p1']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveUploadOperationListener']/method[@name='onUploadCompleted' and count(parameter)=1 and parameter[1][@type='com.microsoft.live.LiveOperation']]/parameter[@name='p0']"
+    name="name">
+    operation
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveUploadOperationListener']/method[@name='onUploadFailed' and count(parameter)=2 and parameter[1][@type='com.microsoft.live.LiveOperationException'] and parameter[2][@type='com.microsoft.live.LiveOperation']]/parameter[@name='p0']"
+    name="name">
+    exception
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveUploadOperationListener']/method[@name='onUploadFailed' and count(parameter)=2 and parameter[1][@type='com.microsoft.live.LiveOperationException'] and parameter[2][@type='com.microsoft.live.LiveOperation']]/parameter[@name='p1']"
+    name="name">
+    operation
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveUploadOperationListener']/method[@name='onUploadProgress' and count(parameter)=3 and parameter[1][@type='int'] and parameter[2][@type='int'] and parameter[3][@type='com.microsoft.live.LiveOperation']]/parameter[@name='p0']"
+    name="name">
+    totalBytes
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveUploadOperationListener']/method[@name='onUploadProgress' and count(parameter)=3 and parameter[1][@type='int'] and parameter[2][@type='int'] and parameter[3][@type='com.microsoft.live.LiveOperation']]/parameter[@name='p1']"
+    name="name">
+    bytesRemaining
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveUploadOperationListener']/method[@name='onUploadProgress' and count(parameter)=3 and parameter[1][@type='int'] and parameter[2][@type='int'] and parameter[3][@type='com.microsoft.live.LiveOperation']]/parameter[@name='p2']"
+    name="name">
+    operation
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveOperationListener']/method[@name='onComplete' and count(parameter)=1 and parameter[1][@type='com.microsoft.live.LiveOperation']]/parameter[@name='p0']"
+    name="name">
+    operation
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveOperationListener']/method[@name='onError' and count(parameter)=2 and parameter[1][@type='com.microsoft.live.LiveOperationException'] and parameter[2][@type='com.microsoft.live.LiveOperation']]/parameter[@name='p0']"
+    name="name">
+    exception
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveOperationListener']/method[@name='onError' and count(parameter)=2 and parameter[1][@type='com.microsoft.live.LiveOperationException'] and parameter[2][@type='com.microsoft.live.LiveOperation']]/parameter[@name='p1']"
+    name="name">
+    operation
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveDownloadOperationListener']/method[@name='onDownloadCompleted' and count(parameter)=1 and parameter[1][@type='com.microsoft.live.LiveDownloadOperation']]/parameter[@name='p0']"
+    name="name">
+    operation
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveDownloadOperationListener']/method[@name='onDownloadFailed' and count(parameter)=2 and parameter[1][@type='com.microsoft.live.LiveOperationException'] and parameter[2][@type='com.microsoft.live.LiveDownloadOperation']]/parameter[@name='p0']"
+    name="name">
+    exception
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveDownloadOperationListener']/method[@name='onDownloadFailed' and count(parameter)=2 and parameter[1][@type='com.microsoft.live.LiveOperationException'] and parameter[2][@type='com.microsoft.live.LiveDownloadOperation']]/parameter[@name='p1']"
+    name="name">
+    operation
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveDownloadOperationListener']/method[@name='onDownloadProgress' and count(parameter)=3 and parameter[1][@type='int'] and parameter[2][@type='int'] and parameter[3][@type='com.microsoft.live.LiveDownloadOperation']]/parameter[@name='p0']"
+    name="name">
+    totalBytes
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveDownloadOperationListener']/method[@name='onDownloadProgress' and count(parameter)=3 and parameter[1][@type='int'] and parameter[2][@type='int'] and parameter[3][@type='com.microsoft.live.LiveDownloadOperation']]/parameter[@name='p1']"
+    name="name">
+    bytesRemaining
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveDownloadOperationListener']/method[@name='onDownloadProgress' and count(parameter)=3 and parameter[1][@type='int'] and parameter[2][@type='int'] and parameter[3][@type='com.microsoft.live.LiveDownloadOperation']]/parameter[@name='p2']"
+    name="name">
+    operation
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveAuthListener']/method[@name='onAuthComplete' and count(parameter)=3 and parameter[1][@type='com.microsoft.live.LiveStatus'] and parameter[2][@type='com.microsoft.live.LiveConnectSession'] and parameter[3][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    status
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveAuthListener']/method[@name='onAuthComplete' and count(parameter)=3 and parameter[1][@type='com.microsoft.live.LiveStatus'] and parameter[2][@type='com.microsoft.live.LiveConnectSession'] and parameter[3][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    session
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveAuthListener']/method[@name='onAuthComplete' and count(parameter)=3 and parameter[1][@type='com.microsoft.live.LiveStatus'] and parameter[2][@type='com.microsoft.live.LiveConnectSession'] and parameter[3][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveAuthListener']/method[@name='onAuthError' and count(parameter)=2 and parameter[1][@type='com.microsoft.live.LiveAuthException'] and parameter[2][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    exception
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/interface[@name='LiveAuthListener']/method[@name='onAuthError' and count(parameter)=2 and parameter[1][@type='com.microsoft.live.LiveAuthException'] and parameter[2][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/constructor[@name='LiveConnectClient' and count(parameter)=1 and parameter[1][@type='com.microsoft.live.LiveConnectSession']]/parameter[@name='p0']"
+    name="name">
+    session
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='copy' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='copy' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String']]/parameter[@name='p1']"
+    name="name">
+    destination
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='copyAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='copyAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p1']"
+    name="name">
+    destination
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='copyAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='copyAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='copyAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    destination
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='copyAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='copyAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p3']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='delete' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='deleteAsync' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='deleteAsync' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p1']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='download' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='downloadAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.io.File'] and parameter[3][@type='com.microsoft.live.LiveDownloadOperationListener']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='downloadAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.io.File'] and parameter[3][@type='com.microsoft.live.LiveDownloadOperationListener']]/parameter[@name='p1']"
+    name="name">
+    file
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='downloadAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.io.File'] and parameter[3][@type='com.microsoft.live.LiveDownloadOperationListener']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='downloadAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.io.File'] and parameter[3][@type='com.microsoft.live.LiveDownloadOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='downloadAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.io.File'] and parameter[3][@type='com.microsoft.live.LiveDownloadOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    file
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='downloadAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.io.File'] and parameter[3][@type='com.microsoft.live.LiveDownloadOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='downloadAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.io.File'] and parameter[3][@type='com.microsoft.live.LiveDownloadOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p3']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='downloadAsync' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveDownloadOperationListener']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='downloadAsync' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveDownloadOperationListener']]/parameter[@name='p1']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='downloadAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveDownloadOperationListener'] and parameter[3][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='downloadAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveDownloadOperationListener'] and parameter[3][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='downloadAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveDownloadOperationListener'] and parameter[3][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='deleteAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveOperationListener'] and parameter[3][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='deleteAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveOperationListener'] and parameter[3][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='deleteAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveOperationListener'] and parameter[3][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='get' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='getAsync' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='getAsync' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p1']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='getAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveOperationListener'] and parameter[3][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='getAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveOperationListener'] and parameter[3][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='getAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='com.microsoft.live.LiveOperationListener'] and parameter[3][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='move' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='move' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String']]/parameter[@name='p1']"
+    name="name">
+    destination
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='moveAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='moveAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p1']"
+    name="name">
+    destination
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='moveAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='moveAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='moveAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    destination
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='moveAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='moveAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p3']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='post' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='post' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject']]/parameter[@name='p1']"
+    name="name">
+    body
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p1']"
+    name="name">
+    body
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='post' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='post' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String']]/parameter[@name='p1']"
+    name="name">
+    body
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    body
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p3']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p1']"
+    name="name">
+    body
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    body
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='postAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p3']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='put' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='put' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject']]/parameter[@name='p1']"
+    name="name">
+    body
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='put' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='put' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String']]/parameter[@name='p1']"
+    name="name">
+    body
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p1']"
+    name="name">
+    body
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p1']"
+    name="name">
+    body
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    body
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p3']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    body
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='putAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='org.json.JSONObject'] and parameter[3][@type='com.microsoft.live.LiveOperationListener'] and parameter[4][@type='java.lang.Object']]/parameter[@name='p3']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File']]/parameter[@name='p1']"
+    name="name">
+    filename
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File']]/parameter[@name='p2']"
+    name="name">
+    file
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.OverwriteOption']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.OverwriteOption']]/parameter[@name='p1']"
+    name="name">
+    filename
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.OverwriteOption']]/parameter[@name='p2']"
+    name="name">
+    file
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.OverwriteOption']]/parameter[@name='p3']"
+    name="name">
+    overwrite
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream']]/parameter[@name='p1']"
+    name="name">
+    filename
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream']]/parameter[@name='p2']"
+    name="name">
+    file
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.OverwriteOption']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.OverwriteOption']]/parameter[@name='p1']"
+    name="name">
+    filename
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.OverwriteOption']]/parameter[@name='p2']"
+    name="name">
+    file
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='upload' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.OverwriteOption']]/parameter[@name='p3']"
+    name="name">
+    overwrite
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener']]/parameter[@name='p1']"
+    name="name">
+    filename
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener']]/parameter[@name='p2']"
+    name="name">
+    file
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener']]/parameter[@name='p3']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=5 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[5][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=5 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[5][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    filename
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=5 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[5][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    file
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=5 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[5][@type='java.lang.Object']]/parameter[@name='p3']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=5 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[5][@type='java.lang.Object']]/parameter[@name='p4']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=6 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.OverwriteOption'] and parameter[5][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[6][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=6 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.OverwriteOption'] and parameter[5][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[6][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    filename
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=6 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.OverwriteOption'] and parameter[5][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[6][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    file
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=6 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.OverwriteOption'] and parameter[5][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[6][@type='java.lang.Object']]/parameter[@name='p3']"
+    name="name">
+    overwrite
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=6 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.OverwriteOption'] and parameter[5][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[6][@type='java.lang.Object']]/parameter[@name='p4']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=6 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.File'] and parameter[4][@type='com.microsoft.live.OverwriteOption'] and parameter[5][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[6][@type='java.lang.Object']]/parameter[@name='p5']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener']]/parameter[@name='p1']"
+    name="name">
+    filename
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener']]/parameter[@name='p2']"
+    name="name">
+    input
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener']]/parameter[@name='p3']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=5 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[5][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=5 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[5][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    filename
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=5 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[5][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    input
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=5 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[5][@type='java.lang.Object']]/parameter[@name='p3']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=5 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[5][@type='java.lang.Object']]/parameter[@name='p4']"
+    name="name">
+    userState
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=6 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.OverwriteOption'] and parameter[5][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[6][@type='java.lang.Object']]/parameter[@name='p0']"
+    name="name">
+    path
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=6 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.OverwriteOption'] and parameter[5][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[6][@type='java.lang.Object']]/parameter[@name='p1']"
+    name="name">
+    filename
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=6 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.OverwriteOption'] and parameter[5][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[6][@type='java.lang.Object']]/parameter[@name='p2']"
+    name="name">
+    input
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=6 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.OverwriteOption'] and parameter[5][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[6][@type='java.lang.Object']]/parameter[@name='p3']"
+    name="name">
+    overwrite
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=6 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.OverwriteOption'] and parameter[5][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[6][@type='java.lang.Object']]/parameter[@name='p4']"
+    name="name">
+    listener
+  </attr>
+  <attr
+    path="/api/package[@name='com.microsoft.live']/class[@name='LiveConnectClient']/method[@name='uploadAsync' and count(parameter)=6 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.io.InputStream'] and parameter[4][@type='com.microsoft.live.OverwriteOption'] and parameter[5][@type='com.microsoft.live.LiveUploadOperationListener'] and parameter[6][@type='java.lang.Object']]/parameter[@name='p5']"
+    name="name">
+    userState
+  </attr>
+
+
+</metadata>

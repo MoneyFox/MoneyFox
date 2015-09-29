@@ -1,5 +1,5 @@
-﻿using MoneyManager.Core.DataAccess;
-using MoneyManager.Core.Manager;
+﻿using MoneyManager.Core.Manager;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels

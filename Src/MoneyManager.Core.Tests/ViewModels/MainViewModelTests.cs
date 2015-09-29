@@ -1,11 +1,11 @@
 using Cirrious.MvvmCross.Platform;
 using Cirrious.MvvmCross.Test.Core;
-using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 using Moq;
 using Xunit;
 
@@ -23,11 +23,10 @@ namespace MoneyManager.Core.Tests.ViewModels
             // for navigation parsing
             Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
 
-            var dbHelper = new Mock<IDbHelper>().Object;
+            var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
                 new RecurringTransactionDataAccess(dbHelper));
-            var settings = new SettingDataAccess(new Mock<IRoamingSettings>().Object);
             var transactionManager = new TransactionManager(transactionRepository, accountRepository,
                 new Mock<IDialogService>().Object);
 
@@ -42,7 +41,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                     defaultManager);
 
             var modifyAccountViewModel = new ModifyAccountViewModel(accountRepository,
-                new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
+                new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object));
 
             var mainViewModel = new MainViewModel(modifyAccountViewModel, modifyTransactionViewModel);
 

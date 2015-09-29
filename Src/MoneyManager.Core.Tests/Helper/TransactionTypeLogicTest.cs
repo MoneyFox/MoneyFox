@@ -53,7 +53,8 @@ namespace MoneyManager.Core.Tests.Helper
         [InlineData(TransactionType.Spending, "de-DE", "Ausgabe hinzufügen", false)]
         [InlineData(TransactionType.Income, "de-DE", "Einkommen hinzufügen", false)]
         [InlineData(TransactionType.Transfer, "de-DE", "Überweisung hinzufügen", false)]
-        public void GetEnumFrostring_Type_Titel(TransactionType input, string culture, string expectedTitle, bool isEditMode)
+        public void GetEnumFrostring_Type_Titel(TransactionType input, string culture, string expectedTitle,
+            bool isEditMode)
         {
             Strings.Culture = new CultureInfo(culture);
             TransactionTypeHelper.GetViewTitleForType(input, isEditMode).ShouldBe(expectedTitle);

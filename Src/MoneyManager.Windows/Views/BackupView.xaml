@@ -10,15 +10,15 @@
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.Resources>
-        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
-    </Page.Resources>
-
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
+
+    <Page.Resources>
+        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>

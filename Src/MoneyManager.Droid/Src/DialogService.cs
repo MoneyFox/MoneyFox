@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.Droid.Platform;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 
 namespace MoneyManager.Droid

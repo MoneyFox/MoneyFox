@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using Foundation;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Ios
 {

@@ -509,13 +509,13 @@
                                                 BorderBrush="{ThemeResource SystemControlForegroundChromeMediumBrush}"
                                                 BorderThickness="0,0,0,1" />
 
-                                        <ContentPresenter x:Name="LeftHeaderPresenter"
+                                        <ContentPresenter Grid.Row="0" Grid.Column="0" x:Name="LeftHeaderPresenter"
                                                           HorizontalAlignment="Stretch"
                                                           VerticalAlignment="Stretch"
                                                           Content="{TemplateBinding LeftHeader}"
                                                           ContentTemplate="{TemplateBinding LeftHeaderTemplate}" />
                                         <ContentControl x:Name="HeaderClipper"
-                                                        Grid.Column="1"
+                                                        Grid.Row="0" Grid.Column="1"
                                                         HorizontalContentAlignment="Stretch"
                                                         UseSystemFocusVisuals="True">
                                             <ContentControl.Clip>
@@ -535,7 +535,7 @@
                                             </Grid>
                                         </ContentControl>
                                         <Button x:Name="PreviousButton"
-                                                Grid.Column="1"
+                                                Grid.Row="0" Grid.Column="1"
                                                 Width="20"
                                                 Height="36"
                                                 Margin="{ThemeResource PivotNavButtonMargin}"
@@ -548,7 +548,7 @@
                                                 Template="{StaticResource PreviousTemplate}"
                                                 UseSystemFocusVisuals="False" />
                                         <Button x:Name="NextButton"
-                                                Grid.Column="1"
+                                                Grid.Row="0" Grid.Column="1"
                                                 Width="20"
                                                 Height="36"
                                                 Margin="{ThemeResource PivotNavButtonMargin}"
@@ -561,14 +561,14 @@
                                                 Template="{StaticResource NextTemplate}"
                                                 UseSystemFocusVisuals="False" />
                                         <ContentPresenter x:Name="RightHeaderPresenter"
-                                                          Grid.Column="2"
+                                                          Grid.Row="0" Grid.Column="2"
                                                           HorizontalAlignment="Stretch"
                                                           VerticalAlignment="Stretch"
                                                           Content="{TemplateBinding RightHeader}"
                                                           ContentTemplate="{TemplateBinding RightHeaderTemplate}" />
                                         <ItemsPresenter x:Name="PivotItemPresenter"
                                                         Grid.Row="1"
-                                                        Grid.ColumnSpan="3">
+                                                        Grid.ColumnSpan="3" Grid.Column="0">
                                             <ItemsPresenter.RenderTransform>
                                                 <TransformGroup>
                                                     <TranslateTransform x:Name="ItemsPresenterTranslateTransform" />
@@ -1271,7 +1271,7 @@
                         </Grid>
                         <Grid x:Name="PaneRoot"
                               ManipulationMode="TranslateX,TranslateY"
-                              Grid.ColumnSpan="2"
+                              Grid.ColumnSpan="2" Grid.Column="0"
                               HorizontalAlignment="Left"
                               Background="{TemplateBinding PaneBackground}"
                               Width="{Binding TemplateSettings.OpenPaneLength, RelativeSource={RelativeSource Mode=TemplatedParent}}">
@@ -1297,7 +1297,7 @@
 
                         <!--a new layer here to handle all the gestures -->
                         <Grid x:Name="OverlayRoot"
-                              Grid.ColumnSpan="2">
+                              Grid.ColumnSpan="2" Grid.Column="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition
                                     Width="{Binding TemplateSettings.OpenPaneGridLength, RelativeSource={RelativeSource Mode=TemplatedParent}}" />

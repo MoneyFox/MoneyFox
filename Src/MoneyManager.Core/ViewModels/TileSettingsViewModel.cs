@@ -1,6 +1,8 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.DataAccess;
-using MoneyManager.Foundation.OperationContracts.Shotcuts;
+using MoneyManager.DataAccess;
+using MoneyManager.Foundation.Interfaces.Shotcuts;
+
+// ReSharper disable ExplicitCallerInfoArgument
 
 namespace MoneyManager.Core.ViewModels
 {

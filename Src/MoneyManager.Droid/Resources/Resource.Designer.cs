@@ -47,6 +47,29 @@ namespace MoneyManager.Droid
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView = global::MoneyManager.Droid.Resource.Styleable.MvxListView;
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxBind = global::MoneyManager.Droid.Resource.Attribute.MvxBind;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxDropDownItemTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxGroupItemTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxItemTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxLang = global::MoneyManager.Droid.Resource.Attribute.MvxLang;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxSource = global::MoneyManager.Droid.Resource.Attribute.MvxSource;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Id.MvvmCrossTagId = global::MoneyManager.Droid.Resource.Id.MvvmCrossTagId;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Id.MvxBindingTagUnique = global::MoneyManager.Droid.Resource.Id.MvxBindingTagUnique;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.String.ApplicationName = global::MoneyManager.Droid.Resource.String.ApplicationName;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxBinding = global::MoneyManager.Droid.Resource.Styleable.MvxBinding;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxBinding_MvxBind = global::MoneyManager.Droid.Resource.Styleable.MvxBinding_MvxBind;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxBinding_MvxLang = global::MoneyManager.Droid.Resource.Styleable.MvxBinding_MvxLang;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxControl = global::MoneyManager.Droid.Resource.Styleable.MvxControl;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxControl_MvxTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxExpandableListView = global::MoneyManager.Droid.Resource.Styleable.MvxExpandableListView;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxImageView = global::MoneyManager.Droid.Resource.Styleable.MvxImageView;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxImageView_MvxSource = global::MoneyManager.Droid.Resource.Styleable.MvxImageView_MvxSource;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxListView = global::MoneyManager.Droid.Resource.Styleable.MvxListView;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::MoneyManager.Droid.Resource.String.ApplicationName;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
 		}
@@ -337,6 +360,9 @@ namespace MoneyManager.Droid
 			
 			// aapt resource value: 0x7f040019
 			public const int label_cleared = 2130968601;
+			
+			// aapt resource value: 0x7f04001a
+			public const int text_endless = 2130968602;
 			
 			// aapt resource value: 0x7f040013
 			public const int textview_contact = 2130968595;

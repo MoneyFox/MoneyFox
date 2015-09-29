@@ -1,5 +1,5 @@
 ﻿using System;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Ios
 {

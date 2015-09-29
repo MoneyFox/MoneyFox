@@ -86,7 +86,7 @@ namespace MoneyManager.Windows
             NavMenuList.ItemsSource = navlist;
         }
 
-        public Frame AppFrame => frame;
+        public Frame AppFrame => Frame;
 
         public Rect TogglePaneButtonRect { get; private set; }
 
@@ -130,7 +130,7 @@ namespace MoneyManager.Windows
                 case VirtualKey.Escape:
                 case VirtualKey.Back:
                 case VirtualKey.B:
-                    bool temp = false;
+                    var temp = false;
                     BackRequested(ref temp);
                     break;
             }
@@ -216,7 +216,7 @@ namespace MoneyManager.Windows
 
         private void BackRequested(ref bool handled)
         {
-            // Get a hold of the current frame so that we can inspect the app back stack.
+            // Get a hold of the current Frame so that we can inspect the app back stack.
 
             if (AppFrame == null)
                 return;
@@ -287,9 +287,10 @@ namespace MoneyManager.Windows
         private void OnNavigatedToPage(object sender, NavigationEventArgs e)
         {
             // After a successful navigation set keyboard focus to the loaded page
-            if (e.Content is Page)
+            var page = e.Content as Page;
+            if (page != null)
             {
-                var control = (Page) e.Content;
+                var control = page;
                 control.Loaded += Page_Loaded;
             }
         }

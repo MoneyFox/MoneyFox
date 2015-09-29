@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MoneyManager.Core.DataAccess;
 using MoneyManager.Core.Helper;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -13,16 +12,13 @@ namespace MoneyManager.Core.ViewModels
     public class BalanceViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly SettingDataAccess settings;
         private readonly ITransactionRepository transactionRepository;
 
         public BalanceViewModel(IRepository<Account> accountRepository,
-            ITransactionRepository transactionRepository,
-            SettingDataAccess settings)
+            ITransactionRepository transactionRepository)
         {
             this.accountRepository = accountRepository;
             this.transactionRepository = transactionRepository;
-            this.settings = settings;
         }
 
         public double TotalBalance { get; set; }

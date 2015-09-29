@@ -1,7 +1,7 @@
 ﻿using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
 using Moq;
 using Xunit;
 

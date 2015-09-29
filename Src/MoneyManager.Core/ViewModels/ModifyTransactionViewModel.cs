@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.Manager;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Localization;
 using PropertyChanged;
 
@@ -18,7 +19,6 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Locker to ensure that Init isn't executed when navigate back
         /// </summary>
-        //TODO: Find another way than this...
         private static bool isInitCall = true;
 
         private readonly IRepository<Account> accountRepository;
@@ -43,106 +43,51 @@ namespace MoneyManager.Core.ViewModels
         }
 
         /// <summary>
-        ///     Handels everything when the page is loaded.
+        ///     Init the view. Is executed after the constructor call
         /// </summary>
-        public IMvxCommand LoadedCommand => new MvxCommand(Loaded);
-
-        /// <summary>
-        ///     Saves the transaction or updates the existing depending on the IsEdit Flag.
-        /// </summary>
-        public IMvxCommand SaveCommand => new MvxCommand(Save);
-
-        /// <summary>
-        ///     Opens to the SelectCategoryView
-        /// </summary>
-        public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
-
-        /// <summary>
-        ///     Delets the transaction or updates the existing depending on the IsEdit Flag.
-        /// </summary>
-        public IMvxCommand DeleteCommand => new MvxCommand(Delete);
-
-        /// <summary>
-        ///     Cancels the operations.
-        /// </summary>
-        public IMvxCommand CancelCommand => new MvxCommand(Cancel);
-
-        public DateTime EndDate { get; set; }
-        public bool IsEndless { get; set; } = true;
-        public bool IsEdit { get; set; }
-        public int Recurrence { get; set; }
-        public bool IsTransfer { get; set; }
-
-        public List<string> RecurrenceList => new List<string>
-        {
-            Strings.DailyLabel,
-            Strings.DailyWithoutWeekendLabel,
-            Strings.WeeklyLabel,
-            Strings.MonthlyLabel,
-            Strings.YearlyLabel
-        };
-
-        /// <summary>
-        ///     The selected transaction
-        /// </summary>
-        public FinancialTransaction SelectedTransaction
-        {
-            get { return transactionRepository.Selected; }
-            set { transactionRepository.Selected = value; }
-        }
-
-        /// <summary>
-        ///     Gives access to all accounts
-        /// </summary>
-        public ObservableCollection<Account> AllAccounts => accountRepository.Data;
-
-        /// <summary>
-        ///     Returns the Title for the page
-        /// </summary>
-        public string Title => TransactionTypeHelper.GetViewTitleForType(transactionRepository.Selected.Type, IsEdit);
-
-        /// <summary>
-        ///     The transaction date
-        /// </summary>
-        public DateTime Date
-        {
-            get
-            {
-                if (!IsEdit && SelectedTransaction.Date == DateTime.MinValue)
-                {
-                    SelectedTransaction.Date = DateTime.Now;
-                }
-                return SelectedTransaction.Date;
-            }
-            set { SelectedTransaction.Date = value; }
-        }
-
-        public void Init(string typeString, bool isEdit)
+        /// <param name="typeString">Type of the transaction.</param>
+        /// <param name="isEdit">Weather the transaction is in edit mode or not.</param>
+        public void Init(bool isEdit, string typeString)
         {
             //Ensure that init is only called once
             if (!isInitCall) return;
 
             IsEdit = isEdit;
-
-            var type = ((TransactionType) Enum.Parse(typeof (TransactionType), typeString));
             IsEndless = true;
 
             if (IsEdit)
             {
-                IsTransfer = SelectedTransaction.IsTransfer;
-                Recurrence = SelectedTransaction.IsRecurring
-                    ? SelectedTransaction.RecurringTransaction.Recurrence
-                    : 0;
-                oldAmount = SelectedTransaction.Amount;
+                PrepareEdit();
             }
             else
             {
-                SetDefaultTransaction(type);
-                SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
-                IsTransfer = type == TransactionType.Transfer;
+                PrepareDefault(typeString);
             }
 
             isInitCall = false;
+        }
+
+        private void PrepareEdit()
+        {
+            IsTransfer = SelectedTransaction.IsTransfer;
+            Recurrence = SelectedTransaction.IsRecurring
+                ? SelectedTransaction.RecurringTransaction.Recurrence
+                : 0;
+            oldAmount = SelectedTransaction.Amount;
+            EndDate = SelectedTransaction.IsRecurring
+                ? SelectedTransaction.RecurringTransaction.EndDate
+                : DateTime.Now;
+            IsEndless = !SelectedTransaction.IsRecurring || SelectedTransaction.RecurringTransaction.IsEndless;
+        }
+
+        private void PrepareDefault(string typeString)
+        {
+            var type = ((TransactionType) Enum.Parse(typeof (TransactionType), typeString));
+
+            SetDefaultTransaction(type);
+            SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
+            IsTransfer = type == TransactionType.Transfer;
+            EndDate = DateTime.Now;
         }
 
         private void SetDefaultTransaction(TransactionType transactionType)
@@ -165,14 +110,26 @@ namespace MoneyManager.Core.ViewModels
 
         private async void Save()
         {
-            if (transactionRepository.Selected.ChargedAccount == null)
+            if (SelectedTransaction.ChargedAccount == null)
             {
                 ShowAccountRequiredMessage();
                 return;
             }
 
             //Create a recurring transaction based on the financial transaction or update an existing
-            if (IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction)
+            await SaveRecurringTransaction();
+
+            // SaveItem or update the transaction and add the amount to the account
+            transactionRepository.Save(SelectedTransaction);
+            transactionManager.AddTransactionAmount(SelectedTransaction);
+
+            ResetInitLocker();
+            Close(this);
+        }
+
+        private async Task SaveRecurringTransaction()
+        {
+            if ((IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction))
                 || SelectedTransaction.IsRecurring)
             {
                 SelectedTransaction.RecurringTransaction = RecurringTransactionHelper.
@@ -181,13 +138,6 @@ namespace MoneyManager.Core.ViewModels
                         Recurrence,
                         EndDate);
             }
-
-            // SaveItem or update the transaction and add the amount to the account
-            transactionRepository.Save(SelectedTransaction);
-            transactionManager.AddTransactionAmount(SelectedTransaction);
-
-            ResetInitLocker();
-            Close(this);
         }
 
         private void OpenSelectCategoryList()
@@ -232,5 +182,110 @@ namespace MoneyManager.Core.ViewModels
         {
             isInitCall = true;
         }
+
+        #region Commands
+
+        /// <summary>
+        ///     Handels everything when the page is loaded.
+        /// </summary>
+        public IMvxCommand LoadedCommand => new MvxCommand(Loaded);
+
+        /// <summary>
+        ///     Saves the transaction or updates the existing depending on the IsEdit Flag.
+        /// </summary>
+        public IMvxCommand SaveCommand => new MvxCommand(Save);
+
+        /// <summary>
+        ///     Opens to the SelectCategoryView
+        /// </summary>
+        public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
+
+        /// <summary>
+        ///     Delets the transaction or updates the existing depending on the IsEdit Flag.
+        /// </summary>
+        public IMvxCommand DeleteCommand => new MvxCommand(Delete);
+
+        /// <summary>
+        ///     Cancels the operations.
+        /// </summary>
+        public IMvxCommand CancelCommand => new MvxCommand(Cancel);
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        ///     Indicates if the view is in Edit mode.
+        /// </summary>
+        public bool IsEdit { get; set; }
+
+        /// <summary>
+        ///     Indicates if the transaction is a transfer.
+        /// </summary>
+        public bool IsTransfer { get; set; }
+
+        /// <summary>
+        ///     Indicates if the reminder is endless
+        /// </summary>
+        public bool IsEndless { get; set; }
+
+        /// <summary>
+        ///     The Enddate for recurring transaction
+        /// </summary>
+        public DateTime EndDate { get; set; }
+
+        /// <summary>
+        ///     The selected recurrence
+        /// </summary>
+        public int Recurrence { get; set; }
+
+        /// <summary>
+        ///     List with the different recurrence types.
+        /// </summary>
+        public List<string> RecurrenceList => new List<string>
+        {
+            Strings.DailyLabel,
+            Strings.DailyWithoutWeekendLabel,
+            Strings.WeeklyLabel,
+            Strings.MonthlyLabel,
+            Strings.YearlyLabel
+        };
+
+        /// <summary>
+        ///     The selected transaction
+        /// </summary>
+        public FinancialTransaction SelectedTransaction
+        {
+            get { return transactionRepository.Selected; }
+            set { transactionRepository.Selected = value; }
+        }
+
+        /// <summary>
+        ///     Gives access to all accounts
+        /// </summary>
+        public ObservableCollection<Account> AllAccounts => accountRepository.Data;
+
+        /// <summary>
+        ///     Returns the Title for the page
+        /// </summary>
+        public string Title => TransactionTypeHelper.GetViewTitleForType(SelectedTransaction.Type, IsEdit);
+
+        /// <summary>
+        ///     The transaction date
+        /// </summary>
+        public DateTime Date
+        {
+            get
+            {
+                if (!IsEdit && SelectedTransaction.Date == DateTime.MinValue)
+                {
+                    SelectedTransaction.Date = DateTime.Now;
+                }
+                return SelectedTransaction.Date;
+            }
+            set { SelectedTransaction.Date = value; }
+        }
+
+        #endregion
     }
 }

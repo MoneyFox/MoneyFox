@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
-using MoneyManager.Foundation.OperationContracts.Shotcuts;
+using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Localization;
 
 namespace MoneyManager.Windows.Shortcut

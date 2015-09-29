@@ -61,7 +61,7 @@
             android:id="@+id/recurrence_spinner"
             local:MvxBind="ItemsSource RecurrenceList;SelectedIndex Recurrence" />
         <CheckBox
-            android:text="CheckBox"
+            android:text="@string/text_endless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_endless"
@@ -73,6 +73,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/button_date"
-            local:MvxBind="Text EndDate, Converter=DateTimeFormat" />
+            local:MvxBind="Text EndDate, Converter=DateTimeFormat;Visibility InvertedVisibility(IsEndless)" />
     </LinearLayout>
 </LinearLayout>

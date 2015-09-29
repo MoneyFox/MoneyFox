@@ -4,7 +4,7 @@ using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Droid.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.XamarinAndroid;

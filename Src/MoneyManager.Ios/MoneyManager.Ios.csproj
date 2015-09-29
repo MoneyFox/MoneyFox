@@ -11,7 +11,7 @@
     <AssemblyName>MoneyManagerIos</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <ReleaseVersion>0.4.0.0</ReleaseVersion>
+    <ReleaseVersion>0.5.0.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -158,7 +158,9 @@
   <ItemGroup>
     <Content Include="Entitlements.plist" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.NETNative.Analyzer.1.0.0\analyzers\dotnet\cs\NativeGatekeeper.dll" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyManager.Core\MoneyManager.Core.csproj">
       <Project>{64F3A03F-44C2-44FA-BD29-FA23C35C95F0}</Project>

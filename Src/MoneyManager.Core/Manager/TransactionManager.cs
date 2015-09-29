@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Localization;
 
 namespace MoneyManager.Core.Manager
@@ -19,6 +19,7 @@ namespace MoneyManager.Core.Manager
         /// </summary>
         /// <param name="transactionRepository">Instance of <see cref="ITransactionRepository" /></param>
         /// <param name="accountRepository">Instance of <see cref="IRepository{T}" /></param>
+        /// <param name="dialogService">Instance of <see cref="IDialogService" /></param>
         public TransactionManager(ITransactionRepository transactionRepository,
             IRepository<Account> accountRepository, IDialogService dialogService)
         {
@@ -164,14 +165,14 @@ namespace MoneyManager.Core.Manager
         private Func<FinancialTransaction, Account> GetTargetAccountFunc()
         {
             Func<FinancialTransaction, Account> targetAccountFunc =
-                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.TargetAccount.Id);
+                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.TargetAccountId);
             return targetAccountFunc;
         }
 
         private Func<FinancialTransaction, Account> GetChargedAccountFunc()
         {
             Func<FinancialTransaction, Account> accountFunc =
-                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.ChargedAccount.Id);
+                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
             return accountFunc;
         }
 
@@ -179,8 +180,9 @@ namespace MoneyManager.Core.Manager
         {
             try
             {
-                var relatedTrans =
-                    transactionRepository.Data.Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
+                var relatedTrans = transactionRepository
+                    .Data
+                    .Where(x => x.IsRecurring && x.ReccuringTransactionId == recTrans.Id);
 
                 foreach (var transaction in relatedTrans)
                 {

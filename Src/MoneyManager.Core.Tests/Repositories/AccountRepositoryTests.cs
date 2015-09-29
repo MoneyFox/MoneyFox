@@ -4,8 +4,8 @@ using System.Linq;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Foundation.OperationContracts;
 using MoneyManager.Localization;
 using Moq;
 using Xunit;
@@ -18,6 +18,7 @@ namespace MoneyManager.Core.Tests.Repositories
         [InlineData("Sparkonto", "Sparkonto", "de-CH")]
         [InlineData("", "[No Name]", "en-US")]
         [InlineData("", "[Kein Name]", "de-CH")]
+        [Trait("volatile", "")]
         public void Save_InputName_CorrectNameAssigned(string nameInput, string nameExpected, string culture)
         {
             var testList = new List<Account>();

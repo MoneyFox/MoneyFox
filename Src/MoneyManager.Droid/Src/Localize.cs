@@ -1,6 +1,6 @@
 using System.Globalization;
 using Java.Util;
-using MoneyManager.Foundation.OperationContracts;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Droid
 {
