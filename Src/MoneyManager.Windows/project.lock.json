@@ -238,6 +238,19 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta3": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
+        }
+      },
       "NotificationsExtensions.Win10/10240.0.6": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
@@ -1896,6 +1909,19 @@
         "runtime": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        }
+      },
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta3": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
         }
       },
       "NotificationsExtensions.Win10/10240.0.6": {
@@ -3589,6 +3615,19 @@
         "runtime": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        }
+      },
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta3": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
         }
       },
       "NotificationsExtensions.Win10/10240.0.6": {
@@ -5289,6 +5328,19 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta3": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
+        }
+      },
       "NotificationsExtensions.Win10/10240.0.6": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
@@ -6980,6 +7032,19 @@
         "runtime": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        }
+      },
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta3": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
         }
       },
       "NotificationsExtensions.Win10/10240.0.6": {
@@ -8680,6 +8745,19 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta3": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
+        }
+      },
       "NotificationsExtensions.Win10/10240.0.6": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
@@ -10371,6 +10449,19 @@
         "runtime": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        }
+      },
+      "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta3": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {}
         }
       },
       "NotificationsExtensions.Win10/10240.0.6": {
@@ -12549,6 +12640,45 @@
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Touch.dll",
         "MvvmCross.HotTuna.MvvmCrossLibraries.nuspec",
         "package/services/metadata/core-properties/1b2ecd52152f4ba6a0eaf3d0c1b3486d.psmdcp"
+      ]
+    },
+    "MvvmCross.HotTuna.Plugin.Visibility/4.0.0-beta3": {
+      "sha512": "/53ZwtJqU5ZuYJbQ2PQOOH5Iq/e7zXjaBI8ZAgEVTuZEfx93kkf3ti1l17TSFjtb3FNm4HTatq6ryqUdWh5GHg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "content/MonoAndroid/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "content/net45/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "content/netcore45/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "content/win81/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "content/wp8/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "content/wpa81/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "content/Xamarin.iOS10/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "lib/dotnet/MvvmCross.Plugins.Visibility.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.Visibility.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.Visibility.Droid.dll",
+        "lib/net45/MvvmCross.Plugins.Visibility.dll",
+        "lib/net45/MvvmCross.Plugins.Visibility.Wpf.dll",
+        "lib/netcore45/MvvmCross.Plugins.Visibility.dll",
+        "lib/netcore45/MvvmCross.Plugins.Visibility.WindowsStore.dll",
+        "lib/netcore45/MvvmCross.Plugins.Visibility.WindowsStore.pri",
+        "lib/portable-win+net45+wp8+win8+wpa81/MvvmCross.Plugins.Visibility.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.Visibility.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.Visibility.WindowsCommon.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.Visibility.WindowsCommon.pri",
+        "lib/win81/MvvmCross.Plugins.Visibility.dll",
+        "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll",
+        "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.pri",
+        "lib/wp8/MvvmCross.Plugins.Visibility.dll",
+        "lib/wp8/MvvmCross.Plugins.Visibility.WindowsPhone.dll",
+        "lib/wpa81/MvvmCross.Plugins.Visibility.dll",
+        "lib/wpa81/MvvmCross.Plugins.Visibility.WindowsCommon.dll",
+        "lib/wpa81/MvvmCross.Plugins.Visibility.WindowsCommon.pri",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.Visibility.dll",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.Visibility.Touch.dll",
+        "MvvmCross.HotTuna.Plugin.Visibility.nuspec",
+        "package/services/metadata/core-properties/c8bf3acc53b045c7a1aba9641275ec47.psmdcp"
       ]
     },
     "NotificationsExtensions.Win10/10240.0.6": {
@@ -15401,6 +15531,7 @@
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Microsoft.NETNative.Analyzer >= 1.0.0",
       "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta3",
+      "MvvmCross.HotTuna.Plugin.Visibility >= 4.0.0-beta3",
       "NotificationsExtensions.Win10 >= 10240.0.6",
       "OxyPlot.Windows >= 2015.1.1033-alpha",
       "SQLite.Net-PCL >= 3.0.5",

@@ -50,6 +50,8 @@ namespace MoneyManager.Windows.Services
                 await Login();
             }
 
+            if (liveClient == null) return TaskCompletionType.Unsuccessful;
+
             await GetBackupFolder();
 
             if (string.IsNullOrEmpty(folderId))
@@ -92,6 +94,8 @@ namespace MoneyManager.Windows.Services
                 await Login();
             }
 
+            if (liveClient == null) return TaskCompletionType.Unsuccessful;
+            
             try
             {
                 await GetBackupId();
@@ -106,39 +110,6 @@ namespace MoneyManager.Windows.Services
             {
                 InsightHelper.Report(ex);
                 return TaskCompletionType.Unsuccessful;
-            }
-        }
-
-        /// <summary>
-        ///     Returns the Creationtime of an existing backup.
-        /// </summary>
-        /// <returns>Creationtime as DateTime</returns>
-        public async Task<DateTime> GetLastCreationDate()
-        {
-            if (liveClient == null)
-            {
-                await Login();
-            }
-
-            await GetBackupId();
-
-            if (string.IsNullOrEmpty(backupId))
-            {
-                return DateTime.MinValue;
-            }
-
-            try
-            {
-                var operationResult =
-                    await liveClient.GetAsync(backupId);
-                dynamic result = operationResult.Result;
-                DateTime createdAt = Convert.ToDateTime(result.created_time);
-                return createdAt;
-            }
-            catch (Exception ex)
-            {
-                InsightHelper.Report(ex);
-                return DateTime.MinValue;
             }
         }
 

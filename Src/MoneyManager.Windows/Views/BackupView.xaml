@@ -17,7 +17,7 @@
     </interactivity:Interaction.Behaviors>
     
     <Page.Resources>
-        <converter:NativeBooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
     </Page.Resources>
 
     <Grid>

@@ -136,8 +136,8 @@ namespace MoneyManager.Windows.Controls
                     if (item != null)
                     {
                         var currentItem = item;
-                        var onlastitem = currentItem != null && IndexFromContainer(currentItem) == Items.Count - 1;
-                        var onfirstitem = currentItem != null && IndexFromContainer(currentItem) == 0;
+                        var onlastitem = Items != null && IndexFromContainer(currentItem) == Items.Count - 1;
+                        var onfirstitem = IndexFromContainer(currentItem) == 0;
 
                         if (!shiftKeyDown)
                         {
@@ -196,7 +196,7 @@ namespace MoneyManager.Windows.Controls
         private void InvokeItem(object focusedItem)
         {
             SetSelectedItem(focusedItem as ListViewItem);
-            ItemInvoked(this, focusedItem as ListViewItem);
+            ItemInvoked?.Invoke(this, focusedItem as ListViewItem);
 
             if (splitViewHost.IsPaneOpen && (
                 splitViewHost.DisplayMode == SplitViewDisplayMode.CompactOverlay ||
