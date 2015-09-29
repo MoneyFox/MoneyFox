@@ -27,7 +27,6 @@ namespace MoneyManager.Core.Tests.ViewModels
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
                 new RecurringTransactionDataAccess(dbHelper));
-            var settings = new SettingDataAccess(new Mock<IRoamingSettings>().Object);
             var transactionManager = new TransactionManager(transactionRepository, accountRepository,
                 new Mock<IDialogService>().Object);
 
@@ -42,7 +41,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                     defaultManager);
 
             var modifyAccountViewModel = new ModifyAccountViewModel(accountRepository,
-                new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object, settings));
+                new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object));
 
             var mainViewModel = new MainViewModel(modifyAccountViewModel, modifyTransactionViewModel);
 

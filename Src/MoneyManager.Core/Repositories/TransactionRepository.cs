@@ -20,8 +20,8 @@ namespace MoneyManager.Core.Repositories
         /// <summary>
         ///     Creates a TransactionRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced <see cref="IDataAccess<see cref="FinancialTransaction" />>"/></param>
-        /// <param name="recurringDataAccess">Instanced <see cref="IDataAccess<see cref="RecurringTransaction" />>"/></param>
+        /// <param name="dataAccess">Instanced <see cref="IDataAccess{T}"/> for <see cref="FinancialTransaction"/></param>
+        /// <param name="recurringDataAccess">Instanced <see cref="IDataAccess{T}"/> for <see cref="RecurringTransaction"/></param>
         public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess, IDataAccess<RecurringTransaction> recurringDataAccess)
         {
             this.dataAccess = dataAccess;

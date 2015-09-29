@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
@@ -25,8 +24,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2, Name = accountname});
 
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new BalanceViewModel(
-                accountRepositorySetup.Object, new Mock<ITransactionRepository>().Object,
-                new SettingDataAccess(new Mock<IRoamingSettings>().Object))) {IsEdit = true};
+                accountRepositorySetup.Object, new Mock<ITransactionRepository>().Object)) {IsEdit = true};
 
             viewmodel.Title.ShouldBe("Edit " + accountname);
 
@@ -46,8 +44,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2, Name = accountname});
 
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new BalanceViewModel(
-                accountRepositorySetup.Object, new Mock<ITransactionRepository>().Object,
-                new SettingDataAccess(new Mock<IRoamingSettings>().Object)))
+                accountRepositorySetup.Object, new Mock<ITransactionRepository>().Object))
             {IsEdit = false};
 
             viewmodel.Title.ShouldBe(Strings.AddAccountTitle);

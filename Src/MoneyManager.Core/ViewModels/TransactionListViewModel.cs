@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.Helper;
 using MoneyManager.Core.Manager;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
@@ -73,7 +72,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void UnloadTransactions()
         {
-            //Set balance control back to all accounts
+            // Set balance control back to all accounts
             balanceViewModel.IsTransactionView = false;
             balanceViewModel.UpdateBalance();
         }
