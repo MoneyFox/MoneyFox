@@ -53,6 +53,14 @@
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Beezy.MvvmCross.Plugins.SecureStorage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Beezy.MvvmCross.Plugins.SecureStorage.1.0.0\lib\MonoAndroid\Beezy.MvvmCross.Plugins.SecureStorage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Beezy.MvvmCross.Plugins.SecureStorage.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Beezy.MvvmCross.Plugins.SecureStorage.1.0.0\lib\MonoAndroid\Beezy.MvvmCross.Plugins.SecureStorage.Droid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Cirrious.MvvmCross.Plugins.Email">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta1\lib\win81\Cirrious.MvvmCross.Plugins.Email.dll</HintPath>
     </Reference>
@@ -154,6 +162,7 @@
     <Compile Include="Activities\ModifyTransactionActivity.cs" />
     <Compile Include="Activities\TransactionListActivity.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
+    <Compile Include="Bootstrap\SecureStoragePluginBootstrap.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />

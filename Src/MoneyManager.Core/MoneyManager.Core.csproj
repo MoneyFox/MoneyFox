@@ -76,6 +76,10 @@
     <Compile Include="ViewModels\TransactionListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Beezy.MvvmCross.Plugins.SecureStorage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Beezy.MvvmCross.Plugins.SecureStorage.1.0.0\lib\portable-win+net45+sl50+wp8+MonoAndroid+MonoTouch\Beezy.MvvmCross.Plugins.SecureStorage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Cirrious.MvvmCross.Plugins.Email">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta1\lib\win81\Cirrious.MvvmCross.Plugins.Email.dll</HintPath>
     </Reference>
