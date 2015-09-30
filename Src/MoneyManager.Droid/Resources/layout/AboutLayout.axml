@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        local:MvxBind="Text Version"/>
+        local:MvxBind="Text Version" />
     <TextView
         android:text="@string/textview_contact"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -35,8 +35,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" 
-        local:MvxBind="Text Website"/>
+        android:gravity="center"
+        local:MvxBind="Text Website; Click GoToWebsiteCommand" />
     <TextView
         android:text="Supportmail"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -44,12 +44,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="7dp"
-        local:MvxBind="Text SupportMail"/>
+        local:MvxBind="Text SupportMail; Click SendMailCommand" />
     <Button
         android:text="@string/button_rate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp" />
+        android:layout_marginTop="7dp"
+        local:MvxBind="Click RateAppCommand" />
     <TextView
         android:text="@string/textview_opensource"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -63,5 +64,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" />
+        android:gravity="center"
+        local:MvxBind="Click GoToRepositoryCommand" />
 </LinearLayout>
