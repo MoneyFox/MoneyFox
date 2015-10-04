@@ -11,10 +11,12 @@ namespace MoneyManager.DataAccess
         // Settings Names
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
+        private const string PASSWORD_REQUIRED_KEYNAME = "PasswordRequired";
 
         // Default Settings
         private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
         private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = false;
+        private const bool PASSWORD_REQUIRED_KEYDEFAULT = false;
 
         private readonly IRoamingSettings roamingSettings;
 
@@ -61,6 +63,20 @@ namespace MoneyManager.DataAccess
             set
             {
                 AddOrUpdateValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value);
+                OnPropertyChanged();
+            }
+        }
+
+        public bool PasswordRequired
+        {
+            get
+            {
+                return roamingSettings.GetValueOrDefault(PASSWORD_REQUIRED_KEYNAME,
+                    PASSWORD_REQUIRED_KEYDEFAULT);
+            }
+            set
+            {
+                AddOrUpdateValue(PASSWORD_REQUIRED_KEYNAME, value);
                 OnPropertyChanged();
             }
         }
