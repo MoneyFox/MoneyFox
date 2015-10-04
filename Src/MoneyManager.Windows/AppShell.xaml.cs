@@ -299,6 +299,7 @@ namespace MoneyManager.Windows
             ((Page) sender).Focus(FocusState.Programmatic);
             ((Page) sender).Loaded -= Page_Loaded;
             CheckTogglePaneButtonSizeChanged();
+
             if (SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility ==
                 AppViewBackButtonVisibility.Collapsed)
             {
