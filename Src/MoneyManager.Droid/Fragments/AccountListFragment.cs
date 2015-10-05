@@ -1,6 +1,7 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Support.Fragging.Fragments;
 using MoneyManager.Core.ViewModels;
@@ -20,6 +21,18 @@ namespace MoneyManager.Droid.Fragments
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.AccountListLayout, null);
+
+            if (savedInstanceState == null)
+            {
+                var fragment = new BalanceFragment
+                {
+                    ViewModel = Mvx.Resolve<BalanceViewModel>()
+                };
+
+                FragmentManager.BeginTransaction()
+                        .Replace(Resource.Id.balance_pane, fragment)
+                        .Commit();
+            }
 
             var list = view.FindViewById<ListView>(Resource.Id.accountList);
             RegisterForContextMenu(list);

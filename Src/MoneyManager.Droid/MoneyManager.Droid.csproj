@@ -168,6 +168,7 @@
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Fragments\AboutFragment.cs" />
     <Compile Include="Fragments\AccountListFragment.cs" />
+    <Compile Include="Fragments\BalanceFragment.cs" />
     <Compile Include="Fragments\DatePickerDialogFragment.cs" />
     <Compile Include="Fragments\StatisticFragment.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
@@ -217,6 +218,7 @@
     <AndroidResource Include="Resources\menu\SelectMenu.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\BalanceLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MainLayout.axml" />
