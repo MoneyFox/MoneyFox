@@ -37,7 +37,7 @@ namespace MoneyManager.DataAccess
                 //Check if the transaction is new or an updated one
                 if (itemToSave.Id == 0)
                 {
-                    db.Insert(itemToSave);
+                    db.InsertOrReplaceWithChildren(itemToSave);
                 }
                 else
                 {
