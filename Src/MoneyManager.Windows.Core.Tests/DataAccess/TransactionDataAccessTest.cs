@@ -94,5 +94,26 @@ namespace MoneyManager.Windows.Core.Tests.DataAccess
             list = transactionDataAccess.LoadList();
             Assert.False(list.Any());
         }
+
+        [Fact]
+        [Trait("Category", "Integration")]
+        public void SaveTransaction_ChargedAccountSet_AccountIdAssociated()
+        {
+            var transactionDataAccess =
+                new TransactionDataAccess(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory()));
+
+            var transaction = new FinancialTransaction
+            {
+                ChargedAccount = new Account { Id = 4 },
+                Amount = 76.30,
+                Date = DateTime.Today,
+                Note = "this is a note!!!",
+                IsCleared = false
+            };
+
+            transactionDataAccess.SaveItem(transaction);
+
+            transaction.ChargedAccountId.ShouldBe(4);
+        }
     }
 }
