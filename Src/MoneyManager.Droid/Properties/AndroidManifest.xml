@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.0.5" package="com.applysolutions.ch.moneyfox" android:versionCode="5">
-	<uses-sdk android:minSdkVersion="16" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.0.6" package="com.applysolutions.ch.moneyfox" android:versionCode="6">
+	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="22" />
 	<application android:label="Money Fox" android:icon="@drawable/Icon" />
 </manifest>
