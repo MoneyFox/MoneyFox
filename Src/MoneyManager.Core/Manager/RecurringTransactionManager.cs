@@ -21,13 +21,8 @@ namespace MoneyManager.Core.Manager
         {
             var transactionList = transactionRepository.LoadRecurringList();
 
-            foreach (var transaction in transactionList)
+            foreach (var transaction in transactionList.Where(x => x.ChargedAccount != null))
             {
-                if (transaction.ChargedAccount == null)
-                {
-                    continue;
-                }
-
                 var relTransaction = GetLastOccurence(transaction);
 
                 if (RecurringTransactionHelper.CheckIfRepeatable(transaction.RecurringTransaction, relTransaction))

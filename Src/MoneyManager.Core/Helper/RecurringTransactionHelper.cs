@@ -30,6 +30,7 @@ namespace MoneyManager.Core.Helper
                 EndDate = enddate,
                 IsEndless = isEndless,
                 Amount = transaction.Amount,
+                CategoryId = transaction.CategoryId,
                 Category = transaction.Category,
                 Type = transaction.Type,
                 Recurrence = recurrence,
