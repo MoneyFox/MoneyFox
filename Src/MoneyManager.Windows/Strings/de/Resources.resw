@@ -189,6 +189,9 @@
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
     <value>Wähle Kategorie</value>
   </data>
+  <data name="SetDate.Label" xml:space="preserve">
+    <value>Datum setzen</value>
+  </data>
   <data name="SetPassword.Content" xml:space="preserve">
     <value>Passwort setzten</value>
   </data>

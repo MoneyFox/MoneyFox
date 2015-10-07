@@ -190,6 +190,9 @@ Visit Repository:</value>
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
     <value>Select Category</value>
   </data>
+  <data name="SetDate.Label" xml:space="preserve">
+    <value>Set Date</value>
+  </data>
   <data name="SetPassword.Content" xml:space="preserve">
     <value>Set Password</value>
   </data>
