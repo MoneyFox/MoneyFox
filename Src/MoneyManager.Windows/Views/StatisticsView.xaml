@@ -27,14 +27,15 @@
                                         x:Uid="CashFlowTitle"
                                         Glyph="&#xE908;" />
                 </PivotItem.Header>
-                <StackPanel>
+                <Grid>
                     <TextBlock Text="{Binding Title}"
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}"/>
                     <windows:PlotView Model="{Binding CashFlowModel}"
                                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                                       HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Stretch" />
-                </StackPanel>
+                                      VerticalAlignment="Stretch"
+                                      Margin="0,30,0,0"/>
+                </Grid>
             </PivotItem>
 
             <PivotItem>
@@ -43,14 +44,15 @@
                                         x:Uid="SpreadingTitle"
                                         Glyph="&#xE774;" />
                 </PivotItem.Header>
-                <StackPanel Margin="30">
+                <Grid>
                     <TextBlock Text="{Binding Title}"
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
                     <windows:PlotView Model="{Binding SpreadingModel}"
                                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                                       HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Stretch" />
-                </StackPanel>
+                                      VerticalAlignment="Stretch"
+                                      Margin="30"/>
+                </Grid>
             </PivotItem>
 
             <PivotItem>
@@ -60,13 +62,13 @@
                                         x:Uid="CategorySummaryTitle"
                                         Glyph="&#xE8EC;" />
                 </PivotItem.Header>
-                <StackPanel>
+                <Grid>
                     <TextBlock Text="{Binding Title}"
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
                     <controls:CategorySummaryUserControl HorizontalAlignment="Stretch"
                                                          VerticalAlignment="Stretch"
-                                                         Margin="-12,0,-12,0" />
-                </StackPanel>
+                                                         Margin="-12,30,-12,0" />
+                </Grid>
             </PivotItem>
         </Pivot>
     </Grid>
