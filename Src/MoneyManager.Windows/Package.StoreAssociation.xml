@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StoreAssociation xmlns="http://schemas.microsoft.com/appx/2010/storeassociation">
   <Publisher>CN=456A8DD5-B6B1-4703-AC59-444B9A479C1F</Publisher>
-  <PublisherDisplayName>Apply-Solutions</PublisherDisplayName>
+  <PublisherDisplayName>NPadrutt</PublisherDisplayName>
   <GeneratePackageHash>http://www.w3.org/2001/04/xmlenc#sha256</GeneratePackageHash>
   <SupportedLocales>
     <Language Code="af" InMinimumRequirementSet="true" />
