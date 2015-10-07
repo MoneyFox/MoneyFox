@@ -8,7 +8,7 @@ using System.Resources;
 [assembly: AssemblyTitle("MoneyManager.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Apply Solutions")]
 [assembly: AssemblyProduct("MoneyManager.Core")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
