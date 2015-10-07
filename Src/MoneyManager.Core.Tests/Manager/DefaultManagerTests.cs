@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using MoneyManager.Core.Manager;
 using MoneyManager.DataAccess;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using MoneyManager.TestFoundation;
 using Moq;
 using Xunit;
 

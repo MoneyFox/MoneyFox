@@ -150,6 +150,10 @@
       <Project>{6936F4D3-8889-48C7-A676-80D59B2740CE}</Project>
       <Name>MoneyManager.Foundation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyManager.TestFoundation\MoneyManager.TestFoundation.csproj">
+      <Project>{72F45D21-21E2-4E46-8C72-CF855AFC3765}</Project>
+      <Name>MoneyManager.TestFoundation</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

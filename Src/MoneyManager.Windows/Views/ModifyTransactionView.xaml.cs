@@ -5,6 +5,8 @@ using Windows.UI.Xaml.Controls;
 using Cirrious.CrossCore;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation;
+using MoneyManager.Foundation.Exceptions;
 
 namespace MoneyManager.Windows.Views
 {
@@ -36,31 +38,38 @@ namespace MoneyManager.Windows.Views
 
         private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
+            try
+            {
+                if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
 
-            //cursorpositon to set the position back after the formating
-            var cursorposition = TextBoxAmount.SelectionStart;
+                //cursorpositon to set the position back after the formating
+                var cursorposition = TextBoxAmount.SelectionStart;
 
-            //replace either a comma with the decimal separator for the current culture to avoid parsing errors.
-            TextBoxAmount.Text = TextBoxAmount.Text
-                .Replace(",", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
+                //replace either a comma with the decimal separator for the current culture to avoid parsing errors.
+                TextBoxAmount.Text = TextBoxAmount.Text
+                    .Replace(",", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
 
-            if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
-            //replace either a dot with the decimal separator for the current culture to avoid parsing errors.
-            TextBoxAmount.Text = TextBoxAmount.Text
-                .Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
+                if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
+                //replace either a dot with the decimal separator for the current culture to avoid parsing errors.
+                TextBoxAmount.Text = TextBoxAmount.Text
+                    .Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
 
-            if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
+                if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
 
-            var formattedText =
-                Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxAmount.Text, CultureInfo.CurrentCulture));
+                var formattedText =
+                    Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxAmount.Text, CultureInfo.CurrentCulture));
 
-            cursorposition = AdjustCursorPosition(formattedText, cursorposition);
+                cursorposition = AdjustCursorPosition(formattedText, cursorposition);
 
-            TextBoxAmount.Text = formattedText;
+                TextBoxAmount.Text = formattedText;
 
-            //set the cursor back to the last positon to avoid jumping around
-            TextBoxAmount.Select(cursorposition, 0);
+                //set the cursor back to the last positon to avoid jumping around
+                TextBoxAmount.Select(cursorposition, 0);
+            }
+            catch (FormatException ex)
+            {
+                InsightHelper.Report(new ExtendedFormatException(ex));
+            }
         }
 
         /// <summary>

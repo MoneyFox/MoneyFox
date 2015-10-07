@@ -153,6 +153,10 @@
       <Project>{90644219-756F-45CC-AB90-253463C5BC5E}</Project>
       <Name>MoneyManager.Localization</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyManager.TestFoundation\MoneyManager.TestFoundation.csproj">
+      <Project>{72F45D21-21E2-4E46-8C72-CF855AFC3765}</Project>
+      <Name>MoneyManager.TestFoundation</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

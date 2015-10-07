@@ -5,6 +5,8 @@ using Windows.UI.Xaml.Controls;
 using Cirrious.CrossCore;
 using MoneyManager.Core.Helper;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation;
+using MoneyManager.Foundation.Exceptions;
 
 namespace MoneyManager.Windows.Views
 {
@@ -38,29 +40,36 @@ namespace MoneyManager.Windows.Views
         {
             if (string.IsNullOrEmpty(TextBoxCurrentBalance.Text)) return;
 
-            //cursorpositon to set the position back after the formating
-            var cursorposition = TextBoxCurrentBalance.SelectionStart;
+            try
+            {
+                //cursorpositon to set the position back after the formating
+                var cursorposition = TextBoxCurrentBalance.SelectionStart;
 
-            //replace either a comma with the decimal separator for the current culture to avoid parsing errors.
-            TextBoxCurrentBalance.Text = TextBoxCurrentBalance.Text
-                .Replace(",", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
+                //replace either a comma with the decimal separator for the current culture to avoid parsing errors.
+                TextBoxCurrentBalance.Text = TextBoxCurrentBalance.Text
+                    .Replace(",", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
 
-            if (string.IsNullOrEmpty(TextBoxCurrentBalance.Text)) return;
-            //replace either a dot with the decimal separator for the current culture to avoid parsing errors.
-            TextBoxCurrentBalance.Text = TextBoxCurrentBalance.Text
-                .Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
+                if (string.IsNullOrEmpty(TextBoxCurrentBalance.Text)) return;
+                //replace either a dot with the decimal separator for the current culture to avoid parsing errors.
+                TextBoxCurrentBalance.Text = TextBoxCurrentBalance.Text
+                    .Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
 
-            if (string.IsNullOrEmpty(TextBoxCurrentBalance.Text)) return;
+                if (string.IsNullOrEmpty(TextBoxCurrentBalance.Text)) return;
 
-            var formattedText =
-                Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxCurrentBalance.Text, CultureInfo.CurrentCulture));
+                var formattedText =
+                    Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxCurrentBalance.Text, CultureInfo.CurrentCulture));
 
-            cursorposition = AdjustCursorPosition(formattedText, cursorposition);
+                cursorposition = AdjustCursorPosition(formattedText, cursorposition);
 
-            TextBoxCurrentBalance.Text = formattedText;
+                TextBoxCurrentBalance.Text = formattedText;
 
-            //set the cursor back to the last positon to avoid jumping around
-            TextBoxCurrentBalance.Select(cursorposition, 0);
+                //set the cursor back to the last positon to avoid jumping around
+                TextBoxCurrentBalance.Select(cursorposition, 0);
+            }
+            catch (FormatException ex)
+            {
+                InsightHelper.Report(new ExtendedFormatException(ex));
+            }
         }
 
         /// <summary>

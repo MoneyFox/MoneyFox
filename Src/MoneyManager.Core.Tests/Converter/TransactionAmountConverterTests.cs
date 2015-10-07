@@ -1,6 +1,7 @@
 ﻿using MoneyManager.Core.Converter;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.TestFoundation;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Converter
