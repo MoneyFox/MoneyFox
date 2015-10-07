@@ -20,7 +20,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <ReleaseVersion>0.5.0.0</ReleaseVersion>
+    <ReleaseVersion>0.6.0.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -152,6 +152,10 @@
     <ProjectReference Include="..\MoneyManager.Localization\MoneyManager.Localization.csproj">
       <Project>{90644219-756F-45CC-AB90-253463C5BC5E}</Project>
       <Name>MoneyManager.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyManager.TestFoundation\MoneyManager.TestFoundation.csproj">
+      <Project>{72F45D21-21E2-4E46-8C72-CF855AFC3765}</Project>
+      <Name>MoneyManager.TestFoundation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

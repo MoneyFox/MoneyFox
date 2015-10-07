@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "Beezy.MvvmCross.Plugins.SecureStorage": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Microsoft.NETNative.Analyzer": "1.0.0",
     "MvvmCross.HotTuna.MvvmCrossLibraries": "4.0.0-beta3",

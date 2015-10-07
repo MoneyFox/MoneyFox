@@ -26,6 +26,8 @@ namespace MoneyManager.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Beezy.MvvmCross.Plugins.SecureStorage.Droid.Resource.String.ApplicationName = global::MoneyManager.Droid.Resource.String.ApplicationName;
+			global::Beezy.MvvmCross.Plugins.SecureStorage.Droid.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Attribute.MvxBind = global::MoneyManager.Droid.Resource.Attribute.MvxBind;
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxDropDownItemTemplate;
 			global::Cirrious.MvvmCross.Binding.Droid.Resource.Attribute.MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxGroupItemTemplate;
@@ -157,56 +159,59 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f050001
 			public const int MvxBindingTagUnique = 2131034113;
 			
-			// aapt resource value: 0x7f050002
-			public const int accountList = 2131034114;
+			// aapt resource value: 0x7f050003
+			public const int accountList = 2131034115;
 			
-			// aapt resource value: 0x7f050012
-			public const int action_add = 2131034130;
-			
-			// aapt resource value: 0x7f05000f
-			public const int action_add_account = 2131034127;
-			
-			// aapt resource value: 0x7f05000c
-			public const int action_add_income = 2131034124;
-			
-			// aapt resource value: 0x7f05000d
-			public const int action_add_spending = 2131034125;
-			
-			// aapt resource value: 0x7f05000e
-			public const int action_add_transfer = 2131034126;
+			// aapt resource value: 0x7f050013
+			public const int action_add = 2131034131;
 			
 			// aapt resource value: 0x7f050010
-			public const int action_delete = 2131034128;
+			public const int action_add_account = 2131034128;
+			
+			// aapt resource value: 0x7f05000d
+			public const int action_add_income = 2131034125;
+			
+			// aapt resource value: 0x7f05000e
+			public const int action_add_spending = 2131034126;
+			
+			// aapt resource value: 0x7f05000f
+			public const int action_add_transfer = 2131034127;
 			
 			// aapt resource value: 0x7f050011
-			public const int action_done = 2131034129;
+			public const int action_delete = 2131034129;
 			
-			// aapt resource value: 0x7f05000b
-			public const int action_save = 2131034123;
+			// aapt resource value: 0x7f050012
+			public const int action_done = 2131034130;
 			
-			// aapt resource value: 0x7f050006
-			public const int category = 2131034118;
+			// aapt resource value: 0x7f05000c
+			public const int action_save = 2131034124;
 			
-			// aapt resource value: 0x7f050005
-			public const int content_pane = 2131034117;
-			
-			// aapt resource value: 0x7f050009
-			public const int enddate = 2131034121;
-			
-			// aapt resource value: 0x7f050004
-			public const int left_pane = 2131034116;
-			
-			// aapt resource value: 0x7f050003
-			public const int main_layout = 2131034115;
-			
-			// aapt resource value: 0x7f05000a
-			public const int plotViewModel = 2131034122;
-			
-			// aapt resource value: 0x7f050008
-			public const int recurrence_spinner = 2131034120;
+			// aapt resource value: 0x7f050002
+			public const int balance_pane = 2131034114;
 			
 			// aapt resource value: 0x7f050007
-			public const int transactiondate = 2131034119;
+			public const int category = 2131034119;
+			
+			// aapt resource value: 0x7f050006
+			public const int content_pane = 2131034118;
+			
+			// aapt resource value: 0x7f05000a
+			public const int enddate = 2131034122;
+			
+			// aapt resource value: 0x7f050005
+			public const int left_pane = 2131034117;
+			
+			// aapt resource value: 0x7f050004
+			public const int main_layout = 2131034116;
+			
+			// aapt resource value: 0x7f05000b
+			public const int plotViewModel = 2131034123;
+			
+			// aapt resource value: 0x7f050009
+			public const int recurrence_spinner = 2131034121;
+			
+			// aapt resource value: 0x7f050008
+			public const int transactiondate = 2131034120;
 			
 			static Id()
 			{
@@ -234,28 +239,31 @@ namespace MoneyManager.Droid
 			public const int AccountListLayout = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int CategoryListItem = 2130903044;
+			public const int BalanceLayout = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int CategoryListLayout = 2130903045;
+			public const int CategoryListItem = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int MainLayout = 2130903046;
+			public const int CategoryListLayout = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int ModifyAccountLayout = 2130903047;
+			public const int MainLayout = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int ModifyTransactionLayout = 2130903048;
+			public const int ModifyAccountLayout = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int StatisticLayout = 2130903049;
+			public const int ModifyTransactionLayout = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
-			public const int TransactionListItem = 2130903050;
+			public const int StatisticLayout = 2130903050;
 			
 			// aapt resource value: 0x7f03000b
-			public const int TransactionListLayout = 2130903051;
+			public const int TransactionListItem = 2130903051;
+			
+			// aapt resource value: 0x7f03000c
+			public const int TransactionListLayout = 2130903052;
 			
 			static Layout()
 			{

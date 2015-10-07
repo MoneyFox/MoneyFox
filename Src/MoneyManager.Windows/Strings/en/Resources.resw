@@ -178,11 +178,20 @@
     <value>This programm is open source. We appreciate contributions!
 Visit Repository:</value>
   </data>
+  <data name="PasswordInfo.Text" xml:space="preserve">
+    <value>[Please write me, Jeff]</value>
+  </data>
   <data name="RateThisApp.Content" xml:space="preserve">
     <value>Rate this App</value>
   </data>
+  <data name="SecurityHeader.Label" xml:space="preserve">
+    <value>Security</value>
+  </data>
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
     <value>Select Category</value>
+  </data>
+  <data name="SetPassword.Content" xml:space="preserve">
+    <value>Set Password</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Settings</value>

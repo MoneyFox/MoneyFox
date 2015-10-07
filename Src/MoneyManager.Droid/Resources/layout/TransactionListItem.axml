@@ -47,7 +47,7 @@
             android:gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            local:MvxBind="Visible Cleared" />
+            local:MvxBind="Visible IsCleared" />
         <ImageView
             android:src="@drawable/ic_recurring"
             android:gravity="right"

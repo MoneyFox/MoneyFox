@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <ReleaseVersion>0.5.0.0</ReleaseVersion>
+    <ReleaseVersion>0.6.0.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Platform)' != 'Unix'">
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
@@ -69,6 +69,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoryListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PasswordUserControlViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryTextBoxViewModel.cs" />
     <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
@@ -117,6 +118,9 @@
     </Reference>
     <Reference Include="Xamarin.Insights, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Xamarin.Insights.1.11.1\lib\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="Beezy.MvvmCross.Plugins.SecureStorage, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Beezy.MvvmCross.Plugins.SecureStorage.1.0.0\lib\portable-win+net45+sl50+wp8+MonoAndroid+MonoTouch\Beezy.MvvmCross.Plugins.SecureStorage.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

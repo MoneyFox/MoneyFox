@@ -21,52 +21,131 @@ namespace MoneyManager.Windows
 
             if (Mvx.Resolve<TileSettingsViewModel>().ShowInfoOnMainTile)
             {
-                var bindingContent = new TileBindingContentAdaptive
-                {
-                    PeekImage = new TilePeekImage
-                    {
-                        Source = new TileImageSource("Assets/BadgeLogo.scale-400.png")
-                    },
-                    Children =
-                    {
-                        new TileText
-                        {
-                            Text = income,
-                            Style = TileTextStyle.CaptionSubtle
-                        },
-                        new TileText
-                        {
-                            Text = spending,
-                            Style = TileTextStyle.CaptionSubtle
-                        },
-                        new TileText
-                        {
-                            Text = earnings,
-                            Wrap = true,
-                            Style = TileTextStyle.Body
-                        }
-                    }
-                };
-
-                var binding = new TileBinding
-                {
-                    Branding = TileBranding.NameAndLogo,
-                    DisplayName = Strings.ApplicationTitle,
-                    Content = bindingContent
-                };
-
                 var content = new TileContent
                 {
                     Visual = new TileVisual
                     {
-                        TileMedium = binding,
-                        TileWide = binding,
-                        TileLarge = binding
+                        TileMedium = GetBindingMediumContent(income, spending, earnings),
+                        TileWide = GetBindingWideContent(income, spending, earnings),
+                        TileLarge = GetBindingLargeContent(income, spending, earnings)
                     }
                 };
                 // Update Tile
                 TileUpdateManager.CreateTileUpdaterForApplication().Update(new TileNotification(content.GetXml()));
             }
+        }
+
+        private static TileBinding GetBindingMediumContent(string income, string spending, string earnings)
+        {
+            var content = new TileBindingContentAdaptive
+            {
+                PeekImage = new TilePeekImage
+                {
+                    Source = new TileImageSource("Assets/Square150x150Logo.scale-400.png")
+                },
+                Children =
+                {
+                    new TileText
+                    {
+                        Text = income,
+                        Style = TileTextStyle.CaptionSubtle,
+                        Wrap = true
+                    },
+                    new TileText
+                    {
+                        Text = spending,
+                        Style = TileTextStyle.CaptionSubtle,
+                        Wrap = true
+                    },
+                    new TileText
+                    {
+                        Text = earnings,
+                        Wrap = true,
+                        Style = TileTextStyle.Caption
+                    }
+                }
+            };
+
+            return new TileBinding
+            {
+                Branding = TileBranding.NameAndLogo,
+                DisplayName = Strings.ApplicationTitle,
+                Content = content
+            };
+        }
+
+        private static TileBinding GetBindingWideContent(string income, string spending, string earnings)
+        {
+            var content = new TileBindingContentAdaptive
+            {
+                PeekImage = new TilePeekImage
+                {
+                    Source = new TileImageSource("Assets/Wide310x150Logo.scale-400.png")
+                },
+                Children =
+                {
+                    new TileText
+                    {
+                        Text = income,
+                        Style = TileTextStyle.CaptionSubtle
+                    },
+                    new TileText
+                    {
+                        Text = spending,
+                        Style = TileTextStyle.CaptionSubtle
+                    },
+                    new TileText
+                    {
+                        Text = earnings,
+                        Wrap = true,
+                        Style = TileTextStyle.Body
+                    }
+                }
+            };
+
+            return new TileBinding
+            {
+                Branding = TileBranding.NameAndLogo,
+                DisplayName = Strings.ApplicationTitle,
+                Content = content
+            };
+        }
+
+        private static TileBinding GetBindingLargeContent(string income, string spending, string earnings)
+        {
+            var content = new TileBindingContentAdaptive
+            {
+                PeekImage = new TilePeekImage
+                {
+                    Source = new TileImageSource("Assets/Square310x310Logo.scale-400.png")
+                },
+                Children =
+                {
+                    new TileText
+                    {
+                        Text = income,
+                        Style = TileTextStyle.CaptionSubtle
+                    },
+                    new TileText
+                    {
+                        Text = spending,
+                        Style = TileTextStyle.CaptionSubtle
+                    },
+                    new TileText
+                    {
+                        Text = earnings,
+                        Wrap = true,
+                        Style = TileTextStyle.Body
+                    }
+                }
+            };
+
+            return new TileBinding
+            {
+                Branding = TileBranding.NameAndLogo,
+                DisplayName = Strings.ApplicationTitle,
+                Content = content
+            };
         }
     }
 }

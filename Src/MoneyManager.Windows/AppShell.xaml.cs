@@ -128,7 +128,6 @@ namespace MoneyManager.Windows
                     break;
 
                 case VirtualKey.Escape:
-                case VirtualKey.Back:
                 case VirtualKey.B:
                     var temp = false;
                     BackRequested(ref temp);
@@ -300,7 +299,12 @@ namespace MoneyManager.Windows
             ((Page) sender).Focus(FocusState.Programmatic);
             ((Page) sender).Loaded -= Page_Loaded;
             CheckTogglePaneButtonSizeChanged();
-            RootSplitView.IsSwipeablePaneOpen = false;
+
+            if (SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility ==
+                AppViewBackButtonVisibility.Collapsed)
+            {
+                RootSplitView.IsSwipeablePaneOpen = false;
+            }
         }
 
         #endregion

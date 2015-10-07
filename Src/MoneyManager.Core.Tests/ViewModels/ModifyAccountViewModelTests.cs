@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
+using MoneyManager.TestFoundation;
 using Moq;
 using Xunit;
 

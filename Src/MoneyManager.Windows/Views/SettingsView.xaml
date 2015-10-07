@@ -25,6 +25,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <Pivot Style="{StaticResource TabsStylePivotStyle}">
+                <!--Allgemeines-->
                 <PivotItem>
                     <PivotItem.Header>
                         <controls:TabHeader Label="Tiles"
@@ -34,6 +35,7 @@
                     <controls:TileSettingsUserControl />
                 </PivotItem>
 
+                <!--Categorie Settings-->
                 <PivotItem>
                     <PivotItem.Header>
                         <controls:TabHeader Label="Categories"
@@ -41,6 +43,16 @@
                                             Glyph="&#xE8EC;" />
                     </PivotItem.Header>
                     <controls:CategoryListUserControl />
+                </PivotItem>
+
+                <!--Password Settings-->
+                <PivotItem>
+                    <PivotItem.Header>
+                        <controls:TabHeader Label="Password"
+                                            x:Uid="SecurityHeader"
+                                            Glyph="&#xE8D7;" />
+                    </PivotItem.Header>
+                    <controls:PasswordUserControl />
                 </PivotItem>
             </Pivot>
         </Grid>

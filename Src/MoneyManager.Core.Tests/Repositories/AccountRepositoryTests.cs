@@ -3,10 +3,10 @@ using System.Globalization;
 using System.Linq;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
+using MoneyManager.TestFoundation;
 using Moq;
 using Xunit;
 

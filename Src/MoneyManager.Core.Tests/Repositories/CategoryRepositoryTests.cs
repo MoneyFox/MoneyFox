@@ -2,9 +2,9 @@
 using System.Linq;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
+using MoneyManager.TestFoundation;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Repositories

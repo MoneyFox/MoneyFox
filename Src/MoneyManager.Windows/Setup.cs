@@ -1,14 +1,16 @@
 using Windows.UI.Xaml.Controls;
+using Beezy.MvvmCross.Plugins.SecureStorage;
+using Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore;
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.Plugins;
-using Cirrious.MvvmCross.Plugins.Email;
-using Cirrious.MvvmCross.Plugins.Email.WindowsCommon;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsUWP.Platform;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
+using MvvmCross.Plugins.Email;
+using MvvmCross.Plugins.Email.WindowsCommon;
 using MvvmCross.Plugins.Sqlite;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using MvvmCross.Plugins.WebBrowser;
@@ -50,6 +52,7 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IMvxComposeEmailTask, MvxComposeEmailTask>();
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
             Mvx.RegisterType<IMvxSqliteConnectionFactory, WindowsSqliteConnectionFactory>();
+            Mvx.RegisterType<IMvxProtectedData, MvxStoreProtectedData>();
         }
 
         protected override IMvxApplication CreateApp()

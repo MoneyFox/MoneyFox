@@ -3,6 +3,7 @@ using MoneyManager.Core.Repositories;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
+using MoneyManager.TestFoundation;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using SQLiteNetExtensions.Extensions;
 using Xunit;
