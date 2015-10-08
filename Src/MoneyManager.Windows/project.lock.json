@@ -287,7 +287,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10240.0.6": {
+      "NotificationsExtensions.Win10/10240.0.7": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -1996,7 +1996,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10240.0.6": {
+      "NotificationsExtensions.Win10/10240.0.7": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -3738,7 +3738,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10240.0.6": {
+      "NotificationsExtensions.Win10/10240.0.7": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -5485,7 +5485,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10240.0.6": {
+      "NotificationsExtensions.Win10/10240.0.7": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -7227,7 +7227,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10240.0.6": {
+      "NotificationsExtensions.Win10/10240.0.7": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -8974,7 +8974,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10240.0.6": {
+      "NotificationsExtensions.Win10/10240.0.7": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -10716,7 +10716,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10240.0.6": {
+      "NotificationsExtensions.Win10/10240.0.7": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -13018,8 +13018,8 @@
         "package/services/metadata/core-properties/ce9da581fe3c48d992cf070d9746f6d1.psmdcp"
       ]
     },
-    "NotificationsExtensions.Win10/10240.0.6": {
-      "sha512": "kh33b5LBs1jLRpYZ66SaicwcSg/vwhdZGfmKGuBTBgf7AwoycYYsN5DgkaJjJhxDaak1D21/ZzhLH3HHjiRQaw==",
+    "NotificationsExtensions.Win10/10240.0.7": {
+      "sha512": "ZxG+jYpGow6BdUVdhkxju7497uAOYZqavNM114pk8GmXALpGEF60FoSdGtQWK8jJbPTdJ6DYd/V4a8Cyq+u7sA==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -13036,7 +13036,7 @@
         "lib/uap10.0/NotificationsExtensions.winmd.xml",
         "lib/uap10.0/NotificationsExtensions.xml",
         "NotificationsExtensions.Win10.nuspec",
-        "package/services/metadata/core-properties/f4c9f1cad9444e4abe5b980736afea18.psmdcp"
+        "package/services/metadata/core-properties/eaf4fa10e90244a2b35d1c6781809563.psmdcp"
       ]
     },
     "OxyPlot.Core/2015.1.1033-alpha": {
@@ -15872,7 +15872,7 @@
       "MvvmCross.HotTuna.Plugin.Email >= 4.0.0-beta3",
       "MvvmCross.HotTuna.Plugin.SQLitePCL >= 4.0.0-beta4",
       "MvvmCross.HotTuna.Plugin.WebBrowser >= 4.0.0-beta3",
-      "NotificationsExtensions.Win10 >= 10240.0.6",
+      "NotificationsExtensions.Win10 >= 10240.0.7",
       "OxyPlot.Windows >= 2015.1.1033-alpha",
       "SQLite.Net-PCL >= 3.0.5",
       "Xamarin.Insights >= 1.11.1"
