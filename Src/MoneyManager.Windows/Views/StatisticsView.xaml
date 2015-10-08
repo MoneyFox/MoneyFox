@@ -8,6 +8,17 @@
     xmlns:windows="using:OxyPlot.Windows"
     mc:Ignorable="d">
 
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Calendar"
+                              x:Uid="SetDate"
+                              Label="Set Date"
+                              Click="SetDate"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot Style="{StaticResource TabsStylePivotStyle}">
             <PivotItem>
@@ -17,10 +28,13 @@
                                         Glyph="&#xE908;" />
                 </PivotItem.Header>
                 <Grid>
+                    <TextBlock Text="{Binding Title}"
+                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}"/>
                     <windows:PlotView Model="{Binding CashFlowModel}"
                                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                                       HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Stretch" />
+                                      VerticalAlignment="Stretch"
+                                      Margin="0,30,0,0"/>
                 </Grid>
             </PivotItem>
 
@@ -30,23 +44,31 @@
                                         x:Uid="SpreadingTitle"
                                         Glyph="&#xE774;" />
                 </PivotItem.Header>
-                <Grid Margin="30">
+                <Grid>
+                    <TextBlock Text="{Binding Title}"
+                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
                     <windows:PlotView Model="{Binding SpreadingModel}"
                                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                                       HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Stretch" />
+                                      VerticalAlignment="Stretch"
+                                      Margin="30"/>
                 </Grid>
             </PivotItem>
 
             <PivotItem>
                 <PivotItem.Header>
+
                     <controls:TabHeader Label="Category Summary"
                                         x:Uid="CategorySummaryTitle"
                                         Glyph="&#xE8EC;" />
                 </PivotItem.Header>
-                <controls:CategorySummaryUserControl HorizontalAlignment="Stretch"
-                                                     VerticalAlignment="Stretch"
-                                                     Margin="-12,0,-12,0" />
+                <Grid>
+                    <TextBlock Text="{Binding Title}"
+                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+                    <controls:CategorySummaryUserControl HorizontalAlignment="Stretch"
+                                                         VerticalAlignment="Stretch"
+                                                         Margin="-12,30,-12,0" />
+                </Grid>
             </PivotItem>
         </Pivot>
     </Grid>

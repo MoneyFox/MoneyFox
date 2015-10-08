@@ -9,15 +9,8 @@ namespace MoneyManager.Windows.Dialogs
         public SelectStatisticDialog()
         {
             InitializeComponent();
-        }
 
-        private StatisticViewModel StatisticView => Mvx.Resolve<StatisticViewModel>();
-
-        private void LoadStatistic(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        {
-            StatisticView.SetCustomCashFlow();
-            StatisticView.SetCustomSpreading();
-            StatisticView.SetCagtegorySummary();
+            DataContext = Mvx.Resolve<SelectStatisticDialogViewModel>();
         }
     }
 }

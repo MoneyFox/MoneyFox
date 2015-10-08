@@ -31,16 +31,59 @@ namespace MoneyManager.Core.ViewModels
             EndDate = DateTime.Now.Date;
         }
 
+        private PlotModel cashFlowModel;
+
         /// <summary>
         ///     Contains the PlotModel for the CashFlow graph
         /// </summary>
-        public PlotModel CashFlowModel => GetDefaultCashFlow();
+        public PlotModel CashFlowModel
+        {
+            get
+            {
+                if (cashFlowModel == null)
+                {
+                    SetDefaultCashFlow();
+                }
+
+                return cashFlowModel;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    return;
+                }
+                cashFlowModel = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private PlotModel spreadingModel;
 
         /// <summary>
         ///     Contains the PlotModel for the CategorySpreading graph
         /// </summary>
-        public PlotModel SpreadingModel => GetDefaultSpreading();
+        public PlotModel SpreadingModel
+        {
+            get
+            {
+                if (spreadingModel == null)
+                {
+                    SetDefaultSpreading();
+                }
 
+                return spreadingModel;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    return;
+                }
+                spreadingModel = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Startdate for a custom statistic
@@ -84,25 +127,25 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Set  a default CashFlowModel with the set Start and Enddate
         /// </summary>
-        public PlotModel GetDefaultCashFlow()
+        public void SetDefaultCashFlow()
         {
-            return SetCashFlowModel(statisticManager.GetMonthlyCashFlow());
+            SetCashFlowModel(statisticManager.GetMonthlyCashFlow());
         }
 
         /// <summary>
         ///     Set  a default CategprySpreadingModel with the set Start and Enddate
         /// </summary>
-        public PlotModel GetDefaultSpreading()
+        public void SetDefaultSpreading()
         {
-            return SetSpreadingModel(statisticManager.GetSpreading());
+            SetSpreadingModel(statisticManager.GetSpreading());
         }
 
-        private PlotModel SetSpreadingModel(IEnumerable<StatisticItem> items)
+        private void SetSpreadingModel(IEnumerable<StatisticItem> items)
         {
             var statisticItems = items as IList<StatisticItem> ?? items.ToList();
             if (!statisticItems.Any())
             {
-                return new PlotModel();
+                return;
             }
 
             var model = new PlotModel
@@ -121,7 +164,7 @@ namespace MoneyManager.Core.ViewModels
             model.LegendPosition = LegendPosition.BottomLeft;
 
             model.Series.Add(pieSeries);
-            return model;
+            SpreadingModel = model;
         }
 
         /// <summary>
@@ -130,14 +173,15 @@ namespace MoneyManager.Core.ViewModels
         public void SetCustomCashFlow()
         {
             SetCashFlowModel(statisticManager.GetMonthlyCashFlow(StartDate, EndDate));
+            RaisePropertyChanged(nameof(CashFlowModel));
         }
 
-        private PlotModel SetCashFlowModel(IEnumerable<StatisticItem> items)
+        private void SetCashFlowModel(IEnumerable<StatisticItem> items)
         {
             var statisticItems = items as IList<StatisticItem> ?? items.ToList();
             if (!statisticItems.Any())
             {
-                return new PlotModel();
+                return;
             }
 
             var model = new PlotModel
@@ -167,7 +211,7 @@ namespace MoneyManager.Core.ViewModels
 
             model.Axes.Add(axe);
             model.Series.Add(columnSeries);
-            return model;
+            CashFlowModel = model;
         }
 
         /// <summary>
@@ -176,14 +220,16 @@ namespace MoneyManager.Core.ViewModels
         public void SetCustomSpreading()
         {
             SetSpreadingModel(statisticManager.GetSpreading(StartDate, EndDate));
+            RaisePropertyChanged(nameof(SpreadingModel));
         }
 
         /// <summary>
         ///     Set a custom CategoryModel with the set Start and Enddate
         /// </summary>
-        public void SetCagtegorySummary()
+        public void SetCategorySummary()
         {
             CategorySummary = statisticManager.GetCategorySummary(StartDate, EndDate);
+            RaisePropertyChanged(nameof(CategorySummary));
         }
     }
 }
