@@ -45,17 +45,6 @@ namespace MoneyManager.Windows.Views
                 //cursorpositon to set the position back after the formating
                 var cursorposition = TextBoxCurrentBalance.SelectionStart;
 
-                //replace either a comma with the decimal separator for the current culture to avoid parsing errors.
-                TextBoxCurrentBalance.Text = TextBoxCurrentBalance.Text
-                    .Replace(",", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
-
-                if (string.IsNullOrEmpty(TextBoxCurrentBalance.Text)) return;
-                //replace either a dot with the decimal separator for the current culture to avoid parsing errors.
-                TextBoxCurrentBalance.Text = TextBoxCurrentBalance.Text
-                    .Replace(".", CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
-
-                if (string.IsNullOrEmpty(TextBoxCurrentBalance.Text)) return;
-
                 var formattedText =
                     Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxCurrentBalance.Text, CultureInfo.CurrentCulture));
 
@@ -66,7 +55,7 @@ namespace MoneyManager.Windows.Views
                 //set the cursor back to the last positon to avoid jumping around
                 TextBoxCurrentBalance.Select(cursorposition, 0);
             }
-            catch (FormatException ex)
+           catch (FormatException ex)
             {
                 InsightHelper.Report(new ExtendedFormatException(ex));
             }
