@@ -165,11 +165,17 @@
   <data name="ContactLabel.Text" xml:space="preserve">
     <value>Kontakt:</value>
   </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
   <data name="DeleteAccountLabel.Label" xml:space="preserve">
     <value>Konto löschen</value>
   </data>
   <data name="DeveloperLabel.Text" xml:space="preserve">
     <value>Entwickler</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Bearbeiten</value>
   </data>
   <data name="InfoLabel.Text" xml:space="preserve">
     <value>Info</value>
