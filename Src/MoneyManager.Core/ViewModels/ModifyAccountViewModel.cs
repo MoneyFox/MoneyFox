@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.Helper;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
@@ -54,7 +55,7 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public string AmountString
         {
-            get { return SelectedAccount.CurrentBalance.ToString(CultureInfo.CurrentCulture); }
+            get { return Utilities.FormatLargeNumbers(SelectedAccount.CurrentBalance); }
             set { SelectedAccount.CurrentBalance = Convert.ToDouble(value, CultureInfo.CurrentCulture); }
         }
 

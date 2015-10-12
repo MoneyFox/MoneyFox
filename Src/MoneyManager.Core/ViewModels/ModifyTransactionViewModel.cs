@@ -247,7 +247,7 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public string AmountString
         {
-            get { return SelectedTransaction.Amount.ToString(CultureInfo.CurrentCulture); }
+            get { return Utilities.FormatLargeNumbers(SelectedTransaction.Amount); }
             set { SelectedTransaction.Amount = Convert.ToDouble(value, CultureInfo.CurrentCulture); }
         }
 
