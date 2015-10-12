@@ -49,7 +49,7 @@
                      Margin="0,0,0,12" />
             <Grid>
                 <TextBox
-                    Text="{Binding SelectedAccount.CurrentBalance, Mode=TwoWay}"
+                    Text="{Binding AmountString, Mode=TwoWay}"
                     Header="amount"
                     InputScope="Number"
                     x:Uid="Balance"

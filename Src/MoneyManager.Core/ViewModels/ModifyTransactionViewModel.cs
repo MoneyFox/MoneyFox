@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helper;
@@ -238,6 +239,17 @@ namespace MoneyManager.Core.ViewModels
         ///     The selected recurrence
         /// </summary>
         public int Recurrence { get; set; }
+
+        /// <summary>
+        ///     Property to format amount string to double with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to double
+        ///     without the correct culture.
+        /// </summary>
+        public string AmountString
+        {
+            get { return Utilities.FormatLargeNumbers(SelectedTransaction.Amount); }
+            set { SelectedTransaction.Amount = Convert.ToDouble(value, CultureInfo.CurrentCulture); }
+        }
 
         /// <summary>
         ///     List with the different recurrence types.

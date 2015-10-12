@@ -1,4 +1,7 @@
-﻿using Cirrious.MvvmCross.ViewModels;
+﻿using System;
+using System.Globalization;
+using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.Helper;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
@@ -44,6 +47,17 @@ namespace MoneyManager.Core.ViewModels
         public string Title => IsEdit
             ? $"{Strings.EditTitle} {SelectedAccount.Name}"
             : Strings.AddAccountTitle;
+
+        /// <summary>
+        ///     Property to format amount string to double with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to double
+        ///     without the correct culture.
+        /// </summary>
+        public string AmountString
+        {
+            get { return Utilities.FormatLargeNumbers(SelectedAccount.CurrentBalance); }
+            set { SelectedAccount.CurrentBalance = Convert.ToDouble(value, CultureInfo.CurrentCulture); }
+        }
 
         /// <summary>
         ///     The currently selected account
