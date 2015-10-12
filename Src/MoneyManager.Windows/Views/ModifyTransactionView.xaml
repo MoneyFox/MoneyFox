@@ -78,7 +78,7 @@
                               SelectedItem="{Binding SelectedTransaction.TargetAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Visibility="{Binding IsTransfer, Converter={StaticResource BooleanVisibilityConverter}}"
                               Margin="0,7,0,0" />
-                    <TextBox Text="{Binding SelectedTransaction.Amount, Mode=TwoWay}"
+                    <TextBox Text="{Binding AmountString, Mode=TwoWay}"
                              Header="amount"
                              InputScope="Number"
                              x:Name="TextBoxAmount"
