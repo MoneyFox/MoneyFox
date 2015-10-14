@@ -12,8 +12,10 @@ We’re in the process of porting the app over to Windows 10 Desktop and Mobile.
 ### Contribution
 We’re looking forward to receiving a lot of AWESOME contributions. No pressure.
 
-### Dependencies
-To start you must have the Sqlite for UAP installed. All other dependencies will be restored via NuGet.
+### Getting Started
+To start head over to our wiki: 
+[Getting Started] (https://github.com/Apply-Solutions/MoneyManager/wiki/Getting-Started)
+
 
 ### Tools
 We use Visual Studio 2015. If you use resharper please ensure to use the settings in the repository for this project.
