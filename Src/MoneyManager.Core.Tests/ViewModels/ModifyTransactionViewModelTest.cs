@@ -25,7 +25,6 @@ namespace MoneyManager.Core.Tests.ViewModels
         [InlineData(TransactionType.Transfer, true, "Edit Transfer", "en-US")]
         [InlineData(TransactionType.Spending, true, "Ausgabe bearbeiten", "de-CH")]
         [InlineData(TransactionType.Income, true, "Einkommen bearbeiten", "de-CH")]
-        [InlineData(TransactionType.Transfer, true, "Überweisung bearbeiten", "de-CH")]
         //Add Titles
         [InlineData(TransactionType.Spending, false, "Add Spending", "en-US")]
         [InlineData(TransactionType.Income, false, "Add Income", "en-US")]
