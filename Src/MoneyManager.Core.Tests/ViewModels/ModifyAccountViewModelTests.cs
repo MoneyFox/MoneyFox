@@ -12,7 +12,6 @@ namespace MoneyManager.Core.Tests.ViewModels
     public class ModifyAccountViewModelTests
     {
         [Fact]
-        [Trait("volatile", "")]
         public void Title_EditAccount_CorrectTitle()
         {
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
@@ -34,7 +33,6 @@ namespace MoneyManager.Core.Tests.ViewModels
         }
 
         [Fact]
-        [Trait("volatile", "")]
         public void Title_AddAccount_CorrectTitle()
         {
             Strings.Culture = new CultureInfo("en-US");
