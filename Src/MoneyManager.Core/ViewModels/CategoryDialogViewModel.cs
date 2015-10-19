@@ -43,11 +43,10 @@ namespace MoneyManager.Core.ViewModels
         {
             if (string.IsNullOrEmpty(Selected.Name))
             {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptryTitle, Strings.NameRequiredMessage);
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
             }
-
-
+            
             categoryRepository.Save(Selected);
             categoryListView.SearchText = string.Empty;
             categoryListView.Search();
