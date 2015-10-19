@@ -213,7 +213,7 @@
   <data name="LoginFailedTitle" xml:space="preserve">
     <value>Login failed!</value>
   </data>
-  <data name="MandatoryFieldEmptryTitle" xml:space="preserve">
+  <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Mandatory field</value>
   </data>
   <data name="MenuTitle" xml:space="preserve">

@@ -406,9 +406,9 @@ namespace MoneyManager.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Mandatory field.
         /// </summary>
-        public static string MandatoryFieldEmptryTitle {
+        public static string MandatoryFieldEmptyTitle {
             get {
-                return ResourceManager.GetString("MandatoryFieldEmptryTitle", resourceCulture);
+                return ResourceManager.GetString("MandatoryFieldEmptyTitle", resourceCulture);
             }
         }
         

@@ -160,7 +160,7 @@ namespace MoneyManager.Core.ViewModels
 
         private async void ShowAccountRequiredMessage()
         {
-            await dialogService.ShowMessage(Strings.MandatoryFieldEmptryTitle,
+            await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle,
                 Strings.AccountRequiredMessage);
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Linq.Expressions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
@@ -59,7 +60,10 @@ namespace MoneyManager.Core.Repositories
 
             if (item.Id == 0)
             {
-                data.Add(item);
+                var list = data.ToList();
+                list.Add(item);
+
+                data = new ObservableCollection<Category>(list.OrderBy(x => x.Name).ToList());
             }
             dataAccess.SaveItem(item);
         }
