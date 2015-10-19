@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Globalization;
+using Cirrious.CrossCore;
 using Cirrious.CrossCore.Converters;
+using MoneyManager.Core.Repositories;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Converter
@@ -15,7 +18,9 @@ namespace MoneyManager.Core.Converter
 
             if (transaction.Type == (int) TransactionType.Transfer)
             {
-                sign = (Account) parameter == transaction.ChargedAccount
+                var selected = Mvx.Resolve<IRepository<Account>>().Selected;
+
+                sign = (Account) parameter == selected
                     ? "-"
                     : "+";
             }
