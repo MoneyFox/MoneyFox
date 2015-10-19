@@ -65,7 +65,7 @@ namespace MoneyManager.DataAccess
         /// <summary>
         ///     Deletes an item from the database
         /// </summary>
-        /// <param name="transaction">Item to DeleteItem.</param>
+        /// <param name="transaction">Item to Delete.</param>
         protected override void DeleteFromDatabase(FinancialTransaction transaction)
         {
             using (var dbConn = connectionCreator.GetConnection())
