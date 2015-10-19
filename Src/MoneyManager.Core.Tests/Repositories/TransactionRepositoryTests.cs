@@ -206,7 +206,6 @@ namespace MoneyManager.Core.Tests.Repositories
         ///     This Test may fail if the date overlaps with the month transition.
         /// </summary>
         [Fact]
-        [Trait("volatile", "")]
         public void GetUnclearedTransactions_FutureDate_PastTransactions()
         {
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
