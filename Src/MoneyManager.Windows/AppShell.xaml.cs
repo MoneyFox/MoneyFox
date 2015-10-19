@@ -128,7 +128,6 @@ namespace MoneyManager.Windows
                     break;
 
                 case VirtualKey.Escape:
-                case VirtualKey.B:
                     var temp = false;
                     BackRequested(ref temp);
                     break;
