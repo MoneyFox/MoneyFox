@@ -2,14 +2,16 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Cirrious.MvvmCross.Droid.Views;
+using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Droid.Support.Fragging;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Droid.Fragments;
 using MoneyManager.Localization;
 
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "CategoryListActivity")]
-    public class CategoryListActivity : MvxActivity
+    public class CategoryListActivity : MvxFragmentActivity
     {
         public new CategoryListViewModel ViewModel
         {
@@ -53,7 +55,12 @@ namespace MoneyManager.Droid.Activities
                     return true;
 
                 case Resource.Id.action_add:
+                    var dialog = new ModifyCategoryDialog
+                    {
+                        ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
+                    };
 
+                    dialog.Show(SupportFragmentManager, "dialog");
                     return true;
 
                 default:
@@ -78,7 +85,7 @@ namespace MoneyManager.Droid.Activities
             switch (item.ItemId)
             {
                 case 0:
-                    //TODO: Implement edit
+                    OpenEditCategoryDialog();
                     return true;
 
                 case 1:
@@ -88,6 +95,18 @@ namespace MoneyManager.Droid.Activities
                 default:
                     return false;
             }
+        }
+
+        private void OpenEditCategoryDialog()
+        {
+            var viewmodel = Mvx.Resolve<CategoryDialogViewModel>();
+            viewmodel.IsEdit = true;
+            var dialog = new ModifyCategoryDialog
+            {
+                ViewModel = viewmodel
+            };
+
+            dialog.Show(SupportFragmentManager, "dialog");
         }
     }
 }
