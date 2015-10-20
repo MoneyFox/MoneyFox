@@ -38,8 +38,8 @@
                         <MenuFlyoutItem x:Uid="Edit"
                                         Text="Edit"
                                         Click="EditTransaction" />
-                        <MenuFlyoutItem x:Uid="DeleteItem"
-                                        Text="DeleteItem"
+                        <MenuFlyoutItem x:Uid="Delete"
+                                        Text="Delete"
                                         Click="DeleteTransaction" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
