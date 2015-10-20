@@ -114,7 +114,7 @@ namespace MoneyManager.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int ic_add_circle = 2130837504;
+			public const int ic_add = 2130837504;
 			
 			// aapt resource value: 0x7f020001
 			public const int ic_delete = 2130837505;
@@ -129,7 +129,7 @@ namespace MoneyManager.Droid
 			public const int ic_recurring = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int ic_remove_circle = 2130837509;
+			public const int ic_remove = 2130837509;
 			
 			// aapt resource value: 0x7f020006
 			public const int ic_save = 2130837510;
