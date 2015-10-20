@@ -17,7 +17,11 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly StatisticManager statisticManager;
 
+        private PlotModel cashFlowModel;
+
         private ObservableCollection<StatisticItem> categorySummary;
+
+        private PlotModel spreadingModel;
 
         /// <summary>
         ///     Creates a StatisticViewModel Object.
@@ -30,8 +34,6 @@ namespace MoneyManager.Core.ViewModels
             StartDate = DateTime.Now.Date.AddMonths(-1);
             EndDate = DateTime.Now.Date;
         }
-
-        private PlotModel cashFlowModel;
 
         /// <summary>
         ///     Contains the PlotModel for the CashFlow graph
@@ -53,8 +55,6 @@ namespace MoneyManager.Core.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        private PlotModel spreadingModel;
 
         /// <summary>
         ///     Contains the PlotModel for the CategorySpreading graph
