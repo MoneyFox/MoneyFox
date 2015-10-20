@@ -24,7 +24,7 @@ namespace MoneyManager.Foundation.Interfaces
         List<T> LoadList(Expression<Func<T, bool>> filter = null);
 
         /// <summary>
-        ///     DeleteItem item from the database
+        ///     Delete item from the database
         /// </summary>
         /// <param name="itemToDelete">Item to delete.</param>
         void DeleteItem(T itemToDelete);

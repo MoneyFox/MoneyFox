@@ -159,6 +159,7 @@
     <Compile Include="Fragments\AccountListFragment.cs" />
     <Compile Include="Fragments\BalanceFragment.cs" />
     <Compile Include="Fragments\DatePickerDialogFragment.cs" />
+    <Compile Include="Fragments\ModifyCategoryDialog.cs" />
     <Compile Include="Fragments\StatisticFragment.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -208,6 +209,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\BalanceLayout.axml" />
+    <AndroidResource Include="Resources\layout\ModifyCategoryDialogLayout.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MainLayout.axml" />

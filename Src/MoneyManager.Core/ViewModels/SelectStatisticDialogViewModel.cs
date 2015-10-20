@@ -45,7 +45,7 @@ namespace MoneyManager.Core.ViewModels
         {
             statisticViewModel.SetCustomCashFlow();
             statisticViewModel.SetCustomSpreading();
-            statisticViewModel.SetCategorySummary();
+            statisticViewModel.SetCustomCategorySummary();
         }
     }
 }

@@ -9,13 +9,14 @@
   <string name="action_add_transfer">Add Transfer</string>
   <string name="action_add_account">Add Account</string>
   <string name="action_add">Add</string>
-  <string name="action_delete">DeleteItem</string>
+  <string name="action_delete">Delete</string>
   <string name="action_save">SaveItem</string>
   <string name="action_done">Done</string>
 
   <!--hints-->
   <string name="hint_account_name">Account Name</string>
-  <string name="hint_iban">iban</string>
+  <string name="hint_category_name">Category Name</string>
+  <string name="hint_iban">IBAN</string>
   <string name="hint_current_balance">Current Balance</string>
   <string name="hint_note">Note</string>
   <string name="hint_amount">Amount</string>
@@ -32,6 +33,7 @@
   <string name="button_date">Date</string>
   <string name="button_category">Category</string>
   <string name="button_rate">Rate us!</string>
+  <string name="button_save_category">Save Category</string>
 
   <!--labels-->
   <string name="label_cleared">IsCleared: </string>
