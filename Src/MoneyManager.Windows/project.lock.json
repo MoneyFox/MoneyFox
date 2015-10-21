@@ -212,7 +212,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta4": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -220,9 +220,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.dll": {},
@@ -235,9 +235,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -248,9 +248,9 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
@@ -261,9 +261,9 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta5": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
@@ -274,9 +274,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
@@ -1921,7 +1921,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta4": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -1929,9 +1929,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.dll": {},
@@ -1944,9 +1944,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -1957,9 +1957,9 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
@@ -1970,9 +1970,9 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta5": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
@@ -1983,9 +1983,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
@@ -3663,7 +3663,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta4": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -3671,9 +3671,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.dll": {},
@@ -3686,9 +3686,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -3699,9 +3699,9 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
@@ -3712,9 +3712,9 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta5": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
@@ -3725,9 +3725,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
@@ -5410,7 +5410,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta4": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -5418,9 +5418,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.dll": {},
@@ -5433,9 +5433,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -5446,9 +5446,9 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
@@ -5459,9 +5459,9 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta5": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
@@ -5472,9 +5472,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
@@ -7152,7 +7152,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta4": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -7160,9 +7160,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.dll": {},
@@ -7175,9 +7175,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -7188,9 +7188,9 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
@@ -7201,9 +7201,9 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta5": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
@@ -7214,9 +7214,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
@@ -8899,7 +8899,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta4": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -8907,9 +8907,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.dll": {},
@@ -8922,9 +8922,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -8935,9 +8935,9 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
@@ -8948,9 +8948,9 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta5": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
@@ -8961,9 +8961,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
@@ -10641,7 +10641,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Binding/4.0.0-beta4": {
         "compile": {
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         },
@@ -10649,9 +10649,9 @@
           "lib/netcore45/Cirrious.MvvmCross.Binding.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
+      "MvvmCross.HotTuna.CrossCore/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.Binding": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.Binding": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/Cirrious.CrossCore.dll": {},
@@ -10664,9 +10664,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -10677,9 +10677,9 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
@@ -10690,9 +10690,9 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
+      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta5": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
@@ -10703,9 +10703,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
+      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta4": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta3, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta4, )"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
@@ -12822,8 +12822,8 @@
         "ref/xamarinmac20/_._"
       ]
     },
-    "MvvmCross.HotTuna.Binding/4.0.0-beta3": {
-      "sha512": "1fATO1zZjpKZQu8ijw9kMeOwVmuhax/Ijg3zF97VkYU1tb/XHCDwlpWm3EOB1QiqDzjWM72/g53zQHyIgtB+Ig==",
+    "MvvmCross.HotTuna.Binding/4.0.0-beta4": {
+      "sha512": "cjXrMat8B2pfqHy2V7eIS1AuJWxJXtLeFHMZchVCcRXDK8fqFCuJ4aG9LsYTubLIWIJaR4P6Mt/XRxH1rQYeKg==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -12838,11 +12838,11 @@
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Binding.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Binding.Touch.dll",
         "MvvmCross.HotTuna.Binding.nuspec",
-        "package/services/metadata/core-properties/a9e7dde1e2a042b6976c3f7b78bb7723.psmdcp"
+        "package/services/metadata/core-properties/e2f10beb42f644ccbc431d779e006b69.psmdcp"
       ]
     },
-    "MvvmCross.HotTuna.CrossCore/4.0.0-beta3": {
-      "sha512": "OIB2h/JZb2rnicOi+0+1zm2OqnYzYyzFihDHAZTZinrZ190fCLQneFwYezaHMZEn+G87NVt+C7MDihIidC/Xtg==",
+    "MvvmCross.HotTuna.CrossCore/4.0.0-beta4": {
+      "sha512": "hG7Dr1zKOm6ZE5G5xS53UcWwrL5fCsADyqgRrfWUS2m1/eUkY1lNvwjJRBEQPhnzAyN/lB3ukbiVApdwp0Wh6g==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -12880,11 +12880,11 @@
         "lib/Xamarin.iOS10/Cirrious.CrossCore.Touch.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Localization.dll",
         "MvvmCross.HotTuna.CrossCore.nuspec",
-        "package/services/metadata/core-properties/76ee352521764b01bb6dee15cfba6ea7.psmdcp"
+        "package/services/metadata/core-properties/e4c7cfc4b52945f6b1c97f91e6d02eaa.psmdcp"
       ]
     },
-    "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta3": {
-      "sha512": "tpZwmbrxURpefAJKjAk/mCeq/W7l2SqEjehCDc4Tb9mLcvatuJDNRdBuxBd2QjtgAHSBS2L8tDvNKvSWONNpxw==",
+    "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta4": {
+      "sha512": "qt8MvUz7I2xgPDtiSPpf2ky1a7+7WZZShCwmGlUjIW7v7LVYSOTKg7ufALfuUleMXXuFYICOzGvw6torWPmweg==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -12895,6 +12895,8 @@
         "lib/net45/Cirrious.MvvmCross.dll",
         "lib/net45/Cirrious.MvvmCross.Wpf.dll",
         "lib/netcore45/Cirrious.MvvmCross.dll",
+        "lib/netcore45/Cirrious.MvvmCross.WindowsStore.dll",
+        "lib/netcore45/Cirrious.MvvmCross.WindowsStore.pri",
         "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.dll",
         "lib/portable-win81+wpa81/Cirrious.MvvmCross.dll",
         "lib/portable-win81+wpa81/Cirrious.MvvmCross.WindowsCommon.dll",
@@ -12914,11 +12916,11 @@
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Touch.dll",
         "MvvmCross.HotTuna.MvvmCrossLibraries.nuspec",
-        "package/services/metadata/core-properties/1b2ecd52152f4ba6a0eaf3d0c1b3486d.psmdcp"
+        "package/services/metadata/core-properties/418369cd9d294ca5bdb59ab6944b7b8f.psmdcp"
       ]
     },
-    "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta3": {
-      "sha512": "CiFP/TKWtOrKqhCnrSoGbAU3IT14tzFm3EQlWRHQ60Nb2UldcxfxRqYfsl4tP/UWzAGLDa/i9i79ANUbUOobpg==",
+    "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta4": {
+      "sha512": "zb8oaUEJ/eRikGZOuHFNiHegr/l7BbLkpE+ixj8e4l7MpYHKCAzHU8T15OcT11zKbdo6H2O0Da/XZQ31Lf5rgw==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -12953,11 +12955,11 @@
         "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.dll",
         "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.Touch.dll",
         "MvvmCross.HotTuna.Plugin.Email.nuspec",
-        "package/services/metadata/core-properties/3a53d8378636489aba895e037a01643d.psmdcp"
+        "package/services/metadata/core-properties/6e4358f37cc94d74aec8280555aca816.psmdcp"
       ]
     },
-    "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta4": {
-      "sha512": "8slI5jZjxMqfZMqSy/N9HOV35xcuSM+neOEDDz4guI868e/0HtsFPnX2WdbWBySadTIsVKJ3KbXSHe7exkZYXA==",
+    "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta5": {
+      "sha512": "S2IWZdCTBIEPROIW/IQ7ikgv73vTCojK5uVIE7hXmC1/wMlAwDxJ/MUg03nLUCYjvWCd28w7M+MZmbt+e6KcZA==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -12979,11 +12981,11 @@
         "lib/Xamarin.iOS10/MvvmCross.Plugins.Sqlite.dll",
         "lib/Xamarin.iOS10/MvvmCross.Plugins.Sqlite.Touch.dll",
         "MvvmCross.HotTuna.Plugin.SQLitePCL.nuspec",
-        "package/services/metadata/core-properties/d2e767a58748426eacc7a254a5350e38.psmdcp"
+        "package/services/metadata/core-properties/16603a1758674ab89a46665a07505d06.psmdcp"
       ]
     },
-    "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta3": {
-      "sha512": "x/IOsk/ZUdd54WAdrpZb57h6pkMNkFAAbP8poWBjFU/W51W8KtUJBSVIrZwRkIonoKOygVWbqcitTZE29X+edA==",
+    "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta4": {
+      "sha512": "qjoulSxryLq8QiFkGtaD+pKxyBml28boKFP/qc0tFintsoXrhHDQBsoaR36VcZOBBk6H6scWY/RRspoznWA1Cg==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -13015,7 +13017,7 @@
         "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.dll",
         "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.Touch.dll",
         "MvvmCross.HotTuna.Plugin.WebBrowser.nuspec",
-        "package/services/metadata/core-properties/ce9da581fe3c48d992cf070d9746f6d1.psmdcp"
+        "package/services/metadata/core-properties/63be0574e25c4491ac837aa6682f8f92.psmdcp"
       ]
     },
     "NotificationsExtensions.Win10/10240.0.7": {
@@ -15868,10 +15870,10 @@
       "Beezy.MvvmCross.Plugins.SecureStorage >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Microsoft.NETNative.Analyzer >= 1.0.0",
-      "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta3",
-      "MvvmCross.HotTuna.Plugin.Email >= 4.0.0-beta3",
-      "MvvmCross.HotTuna.Plugin.SQLitePCL >= 4.0.0-beta4",
-      "MvvmCross.HotTuna.Plugin.WebBrowser >= 4.0.0-beta3",
+      "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta4",
+      "MvvmCross.HotTuna.Plugin.Email >= 4.0.0-beta4",
+      "MvvmCross.HotTuna.Plugin.SQLitePCL >= 4.0.0-beta5",
+      "MvvmCross.HotTuna.Plugin.WebBrowser >= 4.0.0-beta4",
       "NotificationsExtensions.Win10 >= 10240.0.7",
       "OxyPlot.Windows >= 2015.1.1033-alpha",
       "SQLite.Net-PCL >= 3.0.5",
