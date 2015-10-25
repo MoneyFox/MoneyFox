@@ -40,5 +40,11 @@
 
   <!--text-->
   <string name="text_endless">Is Endless</string>
+  
+  <!--string arrays-->
+  <string-array name="statistic_items">
+    <item>Cashflow</item>
+    <item>Spreading</item>
+  </string-array>
 
 </resources>

@@ -4,6 +4,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="?android:windowBackground">
+    <Spinner
+        android:id="@+id/spinner_select_statistic"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:entries="@array/statistic_items" />
     <oxyplot.xamarin.android.PlotView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

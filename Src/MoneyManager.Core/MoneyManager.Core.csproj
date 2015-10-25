@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <ReleaseVersion>0.6.0.0</ReleaseVersion>
+    <ReleaseVersion>0.7.0.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Platform)' != 'Unix'">
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
@@ -81,20 +81,8 @@
     <Reference Include="Cirrious.MvvmCross.Plugins.Email">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta1\lib\win81\Cirrious.MvvmCross.Plugins.Email.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.Email, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta3\lib\portable-win+net45+wp8+win8+wpa81\MvvmCross.Plugins.Email.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="MvvmCross.Plugins.Sqlite">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.SQLitePCL.4.0.0-beta4\lib\portable-win+net45+wp8+win8+wpa81+win81+dotnet\MvvmCross.Plugins.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.Visibility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Visibility.4.0.0-beta3\lib\portable-win+net45+wp8+win8+wpa81\MvvmCross.Plugins.Visibility.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.WebBrowser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.WebBrowser.4.0.0-beta3\lib\portable-win+net45+wp8+win8+wpa81\MvvmCross.Plugins.WebBrowser.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.50.3\lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
@@ -128,6 +116,15 @@
     </Reference>
     <Reference Include="Beezy.MvvmCross.Plugins.SecureStorage, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Beezy.MvvmCross.Plugins.SecureStorage.1.0.0\lib\portable-win+net45+sl50+wp8+MonoAndroid+MonoTouch\Beezy.MvvmCross.Plugins.SecureStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Email, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta3\lib\portable-win+net45+wp8+win8+wpa81\MvvmCross.Plugins.Email.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Visibility, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Visibility.4.0.0-beta3\lib\portable-win+net45+wp8+win8+wpa81\MvvmCross.Plugins.Visibility.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.WebBrowser, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.WebBrowser.4.0.0-beta3\lib\portable-win+net45+wp8+win8+wpa81\MvvmCross.Plugins.WebBrowser.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

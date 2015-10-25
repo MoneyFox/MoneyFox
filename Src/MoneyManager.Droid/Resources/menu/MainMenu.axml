@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@+id/action_add_income"
-        android:icon="@drawable/ic_add_circle"
+        android:icon="@drawable/ic_add"
         android:title="@string/action_add_income"
         android:showAsAction="ifRoom|withText" />
   
   <item android:id="@+id/action_add_spending"
-        android:icon="@drawable/ic_remove_circle"
+        android:icon="@drawable/ic_remove"
         android:title="@string/action_add_spending"
         android:showAsAction="ifRoom|withText" />
 

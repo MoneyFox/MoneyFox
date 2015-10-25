@@ -38,8 +38,8 @@
                         <MenuFlyoutItem x:Uid="Edit"
                                         Text="Edit"
                                         Click="EditTransaction" />
-                        <MenuFlyoutItem x:Uid="DeleteItem"
-                                        Text="DeleteItem"
+                        <MenuFlyoutItem x:Uid="Delete"
+                                        Text="Delete"
                                         Click="DeleteTransaction" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
@@ -48,7 +48,7 @@
                     <TextBlock
                         Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
                     <TextBlock
-                        Text="{Binding Converter={StaticResource TransactionAmountConverter}, ConverterParameter={Binding ChargedAccount}}"
+                        Text="{Binding Converter={StaticResource TransactionAmountConverter}}"
                         HorizontalAlignment="Right" />
                 </Grid>
                 <Grid>

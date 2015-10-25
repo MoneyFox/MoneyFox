@@ -76,6 +76,22 @@ namespace MoneyManager.Droid
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f060000
+			public const int statistic_items = 2131099648;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -114,7 +130,7 @@ namespace MoneyManager.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int ic_add_circle = 2130837504;
+			public const int ic_add = 2130837504;
 			
 			// aapt resource value: 0x7f020001
 			public const int ic_delete = 2130837505;
@@ -129,7 +145,7 @@ namespace MoneyManager.Droid
 			public const int ic_recurring = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int ic_remove_circle = 2130837509;
+			public const int ic_remove = 2130837509;
 			
 			// aapt resource value: 0x7f020006
 			public const int ic_save = 2130837510;
@@ -162,29 +178,29 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f050003
 			public const int accountList = 2131034115;
 			
-			// aapt resource value: 0x7f050014
-			public const int action_add = 2131034132;
-			
-			// aapt resource value: 0x7f050011
-			public const int action_add_account = 2131034129;
-			
-			// aapt resource value: 0x7f05000e
-			public const int action_add_income = 2131034126;
-			
-			// aapt resource value: 0x7f05000f
-			public const int action_add_spending = 2131034127;
-			
-			// aapt resource value: 0x7f050010
-			public const int action_add_transfer = 2131034128;
+			// aapt resource value: 0x7f050015
+			public const int action_add = 2131034133;
 			
 			// aapt resource value: 0x7f050012
-			public const int action_delete = 2131034130;
+			public const int action_add_account = 2131034130;
+			
+			// aapt resource value: 0x7f05000f
+			public const int action_add_income = 2131034127;
+			
+			// aapt resource value: 0x7f050010
+			public const int action_add_spending = 2131034128;
+			
+			// aapt resource value: 0x7f050011
+			public const int action_add_transfer = 2131034129;
 			
 			// aapt resource value: 0x7f050013
-			public const int action_done = 2131034131;
+			public const int action_delete = 2131034131;
 			
-			// aapt resource value: 0x7f05000d
-			public const int action_save = 2131034125;
+			// aapt resource value: 0x7f050014
+			public const int action_done = 2131034132;
+			
+			// aapt resource value: 0x7f05000e
+			public const int action_save = 2131034126;
 			
 			// aapt resource value: 0x7f050002
 			public const int balance_pane = 2131034114;
@@ -207,11 +223,14 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f050004
 			public const int main_layout = 2131034116;
 			
-			// aapt resource value: 0x7f05000c
-			public const int plotViewModel = 2131034124;
+			// aapt resource value: 0x7f05000d
+			public const int plotViewModel = 2131034125;
 			
 			// aapt resource value: 0x7f05000a
 			public const int recurrence_spinner = 2131034122;
+			
+			// aapt resource value: 0x7f05000c
+			public const int spinner_select_statistic = 2131034124;
 			
 			// aapt resource value: 0x7f050009
 			public const int transactiondate = 2131034121;
@@ -284,17 +303,17 @@ namespace MoneyManager.Droid
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f060000
-			public const int AddMenu = 2131099648;
+			// aapt resource value: 0x7f070000
+			public const int AddMenu = 2131165184;
 			
-			// aapt resource value: 0x7f060001
-			public const int MainMenu = 2131099649;
+			// aapt resource value: 0x7f070001
+			public const int MainMenu = 2131165185;
 			
-			// aapt resource value: 0x7f060002
-			public const int ModificationMenu = 2131099650;
+			// aapt resource value: 0x7f070002
+			public const int ModificationMenu = 2131165186;
 			
-			// aapt resource value: 0x7f060003
-			public const int SelectMenu = 2131099651;
+			// aapt resource value: 0x7f070003
+			public const int SelectMenu = 2131165187;
 			
 			static Menu()
 			{

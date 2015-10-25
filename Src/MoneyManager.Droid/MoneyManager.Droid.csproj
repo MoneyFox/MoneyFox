@@ -14,9 +14,9 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <ReleaseVersion>0.6.0.0</ReleaseVersion>
+    <ReleaseVersion>0.7.0.0</ReleaseVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -43,7 +43,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-    <AndroidSupportedAbis>armeabi;armeabi-v7a</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
     <Debugger>Xamarin</Debugger>
     <AotAssemblies>True</AotAssemblies>
     <DevInstrumentationEnabled>False</DevInstrumentationEnabled>
@@ -52,12 +52,73 @@
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cirrious.CrossCore, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta4\lib\MonoAndroid\Cirrious.CrossCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Cirrious.CrossCore.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta4\lib\MonoAndroid\Cirrious.CrossCore.Droid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross">
+      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta4\lib\MonoAndroid\Cirrious.MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.HotTuna.Binding.4.0.0-beta4\lib\MonoAndroid\Cirrious.MvvmCross.Binding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Binding.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.HotTuna.Binding.4.0.0-beta4\lib\MonoAndroid\Cirrious.MvvmCross.Binding.Droid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Droid">
+      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta4\lib\MonoAndroid\Cirrious.MvvmCross.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Droid.Support.Fragging">
+      <HintPath>..\packages\Cirrious.MvvmCross.Droid.Support.Fragging.4.0.0-beta5\lib\MonoAndroid403\Cirrious.MvvmCross.Droid.Support.Fragging.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta4\lib\MonoAndroid\Cirrious.MvvmCross.Localization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Cirrious.MvvmCross.Plugins.Email">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta1\lib\win81\Cirrious.MvvmCross.Plugins.Email.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Export" />
     <Reference Include="mscorlib" />
+    <Reference Include="MvvmCross.Plugins.Email">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta4\lib\MonoAndroid\MvvmCross.Plugins.Email.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Email.Droid">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta4\lib\MonoAndroid\MvvmCross.Plugins.Email.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Json">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Json.4.0.0-beta4\lib\MonoAndroid\MvvmCross.Plugins.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Sqlite, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.SQLitePCL.4.0.0-beta5\lib\MonoAndroid\MvvmCross.Plugins.Sqlite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Sqlite.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.SQLitePCL.4.0.0-beta5\lib\MonoAndroid\MvvmCross.Plugins.Sqlite.Droid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Visibility">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Visibility.4.0.0-beta4\lib\MonoAndroid\MvvmCross.Plugins.Visibility.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Visibility.Droid">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Visibility.4.0.0-beta4\lib\MonoAndroid\MvvmCross.Plugins.Visibility.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.WebBrowser">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.WebBrowser.4.0.0-beta4\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.WebBrowser.Droid">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.WebBrowser.4.0.0-beta4\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1-beta1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.Net.Platform.XamarinAndroid">
       <HintPath>..\packages\SQLite.Net-PCL.3.0.5\lib\MonoAndroid\SQLite.Net.Platform.XamarinAndroid.dll</HintPath>
     </Reference>
@@ -103,9 +164,8 @@
     <Reference Include="OxyPlot.Xamarin.Android, Version=2015.1.999.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\OxyPlot.Xamarin.Android.2015.1.999-alpha\lib\MonoAndroid\OxyPlot.Xamarin.Android.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.23.0.1.3\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.23.1.0.0-beta1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Insights, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Xamarin.Insights.1.11.1\lib\MonoAndroid10\Xamarin.Insights.dll</HintPath>
@@ -142,6 +202,9 @@
     </Reference>
     <Reference Include="SQLite.Net.Async, Version=3.0.5.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\SQLite.Net.Async-PCL.3.0.5\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.23.0.1.3\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -240,9 +303,6 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_add_circle.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_delete.png" />
   </ItemGroup>
   <ItemGroup>
@@ -250,9 +310,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_forward.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_remove_circle.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_save.png" />
@@ -271,9 +328,15 @@
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamandroidsupportv4-18">
-      <Visible>False</Visible>
       <Version>23.0.1.3</Version>
+      <Visible>False</Visible>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_remove.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.11.1\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.1\build\MonoAndroid10\Xamarin.Insights.targets')" />

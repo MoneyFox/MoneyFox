@@ -5,7 +5,7 @@
         android:showAsAction="ifRoom|withText" />
   
   <item android:id="@+id/action_add"
-      android:icon="@drawable/ic_add_circle"
+      android:icon="@drawable/ic_add"
       android:title="@string/action_add"
       android:showAsAction="ifRoom|withText" />
 </menu>
