@@ -135,6 +135,7 @@
     <Compile Include="Repositories\TransactionRepositoryTests.cs" />
     <Compile Include="StatisticProvider\CashFlowProviderTests.cs" />
     <Compile Include="StatisticProvider\CategorySpreadingProviderTests.cs" />
+    <Compile Include="StatisticProvider\CategorySummaryProviderTests.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyTransactionViewModelTest.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />
