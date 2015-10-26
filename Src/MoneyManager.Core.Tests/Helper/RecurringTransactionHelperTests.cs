@@ -139,7 +139,7 @@ namespace MoneyManager.Core.Tests.Helper
             };
 
             RecurringTransactionHelper.CheckIfRepeatable(recTrans,
-                new FinancialTransaction {Date = DateTime.Today.AddDays(-amountOfDaysBack)});
+                new FinancialTransaction {Date = DateTime.Today.AddDays(-amountOfDaysBack)}).ShouldBeTrue();
         }
     }
 }

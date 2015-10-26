@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Runtime.CompilerServices;
+using System.Reflection;
 using System.Resources;
 
 // General Information about an assembly is controlled through the following 
@@ -28,3 +29,7 @@ using System.Resources;
 
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: InternalsVisibleTo("MoneyManager.Core1.Tests")]
+[assembly: InternalsVisibleTo("MoneyManager.Core.Explorables")]
+[assembly: InternalsVisibleTo("MoneyManager.Core.Tests1")]
+

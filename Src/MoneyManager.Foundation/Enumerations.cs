@@ -16,6 +16,12 @@
         Yearly
     }
 
+    public enum ListStatisticType
+    {
+        CategorySpreading,
+        CategorySummary
+    }
+
     public enum InvocationType
     {
         Account,

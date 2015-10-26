@@ -20,10 +20,11 @@ namespace MoneyManager.Core.Tests.ViewModels
             var accountname = "Sparkonto";
 
             var accountRepositorySetup = new Mock<IRepository<Account>>();
-            accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2, Name = accountname});
+            accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account { Id = 2, Name = accountname });
 
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new BalanceViewModel(
-                accountRepositorySetup.Object, new Mock<ITransactionRepository>().Object)) {IsEdit = true};
+                accountRepositorySetup.Object, new Mock<ITransactionRepository>().Object))
+            { IsEdit = true };
 
             viewmodel.Title.ShouldBe("Edit " + accountname);
 

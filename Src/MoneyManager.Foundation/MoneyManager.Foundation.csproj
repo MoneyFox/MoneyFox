@@ -46,6 +46,8 @@
     <Compile Include="AbstractDataAccess.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
+    <Compile Include="Interfaces\IStatisticProvider.cs" />
+    <Compile Include="Model\CashFlow.cs" />
     <Compile Include="SqliteConnectionCreator.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\BackupException.cs" />

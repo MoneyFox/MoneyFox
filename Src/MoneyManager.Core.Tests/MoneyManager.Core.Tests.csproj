@@ -116,6 +116,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Converter\AmountFormatConverterTests.cs" />
+    <Compile Include="Converter\BooleanToVisibilityConverterTests.cs" />
     <Compile Include="Converter\DateFormatConverterTests.cs" />
     <Compile Include="Converter\TransactionAmountConverterTests.cs" />
     <Compile Include="Helper\RecurringTransactionHelperTests.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Helper\TransactionTypeLogicTest.cs" />
     <Compile Include="Manager\DefaultManagerTests.cs" />
     <Compile Include="Manager\RecurringTransactionManagerTests.cs" />
+    <Compile Include="Manager\RepositoryManagerTests.cs" />
     <Compile Include="Mocks\AccountDataAccessMock.cs" />
     <Compile Include="Mocks\CategoryDataAccessMock.cs" />
     <Compile Include="Mocks\RecurringTransactionDataAccessMock.cs" />
@@ -131,6 +133,9 @@
     <Compile Include="Repositories\AccountRepositoryTests.cs" />
     <Compile Include="Repositories\CategoryRepositoryTests.cs" />
     <Compile Include="Repositories\TransactionRepositoryTests.cs" />
+    <Compile Include="StatisticProvider\CashFlowProviderTests.cs" />
+    <Compile Include="StatisticProvider\CategorySpreadingProviderTests.cs" />
+    <Compile Include="StatisticProvider\CategorySummaryProviderTests.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyTransactionViewModelTest.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />
