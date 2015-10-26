@@ -61,6 +61,7 @@
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="StatisticProvider\CashFlowProvider.cs" />
     <Compile Include="StatisticProvider\CategorySpreadingProvider.cs" />
+    <Compile Include="StatisticProvider\CategorySummaryProvider.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\CategoryDialogViewModel.cs" />
