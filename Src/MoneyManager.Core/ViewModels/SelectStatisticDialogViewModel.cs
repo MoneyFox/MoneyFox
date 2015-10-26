@@ -43,8 +43,8 @@ namespace MoneyManager.Core.ViewModels
 
         private void LoadStatistic()
         {
-            statisticViewModel.SetCustomCashFlow();
-            statisticViewModel.SetCustomSpreading();
+            statisticViewModel.SetCashFlow();
+            statisticViewModel.SetSpreading();
             statisticViewModel.SetCustomCategorySummary();
         }
     }

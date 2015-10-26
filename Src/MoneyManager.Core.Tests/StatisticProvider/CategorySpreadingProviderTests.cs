@@ -89,6 +89,37 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         }
 
         [Fact]
+        public void GetValues_IncomeHigherThanSpending_SpendingSetToZero()
+        {
+            //Setup
+            var transactionRepoSetup = new Mock<ITransactionRepository>();
+            transactionRepoSetup.SetupAllProperties();
+
+            var categoryRepoSetup = new Mock<IRepository<Category>>();
+            categoryRepoSetup.SetupAllProperties();
+
+            var categoryRepo = categoryRepoSetup.Object;
+            categoryRepo.Data = new ObservableCollection<Category>(new List<Category>
+            {
+                new Category {Id = 1, Name = "Einkaufen"},
+            });
+
+            var transactionRepo = transactionRepoSetup.Object;
+            transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
+            {
+                new FinancialTransaction {Id = 1, Type = (int) TransactionType.Income, Date = DateTime.Today, Amount = 100, Category = categoryRepo.Data[0], CategoryId = 1},
+                new FinancialTransaction {Id = 2, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 90, Category = categoryRepo.Data[0], CategoryId = 1},
+            });
+
+            //Excution
+            var result = new CategorySpreadingProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)).ToList();
+
+            //Assertion
+            result.Count.ShouldBe(1);
+            result[0].Value.ShouldBe(0);
+        }
+
+        [Fact]
         public void GetValues_InitializedData_HandleDateCorrectly()
         {
             //Setup
