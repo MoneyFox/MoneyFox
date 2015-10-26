@@ -57,8 +57,12 @@ namespace MoneyManager.Core.Tests.Helper
         public void GetEnumFrostring_Type_Titel(TransactionType input, string culture, string expectedTitle,
             bool isEditMode)
         {
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
             Strings.Culture = new CultureInfo(culture);
             TransactionTypeHelper.GetViewTitleForType(input, isEditMode).ShouldBe(expectedTitle);
+
+            Strings.Culture = CultureInfo.CurrentUICulture;
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentUICulture;
         }
     }
 }
