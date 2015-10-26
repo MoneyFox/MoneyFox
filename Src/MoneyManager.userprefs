@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.AVD_GalaxyNexus_ToolsForApacheCordova" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.0c458c540075f356" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MoneyManager.Core\Converter\DateTimeFormatConverter.cs">
     <Files>
       <File FileName="MoneyManager.Core\Converter\DateTimeFormatConverter.cs" Line="19" Column="2" />
     </Files>

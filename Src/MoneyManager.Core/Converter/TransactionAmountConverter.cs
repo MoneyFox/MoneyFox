@@ -17,8 +17,7 @@ namespace MoneyManager.Core.Converter
 
             if (transaction.Type == (int) TransactionType.Transfer)
             {
-                var selected = Mvx.Resolve<IRepository<Account>>().Selected;
-                sign = transaction.ChargedAccountId == selected.Id
+                sign = transaction.ChargedAccountId == Mvx.Resolve<IRepository<Account>>().Selected.Id
                     ? "-"
                     : "+";
             }
