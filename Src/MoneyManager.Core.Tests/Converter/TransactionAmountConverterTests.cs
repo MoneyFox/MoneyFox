@@ -48,6 +48,7 @@ namespace MoneyManager.Core.Tests.Converter
                 {
                     Amount = 80,
                     Type = (int) TransactionType.Transfer,
+                    ChargedAccountId = account.Id,
                     ChargedAccount = account
                 }, null, account, null)
                 .ShouldBe("- " + 80.ToString("C"));
