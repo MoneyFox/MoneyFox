@@ -3,6 +3,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
+using Windows.System.UserProfile;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -51,6 +52,7 @@ namespace MoneyManager.Windows
 
             // Place our app shell in the current Window
             Window.Current.Content = shell;
+            ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
             if (shell.AppFrame.Content == null)
             {
