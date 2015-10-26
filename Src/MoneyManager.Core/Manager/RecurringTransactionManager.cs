@@ -40,7 +40,7 @@ namespace MoneyManager.Core.Manager
                 .OrderBy(x => x.Date)
                 .ToList();
 
-            return transcationList.Any() ? transcationList.Last() : new FinancialTransaction();
+            return transcationList.LastOrDefault();
         }
     }
 }

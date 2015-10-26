@@ -50,7 +50,6 @@
     <Compile Include="Helper\RecurringTransactionHelper.cs" />
     <Compile Include="Helper\Utilities.cs" />
     <Compile Include="Manager\RecurringTransactionManager.cs" />
-    <Compile Include="Manager\StatisticManager.cs" />
     <Compile Include="Helper\TransactionTypeHelper.cs" />
     <Compile Include="Manager\DefaultManager.cs" />
     <Compile Include="Manager\RepositoryManager.cs" />
@@ -59,6 +58,10 @@
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
+    <Compile Include="ListStatisticFactory.cs" />
+    <Compile Include="StatisticProvider\CashFlowProvider.cs" />
+    <Compile Include="StatisticProvider\CategorySpreadingProvider.cs" />
+    <Compile Include="StatisticProvider\CategorySummaryProvider.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\CategoryDialogViewModel.cs" />
