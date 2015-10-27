@@ -150,6 +150,9 @@
   <data name="BackupInformation.Text" xml:space="preserve">
     <value>Deine Daten werden in deinem OneDrive Konto gespeichert. Du findest sie in einem neuen Ordner namens "MoneyFoxBackupManager".</value>
   </data>
+  <data name="RestoreInformation.Text" xml:space="preserve">
+    <value>Wir laden die vorher erstellte Datenbanksicherung herunter und ersetzten deine lokalen Daten damit. ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
+  </data>
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>BackupManager</value>
   </data>
