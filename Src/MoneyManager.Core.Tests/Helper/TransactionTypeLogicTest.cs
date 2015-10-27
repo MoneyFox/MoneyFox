@@ -24,15 +24,15 @@ namespace MoneyManager.Core.Tests.Helper
         [InlineData(1, "en-US", "Edit Income", true)]
         [InlineData(2, "en-US", "Edit Transfer", true)]
         [InlineData(0, "de-DE", "Ausgabe bearbeiten", true)]
-        [InlineData(1, "de-DE", "Einkommen bearbeiten", true)]
-        [InlineData(2, "de-DE", "Überweisung bearbeiten", true)]
+        [InlineData(1, "de-DE", "Einnahme bearbeiten", true)]
+        [InlineData(2, "de-DE", "Übertrag bearbeiten", true)]
         //Editmode false
         [InlineData(0, "en-US", "Add Spending", false)]
         [InlineData(1, "en-US", "Add Income", false)]
         [InlineData(2, "en-US", "Add Transfer", false)]
         [InlineData(0, "de-DE", "Ausgabe hinzufügen", false)]
-        [InlineData(1, "de-DE", "Einkommen hinzufügen", false)]
-        [InlineData(2, "de-DE", "Überweisung hinzufügen", false)]
+        [InlineData(1, "de-DE", "Einnahme hinzufügen", false)]
+        [InlineData(2, "de-DE", "Übertrag hinzufügen", false)]
         public void GetEnumFrostring_Int_Titel(int input, string culture, string expectedTitle, bool isEditMode)
         {
             Strings.Culture = new CultureInfo(culture);
@@ -45,15 +45,15 @@ namespace MoneyManager.Core.Tests.Helper
         [InlineData(TransactionType.Income, "en-US", "Edit Income", true)]
         [InlineData(TransactionType.Transfer, "en-US", "Edit Transfer", true)]
         [InlineData(TransactionType.Spending, "de-DE", "Ausgabe bearbeiten", true)]
-        [InlineData(TransactionType.Income, "de-DE", "Einkommen bearbeiten", true)]
-        [InlineData(TransactionType.Transfer, "de-DE", "Überweisung bearbeiten", true)]
+        [InlineData(TransactionType.Income, "de-DE", "Einnahme bearbeiten", true)]
+        [InlineData(TransactionType.Transfer, "de-DE", "Übertrag bearbeiten", true)]
         //Editmode false
         [InlineData(TransactionType.Spending, "en-US", "Add Spending", false)]
         [InlineData(TransactionType.Income, "en-US", "Add Income", false)]
         [InlineData(TransactionType.Transfer, "en-US", "Add Transfer", false)]
         [InlineData(TransactionType.Spending, "de-DE", "Ausgabe hinzufügen", false)]
-        [InlineData(TransactionType.Income, "de-DE", "Einkommen hinzufügen", false)]
-        [InlineData(TransactionType.Transfer, "de-DE", "Überweisung hinzufügen", false)]
+        [InlineData(TransactionType.Income, "de-DE", "Einnahme hinzufügen", false)]
+        [InlineData(TransactionType.Transfer, "de-DE", "Übertrag hinzufügen", false)]
         public void GetEnumFrostring_Type_Titel(TransactionType input, string culture, string expectedTitle,
             bool isEditMode)
         {
