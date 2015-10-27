@@ -21,5 +21,19 @@ namespace MoneyManager.Core.Tests.Converter
 
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
         }
+
+        [Theory]
+        [InlineData("en-US", "9/15/2015")]
+        [InlineData("de-DE", "15.09.2015")]
+        public void ConvertBack_DateTime_ValidString(string culture, string result)
+        {
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
+
+            new DateTimeFormatConverter()
+                .ConvertBack(new DateTime(2015, 09, 15, 14, 56, 48), null, null, null)
+                .ShouldBe(result);
+
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
+        }
     }
 }

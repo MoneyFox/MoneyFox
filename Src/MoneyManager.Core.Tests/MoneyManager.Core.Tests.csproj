@@ -119,6 +119,7 @@
     <Compile Include="Converter\BooleanToVisibilityConverterTests.cs" />
     <Compile Include="Converter\DateFormatConverterTests.cs" />
     <Compile Include="Converter\TransactionAmountConverterTests.cs" />
+    <Compile Include="Extensions\DateTimeExtensionTests.cs" />
     <Compile Include="Helper\RecurringTransactionHelperTests.cs" />
     <Compile Include="Helper\UtilitiesTest.cs" />
     <Compile Include="Helper\TransactionTypeLogicTest.cs" />

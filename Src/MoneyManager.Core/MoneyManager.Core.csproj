@@ -47,6 +47,7 @@
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
     <Compile Include="Converter\TransactionAmountConverter.cs" />
+    <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Helper\RecurringTransactionHelper.cs" />
     <Compile Include="Helper\Utilities.cs" />
     <Compile Include="Manager\RecurringTransactionManager.cs" />

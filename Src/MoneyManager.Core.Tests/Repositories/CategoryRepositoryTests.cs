@@ -16,6 +16,7 @@ namespace MoneyManager.Core.Tests.Repositories
         [InlineData("", "[No Name]")]
         public void Save_InputName_CorrectNameAssigned(string inputName, string expectedResult)
         {
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
             Strings.Culture = new CultureInfo("en-US");
             var categoryDataAccessMock = new CategoryDataAccessMock();
             var repository = new CategoryRepository(categoryDataAccessMock);
@@ -29,6 +30,9 @@ namespace MoneyManager.Core.Tests.Repositories
 
             categoryDataAccessMock.CategoryTestList[0].ShouldBeSameAs(category);
             categoryDataAccessMock.CategoryTestList[0].Name.ShouldBe(expectedResult);
+
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
+            Strings.Culture = CultureInfo.CurrentCulture;
         }
 
         [Fact]

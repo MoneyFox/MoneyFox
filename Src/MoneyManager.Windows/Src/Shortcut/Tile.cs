@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Cirrious.CrossCore;
+using MoneyManager.Core.Helper;
 using MoneyManager.Core.Manager;
+using MoneyManager.Core.StatisticProvider;
 using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Windows.Shortcut
@@ -30,8 +32,13 @@ namespace MoneyManager.Windows.Shortcut
         /// </summary>
         public static void UpdateMainTile()
         {
-            var cashFlow = Mvx.Resolve<StatisticManager>().GetMonthlyCashFlow();
-            Mvx.Resolve<IUserNotification>().UpdateMainTile(cashFlow[0].Label, cashFlow[1].Label, cashFlow[2].Label);
+            //TODO Refactor this so you don't create the CashFlowProvider here
+            var cashFlow =
+                new CashFlowProvider(Mvx.Resolve<ITransactionRepository>()).GetValues(
+                    DateTime.Today.GetFirstDayOfMonth(),
+                    DateTime.Today.GetLastDayOfMonth());
+
+            Mvx.Resolve<IUserNotification>().UpdateMainTile(cashFlow.Income.Label, cashFlow.Spending.Label, cashFlow.Revenue.Label);
         }
     }
 }

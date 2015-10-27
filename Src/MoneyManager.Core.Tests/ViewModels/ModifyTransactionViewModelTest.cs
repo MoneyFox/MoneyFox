@@ -23,15 +23,10 @@ namespace MoneyManager.Core.Tests.ViewModels
         [InlineData(TransactionType.Spending, true, "Edit Spending", "en-US")]
         [InlineData(TransactionType.Income, true, "Edit Income", "en-US")]
         [InlineData(TransactionType.Transfer, true, "Edit Transfer", "en-US")]
-        [InlineData(TransactionType.Spending, true, "Ausgabe bearbeiten", "de-CH")]
-        [InlineData(TransactionType.Income, true, "Einkommen bearbeiten", "de-CH")]
         //Add Titles
         [InlineData(TransactionType.Spending, false, "Add Spending", "en-US")]
         [InlineData(TransactionType.Income, false, "Add Income", "en-US")]
         [InlineData(TransactionType.Transfer, false, "Add Transfer", "en-US")]
-        [InlineData(TransactionType.Spending, false, "Ausgabe hinzufügen", "de-CH")]
-        [InlineData(TransactionType.Income, false, "Einkommen hinzufügen", "de-CH")]
-        [InlineData(TransactionType.Transfer, false, "Überweisung hinzufügen", "de-CH")]
         public void Title_TransactionTypeDifferentModes_CorrectTitle(TransactionType type, bool isEditMode,
             string result, string culture)
         {
