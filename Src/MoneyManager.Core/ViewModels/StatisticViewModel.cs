@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyManager.Core.Helper;
 using MoneyManager.Core.StatisticProvider;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
@@ -38,8 +39,8 @@ namespace MoneyManager.Core.ViewModels
 
             listStatisticFactory = new ListStatisticFactory(transactionRepository, categoryRepository);
 
-            StartDate = DateTime.Now.Date.AddMonths(-1);
-            EndDate = DateTime.Now.Date;
+            StartDate = DateTime.Today.GetFirstDayOfMonth();
+            EndDate = DateTime.Today.GetLastDayOfMonth();
         }
 
         /// <summary>
