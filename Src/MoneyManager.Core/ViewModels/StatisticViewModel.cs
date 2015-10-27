@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyManager.Core.Helper;
+using MoneyManager.Core.Extensions;
 using MoneyManager.Core.StatisticProvider;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
