@@ -133,7 +133,7 @@
     <value>Konto hinzufügen</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Einkommen hinzufügen</value>
+    <value>Einnahme hinzufügen</value>
   </data>
   <data name="AddSpendingLabel" xml:space="preserve">
     <value>Ausgaben hinzufügen</value>
@@ -142,7 +142,7 @@
     <value>Hinzufügen</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Überweisung hinzufügen</value>
+    <value>Übertrag hinzufügen</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
@@ -190,7 +190,7 @@
     <value>Ändern</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Spesen</value>
+    <value>Ausgaben</value>
   </data>
   <data name="FeedbackLabel" xml:space="preserve">
     <value>Feedback</value>
@@ -205,10 +205,10 @@
     <value>www.apply-solutions.ch</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Einkommen bearbeiten</value>
+    <value>Einnahme bearbeiten</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Steigern</value>
+    <value>Gewinn</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
     <value>Nur das</value>
@@ -244,7 +244,7 @@
     <value>Bestätigen</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Existierende Sicherungen werden überschrieben. Fortfahren?</value>
+    <value>Existierende Sicherungen werden überschrieben.  Möchtest du Fortfahren?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Überschreiben?</value>
@@ -256,7 +256,7 @@
     <value>Wiederherstellung fehlgeschlagen!</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Umsatz</value>
+    <value>Einnahmen</value>
   </data>
   <data name="SelectDateTitle" xml:space="preserve">
     <value>Datum auswählen</value>
@@ -286,7 +286,7 @@
     <value>Auftrag erfolgreich abgeschlossen.</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Überweisung bearbeiten</value>
+    <value>Übertrag bearbeiten</value>
   </data>
   <data name="WebsiteUrl" xml:space="preserve">
     <value>http://www.apply-solutions.ch</value>
@@ -301,15 +301,15 @@
     <value>Ja</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value />
+    <value>Deine Lokalen Daten werden überschrieben. Möchtest du fortfahren?</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Einkommen hinzufügen</value>
+    <value>Einnahme hinzufügen</value>
   </data>
   <data name="AddSpendingTitle" xml:space="preserve">
     <value>Ausgabe hinzufügen</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Überweisung hinzufügen</value>
+    <value>Übertrag hinzufügen</value>
   </data>
 </root>

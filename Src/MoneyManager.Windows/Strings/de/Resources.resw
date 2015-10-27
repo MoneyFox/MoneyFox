@@ -145,7 +145,7 @@
     <value>Transaktion hinzufügen</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
-    <value>Überweisung hinzufügen</value>
+    <value>Übertrag hinzufügen</value>
   </data>
   <data name="BackupInformation.Text" xml:space="preserve">
     <value>Deine Daten werden in deinem OneDrive Konto gespeichert. Du findest sie in einem neuen Ordner namens "MoneyFoxBackupManager".</value>
