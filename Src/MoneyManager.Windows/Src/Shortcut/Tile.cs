@@ -2,8 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Cirrious.CrossCore;
-using MoneyManager.Core.Helper;
-using MoneyManager.Core.Manager;
+using MoneyManager.Core.Extensions;
 using MoneyManager.Core.StatisticProvider;
 using MoneyManager.Foundation.Interfaces;
 
