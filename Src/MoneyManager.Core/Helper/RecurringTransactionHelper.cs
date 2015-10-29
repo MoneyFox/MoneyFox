@@ -80,6 +80,8 @@ namespace MoneyManager.Core.Helper
         /// <returns>True or False if the transaction have to be repeated.</returns>
         public static bool CheckIfRepeatable(RecurringTransaction recTrans, FinancialTransaction relTransaction)
         {
+            if (!relTransaction.IsCleared) return false;
+
             switch (recTrans.Recurrence)
             {
                 case (int) TransactionRecurrence.Daily:
