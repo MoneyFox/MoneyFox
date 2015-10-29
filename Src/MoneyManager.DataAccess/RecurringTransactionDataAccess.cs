@@ -60,7 +60,7 @@ namespace MoneyManager.DataAccess
         {
             using (var dbConn = connectionCreator.GetConnection())
             {
-                return dbConn.GetAllWithChildren<RecurringTransaction>().ToList();
+                return dbConn.GetAllWithChildren(filter).ToList();
             }
         }
     }

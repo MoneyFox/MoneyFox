@@ -148,9 +148,7 @@ namespace MoneyManager.Core.ViewModels
 
         private async void Delete()
         {
-            if (
-                await
-                    dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
             {
                 transactionManager.DeleteTransaction(transactionRepository.Selected);
                 ResetInitLocker();

@@ -89,15 +89,25 @@ namespace MoneyManager.Core.Repositories
         /// <param name="item">item to delete</param>
         public void Delete(FinancialTransaction item)
         {
-            var reucurringList = recurringDataAccess.LoadList(x => x.Id == item.ReccuringTransactionId).ToList();
-
-            foreach (var recTrans in reucurringList)
-            {
-                recurringDataAccess.DeleteItem(recTrans);
-            }
-
             data.Remove(item);
             dataAccess.DeleteItem(item);
+
+            // If this transaction was the last finacial transaction for the linked recurring transaction
+            // delete the db entry for the recurring transaction.
+            DeleteRecurringTransactionIfLastAssociated(item);
+        }
+
+        private void DeleteRecurringTransactionIfLastAssociated(FinancialTransaction item)
+        {
+            if (data.All(x => x.ReccuringTransactionId != item.ReccuringTransactionId))
+            {
+                var recurringList = recurringDataAccess.LoadList(x => x.Id == item.ReccuringTransactionId).ToList();
+
+                foreach (var recTrans in recurringList)
+                {
+                    recurringDataAccess.DeleteItem(recTrans);
+                }
+            }
         }
 
         /// <summary>
