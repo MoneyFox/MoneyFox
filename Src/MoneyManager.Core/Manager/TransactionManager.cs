@@ -69,6 +69,8 @@ namespace MoneyManager.Core.Manager
                         Strings.RecurringLabel, Strings.JustThisLabel);
         }
 
+
+
         public void ClearTransactions()
         {
             var transactions = transactionRepository.GetUnclearedTransactions();
