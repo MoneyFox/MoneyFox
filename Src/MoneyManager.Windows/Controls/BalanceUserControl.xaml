@@ -14,7 +14,8 @@
     </UserControl.Resources>
 
     <StackPanel Orientation="Horizontal"
-                EntranceNavigationTransitionInfo.IsTargetElement="True">
+                EntranceNavigationTransitionInfo.IsTargetElement="True"
+                Margin="5,0,0,0">
         <TextBlock Text="Total: "
                    x:Uid="TotalLabel"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
