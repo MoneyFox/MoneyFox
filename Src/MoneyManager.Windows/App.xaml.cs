@@ -65,7 +65,7 @@ namespace MoneyManager.Windows
                 start.Start();
             }
 
-            shell.AppFrame.Navigate(typeof (MainView));
+            shell.AppFrame.Navigate(typeof (EnterPasswordView));
             new TileHelper(Mvx.Resolve<ModifyTransactionViewModel>()).DoNavigation(e.TileId);
 
             Tile.UpdateMainTile();
@@ -111,6 +111,13 @@ namespace MoneyManager.Windows
                 }
                 titleBar.ButtonInactiveForegroundColor = appForegroundColor.Color;
             }
+        }
+
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            base.OnActivated(args);
+
+            (Window.Current.Content as AppShell).AppFrame.Navigate(typeof(EnterPasswordView));
         }
 
         /// <summary>

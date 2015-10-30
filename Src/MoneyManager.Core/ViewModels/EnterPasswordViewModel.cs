@@ -29,7 +29,10 @@ namespace MoneyManager.Core.ViewModels
             if (!passwordManager.ValidatePassword(Password))
             {
                 dialogService.ShowMessage(Strings.PasswordWrongTitle, Strings.PasswordWrongMessage);
+                return;
             }
+
+            ShowViewModel<MainViewModel>();
         }
     }
 }
