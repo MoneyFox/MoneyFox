@@ -309,4 +309,16 @@
   <data name="EditTitle" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
+    <value>The passwod and the password confirmation didn't match. Please check your input.</value>
+  </data>
+  <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
+    <value>Password confirmation</value>
+  </data>
+  <data name="PasswordSavedMessage" xml:space="preserve">
+    <value>Password was saved succesfully.</value>
+  </data>
+  <data name="PasswordSavedTitle" xml:space="preserve">
+    <value>Password saved</value>
+  </data>
 </root>

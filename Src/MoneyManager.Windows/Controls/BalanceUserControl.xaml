@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="using:MoneyManager.Windows.Converter"
              mc:Ignorable="d"
-             d:DesignHeight="300"
+             d:DesignHeight="50"
              d:DesignWidth="400"
              Loaded="BalanceUserControl_OnLoaded">
 
