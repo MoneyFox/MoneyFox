@@ -113,13 +113,6 @@ namespace MoneyManager.Windows
             }
         }
 
-        protected override void OnActivated(IActivatedEventArgs args)
-        {
-            base.OnActivated(args);
-
-            (Window.Current.Content as AppShell).AppFrame.Navigate(typeof(EnterPasswordView));
-        }
-
         /// <summary>
         ///     Invoked when Navigation to a certain page fails
         /// </summary>

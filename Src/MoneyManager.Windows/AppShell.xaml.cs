@@ -306,6 +306,13 @@ namespace MoneyManager.Windows
             }
         }
 
+        /// <summary>
+        ///     Checks if the current session is expired
+        /// </summary>
+        public void CheckSession()
+        {
+            
+        }
         #endregion
     }
 }
