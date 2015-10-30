@@ -230,4 +230,7 @@ Visit Repository:</value>
   <data name="PasswordSettingSwitch.OnContent" xml:space="preserve">
     <value>Password protection active</value>
   </data>
+  <data name="Login.Content" xml:space="preserve">
+    <value>Login</value>
+  </data>
 </root>

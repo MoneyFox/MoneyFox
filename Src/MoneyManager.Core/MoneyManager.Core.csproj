@@ -50,6 +50,7 @@
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Helper\RecurringTransactionHelper.cs" />
     <Compile Include="Helper\Utilities.cs" />
+    <Compile Include="Manager\PasswordManager.cs" />
     <Compile Include="Manager\RecurringTransactionManager.cs" />
     <Compile Include="Helper\TransactionTypeHelper.cs" />
     <Compile Include="Manager\DefaultManager.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\CategoryDialogViewModel.cs" />
+    <Compile Include="ViewModels\EnterPasswordViewModel.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyTransactionViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />

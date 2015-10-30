@@ -321,4 +321,10 @@
   <data name="PasswordSavedTitle" xml:space="preserve">
     <value>Password saved</value>
   </data>
+  <data name="PasswordWrongMessage" xml:space="preserve">
+    <value>The password you entered was not correct. Please try again.</value>
+  </data>
+  <data name="PasswordWrongTitle" xml:space="preserve">
+    <value>Password wrong</value>
+  </data>
 </root>

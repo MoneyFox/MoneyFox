@@ -1,6 +1,5 @@
-﻿using System;
-using Beezy.MvvmCross.Plugins.SecureStorage;
-using Cirrious.MvvmCross.ViewModels;
+﻿using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.Manager;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
@@ -13,14 +12,14 @@ namespace MoneyManager.Core.ViewModels
     {
         private const string PASSWORD_KEY = "password";
         private readonly IDialogService dialogService;
-        private readonly IMvxProtectedData protectedData;
+        private readonly PasswordManager passwordManager;
         private readonly SettingDataAccess settings;
 
         public PasswordUserControlViewModel(SettingDataAccess settings,
-            IMvxProtectedData protectedData, IDialogService dialogService)
+            PasswordManager passwordManager, IDialogService dialogService)
         {
             this.settings = settings;
-            this.protectedData = protectedData;
+            this.passwordManager = passwordManager;
             this.dialogService = dialogService;
         }
 
@@ -67,9 +66,6 @@ namespace MoneyManager.Core.ViewModels
                 return;
             }
 
-            IsPasswortActive = true;
-            protectedData.Protect(PASSWORD_KEY, Password);
-
             dialogService.ShowMessage(Strings.PasswordSavedTitle, Strings.PasswordSavedMessage);
         }
 
@@ -77,14 +73,14 @@ namespace MoneyManager.Core.ViewModels
         {
             if (IsPasswortActive)
             {
-                Password = protectedData.Unprotect(PASSWORD_KEY);
-                PasswordConfirmation = protectedData.Unprotect(PASSWORD_KEY);
+                Password = passwordManager.LoadPassword();
+                PasswordConfirmation = passwordManager.LoadPassword();
             }
         }
 
         private void RemovePassword()
         {
-            protectedData.Remove(PASSWORD_KEY);
+            passwordManager.RemovePassword();
         }
     }
 }

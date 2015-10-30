@@ -539,6 +539,24 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password you entered was not correct. Please try again..
+        /// </summary>
+        public static string PasswordWrongMessage {
+            get {
+                return ResourceManager.GetString("PasswordWrongMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password wrong.
+        /// </summary>
+        public static string PasswordWrongTitle {
+            get {
+                return ResourceManager.GetString("PasswordWrongTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update All.
         /// </summary>
         public static string RecurringLabel {
