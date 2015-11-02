@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.Helper;
+using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;

@@ -8,12 +8,12 @@ namespace MoneyManager.Core.ViewModels
 {
     public class EnterPasswordViewModel : BaseViewModel
     {
-        private readonly PasswordManager passwordManager;
+        private readonly PasswordStorage passwordStorage;
         private readonly IDialogService dialogService;
 
-        public EnterPasswordViewModel(PasswordManager passwordManager, IDialogService dialogService)
+        public EnterPasswordViewModel(PasswordStorage passwordStorage, IDialogService dialogService)
         {
-            this.passwordManager = passwordManager;
+            this.passwordStorage = passwordStorage;
             this.dialogService = dialogService;
         }
 
@@ -26,7 +26,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void Login()
         {
-            if (!passwordManager.ValidatePassword(Password))
+            if (!passwordStorage.ValidatePassword(Password))
             {
                 dialogService.ShowMessage(Strings.PasswordWrongTitle, Strings.PasswordWrongMessage);
                 return;

@@ -2,7 +2,7 @@
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Core.Helper
+namespace MoneyManager.Core.Helpers
 {
     public static class RecurringTransactionHelper
     {

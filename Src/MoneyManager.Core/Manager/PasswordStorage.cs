@@ -2,12 +2,12 @@
 
 namespace MoneyManager.Core.Manager
 {
-    public class PasswordManager
+    public class PasswordStorage
     {
         private const string PASSWORD_KEY = "password";
         private readonly IMvxProtectedData protectedData;
 
-        public PasswordManager(IMvxProtectedData protectedData)
+        public PasswordStorage(IMvxProtectedData protectedData)
         {
             this.protectedData = protectedData;
         }

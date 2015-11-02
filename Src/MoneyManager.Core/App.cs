@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Beezy.MvvmCross.Plugins.SecureStorage;
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.IoC;
 using Cirrious.MvvmCross.ViewModels;
@@ -7,6 +8,7 @@ using MoneyManager.Core.ViewModels;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
+using Refractored.Xam.Settings.Abstractions;
 
 namespace MoneyManager.Core
 {
@@ -48,6 +50,9 @@ namespace MoneyManager.Core
                 .EndingWith("ViewModel")
                 .AsTypes()
                 .RegisterAsLazySingleton();
+
+            Mvx.RegisterType(() => new PasswordStorage(Mvx.Resolve<IMvxProtectedData>()));
+            Mvx.RegisterType(() => new Session(Mvx.Resolve<SettingDataAccess>(), Mvx.Resolve<ISettings>()));
 
             Mvx.Resolve<RecurringTransactionManager>().CheckRecurringTransactions();
             Mvx.Resolve<TransactionManager>().ClearTransactions();

@@ -12,14 +12,14 @@ namespace MoneyManager.Core.ViewModels
     {
         private const string PASSWORD_KEY = "password";
         private readonly IDialogService dialogService;
-        private readonly PasswordManager passwordManager;
+        private readonly PasswordStorage passwordStorage;
         private readonly SettingDataAccess settings;
 
         public PasswordUserControlViewModel(SettingDataAccess settings,
-            PasswordManager passwordManager, IDialogService dialogService)
+            PasswordStorage passwordStorage, IDialogService dialogService)
         {
             this.settings = settings;
-            this.passwordManager = passwordManager;
+            this.passwordStorage = passwordStorage;
             this.dialogService = dialogService;
         }
 
@@ -73,14 +73,14 @@ namespace MoneyManager.Core.ViewModels
         {
             if (IsPasswortActive)
             {
-                Password = passwordManager.LoadPassword();
-                PasswordConfirmation = passwordManager.LoadPassword();
+                Password = passwordStorage.LoadPassword();
+                PasswordConfirmation = passwordStorage.LoadPassword();
             }
         }
 
         private void RemovePassword()
         {
-            passwordManager.RemovePassword();
+            passwordStorage.RemovePassword();
         }
     }
 }
