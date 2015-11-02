@@ -9,6 +9,9 @@ namespace MoneyManager.Core.Authentication
         private readonly SettingDataAccess settings;
         private readonly ISettings settingStorage;
 
+        /// <summary>
+        ///     Amount of minutes after which the session shall expire.
+        /// </summary>
         private const int SESSION_TIMEOUT = 10;
         private const string SESSION_KEY = "session_timestamp";
 
@@ -34,6 +37,14 @@ namespace MoneyManager.Core.Authentication
         private static bool checkIfSessionExpired(string entry)
         {
             return (DateTime.Now - Convert.ToDateTime(entry)).TotalMinutes < SESSION_TIMEOUT;
+        }
+
+        /// <summary>
+        ///     Adds the current time as timestamp to the local settings.
+        /// </summary>
+        public void AddSession()
+        {
+            settingStorage.AddOrUpdateValue(SESSION_KEY, DateTime.Now);
         }
     }
 }

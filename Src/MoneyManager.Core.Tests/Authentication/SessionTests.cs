@@ -44,5 +44,23 @@ namespace MoneyManager.Core.Tests.Authentication
 
             new Session(new SettingDataAccess(roamingSettingsSetup.Object), settingsSetup.Object).ValidateSession().ShouldBe(expectedResult);
         }
+
+        [Fact]
+        public void AddSession_SessionTimestampAdded()
+        {
+            DateTime resultDateTime = DateTime.Today.AddDays(-10);
+
+            var settingsSetup = new Mock<ISettings>();
+            settingsSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>()))
+                .Callback((string key, DateTime value) => resultDateTime = value);
+
+            var roamingSettingsSetup = new Mock<IRoamingSettings>();
+            roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), false))
+                .Returns(true);
+
+            new Session(new SettingDataAccess(roamingSettingsSetup.Object), settingsSetup.Object).AddSession();
+            resultDateTime.Date.ShouldBe(DateTime.Today);
+
+        }
     }
 }
