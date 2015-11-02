@@ -135,11 +135,11 @@ namespace MoneyManager.Core.Tests.Helper
                 StartDate = new DateTime(2015, 08, 25),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
-                Amount = 105
+                Amount = 105,
             };
 
             RecurringTransactionHelper.CheckIfRepeatable(recTrans,
-                new FinancialTransaction {Date = DateTime.Today.AddDays(-amountOfDaysBack)}).ShouldBeTrue();
+                new FinancialTransaction {Date = DateTime.Today.AddDays(-amountOfDaysBack), IsCleared = true}).ShouldBeTrue();
         }
 
         [Fact]
