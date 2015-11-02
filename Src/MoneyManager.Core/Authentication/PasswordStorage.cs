@@ -1,7 +1,10 @@
 ﻿using Beezy.MvvmCross.Plugins.SecureStorage;
 
-namespace MoneyManager.Core.Manager
+namespace MoneyManager.Core.Authentication
 {
+    /// <summary>
+    ///     Wrapper object for IMvxProtectedData to provide a nicer access.
+    /// </summary>
     public class PasswordStorage
     {
         private const string PASSWORD_KEY = "password";

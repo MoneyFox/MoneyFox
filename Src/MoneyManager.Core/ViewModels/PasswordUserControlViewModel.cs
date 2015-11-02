@@ -1,4 +1,5 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.Authentication;
 using MoneyManager.Core.Manager;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;

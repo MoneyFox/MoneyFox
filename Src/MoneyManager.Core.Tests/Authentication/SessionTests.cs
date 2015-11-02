@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyManager.Core.Authentication;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.TestFoundation;

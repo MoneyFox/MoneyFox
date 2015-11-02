@@ -3,6 +3,7 @@ using Beezy.MvvmCross.Plugins.SecureStorage;
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.IoC;
 using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.Authentication;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.DataAccess;

@@ -2,7 +2,7 @@
 using MoneyManager.DataAccess;
 using Refractored.Xam.Settings.Abstractions;
 
-namespace MoneyManager.Core
+namespace MoneyManager.Core.Authentication
 {
     public class Session
     {

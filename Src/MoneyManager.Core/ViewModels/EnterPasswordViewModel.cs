@@ -1,5 +1,6 @@
 ﻿using Beezy.MvvmCross.Plugins.SecureStorage;
 using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.Authentication;
 using MoneyManager.Core.Manager;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;

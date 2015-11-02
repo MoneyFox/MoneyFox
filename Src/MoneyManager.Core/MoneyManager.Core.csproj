@@ -51,7 +51,7 @@
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\RecurringTransactionHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
-    <Compile Include="Manager\PasswordStorage.cs" />
+    <Compile Include="Authentication\PasswordStorage.cs" />
     <Compile Include="Manager\RecurringTransactionManager.cs" />
     <Compile Include="Helpers\TransactionTypeHelper.cs" />
     <Compile Include="Manager\DefaultManager.cs" />
@@ -62,7 +62,7 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="ListStatisticFactory.cs" />
-    <Compile Include="Session.cs" />
+    <Compile Include="Authentication\Session.cs" />
     <Compile Include="StatisticProvider\CashFlowProvider.cs" />
     <Compile Include="StatisticProvider\CategorySpreadingProvider.cs" />
     <Compile Include="StatisticProvider\CategorySummaryProvider.cs" />
