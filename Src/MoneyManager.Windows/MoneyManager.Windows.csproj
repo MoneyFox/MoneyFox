@@ -94,9 +94,6 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
-    <AppxSystemBinary Include="MoneyManager.Windows.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="app.config" />
     <None Include="MoneyManager.Windows_StoreKey.pfx" />
@@ -168,6 +165,7 @@
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DatabasePath.cs" />
     <Compile Include="Src\DialogService.cs" />
+    <Compile Include="Src\LocalSettings.cs" />
     <Compile Include="Src\RoamingSettings.cs" />
     <Compile Include="Src\StoreFeatures.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />

@@ -1659,16 +1659,6 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xam.Plugins.Settings/1.5.2": {
-        "compile": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
-        },
-        "runtime": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
-        }
-      },
       "Xamarin.Insights/1.11.1": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -3425,16 +3415,6 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xam.Plugins.Settings/1.5.2": {
-        "compile": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
-        },
-        "runtime": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
-        }
-      },
       "Xamarin.Insights/1.11.1": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -5161,16 +5141,6 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
-        }
-      },
-      "Xam.Plugins.Settings/1.5.2": {
-        "compile": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
-        },
-        "runtime": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
         }
       },
       "Xamarin.Insights/1.11.1": {
@@ -6934,16 +6904,6 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xam.Plugins.Settings/1.5.2": {
-        "compile": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
-        },
-        "runtime": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
-        }
-      },
       "Xamarin.Insights/1.11.1": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -8670,16 +8630,6 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
-        }
-      },
-      "Xam.Plugins.Settings/1.5.2": {
-        "compile": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
-        },
-        "runtime": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
         }
       },
       "Xamarin.Insights/1.11.1": {
@@ -10443,16 +10393,6 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "Xam.Plugins.Settings/1.5.2": {
-        "compile": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
-        },
-        "runtime": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
-        }
-      },
       "Xamarin.Insights/1.11.1": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -12179,16 +12119,6 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
-        }
-      },
-      "Xam.Plugins.Settings/1.5.2": {
-        "compile": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
-        },
-        "runtime": {
-          "lib/win8/Refractored.Xam.Settings.Abstractions.dll": {},
-          "lib/win8/Refractored.Xam.Settings.dll": {}
         }
       },
       "Xamarin.Insights/1.11.1": {
@@ -15884,51 +15814,6 @@
         "System.Xml.XmlSerializer.nuspec"
       ]
     },
-    "Xam.Plugins.Settings/1.5.2": {
-      "sha512": "+eY6Eco8TZoSgP8GTjtAraepGCOYpz1YihdfjRbtDTKnYw48Q0qSmtavq/IodNfyCFV5AB3RdDQSl1kR+z6i6A==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "content/MonoAndroid10/PluginsHelp/SettingsReadme.txt.pp",
-        "content/MonoTouch10/PluginsHelp/SettingsReadme.txt.pp",
-        "content/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Helpers/Settings.cs.pp",
-        "content/win8/PluginsHelp/SettingsReadme.txt.pp",
-        "content/wp8/PluginsHelp/SettingsReadme.txt.pp",
-        "content/wpa81/PluginsHelp/SettingsReadme.txt.pp",
-        "content/Xamarin.iOS10/PluginsHelp/SettingsReadme.txt.pp",
-        "lib/MonoAndroid10/Refractored.Xam.Settings.Abstractions.dll",
-        "lib/MonoAndroid10/Refractored.Xam.Settings.Abstractions.xml",
-        "lib/MonoAndroid10/Refractored.Xam.Settings.dll",
-        "lib/MonoAndroid10/Refractored.Xam.Settings.xml",
-        "lib/MonoTouch10/Refractored.Xam.Settings.Abstractions.dll",
-        "lib/MonoTouch10/Refractored.Xam.Settings.Abstractions.xml",
-        "lib/MonoTouch10/Refractored.Xam.Settings.dll",
-        "lib/MonoTouch10/Refractored.Xam.Settings.xml",
-        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Refractored.Xam.Settings.Abstractions.dll",
-        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Refractored.Xam.Settings.Abstractions.xml",
-        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Refractored.Xam.Settings.dll",
-        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Refractored.Xam.Settings.xml",
-        "lib/win8/Refractored.Xam.Settings.Abstractions.dll",
-        "lib/win8/Refractored.Xam.Settings.Abstractions.xml",
-        "lib/win8/Refractored.Xam.Settings.dll",
-        "lib/win8/Refractored.Xam.Settings.xml",
-        "lib/wp8/Refractored.Xam.Settings.Abstractions.dll",
-        "lib/wp8/Refractored.Xam.Settings.Abstractions.xml",
-        "lib/wp8/Refractored.Xam.Settings.dll",
-        "lib/wp8/Refractored.Xam.Settings.xml",
-        "lib/wpa81/Refractored.Xam.Settings.Abstractions.dll",
-        "lib/wpa81/Refractored.Xam.Settings.Abstractions.xml",
-        "lib/wpa81/Refractored.Xam.Settings.dll",
-        "lib/wpa81/Refractored.Xam.Settings.xml",
-        "lib/Xamarin.iOS10/Refractored.Xam.Settings.Abstractions.dll",
-        "lib/Xamarin.iOS10/Refractored.Xam.Settings.Abstractions.xml",
-        "lib/Xamarin.iOS10/Refractored.Xam.Settings.dll",
-        "lib/Xamarin.iOS10/Refractored.Xam.Settings.xml",
-        "package/services/metadata/core-properties/918a8fa776574df192e318bff0ade8e7.psmdcp",
-        "Xam.Plugins.Settings.nuspec"
-      ]
-    },
     "Xamarin.Insights/1.11.1": {
       "sha512": "rny4nYSA5Gem7rjCTU/lctNFcbthcB8vKitQh6A/dpT7xeoYDXFkTJSbGMW6ZNZzb4o4p5DWlYZ11U1AKm2AKQ==",
       "type": "Package",
@@ -15990,7 +15875,6 @@
       "NotificationsExtensions.Win10 >= 10240.0.7",
       "OxyPlot.Windows >= 2015.1.1033-alpha",
       "SQLite.Net-PCL >= 3.0.5",
-      "Xam.Plugins.Settings >= 1.5.2",
       "Xamarin.Insights >= 1.11.1"
     ],
     "UAP,Version=v10.0": []

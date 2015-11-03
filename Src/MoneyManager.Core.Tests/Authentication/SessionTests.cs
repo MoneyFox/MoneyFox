@@ -4,7 +4,6 @@ using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.TestFoundation;
 using Moq;
-using Refractored.Xam.Settings.Abstractions;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Authentication
@@ -14,7 +13,7 @@ namespace MoneyManager.Core.Tests.Authentication
         [Fact]
         public void ValidateSession_PasswordNotRequired_SessionValid()
         {
-            new Session(new SettingDataAccess(new Mock<IRoamingSettings>().Object) {PasswordRequired = false}, new Mock<ISettings>().Object)
+            new Session(new SettingDataAccess(new Mock<IRoamingSettings>().Object) {PasswordRequired = false})
                 .ValidateSession().ShouldBeTrue();
         }
 
@@ -25,7 +24,7 @@ namespace MoneyManager.Core.Tests.Authentication
             roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), false))
                 .Returns(true);
 
-            new Session(new SettingDataAccess(roamingSettingsSetup.Object), new Mock<ISettings>().Object)
+            new Session(new SettingDataAccess(roamingSettingsSetup.Object))
                 .ValidateSession().ShouldBeFalse();
         }
 
@@ -34,15 +33,15 @@ namespace MoneyManager.Core.Tests.Authentication
         [InlineData(5, true)]
         public void ValidateSession_PasswordRequiredSession_SessioncorrectValidated(int diffMinutes, bool expectedResult)
         {
-            var settingsSetup = new Mock<ISettings>();
-            settingsSetup.Setup(x => x.GetValueOrDefault<string>(It.IsAny<string>(), null))
-                .Returns(DateTime.Now.AddMinutes(-diffMinutes).ToString);
+            //var settingsSetup = new Mock<ISettings>();
+            //settingsSetup.Setup(x => x.GetValueOrDefault<string>(It.IsAny<string>(), null))
+            //    .Returns(DateTime.Now.AddMinutes(-diffMinutes).ToString);
 
             var roamingSettingsSetup = new Mock<IRoamingSettings>();
             roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), false))
                 .Returns(true);
 
-            new Session(new SettingDataAccess(roamingSettingsSetup.Object), settingsSetup.Object).ValidateSession().ShouldBe(expectedResult);
+            new Session(new SettingDataAccess(roamingSettingsSetup.Object)).ValidateSession().ShouldBe(expectedResult);
         }
 
         [Fact]
@@ -50,15 +49,15 @@ namespace MoneyManager.Core.Tests.Authentication
         {
             DateTime resultDateTime = DateTime.Today.AddDays(-10);
 
-            var settingsSetup = new Mock<ISettings>();
-            settingsSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>()))
-                .Callback((string key, DateTime value) => resultDateTime = value);
+            //var settingsSetup = new Mock<ISettings>();
+            //settingsSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>()))
+            //    .Callback((string key, DateTime value) => resultDateTime = value);
 
             var roamingSettingsSetup = new Mock<IRoamingSettings>();
             roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), false))
                 .Returns(true);
 
-            new Session(new SettingDataAccess(roamingSettingsSetup.Object), settingsSetup.Object).AddSession();
+            new Session(new SettingDataAccess(roamingSettingsSetup.Object)).AddSession();
             resultDateTime.Date.ShouldBe(DateTime.Today);
 
         }

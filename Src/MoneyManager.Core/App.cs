@@ -9,8 +9,6 @@ using MoneyManager.Core.ViewModels;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
-using Refractored.Xam.Settings;
-using Refractored.Xam.Settings.Abstractions;
 
 namespace MoneyManager.Core
 {
@@ -54,7 +52,7 @@ namespace MoneyManager.Core
                 .RegisterAsLazySingleton();
 
             Mvx.RegisterType(() => new PasswordStorage(Mvx.Resolve<IMvxProtectedData>()));
-            Mvx.RegisterType(() => new Session(Mvx.Resolve<SettingDataAccess>(), CrossSettings.Current));
+            Mvx.RegisterType(() => new Session(Mvx.Resolve<SettingDataAccess>()));
 
             Mvx.Resolve<RecurringTransactionManager>().CheckRecurringTransactions();
             Mvx.Resolve<TransactionManager>().ClearTransactions();
