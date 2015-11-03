@@ -48,7 +48,7 @@ namespace MoneyManager.Core.Authentication
         /// <returns>Boolean if password matched.</returns>
         public bool ValidatePassword(string passwordToValidate)
         {
-            return protectedData.Unprotect(PASSWORD_KEY) == passwordToValidate;
+            return LoadPassword() == passwordToValidate;
         }
     }
 }

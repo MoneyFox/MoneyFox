@@ -433,7 +433,7 @@
     <SDKReference Include="LiveSDKXAML, Version=5.6">
       <Name>Live SDK</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.UAP.2015, Version=3.9.1">
+    <SDKReference Include="SQLite.UAP.2015, Version=3.9.2">
       <Name>SQLite for Universal App Platform</Name>
     </SDKReference>
     <SDKReference Include="WindowsMobile, Version=10.0.10240.0">

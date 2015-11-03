@@ -38,5 +38,28 @@ namespace MoneyManager.Core.Tests.Authentication
 
             new PasswordStorage(mockSetup.Object).LoadPassword().ShouldBe(expectedPassword);
         }
+
+        [Fact]
+        public void RemovePassword_RemoveMethodWasCalled()
+        {
+            var called = false;
+            var mockSetup = new Mock<IMvxProtectedData>();
+            mockSetup.Setup(x => x.Remove(It.Is<string>(y => y == "password"))).Callback(() => called = true);
+
+            new PasswordStorage(mockSetup.Object).RemovePassword();
+
+            called.ShouldBeTrue();
+        }
+
+        [Theory]
+        [InlineData("fooo", "fooo", true)]
+        [InlineData("fooo", "not the same", false)]
+        public void LoadPassword_ReturnSavedPassword(string password, string stringToCheck, bool result)
+        {
+            var mockSetup = new Mock<IMvxProtectedData>();
+            mockSetup.Setup(x => x.Unprotect(It.Is<string>(y => y == "password"))).Returns(password);
+
+            new PasswordStorage(mockSetup.Object).ValidatePassword(stringToCheck).ShouldBe(result);
+        }
     }
 }
