@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.Authentication;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Windows.Shortcut;
 using MoneyManager.Windows.Views;
@@ -65,7 +66,17 @@ namespace MoneyManager.Windows
                 start.Start();
             }
 
-            shell.AppFrame.Navigate(typeof (EnterPasswordView));
+            if (Mvx.Resolve<Session>().ValidateSession())
+            {
+                shell.SetLoginView();
+                shell.AppFrame.Navigate(typeof (MainView));
+            }
+            else
+            {
+                shell.SetLoggedInView();
+                shell.AppFrame.Navigate(typeof (EnterPasswordView));
+            }
+
             new TileHelper(Mvx.Resolve<ModifyTransactionViewModel>()).DoNavigation(e.TileId);
 
             Tile.UpdateMainTile();

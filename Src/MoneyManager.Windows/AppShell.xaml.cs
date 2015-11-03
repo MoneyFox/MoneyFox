@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Navigation;
 using MoneyManager.Localization;
 using MoneyManager.Windows.Controls;
 using MoneyManager.Windows.Views;
+using System;
 
 namespace MoneyManager.Windows
 {
@@ -306,13 +307,16 @@ namespace MoneyManager.Windows
             }
         }
 
-        /// <summary>
-        ///     Checks if the current session is expired
-        /// </summary>
-        public void CheckSession()
-        {
-            
-        }
         #endregion
+
+        public void SetLoginView()
+        {
+            RootSplitView.Visibility = Visibility.Collapsed;
+        }
+
+        public void SetLoggedInView()
+        {
+            RootSplitView.Visibility = Visibility.Visible;
+        }
     }
 }
