@@ -40,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Beezy.MvvmCross.Plugins.SecureStorage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Beezy.MvvmCross.Plugins.SecureStorage.1.0.0\lib\portable-win+net45+sl50+wp8+MonoAndroid+MonoTouch\Beezy.MvvmCross.Plugins.SecureStorage.dll</HintPath>
+    </Reference>
     <Reference Include="Cirrious.CrossCore, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta3\lib\net45\Cirrious.CrossCore.dll</HintPath>
       <Private>True</Private>
@@ -123,6 +127,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Authentication\PasswordStorageTests.cs" />
     <Compile Include="Authentication\SessionTests.cs" />
     <Compile Include="Converter\AmountFormatConverterTests.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverterTests.cs" />
