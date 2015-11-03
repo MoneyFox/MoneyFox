@@ -311,12 +311,14 @@ namespace MoneyManager.Windows
 
         public void SetLoginView()
         {
-            RootSplitView.Visibility = Visibility.Collapsed;
+            TogglePaneButton.Visibility = Visibility.Collapsed;
+            RootSplitView.OpenPaneLength = 0;
         }
 
         public void SetLoggedInView()
         {
-            RootSplitView.Visibility = Visibility.Visible;
+            TogglePaneButton.Visibility = Visibility.Visible;
+            RootSplitView.OpenPaneLength = 256;
         }
     }
 }

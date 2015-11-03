@@ -68,12 +68,12 @@ namespace MoneyManager.Windows
 
             if (Mvx.Resolve<Session>().ValidateSession())
             {
-                shell.SetLoginView();
+                shell.SetLoggedInView();
                 shell.AppFrame.Navigate(typeof (MainView));
             }
             else
             {
-                shell.SetLoggedInView();
+                shell.SetLoginView();
                 shell.AppFrame.Navigate(typeof (EnterPasswordView));
             }
 

@@ -25,9 +25,7 @@ namespace MoneyManager.Core.Authentication
         {
             if (!settings.PasswordRequired) return true;
 
-            if (string.IsNullOrEmpty(Settings.SessionTimestamp)) return false;
-
-            return CheckIfSessionExpired();
+            return !string.IsNullOrEmpty(Settings.SessionTimestamp) && CheckIfSessionExpired();
         }
 
         private static bool CheckIfSessionExpired()
