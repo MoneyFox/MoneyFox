@@ -4,7 +4,7 @@ using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.TestFoundation;
 using Moq;
-using Refractored.Xam.Settings;
+using Refractored.Xam.Settings.Abstractions;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Authentication
@@ -14,7 +14,7 @@ namespace MoneyManager.Core.Tests.Authentication
         [Fact]
         public void ValidateSession_PasswordNotRequired_SessionValid()
         {
-            new Session(new SettingDataAccess(new Mock<IRoamingSettings>().Object) {PasswordRequired = false})
+            new Session(new SettingDataAccess(new Mock<IRoamingSettings>().Object) {PasswordRequired = false}, new Mock<ISettings>().Object)
                 .ValidateSession().ShouldBeTrue();
         }
 
@@ -25,7 +25,7 @@ namespace MoneyManager.Core.Tests.Authentication
             roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), false))
                 .Returns(true);
 
-            new Session(new SettingDataAccess(roamingSettingsSetup.Object))
+            new Session(new SettingDataAccess(roamingSettingsSetup.Object), new Mock<ISettings>().Object)
                 .ValidateSession().ShouldBeFalse();
         }
 
@@ -34,26 +34,31 @@ namespace MoneyManager.Core.Tests.Authentication
         [InlineData(5, true)]
         public void ValidateSession_PasswordRequiredSession_SessioncorrectValidated(int diffMinutes, bool expectedResult)
         {
-            CrossSettings.Current.AddOrUpdateValue("password", diffMinutes);
+            var settingsSetup = new Mock<ISettings>();
+            settingsSetup.Setup(x => x.GetValueOrDefault<string>(It.IsAny<string>(), null))
+                .Returns(DateTime.Now.AddMinutes(-diffMinutes).ToString);
 
             var roamingSettingsSetup = new Mock<IRoamingSettings>();
             roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), false))
                 .Returns(true);
 
-            new Session(new SettingDataAccess(roamingSettingsSetup.Object)).ValidateSession().ShouldBe(expectedResult);
+            new Session(new SettingDataAccess(roamingSettingsSetup.Object), settingsSetup.Object).ValidateSession().ShouldBe(expectedResult);
         }
 
         [Fact]
         public void AddSession_SessionTimestampAdded()
         {
             DateTime resultDateTime = DateTime.Today.AddDays(-10);
-            CrossSettings.Current.AddOrUpdateValue("password", resultDateTime);
+
+            var settingsSetup = new Mock<ISettings>();
+            settingsSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>()))
+                .Callback((string key, DateTime value) => resultDateTime = value);
 
             var roamingSettingsSetup = new Mock<IRoamingSettings>();
             roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), false))
                 .Returns(true);
 
-            new Session(new SettingDataAccess(roamingSettingsSetup.Object)).AddSession();
+            new Session(new SettingDataAccess(roamingSettingsSetup.Object), settingsSetup.Object).AddSession();
             resultDateTime.Date.ShouldBe(DateTime.Today);
 
         }

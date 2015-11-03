@@ -1,6 +1,5 @@
 ﻿using System;
 using MoneyManager.DataAccess;
-using Refractored.Xam.Settings;
 using Refractored.Xam.Settings.Abstractions;
 
 namespace MoneyManager.Core.Authentication
@@ -8,6 +7,7 @@ namespace MoneyManager.Core.Authentication
     public class Session
     {
         private readonly SettingDataAccess settings;
+        private readonly ISettings settingStorage;
 
         /// <summary>
         ///     Amount of minutes after which the session shall expire.
@@ -15,9 +15,10 @@ namespace MoneyManager.Core.Authentication
         private const int SESSION_TIMEOUT = 10;
         private const string SESSION_KEY = "session_timestamp";
 
-        public Session(SettingDataAccess settings)
+        public Session(SettingDataAccess settings, ISettings settingStorage)
         {
             this.settings = settings;
+            this.settingStorage = settingStorage;
         }
 
         /// <summary>
@@ -27,7 +28,7 @@ namespace MoneyManager.Core.Authentication
         {
             if (!settings.PasswordRequired) return true;
 
-            var entry = CrossSettings.Current.GetValueOrDefault<string>(SESSION_KEY);
+            var entry = settingStorage.GetValueOrDefault<string>(SESSION_KEY);
             if (string.IsNullOrEmpty(entry)) return false;
 
             return checkIfSessionExpired(entry);
@@ -43,7 +44,7 @@ namespace MoneyManager.Core.Authentication
         /// </summary>
         public void AddSession()
         {
-            CrossSettings.Current.AddOrUpdateValue(SESSION_KEY, DateTime.Now);
+            settingStorage.AddOrUpdateValue(SESSION_KEY, DateTime.Now);
         }
     }
 }
