@@ -9,9 +9,13 @@ using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using Cirrious.CrossCore;
+using MoneyManager.Core.Authentication;
+using MoneyManager.DataAccess;
 using MoneyManager.Localization;
 using MoneyManager.Windows.Controls;
 using MoneyManager.Windows.Views;
+using Refractored.Xam.Settings.Abstractions;
 
 namespace MoneyManager.Windows
 {
@@ -89,6 +93,16 @@ namespace MoneyManager.Windows
         public Frame AppFrame => Frame;
 
         public Rect TogglePaneButtonRect { get; private set; }
+        
+        public void SetLoginView()
+        {
+            RootSplitView.Visibility = Visibility.Collapsed;
+        }
+
+        public void SetLoggedInView()
+        {
+            RootSplitView.Visibility = Visibility.Visible;
+        }
 
         /// <summary>
         ///     Default keyboard focus movement for any unhandled keyboarding

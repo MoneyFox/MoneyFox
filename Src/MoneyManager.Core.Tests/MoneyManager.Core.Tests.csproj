@@ -134,7 +134,6 @@
     <Compile Include="Converter\DateFormatConverterTests.cs" />
     <Compile Include="Converter\TransactionAmountConverterTests.cs" />
     <Compile Include="Extensions\DateTimeExtensionTests.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helper\RecurringTransactionHelperTests.cs" />
     <Compile Include="Helper\UtilitiesTest.cs" />
     <Compile Include="Helper\TransactionTypeLogicTest.cs" />
@@ -185,6 +184,9 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.NETNative.Analyzer.1.0.0\analyzers\dotnet\cs\NativeGatekeeper.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -48,7 +48,6 @@
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
     <Compile Include="Converter\TransactionAmountConverter.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\RecurringTransactionHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Authentication\PasswordStorage.cs" />
