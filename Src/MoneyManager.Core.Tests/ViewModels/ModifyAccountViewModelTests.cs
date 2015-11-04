@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using MoneyManager.Core.ViewModels;
+﻿using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
