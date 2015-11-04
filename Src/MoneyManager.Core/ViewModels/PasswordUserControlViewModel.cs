@@ -62,6 +62,8 @@ namespace MoneyManager.Core.ViewModels
                 return;
             }
 
+            passwordStorage.SavePassword(Password);
+
             dialogService.ShowMessage(Strings.PasswordSavedTitle, Strings.PasswordSavedMessage);
         }
 
@@ -76,7 +78,10 @@ namespace MoneyManager.Core.ViewModels
 
         private void RemovePassword()
         {
-            passwordStorage.RemovePassword();
+            if (!IsPasswortActive)
+            {
+                passwordStorage.RemovePassword();
+            }
         }
     }
 }

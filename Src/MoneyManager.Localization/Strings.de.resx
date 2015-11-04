@@ -313,7 +313,7 @@
     <value>Übertrag hinzufügen</value>
   </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
-    <value>Das Passwort und die Passwortbestätigung warne nicht übereinstimmend. Bitte überprüfe deine Eingabe.</value>
+    <value>Das Passwort und die Passwortbestätigung waren nicht übereinstimmend. Bitte überprüfe deine Eingabe.</value>
   </data>
   <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
     <value>Passwortbestätigung</value>
