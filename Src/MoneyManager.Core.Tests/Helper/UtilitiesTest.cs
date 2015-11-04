@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using MoneyManager.Core.Helper;
+using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Model;
 using MoneyManager.TestFoundation;
 using Xunit;

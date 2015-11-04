@@ -10,7 +10,7 @@
     "NotificationsExtensions.Win10": "10240.0.7",
     "OxyPlot.Windows": "2015.1.1033-alpha",
     "SQLite.Net-PCL": "3.0.5",
-    "Xamarin.Insights": "1.11.1"
+    "Xamarin.Insights": "1.11.2"
   },
   "frameworks": {
     "uap10.0": {}

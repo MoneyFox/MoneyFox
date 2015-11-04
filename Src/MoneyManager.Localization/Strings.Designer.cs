@@ -503,6 +503,60 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The passwod and the password confirmation didn&apos;t match. Please check your input..
+        /// </summary>
+        public static string PasswordConfirmationWrongMessage {
+            get {
+                return ResourceManager.GetString("PasswordConfirmationWrongMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password confirmation.
+        /// </summary>
+        public static string PasswordConfirmationWrongTitle {
+            get {
+                return ResourceManager.GetString("PasswordConfirmationWrongTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password was saved succesfully..
+        /// </summary>
+        public static string PasswordSavedMessage {
+            get {
+                return ResourceManager.GetString("PasswordSavedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password saved.
+        /// </summary>
+        public static string PasswordSavedTitle {
+            get {
+                return ResourceManager.GetString("PasswordSavedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password you entered was not correct. Please try again..
+        /// </summary>
+        public static string PasswordWrongMessage {
+            get {
+                return ResourceManager.GetString("PasswordWrongMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password wrong.
+        /// </summary>
+        public static string PasswordWrongTitle {
+            get {
+                return ResourceManager.GetString("PasswordWrongTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update All.
         /// </summary>
         public static string RecurringLabel {

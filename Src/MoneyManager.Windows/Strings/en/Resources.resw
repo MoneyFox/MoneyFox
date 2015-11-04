@@ -188,9 +188,6 @@ WARNING: Local changes you made meanwhile we be lost.</value>
     <value>This programm is open source. We appreciate contributions!
 Visit Repository:</value>
   </data>
-  <data name="PasswordInfo.Text" xml:space="preserve">
-    <value>[Please write me, Jeff]</value>
-  </data>
   <data name="RateThisApp.Content" xml:space="preserve">
     <value>Rate this App</value>
   </data>
@@ -203,8 +200,8 @@ Visit Repository:</value>
   <data name="SetDate.Label" xml:space="preserve">
     <value>Set Date</value>
   </data>
-  <data name="SetPassword.Content" xml:space="preserve">
-    <value>Set Password</value>
+  <data name="SavePassword.Content" xml:space="preserve">
+    <value>Save Password</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Settings</value>
@@ -220,5 +217,26 @@ Visit Repository:</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
     <value>Version: </value>
+  </data>
+  <data name="Password.Header" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordConfirmation.Header" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="PasswordSettingSwitch.OffContent" xml:space="preserve">
+    <value>Password protection inactive</value>
+  </data>
+  <data name="PasswordSettingSwitch.OnContent" xml:space="preserve">
+    <value>Password protection active</value>
+  </data>
+  <data name="Login.Content" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="PleaseLogin.Text" xml:space="preserve">
+    <value>Please enter your password to login.</value>
+  </data>
+  <data name="Willkommen.Text" xml:space="preserve">
+    <value>Welcome!</value>
   </data>
 </root>

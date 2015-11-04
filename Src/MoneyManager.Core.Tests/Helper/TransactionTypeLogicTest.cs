@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using MoneyManager.Core.Helper;
+using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Localization;
 using MoneyManager.TestFoundation;

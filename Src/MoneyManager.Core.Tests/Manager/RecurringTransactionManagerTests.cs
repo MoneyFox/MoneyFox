@@ -38,6 +38,7 @@ namespace MoneyManager.Core.Tests.Manager
                         ChargedAccount = new Account {Id = 2},
                         Amount = 95
                     },
+                    IsCleared = true,
                     IsRecurring = true
                 },
                 new FinancialTransaction
