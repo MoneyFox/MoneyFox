@@ -11,14 +11,13 @@ namespace MoneyManager.Core.Helpers
     public static class Settings
     {
         private const string SETTINGS_KEY = "session_timestamp";
-        private static readonly string SettingsDefault = string.Empty;
+        private const string SETTINGS_DEFAULT = "";
 
         private static ILocalSettings AppSettings => Mvx.Resolve<ILocalSettings>();
 
-
         public static string SessionTimestamp
         {
-            get { return AppSettings.GetValueOrDefault(SETTINGS_KEY, SettingsDefault); }
+            get { return AppSettings.GetValueOrDefault(SETTINGS_KEY, SETTINGS_DEFAULT); }
             set { AppSettings.AddOrUpdateValue(SETTINGS_KEY, value); }
         }
     }
