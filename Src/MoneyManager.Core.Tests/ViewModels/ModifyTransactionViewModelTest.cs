@@ -29,9 +29,9 @@ namespace MoneyManager.Core.Tests.ViewModels
                 yield return new object[] { TransactionType.Transfer, true, Strings.EditTransferTitle };
 
                 //Add Titles
-                yield return new object[] { TransactionType.Spending, true, Strings.AddSpendingTitle, };
-                yield return new object[] { TransactionType.Income, true, Strings.AddIncomeTitle };
-                yield return new object[] { TransactionType.Transfer, true, Strings.AddTransferTitle };
+                yield return new object[] { TransactionType.Spending, false, Strings.AddSpendingTitle, };
+                yield return new object[] { TransactionType.Income, false, Strings.AddIncomeTitle };
+                yield return new object[] { TransactionType.Transfer, false, Strings.AddTransferTitle };
             }
         }
 
