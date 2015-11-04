@@ -2,7 +2,7 @@
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Core.Helper
+namespace MoneyManager.Core.Helpers
 {
     public static class RecurringTransactionHelper
     {
@@ -101,7 +101,7 @@ namespace MoneyManager.Core.Helper
 
                 case (int) TransactionRecurrence.Yearly:
                     return DateTime.Now.Year != relTransaction.Date.Year
-                           && DateTime.Now.Month == relTransaction.Date.Month;
+                           && DateTime.Now.Month >= relTransaction.Date.Month;
 
                 default:
                     return false;

@@ -2,7 +2,7 @@
 using MoneyManager.Foundation;
 using MoneyManager.Localization;
 
-namespace MoneyManager.Core.Helper
+namespace MoneyManager.Core.Helpers
 {
     /// <summary>
     ///     A collection of helper methods for handling TransactionTypes

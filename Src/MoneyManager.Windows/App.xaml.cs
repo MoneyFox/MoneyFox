@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Metadata;
@@ -10,6 +11,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.Authentication;
+using MoneyManager.Core.Helpers;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Windows.Shortcut;
 using MoneyManager.Windows.Views;
@@ -65,7 +68,17 @@ namespace MoneyManager.Windows
                 start.Start();
             }
 
-            shell.AppFrame.Navigate(typeof (MainView));
+            if (Mvx.Resolve<Session>().ValidateSession())
+            {
+                shell.SetLoggedInView();
+                shell.AppFrame.Navigate(typeof (MainView));
+            }
+            else
+            {
+                shell.SetLoginView();
+                shell.AppFrame.Navigate(typeof (EnterPasswordView));
+            }
+
             new TileHelper(Mvx.Resolve<ModifyTransactionViewModel>()).DoNavigation(e.TileId);
 
             Tile.UpdateMainTile();
@@ -133,6 +146,8 @@ namespace MoneyManager.Windows
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             Tile.UpdateMainTile();
+
+            Settings.SessionTimestamp = DateTime.Now.ToString(CultureInfo.CurrentCulture);
 
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: SaveItem application state and stop any background activity

@@ -29,6 +29,7 @@ namespace MoneyManager.Droid
             Mvx.RegisterType<IAppInformation, AppInformation>();
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
             Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
+            Mvx.RegisterType<ILocalSettings, LocalSettings>();
         }
 
         protected override IMvxApplication CreateApp()

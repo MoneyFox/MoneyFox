@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Core.Helper
+namespace MoneyManager.Core.Helpers
 {
     public class Utilities
     {

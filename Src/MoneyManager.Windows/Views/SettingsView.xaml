@@ -46,7 +46,7 @@
                 </PivotItem>
 
                 <!--Password Settings-->
-                <PivotItem Visibility="Collapsed">
+                <PivotItem>
                     <PivotItem.Header>
                         <controls:TabHeader Label="Password"
                                             x:Uid="SecurityHeader"
