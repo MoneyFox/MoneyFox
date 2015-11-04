@@ -312,4 +312,22 @@
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Übertrag hinzufügen</value>
   </data>
+  <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
+    <value>Das Passwort und die Passwortbestätigung waren nicht übereinstimmend. Bitte überprüfe deine Eingabe.</value>
+  </data>
+  <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
+    <value>Passwortbestätigung</value>
+  </data>
+  <data name="PasswordSavedMessage" xml:space="preserve">
+    <value>Passwort wurde erfolgreich gespeichert.</value>
+  </data>
+  <data name="PasswordSavedTitle" xml:space="preserve">
+    <value>Passwort gespeichert</value>
+  </data>
+  <data name="PasswordWrongMessage" xml:space="preserve">
+    <value>Das eingegebene Passwort war falsch. Bitte prüfe deine Eingabe nochmals.</value>
+  </data>
+  <data name="PasswordWrongTitle" xml:space="preserve">
+    <value>Passwort falsch</value>
+  </data>
 </root>

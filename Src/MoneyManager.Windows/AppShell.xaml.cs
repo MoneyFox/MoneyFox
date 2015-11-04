@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Navigation;
 using MoneyManager.Localization;
 using MoneyManager.Windows.Controls;
 using MoneyManager.Windows.Views;
+using System;
 
 namespace MoneyManager.Windows
 {
@@ -307,5 +308,17 @@ namespace MoneyManager.Windows
         }
 
         #endregion
+
+        public void SetLoginView()
+        {
+            TogglePaneButton.Visibility = Visibility.Collapsed;
+            RootSplitView.OpenPaneLength = 0;
+        }
+
+        public void SetLoggedInView()
+        {
+            TogglePaneButton.Visibility = Visibility.Visible;
+            RootSplitView.OpenPaneLength = 256;
+        }
     }
 }
