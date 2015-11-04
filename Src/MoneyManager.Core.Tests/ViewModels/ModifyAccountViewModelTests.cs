@@ -36,7 +36,9 @@ namespace MoneyManager.Core.Tests.ViewModels
         [Fact]
         public void Title_AddAccount_CorrectTitle()
         {
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
             Strings.Culture = new CultureInfo("en-US");
+
             var accountname = "Sparkonto";
 
             var accountRepositorySetup = new Mock<IRepository<Account>>();
@@ -47,6 +49,9 @@ namespace MoneyManager.Core.Tests.ViewModels
             {IsEdit = false};
 
             viewmodel.Title.ShouldBe(Strings.AddAccountTitle);
+
+            Strings.Culture = CultureInfo.CurrentCulture;
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
         }
     }
 }
