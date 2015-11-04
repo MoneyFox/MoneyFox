@@ -14,9 +14,6 @@ namespace MoneyManager.Core.Tests.ViewModels
         [Fact]
         public void Title_EditAccount_CorrectTitle()
         {
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
-            Strings.Culture = new CultureInfo("en-US");
-
             var accountname = "Sparkonto";
 
             var accountRepositorySetup = new Mock<IRepository<Account>>();
@@ -26,11 +23,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 accountRepositorySetup.Object, new Mock<ITransactionRepository>().Object))
             { IsEdit = true };
 
-            viewmodel.Title.ShouldBe("Edit " + accountname);
-
-            // Reset culture to current culture
-            Strings.Culture = CultureInfo.CurrentCulture;
-            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
+            viewmodel.Title.ShouldBe(Strings.EditLabel + " " + accountname);
         }
 
         [Fact]
