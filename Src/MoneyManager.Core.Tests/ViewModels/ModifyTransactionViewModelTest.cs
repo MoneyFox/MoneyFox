@@ -37,8 +37,7 @@ namespace MoneyManager.Core.Tests.ViewModels
 
         [Theory]
         [MemberData(nameof(TransactionModTitles))]
-        public void Title_TransactionTypeDifferentModes_CorrectTitle(TransactionType type, bool isEditMode,
-            string result, string culture)
+        public void Title_TransactionTypeDifferentModes_CorrectTitle(TransactionType type, bool isEditMode, string result)
         {
             var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
