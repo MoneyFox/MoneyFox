@@ -76,7 +76,7 @@ namespace MoneyManager.Windows
             else
             {
                 shell.SetLoginView();
-                shell.AppFrame.Navigate(typeof (EnterPasswordView));
+                shell.AppFrame.Navigate(typeof (LoginView));
             }
 
             new TileHelper(Mvx.Resolve<ModifyTransactionViewModel>()).DoNavigation(e.TileId);
