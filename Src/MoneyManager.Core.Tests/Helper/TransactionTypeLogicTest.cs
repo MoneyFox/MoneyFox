@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Localization;
@@ -18,24 +20,26 @@ namespace MoneyManager.Core.Tests.Helper
             TransactionTypeHelper.GetEnumFromString(inputString).ShouldBe(expectedType);
         }
 
-        [Theory]
-        //Editmode true
-        [InlineData(0, "en-US", "Edit Spending", true)]
-        [InlineData(1, "en-US", "Edit Income", true)]
-        [InlineData(2, "en-US", "Edit Transfer", true)]
-        [InlineData(0, "de-DE", "Ausgabe bearbeiten", true)]
-        [InlineData(1, "de-DE", "Einnahme bearbeiten", true)]
-        [InlineData(2, "de-DE", "Übertrag bearbeiten", true)]
-        //Editmode false
-        [InlineData(0, "en-US", "Add Spending", false)]
-        [InlineData(1, "en-US", "Add Income", false)]
-        [InlineData(2, "en-US", "Add Transfer", false)]
-        [InlineData(0, "de-DE", "Ausgabe hinzufügen", false)]
-        [InlineData(1, "de-DE", "Einnahme hinzufügen", false)]
-        [InlineData(2, "de-DE", "Übertrag hinzufügen", false)]
-        public void GetEnumFrostring_Int_Titel(int input, string culture, string expectedTitle, bool isEditMode)
+        public static IEnumerable GetEnumFrostringData
         {
-            Strings.Culture = new CultureInfo(culture);
+            get
+            {
+                //Editmode true
+                yield return new object[] { 0, Strings.EditSpendingTitle, true };
+                yield return new object[] { 1, Strings.EditIncomeTitle, true };
+                yield return new object[] { 2, Strings.EditTransferTitle, true };
+                
+                //Editmode false
+                yield return new object[] { 0, Strings.AddSpendingTitle, false };
+                yield return new object[] { 1, Strings.AddIncomeTitle, false };
+                yield return new object[] { 2, Strings.AddTransferTitle, false };
+            }
+        }
+            
+        [Theory]
+        [MemberData(nameof(GetEnumFrostringData))]
+        public void GetEnumFrostring_Int_Titel(int input, string expectedTitle, bool isEditMode)
+        {
             TransactionTypeHelper.GetViewTitleForType(input, isEditMode).ShouldBe(expectedTitle);
         }
 
