@@ -232,4 +232,10 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="Login.Content" xml:space="preserve">
     <value>Einloggen</value>
   </data>
+  <data name="PleaseLogin.Text" xml:space="preserve">
+    <value>Bitte gib dein Passwort ein um dich anzumelden.</value>
+  </data>
+  <data name="Willkommen.Text" xml:space="preserve">
+    <value>Willkommen!</value>
+  </data>
 </root>

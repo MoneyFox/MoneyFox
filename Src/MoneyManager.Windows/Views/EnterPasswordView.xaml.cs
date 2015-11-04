@@ -18,7 +18,7 @@ namespace MoneyManager.Windows.Views
         }
 
         //TODO: Refactor this to View Model. But before that we have to create an own Navigationservice to work with the appshell.
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             await Login();
         }
