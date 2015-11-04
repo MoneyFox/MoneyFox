@@ -10,9 +10,9 @@ using MoneyManager.Localization;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class EnterPasswordView
+    public sealed partial class LoginView
     {
-        public EnterPasswordView()
+        public LoginView()
         {
             InitializeComponent();
         }

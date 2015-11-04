@@ -178,8 +178,8 @@
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EnterPasswordView.xaml.cs">
-      <DependentUpon>EnterPasswordView.xaml</DependentUpon>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ModifyAccountView.xaml.cs">
       <DependentUpon>ModifyAccountView.xaml</DependentUpon>
@@ -373,7 +373,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\EnterPasswordView.xaml">
+    <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
