@@ -1,7 +1,6 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Authentication;
-using MoneyManager.Core.Manager;
-using MoneyManager.DataAccess;
+using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 using PropertyChanged;
@@ -11,15 +10,11 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class PasswordUserControlViewModel : BaseViewModel
     {
-        private const string PASSWORD_KEY = "password";
         private readonly IDialogService dialogService;
         private readonly PasswordStorage passwordStorage;
-        private readonly SettingDataAccess settings;
 
-        public PasswordUserControlViewModel(SettingDataAccess settings,
-            PasswordStorage passwordStorage, IDialogService dialogService)
+        public PasswordUserControlViewModel(PasswordStorage passwordStorage, IDialogService dialogService)
         {
-            this.settings = settings;
             this.passwordStorage = passwordStorage;
             this.dialogService = dialogService;
         }
@@ -29,8 +24,8 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public bool IsPasswortActive
         {
-            get { return settings.PasswordRequired; }
-            set { settings.PasswordRequired = value; }
+            get { return Settings.PasswordRequired; }
+            set { Settings.PasswordRequired = value; }
         }
 
         /// <summary>

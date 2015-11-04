@@ -52,7 +52,7 @@ namespace MoneyManager.Core
                 .RegisterAsLazySingleton();
 
             Mvx.RegisterType(() => new PasswordStorage(Mvx.Resolve<IMvxProtectedData>()));
-            Mvx.RegisterType(() => new Session(Mvx.Resolve<SettingDataAccess>()));
+            Mvx.RegisterType(() => new Session());
 
             Mvx.Resolve<RecurringTransactionManager>().CheckRecurringTransactions();
             Mvx.Resolve<TransactionManager>().ClearTransactions();

@@ -6,24 +6,17 @@ namespace MoneyManager.Core.Authentication
 {
     public class Session
     {
-        private readonly SettingDataAccess settings;
-
         /// <summary>
         ///     Amount of minutes after which the session shall expire.
         /// </summary>
         private const int SESSION_TIMEOUT = 10;
-
-        public Session(SettingDataAccess settings)
-        {
-            this.settings = settings;
-        }
 
         /// <summary>
         ///     Validates if a session is expired.
         /// </summary>
         public bool ValidateSession()
         {
-            if (!settings.PasswordRequired) return true;
+            if (!Settings.PasswordRequired) return true;
             var entry = Settings.SessionTimestamp;
 
 

@@ -2,7 +2,6 @@
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.Authentication;
-using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.TestFoundation;
 using Moq;
@@ -15,8 +14,15 @@ namespace MoneyManager.Core.Tests.Authentication
         [Fact]
         public void ValidateSession_PasswordNotRequired_SessionValid()
         {
-            new Session(new SettingDataAccess(new Mock<IRoamingSettings>().Object) {PasswordRequired = false})
-                .ValidateSession().ShouldBeTrue();
+            Setup();
+
+            var settingsSetup = new Mock<ILocalSettings>();
+            settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
+                .Returns(false);
+
+            Mvx.RegisterSingleton(settingsSetup.Object);
+
+            new Session().ValidateSession().ShouldBeTrue();
         }
 
         [Fact]
@@ -26,8 +32,7 @@ namespace MoneyManager.Core.Tests.Authentication
             roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), false))
                 .Returns(true);
 
-            new Session(new SettingDataAccess(roamingSettingsSetup.Object))
-                .ValidateSession().ShouldBeFalse();
+            new Session().ValidateSession().ShouldBeFalse();
         }
 
         [Theory]
@@ -38,16 +43,14 @@ namespace MoneyManager.Core.Tests.Authentication
             Setup();
 
             var settingsSetup = new Mock<ILocalSettings>();
-            settingsSetup.Setup(x => x.GetValueOrDefault<string>(It.IsAny<string>(), It.IsAny<string>()))
+            settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>()))
                 .Returns(DateTime.Now.AddMinutes(-diffMinutes).ToString);
+            settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
+                .Returns(true);
 
             Mvx.RegisterSingleton(settingsSetup.Object);
 
-            var roamingSettingsSetup = new Mock<IRoamingSettings>();
-            roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), false))
-                .Returns(true);
-
-            new Session(new SettingDataAccess(roamingSettingsSetup.Object)).ValidateSession().ShouldBe(expectedResult);
+            new Session().ValidateSession().ShouldBe(expectedResult);
         }
 
         [Fact]
@@ -59,14 +62,12 @@ namespace MoneyManager.Core.Tests.Authentication
             var settingsSetup = new Mock<ILocalSettings>();
             settingsSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<string>()))
                 .Callback((string key, string value) => resultDateTime = Convert.ToDateTime(value));
+            settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
+                .Returns(true);
 
             Mvx.RegisterSingleton(settingsSetup.Object);
 
-            var roamingSettingsSetup = new Mock<IRoamingSettings>();
-            roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), false))
-                .Returns(true);
-
-            new Session(new SettingDataAccess(roamingSettingsSetup.Object)).AddSession();
+            new Session().AddSession();
             resultDateTime.Date.ShouldBe(DateTime.Today);
 
         }
