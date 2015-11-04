@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using Cirrious.MvvmCross.Test.Core;
@@ -18,22 +19,27 @@ namespace MoneyManager.Core.Tests.ViewModels
 {
     public class ModifyTransactionViewModelTest : MvxIoCSupportingTest
     {
+        public static IEnumerable TransactionModTitles
+        {
+            get
+            {
+                //Edit Titles
+                yield return new object[] { TransactionType.Spending, true, Strings.EditSpendingTitle, };
+                yield return new object[] { TransactionType.Income, true, Strings.EditIncomeTitle };
+                yield return new object[] { TransactionType.Transfer, true, Strings.EditTransferTitle };
+
+                //Add Titles
+                yield return new object[] { TransactionType.Spending, true, Strings.AddSpendingTitle, };
+                yield return new object[] { TransactionType.Income, true, Strings.AddIncomeTitle };
+                yield return new object[] { TransactionType.Transfer, true, Strings.AddTransferTitle };
+            }
+        }
+
         [Theory]
-        //Edit Titles
-        [InlineData(TransactionType.Spending, true, "Edit Spending", "en-US")]
-        [InlineData(TransactionType.Income, true, "Edit Income", "en-US")]
-        [InlineData(TransactionType.Transfer, true, "Edit Transfer", "en-US")]
-        //Add Titles
-        [InlineData(TransactionType.Spending, false, "Add Spending", "en-US")]
-        [InlineData(TransactionType.Income, false, "Add Income", "en-US")]
-        [InlineData(TransactionType.Transfer, false, "Add Transfer", "en-US")]
+        [MemberData(nameof(TransactionModTitles))]
         public void Title_TransactionTypeDifferentModes_CorrectTitle(TransactionType type, bool isEditMode,
             string result, string culture)
         {
-            //Setup
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
-            Strings.Culture = new CultureInfo(culture);
-
             var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
                 new RecurringTransactionDataAccess(dbHelper))
@@ -60,10 +66,6 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             //Execute and assert
             viewModel.Title.ShouldBe(result);
-
-            // Reset culture to current culture
-            Strings.Culture = CultureInfo.CurrentCulture;
-            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
         }
 
         [Fact]
