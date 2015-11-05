@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Localization;
@@ -18,51 +20,50 @@ namespace MoneyManager.Core.Tests.Helper
             TransactionTypeHelper.GetEnumFromString(inputString).ShouldBe(expectedType);
         }
 
-        [Theory]
-        //Editmode true
-        [InlineData(0, "en-US", "Edit Spending", true)]
-        [InlineData(1, "en-US", "Edit Income", true)]
-        [InlineData(2, "en-US", "Edit Transfer", true)]
-        [InlineData(0, "de-DE", "Ausgabe bearbeiten", true)]
-        [InlineData(1, "de-DE", "Einnahme bearbeiten", true)]
-        [InlineData(2, "de-DE", "Übertrag bearbeiten", true)]
-        //Editmode false
-        [InlineData(0, "en-US", "Add Spending", false)]
-        [InlineData(1, "en-US", "Add Income", false)]
-        [InlineData(2, "en-US", "Add Transfer", false)]
-        [InlineData(0, "de-DE", "Ausgabe hinzufügen", false)]
-        [InlineData(1, "de-DE", "Einnahme hinzufügen", false)]
-        [InlineData(2, "de-DE", "Übertrag hinzufügen", false)]
-        public void GetEnumFrostring_Int_Titel(int input, string culture, string expectedTitle, bool isEditMode)
+        public static IEnumerable GetEnumFrostringWithIntData
         {
-            Strings.Culture = new CultureInfo(culture);
+            get
+            {
+                //Editmode true
+                yield return new object[] { 0, Strings.EditSpendingTitle, true };
+                yield return new object[] { 1, Strings.EditIncomeTitle, true };
+                yield return new object[] { 2, Strings.EditTransferTitle, true };
+                
+                //Editmode false
+                yield return new object[] { 0, Strings.AddSpendingTitle, false };
+                yield return new object[] { 1, Strings.AddIncomeTitle, false };
+                yield return new object[] { 2, Strings.AddTransferTitle, false };
+            }
+        }
+            
+        [Theory]
+        [MemberData(nameof(GetEnumFrostringWithIntData))]
+        public void GetEnumFrostring_Int_Titel(int input, string expectedTitle, bool isEditMode)
+        {
             TransactionTypeHelper.GetViewTitleForType(input, isEditMode).ShouldBe(expectedTitle);
         }
 
-        [Theory]
-        //Editmode true
-        [InlineData(TransactionType.Spending, "en-US", "Edit Spending", true)]
-        [InlineData(TransactionType.Income, "en-US", "Edit Income", true)]
-        [InlineData(TransactionType.Transfer, "en-US", "Edit Transfer", true)]
-        [InlineData(TransactionType.Spending, "de-DE", "Ausgabe bearbeiten", true)]
-        [InlineData(TransactionType.Income, "de-DE", "Einnahme bearbeiten", true)]
-        [InlineData(TransactionType.Transfer, "de-DE", "Übertrag bearbeiten", true)]
-        //Editmode false
-        [InlineData(TransactionType.Spending, "en-US", "Add Spending", false)]
-        [InlineData(TransactionType.Income, "en-US", "Add Income", false)]
-        [InlineData(TransactionType.Transfer, "en-US", "Add Transfer", false)]
-        [InlineData(TransactionType.Spending, "de-DE", "Ausgabe hinzufügen", false)]
-        [InlineData(TransactionType.Income, "de-DE", "Einnahme hinzufügen", false)]
-        [InlineData(TransactionType.Transfer, "de-DE", "Übertrag hinzufügen", false)]
-        public void GetEnumFrostring_Type_Titel(TransactionType input, string culture, string expectedTitle,
-            bool isEditMode)
+        public static IEnumerable GetEnumFrostringWithEnumData
         {
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
-            Strings.Culture = new CultureInfo(culture);
-            TransactionTypeHelper.GetViewTitleForType(input, isEditMode).ShouldBe(expectedTitle);
+            get
+            {
+                //Editmode true
+                yield return new object[] { TransactionType.Spending, Strings.EditSpendingTitle, true };
+                yield return new object[] { TransactionType.Income, Strings.EditIncomeTitle, true };
+                yield return new object[] { TransactionType.Transfer, Strings.EditTransferTitle, true };
 
-            Strings.Culture = CultureInfo.CurrentUICulture;
-            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentUICulture;
+                //Editmode false
+                yield return new object[] { TransactionType.Spending, Strings.AddSpendingTitle, false };
+                yield return new object[] { TransactionType.Income, Strings.AddIncomeTitle, false };
+                yield return new object[] { TransactionType.Transfer, Strings.AddTransferTitle, false };
+            }
+        }
+
+        [Theory]
+        [MemberData(nameof(GetEnumFrostringWithEnumData))]
+        public void GetEnumFrostring_Type_Titel(TransactionType input, string expectedTitle, bool isEditMode)
+        {
+            TransactionTypeHelper.GetViewTitleForType(input, isEditMode).ShouldBe(expectedTitle);
         }
     }
 }
