@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Navigation;
 using MoneyManager.Localization;
 using MoneyManager.Windows.Controls;
 using MoneyManager.Windows.Views;
-using System;
 
 namespace MoneyManager.Windows
 {

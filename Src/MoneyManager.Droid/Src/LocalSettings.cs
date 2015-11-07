@@ -110,7 +110,7 @@ namespace MoneyManager.Droid
                                     .ToString();
                             Console.WriteLine("Old value has been parsed and will be updated and saved.");
                         }
-                        catch (ClassCastException cce2)
+                        catch (ClassCastException)
                         {
                             Console.WriteLine("Could not parse old value, will be lost.");
                         }
