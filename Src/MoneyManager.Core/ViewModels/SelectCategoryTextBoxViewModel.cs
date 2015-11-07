@@ -6,29 +6,27 @@ namespace MoneyManager.Core.ViewModels
 {
     public class SelectCategoryTextBoxViewModel : BaseViewModel
     {
-        private readonly ITransactionRepository transactionRepository;
+        private readonly ModifyTransactionViewModel modifyTransactionViewModel;
 
         //TODO: maybe refactor this to use just a button instead of a own control.
         /// <summary>
         ///     Creates an SelectCategoryTextBoxViewModel instance
         /// </summary>
-        /// <param name="transactionRepository">An instance of <see cref="ITransactionRepository" /></param>
-        public SelectCategoryTextBoxViewModel(ITransactionRepository transactionRepository)
+        /// <param name="modifyTransactionViewModel">An instance of <see cref="ModifyTransactionViewModel" /></param>
+        public SelectCategoryTextBoxViewModel(ModifyTransactionViewModel modifyTransactionViewModel)
         {
-            this.transactionRepository = transactionRepository;
+            this.modifyTransactionViewModel = modifyTransactionViewModel;
 
-            if (transactionRepository.Selected == null)
+            if (SelectedTransaction == null)
             {
-                transactionRepository.Selected = new FinancialTransaction();
+                SelectedTransaction = new FinancialTransaction();
             }
         }
 
-        public Category SelectedCategory { get; set; }
-
         public FinancialTransaction SelectedTransaction
         {
-            get { return transactionRepository.Selected; }
-            set { transactionRepository.Selected = value; }
+            get { return modifyTransactionViewModel.SelectedTransaction; }
+            set { modifyTransactionViewModel.SelectedTransaction = value; }
         }
 
         /// <summary>
@@ -43,7 +41,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void ResetSelection()
         {
-            transactionRepository.Selected.Category = null;
+            SelectedTransaction.Category = null;
         }
 
         private void Navigate()

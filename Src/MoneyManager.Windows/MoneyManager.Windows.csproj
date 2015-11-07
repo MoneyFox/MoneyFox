@@ -17,11 +17,11 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>MoneyManager.Windows_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>MoneyManager.Windows_TemporaryKey.pfx</PackageCertificateKeyFile>
     <ApplicationInsightsResourceId>/subscriptions/38a487ea-9b81-4df6-98c2-51f6ae419311/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/MoneyManager.Windows</ApplicationInsightsResourceId>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>803A2180E55EEA41B88EC5B9930FD7434F22964F</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>1D14E23467C364940BB6B06FF0AF97C6E580ABE0</PackageCertificateThumbprint>
     <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
@@ -96,7 +96,6 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="app.config" />
-    <None Include="MoneyManager.Windows_StoreKey.pfx" />
     <None Include="MoneyManager.Windows_TemporaryKey.pfx" />
     <None Include="project.json" />
     <PRIResource Include="Strings\en\Resources.resw" />
@@ -155,8 +154,8 @@
     <Compile Include="Dialogs\CategoryDialog.cs">
       <DependentUpon>CategoryDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\SelectStatisticDialog.xaml.cs">
-      <DependentUpon>SelectStatisticDialog.xaml</DependentUpon>
+    <Compile Include="Dialogs\SelectDateRangeDialog.xaml.cs">
+      <DependentUpon>SelectDateRangeDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="NavMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -353,7 +352,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dialogs\SelectStatisticDialog.xaml">
+    <Page Include="Dialogs\SelectDateRangeDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -437,14 +436,6 @@
     <SDKReference Include="WindowsMobile, Version=10.0.10240.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Cirrious.MvvmCross.Plugins.Email">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta1\lib\win81\Cirrious.MvvmCross.Plugins.Email.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Plugins.Email.WindowsCommon">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta1\lib\win81\Cirrious.MvvmCross.Plugins.Email.WindowsCommon.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
