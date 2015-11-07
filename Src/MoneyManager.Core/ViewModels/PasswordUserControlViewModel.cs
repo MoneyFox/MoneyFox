@@ -82,6 +82,12 @@ namespace MoneyManager.Core.ViewModels
             {
                 passwordStorage.RemovePassword();
             }
+
+            //  Deactivate option again if no password was entered
+            if (IsPasswortActive && string.IsNullOrEmpty(Password))
+            {
+                IsPasswortActive = false;
+            }
         }
     }
 }
