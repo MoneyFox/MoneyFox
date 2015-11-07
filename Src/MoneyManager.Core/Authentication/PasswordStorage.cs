@@ -1,4 +1,6 @@
-﻿using Beezy.MvvmCross.Plugins.SecureStorage;
+﻿using System.Linq.Expressions;
+using System.Runtime.InteropServices;
+using Beezy.MvvmCross.Plugins.SecureStorage;
 
 namespace MoneyManager.Core.Authentication
 {
@@ -38,7 +40,11 @@ namespace MoneyManager.Core.Authentication
         /// </summary>
         public void RemovePassword()
         {
-            protectedData.Remove(PASSWORD_KEY);
+            // If there where no element to remove it will throw a com exception who we handle.
+            try
+            {
+                protectedData.Remove(PASSWORD_KEY);
+            } catch (COMException){ }
         }
 
         /// <summary>
