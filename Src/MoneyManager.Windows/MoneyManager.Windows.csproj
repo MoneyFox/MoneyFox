@@ -115,7 +115,7 @@
     <Compile Include="Controls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CategorySummaryUserControl.xaml.cs">
+    <Compile Include="Controls\StatisticControls\CategorySummaryUserControl.xaml.cs">
       <DependentUpon>CategorySummaryUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CustomControls\NavMenuListView.cs" />
@@ -316,7 +316,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\CategorySummaryUserControl.xaml">
+    <Page Include="Controls\StatisticControls\CategorySummaryUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -437,9 +437,7 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
