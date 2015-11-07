@@ -327,4 +327,7 @@
   <data name="PasswordWrongTitle" xml:space="preserve">
     <value>Password wrong</value>
   </data>
+  <data name="AddTitle" xml:space="preserve">
+    <value>Add</value>
+  </data>
 </root>
