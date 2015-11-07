@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:MoneyManager.Windows.Controls"
+      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
       mc:Ignorable="d">
 
     <Page.BottomAppBar>
@@ -40,12 +41,12 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <controls:PageHeader>
-            <controls:PageHeader.HeaderContent>
+        <basicControls:PageHeader>
+            <basicControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Accounts"
                            x:Uid="AccountTitle" />
-            </controls:PageHeader.HeaderContent>
-        </controls:PageHeader>
+            </basicControls:PageHeader.HeaderContent>
+        </basicControls:PageHeader>
 
         <Grid Grid.Row="1"
               Margin="0,9.5,0,0"

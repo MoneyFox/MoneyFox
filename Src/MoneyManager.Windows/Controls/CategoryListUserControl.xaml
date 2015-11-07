@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:MoneyManager.Windows.Controls"
+             xmlns:customControls="using:MoneyManager.Windows.Controls.CustomControls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -41,7 +42,7 @@
                  x:Uid="SearchHeader"
                  Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <ScrollViewer Margin="0,7,0,0" Grid.Row="1">
-            <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+            <customControls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
                                              EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
                                              ItemsSource="{Binding Categories}"
                                              ItemTemplate="{StaticResource CategoryTemplate }"
@@ -54,7 +55,7 @@
                                 Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
-            </controls:AlternatingRowListView>
+            </customControls:AlternatingRowListView>
         </ScrollViewer>
     </Grid>
 </UserControl>

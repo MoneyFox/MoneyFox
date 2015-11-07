@@ -5,6 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:MoneyManager.Windows.Controls"
       xmlns:converter="using:MoneyManager.Windows.Converter"
+      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -18,11 +19,11 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <controls:PageHeader>
-            <controls:PageHeader.HeaderContent>
+        <basicControls:PageHeader>
+            <basicControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Backup" x:Uid="BackupTitle" />
-            </controls:PageHeader.HeaderContent>
-        </controls:PageHeader>
+            </basicControls:PageHeader.HeaderContent>
+        </basicControls:PageHeader>
 
         <StackPanel Grid.Row="1"
                     Margin="19,9.5,19,0"
