@@ -17,7 +17,7 @@ namespace MoneyManager.Windows.Views
 
         private async void SetDate(object sender, RoutedEventArgs e)
         {
-            await new SelectStatisticDialog().ShowAsync();
+            await new SelectDateRangeDialog().ShowAsync();
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)

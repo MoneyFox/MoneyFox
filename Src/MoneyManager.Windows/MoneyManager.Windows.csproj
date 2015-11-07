@@ -154,8 +154,8 @@
     <Compile Include="Dialogs\CategoryDialog.cs">
       <DependentUpon>CategoryDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\SelectStatisticDialog.xaml.cs">
-      <DependentUpon>SelectStatisticDialog.xaml</DependentUpon>
+    <Compile Include="Dialogs\SelectDateRangeDialog.xaml.cs">
+      <DependentUpon>SelectDateRangeDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="NavMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -352,7 +352,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dialogs\SelectStatisticDialog.xaml">
+    <Page Include="Dialogs\SelectDateRangeDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

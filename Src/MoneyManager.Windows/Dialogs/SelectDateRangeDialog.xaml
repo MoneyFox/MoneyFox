@@ -1,4 +1,4 @@
-﻿<ContentDialog x:Class="MoneyManager.Windows.Dialogs.SelectStatisticDialog"
+﻿<ContentDialog x:Class="MoneyManager.Windows.Dialogs.SelectDateRangeDialog"
                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
                xmlns:converter="using:MoneyManager.Windows.Converter"
                mc:Ignorable="d"
                Title="SELECT STATISTIC"
-               x:Uid="StatisticDialog"
+               x:Uid="SelectDateRangeDialog"
                PrimaryButtonText="done"
                SecondaryButtonText="cancel"
                PrimaryButtonCommand="{Binding LoadStatisticCommand }">
