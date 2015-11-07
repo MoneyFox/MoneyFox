@@ -96,7 +96,9 @@ namespace MoneyManager.Core.ViewModels
             SelectedTransaction = new FinancialTransaction
             {
                 Type = (int) transactionType,
-                Date = DateTime.Now
+                Date = DateTime.Now,
+                // Assign empty category to reset the GUI
+                Category = new Category()
             };
         }
 
