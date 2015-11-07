@@ -8,6 +8,7 @@
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:converter="using:MoneyManager.Windows.Converter"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
+                      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
                       mc:Ignorable="d"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -51,13 +52,13 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <userControls:PageHeader>
-            <userControls:PageHeader.HeaderContent>
+        <basicControls:PageHeader>
+            <basicControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="Add Transaction"
                            x:Uid="ModifyTransactionViewTitle" />
-            </userControls:PageHeader.HeaderContent>
-        </userControls:PageHeader>
+            </basicControls:PageHeader.HeaderContent>
+        </basicControls:PageHeader>
 
         <Grid Grid.Row="1"
               EntranceNavigationTransitionInfo.IsTargetElement="True">

@@ -112,15 +112,15 @@
     <Compile Include="Controls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AlternatingRowListView.cs" />
+    <Compile Include="Controls\CustomControls\AlternatingRowListView.cs" />
     <Compile Include="Controls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CategorySummaryUserControl.xaml.cs">
       <DependentUpon>CategorySummaryUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\NavMenuListView.cs" />
-    <Compile Include="Controls\PageHeader.xaml.cs">
+    <Compile Include="Controls\CustomControls\NavMenuListView.cs" />
+    <Compile Include="Controls\BasicControls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CategoryListUserControl.xaml.cs">
@@ -132,8 +132,8 @@
     <Compile Include="Controls\SelectCategoryTextBox.xaml.cs">
       <DependentUpon>SelectCategoryTextBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SwipeableSplitView.cs" />
-    <Compile Include="Controls\TabHeader.xaml.cs">
+    <Compile Include="Controls\CustomControls\SwipeableSplitView.cs" />
+    <Compile Include="Controls\BasicControls\TabHeader.xaml.cs">
       <DependentUpon>TabHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TileSettingsUserControl.xaml.cs">
@@ -321,7 +321,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\PageHeader.xaml">
+    <Page Include="Controls\BasicControls\PageHeader.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -337,7 +337,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\TabHeader.xaml">
+    <Page Include="Controls\BasicControls\TabHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -437,6 +437,9 @@
     <SDKReference Include="WindowsMobile, Version=10.0.10240.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

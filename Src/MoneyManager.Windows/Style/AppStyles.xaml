@@ -3,6 +3,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:controls="using:MoneyManager.Windows.Controls"
+                    xmlns:customControls="using:MoneyManager.Windows.Controls.CustomControls"
                     mc:Ignorable="d">
 
     <Style x:Key="SplitViewTogglePaneButtonStyle"
@@ -586,7 +587,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="controls:SwipeableSplitView">
+    <Style TargetType="customControls:SwipeableSplitView">
         <Setter Property="HorizontalContentAlignment"
                 Value="Stretch" />
         <Setter Property="VerticalContentAlignment"
@@ -599,7 +600,7 @@
                 Value="{ThemeResource SystemControlPageBackgroundChromeLowBrush}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:SwipeableSplitView">
+                <ControlTemplate TargetType="customControls:SwipeableSplitView">
                     <Grid Background="{TemplateBinding Background}">
                         <Grid.Resources>
                             <Storyboard x:Name="CloseSwipeablePane">

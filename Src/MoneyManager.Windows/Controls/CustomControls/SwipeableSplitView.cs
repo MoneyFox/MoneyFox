@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
 
-namespace MoneyManager.Windows.Controls
+namespace MoneyManager.Windows.Controls.CustomControls
 {
     public sealed class SwipeableSplitView : SplitView
     {

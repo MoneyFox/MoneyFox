@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:MoneyManager.Windows.Controls"
+    xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
     mc:Ignorable="d">
 
     <Page.BottomAppBar>
@@ -28,7 +29,7 @@
                 <!--Allgemeines-->
                 <PivotItem>
                     <PivotItem.Header>
-                        <controls:TabHeader Label="Tiles"
+                        <basicControls:TabHeader Label="Tiles"
                                             x:Uid="TilesHeader"
                                             Glyph="&#xE8FC;" />
                     </PivotItem.Header>
@@ -38,7 +39,7 @@
                 <!--Categorie Settings-->
                 <PivotItem>
                     <PivotItem.Header>
-                        <controls:TabHeader Label="Categories"
+                        <basicControls:TabHeader Label="Categories"
                                             x:Uid="CategoriesHeader"
                                             Glyph="&#xE8EC;" />
                     </PivotItem.Header>
@@ -48,7 +49,7 @@
                 <!--Password Settings-->
                 <PivotItem>
                     <PivotItem.Header>
-                        <controls:TabHeader Label="Password"
+                        <basicControls:TabHeader Label="Password"
                                             x:Uid="SecurityHeader"
                                             Glyph="&#xE8D7;" />
                     </PivotItem.Header>
