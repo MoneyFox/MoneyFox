@@ -24,7 +24,7 @@
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Center"
-                    Width="250"
+                    Width="200"
                     Grid.Row="2"
                     Margin="55,0">
             <PasswordBox HorizontalAlignment="Stretch"

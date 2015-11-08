@@ -311,14 +311,28 @@ namespace MoneyManager.Windows
 
         public void SetLoginView()
         {
-            TogglePaneButton.Visibility = Visibility.Collapsed;
-            RootSplitView.OpenPaneLength = 0;
+            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                RootSplitView.IsPanSelectorEnabled = false;
+            }
+            else
+            {
+                TogglePaneButton.Visibility = Visibility.Collapsed;
+                RootSplitView.OpenPaneLength = 0;
+            }
         }
 
         public void SetLoggedInView()
         {
-            TogglePaneButton.Visibility = Visibility.Visible;
-            RootSplitView.OpenPaneLength = 256;
+            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                RootSplitView.IsPanSelectorEnabled = true;
+            }
+            else
+            {
+                TogglePaneButton.Visibility = Visibility.Visible;
+                RootSplitView.OpenPaneLength = 256;
+            }
         }
     }
 }
