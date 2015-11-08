@@ -147,7 +147,7 @@ namespace MoneyManager.Windows
         {
             Tile.UpdateMainTile();
 
-            Settings.SessionTimestamp = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            Settings.SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: SaveItem application state and stop any background activity
