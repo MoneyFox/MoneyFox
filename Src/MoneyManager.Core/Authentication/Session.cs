@@ -1,6 +1,5 @@
 ﻿using System;
 using MoneyManager.Core.Helpers;
-using MoneyManager.DataAccess;
 
 namespace MoneyManager.Core.Authentication
 {
@@ -17,10 +16,7 @@ namespace MoneyManager.Core.Authentication
         public bool ValidateSession()
         {
             if (!Settings.PasswordRequired) return true;
-            var entry = Settings.SessionTimestamp;
-
-
-            return !string.IsNullOrEmpty(entry) && CheckIfSessionExpired();
+            return !string.IsNullOrEmpty(Settings.SessionTimestamp) && CheckIfSessionExpired();
         }
 
         private static bool CheckIfSessionExpired()
