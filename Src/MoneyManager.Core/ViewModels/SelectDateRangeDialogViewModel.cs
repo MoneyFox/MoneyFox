@@ -6,11 +6,11 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class SelectStatisticDialogViewModel : BaseViewModel
+    public class SelectDateRangeDialogViewModel : BaseViewModel
     {
         private readonly StatisticViewModel statisticViewModel;
 
-        public SelectStatisticDialogViewModel(StatisticViewModel statisticViewModel)
+        public SelectDateRangeDialogViewModel(StatisticViewModel statisticViewModel)
         {
             this.statisticViewModel = statisticViewModel;
 

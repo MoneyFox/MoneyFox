@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:MoneyManager.Windows.Controls"
+             xmlns:customControls="using:MoneyManager.Windows.Controls.CustomControls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -19,8 +20,8 @@
                         <MenuFlyoutItem x:Uid="Edit"
                                         Text="Edit"
                                         Click="EditCategory" />
-                        <MenuFlyoutItem x:Uid="DeleteItem"
-                                        Text="DeleteItem"
+                        <MenuFlyoutItem x:Uid="Delete"
+                                        Text="Delete"
                                         Click="DeleteCategory" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
@@ -37,10 +38,11 @@
         </Grid.RowDefinitions>
         <TextBox Header="search"
                  Grid.Row="0"
+                 Margin="5,0,5,0"
                  x:Uid="SearchHeader"
                  Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <ScrollViewer Margin="0,7,0,0" Grid.Row="1">
-            <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+            <customControls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
                                              EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
                                              ItemsSource="{Binding Categories}"
                                              ItemTemplate="{StaticResource CategoryTemplate }"
@@ -53,7 +55,7 @@
                                 Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
-            </controls:AlternatingRowListView>
+            </customControls:AlternatingRowListView>
         </ScrollViewer>
     </Grid>
 </UserControl>

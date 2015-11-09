@@ -50,7 +50,7 @@ namespace MoneyManager.Droid
                     {
                         savedDecimal = sharedPreferences.GetString(key, string.Empty);
                     }
-                    catch (ClassCastException cce)
+                    catch (ClassCastException)
                     {
                         Console.WriteLine("Settings 1.5 change, have to remove key.");
 
@@ -63,7 +63,7 @@ namespace MoneyManager.Droid
                                     .ToString();
                             Console.WriteLine("Old value has been parsed and will be updated and saved.");
                         }
-                        catch (ClassCastException cce2)
+                        catch (ClassCastException)
                         {
                             Console.WriteLine("Could not parse old value, will be lost.");
                         }
@@ -97,7 +97,7 @@ namespace MoneyManager.Droid
                     {
                         savedDouble = sharedPreferences.GetString(key, string.Empty);
                     }
-                    catch (ClassCastException cce)
+                    catch (ClassCastException)
                     {
                         Console.WriteLine("Settings 1.5  change, have to remove key.");
 
@@ -110,7 +110,7 @@ namespace MoneyManager.Droid
                                     .ToString();
                             Console.WriteLine("Old value has been parsed and will be updated and saved.");
                         }
-                        catch (ClassCastException cce2)
+                        catch (ClassCastException)
                         {
                             Console.WriteLine("Could not parse old value, will be lost.");
                         }

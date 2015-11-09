@@ -24,12 +24,13 @@
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Center"
-                    Width="250"
+                    Width="200"
                     Grid.Row="2"
                     Margin="55,0">
             <PasswordBox HorizontalAlignment="Stretch"
                          x:Name="PasswordBox"
-                         KeyDown="PasswordBox_KeyDown" />
+                         KeyDown="PasswordBox_KeyDown" 
+                         PasswordRevealMode="Peek"/>
             <Button x:Uid="Login"
                     Content="Login"
                     Margin="0,10,0,0"

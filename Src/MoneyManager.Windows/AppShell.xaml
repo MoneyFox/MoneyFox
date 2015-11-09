@@ -3,9 +3,9 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:MoneyManager.Windows"
-      xmlns:controls="using:MoneyManager.Windows.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:customControls="using:MoneyManager.Windows.Controls.CustomControls"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       KeyDown="AppShell_KeyDown"
       TabNavigation="Cycle"
@@ -60,21 +60,21 @@
         </VisualStateManager.VisualStateGroups>
 
         <!-- Top-level navigation menu + app content -->
-        <controls:SwipeableSplitView x:Name="RootSplitView"
+        <customControls:SwipeableSplitView x:Name="RootSplitView"
                                      DisplayMode="Inline"
                                      OpenPaneLength="256"
                                      IsTabStop="False">
-            <controls:SwipeableSplitView.Pane>
+            <customControls:SwipeableSplitView.Pane>
                 <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
-                <controls:NavMenuListView x:Name="NavMenuList"
+                <customControls:NavMenuListView x:Name="NavMenuList"
                                           TabIndex="3"
                                           Margin="0,48,0,0"
                                           ContainerContentChanging="NavMenuItemContainerContentChanging"
                                           ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
                                           ItemTemplate="{StaticResource NavMenuItemTemplate}"
                                           ItemInvoked="NavMenuList_ItemInvoked" />
-            </controls:SwipeableSplitView.Pane>
-            <controls:SwipeableSplitView.Content>
+            </customControls:SwipeableSplitView.Pane>
+            <customControls:SwipeableSplitView.Content>
                 <Frame x:Name="Frame"
                        Navigating="OnNavigatingToPage"
                        Navigated="OnNavigatedToPage">
@@ -88,9 +88,9 @@
                         </TransitionCollection>
                     </Frame.ContentTransitions>
                 </Frame>
-            </controls:SwipeableSplitView.Content>
+            </customControls:SwipeableSplitView.Content>
 
-        </controls:SwipeableSplitView>
+        </customControls:SwipeableSplitView>
 
         <!-- Declared last to have it rendered above everything else, but it needs to be the first item in the tab sequence. -->
         <ToggleButton x:Name="TogglePaneButton"

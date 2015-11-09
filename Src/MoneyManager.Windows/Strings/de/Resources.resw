@@ -238,4 +238,49 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="Willkommen.Text" xml:space="preserve">
     <value>Willkommen!</value>
   </data>
+  <data name="AddIncomeTile.Content" xml:space="preserve">
+    <value>Einnahme Tile erstellen</value>
+  </data>
+  <data name="AddSpendingTile.Content" xml:space="preserve">
+    <value>Ausgaben Tile erstellen</value>
+  </data>
+  <data name="AddTransferTile.Content" xml:space="preserve">
+    <value>Übertrag Tile erstellen</value>
+  </data>
+  <data name="CategoryDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Fertig</value>
+  </data>
+  <data name="CategoryDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="CategoryDialog.Title" xml:space="preserve">
+    <value>CATEGORY HINZUFÜGEN</value>
+  </data>
+  <data name="CreateBackup.Content" xml:space="preserve">
+    <value>Sicherung erstellen</value>
+  </data>
+  <data name="RemoveIncomeTile.Content" xml:space="preserve">
+    <value>Einnahme Tile entfernen</value>
+  </data>
+  <data name="RemoveSpendingTile.Content" xml:space="preserve">
+    <value>Ausgaben Tile entfernen</value>
+  </data>
+  <data name="RemoveTransferTile.Content" xml:space="preserve">
+    <value>Übertrag Tile entfernen</value>
+  </data>
+  <data name="RestoreBackup.Content" xml:space="preserve">
+    <value>Sicherung wiederherstellen</value>
+  </data>
+  <data name="SelectDateRangeDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Fertig</value>
+  </data>
+  <data name="SelectDateRangeDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="SelectDateRangeDialog.Title" xml:space="preserve">
+    <value>ZEITRAUM WÄHLEN</value>
+  </data>
+  <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
+    <value>Informationen auf Haupttile anzeigen.</value>
+  </data>
 </root>

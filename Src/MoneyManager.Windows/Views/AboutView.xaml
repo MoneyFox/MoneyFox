@@ -6,6 +6,7 @@
       xmlns:controls="using:MoneyManager.Windows.Controls"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -15,13 +16,13 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <controls:PageHeader>
-            <controls:PageHeader.HeaderContent>
+        <basicControls:PageHeader>
+            <basicControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="AboutView"
                            x:Uid="AboutViewTitle" />
-            </controls:PageHeader.HeaderContent>
-        </controls:PageHeader>
+            </basicControls:PageHeader.HeaderContent>
+        </basicControls:PageHeader>
 
         <ScrollViewer Margin="12,12,12,0"
                       Grid.Row="1"
@@ -31,7 +32,7 @@
 
                 <StackPanel>
                     <Grid Margin="0,0,10,0">
-                        <Grid Background="{ThemeResource SystemControlHighlightAccentBrush}"
+                        <Grid Background="White"
                               Width="160"
                               Margin="5,0"
                               HorizontalAlignment="Center">
