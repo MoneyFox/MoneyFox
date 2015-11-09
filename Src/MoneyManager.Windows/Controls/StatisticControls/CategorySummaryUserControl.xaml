@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:MoneyManager.Windows.Controls"
              xmlns:converter="using:MoneyManager.Windows.Converter"
+             xmlns:customControls="using:MoneyManager.Windows.Controls.CustomControls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -33,7 +34,7 @@
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <ScrollViewer>
-            <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+            <customControls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
                                              EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
                                              ItemsSource="{Binding CategorySummary}"
                                              ItemTemplate="{StaticResource CategoryTemplate}">
@@ -45,7 +46,7 @@
                                 Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
-            </controls:AlternatingRowListView>
+            </customControls:AlternatingRowListView>
         </ScrollViewer>
     </Grid>
 </UserControl>

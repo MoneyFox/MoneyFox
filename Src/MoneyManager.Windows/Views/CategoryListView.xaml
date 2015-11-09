@@ -5,6 +5,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyManager.Windows.Controls"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
+                      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
                       mc:Ignorable="d"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -35,12 +36,12 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <userControls:PageHeader>
-            <userControls:PageHeader.HeaderContent>
+        <basicControls:PageHeader>
+            <basicControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Select Category"
                            x:Uid="CategoryListViewTitle" />
-            </userControls:PageHeader.HeaderContent>
-        </userControls:PageHeader>
+            </basicControls:PageHeader.HeaderContent>
+        </basicControls:PageHeader>
 
         <Grid Grid.Row="1"
               Margin="0,9.5,0,0"

@@ -7,6 +7,7 @@
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:converter="using:MoneyManager.Windows.Converter"
+             xmlns:customControls="using:MoneyManager.Windows.Controls.CustomControls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -48,7 +49,7 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <StackPanel>
             <controls:BalanceUserControl />
-            <controls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
+            <customControls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
                                              OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
                                              EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
                                              ItemTemplate="{StaticResource AccountTemplate}"
@@ -70,7 +71,7 @@
                                                   InputConverter="{StaticResource SelectedAccountConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-            </controls:AlternatingRowListView>
+            </customControls:AlternatingRowListView>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -28,9 +28,17 @@ namespace MoneyManager.Core.Tests.Authentication
         [Fact]
         public void ValidateSession_PasswordRequiredSessionNeverSet_SessionInvalid()
         {
+            Setup();
+
+            var settingsSetup = new Mock<ILocalSettings>();
+            settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
+                .Returns(true);
+
             var roamingSettingsSetup = new Mock<IRoamingSettings>();
             roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), false))
                 .Returns(true);
+
+            Mvx.RegisterSingleton(settingsSetup.Object);
 
             new Session().ValidateSession().ShouldBeFalse();
         }

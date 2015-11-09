@@ -5,6 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:MoneyManager.Windows.Controls"
       xmlns:windows="using:OxyPlot.Windows"
+      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
       mc:Ignorable="d">
 
     <Page.BottomAppBar>
@@ -22,7 +23,7 @@
         <Pivot Style="{StaticResource TabsStylePivotStyle}">
             <PivotItem>
                 <PivotItem.Header>
-                    <controls:TabHeader Label="Cash Flow"
+                    <basicControls:TabHeader Label="Cash Flow"
                                         x:Uid="CashFlowTitle"
                                         Glyph="&#xE908;" />
                 </PivotItem.Header>
@@ -40,7 +41,7 @@
 
             <PivotItem>
                 <PivotItem.Header>
-                    <controls:TabHeader Label="Spreading"
+                    <basicControls:TabHeader Label="Spreading"
                                         x:Uid="SpreadingTitle"
                                         Glyph="&#xE774;" />
                 </PivotItem.Header>
@@ -59,7 +60,7 @@
             <PivotItem>
                 <PivotItem.Header>
 
-                    <controls:TabHeader Label="Category Summary"
+                    <basicControls:TabHeader Label="Category Summary"
                                         x:Uid="CategorySummaryTitle"
                                         Glyph="&#xE8EC;" />
                 </PivotItem.Header>
