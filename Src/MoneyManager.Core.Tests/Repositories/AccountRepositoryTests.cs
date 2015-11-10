@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
@@ -14,17 +13,11 @@ namespace MoneyManager.Core.Tests.Repositories
 {
     public class AccountRepositoryTests
     {
-        [Theory]
-        [InlineData("Sparkonto", "Sparkonto", "de-CH")]
-        [InlineData("", "[No Name]", "en-US")]
-        [InlineData("", "[Kein Name]", "de-CH")]
-        public void Save_InputName_CorrectNameAssigned(string nameInput, string nameExpected, string culture)
+        [Fact]
+        public void Save_InputName_CorrectNameAssigned()
         {
             var testList = new List<Account>();
-
-            // Set test culture
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
-            Strings.Culture = new CultureInfo(culture);
+            const string nameInput = "Sparkonto";
 
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
             accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>()))
@@ -43,11 +36,33 @@ namespace MoneyManager.Core.Tests.Repositories
             accountRepository.Save(account);
 
             testList[0].ShouldBeSameAs(account);
-            testList[0].Name.ShouldBe(nameExpected);
+            testList[0].Name.ShouldBe(nameInput);
+        }
 
-            // Reset Culture
-            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
-            Strings.Culture = CultureInfo.CurrentCulture;
+        [Fact]
+        public void Save_EmptyName_CorrectDefault()
+        {
+            var testList = new List<Account>();
+            const string nameInput = "";
+
+            var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
+            accountDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>()))
+                .Callback((Account acc) => testList.Add(acc));
+
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
+            var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
+
+            var account = new Account
+            {
+                Name = nameInput,
+                CurrentBalance = 6034
+            };
+
+            accountRepository.Save(account);
+
+            testList[0].ShouldBeSameAs(account);
+            testList[0].Name.ShouldBe(Strings.NoNamePlaceholderLabel);
         }
 
         [Fact]

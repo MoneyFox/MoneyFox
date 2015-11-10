@@ -47,14 +47,11 @@ namespace MoneyManager.Core.Tests.Helper
         }
 
         [Theory]
-        [InlineData(6000000.45, "de-DE", "6.000.000,45")]
-        [InlineData(6000000, "de-DE", "6.000.000,00")]
-        [InlineData(6000000, "en-US", "6,000,000.00")]
-        public void FormatLargeNumbers_AmountShort_ValidString(double amount, string culture, string result)
+        [InlineData(6000000.45)]
+        [InlineData(6000000)]
+        public void FormatLargeNumbers_AmountShort_ValidString(double amount)
         {
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
-            Utilities.FormatLargeNumbers(amount).ShouldBe(result);
-            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
+            Utilities.FormatLargeNumbers(amount).ShouldBe(amount.ToString("N"));
         }
     }
 }
