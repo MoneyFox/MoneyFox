@@ -17,11 +17,5 @@ namespace MoneyManager.Core.Tests.ViewModels
                 Setup();
             }
         }
-
-        [Fact]
-        public void EditAccount_NoParams_PropertiesSet()
-        {
-
-        }
     }
 }
