@@ -21,7 +21,7 @@
     <ApplicationInsightsResourceId>/subscriptions/38a487ea-9b81-4df6-98c2-51f6ae419311/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/MoneyManager.Windows</ApplicationInsightsResourceId>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>B50F774B3BDF77A2EAB80D8D6FC6E1C7C8A872AE</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>713781EB321D70191ED134840FC7E3337724768D</PackageCertificateThumbprint>
     <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
