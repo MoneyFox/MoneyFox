@@ -46,6 +46,7 @@
     <Compile Include="AbstractDataAccess.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
+    <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\ILocalSettings.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />
     <Compile Include="Model\CashFlow.cs" />

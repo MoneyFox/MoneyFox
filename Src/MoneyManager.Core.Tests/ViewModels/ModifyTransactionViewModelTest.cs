@@ -52,10 +52,10 @@ namespace MoneyManager.Core.Tests.ViewModels
             };
 
             var transactionManager = new TransactionManager(transactionRepository,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object,
+            var defaultManager = new DefaultManager(new Mock<IAccountRepository>().Object,
                 new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
@@ -81,10 +81,10 @@ namespace MoneyManager.Core.Tests.ViewModels
             transactionRepositorySetup.SetupProperty(x => x.Selected);
 
             var transactionManager = new TransactionManager(transactionRepositorySetup.Object,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object);
 
-            var accountRepoSetup = new Mock<IRepository<Account>>();
+            var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var defaultManager = new DefaultManager(accountRepoSetup.Object,
@@ -124,10 +124,10 @@ namespace MoneyManager.Core.Tests.ViewModels
             });
 
             var transactionManager = new TransactionManager(transactionRepositorySetup.Object,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object);
 
-            var accountRepoSetup = new Mock<IRepository<Account>>();
+            var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var defaultManager = new DefaultManager(accountRepoSetup.Object,

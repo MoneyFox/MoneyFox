@@ -1,4 +1,5 @@
-﻿using Cirrious.MvvmCross.Binding;
+﻿using Cirrious.CrossCore.Core;
+using Cirrious.MvvmCross.Binding;
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Interfaces;
@@ -15,10 +16,8 @@ namespace MoneyManager.Core.Tests.ViewModels
     {
         public AboutViewModelTests()
         {
-            if (MvxBindingSingletonCache.Instance == null)
-            {
-                Setup();
-            }
+            MvxSingleton.ClearAllSingletons();
+            Setup();
         }
 
         [Fact]

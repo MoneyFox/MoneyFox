@@ -16,7 +16,7 @@ namespace MoneyManager.Core.Repositories
     {
         private readonly IDataAccess<FinancialTransaction> dataAccess;
         private readonly IDataAccess<RecurringTransaction> recurringDataAccess;
-        private readonly IRepository<Account> accountRepository;
+        private readonly IAccountRepository accountRepository;
         private ObservableCollection<FinancialTransaction> data;
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace MoneyManager.Core.Repositories
         /// <param name="accountRepository">Instanced <see cref="IRepository{T}" /> for <see cref="Account"/></param>
         public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess,
             IDataAccess<RecurringTransaction> recurringDataAccess, 
-            IRepository<Account> accountRepository)
+            IAccountRepository accountRepository)
         {
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
@@ -74,6 +74,11 @@ namespace MoneyManager.Core.Repositories
                 throw new InvalidDataException("charged accout is missing");
             }
 
+            if (item.ClearTransactionNow)
+            {
+                item.IsCleared = true;
+            }
+
             if (item.Id == 0)
             {
                 data.Add(item);
@@ -107,71 +112,7 @@ namespace MoneyManager.Core.Repositories
                 DeleteRecurringTransactionIfLastAssociated(trans);
             }
 
-            RemoveTransactionAmount(transaction);
-        }
-
-        /// <summary>
-        ///     Removes the transaction Amount from the selected account
-        /// </summary>
-        /// <param name="transaction">Transaction to remove the account from.</param>
-        public void RemoveTransactionAmount(FinancialTransaction transaction)
-        {
-            if (transaction.IsCleared)
-            {
-                PrehandleRemoveIfTransfer(transaction);
-
-                Func<double, double> amountFunc = x =>
-                    transaction.Type == (int)TransactionType.Income
-                        ? -x
-                        : x;
-
-                HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
-            }
-        }
-
-        private void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
-        {
-            if (transaction.Type == (int)TransactionType.Transfer)
-            {
-                Func<double, double> amountFunc = x => -x;
-                HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
-            }
-        }
-        private Func<FinancialTransaction, Account> GetChargedAccountFunc()
-        {
-            Func<FinancialTransaction, Account> accountFunc =
-                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
-            return accountFunc;
-        }
-
-        private Func<FinancialTransaction, Account> GetTargetAccountFunc()
-        {
-            Func<FinancialTransaction, Account> targetAccountFunc =
-                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.TargetAccountId);
-            return targetAccountFunc;
-        }
-
-        private void HandleTransactionAmount(FinancialTransaction transaction,
-            Func<double, double> amountFunc,
-            Func<FinancialTransaction, Account> getAccountFunc)
-        {
-            if (transaction.ClearTransactionNow)
-            {
-                var account = getAccountFunc(transaction);
-                if (account == null)
-                {
-                    return;
-                }
-
-                account.CurrentBalance += amountFunc(transaction.Amount);
-                transaction.IsCleared = true;
-
-                accountRepository.Save(account);
-            } else
-            {
-                transaction.IsCleared = false;
-            }
-            Save(transaction);
+            accountRepository.RemoveTransactionAmount(transaction);
         }
 
         private void DeleteRecurringTransactionIfLastAssociated(FinancialTransaction item)
