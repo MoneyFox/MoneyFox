@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation.Interfaces;
@@ -97,6 +99,23 @@ namespace MoneyManager.Core.Tests.Repositories
 
             testList.Any().ShouldBeFalse();
             repository.Data.Any().ShouldBeFalse();
+        }
+
+        [Fact]
+        public void Load_AccountDataAccess_DataInitialized()
+        {
+            var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>
+            {
+                new Account {Id = 10},
+                new Account {Id = 15}
+            });
+
+            var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
+            accountRepository.Load();
+
+            accountRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
+            accountRepository.Data.Any(x => x.Id == 15).ShouldBeTrue();
         }
     }
 }

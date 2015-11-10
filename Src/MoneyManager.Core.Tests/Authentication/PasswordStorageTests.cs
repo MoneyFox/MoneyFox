@@ -1,4 +1,5 @@
-﻿using Beezy.MvvmCross.Plugins.SecureStorage;
+﻿using System.Runtime.InteropServices;
+using Beezy.MvvmCross.Plugins.SecureStorage;
 using MoneyManager.Core.Authentication;
 using MoneyManager.TestFoundation;
 using Moq;
@@ -45,6 +46,22 @@ namespace MoneyManager.Core.Tests.Authentication
             var called = false;
             var mockSetup = new Mock<IMvxProtectedData>();
             mockSetup.Setup(x => x.Remove(It.Is<string>(y => y == "password"))).Callback(() => called = true);
+
+            new PasswordStorage(mockSetup.Object).RemovePassword();
+
+            called.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void RemovePassword_WrongKey_ExceptionCatched()
+        {
+            var called = false;
+            var mockSetup = new Mock<IMvxProtectedData>();
+            mockSetup.Setup(x => x.Remove(It.IsAny<string>())).Callback(() =>
+            {
+                called = true;
+                throw new COMException();
+            });
 
             new PasswordStorage(mockSetup.Object).RemovePassword();
 

@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.TestFoundation;
+using Moq;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Repositories
@@ -250,6 +254,23 @@ namespace MoneyManager.Core.Tests.Repositories
 
             var transactions = repository.GetUnclearedTransactions();
             transactions.Count().ShouldBe(1);
+        }
+
+        [Fact]
+        public void Load_FinancialTransaction_DataInitialized()
+        {
+            var dataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<FinancialTransaction>
+            {
+                new FinancialTransaction {Id = 10},
+                new FinancialTransaction {Id = 15}
+            });
+
+            var categoryRepository = new TransactionRepository(dataAccessSetup.Object, new Mock<IDataAccess<RecurringTransaction>>().Object);
+            categoryRepository.Load();
+
+            categoryRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
+            categoryRepository.Data.Any(x => x.Id == 15).ShouldBeTrue();
         }
     }
 }

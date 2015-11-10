@@ -1,11 +1,15 @@
-﻿using System.Collections;
-using System.Globalization;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 using MoneyManager.TestFoundation;
+using Moq;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Repositories
@@ -87,6 +91,23 @@ namespace MoneyManager.Core.Tests.Repositories
             repository.Data.Count.ShouldBe(2);
             repository.Data[0].ShouldBeSameAs(category);
             repository.Data[1].ShouldBeSameAs(secondCategory);
+        }
+
+        [Fact]
+        public void Load_CategoryDataAccess_DataInitialized()
+        {
+            var dataAccessSetup = new Mock<IDataAccess<Category>>();
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>
+            {
+                new Category {Id = 10},
+                new Category {Id = 15}
+            });
+
+            var categoryRepository = new CategoryRepository(dataAccessSetup.Object);
+            categoryRepository.Load();
+
+            categoryRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
+            categoryRepository.Data.Any(x => x.Id == 15).ShouldBeTrue();
         }
     }
 }
