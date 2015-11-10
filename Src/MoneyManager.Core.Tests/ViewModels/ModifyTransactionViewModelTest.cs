@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using Cirrious.MvvmCross.Test.Core;
@@ -39,9 +40,13 @@ namespace MoneyManager.Core.Tests.ViewModels
         [MemberData(nameof(TransactionModTitles))]
         public void Title_TransactionTypeDifferentModes_CorrectTitle(TransactionType type, bool isEditMode, string result)
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
-                new RecurringTransactionDataAccess(dbHelper))
+                new RecurringTransactionDataAccess(dbHelper),
+                new AccountRepository(accountRepoSetup.Object))
             {
                 Selected = new FinancialTransaction {Type = (int) type}
             };

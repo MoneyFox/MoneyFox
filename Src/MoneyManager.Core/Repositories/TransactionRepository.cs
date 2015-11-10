@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
@@ -15,6 +16,7 @@ namespace MoneyManager.Core.Repositories
     {
         private readonly IDataAccess<FinancialTransaction> dataAccess;
         private readonly IDataAccess<RecurringTransaction> recurringDataAccess;
+        private readonly IRepository<Account> accountRepository;
         private ObservableCollection<FinancialTransaction> data;
 
         /// <summary>
@@ -24,11 +26,15 @@ namespace MoneyManager.Core.Repositories
         /// <param name="recurringDataAccess">
         ///     Instanced <see cref="IDataAccess{T}" /> for <see cref="RecurringTransaction" />
         /// </param>
+        /// <param name="accountRepository">Instanced <see cref="IRepository{T}" /> for <see cref="Account"/></param>
         public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess,
-            IDataAccess<RecurringTransaction> recurringDataAccess)
+            IDataAccess<RecurringTransaction> recurringDataAccess, 
+            IRepository<Account> accountRepository)
         {
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
+            this.accountRepository = accountRepository;
+
             data = new ObservableCollection<FinancialTransaction>(this.dataAccess.LoadList());
         }
 
@@ -87,14 +93,85 @@ namespace MoneyManager.Core.Repositories
         ///     Deletes the passed item and removes the item from cache
         /// </summary>
         /// <param name="item">item to delete</param>
-        public void Delete(FinancialTransaction item)
+        public void Delete(FinancialTransaction transaction)
         {
-            data.Remove(item);
-            dataAccess.DeleteItem(item);
+            var relatedTrans = Data.Where(x => x.Id == transaction.Id).ToList();
 
-            // If this transaction was the last finacial transaction for the linked recurring transaction
-            // delete the db entry for the recurring transaction.
-            DeleteRecurringTransactionIfLastAssociated(item);
+            foreach (var trans in relatedTrans)
+            {
+                data.Remove(trans);
+                dataAccess.DeleteItem(trans);
+
+                // If this transaction was the last finacial transaction for the linked recurring transaction
+                // delete the db entry for the recurring transaction.
+                DeleteRecurringTransactionIfLastAssociated(trans);
+            }
+
+            RemoveTransactionAmount(transaction);
+        }
+
+        /// <summary>
+        ///     Removes the transaction Amount from the selected account
+        /// </summary>
+        /// <param name="transaction">Transaction to remove the account from.</param>
+        public void RemoveTransactionAmount(FinancialTransaction transaction)
+        {
+            if (transaction.IsCleared)
+            {
+                PrehandleRemoveIfTransfer(transaction);
+
+                Func<double, double> amountFunc = x =>
+                    transaction.Type == (int)TransactionType.Income
+                        ? -x
+                        : x;
+
+                HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+            }
+        }
+
+        private void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
+        {
+            if (transaction.Type == (int)TransactionType.Transfer)
+            {
+                Func<double, double> amountFunc = x => -x;
+                HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
+            }
+        }
+        private Func<FinancialTransaction, Account> GetChargedAccountFunc()
+        {
+            Func<FinancialTransaction, Account> accountFunc =
+                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
+            return accountFunc;
+        }
+
+        private Func<FinancialTransaction, Account> GetTargetAccountFunc()
+        {
+            Func<FinancialTransaction, Account> targetAccountFunc =
+                trans => accountRepository.Data.FirstOrDefault(x => x.Id == trans.TargetAccountId);
+            return targetAccountFunc;
+        }
+
+        private void HandleTransactionAmount(FinancialTransaction transaction,
+            Func<double, double> amountFunc,
+            Func<FinancialTransaction, Account> getAccountFunc)
+        {
+            if (transaction.ClearTransactionNow)
+            {
+                var account = getAccountFunc(transaction);
+                if (account == null)
+                {
+                    return;
+                }
+
+                account.CurrentBalance += amountFunc(transaction.Amount);
+                transaction.IsCleared = true;
+
+                accountRepository.Save(account);
+            } else
+            {
+                transaction.IsCleared = false;
+            }
+            Save(transaction);
         }
 
         private void DeleteRecurringTransactionIfLastAssociated(FinancialTransaction item)

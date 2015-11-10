@@ -27,7 +27,7 @@ namespace MoneyManager.Core.Tests.Manager
         {
             var connectionCreatorMock = new Mock<ISqliteConnectionCreator>().Object;
             var accountRepo = new AccountRepository(new AccountDataAccess(connectionCreatorMock));
-            var transactionRepo = new TransactionRepository(new TransactionDataAccess(connectionCreatorMock), new RecurringTransactionDataAccess(connectionCreatorMock));
+            var transactionRepo = new TransactionRepository(new TransactionDataAccess(connectionCreatorMock), new RecurringTransactionDataAccess(connectionCreatorMock), new AccountRepository(new AccountDataAccess(connectionCreatorMock)));
 
             new RepositoryManager(accountRepo, transactionRepo,
                 new CategoryRepository(new CategoryDataAccess(connectionCreatorMock)),

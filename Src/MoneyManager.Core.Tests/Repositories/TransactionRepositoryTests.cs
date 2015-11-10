@@ -20,8 +20,12 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void SaveWithouthAccount_NoAccount_InvalidDataException()
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock());
+                new RecurringTransactionDataAccessMock(),
+                new AccountRepository(accountRepoSetup.Object));
 
             var transaction = new FinancialTransaction
             {
@@ -35,9 +39,13 @@ namespace MoneyManager.Core.Tests.Repositories
         [InlineData(TransactionType.Income)]
         public void Save_DifferentTransactionTypes_CorrectlySaved(TransactionType type)
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var transactionDataAccessMock = new TransactionDataAccessMock();
             var repository = new TransactionRepository(transactionDataAccessMock,
-                new RecurringTransactionDataAccessMock());
+                new RecurringTransactionDataAccessMock(),
+                new AccountRepository(accountRepoSetup.Object));
 
             var account = new Account
             {
@@ -63,9 +71,13 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void Save_TransferTransaction_CorrectlySaved()
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var transactionDataAccessMock = new TransactionDataAccessMock();
             var repository = new TransactionRepository(transactionDataAccessMock,
-                new RecurringTransactionDataAccessMock());
+                new RecurringTransactionDataAccessMock(),
+                new AccountRepository(accountRepoSetup.Object));
 
             var account = new Account
             {
@@ -96,9 +108,13 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void TransactionRepository_Delete()
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var transactionDataAccessMock = new TransactionDataAccessMock();
             var repository = new TransactionRepository(transactionDataAccessMock,
-                new RecurringTransactionDataAccessMock());
+                new RecurringTransactionDataAccessMock(),
+                new AccountRepository(accountRepoSetup.Object));
 
             var account = new Account
             {
@@ -123,15 +139,23 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void TransactionRepository_AccessCache()
         {
-            new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock()).Data
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
+            new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock(),
+                new AccountRepository(accountRepoSetup.Object)).Data
                 .ShouldNotBeNull();
         }
 
         [Fact]
         public void TransactionRepository_AddMultipleToCache()
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock());
+                new RecurringTransactionDataAccessMock(),
+                new AccountRepository(accountRepoSetup.Object));
 
             var account = new Account
             {
@@ -161,8 +185,12 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void AddItemToDataList_SaveAccount_IsAddedToData()
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock());
+                new RecurringTransactionDataAccessMock(),
+                new AccountRepository(accountRepoSetup.Object));
 
             var account = new Account
             {
@@ -183,8 +211,12 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void GetUnclearedTransactions_PastDate_PastTransactions()
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock());
+                new RecurringTransactionDataAccessMock(),
+                new AccountRepository(accountRepoSetup.Object));
 
             var account = new Account
             {
@@ -212,8 +244,12 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void GetUnclearedTransactions_FutureDate_PastTransactions()
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock());
+                new RecurringTransactionDataAccessMock(),
+                new AccountRepository(accountRepoSetup.Object));
 
             var account = new Account
             {
@@ -240,8 +276,12 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void GetUnclearedTransactions_AccountNull()
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock());
+                new RecurringTransactionDataAccessMock(),
+                new AccountRepository(accountRepoSetup.Object));
 
             repository.Data.Add(new FinancialTransaction
             {
@@ -259,6 +299,9 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void Load_FinancialTransaction_DataInitialized()
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var dataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<FinancialTransaction>
             {
@@ -266,7 +309,8 @@ namespace MoneyManager.Core.Tests.Repositories
                 new FinancialTransaction {Id = 15}
             });
 
-            var categoryRepository = new TransactionRepository(dataAccessSetup.Object, new Mock<IDataAccess<RecurringTransaction>>().Object);
+            var categoryRepository = new TransactionRepository(dataAccessSetup.Object, new Mock<IDataAccess<RecurringTransaction>>().Object,
+                new AccountRepository(accountRepoSetup.Object));
             categoryRepository.Load();
 
             categoryRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
@@ -276,10 +320,14 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void GetRelatedTransactions_Account_CorrectAccounts()
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var dataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<FinancialTransaction>());
 
-            var repo = new TransactionRepository(dataAccessSetup.Object, new Mock<IDataAccess<RecurringTransaction>>().Object);
+            var repo = new TransactionRepository(dataAccessSetup.Object, new Mock<IDataAccess<RecurringTransaction>>().Object,
+                new AccountRepository(accountRepoSetup.Object));
 
             var account1 = new Account {Id = 1};
             var account3 = new Account {Id = 3};
@@ -299,10 +347,14 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void LoadRecurringList_NoParameters_ListWithRecurringTrans()
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var dataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<FinancialTransaction>());
 
-            var repo = new TransactionRepository(dataAccessSetup.Object, new Mock<IDataAccess<RecurringTransaction>>().Object)
+            var repo = new TransactionRepository(dataAccessSetup.Object, new Mock<IDataAccess<RecurringTransaction>>().Object,
+                new AccountRepository(accountRepoSetup.Object))
             {
                 Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
                 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Binding;
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.Converter;
 using MoneyManager.Foundation;
@@ -16,7 +17,10 @@ namespace MoneyManager.Core.Tests.Converter
     {
         public TransactionAmountConverterTests()
         {
-            Setup();
+            if (MvxBindingSingletonCache.Instance == null)
+            {
+                Setup();
+            }
         }
 
         [Theory]
