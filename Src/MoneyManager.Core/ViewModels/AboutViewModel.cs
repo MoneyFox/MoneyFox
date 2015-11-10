@@ -86,7 +86,8 @@ namespace MoneyManager.Core.ViewModels
             composeEmailTask.ComposeEmail(Strings.SupportMail,
                 string.Empty,
                 Strings.FeedbackSubject,
-                string.Empty, true);
+                string.Empty, 
+                true);
         }
 
         private void RateApp()

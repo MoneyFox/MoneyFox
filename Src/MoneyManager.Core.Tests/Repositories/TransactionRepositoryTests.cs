@@ -287,13 +287,49 @@ namespace MoneyManager.Core.Tests.Repositories
             repo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
             {
                 new FinancialTransaction {Id = 2, ChargedAccount = account1, ChargedAccountId = account1.Id},
-                new FinancialTransaction {Id = 5, ChargedAccount = account3, ChargedAccountId = account3.Id},
+                new FinancialTransaction {Id = 5, ChargedAccount = account3, ChargedAccountId = account3.Id}
             });
 
             var result = repo.GetRelatedTransactions(account1);
 
             result.Count().ShouldBe(1);
             result.First().Id.ShouldBe(2);
+        }
+
+        [Fact]
+        public void LoadRecurringList_NoParameters_ListWithRecurringTrans()
+        {
+            var dataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<FinancialTransaction>());
+
+            var repo = new TransactionRepository(dataAccessSetup.Object, new Mock<IDataAccess<RecurringTransaction>>().Object)
+            {
+                Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
+                {
+                    new FinancialTransaction {Id = 1, IsRecurring = true, RecurringTransaction = new RecurringTransaction {Id = 1, IsEndless = true}, ReccuringTransactionId = 1},
+                    new FinancialTransaction {Id = 2, IsRecurring = false},
+                    new FinancialTransaction
+                    {
+                        Id = 3,
+                        IsRecurring = true,
+                        RecurringTransaction = new RecurringTransaction {Id = 2, IsEndless = false, EndDate = DateTime.Today.AddDays(10)},
+                        ReccuringTransactionId = 2
+                    },
+                    new FinancialTransaction
+                    {
+                        Id = 4,
+                        IsRecurring = true,
+                        RecurringTransaction = new RecurringTransaction {Id = 3, IsEndless = false, EndDate = DateTime.Today.AddDays(-10)},
+                        ReccuringTransactionId = 3
+                    }
+                })
+            };
+
+            var result = repo.LoadRecurringList().ToList();
+
+            result.Count.ShouldBe(2);
+            result[0].Id.ShouldBe(1);
+            result[1].Id.ShouldBe(3);
         }
     }
 }
