@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
@@ -271,6 +271,29 @@ namespace MoneyManager.Core.Tests.Repositories
 
             categoryRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
             categoryRepository.Data.Any(x => x.Id == 15).ShouldBeTrue();
+        }
+
+        [Fact]
+        public void GetRelatedTransactions_Account_CorrectAccounts()
+        {
+            var dataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<FinancialTransaction>());
+
+            var repo = new TransactionRepository(dataAccessSetup.Object, new Mock<IDataAccess<RecurringTransaction>>().Object);
+
+            var account1 = new Account {Id = 1};
+            var account3 = new Account {Id = 3};
+
+            repo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
+            {
+                new FinancialTransaction {Id = 2, ChargedAccount = account1, ChargedAccountId = account1.Id},
+                new FinancialTransaction {Id = 5, ChargedAccount = account3, ChargedAccountId = account3.Id},
+            });
+
+            var result = repo.GetRelatedTransactions(account1);
+
+            result.Count().ShouldBe(1);
+            result.First().Id.ShouldBe(2);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace MoneyManager.Core.Tests.Manager
     public class RecurringTransactionManagerTests
     {
         [Fact]
-        public void CheckRecurringTransactions()
+        public void CheckRecurringTransactions_None_NewEntryForRecurring()
         {
             var repoSetup = new Mock<ITransactionRepository>();
             var resultList = new List<FinancialTransaction>();
