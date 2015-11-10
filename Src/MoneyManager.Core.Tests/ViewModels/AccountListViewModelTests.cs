@@ -21,7 +21,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         [Fact]
         public void EditAccount_NoParams_PropertiesSet()
         {
-            new AccountListViewModel(new Mock<IRepository<Account>>().Object);
+
         }
     }
 }

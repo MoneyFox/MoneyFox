@@ -153,7 +153,7 @@
     <Compile Include="StatisticProvider\CategorySpreadingProviderTests.cs" />
     <Compile Include="StatisticProvider\CategorySummaryProviderTests.cs" />
     <Compile Include="ViewModels\AboutViewModelTests.cs" />
-    <Compile Include="ViewModels\AccountListViewModel.cs" />
+    <Compile Include="ViewModels\AccountListViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyTransactionViewModelTest.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />

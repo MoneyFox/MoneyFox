@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
@@ -19,6 +20,19 @@ namespace MoneyManager.Core.ViewModels
         {
             this.accountRepository = accountRepository;
             this.balanceViewModel = balanceViewModel;
+        }
+
+        /// <summary>
+        ///     Initializes the ViewModel
+        /// </summary>
+        /// <param name="isEdit">Indicates if the view is in edit or create mode.</param>
+        /// <param name="selectedAccountId">if in edit mode, this is the selected account.</param>
+        public void Init(bool isEdit, int selectedAccountId)
+        {
+            IsEdit = isEdit;
+            SelectedAccount = selectedAccountId != 0
+                ? accountRepository.Data.First(x => x.Id == selectedAccountId)
+                : new Account();
         }
 
         /// <summary>
