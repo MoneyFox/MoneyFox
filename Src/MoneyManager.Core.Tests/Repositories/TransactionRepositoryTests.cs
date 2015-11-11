@@ -224,15 +224,17 @@ namespace MoneyManager.Core.Tests.Repositories
                 Name = "TestAccount"
             };
 
-            repository.Save(new FinancialTransaction
+            repository.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
             {
-                ChargedAccount = account,
-                Amount = 55,
-                Date = DateTime.Today.AddDays(-1),
-                Note = "this is a note!!!",
-                IsCleared = false
-            }
-                );
+                new FinancialTransaction
+                {
+                    ChargedAccount = account,
+                    Amount = 55,
+                    Date = DateTime.Today.AddDays(-1),
+                    Note = "this is a note!!!",
+                    IsCleared = false
+                }
+            });
 
             var transactions = repository.GetUnclearedTransactions();
 
@@ -397,12 +399,11 @@ namespace MoneyManager.Core.Tests.Repositories
         }
 
         [Theory]
-        [InlineData(TransactionType.Spending, true, 550)]
-        [InlineData(TransactionType.Spending, false, 500)]
-        [InlineData(TransactionType.Income, true, 450)]
-        [InlineData(TransactionType.Income, false, 500)]
-        public void DeleteTransaction_WithoutSpending_DeletedAccountBalanceSet(TransactionType type, bool cleared,
-            int resultAmount)
+        [InlineData(TransactionType.Spending, true)]
+        [InlineData(TransactionType.Spending, false)]
+        [InlineData(TransactionType.Income, true)]
+        [InlineData(TransactionType.Income, false)]
+        public void DeleteTransaction_WithoutSpending_DeletedAccountBalanceSet(TransactionType type, bool cleared)
         {
             var deletedId = 0;
 
@@ -443,13 +444,12 @@ namespace MoneyManager.Core.Tests.Repositories
                 transaction);
 
             deletedId.ShouldBe(10);
-            account.CurrentBalance.ShouldBe(resultAmount);
         }
 
         [Theory]
-        [InlineData(true, 550, 850)]
-        [InlineData(false, 500, 900)]
-        public void DeleteTransaction_Transfer_Deleted(bool isCleared, int balanceAccount1, int balanceAccount2)
+        [InlineData(true)]
+        [InlineData(false)]
+        public void DeleteTransaction_Transfer_Deleted(bool isCleared)
         {
             var deletedId = 0;
 
@@ -474,7 +474,7 @@ namespace MoneyManager.Core.Tests.Repositories
                 TargetAccountId = account2.Id,
                 TargetAccount = account2,
                 Amount = 50,
-                Type = (int)TransactionType.Transfer,
+                Type = (int) TransactionType.Transfer,
                 IsCleared = isCleared
             };
 
@@ -482,13 +482,13 @@ namespace MoneyManager.Core.Tests.Repositories
             accountRepoSetup.SetupAllProperties();
 
             var accountRepo = accountRepoSetup.Object;
-            accountRepo.Data = new ObservableCollection<Account>(new List<Account> { account1, account2 });
+            accountRepo.Data = new ObservableCollection<Account>(new List<Account> {account1, account2});
 
             var transDataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
             transDataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<FinancialTransaction>()))
                 .Callback((FinancialTransaction trans) => deletedId = trans.Id);
             transDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<FinancialTransaction>()));
-            transDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<FinancialTransaction> { transaction });
+            transDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<FinancialTransaction> {transaction});
 
             var recTransDataAccessSetup = new Mock<IDataAccess<RecurringTransaction>>();
             recTransDataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<RecurringTransaction>()));
@@ -498,8 +498,6 @@ namespace MoneyManager.Core.Tests.Repositories
                 transaction);
 
             deletedId.ShouldBe(10);
-            account1.CurrentBalance.ShouldBe(balanceAccount1);
-            account2.CurrentBalance.ShouldBe(balanceAccount2);
         }
     }
 }

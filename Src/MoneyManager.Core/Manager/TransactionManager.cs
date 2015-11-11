@@ -65,6 +65,8 @@ namespace MoneyManager.Core.Manager
                 try
                 {
                     accountRepository.AddTransactionAmount(transaction);
+                    transaction.IsCleared = true;
+                    transactionRepository.Save(transaction);
                 }
                 catch (Exception ex)
                 {

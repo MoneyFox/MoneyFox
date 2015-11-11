@@ -97,13 +97,15 @@ namespace MoneyManager.Core.Repositories
         /// <summary>
         ///     Deletes the passed item and removes the item from cache
         /// </summary>
-        /// <param name="item">item to delete</param>
+        /// <param name="transaction">item to delete</param>
         public void Delete(FinancialTransaction transaction)
         {
             var relatedTrans = Data.Where(x => x.Id == transaction.Id).ToList();
 
             foreach (var trans in relatedTrans)
             {
+                accountRepository.RemoveTransactionAmount(trans);
+
                 data.Remove(trans);
                 dataAccess.DeleteItem(trans);
 
@@ -111,8 +113,6 @@ namespace MoneyManager.Core.Repositories
                 // delete the db entry for the recurring transaction.
                 DeleteRecurringTransactionIfLastAssociated(trans);
             }
-
-            accountRepository.RemoveTransactionAmount(transaction);
         }
 
         private void DeleteRecurringTransactionIfLastAssociated(FinancialTransaction item)
