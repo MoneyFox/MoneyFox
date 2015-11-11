@@ -1,5 +1,6 @@
 ﻿using System;
 using Cirrious.CrossCore;
+using Cirrious.CrossCore.Core;
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.Authentication;
 using MoneyManager.Foundation.Interfaces;
@@ -11,11 +12,15 @@ namespace MoneyManager.Core.Tests.Authentication
 {
     public class SessionTests : MvxIoCSupportingTest
     {
+        public SessionTests()
+        {
+            MvxSingleton.ClearAllSingletons();
+            Setup();
+        }
+
         [Fact]
         public void ValidateSession_PasswordNotRequired_SessionValid()
         {
-            Setup();
-
             var settingsSetup = new Mock<ILocalSettings>();
             settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(false);
@@ -28,8 +33,6 @@ namespace MoneyManager.Core.Tests.Authentication
         [Fact]
         public void ValidateSession_PasswordRequiredSessionNeverSet_SessionInvalid()
         {
-            Setup();
-
             var settingsSetup = new Mock<ILocalSettings>();
             settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(true);
@@ -48,8 +51,6 @@ namespace MoneyManager.Core.Tests.Authentication
         [InlineData(5, true)]
         public void ValidateSession_PasswordRequiredSession_SessioncorrectValidated(int diffMinutes, bool expectedResult)
         {
-            Setup();
-
             var settingsSetup = new Mock<ILocalSettings>();
             settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>()))
                 .Returns(DateTime.Now.AddMinutes(-diffMinutes).ToString);
@@ -64,7 +65,6 @@ namespace MoneyManager.Core.Tests.Authentication
         [Fact]
         public void AddSession_SessionTimestampAdded()
         {
-            Setup();
             DateTime resultDateTime = DateTime.Today.AddDays(-10);
 
             var settingsSetup = new Mock<ILocalSettings>();
