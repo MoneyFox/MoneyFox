@@ -283,4 +283,13 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
     <value>Informationen auf Haupttile anzeigen.</value>
   </data>
+  <data name="SearchHeader.Header" xml:space="preserve">
+    <value>Suche</value>
+  </data>
+  <data name="ShowInfoOnMainTileHeader.OffContent" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
+    <value>Ja</value>
+  </data>
 </root>
