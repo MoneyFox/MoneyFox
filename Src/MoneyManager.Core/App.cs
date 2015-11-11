@@ -48,6 +48,11 @@ namespace MoneyManager.Core
 
             CreatableTypes()
                 .EndingWith("ViewModel")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
+            CreatableTypes()
+                .EndingWith("ViewModel")
                 .AsTypes()
                 .RegisterAsLazySingleton();
 

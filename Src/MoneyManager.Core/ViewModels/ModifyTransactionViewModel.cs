@@ -117,6 +117,9 @@ namespace MoneyManager.Core.ViewModels
                 return;
             }
 
+            // Make sure that the old amount is removed to not count the amount twice.
+            RemoveOldAmount();
+
             SelectedTransaction.Amount = amount;
 
             //Create a recurring transaction based on the financial transaction or update an existing
@@ -128,6 +131,14 @@ namespace MoneyManager.Core.ViewModels
 
             ResetInitLocker();
             Close(this);
+        }
+
+        private void RemoveOldAmount()
+        {
+            if (IsEdit)
+            {
+                accountRepository.RemoveTransactionAmount(SelectedTransaction);
+            }
         }
 
         private async Task SaveRecurringTransaction()
