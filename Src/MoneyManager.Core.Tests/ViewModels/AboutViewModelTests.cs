@@ -53,6 +53,29 @@ namespace MoneyManager.Core.Tests.ViewModels
         }
 
         [Fact]
+        public void Website_NoParams_ReturnCorrectMail()
+        {
+            new AboutViewModel(new Mock<IAppInformation>().Object,
+                            new Mock<IMvxComposeEmailTask>().Object,
+                            new Mock<IMvxWebBrowserTask>().Object,
+                            new Mock<IStoreFeatures>().Object)
+                            .Website.ShouldBe(Strings.WebsiteUrl);
+        }
+
+        [Fact]
+        public void Version_NoParams_ReturnCorrectMail()
+        {
+            var appinfos = new Mock<IAppInformation>();
+            appinfos.Setup(x => x.GetVersion).Returns("42");
+
+            new AboutViewModel(appinfos.Object,
+                new Mock<IMvxComposeEmailTask>().Object,
+                new Mock<IMvxWebBrowserTask>().Object,
+                new Mock<IStoreFeatures>().Object)
+                .Version.ShouldBe("42");
+        }
+
+        [Fact]
         public void GoToWebsite_NoParams_Called()
         {
             var commandCalled = false;

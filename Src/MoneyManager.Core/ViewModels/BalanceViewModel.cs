@@ -3,13 +3,14 @@ using System.Linq;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class BalanceViewModel : BaseViewModel
+    public class BalanceViewModel : BaseViewModel, IBalanceViewModel
     {
         private readonly IAccountRepository accountRepository;
         private readonly ITransactionRepository transactionRepository;

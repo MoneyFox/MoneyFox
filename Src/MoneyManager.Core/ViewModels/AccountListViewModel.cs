@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 using PropertyChanged;
@@ -11,11 +12,11 @@ namespace MoneyManager.Core.ViewModels
     public class AccountListViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly BalanceViewModel balanceViewModel;
+        private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
 
         public AccountListViewModel(IRepository<Account> accountRepository,
-            BalanceViewModel balanceViewModel,
+            IBalanceViewModel balanceViewModel,
             IDialogService dialogService)
         {
             this.accountRepository = accountRepository;
@@ -70,6 +71,11 @@ namespace MoneyManager.Core.ViewModels
 
         private async void Delete(Account item)
         {
+            if (item == null)
+            {
+                return;
+            }
+
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 accountRepository.Delete(item);

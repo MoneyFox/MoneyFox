@@ -49,6 +49,7 @@
     <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\ILocalSettings.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />
+    <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
     <Compile Include="Model\CashFlow.cs" />
     <Compile Include="SqliteConnectionCreator.cs" />
     <Compile Include="Enumerations.cs" />
