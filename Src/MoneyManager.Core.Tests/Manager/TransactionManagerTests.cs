@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using MoneyManager.Core.Manager;
-using MoneyManager.Core.Repositories;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Localization;
 using MoneyManager.TestFoundation;
 using Moq;
 using Xunit;
@@ -64,7 +64,62 @@ namespace MoneyManager.Core.Tests.Manager
             new TransactionManager(new Mock<ITransactionRepository>().Object,
                 new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object).DeleteAssociatedTransactionsFromDatabase(
-                new Account {Id = 3});
+                    new Account {Id = 3});
+        }
+
+        [Fact]
+        public async void CheckForRecurringTransaction_IsRecurringFalse_ReturnFalse()
+        {
+            var result = await new TransactionManager(new Mock<ITransactionRepository>().Object,
+                new Mock<IAccountRepository>().Object,
+                new Mock<IDialogService>().Object)
+                .CheckForRecurringTransaction(new FinancialTransaction {IsRecurring = false});
+
+            result.ShouldBeFalse();
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public async void CheckForRecurringTransaction_IsRecurringTrue_ReturnUserInput(bool userAnswer)
+        {
+            var dialogService = new Mock<IDialogService>();
+            dialogService.Setup(x => x.ShowConfirmMessage(It.Is<string>(y => y == Strings.ChangeSubsequentTransactionsTitle),
+                It.Is<string>(y => y == Strings.ChangeSubsequentTransactionsMessage),
+                It.Is<string>(y => y == Strings.RecurringLabel),
+                It.Is<string>(y => y == Strings.JustThisLabel))).Returns(Task.FromResult(userAnswer));
+
+            var result = await new TransactionManager(new Mock<ITransactionRepository>().Object,
+                new Mock<IAccountRepository>().Object,
+                dialogService.Object)
+                .CheckForRecurringTransaction(new FinancialTransaction {IsRecurring = true});
+
+            result.ShouldBe(userAnswer);
+        }
+
+        [Fact]
+        public void RemoveRecurringForTransactions_RecTrans_TransactionPropertiesProperlyChanged()
+        {
+            var trans = new FinancialTransaction
+            {
+                Id = 2,
+                ReccuringTransactionId = 3,
+                RecurringTransaction = new RecurringTransaction {Id = 3},
+                IsRecurring = true
+            };
+
+            var transRepoSetup = new Mock<ITransactionRepository>();
+            transRepoSetup.SetupAllProperties();
+
+            var transRepo = transRepoSetup.Object;
+            transRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction> { trans});
+
+            new TransactionManager(transRepo,
+                new Mock<IAccountRepository>().Object,
+                new Mock<IDialogService>().Object).RemoveRecurringForTransactions(trans.RecurringTransaction);
+
+            trans.IsRecurring.ShouldBeFalse();
+            trans.ReccuringTransactionId.ShouldBe(0);
         }
     }
 }
