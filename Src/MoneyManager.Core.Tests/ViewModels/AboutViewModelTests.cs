@@ -1,5 +1,4 @@
 ﻿using Cirrious.CrossCore.Core;
-using Cirrious.MvvmCross.Binding;
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Interfaces;
@@ -59,7 +58,8 @@ namespace MoneyManager.Core.Tests.ViewModels
             var commandCalled = false;
 
             var webbrowserTaskSetup = new Mock<IMvxWebBrowserTask>();
-            webbrowserTaskSetup.Setup(x => x.ShowWebPage(It.Is<string>(s => s == Strings.WebsiteUrl))).Callback(() => commandCalled = true);
+            webbrowserTaskSetup.Setup(x => x.ShowWebPage(It.Is<string>(s => s == Strings.WebsiteUrl)))
+                .Callback(() => commandCalled = true);
 
             new AboutViewModel(new Mock<IAppInformation>().Object,
                 new Mock<IMvxComposeEmailTask>().Object,
@@ -76,7 +76,8 @@ namespace MoneyManager.Core.Tests.ViewModels
             var commandCalled = false;
 
             var webbrowserTaskSetup = new Mock<IMvxWebBrowserTask>();
-            webbrowserTaskSetup.Setup(x => x.ShowWebPage(It.Is<string>(s => s == Strings.GitHubRepositoryUrl))).Callback(() => commandCalled = true);
+            webbrowserTaskSetup.Setup(x => x.ShowWebPage(It.Is<string>(s => s == Strings.GitHubRepositoryUrl)))
+                .Callback(() => commandCalled = true);
 
             new AboutViewModel(new Mock<IAppInformation>().Object,
                 new Mock<IMvxComposeEmailTask>().Object,
