@@ -399,11 +399,12 @@ namespace MoneyManager.Core.Tests.Repositories
         }
 
         [Theory]
-        [InlineData(TransactionType.Spending, true)]
-        [InlineData(TransactionType.Spending, false)]
-        [InlineData(TransactionType.Income, true)]
-        [InlineData(TransactionType.Income, false)]
-        public void DeleteTransaction_WithoutSpending_DeletedAccountBalanceSet(TransactionType type, bool cleared)
+        [InlineData(TransactionType.Spending, true, 550)]
+        [InlineData(TransactionType.Spending, false, 500)]
+        [InlineData(TransactionType.Income, true, 450)]
+        [InlineData(TransactionType.Income, false, 500)]
+        public void DeleteTransaction_WithoutSpending_DeletedAccountBalanceSet(TransactionType type, bool cleared,
+            int resultAmount)
         {
             var deletedId = 0;
 
@@ -424,11 +425,10 @@ namespace MoneyManager.Core.Tests.Repositories
                 IsCleared = cleared
             };
 
-            var accountRepoSetup = new Mock<IAccountRepository>();
-            accountRepoSetup.SetupAllProperties();
+            var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account> { account });
 
-            var accountRepo = accountRepoSetup.Object;
-            accountRepo.Data = new ObservableCollection<Account>(new List<Account> {account});
+            var accountRepo = new AccountRepository(accountDataAccessSetup.Object);
 
             var transDataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
             transDataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<FinancialTransaction>()))
@@ -444,12 +444,13 @@ namespace MoneyManager.Core.Tests.Repositories
                 transaction);
 
             deletedId.ShouldBe(10);
+            account.CurrentBalance.ShouldBe(resultAmount);
         }
 
         [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void DeleteTransaction_Transfer_Deleted(bool isCleared)
+        [InlineData(true, 550, 850)]
+        [InlineData(false, 500, 900)]
+        public void DeleteTransaction_Transfer_Deleted(bool isCleared, int balanceAccount1, int balanceAccount2)
         {
             var deletedId = 0;
 
@@ -478,11 +479,10 @@ namespace MoneyManager.Core.Tests.Repositories
                 IsCleared = isCleared
             };
 
-            var accountRepoSetup = new Mock<IAccountRepository>();
-            accountRepoSetup.SetupAllProperties();
+            var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account> {account1, account2});
 
-            var accountRepo = accountRepoSetup.Object;
-            accountRepo.Data = new ObservableCollection<Account>(new List<Account> {account1, account2});
+            var accountRepo = new AccountRepository(accountDataAccessSetup.Object);
 
             var transDataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
             transDataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<FinancialTransaction>()))
@@ -498,6 +498,8 @@ namespace MoneyManager.Core.Tests.Repositories
                 transaction);
 
             deletedId.ShouldBe(10);
+            account1.CurrentBalance.ShouldBe(balanceAccount1);
+            account2.CurrentBalance.ShouldBe(balanceAccount2);
         }
     }
 }
