@@ -89,6 +89,24 @@ namespace MoneyManager.Core.Tests.Manager
         }
 
         [Fact]
+        public void GetDefaultAccount_DataIsNull_SetData()
+        {
+            //Setup
+            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            accountRepositorySetup.SetupAllProperties();
+            var repo = accountRepositorySetup.Object;
+
+            repo.Data = null;
+
+            //Execute
+            new DefaultManager(repo,
+                new SettingDataAccess(new Mock<IRoamingSettings>().Object) { DefaultAccount = -1 })
+                .GetDefaultAccount()
+                .ShouldBeNull();
+        }
+
+
+        [Fact]
         public void GetDefaultAccount_SelectedAndDataNoSettings_CorrectFallbackValue()
         {
             //Setup

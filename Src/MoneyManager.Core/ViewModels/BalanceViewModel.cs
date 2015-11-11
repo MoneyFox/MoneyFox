@@ -3,18 +3,19 @@ using System.Linq;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class BalanceViewModel : BaseViewModel
+    public class BalanceViewModel : BaseViewModel, IBalanceViewModel
     {
-        private readonly IRepository<Account> accountRepository;
+        private readonly IAccountRepository accountRepository;
         private readonly ITransactionRepository transactionRepository;
 
-        public BalanceViewModel(IRepository<Account> accountRepository,
+        public BalanceViewModel(IAccountRepository accountRepository,
             ITransactionRepository transactionRepository)
         {
             this.accountRepository = accountRepository;
@@ -23,13 +24,18 @@ namespace MoneyManager.Core.ViewModels
 
         public double TotalBalance { get; set; }
         public double EndOfMonthBalance { get; set; }
-        public bool IsTransactionView { private get; set; }
+
+        private bool IsTransactionView { get; set; }
 
         /// <summary>
-        ///     Refreshes the balances
+        ///     Refreshes the balances. Depending on if it is displayed in a transactionview or a general view it will adjust
+        ///     itself and show different data.
         /// </summary>
-        public void UpdateBalance()
+        /// <param name="isTransactionView">Indicates if the current view is a transactionView or a generell overview.</param>
+        public void UpdateBalance(bool isTransactionView = false)
         {
+            IsTransactionView = IsTransactionView;
+
             TotalBalance = GetTotalBalance();
             EndOfMonthBalance = GetEndOfMonthValue();
         }

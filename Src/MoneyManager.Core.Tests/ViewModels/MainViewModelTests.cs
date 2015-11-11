@@ -6,6 +6,7 @@ using MoneyManager.Core.ViewModels;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Model;
 using Moq;
 using Xunit;
 
@@ -26,7 +27,8 @@ namespace MoneyManager.Core.Tests.ViewModels
             var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
-                new RecurringTransactionDataAccess(dbHelper));
+                new RecurringTransactionDataAccess(dbHelper),
+                new AccountRepository(new Mock<IDataAccess<Account>>().Object));
             var transactionManager = new TransactionManager(transactionRepository, accountRepository,
                 new Mock<IDialogService>().Object);
 

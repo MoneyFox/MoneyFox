@@ -5,10 +5,18 @@
                       xmlns:userControls="using:MoneyManager.Windows.Controls"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
                       xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       x:Class="MoneyManager.Windows.Views.TransactionListView"
                       mc:Ignorable="d"
                       NavigationCacheMode="Disabled"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
     <Page.BottomAppBar>
         <CommandBar>
@@ -31,8 +39,8 @@
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add"
-                              x:Uid="DeleteItemAccountLabel"
-                              Label="DeleteItem Account"
+                              x:Uid="DeleteAccountLabel"
+                              Label="Delete Account"
                               Command="{Binding DeleteAccountCommand}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>

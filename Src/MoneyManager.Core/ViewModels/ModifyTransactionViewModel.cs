@@ -22,16 +22,14 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         private static bool isInitCall = true;
 
-        private readonly IRepository<Account> accountRepository;
+        private readonly IAccountRepository accountRepository;
         private readonly DefaultManager defaultManager;
         private readonly IDialogService dialogService;
         private readonly TransactionManager transactionManager;
         private readonly ITransactionRepository transactionRepository;
 
-        private double oldAmount;
-
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
-            IRepository<Account> accountRepository,
+            IAccountRepository accountRepository,
             IDialogService dialogService,
             TransactionManager transactionManager,
             DefaultManager defaultManager)
@@ -70,11 +68,14 @@ namespace MoneyManager.Core.ViewModels
 
         private void PrepareEdit()
         {
+            if (!IsEdit) return;
+
             IsTransfer = SelectedTransaction.IsTransfer;
+            // set the private amount property. This will get properly formatted and then displayed.
+            amount = SelectedTransaction.Amount;
             Recurrence = SelectedTransaction.IsRecurring
                 ? SelectedTransaction.RecurringTransaction.Recurrence
                 : 0;
-            oldAmount = SelectedTransaction.Amount;
             EndDate = SelectedTransaction.IsRecurring
                 ? SelectedTransaction.RecurringTransaction.EndDate
                 : DateTime.Now;
@@ -104,11 +105,8 @@ namespace MoneyManager.Core.ViewModels
 
         private void Loaded()
         {
-            if (IsEdit)
-            {
-                //remove transaction on edit, on save or cancel the amount is added again.
-                transactionManager.RemoveTransactionAmount(SelectedTransaction);
-            }
+            //TODO: Check if this can be removed since it's already called in init
+            PrepareEdit();
         }
 
         private async void Save()
@@ -119,12 +117,14 @@ namespace MoneyManager.Core.ViewModels
                 return;
             }
 
+            SelectedTransaction.Amount = amount;
+
             //Create a recurring transaction based on the financial transaction or update an existing
             await SaveRecurringTransaction();
 
             // SaveItem or update the transaction and add the amount to the account
             transactionRepository.Save(SelectedTransaction);
-            transactionManager.AddTransactionAmount(SelectedTransaction);
+            accountRepository.AddTransactionAmount(SelectedTransaction);
 
             ResetInitLocker();
             Close(this);
@@ -152,7 +152,7 @@ namespace MoneyManager.Core.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
             {
-                transactionManager.DeleteTransaction(transactionRepository.Selected);
+                transactionRepository.Delete(transactionRepository.Selected);
                 ResetInitLocker();
                 Close(this);
             }
@@ -166,12 +166,6 @@ namespace MoneyManager.Core.ViewModels
 
         private void Cancel()
         {
-            if (IsEdit)
-            {
-                //readd the previously removed transaction amount
-                SelectedTransaction.Amount = oldAmount;
-                transactionManager.AddTransactionAmount(SelectedTransaction);
-            }
             ResetInitLocker();
             Close(this);
         }
@@ -240,6 +234,7 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public int Recurrence { get; set; }
 
+        private double amount;
         /// <summary>
         ///     Property to format amount string to double with the proper culture.
         ///     This is used to prevent issues when converting the amount string to double
@@ -247,8 +242,8 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public string AmountString
         {
-            get { return Utilities.FormatLargeNumbers(SelectedTransaction.Amount); }
-            set { SelectedTransaction.Amount = Convert.ToDouble(value, CultureInfo.CurrentCulture); }
+            get { return Utilities.FormatLargeNumbers(amount); }
+            set { amount = Convert.ToDouble(value, CultureInfo.CurrentCulture); }
         }
 
         /// <summary>

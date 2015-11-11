@@ -15,7 +15,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         {
             var accountname = "Sparkonto";
 
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account { Id = 2, Name = accountname });
 
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new BalanceViewModel(
@@ -30,7 +30,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         {
             var accountname = "Sparkonto";
 
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2, Name = accountname});
 
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new BalanceViewModel(

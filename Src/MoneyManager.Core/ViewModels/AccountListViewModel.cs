@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 using PropertyChanged;
@@ -11,20 +12,15 @@ namespace MoneyManager.Core.ViewModels
     public class AccountListViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly BalanceViewModel balanceViewModel;
+        private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
-        private readonly ModifyAccountViewModel modifyAccountViewModel;
-        private readonly TransactionListViewModel transactionListViewModel;
 
         public AccountListViewModel(IRepository<Account> accountRepository,
-            TransactionListViewModel transactionListViewModel,
-            BalanceViewModel balanceViewModel, ModifyAccountViewModel modifyAccountViewModel,
+            IBalanceViewModel balanceViewModel,
             IDialogService dialogService)
         {
             this.accountRepository = accountRepository;
-            this.transactionListViewModel = transactionListViewModel;
             this.balanceViewModel = balanceViewModel;
-            this.modifyAccountViewModel = modifyAccountViewModel;
             this.dialogService = dialogService;
         }
 
@@ -59,10 +55,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void EditAccount(Account account)
         {
-            modifyAccountViewModel.IsEdit = true;
-            modifyAccountViewModel.SelectedAccount = account;
-
-            ShowViewModel<ModifyAccountViewModel>();
+            ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = account.Id });
         }
 
         private void GoToTransactionOverView(Account account)
@@ -73,13 +66,16 @@ namespace MoneyManager.Core.ViewModels
             }
 
             accountRepository.Selected = account;
-            transactionListViewModel.LoadedCommand.Execute();
-
             ShowViewModel<TransactionListViewModel>();
         }
 
         private async void Delete(Account item)
         {
+            if (item == null)
+            {
+                return;
+            }
+
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 accountRepository.Delete(item);
@@ -89,10 +85,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void GoToAddAccount()
         {
-            modifyAccountViewModel.IsEdit = false;
-            modifyAccountViewModel.SelectedAccount = new Account();
-
-            ShowViewModel<ModifyAccountViewModel>();
+            ShowViewModel<ModifyAccountViewModel>(new { isEdit = true, selectedAccountId = 0 });
         }
     }
 }

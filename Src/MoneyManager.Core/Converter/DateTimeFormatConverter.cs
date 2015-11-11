@@ -13,7 +13,7 @@ namespace MoneyManager.Core.Converter
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((DateTime)value).ToString("d");
+            return System.Convert.ToDateTime(value).ToString("d");
         }
     }
 }

@@ -20,7 +20,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         public void ResetCategoryCommand_FilledProperty_PropertyIsNull()
         {
             var transactionSetup = new Mock<ITransactionRepository>();
-            var accountRepoMock = new Mock<IRepository<Account>>().Object;
+            var accountRepoMock = new Mock<IAccountRepository>().Object;
             var dialogMock = new Mock<IDialogService>().Object;
 
             var transaction = new FinancialTransaction

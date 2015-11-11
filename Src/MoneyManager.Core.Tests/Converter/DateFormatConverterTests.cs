@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using MoneyManager.Core.Converter;
 using MoneyManager.TestFoundation;
 using Xunit;
@@ -8,32 +7,24 @@ namespace MoneyManager.Core.Tests.Converter
 {
     public class DateFormatConverterTests
     {
-        [Theory]
-        [InlineData("en-US", "Tuesday, September 15, 2015")]
-        [InlineData("de-DE", "Dienstag, 15. September 2015")]
-        public void Convert_DateTime_ValidString(string culture, string result)
+        [Fact]
+        public void Convert_DateTime_ValidString()
         {
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
+            var date = new DateTime(2015, 09, 15, 14, 56, 48);
 
             new DateTimeFormatConverter()
-                .Convert(new DateTime(2015, 09, 15, 14, 56, 48), null, null, null)
-                .ShouldBe(result);
-
-            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
+                .Convert(date, null, null, null)
+                .ShouldBe(date.ToString("D"));
         }
 
-        [Theory]
-        [InlineData("en-US", "9/15/2015")]
-        [InlineData("de-DE", "15.09.2015")]
-        public void ConvertBack_DateTime_ValidString(string culture, string result)
+        [Fact]
+        public void ConvertBack_DateTime_ValidString()
         {
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(culture);
+            var date = new DateTime(2015, 09, 15, 14, 56, 48);
 
             new DateTimeFormatConverter()
-                .ConvertBack(new DateTime(2015, 09, 15, 14, 56, 48), null, null, null)
-                .ShouldBe(result);
-
-            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture;
+                .ConvertBack(date.ToString("D"), null, null, null)
+                .ShouldBe(date.ToString("d"));
         }
     }
 }

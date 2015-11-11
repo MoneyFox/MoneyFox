@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.Manager;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
@@ -12,22 +11,20 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class TransactionListViewModel : BaseViewModel
     {
-        private readonly IRepository<Account> accountRepository;
+        private readonly IAccountRepository accountRepository;
         private readonly BalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
         private readonly ModifyTransactionViewModel modifyTransactionViewModel;
-        private readonly TransactionManager transactionManager;
         private readonly ITransactionRepository transactionRepository;
 
         public TransactionListViewModel(ITransactionRepository transactionRepository,
-            IRepository<Account> accountRepository,
-            TransactionManager transactionManager,
+            IAccountRepository accountRepository,
             BalanceViewModel balanceViewModel,
-            ModifyTransactionViewModel modifyTransactionViewModel, IDialogService dialogService)
+            ModifyTransactionViewModel modifyTransactionViewModel, 
+            IDialogService dialogService)
         {
             this.transactionRepository = transactionRepository;
             this.accountRepository = accountRepository;
-            this.transactionManager = transactionManager;
             this.balanceViewModel = balanceViewModel;
             this.modifyTransactionViewModel = modifyTransactionViewModel;
             this.dialogService = dialogService;
@@ -60,8 +57,7 @@ namespace MoneyManager.Core.ViewModels
         private void LoadTransactions()
         {
             //Refresh balance control with the current account
-            balanceViewModel.IsTransactionView = true;
-            balanceViewModel.UpdateBalance();
+            balanceViewModel.UpdateBalance(true);
 
             SelectedTransaction = null;
             RelatedTransactions = new ObservableCollection<FinancialTransaction>(transactionRepository
@@ -73,14 +69,12 @@ namespace MoneyManager.Core.ViewModels
         private void UnloadTransactions()
         {
             // Set balance control back to all accounts
-            balanceViewModel.IsTransactionView = false;
             balanceViewModel.UpdateBalance();
         }
 
         private void GoToAddTransaction(string type)
         {
-            modifyTransactionViewModel.IsEdit = false;
-            ShowViewModel<ModifyTransactionViewModel>(new {typeString = type});
+            ShowViewModel<ModifyTransactionViewModel>(new {isEdit = false, typeString = type});
         }
 
         private async void DeleteAccount()
@@ -114,7 +108,7 @@ namespace MoneyManager.Core.ViewModels
                 await
                     dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
             {
-                transactionManager.DeleteTransaction(transaction);
+                transactionRepository.Delete(transaction);
                 RelatedTransactions.Remove(transaction);
                 balanceViewModel.UpdateBalance();
             }

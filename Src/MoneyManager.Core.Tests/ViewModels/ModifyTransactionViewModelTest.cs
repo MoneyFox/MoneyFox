@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using Cirrious.MvvmCross.Test.Core;
@@ -39,18 +40,22 @@ namespace MoneyManager.Core.Tests.ViewModels
         [MemberData(nameof(TransactionModTitles))]
         public void Title_TransactionTypeDifferentModes_CorrectTitle(TransactionType type, bool isEditMode, string result)
         {
+            var accountRepoSetup = new Mock<IDataAccess<Account>>();
+            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
             var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
-                new RecurringTransactionDataAccess(dbHelper))
+                new RecurringTransactionDataAccess(dbHelper),
+                new AccountRepository(accountRepoSetup.Object))
             {
                 Selected = new FinancialTransaction {Type = (int) type}
             };
 
             var transactionManager = new TransactionManager(transactionRepository,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(new Mock<IRepository<Account>>().Object,
+            var defaultManager = new DefaultManager(new Mock<IAccountRepository>().Object,
                 new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
             var viewModel = new ModifyTransactionViewModel(transactionRepository,
@@ -76,10 +81,10 @@ namespace MoneyManager.Core.Tests.ViewModels
             transactionRepositorySetup.SetupProperty(x => x.Selected);
 
             var transactionManager = new TransactionManager(transactionRepositorySetup.Object,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object);
 
-            var accountRepoSetup = new Mock<IRepository<Account>>();
+            var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var defaultManager = new DefaultManager(accountRepoSetup.Object,
@@ -119,10 +124,10 @@ namespace MoneyManager.Core.Tests.ViewModels
             });
 
             var transactionManager = new TransactionManager(transactionRepositorySetup.Object,
-                new Mock<IRepository<Account>>().Object,
+                new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object);
 
-            var accountRepoSetup = new Mock<IRepository<Account>>();
+            var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var defaultManager = new DefaultManager(accountRepoSetup.Object,
