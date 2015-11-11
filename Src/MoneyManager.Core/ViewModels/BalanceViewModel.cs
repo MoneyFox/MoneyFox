@@ -34,7 +34,7 @@ namespace MoneyManager.Core.ViewModels
         /// <param name="isTransactionView">Indicates if the current view is a transactionView or a generell overview.</param>
         public void UpdateBalance(bool isTransactionView = false)
         {
-            IsTransactionView = IsTransactionView;
+            IsTransactionView = isTransactionView;
 
             TotalBalance = GetTotalBalance();
             EndOfMonthBalance = GetEndOfMonthValue();
