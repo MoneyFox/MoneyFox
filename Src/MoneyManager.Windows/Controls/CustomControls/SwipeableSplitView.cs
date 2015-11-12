@@ -472,7 +472,7 @@ namespace MoneyManager.Windows.Controls.CustomControls
         {
             if (IsSwipeablePaneOpen)
             {
-                OpenSwipeablePaneAnimation.Begin();
+                OpenSwipeablePaneAnimation?.Begin();
             }
             else
             {
@@ -484,7 +484,7 @@ namespace MoneyManager.Windows.Controls.CustomControls
         {
             if (!IsSwipeablePaneOpen)
             {
-                CloseSwipeablePaneAnimation.Begin();
+                CloseSwipeablePaneAnimation?.Begin();
             }
             else
             {
