@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "MvvmCross.HotTuna.Plugin.SQLitePCL": "4.0.0-beta6",
     "xunit": "2.1.0",
     "xunit.runner.visualstudio": "2.1.0"
   },
