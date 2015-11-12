@@ -332,7 +332,7 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expense.
+        ///   Looks up a localized string similar to Expenses.
         /// </summary>
         public static string ExpenseLabel {
             get {
@@ -377,7 +377,7 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Increase.
+        ///   Looks up a localized string similar to Gains.
         /// </summary>
         public static string IncreaseLabel {
             get {
