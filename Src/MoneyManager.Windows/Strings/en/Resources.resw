@@ -148,14 +148,14 @@
     <value>add transfer</value>
   </data>
   <data name="BackupInformation.Text" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive account. You find them in a new created folder "MoneyFoxBackupManager". </value>
+    <value>Your data will be saved to your OneDrive account. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
   </data>
   <data name="RestoreInformation.Text" xml:space="preserve">
-    <value>We download the previous uploaded database backup and replace your local data with it. 
+    <value>Download the previous uploaded database backup and replace your local data with it. 
 WARNING: Local changes you made meanwhile we be lost.</value>
   </data>
   <data name="BackupTitle.Text" xml:space="preserve">
-    <value>BackupManager</value>
+    <value>Backup</value>
   </data>
   <data name="CashFlowTitle.Label" xml:space="preserve">
     <value>Cash Flow</value>
@@ -185,8 +185,8 @@ WARNING: Local changes you made meanwhile we be lost.</value>
     <value>Info</value>
   </data>
   <data name="OpenSourceNote.Text" xml:space="preserve">
-    <value>This programm is open source. We appreciate contributions!
-Visit Repository:</value>
+    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
+Tap to visit the Repository:</value>
   </data>
   <data name="RateThisApp.Content" xml:space="preserve">
     <value>Rate this App</value>

@@ -184,7 +184,7 @@
     <value>Edit</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Expense</value>
+    <value>Expenses</value>
   </data>
   <data name="FeedbackLabel" xml:space="preserve">
     <value>Feedback</value>
@@ -202,7 +202,7 @@
     <value>Edit Income</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Increase</value>
+    <value>Gains</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
     <value>Just This</value>
