@@ -8,6 +8,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
+using MoneyManager.Foundation;
+using Xamarin;
 
 namespace MoneyManager.Windows.Controls.CustomControls
 {
@@ -472,7 +474,14 @@ namespace MoneyManager.Windows.Controls.CustomControls
         {
             if (IsSwipeablePaneOpen)
             {
-                OpenSwipeablePaneAnimation?.Begin();
+                try
+                {
+                    OpenSwipeablePaneAnimation.Begin();
+                }
+                catch (Exception ex)
+                {
+                    InsightHelper.Report(ex, Insights.Severity.Warning);
+                }
             }
             else
             {
@@ -484,7 +493,14 @@ namespace MoneyManager.Windows.Controls.CustomControls
         {
             if (!IsSwipeablePaneOpen)
             {
-                CloseSwipeablePaneAnimation?.Begin();
+                try
+                {
+                    CloseSwipeablePaneAnimation.Begin();
+                }
+                catch (Exception ex)
+                {
+                    InsightHelper.Report(ex, Insights.Severity.Warning);
+                }
             }
             else
             {

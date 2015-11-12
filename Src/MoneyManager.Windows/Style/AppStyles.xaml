@@ -643,7 +643,6 @@
                                     </DoubleAnimation.EasingFunction>
                                 </DoubleAnimation>
                             </Storyboard>
-
                         </Grid.Resources>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition x:Name="ColumnDefinition1"
