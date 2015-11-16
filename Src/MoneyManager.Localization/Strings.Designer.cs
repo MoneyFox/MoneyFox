@@ -206,6 +206,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category Summary.
+        /// </summary>
+        public static string CategorySummary {
+            get {
+                return ResourceManager.GetString("CategorySummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This transaction is recurring. Do you want to update the future transactions aswell or just this occurence?.
         /// </summary>
         public static string ChangeSubsequentTransactionsMessage {
@@ -616,6 +625,15 @@ namespace MoneyManager.Localization {
         public static string SettingsLabel {
             get {
                 return ResourceManager.GetString("SettingsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category Spreading.
+        /// </summary>
+        public static string SpreadingLabel {
+            get {
+                return ResourceManager.GetString("SpreadingLabel", resourceCulture);
             }
         }
         

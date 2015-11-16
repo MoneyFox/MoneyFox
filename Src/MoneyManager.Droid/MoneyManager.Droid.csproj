@@ -158,6 +158,7 @@
     <Compile Include="Fragments\DatePickerDialogFragment.cs" />
     <Compile Include="Fragments\ModifyCategoryDialog.cs" />
     <Compile Include="Fragments\StatisticFragment.cs" />
+    <Compile Include="Fragments\StatisticSelectorFragment.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -210,6 +211,7 @@
     <AndroidResource Include="Resources\layout\ModifyCategoryDialogLayout.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\StatisticSelectorLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MainLayout.axml" />

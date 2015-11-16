@@ -1,14 +1,14 @@
 using Android.OS;
 using Android.Views;
-using Android.Widget;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Support.Fragging.Fragments;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation;
 using OxyPlot.Xamarin.Android;
 
 namespace MoneyManager.Droid.Fragments
 {
-    public class StatisticFragment : MvxFragment
+    public class GraphicalStatisticFragment : MvxFragment
     {
         private PlotView plotViewModel;
 
@@ -18,27 +18,28 @@ namespace MoneyManager.Droid.Fragments
             set { base.ViewModel = value; }
         }
 
+        public StatisticType SelectedStatistic { get; set; }
+        
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.StatisticLayout, null);
 
-            var spinner = view.FindViewById<Spinner>(Resource.Id.spinner_select_statistic);
-            spinner.ItemSelected += SpinnerOnItemSelected;
-
-            plotViewModel = view.FindViewById<PlotView>(Resource.Id.plotViewModel);
+            SetGraphicalStatistic(view);
 
             return view;
         }
 
-        private void SpinnerOnItemSelected(object sender, AdapterView.ItemSelectedEventArgs itemSelectedEventArgs)
+        private void SetGraphicalStatistic(View view)
         {
-            switch (itemSelectedEventArgs.Id)
+            plotViewModel = view.FindViewById<PlotView>(Resource.Id.plotViewModel);
+
+            switch (SelectedStatistic)
             {
-                case 0:
+                case StatisticType.Cashflow:
                     plotViewModel.Model = ViewModel.CashFlowModel;
                     break;
-                case 1:
+                case StatisticType.CategorySpreading:
                     plotViewModel.Model = ViewModel.SpreadingModel;
                     break;
             }

@@ -223,14 +223,14 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f050004
 			public const int main_layout = 2131034116;
 			
-			// aapt resource value: 0x7f05000d
-			public const int plotViewModel = 2131034125;
+			// aapt resource value: 0x7f05000c
+			public const int plotViewModel = 2131034124;
 			
 			// aapt resource value: 0x7f05000a
 			public const int recurrence_spinner = 2131034122;
 			
-			// aapt resource value: 0x7f05000c
-			public const int spinner_select_statistic = 2131034124;
+			// aapt resource value: 0x7f05000d
+			public const int statistic_list = 2131034125;
 			
 			// aapt resource value: 0x7f050009
 			public const int transactiondate = 2131034121;
@@ -285,10 +285,13 @@ namespace MoneyManager.Droid
 			public const int StatisticLayout = 2130903051;
 			
 			// aapt resource value: 0x7f03000c
-			public const int TransactionListItem = 2130903052;
+			public const int StatisticSelectorLayout = 2130903052;
 			
 			// aapt resource value: 0x7f03000d
-			public const int TransactionListLayout = 2130903053;
+			public const int TransactionListItem = 2130903053;
+			
+			// aapt resource value: 0x7f03000e
+			public const int TransactionListLayout = 2130903054;
 			
 			static Layout()
 			{
