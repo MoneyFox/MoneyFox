@@ -154,6 +154,7 @@
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Fragments\AboutFragment.cs" />
     <Compile Include="Fragments\AccountListFragment.cs" />
+    <Compile Include="Fragments\BackupFragment.cs" />
     <Compile Include="Fragments\BalanceFragment.cs" />
     <Compile Include="Fragments\DatePickerDialogFragment.cs" />
     <Compile Include="Fragments\ModifyCategoryDialog.cs" />
@@ -212,6 +213,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\StatisticSelectorLayout.axml" />
+    <AndroidResource Include="Resources\layout\BackupLayout.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MainLayout.axml" />
