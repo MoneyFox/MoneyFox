@@ -79,9 +79,9 @@
     <Compile Include="ViewModels\PasswordUserControlViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryTextBoxViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\SelectDateRangeDialogViewModel.cs" />
-    <Compile Include="ViewModels\Settings\SettingDefaultsViewModel.cs" />
+    <Compile Include="ViewModels\SettingViews\SettingDefaultsViewModel.cs" />
     <Compile Include="ViewModels\Statistics\StatisticViewModel.cs" />
-    <Compile Include="ViewModels\Settings\TileSettingsViewModel.cs" />
+    <Compile Include="ViewModels\SettingViews\TileSettingsViewModel.cs" />
     <Compile Include="ViewModels\TransactionListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

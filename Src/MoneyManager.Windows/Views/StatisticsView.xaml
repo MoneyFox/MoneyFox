@@ -6,6 +6,7 @@
       xmlns:controls="using:MoneyManager.Windows.Controls"
       xmlns:windows="using:OxyPlot.Windows"
       xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
+      xmlns:statisticControls="using:MoneyManager.Windows.Controls.StatisticControls"
       mc:Ignorable="d">
 
     <Page.BottomAppBar>
@@ -28,14 +29,7 @@
                                         Glyph="&#xE908;" />
                 </PivotItem.Header>
                 <Grid>
-                    <TextBlock Text="{Binding Title}"
-                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}"/>
-                    <windows:PlotView x:Name="CashFlowPlotView" 
-                                      Model="{Binding CashFlowModel}"
-                                      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                                      HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Stretch"
-                                      Margin="0,30,0,0"/>
+                    <statisticControls:CashFlowUserControl x:Name="CashFlowUserControl" />
                 </Grid>
             </PivotItem>
 
@@ -46,14 +40,7 @@
                                         Glyph="&#xE774;" />
                 </PivotItem.Header>
                 <Grid>
-                    <TextBlock Text="{Binding Title}"
-                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-                    <windows:PlotView x:Name="SpreadingPlotView"
-                                      Model="{Binding SpreadingModel}"
-                                      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                                      HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Stretch"
-                                      Margin="30"/>
+                    <statisticControls:CategorySpreadingUserControl x:Name="CategorySpreadingUserControl"/>
                 </Grid>
             </PivotItem>
 
