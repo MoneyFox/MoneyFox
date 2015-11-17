@@ -1,5 +1,6 @@
 ﻿using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Core.ViewModels.Statistics;
 
 namespace MoneyManager.Windows.Controls
 {

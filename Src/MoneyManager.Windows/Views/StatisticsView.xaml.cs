@@ -3,6 +3,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Core.ViewModels.Statistics;
 using MoneyManager.Windows.Dialogs;
 
 namespace MoneyManager.Windows.Views

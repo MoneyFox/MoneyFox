@@ -5,6 +5,7 @@ using Android.Widget;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Droid.Support.Fragging;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Core.ViewModels.Dialogs;
 using MoneyManager.Droid.Fragments;
 using MoneyManager.Localization;
 

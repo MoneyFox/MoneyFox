@@ -5,6 +5,7 @@ using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Support.Fragging.Fragments;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Core.ViewModels.Statistics;
 using MoneyManager.Foundation;
 using MoneyManager.Localization;
 

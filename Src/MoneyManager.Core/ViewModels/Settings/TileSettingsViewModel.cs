@@ -4,7 +4,7 @@ using MoneyManager.Foundation.Interfaces.Shotcuts;
 
 // ReSharper disable ExplicitCallerInfoArgument
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyManager.Core.ViewModels.Settings
 {
     /// <summary>
     ///     Provides the information for the TileSettingsView
