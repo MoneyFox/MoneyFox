@@ -68,7 +68,7 @@
     <Compile Include="StatisticProvider\CategorySummaryProvider.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
-    <Compile Include="ViewModels\CategoryDialogViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\CategoryDialogViewModel.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyTransactionViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />
@@ -78,10 +78,10 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PasswordUserControlViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryTextBoxViewModel.cs" />
-    <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
-    <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
-    <Compile Include="ViewModels\StatisticViewModel.cs" />
-    <Compile Include="ViewModels\TileSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\SelectDateRangeDialogViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingDefaultsViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticViewModel.cs" />
+    <Compile Include="ViewModels\Settings\TileSettingsViewModel.cs" />
     <Compile Include="ViewModels\TransactionListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
