@@ -33,6 +33,7 @@ namespace MoneyManager.Droid.Activities
         private ListView menuListView;
         private SlidingPaneLayout slidingLayout;
         private StatisticSelectorFragment statisticSelectorFragment;
+        private BackupFragment backupFragment;
         private string title;
 
         public new MainViewModel ViewModel
@@ -56,6 +57,7 @@ namespace MoneyManager.Droid.Activities
             };
 
             statisticSelectorFragment = new StatisticSelectorFragment();
+            backupFragment = new BackupFragment();
 
             aboutFragment = new AboutFragment
             {
@@ -112,6 +114,10 @@ namespace MoneyManager.Droid.Activities
                     break;
 
                 case 2:
+                    SupportFragmentManager.BeginTransaction()
+                        .Replace(Resource.Id.content_pane, backupFragment)
+                        .AddToBackStack("Backup")
+                        .Commit();
                     break;
 
                 case 3:
