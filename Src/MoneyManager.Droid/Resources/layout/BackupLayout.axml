@@ -8,7 +8,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" />
+        android:gravity="left" />
     <Button
         android:text="@string/create_backup"
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" />
+        android:gravity="left" />
     <Button
         android:text="@string/restore_backup"
         android:layout_width="match_parent"
