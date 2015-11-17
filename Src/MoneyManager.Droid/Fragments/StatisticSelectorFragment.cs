@@ -18,41 +18,48 @@ namespace MoneyManager.Droid.Fragments
             var view = this.BindingInflate(Resource.Layout.StatisticSelectorLayout, null);
 
             var listview = view.FindViewById<ListView>(Resource.Id.statistic_list);
-            listview.Adapter = new ArrayAdapter(Context, Android.Resource.Layout.SimpleListItem1, new [] {Strings.CashflowLabel, Strings.SpreadingLabel, Strings.CategorySummary});
+            listview.Adapter = new ArrayAdapter(Context, Android.Resource.Layout.SimpleListItem1, new[] {Strings.CashflowLabel, Strings.SpreadingLabel, Strings.CategorySummary});
             listview.ItemClick += ListviewOnItemClick;
 
             return view;
         }
 
         private void ListviewOnItemClick(object sender, AdapterView.ItemClickEventArgs itemClickEventArgs)
-        { 
-
-            var graphicalStatisticFragment = new GraphicalStatisticFragment
-            {
-                ViewModel = Mvx.Resolve<StatisticViewModel>()
-            };
-
+        {
             switch (itemClickEventArgs.Position)
             {
                 case 0:
-                    graphicalStatisticFragment.SelectedStatistic = StatisticType.Cashflow;
                     Activity.SupportFragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, graphicalStatisticFragment)
+                        .Replace(Resource.Id.content_pane, GetGraphicalStatisticFragment(StatisticType.Cashflow))
                         .AddToBackStack("Cash Flow")
                         .Commit();
                     break;
 
                 case 1:
-                    graphicalStatisticFragment.SelectedStatistic = StatisticType.CategorySpreading;
                     Activity.SupportFragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, graphicalStatisticFragment)
+                        .Replace(Resource.Id.content_pane, GetGraphicalStatisticFragment(StatisticType.CategorySpreading))
                         .AddToBackStack("Category Spreading")
                         .Commit();
                     break;
 
                 case 2:
+                    Activity.SupportFragmentManager.BeginTransaction()
+                        .Replace(Resource.Id.content_pane, new CategorySummaryFragment
+                        {
+                            //ViewModel = Mvx.Resolve<StatisticViewModel>()
+                        })
+                        .AddToBackStack("Category Spreading")
+                        .Commit();
                     break;
             }
+        }
+
+        private GraphicalStatisticFragment GetGraphicalStatisticFragment(StatisticType type)
+        {
+            return new GraphicalStatisticFragment
+            {
+                ViewModel = Mvx.Resolve<StatisticViewModel>()
+            };
         }
     }
 }
