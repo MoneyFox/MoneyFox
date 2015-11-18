@@ -56,8 +56,7 @@
               EntranceNavigationTransitionInfo.IsTargetElement="True">
             <ScrollViewer>
                 <StackPanel Margin="12,0,12,0">
-                    <ComboBox Header="charged account"
-                              x:Uid="ChargedAccountTextBox"
+                    <ComboBox Header="{Binding AccountHeader}"
                               HorizontalAlignment="Stretch"
                               ItemTemplate="{StaticResource ComboBoxTemplate}"
                               ItemsSource="{Binding AllAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

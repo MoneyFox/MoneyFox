@@ -233,6 +233,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Charged Account.
+        /// </summary>
+        public static string ChargedAccountLabel {
+            get {
+                return ResourceManager.GetString("ChargedAccountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Daily.
         /// </summary>
         public static string DailyLabel {
@@ -670,6 +679,15 @@ namespace MoneyManager.Localization {
         public static string SupportMail {
             get {
                 return ResourceManager.GetString("SupportMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target Account.
+        /// </summary>
+        public static string TargetAccountLabel {
+            get {
+                return ResourceManager.GetString("TargetAccountLabel", resourceCulture);
             }
         }
         

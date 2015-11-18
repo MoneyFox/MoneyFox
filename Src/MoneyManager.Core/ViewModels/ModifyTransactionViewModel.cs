@@ -276,6 +276,14 @@ namespace MoneyManager.Core.ViewModels
         public string Title => TransactionTypeHelper.GetViewTitleForType(SelectedTransaction.Type, IsEdit);
 
         /// <summary>
+        ///     Returns the Header for the account field
+        /// </summary>
+        public string AccountHeader
+            => SelectedTransaction.Type == (int) TransactionType.Income
+                    ? Strings.TargetAccountLabel
+                    : Strings.ChargedAccountLabel;
+
+        /// <summary>
         ///     The transaction date
         /// </summary>
         public DateTime Date

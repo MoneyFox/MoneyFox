@@ -298,9 +298,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="CategoryTextBox.Header" xml:space="preserve">
     <value>Kategorie</value>
   </data>
-  <data name="ChargedAccountTextBox.Header" xml:space="preserve">
-    <value>Belastungskonto</value>
-  </data>
   <data name="DateDatePicker.Header" xml:space="preserve">
     <value>Datum</value>
   </data>
@@ -320,6 +317,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Wiederholen</value>
   </data>
   <data name="TargetAccountTextBox.Header" xml:space="preserve">
-    <value>Zielkonto</value>
+    <value>Gutschriftskonto</value>
   </data>
 </root>
