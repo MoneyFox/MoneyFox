@@ -293,4 +293,31 @@ Tap to visit the Repository:</value>
   <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="AmountTextBox.Header" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="CategoryTextBox.Header" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="DateDatePicker.Header" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="EnddateDatePicker.Header" xml:space="preserve">
+    <value>Enddate</value>
+  </data>
+  <data name="EndlessCheckBox.Content" xml:space="preserve">
+    <value>Is Endless</value>
+  </data>
+  <data name="NoteTextBox.Header" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="RecurrenceComboBox.Header" xml:space="preserve">
+    <value>Recurrence</value>
+  </data>
+  <data name="RepeatSwitch.Header" xml:space="preserve">
+    <value>Repeat</value>
+  </data>
+  <data name="TargetAccountTextBox.Header" xml:space="preserve">
+    <value>Target Account</value>
+  </data>
 </root>

@@ -54,12 +54,10 @@ namespace MoneyManager.Core.ViewModels
             IsEdit = isEdit;
             IsEndless = true;
 
-            if (IsEdit)
-            {
-                PrepareEdit();
-            }
-            else
-            {
+            PrepareEdit();
+
+            if (!IsEdit)
+            { 
                 PrepareDefault(typeString);
             }
 
@@ -101,12 +99,6 @@ namespace MoneyManager.Core.ViewModels
                 // Assign empty category to reset the GUI
                 Category = new Category()
             };
-        }
-
-        private void Loaded()
-        {
-            //TODO: Check if this can be removed since it's already called in init
-            PrepareEdit();
         }
 
         private async void Save()
@@ -190,11 +182,6 @@ namespace MoneyManager.Core.ViewModels
         }
 
         #region Commands
-
-        /// <summary>
-        ///     Handels everything when the page is loaded.
-        /// </summary>
-        public IMvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
         ///     Saves the transaction or updates the existing depending on the IsEdit Flag.
@@ -287,6 +274,14 @@ namespace MoneyManager.Core.ViewModels
         ///     Returns the Title for the page
         /// </summary>
         public string Title => TransactionTypeHelper.GetViewTitleForType(SelectedTransaction.Type, IsEdit);
+
+        /// <summary>
+        ///     Returns the Header for the account field
+        /// </summary>
+        public string AccountHeader
+            => SelectedTransaction.Type == (int) TransactionType.Income
+                    ? Strings.TargetAccountLabel
+                    : Strings.ChargedAccountLabel;
 
         /// <summary>
         ///     The transaction date

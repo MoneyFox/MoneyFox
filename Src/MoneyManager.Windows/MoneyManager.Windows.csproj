@@ -117,6 +117,12 @@
     <Compile Include="Controls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StatisticControls\CashFlowUserControl.xaml.cs">
+      <DependentUpon>CashFlowUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatisticControls\CategorySpreadingUserControl.xaml.cs">
+      <DependentUpon>CategorySpreadingUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StatisticControls\CategorySummaryUserControl.xaml.cs">
       <DependentUpon>CategorySummaryUserControl.xaml</DependentUpon>
     </Compile>
@@ -317,6 +323,14 @@
     <Page Include="Controls\BalanceUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\StatisticControls\CashFlowUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\StatisticControls\CategorySpreadingUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\StatisticControls\CategorySummaryUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>

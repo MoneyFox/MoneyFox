@@ -32,7 +32,8 @@ namespace MoneyManager.Droid.Activities
         private string drawerTitle;
         private ListView menuListView;
         private SlidingPaneLayout slidingLayout;
-        private StatisticFragment statisticFragment;
+        private StatisticSelectorFragment statisticSelectorFragment;
+        private BackupFragment backupFragment;
         private string title;
 
         public new MainViewModel ViewModel
@@ -55,10 +56,8 @@ namespace MoneyManager.Droid.Activities
                 ViewModel = Mvx.Resolve<AccountListViewModel>()
             };
 
-            statisticFragment = new StatisticFragment
-            {
-                ViewModel = Mvx.Resolve<StatisticViewModel>()
-            };
+            statisticSelectorFragment = new StatisticSelectorFragment();
+            backupFragment = new BackupFragment();
 
             aboutFragment = new AboutFragment
             {
@@ -109,12 +108,16 @@ namespace MoneyManager.Droid.Activities
 
                 case 1:
                     SupportFragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, statisticFragment)
-                        .AddToBackStack("Statistic")
+                        .Replace(Resource.Id.content_pane, statisticSelectorFragment)
+                        .AddToBackStack("Statistic Selector")
                         .Commit();
                     break;
 
                 case 2:
+                    SupportFragmentManager.BeginTransaction()
+                        .Replace(Resource.Id.content_pane, backupFragment)
+                        .AddToBackStack("Backup")
+                        .Commit();
                     break;
 
                 case 3:

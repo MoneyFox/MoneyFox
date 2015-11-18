@@ -223,14 +223,14 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f050004
 			public const int main_layout = 2131034116;
 			
-			// aapt resource value: 0x7f05000d
-			public const int plotViewModel = 2131034125;
+			// aapt resource value: 0x7f05000c
+			public const int plotViewModel = 2131034124;
 			
 			// aapt resource value: 0x7f05000a
 			public const int recurrence_spinner = 2131034122;
 			
-			// aapt resource value: 0x7f05000c
-			public const int spinner_select_statistic = 2131034124;
+			// aapt resource value: 0x7f05000d
+			public const int statistic_list = 2131034125;
 			
 			// aapt resource value: 0x7f050009
 			public const int transactiondate = 2131034121;
@@ -261,34 +261,46 @@ namespace MoneyManager.Droid
 			public const int AccountListLayout = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int BalanceLayout = 2130903044;
+			public const int BackupLayout = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int CategoryListItem = 2130903045;
+			public const int BalanceLayout = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int CategoryListLayout = 2130903046;
+			public const int CategoryListItem = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int MainLayout = 2130903047;
+			public const int CategoryListLayout = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int ModifyAccountLayout = 2130903048;
+			public const int CategorySummaryLayout = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int ModifyCategoryDialogLayout = 2130903049;
+			public const int CategorySummaryListItem = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
-			public const int ModifyTransactionLayout = 2130903050;
+			public const int MainLayout = 2130903050;
 			
 			// aapt resource value: 0x7f03000b
-			public const int StatisticLayout = 2130903051;
+			public const int ModifyAccountLayout = 2130903051;
 			
 			// aapt resource value: 0x7f03000c
-			public const int TransactionListItem = 2130903052;
+			public const int ModifyCategoryDialogLayout = 2130903052;
 			
 			// aapt resource value: 0x7f03000d
-			public const int TransactionListLayout = 2130903053;
+			public const int ModifyTransactionLayout = 2130903053;
+			
+			// aapt resource value: 0x7f03000e
+			public const int StatisticLayout = 2130903054;
+			
+			// aapt resource value: 0x7f03000f
+			public const int StatisticSelectorLayout = 2130903055;
+			
+			// aapt resource value: 0x7f030010
+			public const int TransactionListItem = 2130903056;
+			
+			// aapt resource value: 0x7f030011
+			public const int TransactionListLayout = 2130903057;
 			
 			static Layout()
 			{
@@ -361,17 +373,23 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f040002
 			public const int app_name = 2130968578;
 			
-			// aapt resource value: 0x7f040018
-			public const int button_category = 2130968600;
-			
 			// aapt resource value: 0x7f040017
-			public const int button_date = 2130968599;
-			
-			// aapt resource value: 0x7f040019
-			public const int button_rate = 2130968601;
+			public const int backup_information = 2130968599;
 			
 			// aapt resource value: 0x7f04001a
-			public const int button_save_category = 2130968602;
+			public const int button_category = 2130968602;
+			
+			// aapt resource value: 0x7f040019
+			public const int button_date = 2130968601;
+			
+			// aapt resource value: 0x7f04001b
+			public const int button_rate = 2130968603;
+			
+			// aapt resource value: 0x7f04001c
+			public const int button_save_category = 2130968604;
+			
+			// aapt resource value: 0x7f04001e
+			public const int create_backup = 2130968606;
 			
 			// aapt resource value: 0x7f04000b
 			public const int hint_account_name = 2130968587;
@@ -397,11 +415,17 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f040011
 			public const int hint_recurring = 2130968593;
 			
-			// aapt resource value: 0x7f04001b
-			public const int label_cleared = 2130968603;
+			// aapt resource value: 0x7f04001f
+			public const int label_cleared = 2130968607;
 			
-			// aapt resource value: 0x7f04001c
-			public const int text_endless = 2130968604;
+			// aapt resource value: 0x7f04001d
+			public const int restore_backup = 2130968605;
+			
+			// aapt resource value: 0x7f040018
+			public const int restore_information = 2130968600;
+			
+			// aapt resource value: 0x7f040020
+			public const int text_endless = 2130968608;
 			
 			// aapt resource value: 0x7f040014
 			public const int textview_contact = 2130968596;

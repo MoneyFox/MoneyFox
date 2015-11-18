@@ -95,26 +95,12 @@ namespace MoneyManager.Windows
 
             // set up our brushes
             var bkgColor = Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush;
-            var btnHoverColor = Current.Resources["TitleBarButtonHoverThemeBrush"] as SolidColorBrush;
-            var btnPressedColor = Current.Resources["TitleBarButtonPressedThemeBrush"] as SolidColorBrush;
             var backgroundColor = Current.Resources["TitleBarBackgroundThemeBrush"] as SolidColorBrush;
             var appForegroundColor = Current.Resources["AppForegroundBrush"] as SolidColorBrush;
 
             // override colors!
-            if (bkgColor != null && btnHoverColor != null && btnPressedColor != null && appForegroundColor != null)
+            if (bkgColor != null && appForegroundColor != null)
             {
-                titleBar.BackgroundColor = bkgColor.Color;
-                titleBar.ForegroundColor = appForegroundColor.Color;
-                titleBar.ButtonBackgroundColor = bkgColor.Color;
-                titleBar.ButtonForegroundColor = appForegroundColor.Color;
-                titleBar.ButtonHoverBackgroundColor = btnHoverColor.Color;
-                titleBar.ButtonHoverForegroundColor = appForegroundColor.Color;
-                titleBar.ButtonPressedBackgroundColor = btnPressedColor.Color;
-                titleBar.ButtonPressedForegroundColor = appForegroundColor.Color;
-                titleBar.InactiveBackgroundColor = bkgColor.Color;
-                titleBar.InactiveForegroundColor = appForegroundColor.Color;
-                titleBar.ButtonInactiveBackgroundColor = bkgColor.Color;
-
                 // If on a mobile device set the status bar
                 if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                 {

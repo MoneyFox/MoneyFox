@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
-using MoneyManager.Core.ViewModels;
+using MoneyManager.Core.ViewModels.Statistics;
 using MoneyManager.Windows.Dialogs;
 
 namespace MoneyManager.Windows.Views
@@ -22,9 +22,9 @@ namespace MoneyManager.Windows.Views
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            CashFlowPlotView.Model = null;
-            SpreadingPlotView.Model = null;
-           
+            CashFlowUserControl.Dispose();
+            CategorySpreadingUserControl.Dispose();
+
             base.OnNavigatingFrom(e);
         }
     }

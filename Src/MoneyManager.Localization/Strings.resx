@@ -330,4 +330,16 @@
   <data name="AddTitle" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="CategorySummary" xml:space="preserve">
+    <value>Category Summary</value>
+  </data>
+  <data name="SpreadingLabel" xml:space="preserve">
+    <value>Category Spreading</value>
+  </data>
+  <data name="ChargedAccountLabel" xml:space="preserve">
+    <value>Charged Account</value>
+  </data>
+  <data name="TargetAccountLabel" xml:space="preserve">
+    <value>Target Account</value>
+  </data>
 </root>

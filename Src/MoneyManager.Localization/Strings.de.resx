@@ -330,4 +330,16 @@
   <data name="PasswordWrongTitle" xml:space="preserve">
     <value>Passwort falsch</value>
   </data>
+  <data name="CategorySummary" xml:space="preserve">
+    <value>Categoriezusammenfassung</value>
+  </data>
+  <data name="SpreadingLabel" xml:space="preserve">
+    <value>Kategorieverteilung</value>
+  </data>
+  <data name="ChargedAccountLabel" xml:space="preserve">
+    <value>Belastungskonto</value>
+  </data>
+  <data name="TargetAccountLabel" xml:space="preserve">
+    <value>Gutschriftkonto</value>
+  </data>
 </root>

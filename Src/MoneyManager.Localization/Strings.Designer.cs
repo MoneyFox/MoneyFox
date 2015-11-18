@@ -206,6 +206,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category Summary.
+        /// </summary>
+        public static string CategorySummary {
+            get {
+                return ResourceManager.GetString("CategorySummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This transaction is recurring. Do you want to update the future transactions aswell or just this occurence?.
         /// </summary>
         public static string ChangeSubsequentTransactionsMessage {
@@ -220,6 +229,15 @@ namespace MoneyManager.Localization {
         public static string ChangeSubsequentTransactionsTitle {
             get {
                 return ResourceManager.GetString("ChangeSubsequentTransactionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charged Account.
+        /// </summary>
+        public static string ChargedAccountLabel {
+            get {
+                return ResourceManager.GetString("ChargedAccountLabel", resourceCulture);
             }
         }
         
@@ -620,6 +638,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category Spreading.
+        /// </summary>
+        public static string SpreadingLabel {
+            get {
+                return ResourceManager.GetString("SpreadingLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Statistics.
         /// </summary>
         public static string StatisticsLabel {
@@ -652,6 +679,15 @@ namespace MoneyManager.Localization {
         public static string SupportMail {
             get {
                 return ResourceManager.GetString("SupportMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Target Account.
+        /// </summary>
+        public static string TargetAccountLabel {
+            get {
+                return ResourceManager.GetString("TargetAccountLabel", resourceCulture);
             }
         }
         

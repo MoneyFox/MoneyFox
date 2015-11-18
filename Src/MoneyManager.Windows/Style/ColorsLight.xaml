@@ -17,10 +17,4 @@
     <SolidColorBrush x:Key="TitleBarBackgroundThemeBrush"
                      Color="#FFE6E6E6" />
 
-    <SolidColorBrush x:Key="TitleBarButtonHoverThemeBrush"
-                     Color="#FFCECECE" />
-
-    <SolidColorBrush x:Key="TitleBarButtonPressedThemeBrush"
-                     Color="#FFB8B8B8" />
-
 </ResourceDictionary>

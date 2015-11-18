@@ -3,20 +3,12 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:userControls="using:MoneyManager.Windows.Controls"
-                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:controls="using:MoneyManager.Windows.Controls"
                       xmlns:converter="using:MoneyManager.Windows.Converter"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
                       xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
                       mc:Ignorable="d"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <interactivity:Interaction.Behaviors>
-        <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
-        </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
@@ -64,15 +56,14 @@
               EntranceNavigationTransitionInfo.IsTargetElement="True">
             <ScrollViewer>
                 <StackPanel Margin="12,0,12,0">
-                    <ComboBox Header="charged account"
-                              x:Uid="ChargedAccount"
+                    <ComboBox Header="{Binding AccountHeader}"
                               HorizontalAlignment="Stretch"
                               ItemTemplate="{StaticResource ComboBoxTemplate}"
                               ItemsSource="{Binding AllAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Margin="0,7,0,0" />
                     <ComboBox Header="target account"
-                              x:Uid="TargetAccount"
+                              x:Uid="TargetAccountTextBox"
                               HorizontalAlignment="Stretch"
                               ItemTemplate="{StaticResource ComboBoxTemplate}"
                               ItemsSource="{Binding AllAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -83,39 +74,39 @@
                              Header="amount"
                              InputScope="Number"
                              x:Name="TextBoxAmount"
-                             x:Uid="Amount"
+                             x:Uid="AmountTextBox"
                              TextAlignment="Right"
                              TextChanged="ReplaceSeparatorChar"
                              GotFocus="RemoveZeroOnFocus"
                              LostFocus="AddZeroIfEmpty"
                              Margin="0,7,0,0" />
-                    <userControls:SelectCategoryTextBox Margin="0,7,0,0" />
+                    <controls:SelectCategoryTextBox Margin="0,7,0,0" />
                     <DatePicker
                         Date="{Binding Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Margin="0,12,0,0"
                         HorizontalAlignment="Left"
                         Header="date"
-                        x:Uid="DateHeader" />
-                    <TextBox Header="Note"
-                             x:Uid="Notes"
+                        x:Uid="DateDatePicker" />
+                    <TextBox Header="note"
+                             x:Uid="NoteTextBox"
                              Text="{Binding SelectedTransaction.Note, Mode=TwoWay}"
                              TextWrapping="Wrap"
                              Margin="0,7,0,0" />
                     <ToggleSwitch Header="repeat"
-                                  x:Uid="Repeat"
+                                  x:Uid="RepeatSwitch"
                                   VerticalAlignment="Stretch"
                                   IsOn="{Binding SelectedTransaction.IsRecurring, Mode=TwoWay}"
                                   Margin="0,7,0,0" />
                     <StackPanel
                         Visibility="{Binding SelectedTransaction.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
                         <ComboBox Header="Reccurence"
-                                  x:Uid="RecurrenceHeader"
+                                  x:Uid="RecurrenceComboBox"
                                   HorizontalAlignment="Stretch"
                                   ItemsSource="{Binding RecurrenceList}"
                                   SelectedIndex="{Binding Recurrence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   Margin="0,7,0,0" />
                         <CheckBox Content="Endless"
-                                  x:Uid="EndlessContent"
+                                  x:Uid="EndlessCheckBox"
                                   IsChecked="{Binding IsEndless, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   Margin="0,7,0,0" />
                         <DatePicker
@@ -123,7 +114,7 @@
                             Margin="0,12,0,0"
                             Header="enddate"
                             Visibility="{Binding IsEndless, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert}"
-                            x:Uid="EnddateHeader" />
+                            x:Uid="EnddateDatePicker" />
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Core.ViewModels.Statistics;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyManager.Core.ViewModels.Dialogs
 {
     [ImplementPropertyChanged]
     public class SelectDateRangeDialogViewModel : BaseViewModel

@@ -35,4 +35,10 @@
         Unsuccessful,
         Aborted
     }
+
+    public enum StatisticType
+    {
+        Cashflow,
+        CategorySpreading
+    }
 }
