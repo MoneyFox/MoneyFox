@@ -296,6 +296,9 @@ Tap to visit the Repository:</value>
   <data name="AmountTextBox.Header" xml:space="preserve">
     <value>Amount</value>
   </data>
+  <data name="CategoryTextBox.Header" xml:space="preserve">
+    <value>Category</value>
+  </data>
   <data name="ChargedAccountTextBox.Header" xml:space="preserve">
     <value>Charged Account</value>
   </data>

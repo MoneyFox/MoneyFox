@@ -12,7 +12,7 @@
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <TextBox Header="category"
-                 x:Uid="CategoryHeader"
+                 x:Uid="CategoryTextBox"
                  Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
                  IsReadOnly="True">
             <interactivity:Interaction.Behaviors>

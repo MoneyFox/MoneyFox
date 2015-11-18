@@ -295,6 +295,9 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="AmountTextBox.Header" xml:space="preserve">
     <value>Betrag</value>
   </data>
+  <data name="CategoryTextBox.Header" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
   <data name="ChargedAccountTextBox.Header" xml:space="preserve">
     <value>Belastungskonto</value>
   </data>
