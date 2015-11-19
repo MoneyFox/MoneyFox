@@ -22,7 +22,7 @@
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>127C8AECF240A694CE4ABA692C3CC4F1D7D9EDE1</PackageCertificateThumbprint>
-    <PackageCertificateThumbprint>EFF52B0A5F6CA678FA2FA51CC0CEEA1174318ABD</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>4F93725E9CB268EAAF986281A6C88D0E86A4E864</PackageCertificateThumbprint>
     <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
