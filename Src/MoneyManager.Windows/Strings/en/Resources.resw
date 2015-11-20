@@ -320,4 +320,7 @@ Tap to visit the Repository:</value>
   <data name="TargetAccountTextBox.Header" xml:space="preserve">
     <value>Target Account</value>
   </data>
+  <data name="PrivacyInfo.Text" xml:space="preserve">
+    <value>For further improving this app we collect impersonal data about occuring errors and issues.</value>
+  </data>
 </root>
