@@ -232,7 +232,7 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public int Recurrence { get; set; }
 
-        private double amount;
+        private static double amount;
         /// <summary>
         ///     Property to format amount string to double with the proper culture.
         ///     This is used to prevent issues when converting the amount string to double
