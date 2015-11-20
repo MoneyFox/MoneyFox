@@ -292,4 +292,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
     <value>Ja</value>
   </data>
+  <data name="PrivacyInfo.Text" xml:space="preserve">
+    <value>Zur Verbesserung dieser App sammeln wir anonyme Informationen über auftretende Fehler.</value>
+  </data>
 </root>

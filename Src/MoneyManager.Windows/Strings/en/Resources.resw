@@ -293,4 +293,7 @@ Tap to visit the Repository:</value>
   <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="PrivacyInfo.Text" xml:space="preserve">
+    <value>For further improving this app we collect impersonal data about occuring errors and issues.</value>
+  </data>
 </root>
