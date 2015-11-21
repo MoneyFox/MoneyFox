@@ -13,6 +13,7 @@
             <StackPanel Margin="0,6,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="300"
+                        RightTapped="CategoryListRightTapped"
                         Holding="CategoryListHolding">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
