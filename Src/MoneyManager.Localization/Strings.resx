@@ -342,4 +342,10 @@
   <data name="TargetAccountLabel" xml:space="preserve">
     <value>Target Account</value>
   </data>
+  <data name="InvalidEnddateMessage" xml:space="preserve">
+    <value>The enddate of a recurring transaction has to be in the future. Please check your input.</value>
+  </data>
+  <data name="InvalidEnddateTitle" xml:space="preserve">
+    <value>Invalid Enddate</value>
+  </data>
 </root>
