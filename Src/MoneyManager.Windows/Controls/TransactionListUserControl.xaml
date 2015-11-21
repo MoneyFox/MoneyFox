@@ -73,9 +73,18 @@
                                 HorizontalAlignment="Right">
                         <Grid HorizontalAlignment="Right"
                               Visibility="{Binding IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <SymbolIcon
+                                Width="30"
+                                Height="30"
+                                        Symbol="57660"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center" />
+                        </Grid>
+                        <Grid HorizontalAlignment="Right"
+                              Visibility="{Binding IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Image
                                 Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
-                                DataContext="/Assets/{0}/transfer.png"
+                                DataContext="/Assets/{0}/repeat.png"
                                 Width="30"
                                 Height="30" />
                         </Grid>
@@ -84,14 +93,6 @@
                             <Image
                                 Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
                                 DataContext="/Assets/{0}/done.png"
-                                Width="30"
-                                Height="30" />
-                        </Grid>
-                        <Grid HorizontalAlignment="Right"
-                              Visibility="{Binding IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Image
-                                Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
-                                DataContext="/Assets/{0}/repeat.png"
                                 Width="30"
                                 Height="30" />
                         </Grid>
@@ -104,13 +105,13 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <controls:BalanceUserControl />
         <customControls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
-                                         EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
-                                         ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
-                                         ItemTemplate="{StaticResource TransactionTemplate}"
-                                         HorizontalAlignment="Stretch"
-                                         ShowsScrollingPlaceholders="True"
-                                         Margin="0,20,0,0"
-                                         SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
+                                               EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                               ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
+                                               ItemTemplate="{StaticResource TransactionTemplate}"
+                                               HorizontalAlignment="Stretch"
+                                               ShowsScrollingPlaceholders="True"
+                                               Margin="0,20,0,0"
+                                               SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
                     <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}" />
