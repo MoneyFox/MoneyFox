@@ -93,7 +93,7 @@ namespace MoneyManager.Core.Repositories
             PrehandleAddIfTransfer(transaction);
 
             Func<double, double> amountFunc = x =>
-                transaction.Type == (int)TransactionType.Income
+                transaction.Type == (int) TransactionType.Income
                     ? x
                     : -x;
 
@@ -111,7 +111,7 @@ namespace MoneyManager.Core.Repositories
                 PrehandleRemoveIfTransfer(transaction);
 
                 Func<double, double> amountFunc = x =>
-                    transaction.Type == (int)TransactionType.Income
+                    transaction.Type == (int) TransactionType.Income
                         ? -x
                         : x;
 
@@ -121,7 +121,7 @@ namespace MoneyManager.Core.Repositories
 
         private void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
         {
-            if (transaction.Type == (int)TransactionType.Transfer)
+            if (transaction.Type == (int) TransactionType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
                 HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
@@ -147,7 +147,7 @@ namespace MoneyManager.Core.Repositories
 
         private void PrehandleAddIfTransfer(FinancialTransaction transaction)
         {
-            if (transaction.Type == (int)TransactionType.Transfer)
+            if (transaction.Type == (int) TransactionType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
                 HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());

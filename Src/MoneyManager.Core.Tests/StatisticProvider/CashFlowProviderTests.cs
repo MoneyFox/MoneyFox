@@ -29,19 +29,37 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             var transactionRepo = transactionRepoSetup.Object;
             transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
             {
-                new FinancialTransaction {Id = 1, Type = (int) TransactionType.Income, Date = DateTime.Today, Amount = 60},
-                new FinancialTransaction {Id = 2, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 50},
-                new FinancialTransaction {Id = 3, Type = (int) TransactionType.Transfer, Date = DateTime.Today, Amount = 40},
+                new FinancialTransaction
+                {
+                    Id = 1,
+                    Type = (int) TransactionType.Income,
+                    Date = DateTime.Today,
+                    Amount = 60
+                },
+                new FinancialTransaction
+                {
+                    Id = 2,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 50
+                },
+                new FinancialTransaction
+                {
+                    Id = 3,
+                    Type = (int) TransactionType.Transfer,
+                    Date = DateTime.Today,
+                    Amount = 40
+                }
             });
 
             //Excution
-            var result = new CashFlowProvider(transactionRepo).GetValues(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3));
+            var result = new CashFlowProvider(transactionRepo).GetValues(DateTime.Today.AddDays(-3),
+                DateTime.Today.AddDays(3));
 
             //Assertion
             result.Income.Value.ShouldBe(60);
             result.Spending.Value.ShouldBe(50);
             result.Revenue.Value.ShouldBe(10);
-
         }
 
         [Fact]
@@ -54,13 +72,32 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             var transactionRepo = transactionRepoSetup.Object;
             transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
             {
-                new FinancialTransaction {Id = 1, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 60},
-                new FinancialTransaction {Id = 2, Type = (int) TransactionType.Spending, Date = DateTime.Today.AddDays(5), Amount = 50},
-                new FinancialTransaction {Id = 3, Type = (int) TransactionType.Spending, Date = DateTime.Today.AddDays(-5), Amount = 40},
+                new FinancialTransaction
+                {
+                    Id = 1,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 60
+                },
+                new FinancialTransaction
+                {
+                    Id = 2,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today.AddDays(5),
+                    Amount = 50
+                },
+                new FinancialTransaction
+                {
+                    Id = 3,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today.AddDays(-5),
+                    Amount = 40
+                }
             });
 
             //Excution
-            var result = new CashFlowProvider(transactionRepo).GetValues(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3));
+            var result = new CashFlowProvider(transactionRepo).GetValues(DateTime.Today.AddDays(-3),
+                DateTime.Today.AddDays(3));
 
             //Assertion
             result.Income.Value.ShouldBe(0);
@@ -71,7 +108,8 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         [Fact]
         public void GetValues_NullDependency_NullReferenceException()
         {
-            Assert.Throws<NullReferenceException>(() => new CashFlowProvider(null).GetValues(DateTime.Today, DateTime.Today));
+            Assert.Throws<NullReferenceException>(
+                () => new CashFlowProvider(null).GetValues(DateTime.Today, DateTime.Today));
         }
     }
 }

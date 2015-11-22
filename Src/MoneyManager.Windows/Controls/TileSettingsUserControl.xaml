@@ -16,7 +16,7 @@
         <StackPanel>
             <ToggleSwitch VerticalAlignment="Center"
                           Header="Show Cashflow on Maintile"
-                          x:Uid="ShowInfoOnMainTileHeader" 
+                          x:Uid="ShowInfoOnMainTileHeader"
                           IsOn="{Binding ShowInfoOnMainTile, Mode=TwoWay}"
                           OnContent="yes" />
             <Path Data="M9,242 L456,242"

@@ -22,10 +22,10 @@ namespace MoneyManager.Core.ViewModels
             this.transactionRepository = transactionRepository;
         }
 
+        private bool IsTransactionView { get; set; }
+
         public double TotalBalance { get; set; }
         public double EndOfMonthBalance { get; set; }
-
-        private bool IsTransactionView { get; set; }
 
         /// <summary>
         ///     Refreshes the balances. Depending on if it is displayed in a transactionview or a general view it will adjust

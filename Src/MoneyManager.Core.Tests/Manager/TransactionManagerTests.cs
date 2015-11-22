@@ -52,7 +52,8 @@ namespace MoneyManager.Core.Tests.Manager
             var repo = transRepoSetup.Object;
             repo.Data = new ObservableCollection<FinancialTransaction>();
 
-            new TransactionManager(repo, new Mock<IAccountRepository>().Object, new Mock<IDialogService>().Object).DeleteAssociatedTransactionsFromDatabase(account1);
+            new TransactionManager(repo, new Mock<IAccountRepository>().Object, new Mock<IDialogService>().Object)
+                .DeleteAssociatedTransactionsFromDatabase(account1);
 
             resultList.Count.ShouldBe(1);
             resultList.First().ShouldBe(trans1.Id);
@@ -84,10 +85,11 @@ namespace MoneyManager.Core.Tests.Manager
         public async void CheckForRecurringTransaction_IsRecurringTrue_ReturnUserInput(bool userAnswer)
         {
             var dialogService = new Mock<IDialogService>();
-            dialogService.Setup(x => x.ShowConfirmMessage(It.Is<string>(y => y == Strings.ChangeSubsequentTransactionsTitle),
-                It.Is<string>(y => y == Strings.ChangeSubsequentTransactionsMessage),
-                It.Is<string>(y => y == Strings.RecurringLabel),
-                It.Is<string>(y => y == Strings.JustThisLabel))).Returns(Task.FromResult(userAnswer));
+            dialogService.Setup(
+                x => x.ShowConfirmMessage(It.Is<string>(y => y == Strings.ChangeSubsequentTransactionsTitle),
+                    It.Is<string>(y => y == Strings.ChangeSubsequentTransactionsMessage),
+                    It.Is<string>(y => y == Strings.RecurringLabel),
+                    It.Is<string>(y => y == Strings.JustThisLabel))).Returns(Task.FromResult(userAnswer));
 
             var result = await new TransactionManager(new Mock<ITransactionRepository>().Object,
                 new Mock<IAccountRepository>().Object,
@@ -112,7 +114,7 @@ namespace MoneyManager.Core.Tests.Manager
             transRepoSetup.SetupAllProperties();
 
             var transRepo = transRepoSetup.Object;
-            transRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction> { trans});
+            transRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction> {trans});
 
             new TransactionManager(transRepo,
                 new Mock<IAccountRepository>().Object,

@@ -23,7 +23,7 @@ namespace MoneyManager.Windows.Controls
             {
                 return;
             }
-            var viewmodel = (DataContext as TransactionListViewModel);
+            var viewmodel = DataContext as TransactionListViewModel;
 
             if (viewmodel == null) return;
             viewmodel.SelectedTransaction = transaction;

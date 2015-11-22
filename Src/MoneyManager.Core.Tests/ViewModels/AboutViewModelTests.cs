@@ -56,10 +56,10 @@ namespace MoneyManager.Core.Tests.ViewModels
         public void Website_NoParams_ReturnCorrectMail()
         {
             new AboutViewModel(new Mock<IAppInformation>().Object,
-                            new Mock<IMvxComposeEmailTask>().Object,
-                            new Mock<IMvxWebBrowserTask>().Object,
-                            new Mock<IStoreFeatures>().Object)
-                            .Website.ShouldBe(Strings.WebsiteUrl);
+                new Mock<IMvxComposeEmailTask>().Object,
+                new Mock<IMvxWebBrowserTask>().Object,
+                new Mock<IStoreFeatures>().Object)
+                .Website.ShouldBe(Strings.WebsiteUrl);
         }
 
         [Fact]

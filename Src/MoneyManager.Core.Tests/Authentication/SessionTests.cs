@@ -52,7 +52,8 @@ namespace MoneyManager.Core.Tests.Authentication
         public void ValidateSession_PasswordRequiredSession_SessioncorrectValidated(int diffMinutes, bool expectedResult)
         {
             var settingsSetup = new Mock<ILocalSettings>();
-            settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>()))
+            settingsSetup.Setup(
+                x => x.GetValueOrDefault(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>()))
                 .Returns(DateTime.Now.AddMinutes(-diffMinutes).ToString);
             settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(true);
@@ -65,7 +66,7 @@ namespace MoneyManager.Core.Tests.Authentication
         [Fact]
         public void AddSession_SessionTimestampAdded()
         {
-            DateTime resultDateTime = DateTime.Today.AddDays(-10);
+            var resultDateTime = DateTime.Today.AddDays(-10);
 
             var settingsSetup = new Mock<ILocalSettings>();
             settingsSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<string>()))
@@ -77,7 +78,6 @@ namespace MoneyManager.Core.Tests.Authentication
 
             new Session().AddSession();
             resultDateTime.Date.ShouldBe(DateTime.Today);
-
         }
     }
 }

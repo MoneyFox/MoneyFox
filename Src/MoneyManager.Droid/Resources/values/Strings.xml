@@ -41,14 +41,14 @@
   <string name="button_save_category">Save Category</string>
   <string name="restore_backup">Restore Backup</string>
   <string name="create_backup">Create Backup</string>
-  
+
 
   <!--labels-->
   <string name="label_cleared">IsCleared: </string>
 
   <!--text-->
   <string name="text_endless">Is Endless</string>
-  
+
   <!--string arrays-->
   <string-array name="statistic_items">
     <item>Cashflow</item>

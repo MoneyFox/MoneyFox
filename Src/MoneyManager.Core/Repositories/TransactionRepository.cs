@@ -13,9 +13,9 @@ namespace MoneyManager.Core.Repositories
     [ImplementPropertyChanged]
     public class TransactionRepository : ITransactionRepository
     {
+        private readonly IAccountRepository accountRepository;
         private readonly IDataAccess<FinancialTransaction> dataAccess;
         private readonly IDataAccess<RecurringTransaction> recurringDataAccess;
-        private readonly IAccountRepository accountRepository;
         private ObservableCollection<FinancialTransaction> data;
 
         /// <summary>
@@ -25,9 +25,9 @@ namespace MoneyManager.Core.Repositories
         /// <param name="recurringDataAccess">
         ///     Instanced <see cref="IDataAccess{T}" /> for <see cref="RecurringTransaction" />
         /// </param>
-        /// <param name="accountRepository">Instanced <see cref="IRepository{T}" /> for <see cref="Account"/></param>
+        /// <param name="accountRepository">Instanced <see cref="IRepository{T}" /> for <see cref="Account" /></param>
         public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess,
-            IDataAccess<RecurringTransaction> recurringDataAccess, 
+            IDataAccess<RecurringTransaction> recurringDataAccess,
             IAccountRepository accountRepository)
         {
             this.dataAccess = dataAccess;
@@ -114,19 +114,6 @@ namespace MoneyManager.Core.Repositories
             }
         }
 
-        private void DeleteRecurringTransactionIfLastAssociated(FinancialTransaction item)
-        {
-            if (data.All(x => x.ReccuringTransactionId != item.ReccuringTransactionId))
-            {
-                var recurringList = recurringDataAccess.LoadList(x => x.Id == item.ReccuringTransactionId).ToList();
-
-                foreach (var recTrans in recurringList)
-                {
-                    recurringDataAccess.DeleteItem(recTrans);
-                }
-            }
-        }
-
         /// <summary>
         ///     Loads all transactions from the database to the data collection
         /// </summary>
@@ -189,6 +176,19 @@ namespace MoneyManager.Core.Repositories
                     .OrderByDescending(x => x.Date)
                     .Last())
                 .ToList();
+        }
+
+        private void DeleteRecurringTransactionIfLastAssociated(FinancialTransaction item)
+        {
+            if (data.All(x => x.ReccuringTransactionId != item.ReccuringTransactionId))
+            {
+                var recurringList = recurringDataAccess.LoadList(x => x.Id == item.ReccuringTransactionId).ToList();
+
+                foreach (var recTrans in recurringList)
+                {
+                    recurringDataAccess.DeleteItem(recTrans);
+                }
+            }
         }
     }
 }
