@@ -83,7 +83,7 @@ namespace MoneyManager.Core.ViewModels
             {
                 accountRepository.Delete(accountRepository.Selected);
                 accountRepository.RemoveTransactionAmount(SelectedTransaction);
-                balanceViewModel.UpdateBalance(true);
+                balanceViewModel.UpdateBalance();
                 Close(this);
             }
         }
@@ -111,7 +111,7 @@ namespace MoneyManager.Core.ViewModels
             {
                 transactionRepository.Delete(transaction);
                 RelatedTransactions.Remove(transaction);
-                balanceViewModel.UpdateBalance();
+                balanceViewModel.UpdateBalance(true);
             }
         }
     }
