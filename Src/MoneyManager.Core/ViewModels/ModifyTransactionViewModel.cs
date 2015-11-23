@@ -164,6 +164,7 @@ namespace MoneyManager.Core.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
             {
                 transactionRepository.Delete(transactionRepository.Selected);
+                accountRepository.RemoveTransactionAmount(SelectedTransaction);
                 ResetInitLocker();
                 Close(this);
             }
