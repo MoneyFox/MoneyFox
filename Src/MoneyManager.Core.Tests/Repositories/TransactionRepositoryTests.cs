@@ -426,7 +426,7 @@ namespace MoneyManager.Core.Tests.Repositories
             };
 
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
-            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account> { account });
+            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account> {account});
 
             var accountRepo = new AccountRepository(accountDataAccessSetup.Object);
 
@@ -438,7 +438,8 @@ namespace MoneyManager.Core.Tests.Repositories
 
             var recTransDataAccessSetup = new Mock<IDataAccess<RecurringTransaction>>();
             recTransDataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<RecurringTransaction>()));
-            recTransDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringTransaction, bool>>>())).Returns(new List<RecurringTransaction>());
+            recTransDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringTransaction, bool>>>()))
+                .Returns(new List<RecurringTransaction>());
 
             new TransactionRepository(transDataAccessSetup.Object, recTransDataAccessSetup.Object, accountRepo).Delete(
                 transaction);
@@ -492,7 +493,8 @@ namespace MoneyManager.Core.Tests.Repositories
 
             var recTransDataAccessSetup = new Mock<IDataAccess<RecurringTransaction>>();
             recTransDataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<RecurringTransaction>()));
-            recTransDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringTransaction, bool>>>())).Returns(new List<RecurringTransaction>());
+            recTransDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringTransaction, bool>>>()))
+                .Returns(new List<RecurringTransaction>());
 
             new TransactionRepository(transDataAccessSetup.Object, recTransDataAccessSetup.Object, accountRepo).Delete(
                 transaction);

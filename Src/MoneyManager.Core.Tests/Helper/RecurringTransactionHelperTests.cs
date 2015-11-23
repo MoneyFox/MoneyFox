@@ -135,22 +135,23 @@ namespace MoneyManager.Core.Tests.Helper
                 StartDate = new DateTime(2015, 08, 25),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
-                Amount = 105,
+                Amount = 105
             };
 
             RecurringTransactionHelper.CheckIfRepeatable(recTrans,
-                new FinancialTransaction {Date = DateTime.Today.AddDays(-amountOfDaysBack), IsCleared = true}).ShouldBeTrue();
+                new FinancialTransaction {Date = DateTime.Today.AddDays(-amountOfDaysBack), IsCleared = true})
+                .ShouldBeTrue();
         }
 
         [Fact]
         public void CheckIfRepeatable_UnclearedTransaction_ReturnFalse()
         {
-            var account = new Account { Id = 2 };
+            var account = new Account {Id = 2};
 
             var recTrans = new RecurringTransaction
             {
                 Id = 4,
-                Recurrence = (int)TransactionRecurrence.Weekly,
+                Recurrence = (int) TransactionRecurrence.Weekly,
                 StartDate = new DateTime(2015, 08, 25),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
@@ -158,7 +159,7 @@ namespace MoneyManager.Core.Tests.Helper
             };
 
             RecurringTransactionHelper.CheckIfRepeatable(recTrans,
-                new FinancialTransaction { Date = DateTime.Today.AddDays(11) }).ShouldBeFalse();
+                new FinancialTransaction {Date = DateTime.Today.AddDays(11)}).ShouldBeFalse();
         }
     }
 }

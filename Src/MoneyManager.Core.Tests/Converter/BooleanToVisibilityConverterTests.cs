@@ -16,7 +16,8 @@ namespace MoneyManager.Core.Tests.Converter
         [InlineData(false, "foo", MvxVisibility.Collapsed)]
         public void Convert_Bool_Visibility(bool input, object parameter, MvxVisibility result)
         {
-            new BooleanToVisibilityConverter().Convert(input, null, parameter, CultureInfo.CurrentCulture).ShouldBe(result);
+            new BooleanToVisibilityConverter().Convert(input, null, parameter, CultureInfo.CurrentCulture)
+                .ShouldBe(result);
         }
 
         [Theory]
@@ -25,7 +26,8 @@ namespace MoneyManager.Core.Tests.Converter
         [InlineData(false, "foo", MvxVisibility.Visible)]
         public void ConvertBack_Bool_Visibility(bool input, object parameter, MvxVisibility result)
         {
-            new BooleanToVisibilityConverter().ConvertBack(input, null, parameter, CultureInfo.CurrentCulture).ShouldBe(result);
+            new BooleanToVisibilityConverter().ConvertBack(input, null, parameter, CultureInfo.CurrentCulture)
+                .ShouldBe(result);
         }
     }
 }

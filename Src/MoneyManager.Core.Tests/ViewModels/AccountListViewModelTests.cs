@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Cirrious.CrossCore.Core;
-using Cirrious.MvvmCross.Binding;
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Interfaces;
@@ -68,14 +67,15 @@ namespace MoneyManager.Core.Tests.ViewModels
             balanceViewModelSetup.Setup(x => x.UpdateBalance(false)).Callback(() => updateBalanceCalled = true);
 
             var dialogServiceSetup = new Mock<IDialogService>();
-            dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null)).Returns(Task.FromResult(true));
+            dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
+                .Returns(Task.FromResult(true));
 
             var viewModel = new AccountListViewModel(accountRepo,
                 balanceViewModelSetup.Object,
                 dialogServiceSetup.Object
                 );
 
-            viewModel.DeleteAccountCommand.Execute(new Account() {Id = 3});
+            viewModel.DeleteAccountCommand.Execute(new Account {Id = 3});
 
             deleteCalled.ShouldBeTrue();
             updateBalanceCalled.ShouldBeTrue();
@@ -96,14 +96,15 @@ namespace MoneyManager.Core.Tests.ViewModels
             balanceViewModelSetup.Setup(x => x.UpdateBalance(false)).Callback(() => updateBalanceCalled = true);
 
             var dialogServiceSetup = new Mock<IDialogService>();
-            dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null)).Returns(Task.FromResult(false));
+            dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
+                .Returns(Task.FromResult(false));
 
             var viewModel = new AccountListViewModel(accountRepo,
                 balanceViewModelSetup.Object,
                 dialogServiceSetup.Object
                 );
 
-            viewModel.DeleteAccountCommand.Execute(new Account() {Id = 3});
+            viewModel.DeleteAccountCommand.Execute(new Account {Id = 3});
 
             deleteCalled.ShouldBeFalse();
             updateBalanceCalled.ShouldBeFalse();
@@ -124,7 +125,8 @@ namespace MoneyManager.Core.Tests.ViewModels
             balanceViewModelSetup.Setup(x => x.UpdateBalance(false)).Callback(() => updateBalanceCalled = true);
 
             var dialogServiceSetup = new Mock<IDialogService>();
-            dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null)).Returns(Task.FromResult(true));
+            dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
+                .Returns(Task.FromResult(true));
 
             var viewModel = new AccountListViewModel(accountRepo,
                 balanceViewModelSetup.Object,
