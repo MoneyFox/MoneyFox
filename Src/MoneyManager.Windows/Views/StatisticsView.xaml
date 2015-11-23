@@ -15,7 +15,7 @@
                 <AppBarButton Icon="Calendar"
                               x:Uid="SetDate"
                               Label="Set Date"
-                              Click="SetDate"/>
+                              Click="SetDate" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
@@ -25,8 +25,8 @@
             <PivotItem>
                 <PivotItem.Header>
                     <basicControls:TabHeader Label="Cash Flow"
-                                        x:Uid="CashFlowTitle"
-                                        Glyph="&#xE908;" />
+                                             x:Uid="CashFlowTitle"
+                                             Glyph="&#xE908;" />
                 </PivotItem.Header>
                 <Grid>
                     <statisticControls:CashFlowUserControl x:Name="CashFlowUserControl" />
@@ -36,11 +36,11 @@
             <PivotItem>
                 <PivotItem.Header>
                     <basicControls:TabHeader Label="Spreading"
-                                        x:Uid="SpreadingTitle"
-                                        Glyph="&#xE774;" />
+                                             x:Uid="SpreadingTitle"
+                                             Glyph="&#xE774;" />
                 </PivotItem.Header>
                 <Grid>
-                    <statisticControls:CategorySpreadingUserControl x:Name="CategorySpreadingUserControl"/>
+                    <statisticControls:CategorySpreadingUserControl x:Name="CategorySpreadingUserControl" />
                 </Grid>
             </PivotItem>
 
@@ -48,8 +48,8 @@
                 <PivotItem.Header>
 
                     <basicControls:TabHeader Label="Category Summary"
-                                        x:Uid="CategorySummaryTitle"
-                                        Glyph="&#xE8EC;" />
+                                             x:Uid="CategorySummaryTitle"
+                                             Glyph="&#xE8EC;" />
                 </PivotItem.Header>
                 <Grid>
                     <TextBlock Text="{Binding Title}"

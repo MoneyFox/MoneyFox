@@ -45,8 +45,7 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
-                new RecurringTransactionDataAccess(dbHelper),
-                new AccountRepository(accountRepoSetup.Object))
+                new RecurringTransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int) type}
             };

@@ -1,6 +1,5 @@
 ﻿using Windows.UI.Notifications;
 using Cirrious.CrossCore;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Core.ViewModels.SettingViews;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;

@@ -25,8 +25,7 @@ namespace MoneyManager.Core.Tests.Repositories
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock(),
-                new AccountRepository(accountRepoSetup.Object));
+                new RecurringTransactionDataAccessMock());
 
             var transaction = new FinancialTransaction
             {
@@ -45,8 +44,7 @@ namespace MoneyManager.Core.Tests.Repositories
 
             var transactionDataAccessMock = new TransactionDataAccessMock();
             var repository = new TransactionRepository(transactionDataAccessMock,
-                new RecurringTransactionDataAccessMock(),
-                new AccountRepository(accountRepoSetup.Object));
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -77,8 +75,7 @@ namespace MoneyManager.Core.Tests.Repositories
 
             var transactionDataAccessMock = new TransactionDataAccessMock();
             var repository = new TransactionRepository(transactionDataAccessMock,
-                new RecurringTransactionDataAccessMock(),
-                new AccountRepository(accountRepoSetup.Object));
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -114,8 +111,7 @@ namespace MoneyManager.Core.Tests.Repositories
 
             var transactionDataAccessMock = new TransactionDataAccessMock();
             var repository = new TransactionRepository(transactionDataAccessMock,
-                new RecurringTransactionDataAccessMock(),
-                new AccountRepository(accountRepoSetup.Object));
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -143,8 +139,8 @@ namespace MoneyManager.Core.Tests.Repositories
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock(),
-                new AccountRepository(accountRepoSetup.Object)).Data
+            new TransactionRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock())
+                .Data
                 .ShouldNotBeNull();
         }
 
@@ -155,8 +151,7 @@ namespace MoneyManager.Core.Tests.Repositories
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock(),
-                new AccountRepository(accountRepoSetup.Object));
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -190,8 +185,7 @@ namespace MoneyManager.Core.Tests.Repositories
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock(),
-                new AccountRepository(accountRepoSetup.Object));
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -216,8 +210,7 @@ namespace MoneyManager.Core.Tests.Repositories
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock(),
-                new AccountRepository(accountRepoSetup.Object));
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -251,8 +244,7 @@ namespace MoneyManager.Core.Tests.Repositories
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock(),
-                new AccountRepository(accountRepoSetup.Object));
+                new RecurringTransactionDataAccessMock());
 
             var account = new Account
             {
@@ -283,8 +275,7 @@ namespace MoneyManager.Core.Tests.Repositories
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
             var repository = new TransactionRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock(),
-                new AccountRepository(accountRepoSetup.Object));
+                new RecurringTransactionDataAccessMock());
 
             repository.Data.Add(new FinancialTransaction
             {
@@ -313,8 +304,7 @@ namespace MoneyManager.Core.Tests.Repositories
             });
 
             var categoryRepository = new TransactionRepository(dataAccessSetup.Object,
-                new Mock<IDataAccess<RecurringTransaction>>().Object,
-                new AccountRepository(accountRepoSetup.Object));
+                new Mock<IDataAccess<RecurringTransaction>>().Object);
             categoryRepository.Load();
 
             categoryRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
@@ -331,8 +321,7 @@ namespace MoneyManager.Core.Tests.Repositories
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<FinancialTransaction>());
 
             var repo = new TransactionRepository(dataAccessSetup.Object,
-                new Mock<IDataAccess<RecurringTransaction>>().Object,
-                new AccountRepository(accountRepoSetup.Object));
+                new Mock<IDataAccess<RecurringTransaction>>().Object);
 
             var account1 = new Account {Id = 1};
             var account3 = new Account {Id = 3};
@@ -359,8 +348,7 @@ namespace MoneyManager.Core.Tests.Repositories
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<FinancialTransaction>());
 
             var repo = new TransactionRepository(dataAccessSetup.Object,
-                new Mock<IDataAccess<RecurringTransaction>>().Object,
-                new AccountRepository(accountRepoSetup.Object))
+                new Mock<IDataAccess<RecurringTransaction>>().Object)
             {
                 Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
                 {
@@ -428,8 +416,6 @@ namespace MoneyManager.Core.Tests.Repositories
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
             accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account> {account});
 
-            var accountRepo = new AccountRepository(accountDataAccessSetup.Object);
-
             var transDataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
             transDataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<FinancialTransaction>()))
                 .Callback((FinancialTransaction trans) => deletedId = trans.Id);
@@ -441,7 +427,7 @@ namespace MoneyManager.Core.Tests.Repositories
             recTransDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringTransaction, bool>>>()))
                 .Returns(new List<RecurringTransaction>());
 
-            new TransactionRepository(transDataAccessSetup.Object, recTransDataAccessSetup.Object, accountRepo).Delete(
+            new TransactionRepository(transDataAccessSetup.Object, recTransDataAccessSetup.Object).Delete(
                 transaction);
 
             deletedId.ShouldBe(10);
@@ -483,8 +469,6 @@ namespace MoneyManager.Core.Tests.Repositories
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
             accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account> {account1, account2});
 
-            var accountRepo = new AccountRepository(accountDataAccessSetup.Object);
-
             var transDataAccessSetup = new Mock<IDataAccess<FinancialTransaction>>();
             transDataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<FinancialTransaction>()))
                 .Callback((FinancialTransaction trans) => deletedId = trans.Id);
@@ -496,7 +480,7 @@ namespace MoneyManager.Core.Tests.Repositories
             recTransDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringTransaction, bool>>>()))
                 .Returns(new List<RecurringTransaction>());
 
-            new TransactionRepository(transDataAccessSetup.Object, recTransDataAccessSetup.Object, accountRepo).Delete(
+            new TransactionRepository(transDataAccessSetup.Object, recTransDataAccessSetup.Object).Delete(
                 transaction);
 
             deletedId.ShouldBe(10);

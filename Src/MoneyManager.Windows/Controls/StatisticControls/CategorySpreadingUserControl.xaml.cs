@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels.Statistics;
 

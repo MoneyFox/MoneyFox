@@ -28,12 +28,12 @@ namespace MoneyManager.Droid.Activities
         private AboutFragment aboutFragment;
 
         private AccountListFragment accountListFragment;
+        private BackupFragment backupFragment;
 
         private string drawerTitle;
         private ListView menuListView;
         private SlidingPaneLayout slidingLayout;
         private StatisticSelectorFragment statisticSelectorFragment;
-        private BackupFragment backupFragment;
         private string title;
 
         public new MainViewModel ViewModel

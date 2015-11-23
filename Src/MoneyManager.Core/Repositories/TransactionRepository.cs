@@ -13,7 +13,6 @@ namespace MoneyManager.Core.Repositories
     [ImplementPropertyChanged]
     public class TransactionRepository : ITransactionRepository
     {
-        private readonly IAccountRepository accountRepository;
         private readonly IDataAccess<FinancialTransaction> dataAccess;
         private readonly IDataAccess<RecurringTransaction> recurringDataAccess;
         private ObservableCollection<FinancialTransaction> data;
@@ -25,10 +24,8 @@ namespace MoneyManager.Core.Repositories
         /// <param name="recurringDataAccess">
         ///     Instanced <see cref="IDataAccess{T}" /> for <see cref="RecurringTransaction" />
         /// </param>
-        /// <param name="accountRepository">Instanced <see cref="IRepository{T}" /> for <see cref="Account" /></param>
         public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess,
-            IDataAccess<RecurringTransaction> recurringDataAccess,
-            IAccountRepository accountRepository)
+            IDataAccess<RecurringTransaction> recurringDataAccess)
         {
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;

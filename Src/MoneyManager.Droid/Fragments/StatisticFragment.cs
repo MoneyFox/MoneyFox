@@ -2,7 +2,6 @@ using Android.OS;
 using Android.Views;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Support.Fragging.Fragments;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Core.ViewModels.Statistics;
 using MoneyManager.Foundation;
 using OxyPlot.Xamarin.Android;
@@ -20,7 +19,7 @@ namespace MoneyManager.Droid.Fragments
         }
 
         public StatisticType SelectedStatistic { get; set; }
-        
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
