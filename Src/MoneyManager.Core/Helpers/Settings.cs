@@ -23,7 +23,6 @@ namespace MoneyManager.Core.Helpers
             get { return AppSettings.GetValueOrDefault(SESSION_TIMESTAMP_KEY, SESSION_TIMESTAMP_DEFAULT); }
             set { AppSettings.AddOrUpdateValue(SESSION_TIMESTAMP_KEY, value); }
         }
-
         public static bool PasswordRequired
         {
             get { return AppSettings.GetValueOrDefault(PASSWORD_REQUIRED_KEYNAME, PASSWORD_REQUIRED_KEYDEFAULT); }

@@ -26,14 +26,11 @@ namespace MoneyManager.Core.Tests.Manager
         {
             var connectionCreatorMock = new Mock<ISqliteConnectionCreator>().Object;
             var accountRepo = new AccountRepository(new AccountDataAccess(connectionCreatorMock));
-            var transactionRepo = new TransactionRepository(new TransactionDataAccess(connectionCreatorMock),
-                new RecurringTransactionDataAccess(connectionCreatorMock),
-                new AccountRepository(new AccountDataAccess(connectionCreatorMock)));
+            var transactionRepo = new TransactionRepository(new TransactionDataAccess(connectionCreatorMock), new RecurringTransactionDataAccess(connectionCreatorMock), new AccountRepository(new AccountDataAccess(connectionCreatorMock)));
 
             new RepositoryManager(accountRepo, transactionRepo,
                 new CategoryRepository(new CategoryDataAccess(connectionCreatorMock)),
-                new TransactionManager(transactionRepo, accountRepo, new Mock<IDialogService>().Object)).ShouldNotBeNull
-                ();
+                new TransactionManager(transactionRepo, accountRepo, new Mock<IDialogService>().Object)).ShouldNotBeNull();
         }
 
         [Fact]
@@ -73,18 +70,15 @@ namespace MoneyManager.Core.Tests.Manager
 
             var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupAllProperties();
-            accountRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()))
-                .Callback(() => accountsLoaded = true);
+            accountRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>())).Callback(() => accountsLoaded = true);
 
             var transactionRepoSetup = new Mock<ITransactionRepository>();
             transactionRepoSetup.SetupAllProperties();
-            transactionRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<FinancialTransaction, bool>>>()))
-                .Callback(() => transactionsLoaded = true);
+            transactionRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<FinancialTransaction, bool>>>())).Callback(() => transactionsLoaded = true);
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
             categoryRepoSetup.SetupAllProperties();
-            categoryRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>()))
-                .Callback(() => categoryLoaded = true);
+            categoryRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Category, bool>>>())).Callback(() => categoryLoaded = true);
 
             var accountRepo = accountRepoSetup.Object;
             var transactionRepo = transactionRepoSetup.Object;
@@ -102,13 +96,7 @@ namespace MoneyManager.Core.Tests.Manager
         public void ReloadData_UnclearedTransaction_Clear()
         {
             var account = new Account {Id = 1, CurrentBalance = 40};
-            var transaction = new FinancialTransaction
-            {
-                ChargedAccount = account,
-                ChargedAccountId = 1,
-                IsCleared = false,
-                Date = DateTime.Today.AddDays(-3)
-            };
+            var transaction = new FinancialTransaction {ChargedAccount = account, ChargedAccountId = 1, IsCleared = false, Date = DateTime.Today.AddDays(-3)};
 
             var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupAllProperties();

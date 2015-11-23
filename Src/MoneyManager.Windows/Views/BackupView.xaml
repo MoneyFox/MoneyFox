@@ -40,7 +40,7 @@
                 <TextBlock x:Uid="RestoreInformation"
                            Text="RestoreInformation"
                            Margin="-5,5,0,7"
-                           TextWrapping="WrapWholeWords" />
+                           TextWrapping="WrapWholeWords" />        
                 <Button Content="Restore"
                         x:Uid="RestoreBackup"
                         Command="{Binding RestoreCommand}"

@@ -2,6 +2,7 @@ using Android.OS;
 using Android.Views;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Support.Fragging.Fragments;
+using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Droid.Fragments
 {

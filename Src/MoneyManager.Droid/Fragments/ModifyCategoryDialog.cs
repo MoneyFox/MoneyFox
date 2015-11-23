@@ -6,6 +6,7 @@ using Android.Views;
 using Android.Widget;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Support.Fragging.Fragments;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Core.ViewModels.Dialogs;
 
 namespace MoneyManager.Droid.Fragments
@@ -26,7 +27,7 @@ namespace MoneyManager.Droid.Fragments
             var view = this.BindingInflate(Resource.Layout.ModifyCategoryDialogLayout, container, true);
 
             // Handle dismiss button click
-            var button = view.FindViewById<Button>(Resource.Id.button_save_category);
+            var button  = view.FindViewById<Button>(Resource.Id.button_save_category);
             button.Click += Dismiss;
 
             return view;

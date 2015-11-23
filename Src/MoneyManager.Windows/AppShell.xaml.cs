@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using MoneyManager.Localization;
+using MoneyManager.Windows.Controls;
 using MoneyManager.Windows.Controls.CustomControls;
 using MoneyManager.Windows.Views;
 
@@ -203,32 +204,6 @@ namespace MoneyManager.Windows
             }
         }
 
-        public void SetLoginView()
-        {
-            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
-            {
-                RootSplitView.IsPanSelectorEnabled = false;
-            }
-            else
-            {
-                TogglePaneButton.Visibility = Visibility.Collapsed;
-                RootSplitView.OpenPaneLength = 0;
-            }
-        }
-
-        public void SetLoggedInView()
-        {
-            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
-            {
-                RootSplitView.IsPanSelectorEnabled = true;
-            }
-            else
-            {
-                TogglePaneButton.Visibility = Visibility.Visible;
-                RootSplitView.OpenPaneLength = 256;
-            }
-        }
-
         #region BackRequested Handlers
 
         private void SystemNavigationManager_BackRequested(object sender, BackRequestedEventArgs e)
@@ -333,5 +308,31 @@ namespace MoneyManager.Windows
         }
 
         #endregion
+
+        public void SetLoginView()
+        {
+            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                RootSplitView.IsPanSelectorEnabled = false;
+            }
+            else
+            {
+                TogglePaneButton.Visibility = Visibility.Collapsed;
+                RootSplitView.OpenPaneLength = 0;
+            }
+        }
+
+        public void SetLoggedInView()
+        {
+            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                RootSplitView.IsPanSelectorEnabled = true;
+            }
+            else
+            {
+                TogglePaneButton.Visibility = Visibility.Visible;
+                RootSplitView.OpenPaneLength = 256;
+            }
+        }
     }
 }

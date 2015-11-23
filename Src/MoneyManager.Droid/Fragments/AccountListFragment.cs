@@ -30,8 +30,8 @@ namespace MoneyManager.Droid.Fragments
                 };
 
                 FragmentManager.BeginTransaction()
-                    .Replace(Resource.Id.balance_pane, fragment)
-                    .Commit();
+                        .Replace(Resource.Id.balance_pane, fragment)
+                        .Commit();
             }
 
             var list = view.FindViewById<ListView>(Resource.Id.accountList);

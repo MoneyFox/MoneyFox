@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation.Interfaces;
@@ -18,12 +20,12 @@ namespace MoneyManager.Core.Tests.Repositories
         {
             get
             {
-                yield return new object[] {"Ausgang", "Ausgang"};
-                yield return new object[] {"", Strings.NoNamePlaceholderLabel};
+                yield return new object[] { "Ausgang", "Ausgang" };
+                yield return new object[] { "", Strings.NoNamePlaceholderLabel };
             }
         }
-
-
+            
+            
         [Theory]
         [MemberData(nameof(NamePlaceholder))]
         public void Save_InputName_CorrectNameAssigned(string inputName, string expectedResult)

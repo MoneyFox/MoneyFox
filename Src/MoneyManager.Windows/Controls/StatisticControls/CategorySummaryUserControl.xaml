@@ -35,9 +35,9 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <ScrollViewer>
             <customControls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                                   EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                   ItemsSource="{Binding CategorySummary}"
-                                                   ItemTemplate="{StaticResource CategoryTemplate}">
+                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                             ItemsSource="{Binding CategorySummary}"
+                                             ItemTemplate="{StaticResource CategoryTemplate}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment"

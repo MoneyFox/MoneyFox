@@ -30,42 +30,6 @@ namespace MoneyManager.Droid
             }
         }
 
-        /// <summary>
-        ///     Adds or updates a value
-        /// </summary>
-        /// <param name="key">key to update</param>
-        /// <param name="value">value to set</param>
-        /// <returns>True if added or update and you need to save</returns>
-        public bool AddOrUpdateValue<T>(string key, T value)
-        {
-            var typeOf = typeof (T);
-            if (typeOf.IsGenericType && typeOf.GetGenericTypeDefinition() == typeof (Nullable<>))
-            {
-                typeOf = Nullable.GetUnderlyingType(typeOf);
-            }
-            var typeCode = Type.GetTypeCode(typeOf);
-            return AddOrUpdateValue(key, value, typeCode);
-        }
-
-        /// <summary>
-        ///     Removes a desired key from the settings
-        /// </summary>
-        /// <param name="key">Key for setting</param>
-        public void Remove(string key)
-        {
-            lock (locker)
-            {
-                using (var sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(Application.Context))
-                {
-                    using (var sharedPreferencesEditor = sharedPreferences.Edit())
-                    {
-                        sharedPreferencesEditor.Remove(key);
-                        sharedPreferencesEditor.Commit();
-                    }
-                }
-            }
-        }
-
         private T GetValueOrDefaultCore<T>(ISharedPreferences sharedPreferences, string key, T defaultValue)
         {
             var typeOf = typeof (T);
@@ -196,6 +160,23 @@ namespace MoneyManager.Droid
             return null != value ? (T) value : defaultValue;
         }
 
+        /// <summary>
+        ///     Adds or updates a value
+        /// </summary>
+        /// <param name="key">key to update</param>
+        /// <param name="value">value to set</param>
+        /// <returns>True if added or update and you need to save</returns>
+        public bool AddOrUpdateValue<T>(string key, T value)
+        {
+            var typeOf = typeof (T);
+            if (typeOf.IsGenericType && typeOf.GetGenericTypeDefinition() == typeof (Nullable<>))
+            {
+                typeOf = Nullable.GetUnderlyingType(typeOf);
+            }
+            var typeCode = Type.GetTypeCode(typeOf);
+            return AddOrUpdateValue(key, value, typeCode);
+        }
+
         private bool AddOrUpdateValue(string key, object value, TypeCode typeCode)
         {
             lock (locker)
@@ -254,6 +235,25 @@ namespace MoneyManager.Droid
             }
 
             return true;
+        }
+
+        /// <summary>
+        ///     Removes a desired key from the settings
+        /// </summary>
+        /// <param name="key">Key for setting</param>
+        public void Remove(string key)
+        {
+            lock (locker)
+            {
+                using (var sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(Application.Context))
+                {
+                    using (var sharedPreferencesEditor = sharedPreferences.Edit())
+                    {
+                        sharedPreferencesEditor.Remove(key);
+                        sharedPreferencesEditor.Commit();
+                    }
+                }
+            }
         }
     }
 }

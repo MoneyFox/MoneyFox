@@ -1,4 +1,5 @@
 ﻿using Cirrious.CrossCore;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Core.ViewModels.Dialogs;
 
 namespace MoneyManager.Windows.Dialogs

@@ -59,7 +59,7 @@ namespace MoneyManager.Core.ViewModels
             PrepareEdit();
 
             if (!IsEdit)
-            {
+            { 
                 PrepareDefault(typeString);
             }
 
@@ -84,7 +84,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void PrepareDefault(string typeString)
         {
-            var type = (TransactionType) Enum.Parse(typeof (TransactionType), typeString);
+            var type = ((TransactionType) Enum.Parse(typeof (TransactionType), typeString));
 
             SetDefaultTransaction(type);
             SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
@@ -161,9 +161,7 @@ namespace MoneyManager.Core.ViewModels
 
         private async void Delete()
         {
-            if (
-                await
-                    dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
             {
                 transactionRepository.Delete(transactionRepository.Selected);
                 accountRepository.RemoveTransactionAmount(SelectedTransaction);
@@ -177,7 +175,6 @@ namespace MoneyManager.Core.ViewModels
             await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle,
                 Strings.AccountRequiredMessage);
         }
-
         private async void ShowInvalidEndDateMessage()
         {
             await dialogService.ShowMessage(Strings.InvalidEnddateTitle,
@@ -300,8 +297,8 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public string AccountHeader
             => SelectedTransaction.Type == (int) TransactionType.Income
-                ? Strings.TargetAccountLabel
-                : Strings.ChargedAccountLabel;
+                    ? Strings.TargetAccountLabel
+                    : Strings.ChargedAccountLabel;
 
         /// <summary>
         ///     The transaction date

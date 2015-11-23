@@ -100,7 +100,7 @@ namespace MoneyManager.Core.Tests.Manager
 
             //Execute
             new DefaultManager(repo,
-                new SettingDataAccess(new Mock<IRoamingSettings>().Object) {DefaultAccount = -1})
+                new SettingDataAccess(new Mock<IRoamingSettings>().Object) { DefaultAccount = -1 })
                 .GetDefaultAccount()
                 .ShouldBeNull();
         }

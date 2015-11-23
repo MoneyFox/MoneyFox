@@ -12,8 +12,7 @@ namespace MoneyManager.Core.StatisticProvider
         private readonly IRepository<Category> categoryRepository;
         private readonly ITransactionRepository transactionRepository;
 
-        public CategorySpreadingProvider(ITransactionRepository transactionRepository,
-            IRepository<Category> categoryRepository)
+        public CategorySpreadingProvider(ITransactionRepository transactionRepository, IRepository<Category> categoryRepository)
         {
             this.transactionRepository = transactionRepository;
             this.categoryRepository = categoryRepository;

@@ -50,11 +50,11 @@
         <StackPanel>
             <controls:BalanceUserControl />
             <customControls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
-                                                   OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                                   EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                   ItemTemplate="{StaticResource AccountTemplate}"
-                                                   HorizontalAlignment="Stretch"
-                                                   EntranceNavigationTransitionInfo.IsTargetElement="True">
+                                             OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                             ItemTemplate="{StaticResource AccountTemplate}"
+                                             HorizontalAlignment="Stretch"
+                                             EntranceNavigationTransitionInfo.IsTargetElement="True">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">

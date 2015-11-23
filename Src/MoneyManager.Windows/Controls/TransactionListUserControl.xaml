@@ -76,7 +76,7 @@
                             <SymbolIcon
                                 Width="30"
                                 Height="30"
-                                Symbol="57660"
+                                        Symbol="57660"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center" />
                         </Grid>

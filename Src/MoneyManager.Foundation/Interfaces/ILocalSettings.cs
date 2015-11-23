@@ -3,7 +3,7 @@
     public interface ILocalSettings
     {
         /// <summary>
-        ///     Gets the current value or the default that you specify.
+        /// Gets the current value or the default that you specify.
         /// </summary>
         /// <typeparam name="T">Vaue of t (bool, int, float, long, string)</typeparam>
         /// <param name="key">Key for settings</param>
@@ -13,7 +13,7 @@
 
 
         /// <summary>
-        ///     Adds or updates the value
+        /// Adds or updates the value 
         /// </summary>
         /// <param name="key">Key for settting</param>
         /// <param name="value">Value to set</param>
@@ -21,7 +21,7 @@
         bool AddOrUpdateValue<T>(string key, T value);
 
         /// <summary>
-        ///     Removes a desired key from the settings
+        /// Removes a desired key from the settings
         /// </summary>
         /// <param name="key">Key for setting</param>
         void Remove(string key);

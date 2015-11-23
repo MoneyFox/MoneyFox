@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Localization;
@@ -9,38 +11,6 @@ namespace MoneyManager.Core.Tests.Helper
 {
     public class TransactionTypeLogicTest
     {
-        public static IEnumerable GetEnumFrostringWithIntData
-        {
-            get
-            {
-                //Editmode true
-                yield return new object[] {0, Strings.EditSpendingTitle, true};
-                yield return new object[] {1, Strings.EditIncomeTitle, true};
-                yield return new object[] {2, Strings.EditTransferTitle, true};
-
-                //Editmode false
-                yield return new object[] {0, Strings.AddSpendingTitle, false};
-                yield return new object[] {1, Strings.AddIncomeTitle, false};
-                yield return new object[] {2, Strings.AddTransferTitle, false};
-            }
-        }
-
-        public static IEnumerable GetEnumFrostringWithEnumData
-        {
-            get
-            {
-                //Editmode true
-                yield return new object[] {TransactionType.Spending, Strings.EditSpendingTitle, true};
-                yield return new object[] {TransactionType.Income, Strings.EditIncomeTitle, true};
-                yield return new object[] {TransactionType.Transfer, Strings.EditTransferTitle, true};
-
-                //Editmode false
-                yield return new object[] {TransactionType.Spending, Strings.AddSpendingTitle, false};
-                yield return new object[] {TransactionType.Income, Strings.AddIncomeTitle, false};
-                yield return new object[] {TransactionType.Transfer, Strings.AddTransferTitle, false};
-            }
-        }
-
         [Theory]
         [InlineData("Spending", TransactionType.Spending)]
         [InlineData("Income", TransactionType.Income)]
@@ -50,11 +20,43 @@ namespace MoneyManager.Core.Tests.Helper
             TransactionTypeHelper.GetEnumFromString(inputString).ShouldBe(expectedType);
         }
 
+        public static IEnumerable GetEnumFrostringWithIntData
+        {
+            get
+            {
+                //Editmode true
+                yield return new object[] { 0, Strings.EditSpendingTitle, true };
+                yield return new object[] { 1, Strings.EditIncomeTitle, true };
+                yield return new object[] { 2, Strings.EditTransferTitle, true };
+                
+                //Editmode false
+                yield return new object[] { 0, Strings.AddSpendingTitle, false };
+                yield return new object[] { 1, Strings.AddIncomeTitle, false };
+                yield return new object[] { 2, Strings.AddTransferTitle, false };
+            }
+        }
+            
         [Theory]
         [MemberData(nameof(GetEnumFrostringWithIntData))]
         public void GetEnumFrostring_Int_Titel(int input, string expectedTitle, bool isEditMode)
         {
             TransactionTypeHelper.GetViewTitleForType(input, isEditMode).ShouldBe(expectedTitle);
+        }
+
+        public static IEnumerable GetEnumFrostringWithEnumData
+        {
+            get
+            {
+                //Editmode true
+                yield return new object[] { TransactionType.Spending, Strings.EditSpendingTitle, true };
+                yield return new object[] { TransactionType.Income, Strings.EditIncomeTitle, true };
+                yield return new object[] { TransactionType.Transfer, Strings.EditTransferTitle, true };
+
+                //Editmode false
+                yield return new object[] { TransactionType.Spending, Strings.AddSpendingTitle, false };
+                yield return new object[] { TransactionType.Income, Strings.AddIncomeTitle, false };
+                yield return new object[] { TransactionType.Transfer, Strings.AddTransferTitle, false };
+            }
         }
 
         [Theory]

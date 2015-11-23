@@ -55,7 +55,7 @@ namespace MoneyManager.Windows.Views
                 //set the cursor back to the last positon to avoid jumping around
                 TextBoxCurrentBalance.Select(cursorposition, 0);
             }
-            catch (FormatException ex)
+           catch (FormatException ex)
             {
                 InsightHelper.Report(new ExtendedFormatException(ex));
             }

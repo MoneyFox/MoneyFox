@@ -61,18 +61,18 @@
 
         <!-- Top-level navigation menu + app content -->
         <customControls:SwipeableSplitView x:Name="RootSplitView"
-                                           DisplayMode="Inline"
-                                           OpenPaneLength="256"
-                                           IsTabStop="False">
+                                     DisplayMode="Inline"
+                                     OpenPaneLength="256"
+                                     IsTabStop="False">
             <customControls:SwipeableSplitView.Pane>
                 <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
                 <customControls:NavMenuListView x:Name="NavMenuList"
-                                                TabIndex="3"
-                                                Margin="0,48,0,0"
-                                                ContainerContentChanging="NavMenuItemContainerContentChanging"
-                                                ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
-                                                ItemTemplate="{StaticResource NavMenuItemTemplate}"
-                                                ItemInvoked="NavMenuList_ItemInvoked" />
+                                          TabIndex="3"
+                                          Margin="0,48,0,0"
+                                          ContainerContentChanging="NavMenuItemContainerContentChanging"
+                                          ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
+                                          ItemTemplate="{StaticResource NavMenuItemTemplate}"
+                                          ItemInvoked="NavMenuList_ItemInvoked" />
             </customControls:SwipeableSplitView.Pane>
             <customControls:SwipeableSplitView.Content>
                 <Frame x:Name="Frame"

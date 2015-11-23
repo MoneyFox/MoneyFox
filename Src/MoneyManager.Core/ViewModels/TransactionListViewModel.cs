@@ -20,7 +20,7 @@ namespace MoneyManager.Core.ViewModels
         public TransactionListViewModel(ITransactionRepository transactionRepository,
             IAccountRepository accountRepository,
             BalanceViewModel balanceViewModel,
-            ModifyTransactionViewModel modifyTransactionViewModel,
+            ModifyTransactionViewModel modifyTransactionViewModel, 
             IDialogService dialogService)
         {
             this.transactionRepository = transactionRepository;

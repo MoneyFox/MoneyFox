@@ -90,22 +90,6 @@ namespace MoneyManager.Windows
             return InternalAddOrUpdateValue(key, value);
         }
 
-        /// <summary>
-        ///     Removes a desired key from the settings
-        /// </summary>
-        /// <param name="key">Key for setting</param>
-        public void Remove(string key)
-        {
-            lock (locker)
-            {
-                // If the key exists remove
-                if (AppSettings.Values.ContainsKey(key))
-                {
-                    AppSettings.Values.Remove(key);
-                }
-            }
-        }
-
         private bool InternalAddOrUpdateValue(string key, object value)
         {
             var valueChanged = false;
@@ -143,6 +127,22 @@ namespace MoneyManager.Windows
             }
 
             return valueChanged;
+        }
+
+        /// <summary>
+        /// Removes a desired key from the settings
+        /// </summary>
+        /// <param name="key">Key for setting</param>
+        public void Remove(string key)
+        {
+            lock (locker)
+            {
+                // If the key exists remove
+                if (AppSettings.Values.ContainsKey(key))
+                {
+                    AppSettings.Values.Remove(key);
+                }
+            }
         }
     }
 }

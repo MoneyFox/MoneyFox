@@ -1,4 +1,5 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels

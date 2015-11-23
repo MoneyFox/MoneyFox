@@ -18,12 +18,13 @@ namespace MoneyManager.Core.ViewModels.Statistics
     [ImplementPropertyChanged]
     public class StatisticViewModel : BaseViewModel
     {
-        private readonly ListStatisticFactory listStatisticFactory;
         private readonly ITransactionRepository transactionRepository;
 
         private PlotModel cashFlowModel;
 
         private ObservableCollection<StatisticItem> categorySummary;
+
+        private readonly ListStatisticFactory listStatisticFactory;
 
         private PlotModel spreadingModel;
 
@@ -103,8 +104,7 @@ namespace MoneyManager.Core.ViewModels.Statistics
             {
                 return categorySummary == null || !categorySummary.Any()
                     ? new ObservableCollection<StatisticItem>
-                        (listStatisticFactory.CreateListProvider(ListStatisticType.CategorySummary)
-                            .GetValues(StartDate, EndDate))
+                        (listStatisticFactory.CreateListProvider(ListStatisticType.CategorySummary).GetValues(StartDate, EndDate))
                     : categorySummary;
             }
             private set
@@ -137,9 +137,7 @@ namespace MoneyManager.Core.ViewModels.Statistics
         public void SetSpreading()
         {
             SpreadingModel = null;
-            SetSpreadingModel(
-                listStatisticFactory.CreateListProvider(ListStatisticType.CategorySpreading)
-                    .GetValues(StartDate, EndDate));
+            SetSpreadingModel(listStatisticFactory.CreateListProvider(ListStatisticType.CategorySpreading).GetValues(StartDate, EndDate));
             RaisePropertyChanged(nameof(SpreadingModel));
         }
 
@@ -148,8 +146,7 @@ namespace MoneyManager.Core.ViewModels.Statistics
         /// </summary>
         public void SetCustomCategorySummary()
         {
-            SetSpreadingModel(
-                listStatisticFactory.CreateListProvider(ListStatisticType.CategorySummary).GetValues(StartDate, EndDate));
+            SetSpreadingModel(listStatisticFactory.CreateListProvider(ListStatisticType.CategorySummary).GetValues(StartDate, EndDate));
             RaisePropertyChanged(nameof(CategorySummary));
         }
 

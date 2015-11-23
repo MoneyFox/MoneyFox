@@ -13,9 +13,7 @@ namespace MoneyManager.Foundation.Exceptions
         /// </summary>
         /// <param name="message">Exception message to show to the user.</param>
         public ExtendedFormatException(string message) :
-            base(GetMessageWithRegionInfo(message))
-        {
-        }
+            base(GetMessageWithRegionInfo(message)) { }
 
         /// <summary>
         ///     Creates an Format Exception and will add additional information about your culture.
@@ -24,8 +22,7 @@ namespace MoneyManager.Foundation.Exceptions
         /// <param name="exception">Inner Exception of the backup exception.</param>
         public ExtendedFormatException(Exception exception)
             : base(GetMessageWithRegionInfo(exception.Message), exception)
-        {
-        }
+        { }
 
         private static string GetMessageWithRegionInfo(string message)
         {

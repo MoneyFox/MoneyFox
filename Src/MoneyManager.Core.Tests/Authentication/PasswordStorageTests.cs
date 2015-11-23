@@ -18,12 +18,11 @@ namespace MoneyManager.Core.Tests.Authentication
             var resultKey = string.Empty;
 
             var mockSetup = new Mock<IMvxProtectedData>();
-            mockSetup.Setup(x => x.Protect(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string key, string password) =>
-                {
-                    resultKey = key;
-                    resultPassword = password;
-                });
+            mockSetup.Setup(x => x.Protect(It.IsAny<string>(), It.IsAny<string>())).Callback((string key, string password) =>
+            {
+                resultKey = key;
+                resultPassword = password;
+            });
 
             new PasswordStorage(mockSetup.Object).SavePassword(passwordString);
 
@@ -72,8 +71,7 @@ namespace MoneyManager.Core.Tests.Authentication
         [Theory]
         [InlineData("fooo", "fooo", true)]
         [InlineData("fooo", "not the same", false)]
-        public void ValidatePassword_PassPasswordString_CorrectlyValidated(string password, string stringToCheck,
-            bool result)
+        public void ValidatePassword_PassPasswordString_CorrectlyValidated(string password, string stringToCheck, bool result)
         {
             var mockSetup = new Mock<IMvxProtectedData>();
             mockSetup.Setup(x => x.Unprotect(It.Is<string>(y => y == "password"))).Returns(password);

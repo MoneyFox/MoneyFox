@@ -9,11 +9,10 @@ namespace MoneyManager.Core
 {
     public class ListStatisticFactory
     {
-        private readonly IRepository<Category> categoryRepository;
         private readonly ITransactionRepository transactionRepository;
+        private readonly IRepository<Category> categoryRepository;
 
-        public ListStatisticFactory(ITransactionRepository transactionRepository,
-            IRepository<Category> categoryRepository)
+        public ListStatisticFactory(ITransactionRepository transactionRepository, IRepository<Category> categoryRepository)
         {
             this.transactionRepository = transactionRepository;
             this.categoryRepository = categoryRepository;
@@ -37,6 +36,6 @@ namespace MoneyManager.Core
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type));
             }
-        }
+        }   
     }
 }

@@ -30,30 +30,30 @@
                 <PivotItem>
                     <PivotItem.Header>
                         <basicControls:TabHeader Label="Tiles"
-                                                 x:Uid="TilesHeader"
-                                                 Glyph="&#xE8FC;" />
+                                            x:Uid="TilesHeader"
+                                            Glyph="&#xE8FC;" />
                     </PivotItem.Header>
-                    <controls:TileSettingsUserControl Margin="-7,0,-7,0" />
+                    <controls:TileSettingsUserControl Margin="-7,0,-7,0"/>
                 </PivotItem>
 
                 <!--Categorie Settings-->
                 <PivotItem>
                     <PivotItem.Header>
                         <basicControls:TabHeader Label="Categories"
-                                                 x:Uid="CategoriesHeader"
-                                                 Glyph="&#xE8EC;" />
+                                            x:Uid="CategoriesHeader"
+                                            Glyph="&#xE8EC;" />
                     </PivotItem.Header>
-                    <controls:CategoryListUserControl Margin="-7,0,-7,0" />
+                    <controls:CategoryListUserControl Margin="-7,0,-7,0"/>
                 </PivotItem>
 
                 <!--Password Settings-->
                 <PivotItem>
                     <PivotItem.Header>
                         <basicControls:TabHeader Label="Password"
-                                                 x:Uid="SecurityHeader"
-                                                 Glyph="&#xE8D7;" />
+                                            x:Uid="SecurityHeader"
+                                            Glyph="&#xE8D7;" />
                     </PivotItem.Header>
-                    <controls:PasswordUserControl Margin="-7,0,-7,0" />
+                    <controls:PasswordUserControl Margin="-7,0,-7,0"/>
                 </PivotItem>
             </Pivot>
         </Grid>
