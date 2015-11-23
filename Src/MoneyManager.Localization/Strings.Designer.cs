@@ -404,6 +404,24 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The enddate of a recurring transaction has to be in the future. Please check your input..
+        /// </summary>
+        public static string InvalidEnddateMessage {
+            get {
+                return ResourceManager.GetString("InvalidEnddateMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Enddate.
+        /// </summary>
+        public static string InvalidEnddateTitle {
+            get {
+                return ResourceManager.GetString("InvalidEnddateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Just This.
         /// </summary>
         public static string JustThisLabel {

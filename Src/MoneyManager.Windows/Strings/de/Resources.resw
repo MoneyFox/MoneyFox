@@ -155,7 +155,7 @@
 ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
   <data name="BackupTitle.Text" xml:space="preserve">
-    <value>BackupManager</value>
+    <value>Backup</value>
   </data>
   <data name="CashFlowTitle.Label" xml:space="preserve">
     <value>Cashflow</value>
@@ -318,5 +318,8 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
   <data name="TargetAccountTextBox.Header" xml:space="preserve">
     <value>Gutschriftskonto</value>
+  </data>
+  <data name="PrivacyInfo.Text" xml:space="preserve">
+    <value>Zur Verbesserung dieser App sammeln wir anonyme Informationen über auftretende Fehler.</value>
   </data>
 </root>

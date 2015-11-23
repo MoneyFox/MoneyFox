@@ -8,12 +8,13 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.StatisticProvider
 {
-    public class CategorySummaryProvider:IStatisticProvider<IEnumerable<StatisticItem>> 
+    public class CategorySummaryProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
         private readonly IRepository<Category> categoryRepository;
         private readonly ITransactionRepository transactionRepository;
 
-        public CategorySummaryProvider(ITransactionRepository transactionRepository, IRepository<Category> categoryRepository)
+        public CategorySummaryProvider(ITransactionRepository transactionRepository,
+            IRepository<Category> categoryRepository)
         {
             this.transactionRepository = transactionRepository;
             this.categoryRepository = categoryRepository;
@@ -31,8 +32,8 @@ namespace MoneyManager.Core.StatisticProvider
                     Value = transactionRepository.Data
                         .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .Where(x => x.CategoryId == category.Id)
-                        .Where(x => x.Type != (int)TransactionType.Transfer)
-                        .Sum(x => x.Type == (int)TransactionType.Spending
+                        .Where(x => x.Type != (int) TransactionType.Transfer)
+                        .Sum(x => x.Type == (int) TransactionType.Spending
                             ? -x.Amount
                             : x.Amount)
                 });

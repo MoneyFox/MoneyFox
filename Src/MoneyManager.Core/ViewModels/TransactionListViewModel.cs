@@ -20,7 +20,7 @@ namespace MoneyManager.Core.ViewModels
         public TransactionListViewModel(ITransactionRepository transactionRepository,
             IAccountRepository accountRepository,
             BalanceViewModel balanceViewModel,
-            ModifyTransactionViewModel modifyTransactionViewModel, 
+            ModifyTransactionViewModel modifyTransactionViewModel,
             IDialogService dialogService)
         {
             this.transactionRepository = transactionRepository;
@@ -82,6 +82,7 @@ namespace MoneyManager.Core.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 accountRepository.Delete(accountRepository.Selected);
+                accountRepository.RemoveTransactionAmount(SelectedTransaction);
                 balanceViewModel.UpdateBalance();
                 Close(this);
             }
@@ -110,7 +111,7 @@ namespace MoneyManager.Core.ViewModels
             {
                 transactionRepository.Delete(transaction);
                 RelatedTransactions.Remove(transaction);
-                balanceViewModel.UpdateBalance();
+                balanceViewModel.UpdateBalance(true);
             }
         }
     }

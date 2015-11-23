@@ -23,19 +23,6 @@ namespace MoneyManager.Core.ViewModels
         }
 
         /// <summary>
-        ///     Initializes the ViewModel
-        /// </summary>
-        /// <param name="isEdit">Indicates if the view is in edit or create mode.</param>
-        /// <param name="selectedAccountId">if in edit mode, this is the selected account.</param>
-        public void Init(bool isEdit, int selectedAccountId)
-        {
-            IsEdit = isEdit;
-            SelectedAccount = selectedAccountId != 0
-                ? accountRepository.Data.First(x => x.Id == selectedAccountId)
-                : new Account();
-        }
-
-        /// <summary>
         ///     Saves all changes to the database
         ///     or creates a new account depending on
         ///     the <see cref="IsEdit" /> property
@@ -80,6 +67,19 @@ namespace MoneyManager.Core.ViewModels
         {
             get { return accountRepository.Selected; }
             set { accountRepository.Selected = value; }
+        }
+
+        /// <summary>
+        ///     Initializes the ViewModel
+        /// </summary>
+        /// <param name="isEdit">Indicates if the view is in edit or create mode.</param>
+        /// <param name="selectedAccountId">if in edit mode, this is the selected account.</param>
+        public void Init(bool isEdit, int selectedAccountId)
+        {
+            IsEdit = isEdit;
+            SelectedAccount = selectedAccountId != 0
+                ? accountRepository.Data.First(x => x.Id == selectedAccountId)
+                : new Account();
         }
 
         private void SaveAccount()

@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
@@ -16,7 +15,6 @@ namespace MoneyManager.Core.Repositories
     {
         private readonly IDataAccess<FinancialTransaction> dataAccess;
         private readonly IDataAccess<RecurringTransaction> recurringDataAccess;
-        private readonly IAccountRepository accountRepository;
         private ObservableCollection<FinancialTransaction> data;
 
         /// <summary>
@@ -26,14 +24,11 @@ namespace MoneyManager.Core.Repositories
         /// <param name="recurringDataAccess">
         ///     Instanced <see cref="IDataAccess{T}" /> for <see cref="RecurringTransaction" />
         /// </param>
-        /// <param name="accountRepository">Instanced <see cref="IRepository{T}" /> for <see cref="Account"/></param>
         public TransactionRepository(IDataAccess<FinancialTransaction> dataAccess,
-            IDataAccess<RecurringTransaction> recurringDataAccess, 
-            IAccountRepository accountRepository)
+            IDataAccess<RecurringTransaction> recurringDataAccess)
         {
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
-            this.accountRepository = accountRepository;
 
             data = new ObservableCollection<FinancialTransaction>(this.dataAccess.LoadList());
         }
@@ -74,10 +69,7 @@ namespace MoneyManager.Core.Repositories
                 throw new InvalidDataException("charged accout is missing");
             }
 
-            if (item.ClearTransactionNow)
-            {
-                item.IsCleared = true;
-            }
+            item.IsCleared = item.ClearTransactionNow;
 
             if (item.Id == 0)
             {
@@ -104,27 +96,12 @@ namespace MoneyManager.Core.Repositories
 
             foreach (var trans in relatedTrans)
             {
-                accountRepository.RemoveTransactionAmount(trans);
-
                 data.Remove(trans);
                 dataAccess.DeleteItem(trans);
 
                 // If this transaction was the last finacial transaction for the linked recurring transaction
                 // delete the db entry for the recurring transaction.
                 DeleteRecurringTransactionIfLastAssociated(trans);
-            }
-        }
-
-        private void DeleteRecurringTransactionIfLastAssociated(FinancialTransaction item)
-        {
-            if (data.All(x => x.ReccuringTransactionId != item.ReccuringTransactionId))
-            {
-                var recurringList = recurringDataAccess.LoadList(x => x.Id == item.ReccuringTransactionId).ToList();
-
-                foreach (var recTrans in recurringList)
-                {
-                    recurringDataAccess.DeleteItem(recTrans);
-                }
             }
         }
 
@@ -190,6 +167,19 @@ namespace MoneyManager.Core.Repositories
                     .OrderByDescending(x => x.Date)
                     .Last())
                 .ToList();
+        }
+
+        private void DeleteRecurringTransactionIfLastAssociated(FinancialTransaction item)
+        {
+            if (data.All(x => x.ReccuringTransactionId != item.ReccuringTransactionId))
+            {
+                var recurringList = recurringDataAccess.LoadList(x => x.Id == item.ReccuringTransactionId).ToList();
+
+                foreach (var recTrans in recurringList)
+                {
+                    recurringDataAccess.DeleteItem(recTrans);
+                }
+            }
         }
     }
 }

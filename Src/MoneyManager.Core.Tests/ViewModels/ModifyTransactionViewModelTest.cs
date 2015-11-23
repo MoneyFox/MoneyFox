@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
@@ -25,28 +24,28 @@ namespace MoneyManager.Core.Tests.ViewModels
             get
             {
                 //Edit Titles
-                yield return new object[] { TransactionType.Spending, true, Strings.EditSpendingTitle, };
-                yield return new object[] { TransactionType.Income, true, Strings.EditIncomeTitle };
-                yield return new object[] { TransactionType.Transfer, true, Strings.EditTransferTitle };
+                yield return new object[] {TransactionType.Spending, true, Strings.EditSpendingTitle};
+                yield return new object[] {TransactionType.Income, true, Strings.EditIncomeTitle};
+                yield return new object[] {TransactionType.Transfer, true, Strings.EditTransferTitle};
 
                 //Add Titles
-                yield return new object[] { TransactionType.Spending, false, Strings.AddSpendingTitle, };
-                yield return new object[] { TransactionType.Income, false, Strings.AddIncomeTitle };
-                yield return new object[] { TransactionType.Transfer, false, Strings.AddTransferTitle };
+                yield return new object[] {TransactionType.Spending, false, Strings.AddSpendingTitle};
+                yield return new object[] {TransactionType.Income, false, Strings.AddIncomeTitle};
+                yield return new object[] {TransactionType.Transfer, false, Strings.AddTransferTitle};
             }
         }
 
         [Theory]
         [MemberData(nameof(TransactionModTitles))]
-        public void Title_TransactionTypeDifferentModes_CorrectTitle(TransactionType type, bool isEditMode, string result)
+        public void Title_TransactionTypeDifferentModes_CorrectTitle(TransactionType type, bool isEditMode,
+            string result)
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
             var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
-                new RecurringTransactionDataAccess(dbHelper),
-                new AccountRepository(accountRepoSetup.Object))
+                new RecurringTransactionDataAccess(dbHelper))
             {
                 Selected = new FinancialTransaction {Type = (int) type}
             };

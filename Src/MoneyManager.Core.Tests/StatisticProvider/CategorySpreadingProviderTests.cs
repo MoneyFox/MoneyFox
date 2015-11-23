@@ -17,7 +17,8 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         [Fact]
         public void GetValues_NullDependency_NullReferenceException()
         {
-            Assert.Throws<NullReferenceException>(() => new CategorySpreadingProvider(null, null).GetValues(DateTime.Today, DateTime.Today));
+            Assert.Throws<NullReferenceException>(
+                () => new CategorySpreadingProvider(null, null).GetValues(DateTime.Today, DateTime.Today));
         }
 
         [Fact]
@@ -39,13 +40,39 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             var transactionRepo = transactionRepoSetup.Object;
             transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
             {
-                new FinancialTransaction {Id = 1, Type = (int) TransactionType.Income, Date = DateTime.Today, Amount = 60, Category = categoryRepo.Data.First(), CategoryId = 1},
-                new FinancialTransaction {Id = 2, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 90, Category = categoryRepo.Data.First(), CategoryId = 1},
-                new FinancialTransaction {Id = 3, Type = (int) TransactionType.Transfer, Date = DateTime.Today, Amount = 40, Category = categoryRepo.Data.First(), CategoryId = 1}
+                new FinancialTransaction
+                {
+                    Id = 1,
+                    Type = (int) TransactionType.Income,
+                    Date = DateTime.Today,
+                    Amount = 60,
+                    Category = categoryRepo.Data.First(),
+                    CategoryId = 1
+                },
+                new FinancialTransaction
+                {
+                    Id = 2,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 90,
+                    Category = categoryRepo.Data.First(),
+                    CategoryId = 1
+                },
+                new FinancialTransaction
+                {
+                    Id = 3,
+                    Type = (int) TransactionType.Transfer,
+                    Date = DateTime.Today,
+                    Amount = 40,
+                    Category = categoryRepo.Data.First(),
+                    CategoryId = 1
+                }
             });
 
             //Excution
-            var result = new CategorySpreadingProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)).ToList();
+            var result =
+                new CategorySpreadingProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                    DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
             result.Count.ShouldBe(1);
@@ -73,14 +100,48 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             var transactionRepo = transactionRepoSetup.Object;
             transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
             {
-                new FinancialTransaction {Id = 1, Type = (int) TransactionType.Income, Date = DateTime.Today, Amount = 60, Category = categoryRepo.Data[0], CategoryId = 1},
-                new FinancialTransaction {Id = 2, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 90, Category = categoryRepo.Data[0], CategoryId = 1},
-                new FinancialTransaction {Id = 3, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 40, Category = categoryRepo.Data[1], CategoryId = 2},
-                new FinancialTransaction {Id = 3, Type = (int) TransactionType.Income, Date = DateTime.Today, Amount = 66, Category = categoryRepo.Data[2], CategoryId = 3}
+                new FinancialTransaction
+                {
+                    Id = 1,
+                    Type = (int) TransactionType.Income,
+                    Date = DateTime.Today,
+                    Amount = 60,
+                    Category = categoryRepo.Data[0],
+                    CategoryId = 1
+                },
+                new FinancialTransaction
+                {
+                    Id = 2,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 90,
+                    Category = categoryRepo.Data[0],
+                    CategoryId = 1
+                },
+                new FinancialTransaction
+                {
+                    Id = 3,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 40,
+                    Category = categoryRepo.Data[1],
+                    CategoryId = 2
+                },
+                new FinancialTransaction
+                {
+                    Id = 3,
+                    Type = (int) TransactionType.Income,
+                    Date = DateTime.Today,
+                    Amount = 66,
+                    Category = categoryRepo.Data[2],
+                    CategoryId = 3
+                }
             });
 
             //Excution
-            var result = new CategorySpreadingProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)).ToList();
+            var result =
+                new CategorySpreadingProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                    DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
             result.Count.ShouldBe(2);
@@ -101,18 +162,36 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             var categoryRepo = categoryRepoSetup.Object;
             categoryRepo.Data = new ObservableCollection<Category>(new List<Category>
             {
-                new Category {Id = 1, Name = "Einkaufen"},
+                new Category {Id = 1, Name = "Einkaufen"}
             });
 
             var transactionRepo = transactionRepoSetup.Object;
             transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
             {
-                new FinancialTransaction {Id = 1, Type = (int) TransactionType.Income, Date = DateTime.Today, Amount = 100, Category = categoryRepo.Data[0], CategoryId = 1},
-                new FinancialTransaction {Id = 2, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 90, Category = categoryRepo.Data[0], CategoryId = 1},
+                new FinancialTransaction
+                {
+                    Id = 1,
+                    Type = (int) TransactionType.Income,
+                    Date = DateTime.Today,
+                    Amount = 100,
+                    Category = categoryRepo.Data[0],
+                    CategoryId = 1
+                },
+                new FinancialTransaction
+                {
+                    Id = 2,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 90,
+                    Category = categoryRepo.Data[0],
+                    CategoryId = 1
+                }
             });
 
             //Excution
-            var result = new CategorySpreadingProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)).ToList();
+            var result =
+                new CategorySpreadingProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                    DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
             result.Count.ShouldBe(1);
@@ -140,13 +219,39 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             var transactionRepo = transactionRepoSetup.Object;
             transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
             {
-                new FinancialTransaction {Id = 1, Type = (int) TransactionType.Spending, Date = DateTime.Today.AddDays(-5), Amount = 60, Category = categoryRepo.Data[0], CategoryId = 1},
-                new FinancialTransaction {Id = 2, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 90, Category = categoryRepo.Data[1], CategoryId = 2},
-                new FinancialTransaction {Id = 3, Type = (int) TransactionType.Spending, Date = DateTime.Today.AddDays(5), Amount = 40, Category = categoryRepo.Data[2], CategoryId = 3}
+                new FinancialTransaction
+                {
+                    Id = 1,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today.AddDays(-5),
+                    Amount = 60,
+                    Category = categoryRepo.Data[0],
+                    CategoryId = 1
+                },
+                new FinancialTransaction
+                {
+                    Id = 2,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 90,
+                    Category = categoryRepo.Data[1],
+                    CategoryId = 2
+                },
+                new FinancialTransaction
+                {
+                    Id = 3,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today.AddDays(5),
+                    Amount = 40,
+                    Category = categoryRepo.Data[2],
+                    CategoryId = 3
+                }
             });
 
             //Excution
-            var result = new CategorySpreadingProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)).ToList();
+            var result =
+                new CategorySpreadingProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                    DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
             result.Count.ShouldBe(1);
@@ -179,18 +284,84 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             var transactionRepo = transactionRepoSetup.Object;
             transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
             {
-                new FinancialTransaction {Id = 1, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 10, Category = categoryRepo.Data[0], CategoryId = 1},
-                new FinancialTransaction {Id = 2, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 20, Category = categoryRepo.Data[1], CategoryId = 2},
-                new FinancialTransaction {Id = 3, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 30, Category = categoryRepo.Data[2], CategoryId = 3},
-                new FinancialTransaction {Id = 3, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 40, Category = categoryRepo.Data[3], CategoryId = 4},
-                new FinancialTransaction {Id = 3, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 50, Category = categoryRepo.Data[4], CategoryId = 5},
-                new FinancialTransaction {Id = 3, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 60, Category = categoryRepo.Data[5], CategoryId = 6},
-                new FinancialTransaction {Id = 3, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 70, Category = categoryRepo.Data[6], CategoryId = 7},
-                new FinancialTransaction {Id = 3, Type = (int) TransactionType.Spending, Date = DateTime.Today, Amount = 80, Category = categoryRepo.Data[7], CategoryId = 8}
+                new FinancialTransaction
+                {
+                    Id = 1,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 10,
+                    Category = categoryRepo.Data[0],
+                    CategoryId = 1
+                },
+                new FinancialTransaction
+                {
+                    Id = 2,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 20,
+                    Category = categoryRepo.Data[1],
+                    CategoryId = 2
+                },
+                new FinancialTransaction
+                {
+                    Id = 3,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 30,
+                    Category = categoryRepo.Data[2],
+                    CategoryId = 3
+                },
+                new FinancialTransaction
+                {
+                    Id = 3,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 40,
+                    Category = categoryRepo.Data[3],
+                    CategoryId = 4
+                },
+                new FinancialTransaction
+                {
+                    Id = 3,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 50,
+                    Category = categoryRepo.Data[4],
+                    CategoryId = 5
+                },
+                new FinancialTransaction
+                {
+                    Id = 3,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 60,
+                    Category = categoryRepo.Data[5],
+                    CategoryId = 6
+                },
+                new FinancialTransaction
+                {
+                    Id = 3,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 70,
+                    Category = categoryRepo.Data[6],
+                    CategoryId = 7
+                },
+                new FinancialTransaction
+                {
+                    Id = 3,
+                    Type = (int) TransactionType.Spending,
+                    Date = DateTime.Today,
+                    Amount = 80,
+                    Category = categoryRepo.Data[7],
+                    CategoryId = 8
+                }
             });
 
             //Excution
-            var result = new CategorySpreadingProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)).ToList();
+            var result =
+                new CategorySpreadingProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                    DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
             result.Count.ShouldBe(7);

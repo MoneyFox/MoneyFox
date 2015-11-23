@@ -342,4 +342,10 @@
   <data name="TargetAccountLabel" xml:space="preserve">
     <value>Gutschriftkonto</value>
   </data>
+  <data name="InvalidEnddateMessage" xml:space="preserve">
+    <value>Das Enddatum für Wiederkehrende Transaktionen muss in der Zukunft liegen. Bitte überprüfe deine Eingabe.</value>
+  </data>
+  <data name="InvalidEnddateTitle" xml:space="preserve">
+    <value>Ungültiges Enddatum</value>
+  </data>
 </root>

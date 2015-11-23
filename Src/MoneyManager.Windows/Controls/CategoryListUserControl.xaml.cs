@@ -18,6 +18,14 @@ namespace MoneyManager.Windows.Controls
             DataContext = Mvx.Resolve<CategoryListViewModel>();
         }
 
+        private void CategoryListRightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            var senderElement = sender as FrameworkElement;
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+
+            flyoutBase.ShowAt(senderElement);
+        }
+
         private void CategoryListHolding(object sender, HoldingRoutedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;

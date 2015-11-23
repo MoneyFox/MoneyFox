@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using MoneyManager.Core.Converter;
+﻿using MoneyManager.Core.Converter;
 using MoneyManager.TestFoundation;
 using Xunit;
 
@@ -19,11 +17,11 @@ namespace MoneyManager.Core.Tests.Converter
         [Fact]
         public void ConvertBack_Input_EqualsInput()
         {
-            AmountFormatConverter converter = new AmountFormatConverter();
-            var result = converter.ConvertBack(30, (Type)null, (object)null, (CultureInfo)null);
+            var converter = new AmountFormatConverter();
+            var result = converter.ConvertBack(30, null, null, null);
 
             result.ShouldBe(30);
-            ((object)converter).ShouldNotBeNull();
+            converter.ShouldNotBeNull();
         }
     }
 }
