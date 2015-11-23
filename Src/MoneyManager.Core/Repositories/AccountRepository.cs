@@ -90,6 +90,8 @@ namespace MoneyManager.Core.Repositories
         /// <param name="transaction">Transaction to add the account from.</param>
         public void AddTransactionAmount(FinancialTransaction transaction)
         {
+            if (!transaction.ClearTransactionNow) return;
+
             PrehandleAddIfTransfer(transaction);
 
             Func<double, double> amountFunc = x =>
@@ -106,17 +108,16 @@ namespace MoneyManager.Core.Repositories
         /// <param name="transaction">Transaction to remove the account from.</param>
         public void RemoveTransactionAmount(FinancialTransaction transaction)
         {
-            if (transaction.IsCleared)
-            {
-                PrehandleRemoveIfTransfer(transaction);
+            if (!transaction.IsCleared) return;
 
-                Func<double, double> amountFunc = x =>
-                    transaction.Type == (int) TransactionType.Income
-                        ? -x
-                        : x;
+            PrehandleRemoveIfTransfer(transaction);
 
-                HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
-            }
+            Func<double, double> amountFunc = x =>
+                transaction.Type == (int) TransactionType.Income
+                    ? -x
+                    : x;
+
+            HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
         }
 
         private void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
@@ -132,17 +133,14 @@ namespace MoneyManager.Core.Repositories
             Func<double, double> amountFunc,
             Func<FinancialTransaction, Account> getAccountFunc)
         {
-            if (transaction.ClearTransactionNow)
+            var account = getAccountFunc(transaction);
+            if (account == null)
             {
-                var account = getAccountFunc(transaction);
-                if (account == null)
-                {
-                    return;
-                }
-
-                account.CurrentBalance += amountFunc(transaction.Amount);
-                Save(account);
+                return;
             }
+
+            account.CurrentBalance += amountFunc(transaction.Amount);
+            Save(account);
         }
 
         private void PrehandleAddIfTransfer(FinancialTransaction transaction)

@@ -32,7 +32,6 @@ namespace MoneyManager.Core.Repositories
         {
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
-            this.accountRepository = accountRepository;
 
             data = new ObservableCollection<FinancialTransaction>(this.dataAccess.LoadList());
         }
@@ -73,10 +72,7 @@ namespace MoneyManager.Core.Repositories
                 throw new InvalidDataException("charged accout is missing");
             }
 
-            if (item.ClearTransactionNow)
-            {
-                item.IsCleared = true;
-            }
+            item.IsCleared = item.ClearTransactionNow;
 
             if (item.Id == 0)
             {
@@ -103,8 +99,6 @@ namespace MoneyManager.Core.Repositories
 
             foreach (var trans in relatedTrans)
             {
-                accountRepository.RemoveTransactionAmount(trans);
-
                 data.Remove(trans);
                 dataAccess.DeleteItem(trans);
 
