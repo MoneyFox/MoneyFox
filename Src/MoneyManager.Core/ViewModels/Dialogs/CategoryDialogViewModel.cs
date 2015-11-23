@@ -46,7 +46,7 @@ namespace MoneyManager.Core.ViewModels.Dialogs
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
             }
-            
+
             categoryRepository.Save(Selected);
             categoryListView.SearchText = string.Empty;
             categoryListView.Search();

@@ -55,7 +55,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void EditAccount(Account account)
         {
-            ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = account.Id });
+            ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = account.Id});
         }
 
         private void GoToTransactionOverView(Account account)
@@ -85,7 +85,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void GoToAddAccount()
         {
-            ShowViewModel<ModifyAccountViewModel>(new { isEdit = true, selectedAccountId = 0 });
+            ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = 0});
         }
     }
 }
