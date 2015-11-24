@@ -46,12 +46,5 @@ namespace MoneyManager.Droid.Activities
                     return false;
             }
         }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-
-            ViewModel.UnloadedCommand.Execute();
-        }
     }
 }

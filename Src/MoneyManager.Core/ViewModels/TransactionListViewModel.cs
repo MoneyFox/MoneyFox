@@ -33,7 +33,6 @@ namespace MoneyManager.Core.ViewModels
         public MvxCommand<string> GoToAddTransactionCommand => new MvxCommand<string>(GoToAddTransaction);
         public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
         public MvxCommand LoadedCommand => new MvxCommand(LoadTransactions);
-        public MvxCommand UnloadedCommand => new MvxCommand(UnloadTransactions);
         public MvxCommand EditCommand => new MvxCommand(Edit);
 
         public MvxCommand<FinancialTransaction> DeleteTransactionCommand
@@ -64,12 +63,6 @@ namespace MoneyManager.Core.ViewModels
                 .GetRelatedTransactions(accountRepository.Selected)
                 .OrderByDescending(x => x.Date)
                 .ToList());
-        }
-
-        private void UnloadTransactions()
-        {
-            // Set balance control back to all accounts
-            balanceViewModel.UpdateBalance();
         }
 
         private void GoToAddTransaction(string type)
@@ -105,14 +98,14 @@ namespace MoneyManager.Core.ViewModels
 
         private async void DeleteTransaction(FinancialTransaction transaction)
         {
-            if (
-                await
-                    dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
-            {
-                transactionRepository.Delete(transaction);
-                RelatedTransactions.Remove(transaction);
-                balanceViewModel.UpdateBalance(true);
-            }
+            if (!await
+                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+                return;
+
+            accountRepository.RemoveTransactionAmount(transaction);
+            transactionRepository.Delete(transaction);
+            RelatedTransactions.Remove(transaction);
+            balanceViewModel.UpdateBalance(true);
         }
     }
 }

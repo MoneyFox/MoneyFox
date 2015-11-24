@@ -90,7 +90,7 @@ namespace MoneyManager.Core.Repositories
         /// <param name="transaction">Transaction to add the account from.</param>
         public void AddTransactionAmount(FinancialTransaction transaction)
         {
-            if (!transaction.ClearTransactionNow) return;
+            if (!transaction.IsCleared) return;
 
             PrehandleAddIfTransfer(transaction);
 
