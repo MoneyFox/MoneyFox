@@ -5,7 +5,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:MoneyManager.Windows.Controls"
       xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       mc:Ignorable="d">
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
     <Page.BottomAppBar>
         <CommandBar>

@@ -20,8 +20,6 @@ namespace MoneyManager.Core.ViewModels
         {
             this.accountRepository = accountRepository;
             this.transactionRepository = transactionRepository;
-
-            UpdateBalance();
         }
 
         private bool IsTransactionView { get; set; }

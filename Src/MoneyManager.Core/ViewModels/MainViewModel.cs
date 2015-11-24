@@ -7,16 +7,24 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly ModifyAccountViewModel modifyAccountViewModel;
         private readonly ModifyTransactionViewModel modifyTransactionViewModel;
+        private readonly BalanceViewModel balanceViewModel;
 
         /// <summary>
         ///     Creates an MainViewModel object.
         /// </summary>
         public MainViewModel(ModifyAccountViewModel modifyAccountViewModel,
-            ModifyTransactionViewModel modifyTransactionViewModel)
+            ModifyTransactionViewModel modifyTransactionViewModel, 
+            BalanceViewModel balanceViewModel)
         {
             this.modifyAccountViewModel = modifyAccountViewModel;
             this.modifyTransactionViewModel = modifyTransactionViewModel;
+            this.balanceViewModel = balanceViewModel;
         }
+
+        /// <summary>
+        ///     Prepares the MainView
+        /// </summary>
+        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
         ///     Prepare everything and navigate to AddTransaction view
@@ -32,6 +40,11 @@ namespace MoneyManager.Core.ViewModels
         ///     Prepare everything and navigate to AddAccount view
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
+
+        private void Loaded()
+        {
+            balanceViewModel.UpdateBalance();
+        }
 
         private void GoToAddTransaction(string transactionType)
         {
