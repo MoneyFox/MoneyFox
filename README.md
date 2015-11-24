@@ -3,13 +3,24 @@
 
 A way to make budgeting easy. A basic idea for the community, made even better by the community.
 
-### Next steps
-This app is currently available in the Marketplace for Windows Phone 8.1.
-[Store link](https://www.windowsphone.com/en-us/store/app/money-fox/9d806f03-d2a3-48f6-91cc-bd97d919e39c)
+### Try it
+There are two versions in the Windows Marketplace available for all devices with Windows 10:
 
-We’re in the process of porting the app over to Windows 10 Desktop and Mobile. We’re also working towards a release on Android and iOS via Xamarin.
+First there is a stable version who get regular udpates as soon as they are fully tested:
+
+[Stable Version](https://www.microsoft.com/store/apps/9nblggh6ck9d)
+
+Second there is a beta for all these guys who want get their hands on all the new features who are currently in development. We try to keep this as stable as possible. But nonethless expect some bugs (please report! =) ):
+
+[Beta Version](https://www.microsoft.com/store/apps/9nblggh68h8mBeta)
+
+### Next steps
+
+We’re in the process of improve our apps for Windows 10 Desktop and Mobile. We’re also working towards a release on Android and iOS via Xamarin.
+Head to the Issues to see all the details.
 
 ### Contribution
+Besides solving issues, you can participate by creating issues with feedback, suggestions or problems you had.
 We’re looking forward to receiving a lot of AWESOME contributions. No pressure.
 
 ### Getting Started
