@@ -44,7 +44,7 @@ namespace MoneyManager.Foundation.Model
         public RecurringTransaction RecurringTransaction { get; set; }
 
         [Ignore]
-        public bool ClearTransactionNow => !IsCleared && Date.Date <= DateTime.Now.Date;
+        public bool ClearTransactionNow => Date.Date <= DateTime.Now.Date;
 
         [Ignore]
         public bool IsTransfer => Type == (int) TransactionType.Transfer;

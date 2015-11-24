@@ -105,14 +105,14 @@ namespace MoneyManager.Core.ViewModels
 
         private async void DeleteTransaction(FinancialTransaction transaction)
         {
-            if (
-                await
-                    dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
-            {
-                transactionRepository.Delete(transaction);
-                RelatedTransactions.Remove(transaction);
-                balanceViewModel.UpdateBalance(true);
-            }
+            if (!await
+                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+                return;
+
+            accountRepository.RemoveTransactionAmount(transaction);
+            transactionRepository.Delete(transaction);
+            RelatedTransactions.Remove(transaction);
+            balanceViewModel.UpdateBalance(true);
         }
     }
 }
