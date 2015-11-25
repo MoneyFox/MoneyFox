@@ -207,6 +207,7 @@ namespace MoneyManager.Windows
         {
             if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
             {
+                TogglePaneButton.Visibility = Visibility.Collapsed;
                 RootSplitView.IsPanSelectorEnabled = false;
             }
             else
@@ -220,6 +221,7 @@ namespace MoneyManager.Windows
         {
             if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
             {
+                TogglePaneButton.Visibility = Visibility.Visible;
                 RootSplitView.IsPanSelectorEnabled = true;
             }
             else
