@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 using Beezy.MvvmCross.Plugins.SecureStorage;
 
 namespace MoneyManager.Core.Authentication
@@ -44,9 +45,7 @@ namespace MoneyManager.Core.Authentication
             {
                 protectedData.Remove(PASSWORD_KEY);
             }
-            catch (COMException)
-            {
-            }
+            catch (Exception) { }
         }
 
         /// <summary>
