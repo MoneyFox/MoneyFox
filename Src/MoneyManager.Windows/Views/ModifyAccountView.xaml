@@ -35,37 +35,40 @@
             </basicControls:PageHeader.HeaderContent>
         </basicControls:PageHeader>
 
-        <StackPanel Grid.Row="1"
-                    Margin="12,0,12,0"
+        <ScrollViewer Grid.Row="1"
+                      Margin="12,0">
+            <StackPanel 
                     EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <TextBox Text="{Binding SelectedAccount.Name, Mode=TwoWay}"
+                <TextBox Text="{Binding SelectedAccount.Name, Mode=TwoWay}"
                      Header="Name"
                      VerticalAlignment="Top"
                      x:Uid="Name"
                      Margin="0,0,0,12" />
-            <TextBox Text="{Binding SelectedAccount.Iban, Mode=TwoWay}"
+                <TextBox Text="{Binding SelectedAccount.Iban, Mode=TwoWay}"
                      Header="IBAN"
                      VerticalAlignment="Top"
                      x:Uid="Iban"
                      Margin="0,0,0,12" />
-            <Grid>
-                <TextBox
+                <Grid>
+                    <TextBox
                     Text="{Binding AmountString, Mode=TwoWay}"
-                    Header="amount"
+                    Header="Amount"
                     InputScope="Number"
                     x:Uid="Balance"
                     x:Name="TextBoxCurrentBalance"
                     TextAlignment="Right"
                     TextChanged="ReplaceSeparatorChar"
                     GotFocus="RemoveZeroOnFocus"
-                    LostFocus="AddZeroIfEmpty" />
-            </Grid>
-            <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
+                    LostFocus="AddZeroIfEmpty" 
+                    Margin="0,0,0,12"/>
+                </Grid>
+                <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
                      Header="Notes"
                      VerticalAlignment="Top"
                      x:Uid="Notes"
                      Margin="0,0,-0.167,0"
                      TextWrapping="Wrap" />
-        </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </views:MvxWindowsPage>
