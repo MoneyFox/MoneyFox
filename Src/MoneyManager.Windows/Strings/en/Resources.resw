@@ -303,7 +303,7 @@ Tap to visit the Repository:</value>
     <value>Date</value>
   </data>
   <data name="EnddateDatePicker.Header" xml:space="preserve">
-    <value>Enddate</value>
+    <value>End date</value>
   </data>
   <data name="EndlessCheckBox.Content" xml:space="preserve">
     <value>Is Endless</value>
