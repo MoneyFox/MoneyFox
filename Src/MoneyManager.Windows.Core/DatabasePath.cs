@@ -1,7 +1,7 @@
 ﻿using Windows.Storage;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows
+namespace MoneyManager.Windows.Core
 {
     /// <summary>
     ///     Provides the platform specific database path

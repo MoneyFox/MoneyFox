@@ -1,14 +1,9 @@
 ﻿{
   "dependencies": {
-    "Beezy.MvvmCross.Plugins.SecureStorage": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "Microsoft.NETNative.Analyzer": "1.0.0",
+    "MvvmCross.HotTuna.CrossCore": "4.0.0-beta5",
     "MvvmCross.HotTuna.MvvmCrossLibraries": "4.0.0-beta5",
-    "MvvmCross.HotTuna.Plugin.Email": "4.0.0-beta5",
-    "MvvmCross.HotTuna.Plugin.SQLitePCL": "4.0.0-beta6",
-    "MvvmCross.HotTuna.Plugin.WebBrowser": "4.0.0-beta5",
-    "OxyPlot.Windows": "2015.1.1033-alpha",
-    "SQLite.Net-PCL": "3.1.1",
+    "NotificationsExtensions.Win10": "10586.0.0",
     "Xamarin.Insights": "1.11.2"
   },
   "frameworks": {

@@ -3,6 +3,7 @@ using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
+using MoneyManager.Windows.Core.Shortcut;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 
 namespace MoneyManager.Tasks.Windows
@@ -24,6 +25,7 @@ namespace MoneyManager.Tasks.Windows
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             transactionManager.ClearTransactions();
+            Tile.UpdateMainTile();
         }
     }
 }

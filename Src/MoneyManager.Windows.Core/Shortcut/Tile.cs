@@ -6,7 +6,7 @@ using MoneyManager.Core.Extensions;
 using MoneyManager.Core.StatisticProvider;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows.Shortcut
+namespace MoneyManager.Windows.Core.Shortcut
 {
     public abstract class Tile
     {

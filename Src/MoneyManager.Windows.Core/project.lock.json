@@ -3,16 +3,6 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -173,7 +163,6 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
-      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -237,103 +226,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "OxyPlot.Core/2015.1.1033-alpha": {
-        "compile": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        }
-      },
-      "OxyPlot.Windows/2015.1.1033-alpha": {
-        "dependencies": {
-          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
-        },
-        "compile": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -1681,16 +1579,6 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -1894,7 +1782,6 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
-      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -1958,103 +1845,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "OxyPlot.Core/2015.1.1033-alpha": {
-        "compile": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        }
-      },
-      "OxyPlot.Windows/2015.1.1033-alpha": {
-        "dependencies": {
-          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
-        },
-        "compile": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -3449,16 +3245,6 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -3648,7 +3434,6 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
-      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -3712,103 +3497,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "OxyPlot.Core/2015.1.1033-alpha": {
-        "compile": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        }
-      },
-      "OxyPlot.Windows/2015.1.1033-alpha": {
-        "dependencies": {
-          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
-        },
-        "compile": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -5189,16 +4883,6 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -5407,7 +5091,6 @@
           "runtimes/win10-x64/native/_._": {}
         }
       },
-      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -5471,103 +5154,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "OxyPlot.Core/2015.1.1033-alpha": {
-        "compile": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        }
-      },
-      "OxyPlot.Windows/2015.1.1033-alpha": {
-        "dependencies": {
-          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
-        },
-        "compile": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -6962,16 +6554,6 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -7161,7 +6743,6 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
-      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -7225,103 +6806,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "OxyPlot.Core/2015.1.1033-alpha": {
-        "compile": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        }
-      },
-      "OxyPlot.Windows/2015.1.1033-alpha": {
-        "dependencies": {
-          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
-        },
-        "compile": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -8702,16 +8192,6 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -8920,7 +8400,6 @@
           "runtimes/win10-x86/native/_._": {}
         }
       },
-      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -8984,103 +8463,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "OxyPlot.Core/2015.1.1033-alpha": {
-        "compile": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        }
-      },
-      "OxyPlot.Windows/2015.1.1033-alpha": {
-        "dependencies": {
-          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
-        },
-        "compile": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -10475,16 +9863,6 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -10674,7 +10052,6 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
-      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -10738,103 +10115,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta5": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "OxyPlot.Core/2015.1.1033-alpha": {
-        "compile": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
-        }
-      },
-      "OxyPlot.Windows/2015.1.1033-alpha": {
-        "dependencies": {
-          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
-        },
-        "compile": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -12216,29 +11502,6 @@
     }
   },
   "libraries": {
-    "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-      "sha512": "bA7YbP9dSxuK/QuMloVGwaXtrYByLNP+NAU3UR1eQ9DTib/S8RI871ZSIlioSSR/mgak1S5h4P1XwdppkCmS4w==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "Beezy.MvvmCross.Plugins.SecureStorage.nuspec",
-        "content/MonoAndroid/Bootstrap/SecureStoragePluginBootstrap.cs.pp",
-        "content/MonoTouch/Bootstrap/SecureStoragePluginBootstrap.cs.pp",
-        "content/netcore45/Bootstrap/SecureStoragePluginBootstrap.cs.pp",
-        "content/wp8/Bootstrap/SecureStoragePluginBootstrap.cs.pp",
-        "lib/MonoAndroid/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/MonoAndroid/Beezy.MvvmCross.Plugins.SecureStorage.Droid.dll",
-        "lib/MonoTouch/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/MonoTouch/Beezy.MvvmCross.Plugins.SecureStorage.Touch.dll",
-        "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll",
-        "lib/portable-win+net45+sl50+wp8+MonoAndroid+MonoTouch/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/wp8/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/wp8/Beezy.MvvmCross.Plugins.SecureStorage.WindowsPhone.dll",
-        "package/services/metadata/core-properties/03f21e3fb01f4769a05da17e7b00db73.psmdcp"
-      ]
-    },
     "Microsoft.CSharp/4.0.0": {
       "sha512": "oWqeKUxHXdK6dL2CFjgMcaBISbkk+AqEg+yvJHE4DElNzS4QaTsCflgkkqZwVlWby1Dg9zo9n+iCAMFefFdJ/A==",
       "type": "Package",
@@ -12829,20 +12092,6 @@
         "runtimes/win8-x86/native/api-ms-win-service-private-l1-1-1.dll"
       ]
     },
-    "Microsoft.NETNative.Analyzer/1.0.0": {
-      "sha512": "fU5kNj59Kdkats3mZ1CaZJCjTPSb1fxgIsIRFWZH7bzT0dRQih09qXlh4G9PowAwKOtLOQxyOOjtDZi6T7HRAg==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "analyzers/dotnet/cs/NativeGatekeeper.dll",
-        "Microsoft.NETNative.Analyzer.1.0.0.nupkg.sha512",
-        "Microsoft.NETNative.Analyzer.nuspec",
-        "package/services/metadata/core-properties/5dd9a3149be14fc795a7718dacbee757.psmdcp",
-        "tools/install.ps1",
-        "tools/uninstall.ps1"
-      ]
-    },
     "Microsoft.VisualBasic/10.0.0": {
       "sha512": "5BEm2/HAVd97whRlCChU7rmSh/9cwGlZ/NTNe3Jl07zuPWfKQq5TUvVNUmdvmEe8QRecJLZ4/e7WF1i1O8V42g==",
       "type": "Package",
@@ -12984,110 +12233,6 @@
         "package/services/metadata/core-properties/a8006af1964b4cb1a1c4a23736567b39.psmdcp"
       ]
     },
-    "MvvmCross.HotTuna.Plugin.Email/4.0.0-beta5": {
-      "sha512": "3X7qp3ojBtWoFY3tK6SNwBDaevHLJYtTQHtE46Zpjmzg0BZa2zH49/vlBkRheuC7KmDJFFFBiGIgTQqv3v9qkQ==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "content/MonoAndroid/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "content/net45/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "content/netcore45/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "content/win81/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "content/wp8/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "content/wpa81/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "content/Xamarin.iOS10/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "lib/dotnet/MvvmCross.Plugins.Email.dll",
-        "lib/MonoAndroid/MvvmCross.Plugins.Email.dll",
-        "lib/MonoAndroid/MvvmCross.Plugins.Email.Droid.dll",
-        "lib/net45/MvvmCross.Plugins.Email.dll",
-        "lib/net45/MvvmCross.Plugins.Email.Wpf.dll",
-        "lib/netcore45/MvvmCross.Plugins.Email.dll",
-        "lib/netcore45/MvvmCross.Plugins.Email.WindowsStore.dll",
-        "lib/netcore45/MvvmCross.Plugins.Email.WindowsStore.pri",
-        "lib/portable-win+net45+wp8+win8+wpa81/MvvmCross.Plugins.Email.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.WindowsCommon.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.WindowsCommon.pri",
-        "lib/win81/MvvmCross.Plugins.Email.dll",
-        "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll",
-        "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.pri",
-        "lib/wp8/MvvmCross.Plugins.Email.dll",
-        "lib/wp8/MvvmCross.Plugins.Email.WindowsPhone.dll",
-        "lib/wpa81/MvvmCross.Plugins.Email.dll",
-        "lib/wpa81/MvvmCross.Plugins.Email.WindowsCommon.dll",
-        "lib/wpa81/MvvmCross.Plugins.Email.WindowsCommon.pri",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.dll",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.Touch.dll",
-        "MvvmCross.HotTuna.Plugin.Email.nuspec",
-        "package/services/metadata/core-properties/faabf473b1984797bf2ca19abf702210.psmdcp"
-      ]
-    },
-    "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-      "sha512": "QEq/H3Ak6zvIrckvY/Og4arB2oKaEHDI9gA7PdWo6hsLjYUi14hdAP0P1yDU94JWVGm2t2oOeFdJ0E8h3648IA==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "content/MonoAndroid/Bootstrap/SqlitePluginBootstrap.cs.pp",
-        "content/net45/Bootstrap/SqlitePclPluginBootstrap.cs.pp",
-        "content/uap10.0/Bootstrap/SqlitePluginBootstrap.cs.pp",
-        "content/win81/Bootstrap/SqlitePluginBootstrap.cs.pp",
-        "content/wpa81/Bootstrap/SqlitePluginBootstrap.cs.pp",
-        "content/Xamarin.iOS10/Bootstrap/SqlitePluginBootstrap.cs.pp",
-        "lib/MonoAndroid/MvvmCross.Plugins.Sqlite.dll",
-        "lib/MonoAndroid/MvvmCross.Plugins.Sqlite.Droid.dll",
-        "lib/net45/MvvmCross.Plugins.Sqlite.dll",
-        "lib/net45/MvvmCross.Plugins.Sqlite.Wpf.dll",
-        "lib/portable-win+net45+wp8+win8+wpa81+win81+dotnet/MvvmCross.Plugins.Sqlite.dll",
-        "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll",
-        "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll",
-        "lib/win81/MvvmCross.Plugins.Sqlite.dll",
-        "lib/win81/MvvmCross.Plugins.Sqlite.WindowsCommon.dll",
-        "lib/wpa81/MvvmCross.Plugins.Sqlite.dll",
-        "lib/wpa81/MvvmCross.Plugins.Sqlite.WindowsCommon.dll",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.Sqlite.dll",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.Sqlite.Touch.dll",
-        "MvvmCross.HotTuna.Plugin.SQLitePCL.nuspec",
-        "package/services/metadata/core-properties/7fd1f92d19584b9ab8e94802bb76caca.psmdcp"
-      ]
-    },
-    "MvvmCross.HotTuna.Plugin.WebBrowser/4.0.0-beta5": {
-      "sha512": "eY4w3txgA8VDkjDo43aOQnsrzbNhm7ghj6K9xc/Y1vdfMe87/o1rl1sdp93hfMt+rIGDxYle69OISfcKV1wkKw==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "content/MonoAndroid/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "content/netcore45/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "content/win81/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "content/wp8/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "content/wpa81/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "content/Xamarin.iOS10/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "lib/dotnet/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/MonoAndroid/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/MonoAndroid/MvvmCross.Plugins.WebBrowser.Droid.dll",
-        "lib/netcore45/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/netcore45/MvvmCross.Plugins.WebBrowser.WindowsStore.dll",
-        "lib/netcore45/MvvmCross.Plugins.WebBrowser.WindowsStore.pri",
-        "lib/portable-win+net45+wp8+win8+wpa81/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
-        "lib/win81/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
-        "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
-        "lib/wp8/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/wp8/MvvmCross.Plugins.WebBrowser.WindowsPhone.dll",
-        "lib/wpa81/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
-        "lib/wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.Touch.dll",
-        "MvvmCross.HotTuna.Plugin.WebBrowser.nuspec",
-        "package/services/metadata/core-properties/baaaed1f70c44d60aa965754390a8503.psmdcp"
-      ]
-    },
     "NotificationsExtensions.Win10/10586.0.0": {
       "sha512": "MISR3bytM8ZHZtaJbWUU4GxHbnQKqUfjohg5uSAflFUqztKbvhDmKN1fTJYs/oYovhBFrU4P3CoiWfRnT7FTWw==",
       "type": "Package",
@@ -13107,99 +12252,6 @@
         "lib/uap10.0/NotificationsExtensions.xml",
         "NotificationsExtensions.Win10.nuspec",
         "package/services/metadata/core-properties/5d5cbb4e5ec6464fa0b3cee3b82d40de.psmdcp"
-      ]
-    },
-    "OxyPlot.Core/2015.1.1033-alpha": {
-      "sha512": "To4qVNaOBb+xHUYp7SCJYZQZzB5vlowymNNAmKx/PCXg8plm4osRMLBYwYOCH18uy3hpA/D4bOy5M+I20g9HYQ==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "AUTHORS",
-        "CHANGELOG.md",
-        "CONTRIBUTORS",
-        "lib/net40/OxyPlot.dll",
-        "lib/net40/OxyPlot.pdb",
-        "lib/net40/OxyPlot.XML",
-        "lib/net40-client/OxyPlot.dll",
-        "lib/net40-client/OxyPlot.pdb",
-        "lib/net40-client/OxyPlot.XML",
-        "lib/net45/OxyPlot.dll",
-        "lib/net45/OxyPlot.pdb",
-        "lib/net45/OxyPlot.xml",
-        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll",
-        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.pdb",
-        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.xml",
-        "lib/sl5/OxyPlot.dll",
-        "lib/sl5/OxyPlot.pdb",
-        "lib/sl5/OxyPlot.XML",
-        "LICENSE",
-        "OxyPlot.Core.nuspec",
-        "package/services/metadata/core-properties/9641716e8c784e23abca0d47ca68b2a9.psmdcp",
-        "README.md"
-      ]
-    },
-    "OxyPlot.Windows/2015.1.1033-alpha": {
-      "sha512": "fadYqLF+JBPWI4wlu3lZtODFywrX3HtzNp0/Mzls1/EKV2q8F6mipuKZ56V40GWeVsL6Fs2e2zhT0F5EBIfvSQ==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "AUTHORS",
-        "CHANGELOG.md",
-        "CONTRIBUTORS",
-        "lib/portable-windows8+wpa81/OxyPlot.Windows.dll",
-        "lib/portable-windows8+wpa81/OxyPlot.Windows.pdb",
-        "lib/portable-windows8+wpa81/OxyPlot.Windows.pri",
-        "lib/portable-windows8+wpa81/OxyPlot.Windows.xml",
-        "lib/portable-windows8+wpa81/OxyPlot.Windows/OxyPlot.Windows.xr.xml",
-        "lib/portable-windows8+wpa81/OxyPlot.Windows/Themes/Generic.xbf",
-        "LICENSE",
-        "OxyPlot.Windows.nuspec",
-        "package/services/metadata/core-properties/a4292403266f496984f1b4c78d453d58.psmdcp",
-        "README.md"
-      ]
-    },
-    "SQLite.Net-PCL/3.1.1": {
-      "sha512": "eIaIk+k4MwvBeKyzj1kgIegWXYZlaDAHNzsaYP7wNDgSqAdaza8FgCRun7mIZScJD/RIuKxN/b1V+bkC+/WIeA==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/MonoAndroid/SQLite.Net.Platform.XamarinAndroid.dll",
-        "lib/monotouch/SQLite.Net.Platform.XamarinIOS.dll",
-        "lib/net4/SQLite.Net.Platform.Win32.dll",
-        "lib/net40/SQLite.Net.Platform.Generic.dll",
-        "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll",
-        "lib/portable-win81+wpa81/SQLite.Net.Platform.WinRT.dll",
-        "lib/Windows8/SQLite.Net.Platform.WinRT.dll",
-        "lib/windowsphone8/ARM/SQLite.Net.Platform.WindowsPhone8.dll",
-        "lib/windowsphone8/x86/SQLite.Net.Platform.WindowsPhone8.dll",
-        "lib/Xamarin.iOS10/SQLite.Net.Platform.XamarinIOS.Unified.dll",
-        "package/services/metadata/core-properties/42617fe08935462ea38a3073a9954c4b.psmdcp",
-        "SQLite.Net-PCL.nuspec"
-      ]
-    },
-    "SQLite.Net.Async-PCL/3.1.1": {
-      "sha512": "K4wJtiKhh5wdWgBT6oVCtwbCnrOxbt9xwooKqSIyaw0jRxR4SO3mV9Ju4ayYiOFMI/e/wzMc+AAIjtbVHFOENA==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll",
-        "package/services/metadata/core-properties/74f57c2726e34292a9fca27d068d261a.psmdcp",
-        "SQLite.Net.Async-PCL.nuspec"
-      ]
-    },
-    "SQLite.Net.Core-PCL/3.1.1": {
-      "sha512": "/0VdXnyj2srEh5rM1RW/snXJrVGRsxGB3xjW4EkhZIig9N/8EocZZrEr0vwRJU8a9Lz4BrweoLyKwp2evmSIzg==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll",
-        "package/services/metadata/core-properties/23cc4adcea6c40a7a0e82fb6b4a09ba7.psmdcp",
-        "SQLite.Net.Core-PCL.nuspec"
       ]
     },
     "System.AppContext/4.0.0": {
@@ -15948,15 +15000,10 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Beezy.MvvmCross.Plugins.SecureStorage >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "Microsoft.NETNative.Analyzer >= 1.0.0",
+      "MvvmCross.HotTuna.CrossCore >= 4.0.0-beta5",
       "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta5",
-      "MvvmCross.HotTuna.Plugin.Email >= 4.0.0-beta5",
-      "MvvmCross.HotTuna.Plugin.SQLitePCL >= 4.0.0-beta6",
-      "MvvmCross.HotTuna.Plugin.WebBrowser >= 4.0.0-beta5",
-      "OxyPlot.Windows >= 2015.1.1033-alpha",
-      "SQLite.Net-PCL >= 3.1.1",
+      "NotificationsExtensions.Win10 >= 10586.0.0",
       "Xamarin.Insights >= 1.11.2"
     ],
     "UAP,Version=v10.0": []

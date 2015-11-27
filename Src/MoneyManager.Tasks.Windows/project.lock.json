@@ -213,6 +213,19 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+        },
+        "compile": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
@@ -227,6 +240,14 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10586.0.0": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -1593,6 +1614,14 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Xamarin.Insights/1.11.2": {
+        "compile": {
+          "lib/windows8/Xamarin.Insights.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Xamarin.Insights.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm": {
@@ -1849,6 +1878,19 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+        },
+        "compile": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
@@ -1863,6 +1905,14 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10586.0.0": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -3276,6 +3326,14 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Xamarin.Insights/1.11.2": {
+        "compile": {
+          "lib/windows8/Xamarin.Insights.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Xamarin.Insights.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
@@ -3518,6 +3576,19 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+        },
+        "compile": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
@@ -3532,6 +3603,14 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10586.0.0": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -4930,6 +5009,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xamarin.Insights/1.11.2": {
+        "compile": {
+          "lib/windows8/Xamarin.Insights.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Xamarin.Insights.dll": {}
         }
       }
     },
@@ -5192,6 +5279,19 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+        },
+        "compile": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
@@ -5206,6 +5306,14 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10586.0.0": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -6619,6 +6727,14 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Xamarin.Insights/1.11.2": {
+        "compile": {
+          "lib/windows8/Xamarin.Insights.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Xamarin.Insights.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
@@ -6861,6 +6977,19 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+        },
+        "compile": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
@@ -6875,6 +7004,14 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10586.0.0": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -8273,6 +8410,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xamarin.Insights/1.11.2": {
+        "compile": {
+          "lib/windows8/Xamarin.Insights.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Xamarin.Insights.dll": {}
         }
       }
     },
@@ -8535,6 +8680,19 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+        },
+        "compile": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
@@ -8549,6 +8707,14 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10586.0.0": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -9962,6 +10128,14 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "Xamarin.Insights/1.11.2": {
+        "compile": {
+          "lib/windows8/Xamarin.Insights.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Xamarin.Insights.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
@@ -10204,6 +10378,19 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+        },
+        "compile": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        },
+        "runtime": {
+          "lib/uap/Cirrious.MvvmCross.dll": {},
+          "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
@@ -10218,6 +10405,14 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10586.0.0": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -11616,6 +11811,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xamarin.Insights/1.11.2": {
+        "compile": {
+          "lib/windows8/Xamarin.Insights.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Xamarin.Insights.dll": {}
         }
       }
     }
@@ -12316,6 +12519,42 @@
         "package/services/metadata/core-properties/fd65cdde4e43403ba05a4a038d22a934.psmdcp"
       ]
     },
+    "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+      "sha512": "FDwwID+gTgIWTyT9EbGKwfe5rDlnxg03iqzR5m81twzzjrSGWLc+PHsdoeaEcDG12RwreMimaws7+XtKvgKDrg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/dotnet/Cirrious.MvvmCross.dll",
+        "lib/MonoAndroid/Cirrious.MvvmCross.dll",
+        "lib/MonoAndroid/Cirrious.MvvmCross.Droid.dll",
+        "lib/net45/Cirrious.MvvmCross.dll",
+        "lib/net45/Cirrious.MvvmCross.Wpf.dll",
+        "lib/netcore45/Cirrious.MvvmCross.dll",
+        "lib/netcore45/Cirrious.MvvmCross.WindowsStore.dll",
+        "lib/netcore45/Cirrious.MvvmCross.WindowsStore.pri",
+        "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.dll",
+        "lib/portable-win81+wpa81/Cirrious.MvvmCross.dll",
+        "lib/portable-win81+wpa81/Cirrious.MvvmCross.WindowsCommon.dll",
+        "lib/portable-win81+wpa81/Cirrious.MvvmCross.WindowsCommon.pri",
+        "lib/uap/Cirrious.MvvmCross.dll",
+        "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll",
+        "lib/uap/Cirrious.MvvmCross.WindowsUWP.pri",
+        "lib/uap/Cirrious.MvvmCross.WindowsUWP/Properties/Cirrious.MvvmCross.WindowsUWP.rd.xml",
+        "lib/win81/Cirrious.MvvmCross.dll",
+        "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll",
+        "lib/win81/Cirrious.MvvmCross.WindowsCommon.pri",
+        "lib/wp8/Cirrious.MvvmCross.dll",
+        "lib/wp8/Cirrious.MvvmCross.WindowsPhone.dll",
+        "lib/wpa81/Cirrious.MvvmCross.dll",
+        "lib/wpa81/Cirrious.MvvmCross.WindowsCommon.dll",
+        "lib/wpa81/Cirrious.MvvmCross.WindowsCommon.pri",
+        "lib/Xamarin.iOS10/Cirrious.MvvmCross.dll",
+        "lib/Xamarin.iOS10/Cirrious.MvvmCross.Touch.dll",
+        "MvvmCross.HotTuna.MvvmCrossLibraries.nuspec",
+        "package/services/metadata/core-properties/a8006af1964b4cb1a1c4a23736567b39.psmdcp"
+      ]
+    },
     "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
       "sha512": "QEq/H3Ak6zvIrckvY/Og4arB2oKaEHDI9gA7PdWo6hsLjYUi14hdAP0P1yDU94JWVGm2t2oOeFdJ0E8h3648IA==",
       "type": "Package",
@@ -12343,6 +12582,27 @@
         "lib/Xamarin.iOS10/MvvmCross.Plugins.Sqlite.Touch.dll",
         "MvvmCross.HotTuna.Plugin.SQLitePCL.nuspec",
         "package/services/metadata/core-properties/7fd1f92d19584b9ab8e94802bb76caca.psmdcp"
+      ]
+    },
+    "NotificationsExtensions.Win10/10586.0.0": {
+      "sha512": "MISR3bytM8ZHZtaJbWUU4GxHbnQKqUfjohg5uSAflFUqztKbvhDmKN1fTJYs/oYovhBFrU4P3CoiWfRnT7FTWw==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.dll",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.pdb",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.XML",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.dll",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.pdb",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.XML",
+        "lib/uap10.0/NotificationsExtensions.pdb",
+        "lib/uap10.0/NotificationsExtensions.pri",
+        "lib/uap10.0/NotificationsExtensions.winmd",
+        "lib/uap10.0/NotificationsExtensions.winmd.xml",
+        "lib/uap10.0/NotificationsExtensions.xml",
+        "NotificationsExtensions.Win10.nuspec",
+        "package/services/metadata/core-properties/5d5cbb4e5ec6464fa0b3cee3b82d40de.psmdcp"
       ]
     },
     "SQLite.Net-PCL/3.1.1": {
@@ -15080,6 +15340,54 @@
         "runtime.json",
         "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll",
         "System.Xml.XmlSerializer.nuspec"
+      ]
+    },
+    "Xamarin.Insights/1.11.2": {
+      "sha512": "MDTL76Fp4CqUbaQddR/1SAmNkqz4FBF3nDL1+0S+o6Etzjn+J2NHW85OpgNXUEGJ1qJJVBgIaa64hmdHmncpMQ==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "build/MonoAndroid10/Xamarin.Insights.Build.Task.dll",
+        "build/MonoAndroid10/Xamarin.Insights.targets",
+        "build/MonoTouch10/Xamarin.Insights.Build.Task.dll",
+        "build/MonoTouch10/Xamarin.Insights.targets",
+        "build/portable-win+net40/Xamarin.Insights.Build.Task.dll",
+        "build/portable-win+net40/Xamarin.Insights.targets",
+        "build/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.Build.Task.dll",
+        "build/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.targets",
+        "build/windows8/Xamarin.Insights.Build.Task.dll",
+        "build/windows8/Xamarin.Insights.targets",
+        "build/WP80/Xamarin.Insights.Build.Task.dll",
+        "build/WP80/Xamarin.Insights.targets",
+        "build/wpa/Xamarin.Insights.Build.Task.dll",
+        "build/wpa/Xamarin.Insights.targets",
+        "build/Xamarin.iOS10/Xamarin.Insights.Build.Task.dll",
+        "build/Xamarin.iOS10/Xamarin.Insights.targets",
+        "build/Xamarin.Mac20/Xamarin.Insights.Build.Task.dll",
+        "build/Xamarin.Mac20/Xamarin.Insights.targets",
+        "lib/MonoAndroid10/Xamarin.Insights.dll",
+        "lib/MonoAndroid10/Xamarin.Insights.XML",
+        "lib/MonoTouch10/PLCrashReporter.dll",
+        "lib/MonoTouch10/Xamarin.Insights.dll",
+        "lib/MonoTouch10/Xamarin.Insights.XML",
+        "lib/net40/Xamarin.Insights.dll",
+        "lib/net40/Xamarin.Insights.XML",
+        "lib/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.dll",
+        "lib/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.XML",
+        "lib/windows8/Xamarin.Insights.dll",
+        "lib/windows8/Xamarin.Insights.XML",
+        "lib/WP80/Xamarin.Insights.dll",
+        "lib/WP80/Xamarin.Insights.XML",
+        "lib/wpa/Xamarin.Insights.dll",
+        "lib/wpa/Xamarin.Insights.XML",
+        "lib/Xamarin.iOS10/PLCrashReporterUnifiedBinding.dll",
+        "lib/Xamarin.iOS10/Xamarin.Insights.dll",
+        "lib/Xamarin.iOS10/Xamarin.Insights.XML",
+        "lib/Xamarin.Mac20/Xamarin.Insights.dll",
+        "lib/Xamarin.Mac20/Xamarin.Insights.XML",
+        "package/services/metadata/core-properties/b74b4f249b884c7392f09e429b65ae46.psmdcp",
+        "Xamarin.Insights.nuspec"
       ]
     }
   },
