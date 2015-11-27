@@ -348,4 +348,14 @@
   <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Invalid Enddate</value>
   </data>
+  <data name="NotNowLabel" xml:space="preserve">
+    <value>Not Now</value>
+  </data>
+  <data name="RateReminderText" xml:space="preserve">
+    <value>We hope you like our app. Support us with a rating in the store.
+Do you want to go the the store to rate?</value>
+  </data>
+  <data name="RateReminderTitle" xml:space="preserve">
+    <value>Rate this app</value>
+  </data>
 </root>

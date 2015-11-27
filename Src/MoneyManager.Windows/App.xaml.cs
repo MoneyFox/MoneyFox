@@ -14,8 +14,10 @@ using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Authentication;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Localization;
 using MoneyManager.Windows.Shortcut;
 using MoneyManager.Windows.Views;
+using UniversalRateReminder;
 
 namespace MoneyManager.Windows
 {
@@ -85,8 +87,20 @@ namespace MoneyManager.Windows
 
             OverrideTitleBarColor();
 
+            CallRateReminder();
+
             // Ensure the current window is active
             Window.Current.Activate();
+        }
+
+        private async void CallRateReminder()
+        {
+            RatePopup.RateButtonText = Strings.YesLabel;
+            RatePopup.CancelButtonText = Strings.NotNowLabel;
+            RatePopup.Title = Strings.RateReminderTitle;
+            RatePopup.Content = Strings.RateReminderText;
+
+            await RatePopup.CheckRateReminderAsync();
         }
 
         private void OverrideTitleBarColor()
