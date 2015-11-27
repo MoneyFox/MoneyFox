@@ -39,7 +39,7 @@ namespace MoneyManager.Windows
         ///     will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             var shell = Window.Current.Content as AppShell;
 
@@ -82,6 +82,7 @@ namespace MoneyManager.Windows
             new TileHelper(Mvx.Resolve<ModifyTransactionViewModel>()).DoNavigation(e.TileId);
 
             Tile.UpdateMainTile();
+            await new BackgroundTaskService().RegisterTasksAsync();
 
             OverrideTitleBarColor();
 

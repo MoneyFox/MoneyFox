@@ -110,6 +110,7 @@
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Src\BackgroundTaskService.cs" />
     <Compile Include="Controls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>
