@@ -387,12 +387,11 @@ namespace MoneyManager.Core.Tests.Repositories
         }
 
         [Theory]
-        [InlineData(TransactionType.Spending, true, 550)]
-        [InlineData(TransactionType.Spending, false, 500)]
-        [InlineData(TransactionType.Income, true, 450)]
-        [InlineData(TransactionType.Income, false, 500)]
-        public void DeleteTransaction_WithoutSpending_DeletedAccountBalanceSet(TransactionType type, bool cleared,
-            int resultAmount)
+        [InlineData(TransactionType.Spending, true)]
+        [InlineData(TransactionType.Spending, false)]
+        [InlineData(TransactionType.Income, true)]
+        [InlineData(TransactionType.Income, false)]
+        public void DeleteTransaction_WithoutSpending_DeletedAccountBalanceSet(TransactionType type, bool cleared)
         {
             var deletedId = 0;
 
@@ -431,13 +430,13 @@ namespace MoneyManager.Core.Tests.Repositories
                 transaction);
 
             deletedId.ShouldBe(10);
-            account.CurrentBalance.ShouldBe(resultAmount);
+            account.CurrentBalance.ShouldBe(500);
         }
 
         [Theory]
-        [InlineData(true, 550, 850)]
-        [InlineData(false, 500, 900)]
-        public void DeleteTransaction_Transfer_Deleted(bool isCleared, int balanceAccount1, int balanceAccount2)
+        [InlineData(true)]
+        [InlineData(false)]
+        public void DeleteTransaction_Transfer_Deleted(bool isCleared)
         {
             var deletedId = 0;
 
@@ -484,8 +483,8 @@ namespace MoneyManager.Core.Tests.Repositories
                 transaction);
 
             deletedId.ShouldBe(10);
-            account1.CurrentBalance.ShouldBe(balanceAccount1);
-            account2.CurrentBalance.ShouldBe(balanceAccount2);
+            account1.CurrentBalance.ShouldBe(500);
+            account2.CurrentBalance.ShouldBe(900);
         }
     }
 }

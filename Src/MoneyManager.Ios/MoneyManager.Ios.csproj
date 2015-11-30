@@ -11,7 +11,7 @@
     <AssemblyName>MoneyManagerIos</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <ReleaseVersion>0.7.0.0</ReleaseVersion>
+    <ReleaseVersion>0.8.0.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>

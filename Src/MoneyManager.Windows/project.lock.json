@@ -1671,6 +1671,14 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        }
+      },
       "Xamarin.Insights/1.11.2": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -3439,6 +3447,14 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        }
+      },
       "Xamarin.Insights/1.11.2": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -5177,6 +5193,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
       "Xamarin.Insights/1.11.2": {
@@ -6952,6 +6976,14 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        }
+      },
       "Xamarin.Insights/1.11.2": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -8690,6 +8722,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
       "Xamarin.Insights/1.11.2": {
@@ -10465,6 +10505,14 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        }
+      },
       "Xamarin.Insights/1.11.2": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -12203,6 +12251,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
       "Xamarin.Insights/1.11.2": {
@@ -15897,6 +15953,23 @@
         "System.Xml.XmlSerializer.nuspec"
       ]
     },
+    "UniversalRateReminder/2.0.0": {
+      "sha512": "LXY44TSgwf4BvswRHh1xHTsqcn6lYxRz3wFA5CM9rp1TVNEzjgtsNThf0DZZbCL+So1nq8kzxtKo32U5yyWW0w==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/portable-netcore451+wpa81/UniversalRateReminder.dll",
+        "lib/portable-netcore451+wpa81/UniversalRateReminder.pri",
+        "lib/portable-netcore451+wpa81/UniversalRateReminder.XML",
+        "lib/uap10.0/UniversalRateReminder.dll",
+        "lib/uap10.0/UniversalRateReminder.pri",
+        "lib/uap10.0/UniversalRateReminder.xml",
+        "lib/uap10.0/UniversalRateReminder/Properties/UniversalRateReminder.rd.xml",
+        "package/services/metadata/core-properties/d779faa918d04526a74f7f11ed292e65.psmdcp",
+        "UniversalRateReminder.nuspec"
+      ]
+    },
     "Xamarin.Insights/1.11.2": {
       "sha512": "MDTL76Fp4CqUbaQddR/1SAmNkqz4FBF3nDL1+0S+o6Etzjn+J2NHW85OpgNXUEGJ1qJJVBgIaa64hmdHmncpMQ==",
       "type": "Package",
@@ -15958,6 +16031,7 @@
       "NotificationsExtensions.Win10 >= 10586.0.0",
       "OxyPlot.Windows >= 2015.1.1033-alpha",
       "SQLite.Net-PCL >= 3.1.1",
+      "UniversalRateReminder >= 2.0.0",
       "Xamarin.Insights >= 1.11.2"
     ],
     "UAP,Version=v10.0": []

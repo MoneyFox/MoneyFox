@@ -4,6 +4,7 @@ using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
 using MoneyManager.Core.Authentication;
 using MoneyManager.Localization;
@@ -43,6 +44,16 @@ namespace MoneyManager.Windows.Views
 
             Frame.Navigate(typeof (MainView));
             Frame.BackStack.Clear();
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                e.Cancel = true;
+            }
+
+            base.OnNavigatingFrom(e);
         }
     }
 }
