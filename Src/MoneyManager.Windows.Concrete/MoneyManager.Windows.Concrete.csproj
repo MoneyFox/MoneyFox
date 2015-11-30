@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{35E6DE23-923D-40CE-B0CD-9CA27638FA5C}</ProjectGuid>
+    <ProjectGuid>{B227814D-75A1-4194-8138-8A8C8065207B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MoneyManager.Windows.Core</RootNamespace>
-    <AssemblyName>MoneyManager.Windows.Core</AssemblyName>
+    <RootNamespace>MoneyManager.Windows.Concrete</RootNamespace>
+    <AssemblyName>MoneyManager.Windows.Concrete</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
@@ -123,12 +123,7 @@
     <Compile Include="ThemedImageConverterLogic.cs" />
     <Compile Include="TileHelper.cs" />
     <Compile Include="UserNotification.cs" />
-    <Content Include="Properties\MoneyManager.Windows.Core.rd.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="LiveSDKXAML, Version=5.6">
-      <Name>Live SDK</Name>
-    </SDKReference>
+    <Content Include="Properties\MoneyManager.Windows.Concrete.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyManager.Core\MoneyManager.Core.csproj">
@@ -143,6 +138,14 @@
       <Project>{90644219-756f-45cc-ab90-253463c5bc5e}</Project>
       <Name>MoneyManager.Localization</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="LiveSDKXAML, Version=5.6">
+      <Name>Live SDK</Name>
+    </SDKReference>
+    <SDKReference Include="SQLite.UAP.2015, Version=3.9.2">
+      <Name>SQLite for Universal App Platform</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

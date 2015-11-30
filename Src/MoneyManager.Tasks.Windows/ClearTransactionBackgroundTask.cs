@@ -3,7 +3,7 @@ using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
-using MoneyManager.Windows.Core.Shortcut;
+using MoneyManager.Windows.Concrete.Shortcut;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 
 namespace MoneyManager.Tasks.Windows

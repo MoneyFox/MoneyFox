@@ -424,6 +424,10 @@
       <Project>{90644219-756f-45cc-ab90-253463c5bc5e}</Project>
       <Name>MoneyManager.Localization</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyManager.Windows.Concrete\MoneyManager.Windows.Concrete.csproj">
+      <Project>{B227814D-75A1-4194-8138-8A8C8065207B}</Project>
+      <Name>MoneyManager.Windows.Concrete</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyManager.Windows.Core\MoneyManager.Windows.Core.csproj">
       <Project>{35e6de23-923d-40ce-b0cd-9ca27638fa5c}</Project>
       <Name>MoneyManager.Windows.Core</Name>
