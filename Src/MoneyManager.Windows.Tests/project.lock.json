@@ -1671,6 +1671,14 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        }
+      },
       "Xamarin.Insights/1.11.2": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -3490,6 +3498,14 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        }
+      },
       "Xamarin.Insights/1.11.2": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -5279,6 +5295,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
       "Xamarin.Insights/1.11.2": {
@@ -7105,6 +7129,14 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        }
+      },
       "Xamarin.Insights/1.11.2": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -8894,6 +8926,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
       "Xamarin.Insights/1.11.2": {
@@ -10720,6 +10760,14 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        }
+      },
       "Xamarin.Insights/1.11.2": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -12509,6 +12557,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
       "Xamarin.Insights/1.11.2": {
@@ -16252,6 +16308,23 @@
         "runtime.json",
         "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll",
         "System.Xml.XmlSerializer.nuspec"
+      ]
+    },
+    "UniversalRateReminder/2.0.0": {
+      "sha512": "LXY44TSgwf4BvswRHh1xHTsqcn6lYxRz3wFA5CM9rp1TVNEzjgtsNThf0DZZbCL+So1nq8kzxtKo32U5yyWW0w==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/portable-netcore451+wpa81/UniversalRateReminder.dll",
+        "lib/portable-netcore451+wpa81/UniversalRateReminder.pri",
+        "lib/portable-netcore451+wpa81/UniversalRateReminder.XML",
+        "lib/uap10.0/UniversalRateReminder.dll",
+        "lib/uap10.0/UniversalRateReminder.pri",
+        "lib/uap10.0/UniversalRateReminder.xml",
+        "lib/uap10.0/UniversalRateReminder/Properties/UniversalRateReminder.rd.xml",
+        "package/services/metadata/core-properties/d779faa918d04526a74f7f11ed292e65.psmdcp",
+        "UniversalRateReminder.nuspec"
       ]
     },
     "Xamarin.Insights/1.11.2": {

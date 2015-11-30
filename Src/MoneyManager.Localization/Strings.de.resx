@@ -348,4 +348,14 @@
   <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Ungültiges Enddatum</value>
   </data>
+  <data name="NotNowLabel" xml:space="preserve">
+    <value>Nicht jetzt</value>
+  </data>
+  <data name="RateReminderText" xml:space="preserve">
+    <value>Wir hoffen dass dir unser App gefällt. Unterstütze uns mit einer Bewertung.
+Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
+  </data>
+  <data name="RateReminderTitle" xml:space="preserve">
+    <value>Bewerte dieses App</value>
+  </data>
 </root>

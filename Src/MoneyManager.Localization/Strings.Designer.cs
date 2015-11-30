@@ -512,6 +512,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not Now.
+        /// </summary>
+        public static string NotNowLabel {
+            get {
+                return ResourceManager.GetString("NotNowLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         public static string OkLabel {
@@ -598,6 +607,25 @@ namespace MoneyManager.Localization {
         public static string PasswordWrongTitle {
             get {
                 return ResourceManager.GetString("PasswordWrongTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We hope you like our app. Support us with a rating in the store.
+        ///Do you want to go the the store to rate?.
+        /// </summary>
+        public static string RateReminderText {
+            get {
+                return ResourceManager.GetString("RateReminderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate this app.
+        /// </summary>
+        public static string RateReminderTitle {
+            get {
+                return ResourceManager.GetString("RateReminderTitle", resourceCulture);
             }
         }
         
