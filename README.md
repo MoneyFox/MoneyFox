@@ -12,7 +12,7 @@ First there is a stable version who get regular udpates as soon as they are full
 
 Second there is a beta for all these guys who want get their hands on all the new features who are currently in development. We try to keep this as stable as possible. But nonethless expect some bugs (please report! =) ):
 
-[Beta Version](https://www.microsoft.com/store/apps/9nblggh68h8mBeta)
+[Beta Version](https://www.microsoft.com/store/apps/9nblggh68h8m)
 
 ### Next steps
 
