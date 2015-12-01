@@ -24,11 +24,10 @@ Besides solving issues, you can participate by creating issues with feedback, su
 We’re looking forward to receiving a lot of AWESOME contributions. No pressure.
 
 ### Getting Started
-If you look for an easy issue to start with, have a look at those marked with the "help wanted" label. They offer either a easy start or your opinion is wanted.
-
 For infos about the requirments head over to our wiki: 
 [Getting Started] (https://github.com/Apply-Solutions/MoneyManager/wiki/Getting-Started)
 
+If you need help or just need a good entry point, get in touch =)
 
 ### Tools
 We use Visual Studio 2015. If you use resharper please ensure to use the settings in the repository for this project.
