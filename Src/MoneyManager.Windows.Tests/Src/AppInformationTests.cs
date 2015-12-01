@@ -1,5 +1,6 @@
 ﻿using MoneyManager.TestFoundation;
 using MoneyManager.Windows.Concrete;
+
 using Xunit;
 
 namespace MoneyManager.Windows.Tests
