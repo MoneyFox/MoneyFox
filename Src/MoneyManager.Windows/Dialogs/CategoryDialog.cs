@@ -26,6 +26,7 @@ namespace MoneyManager.Windows.Dialogs
             if (e.Key == VirtualKey.Enter)
             {
                 ((CategoryDialogViewModel)DataContext).DoneCommand.Execute();
+                Hide();
             }
         }
     }
