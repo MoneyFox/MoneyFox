@@ -37,7 +37,9 @@ namespace MoneyManager.Windows.Concrete
                     Name = taskName,
                     TaskEntryPoint = string.Format("{0}.{1}", taskNamespace, taskName)
                 };
-                taskBuilder.SetTrigger(new TimeTrigger(15, false));
+                // Task will be executed all 6 hours
+                // 360 = 6 * 60 Minutes
+                taskBuilder.SetTrigger(new TimeTrigger(360, false));
 
                 taskBuilder.Register();
             }
