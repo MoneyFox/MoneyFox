@@ -6,7 +6,7 @@ using Microsoft.Live;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows.Services
+namespace MoneyManager.Windows.Concrete.Services
 {
     /// <summary>
     ///     Provides basic operation to create a db backup to OneDrive.
