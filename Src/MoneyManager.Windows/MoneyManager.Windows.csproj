@@ -167,21 +167,7 @@
     </Compile>
     <Compile Include="NavMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\OneDriveBackupService.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="Src\AppInformation.cs" />
-    <Compile Include="Src\DatabasePath.cs" />
-    <Compile Include="Src\DialogService.cs" />
-    <Compile Include="Src\LocalSettings.cs" />
-    <Compile Include="Src\RoamingSettings.cs" />
-    <Compile Include="Src\StoreFeatures.cs" />
-    <Compile Include="Src\ThemedImageConverterLogic.cs" />
-    <Compile Include="Src\TileHelper.cs" />
-    <Compile Include="Src\UserNotification.cs" />
-    <Compile Include="Src\Shortcut\IncomeTile.cs" />
-    <Compile Include="Src\Shortcut\SpendingTile.cs" />
-    <Compile Include="Src\Shortcut\Tile.cs" />
-    <Compile Include="Src\Shortcut\TransferTile.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
@@ -437,6 +423,14 @@
     <ProjectReference Include="..\MoneyManager.Localization\MoneyManager.Localization.csproj">
       <Project>{90644219-756f-45cc-ab90-253463c5bc5e}</Project>
       <Name>MoneyManager.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyManager.Windows.Concrete\MoneyManager.Windows.Concrete.csproj">
+      <Project>{B227814D-75A1-4194-8138-8A8C8065207B}</Project>
+      <Name>MoneyManager.Windows.Concrete</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyManager.Windows.Core\MoneyManager.Windows.Core.csproj">
+      <Project>{35e6de23-923d-40ce-b0cd-9ca27638fa5c}</Project>
+      <Name>MoneyManager.Windows.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

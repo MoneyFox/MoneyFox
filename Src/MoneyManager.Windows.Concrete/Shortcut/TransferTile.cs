@@ -4,11 +4,11 @@ using Windows.UI.StartScreen;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Localization;
 
-namespace MoneyManager.Windows.Shortcut
+namespace MoneyManager.Windows.Concrete.Shortcut
 {
-    public class IncomeTile : Tile, IIncomeShortcut
+    public class TransferTile : Tile, ITransferShortcut
     {
-        public const string ID = "AddIncomeTile";
+        public const string ID = "AddTransferTile";
 
         public bool IsShortcutExisting => TileExists(ID);
 
@@ -16,9 +16,9 @@ namespace MoneyManager.Windows.Shortcut
         {
             await Create(new SecondaryTile(
                 ID,
-                Strings.AddIncomeLabel,
+                Strings.AddTransferLabel,
                 "intake",
-                new Uri("ms-appx:///Assets/IncomeTileIcon.png", UriKind.Absolute),
+                new Uri("ms-appx:///Assets/TransferTileIcon.png", UriKind.Absolute),
                 TileSize.Default));
         }
 

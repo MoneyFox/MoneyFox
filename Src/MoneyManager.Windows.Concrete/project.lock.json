@@ -226,58 +226,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -1622,58 +1576,7 @@
         "runtime": {
           "lib/windows8/Xamarin.Insights.dll": {}
         }
-      },
-      "xunit/2.1.0": {
-        "dependencies": {
-          "xunit.assert": "[2.1.0, 2.1.0]",
-          "xunit.core": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.abstractions/2.0.0": {
-        "compile": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        }
-      },
-      "xunit.assert/2.1.0": {
-        "compile": {
-          "lib/dotnet/xunit.assert.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.assert.dll": {}
-        }
-      },
-      "xunit.core/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]",
-          "xunit.extensibility.execution": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.extensibility.core/2.1.0": {
-        "dependencies": {
-          "xunit.abstractions": "[2.0.0, 2.0.0]"
-        },
-        "compile": {
-          "lib/dotnet/xunit.core.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.core.dll": {}
-        }
-      },
-      "xunit.extensibility.execution/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]"
-        },
-        "compile": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        },
-        "runtime": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        }
-      },
-      "xunit.runner.visualstudio/2.1.0": {}
+      }
     },
     "UAP,Version=v10.0/win10-arm": {
       "Microsoft.CSharp/4.0.0": {
@@ -1942,58 +1845,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -3385,58 +3242,7 @@
         "runtime": {
           "lib/windows8/Xamarin.Insights.dll": {}
         }
-      },
-      "xunit/2.1.0": {
-        "dependencies": {
-          "xunit.assert": "[2.1.0, 2.1.0]",
-          "xunit.core": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.abstractions/2.0.0": {
-        "compile": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        }
-      },
-      "xunit.assert/2.1.0": {
-        "compile": {
-          "lib/dotnet/xunit.assert.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.assert.dll": {}
-        }
-      },
-      "xunit.core/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]",
-          "xunit.extensibility.execution": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.extensibility.core/2.1.0": {
-        "dependencies": {
-          "xunit.abstractions": "[2.0.0, 2.0.0]"
-        },
-        "compile": {
-          "lib/dotnet/xunit.core.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.core.dll": {}
-        }
-      },
-      "xunit.extensibility.execution/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]"
-        },
-        "compile": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        },
-        "runtime": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        }
-      },
-      "xunit.runner.visualstudio/2.1.0": {}
+      }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
       "Microsoft.CSharp/4.0.0": {
@@ -3691,58 +3497,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -5120,58 +4880,7 @@
         "runtime": {
           "lib/windows8/Xamarin.Insights.dll": {}
         }
-      },
-      "xunit/2.1.0": {
-        "dependencies": {
-          "xunit.assert": "[2.1.0, 2.1.0]",
-          "xunit.core": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.abstractions/2.0.0": {
-        "compile": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        }
-      },
-      "xunit.assert/2.1.0": {
-        "compile": {
-          "lib/dotnet/xunit.assert.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.assert.dll": {}
-        }
-      },
-      "xunit.core/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]",
-          "xunit.extensibility.execution": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.extensibility.core/2.1.0": {
-        "dependencies": {
-          "xunit.abstractions": "[2.0.0, 2.0.0]"
-        },
-        "compile": {
-          "lib/dotnet/xunit.core.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.core.dll": {}
-        }
-      },
-      "xunit.extensibility.execution/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]"
-        },
-        "compile": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        },
-        "runtime": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        }
-      },
-      "xunit.runner.visualstudio/2.1.0": {}
+      }
     },
     "UAP,Version=v10.0/win10-x64": {
       "Microsoft.CSharp/4.0.0": {
@@ -5445,58 +5154,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -6888,58 +6551,7 @@
         "runtime": {
           "lib/windows8/Xamarin.Insights.dll": {}
         }
-      },
-      "xunit/2.1.0": {
-        "dependencies": {
-          "xunit.assert": "[2.1.0, 2.1.0]",
-          "xunit.core": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.abstractions/2.0.0": {
-        "compile": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        }
-      },
-      "xunit.assert/2.1.0": {
-        "compile": {
-          "lib/dotnet/xunit.assert.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.assert.dll": {}
-        }
-      },
-      "xunit.core/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]",
-          "xunit.extensibility.execution": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.extensibility.core/2.1.0": {
-        "dependencies": {
-          "xunit.abstractions": "[2.0.0, 2.0.0]"
-        },
-        "compile": {
-          "lib/dotnet/xunit.core.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.core.dll": {}
-        }
-      },
-      "xunit.extensibility.execution/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]"
-        },
-        "compile": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        },
-        "runtime": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        }
-      },
-      "xunit.runner.visualstudio/2.1.0": {}
+      }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
       "Microsoft.CSharp/4.0.0": {
@@ -7194,58 +6806,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -8623,58 +8189,7 @@
         "runtime": {
           "lib/windows8/Xamarin.Insights.dll": {}
         }
-      },
-      "xunit/2.1.0": {
-        "dependencies": {
-          "xunit.assert": "[2.1.0, 2.1.0]",
-          "xunit.core": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.abstractions/2.0.0": {
-        "compile": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        }
-      },
-      "xunit.assert/2.1.0": {
-        "compile": {
-          "lib/dotnet/xunit.assert.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.assert.dll": {}
-        }
-      },
-      "xunit.core/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]",
-          "xunit.extensibility.execution": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.extensibility.core/2.1.0": {
-        "dependencies": {
-          "xunit.abstractions": "[2.0.0, 2.0.0]"
-        },
-        "compile": {
-          "lib/dotnet/xunit.core.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.core.dll": {}
-        }
-      },
-      "xunit.extensibility.execution/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]"
-        },
-        "compile": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        },
-        "runtime": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        }
-      },
-      "xunit.runner.visualstudio/2.1.0": {}
+      }
     },
     "UAP,Version=v10.0/win10-x86": {
       "Microsoft.CSharp/4.0.0": {
@@ -8948,58 +8463,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -10391,58 +9860,7 @@
         "runtime": {
           "lib/windows8/Xamarin.Insights.dll": {}
         }
-      },
-      "xunit/2.1.0": {
-        "dependencies": {
-          "xunit.assert": "[2.1.0, 2.1.0]",
-          "xunit.core": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.abstractions/2.0.0": {
-        "compile": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        }
-      },
-      "xunit.assert/2.1.0": {
-        "compile": {
-          "lib/dotnet/xunit.assert.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.assert.dll": {}
-        }
-      },
-      "xunit.core/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]",
-          "xunit.extensibility.execution": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.extensibility.core/2.1.0": {
-        "dependencies": {
-          "xunit.abstractions": "[2.0.0, 2.0.0]"
-        },
-        "compile": {
-          "lib/dotnet/xunit.core.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.core.dll": {}
-        }
-      },
-      "xunit.extensibility.execution/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]"
-        },
-        "compile": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        },
-        "runtime": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        }
-      },
-      "xunit.runner.visualstudio/2.1.0": {}
+      }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
       "Microsoft.CSharp/4.0.0": {
@@ -10697,58 +10115,12 @@
           "lib/uap/Cirrious.MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )",
-          "SQLite.Net.Async-PCL": "[3.1.1, )",
-          "SQLite.Net.Core-PCL": "[3.1.1, )",
-          "SQLite.Net-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
-          "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
       "NotificationsExtensions.Win10/10586.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
-      "SQLite.Net-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        },
-        "runtime": {
-          "lib/Windows8/SQLite.Net.Platform.WinRT.dll": {}
-        }
-      },
-      "SQLite.Net.Async-PCL/3.1.1": {
-        "dependencies": {
-          "SQLite.Net.Core-PCL": "[3.1.1, )"
-        },
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll": {}
-        }
-      },
-      "SQLite.Net.Core-PCL/3.1.1": {
-        "compile": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -12126,58 +11498,7 @@
         "runtime": {
           "lib/windows8/Xamarin.Insights.dll": {}
         }
-      },
-      "xunit/2.1.0": {
-        "dependencies": {
-          "xunit.assert": "[2.1.0, 2.1.0]",
-          "xunit.core": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.abstractions/2.0.0": {
-        "compile": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll": {}
-        }
-      },
-      "xunit.assert/2.1.0": {
-        "compile": {
-          "lib/dotnet/xunit.assert.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.assert.dll": {}
-        }
-      },
-      "xunit.core/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]",
-          "xunit.extensibility.execution": "[2.1.0, 2.1.0]"
-        }
-      },
-      "xunit.extensibility.core/2.1.0": {
-        "dependencies": {
-          "xunit.abstractions": "[2.0.0, 2.0.0]"
-        },
-        "compile": {
-          "lib/dotnet/xunit.core.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/xunit.core.dll": {}
-        }
-      },
-      "xunit.extensibility.execution/2.1.0": {
-        "dependencies": {
-          "xunit.extensibility.core": "[2.1.0, 2.1.0]"
-        },
-        "compile": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        },
-        "runtime": {
-          "lib/win8/xunit.execution.dotnet.dll": {}
-        }
-      },
-      "xunit.runner.visualstudio/2.1.0": {}
+      }
     }
   },
   "libraries": {
@@ -12912,35 +12233,6 @@
         "package/services/metadata/core-properties/a8006af1964b4cb1a1c4a23736567b39.psmdcp"
       ]
     },
-    "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta6": {
-      "sha512": "QEq/H3Ak6zvIrckvY/Og4arB2oKaEHDI9gA7PdWo6hsLjYUi14hdAP0P1yDU94JWVGm2t2oOeFdJ0E8h3648IA==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "content/MonoAndroid/Bootstrap/SqlitePluginBootstrap.cs.pp",
-        "content/net45/Bootstrap/SqlitePclPluginBootstrap.cs.pp",
-        "content/uap10.0/Bootstrap/SqlitePluginBootstrap.cs.pp",
-        "content/win81/Bootstrap/SqlitePluginBootstrap.cs.pp",
-        "content/wpa81/Bootstrap/SqlitePluginBootstrap.cs.pp",
-        "content/Xamarin.iOS10/Bootstrap/SqlitePluginBootstrap.cs.pp",
-        "lib/MonoAndroid/MvvmCross.Plugins.Sqlite.dll",
-        "lib/MonoAndroid/MvvmCross.Plugins.Sqlite.Droid.dll",
-        "lib/net45/MvvmCross.Plugins.Sqlite.dll",
-        "lib/net45/MvvmCross.Plugins.Sqlite.Wpf.dll",
-        "lib/portable-win+net45+wp8+win8+wpa81+win81+dotnet/MvvmCross.Plugins.Sqlite.dll",
-        "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll",
-        "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll",
-        "lib/win81/MvvmCross.Plugins.Sqlite.dll",
-        "lib/win81/MvvmCross.Plugins.Sqlite.WindowsCommon.dll",
-        "lib/wpa81/MvvmCross.Plugins.Sqlite.dll",
-        "lib/wpa81/MvvmCross.Plugins.Sqlite.WindowsCommon.dll",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.Sqlite.dll",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.Sqlite.Touch.dll",
-        "MvvmCross.HotTuna.Plugin.SQLitePCL.nuspec",
-        "package/services/metadata/core-properties/7fd1f92d19584b9ab8e94802bb76caca.psmdcp"
-      ]
-    },
     "NotificationsExtensions.Win10/10586.0.0": {
       "sha512": "MISR3bytM8ZHZtaJbWUU4GxHbnQKqUfjohg5uSAflFUqztKbvhDmKN1fTJYs/oYovhBFrU4P3CoiWfRnT7FTWw==",
       "type": "Package",
@@ -12960,48 +12252,6 @@
         "lib/uap10.0/NotificationsExtensions.xml",
         "NotificationsExtensions.Win10.nuspec",
         "package/services/metadata/core-properties/5d5cbb4e5ec6464fa0b3cee3b82d40de.psmdcp"
-      ]
-    },
-    "SQLite.Net-PCL/3.1.1": {
-      "sha512": "eIaIk+k4MwvBeKyzj1kgIegWXYZlaDAHNzsaYP7wNDgSqAdaza8FgCRun7mIZScJD/RIuKxN/b1V+bkC+/WIeA==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/MonoAndroid/SQLite.Net.Platform.XamarinAndroid.dll",
-        "lib/monotouch/SQLite.Net.Platform.XamarinIOS.dll",
-        "lib/net4/SQLite.Net.Platform.Win32.dll",
-        "lib/net40/SQLite.Net.Platform.Generic.dll",
-        "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll",
-        "lib/portable-win81+wpa81/SQLite.Net.Platform.WinRT.dll",
-        "lib/Windows8/SQLite.Net.Platform.WinRT.dll",
-        "lib/windowsphone8/ARM/SQLite.Net.Platform.WindowsPhone8.dll",
-        "lib/windowsphone8/x86/SQLite.Net.Platform.WindowsPhone8.dll",
-        "lib/Xamarin.iOS10/SQLite.Net.Platform.XamarinIOS.Unified.dll",
-        "package/services/metadata/core-properties/42617fe08935462ea38a3073a9954c4b.psmdcp",
-        "SQLite.Net-PCL.nuspec"
-      ]
-    },
-    "SQLite.Net.Async-PCL/3.1.1": {
-      "sha512": "K4wJtiKhh5wdWgBT6oVCtwbCnrOxbt9xwooKqSIyaw0jRxR4SO3mV9Ju4ayYiOFMI/e/wzMc+AAIjtbVHFOENA==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.Async.dll",
-        "package/services/metadata/core-properties/74f57c2726e34292a9fca27d068d261a.psmdcp",
-        "SQLite.Net.Async-PCL.nuspec"
-      ]
-    },
-    "SQLite.Net.Core-PCL/3.1.1": {
-      "sha512": "/0VdXnyj2srEh5rM1RW/snXJrVGRsxGB3xjW4EkhZIig9N/8EocZZrEr0vwRJU8a9Lz4BrweoLyKwp2evmSIzg==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1/SQLite.Net.dll",
-        "package/services/metadata/core-properties/23cc4adcea6c40a7a0e82fb6b4a09ba7.psmdcp",
-        "SQLite.Net.Core-PCL.nuspec"
       ]
     },
     "System.AppContext/4.0.0": {
@@ -15746,171 +14996,15 @@
         "package/services/metadata/core-properties/b74b4f249b884c7392f09e429b65ae46.psmdcp",
         "Xamarin.Insights.nuspec"
       ]
-    },
-    "xunit/2.1.0": {
-      "sha512": "u/7VQSOSXa7kSG4iK6Lcn7RqKZQ3hk7cnyMNVMpXHSP0RI5VQEtc44hvkG3LyWOVsx1dhUDD3rPAHAxyOUDQJw==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "package/services/metadata/core-properties/645916a897f44189a642f33e571d5b90.psmdcp",
-        "xunit.nuspec"
-      ]
-    },
-    "xunit.abstractions/2.0.0": {
-      "sha512": "NAdxKQRzuLnCZ0g++x6i87/8rMBpQoRiRlRNLAqfODm2zJPbteHRoSER3DXfxnqrHXyBJT8rFaZ8uveBeQyaMA==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/net35/xunit.abstractions.dll",
-        "lib/net35/xunit.abstractions.xml",
-        "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll",
-        "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.xml",
-        "package/services/metadata/core-properties/24083640fee244bf9de77f4c35d40a72.psmdcp",
-        "xunit.abstractions.nuspec"
-      ]
-    },
-    "xunit.assert/2.1.0": {
-      "sha512": "Hhhw+YaTe+BGhbr57dxVE+6VJk8BfThqFFii1XIsSZ4qx+SSCixprJC10JkiLRVSTfWyT8W/4nAf6NQgIrmBxA==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/dotnet/xunit.assert.dll",
-        "lib/dotnet/xunit.assert.pdb",
-        "lib/dotnet/xunit.assert.xml",
-        "lib/portable-net45+win8+wp8+wpa81/xunit.assert.dll",
-        "lib/portable-net45+win8+wp8+wpa81/xunit.assert.pdb",
-        "lib/portable-net45+win8+wp8+wpa81/xunit.assert.xml",
-        "package/services/metadata/core-properties/4f538d979dfc48ed9b4c20e5a69d87b1.psmdcp",
-        "xunit.assert.nuspec"
-      ]
-    },
-    "xunit.core/2.1.0": {
-      "sha512": "jlbYdPbnkPIRwJllcT/tQZCNsSElVDEymdpJfH79uTUrPARkELVYw9o/zhAjKZXmeikGqGK5C2Yny4gTNoEu0Q==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "build/_desktop/xunit.execution.desktop.dll",
-        "build/dnx451/_._",
-        "build/monoandroid/_._",
-        "build/monotouch/_._",
-        "build/net45/_._",
-        "build/portable-net45+win8+wp8+wpa81/xunit.core.props",
-        "build/win8/_._",
-        "build/win81/xunit.core.props",
-        "build/wp8/_._",
-        "build/wpa81/xunit.core.props",
-        "build/xamarinios/_._",
-        "package/services/metadata/core-properties/cce23a490b7f4272adfe9aa57c4e1ca3.psmdcp",
-        "xunit.core.nuspec"
-      ]
-    },
-    "xunit.extensibility.core/2.1.0": {
-      "sha512": "ANWM3WxeaeHjACLRlmrv+xOc0WAcr3cvIiJE+gqbdzTv1NCH4p1VDyT+8WmmdCc9db0WFiJLaDy4YTYsL1wWXw==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/dotnet/xunit.core.dll",
-        "lib/dotnet/xunit.core.dll.tdnet",
-        "lib/dotnet/xunit.core.pdb",
-        "lib/dotnet/xunit.core.xml",
-        "lib/dotnet/xunit.runner.tdnet.dll",
-        "lib/dotnet/xunit.runner.utility.desktop.dll",
-        "lib/portable-net45+win8+wp8+wpa81/xunit.core.dll",
-        "lib/portable-net45+win8+wp8+wpa81/xunit.core.dll.tdnet",
-        "lib/portable-net45+win8+wp8+wpa81/xunit.core.pdb",
-        "lib/portable-net45+win8+wp8+wpa81/xunit.core.xml",
-        "lib/portable-net45+win8+wp8+wpa81/xunit.runner.tdnet.dll",
-        "lib/portable-net45+win8+wp8+wpa81/xunit.runner.utility.desktop.dll",
-        "package/services/metadata/core-properties/5218831c5b01422bb82b23cafd6488b3.psmdcp",
-        "xunit.extensibility.core.nuspec"
-      ]
-    },
-    "xunit.extensibility.execution/2.1.0": {
-      "sha512": "tAoNafoVknKa3sZJPMvtZRnhOSk3gasEGeceSm7w/gyGwsR/OXFxndWJB1xSHeoy33d3Z6jFqn4A3j+pWCF0Ew==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/dnx451/xunit.execution.dotnet.dll",
-        "lib/dnx451/xunit.execution.dotnet.pdb",
-        "lib/dnx451/xunit.execution.dotnet.xml",
-        "lib/dotnet/xunit.execution.dotnet.dll",
-        "lib/dotnet/xunit.execution.dotnet.pdb",
-        "lib/dotnet/xunit.execution.dotnet.xml",
-        "lib/monoandroid/xunit.execution.dotnet.dll",
-        "lib/monoandroid/xunit.execution.dotnet.pdb",
-        "lib/monoandroid/xunit.execution.dotnet.xml",
-        "lib/monotouch/xunit.execution.dotnet.dll",
-        "lib/monotouch/xunit.execution.dotnet.pdb",
-        "lib/monotouch/xunit.execution.dotnet.xml",
-        "lib/net45/xunit.execution.desktop.dll",
-        "lib/net45/xunit.execution.desktop.pdb",
-        "lib/net45/xunit.execution.desktop.xml",
-        "lib/portable-net45+win8+wp8+wpa81/xunit.execution.dotnet.dll",
-        "lib/portable-net45+win8+wp8+wpa81/xunit.execution.dotnet.pdb",
-        "lib/portable-net45+win8+wp8+wpa81/xunit.execution.dotnet.xml",
-        "lib/win8/xunit.execution.dotnet.dll",
-        "lib/win8/xunit.execution.dotnet.pdb",
-        "lib/win8/xunit.execution.dotnet.xml",
-        "lib/wp8/xunit.execution.dotnet.dll",
-        "lib/wp8/xunit.execution.dotnet.pdb",
-        "lib/wp8/xunit.execution.dotnet.xml",
-        "lib/wpa81/xunit.execution.dotnet.dll",
-        "lib/wpa81/xunit.execution.dotnet.pdb",
-        "lib/wpa81/xunit.execution.dotnet.xml",
-        "lib/xamarinios/xunit.execution.dotnet.dll",
-        "lib/xamarinios/xunit.execution.dotnet.pdb",
-        "lib/xamarinios/xunit.execution.dotnet.xml",
-        "package/services/metadata/core-properties/9f5f1211ea9a4e748cecce63d1c73e30.psmdcp",
-        "xunit.extensibility.execution.nuspec"
-      ]
-    },
-    "xunit.runner.visualstudio/2.1.0": {
-      "sha512": "44vJFEQopk8SHfPMjgzn4QevRNfITO7zRZBo9lb+OPhID7v/q2gFaOgyEUomKilq2rwWUQ0m9yquBOzJL4L4aA==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "build/_common/xunit.abstractions.dll",
-        "build/_common/xunit.runner.utility.desktop.dll",
-        "build/_common/xunit.runner.utility.dotnet.dll",
-        "build/_common/xunit.runner.visualstudio.testadapter.dll",
-        "build/monoandroid/_._",
-        "build/monotouch/_._",
-        "build/net20/xunit.runner.visualstudio.props",
-        "build/portable-net45+win8+wp8+wpa81/xunit.runner.visualstudio.props",
-        "build/uap10.0/xunit.runner.visualstudio.props",
-        "build/uap10.0/xunit.runner.visualstudio.targets",
-        "build/uap10.0/xunit.runner.visualstudio.uwp.dll",
-        "build/uap10.0/xunit.runner.visualstudio.uwp.pri",
-        "build/win8/_._",
-        "build/win81/xunit.runner.visualstudio.props",
-        "build/win81/xunit.runner.visualstudio.targets",
-        "build/win81/xunit.runner.visualstudio.win81.dll",
-        "build/win81/xunit.runner.visualstudio.win81.pri",
-        "build/wp8/_._",
-        "build/wpa81/xunit.runner.visualstudio.props",
-        "build/wpa81/xunit.runner.visualstudio.targets",
-        "build/wpa81/xunit.runner.visualstudio.wpa81.dll",
-        "build/wpa81/xunit.runner.visualstudio.wpa81.pri",
-        "build/xamarinios/_._",
-        "package/services/metadata/core-properties/75d77ac04d244734b920caf67c66919b.psmdcp",
-        "xunit.runner.visualstudio.nuspec"
-      ]
     }
   },
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "MvvmCross.HotTuna.Plugin.SQLitePCL >= 4.0.0-beta6",
-      "Xamarin.Insights >= 1.11.2",
-      "xunit >= 2.1.0",
-      "xunit.runner.visualstudio >= 2.1.0"
+      "MvvmCross.HotTuna.CrossCore >= 4.0.0-beta5",
+      "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta5",
+      "NotificationsExtensions.Win10 >= 10586.0.0",
+      "Xamarin.Insights >= 1.11.2"
     ],
     "UAP,Version=v10.0": []
   }
