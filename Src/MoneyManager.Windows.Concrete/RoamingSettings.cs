@@ -3,7 +3,7 @@ using System.Globalization;
 using Windows.Storage;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows
+namespace MoneyManager.Windows.Concrete
 {
     /// <summary>
     ///     Grants CRUD operations to the roaming settings on windows.

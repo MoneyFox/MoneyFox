@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ServiceModel.Channels;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
@@ -57,6 +59,16 @@ namespace MoneyManager.Windows.Controls
             }
 
             ((CategoryListViewModel) DataContext).DeleteCategoryCommand.Execute(category);
+        }
+
+        protected override void OnKeyDown(KeyRoutedEventArgs e)
+        {
+            if(e.Key == VirtualKey.Enter)
+            {
+                ((CategoryListViewModel)DataContext).DoneCommand.Execute();
+            }
+
+            base.OnKeyDown(e);
         }
     }
 }

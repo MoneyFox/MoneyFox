@@ -16028,7 +16028,6 @@
       "MvvmCross.HotTuna.Plugin.Email >= 4.0.0-beta5",
       "MvvmCross.HotTuna.Plugin.SQLitePCL >= 4.0.0-beta6",
       "MvvmCross.HotTuna.Plugin.WebBrowser >= 4.0.0-beta5",
-      "NotificationsExtensions.Win10 >= 10586.0.0",
       "OxyPlot.Windows >= 2015.1.1033-alpha",
       "SQLite.Net-PCL >= 3.1.1",
       "UniversalRateReminder >= 2.0.0",
