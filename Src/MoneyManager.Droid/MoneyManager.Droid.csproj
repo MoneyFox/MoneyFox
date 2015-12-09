@@ -46,7 +46,7 @@
     <Debugger>Xamarin</Debugger>
     <AotAssemblies>True</AotAssemblies>
     <DevInstrumentationEnabled>False</DevInstrumentationEnabled>
-    <EnableLLVM>true</EnableLLVM>
+    <AndroidSupportedAbis>armeabi;armeabi-v7a</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Platform)' != 'Unix'">
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
