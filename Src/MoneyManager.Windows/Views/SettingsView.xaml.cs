@@ -19,7 +19,7 @@ namespace MoneyManager.Windows.Views
 
         private async void AddCategory(object sender, RoutedEventArgs e)
         {
-            await new CategoryDialog().ShowAsync();
+            await new ModifyCategoryDialog().ShowAsync();
         }
     }
 }

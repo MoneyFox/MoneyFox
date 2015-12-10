@@ -45,7 +45,7 @@ namespace MoneyManager.Windows.Controls
                 return;
             }
 
-            var dialog = new CategoryDialog(category);
+            var dialog = new ModifyCategoryDialog(category);
             await dialog.ShowAsync();
         }
 
