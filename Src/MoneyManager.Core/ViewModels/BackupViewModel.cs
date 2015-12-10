@@ -104,7 +104,7 @@ namespace MoneyManager.Core.ViewModels
         private async Task<bool> ShowOverwriteDataInfo()
         {
             return await dialogService
-                .ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
+                .ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
         }
 
         private async Task ShowCompletionNote()
