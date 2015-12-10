@@ -5,6 +5,7 @@ using Android.Widget;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Droid.Support.Fragging;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Core.ViewModels.Dialogs;
 using MoneyManager.Droid.Fragments;
 using MoneyManager.Localization;
@@ -12,11 +13,11 @@ using MoneyManager.Localization;
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "CategoryListActivity")]
-    public class CategoryListActivity : MvxFragmentActivity
+    public class SelectCategoryListActivity : MvxFragmentActivity
     {
-        public new CategoryListViewModel ViewModel
+        public new SelectCategoryListViewModel ViewModel
         {
-            get { return (CategoryListViewModel) base.ViewModel; }
+            get { return (SelectCategoryListViewModel) base.ViewModel; }
             set { base.ViewModel = value; }
         }
 

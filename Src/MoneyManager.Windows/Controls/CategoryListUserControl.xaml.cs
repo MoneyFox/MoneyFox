@@ -1,11 +1,10 @@
 ﻿using System;
-using System.ServiceModel.Channels;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
-using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Dialogs;
 
@@ -16,8 +15,6 @@ namespace MoneyManager.Windows.Controls
         public CategoryListUserControl()
         {
             InitializeComponent();
-
-            DataContext = Mvx.Resolve<CategoryListViewModel>();
         }
 
         private void CategoryListRightTapped(object sender, RightTappedRoutedEventArgs e)
@@ -59,16 +56,6 @@ namespace MoneyManager.Windows.Controls
             }
 
             ((CategoryListViewModel) DataContext).DeleteCategoryCommand.Execute(category);
-        }
-
-        protected override void OnKeyDown(KeyRoutedEventArgs e)
-        {
-            if(e.Key == VirtualKey.Enter)
-            {
-                ((CategoryListViewModel)DataContext).DoneCommand.Execute();
-            }
-
-            base.OnKeyDown(e);
         }
     }
 }

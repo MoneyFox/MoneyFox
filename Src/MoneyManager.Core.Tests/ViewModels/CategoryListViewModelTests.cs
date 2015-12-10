@@ -1,6 +1,7 @@
 ﻿using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Core.ViewModels.Controls;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;

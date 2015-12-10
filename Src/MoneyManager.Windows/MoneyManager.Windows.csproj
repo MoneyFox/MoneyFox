@@ -183,8 +183,8 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CategoryListView.xaml.cs">
-      <DependentUpon>CategoryListView.xaml</DependentUpon>
+    <Compile Include="Views\SelectCategoryListView.xaml.cs">
+      <DependentUpon>SelectCategoryListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BackupView.xaml.cs">
       <DependentUpon>BackupView.xaml</DependentUpon>
@@ -390,7 +390,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CategoryListView.xaml">
+    <Page Include="Views\SelectCategoryListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
