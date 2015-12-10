@@ -159,8 +159,8 @@
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
-    <Compile Include="Dialogs\CategoryDialog.cs">
-      <DependentUpon>CategoryDialog.xaml</DependentUpon>
+    <Compile Include="Dialogs\ModifyCategoryDialog.cs">
+      <DependentUpon>ModifyCategoryDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SelectDateRangeDialog.xaml.cs">
       <DependentUpon>SelectDateRangeDialog.xaml</DependentUpon>
@@ -350,7 +350,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dialogs\CategoryDialog.xaml">
+    <Page Include="Dialogs\ModifyCategoryDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
