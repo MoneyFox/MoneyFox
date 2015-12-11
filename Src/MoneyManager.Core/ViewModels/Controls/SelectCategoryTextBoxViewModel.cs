@@ -46,7 +46,7 @@ namespace MoneyManager.Core.ViewModels.Controls
 
         private void Navigate()
         {
-            //ShowViewModel<SelectCategoryListViewModel>();
+            ShowViewModel<SelectCategoryListViewModel>();
         }
     }
 }

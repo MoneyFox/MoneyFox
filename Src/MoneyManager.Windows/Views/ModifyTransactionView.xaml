@@ -8,6 +8,7 @@
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
                       xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
                       mc:Ignorable="d"
+                      NavigationCacheMode="Enabled"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
