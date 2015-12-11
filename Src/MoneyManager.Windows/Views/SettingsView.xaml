@@ -43,7 +43,7 @@
                                                  x:Uid="CategoriesHeader"
                                                  Glyph="&#xE8EC;" />
                     </PivotItem.Header>
-                    <controls:CategoryListUserControl Margin="-7,0,-7,0" />
+                    <controls:CategoryListUserControl Margin="-7,0,-7,0" x:Name="CategoryListUserControl" />
                 </PivotItem>
 
                 <!--Password Settings-->

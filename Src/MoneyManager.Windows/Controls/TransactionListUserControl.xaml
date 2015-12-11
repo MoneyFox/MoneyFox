@@ -16,9 +16,6 @@
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
-        <core:EventTriggerBehavior EventName="Unloaded">
-            <core:InvokeCommandAction Command="{Binding UnloadedCommand, Mode=OneWay}" />
-        </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>

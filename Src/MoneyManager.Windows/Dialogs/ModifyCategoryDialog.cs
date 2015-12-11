@@ -6,9 +6,9 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Windows.Dialogs
 {
-    public sealed partial class CategoryDialog
+    public sealed partial class ModifyCategoryDialog
     {
-        public CategoryDialog(Category category = null)
+        public ModifyCategoryDialog(Category category = null)
         {
             InitializeComponent();
 

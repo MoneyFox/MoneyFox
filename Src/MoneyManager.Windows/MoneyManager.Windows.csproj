@@ -136,9 +136,6 @@
     <Compile Include="Controls\PasswordUserControl.xaml.cs">
       <DependentUpon>PasswordUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SelectCategoryTextBox.xaml.cs">
-      <DependentUpon>SelectCategoryTextBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\CustomControls\SwipeableSplitView.cs" />
     <Compile Include="Controls\BasicControls\TabHeader.xaml.cs">
       <DependentUpon>TabHeader.xaml</DependentUpon>
@@ -159,8 +156,8 @@
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />
-    <Compile Include="Dialogs\CategoryDialog.cs">
-      <DependentUpon>CategoryDialog.xaml</DependentUpon>
+    <Compile Include="Dialogs\ModifyCategoryDialog.cs">
+      <DependentUpon>ModifyCategoryDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\SelectDateRangeDialog.xaml.cs">
       <DependentUpon>SelectDateRangeDialog.xaml</DependentUpon>
@@ -183,8 +180,8 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CategoryListView.xaml.cs">
-      <DependentUpon>CategoryListView.xaml</DependentUpon>
+    <Compile Include="Views\SelectCategoryListView.xaml.cs">
+      <DependentUpon>SelectCategoryListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BackupView.xaml.cs">
       <DependentUpon>BackupView.xaml</DependentUpon>
@@ -334,10 +331,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\SelectCategoryTextBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\BasicControls\TabHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -350,7 +343,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Dialogs\CategoryDialog.xaml">
+    <Page Include="Dialogs\ModifyCategoryDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -390,7 +383,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CategoryListView.xaml">
+    <Page Include="Views\SelectCategoryListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -21,6 +21,9 @@ namespace MoneyManager.Core
         {
             Mvx.RegisterType<ISqliteConnectionCreator, SqliteConnectionCreator>();
 
+            Mvx.RegisterType(() => new PasswordStorage(Mvx.Resolve<IMvxProtectedData>()));
+            Mvx.RegisterType(() => new Session());
+
             CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()
@@ -55,9 +58,6 @@ namespace MoneyManager.Core
                 .EndingWith("ViewModel")
                 .AsTypes()
                 .RegisterAsLazySingleton();
-
-            Mvx.RegisterType(() => new PasswordStorage(Mvx.Resolve<IMvxProtectedData>()));
-            Mvx.RegisterType(() => new Session());
 
             Mvx.Resolve<RecurringTransactionManager>().CheckRecurringTransactions();
             Mvx.Resolve<TransactionManager>().ClearTransactions();

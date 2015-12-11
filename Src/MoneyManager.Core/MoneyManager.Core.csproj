@@ -74,12 +74,13 @@
     <Compile Include="ViewModels\BackupViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\CategoryListViewModel.cs" />
+    <Compile Include="ViewModels\CategoryList\AbstractCategoryListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PasswordUserControlViewModel.cs" />
-    <Compile Include="ViewModels\SelectCategoryTextBoxViewModel.cs" />
+    <Compile Include="ViewModels\CategoryList\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\SelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\SettingViews\SettingDefaultsViewModel.cs" />
+    <Compile Include="ViewModels\CategoryList\SettingsCategoryListViewModel.cs" />
     <Compile Include="ViewModels\Statistics\StatisticViewModel.cs" />
     <Compile Include="ViewModels\SettingViews\TileSettingsViewModel.cs" />
     <Compile Include="ViewModels\TransactionListViewModel.cs" />
