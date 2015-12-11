@@ -45,31 +45,31 @@
       <HintPath>..\packages\Beezy.MvvmCross.Plugins.SecureStorage.1.0.0\lib\portable-win+net45+sl50+wp8+MonoAndroid+MonoTouch\Beezy.MvvmCross.Plugins.SecureStorage.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.CrossCore, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta5\lib\net45\Cirrious.CrossCore.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta7\lib\net45\Cirrious.CrossCore.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.CrossCore.Wpf, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta5\lib\net45\Cirrious.CrossCore.Wpf.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta7\lib\net45\Cirrious.CrossCore.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.MvvmCross, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta5\lib\net45\Cirrious.MvvmCross.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta7\lib\net45\Cirrious.MvvmCross.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Binding.4.0.0-beta5\lib\net45\Cirrious.MvvmCross.Binding.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.Binding.4.0.0-beta7\lib\net45\Cirrious.MvvmCross.Binding.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta5\lib\net45\Cirrious.MvvmCross.Localization.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta7\lib\net45\Cirrious.MvvmCross.Localization.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Test.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Tests.4.0.0-beta5\lib\net45\Cirrious.MvvmCross.Test.Core.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.Tests.4.0.0-beta7\lib\net45\Cirrious.MvvmCross.Test.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Cirrious.MvvmCross.Wpf, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta5\lib\net45\Cirrious.MvvmCross.Wpf.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.4.0.0-beta7\lib\net45\Cirrious.MvvmCross.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
@@ -77,23 +77,23 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Email, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta5\lib\net45\MvvmCross.Plugins.Email.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta7\lib\net45\MvvmCross.Plugins.Email.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Email.Wpf, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta5\lib\net45\MvvmCross.Plugins.Email.Wpf.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta7\lib\net45\MvvmCross.Plugins.Email.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Sqlite, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.SQLitePCL.4.0.0-beta6\lib\net45\MvvmCross.Plugins.Sqlite.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.SQLitePCL.4.0.0-beta7\lib\net45\MvvmCross.Plugins.Sqlite.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Sqlite.Wpf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.SQLitePCL.4.0.0-beta6\lib\net45\MvvmCross.Plugins.Sqlite.Wpf.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.SQLitePCL.4.0.0-beta7\lib\net45\MvvmCross.Plugins.Sqlite.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.WebBrowser, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.WebBrowser.4.0.0-beta5\lib\dotnet\MvvmCross.Plugins.WebBrowser.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.WebBrowser.4.0.0-beta7\lib\dotnet\MvvmCross.Plugins.WebBrowser.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLite.Net, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
