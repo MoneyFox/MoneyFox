@@ -4,7 +4,7 @@
     "MvvmCross.HotTuna.Plugin.Email": "4.0.0-beta5",
     "MvvmCross.HotTuna.Plugin.SQLitePCL": "4.0.0-beta6",
     "MvvmCross.HotTuna.Plugin.WebBrowser": "4.0.0-beta5",
-    "Xamarin.Insights": "1.11.2",
+    "Xamarin.Insights": "1.11.3",
     "xunit": "2.1.0",
     "xunit.runner.visualstudio": "2.1.0"
   },
