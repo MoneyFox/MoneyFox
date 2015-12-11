@@ -2,6 +2,7 @@
 using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Core.ViewModels;
@@ -82,5 +83,22 @@ namespace MoneyManager.Windows.Views
             }
             return cursorposition;
         }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                ResetPageCache();
+            }
+        }
+
+        private void ResetPageCache()
+        {
+            var cacheSize = ((Frame) Parent).CacheSize;
+            ((Frame) Parent).CacheSize = 0;
+            ((Frame) Parent).CacheSize = cacheSize;
+        }
+
     }
 }

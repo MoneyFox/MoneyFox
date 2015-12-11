@@ -4,6 +4,7 @@ using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 using PropertyChanged;
@@ -14,9 +15,9 @@ namespace MoneyManager.Core.ViewModels
     public class ModifyAccountViewModel : BaseViewModel
     {
         private readonly IRepository<Account> accountRepository;
-        private readonly BalanceViewModel balanceViewModel;
+        private readonly IBalanceViewModel balanceViewModel;
 
-        public ModifyAccountViewModel(IRepository<Account> accountRepository, BalanceViewModel balanceViewModel)
+        public ModifyAccountViewModel(IRepository<Account> accountRepository, IBalanceViewModel balanceViewModel)
         {
             this.accountRepository = accountRepository;
             this.balanceViewModel = balanceViewModel;
