@@ -19,6 +19,13 @@ namespace MoneyManager.Windows.Views
         private async void AddCategory(object sender, RoutedEventArgs e)
         {
             await new ModifyCategoryDialog().ShowAsync();
+
+            var selectCategoryListViewModel = DataContext as SelectCategoryListViewModel;
+            if (selectCategoryListViewModel != null)
+            {
+                selectCategoryListViewModel.SearchText = string.Empty;
+                selectCategoryListViewModel.Search();
+            }
         }
 
         protected override void OnKeyDown(KeyRoutedEventArgs e)

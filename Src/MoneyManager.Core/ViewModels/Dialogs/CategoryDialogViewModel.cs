@@ -49,8 +49,6 @@ namespace MoneyManager.Core.ViewModels.Dialogs
             }
 
             categoryRepository.Save(Selected);
-            categoryListViewModel.SearchText = string.Empty;
-            categoryListViewModel.Search();
         }
     }
 }

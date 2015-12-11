@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.Interfaces;
@@ -55,7 +56,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         /// </summary>
         public void Search()
         {
-            if (SearchText != string.Empty)
+            if (!String.IsNullOrEmpty(SearchText))
             {
                 Categories = new ObservableCollection<Category>
                     (CategoryRepository.Data.Where(
@@ -64,7 +65,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
             }
             else
             {
-                Categories = CategoryRepository.Data;
+                Categories = new ObservableCollection<Category>(CategoryRepository.Data);
             }
         }
 
