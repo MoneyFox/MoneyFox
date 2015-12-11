@@ -1,8 +1,10 @@
 ﻿using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels.CategoryList
 {
+    [ImplementPropertyChanged]
     public class SettingsCategoryListViewModel : AbstractCategoryListViewModel
     {
         /// <summary>

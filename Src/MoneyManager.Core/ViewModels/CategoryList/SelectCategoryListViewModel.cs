@@ -1,9 +1,11 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels.CategoryList
 {
+    [ImplementPropertyChanged]
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel
     {
         private readonly ITransactionRepository transactionRepository;
