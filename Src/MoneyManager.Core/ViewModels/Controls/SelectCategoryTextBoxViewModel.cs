@@ -1,32 +1,29 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.ViewModels.CategoryList;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels.Controls
 {
+    [ImplementPropertyChanged]
     public class SelectCategoryTextBoxViewModel : BaseViewModel
     {
-        private readonly ModifyTransactionViewModel modifyTransactionViewModel;
+        private readonly ITransactionRepository transactionRepository;
 
         //TODO: maybe refactor this to use just a button instead of a own control. or just to code behind since pretty plattform specific
         /// <summary>
         ///     Creates an SelectCategoryTextBoxViewModel instance
         /// </summary>
-        /// <param name="modifyTransactionViewModel">An instance of <see cref="ModifyTransactionViewModel" /></param>
-        public SelectCategoryTextBoxViewModel(ModifyTransactionViewModel modifyTransactionViewModel)
+        public SelectCategoryTextBoxViewModel(ITransactionRepository transactionRepository)
         {
-            this.modifyTransactionViewModel = modifyTransactionViewModel;
-
-            if (SelectedTransaction == null)
-            {
-                SelectedTransaction = new FinancialTransaction();
-            }
+            this.transactionRepository = transactionRepository;
         }
 
         public FinancialTransaction SelectedTransaction
         {
-            get { return modifyTransactionViewModel.SelectedTransaction; }
-            set { modifyTransactionViewModel.SelectedTransaction = value; }
+            get { return transactionRepository.Selected; }
+            set { transactionRepository.Selected = value; }
         }
 
         /// <summary>
