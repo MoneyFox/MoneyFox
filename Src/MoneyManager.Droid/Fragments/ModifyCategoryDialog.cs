@@ -5,8 +5,8 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
-using Cirrious.MvvmCross.Droid.Support.Fragging.Fragments;
 using MoneyManager.Core.ViewModels.Dialogs;
+using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
 namespace MoneyManager.Droid.Fragments
 {

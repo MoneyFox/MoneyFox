@@ -213,9 +213,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta7": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -1878,9 +1878,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta7": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -3576,9 +3576,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta7": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -5279,9 +5279,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta7": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -6977,9 +6977,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta7": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -8680,9 +8680,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta7": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -10378,9 +10378,9 @@
           "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
         }
       },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
+      "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta7": {
         "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta5, )"
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
         },
         "compile": {
           "lib/uap/Cirrious.MvvmCross.dll": {},
@@ -12519,8 +12519,8 @@
         "package/services/metadata/core-properties/770a3c5fbc8c42c59f9d0fe76c1d86b0.psmdcp"
       ]
     },
-    "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta5": {
-      "sha512": "FDwwID+gTgIWTyT9EbGKwfe5rDlnxg03iqzR5m81twzzjrSGWLc+PHsdoeaEcDG12RwreMimaws7+XtKvgKDrg==",
+    "MvvmCross.HotTuna.MvvmCrossLibraries/4.0.0-beta7": {
+      "sha512": "O9gf/I17sgP5YXr4ZWtpG4zMUXQY7R0rupma0n0jL0Yu+VfNDK2tMS58oQW8ID6arz0Q9RIrW6i1n3HdjOiTNg==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -12552,7 +12552,7 @@
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.dll",
         "lib/Xamarin.iOS10/Cirrious.MvvmCross.Touch.dll",
         "MvvmCross.HotTuna.MvvmCrossLibraries.nuspec",
-        "package/services/metadata/core-properties/a8006af1964b4cb1a1c4a23736567b39.psmdcp"
+        "package/services/metadata/core-properties/a89ead6bcb5940da9699971b602b9d62.psmdcp"
       ]
     },
     "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta7": {

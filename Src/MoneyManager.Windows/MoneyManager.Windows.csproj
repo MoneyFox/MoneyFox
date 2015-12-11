@@ -23,7 +23,7 @@
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>127C8AECF240A694CE4ABA692C3CC4F1D7D9EDE1</PackageCertificateThumbprint>
     <PackageCertificateThumbprint>BFF8F8B564162467483BC57D58F185A0F4EB61B2</PackageCertificateThumbprint>
-    <AppxBundle>Never</AppxBundle>
+    <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -420,10 +420,6 @@
     <ProjectReference Include="..\MoneyManager.Windows.Concrete\MoneyManager.Windows.Concrete.csproj">
       <Project>{B227814D-75A1-4194-8138-8A8C8065207B}</Project>
       <Name>MoneyManager.Windows.Concrete</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyManager.Windows.Core\MoneyManager.Windows.Core.csproj">
-      <Project>{35e6de23-923d-40ce-b0cd-9ca27638fa5c}</Project>
-      <Name>MoneyManager.Windows.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
