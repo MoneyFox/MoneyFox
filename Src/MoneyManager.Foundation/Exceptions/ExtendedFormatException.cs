@@ -13,23 +13,24 @@ namespace MoneyManager.Foundation.Exceptions
         /// </summary>
         /// <param name="message">Exception message to show to the user.</param>
         public ExtendedFormatException(string message) :
-            base(GetMessageWithRegionInfo(message))
+            base(GetMessageWithRegionInfo(message, string.Empty))
         {
         }
 
         /// <summary>
         ///     Creates an Format Exception and will add additional information about your culture.
         /// </summary>
-        /// <param name="message">Exception message to show to the user.</param>
         /// <param name="exception">Inner Exception of the backup exception.</param>
-        public ExtendedFormatException(Exception exception)
-            : base(GetMessageWithRegionInfo(exception.Message), exception)
+        /// <param name="textToParse">The text the system couldn't parse.</param>
+        public ExtendedFormatException(Exception exception, string textToParse)
+            : base(GetMessageWithRegionInfo(exception.Message, textToParse), exception)
         {
         }
 
-        private static string GetMessageWithRegionInfo(string message)
+        private static string GetMessageWithRegionInfo(string message, string textToParse)
         {
-            return "Region: " + CultureInfo.CurrentCulture.DisplayName + Environment.NewLine +
+            return "Text to parse: " + textToParse + Environment.NewLine +
+                   "Region: " + CultureInfo.CurrentCulture.DisplayName + Environment.NewLine +
                    "CultureName: " + CultureInfo.CurrentCulture.Name + Environment.NewLine +
                    "Numberformat: " + CultureInfo.CurrentCulture.NumberFormat + Environment.NewLine +
                    message;

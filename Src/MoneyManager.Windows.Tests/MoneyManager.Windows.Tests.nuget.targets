@@ -4,7 +4,7 @@
     <NuGetPackageRoot>$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
   </PropertyGroup>
   <ImportGroup>
-    <Import Project="$(NuGetPackageRoot)\Xamarin.Insights\1.11.2\build\windows8\Xamarin.Insights.targets" Condition="Exists('$(NuGetPackageRoot)\Xamarin.Insights\1.11.2\build\windows8\Xamarin.Insights.targets')" />
+    <Import Project="$(NuGetPackageRoot)\Xamarin.Insights\1.11.3\build\windows8\Xamarin.Insights.targets" Condition="Exists('$(NuGetPackageRoot)\Xamarin.Insights\1.11.3\build\windows8\Xamarin.Insights.targets')" />
     <Import Project="$(NuGetPackageRoot)\xunit.runner.visualstudio\2.1.0\build\uap10.0\xunit.runner.visualstudio.targets" Condition="Exists('$(NuGetPackageRoot)\xunit.runner.visualstudio\2.1.0\build\uap10.0\xunit.runner.visualstudio.targets')" />
   </ImportGroup>
 </Project>
