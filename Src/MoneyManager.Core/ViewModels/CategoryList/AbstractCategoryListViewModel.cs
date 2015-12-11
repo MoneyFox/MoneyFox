@@ -9,7 +9,7 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels.CategoryList
 {
     [ImplementPropertyChanged]
-    public abstract class CategoryListViewModel : BaseViewModel
+    public abstract class AbstractCategoryListViewModel : BaseViewModel
     {
         protected readonly IRepository<Category> CategoryRepository;
         protected readonly IDialogService DialogService;
@@ -21,7 +21,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        protected CategoryListViewModel(IRepository<Category> categoryRepository,
+        protected AbstractCategoryListViewModel(IRepository<Category> categoryRepository,
             IDialogService dialogService)
         {
             CategoryRepository = categoryRepository;
@@ -36,8 +36,6 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         public MvxCommand<Category> DeleteCategoryCommand => new MvxCommand<Category>(DeleteCategory);
 
         public ObservableCollection<Category> Categories { get; set; }
-
-        public abstract Category SelectedCategory { get; set; }
 
         /// <summary>
         ///     Text to search for. Will perform the search when the text changes.

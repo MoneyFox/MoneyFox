@@ -3,7 +3,6 @@ using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Cirrious.CrossCore;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Windows.Dialogs;
 

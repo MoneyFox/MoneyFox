@@ -74,7 +74,7 @@
     <Compile Include="ViewModels\BackupViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\CategoryList\CategoryListViewModel.cs" />
+    <Compile Include="ViewModels\CategoryList\AbstractCategoryListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PasswordUserControlViewModel.cs" />
     <Compile Include="ViewModels\CategoryList\SelectCategoryListViewModel.cs" />

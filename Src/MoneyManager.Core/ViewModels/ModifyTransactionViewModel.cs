@@ -18,11 +18,6 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class ModifyTransactionViewModel : BaseViewModel
     {
-        /// <summary>
-        ///     Locker to ensure that Init isn't executed when navigate back
-        /// </summary>
-        private static bool isInitCall = true;
-
         private readonly IAccountRepository accountRepository;
         private readonly DefaultManager defaultManager;
         private readonly IDialogService dialogService;
@@ -49,9 +44,6 @@ namespace MoneyManager.Core.ViewModels
         /// <param name="isEdit">Weather the transaction is in edit mode or not.</param>
         public void Init(bool isEdit, string typeString)
         {
-            //Ensure that init is only called once
-            if (!isInitCall) return;
-
             IsEdit = isEdit;
             IsEndless = true;
 
@@ -63,8 +55,6 @@ namespace MoneyManager.Core.ViewModels
             {
                 PrepareDefault(typeString);
             }
-
-            isInitCall = false;
         }
 
         private void PrepareEdit()
@@ -130,7 +120,6 @@ namespace MoneyManager.Core.ViewModels
             transactionRepository.Save(SelectedTransaction);
             accountRepository.AddTransactionAmount(SelectedTransaction);
 
-            ResetInitLocker();
             Close(this);
         }
 
@@ -157,7 +146,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void OpenSelectCategoryList()
         {
-            ShowViewModel<CategoryListViewModel>();
+            ShowViewModel<AbstractCategoryListViewModel>();
         }
 
         private async void Delete()
@@ -168,7 +157,6 @@ namespace MoneyManager.Core.ViewModels
             {
                 transactionRepository.Delete(transactionRepository.Selected);
                 accountRepository.RemoveTransactionAmount(SelectedTransaction);
-                ResetInitLocker();
                 Close(this);
             }
         }
@@ -187,16 +175,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void Cancel()
         {
-            ResetInitLocker();
             Close(this);
-        }
-
-        /// <summary>
-        ///     Reset locker to enusre init gets called again
-        /// </summary>
-        private void ResetInitLocker()
-        {
-            isInitCall = true;
         }
 
         #region Commands
@@ -251,8 +230,7 @@ namespace MoneyManager.Core.ViewModels
         public int Recurrence { get; set; }
 
         // This has to be static in order to keep the value even if you leave the page to select a category.
-        // TODO: looking for a better solution.
-        private static double amount;
+        private double amount;
 
         /// <summary>
         ///     Property to format amount string to double with the proper culture.

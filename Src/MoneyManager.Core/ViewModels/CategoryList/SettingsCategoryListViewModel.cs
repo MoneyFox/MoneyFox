@@ -3,7 +3,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels.CategoryList
 {
-    public class SettingsCategoryListViewModel : CategoryListViewModel
+    public class SettingsCategoryListViewModel : AbstractCategoryListViewModel
     {
         /// <summary>
         ///     Creates an CategoryListViewModel for usage when the list including the option is needed.
@@ -15,7 +15,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         {
         }
 
-        public override Category SelectedCategory
+        public Category SelectedCategory
         {
             get
             {

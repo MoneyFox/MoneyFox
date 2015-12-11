@@ -8,16 +8,16 @@ namespace MoneyManager.Core.ViewModels.Dialogs
 {
     public class CategoryDialogViewModel : BaseViewModel
     {
-        private readonly CategoryListViewModel categoryListView;
+        private readonly SettingsCategoryListViewModel categoryListViewModel;
         private readonly IRepository<Category> categoryRepository;
         private readonly IDialogService dialogService;
 
         public CategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService,
-            CategoryListViewModel categoryListView)
+            SettingsCategoryListViewModel categoryListViewModel)
         {
             this.categoryRepository = categoryRepository;
             this.dialogService = dialogService;
-            this.categoryListView = categoryListView;
+            this.categoryListViewModel = categoryListViewModel;
         }
 
         public Category Selected { get; set; }
@@ -34,9 +34,9 @@ namespace MoneyManager.Core.ViewModels.Dialogs
 
             Selected = new Category();
 
-            if (!string.IsNullOrEmpty(categoryListView.SearchText))
+            if (!string.IsNullOrEmpty(categoryListViewModel.SearchText))
             {
-                Selected.Name = categoryListView.SearchText;
+                Selected.Name = categoryListViewModel.SearchText;
             }
         }
 
@@ -49,8 +49,8 @@ namespace MoneyManager.Core.ViewModels.Dialogs
             }
 
             categoryRepository.Save(Selected);
-            categoryListView.SearchText = string.Empty;
-            categoryListView.Search();
+            categoryListViewModel.SearchText = string.Empty;
+            categoryListViewModel.Search();
         }
     }
 }

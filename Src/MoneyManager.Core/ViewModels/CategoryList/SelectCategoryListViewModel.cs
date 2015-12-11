@@ -4,7 +4,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels.CategoryList
 {
-    public class SelectCategoryListViewModel : CategoryListViewModel
+    public class SelectCategoryListViewModel : AbstractCategoryListViewModel
     {
         private readonly ITransactionRepository transactionRepository;
 
@@ -22,7 +22,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
             this.transactionRepository = transactionRepository;
         }
 
-        public override Category SelectedCategory
+        public Category SelectedCategory
         {
             get
             {
