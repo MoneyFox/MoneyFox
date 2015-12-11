@@ -29,6 +29,7 @@
 
     <Page.BottomAppBar>
         <CommandBar>
+            <CommandBar.PrimaryCommands>
             <AppBarButton Icon="Save"
                           Label="Done"
                           x:Uid="Done"
@@ -37,6 +38,13 @@
                           Label="Cancel"
                           x:Uid="Cancel"
                           Command="{Binding CancelCommand}" />
+                </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Delete"
+                              Label="Delete"
+                              x:Uid="DeleteLabel"
+                              Command="{Binding DeleteCommand}" />
+            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
 

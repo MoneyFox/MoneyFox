@@ -322,4 +322,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="PrivacyInfo.Text" xml:space="preserve">
     <value>Zur Verbesserung dieser App sammeln wir anonyme Informationen über auftretende Fehler.</value>
   </data>
+  <data name="DeleteLabel.Label" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
 </root>
