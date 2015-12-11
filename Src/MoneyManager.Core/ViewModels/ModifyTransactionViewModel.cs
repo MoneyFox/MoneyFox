@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helpers;
@@ -60,6 +61,11 @@ namespace MoneyManager.Core.ViewModels
         private void PrepareEdit()
         {
             if (!IsEdit) return;
+
+            // Monkey patch for issues with binding to the account selection
+            // TODO: fix this that the binding works without this.
+            SelectedTransaction.ChargedAccount =
+                accountRepository.Data.FirstOrDefault(x => x.Id == SelectedTransaction.ChargedAccountId);
 
             IsTransfer = SelectedTransaction.IsTransfer;
             // set the private amount property. This will get properly formatted and then displayed.
