@@ -3,7 +3,6 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:controls="using:MoneyManager.Windows.Controls"
                       xmlns:converter="using:MoneyManager.Windows.Converter"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
                       xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
@@ -83,9 +82,8 @@
                              GotFocus="RemoveZeroOnFocus"
                              LostFocus="AddZeroIfEmpty"
                              Margin="0,7,0,0" />
-                    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+                    <Grid Margin="0,7,0,0">
                         <TextBox Header="category"
-                                 x:Uid="CategoryTextBox"
                                  Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
                                  IsReadOnly="True">
                             <interactivity:Interaction.Behaviors>
