@@ -7,6 +7,8 @@
                       xmlns:converter="using:MoneyManager.Windows.Converter"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
                       xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
+                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       mc:Ignorable="d"
                       NavigationCacheMode="Enabled"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -81,7 +83,28 @@
                              GotFocus="RemoveZeroOnFocus"
                              LostFocus="AddZeroIfEmpty"
                              Margin="0,7,0,0" />
-                    <controls:SelectCategoryTextBox Margin="0,7,0,0" />
+                    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+                        <TextBox Header="category"
+                                 x:Uid="CategoryTextBox"
+                                 Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
+                                 IsReadOnly="True">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="GotFocus">
+                                    <core:InvokeCommandAction Command="{Binding GoToSelectCategorydialogCommand, Mode=OneWay}" />
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </TextBox>
+                        <Image Source="/Assets/light/close.png"
+                               Height="35"
+                               VerticalAlignment="Bottom"
+                               HorizontalAlignment="Right">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Tapped">
+                                    <core:InvokeCommandAction Command="{Binding ResetCategoryCommand, Mode=OneWay}" />
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </Image>
+                    </Grid>
                     <DatePicker
                         Date="{Binding Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Margin="0,12,0,0"

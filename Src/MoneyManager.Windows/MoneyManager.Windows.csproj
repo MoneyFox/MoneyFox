@@ -136,9 +136,6 @@
     <Compile Include="Controls\PasswordUserControl.xaml.cs">
       <DependentUpon>PasswordUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SelectCategoryTextBox.xaml.cs">
-      <DependentUpon>SelectCategoryTextBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\CustomControls\SwipeableSplitView.cs" />
     <Compile Include="Controls\BasicControls\TabHeader.xaml.cs">
       <DependentUpon>TabHeader.xaml</DependentUpon>
@@ -333,10 +330,6 @@
     <Page Include="Controls\PasswordUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\SelectCategoryTextBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\BasicControls\TabHeader.xaml">
       <SubType>Designer</SubType>

@@ -146,7 +146,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void OpenSelectCategoryList()
         {
-            ShowViewModel<AbstractCategoryListViewModel>();
+            ShowViewModel<SelectCategoryListViewModel>();
         }
 
         private async void Delete()
@@ -172,6 +172,13 @@ namespace MoneyManager.Core.ViewModels
             await dialogService.ShowMessage(Strings.InvalidEnddateTitle,
                 Strings.InvalidEnddateMessage);
         }
+
+
+        private void ResetSelection()
+        {
+            SelectedTransaction.Category = null;
+        }
+
 
         private void Cancel()
         {
@@ -199,6 +206,11 @@ namespace MoneyManager.Core.ViewModels
         ///     Cancels the operations.
         /// </summary>
         public IMvxCommand CancelCommand => new MvxCommand(Cancel);
+
+        /// <summary>
+        ///     Resets the category of the currently selected transaction
+        /// </summary>
+        public IMvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
 
         #endregion
 

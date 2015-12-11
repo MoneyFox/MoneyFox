@@ -1,5 +1,4 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.ViewModels.Controls;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
@@ -9,7 +8,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
     [ImplementPropertyChanged]
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel
     {
-        private SelectCategoryTextBoxViewModel selectCategoryTextBoxViewModel;
+        private readonly ITransactionRepository transactionRepository;
 
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a category selection.
@@ -17,11 +16,11 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         public SelectCategoryListViewModel(IRepository<Category> categoryRepository,
-            SelectCategoryTextBoxViewModel selectCategoryTextBoxViewModel, 
+            ITransactionRepository transactionRepository, 
             IDialogService dialogService)
             : base(categoryRepository, dialogService)
         {
-            this.selectCategoryTextBoxViewModel = selectCategoryTextBoxViewModel;
+            this.transactionRepository = transactionRepository;
         }
 
         public Category SelectedCategory { get; set; }
@@ -32,8 +31,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
 
         private void Done()
         {
-            selectCategoryTextBoxViewModel.ResetCategoryCommand.Execute();
-            selectCategoryTextBoxViewModel.SelectedTransaction.Category = SelectedCategory;
+            transactionRepository.Selected.Category = SelectedCategory;
             Close(this);
         }
 
