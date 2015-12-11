@@ -57,7 +57,7 @@ namespace MoneyManager.Windows.Views
             }
             catch (FormatException ex)
             {
-                InsightHelper.Report(new ExtendedFormatException(ex));
+                InsightHelper.Report(new ExtendedFormatException(ex, TextBoxAmount.Text));
             }
         }
 
