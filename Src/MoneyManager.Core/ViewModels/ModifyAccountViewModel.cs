@@ -63,7 +63,7 @@ namespace MoneyManager.Core.ViewModels
                 double amount;
                 if (double.TryParse(value, out amount))
                 {
-                    SelectedAccount.CurrentBalance = Convert.ToDouble(amount, CultureInfo.CurrentCulture);
+                    SelectedAccount.CurrentBalance = amount;
                 }
             }
         }
