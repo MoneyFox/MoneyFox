@@ -1,1 +1,1 @@
-C:\Users\ninop\Documents\GitHub\MoneyManager\Src\MoneyManager.Windows\AppPackages\MoneyManager.Windows_1.2.62.0\MoneyManager.Windows_1.2.62.0_x86_x64_arm.appxbundle
+C:\Users\ninop\Documents\GitHub\MoneyManager\Src\MoneyManager.Windows\AppPackages\MoneyManager.Windows_1.2.64.0\MoneyManager.Windows_1.2.64.0_x86_x64_arm.appxbundle
