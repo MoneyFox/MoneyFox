@@ -58,7 +58,14 @@ namespace MoneyManager.Core.ViewModels
         public string AmountString
         {
             get { return Utilities.FormatLargeNumbers(SelectedAccount.CurrentBalance); }
-            set { SelectedAccount.CurrentBalance = Convert.ToDouble(value, CultureInfo.CurrentCulture); }
+            set
+            {
+                double amount;
+                if (double.TryParse(value, out amount))
+                {
+                    SelectedAccount.CurrentBalance = Convert.ToDouble(amount, CultureInfo.CurrentCulture);
+                }
+            }
         }
 
         /// <summary>

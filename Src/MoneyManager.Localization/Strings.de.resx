@@ -358,4 +358,7 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Bewerte dieses App</value>
   </data>
+  <data name="HelloWorldResponse" xml:space="preserve">
+    <value>Hallo Schönheit</value>
+  </data>
 </root>
