@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -8,6 +9,7 @@ using MoneyManager.Core.Helpers;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Windows.Views
 {
@@ -37,28 +39,34 @@ namespace MoneyManager.Windows.Views
             }
         }
 
-        private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e)
+        private async void ReplaceSeparatorChar(object sender, TextChangedEventArgs e)
         {
-            try
+            double amount;
+            if (double.TryParse(TextBoxAmount.Text, out amount))
             {
-                if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
+                // todo: this try should be removeable, will see after the next version.
+                try
+                {
+                    //cursorpositon to set the position back after the formating
+                    var cursorposition = TextBoxAmount.SelectionStart;
 
-                //cursorpositon to set the position back after the formating
-                var cursorposition = TextBoxAmount.SelectionStart;
+                    var formattedText =
+                        Utilities.FormatLargeNumbers(amount);
 
-                var formattedText =
-                    Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxAmount.Text, CultureInfo.CurrentCulture));
+                    cursorposition = AdjustCursorPosition(formattedText, cursorposition);
 
-                cursorposition = AdjustCursorPosition(formattedText, cursorposition);
+                    TextBoxAmount.Text = formattedText;
 
-                TextBoxAmount.Text = formattedText;
-
-                //set the cursor back to the last positon to avoid jumping around
-                TextBoxAmount.Select(cursorposition, 0);
-            }
-            catch (FormatException ex)
+                    //set the cursor back to the last positon to avoid jumping around
+                    TextBoxAmount.Select(cursorposition, 0);
+                } catch (FormatException ex)
+                {
+                    InsightHelper.Report(new ExtendedFormatException(ex, TextBoxAmount.Text));
+                }
+            } else if (string.Equals(TextBoxAmount.Text, Strings.HelloWorldText, StringComparison.CurrentCultureIgnoreCase)
+                  || string.Equals(TextBoxAmount.Text, Strings.HalloWeltText, StringComparison.CurrentCultureIgnoreCase))
             {
-                InsightHelper.Report(new ExtendedFormatException(ex, TextBoxAmount.Text));
+                await new MessageDialog(Strings.HelloWorldResponse).ShowAsync();
             }
         }
 

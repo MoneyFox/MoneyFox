@@ -258,7 +258,14 @@ namespace MoneyManager.Core.ViewModels
         public string AmountString
         {
             get { return Utilities.FormatLargeNumbers(amount); }
-            set { amount = Convert.ToDouble(value, CultureInfo.CurrentCulture); }
+            set
+            {
+                double convertedValue;
+                if (double.TryParse(value, out convertedValue))
+                {
+                    amount = convertedValue;
+                }
+            }
         }
 
         /// <summary>
