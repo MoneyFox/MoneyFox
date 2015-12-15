@@ -5,11 +5,6 @@ namespace MoneyManager.Foundation.Interfaces
     public interface IBackupService
     {
         /// <summary>
-        ///     Indicates if User is Logged in.
-        /// </summary>
-        bool IsLoggedIn { get; }
-
-        /// <summary>
         ///     Shows a login prompt to the user.
         /// </summary>
         Task Login();
