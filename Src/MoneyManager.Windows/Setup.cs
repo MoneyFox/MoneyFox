@@ -36,7 +36,6 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IAppInformation, AppInformation>();
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
-            //Mvx.RegisterType<IBackupService, OneDriveBackupService>();
             Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
             Mvx.RegisterType<ILocalSettings, LocalSettings>();
             Mvx.RegisterType<IUserNotification, UserNotification>();
