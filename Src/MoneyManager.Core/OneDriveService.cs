@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
@@ -12,13 +11,11 @@ namespace MoneyManager.Core
 {
     public class OneDriveService : IBackupService
     {
-        private readonly IDialogService dialogService;
         private readonly IMvxFileStore fileStore;
         private readonly IOneDriveAuthenticator oneDriveAuthenticator;
 
         public OneDriveService(IDialogService dialogService, IMvxFileStore fileStore, IOneDriveAuthenticator oneDriveAuthenticator)
         {
-            this.dialogService = dialogService;
             this.fileStore = fileStore;
             this.oneDriveAuthenticator = oneDriveAuthenticator;
         }
