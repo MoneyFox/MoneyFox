@@ -8,10 +8,11 @@ using Cirrious.MvvmCross.WindowsUWP.Platform;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Windows.Concrete;
-using MoneyManager.Windows.Concrete.Services;
 using MoneyManager.Windows.Concrete.Shortcut;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.Email.WindowsCommon;
+using MvvmCross.Plugins.File;
+using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using MvvmCross.Plugins.WebBrowser;
@@ -34,7 +35,7 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IAppInformation, AppInformation>();
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
-            Mvx.RegisterType<IBackupService, OneDriveBackupService>();
+            //Mvx.RegisterType<IBackupService, OneDriveBackupService>();
             Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
             Mvx.RegisterType<ILocalSettings, LocalSettings>();
             Mvx.RegisterType<IUserNotification, UserNotification>();
@@ -52,6 +53,7 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
             Mvx.RegisterType<IMvxSqliteConnectionFactory, WindowsSqliteConnectionFactory>();
             Mvx.RegisterType<IMvxProtectedData, MvxStoreProtectedData>();
+            Mvx.RegisterType<IMvxFileStore, MvxWindowsCommonFileStore>();
         }
 
         protected override IMvxApplication CreateApp()

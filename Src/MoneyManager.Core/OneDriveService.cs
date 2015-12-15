@@ -8,7 +8,7 @@ using MvvmCross.Plugins.File;
 
 namespace MoneyManager.Core
 {
-    public class OneDriveService
+    public class OneDriveService : IBackupService
     {
         public const string BACKUP_FOLDER_NAME = "MoneyFoxBackup";
         public const string DATABASE_NAME = "moneyfox_backup.sqlite";
@@ -33,6 +33,8 @@ namespace MoneyManager.Core
         private Item Root { get; set; }
 
         private Item BackupFolder { get; set; }
+
+        public bool IsLoggedIn { get; }
 
         public async Task Login()
         {
@@ -117,7 +119,5 @@ namespace MoneyManager.Core
                     .AddAsync(folderToCreate);
             }
         }
-    }
-}
     }
 }
