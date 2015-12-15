@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
+using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Plugins.File;
@@ -61,12 +62,7 @@ namespace MoneyManager.Core
                 {
                     fileStore.DeleteFile(Foundation.Constants.DB_NAME);
                 }
-
-                var buffer = new byte[16 * 1024];
-                while (backup.Read(buffer, 0, buffer.Length) > 0)
-                {
-                    fileStore.WriteFile(Foundation.Constants.DB_NAME, buffer);
-                }
+                fileStore.WriteFile(Foundation.Constants.DB_NAME, backup.ReadToEnd());
             }
 
             return TaskCompletionType.Successful;

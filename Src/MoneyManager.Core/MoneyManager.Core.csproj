@@ -50,6 +50,7 @@
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\RecurringTransactionHelper.cs" />
+    <Compile Include="Helpers\StreamExtension.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Authentication\PasswordStorage.cs" />
     <Compile Include="Manager\RecurringTransactionManager.cs" />
