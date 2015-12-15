@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 using MoneyManager.Foundation.Interfaces;
 
@@ -53,10 +51,6 @@ namespace MoneyManager.Windows.Concrete.Services
                         throw;
                     }
                 }
-            }
-            catch (Exception ec)
-            {
-                Debug.WriteLine(ec.Message);
             }
             return oneDriveClient;
         }
