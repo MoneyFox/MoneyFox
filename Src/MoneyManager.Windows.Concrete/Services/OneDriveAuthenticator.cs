@@ -8,10 +8,8 @@ namespace MoneyManager.Windows.Concrete.Services
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        private const string MSA_CLIENT_ID = "https://login.live.com/oauth20_desktop.srf";
-        private const string MSA_RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
-
-        private static readonly string[] Scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin"};
+        private const string MSA_CLIENT_ID = "[ID]";
+        private readonly string[] scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly" };
 
         private readonly IDialogService dialogService;
 
@@ -26,8 +24,7 @@ namespace MoneyManager.Windows.Concrete.Services
         {
             if (oneDriveClient == null)
             {
-                oneDriveClient = OneDriveClientExtensions.GetUniversalClient(Scopes);
-
+                oneDriveClient = OneDriveClientExtensions.GetClientUsingWebAuthenticationBroker(MSA_CLIENT_ID, scopes);
                 await oneDriveClient.AuthenticateAsync();
             }
 

@@ -78,8 +78,8 @@ namespace MoneyManager.Core
 
         private async Task GetBackupFolder()
         {
-            Root = await oneDriveClient.Drive.Root.Request().GetAsync();
-            BackupFolder = Root.Children.CurrentPage.FirstOrDefault(x => x.Name == BACKUP_FOLDER_NAME);
+            var children = await oneDriveClient.Drive.Root.Children.Request().GetAsync();
+            BackupFolder = children.CurrentPage.FirstOrDefault(x => x.Name == BACKUP_FOLDER_NAME);
 
             if (BackupFolder == null)
             {
@@ -87,6 +87,11 @@ namespace MoneyManager.Core
                 BackupFolder = await oneDriveClient.Drive.Items[Root.Id].Children.Request()
                     .AddAsync(folderToCreate);
             }
+        }
+
+        private async Task CreateBackupFolder()
+        {
+            
         }
     }
 }
