@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
@@ -40,9 +41,29 @@ namespace MoneyManager.Core
             }
         }
 
-        public Task<TaskCompletionType> Upload()
+        public async Task<TaskCompletionType> Upload()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var dbstream = fileStore.OpenRead(Foundation.Constants.DB_NAME))
+                {
+                    var uploadedItem = await oneDriveClient
+                        .Drive
+                        .Root
+                        .ItemWithPath(Path.Combine(Foundation.Constants.BACKUP_FOLDER_NAME,
+                            Foundation.Constants.BACKUP_NAME))
+                        .Content
+                        .Request()
+                        .PutAsync<Item>(dbstream);
+
+                    return uploadedItem != null ? TaskCompletionType.Successful : TaskCompletionType.Unsuccessful;
+                }
+            }
+            catch (OneDriveException ex)
+            {
+                InsightHelper.Report(ex);
+                return TaskCompletionType.Unsuccessful;
+            }
         }
 
         public async Task<TaskCompletionType> Restore()
