@@ -22,11 +22,7 @@ namespace MoneyManager.Core
 
         private IOneDriveClient oneDriveClient { get; set; }
 
-        private Item Root { get; set; }
-
         private Item BackupFolder { get; set; }
-
-        public bool IsLoggedIn { get; }
 
         public async Task Login()
         {
@@ -93,10 +89,18 @@ namespace MoneyManager.Core
 
             if (BackupFolder == null)
             {
-                var folderToCreate = new Item { Name = Foundation.Constants.BACKUP_FOLDER_NAME, Folder = new Folder() };
-                BackupFolder = await oneDriveClient.Drive.Items[Root.Id].Children.Request()
-                    .AddAsync(folderToCreate);
+                await CreateBackupFolder();
             }
+        }
+
+        private async Task CreateBackupFolder()
+        {
+            var folderToCreate = new Item {Name = Foundation.Constants.BACKUP_FOLDER_NAME, Folder = new Folder()};
+
+            var root = await oneDriveClient.Drive.Root.Request().GetAsync();
+
+            BackupFolder = await oneDriveClient.Drive.Items[root.Id].Children.Request()
+                .AddAsync(folderToCreate);
         }
     }
 }
