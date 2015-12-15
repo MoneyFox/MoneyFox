@@ -29,6 +29,14 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/2.19.208020213": {
+        "compile": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        }
+      },
       "Microsoft.NETCore/5.0.0": {
         "dependencies": {
           "Microsoft.CSharp": "[4.0.0, )",
@@ -163,6 +171,22 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.OneDriveSDK/1.1.15": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
+          "Newtonsoft.Json": "[7.0.1, )"
+        },
+        "compile": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -266,6 +290,14 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "NotificationsExtensions.Win10/10586.0.0": {
@@ -1728,6 +1760,14 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/2.19.208020213": {
+        "compile": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        }
+      },
       "Microsoft.NETCore/5.0.0": {
         "dependencies": {
           "Microsoft.CSharp": "[4.0.0, )",
@@ -1905,6 +1945,22 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.OneDriveSDK/1.1.15": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
+          "Newtonsoft.Json": "[7.0.1, )"
+        },
+        "compile": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -2008,6 +2064,14 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "NotificationsExtensions.Win10/10586.0.0": {
@@ -3517,6 +3581,14 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/2.19.208020213": {
+        "compile": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        }
+      },
       "Microsoft.NETCore/5.0.0": {
         "dependencies": {
           "Microsoft.CSharp": "[4.0.0, )",
@@ -3680,6 +3752,22 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.OneDriveSDK/1.1.15": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
+          "Newtonsoft.Json": "[7.0.1, )"
+        },
+        "compile": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -3783,6 +3871,14 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "NotificationsExtensions.Win10/10586.0.0": {
@@ -5278,6 +5374,14 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/2.19.208020213": {
+        "compile": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        }
+      },
       "Microsoft.NETCore/5.0.0": {
         "dependencies": {
           "Microsoft.CSharp": "[4.0.0, )",
@@ -5460,6 +5564,22 @@
           "runtimes/win10-x64/native/_._": {}
         }
       },
+      "Microsoft.OneDriveSDK/1.1.15": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
+          "Newtonsoft.Json": "[7.0.1, )"
+        },
+        "compile": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -5563,6 +5683,14 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "NotificationsExtensions.Win10/10586.0.0": {
@@ -7072,6 +7200,14 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/2.19.208020213": {
+        "compile": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        }
+      },
       "Microsoft.NETCore/5.0.0": {
         "dependencies": {
           "Microsoft.CSharp": "[4.0.0, )",
@@ -7235,6 +7371,22 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.OneDriveSDK/1.1.15": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
+          "Newtonsoft.Json": "[7.0.1, )"
+        },
+        "compile": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -7338,6 +7490,14 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "NotificationsExtensions.Win10/10586.0.0": {
@@ -8833,6 +8993,14 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/2.19.208020213": {
+        "compile": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        }
+      },
       "Microsoft.NETCore/5.0.0": {
         "dependencies": {
           "Microsoft.CSharp": "[4.0.0, )",
@@ -9015,6 +9183,22 @@
           "runtimes/win10-x86/native/_._": {}
         }
       },
+      "Microsoft.OneDriveSDK/1.1.15": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
+          "Newtonsoft.Json": "[7.0.1, )"
+        },
+        "compile": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -9118,6 +9302,14 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "NotificationsExtensions.Win10/10586.0.0": {
@@ -10627,6 +10819,14 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/2.19.208020213": {
+        "compile": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd": {}
+        }
+      },
       "Microsoft.NETCore/5.0.0": {
         "dependencies": {
           "Microsoft.CSharp": "[4.0.0, )",
@@ -10790,6 +10990,22 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.OneDriveSDK/1.1.15": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
+          "Newtonsoft.Json": "[7.0.1, )"
+        },
+        "compile": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        },
+        "runtime": {
+          "lib/win81/OneDriveSdk.dll": {},
+          "lib/win81/OneDriveSdk.WinRT.dll": {},
+          "lib/win81/OneDriveSdk.WinStore.dll": {}
+        }
+      },
       "Microsoft.VisualBasic/10.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -10893,6 +11109,14 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "NotificationsExtensions.Win10/10586.0.0": {
@@ -12404,6 +12628,25 @@
         "ref/xamarinmac20/_._"
       ]
     },
+    "Microsoft.IdentityModel.Clients.ActiveDirectory/2.19.208020213": {
+      "sha512": "Blakd5rl3gOlj8VyCYNwduh8HbtHMg98/wFoTNqNd2K7AgLHw/s2MAt0G8IB1m9FI3Iu1MAk4i3SO4gVTF81Ig==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net45/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
+        "lib/net45/Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll",
+        "lib/net45/Microsoft.IdentityModel.Clients.ActiveDirectory.XML",
+        "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd",
+        "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.XML",
+        "lib/wp/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
+        "lib/wp/Microsoft.IdentityModel.Clients.ActiveDirectory.XML",
+        "lib/wpa/Microsoft.IdentityModel.Clients.ActiveDirectory.winmd",
+        "lib/wpa/Microsoft.IdentityModel.Clients.ActiveDirectory.XML",
+        "Microsoft.IdentityModel.Clients.ActiveDirectory.nuspec",
+        "package/services/metadata/core-properties/9f63b3db2bae402686c069e4338e049c.psmdcp"
+      ]
+    },
     "Microsoft.NETCore/5.0.0": {
       "sha512": "QQMp0yYQbIdfkKhdEE6Umh2Xonau7tasG36Trw/YlHoWgYQLp7T9L+ZD8EPvdj5ubRhtOuKEKwM7HMpkagB9ZA==",
       "type": "Package",
@@ -12953,6 +13196,24 @@
         "runtimes/win8-x86/native/api-ms-win-service-private-l1-1-1.dll"
       ]
     },
+    "Microsoft.OneDriveSDK/1.1.15": {
+      "sha512": "Bz1HDZK5IHh4YISmUf+yBuNTlXJzm7s6OR2QjJZrqMo+ofcfydP16Scp5+n9R13W6Br/zhHAOFoNOE2corsyug==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net451/OneDriveSdk.dll",
+        "lib/net451/OneDriveSdk.WindowsForms.dll",
+        "lib/portable-net45+netcore45+wpa81+win8/OneDriveSdk.dll",
+        "lib/portable-win81+wpa81/OneDriveSdk.dll",
+        "lib/portable-win81+wpa81/OneDriveSdk.WinStore.dll",
+        "lib/win81/OneDriveSdk.dll",
+        "lib/win81/OneDriveSdk.WinRT.dll",
+        "lib/win81/OneDriveSdk.WinStore.dll",
+        "Microsoft.OneDriveSDK.nuspec",
+        "package/services/metadata/core-properties/7ed3e91abdc94771b2c5f185f67cb047.psmdcp"
+      ]
+    },
     "Microsoft.VisualBasic/10.0.0": {
       "sha512": "5BEm2/HAVd97whRlCChU7rmSh/9cwGlZ/NTNe3Jl07zuPWfKQq5TUvVNUmdvmEe8QRecJLZ4/e7WF1i1O8V42g==",
       "type": "Package",
@@ -13196,6 +13457,29 @@
         "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.Touch.dll",
         "MvvmCross.HotTuna.Plugin.WebBrowser.nuspec",
         "package/services/metadata/core-properties/43241088c6a64edc9ede3be300b062d2.psmdcp"
+      ]
+    },
+    "Newtonsoft.Json/7.0.1": {
+      "sha512": "q3V4KLetMLnt1gpAVWgtXnHjKs0UG/RalBc29u2ZKxd5t5Ze4JBL5WiiYIklJyK/5CRiIiNwigVQUo0FgbsuWA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.xml",
+        "Newtonsoft.Json.nuspec",
+        "package/services/metadata/core-properties/49e907fc018c4c7ab632e6d4ad4766f8.psmdcp",
+        "tools/install.ps1"
       ]
     },
     "NotificationsExtensions.Win10/10586.0.0": {
