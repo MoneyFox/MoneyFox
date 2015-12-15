@@ -10,10 +10,6 @@ namespace MoneyManager.Core
 {
     public class OneDriveService : IBackupService
     {
-        public const string BACKUP_FOLDER_NAME = "MoneyFoxBackup";
-        public const string DATABASE_NAME = "moneyfox_backup.sqlite";
-        public const string BACKUP_NAME = "backupmoneyfox_backup.sqlite";
-
         private readonly IDialogService dialogService;
         private readonly IMvxFileStore fileStore;
         private readonly IOneDriveAuthenticator oneDriveAuthenticator;
@@ -56,20 +52,20 @@ namespace MoneyManager.Core
             }
 
             var children = await oneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
-            var existingBackup = children.FirstOrDefault(x => x.Name == BACKUP_NAME);
+            var existingBackup = children.FirstOrDefault(x => x.Name == Foundation.Constants.BACKUP_NAME);
 
             if (existingBackup != null)
             {
                 var backup = await oneDriveClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
-                if (fileStore.Exists(DATABASE_NAME))
+                if (fileStore.Exists(Foundation.Constants.DB_NAME))
                 {
-                    fileStore.DeleteFile(DATABASE_NAME);
+                    fileStore.DeleteFile(Foundation.Constants.DB_NAME);
                 }
 
                 var buffer = new byte[16 * 1024];
                 while (backup.Read(buffer, 0, buffer.Length) > 0)
                 {
-                    fileStore.WriteFile(DATABASE_NAME, buffer);
+                    fileStore.WriteFile(Foundation.Constants.DB_NAME, buffer);
                 }
             }
 
@@ -79,19 +75,14 @@ namespace MoneyManager.Core
         private async Task GetBackupFolder()
         {
             var children = await oneDriveClient.Drive.Root.Children.Request().GetAsync();
-            BackupFolder = children.CurrentPage.FirstOrDefault(x => x.Name == BACKUP_FOLDER_NAME);
+            BackupFolder = children.CurrentPage.FirstOrDefault(x => x.Name == Foundation.Constants.BACKUP_FOLDER_NAME);
 
             if (BackupFolder == null)
             {
-                var folderToCreate = new Item { Name = BACKUP_FOLDER_NAME, Folder = new Folder() };
+                var folderToCreate = new Item { Name = Foundation.Constants.BACKUP_FOLDER_NAME, Folder = new Folder() };
                 BackupFolder = await oneDriveClient.Drive.Items[Root.Id].Children.Request()
                     .AddAsync(folderToCreate);
             }
-        }
-
-        private async Task CreateBackupFolder()
-        {
-            
         }
     }
 }
