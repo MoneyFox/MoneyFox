@@ -8,6 +8,7 @@ using Cirrious.MvvmCross.WindowsUWP.Platform;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Windows.Concrete;
+using MoneyManager.Windows.Concrete.Services;
 using MoneyManager.Windows.Concrete.Shortcut;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.Email.WindowsCommon;
@@ -39,6 +40,7 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
             Mvx.RegisterType<ILocalSettings, LocalSettings>();
             Mvx.RegisterType<IUserNotification, UserNotification>();
+            Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
 
             Mvx.RegisterType<ISpendingShortcut, SpendingTile>();
             Mvx.RegisterType<IIncomeShortcut, IncomeTile>();

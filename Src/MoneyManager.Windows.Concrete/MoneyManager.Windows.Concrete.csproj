@@ -114,6 +114,7 @@
     <Compile Include="LocalSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoamingSettings.cs" />
+    <Compile Include="Services\OneDriveAuthenticator.cs" />
     <Compile Include="Services\OneDriveBackupService.cs" />
     <Compile Include="Shortcut\IncomeTile.cs" />
     <Compile Include="Shortcut\SpendingTile.cs" />

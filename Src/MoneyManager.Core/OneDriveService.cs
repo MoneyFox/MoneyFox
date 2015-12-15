@@ -14,18 +14,15 @@ namespace MoneyManager.Core
         public const string DATABASE_NAME = "moneyfox_backup.sqlite";
         public const string BACKUP_NAME = "backupmoneyfox_backup.sqlite";
 
-        private const string MSA_CLIENT_ID = "https://login.live.com/oauth20_desktop.srf";
-        private const string MSA_RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
-
-        private static readonly string[] Scopes = { "onedrive.readwrite", "wl.offline_access", "wl.signin" };
-
         private readonly IDialogService dialogService;
         private readonly IMvxFileStore fileStore;
+        private readonly IOneDriveAuthenticator oneDriveAuthenticator;
 
-        public OneDriveService(IDialogService dialogService, IMvxFileStore fileStore)
+        public OneDriveService(IDialogService dialogService, IMvxFileStore fileStore, IOneDriveAuthenticator oneDriveAuthenticator)
         {
             this.dialogService = dialogService;
             this.fileStore = fileStore;
+            this.oneDriveAuthenticator = oneDriveAuthenticator;
         }
 
         private IOneDriveClient oneDriveClient { get; set; }
@@ -38,39 +35,11 @@ namespace MoneyManager.Core
 
         public async Task Login()
         {
-            if (oneDriveClient == null)
+            oneDriveClient = await oneDriveAuthenticator.LoginAsync();
+
+            if (oneDriveClient.IsAuthenticated)
             {
-                oneDriveClient = OneDriveClient.GetMicrosoftAccountClient(
-                    MSA_CLIENT_ID,
-                    MSA_RETURN_URL,
-                    Scopes);
-
-                await oneDriveClient.AuthenticateAsync();
-            }
-
-            try
-            {
-                if (!oneDriveClient.IsAuthenticated)
-                {
-                    await oneDriveClient.AuthenticateAsync();
-                }
-
                 await GetBackupFolder();
-            } catch (OneDriveException exception)
-            {
-                // Swallow authentication cancelled exceptions
-                if (!exception.IsMatch(OneDriveErrorCode.AuthenticationCancelled.ToString()))
-                {
-                    if (exception.IsMatch(OneDriveErrorCode.AuthenticationFailure.ToString()))
-                    {
-                        await dialogService.ShowMessage(
-                            "Authentication failed",
-                            "Authentication failed");
-                    } else
-                    {
-                        throw;
-                    }
-                }
             }
         }
 
