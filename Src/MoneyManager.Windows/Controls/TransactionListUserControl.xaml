@@ -106,7 +106,7 @@
                                                ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
                                                ItemTemplate="{StaticResource TransactionTemplate}"
                                                HorizontalAlignment="Stretch"
-                                               ShowsScrollingPlaceholders="True"
+                                               ShowsScrollingPlaceholders="false"
                                                Margin="0,20,0,0"
                                                SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
             <interactivity:Interaction.Behaviors>
