@@ -8,7 +8,7 @@
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       mc:Ignorable="d">
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar x:Name="BottomCommandBar">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Save"
                               x:Uid="Done"

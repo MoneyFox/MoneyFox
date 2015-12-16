@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Cirrious.CrossCore;
@@ -18,6 +19,17 @@ namespace MoneyManager.Windows.Views
         {
             InitializeComponent();
             DataContext = Mvx.Resolve<ModifyAccountViewModel>();
+
+            // code to handle bottom app bar when keyboard appears
+            // workaround since otherwise the keyboard would overlay some controls
+            InputPane.GetForCurrentView().Showing += (s, args) => { BottomCommandBar.Visibility = Visibility.Collapsed; };
+            InputPane.GetForCurrentView().Hiding += (s, args2) =>
+            {
+                if (BottomCommandBar.Visibility == Visibility.Collapsed)
+                {
+                    BottomCommandBar.Visibility = Visibility.Visible;
+                }
+            };
         }
 
         private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
@@ -66,8 +78,11 @@ namespace MoneyManager.Windows.Views
                     InsightHelper.Report(new ExtendedFormatException(ex, TextBoxCurrentBalance.Text));
                 }
             }
-            else if(string.Equals(TextBoxCurrentBalance.Text, Strings.HelloWorldText, StringComparison.CurrentCultureIgnoreCase) 
-                || string.Equals(TextBoxCurrentBalance.Text, Strings.HalloWeltText, StringComparison.CurrentCultureIgnoreCase))
+            else if (string.Equals(TextBoxCurrentBalance.Text, Strings.HelloWorldText,
+                StringComparison.CurrentCultureIgnoreCase)
+                     ||
+                     string.Equals(TextBoxCurrentBalance.Text, Strings.HalloWeltText,
+                         StringComparison.CurrentCultureIgnoreCase))
             {
                 await new MessageDialog(Strings.HelloWorldResponse).ShowAsync();
             }

@@ -28,7 +28,7 @@
     </Page.Resources>
 
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar x:Name="BottomCommandBar">
             <CommandBar.PrimaryCommands>
             <AppBarButton Icon="Save"
                           Label="Done"
