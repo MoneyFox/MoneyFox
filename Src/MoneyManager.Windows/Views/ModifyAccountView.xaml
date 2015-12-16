@@ -43,9 +43,9 @@
         </basicControls:PageHeader>
 
         <ScrollViewer Grid.Row="1"
-                      Margin="12,0">
-            <StackPanel 
-                    EntranceNavigationTransitionInfo.IsTargetElement="True">
+                      HorizontalScrollMode="Auto">
+            <StackPanel Margin="12,0,12,0"
+                        EntranceNavigationTransitionInfo.IsTargetElement="True">
                 <TextBox Text="{Binding SelectedAccount.Name, Mode=TwoWay}"
                      Header="Name"
                      VerticalAlignment="Top"
