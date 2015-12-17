@@ -14,6 +14,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         ///     Creates an CategoryListViewModel for the usage of providing a category selection.
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
+        /// <param name="transactionRepository">An instance of an <see cref="ITransactionRepository" /> implementation.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         public SelectCategoryListViewModel(IRepository<Category> categoryRepository,
             ITransactionRepository transactionRepository, 
