@@ -22,6 +22,7 @@
   <string name="hint_amount">Amount</string>
   <string name="hint_recurring">Is Recurring</string>
   <string name="hint_endless">Is Endless</string>
+  <string name="hint_search_text">Search Text</string>
 
   <!--text views-->
   <string name="textview_version">Version</string>
