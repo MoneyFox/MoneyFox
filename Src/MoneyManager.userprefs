@@ -1,5 +1,5 @@
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.AVD_GalaxyNexus_ToolsForApacheCordova" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.0c458c540075f356" />
   <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

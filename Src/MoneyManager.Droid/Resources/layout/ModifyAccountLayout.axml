@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_current_balance"
         android:numeric="decimal"
-        local:MvxBind="Text SelectedAccount.CurrentBalance" />
+        local:MvxBind="Text AmountString" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

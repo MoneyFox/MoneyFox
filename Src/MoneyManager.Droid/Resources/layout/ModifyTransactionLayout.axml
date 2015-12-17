@@ -25,7 +25,7 @@
         android:layout_marginTop="5dp"
         android:hint="@string/hint_amount"
         android:numeric="decimal"
-        local:MvxBind="Text SelectedTransaction.Amount" />
+        local:MvxBind="Text AmountString" />
     <Button
         android:id="@+id/category"
         android:layout_width="match_parent"
