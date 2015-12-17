@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 using MoneyManager.Core.Extensions;
-using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Plugins.File;
@@ -21,15 +20,15 @@ namespace MoneyManager.Core
             this.oneDriveAuthenticator = oneDriveAuthenticator;
         }
 
-        private IOneDriveClient oneDriveClient { get; set; }
+        private IOneDriveClient OneDriveClient { get; set; }
 
         private Item BackupFolder { get; set; }
 
         public async Task Login()
         {
-            oneDriveClient = await oneDriveAuthenticator.LoginAsync();
+            OneDriveClient = await oneDriveAuthenticator.LoginAsync();
 
-            if (oneDriveClient.IsAuthenticated)
+            if (OneDriveClient.IsAuthenticated)
             {
                 await GetBackupFolder();
             }
@@ -41,7 +40,7 @@ namespace MoneyManager.Core
             {
                 using (var dbstream = fileStore.OpenRead(Foundation.Constants.DB_NAME))
                 {
-                    var uploadedItem = await oneDriveClient
+                    var uploadedItem = await OneDriveClient
                         .Drive
                         .Root
                         .ItemWithPath(Path.Combine(Foundation.Constants.BACKUP_FOLDER_NAME,
@@ -67,12 +66,12 @@ namespace MoneyManager.Core
                 await Login();
             }
 
-            var children = await oneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
+            var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
             var existingBackup = children.FirstOrDefault(x => x.Name == Foundation.Constants.BACKUP_NAME);
 
             if (existingBackup != null)
             {
-                var backup = await oneDriveClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
+                var backup = await OneDriveClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
                 if (fileStore.Exists(Foundation.Constants.DB_NAME))
                 {
                     fileStore.DeleteFile(Foundation.Constants.DB_NAME);
@@ -85,7 +84,7 @@ namespace MoneyManager.Core
 
         private async Task GetBackupFolder()
         {
-            var children = await oneDriveClient.Drive.Root.Children.Request().GetAsync();
+            var children = await OneDriveClient.Drive.Root.Children.Request().GetAsync();
             BackupFolder = children.CurrentPage.FirstOrDefault(x => x.Name == Foundation.Constants.BACKUP_FOLDER_NAME);
 
             if (BackupFolder == null)
@@ -98,9 +97,9 @@ namespace MoneyManager.Core
         {
             var folderToCreate = new Item {Name = Foundation.Constants.BACKUP_FOLDER_NAME, Folder = new Folder()};
 
-            var root = await oneDriveClient.Drive.Root.Request().GetAsync();
+            var root = await OneDriveClient.Drive.Root.Request().GetAsync();
 
-            BackupFolder = await oneDriveClient.Drive.Items[root.Id].Children.Request()
+            BackupFolder = await OneDriveClient.Drive.Items[root.Id].Children.Request()
                 .AddAsync(folderToCreate);
         }
     }
