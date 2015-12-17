@@ -1,4 +1,7 @@
 ﻿using Autofac;
+using MoneyManager.DataAccess;
+using System.Reflection;
+using Module = Autofac.Module;
 
 namespace MoneyManager.Core
 {
@@ -8,6 +11,11 @@ namespace MoneyManager.Core
         {
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Service"))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterAssemblyTypes(typeof(AccountDataAccess).GetTypeInfo().Assembly)
+                .Where(t => t.Name.EndsWith("DataAccesss"))
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
