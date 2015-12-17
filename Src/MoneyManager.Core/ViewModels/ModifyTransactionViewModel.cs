@@ -19,9 +19,9 @@ namespace MoneyManager.Core.ViewModels
     public class ModifyTransactionViewModel : BaseViewModel
     {
         private readonly IAccountRepository accountRepository;
-        private readonly DefaultManager defaultManager;
+        private readonly IDefaultManager defaultManager;
         private readonly IDialogService dialogService;
-        private readonly TransactionManager transactionManager;
+        private readonly ITransactionManager transactionManager;
         private readonly ITransactionRepository transactionRepository;
 
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,

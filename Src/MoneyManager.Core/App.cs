@@ -1,7 +1,8 @@
 ﻿using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Interfaces.ViewModels;
 
 namespace MoneyManager.Core
 {
@@ -12,9 +13,9 @@ namespace MoneyManager.Core
         /// </summary>
         public override void Initialize()
         {
-            Mvx.Resolve<RecurringTransactionManager>().CheckRecurringTransactions();
-            Mvx.Resolve<TransactionManager>().ClearTransactions();
-            Mvx.Resolve<BalanceViewModel>().UpdateBalance();
+            Mvx.Resolve<IRecurringTransactionManager>().CheckRecurringTransactions();
+            Mvx.Resolve<ITransactionManager>().ClearTransactions();
+            Mvx.Resolve<IBalanceViewModel>().UpdateBalance();
             
             // Start the app with the Main View Model.
             RegisterAppStart<MainViewModel>();

@@ -7,7 +7,7 @@ namespace MoneyManager.Core.Manager
     {
         private readonly IRepository<Account> accountRepository;
         private readonly IRepository<Category> categoryRepository;
-        private readonly TransactionManager transactionManager;
+        private readonly ITransactionManager transactionManager;
         private readonly ITransactionRepository transactionRepository;
 
         public RepositoryManager(IRepository<Account> accountRepository,
