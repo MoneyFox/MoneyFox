@@ -5,9 +5,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Cirrious.CrossCore;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Localization;
@@ -19,7 +17,6 @@ namespace MoneyManager.Windows.Views
         public ModifyTransactionView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<ModifyTransactionViewModel>();
 
             // code to handle bottom app bar when keyboard appears
             // workaround since otherwise the keyboard would overlay some controls

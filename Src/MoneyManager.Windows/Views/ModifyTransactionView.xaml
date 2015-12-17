@@ -10,6 +10,7 @@
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       mc:Ignorable="d"
                       NavigationCacheMode="Enabled"
+                      DataContext="{Binding ModifyTransactionView, Source={StaticResource CoreModule}}"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>

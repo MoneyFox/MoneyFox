@@ -8,6 +8,7 @@
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:converter="using:MoneyManager.Windows.Converter"
              xmlns:customControls="using:MoneyManager.Windows.Controls.CustomControls"
+             DataContext="{Binding AccountListView, Source={StaticResource CoreModule}}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">

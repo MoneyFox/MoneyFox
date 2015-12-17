@@ -2,7 +2,6 @@
 using Windows.UI.Xaml;
 using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels.CategoryList;
-using MoneyManager.Core.ViewModels.SettingViews;
 using MoneyManager.Windows.Dialogs;
 
 namespace MoneyManager.Windows.Views
@@ -13,7 +12,6 @@ namespace MoneyManager.Windows.Views
         {
             InitializeComponent();
 
-            DataContext = Mvx.Resolve<SettingDefaultsViewModel>();
             CategoryListUserControl.DataContext = Mvx.Resolve<SettingsCategoryListViewModel>();
         }
 

@@ -6,6 +6,7 @@
       xmlns:converter="using:MoneyManager.Windows.Converter"
       xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
       mc:Ignorable="d"
+      DataContext="{Binding BackupView, Source={StaticResource CoreModule}}"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>

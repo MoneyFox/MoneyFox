@@ -6,6 +6,7 @@
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
                       xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                      DataContext="{Binding ModifyAccountView, Source={StaticResource CoreModule}}"
                       mc:Ignorable="d">
     <Page.BottomAppBar>
         <CommandBar x:Name="BottomCommandBar">
