@@ -27,8 +27,8 @@ namespace MoneyManager.Core.ViewModels
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IAccountRepository accountRepository,
             IDialogService dialogService,
-            TransactionManager transactionManager,
-            DefaultManager defaultManager)
+            ITransactionManager transactionManager,
+            IDefaultManager defaultManager)
         {
             this.transactionRepository = transactionRepository;
             this.dialogService = dialogService;
