@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
+using MoneyManager.Core.Extensions;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
