@@ -5,7 +5,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Manager
 {
-    public class RecurringTransactionManager
+    public class RecurringTransactionManager : IRecurringTransactionManager
     {
         private readonly ITransactionRepository transactionRepository;
 

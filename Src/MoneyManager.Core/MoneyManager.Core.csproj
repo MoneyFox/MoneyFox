@@ -43,14 +43,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="AutoFac\AutofacMvxIocProvider.cs" />
+    <Compile Include="AutoFac\AutofacMvxIocProviderResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutofacMvxIocProviderResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
     <Compile Include="Converter\TransactionAmountConverter.cs" />
+    <Compile Include="CoreModule.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\RecurringTransactionHelper.cs" />
-    <Compile Include="Helpers\StreamExtension.cs" />
+    <Compile Include="Extensions\StreamExtension.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Authentication\PasswordStorage.cs" />
     <Compile Include="Manager\RecurringTransactionManager.cs" />
@@ -78,7 +85,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoryList\AbstractCategoryListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\PasswordUserControlViewModel.cs" />
+    <Compile Include="ViewModels\SettingViews\PasswordUserControlViewModel.cs" />
     <Compile Include="ViewModels\CategoryList\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\SelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\SettingViews\SettingDefaultsViewModel.cs" />
@@ -88,6 +95,14 @@
     <Compile Include="ViewModels\TransactionListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Extras.MvvmCross, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Extras.MvvmCross.3.3.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.Extras.MvvmCross.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Cirrious.CrossCore, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta7\lib\portable-win+net45+wp8+win8+wpa81\Cirrious.CrossCore.dll</HintPath>
       <Private>True</Private>
@@ -124,8 +139,8 @@
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.WebBrowser.4.0.0-beta7\lib\portable-win+net45+wp8+win8+wpa81\MvvmCross.Plugins.WebBrowser.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OneDriveSdk, Version=1.1.15.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.OneDriveSDK.1.1.15\lib\portable-net45+netcore45+wpa81+win8\OneDriveSdk.dll</HintPath>
+    <Reference Include="OneDriveSdk, Version=1.1.20.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.OneDriveSDK.1.1.20\lib\portable-net45+netcore45+wpa81+win8\OneDriveSdk.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PropertyChanged">
@@ -177,6 +192,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AutoFac\AutofacMvxIocProviderResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AutofacMvxIocProviderResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

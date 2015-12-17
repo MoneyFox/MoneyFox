@@ -5,7 +5,7 @@ using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyManager.Core.ViewModels.SettingViews
 {
     [ImplementPropertyChanged]
     public class PasswordUserControlViewModel : BaseViewModel

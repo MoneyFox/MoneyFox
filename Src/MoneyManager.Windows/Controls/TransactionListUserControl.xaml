@@ -8,6 +8,7 @@
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:converter="using:MoneyManager.Windows.Converter"
              xmlns:customControls="using:MoneyManager.Windows.Controls.CustomControls"
+             DataContext="{Binding TransactionListView, Source={StaticResource CoreModule}}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -106,7 +107,7 @@
                                                ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
                                                ItemTemplate="{StaticResource TransactionTemplate}"
                                                HorizontalAlignment="Stretch"
-                                               ShowsScrollingPlaceholders="True"
+                                               ShowsScrollingPlaceholders="false"
                                                Margin="0,20,0,0"
                                                SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
             <interactivity:Interaction.Behaviors>

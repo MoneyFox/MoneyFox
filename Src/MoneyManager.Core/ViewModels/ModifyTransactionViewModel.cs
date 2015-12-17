@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
@@ -20,16 +18,16 @@ namespace MoneyManager.Core.ViewModels
     public class ModifyTransactionViewModel : BaseViewModel
     {
         private readonly IAccountRepository accountRepository;
-        private readonly DefaultManager defaultManager;
+        private readonly IDefaultManager defaultManager;
         private readonly IDialogService dialogService;
-        private readonly TransactionManager transactionManager;
+        private readonly ITransactionManager transactionManager;
         private readonly ITransactionRepository transactionRepository;
 
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IAccountRepository accountRepository,
             IDialogService dialogService,
-            TransactionManager transactionManager,
-            DefaultManager defaultManager)
+            ITransactionManager transactionManager,
+            IDefaultManager defaultManager)
         {
             this.transactionRepository = transactionRepository;
             this.dialogService = dialogService;
@@ -116,7 +114,6 @@ namespace MoneyManager.Core.ViewModels
 
             // Make sure that the old amount is removed to not count the amount twice.
             RemoveOldAmount();
-
             SelectedTransaction.Amount = amount;
 
             //Create a recurring transaction based on the financial transaction or update an existing

@@ -16,6 +16,7 @@ using MoneyManager.Core.Helpers;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
 using MoneyManager.Windows.Concrete;
+using MoneyManager.Windows.Concrete.Services;
 using MoneyManager.Windows.Concrete.Shortcut;
 using MoneyManager.Windows.Views;
 using UniversalRateReminder;

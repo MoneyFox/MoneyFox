@@ -21,7 +21,7 @@
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <TextBox Header="name" x:Uid="Name"
-                 Text="{Binding Selected.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                 KeyDown="TextBox_OnKeyDown"/>
+                 Text="{Binding Selected.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 KeyDown="TextBox_OnKeyDown" />
     </StackPanel>
 </ContentDialog>

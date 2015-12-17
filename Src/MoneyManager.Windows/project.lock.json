@@ -3,6 +3,26 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "Autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.MvvmCross/3.3.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        }
+      },
       "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
         "compile": {
           "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
@@ -182,7 +202,7 @@
         }
       },
       "Microsoft.NETNative.Analyzer/1.0.0": {},
-      "Microsoft.OneDriveSDK/1.1.15": {
+      "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -1744,6 +1764,26 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "Autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.MvvmCross/3.3.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        }
+      },
       "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
         "compile": {
           "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
@@ -1966,7 +2006,7 @@
         }
       },
       "Microsoft.NETNative.Analyzer/1.0.0": {},
-      "Microsoft.OneDriveSDK/1.1.15": {
+      "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -3575,6 +3615,26 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "Autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.MvvmCross/3.3.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        }
+      },
       "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
         "compile": {
           "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
@@ -3783,7 +3843,7 @@
         }
       },
       "Microsoft.NETNative.Analyzer/1.0.0": {},
-      "Microsoft.OneDriveSDK/1.1.15": {
+      "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -5378,6 +5438,26 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "Autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.MvvmCross/3.3.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        }
+      },
       "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
         "compile": {
           "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
@@ -5605,7 +5685,7 @@
         }
       },
       "Microsoft.NETNative.Analyzer/1.0.0": {},
-      "Microsoft.OneDriveSDK/1.1.15": {
+      "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -7214,6 +7294,26 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "Autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.MvvmCross/3.3.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        }
+      },
       "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
         "compile": {
           "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
@@ -7422,7 +7522,7 @@
         }
       },
       "Microsoft.NETNative.Analyzer/1.0.0": {},
-      "Microsoft.OneDriveSDK/1.1.15": {
+      "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -9017,6 +9117,26 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "Autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.MvvmCross/3.3.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        }
+      },
       "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
         "compile": {
           "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
@@ -9244,7 +9364,7 @@
         }
       },
       "Microsoft.NETNative.Analyzer/1.0.0": {},
-      "Microsoft.OneDriveSDK/1.1.15": {
+      "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -10853,6 +10973,26 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "Autofac/3.5.2": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.MvvmCross/3.3.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
+        }
+      },
       "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
         "compile": {
           "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
@@ -11061,7 +11201,7 @@
         }
       },
       "Microsoft.NETNative.Analyzer/1.0.0": {},
-      "Microsoft.OneDriveSDK/1.1.15": {
+      "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -12657,6 +12797,34 @@
     }
   },
   "libraries": {
+    "Autofac/3.5.2": {
+      "sha512": "pGR5LjY8T/16x6SkJNd7u6EjQnE4C7JS0BZJ7Yl7pt313gIUZ/2ZnPSOIM5eaIA7ArxaudlyyLvAT4ayX5UJ/A==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "Autofac.nuspec",
+        "lib/net40/Autofac.dll",
+        "lib/net40/Autofac.xml",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.xml",
+        "package/services/metadata/core-properties/14b288cae4b6435c88f25cef31d271e1.psmdcp"
+      ]
+    },
+    "Autofac.Extras.MvvmCross/3.3.0": {
+      "sha512": "5UqEvNWSpVfgXQ7lu/B9r3ROEYOiBM8FS5epvd+vh4XHTQFPWsm4JxRJ7Ucp6M0Aov+0sXfaYxRfEdVc7nxQvQ==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "Autofac.Extras.MvvmCross.nuspec",
+        "lib/net40/Autofac.Extras.MvvmCross.dll",
+        "lib/net40/Autofac.Extras.MvvmCross.xml",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.xml",
+        "package/services/metadata/core-properties/68403287af27443587c502f3b97c0491.psmdcp"
+      ]
+    },
     "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
       "sha512": "bA7YbP9dSxuK/QuMloVGwaXtrYByLNP+NAU3UR1eQ9DTib/S8RI871ZSIlioSSR/mgak1S5h4P1XwdppkCmS4w==",
       "type": "Package",
@@ -13303,8 +13471,8 @@
         "tools/uninstall.ps1"
       ]
     },
-    "Microsoft.OneDriveSDK/1.1.15": {
-      "sha512": "Bz1HDZK5IHh4YISmUf+yBuNTlXJzm7s6OR2QjJZrqMo+ofcfydP16Scp5+n9R13W6Br/zhHAOFoNOE2corsyug==",
+    "Microsoft.OneDriveSDK/1.1.20": {
+      "sha512": "650vvWls5rnJEjemv//LhGv2Njy4UWfyCu6Z6b0wkOscFkbs7MtAIMCJwXZD/ZcsAMgEfDi26+Vl5seyXQ3OGQ==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -13318,7 +13486,7 @@
         "lib/win81/OneDriveSdk.WinRT.dll",
         "lib/win81/OneDriveSdk.WinStore.dll",
         "Microsoft.OneDriveSDK.nuspec",
-        "package/services/metadata/core-properties/7ed3e91abdc94771b2c5f185f67cb047.psmdcp"
+        "package/services/metadata/core-properties/3cd0116c6dd04f18a847a487fe6a1f3a.psmdcp"
       ]
     },
     "Microsoft.VisualBasic/10.0.0": {
@@ -16523,11 +16691,14 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "Autofac >= 3.5.2",
+      "Autofac.Extras.MvvmCross >= 3.3.0",
       "Beezy.MvvmCross.Plugins.SecureStorage >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Microsoft.NETNative.Analyzer >= 1.0.0",
-      "Microsoft.OneDriveSDK >= 1.1.15",
+      "Microsoft.OneDriveSDK >= 1.1.20",
       "Microsoft.Xaml.Behaviors.Uwp.Managed >= 1.0.3",
+      "MvvmCross.HotTuna.CrossCore >= 4.0.0-beta7",
       "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta7",
       "MvvmCross.HotTuna.Plugin.Email >= 4.0.0-beta7",
       "MvvmCross.HotTuna.Plugin.File >= 4.0.0-beta7",

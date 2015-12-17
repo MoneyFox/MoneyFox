@@ -5,15 +5,15 @@ namespace MoneyManager.Core.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        private readonly BalanceViewModel balanceViewModel;
         private readonly ModifyAccountViewModel modifyAccountViewModel;
         private readonly ModifyTransactionViewModel modifyTransactionViewModel;
-        private readonly BalanceViewModel balanceViewModel;
 
         /// <summary>
         ///     Creates an MainViewModel object.
         /// </summary>
         public MainViewModel(ModifyAccountViewModel modifyAccountViewModel,
-            ModifyTransactionViewModel modifyTransactionViewModel, 
+            ModifyTransactionViewModel modifyTransactionViewModel,
             BalanceViewModel balanceViewModel)
         {
             this.modifyAccountViewModel = modifyAccountViewModel;

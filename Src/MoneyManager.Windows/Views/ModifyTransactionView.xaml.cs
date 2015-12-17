@@ -5,9 +5,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Cirrious.CrossCore;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Localization;
@@ -19,11 +17,11 @@ namespace MoneyManager.Windows.Views
         public ModifyTransactionView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<ModifyTransactionViewModel>();
 
             // code to handle bottom app bar when keyboard appears
             // workaround since otherwise the keyboard would overlay some controls
-            InputPane.GetForCurrentView().Showing += (s, args) => { BottomCommandBar.Visibility = Visibility.Collapsed; };
+            InputPane.GetForCurrentView().Showing +=
+                (s, args) => { BottomCommandBar.Visibility = Visibility.Collapsed; };
             InputPane.GetForCurrentView().Hiding += (s, args2) =>
             {
                 if (BottomCommandBar.Visibility == Visibility.Collapsed)
@@ -71,12 +69,15 @@ namespace MoneyManager.Windows.Views
 
                     //set the cursor back to the last positon to avoid jumping around
                     TextBoxAmount.Select(cursorposition, 0);
-                } catch (FormatException ex)
+                }
+                catch (FormatException ex)
                 {
                     InsightHelper.Report(new ExtendedFormatException(ex, TextBoxAmount.Text));
                 }
-            } else if (string.Equals(TextBoxAmount.Text, Strings.HelloWorldText, StringComparison.CurrentCultureIgnoreCase)
-                  || string.Equals(TextBoxAmount.Text, Strings.HalloWeltText, StringComparison.CurrentCultureIgnoreCase))
+            }
+            else if (string.Equals(TextBoxAmount.Text, Strings.HelloWorldText, StringComparison.CurrentCultureIgnoreCase)
+                     ||
+                     string.Equals(TextBoxAmount.Text, Strings.HalloWeltText, StringComparison.CurrentCultureIgnoreCase))
             {
                 await new MessageDialog(Strings.HelloWorldResponse).ShowAsync();
             }
@@ -119,6 +120,5 @@ namespace MoneyManager.Windows.Views
             ((Frame) Parent).CacheSize = 0;
             ((Frame) Parent).CacheSize = cacheSize;
         }
-
     }
 }

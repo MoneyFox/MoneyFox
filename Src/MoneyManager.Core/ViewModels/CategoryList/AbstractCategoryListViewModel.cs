@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels.CategoryList
 {
-    [ImplementPropertyChanged]
     public abstract class AbstractCategoryListViewModel : BaseViewModel
     {
         protected readonly IRepository<Category> CategoryRepository;
         protected readonly IDialogService DialogService;
+
+        private ObservableCollection<Category> categories = new ObservableCollection<Category>();
 
         private string searchText;
 
@@ -36,7 +35,15 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         /// </summary>
         public MvxCommand<Category> DeleteCategoryCommand => new MvxCommand<Category>(DeleteCategory);
 
-        public ObservableCollection<Category> Categories { get; set; }
+        public ObservableCollection<Category> Categories
+        {
+            get { return categories; }
+            set
+            {
+                categories = value;
+                RaisePropertyChanged(() => Categories);
+            }
+        }
 
         /// <summary>
         ///     Text to search for. Will perform the search when the text changes.
@@ -56,7 +63,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         /// </summary>
         public void Search()
         {
-            if (!String.IsNullOrEmpty(SearchText))
+            if (!string.IsNullOrEmpty(SearchText))
             {
                 Categories = new ObservableCollection<Category>
                     (CategoryRepository.Data.Where(
@@ -73,6 +80,11 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         {
             if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
+                if (Categories.Contains(categoryToDelete))
+                {
+                    Categories.Remove(categoryToDelete);
+                }
+
                 CategoryRepository.Delete(categoryToDelete);
             }
         }

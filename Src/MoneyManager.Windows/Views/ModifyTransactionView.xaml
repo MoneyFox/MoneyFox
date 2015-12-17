@@ -10,6 +10,7 @@
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       mc:Ignorable="d"
                       NavigationCacheMode="Enabled"
+                      DataContext="{Binding ModifyTransactionView, Source={StaticResource CoreModule}}"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
@@ -30,15 +31,15 @@
     <Page.BottomAppBar>
         <CommandBar x:Name="BottomCommandBar">
             <CommandBar.PrimaryCommands>
-            <AppBarButton Icon="Save"
-                          Label="Done"
-                          x:Uid="Done"
-                          Command="{Binding SaveCommand}" />
-            <AppBarButton Icon="Cancel"
-                          Label="Cancel"
-                          x:Uid="Cancel"
-                          Command="{Binding CancelCommand}" />
-                </CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Save"
+                              Label="Done"
+                              x:Uid="Done"
+                              Command="{Binding SaveCommand}" />
+                <AppBarButton Icon="Cancel"
+                              Label="Cancel"
+                              x:Uid="Cancel"
+                              Command="{Binding CancelCommand}" />
+            </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Delete"
                               Label="Delete"
@@ -96,7 +97,8 @@
                                  IsReadOnly="True">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="GotFocus">
-                                    <core:InvokeCommandAction Command="{Binding GoToSelectCategorydialogCommand, Mode=OneWay}" />
+                                    <core:InvokeCommandAction
+                                        Command="{Binding GoToSelectCategorydialogCommand, Mode=OneWay}" />
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                         </TextBox>

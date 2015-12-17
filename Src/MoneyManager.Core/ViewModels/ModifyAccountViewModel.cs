@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
