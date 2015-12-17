@@ -8,7 +8,7 @@ using MoneyManager.Localization;
 
 namespace MoneyManager.Core.Manager
 {
-    public class TransactionManager
+    public class TransactionManager : ITransactionManager
     {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;

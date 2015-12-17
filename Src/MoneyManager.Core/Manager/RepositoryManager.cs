@@ -3,7 +3,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Manager
 {
-    public class RepositoryManager
+    public class RepositoryManager : IRepositoryManager
     {
         private readonly IRepository<Account> accountRepository;
         private readonly IRepository<Category> categoryRepository;
