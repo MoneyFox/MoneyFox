@@ -5,6 +5,7 @@ using Cirrious.MvvmCross.Touch.Platform;
 using Cirrious.MvvmCross.Touch.Views.Presenters;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
+using MoneyManager.Core.AutoFac;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
 using UIKit;

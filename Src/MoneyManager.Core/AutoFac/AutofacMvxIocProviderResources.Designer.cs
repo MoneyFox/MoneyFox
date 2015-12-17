@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MoneyManager.Core {
+namespace MoneyManager.Core.AutoFac {
     using System;
     using System.Reflection;
     
@@ -40,7 +40,7 @@ namespace MoneyManager.Core {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MoneyManager.Core.AutofacMvxIocProviderResources", typeof(AutofacMvxIocProviderResources).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MoneyManager.Core.AutoFac.AutofacMvxIocProviderResources", typeof(AutofacMvxIocProviderResources).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

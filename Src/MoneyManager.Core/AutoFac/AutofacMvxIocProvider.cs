@@ -8,7 +8,7 @@ using Autofac.Core.Registration;
 using Cirrious.CrossCore.Core;
 using Cirrious.CrossCore.IoC;
 
-namespace MoneyManager.Core
+namespace MoneyManager.Core.AutoFac
 {
     /// <summary>
     ///     Inversion of control provider for the MvvmCross framework backed by Autofac.

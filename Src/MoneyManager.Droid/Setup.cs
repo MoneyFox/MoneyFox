@@ -6,6 +6,7 @@ using Cirrious.CrossCore.IoC;
 using Cirrious.MvvmCross.Droid.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
+using MoneyManager.Core.AutoFac;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
 using Xamarin;

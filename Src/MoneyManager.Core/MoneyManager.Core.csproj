@@ -43,8 +43,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="AutofacMvxIocProvider.cs" />
-    <Compile Include="AutofacMvxIocProviderResources.Designer.cs">
+    <Compile Include="AutoFac\AutofacMvxIocProvider.cs" />
+    <Compile Include="AutoFac\AutofacMvxIocProviderResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AutofacMvxIocProviderResources.resx</DependentUpon>
@@ -194,7 +194,7 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AutofacMvxIocProviderResources.resx">
+    <EmbeddedResource Include="AutoFac\AutofacMvxIocProviderResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AutofacMvxIocProviderResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>

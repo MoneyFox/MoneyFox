@@ -139,17 +139,12 @@
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.WebBrowser.4.0.0-beta7\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OneDriveSdk, Version=1.1.15.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.OneDriveSDK.1.1.15\lib\portable-net45+netcore45+wpa81+win8\OneDriveSdk.dll</HintPath>
+    <Reference Include="OneDriveSdk, Version=1.1.20.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.OneDriveSDK.1.1.20\lib\portable-net45+netcore45+wpa81+win8\OneDriveSdk.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Globalization" />
-    <Reference Include="System.ObjectModel" />
-    <Reference Include="System.Runtime" />
-    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="OxyPlot, Version=2015.1.999.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9">

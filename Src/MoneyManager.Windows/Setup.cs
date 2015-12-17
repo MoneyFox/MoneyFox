@@ -9,6 +9,7 @@ using Cirrious.CrossCore.Plugins;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsUWP.Platform;
 using MoneyManager.Core;
+using MoneyManager.Core.AutoFac;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.Email.WindowsCommon;
