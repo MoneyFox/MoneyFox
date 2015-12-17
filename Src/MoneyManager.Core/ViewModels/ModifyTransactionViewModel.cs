@@ -114,7 +114,6 @@ namespace MoneyManager.Core.ViewModels
 
             // Make sure that the old amount is removed to not count the amount twice.
             RemoveOldAmount();
-
             SelectedTransaction.Amount = amount;
 
             //Create a recurring transaction based on the financial transaction or update an existing

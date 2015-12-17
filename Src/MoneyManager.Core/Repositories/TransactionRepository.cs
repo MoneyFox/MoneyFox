@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
@@ -66,7 +67,7 @@ namespace MoneyManager.Core.Repositories
         {
             if (item.ChargedAccount == null)
             {
-                throw new InvalidDataException("charged accout is missing");
+                throw new AccountMissingException("charged accout is missing");
             }
 
             item.IsCleared = item.ClearTransactionNow;

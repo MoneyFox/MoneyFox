@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AbstractDataAccess.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
