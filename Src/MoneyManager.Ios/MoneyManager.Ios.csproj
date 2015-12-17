@@ -92,7 +92,7 @@
     <Compile Include="IosModule.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="RoamingSettings.cs" />
+    <Compile Include="Src\RoamingSettings.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DialogService.cs" />

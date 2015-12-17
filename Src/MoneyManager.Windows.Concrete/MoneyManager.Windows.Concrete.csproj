@@ -109,7 +109,6 @@
   <ItemGroup>
     <Compile Include="AppInformation.cs" />
     <Compile Include="Services\BackgroundTaskService.cs" />
-    <Compile Include="DatabasePath.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="LocalSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
