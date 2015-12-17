@@ -1,6 +1,9 @@
 ﻿using Autofac;
 using MoneyManager.DataAccess;
 using System.Reflection;
+using MoneyManager.Core.Authentication;
+using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 using Module = Autofac.Module;
 
 namespace MoneyManager.Core
@@ -9,6 +12,11 @@ namespace MoneyManager.Core
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<SqliteConnectionCreator>().As<ISqliteConnectionCreator>();
+
+            builder.RegisterType<PasswordStorage>().As<IPasswordStorage>();
+            builder.RegisterType<Session>().AsSelf();
+
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("Service"))
                 .AsImplementedInterfaces()

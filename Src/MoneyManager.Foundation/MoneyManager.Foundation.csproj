@@ -46,6 +46,7 @@
     <Compile Include="AbstractDataAccess.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
+    <Compile Include="Interfaces\IPasswordStorage.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\IBackgroundTaskService.cs" />
     <Compile Include="Interfaces\IDefaultManager.cs" />

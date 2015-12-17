@@ -1,7 +1,6 @@
 using System.Reflection;
 using Windows.UI.Xaml.Controls;
 using Autofac;
-using Autofac.Extras.MvvmCross;
 using Beezy.MvvmCross.Plugins.SecureStorage;
 using Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore;
 using Cirrious.CrossCore;
@@ -33,23 +32,6 @@ namespace MoneyManager.Windows
         public Setup(Frame frame)
             : base(frame)
         {
-        }
-
-        protected override void InitializeFirstChance()
-        {
-            base.InitializeFirstChance();
-
-            Mvx.RegisterType<IDialogService, DialogService>();
-            Mvx.RegisterType<IAppInformation, AppInformation>();
-            Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
-            Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
-            Mvx.RegisterType<ILocalSettings, LocalSettings>();
-            Mvx.RegisterType<IUserNotification, UserNotification>();
-            Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
-
-            Mvx.RegisterType<ISpendingShortcut, SpendingTile>();
-            Mvx.RegisterType<IIncomeShortcut, IncomeTile>();
-            Mvx.RegisterType<ITransferShortcut, TransferTile>();
         }
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)

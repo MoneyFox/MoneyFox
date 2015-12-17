@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using Beezy.MvvmCross.Plugins.SecureStorage;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Core.Authentication
 {
     /// <summary>
     ///     Wrapper object for IMvxProtectedData to provide a nicer access.
     /// </summary>
-    public class PasswordStorage
+    public class PasswordStorage : IPasswordStorage
     {
         private const string PASSWORD_KEY = "password";
         private readonly IMvxProtectedData protectedData;
@@ -45,7 +45,9 @@ namespace MoneyManager.Core.Authentication
             {
                 protectedData.Remove(PASSWORD_KEY);
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+            }
         }
 
         /// <summary>

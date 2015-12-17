@@ -43,6 +43,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="AutofacMvxIocProvider.cs" />
+    <Compile Include="AutofacMvxIocProviderResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutofacMvxIocProviderResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
@@ -186,6 +192,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AutofacMvxIocProviderResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AutofacMvxIocProviderResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
