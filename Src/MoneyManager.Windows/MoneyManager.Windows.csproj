@@ -195,6 +195,7 @@
     <Compile Include="Views\TransactionListView.xaml.cs">
       <DependentUpon>TransactionListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

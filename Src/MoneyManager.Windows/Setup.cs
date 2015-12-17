@@ -68,6 +68,7 @@ namespace MoneyManager.Windows
             var cb = new ContainerBuilder();
 
             cb.RegisterModule<CoreModule>();
+            cb.RegisterModule<WindowsModule>();
 
             // This is an important step that ensures all the ViewModel's are loaded into the container.
             // Without this, it was observed that MvvmCross wouldn't register them by itself; needs more investigation.

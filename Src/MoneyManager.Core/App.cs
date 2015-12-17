@@ -63,6 +63,8 @@ namespace MoneyManager.Core
             Mvx.Resolve<TransactionManager>().ClearTransactions();
             Mvx.Resolve<BalanceViewModel>().UpdateBalance();
 
+
+
             // Start the app with the Main View Model.
             RegisterAppStart<MainViewModel>();
         }
