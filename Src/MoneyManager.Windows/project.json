@@ -1,10 +1,13 @@
 ﻿{
   "dependencies": {
+    "Autofac": "3.5.2",
+    "Autofac.Extras.MvvmCross": "3.3.0",
     "Beezy.MvvmCross.Plugins.SecureStorage": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Microsoft.NETNative.Analyzer": "1.0.0",
     "Microsoft.OneDriveSDK": "1.1.15",
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3",
+    "MvvmCross.HotTuna.CrossCore": "4.0.0-beta7",
     "MvvmCross.HotTuna.MvvmCrossLibraries": "4.0.0-beta7",
     "MvvmCross.HotTuna.Plugin.Email": "4.0.0-beta7",
     "MvvmCross.HotTuna.Plugin.File": "4.0.0-beta7",

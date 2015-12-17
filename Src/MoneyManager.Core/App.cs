@@ -44,11 +44,6 @@ namespace MoneyManager.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-           CreatableTypes()
-                .EndingWith("Service")
-                .AsInterfaces()
-                .RegisterAsLazySingleton();
-
             CreatableTypes()
                 .EndingWith("Manager")
                 .AsTypes()
