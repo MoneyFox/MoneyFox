@@ -8,7 +8,7 @@ namespace MoneyManager.Windows.Views
         public MainView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<MainViewModel>();
+            //DataContext = Mvx.Resolve<MainViewModel>();
         }
     }
 }
