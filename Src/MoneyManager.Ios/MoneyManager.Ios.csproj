@@ -89,11 +89,12 @@
   <ItemGroup>
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
+    <Compile Include="IosModule.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="RoamingSettings.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Src\AppInformation.cs" />
-    <Compile Include="Src\DatabasePath.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\Localize.cs" />
     <Compile Include="Src\LocalSettings.cs" />

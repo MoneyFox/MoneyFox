@@ -72,7 +72,6 @@
     <Compile Include="Interfaces\IAppInformation.cs" />
     <Compile Include="Interfaces\IBackupService.cs" />
     <Compile Include="Interfaces\IDataAccess.cs" />
-    <Compile Include="Interfaces\IDatabasePath.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
