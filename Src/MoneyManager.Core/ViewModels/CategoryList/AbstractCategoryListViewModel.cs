@@ -37,7 +37,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         public ObservableCollection<Category> Categories
         {
             get { return categories; }
-            set { categories = value; RaisePropertyChanged(() => categories); }
+            set { categories = value; RaisePropertyChanged(() => Categories); }
         }
 
         /// <summary>
@@ -75,6 +75,11 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         {
             if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
+                if (Categories.Contains(categoryToDelete))
+                {
+                    Categories.Remove(categoryToDelete);
+                }
+
                 CategoryRepository.Delete(categoryToDelete);
             }
         }
