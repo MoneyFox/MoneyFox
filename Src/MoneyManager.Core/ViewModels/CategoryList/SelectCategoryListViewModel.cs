@@ -17,7 +17,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         /// <param name="transactionRepository">An instance of an <see cref="ITransactionRepository" /> implementation.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         public SelectCategoryListViewModel(IRepository<Category> categoryRepository,
-            ITransactionRepository transactionRepository, 
+            ITransactionRepository transactionRepository,
             IDialogService dialogService)
             : base(categoryRepository, dialogService)
         {

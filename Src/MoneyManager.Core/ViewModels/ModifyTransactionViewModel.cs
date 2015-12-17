@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;

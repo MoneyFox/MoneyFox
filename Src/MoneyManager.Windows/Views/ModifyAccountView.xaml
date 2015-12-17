@@ -48,34 +48,34 @@
             <StackPanel Margin="12,0,12,0"
                         EntranceNavigationTransitionInfo.IsTargetElement="True">
                 <TextBox Text="{Binding SelectedAccount.Name, Mode=TwoWay}"
-                     Header="Name"
-                     VerticalAlignment="Top"
-                     x:Uid="Name"
-                     Margin="0,0,0,12" />
+                         Header="Name"
+                         VerticalAlignment="Top"
+                         x:Uid="Name"
+                         Margin="0,0,0,12" />
                 <TextBox Text="{Binding SelectedAccount.Iban, Mode=TwoWay}"
-                     Header="IBAN"
-                     VerticalAlignment="Top"
-                     x:Uid="Iban"
-                     Margin="0,0,0,12" />
+                         Header="IBAN"
+                         VerticalAlignment="Top"
+                         x:Uid="Iban"
+                         Margin="0,0,0,12" />
                 <Grid>
                     <TextBox
-                    Text="{Binding AmountString, Mode=TwoWay}"
-                    Header="Amount"
-                    InputScope="Number"
-                    x:Uid="Balance"
-                    x:Name="TextBoxCurrentBalance"
-                    TextAlignment="Right"
-                    TextChanged="ReplaceSeparatorChar"
-                    GotFocus="RemoveZeroOnFocus"
-                    LostFocus="AddZeroIfEmpty" 
-                    Margin="0,0,0,12"/>
+                        Text="{Binding AmountString, Mode=TwoWay}"
+                        Header="Amount"
+                        InputScope="Number"
+                        x:Uid="Balance"
+                        x:Name="TextBoxCurrentBalance"
+                        TextAlignment="Right"
+                        TextChanged="ReplaceSeparatorChar"
+                        GotFocus="RemoveZeroOnFocus"
+                        LostFocus="AddZeroIfEmpty"
+                        Margin="0,0,0,12" />
                 </Grid>
                 <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
-                     Header="Notes"
-                     VerticalAlignment="Top"
-                     x:Uid="Notes"
-                     Margin="0,0,-0.167,0"
-                     TextWrapping="Wrap" />
+                         Header="Notes"
+                         VerticalAlignment="Top"
+                         x:Uid="Notes"
+                         Margin="0,0,-0.167,0"
+                         TextWrapping="Wrap" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

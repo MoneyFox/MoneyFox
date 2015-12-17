@@ -16,7 +16,7 @@ namespace MoneyManager.Core
             Mvx.Resolve<IRecurringTransactionManager>().CheckRecurringTransactions();
             Mvx.Resolve<ITransactionManager>().ClearTransactions();
             Mvx.Resolve<IBalanceViewModel>().UpdateBalance();
-            
+
             // Start the app with the Main View Model.
             RegisterAppStart<MainViewModel>();
         }

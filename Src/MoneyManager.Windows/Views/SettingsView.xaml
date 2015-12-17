@@ -6,8 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:MoneyManager.Windows.Controls"
     xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
-      DataContext="{Binding SettingDefaultsView, Source={StaticResource CoreModule}}"
-      mc:Ignorable="d">
+    DataContext="{Binding SettingDefaultsView, Source={StaticResource CoreModule}}"
+    mc:Ignorable="d">
 
     <Page.BottomAppBar>
         <CommandBar ClosedDisplayMode="Minimal">

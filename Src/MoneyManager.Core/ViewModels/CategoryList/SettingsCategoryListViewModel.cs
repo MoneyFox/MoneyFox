@@ -19,10 +19,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
 
         public Category SelectedCategory
         {
-            get
-            {
-                return CategoryRepository.Selected ?? new Category();
-            }
+            get { return CategoryRepository.Selected ?? new Category(); }
             set
             {
                 if (value == null) return;

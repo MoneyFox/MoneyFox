@@ -6,7 +6,6 @@ using MoneyManager.Core.ViewModels;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using Moq;
 using Xunit;
 
@@ -44,7 +43,8 @@ namespace MoneyManager.Core.Tests.ViewModels
             var modifyAccountViewModel = new ModifyAccountViewModel(accountRepository,
                 new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object));
 
-            var mainViewModel = new MainViewModel(modifyAccountViewModel, modifyTransactionViewModel, new BalanceViewModel(accountRepository, transactionRepository));
+            var mainViewModel = new MainViewModel(modifyAccountViewModel, modifyTransactionViewModel,
+                new BalanceViewModel(accountRepository, transactionRepository));
 
             mainViewModel.GoToAddTransactionCommand.Execute(typestring);
 

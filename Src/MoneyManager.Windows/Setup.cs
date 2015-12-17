@@ -10,11 +10,6 @@ using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsUWP.Platform;
 using MoneyManager.Core;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Interfaces.Shotcuts;
-using MoneyManager.Windows.Concrete;
-using MoneyManager.Windows.Concrete.Services;
-using MoneyManager.Windows.Concrete.Shortcut;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.Email.WindowsCommon;
 using MvvmCross.Plugins.File;
@@ -45,6 +40,7 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IMvxProtectedData, MvxStoreProtectedData>();
             Mvx.RegisterType<IMvxFileStore, MvxWindowsCommonFileStore>();
         }
+
         protected override IMvxIoCProvider CreateIocProvider()
         {
             var cb = new ContainerBuilder();
@@ -54,7 +50,7 @@ namespace MoneyManager.Windows
 
             // This is an important step that ensures all the ViewModel's are loaded into the container.
             // Without this, it was observed that MvvmCross wouldn't register them by itself; needs more investigation.
-            cb.RegisterAssemblyTypes(typeof(MainViewModel).GetTypeInfo().Assembly)
+            cb.RegisterAssemblyTypes(typeof (MainViewModel).GetTypeInfo().Assembly)
                 .AssignableTo<MvxViewModel>()
                 .As<IMvxViewModel, MvxViewModel>()
                 .AsSelf();

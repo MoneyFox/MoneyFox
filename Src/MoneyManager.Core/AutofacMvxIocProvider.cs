@@ -11,20 +11,20 @@ using Cirrious.CrossCore.IoC;
 namespace MoneyManager.Core
 {
     /// <summary>
-    /// Inversion of control provider for the MvvmCross framework backed by Autofac.
+    ///     Inversion of control provider for the MvvmCross framework backed by Autofac.
     /// </summary>
     public class AutofacMvxIocProvider : MvxSingleton<IMvxIoCProvider>, IMvxIoCProvider
     {
-        readonly IContainer container;
+        private readonly IContainer container;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AutofacMvxIocProvider"/> class.
+        ///     Initializes a new instance of the <see cref="AutofacMvxIocProvider" /> class.
         /// </summary>
         /// <param name="container">
-        /// The container from which dependencies should be resolved.
+        ///     The container from which dependencies should be resolved.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="container"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="container" /> is <see langword="null" />.
         /// </exception>
         public AutofacMvxIocProvider(IContainer container)
         {
@@ -35,33 +35,33 @@ namespace MoneyManager.Core
         }
 
         /// <summary>
-        /// Registers an action to occur when a specific type is registered.
+        ///     Registers an action to occur when a specific type is registered.
         /// </summary>
         /// <typeparam name="T">
-        /// The <see cref="System.Type"/> that should raise the callback when registered.
+        ///     The <see cref="System.Type" /> that should raise the callback when registered.
         /// </typeparam>
         /// <param name="action">
-        /// The <see cref="Action"/> to call when the specified type is registered.
+        ///     The <see cref="Action" /> to call when the specified type is registered.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="action"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="action" /> is <see langword="null" />.
         /// </exception>
         public void CallbackWhenRegistered<T>(Action action)
         {
-            CallbackWhenRegistered(typeof(T), action);
+            CallbackWhenRegistered(typeof (T), action);
         }
 
         /// <summary>
-        /// Registers an action to occur when a specific type is registered.
+        ///     Registers an action to occur when a specific type is registered.
         /// </summary>
         /// <param name="type">
-        /// The <see cref="System.Type"/> that should raise the callback when registered.
+        ///     The <see cref="System.Type" /> that should raise the callback when registered.
         /// </param>
         /// <param name="action">
-        /// The <see cref="Action"/> to call when the specified type is registered.
+        ///     The <see cref="Action" /> to call when the specified type is registered.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="type"/> or <paramref name="action"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="type" /> or <paramref name="action" /> is <see langword="null" />.
         /// </exception>
         public void CallbackWhenRegistered(Type type, Action action)
         {
@@ -79,48 +79,48 @@ namespace MoneyManager.Core
         }
 
         /// <summary>
-        /// Determines whether an instance of a specified type can be resolved.
+        ///     Determines whether an instance of a specified type can be resolved.
         /// </summary>
         /// <typeparam name="T">
-        /// The <see cref="System.Type"/> to check for resolution.
+        ///     The <see cref="System.Type" /> to check for resolution.
         /// </typeparam>
         /// <returns>
-        /// <see langword="true"/> if the instance can be resolved; <see langword="false"/> if not.
+        ///     <see langword="true" /> if the instance can be resolved; <see langword="false" /> if not.
         /// </returns>
         /// <remarks>
-        /// <para>
-        /// Technically this implementation determines if the type <typeparamref name="T"/>
-        /// is registered with the Autofac container. This method returning
-        /// <see langword="true"/> does not guarantee that no exception will
-        /// be thrown if the type is resolved but there
-        /// are missing dependencies for constructing the instance.
-        /// </para>
+        ///     <para>
+        ///         Technically this implementation determines if the type <typeparamref name="T" />
+        ///         is registered with the Autofac container. This method returning
+        ///         <see langword="true" /> does not guarantee that no exception will
+        ///         be thrown if the type is resolved but there
+        ///         are missing dependencies for constructing the instance.
+        ///     </para>
         /// </remarks>
         public bool CanResolve<T>() where T : class
         {
-            return CanResolve(typeof(T));
+            return CanResolve(typeof (T));
         }
 
         /// <summary>
-        /// Determines whether an instance of a specified type can be resolved.
+        ///     Determines whether an instance of a specified type can be resolved.
         /// </summary>
         /// <param name="type">
-        /// The <see cref="System.Type"/> to check for resolution.
+        ///     The <see cref="System.Type" /> to check for resolution.
         /// </param>
         /// <returns>
-        /// <see langword="true"/> if the instance can be resolved; <see langword="false"/> if not.
+        ///     <see langword="true" /> if the instance can be resolved; <see langword="false" /> if not.
         /// </returns>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="type"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="type" /> is <see langword="null" />.
         /// </exception>
         /// <remarks>
-        /// <para>
-        /// Technically this implementation determines if the <paramref name="type"/>
-        /// is registered with the Autofac container. This method returning
-        /// <see langword="true"/> does not guarantee that no exception will
-        /// be thrown if the <paramref name="type"/> is resolved but there
-        /// are missing dependencies for constructing the instance.
-        /// </para>
+        ///     <para>
+        ///         Technically this implementation determines if the <paramref name="type" />
+        ///         is registered with the Autofac container. This method returning
+        ///         <see langword="true" /> does not guarantee that no exception will
+        ///         be thrown if the <paramref name="type" /> is resolved but there
+        ///         are missing dependencies for constructing the instance.
+        ///     </para>
         /// </remarks>
         public bool CanResolve(Type type)
         {
@@ -131,30 +131,30 @@ namespace MoneyManager.Core
         }
 
         /// <summary>
-        /// Resolves a service instance of a specified type.
+        ///     Resolves a service instance of a specified type.
         /// </summary>
         /// <typeparam name="T">
-        /// The <see cref="System.Type"/> of the service to resolve.
+        ///     The <see cref="System.Type" /> of the service to resolve.
         /// </typeparam>
         /// <returns>
-        /// The resolved instance of type <typeparamref name="T"/>.
+        ///     The resolved instance of type <typeparamref name="T" />.
         /// </returns>
         public T Create<T>() where T : class
         {
-            return (T)Create(typeof(T));
+            return (T) Create(typeof (T));
         }
 
         /// <summary>
-        /// Resolves a service instance of a specified type.
+        ///     Resolves a service instance of a specified type.
         /// </summary>
         /// <param name="type">
-        /// The <see cref="System.Type"/> of the service to resolve.
+        ///     The <see cref="System.Type" /> of the service to resolve.
         /// </param>
         /// <returns>
-        /// The resolved instance of type <paramref name="type"/>.
+        ///     The resolved instance of type <paramref name="type" />.
         /// </returns>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="type"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="type" /> is <see langword="null" />.
         /// </exception>
         public object Create(Type type)
         {
@@ -162,33 +162,33 @@ namespace MoneyManager.Core
         }
 
         /// <summary>
-        /// Resolves a singleton service instance of a specified type.
+        ///     Resolves a singleton service instance of a specified type.
         /// </summary>
         /// <typeparam name="T">
-        /// The <see cref="System.Type"/> of the service to resolve.
+        ///     The <see cref="System.Type" /> of the service to resolve.
         /// </typeparam>
         /// <returns>
-        /// The resolved singleton instance of type <typeparamref name="T"/>.
+        ///     The resolved singleton instance of type <typeparamref name="T" />.
         /// </returns>
         public T GetSingleton<T>() where T : class
         {
-            return (T)GetSingleton(typeof(T));
+            return (T) GetSingleton(typeof (T));
         }
 
         /// <summary>
-        /// Resolves a singleton service instance of a specified type.
+        ///     Resolves a singleton service instance of a specified type.
         /// </summary>
         /// <param name="type">
-        /// The <see cref="System.Type"/> of the service to resolve.
+        ///     The <see cref="System.Type" /> of the service to resolve.
         /// </param>
         /// <returns>
-        /// The resolved singleton instance of type <paramref name="type"/>.
+        ///     The resolved singleton instance of type <paramref name="type" />.
         /// </returns>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="type"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="type" /> is <see langword="null" />.
         /// </exception>
         /// <exception cref="DependencyResolutionException">
-        /// Thrown if the <paramref name="type"/> is not registered as a singleton.
+        ///     Thrown if the <paramref name="type" /> is not registered as a singleton.
         /// </exception>
         public object GetSingleton(Type type)
         {
@@ -202,36 +202,37 @@ namespace MoneyManager.Core
 
             if (registration.Sharing != InstanceSharing.Shared || !(registration.Lifetime is RootScopeLifetime))
                 // Ensure the dependency is registered as a singleton WITHOUT resolving the dependency twice.
-                throw new DependencyResolutionException(String.Format(CultureInfo.CurrentCulture, AutofacMvxIocProviderResources.TypeNotRegisteredAsSingleton, type));
+                throw new DependencyResolutionException(string.Format(CultureInfo.CurrentCulture,
+                    AutofacMvxIocProviderResources.TypeNotRegisteredAsSingleton, type));
 
             return Resolve(type);
         }
 
         /// <summary>
-        /// Resolves a service instance of a specified type.
+        ///     Resolves a service instance of a specified type.
         /// </summary>
         /// <typeparam name="T">
-        /// The <see cref="System.Type"/> of the service to resolve.
+        ///     The <see cref="System.Type" /> of the service to resolve.
         /// </typeparam>
         /// <returns>
-        /// The resolved instance of type <typeparamref name="T"/>.
+        ///     The resolved instance of type <typeparamref name="T" />.
         /// </returns>
         public T IoCConstruct<T>() where T : class
         {
-            return (T)IoCConstruct(typeof(T));
+            return (T) IoCConstruct(typeof (T));
         }
 
         /// <summary>
-        /// Resolves a service instance of a specified type.
+        ///     Resolves a service instance of a specified type.
         /// </summary>
         /// <param name="type">
-        /// The <see cref="System.Type"/> of the service to resolve.
+        ///     The <see cref="System.Type" /> of the service to resolve.
         /// </param>
         /// <returns>
-        /// The resolved instance of type <paramref name="type"/>.
+        ///     The resolved instance of type <paramref name="type" />.
         /// </returns>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="type"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="type" /> is <see langword="null" />.
         /// </exception>
         public object IoCConstruct(Type type)
         {
@@ -239,50 +240,50 @@ namespace MoneyManager.Core
         }
 
         /// <summary>
-        /// Register an instance as a component.
+        ///     Register an instance as a component.
         /// </summary>
         /// <typeparam name="TInterface">
-        /// The type of the instance. This may be an interface/service that
-        /// the instance implements.
+        ///     The type of the instance. This may be an interface/service that
+        ///     the instance implements.
         /// </typeparam>
         /// <param name="theObject">The instance to register.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="theObject"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="theObject" /> is <see langword="null" />.
         /// </exception>
         public void RegisterSingleton<TInterface>(TInterface theObject) where TInterface : class
         {
-            RegisterSingleton(typeof(TInterface), theObject);
+            RegisterSingleton(typeof (TInterface), theObject);
         }
 
         /// <summary>
-        /// Register a delegate as a singleton component.
+        ///     Register a delegate as a singleton component.
         /// </summary>
         /// <typeparam name="TInterface">
-        /// The type of the instance generated by the function. This may be an interface/service that
-        /// the instance implements.
+        ///     The type of the instance generated by the function. This may be an interface/service that
+        ///     the instance implements.
         /// </typeparam>
         /// <param name="theConstructor">
-        /// The construction function/delegate to call to create the singleton.
+        ///     The construction function/delegate to call to create the singleton.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="theConstructor"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="theConstructor" /> is <see langword="null" />.
         /// </exception>
         public void RegisterSingleton<TInterface>(Func<TInterface> theConstructor)
             where TInterface : class
         {
-            RegisterSingleton(typeof(TInterface), theConstructor);
+            RegisterSingleton(typeof (TInterface), theConstructor);
         }
 
         /// <summary>
-        /// Register an instance as a component.
+        ///     Register an instance as a component.
         /// </summary>
         /// <param name="tInterface">
-        /// The type of the instance. This may be an interface/service that
-        /// the instance implements.
+        ///     The type of the instance. This may be an interface/service that
+        ///     the instance implements.
         /// </param>
         /// <param name="theObject">The instance to register.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="tInterface"/> or <paramref name="theObject"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="tInterface" /> or <paramref name="theObject" /> is <see langword="null" />.
         /// </exception>
         public void RegisterSingleton(Type tInterface, object theObject)
         {
@@ -298,17 +299,17 @@ namespace MoneyManager.Core
         }
 
         /// <summary>
-        /// Register a delegate as a singleton component.
+        ///     Register a delegate as a singleton component.
         /// </summary>
         /// <param name="tInterface">
-        /// The type of the instance generated by the function. This may be an interface/service that
-        /// the instance implements.
+        ///     The type of the instance generated by the function. This may be an interface/service that
+        ///     the instance implements.
         /// </param>
         /// <param name="theConstructor">
-        /// The construction function/delegate to call to create the singleton.
+        ///     The construction function/delegate to call to create the singleton.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="tInterface"/> or <paramref name="theConstructor"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="tInterface" /> or <paramref name="theConstructor" /> is <see langword="null" />.
         /// </exception>
         public void RegisterSingleton(Type tInterface, Func<object> theConstructor)
         {
@@ -324,40 +325,40 @@ namespace MoneyManager.Core
         }
 
         /// <summary>
-        /// Registers a reflection-based component to service mapping.
+        ///     Registers a reflection-based component to service mapping.
         /// </summary>
         /// <typeparam name="TFrom">
-        /// The component type that implements the service to register.
+        ///     The component type that implements the service to register.
         /// </typeparam>
         /// <typeparam name="TTo">
-        /// The service type that will be resolved from the container.
+        ///     The service type that will be resolved from the container.
         /// </typeparam>
         /// <remarks>
-        /// <para>
-        /// This method updates the container to include a new reflection-based
-        /// registration that maps <typeparamref name="TFrom"/> to its own implementing
-        /// type as well as to the service type <typeparamref name="TTo"/>.
-        /// </para>
+        ///     <para>
+        ///         This method updates the container to include a new reflection-based
+        ///         registration that maps <typeparamref name="TFrom" /> to its own implementing
+        ///         type as well as to the service type <typeparamref name="TTo" />.
+        ///     </para>
         /// </remarks>
         public void RegisterType<TFrom, TTo>()
             where TFrom : class
             where TTo : class, TFrom
         {
-            RegisterType(typeof(TFrom), typeof(TTo));
+            RegisterType(typeof (TFrom), typeof (TTo));
         }
 
         /// <summary>
-        /// Register a delegate for creating a component.
+        ///     Register a delegate for creating a component.
         /// </summary>
         /// <typeparam name="TInterface">
-        /// The type of the instance generated by the function. This may be an interface/service that
-        /// the instance implements.
+        ///     The type of the instance generated by the function. This may be an interface/service that
+        ///     the instance implements.
         /// </typeparam>
         /// <param name="constructor">
-        /// The construction function/delegate to call to create the instance.
+        ///     The construction function/delegate to call to create the instance.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="constructor"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="constructor" /> is <see langword="null" />.
         /// </exception>
         public void RegisterType<TInterface>(Func<TInterface> constructor) where TInterface : class
         {
@@ -370,17 +371,17 @@ namespace MoneyManager.Core
         }
 
         /// <summary>
-        /// Register a delegate for creating a component.
+        ///     Register a delegate for creating a component.
         /// </summary>
         /// <param name="t">
-        /// The type of the instance generated by the function. This may be an interface/service that
-        /// the instance implements.
+        ///     The type of the instance generated by the function. This may be an interface/service that
+        ///     the instance implements.
         /// </param>
         /// <param name="constructor">
-        /// The construction function/delegate to call to create the instance.
+        ///     The construction function/delegate to call to create the instance.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="t"/> or <paramref name="constructor"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="t" /> or <paramref name="constructor" /> is <see langword="null" />.
         /// </exception>
         public void RegisterType(Type t, Func<object> constructor)
         {
@@ -396,23 +397,23 @@ namespace MoneyManager.Core
         }
 
         /// <summary>
-        /// Registers a reflection-based component to service mapping.
+        ///     Registers a reflection-based component to service mapping.
         /// </summary>
         /// <param name="tFrom">
-        /// The component type that implements the service to register.
+        ///     The component type that implements the service to register.
         /// </param>
         /// <param name="tTo">
-        /// The service type that will be resolved from the container.
+        ///     The service type that will be resolved from the container.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="tFrom"/> or <paramref name="tTo"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="tFrom" /> or <paramref name="tTo" /> is <see langword="null" />.
         /// </exception>
         /// <remarks>
-        /// <para>
-        /// This method updates the container to include a new reflection-based
-        /// registration that maps <paramref name="tFrom"/> to its own implementing
-        /// type as well as to the service type <paramref name="tTo"/>.
-        /// </para>
+        ///     <para>
+        ///         This method updates the container to include a new reflection-based
+        ///         registration that maps <paramref name="tFrom" /> to its own implementing
+        ///         type as well as to the service type <paramref name="tTo" />.
+        ///     </para>
         /// </remarks>
         public void RegisterType(Type tFrom, Type tTo)
         {
@@ -428,30 +429,30 @@ namespace MoneyManager.Core
         }
 
         /// <summary>
-        /// Resolves a service instance of a specified type.
+        ///     Resolves a service instance of a specified type.
         /// </summary>
         /// <typeparam name="T">
-        /// The <see cref="System.Type"/> of the service to resolve.
+        ///     The <see cref="System.Type" /> of the service to resolve.
         /// </typeparam>
         /// <returns>
-        /// The resolved instance of type <typeparamref name="T"/>.
+        ///     The resolved instance of type <typeparamref name="T" />.
         /// </returns>
         public T Resolve<T>() where T : class
         {
-            return (T)Resolve(typeof(T));
+            return (T) Resolve(typeof (T));
         }
 
         /// <summary>
-        /// Resolves a service instance of a specified type.
+        ///     Resolves a service instance of a specified type.
         /// </summary>
         /// <param name="type">
-        /// The <see cref="System.Type"/> of the service to resolve.
+        ///     The <see cref="System.Type" /> of the service to resolve.
         /// </param>
         /// <returns>
-        /// The resolved instance of type <paramref name="type"/>.
+        ///     The resolved instance of type <paramref name="type" />.
         /// </returns>
         /// <exception cref="System.ArgumentNullException">
-        /// Thrown if <paramref name="type"/> is <see langword="null"/>.
+        ///     Thrown if <paramref name="type" /> is <see langword="null" />.
         /// </exception>
         public object Resolve(Type type)
         {
@@ -462,16 +463,16 @@ namespace MoneyManager.Core
         }
 
         /// <summary>
-        /// Tries to retrieve a service of a specified type.
+        ///     Tries to retrieve a service of a specified type.
         /// </summary>
         /// <typeparam name="T">
-        /// The service <see cref="System.Type"/> to resolve.
+        ///     The service <see cref="System.Type" /> to resolve.
         /// </typeparam>
         /// <param name="resolved">
-        /// The resulting component instance providing the service, or default(T) if resolution is not possible.
+        ///     The resulting component instance providing the service, or default(T) if resolution is not possible.
         /// </param>
         /// <returns>
-        /// <see langword="true"/> if a component providing the service is available; <see langword="false"/> if not.
+        ///     <see langword="true" /> if a component providing the service is available; <see langword="false" /> if not.
         /// </returns>
         public bool TryResolve<T>(out T resolved) where T : class
         {
@@ -479,16 +480,16 @@ namespace MoneyManager.Core
         }
 
         /// <summary>
-        /// Tries to retrieve a service of a specified type.
+        ///     Tries to retrieve a service of a specified type.
         /// </summary>
         /// <param name="type">
-        /// The service <see cref="System.Type"/> to resolve.
+        ///     The service <see cref="System.Type" /> to resolve.
         /// </param>
         /// <param name="resolved">
-        /// The resulting component instance providing the service, or <see langword="null"/> if resolution is not possible.
+        ///     The resulting component instance providing the service, or <see langword="null" /> if resolution is not possible.
         /// </param>
         /// <returns>
-        /// <see langword="true"/> if a component providing the service is available; <see langword="false"/> if not.
+        ///     <see langword="true" /> if a component providing the service is available; <see langword="false" /> if not.
         /// </returns>
         public bool TryResolve(Type type, out object resolved)
         {

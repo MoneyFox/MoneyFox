@@ -55,8 +55,8 @@
                     <TextBlock Text="{Binding Title}"
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
                     <statisticControls:CategorySummaryUserControl HorizontalAlignment="Stretch"
-                                                         VerticalAlignment="Stretch"
-                                                         Margin="-12,30,-12,0" />
+                                                                  VerticalAlignment="Stretch"
+                                                                  Margin="-12,30,-12,0" />
                 </Grid>
             </PivotItem>
         </Pivot>

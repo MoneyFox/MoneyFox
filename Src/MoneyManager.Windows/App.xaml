@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <core:CoreModule x:Key="CoreModule" />
-            
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Style/AppStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
