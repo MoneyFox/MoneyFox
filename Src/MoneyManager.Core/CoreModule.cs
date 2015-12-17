@@ -4,6 +4,10 @@ using System.Reflection;
 using Cirrious.CrossCore;
 using MoneyManager.Core.Authentication;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Core.ViewModels.CategoryList;
+using MoneyManager.Core.ViewModels.Dialogs;
+using MoneyManager.Core.ViewModels.SettingViews;
+using MoneyManager.Core.ViewModels.Statistics;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
@@ -26,6 +30,7 @@ namespace MoneyManager.Core
                 .SingleInstance();
 
             //We have to register them seperatly, otherwise it wasn't able to resolve them.
+            //TODO: Find a better way to do this.
             builder.RegisterType<AccountDataAccess>().As<IDataAccess<Account>>();
             builder.RegisterType<TransactionDataAccess>().As<IDataAccess<FinancialTransaction>>();
             builder.RegisterType<RecurringTransactionDataAccess>().As<IDataAccess<RecurringTransaction>>();
@@ -60,6 +65,29 @@ namespace MoneyManager.Core
                 .SingleInstance();
         }
 
+        //Views
         public static MainViewModel MainView => Mvx.Resolve<MainViewModel>();
+        public static AccountListViewModel AccountListView => Mvx.Resolve<AccountListViewModel>();
+        public static BackupViewModel BackupView => Mvx.Resolve<BackupViewModel>();
+        public static BalanceViewModel BalanceView => Mvx.Resolve<BalanceViewModel>();
+        public static ModifyAccountViewModel ModifyAccountView => Mvx.Resolve<ModifyAccountViewModel>();
+        public static ModifyTransactionViewModel ModifyTransactionView => Mvx.Resolve<ModifyTransactionViewModel>();
+        public static AboutViewModel AboutView => Mvx.Resolve<AboutViewModel>();
+
+        //CategoryList
+        public static SelectCategoryListViewModel SelectCategoryListView => Mvx.Resolve<SelectCategoryListViewModel>();
+        public static SettingsCategoryListViewModel SettingsCategoryListView => Mvx.Resolve<SettingsCategoryListViewModel>();
+
+        //Dialogs
+        public static CategoryDialogViewModel CategoryDialogView => Mvx.Resolve<CategoryDialogViewModel>();
+        public static SelectDateRangeDialogViewModel SelectDateRangeDialogView => Mvx.Resolve<SelectDateRangeDialogViewModel>();
+
+        //Statistics
+        public static StatisticViewModel StatisticView => Mvx.Resolve<StatisticViewModel>();
+
+        //Settings
+        public static PasswordUserControlViewModel PasswordUserControls => Mvx.Resolve<PasswordUserControlViewModel>();
+        public static SettingDefaultsViewModel SettingDefaultsView => Mvx.Resolve<SettingDefaultsViewModel>();
+        public static TileSettingsViewModel TileSettingsView => Mvx.Resolve<TileSettingsViewModel>();
     }
 }
