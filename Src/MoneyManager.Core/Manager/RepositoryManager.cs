@@ -13,7 +13,7 @@ namespace MoneyManager.Core.Manager
         public RepositoryManager(IRepository<Account> accountRepository,
             ITransactionRepository transactionRepository,
             IRepository<Category> categoryRepository,
-            TransactionManager transactionManager)
+            ITransactionManager transactionManager)
         {
             this.accountRepository = accountRepository;
             this.transactionRepository = transactionRepository;
