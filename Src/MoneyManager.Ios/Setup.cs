@@ -1,12 +1,10 @@
-﻿using System.Reflection;
-using Autofac;
+﻿using Autofac;
 using Cirrious.CrossCore.IoC;
 using Cirrious.MvvmCross.Touch.Platform;
 using Cirrious.MvvmCross.Touch.Views.Presenters;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
 using MoneyManager.Core.AutoFac;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
 using UIKit;
 
@@ -30,13 +28,6 @@ namespace MoneyManager.Ios
 
             cb.RegisterModule<CoreModule>();
             cb.RegisterModule<IosModule>();
-
-            // This is an important step that ensures all the ViewModel's are loaded into the container.
-            // Without this, it was observed that MvvmCross wouldn't register them by itself; needs more investigation.
-            cb.RegisterAssemblyTypes(typeof(MainViewModel).GetTypeInfo().Assembly)
-                .AssignableTo<MvxViewModel>()
-                .As<IMvxViewModel, MvxViewModel>()
-                .AsSelf();
 
             return new AutofacMvxIocProvider(cb.Build());
         }
