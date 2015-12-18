@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.Manager;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
@@ -10,9 +9,9 @@ namespace MoneyManager.Core.ViewModels
     public class BackupViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
-        private readonly RepositoryManager repositoryManager;
+        private readonly IRepositoryManager repositoryManager;
 
-        public BackupViewModel(RepositoryManager repositoryManager,
+        public BackupViewModel(IRepositoryManager repositoryManager,
             IBackupService backupService,
             IDialogService dialogService)
         {
