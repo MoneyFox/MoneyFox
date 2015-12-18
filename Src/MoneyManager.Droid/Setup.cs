@@ -1,4 +1,3 @@
-using System.Reflection;
 using Android.App;
 using Android.Content;
 using Autofac;
@@ -7,7 +6,6 @@ using Cirrious.MvvmCross.Droid.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
 using MoneyManager.Core.AutoFac;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
 using Xamarin;
 
@@ -26,13 +24,6 @@ namespace MoneyManager.Droid
 
             cb.RegisterModule<CoreModule>();
             cb.RegisterModule<AndroidModule>();
-
-            // This is an important step that ensures all the ViewModel's are loaded into the container.
-            // Without this, it was observed that MvvmCross wouldn't register them by itself; needs more investigation.
-            cb.RegisterAssemblyTypes(typeof(MainViewModel).GetTypeInfo().Assembly)
-                .AssignableTo<MvxViewModel>()
-                .As<IMvxViewModel, MvxViewModel>()
-                .AsSelf();
 
             return new AutofacMvxIocProvider(cb.Build());
         }

@@ -1,5 +1,4 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.Authentication;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
@@ -11,9 +10,9 @@ namespace MoneyManager.Core.ViewModels.SettingViews
     public class PasswordUserControlViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
-        private readonly PasswordStorage passwordStorage;
+        private readonly IPasswordStorage passwordStorage;
 
-        public PasswordUserControlViewModel(PasswordStorage passwordStorage, IDialogService dialogService)
+        public PasswordUserControlViewModel(IPasswordStorage passwordStorage, IDialogService dialogService)
         {
             this.passwordStorage = passwordStorage;
             this.dialogService = dialogService;

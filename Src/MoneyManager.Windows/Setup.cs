@@ -49,13 +49,6 @@ namespace MoneyManager.Windows
             cb.RegisterModule<CoreModule>();
             cb.RegisterModule<WindowsModule>();
 
-            // This is an important step that ensures all the ViewModel's are loaded into the container.
-            // Without this, it was observed that MvvmCross wouldn't register them by itself; needs more investigation.
-            cb.RegisterAssemblyTypes(typeof (MainViewModel).GetTypeInfo().Assembly)
-                .AssignableTo<MvxViewModel>()
-                .As<IMvxViewModel, MvxViewModel>()
-                .AsSelf();
-
             return new AutofacMvxIocProvider(cb.Build());
         }
 
