@@ -93,6 +93,7 @@
                              Margin="0,7,0,0" />
                     <Grid Margin="0,7,0,0">
                         <TextBox Header="category"
+                                 x:Uid="CategoryTextBox"
                                  Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
                                  IsReadOnly="True">
                             <interactivity:Interaction.Behaviors>
