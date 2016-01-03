@@ -273,6 +273,7 @@ namespace MoneyManager.Core.ViewModels
             Strings.DailyLabel,
             Strings.DailyWithoutWeekendLabel,
             Strings.WeeklyLabel,
+            Strings.BiweeklyLabel,
             Strings.MonthlyLabel,
             Strings.YearlyLabel
         };

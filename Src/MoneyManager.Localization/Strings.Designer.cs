@@ -197,6 +197,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Biweekly.
+        /// </summary>
+        public static string BiweeklyLabel {
+            get {
+                return ResourceManager.GetString("BiweeklyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cashflow.
         /// </summary>
         public static string CashflowLabel {
