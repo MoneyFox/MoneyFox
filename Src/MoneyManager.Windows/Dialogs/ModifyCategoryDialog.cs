@@ -1,6 +1,5 @@
 ﻿using Windows.System;
 using Windows.UI.Xaml.Input;
-using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels.Dialogs;
 using MoneyManager.Foundation.Model;
 
@@ -11,8 +10,6 @@ namespace MoneyManager.Windows.Dialogs
         public ModifyCategoryDialog(Category category = null)
         {
             InitializeComponent();
-
-            DataContext = Mvx.Resolve<CategoryDialogViewModel>();
 
             if (category != null)
             {
