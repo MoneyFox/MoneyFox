@@ -107,6 +107,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ADD CATEGORY.
+        /// </summary>
+        public static string AddCategoryTitle {
+            get {
+                return ResourceManager.GetString("AddCategoryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Income.
         /// </summary>
         public static string AddIncomeLabel {
@@ -310,6 +319,15 @@ namespace MoneyManager.Localization {
         public static string DeleteTransactionConfirmationMessage {
             get {
                 return ResourceManager.GetString("DeleteTransactionConfirmationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EDIT CATEGORY.
+        /// </summary>
+        public static string EditCategoryTitle {
+            get {
+                return ResourceManager.GetString("EditCategoryTitle", resourceCulture);
             }
         }
         

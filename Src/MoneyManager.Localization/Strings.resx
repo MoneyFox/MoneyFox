@@ -367,7 +367,15 @@ Do you want to go the the store to rate?</value>
   <data name="HelloWorldText" xml:space="preserve">
     <value>Hello World</value>
   </data>
+<<<<<<< HEAD
   <data name="BiweeklyLabel" xml:space="preserve">
     <value>Biweekly</value>
+=======
+  <data name="AddCategoryTitle" xml:space="preserve">
+    <value>ADD CATEGORY</value>
+  </data>
+  <data name="EditCategoryTitle" xml:space="preserve">
+    <value>EDIT CATEGORY</value>
+>>>>>>> Apply-Solutions/master
   </data>
 </root>
