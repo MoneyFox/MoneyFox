@@ -326,4 +326,13 @@ Tap to visit the Repository:</value>
   <data name="DeleteLabel.Label" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="ModifyCategoryDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="ModifyCategoryDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="NameHeader.Header" xml:space="preserve">
+    <value>Name</value>
+  </data>
 </root>

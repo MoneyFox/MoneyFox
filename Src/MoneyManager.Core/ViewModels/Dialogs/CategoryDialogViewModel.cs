@@ -28,6 +28,8 @@ namespace MoneyManager.Core.ViewModels.Dialogs
 
         public IMvxCommand DoneCommand => new MvxCommand(Done);
 
+        public string Title => IsEdit ? Strings.EditCategoryTitle : Strings.AddCategoryTitle;
+
         private void Loaded()
         {
             if (IsEdit) return;
