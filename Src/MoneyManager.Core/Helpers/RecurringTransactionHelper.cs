@@ -93,8 +93,12 @@ namespace MoneyManager.Core.Helpers
                            && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
 
                 case (int) TransactionRecurrence.Weekly:
-                    var days = DateTime.Now - relTransaction.Date;
-                    return days.Days >= 7;
+                    var daysWeekly = DateTime.Now - relTransaction.Date;
+                    return daysWeekly.Days >= 7;
+
+                case (int) TransactionRecurrence.Biweekly:
+                    var daysBiweekly = DateTime.Now - relTransaction.Date;
+                    return daysBiweekly.Days >= 14;
 
                 case (int) TransactionRecurrence.Monthly:
                     return DateTime.Now.Month != relTransaction.Date.Month;

@@ -152,7 +152,6 @@
     <Compile Include="Converter\NativeAmountFormatConverter.cs" />
     <Compile Include="Converter\NativeTransactionAmountConverter.cs" />
     <Compile Include="Converter\NoteVisibilityConverter.cs" />
-    <Compile Include="Converter\RecurrenceConverter.cs" />
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\ThemedImageConverter.cs" />

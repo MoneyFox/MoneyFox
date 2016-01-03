@@ -45,7 +45,7 @@ namespace MoneyManager.Core.ViewModels.SettingViews
         /// <summary>
         ///     Loads the password from the secure storage
         /// </summary>
-        public MvxCommand LoadCommand => new MvxCommand(LoadData);
+        public MvxCommand LoadedCommand => new MvxCommand(LoadData);
 
         /// <summary>
         ///     Remove the password from the secure storage
