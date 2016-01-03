@@ -367,4 +367,7 @@ Do you want to go the the store to rate?</value>
   <data name="HelloWorldText" xml:space="preserve">
     <value>Hello World</value>
   </data>
+  <data name="BiweeklyLabel" xml:space="preserve">
+    <value>Biweekly</value>
+  </data>
 </root>
