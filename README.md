@@ -20,7 +20,7 @@ Windows (Mobile / Desktop)
 
 If you wanna have a look how the current development of our Android App is going, you can have a look at our Alpha. Be aware that this isn't nearly stable or feature complete.
 
-[Android Alpha  Versoin](https://play.google.com/apps/testing/com.applysolutions.moneyfox)
+[Android Alpha  Version](https://play.google.com/apps/testing/com.applysolutions.moneyfox)
 
 ### Next steps
 
