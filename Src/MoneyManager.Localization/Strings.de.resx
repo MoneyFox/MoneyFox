@@ -361,15 +361,13 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="HelloWorldResponse" xml:space="preserve">
     <value>Hallo Schönheit</value>
   </data>
-<<<<<<< HEAD
   <data name="BiweeklyLabel" xml:space="preserve">
     <value>Zweiwöchentlich</value>
-=======
+  </data>
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>KATEGORIE HINZUFÜGEN</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
     <value>KATEGORIE BEARBEITEN</value>
->>>>>>> Apply-Solutions/master
   </data>
 </root>
