@@ -1,4 +1,5 @@
 ﻿using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation;
 using MoneyManager.Windows.Concrete.Shortcut;
 
 namespace MoneyManager.Windows.Concrete
@@ -16,19 +17,19 @@ namespace MoneyManager.Windows.Concrete
         {
             switch (tileId)
             {
-                case IncomeTile.ID:
+                case Constants.ADD_INCOME_TILE_ID:
                     modifyTransactionViewModel.IsEdit = false;
-                    ShowViewModel<ModifyTransactionViewModel>(new {typeString = "Income"});
+                    ShowViewModel<ModifyTransactionViewModel>(new {typeString = Constants.INCOME_TILE_ID});
                     return true;
 
-                case SpendingTile.ID:
+                case Constants.ADD_SPENDING_TILE_ID:
                     modifyTransactionViewModel.IsEdit = false;
-                    ShowViewModel<ModifyTransactionViewModel>(new {typeString = "Spending"});
+                    ShowViewModel<ModifyTransactionViewModel>(new {typeString = Constants.SPENDING_TILE_ID});
                     return true;
 
-                case TransferTile.ID:
+                case Constants.ADD_TRANSFER_TILE_ID:
                     modifyTransactionViewModel.IsEdit = false;
-                    ShowViewModel<ModifyTransactionViewModel>(new {typeString = "Transfer"});
+                    ShowViewModel<ModifyTransactionViewModel>(new {typeString = Constants.TRANSFER_TILE_ID});
                     return true;
                 default:
                     return false;
