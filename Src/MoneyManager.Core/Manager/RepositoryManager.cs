@@ -3,17 +3,17 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Manager
 {
-    public class RepositoryManager
+    public class RepositoryManager : IRepositoryManager
     {
         private readonly IRepository<Account> accountRepository;
         private readonly IRepository<Category> categoryRepository;
-        private readonly TransactionManager transactionManager;
+        private readonly ITransactionManager transactionManager;
         private readonly ITransactionRepository transactionRepository;
 
         public RepositoryManager(IRepository<Account> accountRepository,
             ITransactionRepository transactionRepository,
             IRepository<Category> categoryRepository,
-            TransactionManager transactionManager)
+            ITransactionManager transactionManager)
         {
             this.accountRepository = accountRepository;
             this.transactionRepository = transactionRepository;

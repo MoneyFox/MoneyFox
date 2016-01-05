@@ -6,10 +6,10 @@ using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Widget;
 using Cirrious.CrossCore;
-using Cirrious.MvvmCross.Droid.Support.Fragging;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Fragments;
 using MoneyManager.Localization;
+using MvvmCross.Droid.Support.V7.Fragging;
 
 namespace MoneyManager.Droid.Activities
 {

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Globalization;
+using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Cirrious.CrossCore;
+using Windows.UI.Xaml.Navigation;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Windows.Views
 {
@@ -15,7 +17,18 @@ namespace MoneyManager.Windows.Views
         public ModifyTransactionView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<ModifyTransactionViewModel>();
+
+            // code to handle bottom app bar when keyboard appears
+            // workaround since otherwise the keyboard would overlay some controls
+            InputPane.GetForCurrentView().Showing +=
+                (s, args) => { BottomCommandBar.Visibility = Visibility.Collapsed; };
+            InputPane.GetForCurrentView().Hiding += (s, args2) =>
+            {
+                if (BottomCommandBar.Visibility == Visibility.Collapsed)
+                {
+                    BottomCommandBar.Visibility = Visibility.Visible;
+                }
+            };
         }
 
         private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
@@ -36,28 +49,37 @@ namespace MoneyManager.Windows.Views
             }
         }
 
-        private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e)
+        private async void ReplaceSeparatorChar(object sender, TextChangedEventArgs e)
         {
-            try
+            double amount;
+            if (double.TryParse(TextBoxAmount.Text, out amount))
             {
-                if (string.IsNullOrEmpty(TextBoxAmount.Text)) return;
+                // todo: this try should be removeable, will see after the next version.
+                try
+                {
+                    //cursorpositon to set the position back after the formating
+                    var cursorposition = TextBoxAmount.SelectionStart;
 
-                //cursorpositon to set the position back after the formating
-                var cursorposition = TextBoxAmount.SelectionStart;
+                    var formattedText =
+                        Utilities.FormatLargeNumbers(amount);
 
-                var formattedText =
-                    Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxAmount.Text, CultureInfo.CurrentCulture));
+                    cursorposition = AdjustCursorPosition(formattedText, cursorposition);
 
-                cursorposition = AdjustCursorPosition(formattedText, cursorposition);
+                    TextBoxAmount.Text = formattedText;
 
-                TextBoxAmount.Text = formattedText;
-
-                //set the cursor back to the last positon to avoid jumping around
-                TextBoxAmount.Select(cursorposition, 0);
+                    //set the cursor back to the last positon to avoid jumping around
+                    TextBoxAmount.Select(cursorposition, 0);
+                }
+                catch (FormatException ex)
+                {
+                    InsightHelper.Report(new ExtendedFormatException(ex, TextBoxAmount.Text));
+                }
             }
-            catch (FormatException ex)
+            else if (string.Equals(TextBoxAmount.Text, Strings.HelloWorldText, StringComparison.CurrentCultureIgnoreCase)
+                     ||
+                     string.Equals(TextBoxAmount.Text, Strings.HalloWeltText, StringComparison.CurrentCultureIgnoreCase))
             {
-                InsightHelper.Report(new ExtendedFormatException(ex));
+                await new MessageDialog(Strings.HelloWorldResponse).ShowAsync();
             }
         }
 
@@ -81,6 +103,22 @@ namespace MoneyManager.Windows.Views
                 cursorposition += newIndex - oldIndex;
             }
             return cursorposition;
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                ResetPageCache();
+            }
+        }
+
+        private void ResetPageCache()
+        {
+            var cacheSize = ((Frame) Parent).CacheSize;
+            ((Frame) Parent).CacheSize = 0;
+            ((Frame) Parent).CacheSize = cacheSize;
         }
     }
 }

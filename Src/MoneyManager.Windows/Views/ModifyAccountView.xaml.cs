@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Globalization;
+using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Cirrious.CrossCore;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
+using MoneyManager.Localization;
 
 namespace MoneyManager.Windows.Views
 {
@@ -15,7 +16,18 @@ namespace MoneyManager.Windows.Views
         public ModifyAccountView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<ModifyAccountViewModel>();
+
+            // code to handle bottom app bar when keyboard appears
+            // workaround since otherwise the keyboard would overlay some controls
+            InputPane.GetForCurrentView().Showing +=
+                (s, args) => { BottomCommandBar.Visibility = Visibility.Collapsed; };
+            InputPane.GetForCurrentView().Hiding += (s, args2) =>
+            {
+                if (BottomCommandBar.Visibility == Visibility.Collapsed)
+                {
+                    BottomCommandBar.Visibility = Visibility.Visible;
+                }
+            };
         }
 
         private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
@@ -36,28 +48,41 @@ namespace MoneyManager.Windows.Views
             }
         }
 
-        private void ReplaceSeparatorChar(object sender, TextChangedEventArgs e)
+        private async void ReplaceSeparatorChar(object sender, TextChangedEventArgs e)
         {
             if (string.IsNullOrEmpty(TextBoxCurrentBalance.Text)) return;
 
-            try
+            double amount;
+            if (double.TryParse(TextBoxCurrentBalance.Text, out amount))
             {
-                //cursorpositon to set the position back after the formating
-                var cursorposition = TextBoxCurrentBalance.SelectionStart;
+                // todo: this try should be removeable, will see after the next version.
+                try
+                {
+                    //cursorpositon to set the position back after the formating
+                    var cursorposition = TextBoxCurrentBalance.SelectionStart;
 
-                var formattedText =
-                    Utilities.FormatLargeNumbers(Convert.ToDouble(TextBoxCurrentBalance.Text, CultureInfo.CurrentCulture));
+                    var formattedText =
+                        Utilities.FormatLargeNumbers(amount);
 
-                cursorposition = AdjustCursorPosition(formattedText, cursorposition);
+                    cursorposition = AdjustCursorPosition(formattedText, cursorposition);
 
-                TextBoxCurrentBalance.Text = formattedText;
+                    TextBoxCurrentBalance.Text = formattedText;
 
-                //set the cursor back to the last positon to avoid jumping around
-                TextBoxCurrentBalance.Select(cursorposition, 0);
+                    //set the cursor back to the last positon to avoid jumping around
+                    TextBoxCurrentBalance.Select(cursorposition, 0);
+                }
+                catch (FormatException ex)
+                {
+                    InsightHelper.Report(new ExtendedFormatException(ex, TextBoxCurrentBalance.Text));
+                }
             }
-            catch (FormatException ex)
+            else if (string.Equals(TextBoxCurrentBalance.Text, Strings.HelloWorldText,
+                StringComparison.CurrentCultureIgnoreCase)
+                     ||
+                     string.Equals(TextBoxCurrentBalance.Text, Strings.HalloWeltText,
+                         StringComparison.CurrentCultureIgnoreCase))
             {
-                InsightHelper.Report(new ExtendedFormatException(ex));
+                await new MessageDialog(Strings.HelloWorldResponse).ShowAsync();
             }
         }
 

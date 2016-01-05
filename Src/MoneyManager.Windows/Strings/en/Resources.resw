@@ -323,4 +323,16 @@ Tap to visit the Repository:</value>
   <data name="PrivacyInfo.Text" xml:space="preserve">
     <value>For further improving this app we collect impersonal data about occuring errors and issues.</value>
   </data>
+  <data name="DeleteLabel.Label" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ModifyCategoryDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="ModifyCategoryDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="NameHeader.Header" xml:space="preserve">
+    <value>Name</value>
+  </data>
 </root>

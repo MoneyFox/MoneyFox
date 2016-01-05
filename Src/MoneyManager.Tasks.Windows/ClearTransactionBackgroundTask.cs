@@ -17,8 +17,9 @@ namespace MoneyManager.Tasks.Windows
             var sqliteConnectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
 
             transactionManager = new TransactionManager(
-                new TransactionRepository(new TransactionDataAccess(sqliteConnectionCreator), new RecurringTransactionDataAccess(sqliteConnectionCreator)),
-                new AccountRepository(new AccountDataAccess(sqliteConnectionCreator)), 
+                new TransactionRepository(new TransactionDataAccess(sqliteConnectionCreator),
+                    new RecurringTransactionDataAccess(sqliteConnectionCreator)),
+                new AccountRepository(new AccountDataAccess(sqliteConnectionCreator)),
                 null);
         }
 

@@ -1,13 +1,12 @@
 using Android.App;
 using Android.Content;
-using Cirrious.CrossCore;
+using Autofac;
+using Cirrious.CrossCore.IoC;
 using Cirrious.MvvmCross.Droid.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
-using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Core.AutoFac;
 using MoneyManager.Localization;
-using SQLite.Net.Interop;
-using SQLite.Net.Platform.XamarinAndroid;
 using Xamarin;
 
 namespace MoneyManager.Droid
@@ -19,17 +18,14 @@ namespace MoneyManager.Droid
         {
         }
 
-        protected override void InitializeFirstChance()
+        protected override IMvxIoCProvider CreateIocProvider()
         {
-            base.InitializeFirstChance();
+            var cb = new ContainerBuilder();
 
-            Mvx.RegisterType<ISQLitePlatform, SQLitePlatformAndroid>();
-            Mvx.RegisterType<IDatabasePath, DatabasePath>();
-            Mvx.RegisterType<IDialogService, DialogService>();
-            Mvx.RegisterType<IAppInformation, AppInformation>();
-            Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
-            Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
-            Mvx.RegisterType<ILocalSettings, LocalSettings>();
+            cb.RegisterModule<CoreModule>();
+            cb.RegisterModule<AndroidModule>();
+
+            return new AutofacMvxIocProvider(cb.Build());
         }
 
         protected override IMvxApplication CreateApp()

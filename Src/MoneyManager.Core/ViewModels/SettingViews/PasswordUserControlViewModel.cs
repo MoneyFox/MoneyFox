@@ -1,19 +1,18 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.Authentication;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyManager.Core.ViewModels.SettingViews
 {
     [ImplementPropertyChanged]
     public class PasswordUserControlViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
-        private readonly PasswordStorage passwordStorage;
+        private readonly IPasswordStorage passwordStorage;
 
-        public PasswordUserControlViewModel(PasswordStorage passwordStorage, IDialogService dialogService)
+        public PasswordUserControlViewModel(IPasswordStorage passwordStorage, IDialogService dialogService)
         {
             this.passwordStorage = passwordStorage;
             this.dialogService = dialogService;
@@ -46,7 +45,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Loads the password from the secure storage
         /// </summary>
-        public MvxCommand LoadCommand => new MvxCommand(LoadData);
+        public MvxCommand LoadedCommand => new MvxCommand(LoadData);
 
         /// <summary>
         ///     Remove the password from the secure storage

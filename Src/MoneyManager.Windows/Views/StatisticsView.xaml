@@ -4,9 +4,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:MoneyManager.Windows.Controls"
-      xmlns:windows="using:OxyPlot.Windows"
       xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
       xmlns:statisticControls="using:MoneyManager.Windows.Controls.StatisticControls"
+      DataContext="{Binding StatisticView, Source={StaticResource CoreModule}}"
       mc:Ignorable="d">
 
     <Page.BottomAppBar>
@@ -54,9 +54,9 @@
                 <Grid>
                     <TextBlock Text="{Binding Title}"
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-                    <controls:CategorySummaryUserControl HorizontalAlignment="Stretch"
-                                                         VerticalAlignment="Stretch"
-                                                         Margin="-12,30,-12,0" />
+                    <statisticControls:CategorySummaryUserControl HorizontalAlignment="Stretch"
+                                                                  VerticalAlignment="Stretch"
+                                                                  Margin="-12,30,-12,0" />
                 </Grid>
             </PivotItem>
         </Pivot>

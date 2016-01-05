@@ -1,18 +1,15 @@
 ﻿using Windows.System;
 using Windows.UI.Xaml.Input;
-using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels.Dialogs;
 using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Windows.Dialogs
 {
-    public sealed partial class CategoryDialog
+    public sealed partial class ModifyCategoryDialog
     {
-        public CategoryDialog(Category category = null)
+        public ModifyCategoryDialog(Category category = null)
         {
             InitializeComponent();
-
-            DataContext = Mvx.Resolve<CategoryDialogViewModel>();
 
             if (category != null)
             {
@@ -25,7 +22,7 @@ namespace MoneyManager.Windows.Dialogs
         {
             if (e.Key == VirtualKey.Enter)
             {
-                ((CategoryDialogViewModel)DataContext).DoneCommand.Execute();
+                ((CategoryDialogViewModel) DataContext).DoneCommand.Execute();
                 Hide();
             }
         }

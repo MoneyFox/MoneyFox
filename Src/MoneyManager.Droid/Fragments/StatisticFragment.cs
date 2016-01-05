@@ -1,9 +1,9 @@
 using Android.OS;
 using Android.Views;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
-using Cirrious.MvvmCross.Droid.Support.Fragging.Fragments;
 using MoneyManager.Core.ViewModels.Statistics;
 using MoneyManager.Foundation;
+using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using OxyPlot.Xamarin.Android;
 
 namespace MoneyManager.Droid.Fragments

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Core.Manager;
+using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
@@ -17,22 +17,17 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class ModifyTransactionViewModel : BaseViewModel
     {
-        /// <summary>
-        ///     Locker to ensure that Init isn't executed when navigate back
-        /// </summary>
-        private static bool isInitCall = true;
-
         private readonly IAccountRepository accountRepository;
-        private readonly DefaultManager defaultManager;
+        private readonly IDefaultManager defaultManager;
         private readonly IDialogService dialogService;
-        private readonly TransactionManager transactionManager;
+        private readonly ITransactionManager transactionManager;
         private readonly ITransactionRepository transactionRepository;
 
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IAccountRepository accountRepository,
             IDialogService dialogService,
-            TransactionManager transactionManager,
-            DefaultManager defaultManager)
+            ITransactionManager transactionManager,
+            IDefaultManager defaultManager)
         {
             this.transactionRepository = transactionRepository;
             this.dialogService = dialogService;
@@ -48,9 +43,6 @@ namespace MoneyManager.Core.ViewModels
         /// <param name="isEdit">Weather the transaction is in edit mode or not.</param>
         public void Init(bool isEdit, string typeString)
         {
-            //Ensure that init is only called once
-            if (!isInitCall) return;
-
             IsEdit = isEdit;
             IsEndless = true;
 
@@ -62,13 +54,16 @@ namespace MoneyManager.Core.ViewModels
             {
                 PrepareDefault(typeString);
             }
-
-            isInitCall = false;
         }
 
         private void PrepareEdit()
         {
             if (!IsEdit) return;
+
+            // Monkey patch for issues with binding to the account selection
+            // TODO: fix this that the binding works without this.
+            SelectedTransaction.ChargedAccount =
+                accountRepository.Data.FirstOrDefault(x => x.Id == SelectedTransaction.ChargedAccountId);
 
             IsTransfer = SelectedTransaction.IsTransfer;
             // set the private amount property. This will get properly formatted and then displayed.
@@ -119,7 +114,6 @@ namespace MoneyManager.Core.ViewModels
 
             // Make sure that the old amount is removed to not count the amount twice.
             RemoveOldAmount();
-
             SelectedTransaction.Amount = amount;
 
             //Create a recurring transaction based on the financial transaction or update an existing
@@ -129,7 +123,6 @@ namespace MoneyManager.Core.ViewModels
             transactionRepository.Save(SelectedTransaction);
             accountRepository.AddTransactionAmount(SelectedTransaction);
 
-            ResetInitLocker();
             Close(this);
         }
 
@@ -156,7 +149,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void OpenSelectCategoryList()
         {
-            ShowViewModel<CategoryListViewModel>();
+            ShowViewModel<SelectCategoryListViewModel>();
         }
 
         private async void Delete()
@@ -167,7 +160,6 @@ namespace MoneyManager.Core.ViewModels
             {
                 transactionRepository.Delete(transactionRepository.Selected);
                 accountRepository.RemoveTransactionAmount(SelectedTransaction);
-                ResetInitLocker();
                 Close(this);
             }
         }
@@ -184,18 +176,16 @@ namespace MoneyManager.Core.ViewModels
                 Strings.InvalidEnddateMessage);
         }
 
-        private void Cancel()
+
+        private void ResetSelection()
         {
-            ResetInitLocker();
-            Close(this);
+            SelectedTransaction.Category = null;
         }
 
-        /// <summary>
-        ///     Reset locker to enusre init gets called again
-        /// </summary>
-        private void ResetInitLocker()
+
+        private void Cancel()
         {
-            isInitCall = true;
+            Close(this);
         }
 
         #region Commands
@@ -219,6 +209,11 @@ namespace MoneyManager.Core.ViewModels
         ///     Cancels the operations.
         /// </summary>
         public IMvxCommand CancelCommand => new MvxCommand(Cancel);
+
+        /// <summary>
+        ///     Resets the category of the currently selected transaction
+        /// </summary>
+        public IMvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
 
         #endregion
 
@@ -250,8 +245,7 @@ namespace MoneyManager.Core.ViewModels
         public int Recurrence { get; set; }
 
         // This has to be static in order to keep the value even if you leave the page to select a category.
-        // TODO: looking for a better solution.
-        private static double amount;
+        private double amount;
 
         /// <summary>
         ///     Property to format amount string to double with the proper culture.
@@ -261,7 +255,14 @@ namespace MoneyManager.Core.ViewModels
         public string AmountString
         {
             get { return Utilities.FormatLargeNumbers(amount); }
-            set { amount = Convert.ToDouble(value, CultureInfo.CurrentCulture); }
+            set
+            {
+                double convertedValue;
+                if (double.TryParse(value, out convertedValue))
+                {
+                    amount = convertedValue;
+                }
+            }
         }
 
         /// <summary>
@@ -272,6 +273,7 @@ namespace MoneyManager.Core.ViewModels
             Strings.DailyLabel,
             Strings.DailyWithoutWeekendLabel,
             Strings.WeeklyLabel,
+            Strings.BiweeklyLabel,
             Strings.MonthlyLabel,
             Strings.YearlyLabel
         };

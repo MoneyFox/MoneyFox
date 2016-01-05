@@ -1,12 +1,11 @@
-﻿using Cirrious.CrossCore;
+﻿using Autofac;
+using Cirrious.CrossCore.IoC;
 using Cirrious.MvvmCross.Touch.Platform;
 using Cirrious.MvvmCross.Touch.Views.Presenters;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
-using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Core.AutoFac;
 using MoneyManager.Localization;
-using SQLite.Net.Interop;
-using SQLite.Net.Platform.XamarinIOS;
 using UIKit;
 
 namespace MoneyManager.Ios
@@ -23,17 +22,16 @@ namespace MoneyManager.Ios
         {
         }
 
-        protected override void InitializeFirstChance()
+        protected override IMvxIoCProvider CreateIocProvider()
         {
-            base.InitializeFirstChance();
+            var cb = new ContainerBuilder();
 
-            Mvx.RegisterType<ISQLitePlatform, SQLitePlatformIOS>();
-            Mvx.RegisterType<IDatabasePath, DatabasePath>();
-            Mvx.RegisterType<IDialogService, DialogService>();
-            Mvx.RegisterType<IAppInformation, AppInformation>();
-            Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
-            Mvx.RegisterType<ILocalSettings, LocalSettings>();
+            cb.RegisterModule<CoreModule>();
+            cb.RegisterModule<IosModule>();
+
+            return new AutofacMvxIocProvider(cb.Build());
         }
+
 
         protected override IMvxApplication CreateApp()
         {

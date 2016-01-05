@@ -107,6 +107,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ADD CATEGORY.
+        /// </summary>
+        public static string AddCategoryTitle {
+            get {
+                return ResourceManager.GetString("AddCategoryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Income.
         /// </summary>
         public static string AddIncomeLabel {
@@ -193,6 +202,15 @@ namespace MoneyManager.Localization {
         public static string BackupLabel {
             get {
                 return ResourceManager.GetString("BackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Biweekly.
+        /// </summary>
+        public static string BiweeklyLabel {
+            get {
+                return ResourceManager.GetString("BiweeklyLabel", resourceCulture);
             }
         }
         
@@ -305,6 +323,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EDIT CATEGORY.
+        /// </summary>
+        public static string EditCategoryTitle {
+            get {
+                return ResourceManager.GetString("EditCategoryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Income.
         /// </summary>
         public static string EditIncomeTitle {
@@ -382,6 +409,33 @@ namespace MoneyManager.Localization {
         public static string GitHubRepositoryUrl {
             get {
                 return ResourceManager.GetString("GitHubRepositoryUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hallo Welt.
+        /// </summary>
+        public static string HalloWeltText {
+            get {
+                return ResourceManager.GetString("HalloWeltText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello beautiful.
+        /// </summary>
+        public static string HelloWorldResponse {
+            get {
+                return ResourceManager.GetString("HelloWorldResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello World.
+        /// </summary>
+        public static string HelloWorldText {
+            get {
+                return ResourceManager.GetString("HelloWorldText", resourceCulture);
             }
         }
         

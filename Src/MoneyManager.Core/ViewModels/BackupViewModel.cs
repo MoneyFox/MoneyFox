@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.Manager;
+using Microsoft.OneDrive.Sdk;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
@@ -10,9 +11,9 @@ namespace MoneyManager.Core.ViewModels
     public class BackupViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
-        private readonly RepositoryManager repositoryManager;
+        private readonly IRepositoryManager repositoryManager;
 
-        public BackupViewModel(RepositoryManager repositoryManager,
+        public BackupViewModel(IRepositoryManager repositoryManager,
             IBackupService backupService,
             IDialogService dialogService)
         {
@@ -93,6 +94,12 @@ namespace MoneyManager.Core.ViewModels
                 await dialogService.ShowMessage(Strings.LoginFailedTitle, Strings.LoginFailedMessage);
                 return false;
             }
+            catch (OneDriveException ex)
+            {
+                InsightHelper.Report(ex);
+                await dialogService.ShowMessage(Strings.LoginFailedTitle, Strings.LoginFailedMessage);
+                return false;
+            }
         }
 
         private async Task<bool> ShowOverwriteBackupInfo()
@@ -104,7 +111,7 @@ namespace MoneyManager.Core.ViewModels
         private async Task<bool> ShowOverwriteDataInfo()
         {
             return await dialogService
-                .ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
+                .ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
         }
 
         private async Task ShowCompletionNote()

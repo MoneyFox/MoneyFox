@@ -12,6 +12,7 @@
         Daily,
         DailyWithoutWeekend,
         Weekly,
+        Biweekly,
         Monthly,
         Yearly
     }

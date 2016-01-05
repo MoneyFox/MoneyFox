@@ -1,7 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
-using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
 
@@ -12,7 +11,6 @@ namespace MoneyManager.Windows.Controls
         public TransactionListUserControl()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<TransactionListViewModel>();
         }
 
         private void EditTransaction(object sender, RoutedEventArgs e)

@@ -1,8 +1,11 @@
 ﻿{
   "dependencies": {
+    "Autofac.Extras.MvvmCross": "3.3.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "MvvmCross.HotTuna.Plugin.SQLitePCL": "4.0.0-beta6",
-    "Xamarin.Insights": "1.11.2",
+    "MvvmCross.HotTuna.Plugin.Email": "4.0.0-beta7",
+    "MvvmCross.HotTuna.Plugin.SQLitePCL": "4.0.0-beta7",
+    "MvvmCross.HotTuna.Plugin.WebBrowser": "4.0.0-beta7",
+    "Xamarin.Insights": "1.11.3",
     "xunit": "2.1.0",
     "xunit.runner.visualstudio": "2.1.0"
   },

@@ -1,15 +1,15 @@
-﻿using MoneyManager.Core.Manager;
-using MoneyManager.DataAccess;
+﻿using MoneyManager.DataAccess;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels.SettingViews
 {
     public class SettingDefaultsViewModel
     {
-        private readonly DefaultManager defaultManager;
+        private readonly IDefaultManager defaultManager;
         private readonly SettingDataAccess settings;
 
-        public SettingDefaultsViewModel(DefaultManager defaultManager, SettingDataAccess settings)
+        public SettingDefaultsViewModel(IDefaultManager defaultManager, SettingDataAccess settings)
         {
             this.defaultManager = defaultManager;
             this.settings = settings;

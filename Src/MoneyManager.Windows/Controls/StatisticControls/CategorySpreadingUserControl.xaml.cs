@@ -1,6 +1,4 @@
 ﻿using System;
-using Cirrious.CrossCore;
-using MoneyManager.Core.ViewModels.Statistics;
 
 namespace MoneyManager.Windows.Controls.StatisticControls
 {
@@ -9,9 +7,7 @@ namespace MoneyManager.Windows.Controls.StatisticControls
         public CategorySpreadingUserControl()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<StatisticViewModel>();
         }
-
 
         public void Dispose()
         {

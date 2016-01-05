@@ -11,7 +11,7 @@
     <AssemblyName>MoneyManager.Windows.Concrete</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -108,13 +108,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppInformation.cs" />
-    <Compile Include="BackgroundTaskService.cs" />
-    <Compile Include="DatabasePath.cs" />
-    <Compile Include="DialogService.cs" />
+    <Compile Include="Services\BackgroundTaskService.cs" />
+    <Compile Include="Services\DialogService.cs" />
     <Compile Include="LocalSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoamingSettings.cs" />
-    <Compile Include="Services\OneDriveBackupService.cs" />
+    <Compile Include="Services\OneDriveAuthenticator.cs" />
     <Compile Include="Shortcut\IncomeTile.cs" />
     <Compile Include="Shortcut\SpendingTile.cs" />
     <Compile Include="Shortcut\Tile.cs" />
@@ -140,9 +139,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="LiveSDKXAML, Version=5.6">
-      <Name>Live SDK</Name>
-    </SDKReference>
     <SDKReference Include="SQLite.UAP.2015, Version=3.9.2">
       <Name>SQLite for Universal App Platform</Name>
     </SDKReference>

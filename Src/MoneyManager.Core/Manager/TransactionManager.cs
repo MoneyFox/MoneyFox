@@ -2,13 +2,15 @@
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
+using Xamarin;
 
 namespace MoneyManager.Core.Manager
 {
-    public class TransactionManager
+    public class TransactionManager : ITransactionManager
     {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
@@ -64,6 +66,14 @@ namespace MoneyManager.Core.Manager
             {
                 try
                 {
+                    if (transaction.ChargedAccount == null)
+                    {
+                        transaction.ChargedAccount =
+                            accountRepository.Data.FirstOrDefault(x => x.Id == transaction.ChargedAccountId);
+
+                        InsightHelper.Report(new AccountMissingException("Charged account was missing while clearing transactions"), Insights.Severity.Warning);
+                    }
+
                     transaction.IsCleared = true;
                     transactionRepository.Save(transaction);
 

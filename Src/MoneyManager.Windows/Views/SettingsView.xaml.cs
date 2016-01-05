@@ -1,8 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Cirrious.CrossCore;
-using MoneyManager.Core.ViewModels;
-using MoneyManager.Core.ViewModels.SettingViews;
+using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Windows.Dialogs;
 
 namespace MoneyManager.Windows.Views
@@ -12,14 +11,13 @@ namespace MoneyManager.Windows.Views
         public SettingsView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<SettingDefaultsViewModel>();
 
-            Mvx.Resolve<CategoryListViewModel>().IsSettingCall = true;
+            CategoryListUserControl.DataContext = Mvx.Resolve<SettingsCategoryListViewModel>();
         }
 
         private async void AddCategory(object sender, RoutedEventArgs e)
         {
-            await new CategoryDialog().ShowAsync();
+            await new ModifyCategoryDialog().ShowAsync();
         }
     }
 }

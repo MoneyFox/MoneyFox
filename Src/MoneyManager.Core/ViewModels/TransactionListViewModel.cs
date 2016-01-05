@@ -14,19 +14,16 @@ namespace MoneyManager.Core.ViewModels
         private readonly IAccountRepository accountRepository;
         private readonly BalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
-        private readonly ModifyTransactionViewModel modifyTransactionViewModel;
         private readonly ITransactionRepository transactionRepository;
 
         public TransactionListViewModel(ITransactionRepository transactionRepository,
             IAccountRepository accountRepository,
             BalanceViewModel balanceViewModel,
-            ModifyTransactionViewModel modifyTransactionViewModel,
             IDialogService dialogService)
         {
             this.transactionRepository = transactionRepository;
             this.accountRepository = accountRepository;
             this.balanceViewModel = balanceViewModel;
-            this.modifyTransactionViewModel = modifyTransactionViewModel;
             this.dialogService = dialogService;
         }
 

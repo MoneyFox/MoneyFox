@@ -6,7 +6,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Manager
 {
-    public class DefaultManager
+    public class DefaultManager : IDefaultManager
     {
         private readonly IRepository<Account> accountRepository;
         private readonly SettingDataAccess settings;
