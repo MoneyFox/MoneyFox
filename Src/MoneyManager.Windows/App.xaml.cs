@@ -20,6 +20,8 @@ using MoneyManager.Windows.Concrete.Services;
 using MoneyManager.Windows.Concrete.Shortcut;
 using MoneyManager.Windows.Views;
 using UniversalRateReminder;
+using Windows.UI.StartScreen;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Windows
 {
@@ -90,6 +92,12 @@ namespace MoneyManager.Windows
 
             OverrideTitleBarColor();
 
+            //If Jump Lists are supported, adds them
+            if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
+            {
+                SetJumplist();
+            }
+
             CallRateReminder();
 
             // Ensure the current window is active
@@ -127,6 +135,27 @@ namespace MoneyManager.Windows
                 }
                 titleBar.ButtonInactiveForegroundColor = appForegroundColor.Color;
             }
+        }
+
+        private async void SetJumplist()
+        {
+            var jump_list = await JumpList.LoadCurrentAsync();
+            jump_list.Items.Clear();
+            jump_list.SystemGroupKind = JumpListSystemGroupKind.None;
+
+            JumpListItem list_item = JumpListItem.CreateWithArguments(Constants.INCOME_TILE_ID, Strings.AddIncomeLabel);
+            list_item.Logo = new Uri("ms-appx:///Assets/IncomeTileIcon.png");
+            jump_list.Items.Add(list_item);
+
+            JumpListItem list_item2 = JumpListItem.CreateWithArguments(Constants.SPENDING_TILE_ID, Strings.AddSpendingLabel);
+            list_item2.Logo = new Uri("ms-appx:///Assets/SpendingTileIcon.png");
+            jump_list.Items.Add(list_item2);
+
+            JumpListItem list_item3 = JumpListItem.CreateWithArguments(Constants.TRANSFER_TILE_ID, Strings.AddTransferLabel);
+            list_item3.Logo = new Uri("ms-appx:///Assets/TransferTileIcon.png");
+            jump_list.Items.Add(list_item3);
+
+            await jump_list.SaveAsync();
         }
 
         /// <summary>
