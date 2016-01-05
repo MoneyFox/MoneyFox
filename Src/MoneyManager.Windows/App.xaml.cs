@@ -22,7 +22,6 @@ using MoneyManager.Windows.Views;
 using UniversalRateReminder;
 using Windows.UI.StartScreen;
 using MoneyManager.Foundation;
-using Windows.Foundation;
 
 namespace MoneyManager.Windows
 {
@@ -93,7 +92,11 @@ namespace MoneyManager.Windows
 
             OverrideTitleBarColor();
 
-            SetJumplist();
+            //If Jump Lists are supported, adds them
+            if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
+            {
+                SetJumplist();
+            }
 
             CallRateReminder();
 
@@ -138,8 +141,8 @@ namespace MoneyManager.Windows
         {
             var jump_list = await JumpList.LoadCurrentAsync();
             jump_list.Items.Clear();
-            jump_list.SystemGroupKind = JumpListSystemGroupKind.None; //The group for static links
-            #region Create and Add the jump list (repeat for every jump list you want to add)
+            jump_list.SystemGroupKind = JumpListSystemGroupKind.None;
+
             JumpListItem list_item = JumpListItem.CreateWithArguments(Constants.INCOME_TILE_ID, Strings.AddIncomeLabel);
             list_item.Logo = new Uri("ms-appx:///Assets/IncomeTileIcon.png");
             jump_list.Items.Add(list_item);
@@ -152,10 +155,8 @@ namespace MoneyManager.Windows
             list_item3.Logo = new Uri("ms-appx:///Assets/TransferTileIcon.png");
             jump_list.Items.Add(list_item3);
 
-            #endregion
             await jump_list.SaveAsync();
         }
-
 
         /// <summary>
         ///     Invoked when Navigation to a certain page fails
