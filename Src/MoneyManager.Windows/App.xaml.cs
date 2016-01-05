@@ -85,7 +85,9 @@ namespace MoneyManager.Windows
                 shell.AppFrame.Navigate(typeof (LoginView));
             }
 
-            new TileHelper(Mvx.Resolve<ModifyTransactionViewModel>()).DoNavigation(e.TileId);
+            new TileHelper(Mvx.Resolve<ModifyTransactionViewModel>()).DoNavigation(string.IsNullOrEmpty(e.Arguments)
+                ? e.TileId
+                : e.Arguments);
 
             Tile.UpdateMainTile();
             await new BackgroundTaskService().RegisterTasksAsync();
@@ -139,23 +141,23 @@ namespace MoneyManager.Windows
 
         private async void SetJumplist()
         {
-            var jump_list = await JumpList.LoadCurrentAsync();
-            jump_list.Items.Clear();
-            jump_list.SystemGroupKind = JumpListSystemGroupKind.None;
+            var jumpList = await JumpList.LoadCurrentAsync();
+            jumpList.Items.Clear();
+            jumpList.SystemGroupKind = JumpListSystemGroupKind.None;
 
-            JumpListItem list_item = JumpListItem.CreateWithArguments(Constants.INCOME_TILE_ID, Strings.AddIncomeLabel);
-            list_item.Logo = new Uri("ms-appx:///Assets/IncomeTileIcon.png");
-            jump_list.Items.Add(list_item);
+            var listItemAddIncome = JumpListItem.CreateWithArguments(Constants.ADD_INCOME_TILE_ID, Strings.AddIncomeLabel);
+            listItemAddIncome.Logo = new Uri("ms-appx:///Assets/IncomeTileIcon.png");
+            jumpList.Items.Add(listItemAddIncome);
 
-            JumpListItem list_item2 = JumpListItem.CreateWithArguments(Constants.SPENDING_TILE_ID, Strings.AddSpendingLabel);
-            list_item2.Logo = new Uri("ms-appx:///Assets/SpendingTileIcon.png");
-            jump_list.Items.Add(list_item2);
+            var listItemAddSpending = JumpListItem.CreateWithArguments(Constants.ADD_SPENDING_TILE_ID, Strings.AddSpendingLabel);
+            listItemAddSpending.Logo = new Uri("ms-appx:///Assets/SpendingTileIcon.png");
+            jumpList.Items.Add(listItemAddSpending);
 
-            JumpListItem list_item3 = JumpListItem.CreateWithArguments(Constants.TRANSFER_TILE_ID, Strings.AddTransferLabel);
-            list_item3.Logo = new Uri("ms-appx:///Assets/TransferTileIcon.png");
-            jump_list.Items.Add(list_item3);
+            var listItemAddTransfer = JumpListItem.CreateWithArguments(Constants.ADD_TRANSFER_TILE_ID, Strings.AddTransferLabel);
+            listItemAddTransfer.Logo = new Uri("ms-appx:///Assets/TransferTileIcon.png");
+            jumpList.Items.Add(listItemAddTransfer);
 
-            await jump_list.SaveAsync();
+            await jumpList.SaveAsync();
         }
 
         /// <summary>

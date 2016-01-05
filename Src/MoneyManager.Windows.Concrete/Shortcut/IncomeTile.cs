@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Localization;
 
@@ -8,14 +9,12 @@ namespace MoneyManager.Windows.Concrete.Shortcut
 {
     public class IncomeTile : Tile, IIncomeShortcut
     {
-        public const string ID = "AddIncomeTile";
-
-        public bool IsShortcutExisting => TileExists(ID);
+        public bool IsShortcutExisting => TileExists(Constants.ADD_INCOME_TILE_ID);
 
         public async Task CreateShortCut()
         {
             await Create(new SecondaryTile(
-                ID,
+                Constants.ADD_INCOME_TILE_ID,
                 Strings.AddIncomeLabel,
                 "intake",
                 new Uri("ms-appx:///Assets/IncomeTileIcon.png", UriKind.Absolute),
@@ -26,7 +25,7 @@ namespace MoneyManager.Windows.Concrete.Shortcut
         {
             if (IsShortcutExisting)
             {
-                await Remove(new SecondaryTile(ID));
+                await Remove(new SecondaryTile(Constants.ADD_INCOME_TILE_ID));
             }
         }
     }
