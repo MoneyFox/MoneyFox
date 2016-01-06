@@ -10,19 +10,30 @@ using Xamarin.Auth;
 
 namespace MoneyManager.Droid
 {
-    public class AndroidWebAuthenticationUi : IWebAuthenticationUi
+    public class AndroidAuthenticationProvider : AuthenticationProvider
     {
-        private const string MSA_CLIENT_ID = "[ID]";
+        private const string MSA_CLIENT_ID = "000000004016F96F";
 
         private readonly string[] scopes = { "onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly" };
-        private const string RETURN_URL = @"https://login.live.com/oauth20_desktop.srf";
+        private const string RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
 
         private IDictionary<string, string> authenticationResponseValues;
-        
-        public async Task<IDictionary<string, string>> AuthenticateAsync(Uri requestUri, Uri callbackUri)
+
+
+        public AndroidAuthenticationProvider(ServiceInfo serviceInfo) : base(serviceInfo)
         {
+        }
+
+        protected override async Task<AccountSession> GetAuthenticationResultAsync()
+        {
+            var tcs = new TaskCompletionSource<AccountSession>();
+
             await Task.Run(() => ShowWebView());
-            return authenticationResponseValues;
+            OAuthErrorHandler.ThrowIfError(authenticationResponseValues);
+
+            tcs.SetResult(new AccountSession(authenticationResponseValues, this.ServiceInfo.AppId, AccountType.MicrosoftAccount) { CanSignOut = true });
+
+            return tcs.Task.Result;
         }
 
         private void ShowWebView()
@@ -68,6 +79,12 @@ namespace MoneyManager.Droid
                 Constants.Authentication.TokenResponseTypeValueName);
 
             return requestUriStringBuilder.ToString();
+        }
+
+
+        public override Task SignOutAsync()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
