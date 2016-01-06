@@ -26,14 +26,12 @@ namespace MoneyManager.Droid
 
         protected override async Task<AccountSession> GetAuthenticationResultAsync()
         {
-            var tcs = new TaskCompletionSource<AccountSession>();
-
             await Task.Run(() => ShowWebView());
-            OAuthErrorHandler.ThrowIfError(authenticationResponseValues);
 
-            tcs.SetResult(new AccountSession(authenticationResponseValues, this.ServiceInfo.AppId, AccountType.MicrosoftAccount) { CanSignOut = true });
-
-            return tcs.Task.Result;
+            return new AccountSession(authenticationResponseValues, this.ServiceInfo.AppId, AccountType.MicrosoftAccount)
+            {
+                CanSignOut = true
+            };
         }
 
         private void ShowWebView()
@@ -48,12 +46,12 @@ namespace MoneyManager.Droid
 
             auth.Completed += (sender, eventArgs) =>
             {
+                isWaiting = false;
                 if (eventArgs.IsAuthenticated)
                 {
-                    OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
+                    //OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
                     authenticationResponseValues = eventArgs.Account.Properties;
                 }
-                isWaiting = false;
             };
 
             var intent = auth.GetUI(Application.Context);
