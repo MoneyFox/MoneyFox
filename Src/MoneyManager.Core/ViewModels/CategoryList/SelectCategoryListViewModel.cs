@@ -1,6 +1,7 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels.CategoryList
@@ -8,20 +9,18 @@ namespace MoneyManager.Core.ViewModels.CategoryList
     [ImplementPropertyChanged]
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel
     {
-        private readonly ITransactionRepository transactionRepository;
+        private readonly IMvxMessenger messenger;
 
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a category selection.
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
-        /// <param name="transactionRepository">An instance of an <see cref="ITransactionRepository" /> implementation.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         public SelectCategoryListViewModel(IRepository<Category> categoryRepository,
-            ITransactionRepository transactionRepository,
             IDialogService dialogService)
             : base(categoryRepository, dialogService)
         {
-            this.transactionRepository = transactionRepository;
+            this.messenger = messenger;
         }
 
         public Category SelectedCategory { get; set; }
@@ -32,7 +31,7 @@ namespace MoneyManager.Core.ViewModels.CategoryList
 
         private void Done()
         {
-            transactionRepository.Selected.Category = SelectedCategory;
+            MessageHub.Publish(new CategorySelectedMessage(this, SelectedCategory));
             Close(this);
         }
 
@@ -40,5 +39,15 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         {
             Close(this);
         }
+    }
+
+    public class CategorySelectedMessage:MvxMessage
+    {
+        public CategorySelectedMessage(object sender, Category selectedCategory) : base(sender)
+        {
+            SelectedCategory = selectedCategory;
+        }
+
+        public Category SelectedCategory { get; private set; }
     }
 }
