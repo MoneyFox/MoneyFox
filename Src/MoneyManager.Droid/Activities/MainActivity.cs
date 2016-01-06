@@ -57,7 +57,10 @@ namespace MoneyManager.Droid.Activities
             };
 
             statisticSelectorFragment = new StatisticSelectorFragment();
-            backupFragment = new BackupFragment();
+            backupFragment = new BackupFragment
+            {
+                ViewModel = Mvx.Resolve<BackupViewModel>()
+            };
 
             aboutFragment = new AboutFragment
             {
