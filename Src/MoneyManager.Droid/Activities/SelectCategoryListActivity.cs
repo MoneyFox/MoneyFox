@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Cirrious.CrossCore;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Core.ViewModels.Dialogs;
 using MoneyManager.Droid.Fragments;

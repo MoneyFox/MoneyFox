@@ -10,7 +10,6 @@ using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsUWP.Platform;
 using MoneyManager.Core;
 using MoneyManager.Core.AutoFac;
-using MoneyManager.Core.ViewModels;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.Email.WindowsCommon;
 using MvvmCross.Plugins.File;
@@ -33,6 +32,7 @@ namespace MoneyManager.Windows
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
             base.LoadPlugins(pluginManager);
+            pluginManager.EnsurePluginLoaded<MvvmCross.Plugins.Messenger.PluginLoader>();
 
             //We have to do this here, since the loading via bootloader won't work for UWP projects
             Mvx.RegisterType<IMvxComposeEmailTask, MvxComposeEmailTask>();

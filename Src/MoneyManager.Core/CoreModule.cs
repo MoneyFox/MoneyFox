@@ -55,14 +55,12 @@ namespace MoneyManager.Core
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("ViewModel"))
-                .AsImplementedInterfaces()
-                .SingleInstance();
+                .AsImplementedInterfaces();
 
             //TODO: Implement for each ViewModel an Interface
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("ViewModel"))
-                .AsSelf()
-                .SingleInstance();
+                .AsSelf();
         }
 
 
@@ -83,9 +81,9 @@ namespace MoneyManager.Core
             => Mvx.Resolve<SettingsCategoryListViewModel>();
 
         //Dialogs
-        public static CategoryDialogViewModel CategoryDialogView => Mvx.Resolve<CategoryDialogViewModel>();
+        public static CategoryDialogViewModel CategoryDialog => Mvx.Resolve<CategoryDialogViewModel>();
 
-        public static SelectDateRangeDialogViewModel SelectDateRangeDialogView
+        public static SelectDateRangeDialogViewModel SelectDateRangeDialog
             => Mvx.Resolve<SelectDateRangeDialogViewModel>();
 
         //Statistics

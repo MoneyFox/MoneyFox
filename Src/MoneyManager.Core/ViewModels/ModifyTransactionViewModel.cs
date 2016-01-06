@@ -8,8 +8,10 @@ using MoneyManager.Core.Helpers;
 using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Messages;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
+using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -23,6 +25,9 @@ namespace MoneyManager.Core.ViewModels
         private readonly ITransactionManager transactionManager;
         private readonly ITransactionRepository transactionRepository;
 
+        //this token ensures that we will be notified when a message is sent.
+        private readonly MvxSubscriptionToken token;
+
         public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
             IAccountRepository accountRepository,
             IDialogService dialogService,
@@ -34,6 +39,8 @@ namespace MoneyManager.Core.ViewModels
             this.transactionManager = transactionManager;
             this.defaultManager = defaultManager;
             this.accountRepository = accountRepository;
+
+            token = MessageHub.Subscribe<CategorySelectedMessage>(message => SelectedTransaction.Category = message.SelectedCategory);
         }
 
         /// <summary>
@@ -47,19 +54,15 @@ namespace MoneyManager.Core.ViewModels
             IsEndless = true;
 
             amount = 0;
+            
+            if (!IsEdit) return;
 
             PrepareEdit();
-
-            if (!IsEdit)
-            {
-                PrepareDefault(typeString);
-            }
+            PrepareDefault(typeString);
         }
 
         private void PrepareEdit()
         {
-            if (!IsEdit) return;
-
             // Monkey patch for issues with binding to the account selection
             // TODO: fix this that the binding works without this.
             SelectedTransaction.ChargedAccount =
@@ -75,6 +78,7 @@ namespace MoneyManager.Core.ViewModels
                 ? SelectedTransaction.RecurringTransaction.EndDate
                 : DateTime.Now;
             IsEndless = !SelectedTransaction.IsRecurring || SelectedTransaction.RecurringTransaction.IsEndless;
+
         }
 
         private void PrepareDefault(string typeString)
