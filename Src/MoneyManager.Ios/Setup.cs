@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Cirrious.CrossCore.IoC;
+using Cirrious.CrossCore.Plugins;
 using Cirrious.MvvmCross.Touch.Platform;
 using Cirrious.MvvmCross.Touch.Views.Presenters;
 using Cirrious.MvvmCross.ViewModels;
@@ -21,6 +22,14 @@ namespace MoneyManager.Ios
             : base(applicationDelegate, presenter)
         {
         }
+
+        public override void LoadPlugins(IMvxPluginManager pluginManager)
+        {
+            base.LoadPlugins(pluginManager);
+            pluginManager.EnsurePluginLoaded<MvvmCross.Plugins.Messenger.PluginLoader>();
+
+        }
+
 
         protected override IMvxIoCProvider CreateIocProvider()
         {
