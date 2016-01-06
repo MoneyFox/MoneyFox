@@ -2,7 +2,6 @@
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Messages;
 using MoneyManager.Foundation.Model;
-using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels.CategoryList
@@ -10,8 +9,6 @@ namespace MoneyManager.Core.ViewModels.CategoryList
     [ImplementPropertyChanged]
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel
     {
-        private readonly IMvxMessenger messenger;
-
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a category selection.
         /// </summary>
