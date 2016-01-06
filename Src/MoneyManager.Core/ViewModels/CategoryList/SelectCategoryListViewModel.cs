@@ -1,5 +1,6 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Messages;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
@@ -17,11 +18,8 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         public SelectCategoryListViewModel(IRepository<Category> categoryRepository,
-            IDialogService dialogService)
-            : base(categoryRepository, dialogService)
-        {
-            this.messenger = messenger;
-        }
+            IDialogService dialogService) : base(categoryRepository, dialogService)
+        {}
 
         public Category SelectedCategory { get; set; }
 
@@ -39,15 +37,5 @@ namespace MoneyManager.Core.ViewModels.CategoryList
         {
             Close(this);
         }
-    }
-
-    public class CategorySelectedMessage:MvxMessage
-    {
-        public CategorySelectedMessage(object sender, Category selectedCategory) : base(sender)
-        {
-            SelectedCategory = selectedCategory;
-        }
-
-        public Category SelectedCategory { get; private set; }
     }
 }

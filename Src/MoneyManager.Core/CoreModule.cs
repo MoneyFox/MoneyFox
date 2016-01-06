@@ -83,9 +83,9 @@ namespace MoneyManager.Core
             => Mvx.Resolve<SettingsCategoryListViewModel>();
 
         //Dialogs
-        public static CategoryDialogViewModel CategoryDialogView => Mvx.Resolve<CategoryDialogViewModel>();
+        public static CategoryDialogViewModel CategoryDialog => Mvx.Resolve<CategoryDialogViewModel>();
 
-        public static SelectDateRangeDialogViewModel SelectDateRangeDialogView
+        public static SelectDateRangeDialogViewModel SelectDateRangeDialog
             => Mvx.Resolve<SelectDateRangeDialogViewModel>();
 
         //Statistics
