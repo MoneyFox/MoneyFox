@@ -54,19 +54,15 @@ namespace MoneyManager.Core.ViewModels
             IsEndless = true;
 
             amount = 0;
+            
+            if (!IsEdit) return;
 
             PrepareEdit();
-
-            if (!IsEdit)
-            {
-                PrepareDefault(typeString);
-            }
+            PrepareDefault(typeString);
         }
 
         private void PrepareEdit()
         {
-            if (!IsEdit) return;
-
             // Monkey patch for issues with binding to the account selection
             // TODO: fix this that the binding works without this.
             SelectedTransaction.ChargedAccount =
@@ -82,6 +78,7 @@ namespace MoneyManager.Core.ViewModels
                 ? SelectedTransaction.RecurringTransaction.EndDate
                 : DateTime.Now;
             IsEndless = !SelectedTransaction.IsRecurring || SelectedTransaction.RecurringTransaction.IsEndless;
+
         }
 
         private void PrepareDefault(string typeString)
