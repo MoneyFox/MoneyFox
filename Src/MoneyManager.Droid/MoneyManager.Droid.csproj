@@ -208,6 +208,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Src\AndroidWebAuthenticationUi.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\Localize.cs" />
@@ -264,9 +265,6 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\CategorySummaryListItem.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\OAuthWebView.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

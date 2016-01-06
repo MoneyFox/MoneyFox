@@ -1,12 +1,6 @@
-using System;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
-using Android.App;
-using Android.Content;
 using Microsoft.OneDrive.Sdk;
 using MoneyManager.Foundation.Interfaces;
-using Xamarin.Auth;
 
 namespace MoneyManager.Droid
 {
@@ -29,45 +23,40 @@ namespace MoneyManager.Droid
         {
             if (oneDriveClient == null)
             {
-                var requestUriStringBuilder = new StringBuilder();
-                requestUriStringBuilder.Append("https://login.live.com/oauth20_authorize.srf");
-                requestUriStringBuilder.AppendFormat("?{0}={1}", Constants.Authentication.RedirectUriKeyName, RETURN_URL);
-                requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ClientIdKeyName, MSA_CLIENT_ID);
-                requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ScopeKeyName,
-                    string.Join("%20", scopes));
-                requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ResponseTypeKeyName,
-                    Constants.Authentication.TokenResponseTypeValueName);
+                oneDriveClient = OneDriveClient.GetMicrosoftAccountClient(
+                    MSA_CLIENT_ID,
+                    RETURN_URL,
+                    scopes, null, null,
+                    new AndroidWebAuthenticationUi());
 
-                var auth = new OAuth2Authenticator(
-                    clientId: MSA_CLIENT_ID,
-                    scope: string.Join(",", scopes),
-                    authorizeUrl: new Uri(requestUriStringBuilder.ToString()),
-                    redirectUrl: new Uri(RETURN_URL));
-
-
-                var appConfig = new AppConfig();
-
-                auth.Completed += (sender, eventArgs) =>
-                {
-                    if (eventArgs.IsAuthenticated)
-                    {
-                    }
-                };
-
-                try
-                {
-                    var intent = auth.GetUI(Application.Context);
-                    intent.SetFlags(ActivityFlags.NewTask);
-
-                    Application.Context.StartActivity(intent);
-                }
-                catch (Exception ex)
-                {
-                    Debug.Write(ex.Message);
-                }
-                return new OneDriveClient(appConfig);
+                await oneDriveClient.AuthenticateAsync();
             }
-            return new OneDriveClient(new AppConfig());
+
+            try
+            {
+                if (!oneDriveClient.IsAuthenticated)
+                {
+                    await oneDriveClient.AuthenticateAsync();
+                }
+
+                return oneDriveClient;
+            } catch (OneDriveException exception)
+            {
+                // Swallow authentication cancelled exceptions
+                if (!exception.IsMatch(OneDriveErrorCode.AuthenticationCancelled.ToString()))
+                {
+                    if (exception.IsMatch(OneDriveErrorCode.AuthenticationFailure.ToString()))
+                    {
+                        await dialogService.ShowMessage(
+                            "Authentication failed",
+                            "Authentication failed");
+                    } else
+                    {
+                        throw;
+                    }
+                }
+            }
+            return oneDriveClient;
         }
     }
 }
