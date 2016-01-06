@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
 using MoneyManager.Core.Authentication;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 
 namespace MoneyManager.Windows.Views
@@ -31,10 +32,10 @@ namespace MoneyManager.Windows.Views
                 await Login();
             }
         }
-
+        
         private async Task Login()
         {
-            if (!Mvx.Resolve<PasswordStorage>().ValidatePassword(PasswordBox.Password))
+            if (!Mvx.Resolve<IPasswordStorage>().ValidatePassword(PasswordBox.Password))
             {
                 await new MessageDialog(Strings.PasswordWrongMessage, Strings.PasswordWrongTitle).ShowAsync();
                 return;
