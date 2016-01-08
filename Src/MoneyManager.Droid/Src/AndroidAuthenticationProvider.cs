@@ -8,7 +8,9 @@ using Android.Content;
 using Microsoft.OneDrive.Sdk;
 using Xamarin.Auth;
 using System.Diagnostics;
+using Cirrious.CrossCore;
 using MoneyManager.Droid.Fragments;
+using MvvmCross.Plugins.Messenger;
 
 namespace MoneyManager.Droid
 {
@@ -19,9 +21,6 @@ namespace MoneyManager.Droid
         private readonly string[] scopes = { "onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly" };
         private const string RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
 
-        private IDictionary<string, string> authenticationResponseValues;
-
-
         public AndroidAuthenticationProvider(ServiceInfo serviceInfo) : base(serviceInfo)
         {
         }
@@ -30,9 +29,9 @@ namespace MoneyManager.Droid
         {
             //await Task.Run(() => ShowWebView());
 
+            var temp = Mvx.Resolve<TempMessage>().AuthenticationResponseValues;
 
-
-            return new AccountSession(BackupFragment.AuthenticationResponseValues, this.ServiceInfo.AppId, AccountType.MicrosoftAccount)
+            return new AccountSession(temp, this.ServiceInfo.AppId, AccountType.MicrosoftAccount)
             {
                 CanSignOut = true
             };
@@ -65,7 +64,7 @@ namespace MoneyManager.Droid
                 if (eventArgs.Account != null)
                 {
                     OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
-                    authenticationResponseValues = eventArgs.Account.Properties;
+                    //authenticationResponseValues = eventArgs.Account.Properties;
                 }
             }
         }

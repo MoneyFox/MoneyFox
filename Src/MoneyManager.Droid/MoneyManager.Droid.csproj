@@ -222,6 +222,7 @@
     <Compile Include="Src\OneDriveAuthenticator.cs" />
     <Compile Include="Src\RoamingSettings.cs" />
     <Compile Include="Src\StoreFeatures.cs" />
+    <Compile Include="Src\TempMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

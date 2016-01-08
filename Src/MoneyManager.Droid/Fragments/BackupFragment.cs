@@ -1,17 +1,16 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
+using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Microsoft.OneDrive.Sdk;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using MvvmCross.Plugins.Messenger;
 using Xamarin.Auth;
-using Debug = System.Diagnostics.Debug;
 
 namespace MoneyManager.Droid.Fragments
 {
@@ -38,7 +37,6 @@ namespace MoneyManager.Droid.Fragments
         private readonly string[] scopes = { "onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly" };
         private const string RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
 
-        public static IDictionary<string, string> AuthenticationResponseValues;
 
         private void ShowWebView()
         {
@@ -61,14 +59,13 @@ namespace MoneyManager.Droid.Fragments
         {
             if (eventArgs.IsAuthenticated)
             {
-                System.Diagnostics.Debug.WriteLine(eventArgs);
-                Debug.WriteLine(eventArgs.Account == null ? "IS NULL" : "IS NOT NULL");
-
-                if (eventArgs.Account != null)
+                OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
+                var message = new TempMessage
                 {
-                    OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
-                    AuthenticationResponseValues = eventArgs.Account.Properties;
-                }
+                    AuthenticationResponseValues = eventArgs.Account.Properties
+                };
+
+                Mvx.RegisterType(() => message);
             }
         }
 
