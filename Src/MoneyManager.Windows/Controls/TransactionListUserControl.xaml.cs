@@ -20,6 +20,7 @@ namespace MoneyManager.Windows.Controls
             SetItemSource();
         }
 
+        //TODO Move to VM
         private void SetItemSource()
         {
             var datacontext = Mvx.Resolve<TransactionListViewModel>();
@@ -28,7 +29,7 @@ namespace MoneyManager.Windows.Controls
             var source = new ObservableCollection<DateListGroup<FinancialTransaction>>(
                 DateListGroup<FinancialTransaction>.CreateGroups(datacontext.RelatedTransactions,
                             CultureInfo.CurrentUICulture,
-                            s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture),
+                            s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " +  s.Date.Year,
                             s => s.Date, true));
 
             ((CollectionViewSource) Resources["TransactionGroups"]).Source = source;
