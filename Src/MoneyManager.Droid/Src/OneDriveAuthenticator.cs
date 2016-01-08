@@ -10,10 +10,10 @@ namespace MoneyManager.Droid
     {
         private const string MSA_CLIENT_ID = "000000004016F96F";
         private const string MSA_SECRET = "eBl-PFgd-bBANvHaPKkajuTeYUCXo52Z";
+        private const string RETURN_URL = @"https://login.live.com/oauth20_desktop.srf";
 
         private readonly IDialogService dialogService;
-        private readonly string[] scopes = { "onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly" };
-        private const string RETURN_URL = @"https://login.live.com/oauth20_desktop.srf";
+        private readonly string[] scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly"};
 
         private IOneDriveClient oneDriveClient;
 
@@ -29,8 +29,9 @@ namespace MoneyManager.Droid
                 oneDriveClient = OneDriveClient.GetMicrosoftAccountClient(
                     MSA_CLIENT_ID,
                     RETURN_URL,
-                    scopes, MSA_SECRET, null, null, 
-                    new ServiceInfoProvider(new AndroidAuthenticationProvider(new MicrosoftAccountServiceInfo())));
+                    scopes, MSA_SECRET,
+                    null, null,
+                    new CustomServiceInfoProvider());
                 try
                 {
                     await oneDriveClient.AuthenticateAsync();
@@ -49,7 +50,8 @@ namespace MoneyManager.Droid
                 }
 
                 return oneDriveClient;
-            } catch (OneDriveException exception)
+            }
+            catch (OneDriveException exception)
             {
                 // Swallow authentication cancelled exceptions
                 if (!exception.IsMatch(OneDriveErrorCode.AuthenticationCancelled.ToString()))
@@ -59,7 +61,8 @@ namespace MoneyManager.Droid
                         await dialogService.ShowMessage(
                             "Authentication failed",
                             "Authentication failed");
-                    } else
+                    }
+                    else
                     {
                         throw;
                     }

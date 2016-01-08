@@ -7,6 +7,8 @@ using Android.App;
 using Android.Content;
 using Microsoft.OneDrive.Sdk;
 using Xamarin.Auth;
+using System.Diagnostics;
+using MoneyManager.Droid.Fragments;
 
 namespace MoneyManager.Droid
 {
@@ -26,9 +28,11 @@ namespace MoneyManager.Droid
 
         protected override async Task<AccountSession> GetAuthenticationResultAsync()
         {
-            await Task.Run(() => ShowWebView());
+            //await Task.Run(() => ShowWebView());
 
-            return new AccountSession(authenticationResponseValues, this.ServiceInfo.AppId, AccountType.MicrosoftAccount)
+
+
+            return new AccountSession(BackupFragment.AuthenticationResponseValues, this.ServiceInfo.AppId, AccountType.MicrosoftAccount)
             {
                 CanSignOut = true
             };
@@ -42,26 +46,27 @@ namespace MoneyManager.Droid
                     authorizeUrl: new Uri(GetAuthorizeUrl()),
                     redirectUrl: new Uri(RETURN_URL));
 
-            var isWaiting = true;
-
-            auth.Completed += (sender, eventArgs) =>
-            {
-                isWaiting = false;
-                if (eventArgs.IsAuthenticated)
-                {
-                    //OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
-                    authenticationResponseValues = eventArgs.Account.Properties;
-                }
-            };
+        
+            auth.Completed += SetAccountInfos;
 
             var intent = auth.GetUI(Application.Context);
             intent.SetFlags(ActivityFlags.NewTask);
 
             Application.Context.StartActivity(intent);
+        }
 
-            while (isWaiting)
+        private void SetAccountInfos(object sender, AuthenticatorCompletedEventArgs eventArgs)
+        {
+            if (eventArgs.IsAuthenticated)
             {
-                Thread.Sleep(500);
+                Debug.WriteLine(eventArgs);
+                Debug.WriteLine(eventArgs.Account == null ? "IS NULL" : "IS NOT NULL");
+
+                if (eventArgs.Account != null)
+                {
+                    OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
+                    authenticationResponseValues = eventArgs.Account.Properties;
+                }
             }
         }
 
