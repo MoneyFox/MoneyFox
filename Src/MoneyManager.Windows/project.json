@@ -11,6 +11,7 @@
     "MvvmCross.HotTuna.MvvmCrossLibraries": "4.0.0-beta7",
     "MvvmCross.HotTuna.Plugin.Email": "4.0.0-beta7",
     "MvvmCross.HotTuna.Plugin.File": "4.0.0-beta7",
+    "MvvmCross.HotTuna.Plugin.Messenger": "4.0.0-beta7",
     "MvvmCross.HotTuna.Plugin.SQLitePCL": "4.0.0-beta7",
     "MvvmCross.HotTuna.Plugin.WebBrowser": "4.0.0-beta7",
     "OxyPlot.Windows": "2015.1.1033-alpha",

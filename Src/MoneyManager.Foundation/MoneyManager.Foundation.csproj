@@ -58,6 +58,7 @@
     <Compile Include="Interfaces\IStatisticProvider.cs" />
     <Compile Include="Interfaces\ITransactionManager.cs" />
     <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
+    <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Model\CashFlow.cs" />
     <Compile Include="SqliteConnectionCreator.cs" />
     <Compile Include="Enumerations.cs" />
@@ -98,6 +99,9 @@
     <Reference Include="Cirrious.MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta7\lib\portable-win+net45+wp8+win8+wpa81\Cirrious.MvvmCross.Localization.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger">
+      <HintPath>..\..\..\..\..\.nuget\packages\MvvmCross.HotTuna.Plugin.Messenger\4.0.0-beta7\lib\win81\MvvmCross.Plugins.Messenger.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Sqlite, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.SQLitePCL.4.0.0-beta7\lib\portable-win+net45+wp8+win8+wpa81+win81+dotnet\MvvmCross.Plugins.Sqlite.dll</HintPath>

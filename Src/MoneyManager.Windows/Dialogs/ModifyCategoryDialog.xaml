@@ -11,7 +11,7 @@
                PrimaryButtonText="done"
                SecondaryButtonText="cancel"
                PrimaryButtonCommand="{Binding DoneCommand}"
-               DataContext="{Binding CategoryDialogViewModel, Source={StaticResource CoreModule}}">
+               DataContext="{Binding CategoryDialog, Source={StaticResource CoreModule}}">
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">

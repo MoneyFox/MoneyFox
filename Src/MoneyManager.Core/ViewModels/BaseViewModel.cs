@@ -2,11 +2,14 @@
 using System.Linq.Expressions;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
+using MvvmCross.Plugins.Messenger;
 
 namespace MoneyManager.Core.ViewModels
 {
     public abstract class BaseViewModel : MvxViewModel
     {
+        public IMvxMessenger MessageHub => Mvx.Resolve<IMvxMessenger>();
+
         /// <summary>
         ///     Gets the service.
         /// </summary>
