@@ -29,7 +29,7 @@ namespace MoneyManager.Core.ViewModels
 
         public MvxCommand<string> GoToAddTransactionCommand => new MvxCommand<string>(GoToAddTransaction);
         public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
-        public MvxCommand LoadedCommand => new MvxCommand(LoadTransactions);
+        public virtual MvxCommand LoadedCommand => new MvxCommand(LoadTransactions);
         public MvxCommand EditCommand => new MvxCommand(Edit);
 
         public MvxCommand<FinancialTransaction> DeleteTransactionCommand
