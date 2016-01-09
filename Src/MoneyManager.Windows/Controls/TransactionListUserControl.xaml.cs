@@ -1,13 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using System.Globalization;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Windows.Concrete;
 
 namespace MoneyManager.Windows.Controls
 {
@@ -17,22 +12,6 @@ namespace MoneyManager.Windows.Controls
         {
             InitializeComponent();
 
-            SetItemSource();
-        }
-
-        //TODO Move to VM
-        private void SetItemSource()
-        {
-            var datacontext = Mvx.Resolve<TransactionListViewModel>();
-            datacontext.LoadedCommand.Execute();
-
-            var source = new ObservableCollection<DateListGroup<FinancialTransaction>>(
-                DateListGroup<FinancialTransaction>.CreateGroups(datacontext.RelatedTransactions,
-                            CultureInfo.CurrentUICulture,
-                            s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " +  s.Date.Year,
-                            s => s.Date, true));
-
-            ((CollectionViewSource) Resources["TransactionGroups"]).Source = source;
         }
 
         private void EditTransaction(object sender, RoutedEventArgs e)

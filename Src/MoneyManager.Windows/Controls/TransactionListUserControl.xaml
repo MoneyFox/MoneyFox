@@ -13,11 +13,11 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <!--<interactivity:Interaction.Behaviors>
+    <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors>-->
+    </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
         <converter:NativeTransactionAmountConverter x:Key="TransactionAmountConverter" />
@@ -125,7 +125,8 @@
         </DataTemplate>
 
         <CollectionViewSource x:Key="TransactionGroups"
-                              IsSourceGrouped="True"/>
+                              IsSourceGrouped="True"
+                              Source="{Binding Source}"/>
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">

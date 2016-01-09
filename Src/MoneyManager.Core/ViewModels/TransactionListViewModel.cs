@@ -1,9 +1,11 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
+using MoneyManager.Windows.Concrete;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -37,8 +39,14 @@ namespace MoneyManager.Core.ViewModels
 
         /// <summary>
         ///     Returns all Transaction who are assigned to this repository
+        ///     This has to stay until the android list with headers is implemented.
         /// </summary>
         public ObservableCollection<FinancialTransaction> RelatedTransactions { set; get; }
+
+        /// <summary>
+        ///     Returns groupped related transactions 
+        /// </summary>
+        public ObservableCollection<DateListGroup<FinancialTransaction>> Source { set; get; }
 
         /// <summary>
         ///     Returns the name of the account title for the current page
@@ -60,6 +68,12 @@ namespace MoneyManager.Core.ViewModels
                 .GetRelatedTransactions(accountRepository.Selected)
                 .OrderByDescending(x => x.Date)
                 .ToList());
+
+            Source = new ObservableCollection<DateListGroup<FinancialTransaction>>(
+                DateListGroup<FinancialTransaction>.CreateGroups(RelatedTransactions,
+                    CultureInfo.CurrentUICulture,
+                    s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
+                    s => s.Date, true));
         }
 
         private void GoToAddTransaction(string type)
