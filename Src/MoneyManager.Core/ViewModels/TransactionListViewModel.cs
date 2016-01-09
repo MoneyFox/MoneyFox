@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 using MoneyManager.Windows.Concrete;
@@ -14,13 +15,13 @@ namespace MoneyManager.Core.ViewModels
     public class TransactionListViewModel : BaseViewModel
     {
         private readonly IAccountRepository accountRepository;
-        private readonly BalanceViewModel balanceViewModel;
+        private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
         private readonly ITransactionRepository transactionRepository;
 
         public TransactionListViewModel(ITransactionRepository transactionRepository,
             IAccountRepository accountRepository,
-            BalanceViewModel balanceViewModel,
+            IBalanceViewModel balanceViewModel,
             IDialogService dialogService)
         {
             this.transactionRepository = transactionRepository;
