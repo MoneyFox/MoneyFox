@@ -305,7 +305,7 @@ namespace MoneyManager.Core.ViewModels
         ///     Returns the Header for the account field
         /// </summary>
         public string AccountHeader
-            => SelectedTransaction.Type == (int) TransactionType.Income
+            => SelectedTransaction?.Type == (int) TransactionType.Income
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
 
