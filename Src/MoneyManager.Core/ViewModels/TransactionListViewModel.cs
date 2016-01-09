@@ -60,6 +60,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void LoadTransactions()
         {
+            isInit = true;
             //Refresh balance control with the current account
             balanceViewModel.UpdateBalance(true);
 
@@ -74,6 +75,7 @@ namespace MoneyManager.Core.ViewModels
                     CultureInfo.CurrentUICulture,
                     s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
                     s => s.Date, true));
+            isInit = false;
         }
 
         private void GoToAddTransaction(string type)
@@ -92,8 +94,11 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
+        private bool isInit;
         private void Edit()
         {
+            if (isInit) return;
+
             if (SelectedTransaction == null)
             {
                 return;
@@ -102,7 +107,7 @@ namespace MoneyManager.Core.ViewModels
             transactionRepository.Selected = SelectedTransaction;
 
             ShowViewModel<ModifyTransactionViewModel>(
-                new {isEdit = true});
+                new {isEdit = true, typeString = SelectedTransaction.Type.ToString()});
             SelectedTransaction = null;
         }
 
