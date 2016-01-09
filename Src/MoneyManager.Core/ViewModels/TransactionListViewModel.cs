@@ -32,7 +32,7 @@ namespace MoneyManager.Core.ViewModels
         public MvxCommand<string> GoToAddTransactionCommand => new MvxCommand<string>(GoToAddTransaction);
         public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
         public virtual MvxCommand LoadedCommand => new MvxCommand(LoadTransactions);
-        public MvxCommand EditCommand => new MvxCommand(Edit);
+        public MvxCommand EditCommand { get; private set; }
 
         public MvxCommand<FinancialTransaction> DeleteTransactionCommand
             => new MvxCommand<FinancialTransaction>(DeleteTransaction);
@@ -60,7 +60,6 @@ namespace MoneyManager.Core.ViewModels
 
         private void LoadTransactions()
         {
-            isInit = true;
             //Refresh balance control with the current account
             balanceViewModel.UpdateBalance(true);
 
@@ -75,7 +74,9 @@ namespace MoneyManager.Core.ViewModels
                     CultureInfo.CurrentUICulture,
                     s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
                     s => s.Date, true));
-            isInit = false;
+
+            //We have to set the command here to ensure that the selection changed event is triggered earlier
+            EditCommand = new MvxCommand(Edit);
         }
 
         private void GoToAddTransaction(string type)
@@ -94,11 +95,8 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
-        private bool isInit;
         private void Edit()
         {
-            if (isInit) return;
-
             if (SelectedTransaction == null)
             {
                 return;
