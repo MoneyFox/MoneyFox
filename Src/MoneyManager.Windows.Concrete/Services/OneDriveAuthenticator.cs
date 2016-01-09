@@ -6,7 +6,7 @@ namespace MoneyManager.Windows.Concrete.Services
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        private const string MSA_CLIENT_ID = "000000004416B470";
+        private const string MSA_CLIENT_ID = "ID";
 
         private readonly IDialogService dialogService;
         private readonly string[] scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly"};
