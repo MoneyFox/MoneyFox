@@ -11,6 +11,7 @@ namespace MoneyManager.Windows.Controls
         public TransactionListUserControl()
         {
             InitializeComponent();
+
         }
 
         private void EditTransaction(object sender, RoutedEventArgs e)
