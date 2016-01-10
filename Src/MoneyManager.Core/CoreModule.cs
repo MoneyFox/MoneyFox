@@ -55,12 +55,14 @@ namespace MoneyManager.Core
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("ViewModel"))
-                .AsImplementedInterfaces();
+                .AsImplementedInterfaces()
+                .SingleInstance(); ;
 
             //TODO: Implement for each ViewModel an Interface
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("ViewModel"))
-                .AsSelf();
+                .AsSelf()
+                .SingleInstance();;
         }
 
 

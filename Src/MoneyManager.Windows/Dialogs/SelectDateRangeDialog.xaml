@@ -5,7 +5,7 @@
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                xmlns:converter="using:MoneyManager.Windows.Converter"
                mc:Ignorable="d"
-               Title="SELECT STATISTIC"
+               Title="Select Daterange"
                x:Uid="SelectDateRangeDialog"
                PrimaryButtonText="done"
                SecondaryButtonText="cancel"
@@ -18,11 +18,11 @@
 
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <DatePicker
+        <DatePicker Margin="0,5,0,0"
             Date="{Binding StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Header="startdate" x:Uid="StartdateHeader" />
-        <DatePicker
+            Header="startdate" x:Uid="StartDateHeader" />
+        <DatePicker Margin="0,5,0,0"
             Date="{Binding EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Header="enddate" x:Uid="EnddateHeader" />
+            Header="enddate" x:Uid="EndDateHeader" />
     </StackPanel>
 </ContentDialog>

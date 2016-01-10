@@ -1,11 +1,12 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private readonly BalanceViewModel balanceViewModel;
+        private readonly IBalanceViewModel balanceViewModel;
         private readonly ModifyAccountViewModel modifyAccountViewModel;
         private readonly ModifyTransactionViewModel modifyTransactionViewModel;
 
@@ -14,7 +15,7 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public MainViewModel(ModifyAccountViewModel modifyAccountViewModel,
             ModifyTransactionViewModel modifyTransactionViewModel,
-            BalanceViewModel balanceViewModel)
+            IBalanceViewModel balanceViewModel)
         {
             this.modifyAccountViewModel = modifyAccountViewModel;
             this.modifyTransactionViewModel = modifyTransactionViewModel;

@@ -283,6 +283,17 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Messenger/4.0.0-beta7": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta7": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )",
@@ -2075,6 +2086,17 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.HotTuna.Plugin.Messenger/4.0.0-beta7": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta7": {
@@ -3902,6 +3924,17 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.HotTuna.Plugin.Messenger/4.0.0-beta7": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta7": {
@@ -5736,6 +5769,17 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Messenger/4.0.0-beta7": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta7": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )",
@@ -7561,6 +7605,17 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.HotTuna.Plugin.Messenger/4.0.0-beta7": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta7": {
@@ -9395,6 +9450,17 @@
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Messenger/4.0.0-beta7": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta7": {
         "dependencies": {
           "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )",
@@ -11220,6 +11286,17 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.Email.dll": {},
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.HotTuna.Plugin.Messenger/4.0.0-beta7": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[4.0.0-beta7, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta7": {
@@ -13560,6 +13637,33 @@
         "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.Touch.dll",
         "MvvmCross.HotTuna.Plugin.Email.nuspec",
         "package/services/metadata/core-properties/6e7e8ff541d0416085552a76b9588fac.psmdcp"
+      ]
+    },
+    "MvvmCross.HotTuna.Plugin.Messenger/4.0.0-beta7": {
+      "sha512": "2WmPU3V0h6UJ5BDa3XunpG8ziCMi3mV/sw6yudoFjnXVq3o0tj7aHGSrZlmrC+EQRiLVIB19f0obAOO5qKhm2Q==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "content/MonoAndroid/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "content/net45/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "content/netcore45/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "content/win81/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "content/wp8/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "content/wpa81/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "content/Xamarin.iOS10/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "lib/dotnet/MvvmCross.Plugins.Messenger.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.Messenger.dll",
+        "lib/net45/MvvmCross.Plugins.Messenger.dll",
+        "lib/netcore45/MvvmCross.Plugins.Messenger.dll",
+        "lib/portable-win+net45+wp8+win8+wpa81/MvvmCross.Plugins.Messenger.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.Messenger.dll",
+        "lib/win81/MvvmCross.Plugins.Messenger.dll",
+        "lib/wp8/MvvmCross.Plugins.Messenger.dll",
+        "lib/wpa81/MvvmCross.Plugins.Messenger.dll",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.Messenger.dll",
+        "MvvmCross.HotTuna.Plugin.Messenger.nuspec",
+        "package/services/metadata/core-properties/1b859e28a0214cff9eac3ed19c186381.psmdcp"
       ]
     },
     "MvvmCross.HotTuna.Plugin.SQLitePCL/4.0.0-beta7": {
@@ -16618,6 +16722,7 @@
       "Autofac.Extras.MvvmCross >= 3.3.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "MvvmCross.HotTuna.Plugin.Email >= 4.0.0-beta7",
+      "MvvmCross.HotTuna.Plugin.Messenger >= 4.0.0-beta7",
       "MvvmCross.HotTuna.Plugin.SQLitePCL >= 4.0.0-beta7",
       "MvvmCross.HotTuna.Plugin.WebBrowser >= 4.0.0-beta7",
       "Xamarin.Insights >= 1.11.3",

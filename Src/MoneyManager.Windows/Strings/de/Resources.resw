@@ -254,7 +254,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Abbrechen</value>
   </data>
   <data name="CategoryDialog.Title" xml:space="preserve">
-    <value>CATEGORY HINZUFÜGEN</value>
+    <value>Kategorie Hinzufügen</value>
   </data>
   <data name="CreateBackup.Content" xml:space="preserve">
     <value>Sicherung erstellen</value>
@@ -278,7 +278,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Abbrechen</value>
   </data>
   <data name="SelectDateRangeDialog.Title" xml:space="preserve">
-    <value>ZEITRAUM WÄHLEN</value>
+    <value>Zeitraum wählen</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
     <value>Informationen auf Haupttile anzeigen.</value>
@@ -333,5 +333,11 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
   <data name="NameHeader.Header" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="EndDateHeader.Header" xml:space="preserve">
+    <value>Enddatum</value>
+  </data>
+  <data name="StartDateHeader.Header" xml:space="preserve">
+    <value>Startdatum</value>
   </data>
 </root>
