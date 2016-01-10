@@ -27,7 +27,7 @@ namespace MoneyManager.Core.Manager
             accountRepository.Load();
             accountRepository.Selected = null;
 
-            transactionRepository.Load();
+            transactionRepository.Data = null;
             transactionRepository.Selected = null;
 
             categoryRepository.Load();
