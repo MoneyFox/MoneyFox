@@ -282,7 +282,7 @@ namespace MoneyManager.Windows.Controls.CustomControls
                 case SplitViewDisplayMode.Inline:
                 case SplitViewDisplayMode.CompactOverlay:
                 case SplitViewDisplayMode.CompactInline:
-                    splitView.IsPaneOpen = (bool) e.NewValue;
+                    splitView.IsPaneOpen = !splitView.IsPaneOpen;
                     break;
 
                 case SplitViewDisplayMode.Overlay:
@@ -344,11 +344,6 @@ namespace MoneyManager.Windows.Controls.CustomControls
         {
             panAreaTransform = PanArea.RenderTransform as CompositeTransform;
             paneRootTransform = PaneRoot.RenderTransform as CompositeTransform;
-
-            if (panAreaTransform == null || paneRootTransform == null)
-            {
-                throw new ArgumentException("Make sure you have copied the default style to Generic.xaml!!");
-            }
         }
 
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
