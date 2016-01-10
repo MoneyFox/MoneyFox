@@ -63,17 +63,31 @@
         <customControls:SwipeableSplitView x:Name="RootSplitView"
                                            DisplayMode="Inline"
                                            OpenPaneLength="256"
-                                           IsTabStop="False">
+                                           IsTabStop="False"
+                                           IsPanSelectorEnabled="False">
             <customControls:SwipeableSplitView.Pane>
-                <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
-                <customControls:NavMenuListView x:Name="NavMenuList"
+                <Grid>
+                    <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
+                    <customControls:NavMenuListView x:Name="NavMenuListTop"
+                                                VerticalAlignment="Top"
                                                 TabIndex="3"
                                                 Margin="0,48,0,0"
                                                 ContainerContentChanging="NavMenuItemContainerContentChanging"
                                                 ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
                                                 ItemTemplate="{StaticResource NavMenuItemTemplate}"
                                                 ItemInvoked="NavMenuList_ItemInvoked" />
+                    <!-- A buttom section to seperate common functions with uncommon -->
+                    <customControls:NavMenuListView x:Name="NavMenuListBottom"
+                                                VerticalAlignment="Bottom"
+                                                TabIndex="3"
+                                                Margin="0,48,0,0"
+                                                ContainerContentChanging="NavMenuItemContainerContentChanging"
+                                                ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
+                                                ItemTemplate="{StaticResource NavMenuItemTemplate}"
+                                                ItemInvoked="NavMenuList_ItemInvoked" />
+                </Grid>
             </customControls:SwipeableSplitView.Pane>
+            
             <customControls:SwipeableSplitView.Content>
                 <Frame x:Name="Frame"
                        Navigating="OnNavigatingToPage"
@@ -89,7 +103,6 @@
                     </Frame.ContentTransitions>
                 </Frame>
             </customControls:SwipeableSplitView.Content>
-
         </customControls:SwipeableSplitView>
 
         <!-- Declared last to have it rendered above everything else, but it needs to be the first item in the tab sequence. -->
