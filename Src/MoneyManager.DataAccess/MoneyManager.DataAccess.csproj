@@ -45,9 +45,6 @@
     <Compile Include="TransactionDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AI.XamarinSDK">
-      <HintPath>..\..\Libs\ApplicationInsights\AI.XamarinSDK.dll</HintPath>
-    </Reference>
     <Reference Include="AI.XamarinSDK.Abstractions">
       <HintPath>..\..\Libs\ApplicationInsights\AI.XamarinSDK.Abstractions.dll</HintPath>
     </Reference>
