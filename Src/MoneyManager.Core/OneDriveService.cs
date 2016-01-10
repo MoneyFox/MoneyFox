@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AI.XamarinSDK.Abstractions;
 using Microsoft.OneDrive.Sdk;
 using MoneyManager.Core.Extensions;
 using MoneyManager.Foundation;
@@ -54,7 +55,7 @@ namespace MoneyManager.Core
             }
             catch (OneDriveException ex)
             {
-                InsightHelper.Report(ex);
+                TelemetryManager.TrackManagedException(ex, true);
                 return TaskCompletionType.Unsuccessful;
             }
         }

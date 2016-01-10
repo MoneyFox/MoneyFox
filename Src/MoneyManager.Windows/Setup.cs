@@ -1,4 +1,3 @@
-using Windows.ApplicationModel;
 using Windows.UI.Xaml.Controls;
 using Autofac;
 using Beezy.MvvmCross.Plugins.SecureStorage;
@@ -18,7 +17,6 @@ using MvvmCross.Plugins.Sqlite;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Plugins.WebBrowser.WindowsCommon;
-using Xamarin;
 
 namespace MoneyManager.Windows
 {
@@ -54,16 +52,6 @@ namespace MoneyManager.Windows
 
         protected override IMvxApplication CreateApp()
         {
-            var insightKey = "599ff6bfdc79368ff3d5f5629a57c995fe93352e";
-
-#if DEBUG
-            insightKey = Insights.DebugModeKey;
-#endif
-            if (!Insights.IsInitialized)
-            {
-                Insights.Initialize(insightKey);
-            }
-
             return new Core.App();
         }
     }

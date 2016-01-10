@@ -20,10 +20,6 @@
     </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
         <Pivot Style="{StaticResource TabsStylePivotStyle}">
             <PivotItem>
                 <PivotItem.Header>
@@ -63,13 +59,5 @@
                 </Grid>
             </PivotItem>
         </Pivot>
-        <CommandBar Grid.Row="1" ClosedDisplayMode="Minimal">
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Calendar"
-                              x:Uid="SetDate"
-                              Label="Set Date"
-                              Click="SetDate" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
     </Grid>
 </Page>

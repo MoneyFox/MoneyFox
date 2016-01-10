@@ -5,6 +5,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.ApplicationInsights;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
@@ -72,7 +73,7 @@ namespace MoneyManager.Windows.Views
                 }
                 catch (FormatException ex)
                 {
-                    InsightHelper.Report(new ExtendedFormatException(ex, TextBoxAmount.Text));
+                    new TelemetryClient().TrackException(new ExtendedFormatException(ex, TextBoxAmount.Text));
                 }
             }
             else if (string.Equals(TextBoxAmount.Text, Strings.HelloWorldText, StringComparison.CurrentCultureIgnoreCase)

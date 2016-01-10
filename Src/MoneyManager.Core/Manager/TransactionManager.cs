@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AI.XamarinSDK.Abstractions;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using Xamarin;
 
 namespace MoneyManager.Core.Manager
 {
@@ -71,7 +71,7 @@ namespace MoneyManager.Core.Manager
                         transaction.ChargedAccount =
                             accountRepository.Data.FirstOrDefault(x => x.Id == transaction.ChargedAccountId);
 
-                        InsightHelper.Report(new AccountMissingException("Charged account was missing while clearing transactions"), Insights.Severity.Warning);
+                        TelemetryManager.TrackManagedException(new AccountMissingException("Charged account was missing while clearing transactions"), true);
                     }
 
                     transaction.IsCleared = true;
@@ -81,7 +81,7 @@ namespace MoneyManager.Core.Manager
                 }
                 catch (Exception ex)
                 {
-                    InsightHelper.Report(ex);
+                    TelemetryManager.TrackManagedException(ex, true);
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace MoneyManager.Core.Manager
             }
             catch (Exception ex)
             {
-                InsightHelper.Report(ex);
+                TelemetryManager.TrackManagedException(ex, true);
             }
         }
     }
