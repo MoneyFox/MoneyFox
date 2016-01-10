@@ -53,7 +53,7 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="RootSplitView.DisplayMode" Value="CompactOverlay" />
+                        <Setter Target="RootSplitView.DisplayMode" Value="Overlay" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
