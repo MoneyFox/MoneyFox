@@ -77,6 +77,8 @@ namespace MoneyManager.Windows
             var currentView = SystemNavigationManager.GetForCurrentView();
             currentView.BackRequested += SystemNavigationManager_BackRequested;
             NavMenuList.ItemsSource = navlist;
+            //start with a hidden back button. This changes when you navigate to an other page
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
         public Frame AppFrame => Frame;
@@ -311,6 +313,14 @@ namespace MoneyManager.Windows
             {
                 var control = page;
                 control.Loaded += Page_Loaded;
+
+                //Check whether the navigation stack is empty and hide the back button if so
+                // otherwise, make it visible.
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+    ((Frame)sender).CanGoBack ?
+    AppViewBackButtonVisibility.Visible :
+    AppViewBackButtonVisibility.Collapsed;
+
             }
         }
 
