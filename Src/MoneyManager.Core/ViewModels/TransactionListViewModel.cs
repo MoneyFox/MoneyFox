@@ -61,6 +61,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void LoadTransactions()
         {
+            EditCommand = null;
             //Refresh balance control with the current account
             balanceViewModel.UpdateBalance(true);
 
