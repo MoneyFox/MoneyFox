@@ -90,7 +90,6 @@ namespace MoneyManager.DataAccess
                     transaction.RecurringTransaction =
                         db.GetWithChildren<RecurringTransaction>(transaction.ReccuringTransactionId);
                 }
-
                 return list;
             }
         }
