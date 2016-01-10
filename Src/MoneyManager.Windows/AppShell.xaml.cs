@@ -23,7 +23,7 @@ namespace MoneyManager.Windows
     {
         public static AppShell Current;
         // Declare the top level nav items
-        private readonly List<NavMenuItem> navlist = new List<NavMenuItem>(
+        private readonly List<NavMenuItem> navlistTop = new List<NavMenuItem>(
             new[]
             {
                 new NavMenuItem
@@ -37,24 +37,29 @@ namespace MoneyManager.Windows
                     Symbol = Symbol.View,
                     Label = Strings.StatisticsLabel,
                     DestPage = typeof (StatisticsView)
-                },
+                }
+            });
+
+        private readonly List<NavMenuItem> navlistBottom = new List<NavMenuItem>(
+            new[]
+            {
                 new NavMenuItem
                 {
                     Symbol = Symbol.SyncFolder,
                     Label = Strings.BackupLabel,
                     DestPage = typeof (BackupView)
                 },
+                                new NavMenuItem
+                {
+                    Symbol = Symbol.Account,
+                    Label = Strings.AboutLabel,
+                    DestPage = typeof (AboutView)
+                },
                 new NavMenuItem
                 {
                     Symbol = Symbol.Setting,
                     Label = Strings.SettingsLabel,
                     DestPage = typeof (SettingsView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Account,
-                    Label = Strings.AboutLabel,
-                    DestPage = typeof (AboutView)
                 }
             });
 
@@ -76,7 +81,8 @@ namespace MoneyManager.Windows
 
             var currentView = SystemNavigationManager.GetForCurrentView();
             currentView.BackRequested += SystemNavigationManager_BackRequested;
-            NavMenuList.ItemsSource = navlist;
+            NavMenuListTop.ItemsSource = navlistTop;
+            NavMenuListBottom.ItemsSource = navlistBottom;
             //start with a hidden back button. This changes when you navigate to an other page
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
@@ -269,6 +275,12 @@ namespace MoneyManager.Windows
             {
                 AppFrame.Navigate(item.DestPage, item.Arguments);
             }
+
+            //reset the bottom or top section depending on which section the user clicked
+            if (sender.Equals(NavMenuListTop))
+                NavMenuListBottom.SetSelectedItem(null);
+            else
+                NavMenuListTop.SetSelectedItem(null);
         }
 
         /// <summary>
@@ -281,27 +293,42 @@ namespace MoneyManager.Windows
         {
             if (e.NavigationMode == NavigationMode.Back)
             {
-                var item = (from p in navlist where p.DestPage == e.SourcePageType select p).SingleOrDefault();
+                var item = (from p in navlistTop.Union(navlistBottom) where p.DestPage == e.SourcePageType select p).SingleOrDefault();
                 if (item == null && AppFrame.BackStackDepth > 0)
                 {
                     // In cases where a page drills into sub-pages then we'll highlight the most recent
                     // navigation menu item that appears in the BackStack
                     foreach (var entry in AppFrame.BackStack.Reverse())
                     {
-                        item = (from p in navlist where p.DestPage == entry.SourcePageType select p).SingleOrDefault();
+                        item = (from p in navlistTop.Union(navlistBottom) where p.DestPage == entry.SourcePageType select p).SingleOrDefault();
                         if (item != null)
                             break;
                     }
                 }
 
-                var container = (ListViewItem) NavMenuList.ContainerFromItem(item);
-
-                // While updating the selection state of the item prevent it from taking keyboard focus.  If a
-                // user is invoking the back button via the keyboard causing the selected nav menu item to change
-                // then focus will remain on the back button.
-                if (container != null) container.IsTabStop = false;
-                NavMenuList.SetSelectedItem(container);
-                if (container != null) container.IsTabStop = true;
+                var container = (ListViewItem) NavMenuListTop.ContainerFromItem(item);
+                if(container == null)
+                {
+                    container = (ListViewItem)NavMenuListBottom.ContainerFromItem(item);
+                    // While updating the selection state of the item prevent it from taking keyboard focus.  If a
+                    // user is invoking the back button via the keyboard causing the selected nav menu item to change
+                    // then focus will remain on the back button.
+                    //this is for the bottom section
+                    if (container != null) container.IsTabStop = false;
+                    NavMenuListBottom.SetSelectedItem(container);
+                    if (container != null) container.IsTabStop = true;
+                    //reset the top section
+                    NavMenuListTop.SetSelectedItem(null);
+                }
+                else
+                {
+                    // and this is for the top section
+                    if (container != null) container.IsTabStop = false;
+                    NavMenuListTop.SetSelectedItem(container);
+                    if (container != null) container.IsTabStop = true;
+                    //reset the bottom section
+                    NavMenuListBottom.SetSelectedItem(null);
+                }
             }
         }
 
