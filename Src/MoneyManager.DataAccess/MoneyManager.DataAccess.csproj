@@ -45,6 +45,12 @@
     <Compile Include="TransactionDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AI.XamarinSDK">
+      <HintPath>..\..\Libs\ApplicationInsights\AI.XamarinSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="AI.XamarinSDK.Abstractions">
+      <HintPath>..\..\Libs\ApplicationInsights\AI.XamarinSDK.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Cirrious.CrossCore, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta7\lib\portable-win+net45+wp8+win8+wpa81\Cirrious.CrossCore.dll</HintPath>
       <Private>True</Private>
@@ -59,10 +65,6 @@
     </Reference>
     <Reference Include="MvvmCross.Plugins.Sqlite, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.SQLitePCL.4.0.0-beta7\lib\portable-win+net45+wp8+win8+wpa81+win81+dotnet\MvvmCross.Plugins.Sqlite.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PropertyChanged">
