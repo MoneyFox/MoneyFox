@@ -38,6 +38,10 @@ namespace MoneyManager.Windows
         {
             InitializeComponent();
             Suspending += OnSuspending;
+
+            Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
+                Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
+                Microsoft.ApplicationInsights.WindowsCollectors.Session);
         }
 
         /// <summary>

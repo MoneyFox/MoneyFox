@@ -4,8 +4,8 @@ using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.ApplicationInsights;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Localization;
 
@@ -73,7 +73,7 @@ namespace MoneyManager.Windows.Views
                 }
                 catch (FormatException ex)
                 {
-                    InsightHelper.Report(new ExtendedFormatException(ex, TextBoxCurrentBalance.Text));
+                    new TelemetryClient().TrackException(new ExtendedFormatException(ex, TextBoxCurrentBalance.Text));
                 }
             }
             else if (string.Equals(TextBoxCurrentBalance.Text, Strings.HelloWorldText,
