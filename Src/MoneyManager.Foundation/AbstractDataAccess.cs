@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using AI.XamarinSDK.Abstractions;
 using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Foundation
@@ -20,7 +21,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                InsightHelper.Report(ex);
+                TelemetryManager.TrackManagedException(ex, true);
             }
         }
 
@@ -36,7 +37,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                InsightHelper.Report(ex);
+                TelemetryManager.TrackManagedException(ex, true);
             }
         }
 
@@ -52,7 +53,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                InsightHelper.Report(ex);
+                TelemetryManager.TrackManagedException(ex, true);
             }
             return new List<T>();
         }

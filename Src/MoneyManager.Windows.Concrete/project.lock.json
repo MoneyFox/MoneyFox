@@ -3,6 +3,25 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "Microsoft.ApplicationInsights/1.2.3": {
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        }
+      },
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
+        "dependencies": {
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
+        },
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -1600,17 +1619,28 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "Xamarin.Insights/1.11.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "Microsoft.ApplicationInsights/1.2.3": {
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        }
+      },
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
+        "dependencies": {
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
+        },
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -3298,17 +3328,28 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "Xamarin.Insights/1.11.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "Microsoft.ApplicationInsights/1.2.3": {
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        }
+      },
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
+        "dependencies": {
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
+        },
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -4968,17 +5009,28 @@
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "Xamarin.Insights/1.11.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "Microsoft.ApplicationInsights/1.2.3": {
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        }
+      },
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
+        "dependencies": {
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
+        },
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -6671,17 +6723,28 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "Xamarin.Insights/1.11.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "Microsoft.ApplicationInsights/1.2.3": {
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        }
+      },
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
+        "dependencies": {
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
+        },
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -8341,17 +8404,28 @@
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "Xamarin.Insights/1.11.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "Microsoft.ApplicationInsights/1.2.3": {
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        }
+      },
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
+        "dependencies": {
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
+        },
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -10044,17 +10118,28 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "Xamarin.Insights/1.11.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "Microsoft.ApplicationInsights/1.2.3": {
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+        }
+      },
+      "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
+        "dependencies": {
+          "Microsoft.ApplicationInsights": "[1.2.3, )"
+        },
+        "compile": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -11714,18 +11799,46 @@
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "Xamarin.Insights/1.11.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     }
   },
   "libraries": {
+    "Microsoft.ApplicationInsights/1.2.3": {
+      "sha512": "a34atobxpucCTTX9VCD7aIu6Ydzry+Va7TxK2tTQcfaMvefGW4kUKtg9GHKIn19IaXe+A4oZt/GBqsOt5vQrBA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net40/Microsoft.ApplicationInsights.dll",
+        "lib/net40/Microsoft.ApplicationInsights.XML",
+        "lib/net45/Microsoft.ApplicationInsights.dll",
+        "lib/net45/Microsoft.ApplicationInsights.XML",
+        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll",
+        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.XML",
+        "lib/wp8/Microsoft.ApplicationInsights.dll",
+        "lib/wp8/Microsoft.ApplicationInsights.XML",
+        "Microsoft.ApplicationInsights.nuspec",
+        "package/services/metadata/core-properties/3b36eef276524f5d883c618d5fd8c500.psmdcp"
+      ]
+    },
+    "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
+      "sha512": "5MGcvPQVaGlGyAVh9adg4sSkIVSYDKn+H3+YnZa9hi1gH/g6UsRt4HLc8vp/IxjlbmXbJyAB7dYJV/NHmAGAgA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net40/Microsoft.ApplicationInsights.PersistenceChannel.dll",
+        "lib/net40/Microsoft.ApplicationInsights.PersistenceChannel.XML",
+        "lib/net45/Microsoft.ApplicationInsights.PersistenceChannel.dll",
+        "lib/net45/Microsoft.ApplicationInsights.PersistenceChannel.XML",
+        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll",
+        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.XML",
+        "lib/wp8/Microsoft.ApplicationInsights.PersistenceChannel.dll",
+        "lib/wp8/Microsoft.ApplicationInsights.PersistenceChannel.XML",
+        "Microsoft.ApplicationInsights.PersistenceChannel.nuspec",
+        "package/services/metadata/core-properties/f973733421c14c3594986b3f2c22213a.psmdcp"
+      ]
+    },
     "Microsoft.CSharp/4.0.0": {
       "sha512": "oWqeKUxHXdK6dL2CFjgMcaBISbkk+AqEg+yvJHE4DElNzS4QaTsCflgkkqZwVlWby1Dg9zo9n+iCAMFefFdJ/A==",
       "type": "Package",
@@ -15232,64 +15345,16 @@
         "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll",
         "System.Xml.XmlSerializer.nuspec"
       ]
-    },
-    "Xamarin.Insights/1.11.3": {
-      "sha512": "ewZ3dXcGONrMmPI22grN91ndL/UtuuQnKllMTFlgz+9WRK2q4i7ELegzV/qJtQ2cESKPgZ7qOE5CfRSlF9rtog==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "build/MonoAndroid10/Xamarin.Insights.Build.Task.dll",
-        "build/MonoAndroid10/Xamarin.Insights.targets",
-        "build/MonoTouch10/Xamarin.Insights.Build.Task.dll",
-        "build/MonoTouch10/Xamarin.Insights.targets",
-        "build/portable-win+net40/Xamarin.Insights.Build.Task.dll",
-        "build/portable-win+net40/Xamarin.Insights.targets",
-        "build/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.Build.Task.dll",
-        "build/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.targets",
-        "build/windows8/Xamarin.Insights.Build.Task.dll",
-        "build/windows8/Xamarin.Insights.targets",
-        "build/WP80/Xamarin.Insights.Build.Task.dll",
-        "build/WP80/Xamarin.Insights.targets",
-        "build/wpa/Xamarin.Insights.Build.Task.dll",
-        "build/wpa/Xamarin.Insights.targets",
-        "build/Xamarin.iOS10/Xamarin.Insights.Build.Task.dll",
-        "build/Xamarin.iOS10/Xamarin.Insights.targets",
-        "build/Xamarin.Mac20/Xamarin.Insights.Build.Task.dll",
-        "build/Xamarin.Mac20/Xamarin.Insights.targets",
-        "lib/MonoAndroid10/Xamarin.Insights.dll",
-        "lib/MonoAndroid10/Xamarin.Insights.XML",
-        "lib/MonoTouch10/PLCrashReporter.dll",
-        "lib/MonoTouch10/Xamarin.Insights.dll",
-        "lib/MonoTouch10/Xamarin.Insights.XML",
-        "lib/net40/Xamarin.Insights.dll",
-        "lib/net40/Xamarin.Insights.XML",
-        "lib/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.dll",
-        "lib/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.XML",
-        "lib/windows8/Xamarin.Insights.dll",
-        "lib/windows8/Xamarin.Insights.XML",
-        "lib/WP80/Xamarin.Insights.dll",
-        "lib/WP80/Xamarin.Insights.XML",
-        "lib/wpa/Xamarin.Insights.dll",
-        "lib/wpa/Xamarin.Insights.XML",
-        "lib/Xamarin.iOS10/PLCrashReporterUnifiedBinding.dll",
-        "lib/Xamarin.iOS10/Xamarin.Insights.dll",
-        "lib/Xamarin.iOS10/Xamarin.Insights.XML",
-        "lib/Xamarin.Mac20/Xamarin.Insights.dll",
-        "lib/Xamarin.Mac20/Xamarin.Insights.XML",
-        "package/services/metadata/core-properties/227e4d45b85c4456ab9e04ca94981ecd.psmdcp",
-        "Xamarin.Insights.nuspec"
-      ]
     }
   },
   "projectFileDependencyGroups": {
     "": [
+      "Microsoft.ApplicationInsights.PersistenceChannel >= 1.2.3",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Microsoft.OneDriveSDK >= 1.1.20",
       "MvvmCross.HotTuna.CrossCore >= 4.0.0-beta7",
       "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta7",
-      "NotificationsExtensions.Win10 >= 10586.0.0",
-      "Xamarin.Insights >= 1.11.3"
+      "NotificationsExtensions.Win10 >= 10586.0.0"
     ],
     "UAP,Version=v10.0": []
   }

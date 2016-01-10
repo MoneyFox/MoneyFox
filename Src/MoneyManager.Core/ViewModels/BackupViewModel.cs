@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AI.XamarinSDK.Abstractions;
 using Cirrious.MvvmCross.ViewModels;
 using Microsoft.OneDrive.Sdk;
 using MoneyManager.Foundation;
@@ -96,7 +97,7 @@ namespace MoneyManager.Core.ViewModels
             }
             catch (OneDriveException ex)
             {
-                InsightHelper.Report(ex);
+                TelemetryManager.TrackManagedException(ex, true);
                 await dialogService.ShowMessage(Strings.LoginFailedTitle, Strings.LoginFailedMessage);
                 return false;
             }

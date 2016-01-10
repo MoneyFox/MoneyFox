@@ -8,8 +8,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
-using MoneyManager.Foundation;
-using Xamarin;
+using Microsoft.ApplicationInsights;
 
 namespace MoneyManager.Windows.Controls.CustomControls
 {
@@ -282,7 +281,7 @@ namespace MoneyManager.Windows.Controls.CustomControls
                 case SplitViewDisplayMode.Inline:
                 case SplitViewDisplayMode.CompactOverlay:
                 case SplitViewDisplayMode.CompactInline:
-                    splitView.IsPaneOpen = (bool) e.NewValue;
+                    splitView.IsPaneOpen = !splitView.IsPaneOpen;
                     break;
 
                 case SplitViewDisplayMode.Overlay:
@@ -344,11 +343,6 @@ namespace MoneyManager.Windows.Controls.CustomControls
         {
             panAreaTransform = PanArea.RenderTransform as CompositeTransform;
             paneRootTransform = PaneRoot.RenderTransform as CompositeTransform;
-
-            if (panAreaTransform == null || paneRootTransform == null)
-            {
-                throw new ArgumentException("Make sure you have copied the default style to Generic.xaml!!");
-            }
         }
 
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
@@ -480,7 +474,7 @@ namespace MoneyManager.Windows.Controls.CustomControls
                 }
                 catch (Exception ex)
                 {
-                    InsightHelper.Report(ex, Insights.Severity.Warning);
+                    new TelemetryClient().TrackException(ex);
                 }
             }
             else
@@ -499,7 +493,7 @@ namespace MoneyManager.Windows.Controls.CustomControls
                 }
                 catch (Exception ex)
                 {
-                    InsightHelper.Report(ex, Insights.Severity.Warning);
+                    new TelemetryClient().TrackException(ex);
                 }
             }
             else

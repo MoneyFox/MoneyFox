@@ -1,5 +1,7 @@
-﻿using UIKit;
-using Xamarin;
+﻿using AI.XamarinSDK.Abstractions;
+using Microsoft.ApplicationInsights;
+using MoneyManager.Foundation;
+using UIKit;
 
 namespace MoneyManager.Ios
 {
@@ -17,15 +19,8 @@ namespace MoneyManager.Ios
 
         private static void InitializeAppInsights()
         {
-            var insightKey = "599ff6bfdc79368ff3d5f5629a57c995fe93352e";
-
-#if DEBUG
-            insightKey = Insights.DebugModeKey;
-#endif
-            if (!Insights.IsInitialized)
-            {
-                Insights.Initialize(insightKey);
-            }
+            ApplicationInsights.Setup("ac915a37-36f5-436a-b85b-5a5617838bc8");
+            ApplicationInsights.Start();
         }
     }
 }
