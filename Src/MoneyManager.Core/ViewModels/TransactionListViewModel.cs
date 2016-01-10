@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 using MoneyManager.Windows.Concrete;
@@ -14,13 +15,13 @@ namespace MoneyManager.Core.ViewModels
     public class TransactionListViewModel : BaseViewModel
     {
         private readonly IAccountRepository accountRepository;
-        private readonly BalanceViewModel balanceViewModel;
+        private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
         private readonly ITransactionRepository transactionRepository;
 
         public TransactionListViewModel(ITransactionRepository transactionRepository,
             IAccountRepository accountRepository,
-            BalanceViewModel balanceViewModel,
+            IBalanceViewModel balanceViewModel,
             IDialogService dialogService)
         {
             this.transactionRepository = transactionRepository;
@@ -32,7 +33,7 @@ namespace MoneyManager.Core.ViewModels
         public MvxCommand<string> GoToAddTransactionCommand => new MvxCommand<string>(GoToAddTransaction);
         public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
         public virtual MvxCommand LoadedCommand => new MvxCommand(LoadTransactions);
-        public MvxCommand EditCommand => new MvxCommand(Edit);
+        public MvxCommand EditCommand { get; private set; }
 
         public MvxCommand<FinancialTransaction> DeleteTransactionCommand
             => new MvxCommand<FinancialTransaction>(DeleteTransaction);
@@ -60,6 +61,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void LoadTransactions()
         {
+            EditCommand = null;
             //Refresh balance control with the current account
             balanceViewModel.UpdateBalance(true);
 
@@ -74,6 +76,9 @@ namespace MoneyManager.Core.ViewModels
                     CultureInfo.CurrentUICulture,
                     s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
                     s => s.Date, true));
+
+            //We have to set the command here to ensure that the selection changed event is triggered earlier
+            EditCommand = new MvxCommand(Edit);
         }
 
         private void GoToAddTransaction(string type)
@@ -102,7 +107,7 @@ namespace MoneyManager.Core.ViewModels
             transactionRepository.Selected = SelectedTransaction;
 
             ShowViewModel<ModifyTransactionViewModel>(
-                new {isEdit = true});
+                new {isEdit = true, typeString = SelectedTransaction.Type.ToString()});
             SelectedTransaction = null;
         }
 
