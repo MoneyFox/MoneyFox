@@ -255,7 +255,7 @@ Tap to visit the Repository:</value>
     <value>Cancel</value>
   </data>
   <data name="CategoryDialog.Title" xml:space="preserve">
-    <value>ADD CATEGORY</value>
+    <value>Add Category</value>
   </data>
   <data name="CreateBackup.Content" xml:space="preserve">
     <value>Create Backup</value>
@@ -279,7 +279,7 @@ Tap to visit the Repository:</value>
     <value>Cancel</value>
   </data>
   <data name="SelectDateRangeDialog.Title" xml:space="preserve">
-    <value>SELECT DATERANGE</value>
+    <value>Select Daterange</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
     <value>Show Cashflow on Maintile</value>
@@ -334,5 +334,11 @@ Tap to visit the Repository:</value>
   </data>
   <data name="NameHeader.Header" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="EndDateHeader.Header" xml:space="preserve">
+    <value>end date</value>
+  </data>
+  <data name="StartDateHeader.Header" xml:space="preserve">
+    <value>start date</value>
   </data>
 </root>
