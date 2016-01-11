@@ -58,7 +58,8 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 PrepareEdit();
-            } else
+            } 
+            else
             {
                 PrepareDefault(typeString);
             }
