@@ -109,7 +109,6 @@ namespace MoneyManager.Windows.Controls.CustomControls
 
         private readonly IList<SelectorItem> menuItems = new List<SelectorItem>();
         private int toBeSelectedIndex;
-        private static readonly double TOTAL_PANNING_DISTANCE = 160d;
         private double distancePerItem;
         private double startingDistance;
 
