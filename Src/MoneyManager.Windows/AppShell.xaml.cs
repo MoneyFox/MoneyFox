@@ -51,15 +51,15 @@ namespace MoneyManager.Windows
                 },
                 new NavMenuItem
                 {
-                    Symbol = Symbol.Account,
-                    Label = Strings.AboutLabel,
-                    DestPage = typeof (AboutView)
-                },
-                new NavMenuItem
-                {
                     Symbol = Symbol.Setting,
                     Label = Strings.SettingsLabel,
                     DestPage = typeof (SettingsView)
+                },
+                new NavMenuItem
+                {
+                    Symbol = Symbol.Account,
+                    Label = Strings.AboutLabel,
+                    DestPage = typeof (AboutView)
                 }
             });
 

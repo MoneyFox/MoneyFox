@@ -1,4 +1,6 @@
-﻿using Windows.ApplicationModel.Background;
+﻿using System;
+using Windows.ApplicationModel.Background;
+using Microsoft.ApplicationInsights;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.DataAccess;
@@ -12,8 +14,12 @@ namespace MoneyManager.Tasks.Windows
     {
         private readonly TransactionManager transactionManager;
 
+        private readonly TelemetryClient telemetryClient;
+
         public ClearTransactionBackgroundTask()
         {
+            telemetryClient = new TelemetryClient { InstrumentationKey = "ac915a37-36f5-436a-b85b-5a5617838bc8" };
+
             var sqliteConnectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
 
             transactionManager = new TransactionManager(
@@ -25,8 +31,19 @@ namespace MoneyManager.Tasks.Windows
 
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            transactionManager.ClearTransactions();
-            Tile.UpdateMainTile();
+            try
+            {
+                telemetryClient.TrackEvent("Background Task started");
+
+                transactionManager.ClearTransactions();
+                Tile.UpdateMainTile();
+
+                telemetryClient.TrackEvent("Background Task finished");
+            } 
+            catch (Exception ex)
+            {
+                telemetryClient.TrackException(ex);
+            }
         }
     }
 }
