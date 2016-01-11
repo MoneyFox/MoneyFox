@@ -258,6 +258,21 @@ namespace MoneyManager.Windows
                 AppFrame.GoBack();
             }
         }
+        private void ForwardRequested(ref bool handled)
+        {
+            // Get a hold of the current Frame so that we can inspect the app back stack.
+
+            if (AppFrame == null)
+                return;
+
+            // Check to see if this is the top-most page on the app back stack.
+            if (AppFrame.CanGoForward && !handled)
+            {
+                // If not, set the event to handled and go back to the previous page in the app.
+                handled = true;
+                AppFrame.GoForward();
+            }
+        }
 
         #endregion
 
@@ -371,5 +386,19 @@ namespace MoneyManager.Windows
         }
 
         #endregion
+
+        private void Root_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            var temp = false;
+            var properties = e.GetCurrentPoint(this).Properties;
+            if (properties.IsXButton1Pressed)
+            {
+                BackRequested(ref temp);
+            } 
+            else if(properties.IsXButton2Pressed)
+            {
+                ForwardRequested(ref temp);
+            }
+        }
     }
 }
