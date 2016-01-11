@@ -21,8 +21,7 @@ namespace MoneyManager.Core.Manager
         public async Task CheckRecurringTransactions()
         {
             var task = Task.Run(() => CheckRecurring());
-            // do other stuff
-             await task;
+            await task;
         }
 
         private void CheckRecurring()
