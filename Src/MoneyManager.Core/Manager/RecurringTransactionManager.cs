@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
@@ -17,7 +18,14 @@ namespace MoneyManager.Core.Manager
         /// <summary>
         ///     Checks if one of the recurring transaction has to be repeated
         /// </summary>
-        public void CheckRecurringTransactions()
+        public async Task CheckRecurringTransactions()
+        {
+            var task = Task.Run(() => CheckRecurring());
+            // do other stuff
+             await task;
+        }
+
+        private void CheckRecurring()
         {
             var transactionList = transactionRepository.LoadRecurringList();
 
@@ -35,10 +43,9 @@ namespace MoneyManager.Core.Manager
 
         private FinancialTransaction GetLastOccurence(FinancialTransaction transaction)
         {
-            var transcationList = transactionRepository.Data
-                .Where(x => x.ReccuringTransactionId == transaction.ReccuringTransactionId)
-                .OrderBy(x => x.Date)
-                .ToList();
+            var transcationList = transactionRepository.LoadRecurringList(
+                x => x.ReccuringTransactionId == transaction.ReccuringTransactionId)
+                .OrderBy(x => x.Date);
 
             return transcationList.LastOrDefault();
         }

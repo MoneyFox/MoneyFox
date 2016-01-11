@@ -30,7 +30,7 @@ namespace MoneyManager.Core.Repositories
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
 
-            data = new ObservableCollection<FinancialTransaction>(this.dataAccess.LoadList());
+            data = new ObservableCollection<FinancialTransaction>();
         }
 
         /// <summary>
@@ -140,8 +140,13 @@ namespace MoneyManager.Core.Repositories
         /// <returns>List of transactions</returns>
         public IEnumerable<FinancialTransaction> GetRelatedTransactions(Account account)
         {
-            return dataAccess.LoadList(x => x.ChargedAccountId == account.Id
-                                            ||  x.TargetAccountId == account.Id)
+            if (Data == null || !Data.Any())
+            {
+                Load();
+            }
+
+            return Data.Where(x => x.ChargedAccountId == account.Id
+                                   || x.TargetAccountId == account.Id)
                 .OrderByDescending(x => x.Date)
                 .ToList();
         }
