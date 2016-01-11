@@ -280,9 +280,13 @@ namespace MoneyManager.Windows
 
             //reset the bottom or top section depending on which section the user clicked
             if (sender.Equals(NavMenuListTop))
+            {
                 NavMenuListBottom.SetSelectedItem(null);
+            }
             else
+            {
                 NavMenuListTop.SetSelectedItem(null);
+            }
         }
 
         /// <summary>
@@ -325,9 +329,9 @@ namespace MoneyManager.Windows
                 else
                 {
                     // and this is for the top section
-                    if (container != null) container.IsTabStop = false;
+                    container.IsTabStop = false;
                     NavMenuListTop.SetSelectedItem(container);
-                    if (container != null) container.IsTabStop = true;
+                    container.IsTabStop = true;
                     //reset the bottom section
                     NavMenuListBottom.SetSelectedItem(null);
                 }
@@ -346,9 +350,9 @@ namespace MoneyManager.Windows
                 //Check whether the navigation stack is empty and hide the back button if so
                 // otherwise, make it visible.
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-    ((Frame)sender).CanGoBack ?
-    AppViewBackButtonVisibility.Visible :
-    AppViewBackButtonVisibility.Collapsed;
+                    ((Frame) sender).CanGoBack
+                        ? AppViewBackButtonVisibility.Visible
+                        : AppViewBackButtonVisibility.Collapsed;
 
             }
         }
@@ -360,7 +364,7 @@ namespace MoneyManager.Windows
             CheckTogglePaneButtonSizeChanged();
 
             if (SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility ==
-                AppViewBackButtonVisibility.Collapsed)
+                AppViewBackButtonVisibility.Collapsed || RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay)
             {
                 RootSplitView.IsSwipeablePaneOpen = false;
             }
