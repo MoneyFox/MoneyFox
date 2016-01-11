@@ -38,13 +38,9 @@ namespace MoneyManager.Core.Repositories
         /// </summary>
         public ObservableCollection<FinancialTransaction> Data
         {
-            get { return data ?? (data = new ObservableCollection<FinancialTransaction>(dataAccess.LoadList())); }
+            get { return data; }
             set
             {
-                if (data == null)
-                {
-                    data = new ObservableCollection<FinancialTransaction>(dataAccess.LoadList());
-                }
                 if (Equals(data, value))
                 {
                     return;
