@@ -30,7 +30,7 @@ namespace MoneyManager.Core.Repositories
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
 
-            data = new ObservableCollection<FinancialTransaction>(this.dataAccess.LoadList());
+            data = new ObservableCollection<FinancialTransaction>();
         }
 
         /// <summary>
