@@ -49,7 +49,7 @@ namespace MoneyManager.Windows
                     Label = Strings.BackupLabel,
                     DestPage = typeof (BackupView)
                 },
-                                new NavMenuItem
+                new NavMenuItem
                 {
                     Symbol = Symbol.Account,
                     Label = Strings.AboutLabel,
@@ -83,6 +83,8 @@ namespace MoneyManager.Windows
             currentView.BackRequested += SystemNavigationManager_BackRequested;
             NavMenuListTop.ItemsSource = navlistTop;
             NavMenuListBottom.ItemsSource = navlistBottom;
+            //start with the "accounts" navigation button selected
+            NavMenuListTop.SelectedIndex = 0;
             //start with a hidden back button. This changes when you navigate to an other page
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
