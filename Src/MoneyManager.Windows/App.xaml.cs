@@ -39,9 +39,11 @@ namespace MoneyManager.Windows
             InitializeComponent();
             Suspending += OnSuspending;
 
+#if !DEBUG
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
                 Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
+#endif
         }
 
         /// <summary>

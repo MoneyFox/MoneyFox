@@ -54,11 +54,15 @@ namespace MoneyManager.Core.ViewModels
             IsEndless = true;
 
             amount = 0;
-            
-            if (!IsEdit) return;
 
-            PrepareEdit();
-            PrepareDefault(typeString);
+            if (IsEdit)
+            {
+                PrepareEdit();
+            } 
+            else
+            {
+                PrepareDefault(typeString);
+            }
         }
 
         private void PrepareEdit()

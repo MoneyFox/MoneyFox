@@ -49,7 +49,7 @@ namespace MoneyManager.Windows
                     Label = Strings.BackupLabel,
                     DestPage = typeof (BackupView)
                 },
-                                new NavMenuItem
+                new NavMenuItem
                 {
                     Symbol = Symbol.Account,
                     Label = Strings.AboutLabel,
@@ -83,6 +83,8 @@ namespace MoneyManager.Windows
             currentView.BackRequested += SystemNavigationManager_BackRequested;
             NavMenuListTop.ItemsSource = navlistTop;
             NavMenuListBottom.ItemsSource = navlistBottom;
+            //start with the "accounts" navigation button selected
+            NavMenuListTop.SelectedIndex = 0;
             //start with a hidden back button. This changes when you navigate to an other page
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
@@ -256,6 +258,21 @@ namespace MoneyManager.Windows
                 AppFrame.GoBack();
             }
         }
+        private void ForwardRequested(ref bool handled)
+        {
+            // Get a hold of the current Frame so that we can inspect the app back stack.
+
+            if (AppFrame == null)
+                return;
+
+            // Check to see if this is the top-most page on the app back stack.
+            if (AppFrame.CanGoForward && !handled)
+            {
+                // If not, set the event to handled and go back to the previous page in the app.
+                handled = true;
+                AppFrame.GoForward();
+            }
+        }
 
         #endregion
 
@@ -278,9 +295,13 @@ namespace MoneyManager.Windows
 
             //reset the bottom or top section depending on which section the user clicked
             if (sender.Equals(NavMenuListTop))
+            {
                 NavMenuListBottom.SetSelectedItem(null);
+            }
             else
+            {
                 NavMenuListTop.SetSelectedItem(null);
+            }
         }
 
         /// <summary>
@@ -323,9 +344,9 @@ namespace MoneyManager.Windows
                 else
                 {
                     // and this is for the top section
-                    if (container != null) container.IsTabStop = false;
+                    container.IsTabStop = false;
                     NavMenuListTop.SetSelectedItem(container);
-                    if (container != null) container.IsTabStop = true;
+                    container.IsTabStop = true;
                     //reset the bottom section
                     NavMenuListBottom.SetSelectedItem(null);
                 }
@@ -344,9 +365,9 @@ namespace MoneyManager.Windows
                 //Check whether the navigation stack is empty and hide the back button if so
                 // otherwise, make it visible.
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-    ((Frame)sender).CanGoBack ?
-    AppViewBackButtonVisibility.Visible :
-    AppViewBackButtonVisibility.Collapsed;
+                    ((Frame) sender).CanGoBack
+                        ? AppViewBackButtonVisibility.Visible
+                        : AppViewBackButtonVisibility.Collapsed;
 
             }
         }
@@ -358,12 +379,26 @@ namespace MoneyManager.Windows
             CheckTogglePaneButtonSizeChanged();
 
             if (SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility ==
-                AppViewBackButtonVisibility.Collapsed)
+                AppViewBackButtonVisibility.Collapsed || RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay)
             {
                 RootSplitView.IsSwipeablePaneOpen = false;
             }
         }
 
         #endregion
+
+        private void Root_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            var temp = false;
+            var properties = e.GetCurrentPoint(this).Properties;
+            if (properties.IsXButton1Pressed)
+            {
+                BackRequested(ref temp);
+            } 
+            else if(properties.IsXButton2Pressed)
+            {
+                ForwardRequested(ref temp);
+            }
+        }
     }
 }

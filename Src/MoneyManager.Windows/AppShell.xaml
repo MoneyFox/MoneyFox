@@ -9,7 +9,8 @@
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       KeyDown="AppShell_KeyDown"
       TabNavigation="Cycle"
-      mc:Ignorable="d">
+      mc:Ignorable="d"
+      PointerPressed="Root_PointerPressed">
 
     <!-- Using a Page as the root for the app provides a design time experience as well as ensures that
          when it runs on Mobile the app content won't appear under the system's StatusBar which is visible 
