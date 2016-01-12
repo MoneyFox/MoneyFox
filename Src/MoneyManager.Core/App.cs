@@ -10,12 +10,12 @@ namespace MoneyManager.Core
         /// <summary>
         ///     Initializes this instance.
         /// </summary>
-        public override async void Initialize()
+        public override void Initialize()
         {
             // Start the app with the Main View Model.
             RegisterAppStart<MainViewModel>();
 
-            await Mvx.Resolve<IRecurringTransactionManager>().CheckRecurringTransactions();
+            Mvx.Resolve<IRecurringTransactionManager>().CheckRecurringTransactions();
             Mvx.Resolve<ITransactionManager>().ClearTransactions();
         }
     }

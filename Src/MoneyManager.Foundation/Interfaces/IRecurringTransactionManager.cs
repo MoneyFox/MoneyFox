@@ -4,6 +4,6 @@ namespace MoneyManager.Foundation.Interfaces
 {
     public interface IRecurringTransactionManager
     {
-        Task CheckRecurringTransactions();
+        void CheckRecurringTransactions();
     }
 }
