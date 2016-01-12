@@ -1,6 +1,4 @@
 ﻿using AI.XamarinSDK.Abstractions;
-using Microsoft.ApplicationInsights;
-using MoneyManager.Foundation;
 using UIKit;
 
 namespace MoneyManager.Ios
