@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "Microsoft.ApplicationInsights": "1.2.3",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmCross.HotTuna.Plugin.SQLitePCL": "4.0.0-beta7",
     "SQLite.Net-PCL": "3.1.1"

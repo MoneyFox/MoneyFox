@@ -1,12 +1,12 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
-using Microsoft.ApplicationInsights;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Windows.Concrete.Shortcut;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
+using Xamarin;
 
 namespace MoneyManager.Tasks.Windows
 {
@@ -14,11 +14,17 @@ namespace MoneyManager.Tasks.Windows
     {
         private readonly TransactionManager transactionManager;
 
-        private readonly TelemetryClient telemetryClient;
-
         public ClearTransactionBackgroundTask()
         {
-            telemetryClient = new TelemetryClient { InstrumentationKey = "ac915a37-36f5-436a-b85b-5a5617838bc8" };
+            var insightKey = "599ff6bfdc79368ff3d5f5629a57c995fe93352e";
+
+#if DEBUG
+            insightKey = Insights.DebugModeKey;
+#endif
+            if (!Insights.IsInitialized)
+            {
+                Insights.Initialize(insightKey);
+            }
 
             var sqliteConnectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
 
@@ -33,16 +39,12 @@ namespace MoneyManager.Tasks.Windows
         {
             try
             {
-                telemetryClient.TrackEvent("Background Task started");
-
                 transactionManager.ClearTransactions();
                 Tile.UpdateMainTile();
-
-                telemetryClient.TrackEvent("Background Task finished");
             } 
             catch (Exception ex)
             {
-                telemetryClient.TrackException(ex);
+                Insights.Report(ex);
             }
         }
     }
