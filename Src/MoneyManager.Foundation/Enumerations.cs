@@ -9,12 +9,13 @@
 
     public enum TransactionRecurrence
     {
-        Daily,
-        DailyWithoutWeekend,
-        Weekly,
-        Biweekly,
-        Monthly,
-        Yearly
+        Daily = 0,
+        DailyWithoutWeekend = 1,
+        Weekly = 2,
+        Monthly = 3,
+        Yearly = 4,
+        Biweekly = 5,
+
     }
 
     public enum ListStatisticType

@@ -35,9 +35,10 @@ namespace MoneyManager.Core.Manager
 
         private FinancialTransaction GetLastOccurence(FinancialTransaction transaction)
         {
-            var transcationList = transactionRepository.LoadRecurringList(
-                x => x.ReccuringTransactionId == transaction.ReccuringTransactionId)
-                .OrderBy(x => x.Date);
+            var transcationList = transactionRepository.Data
+                .Where(x => x.ReccuringTransactionId == transaction.ReccuringTransactionId)
+                .OrderBy(x => x.Date)
+                .ToList();
 
             return transcationList.LastOrDefault();
         }
