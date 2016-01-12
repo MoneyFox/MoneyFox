@@ -96,8 +96,11 @@
     <Compile Include="ViewModels\TransactionListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AI.XamarinSDK">
+      <HintPath>..\..\Libs\ApplicationInsights\Portable\AI.XamarinSDK.dll</HintPath>
+    </Reference>
     <Reference Include="AI.XamarinSDK.Abstractions">
-      <HintPath>..\..\Libs\ApplicationInsights\AI.XamarinSDK.Abstractions.dll</HintPath>
+      <HintPath>..\..\Libs\ApplicationInsights\Portable\AI.XamarinSDK.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.3.5.2\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>

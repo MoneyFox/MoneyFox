@@ -45,8 +45,11 @@
     <Compile Include="TransactionDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AI.XamarinSDK">
+      <HintPath>..\..\Libs\ApplicationInsights\Portable\AI.XamarinSDK.dll</HintPath>
+    </Reference>
     <Reference Include="AI.XamarinSDK.Abstractions">
-      <HintPath>..\..\Libs\ApplicationInsights\AI.XamarinSDK.Abstractions.dll</HintPath>
+      <HintPath>..\..\Libs\ApplicationInsights\Portable\AI.XamarinSDK.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Cirrious.CrossCore, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.4.0.0-beta7\lib\portable-win+net45+wp8+win8+wpa81\Cirrious.CrossCore.dll</HintPath>
