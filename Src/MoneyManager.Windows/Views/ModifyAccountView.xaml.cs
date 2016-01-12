@@ -4,10 +4,10 @@ using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Microsoft.ApplicationInsights;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Localization;
+using Xamarin;
 
 namespace MoneyManager.Windows.Views
 {
@@ -73,7 +73,7 @@ namespace MoneyManager.Windows.Views
                 }
                 catch (FormatException ex)
                 {
-                    new TelemetryClient().TrackException(new ExtendedFormatException(ex, TextBoxCurrentBalance.Text));
+                    Insights.Report(new ExtendedFormatException(ex, TextBoxCurrentBalance.Text), Insights.Severity.Error);
                 }
             }
             else if (string.Equals(TextBoxCurrentBalance.Text, Strings.HelloWorldText,

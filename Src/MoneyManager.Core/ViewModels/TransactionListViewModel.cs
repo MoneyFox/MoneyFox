@@ -77,6 +77,7 @@ namespace MoneyManager.Core.ViewModels
                     s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
                     s => s.Date, true));
 
+            SelectedTransaction = null;
             //We have to set the command here to ensure that the selection changed event is triggered earlier
             EditCommand = new MvxCommand(Edit);
         }

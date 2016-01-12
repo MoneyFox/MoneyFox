@@ -1,12 +1,12 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using AI.XamarinSDK.Abstractions;
 using Microsoft.OneDrive.Sdk;
 using MoneyManager.Core.Extensions;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Plugins.File;
+using Xamarin;
 using Constants = MoneyManager.Foundation.Constants;
 
 namespace MoneyManager.Core
@@ -55,7 +55,7 @@ namespace MoneyManager.Core
             }
             catch (OneDriveException ex)
             {
-                TelemetryManager.TrackManagedException(ex, true);
+                Insights.Report(ex, Insights.Severity.Error);
                 return TaskCompletionType.Unsuccessful;
             }
         }
