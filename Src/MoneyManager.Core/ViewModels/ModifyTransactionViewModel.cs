@@ -54,11 +54,15 @@ namespace MoneyManager.Core.ViewModels
             IsEndless = true;
 
             amount = 0;
-            
-            if (!IsEdit) return;
 
-            PrepareEdit();
-            PrepareDefault(typeString);
+            if (IsEdit)
+            {
+                PrepareEdit();
+            } 
+            else
+            {
+                PrepareDefault(typeString);
+            }
         }
 
         private void PrepareEdit()
@@ -305,7 +309,7 @@ namespace MoneyManager.Core.ViewModels
         ///     Returns the Header for the account field
         /// </summary>
         public string AccountHeader
-            => SelectedTransaction.Type == (int) TransactionType.Income
+            => SelectedTransaction?.Type == (int) TransactionType.Income
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
 

@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Cirrious.MvvmCross.ViewModels;
 using Microsoft.OneDrive.Sdk;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
+using Xamarin;
 
 namespace MoneyManager.Core.ViewModels
 {
@@ -96,7 +96,7 @@ namespace MoneyManager.Core.ViewModels
             }
             catch (OneDriveException ex)
             {
-                InsightHelper.Report(ex);
+                Insights.Report(ex, Insights.Severity.Error);
                 await dialogService.ShowMessage(Strings.LoginFailedTitle, Strings.LoginFailedMessage);
                 return false;
             }

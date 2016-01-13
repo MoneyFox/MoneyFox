@@ -89,7 +89,6 @@ namespace MoneyManager.Windows
                 ? e.TileId
                 : e.Arguments);
 
-            Tile.UpdateMainTile();
             await new BackgroundTaskService().RegisterTasksAsync();
 
             OverrideTitleBarColor();

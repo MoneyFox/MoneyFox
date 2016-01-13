@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using MoneyManager.Foundation.Interfaces;
+using Xamarin;
 
 namespace MoneyManager.Foundation
 {
@@ -20,7 +21,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                InsightHelper.Report(ex);
+                Insights.Report(ex, Insights.Severity.Error);
             }
         }
 
@@ -36,7 +37,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                InsightHelper.Report(ex);
+                Insights.Report(ex, Insights.Severity.Error);
             }
         }
 
@@ -52,7 +53,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                InsightHelper.Report(ex);
+                Insights.Report(ex, Insights.Severity.Error);
             }
             return new List<T>();
         }

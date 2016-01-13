@@ -97,6 +97,9 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="app.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="MoneyManager.Windows_StoreKey.pfx" />
     <None Include="MoneyManager.Windows_TemporaryKey.pfx" />
     <None Include="project.json" />
@@ -426,8 +429,8 @@
     <SDKReference Include="Microsoft.NET.Native.Runtime.1.1, Version=1.1">
       <Name>Microsoft .NET Native Runtime Package for Windows</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.UAP.2015, Version=3.9.2">
-      <Name>SQLite for Universal App Platform</Name>
+    <SDKReference Include="SQLite.UAP.2015, Version=3.10.0">
+      <Name>SQLite for Universal App Platform %28SQLite.UAP.2015, Version=3.10.0%29</Name>
     </SDKReference>
     <SDKReference Include="WindowsDesktop, Version=10.0.10586.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
@@ -436,7 +439,6 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

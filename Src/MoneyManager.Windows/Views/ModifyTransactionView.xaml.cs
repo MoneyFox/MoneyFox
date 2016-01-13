@@ -6,9 +6,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Localization;
+using Xamarin;
 
 namespace MoneyManager.Windows.Views
 {
@@ -72,7 +72,7 @@ namespace MoneyManager.Windows.Views
                 }
                 catch (FormatException ex)
                 {
-                    InsightHelper.Report(new ExtendedFormatException(ex, TextBoxAmount.Text));
+                    Insights.Report(new ExtendedFormatException(ex, TextBoxAmount.Text));
                 }
             }
             else if (string.Equals(TextBoxAmount.Text, Strings.HelloWorldText, StringComparison.CurrentCultureIgnoreCase)

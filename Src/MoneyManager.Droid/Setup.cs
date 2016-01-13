@@ -1,4 +1,3 @@
-using Android.App;
 using Android.Content;
 using Autofac;
 using Cirrious.CrossCore.IoC;
@@ -37,7 +36,7 @@ namespace MoneyManager.Droid
 #endif
             if (!Insights.IsInitialized)
             {
-                Insights.Initialize(insightKey, Application.Context);
+                Insights.Initialize(insightKey, ApplicationContext);
             }
 
             Strings.Culture = new Localize().GetCurrentCultureInfo();

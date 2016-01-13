@@ -128,15 +128,16 @@
       <Project>{b227814d-75a1-4194-8138-8a8c8065207b}</Project>
       <Name>MoneyManager.Windows.Concrete</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyManager.Windows.Core\MoneyManager.Windows.Core.csproj">
-      <Project>{35e6de23-923d-40ce-b0cd-9ca27638fa5c}</Project>
-      <Name>MoneyManager.Windows.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="SQLite.UAP.2015, Version=3.9.2">
+    <SDKReference Include="SQLite.UAP.2015, Version=3.10.0">
       <Name>SQLite for Universal App Platform</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Telerik.Windows.Core">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Phone 8 Q1 2015\Binaries\WindowsPhone\Telerik.Windows.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

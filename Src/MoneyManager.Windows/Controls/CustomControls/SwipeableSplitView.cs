@@ -8,7 +8,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
-using MoneyManager.Foundation;
 using Xamarin;
 
 namespace MoneyManager.Windows.Controls.CustomControls
@@ -97,40 +96,6 @@ namespace MoneyManager.Windows.Controls.CustomControls
 
         #endregion
 
-        #region loaded event handlers
-
-        private void OnPaneRootLoaded(object sender, RoutedEventArgs e)
-        {
-            // fill the local menu items collection for later use
-            if (IsPanSelectorEnabled)
-            {
-                var border = (Border) PaneRoot.Children[0];
-                menuHost = border.Child as Selector;
-
-                if (menuHost == null)
-                {
-                    throw new ArgumentException(
-                        "For the bottom panning to work, the Pane's Child needs to be of type Selector!!");
-                }
-
-                if (menuHost.Items != null)
-                {
-                    foreach (var item in menuHost.Items)
-                    {
-                        var container = (SelectorItem) menuHost.ContainerFromItem(item);
-                        menuItems.Add(container);
-                    }
-                }
-
-                distancePerItem = TOTAL_PANNING_DISTANCE/menuItems.Count;
-
-                // calculate the initial starting distance
-                startingDistance = distancePerItem*menuHost.SelectedIndex;
-            }
-        }
-
-        #endregion
-
         #region private variables
 
         private Grid paneRoot;
@@ -142,10 +107,8 @@ namespace MoneyManager.Windows.Controls.CustomControls
         private Storyboard openSwipeablePane;
         private Storyboard closeSwipeablePane;
 
-        private Selector menuHost;
         private readonly IList<SelectorItem> menuItems = new List<SelectorItem>();
         private int toBeSelectedIndex;
-        private static readonly double TOTAL_PANNING_DISTANCE = 160d;
         private double distancePerItem;
         private double startingDistance;
 
@@ -161,7 +124,6 @@ namespace MoneyManager.Windows.Controls.CustomControls
             {
                 if (paneRoot != null)
                 {
-                    paneRoot.Loaded -= OnPaneRootLoaded;
                     paneRoot.ManipulationStarted -= OnManipulationStarted;
                     paneRoot.ManipulationDelta -= OnManipulationDelta;
                     paneRoot.ManipulationCompleted -= OnManipulationCompleted;
@@ -171,7 +133,6 @@ namespace MoneyManager.Windows.Controls.CustomControls
 
                 if (paneRoot != null)
                 {
-                    paneRoot.Loaded += OnPaneRootLoaded;
                     paneRoot.ManipulationStarted += OnManipulationStarted;
                     paneRoot.ManipulationDelta += OnManipulationDelta;
                     paneRoot.ManipulationCompleted += OnManipulationCompleted;
@@ -282,7 +243,7 @@ namespace MoneyManager.Windows.Controls.CustomControls
                 case SplitViewDisplayMode.Inline:
                 case SplitViewDisplayMode.CompactOverlay:
                 case SplitViewDisplayMode.CompactInline:
-                    splitView.IsPaneOpen = (bool) e.NewValue;
+                    splitView.IsPaneOpen = !splitView.IsPaneOpen;
                     break;
 
                 case SplitViewDisplayMode.Overlay:
@@ -344,11 +305,6 @@ namespace MoneyManager.Windows.Controls.CustomControls
         {
             panAreaTransform = PanArea.RenderTransform as CompositeTransform;
             paneRootTransform = PaneRoot.RenderTransform as CompositeTransform;
-
-            if (panAreaTransform == null || paneRootTransform == null)
-            {
-                throw new ArgumentException("Make sure you have copied the default style to Generic.xaml!!");
-            }
         }
 
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
@@ -442,12 +398,6 @@ namespace MoneyManager.Windows.Controls.CustomControls
 
                     // do a selection after a short delay to allow visual effect takes place first
                     await Task.Delay(250);
-                    menuHost.SelectedIndex = toBeSelectedIndex;
-                }
-                else
-                {
-                    // recalculate the starting distance
-                    startingDistance = distancePerItem*menuHost.SelectedIndex;
                 }
             }
         }
@@ -480,7 +430,7 @@ namespace MoneyManager.Windows.Controls.CustomControls
                 }
                 catch (Exception ex)
                 {
-                    InsightHelper.Report(ex, Insights.Severity.Warning);
+                    Insights.Report(ex, Insights.Severity.Error);
                 }
             }
             else
@@ -499,7 +449,7 @@ namespace MoneyManager.Windows.Controls.CustomControls
                 }
                 catch (Exception ex)
                 {
-                    InsightHelper.Report(ex, Insights.Severity.Warning);
+                    Insights.Report(ex, Insights.Severity.Error);
                 }
             }
             else

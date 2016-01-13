@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.TestFoundation;
@@ -32,7 +32,7 @@ namespace MoneyManager.Core.Tests.Repositories
                 Amount = 20
             };
 
-            Assert.Throws<InvalidDataException>(() => repository.Save(transaction));
+            Assert.Throws<AccountMissingException>(() => repository.Save(transaction));
         }
 
         [Theory]

@@ -16,8 +16,28 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Page.BottomAppBar>
-        <CommandBar>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <basicControls:PageHeader>
+            <basicControls:PageHeader.HeaderContent>
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Accounts"
+                           x:Uid="AccountTitle" />
+            </basicControls:PageHeader.HeaderContent>
+        </basicControls:PageHeader>
+
+        <Grid Grid.Row="1"
+              Margin="0,9.5,0,0"
+              EntranceNavigationTransitionInfo.IsTargetElement="True">
+            <controls:AccountListUserControl VerticalAlignment="Stretch" />
+        </Grid>
+
+        <CommandBar Grid.Row="2">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Add"
                               x:Uid="AddIncomeLabel"
@@ -42,26 +62,5 @@
                               Command="{Binding GoToAddAccountCommand}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
-        <basicControls:PageHeader>
-            <basicControls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Accounts"
-                           x:Uid="AccountTitle" />
-            </basicControls:PageHeader.HeaderContent>
-        </basicControls:PageHeader>
-
-        <Grid Grid.Row="1"
-              Margin="0,9.5,0,0"
-              EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <controls:AccountListUserControl VerticalAlignment="Stretch" />
-        </Grid>
-
     </Grid>
 </Page>

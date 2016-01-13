@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
@@ -71,7 +70,7 @@ namespace MoneyManager.Core.Manager
                         transaction.ChargedAccount =
                             accountRepository.Data.FirstOrDefault(x => x.Id == transaction.ChargedAccountId);
 
-                        InsightHelper.Report(new AccountMissingException("Charged account was missing while clearing transactions"), Insights.Severity.Warning);
+                        Insights.Report(new AccountMissingException("Charged account was missing while clearing transactions"), Insights.Severity.Error);
                     }
 
                     transaction.IsCleared = true;
@@ -81,7 +80,7 @@ namespace MoneyManager.Core.Manager
                 }
                 catch (Exception ex)
                 {
-                    InsightHelper.Report(ex);
+                    Insights.Report(ex, Insights.Severity.Error);
                 }
             }
         }
@@ -103,7 +102,7 @@ namespace MoneyManager.Core.Manager
             }
             catch (Exception ex)
             {
-                InsightHelper.Report(ex);
+                Insights.Report(ex, Insights.Severity.Error);
             }
         }
     }

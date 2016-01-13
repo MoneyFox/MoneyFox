@@ -29,9 +29,14 @@ namespace MoneyManager.Windows.Concrete.Shortcut
         /// <summary>
         ///     Will get the statistic manager and updates the main tile with the current cash flow.
         /// </summary>
-        public static void UpdateMainTile()
+        public static async void UpdateMainTile()
         {
-            //TODO Refactor this so you don't create the CashFlowProvider here
+            var task = Task.Run(() => UpdateTile());
+            await task;
+        }
+
+        private static  void UpdateTile()
+        {
             var cashFlow =
                 new CashFlowProvider(Mvx.Resolve<ITransactionRepository>()).GetValues(
                     DateTime.Today.GetFirstDayOfMonth(),
@@ -39,6 +44,8 @@ namespace MoneyManager.Windows.Concrete.Shortcut
 
             Mvx.Resolve<IUserNotification>()
                 .UpdateMainTile(cashFlow.Income.Label, cashFlow.Spending.Label, cashFlow.Revenue.Label);
+
         }
+
     }
 }

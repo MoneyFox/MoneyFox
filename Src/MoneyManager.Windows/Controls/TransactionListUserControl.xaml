@@ -98,32 +98,76 @@
                 </Grid>
             </StackPanel>
         </DataTemplate>
+
+        <DataTemplate x:Key="MonthGroupHeaderTemplate">
+            <Border Background="Transparent"
+                    Padding="3">
+                <TextBlock Text="{Binding Key}"
+                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                           FontSize="18"
+                           FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center" />
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MonthJumpTemplate">
+            <Border Padding="5">
+                <Border HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Group.Key}"
+                               Width="150"
+                               Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                               FontSize="18"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center" />
+                </Border>
+            </Border>
+        </DataTemplate>
+
+        <CollectionViewSource x:Key="TransactionGroups"
+                              IsSourceGrouped="True"
+                              Source="{Binding Source}"/>
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <controls:BalanceUserControl />
-        <customControls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
-                                               EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
-                                               ItemsSource="{Binding RelatedTransactions, Mode=TwoWay}"
-                                               ItemTemplate="{StaticResource TransactionTemplate}"
-                                               HorizontalAlignment="Stretch"
-                                               ShowsScrollingPlaceholders="false"
-                                               Margin="0,20,0,0"
-                                               SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
-            <interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}" />
-                </core:EventTriggerBehavior>
-            </interactivity:Interaction.Behaviors>
 
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch" />
-                    <Setter Property="VerticalContentAlignment"
-                            Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </customControls:AlternatingRowListView>
+        <SemanticZoom>
+            <SemanticZoom.ZoomedInView>
+                <customControls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                                                       EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                                       ItemsSource="{Binding Source={StaticResource TransactionGroups}}"
+                                                       ItemTemplate="{StaticResource TransactionTemplate}"
+                                                       HorizontalAlignment="Stretch"
+                                                       ShowsScrollingPlaceholders="false"
+                                                       Margin="0,20,0,0"
+                                                       SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                            <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.GroupStyle>
+                        <GroupStyle HidesIfEmpty="True"
+                                    HeaderTemplate="{StaticResource MonthGroupHeaderTemplate}" />
+                    </ListView.GroupStyle>
+                </customControls:AlternatingRowListView>
+            </SemanticZoom.ZoomedInView>
+            <SemanticZoom.ZoomedOutView>
+                <GridView Margin="0,12,0,0"
+                          ItemsSource="{Binding Source={StaticResource TransactionGroups}, Path=CollectionGroups}"
+                          ItemTemplate="{StaticResource MonthJumpTemplate}">
+                </GridView>
+            </SemanticZoom.ZoomedOutView>
+        </SemanticZoom>
     </Grid>
 </UserControl>

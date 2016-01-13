@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyManager.Foundation.Exceptions;
@@ -31,7 +30,7 @@ namespace MoneyManager.Core.Repositories
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
 
-            data = new ObservableCollection<FinancialTransaction>(this.dataAccess.LoadList());
+            Load();
         }
 
         /// <summary>
@@ -39,13 +38,9 @@ namespace MoneyManager.Core.Repositories
         /// </summary>
         public ObservableCollection<FinancialTransaction> Data
         {
-            get { return data ?? (data = new ObservableCollection<FinancialTransaction>(dataAccess.LoadList())); }
+            get { return data; }
             set
             {
-                if (data == null)
-                {
-                    data = new ObservableCollection<FinancialTransaction>(dataAccess.LoadList());
-                }
                 if (Equals(data, value))
                 {
                     return;
@@ -129,8 +124,10 @@ namespace MoneyManager.Core.Repositories
         /// <returns>list of uncleared transactions</returns>
         public IEnumerable<FinancialTransaction> GetUnclearedTransactions(DateTime date)
         {
-            return Data.Where(x => x.IsCleared == false
-                                   && x.Date.Date <= date.Date).ToList();
+            return Data
+                .Where(x => !x.IsCleared)
+                .Where(x => x.Date.Date <= date.Date)
+                .ToList();
         }
 
         /// <summary>
@@ -140,10 +137,8 @@ namespace MoneyManager.Core.Repositories
         /// <returns>List of transactions</returns>
         public IEnumerable<FinancialTransaction> GetRelatedTransactions(Account account)
         {
-            return Data
-                .Where(x => x.ChargedAccount != null)
-                .Where(x => x.ChargedAccount.Id == account.Id
-                            || (x.TargetAccount != null && x.TargetAccount.Id == account.Id))
+            return Data.Where(x => x.ChargedAccountId == account.Id
+                                   || x.TargetAccountId == account.Id)
                 .OrderByDescending(x => x.Date)
                 .ToList();
         }
@@ -154,11 +149,11 @@ namespace MoneyManager.Core.Repositories
         /// <returns>list of recurring transactions</returns>
         public IEnumerable<FinancialTransaction> LoadRecurringList(Func<FinancialTransaction, bool> filter = null)
         {
-            var list = Data.Where(x => x.IsRecurring && x.RecurringTransaction != null
-                                       &&
-                                       (x.RecurringTransaction.IsEndless ||
-                                        x.RecurringTransaction.EndDate >= DateTime.Now.Date)
-                                       && (filter == null || filter.Invoke(x)))
+            var list = Data
+                .Where(x => x.IsRecurring && x.ReccuringTransactionId != 0)
+                .Where(x => (x.RecurringTransaction.IsEndless ||
+                             x.RecurringTransaction.EndDate >= DateTime.Now.Date)
+                            && (filter == null || filter.Invoke(x)))
                 .ToList();
 
             return list
@@ -172,7 +167,7 @@ namespace MoneyManager.Core.Repositories
 
         private void DeleteRecurringTransactionIfLastAssociated(FinancialTransaction item)
         {
-            if (data.All(x => x.ReccuringTransactionId != item.ReccuringTransactionId))
+            if (Data.All(x => x.ReccuringTransactionId != item.ReccuringTransactionId))
             {
                 var recurringList = recurringDataAccess.LoadList(x => x.Id == item.ReccuringTransactionId).ToList();
 

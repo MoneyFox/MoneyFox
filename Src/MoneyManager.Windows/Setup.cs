@@ -1,4 +1,3 @@
-using System.Reflection;
 using Windows.UI.Xaml.Controls;
 using Autofac;
 using Beezy.MvvmCross.Plugins.SecureStorage;
