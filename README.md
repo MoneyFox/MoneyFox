@@ -28,14 +28,9 @@ We’re in the process of improve our apps for Windows 10 Desktop and Mobile. We
 Head to the Issues to see all the details.
 
 ### Contribution
-Besides solving issues, you can participate by creating issues with feedback, suggestions or problems you had.
-We’re looking forward to receiving a lot of AWESOME contributions. No pressure.
 
-### Getting Started
-For infos about the requirments head over to our wiki: 
-[Getting Started] (https://github.com/Apply-Solutions/MoneyManager/wiki/Getting-Started)
+Head over [here] (https://github.com/Apply-Solutions/MoneyManager/blob/master/CONTRIBUTE.md)
 
-If you need help or just need a good entry point, get in touch =)
 
 ### Tools
 We use Visual Studio 2015. If you use resharper please ensure to use the settings in the repository for this project.

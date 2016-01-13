@@ -3,7 +3,9 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:layout_marginLeft="12px"
+    android:layout_marginRight="12px">
     <cirrious.mvvmcross.binding.droid.views.MvxListView
         android:orientation="vertical"
         android:layout_width="fill_parent"

@@ -702,6 +702,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://login.live.com/oauth20_desktop.srf.
+        /// </summary>
+        public static string ReturnUrl {
+            get {
+                return ResourceManager.GetString("ReturnUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Revenue.
         /// </summary>
         public static string RevenueLabel {
