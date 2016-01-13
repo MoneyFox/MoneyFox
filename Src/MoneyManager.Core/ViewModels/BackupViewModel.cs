@@ -42,8 +42,6 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public MvxCommand RestoreCommand => new MvxCommand(RestoreBackup);
 
-        public MvxCommand LoginCommand => new MvxCommand(Login);
-
         /// <summary>
         ///     Indicator if something is in work.
         /// </summary>
@@ -51,10 +49,7 @@ namespace MoneyManager.Core.ViewModels
 
         private async void CreateBackup()
         {
-            if (!BackupService.IsLoggedIn)
-            {
-                Login();
-            }
+            await Login();
 
             if (!await ShowOverwriteBackupInfo())
             {
@@ -69,10 +64,7 @@ namespace MoneyManager.Core.ViewModels
 
         private async void RestoreBackup()
         {
-            if (!BackupService.IsLoggedIn)
-            {
-                Login();
-            }
+            await Login();
 
             if (!await ShowOverwriteDataInfo())
             {
@@ -88,7 +80,7 @@ namespace MoneyManager.Core.ViewModels
             IsLoading = false;
         }
 
-        private async void Login()
+        private async Task Login()
         {
             try
             {
