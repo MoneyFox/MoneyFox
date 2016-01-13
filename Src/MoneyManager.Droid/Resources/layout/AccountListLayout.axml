@@ -4,8 +4,8 @@
     android:background="?android:windowBackground"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:paddingLeft="12px"
-    android:paddingRight="12px"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
     android:orientation="vertical">
     <FrameLayout
         android:id="@+id/balance_pane"

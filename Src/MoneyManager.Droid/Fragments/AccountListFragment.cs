@@ -29,6 +29,8 @@ namespace MoneyManager.Droid.Fragments
                     ViewModel = Mvx.Resolve<BalanceViewModel>()
                 };
 
+                fragment.ViewModel.UpdateBalance();
+
                 FragmentManager.BeginTransaction()
                     .Replace(Resource.Id.balance_pane, fragment)
                     .Commit();
