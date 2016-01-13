@@ -3,6 +3,14 @@
 Thanks for your interest! We appreciate any contribution to the project.
 This document tries to help you get started. If you have questions please join our chat in Gitter: [![Join the chat at https://gitter.im/Apply-Solutions/MoneyManager](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Apply-Solutions/MoneyManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  or contact me directly (see profile).
 
+
+# Tools
+We use Visual Studio 2015. If you use resharper please ensure to use the settings in the repository for this project.
+
+If you don't have a Xamarin Subscription, you may apply for an open source license directly at Xamarin. Application Formula
+
+NOTE: I assume they will only offer this to contributors of an open source project.
+
 # Feature Requests / Bug reports
 Is there a feature you would like to see in a future release? Or have you found a bug? Create a new issue and give describe it as good as possible.
 
