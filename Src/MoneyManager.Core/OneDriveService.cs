@@ -26,6 +26,8 @@ namespace MoneyManager.Core
 
         private Item BackupFolder { get; set; }
 
+        public bool IsLoggedIn => OneDriveClient?.IsAuthenticated ?? false;
+
         public async Task Login()
         {
             OneDriveClient = await oneDriveAuthenticator.LoginAsync();

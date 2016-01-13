@@ -9,7 +9,6 @@ using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Microsoft.OneDrive.Sdk;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
-using MvvmCross.Plugins.Messenger;
 using Xamarin.Auth;
 
 namespace MoneyManager.Droid.Fragments
@@ -27,7 +26,10 @@ namespace MoneyManager.Droid.Fragments
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.BackupLayout, null);
 
-            ShowWebView();
+            if (!ViewModel.BackupService.IsLoggedIn)
+            {
+                ShowWebView();
+            }
 
             return view;
         }
@@ -37,7 +39,7 @@ namespace MoneyManager.Droid.Fragments
         private readonly string[] scopes = { "onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly" };
         private const string RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
 
-
+        //TODO: Find a way to move this to the Android AuthenticationProvider..
         private void ShowWebView()
         {
             var auth = new OAuth2Authenticator(
