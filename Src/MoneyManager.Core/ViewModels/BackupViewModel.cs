@@ -74,10 +74,10 @@ namespace MoneyManager.Core.ViewModels
                 Login();
             }
 
-            //if (!await ShowOverwriteDataInfo())
-            //{
-            //    return;
-            //}
+            if (!await ShowOverwriteDataInfo())
+            {
+                return;
+            }
 
             IsLoading = true;
 
