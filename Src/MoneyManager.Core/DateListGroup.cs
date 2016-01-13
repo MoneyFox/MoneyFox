@@ -62,7 +62,7 @@ namespace MoneyManager.Windows.Concrete
             {
                 foreach (DateListGroup<T> group in list)
                 {
-                    group.Sort((c0, c1) => { return ci.CompareInfo.Compare(getSortKey(c0).Date.Day.ToString(), getSortKey(c1).Date.Day.ToString()); });
+                    group.Sort((c0, c1) => getSortKey(c0).Date.Day.CompareTo(getSortKey(c1).Date.Day));
                 }
             }
 

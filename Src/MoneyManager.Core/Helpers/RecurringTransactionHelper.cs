@@ -104,8 +104,9 @@ namespace MoneyManager.Core.Helpers
                     return DateTime.Now.Month != relTransaction.Date.Month;
 
                 case (int) TransactionRecurrence.Yearly:
-                    return DateTime.Now.Year != relTransaction.Date.Year
-                           && DateTime.Now.Month >= relTransaction.Date.Month;
+                    return (DateTime.Now.Year != relTransaction.Date.Year
+                           && DateTime.Now.Month >= relTransaction.Date.Month)
+                           || (DateTime.Now.Year - relTransaction.Date.Year) > 1;
 
                 default:
                     return false;
