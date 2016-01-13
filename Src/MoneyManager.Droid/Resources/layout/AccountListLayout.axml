@@ -4,6 +4,8 @@
     android:background="?android:windowBackground"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:paddingLeft="12px"
+    android:paddingRight="12px"
     android:orientation="vertical">
     <FrameLayout
         android:id="@+id/balance_pane"
@@ -15,7 +17,5 @@
         android:layout_height="fill_parent"
         android:id="@+id/accountList"
         local:MvxItemTemplate="@layout/accountlistitem"
-        local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand"
-        android:layout_marginLeft="7"
-        android:layout_marginRight="7" />
+        local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />
 </LinearLayout>
