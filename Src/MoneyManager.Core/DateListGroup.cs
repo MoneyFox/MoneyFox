@@ -36,6 +36,7 @@ namespace MoneyManager.Windows.Concrete
         /// <param name="items">The items to place in the groups.</param>
         /// <param name="ci">The CultureInfo to group and sort by.</param>
         /// <param name="getKey">A delegate to get the key from an item.</param>
+        /// <param name="getSortKey">A delegate to get the key for sorting from an item.</param>
         /// <param name="sort">Will sort the data if true.</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<DateListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci, GetKeyDelegate getKey,
@@ -62,7 +63,7 @@ namespace MoneyManager.Windows.Concrete
             {
                 foreach (DateListGroup<T> group in list)
                 {
-                    group.Sort((c0, c1) => getSortKey(c0).Date.Day.CompareTo(getSortKey(c1).Date.Day));
+                    group.Sort((c0, c1) => getSortKey(c1).Date.Day.CompareTo(getSortKey(c0).Date.Day));
                 }
             }
 
