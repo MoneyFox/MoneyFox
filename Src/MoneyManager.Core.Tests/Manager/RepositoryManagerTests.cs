@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using MoneyManager.Core.Manager;
-using MoneyManager.Core.Repositories;
-using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.TestFoundation;
@@ -19,20 +17,6 @@ namespace MoneyManager.Core.Tests.Manager
         public void Constructor_NullValues_NoException()
         {
             new RepositoryManager(null, null, null, null).ShouldNotBeNull();
-        }
-
-        [Fact]
-        public void Constructor_DefaultInstances_NoException()
-        {
-            var connectionCreatorMock = new Mock<ISqliteConnectionCreator>().Object;
-            var accountRepo = new AccountRepository(new AccountDataAccess(connectionCreatorMock));
-            var transactionRepo = new TransactionRepository(new TransactionDataAccess(connectionCreatorMock),
-                new RecurringTransactionDataAccess(connectionCreatorMock));
-
-            new RepositoryManager(accountRepo, transactionRepo,
-                new CategoryRepository(new CategoryDataAccess(connectionCreatorMock)),
-                new TransactionManager(transactionRepo, accountRepo, new Mock<IDialogService>().Object)).ShouldNotBeNull
-                ();
         }
 
         [Fact]

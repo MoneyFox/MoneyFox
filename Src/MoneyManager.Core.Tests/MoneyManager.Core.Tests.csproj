@@ -84,6 +84,10 @@
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Email.4.0.0-beta7\lib\net45\MvvmCross.Plugins.Email.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Messenger.4.0.0-beta7\lib\net45\MvvmCross.Plugins.Messenger.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MvvmCross.Plugins.Sqlite, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.SQLitePCL.4.0.0-beta7\lib\net45\MvvmCross.Plugins.Sqlite.dll</HintPath>
       <Private>True</Private>
@@ -141,8 +145,6 @@
   <ItemGroup>
     <Compile Include="Authentication\PasswordStorageTests.cs" />
     <Compile Include="Authentication\SessionTests.cs" />
-    <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\SqlitePclPluginBootstrap.cs" />
     <Compile Include="Converter\AmountFormatConverterTests.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverterTests.cs" />
     <Compile Include="Converter\DateFormatConverterTests.cs" />
