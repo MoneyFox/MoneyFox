@@ -7,7 +7,6 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Plugins.File;
 using Xamarin;
-using Constants = MoneyManager.Foundation.Constants;
 
 namespace MoneyManager.Core
 {
@@ -42,12 +41,12 @@ namespace MoneyManager.Core
         {
             try
             {
-                using (var dbstream = fileStore.OpenRead(Constants.DB_NAME))
+                using (var dbstream = fileStore.OpenRead(OneDriveAuthenticationConstants.DB_NAME))
                 {
                     var uploadedItem = await OneDriveClient
                         .Drive
                         .Root
-                        .ItemWithPath(Path.Combine(Constants.BACKUP_FOLDER_NAME, Constants.BACKUP_NAME))
+                        .ItemWithPath(Path.Combine(OneDriveAuthenticationConstants.BACKUP_FOLDER_NAME, OneDriveAuthenticationConstants.BACKUP_NAME))
                         .Content
                         .Request()
                         .PutAsync<Item>(dbstream);
@@ -70,16 +69,16 @@ namespace MoneyManager.Core
             }
 
             var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
-            var existingBackup = children.FirstOrDefault(x => x.Name == Constants.BACKUP_NAME);
+            var existingBackup = children.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_NAME);
 
             if (existingBackup != null)
             {
                 var backup = await OneDriveClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
-                if (fileStore.Exists(Constants.DB_NAME))
+                if (fileStore.Exists(OneDriveAuthenticationConstants.DB_NAME))
                 {
-                    fileStore.DeleteFile(Constants.DB_NAME);
+                    fileStore.DeleteFile(OneDriveAuthenticationConstants.DB_NAME);
                 }
-                fileStore.WriteFile(Constants.DB_NAME, backup.ReadToEnd());
+                fileStore.WriteFile(OneDriveAuthenticationConstants.DB_NAME, backup.ReadToEnd());
             }
 
             return TaskCompletionType.Successful;
@@ -88,7 +87,7 @@ namespace MoneyManager.Core
         private async Task GetBackupFolder()
         {
             var children = await OneDriveClient.Drive.Root.Children.Request().GetAsync();
-            BackupFolder = children.CurrentPage.FirstOrDefault(x => x.Name == Constants.BACKUP_FOLDER_NAME);
+            BackupFolder = children.CurrentPage.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_FOLDER_NAME);
 
             if (BackupFolder == null)
             {
@@ -98,7 +97,7 @@ namespace MoneyManager.Core
 
         private async Task CreateBackupFolder()
         {
-            var folderToCreate = new Item {Name = Constants.BACKUP_FOLDER_NAME, Folder = new Folder()};
+            var folderToCreate = new Item {Name = OneDriveAuthenticationConstants.BACKUP_FOLDER_NAME, Folder = new Folder()};
 
             var root = await OneDriveClient.Drive.Root.Request().GetAsync();
 

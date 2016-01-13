@@ -4,19 +4,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
-using Cirrious.CrossCore;
 using Microsoft.OneDrive.Sdk;
+using MoneyManager.Foundation;
 using Xamarin.Auth;
+using Constants = Microsoft.OneDrive.Sdk.Constants;
 
 namespace MoneyManager.Droid
 {
     public class AndroidAuthenticationProvider : AuthenticationProvider
     {
-        private const string MSA_CLIENT_ID = "000000004016F96F";
-        private const string RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
-
-        private readonly string[] scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly"};
-
         private IDictionary<string, string> authenticationResponseValues;
 
         public AndroidAuthenticationProvider(ServiceInfo serviceInfo) : base(serviceInfo)
@@ -42,8 +38,8 @@ namespace MoneyManager.Droid
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            var auth = new OAuth2Authenticator(MSA_CLIENT_ID, string.Join(",", scopes), new Uri(GetAuthorizeUrl()),
-                new Uri(RETURN_URL));
+            var auth = new OAuth2Authenticator(OneDriveAuthenticationConstants.MSA_CLIENT_ID, string.Join(",", OneDriveAuthenticationConstants.Scopes), new Uri(GetAuthorizeUrl()),
+                new Uri(OneDriveAuthenticationConstants.RETURN_URL));
 
             auth.Completed += (sender, eventArgs) =>
             {
@@ -66,13 +62,13 @@ namespace MoneyManager.Droid
         private string GetAuthorizeUrl()
         {
             var requestUriStringBuilder = new StringBuilder();
-            requestUriStringBuilder.Append("https://login.live.com/oauth20_authorize.srf");
-            requestUriStringBuilder.AppendFormat("?{0}={1}", Constants.Authentication.RedirectUriKeyName, RETURN_URL);
-            requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ClientIdKeyName, MSA_CLIENT_ID);
+            requestUriStringBuilder.Append(OneDriveAuthenticationConstants.AUTHENTICATION_URL);
+            requestUriStringBuilder.AppendFormat("?{0}={1}", Constants.Authentication.RedirectUriKeyName, OneDriveAuthenticationConstants.RETURN_URL);
+            requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ClientIdKeyName, OneDriveAuthenticationConstants.MSA_CLIENT_ID);
             requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ScopeKeyName,
-                string.Join("%20", scopes));
+                string.Join("%20", OneDriveAuthenticationConstants.Scopes));
             requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ResponseTypeKeyName,
-                Constants.Authentication.TokenResponseTypeValueName);
+                Constants.Authentication.CodeKeyName);
 
             return requestUriStringBuilder.ToString();
         }
