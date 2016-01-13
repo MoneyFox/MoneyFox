@@ -60,6 +60,7 @@
     <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Model\CashFlow.cs" />
+    <Compile Include="OneDriveAuthenticationConstants.cs" />
     <Compile Include="SqliteConnectionCreator.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\BackupException.cs" />

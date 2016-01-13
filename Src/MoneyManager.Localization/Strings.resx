@@ -376,4 +376,7 @@ Do you want to go the the store to rate?</value>
   <data name="EditCategoryTitle" xml:space="preserve">
     <value>EDIT CATEGORY</value>
   </data>
+  <data name="ReturnUrl" xml:space="preserve">
+    <value>https://login.live.com/oauth20_desktop.srf</value>
+  </data>
 </root>
