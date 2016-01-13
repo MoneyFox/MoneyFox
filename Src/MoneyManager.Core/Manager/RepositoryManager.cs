@@ -3,6 +3,10 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Manager
 {
+    /// <summary>
+    ///     This helper can be used to reinstantiate all Repositories, for example when you
+    ///     download a new database backup and replace the current one.
+    /// </summary>
     public class RepositoryManager : IRepositoryManager
     {
         private readonly IRepository<Account> accountRepository;
@@ -21,6 +25,10 @@ namespace MoneyManager.Core.Manager
             this.transactionManager = transactionManager;
         }
 
+        /// <summary>
+        ///     This will reload all Data for the repositories and set the Selected Property to null.
+        ///     After this it checks if there are transactions to cleare and if so will clear them.
+        /// </summary>
         public void ReloadData()
         {
             //Load Data
