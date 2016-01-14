@@ -8,6 +8,7 @@
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:converter="using:MoneyManager.Windows.Converter"
              xmlns:customControls="using:MoneyManager.Windows.Controls.CustomControls"
+             xmlns:model="using:MoneyManager.Foundation.Model"
              DataContext="{Binding TransactionListView, Source={StaticResource CoreModule}}"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -26,7 +27,7 @@
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
 
-        <DataTemplate x:Key="TransactionTemplate">
+        <DataTemplate x:Key="TransactionTemplate" x:DataType="model:FinancialTransaction">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
@@ -45,7 +46,7 @@
                 <Grid HorizontalAlignment="Stretch"
                       Margin="0,0,0,3">
                     <TextBlock
-                        Text="{Binding Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
+                        Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
                     <TextBlock
                         Text="{Binding Converter={StaticResource TransactionAmountConverter}}"
                         HorizontalAlignment="Right" />
@@ -53,15 +54,15 @@
                 <Grid>
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Left">
-                        <TextBlock Text="{Binding Category.Name}"
+                        <TextBlock Text="{x:Bind Category.Name}"
                                    Margin="0,0,2,10"
                                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
                         <TextBlock Text="/"
                                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                                    Visibility="{Binding Note, Converter={StaticResource NoteVisibilityConverter}}" />
-                        <TextBlock Text="{Binding Note}"
+                        <TextBlock Text="{x:Bind Note}"
                                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                                   Visibility="{Binding Note, Converter={StaticResource NoteVisibilityConverter}}"
+                                   Visibility="{x:Bind Note, Converter={StaticResource NoteVisibilityConverter}}"
                                    Margin="2,0,0,0"
                                    MaxWidth="150"
                                    MaxLines="1"
@@ -70,7 +71,7 @@
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right">
                         <Grid HorizontalAlignment="Right"
-                              Visibility="{Binding IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
+                              Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <SymbolIcon
                                 Width="30"
                                 Height="30"
@@ -79,7 +80,7 @@
                                 HorizontalAlignment="Center" />
                         </Grid>
                         <Grid HorizontalAlignment="Right"
-                              Visibility="{Binding IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
+                              Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Image
                                 Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
                                 DataContext="/Assets/{0}/repeat.png"
@@ -87,7 +88,7 @@
                                 Height="30" />
                         </Grid>
                         <Grid HorizontalAlignment="Right"
-                              Visibility="{Binding IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
+                              Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Image
                                 Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
                                 DataContext="/Assets/{0}/done.png"
