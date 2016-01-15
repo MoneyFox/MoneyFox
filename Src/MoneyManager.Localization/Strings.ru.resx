@@ -118,250 +118,249 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutLabel" xml:space="preserve">
-    <value>Info</value>
+    <value>О приложении</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>Info</value>
+    <value>О приложении</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Bitte Konto auswählen.</value>
+    <value>Выберите счёт.</value>
   </data>
   <data name="AccountsLabel" xml:space="preserve">
-    <value>Konten</value>
+    <value>Счета</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Konto hinzufügen</value>
+    <value>Добавить счёт</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Einnahme hinzufügen</value>
+    <value>Доход</value>
   </data>
   <data name="AddSpendingLabel" xml:space="preserve">
-    <value>Ausgabe hinzufügen</value>
+    <value>Расход</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Übertrag hinzufügen</value>
+    <value>Перевод</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
   </data>
   <data name="BackupFailedMessage" xml:space="preserve">
-    <value>Sicherung fehlgeschlagen!</value>
+    <value>Не удалось выполнить резервное копирование!</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
-    <value>Sicherung</value>
+    <value>Резервная копия</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
-    <value>Kapitalfluss</value>
+    <value>Баланс</value>
   </data>
   <data name="ChangeSubsequentTransactionsMessage" xml:space="preserve">
-    <value>Dies ist eine wiederkehrende Zahlung. Möchtest du sie für zukünftige Transaktionen aktualisieren oder nur dieses Mal?</value>
+    <value>Это повторяющаяся операция. Вы хотите изменить все будущие операции или только эту?</value>
   </data>
   <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
-    <value>Wiederholungen aktualisieren</value>
+    <value>Обновить повторения?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Täglich</value>
+    <value>Каждый день</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Täglich ohne Wochenende</value>
+    <value>Каждый день без выходных</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Möchtest du dieses Konto wirklich löschen?</value>
+    <value>Вы действительно хотите удалить этот счёт?</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Möchtest du diese Kategorie wirklich löschen?</value>
+    <value>Вы действительно хотите удалить эту категорию?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
-    <value>Löschen</value>
+    <value>Удалить</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
-    <value>Löschen?</value>
+    <value>Удалить?</value>
   </data>
   <data name="DeleteTransactionConfirmationMessage" xml:space="preserve">
-    <value>Möchtest du diese Zahlung wirklich löschen?</value>
+    <value>Вы действительно хотите удалить эту операцию?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
-    <value>Bearbeiten</value>
+    <value>Изменить</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Ausgabe</value>
+    <value>Расход</value>
   </data>
   <data name="FeedbackLabel" xml:space="preserve">
-    <value>Rückmeldung</value>
+    <value>Обратная связь</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Rückmeldungen Money Fox</value>
+    <value>Feedback Money Fox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Einnahme bearbeiten</value>
+    <value>Редактировать доход</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Einnahmen</value>
+    <value>Прирост</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>Nur diese</value>
+    <value>Только это</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
-    <value>Wir konnten dich nicht einloggen. Bitte prüfe ob du mit dem Internet verbunden bist.</value>
+    <value>Мы не можем зайти в ваш аккаунт. Проверьте ваше интернет подключение.</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Login fehlgeschlagen!</value>
+    <value>Не удалось войти!</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Pflichtfeld</value>
+    <value>Обязательные поля</value>
   </data>
   <data name="MenuTitle" xml:space="preserve">
-    <value>Menu</value>
+    <value>Меню</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
-    <value>Monatlich</value>
+    <value>Ежемесячно</value>
   </data>
   <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Bitte gib einen Namen ein.</value>
+    <value>Пожалуйста, введите имя.</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
-    <value>Nein</value>
+    <value>Нет</value>
   </data>
   <data name="NoNamePlaceholderLabel" xml:space="preserve">
-    <value>[Kein Name]</value>
+    <value>[Без имени]</value>
   </data>
   <data name="NoneLabel" xml:space="preserve">
-    <value>Keine</value>
+    <value>Не указано</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
     <value>Ok</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Existierende Sicherungen werden überschrieben. Möchtest du Fortfahren?</value>
+    <value>Будут перезаписаны существующие резервные копии. Вы хотите продолжить?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
-    <value>Überschreiben?</value>
+    <value>Перезаписать?</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Alle aktualisieren</value>
+    <value>Обновить всё</value>
   </data>
   <data name="RestoreFailedMessage" xml:space="preserve">
-    <value>Wiederherstellen fehlgeschlagen!</value>
+    <value>Не удалось восстановить!</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Gewinn</value>
+    <value>Прибыль</value>
   </data>
   <data name="SelectDateTitle" xml:space="preserve">
-    <value>Datum wählen</value>
+    <value>Выбрать дату</value>
   </data>
   <data name="SelectOperationLabel" xml:space="preserve">
-    <value>Operation auswählen</value>
+    <value>Выберите операцию</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
-    <value>Einstellungen</value>
+    <value>Параметры</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Ausgabe bearbeiten</value>
+    <value>Изменения расходов</value>
   </data>
   <data name="StatisticsLabel" xml:space="preserve">
-    <value>Statistik</value>
+    <value>Статистика</value>
   </data>
   <data name="StatisticTitle" xml:space="preserve">
-    <value>Statistik</value>
+    <value>Статистика</value>
   </data>
   <data name="SuccessTitle" xml:space="preserve">
-    <value>Erfolg!</value>
+    <value>Выполнено!</value>
   </data>
   <data name="TaskSuccessfulMessage" xml:space="preserve">
-    <value>Aufgabe wurde Erfolgreich abgeschlossen.</value>
+    <value>Задача успешно выполнена.</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Übertrag bearbeiten</value>
+    <value>Изменить перевод</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>Wochentlich</value>
+    <value>Еженедельно</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
-    <value>Jährlich</value>
+    <value>Ежегодно</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
-    <value>Ja</value>
+    <value>Да</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Deine Lokalen Daten werden überschrieben. Möchtest du fortfahren?</value>
+    <value>Локальные данные будут удалены. Вы уверены, что хотите продолжить?</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Einnahme hinzufügen</value>
+    <value>Доход</value>
   </data>
   <data name="AddSpendingTitle" xml:space="preserve">
-    <value>Ausgabe hinzufügen</value>
+    <value>Расход</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Übertrag hinzufügen</value>
+    <value>Перевод</value>
   </data>
   <data name="EditTitle" xml:space="preserve">
-    <value>Bearbeiten</value>
+    <value>Изменить</value>
   </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
-    <value>Das Passwort und die Passwortbestätigung waren nicht übereinstimmend. Bitte überprüfe deine Eingabe.</value>
+    <value>Пароль и подтверждение пароля не совпадают.</value>
   </data>
   <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
-    <value>Passwortbestätigung</value>
+    <value>Подтвердите пароль</value>
   </data>
   <data name="PasswordSavedMessage" xml:space="preserve">
-    <value>Passwort wurde erfolgreich gespeichert.</value>
+    <value>Пароль успешно сохранен.</value>
   </data>
   <data name="PasswordSavedTitle" xml:space="preserve">
-    <value>Passwort gespeichert</value>
+    <value>Пароль сохранен</value>
   </data>
   <data name="PasswordWrongMessage" xml:space="preserve">
-    <value>Das eingegebene Passwort war falsch. Bitte prüfe deine Eingabe nochmals.</value>
+    <value>Введенный пароль неправильный. Пожалуйста, попробуйте еще раз.</value>
   </data>
   <data name="PasswordWrongTitle" xml:space="preserve">
-    <value>Passwort falsch</value>
+    <value>Неправильный пароль</value>
   </data>
   <data name="AddTitle" xml:space="preserve">
-    <value>Hinzufügen</value>
+    <value>Добавить</value>
   </data>
   <data name="CategorySummary" xml:space="preserve">
-    <value>Kategorie Zusammenfassung</value>
+    <value>Суммарная категория</value>
   </data>
   <data name="SpreadingLabel" xml:space="preserve">
-    <value>Kategorienverteilung</value>
+    <value>Категория распространения</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Belastungskonto</value>
+    <value>Выбранный счёт</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Gutschriftkonto</value>
+    <value>Целевой счет</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>Das Enddatum der Wiederkehrenden Transaktion muss in der Zukunft liegen. Bitte überprüfe deine Eingabe.</value>
+    <value>Дата окончания повторений должна быть в будущем. Проверьте введенные данные.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Ungültiges Enddatum</value>
+    <value>Недопустимая дата окончания</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>Nicht jetzt</value>
+    <value>Не сейчас</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>Wir hoffen dass dir unser App gefällt. Unterstütze uns mit einer Bewertung.
-Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
+    <value>Мы надеемся, что вам понравилось наше приложение. Помогите нам с оценкой в магазине. Перейти в магазин для оценки?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
-    <value>Bewerte dieses App</value>
+    <value>Оценить приложение</value>
   </data>
   <data name="HalloWeltText" xml:space="preserve">
     <value>Hallo Welt</value>
   </data>
   <data name="HelloWorldResponse" xml:space="preserve">
-    <value>Hallo Schönheit</value>
+    <value>Hello beautiful</value>
   </data>
   <data name="HelloWorldText" xml:space="preserve">
-    <value>Hello World</value>
+    <value>Здравствуй, мир</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Zweiwöchentlich</value>
+    <value>Раз в две недели</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Kategorie hinzufügen </value>
+    <value>Add Category </value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Kategorie bearbeiten</value>
+    <value>Edit Category</value>
   </data>
 </root>
