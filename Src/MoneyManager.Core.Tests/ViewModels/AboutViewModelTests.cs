@@ -1,6 +1,7 @@
 ﻿using Cirrious.CrossCore.Core;
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 using MoneyManager.TestFoundation;
@@ -25,7 +26,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             var commandCalled = false;
 
             var composeMailSetup = new Mock<IMvxComposeEmailTask>();
-            composeMailSetup.Setup(x => x.ComposeEmail(It.Is<string>(s => s == Strings.SupportMail),
+            composeMailSetup.Setup(x => x.ComposeEmail(It.Is<string>(s => s == Constants.SUPPORT_MAIL),
                 It.IsAny<string>(),
                 It.Is<string>(s => s == Strings.FeedbackSubject),
                 It.IsAny<string>(),
@@ -49,7 +50,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 new Mock<IMvxComposeEmailTask>().Object,
                 new Mock<IMvxWebBrowserTask>().Object,
                 new Mock<IStoreFeatures>().Object)
-                .SupportMail.ShouldBe(Strings.SupportMail);
+                .SupportMail.ShouldBe(Constants.SUPPORT_MAIL);
         }
 
         [Fact]
@@ -59,7 +60,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 new Mock<IMvxComposeEmailTask>().Object,
                 new Mock<IMvxWebBrowserTask>().Object,
                 new Mock<IStoreFeatures>().Object)
-                .Website.ShouldBe(Strings.WebsiteUrl);
+                .Website.ShouldBe(Constants.WEBSITE_URL);
         }
 
         [Fact]
@@ -81,7 +82,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             var commandCalled = false;
 
             var webbrowserTaskSetup = new Mock<IMvxWebBrowserTask>();
-            webbrowserTaskSetup.Setup(x => x.ShowWebPage(It.Is<string>(s => s == Strings.WebsiteUrl)))
+            webbrowserTaskSetup.Setup(x => x.ShowWebPage(It.Is<string>(s => s == Constants.WEBSITE_URL)))
                 .Callback(() => commandCalled = true);
 
             new AboutViewModel(new Mock<IAppInformation>().Object,
@@ -99,7 +100,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             var commandCalled = false;
 
             var webbrowserTaskSetup = new Mock<IMvxWebBrowserTask>();
-            webbrowserTaskSetup.Setup(x => x.ShowWebPage(It.Is<string>(s => s == Strings.GitHubRepositoryUrl)))
+            webbrowserTaskSetup.Setup(x => x.ShowWebPage(It.Is<string>(s => s == Constants.GIT_HUB_REPOSITORY_URL)))
                 .Callback(() => commandCalled = true);
 
             new AboutViewModel(new Mock<IAppInformation>().Object,

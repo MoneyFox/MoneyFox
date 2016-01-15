@@ -136,7 +136,7 @@
     <value>Add Income</value>
   </data>
   <data name="AddSpendingLabel" xml:space="preserve">
-    <value>Add Spending</value>
+    <value>Add Expense</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
     <value>Add Transfer</value>
@@ -190,13 +190,7 @@
     <value>Feedback</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback</value>
-  </data>
-  <data name="GitHubRepositoryUrl" xml:space="preserve">
-    <value>https://github.com/Apply-Solutions/MoneyManager</value>
-  </data>
-  <data name="Homepage" xml:space="preserve">
-    <value>www.apply-solutions.ch</value>
+    <value>Feedback Money Fox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
     <value>Edit Income</value>
@@ -262,7 +256,7 @@
     <value>Settings</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Edit Spending</value>
+    <value>Edit Expense</value>
   </data>
   <data name="StatisticsLabel" xml:space="preserve">
     <value>Statistics</value>
@@ -273,17 +267,11 @@
   <data name="SuccessTitle" xml:space="preserve">
     <value>Success!</value>
   </data>
-  <data name="SupportMail" xml:space="preserve">
-    <value>mobile.support@apply-solutions.ch</value>
-  </data>
   <data name="TaskSuccessfulMessage" xml:space="preserve">
     <value>Task was successful completed.</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
     <value>Edit Transfer</value>
-  </data>
-  <data name="WebsiteUrl" xml:space="preserve">
-    <value>http://www.apply-solutions.ch</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
     <value>Weekly</value>
@@ -301,7 +289,7 @@
     <value>Add Income</value>
   </data>
   <data name="AddSpendingTitle" xml:space="preserve">
-    <value>Add Spending</value>
+    <value>Add Expense</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Add Transfer</value>
@@ -346,7 +334,7 @@
     <value>The enddate of a recurring transaction has to be in the future. Please check your input.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Invalid Enddate</value>
+    <value>Invalid End Date</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
     <value>Not Now</value>
@@ -371,12 +359,9 @@ Do you want to go the the store to rate?</value>
     <value>Biweekly</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>ADD CATEGORY</value>
+    <value>Add Category </value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>EDIT CATEGORY</value>
-  </data>
-  <data name="ReturnUrl" xml:space="preserve">
-    <value>https://login.live.com/oauth20_desktop.srf</value>
+    <value>Edit Category</value>
   </data>
 </root>

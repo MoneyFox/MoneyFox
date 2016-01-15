@@ -18,17 +18,14 @@ namespace MoneyManager.Windows.Concrete
             switch (tileId)
             {
                 case Constants.ADD_INCOME_TILE_ID:
-                    modifyTransactionViewModel.IsEdit = false;
                     ShowViewModel<ModifyTransactionViewModel>(new {typeString = Constants.INCOME_TILE_ID});
                     return true;
 
                 case Constants.ADD_SPENDING_TILE_ID:
-                    modifyTransactionViewModel.IsEdit = false;
                     ShowViewModel<ModifyTransactionViewModel>(new {typeString = Constants.SPENDING_TILE_ID});
                     return true;
 
                 case Constants.ADD_TRANSFER_TILE_ID:
-                    modifyTransactionViewModel.IsEdit = false;
                     ShowViewModel<ModifyTransactionViewModel>(new {typeString = Constants.TRANSFER_TILE_ID});
                     return true;
                 default:

@@ -149,7 +149,7 @@
                             Margin="0,12,0,0"
                             Header="enddate"
                             Visibility="{Binding IsEndless, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert}"
-                            x:Uid="EnddateDatePicker" />
+                            x:Uid="EndDateHeader" />
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
