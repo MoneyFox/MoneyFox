@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
-using AI.XamarinSDK.Abstractions;
 using Cirrious.MvvmCross.ViewModels;
 using Microsoft.OneDrive.Sdk;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
+using Xamarin;
 
 namespace MoneyManager.Core.ViewModels
 {
@@ -29,7 +28,7 @@ namespace MoneyManager.Core.ViewModels
         ///     On Android this needs to be overwritten with an
         ///     instance with the current activity setup.
         /// </summary>
-        private IBackupService BackupService { get; }
+        public IBackupService BackupService { get; }
 
         /// <summary>
         ///     Will create a backup of the database and upload it to onedrive
@@ -81,25 +80,22 @@ namespace MoneyManager.Core.ViewModels
             IsLoading = false;
         }
 
-        private async Task<bool> Login()
+        private async Task Login()
         {
             try
             {
                 IsLoading = true;
                 await BackupService.Login();
                 IsLoading = false;
-                return true;
             }
             catch (ConnectionException)
             {
                 await dialogService.ShowMessage(Strings.LoginFailedTitle, Strings.LoginFailedMessage);
-                return false;
             }
             catch (OneDriveException ex)
             {
-                TelemetryManager.TrackManagedException(ex, true);
+                Insights.Report(ex, Insights.Severity.Error);
                 await dialogService.ShowMessage(Strings.LoginFailedTitle, Strings.LoginFailedMessage);
-                return false;
             }
         }
 

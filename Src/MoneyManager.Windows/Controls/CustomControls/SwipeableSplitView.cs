@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
-using Microsoft.ApplicationInsights;
+using Xamarin;
 
 namespace MoneyManager.Windows.Controls.CustomControls
 {
@@ -430,7 +430,7 @@ namespace MoneyManager.Windows.Controls.CustomControls
                 }
                 catch (Exception ex)
                 {
-                    new TelemetryClient().TrackException(ex);
+                    Insights.Report(ex, Insights.Severity.Error);
                 }
             }
             else
@@ -449,7 +449,7 @@ namespace MoneyManager.Windows.Controls.CustomControls
                 }
                 catch (Exception ex)
                 {
-                    new TelemetryClient().TrackException(ex);
+                    Insights.Report(ex, Insights.Severity.Error);
                 }
             }
             else

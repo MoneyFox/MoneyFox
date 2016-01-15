@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using AI.XamarinSDK.Abstractions;
 using MoneyManager.Foundation.Interfaces;
+using Xamarin;
 
 namespace MoneyManager.Foundation
 {
@@ -21,7 +21,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                TelemetryManager.TrackManagedException(ex, true);
+                Insights.Report(ex, Insights.Severity.Error);
             }
         }
 
@@ -37,7 +37,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                TelemetryManager.TrackManagedException(ex, true);
+                Insights.Report(ex, Insights.Severity.Error);
             }
         }
 
@@ -53,7 +53,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                TelemetryManager.TrackManagedException(ex, true);
+                Insights.Report(ex, Insights.Severity.Error);
             }
             return new List<T>();
         }

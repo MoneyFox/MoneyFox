@@ -22,7 +22,7 @@ namespace MoneyManager.Foundation
         /// <returns>Established SQLiteConnection.</returns>
         public SQLiteConnection GetConnection()
         {
-            return connectionFactory.GetConnection(new SqLiteConfig(Constants.DB_NAME, false));
+            return connectionFactory.GetConnection(new SqLiteConfig(OneDriveAuthenticationConstants.DB_NAME, false));
         }
 
         private void CreateDb()

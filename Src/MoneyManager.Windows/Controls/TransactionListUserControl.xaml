@@ -115,9 +115,9 @@
             <Border Padding="5">
                 <Border HorizontalAlignment="Left">
                     <TextBlock Text="{Binding Group.Key}"
-                               Width="300"
+                               Width="150"
                                Foreground="{StaticResource SystemControlHighlightAccentBrush}"
-                               FontSize="30"
+                               FontSize="18"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center" />
                 </Border>

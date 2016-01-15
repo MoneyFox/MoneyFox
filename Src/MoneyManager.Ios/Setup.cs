@@ -8,6 +8,7 @@ using MoneyManager.Core;
 using MoneyManager.Core.AutoFac;
 using MoneyManager.Localization;
 using UIKit;
+using Xamarin;
 
 namespace MoneyManager.Ios
 {
@@ -44,6 +45,16 @@ namespace MoneyManager.Ios
 
         protected override IMvxApplication CreateApp()
         {
+            var insightKey = "599ff6bfdc79368ff3d5f5629a57c995fe93352e";
+
+#if DEBUG
+            insightKey = Insights.DebugModeKey;
+#endif
+            if (!Insights.IsInitialized)
+            {
+                Insights.Initialize(insightKey);
+            }
+
             Strings.Culture = new Localize().GetCurrentCultureInfo();
 
             return new App();
