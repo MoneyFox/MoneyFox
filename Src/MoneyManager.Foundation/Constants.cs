@@ -8,7 +8,7 @@
         /// <summary>
         ///     Url to the Apply Solutions website
         /// </summary>
-        public	const string WEBSITE_URL = http://www.apply-solutions.ch;
+        public	const string WEBSITE_URL = "http://www.apply-solutions.ch";
 
         /// <summary>
         ///     Mailaddress for support
