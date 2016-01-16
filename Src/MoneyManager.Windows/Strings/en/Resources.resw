@@ -136,16 +136,16 @@
     <value>New Category</value>
   </data>
   <data name="AddIncomeLabel.Label" xml:space="preserve">
-    <value>add income</value>
+    <value>Add Income</value>
   </data>
   <data name="AddSpendingLabel.Label" xml:space="preserve">
-    <value>add spending</value>
+    <value>Add Expense</value>
   </data>
   <data name="AddTransactionTitle.Text" xml:space="preserve">
     <value>Add Transaction</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
-    <value>add transfer</value>
+    <value>Add Transfer</value>
   </data>
   <data name="BackupInformation.Text" xml:space="preserve">
     <value>Your data will be saved to your OneDrive account. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
@@ -243,7 +243,7 @@ Tap to visit the Repository:</value>
     <value>Create Income Tile</value>
   </data>
   <data name="AddSpendingTile.Content" xml:space="preserve">
-    <value>Create Spending Tile</value>
+    <value>Create Expense Tile</value>
   </data>
   <data name="AddTransferTile.Content" xml:space="preserve">
     <value>Create Transfer Tile</value>
@@ -285,7 +285,7 @@ Tap to visit the Repository:</value>
     <value>Show Cashflow on Maintile</value>
   </data>
   <data name="SearchHeader.Header" xml:space="preserve">
-    <value>search</value>
+    <value>Search</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.OffContent" xml:space="preserve">
     <value>No</value>
@@ -301,9 +301,6 @@ Tap to visit the Repository:</value>
   </data>
   <data name="DateDatePicker.Header" xml:space="preserve">
     <value>Date</value>
-  </data>
-  <data name="EnddateDatePicker.Header" xml:space="preserve">
-    <value>End date</value>
   </data>
   <data name="EndlessCheckBox.Content" xml:space="preserve">
     <value>Is Endless</value>
@@ -336,9 +333,9 @@ Tap to visit the Repository:</value>
     <value>Name</value>
   </data>
   <data name="EndDateHeader.Header" xml:space="preserve">
-    <value>end date</value>
+    <value>End Date</value>
   </data>
   <data name="StartDateHeader.Header" xml:space="preserve">
-    <value>start date</value>
+    <value>Start Date</value>
   </data>
 </root>

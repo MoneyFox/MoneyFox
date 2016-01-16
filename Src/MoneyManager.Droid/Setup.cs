@@ -1,6 +1,7 @@
 using Android.Content;
 using Autofac;
 using Cirrious.CrossCore.IoC;
+using Cirrious.CrossCore.Plugins;
 using Cirrious.MvvmCross.Droid.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
@@ -15,6 +16,12 @@ namespace MoneyManager.Droid
         public Setup(Context applicationContext)
             : base(applicationContext)
         {
+        }
+
+        public override void LoadPlugins(IMvxPluginManager pluginManager)
+        {
+            base.LoadPlugins(pluginManager);
+            pluginManager.EnsurePluginLoaded<MvvmCross.Plugins.Messenger.PluginLoader>();
         }
 
         protected override IMvxIoCProvider CreateIocProvider()

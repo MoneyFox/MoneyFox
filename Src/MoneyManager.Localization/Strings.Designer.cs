@@ -107,7 +107,7 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ADD CATEGORY.
+        ///   Looks up a localized string similar to Add Category .
         /// </summary>
         public static string AddCategoryTitle {
             get {
@@ -134,7 +134,7 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Spending.
+        ///   Looks up a localized string similar to Add Expense.
         /// </summary>
         public static string AddSpendingLabel {
             get {
@@ -143,7 +143,7 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Spending.
+        ///   Looks up a localized string similar to Add Expense.
         /// </summary>
         public static string AddSpendingTitle {
             get {
@@ -323,7 +323,7 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EDIT CATEGORY.
+        ///   Looks up a localized string similar to Edit Category.
         /// </summary>
         public static string EditCategoryTitle {
             get {
@@ -350,7 +350,7 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Spending.
+        ///   Looks up a localized string similar to Edit Expense.
         /// </summary>
         public static string EditSpendingTitle {
             get {
@@ -395,20 +395,11 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feedback.
+        ///   Looks up a localized string similar to Feedback Money Fox.
         /// </summary>
         public static string FeedbackSubject {
             get {
                 return ResourceManager.GetString("FeedbackSubject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://github.com/Apply-Solutions/MoneyManager.
-        /// </summary>
-        public static string GitHubRepositoryUrl {
-            get {
-                return ResourceManager.GetString("GitHubRepositoryUrl", resourceCulture);
             }
         }
         
@@ -440,15 +431,6 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to www.apply-solutions.ch.
-        /// </summary>
-        public static string Homepage {
-            get {
-                return ResourceManager.GetString("Homepage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Gains.
         /// </summary>
         public static string IncreaseLabel {
@@ -467,7 +449,7 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Enddate.
+        ///   Looks up a localized string similar to Invalid End Date.
         /// </summary>
         public static string InvalidEnddateTitle {
             get {
@@ -702,15 +684,6 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://login.live.com/oauth20_desktop.srf.
-        /// </summary>
-        public static string ReturnUrl {
-            get {
-                return ResourceManager.GetString("ReturnUrl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Revenue.
         /// </summary>
         public static string RevenueLabel {
@@ -783,15 +756,6 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to mobile.support@apply-solutions.ch.
-        /// </summary>
-        public static string SupportMail {
-            get {
-                return ResourceManager.GetString("SupportMail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Target Account.
         /// </summary>
         public static string TargetAccountLabel {
@@ -806,15 +770,6 @@ namespace MoneyManager.Localization {
         public static string TaskSuccessfulMessage {
             get {
                 return ResourceManager.GetString("TaskSuccessfulMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://www.apply-solutions.ch.
-        /// </summary>
-        public static string WebsiteUrl {
-            get {
-                return ResourceManager.GetString("WebsiteUrl", resourceCulture);
             }
         }
         

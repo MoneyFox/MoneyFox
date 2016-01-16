@@ -4,13 +4,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:customControls="using:MoneyManager.Windows.Controls.CustomControls"
+             xmlns:model="using:MoneyManager.Foundation.Model"
              d:DataContext="{Binding SelectCategoryListView, Source={StaticResource CoreModule}}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
 
     <UserControl.Resources>
-        <DataTemplate x:Key="CategoryTemplate">
+        <DataTemplate x:Key="CategoryTemplate"
+                      x:DataType="model:Category">
             <StackPanel Margin="0,6,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="300"
@@ -26,7 +28,7 @@
                                         Click="DeleteCategory" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <TextBlock Text="{Binding Name}"
+                <TextBlock Text="{x:Bind Name}"
                            Style="{ThemeResource BodyTextBlockStyle}" />
             </StackPanel>
         </DataTemplate>

@@ -8,6 +8,7 @@
                       xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:model="using:MoneyManager.Foundation.Model"
                       mc:Ignorable="d"
                       NavigationCacheMode="Enabled"
                       DataContext="{Binding ModifyTransactionView, Source={StaticResource CoreModule}}"
@@ -17,12 +18,12 @@
         <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
-        <DataTemplate x:Key="ComboBoxTemplate">
+        <DataTemplate x:Key="ComboBoxTemplate" x:DataType="model:Account">
             <StackPanel Margin="0,0,0,12"
                         Orientation="Horizontal">
-                <TextBlock Text="{Binding Name}" />
+                <TextBlock Text="{x:Bind Name}" />
                 <TextBlock Text=" (" />
-                <TextBlock Text="{Binding CurrentBalance, Converter={StaticResource AmountConverter}}" />
+                <TextBlock Text="{x:Bind CurrentBalance, Converter={StaticResource AmountConverter}}" />
                 <TextBlock Text=")" />
             </StackPanel>
         </DataTemplate>
@@ -148,7 +149,7 @@
                             Margin="0,12,0,0"
                             Header="enddate"
                             Visibility="{Binding IsEndless, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert}"
-                            x:Uid="EnddateDatePicker" />
+                            x:Uid="EndDateHeader" />
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>

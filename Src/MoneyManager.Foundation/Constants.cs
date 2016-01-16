@@ -6,6 +6,21 @@
     public class Constants
     {
         /// <summary>
+        ///     Url to the Apply Solutions website
+        /// </summary>
+        public	const string WEBSITE_URL = "http://www.apply-solutions.ch";
+
+        /// <summary>
+        ///     Mailaddress for support
+        /// </summary>
+        public const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
+
+        /// <summary>
+        ///     Url to the GitHub repository
+        /// </summary>
+        public const string GIT_HUB_REPOSITORY_URL = "https://github.com/Apply-Solutions/MoneyManager";
+
+        /// <summary>
         ///     ID string for income shortcuts
         /// </summary>
         public const string INCOME_TILE_ID = "Income";
