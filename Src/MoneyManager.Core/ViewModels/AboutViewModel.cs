@@ -1,4 +1,5 @@
 ﻿using Cirrious.MvvmCross.ViewModels;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 using MvvmCross.Plugins.Email;
@@ -68,22 +69,22 @@ namespace MoneyManager.Core.ViewModels
         ///     Returns the apply solutions webite url from the
         ///     ressource file
         /// </summary>
-        public string Website => Strings.WebsiteUrl;
+        public string Website => Constants.WEBSITE_URL;
 
         /// <summary>
         ///     Returns the mailaddress for support cases from the
         ///     ressource file
         /// </summary>
-        public string SupportMail => Strings.SupportMail;
+        public string SupportMail => Constants.SUPPORT_MAIL;
 
         private void GoToWebsite()
         {
-            webBrowserTask.ShowWebPage(Strings.WebsiteUrl);
+            webBrowserTask.ShowWebPage(Constants.WEBSITE_URL);
         }
 
         private void SendMail()
         {
-            composeEmailTask.ComposeEmail(Strings.SupportMail,
+            composeEmailTask.ComposeEmail(Constants.SUPPORT_MAIL,
                 string.Empty,
                 Strings.FeedbackSubject,
                 string.Empty,
@@ -97,7 +98,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void GoToRepository()
         {
-            webBrowserTask.ShowWebPage(Strings.GitHubRepositoryUrl);
+            webBrowserTask.ShowWebPage(Constants.GIT_HUB_REPOSITORY_URL);
         }
     }
 }

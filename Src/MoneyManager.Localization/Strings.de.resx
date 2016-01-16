@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutLabel" xml:space="preserve">
-    <value>About</value>
+    <value>Info</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>About</value>
+    <value>Info</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Bitte wähle ein Konto aus.</value>
+    <value>Bitte Konto auswählen.</value>
   </data>
   <data name="AccountsLabel" xml:space="preserve">
     <value>Konten</value>
@@ -136,10 +136,7 @@
     <value>Einnahme hinzufügen</value>
   </data>
   <data name="AddSpendingLabel" xml:space="preserve">
-    <value>Ausgaben hinzufügen</value>
-  </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>Hinzufügen</value>
+    <value>Ausgabe hinzufügen</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
     <value>Übertrag hinzufügen</value>
@@ -154,13 +151,13 @@
     <value>Sicherung</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
-    <value>Cashflow</value>
+    <value>Kapitalfluss</value>
   </data>
   <data name="ChangeSubsequentTransactionsMessage" xml:space="preserve">
     <value>Dies ist eine wiederkehrende Zahlung. Möchtest du sie für zukünftige Transaktionen aktualisieren oder nur dieses Mal?</value>
   </data>
   <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
-    <value>Wiederholung aktualisieren</value>
+    <value>Wiederholungen aktualisieren</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>Täglich</value>
@@ -181,37 +178,28 @@
     <value>Löschen?</value>
   </data>
   <data name="DeleteTransactionConfirmationMessage" xml:space="preserve">
-    <value>Möchtest du diese Transaktion wirklich löschen?</value>
+    <value>Möchtest du diese Zahlung wirklich löschen?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
-    <value>Ändern</value>
-  </data>
-  <data name="EditTitle" xml:space="preserve">
-    <value>Ändern</value>
+    <value>Bearbeiten</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Ausgaben</value>
+    <value>Ausgabe</value>
   </data>
   <data name="FeedbackLabel" xml:space="preserve">
-    <value>Feedback</value>
+    <value>Rückmeldung</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback</value>
-  </data>
-  <data name="GitHubRepositoryUrl" xml:space="preserve">
-    <value>https://github.com/Apply-Solutions/MoneyManager</value>
-  </data>
-  <data name="Homepage" xml:space="preserve">
-    <value>www.apply-solutions.ch</value>
+    <value>Rückmeldungen Money Fox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
     <value>Einnahme bearbeiten</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Gewinn</value>
+    <value>Einnahmen</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>Nur das</value>
+    <value>Nur diese</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
     <value>Wir konnten dich nicht einloggen. Bitte prüfe ob du mit dem Internet verbunden bist.</value>
@@ -223,7 +211,7 @@
     <value>Pflichtfeld</value>
   </data>
   <data name="MenuTitle" xml:space="preserve">
-    <value>Menü</value>
+    <value>Menu</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
     <value>Monatlich</value>
@@ -241,10 +229,10 @@
     <value>Keine</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>Bestätigen</value>
+    <value>Ok</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Existierende Sicherungen werden überschrieben.  Möchtest du Fortfahren?</value>
+    <value>Existierende Sicherungen werden überschrieben. Möchtest du Fortfahren?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Überschreiben?</value>
@@ -253,16 +241,16 @@
     <value>Alle aktualisieren</value>
   </data>
   <data name="RestoreFailedMessage" xml:space="preserve">
-    <value>Wiederherstellung fehlgeschlagen!</value>
+    <value>Wiederherstellen fehlgeschlagen!</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Einnahmen</value>
+    <value>Gewinn</value>
   </data>
   <data name="SelectDateTitle" xml:space="preserve">
-    <value>Datum auswählen</value>
+    <value>Datum wählen</value>
   </data>
   <data name="SelectOperationLabel" xml:space="preserve">
-    <value>Aktion wählen</value>
+    <value>Operation auswählen</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
     <value>Einstellungen</value>
@@ -271,7 +259,7 @@
     <value>Ausgabe bearbeiten</value>
   </data>
   <data name="StatisticsLabel" xml:space="preserve">
-    <value>Statistiken</value>
+    <value>Statistik</value>
   </data>
   <data name="StatisticTitle" xml:space="preserve">
     <value>Statistik</value>
@@ -279,20 +267,14 @@
   <data name="SuccessTitle" xml:space="preserve">
     <value>Erfolg!</value>
   </data>
-  <data name="SupportMail" xml:space="preserve">
-    <value>mobile.support@apply-solutions.ch</value>
-  </data>
   <data name="TaskSuccessfulMessage" xml:space="preserve">
-    <value>Auftrag erfolgreich abgeschlossen.</value>
+    <value>Aufgabe wurde Erfolgreich abgeschlossen.</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
     <value>Übertrag bearbeiten</value>
   </data>
-  <data name="WebsiteUrl" xml:space="preserve">
-    <value>http://www.apply-solutions.ch</value>
-  </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>Wöchentlich</value>
+    <value>Wochentlich</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
     <value>Jährlich</value>
@@ -312,6 +294,9 @@
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Übertrag hinzufügen</value>
   </data>
+  <data name="EditTitle" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
     <value>Das Passwort und die Passwortbestätigung waren nicht übereinstimmend. Bitte überprüfe deine Eingabe.</value>
   </data>
@@ -330,11 +315,14 @@
   <data name="PasswordWrongTitle" xml:space="preserve">
     <value>Passwort falsch</value>
   </data>
+  <data name="AddTitle" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
   <data name="CategorySummary" xml:space="preserve">
-    <value>Categoriezusammenfassung</value>
+    <value>Kategorie Zusammenfassung</value>
   </data>
   <data name="SpreadingLabel" xml:space="preserve">
-    <value>Kategorieverteilung</value>
+    <value>Kategorienverteilung</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Belastungskonto</value>
@@ -343,7 +331,7 @@
     <value>Gutschriftkonto</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>Das Enddatum für Wiederkehrende Transaktionen muss in der Zukunft liegen. Bitte überprüfe deine Eingabe.</value>
+    <value>Das Enddatum der Wiederkehrenden Transaktion muss in der Zukunft liegen. Bitte überprüfe deine Eingabe.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Ungültiges Enddatum</value>
@@ -358,16 +346,22 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Bewerte dieses App</value>
   </data>
+  <data name="HalloWeltText" xml:space="preserve">
+    <value>Hallo Welt</value>
+  </data>
   <data name="HelloWorldResponse" xml:space="preserve">
     <value>Hallo Schönheit</value>
+  </data>
+  <data name="HelloWorldText" xml:space="preserve">
+    <value>Hello World</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
     <value>Zweiwöchentlich</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>KATEGORIE HINZUFÜGEN</value>
+    <value>Kategorie hinzufügen </value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>KATEGORIE BEARBEITEN</value>
+    <value>Kategorie bearbeiten</value>
   </data>
 </root>

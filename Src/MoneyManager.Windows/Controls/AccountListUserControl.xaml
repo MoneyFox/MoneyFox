@@ -8,6 +8,7 @@
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:converter="using:MoneyManager.Windows.Converter"
              xmlns:customControls="using:MoneyManager.Windows.Controls.CustomControls"
+             xmlns:model="using:MoneyManager.Foundation.Model"
              DataContext="{Binding AccountListView, Source={StaticResource CoreModule}}"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -16,7 +17,8 @@
     <UserControl.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
-        <DataTemplate x:Key="AccountTemplate">
+        
+        <DataTemplate x:Key="AccountTemplate" x:DataType="model:Account">
             <StackPanel HorizontalAlignment="Stretch"
                         Holding="AccountList_Holding"
                         RightTapped="AccountList_RightTapped"
@@ -33,15 +35,15 @@
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch">
-                    <TextBlock Text="{Binding Name}"
+                    <TextBlock Text="{x:Bind Name}"
                                TextTrimming="CharacterEllipsis"
                                Style="{ThemeResource SubtitleTextBlockStyle}" />
                     <TextBlock TextAlignment="Right"
                                Style="{ThemeResource SubtitleTextBlockStyle}"
-                               Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                               Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                HorizontalAlignment="Right" />
                 </Grid>
-                <TextBlock Text="{Binding Iban}"
+                <TextBlock Text="{x:Bind Iban}"
                            Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
             </StackPanel>
         </DataTemplate>

@@ -48,7 +48,7 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         /// <param name="typeString">Type of the transaction.</param>
         /// <param name="isEdit">Weather the transaction is in edit mode or not.</param>
-        public void Init(bool isEdit, string typeString)
+        public void Init(string typeString, bool isEdit = false)
         {
             IsEdit = isEdit;
             IsEndless = true;
@@ -230,12 +230,12 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Indicates if the view is in Edit mode.
         /// </summary>
-        public bool IsEdit { get; set; }
+        public bool IsEdit { get; private set; }
 
         /// <summary>
         ///     Indicates if the transaction is a transfer.
         /// </summary>
-        public bool IsTransfer { get; set; }
+        public bool IsTransfer { get; private set; }
 
         /// <summary>
         ///     Indicates if the reminder is endless

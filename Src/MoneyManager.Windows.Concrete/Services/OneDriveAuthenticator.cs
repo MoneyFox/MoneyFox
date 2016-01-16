@@ -1,15 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Windows.Concrete.Services
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        private const string MSA_CLIENT_ID = "ID";
-
         private readonly IDialogService dialogService;
-        private readonly string[] scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly"};
 
         private IOneDriveClient oneDriveClient;
 
@@ -22,7 +20,7 @@ namespace MoneyManager.Windows.Concrete.Services
         {
             if (oneDriveClient == null)
             {
-                oneDriveClient = OneDriveClientExtensions.GetClientUsingWebAuthenticationBroker(MSA_CLIENT_ID, scopes);
+                oneDriveClient = OneDriveClientExtensions.GetClientUsingWebAuthenticationBroker(OneDriveAuthenticationConstants.MSA_CLIENT_ID, OneDriveAuthenticationConstants.Scopes);
                 await oneDriveClient.AuthenticateAsync();
             }
 
