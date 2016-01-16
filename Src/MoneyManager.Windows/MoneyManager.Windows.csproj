@@ -103,8 +103,9 @@
     <None Include="MoneyManager.Windows_StoreKey.pfx" />
     <None Include="MoneyManager.Windows_TemporaryKey.pfx" />
     <None Include="project.json" />
-    <PRIResource Include="Strings\en\Resources.resw" />
     <PRIResource Include="Strings\de\Resources.resw" />
+    <PRIResource Include="Strings\ru\Resources.resw" />
+    <PRIResource Include="Strings\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -429,8 +430,8 @@
     <SDKReference Include="Microsoft.NET.Native.Runtime.1.1, Version=1.1">
       <Name>Microsoft .NET Native Runtime Package for Windows</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.UAP.2015, Version=3.10.0">
-      <Name>SQLite for Universal App Platform %28SQLite.UAP.2015, Version=3.10.0%29</Name>
+    <SDKReference Include="SQLite.UAP.2015, Version=3.10.1">
+      <Name>SQLite for Universal App Platform</Name>
     </SDKReference>
     <SDKReference Include="WindowsDesktop, Version=10.0.10586.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
