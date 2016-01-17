@@ -6,9 +6,9 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Windows.Views.UserControls
 {
-    public partial class TransactionListUserControl
+    public partial class PaymentListUserControl
     {
-        public TransactionListUserControl()
+        public PaymentListUserControl()
         {
             InitializeComponent();
 

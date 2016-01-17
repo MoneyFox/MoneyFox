@@ -12,9 +12,9 @@ using Xamarin;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class ModifyTransactionView
+    public sealed partial class ModifyPaymentView
     {
-        public ModifyTransactionView()
+        public ModifyPaymentView()
         {
             InitializeComponent();
 

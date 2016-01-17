@@ -147,8 +147,8 @@
     <Compile Include="Views\UserControls\TileSettingsUserControl.xaml.cs">
       <DependentUpon>TileSettingsUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\TransactionListUserControl.xaml.cs">
-      <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
+      <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\CultureConverter.cs" />
@@ -177,8 +177,8 @@
     <Compile Include="Views\ModifyAccountView.xaml.cs">
       <DependentUpon>ModifyAccountView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ModifyTransactionView.xaml.cs">
-      <DependentUpon>ModifyTransactionView.xaml</DependentUpon>
+    <Compile Include="Views\ModifyPaymentView.xaml.cs">
+      <DependentUpon>ModifyPaymentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -195,8 +195,8 @@
     <Compile Include="Views\StatisticsView.xaml.cs">
       <DependentUpon>StatisticsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TransactionListView.xaml.cs">
-      <DependentUpon>TransactionListView.xaml</DependentUpon>
+    <Compile Include="Views\PaymentListView.xaml.cs">
+      <DependentUpon>PaymentListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsModule.cs" />
   </ItemGroup>
@@ -343,7 +343,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\TransactionListUserControl.xaml">
+    <Page Include="Views\UserControls\PaymentListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -379,7 +379,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ModifyTransactionView.xaml">
+    <Page Include="Views\ModifyPaymentView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -403,7 +403,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TransactionListView.xaml">
+    <Page Include="Views\PaymentListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

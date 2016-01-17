@@ -1,8 +1,8 @@
 ﻿namespace MoneyManager.Windows.Views
 {
-    public sealed partial class TransactionListView
+    public sealed partial class PaymentListView
     {
-        public TransactionListView()
+        public PaymentListView()
         {
             InitializeComponent();
         }

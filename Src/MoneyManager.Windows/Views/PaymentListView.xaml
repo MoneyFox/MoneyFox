@@ -5,7 +5,7 @@
                       xmlns:userControls="using:MoneyManager.Windows.Controls"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
                       xmlns:userControls1="using:MoneyManager.Windows.Views.UserControls"
-                      x:Class="MoneyManager.Windows.Views.TransactionListView"
+                      x:Class="MoneyManager.Windows.Views.PaymentListView"
                       mc:Ignorable="d"
                       NavigationCacheMode="Disabled"
                       DataContext="{Binding TransactionListView, Source={StaticResource CoreModule}}"
@@ -55,7 +55,7 @@
         <Grid Grid.Row="1"
               Margin="0,9.5,0,0"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <userControls1:TransactionListUserControl />
+            <userControls1:PaymentListUserControl />
         </Grid>
     </Grid>
 </views:MvxWindowsPage>
