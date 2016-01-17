@@ -14,12 +14,12 @@ namespace MoneyManager.Core.Helpers
         /// <param name="recurrence">How often the transaction shall be repeated.</param>
         /// <param name="enddate">Enddate for the recurring transaction if it's not endless.</param>
         /// <returns>The new created recurring transaction</returns>
-        public static RecurringTransaction GetRecurringFromFinancialTransaction(FinancialTransaction transaction,
+        public static RecurringPayment GetRecurringFromFinancialTransaction(Payment transaction,
             bool isEndless,
             int recurrence,
             DateTime enddate = new DateTime())
         {
-            return new RecurringTransaction
+            return new RecurringPayment
             {
                 Id = transaction.ReccuringTransactionId,
                 ChargedAccount = transaction.ChargedAccount,
@@ -41,44 +41,44 @@ namespace MoneyManager.Core.Helpers
         /// <summary>
         ///     Creates an Financial Transaction based on the Recurring transaction.
         /// </summary>
-        /// <param name="recurringTransaction">The Recurring Transaction the new Transaction shall be based on.</param>
+        /// <param name="recurringPayment">The Recurring Transaction the new Transaction shall be based on.</param>
         /// <returns>The new created Financial Transaction</returns>
-        public static FinancialTransaction GetFinancialTransactionFromRecurring(
-            RecurringTransaction recurringTransaction)
+        public static Payment GetFinancialTransactionFromRecurring(
+            RecurringPayment recurringPayment)
         {
             var date = DateTime.Today;
 
             //If the transaction is monthly we want it on the same day of month again.
-            if (recurringTransaction.Recurrence == (int) TransactionRecurrence.Monthly)
+            if (recurringPayment.Recurrence == (int) TransactionRecurrence.Monthly)
             {
-                date = DateTime.Today.AddDays(recurringTransaction.StartDate.Day - DateTime.Today.Day);
+                date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
             }
 
-            return new FinancialTransaction
+            return new Payment
             {
-                ChargedAccount = recurringTransaction.ChargedAccount,
-                ChargedAccountId = recurringTransaction.ChargedAccountId,
-                TargetAccount = recurringTransaction.TargetAccount,
-                TargetAccountId = recurringTransaction.TargetAccountId,
+                ChargedAccount = recurringPayment.ChargedAccount,
+                ChargedAccountId = recurringPayment.ChargedAccountId,
+                TargetAccount = recurringPayment.TargetAccount,
+                TargetAccountId = recurringPayment.TargetAccountId,
                 Date = date,
                 IsRecurring = true,
-                Amount = recurringTransaction.Amount,
-                Category = recurringTransaction.Category,
-                CategoryId = recurringTransaction.CategoryId,
-                Type = recurringTransaction.Type,
-                ReccuringTransactionId = recurringTransaction.Id,
-                RecurringTransaction = recurringTransaction,
-                Note = recurringTransaction.Note
+                Amount = recurringPayment.Amount,
+                Category = recurringPayment.Category,
+                CategoryId = recurringPayment.CategoryId,
+                Type = recurringPayment.Type,
+                ReccuringTransactionId = recurringPayment.Id,
+                RecurringPayment = recurringPayment,
+                Note = recurringPayment.Note
             };
         }
 
         /// <summary>
         ///     Checks if the recurring Transaction is up for a repetition based on the passed Financial Transaction
         /// </summary>
-        /// <param name="recTrans">RecurringTransaction to check.</param>
+        /// <param name="recTrans">RecurringPayment to check.</param>
         /// <param name="relTransaction">Reference Transaction</param>
         /// <returns>True or False if the transaction have to be repeated.</returns>
-        public static bool CheckIfRepeatable(RecurringTransaction recTrans, FinancialTransaction relTransaction)
+        public static bool CheckIfRepeatable(RecurringPayment recTrans, Payment relTransaction)
         {
             if (!relTransaction.IsCleared) return false;
 

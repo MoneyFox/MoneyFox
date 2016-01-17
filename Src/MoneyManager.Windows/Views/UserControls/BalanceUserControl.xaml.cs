@@ -1,7 +1,7 @@
 ﻿using Cirrious.CrossCore;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 
-namespace MoneyManager.Windows.Controls
+namespace MoneyManager.Windows.Views.UserControls
 {
     public sealed partial class BalanceUserControl
     {

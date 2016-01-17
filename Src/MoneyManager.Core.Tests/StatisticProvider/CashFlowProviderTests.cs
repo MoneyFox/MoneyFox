@@ -27,23 +27,23 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             transactionRepoSetup.SetupAllProperties();
 
             var transactionRepo = transactionRepoSetup.Object;
-            transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
+            transactionRepo.Data = new ObservableCollection<Payment>(new List<Payment>
             {
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 1,
                     Type = (int) TransactionType.Income,
                     Date = DateTime.Today,
                     Amount = 60
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 2,
                     Type = (int) TransactionType.Spending,
                     Date = DateTime.Today,
                     Amount = 50
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 3,
                     Type = (int) TransactionType.Transfer,
@@ -70,23 +70,23 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             transactionRepoSetup.SetupAllProperties();
 
             var transactionRepo = transactionRepoSetup.Object;
-            transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
+            transactionRepo.Data = new ObservableCollection<Payment>(new List<Payment>
             {
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 1,
                     Type = (int) TransactionType.Spending,
                     Date = DateTime.Today,
                     Amount = 60
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 2,
                     Type = (int) TransactionType.Spending,
                     Date = DateTime.Today.AddDays(5),
                     Amount = 50
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 3,
                     Type = (int) TransactionType.Spending,

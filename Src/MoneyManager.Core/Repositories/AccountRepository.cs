@@ -88,7 +88,7 @@ namespace MoneyManager.Core.Repositories
         ///     Adds the transaction Amount from the selected account
         /// </summary>
         /// <param name="transaction">Transaction to add the account from.</param>
-        public void AddTransactionAmount(FinancialTransaction transaction)
+        public void AddTransactionAmount(Payment transaction)
         {
             if (!transaction.IsCleared) return;
 
@@ -106,7 +106,7 @@ namespace MoneyManager.Core.Repositories
         ///     Removes the transaction Amount from the selected account
         /// </summary>
         /// <param name="transaction">Transaction to remove the account from.</param>
-        public void RemoveTransactionAmount(FinancialTransaction transaction)
+        public void RemoveTransactionAmount(Payment transaction)
         {
             if (!transaction.IsCleared) return;
 
@@ -120,7 +120,7 @@ namespace MoneyManager.Core.Repositories
             HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
         }
 
-        private void PrehandleRemoveIfTransfer(FinancialTransaction transaction)
+        private void PrehandleRemoveIfTransfer(Payment transaction)
         {
             if (transaction.Type == (int) TransactionType.Transfer)
             {
@@ -129,9 +129,9 @@ namespace MoneyManager.Core.Repositories
             }
         }
 
-        private void HandleTransactionAmount(FinancialTransaction transaction,
+        private void HandleTransactionAmount(Payment transaction,
             Func<double, double> amountFunc,
-            Func<FinancialTransaction, Account> getAccountFunc)
+            Func<Payment, Account> getAccountFunc)
         {
             var account = getAccountFunc(transaction);
             if (account == null)
@@ -143,7 +143,7 @@ namespace MoneyManager.Core.Repositories
             Save(account);
         }
 
-        private void PrehandleAddIfTransfer(FinancialTransaction transaction)
+        private void PrehandleAddIfTransfer(Payment transaction)
         {
             if (transaction.Type == (int) TransactionType.Transfer)
             {
@@ -152,16 +152,16 @@ namespace MoneyManager.Core.Repositories
             }
         }
 
-        private Func<FinancialTransaction, Account> GetTargetAccountFunc()
+        private Func<Payment, Account> GetTargetAccountFunc()
         {
-            Func<FinancialTransaction, Account> targetAccountFunc =
+            Func<Payment, Account> targetAccountFunc =
                 trans => Data.FirstOrDefault(x => x.Id == trans.TargetAccountId);
             return targetAccountFunc;
         }
 
-        private Func<FinancialTransaction, Account> GetChargedAccountFunc()
+        private Func<Payment, Account> GetChargedAccountFunc()
         {
-            Func<FinancialTransaction, Account> accountFunc =
+            Func<Payment, Account> accountFunc =
                 trans => Data.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
             return accountFunc;
         }

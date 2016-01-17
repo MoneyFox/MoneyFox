@@ -2,7 +2,7 @@
 using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels.Statistics;
 
-namespace MoneyManager.Windows.Controls.StatisticControls
+namespace MoneyManager.Windows.Views.UserControls
 {
     public sealed partial class CashFlowUserControl : IDisposable
     {

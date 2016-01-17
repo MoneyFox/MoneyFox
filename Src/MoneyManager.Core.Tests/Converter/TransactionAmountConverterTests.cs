@@ -26,7 +26,7 @@ namespace MoneyManager.Core.Tests.Converter
         [InlineData(TransactionType.Income, "+ ")]
         public void Converter_Transaction_AmountSign(TransactionType type, string result)
         {
-            new TransactionAmountConverter().Convert(new FinancialTransaction {Amount = 80, Type = (int) type}, null,
+            new TransactionAmountConverter().Convert(new Payment {Amount = 80, Type = (int) type}, null,
                 null, null).ShouldBe(result + 80.ToString("C"));
         }
 
@@ -46,7 +46,7 @@ namespace MoneyManager.Core.Tests.Converter
             Mvx.RegisterSingleton(mock.Object);
 
             new TransactionAmountConverter()
-                .Convert(new FinancialTransaction
+                .Convert(new Payment
                 {
                     Amount = 80,
                     Type = (int) TransactionType.Transfer,
@@ -71,7 +71,7 @@ namespace MoneyManager.Core.Tests.Converter
             Mvx.RegisterSingleton(mock.Object);
 
             new TransactionAmountConverter()
-                .Convert(new FinancialTransaction
+                .Convert(new Payment
                 {
                     Amount = 80,
                     Type = (int) TransactionType.Transfer,

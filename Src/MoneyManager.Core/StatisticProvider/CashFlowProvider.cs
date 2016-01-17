@@ -27,7 +27,7 @@ namespace MoneyManager.Core.StatisticProvider
         public CashFlow GetValues(DateTime startDate, DateTime endDate)
         {
             var transactionListFunc =
-                new Func<List<FinancialTransaction>>(() =>
+                new Func<List<Payment>>(() =>
                     transactionRepository.Data
                         .Where(x => x.Type != (int) TransactionType.Transfer)
                         .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
@@ -37,7 +37,7 @@ namespace MoneyManager.Core.StatisticProvider
         }
 
         private CashFlow GetCashFlowStatisticItems(
-            Func<List<FinancialTransaction>> getTransactionListFunc)
+            Func<List<Payment>> getTransactionListFunc)
         {
             var transactionList = getTransactionListFunc();
 

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MoneyManager.Windows.Controls.TransactionListUserControl"
+﻿<UserControl x:Class="MoneyManager.Windows.Views.UserControls.TransactionListUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,8 +7,8 @@
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:converter="using:MoneyManager.Windows.Converter"
-             xmlns:customControls="using:MoneyManager.Windows.Controls.CustomControls"
              xmlns:model="using:MoneyManager.Foundation.Model"
+             xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
              DataContext="{Binding TransactionListView, Source={StaticResource CoreModule}}"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -27,7 +27,7 @@
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
 
-        <DataTemplate x:Key="TransactionTemplate" x:DataType="model:FinancialTransaction">
+        <DataTemplate x:Key="TransactionTemplate" x:DataType="model:Payment">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
@@ -131,11 +131,11 @@
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <controls:BalanceUserControl />
+        <userControls:BalanceUserControl />
 
         <SemanticZoom>
             <SemanticZoom.ZoomedInView>
-                <customControls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
                                                        EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
                                                        ItemsSource="{Binding Source={StaticResource TransactionGroups}}"
                                                        ItemTemplate="{StaticResource TransactionTemplate}"
@@ -161,7 +161,7 @@
                         <GroupStyle HidesIfEmpty="True"
                                     HeaderTemplate="{StaticResource MonthGroupHeaderTemplate}" />
                     </ListView.GroupStyle>
-                </customControls:AlternatingRowListView>
+                </controls:AlternatingRowListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView Margin="0,12,0,0"

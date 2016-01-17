@@ -25,15 +25,15 @@ namespace MoneyManager.Core.Manager
             {
                 var relTransaction = GetLastOccurence(transaction);
 
-                if (RecurringTransactionHelper.CheckIfRepeatable(transaction.RecurringTransaction, relTransaction))
+                if (RecurringTransactionHelper.CheckIfRepeatable(transaction.RecurringPayment, relTransaction))
                 {
                     transactionRepository.Save(
-                        RecurringTransactionHelper.GetFinancialTransactionFromRecurring(transaction.RecurringTransaction));
+                        RecurringTransactionHelper.GetFinancialTransactionFromRecurring(transaction.RecurringPayment));
                 }
             }
         }
 
-        private FinancialTransaction GetLastOccurence(FinancialTransaction transaction)
+        private Payment GetLastOccurence(Payment transaction)
         {
             var transcationList = transactionRepository.Data
                 .Where(x => x.ReccuringTransactionId == transaction.ReccuringTransactionId)

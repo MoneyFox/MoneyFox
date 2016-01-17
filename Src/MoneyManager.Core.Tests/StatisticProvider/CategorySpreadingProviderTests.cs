@@ -38,9 +38,9 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             });
 
             var transactionRepo = transactionRepoSetup.Object;
-            transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
+            transactionRepo.Data = new ObservableCollection<Payment>(new List<Payment>
             {
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 1,
                     Type = (int) TransactionType.Income,
@@ -49,7 +49,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data.First(),
                     CategoryId = 1
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 2,
                     Type = (int) TransactionType.Spending,
@@ -58,7 +58,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data.First(),
                     CategoryId = 1
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 3,
                     Type = (int) TransactionType.Transfer,
@@ -98,9 +98,9 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             });
 
             var transactionRepo = transactionRepoSetup.Object;
-            transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
+            transactionRepo.Data = new ObservableCollection<Payment>(new List<Payment>
             {
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 1,
                     Type = (int) TransactionType.Income,
@@ -109,7 +109,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[0],
                     CategoryId = 1
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 2,
                     Type = (int) TransactionType.Spending,
@@ -118,7 +118,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[0],
                     CategoryId = 1
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 3,
                     Type = (int) TransactionType.Spending,
@@ -127,7 +127,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[1],
                     CategoryId = 2
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 3,
                     Type = (int) TransactionType.Income,
@@ -166,9 +166,9 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             });
 
             var transactionRepo = transactionRepoSetup.Object;
-            transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
+            transactionRepo.Data = new ObservableCollection<Payment>(new List<Payment>
             {
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 1,
                     Type = (int) TransactionType.Income,
@@ -177,7 +177,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[0],
                     CategoryId = 1
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 2,
                     Type = (int) TransactionType.Spending,
@@ -217,9 +217,9 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             });
 
             var transactionRepo = transactionRepoSetup.Object;
-            transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
+            transactionRepo.Data = new ObservableCollection<Payment>(new List<Payment>
             {
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 1,
                     Type = (int) TransactionType.Spending,
@@ -228,7 +228,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[0],
                     CategoryId = 1
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 2,
                     Type = (int) TransactionType.Spending,
@@ -237,7 +237,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[1],
                     CategoryId = 2
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 3,
                     Type = (int) TransactionType.Spending,
@@ -282,9 +282,9 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             });
 
             var transactionRepo = transactionRepoSetup.Object;
-            transactionRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction>
+            transactionRepo.Data = new ObservableCollection<Payment>(new List<Payment>
             {
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 1,
                     Type = (int) TransactionType.Spending,
@@ -293,7 +293,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[0],
                     CategoryId = 1
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 2,
                     Type = (int) TransactionType.Spending,
@@ -302,7 +302,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[1],
                     CategoryId = 2
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 3,
                     Type = (int) TransactionType.Spending,
@@ -311,7 +311,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[2],
                     CategoryId = 3
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 3,
                     Type = (int) TransactionType.Spending,
@@ -320,7 +320,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[3],
                     CategoryId = 4
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 3,
                     Type = (int) TransactionType.Spending,
@@ -329,7 +329,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[4],
                     CategoryId = 5
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 3,
                     Type = (int) TransactionType.Spending,
@@ -338,7 +338,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[5],
                     CategoryId = 6
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 3,
                     Type = (int) TransactionType.Spending,
@@ -347,7 +347,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                     Category = categoryRepo.Data[6],
                     CategoryId = 7
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 3,
                     Type = (int) TransactionType.Spending,

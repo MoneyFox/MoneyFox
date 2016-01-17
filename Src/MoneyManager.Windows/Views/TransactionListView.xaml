@@ -4,7 +4,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyManager.Windows.Controls"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
-                      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
+                      xmlns:userControls1="using:MoneyManager.Windows.Views.UserControls"
                       x:Class="MoneyManager.Windows.Views.TransactionListView"
                       mc:Ignorable="d"
                       NavigationCacheMode="Disabled"
@@ -45,17 +45,17 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <basicControls:PageHeader>
-            <basicControls:PageHeader.HeaderContent>
+        <userControls1:PageHeader>
+            <userControls1:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="{Binding Title}" />
-            </basicControls:PageHeader.HeaderContent>
-        </basicControls:PageHeader>
+            </userControls1:PageHeader.HeaderContent>
+        </userControls1:PageHeader>
 
         <Grid Grid.Row="1"
               Margin="0,9.5,0,0"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <userControls:TransactionListUserControl />
+            <userControls1:TransactionListUserControl />
         </Grid>
     </Grid>
 </views:MvxWindowsPage>

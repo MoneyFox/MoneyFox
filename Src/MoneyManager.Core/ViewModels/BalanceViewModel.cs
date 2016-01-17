@@ -76,7 +76,7 @@ namespace MoneyManager.Core.ViewModels
             return balance;
         }
 
-        private double HandleTransferAmount(FinancialTransaction transaction, double balance)
+        private double HandleTransferAmount(Payment transaction, double balance)
         {
             if (accountRepository.Selected == transaction.ChargedAccount)
             {
@@ -89,7 +89,7 @@ namespace MoneyManager.Core.ViewModels
             return balance;
         }
 
-        private IEnumerable<FinancialTransaction> LoadUnclreadTransactions()
+        private IEnumerable<Payment> LoadUnclreadTransactions()
         {
             var unclearedTransactions =
                 transactionRepository.GetUnclearedTransactions(Utilities.GetEndOfMonth());

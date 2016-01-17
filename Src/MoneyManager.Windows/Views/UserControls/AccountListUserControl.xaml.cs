@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Input;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Windows.Controls
+namespace MoneyManager.Windows.Views.UserControls
 {
     public sealed partial class AccountListUserControl
     {

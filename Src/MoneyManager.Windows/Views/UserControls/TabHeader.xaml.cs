@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
 
-namespace MoneyManager.Windows.Controls.BasicControls
+namespace MoneyManager.Windows.Views.UserControls
 {
     public sealed partial class TabHeader
     {

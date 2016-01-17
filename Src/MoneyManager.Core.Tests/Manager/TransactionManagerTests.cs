@@ -32,7 +32,7 @@ namespace MoneyManager.Core.Tests.Manager
                 CurrentBalance = 900
             };
 
-            var trans1 = new FinancialTransaction
+            var trans1 = new Payment
             {
                 Id = 1,
                 ChargedAccount = account1,
@@ -41,16 +41,16 @@ namespace MoneyManager.Core.Tests.Manager
 
             var transRepoSetup = new Mock<ITransactionRepository>();
             transRepoSetup.SetupAllProperties();
-            transRepoSetup.Setup(x => x.Delete(It.IsAny<FinancialTransaction>()))
-                .Callback((FinancialTransaction trans) => resultList.Add(trans.Id));
+            transRepoSetup.Setup(x => x.Delete(It.IsAny<Payment>()))
+                .Callback((Payment trans) => resultList.Add(trans.Id));
             transRepoSetup.Setup(x => x.GetRelatedTransactions(It.IsAny<Account>()))
-                .Returns(new List<FinancialTransaction>
+                .Returns(new List<Payment>
                 {
                     trans1
                 });
 
             var repo = transRepoSetup.Object;
-            repo.Data = new ObservableCollection<FinancialTransaction>();
+            repo.Data = new ObservableCollection<Payment>();
 
             new TransactionManager(repo, new Mock<IAccountRepository>().Object, new Mock<IDialogService>().Object)
                 .DeleteAssociatedTransactionsFromDatabase(account1);
@@ -74,7 +74,7 @@ namespace MoneyManager.Core.Tests.Manager
             var result = await new TransactionManager(new Mock<ITransactionRepository>().Object,
                 new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object)
-                .CheckForRecurringTransaction(new FinancialTransaction {IsRecurring = false});
+                .CheckForRecurringTransaction(new Payment {IsRecurring = false});
 
             result.ShouldBeFalse();
         }
@@ -94,7 +94,7 @@ namespace MoneyManager.Core.Tests.Manager
             var result = await new TransactionManager(new Mock<ITransactionRepository>().Object,
                 new Mock<IAccountRepository>().Object,
                 dialogService.Object)
-                .CheckForRecurringTransaction(new FinancialTransaction {IsRecurring = true});
+                .CheckForRecurringTransaction(new Payment {IsRecurring = true});
 
             result.ShouldBe(userAnswer);
         }
@@ -102,11 +102,11 @@ namespace MoneyManager.Core.Tests.Manager
         [Fact]
         public void RemoveRecurringForTransactions_RecTrans_TransactionPropertiesProperlyChanged()
         {
-            var trans = new FinancialTransaction
+            var trans = new Payment
             {
                 Id = 2,
                 ReccuringTransactionId = 3,
-                RecurringTransaction = new RecurringTransaction {Id = 3},
+                RecurringPayment = new RecurringPayment {Id = 3},
                 IsRecurring = true
             };
 
@@ -114,11 +114,11 @@ namespace MoneyManager.Core.Tests.Manager
             transRepoSetup.SetupAllProperties();
 
             var transRepo = transRepoSetup.Object;
-            transRepo.Data = new ObservableCollection<FinancialTransaction>(new List<FinancialTransaction> {trans});
+            transRepo.Data = new ObservableCollection<Payment>(new List<Payment> {trans});
 
             new TransactionManager(transRepo,
                 new Mock<IAccountRepository>().Object,
-                new Mock<IDialogService>().Object).RemoveRecurringForTransactions(trans.RecurringTransaction);
+                new Mock<IDialogService>().Object).RemoveRecurringForTransactions(trans.RecurringPayment);
 
             trans.IsRecurring.ShouldBeFalse();
             trans.ReccuringTransactionId.ShouldBe(0);

@@ -5,10 +5,10 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:converter="using:MoneyManager.Windows.Converter"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
-                      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:model="using:MoneyManager.Foundation.Model"
+                      xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
                       mc:Ignorable="d"
                       NavigationCacheMode="Enabled"
                       DataContext="{Binding ModifyTransactionView, Source={StaticResource CoreModule}}"
@@ -56,13 +56,13 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <basicControls:PageHeader>
-            <basicControls:PageHeader.HeaderContent>
+        <userControls:PageHeader>
+            <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="Add Transaction"
                            x:Uid="ModifyTransactionViewTitle" />
-            </basicControls:PageHeader.HeaderContent>
-        </basicControls:PageHeader>
+            </userControls:PageHeader.HeaderContent>
+        </userControls:PageHeader>
 
         <Grid Grid.Row="1"
               EntranceNavigationTransitionInfo.IsTargetElement="True">

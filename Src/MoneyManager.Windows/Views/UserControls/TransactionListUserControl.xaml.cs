@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Input;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Windows.Controls
+namespace MoneyManager.Windows.Views.UserControls
 {
     public partial class TransactionListUserControl
     {
@@ -17,7 +17,7 @@ namespace MoneyManager.Windows.Controls
         private void EditTransaction(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var transaction = element.DataContext as FinancialTransaction;
+            var transaction = element.DataContext as Payment;
             if (transaction == null)
             {
                 return;
@@ -32,7 +32,7 @@ namespace MoneyManager.Windows.Controls
         private void DeleteTransaction(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var transaction = element.DataContext as FinancialTransaction;
+            var transaction = element.DataContext as Payment;
             if (transaction == null)
             {
                 return;

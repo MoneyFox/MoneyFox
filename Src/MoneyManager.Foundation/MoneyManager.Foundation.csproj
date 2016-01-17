@@ -68,8 +68,8 @@
     <Compile Include="Interfaces\ISqliteConnectionCreator.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\FinancialTransaction.cs" />
-    <Compile Include="Model\RecurringTransaction.cs" />
+    <Compile Include="Model\Payment.cs" />
+    <Compile Include="Model\RecurringPayment.cs" />
     <Compile Include="Model\StatisticItem.cs" />
     <Compile Include="Interfaces\IAppInformation.cs" />
     <Compile Include="Interfaces\IBackupService.cs" />

@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.Windows.Controls
+﻿namespace MoneyManager.Windows.Views.UserControls
 {
     public sealed partial class PasswordUserControl
     {

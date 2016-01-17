@@ -44,7 +44,7 @@ namespace MoneyManager.Core.Manager
             }
         }
 
-        public async Task<bool> CheckForRecurringTransaction(FinancialTransaction transaction)
+        public async Task<bool> CheckForRecurringTransaction(Payment transaction)
         {
             if (!transaction.IsRecurring)
             {
@@ -85,7 +85,7 @@ namespace MoneyManager.Core.Manager
             }
         }
 
-        public void RemoveRecurringForTransactions(RecurringTransaction recTrans)
+        public void RemoveRecurringForTransactions(RecurringPayment recTrans)
         {
             try
             {

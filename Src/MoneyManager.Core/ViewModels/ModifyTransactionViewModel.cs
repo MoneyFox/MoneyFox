@@ -76,12 +76,12 @@ namespace MoneyManager.Core.ViewModels
             // set the private amount property. This will get properly formatted and then displayed.
             amount = SelectedTransaction.Amount;
             Recurrence = SelectedTransaction.IsRecurring
-                ? SelectedTransaction.RecurringTransaction.Recurrence
+                ? SelectedTransaction.RecurringPayment.Recurrence
                 : 0;
             EndDate = SelectedTransaction.IsRecurring
-                ? SelectedTransaction.RecurringTransaction.EndDate
+                ? SelectedTransaction.RecurringPayment.EndDate
                 : DateTime.Now;
-            IsEndless = !SelectedTransaction.IsRecurring || SelectedTransaction.RecurringTransaction.IsEndless;
+            IsEndless = !SelectedTransaction.IsRecurring || SelectedTransaction.RecurringPayment.IsEndless;
 
         }
 
@@ -97,7 +97,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void SetDefaultTransaction(TransactionType transactionType)
         {
-            SelectedTransaction = new FinancialTransaction
+            SelectedTransaction = new Payment
             {
                 Type = (int) transactionType,
                 Date = DateTime.Now,
@@ -147,7 +147,7 @@ namespace MoneyManager.Core.ViewModels
             if ((IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction))
                 || SelectedTransaction.IsRecurring)
             {
-                SelectedTransaction.RecurringTransaction = RecurringTransactionHelper.
+                SelectedTransaction.RecurringPayment = RecurringTransactionHelper.
                     GetRecurringFromFinancialTransaction(SelectedTransaction,
                         IsEndless,
                         Recurrence,
@@ -289,7 +289,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     The selected transaction
         /// </summary>
-        public FinancialTransaction SelectedTransaction
+        public Payment SelectedTransaction
         {
             get { return transactionRepository.Selected; }
             set { transactionRepository.Selected = value; }

@@ -70,11 +70,11 @@ namespace MoneyManager.Core.Tests.ViewModels
             var testEndDate = new DateTime(2099, 1, 31);
 
             var transactionRepositorySetup = new Mock<ITransactionRepository>();
-            transactionRepositorySetup.SetupGet(x => x.Selected).Returns(new FinancialTransaction
+            transactionRepositorySetup.SetupGet(x => x.Selected).Returns(new Payment
             {
                 Type = (int) TransactionType.Income,
                 IsRecurring = true,
-                RecurringTransaction = new RecurringTransaction
+                RecurringPayment = new RecurringPayment
                 {
                     EndDate = testEndDate
                 }
@@ -108,8 +108,8 @@ namespace MoneyManager.Core.Tests.ViewModels
             viewmodel.SelectedTransaction.Type.ShouldBe((int) TransactionType.Income);
             viewmodel.SelectedTransaction.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedTransaction.IsRecurring.ShouldBeTrue();
-            viewmodel.SelectedTransaction.RecurringTransaction.EndDate.ShouldBe(testEndDate);
-            viewmodel.SelectedTransaction.RecurringTransaction.IsEndless.ShouldBeFalse();
+            viewmodel.SelectedTransaction.RecurringPayment.EndDate.ShouldBe(testEndDate);
+            viewmodel.SelectedTransaction.RecurringPayment.IsEndless.ShouldBeFalse();
         }
     }
 }

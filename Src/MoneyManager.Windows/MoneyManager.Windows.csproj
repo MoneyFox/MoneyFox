@@ -114,40 +114,40 @@
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AccountListUserControl.xaml.cs">
+    <Compile Include="Controls\AlternatingRowListView.cs" />
+    <Compile Include="Controls\NavMenuListView.cs" />
+    <Compile Include="Controls\SwipeableSplitView.cs" />
+    <Compile Include="Views\UserControls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CustomControls\AlternatingRowListView.cs" />
-    <Compile Include="Controls\BalanceUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\StatisticControls\CashFlowUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\CashFlowUserControl.xaml.cs">
       <DependentUpon>CashFlowUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\StatisticControls\CategorySpreadingUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\CategorySpreadingUserControl.xaml.cs">
       <DependentUpon>CategorySpreadingUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\StatisticControls\CategorySummaryUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\CategorySummaryUserControl.xaml.cs">
       <DependentUpon>CategorySummaryUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CustomControls\NavMenuListView.cs" />
-    <Compile Include="Controls\BasicControls\PageHeader.xaml.cs">
+    <Compile Include="Views\UserControls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CategoryListUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\CategoryListUserControl.xaml.cs">
       <DependentUpon>CategoryListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\PasswordUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\PasswordUserControl.xaml.cs">
       <DependentUpon>PasswordUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CustomControls\SwipeableSplitView.cs" />
-    <Compile Include="Controls\BasicControls\TabHeader.xaml.cs">
+    <Compile Include="Views\UserControls\TabHeader.xaml.cs">
       <DependentUpon>TabHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TileSettingsUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\TileSettingsUserControl.xaml.cs">
       <DependentUpon>TileSettingsUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TransactionListUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\TransactionListUserControl.xaml.cs">
       <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
@@ -303,47 +303,47 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\AccountListUserControl.xaml">
+    <Page Include="Views\UserControls\AccountListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\BalanceUserControl.xaml">
+    <Page Include="Views\UserControls\BalanceUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\StatisticControls\CashFlowUserControl.xaml">
+    <Page Include="Views\UserControls\CashFlowUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\StatisticControls\CategorySpreadingUserControl.xaml">
+    <Page Include="Views\UserControls\CategorySpreadingUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\StatisticControls\CategorySummaryUserControl.xaml">
+    <Page Include="Views\UserControls\CategorySummaryUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\BasicControls\PageHeader.xaml">
+    <Page Include="Views\UserControls\PageHeader.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\CategoryListUserControl.xaml">
+    <Page Include="Views\UserControls\CategoryListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\PasswordUserControl.xaml">
+    <Page Include="Views\UserControls\PasswordUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\BasicControls\TabHeader.xaml">
+    <Page Include="Views\UserControls\TabHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TileSettingsUserControl.xaml">
+    <Page Include="Views\UserControls\TileSettingsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\TransactionListUserControl.xaml">
+    <Page Include="Views\UserControls\TransactionListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

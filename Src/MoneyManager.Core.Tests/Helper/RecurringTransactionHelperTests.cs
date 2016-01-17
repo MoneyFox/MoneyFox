@@ -20,7 +20,7 @@ namespace MoneyManager.Core.Tests.Helper
             var startDate = new DateTime(2015, 03, 12);
             var enddate = Convert.ToDateTime(date);
 
-            var transaction = new FinancialTransaction
+            var transaction = new Payment
             {
                 ChargedAccount = new Account {Id = 3},
                 TargetAccount = new Account {Id = 8},
@@ -76,7 +76,7 @@ namespace MoneyManager.Core.Tests.Helper
         {
             var account = new Account {Id = 2};
 
-            var recTrans = new RecurringTransaction
+            var recTrans = new RecurringPayment
             {
                 Id = 4,
                 Recurrence = (int) recurrence,
@@ -100,7 +100,7 @@ namespace MoneyManager.Core.Tests.Helper
             var account = new Account {Id = 2};
             var dayOfMonth = 26;
 
-            var recTrans = new RecurringTransaction
+            var recTrans = new RecurringPayment
             {
                 Id = 4,
                 Recurrence = (int) TransactionRecurrence.Monthly,
@@ -128,7 +128,7 @@ namespace MoneyManager.Core.Tests.Helper
         {
             var account = new Account {Id = 2};
 
-            var recTrans = new RecurringTransaction
+            var recTrans = new RecurringPayment
             {
                 Id = 4,
                 Recurrence = (int) recurrence,
@@ -139,7 +139,7 @@ namespace MoneyManager.Core.Tests.Helper
             };
 
             RecurringTransactionHelper.CheckIfRepeatable(recTrans,
-                new FinancialTransaction {Date = DateTime.Today.AddDays(-amountOfDaysBack), IsCleared = true})
+                new Payment {Date = DateTime.Today.AddDays(-amountOfDaysBack), IsCleared = true})
                 .ShouldBeTrue();
         }
 
@@ -148,7 +148,7 @@ namespace MoneyManager.Core.Tests.Helper
         {
             var account = new Account {Id = 2};
 
-            var recTrans = new RecurringTransaction
+            var recTrans = new RecurringPayment
             {
                 Id = 4,
                 Recurrence = (int) TransactionRecurrence.Weekly,
@@ -159,7 +159,7 @@ namespace MoneyManager.Core.Tests.Helper
             };
 
             RecurringTransactionHelper.CheckIfRepeatable(recTrans,
-                new FinancialTransaction {Date = DateTime.Today.AddDays(11)}).ShouldBeFalse();
+                new Payment {Date = DateTime.Today.AddDays(11)}).ShouldBeFalse();
         }
     }
 }

@@ -6,16 +6,16 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Tests.Mocks
 {
-    public class TransactionDataAccessMock : IDataAccess<FinancialTransaction>
+    public class TransactionDataAccessMock : IDataAccess<Payment>
     {
-        public List<FinancialTransaction> FinancialTransactionTestList = new List<FinancialTransaction>();
+        public List<Payment> FinancialTransactionTestList = new List<Payment>();
 
-        public void SaveItem(FinancialTransaction itemToSave)
+        public void SaveItem(Payment itemToSave)
         {
             FinancialTransactionTestList.Add(itemToSave);
         }
 
-        public void DeleteItem(FinancialTransaction item)
+        public void DeleteItem(Payment item)
         {
             if (FinancialTransactionTestList.Contains(item))
             {
@@ -23,9 +23,9 @@ namespace MoneyManager.Core.Tests.Mocks
             }
         }
 
-        public List<FinancialTransaction> LoadList(Expression<Func<FinancialTransaction, bool>> filter = null)
+        public List<Payment> LoadList(Expression<Func<Payment, bool>> filter = null)
         {
-            return new List<FinancialTransaction>();
+            return new List<Payment>();
         }
     }
 }

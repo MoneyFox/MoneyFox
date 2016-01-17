@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoneyManager.Windows.Controls.StatisticControls
+namespace MoneyManager.Windows.Views.UserControls
 {
     public sealed partial class CategorySpreadingUserControl : IDisposable
     {

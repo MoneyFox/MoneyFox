@@ -35,19 +35,19 @@ namespace MoneyManager.Core.ViewModels
         public virtual MvxCommand LoadedCommand => new MvxCommand(LoadTransactions);
         public MvxCommand EditCommand { get; private set; }
 
-        public MvxCommand<FinancialTransaction> DeleteTransactionCommand
-            => new MvxCommand<FinancialTransaction>(DeleteTransaction);
+        public MvxCommand<Payment> DeleteTransactionCommand
+            => new MvxCommand<Payment>(DeleteTransaction);
 
         /// <summary>
         ///     Returns all Transaction who are assigned to this repository
         ///     This has to stay until the android list with headers is implemented.
         /// </summary>
-        public ObservableCollection<FinancialTransaction> RelatedTransactions { set; get; }
+        public ObservableCollection<Payment> RelatedTransactions { set; get; }
 
         /// <summary>
         ///     Returns groupped related transactions 
         /// </summary>
-        public ObservableCollection<DateListGroup<FinancialTransaction>> Source { set; get; }
+        public ObservableCollection<DateListGroup<Payment>> Source { set; get; }
 
         /// <summary>
         ///     Returns the name of the account title for the current page
@@ -57,7 +57,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Currently selected Item
         /// </summary>
-        public FinancialTransaction SelectedTransaction { get; set; }
+        public Payment SelectedTransaction { get; set; }
 
         private void LoadTransactions()
         {
@@ -66,13 +66,13 @@ namespace MoneyManager.Core.ViewModels
             balanceViewModel.UpdateBalance(true);
 
             SelectedTransaction = null;
-            RelatedTransactions = new ObservableCollection<FinancialTransaction>(transactionRepository
+            RelatedTransactions = new ObservableCollection<Payment>(transactionRepository
                 .GetRelatedTransactions(accountRepository.Selected)
                 .OrderByDescending(x => x.Date)
                 .ToList());
 
-            Source = new ObservableCollection<DateListGroup<FinancialTransaction>>(
-                DateListGroup<FinancialTransaction>.CreateGroups(RelatedTransactions,
+            Source = new ObservableCollection<DateListGroup<Payment>>(
+                DateListGroup<Payment>.CreateGroups(RelatedTransactions,
                     CultureInfo.CurrentUICulture,
                     s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
                     s => s.Date, true));
@@ -113,7 +113,7 @@ namespace MoneyManager.Core.ViewModels
         }
 
 
-        private async void DeleteTransaction(FinancialTransaction transaction)
+        private async void DeleteTransaction(Payment transaction)
         {
             if (!await
                 dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))

@@ -29,7 +29,7 @@ namespace MoneyManager.Core.StatisticProvider
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
         {
             var transactionListFunc =
-                new Func<List<FinancialTransaction>>(() =>
+                new Func<List<Payment>>(() =>
                     transactionRepository.Data
                         .Where(x => x.Category != null)
                         .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
@@ -40,7 +40,7 @@ namespace MoneyManager.Core.StatisticProvider
         }
 
         private List<StatisticItem> GetSpreadingStatisticItems(
-            Func<List<FinancialTransaction>> getTransactionListFunc)
+            Func<List<Payment>> getTransactionListFunc)
         {
             var transactionList = getTransactionListFunc();
 

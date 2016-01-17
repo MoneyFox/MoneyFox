@@ -12,7 +12,7 @@ namespace MoneyManager.Core.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var transaction = (FinancialTransaction) value;
+            var transaction = (Payment) value;
             string sign;
 
             if (transaction.Type == (int) TransactionType.Transfer)

@@ -5,7 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
+      xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
       mc:Ignorable="d"
       DataContext="{Binding AboutView, Source={StaticResource CoreModule}}"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -16,13 +16,13 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <basicControls:PageHeader>
-            <basicControls:PageHeader.HeaderContent>
+        <userControls:PageHeader>
+            <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="About"
                            x:Uid="AboutTitle" />
-            </basicControls:PageHeader.HeaderContent>
-        </basicControls:PageHeader>
+            </userControls:PageHeader.HeaderContent>
+        </userControls:PageHeader>
 
         <ScrollViewer Margin="12,12,12,0"
                       Grid.Row="1"

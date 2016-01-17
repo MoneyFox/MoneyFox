@@ -18,11 +18,11 @@ namespace MoneyManager.Core.Tests.Manager
         public void CheckRecurringTransactions_None_NewEntryForRecurring()
         {
             var repoSetup = new Mock<ITransactionRepository>();
-            var resultList = new List<FinancialTransaction>();
+            var resultList = new List<Payment>();
 
-            var testList = new List<FinancialTransaction>
+            var testList = new List<Payment>
             {
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 1,
                     Amount = 99,
@@ -30,7 +30,7 @@ namespace MoneyManager.Core.Tests.Manager
                     ChargedAccount = new Account {Id = 2},
                     Date = DateTime.Now.AddDays(-3),
                     ReccuringTransactionId = 3,
-                    RecurringTransaction = new RecurringTransaction
+                    RecurringPayment = new RecurringPayment
                     {
                         Id = 3,
                         Recurrence = (int) TransactionRecurrence.Daily,
@@ -41,7 +41,7 @@ namespace MoneyManager.Core.Tests.Manager
                     IsCleared = true,
                     IsRecurring = true
                 },
-                new FinancialTransaction
+                new Payment
                 {
                     Id = 2,
                     Amount = 105,
@@ -49,7 +49,7 @@ namespace MoneyManager.Core.Tests.Manager
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     ReccuringTransactionId = 4,
-                    RecurringTransaction = new RecurringTransaction
+                    RecurringPayment = new RecurringPayment
                     {
                         Id = 4,
                         Recurrence = (int) TransactionRecurrence.Weekly,
@@ -61,10 +61,10 @@ namespace MoneyManager.Core.Tests.Manager
                 }
             };
 
-            repoSetup.Setup(x => x.Save(It.IsAny<FinancialTransaction>()))
-                .Callback((FinancialTransaction transaction) => resultList.Add(transaction));
+            repoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
+                .Callback((Payment transaction) => resultList.Add(transaction));
 
-            repoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<FinancialTransaction>(testList));
+            repoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
 
             repoSetup.Setup(x => x.LoadRecurringList(null)).Returns(testList);
 

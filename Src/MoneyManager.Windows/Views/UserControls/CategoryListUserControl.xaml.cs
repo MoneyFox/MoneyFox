@@ -6,7 +6,7 @@ using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Dialogs;
 
-namespace MoneyManager.Windows.Controls
+namespace MoneyManager.Windows.Views.UserControls
 {
     public partial class CategoryListUserControl
     {

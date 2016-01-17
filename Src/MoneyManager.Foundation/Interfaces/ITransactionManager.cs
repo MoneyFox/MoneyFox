@@ -7,10 +7,10 @@ namespace MoneyManager.Foundation.Interfaces
     {
         void DeleteAssociatedTransactionsFromDatabase(Account account);
 
-        Task<bool> CheckForRecurringTransaction(FinancialTransaction transaction);
+        Task<bool> CheckForRecurringTransaction(Payment transaction);
 
         void ClearTransactions();
 
-        void RemoveRecurringForTransactions(RecurringTransaction recTrans);
+        void RemoveRecurringForTransactions(RecurringPayment recTrans);
     }
 }
