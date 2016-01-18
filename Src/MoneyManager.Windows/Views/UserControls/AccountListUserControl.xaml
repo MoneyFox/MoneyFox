@@ -17,7 +17,7 @@
     <UserControl.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
-        
+
         <DataTemplate x:Key="AccountTemplate" x:DataType="model:Account">
             <StackPanel HorizontalAlignment="Stretch"
                         Holding="AccountList_Holding"
@@ -52,30 +52,32 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <StackPanel>
             <userControls:BalanceUserControl />
-            <controls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
-                                                   OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                                   EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                   ItemTemplate="{StaticResource AccountTemplate}"
-                                                   HorizontalAlignment="Stretch"
-                                                   ShowsScrollingPlaceholders="False"
-                                                   EntranceNavigationTransitionInfo.IsTargetElement="True">
+            <ScrollViewer>
+                <controls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
+                                                 OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                                 EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                                 ItemTemplate="{StaticResource AccountTemplate}"
+                                                 HorizontalAlignment="Stretch"
+                                                 ShowsScrollingPlaceholders="False"
+                                                 EntranceNavigationTransitionInfo.IsTargetElement="True">
 
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
-                        <Setter Property="VerticalContentAlignment"
-                                Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
 
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
-                                                  InputConverter="{StaticResource SelectedAccountConverter}" />
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
-            </controls:AlternatingRowListView>
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                            <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
+                                                      InputConverter="{StaticResource SelectedAccountConverter}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </controls:AlternatingRowListView>
+            </ScrollViewer
         </StackPanel>
     </Grid>
 </UserControl>
