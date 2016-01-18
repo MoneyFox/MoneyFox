@@ -7,16 +7,16 @@ namespace MoneyManager.Core.Helpers
     /// <summary>
     ///     A collection of helper methods for handling TransactionTypes
     /// </summary>
-    public class TransactionTypeHelper
+    public class PaymentTypeHelper
     {
         /// <summary>
-        ///     Parse a string to TransactionType
+        ///     Parse a string to PaymentType
         /// </summary>
         /// <param name="input">String to parse.</param>
         /// <returns>Parsed Transactiontype.</returns>
-        public static TransactionType GetEnumFromString(string input)
+        public static PaymentType GetEnumFromString(string input)
         {
-            return (TransactionType) Enum.Parse(typeof (TransactionType), input);
+            return (PaymentType) Enum.Parse(typeof (PaymentType), input);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace MoneyManager.Core.Helpers
         /// <returns>Title for the enum.</returns>
         public static string GetViewTitleForType(int type, bool isEditMode)
         {
-            return GetViewTitleForType((TransactionType) type, isEditMode);
+            return GetViewTitleForType((PaymentType) type, isEditMode);
         }
 
         /// <summary>
@@ -36,17 +36,17 @@ namespace MoneyManager.Core.Helpers
         /// <param name="type">Transactiontype for which the title is searched.</param>
         /// <param name="isEditMode">States if the title is used for the edit mode or for adding</param>
         /// <returns>Title for the enum.</returns>
-        public static string GetViewTitleForType(TransactionType type, bool isEditMode)
+        public static string GetViewTitleForType(PaymentType type, bool isEditMode)
         {
             switch (type)
             {
-                case TransactionType.Spending:
+                case PaymentType.Spending:
                     return isEditMode ? Strings.EditSpendingTitle : Strings.AddSpendingTitle;
 
-                case TransactionType.Income:
+                case PaymentType.Income:
                     return isEditMode ? Strings.EditIncomeTitle : Strings.AddIncomeTitle;
 
-                case TransactionType.Transfer:
+                case PaymentType.Transfer:
                     return isEditMode ? Strings.EditTransferTitle : Strings.AddTransferTitle;
 
                 default:
@@ -63,14 +63,14 @@ namespace MoneyManager.Core.Helpers
         {
             switch (type)
             {
-                case (int) TransactionType.Income:
-                    return TransactionType.Income.ToString();
+                case (int) PaymentType.Income:
+                    return PaymentType.Income.ToString();
 
-                case (int) TransactionType.Spending:
-                    return TransactionType.Spending.ToString();
+                case (int) PaymentType.Spending:
+                    return PaymentType.Spending.ToString();
 
-                case (int) TransactionType.Transfer:
-                    return TransactionType.Transfer.ToString();
+                case (int) PaymentType.Transfer:
+                    return PaymentType.Transfer.ToString();
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type),

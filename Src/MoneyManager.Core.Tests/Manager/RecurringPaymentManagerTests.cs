@@ -12,12 +12,12 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.Manager
 {
-    public class RecurringTransactionManagerTests
+    public class RecurringPaymentManagerTests
     {
         [Fact]
         public void CheckRecurringTransactions_None_NewEntryForRecurring()
         {
-            var repoSetup = new Mock<ITransactionRepository>();
+            var repoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
 
             var testList = new List<Payment>
@@ -29,7 +29,7 @@ namespace MoneyManager.Core.Tests.Manager
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     Date = DateTime.Now.AddDays(-3),
-                    ReccuringTransactionId = 3,
+                    ReccuringPaymentId = 3,
                     RecurringPayment = new RecurringPayment
                     {
                         Id = 3,
@@ -48,7 +48,7 @@ namespace MoneyManager.Core.Tests.Manager
                     Date = DateTime.Now.AddDays(-3),
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
-                    ReccuringTransactionId = 4,
+                    ReccuringPaymentId = 4,
                     RecurringPayment = new RecurringPayment
                     {
                         Id = 4,
@@ -68,12 +68,12 @@ namespace MoneyManager.Core.Tests.Manager
 
             repoSetup.Setup(x => x.LoadRecurringList(null)).Returns(testList);
 
-            new RecurringTransactionManager(repoSetup.Object).CheckRecurringTransactions();
+            new RecurringPaymentManager(repoSetup.Object).CheckRecurringPayments();
 
             resultList.Any().ShouldBeTrue();
             resultList.First().Amount.ShouldBe(95);
             resultList.First().ChargedAccountId.ShouldBe(2);
-            resultList.First().ReccuringTransactionId.ShouldBe(3);
+            resultList.First().ReccuringPaymentId.ShouldBe(3);
         }
     }
 }

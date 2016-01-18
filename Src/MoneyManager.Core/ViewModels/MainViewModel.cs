@@ -8,17 +8,17 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly IBalanceViewModel balanceViewModel;
         private readonly ModifyAccountViewModel modifyAccountViewModel;
-        private readonly ModifyTransactionViewModel modifyTransactionViewModel;
+        private readonly ModifyPaymentViewModel modifyPaymentViewModel;
 
         /// <summary>
         ///     Creates an MainViewModel object.
         /// </summary>
         public MainViewModel(ModifyAccountViewModel modifyAccountViewModel,
-            ModifyTransactionViewModel modifyTransactionViewModel,
+            ModifyPaymentViewModel modifyPaymentViewModel,
             IBalanceViewModel balanceViewModel)
         {
             this.modifyAccountViewModel = modifyAccountViewModel;
-            this.modifyTransactionViewModel = modifyTransactionViewModel;
+            this.modifyPaymentViewModel = modifyPaymentViewModel;
             this.balanceViewModel = balanceViewModel;
         }
 
@@ -49,7 +49,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void GoToAddTransaction(string transactionType)
         {
-            ShowViewModel<ModifyTransactionViewModel>(new {typeString = transactionType});
+            ShowViewModel<ModifyPaymentViewModel>(new {typeString = transactionType});
         }
 
         private void GoToAddAccount()

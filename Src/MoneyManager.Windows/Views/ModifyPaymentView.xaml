@@ -11,7 +11,7 @@
                       xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
                       mc:Ignorable="d"
                       NavigationCacheMode="Enabled"
-                      DataContext="{Binding ModifyTransactionView, Source={StaticResource CoreModule}}"
+                      DataContext="{Binding ModifyPaymentView, Source={StaticResource CoreModule}}"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
@@ -72,14 +72,14 @@
                               HorizontalAlignment="Stretch"
                               ItemTemplate="{StaticResource ComboBoxTemplate}"
                               ItemsSource="{Binding AllAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedItem="{Binding SelectedTransaction.ChargedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedPayment.ChargedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Margin="0,7,0,0" />
                     <ComboBox Header="target account"
                               x:Uid="TargetAccountTextBox"
                               HorizontalAlignment="Stretch"
                               ItemTemplate="{StaticResource ComboBoxTemplate}"
                               ItemsSource="{Binding AllAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedItem="{Binding SelectedTransaction.TargetAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedPayment.TargetAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Visibility="{Binding IsTransfer, Converter={StaticResource BooleanVisibilityConverter}}"
                               Margin="0,7,0,0" />
                     <TextBox Text="{Binding AmountString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -95,7 +95,7 @@
                     <Grid Margin="0,7,0,0">
                         <TextBox Header="category"
                                  x:Uid="CategoryTextBox"
-                                 Text="{Binding SelectedTransaction.Category.Name, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding SelectedPayment.Category.Name, UpdateSourceTrigger=PropertyChanged}"
                                  IsReadOnly="True">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="GotFocus">
@@ -124,16 +124,16 @@
                         x:Uid="DateDatePicker" />
                     <TextBox Header="note"
                              x:Uid="NoteTextBox"
-                             Text="{Binding SelectedTransaction.Note, Mode=TwoWay}"
+                             Text="{Binding SelectedPayment.Note, Mode=TwoWay}"
                              TextWrapping="Wrap"
                              Margin="0,7,0,0" />
                     <ToggleSwitch Header="repeat"
                                   x:Uid="RepeatSwitch"
                                   VerticalAlignment="Stretch"
-                                  IsOn="{Binding SelectedTransaction.IsRecurring, Mode=TwoWay}"
+                                  IsOn="{Binding SelectedPayment.IsRecurring, Mode=TwoWay}"
                                   Margin="0,7,0,0" />
                     <StackPanel
-                        Visibility="{Binding SelectedTransaction.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
+                        Visibility="{Binding SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
                         <ComboBox Header="Reccurence"
                                   x:Uid="RecurrenceComboBox"
                                   HorizontalAlignment="Stretch"

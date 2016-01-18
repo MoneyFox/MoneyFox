@@ -6,11 +6,11 @@ namespace MoneyManager.Windows.Concrete
 {
     public class TileHelper : BaseViewModel
     {
-        private readonly ModifyTransactionViewModel modifyTransactionViewModel;
+        private readonly ModifyPaymentViewModel modifyPaymentViewModel;
 
-        public TileHelper(ModifyTransactionViewModel modifyTransactionViewModel)
+        public TileHelper(ModifyPaymentViewModel modifyPaymentViewModel)
         {
-            this.modifyTransactionViewModel = modifyTransactionViewModel;
+            this.modifyPaymentViewModel = modifyPaymentViewModel;
         }
 
         public bool DoNavigation(string tileId)
@@ -18,15 +18,15 @@ namespace MoneyManager.Windows.Concrete
             switch (tileId)
             {
                 case Constants.ADD_INCOME_TILE_ID:
-                    ShowViewModel<ModifyTransactionViewModel>(new {typeString = Constants.INCOME_TILE_ID});
+                    ShowViewModel<ModifyPaymentViewModel>(new {typeString = Constants.INCOME_TILE_ID});
                     return true;
 
                 case Constants.ADD_SPENDING_TILE_ID:
-                    ShowViewModel<ModifyTransactionViewModel>(new {typeString = Constants.SPENDING_TILE_ID});
+                    ShowViewModel<ModifyPaymentViewModel>(new {typeString = Constants.SPENDING_TILE_ID});
                     return true;
 
                 case Constants.ADD_TRANSFER_TILE_ID:
-                    ShowViewModel<ModifyTransactionViewModel>(new {typeString = Constants.TRANSFER_TILE_ID});
+                    ShowViewModel<ModifyPaymentViewModel>(new {typeString = Constants.TRANSFER_TILE_ID});
                     return true;
                 default:
                     return false;

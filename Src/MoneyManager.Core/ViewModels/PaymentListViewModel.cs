@@ -12,19 +12,19 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class TransactionListViewModel : BaseViewModel
+    public class PaymentListViewModel : BaseViewModel
     {
         private readonly IAccountRepository accountRepository;
         private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
-        private readonly ITransactionRepository transactionRepository;
+        private readonly IPaymentRepository paymentRepository;
 
-        public TransactionListViewModel(ITransactionRepository transactionRepository,
+        public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IBalanceViewModel balanceViewModel,
             IDialogService dialogService)
         {
-            this.transactionRepository = transactionRepository;
+            this.paymentRepository = paymentRepository;
             this.accountRepository = accountRepository;
             this.balanceViewModel = balanceViewModel;
             this.dialogService = dialogService;
@@ -66,8 +66,8 @@ namespace MoneyManager.Core.ViewModels
             balanceViewModel.UpdateBalance(true);
 
             SelectedTransaction = null;
-            RelatedTransactions = new ObservableCollection<Payment>(transactionRepository
-                .GetRelatedTransactions(accountRepository.Selected)
+            RelatedTransactions = new ObservableCollection<Payment>(paymentRepository
+                .GetRelatedPayments(accountRepository.Selected)
                 .OrderByDescending(x => x.Date)
                 .ToList());
 
@@ -84,7 +84,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void GoToAddTransaction(string type)
         {
-            ShowViewModel<ModifyTransactionViewModel>(new {isEdit = false, typeString = type});
+            ShowViewModel<ModifyPaymentViewModel>(new {isEdit = false, typeString = type});
         }
 
         private async void DeleteAccount()
@@ -105,9 +105,9 @@ namespace MoneyManager.Core.ViewModels
                 return;
             }
 
-            transactionRepository.Selected = SelectedTransaction;
+            paymentRepository.Selected = SelectedTransaction;
 
-            ShowViewModel<ModifyTransactionViewModel>(
+            ShowViewModel<ModifyPaymentViewModel>(
                 new {isEdit = true, typeString = SelectedTransaction.Type.ToString()});
             SelectedTransaction = null;
         }
@@ -120,7 +120,7 @@ namespace MoneyManager.Core.ViewModels
                 return;
 
             accountRepository.RemoveTransactionAmount(transaction);
-            transactionRepository.Delete(transaction);
+            paymentRepository.Delete(transaction);
             RelatedTransactions.Remove(transaction);
             balanceViewModel.UpdateBalance(true);
         }

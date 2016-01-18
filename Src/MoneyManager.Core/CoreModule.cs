@@ -69,11 +69,11 @@ namespace MoneyManager.Core
         //Views
         public static MainViewModel MainView => Mvx.Resolve<MainViewModel>();
         public static AccountListViewModel AccountListView => Mvx.Resolve<AccountListViewModel>();
-        public static TransactionListViewModel TransactionListView => Mvx.Resolve<TransactionListViewModel>();
+        public static PaymentListViewModel PaymentListView => Mvx.Resolve<PaymentListViewModel>();
         public static BackupViewModel BackupView => Mvx.Resolve<BackupViewModel>();
         public static BalanceViewModel BalanceView => Mvx.Resolve<BalanceViewModel>();
         public static ModifyAccountViewModel ModifyAccountView => Mvx.Resolve<ModifyAccountViewModel>();
-        public static ModifyTransactionViewModel ModifyTransactionView => Mvx.Resolve<ModifyTransactionViewModel>();
+        public static ModifyPaymentViewModel ModifyPaymentView => Mvx.Resolve<ModifyPaymentViewModel>();
         public static AboutViewModel AboutView => Mvx.Resolve<AboutViewModel>();
 
         //CategoryList

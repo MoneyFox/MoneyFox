@@ -15,8 +15,8 @@ namespace MoneyManager.Core
             // Start the app with the Main View Model.
             RegisterAppStart<MainViewModel>();
 
-            Mvx.Resolve<IRecurringTransactionManager>().CheckRecurringTransactions();
-            Mvx.Resolve<ITransactionManager>().ClearTransactions();
+            Mvx.Resolve<IRecurringTransactionManager>().CheckRecurringPayments();
+            Mvx.Resolve<IPaymentManager>().ClearPayments();
         }
     }
 }

@@ -9,7 +9,7 @@
              xmlns:converter="using:MoneyManager.Windows.Converter"
              xmlns:model="using:MoneyManager.Foundation.Model"
              xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
-             DataContext="{Binding TransactionListView, Source={StaticResource CoreModule}}"
+             DataContext="{Binding PaymentListView, Source={StaticResource CoreModule}}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
