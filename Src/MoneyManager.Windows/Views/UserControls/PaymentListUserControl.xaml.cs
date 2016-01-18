@@ -22,7 +22,7 @@ namespace MoneyManager.Windows.Views.UserControls
             {
                 return;
             }
-            var viewmodel = DataContext as TransactionListViewModel;
+            var viewmodel = DataContext as PaymentListViewModel;
 
             if (viewmodel == null) return;
             viewmodel.SelectedTransaction = transaction;
@@ -37,7 +37,7 @@ namespace MoneyManager.Windows.Views.UserControls
             {
                 return;
             }
-            (DataContext as TransactionListViewModel)?.DeleteTransactionCommand.Execute(transaction);
+            (DataContext as PaymentListViewModel)?.DeleteTransactionCommand.Execute(transaction);
         }
 
         private void TransactionList_Holding(object sender, HoldingRoutedEventArgs e)

@@ -66,7 +66,7 @@ namespace MoneyManager.Core.ViewModels
             }
 
             accountRepository.Selected = account;
-            ShowViewModel<TransactionListViewModel>();
+            ShowViewModel<PaymentListViewModel>();
         }
 
         private async void Delete(Account item)

@@ -32,7 +32,7 @@ namespace MoneyManager.Core.Tests.Helper
                 IsRecurring = true
             };
 
-            var recurring = RecurringTransactionHelper.GetRecurringFromFinancialTransaction(transaction, isEndless,
+            var recurring = RecurringPaymentHelper.GetRecurringFromPayment(transaction, isEndless,
                 recurrence, enddate);
 
             recurring.ChargedAccount.Id.ShouldBe(3);
@@ -53,7 +53,7 @@ namespace MoneyManager.Core.Tests.Helper
         [InlineData(2, "Transfer")]
         public void GetTypeString_TransactionType_EnumString(int typeInt, string expectedResult)
         {
-            TransactionTypeHelper.GetTypeString(typeInt).ShouldBe(expectedResult);
+            PaymentTypeHelper.GetTypeString(typeInt).ShouldBe(expectedResult);
         }
 
         [Theory]
@@ -62,7 +62,7 @@ namespace MoneyManager.Core.Tests.Helper
         public void GetTypeString_InvalidType_Exception(int typeInt)
         {
             var exception =
-                Assert.Throws<ArgumentOutOfRangeException>(() => TransactionTypeHelper.GetTypeString(typeInt));
+                Assert.Throws<ArgumentOutOfRangeException>(() => PaymentTypeHelper.GetTypeString(typeInt));
             exception.Message.StartsWith("Passed Number didn't match to a transaction type.").ShouldBeTrue();
         }
 
@@ -86,7 +86,7 @@ namespace MoneyManager.Core.Tests.Helper
                 Amount = 105
             };
 
-            var result = RecurringTransactionHelper.GetFinancialTransactionFromRecurring(recTrans);
+            var result = RecurringPaymentHelper.GetPaymentFromRecurring(recTrans);
 
             result.ChargedAccount.ShouldBe(account);
             result.ChargedAccountId.ShouldBe(account.Id);
@@ -110,7 +110,7 @@ namespace MoneyManager.Core.Tests.Helper
                 Amount = 105
             };
 
-            var result = RecurringTransactionHelper.GetFinancialTransactionFromRecurring(recTrans);
+            var result = RecurringPaymentHelper.GetPaymentFromRecurring(recTrans);
 
             result.ChargedAccount.ShouldBe(account);
             result.ChargedAccountId.ShouldBe(account.Id);
@@ -138,7 +138,7 @@ namespace MoneyManager.Core.Tests.Helper
                 Amount = 105
             };
 
-            RecurringTransactionHelper.CheckIfRepeatable(recTrans,
+            RecurringPaymentHelper.CheckIfRepeatable(recTrans,
                 new Payment {Date = DateTime.Today.AddDays(-amountOfDaysBack), IsCleared = true})
                 .ShouldBeTrue();
         }
@@ -158,7 +158,7 @@ namespace MoneyManager.Core.Tests.Helper
                 Amount = 105
             };
 
-            RecurringTransactionHelper.CheckIfRepeatable(recTrans,
+            RecurringPaymentHelper.CheckIfRepeatable(recTrans,
                 new Payment {Date = DateTime.Today.AddDays(11)}).ShouldBeFalse();
         }
     }

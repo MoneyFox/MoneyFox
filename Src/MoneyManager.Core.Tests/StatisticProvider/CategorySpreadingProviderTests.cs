@@ -25,7 +25,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_InitializedData_IgnoreTransfers()
         {
             //Setup
-            var transactionRepoSetup = new Mock<ITransactionRepository>();
+            var transactionRepoSetup = new Mock<IPaymentRepository>();
             transactionRepoSetup.SetupAllProperties();
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
@@ -43,7 +43,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 1,
-                    Type = (int) TransactionType.Income,
+                    Type = (int) PaymentType.Income,
                     Date = DateTime.Today,
                     Amount = 60,
                     Category = categoryRepo.Data.First(),
@@ -52,7 +52,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 90,
                     Category = categoryRepo.Data.First(),
@@ -61,7 +61,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) TransactionType.Transfer,
+                    Type = (int) PaymentType.Transfer,
                     Date = DateTime.Today,
                     Amount = 40,
                     Category = categoryRepo.Data.First(),
@@ -83,7 +83,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_InitializedData_CalculateIncome()
         {
             //Setup
-            var transactionRepoSetup = new Mock<ITransactionRepository>();
+            var transactionRepoSetup = new Mock<IPaymentRepository>();
             transactionRepoSetup.SetupAllProperties();
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
@@ -103,7 +103,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 1,
-                    Type = (int) TransactionType.Income,
+                    Type = (int) PaymentType.Income,
                     Date = DateTime.Today,
                     Amount = 60,
                     Category = categoryRepo.Data[0],
@@ -112,7 +112,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 90,
                     Category = categoryRepo.Data[0],
@@ -121,7 +121,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 40,
                     Category = categoryRepo.Data[1],
@@ -130,7 +130,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) TransactionType.Income,
+                    Type = (int) PaymentType.Income,
                     Date = DateTime.Today,
                     Amount = 66,
                     Category = categoryRepo.Data[2],
@@ -153,7 +153,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_IncomeHigherThanSpending_SpendingSetToZero()
         {
             //Setup
-            var transactionRepoSetup = new Mock<ITransactionRepository>();
+            var transactionRepoSetup = new Mock<IPaymentRepository>();
             transactionRepoSetup.SetupAllProperties();
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
@@ -171,7 +171,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 1,
-                    Type = (int) TransactionType.Income,
+                    Type = (int) PaymentType.Income,
                     Date = DateTime.Today,
                     Amount = 100,
                     Category = categoryRepo.Data[0],
@@ -180,7 +180,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 90,
                     Category = categoryRepo.Data[0],
@@ -202,7 +202,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_InitializedData_HandleDateCorrectly()
         {
             //Setup
-            var transactionRepoSetup = new Mock<ITransactionRepository>();
+            var transactionRepoSetup = new Mock<IPaymentRepository>();
             transactionRepoSetup.SetupAllProperties();
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
@@ -222,7 +222,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 1,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today.AddDays(-5),
                     Amount = 60,
                     Category = categoryRepo.Data[0],
@@ -231,7 +231,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 90,
                     Category = categoryRepo.Data[1],
@@ -240,7 +240,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today.AddDays(5),
                     Amount = 40,
                     Category = categoryRepo.Data[2],
@@ -262,7 +262,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_InitializedData_AddOtherItem()
         {
             //Setup
-            var transactionRepoSetup = new Mock<ITransactionRepository>();
+            var transactionRepoSetup = new Mock<IPaymentRepository>();
             transactionRepoSetup.SetupAllProperties();
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
@@ -287,7 +287,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 1,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 10,
                     Category = categoryRepo.Data[0],
@@ -296,7 +296,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 20,
                     Category = categoryRepo.Data[1],
@@ -305,7 +305,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 30,
                     Category = categoryRepo.Data[2],
@@ -314,7 +314,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 40,
                     Category = categoryRepo.Data[3],
@@ -323,7 +323,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 50,
                     Category = categoryRepo.Data[4],
@@ -332,7 +332,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 60,
                     Category = categoryRepo.Data[5],
@@ -341,7 +341,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 70,
                     Category = categoryRepo.Data[6],
@@ -350,7 +350,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 80,
                     Category = categoryRepo.Data[7],

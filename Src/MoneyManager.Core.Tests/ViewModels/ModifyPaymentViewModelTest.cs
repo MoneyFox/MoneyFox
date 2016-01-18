@@ -25,10 +25,10 @@ namespace MoneyManager.Core.Tests.ViewModels
             Setup();
             Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
 
-            var transactionRepositorySetup = new Mock<ITransactionRepository>();
+            var transactionRepositorySetup = new Mock<IPaymentRepository>();
             transactionRepositorySetup.SetupGet(x => x.Selected).Returns(new Payment {ChargedAccountId = 3});
             
-            var transactionManager = new TransactionManager(transactionRepositorySetup.Object,
+            var transactionManager = new PaymentManager(transactionRepositorySetup.Object,
                 new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object);
 
@@ -42,7 +42,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             var defaultManager = new DefaultManager(accountRepo,
                 new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
-            var viewmodel = new ModifyTransactionViewModel(transactionRepositorySetup.Object,
+            var viewmodel = new ModifyPaymentViewModel(transactionRepositorySetup.Object,
                 accountRepo,
                 new Mock<IDialogService>().Object,
                 transactionManager,
@@ -51,9 +51,9 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             //Execute and Assert
             viewmodel.Init("Income", true);
-            viewmodel.SelectedTransaction.Type.ShouldBe((int) TransactionType.Spending);
-            viewmodel.SelectedTransaction.IsTransfer.ShouldBeFalse();
-            viewmodel.SelectedTransaction.IsRecurring.ShouldBeFalse();
+            viewmodel.SelectedPayment.Type.ShouldBe((int) PaymentType.Spending);
+            viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
+            viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
         }
 
         [Fact]
@@ -65,10 +65,10 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var testEndDate = new DateTime(2099, 1, 31);
 
-            var transactionRepositorySetup = new Mock<ITransactionRepository>();
+            var transactionRepositorySetup = new Mock<IPaymentRepository>();
             transactionRepositorySetup.SetupGet(x => x.Selected).Returns(new Payment
             {
-                Type = (int) TransactionType.Income,
+                Type = (int)PaymentType.Income,
                 IsRecurring = true,
                 RecurringPayment = new RecurringPayment
                 {
@@ -83,7 +83,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             var accountRepo = accountRepoMock.Object;
             accountRepo.Data = new ObservableCollection<Account>();
 
-            var transactionManager = new TransactionManager(transactionRepositorySetup.Object,
+            var transactionManager = new PaymentManager(transactionRepositorySetup.Object,
                 accountRepo,
                 new Mock<IDialogService>().Object);
 
@@ -91,21 +91,21 @@ namespace MoneyManager.Core.Tests.ViewModels
             var defaultManager = new DefaultManager(accountRepo,
                 new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
-            var viewmodel = new ModifyTransactionViewModel(transactionRepositorySetup.Object,
+            var viewmodel = new ModifyPaymentViewModel(transactionRepositorySetup.Object,
                 accountRepo,
                 new Mock<IDialogService>().Object,
                 transactionManager,
                 defaultManager);
 
             //Execute and Assert
-            viewmodel.SelectedTransaction.ShouldNotBeNull();
+            viewmodel.SelectedPayment.ShouldNotBeNull();
 
             viewmodel.Init("Income", true);
-            viewmodel.SelectedTransaction.Type.ShouldBe((int) TransactionType.Income);
-            viewmodel.SelectedTransaction.IsTransfer.ShouldBeFalse();
-            viewmodel.SelectedTransaction.IsRecurring.ShouldBeTrue();
-            viewmodel.SelectedTransaction.RecurringPayment.EndDate.ShouldBe(testEndDate);
-            viewmodel.SelectedTransaction.RecurringPayment.IsEndless.ShouldBeFalse();
+            viewmodel.SelectedPayment.Type.ShouldBe((int)PaymentType.Income);
+            viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
+            viewmodel.SelectedPayment.IsRecurring.ShouldBeTrue();
+            viewmodel.SelectedPayment.RecurringPayment.EndDate.ShouldBe(testEndDate);
+            viewmodel.SelectedPayment.RecurringPayment.IsEndless.ShouldBeFalse();
         }
     }
 }

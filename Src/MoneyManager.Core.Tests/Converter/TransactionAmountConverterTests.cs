@@ -16,11 +16,11 @@ namespace MoneyManager.Core.Tests.Converter
     public class TransactionAmountConverterTests : MvxIoCSupportingTest
     {
         [Theory]
-        [InlineData(TransactionType.Spending, "- ")]
-        [InlineData(TransactionType.Income, "+ ")]
-        public void Converter_Transaction_AmountSign(TransactionType type, string result)
+        [InlineData(PaymentType.Spending, "- ")]
+        [InlineData(PaymentType.Income, "+ ")]
+        public void Converter_Transaction_AmountSign(PaymentType type, string result)
         {
-            new TransactionAmountConverter().Convert(new Payment {Amount = 80, Type = (int) type}, null,
+            new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int) type}, null,
                 null, null).ShouldBe(result + 80.ToString("C"));
         }
 
@@ -42,11 +42,11 @@ namespace MoneyManager.Core.Tests.Converter
 
             Mvx.RegisterSingleton(mock.Object);
 
-            new TransactionAmountConverter()
+            new PaymentAmountConverter()
                 .Convert(new Payment
                 {
                     Amount = 80,
-                    Type = (int) TransactionType.Transfer,
+                    Type = (int) PaymentType.Transfer,
                     ChargedAccountId = account.Id,
                     ChargedAccount = account
                 }, null, account, null)
@@ -69,11 +69,11 @@ namespace MoneyManager.Core.Tests.Converter
 
             Mvx.RegisterSingleton(mock.Object);
 
-            new TransactionAmountConverter()
+            new PaymentAmountConverter()
                 .Convert(new Payment
                 {
                     Amount = 80,
-                    Type = (int) TransactionType.Transfer,
+                    Type = (int) PaymentType.Transfer,
                     ChargedAccount = new Account()
                 }, null, new Account(), null)
                 .ShouldBe("+ " + 80.ToString("C"));

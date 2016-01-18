@@ -153,10 +153,10 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>Баланс</value>
   </data>
-  <data name="ChangeSubsequentTransactionsMessage" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
     <value>Это повторяющаяся операция. Вы хотите изменить все будущие операции или только эту?</value>
   </data>
-  <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Обновить повторения?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">

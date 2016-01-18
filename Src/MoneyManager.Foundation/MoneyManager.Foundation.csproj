@@ -56,7 +56,7 @@
     <Compile Include="Interfaces\IRecurringTransactionManager.cs" />
     <Compile Include="Interfaces\IRepositoryManager.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />
-    <Compile Include="Interfaces\ITransactionManager.cs" />
+    <Compile Include="Interfaces\IPaymentManager.cs" />
     <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Model\CashFlow.cs" />
@@ -83,7 +83,7 @@
     <Compile Include="Interfaces\Shotcuts\IIncomeShortcut.cs" />
     <Compile Include="Interfaces\Shotcuts\ISpendingShortcut.cs" />
     <Compile Include="Interfaces\IStoreFeatures.cs" />
-    <Compile Include="Interfaces\ITransactionRepository.cs" />
+    <Compile Include="Interfaces\IPaymentRepository.cs" />
     <Compile Include="Interfaces\IUserNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

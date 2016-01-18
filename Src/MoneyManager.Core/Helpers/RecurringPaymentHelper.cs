@@ -4,7 +4,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Helpers
 {
-    public static class RecurringTransactionHelper
+    public static class RecurringPaymentHelper
     {
         /// <summary>
         ///     Creates an recurring Transaction based on the Financial transaction.
@@ -14,14 +14,14 @@ namespace MoneyManager.Core.Helpers
         /// <param name="recurrence">How often the transaction shall be repeated.</param>
         /// <param name="enddate">Enddate for the recurring transaction if it's not endless.</param>
         /// <returns>The new created recurring transaction</returns>
-        public static RecurringPayment GetRecurringFromFinancialTransaction(Payment transaction,
+        public static RecurringPayment GetRecurringFromPayment(Payment transaction,
             bool isEndless,
             int recurrence,
             DateTime enddate = new DateTime())
         {
             return new RecurringPayment
             {
-                Id = transaction.ReccuringTransactionId,
+                Id = transaction.ReccuringPaymentId,
                 ChargedAccount = transaction.ChargedAccount,
                 ChargedAccountId = transaction.ChargedAccount.Id,
                 TargetAccount = transaction.TargetAccount,
@@ -43,8 +43,7 @@ namespace MoneyManager.Core.Helpers
         /// </summary>
         /// <param name="recurringPayment">The Recurring Transaction the new Transaction shall be based on.</param>
         /// <returns>The new created Financial Transaction</returns>
-        public static Payment GetFinancialTransactionFromRecurring(
-            RecurringPayment recurringPayment)
+        public static Payment GetPaymentFromRecurring(RecurringPayment recurringPayment)
         {
             var date = DateTime.Today;
 
@@ -66,7 +65,7 @@ namespace MoneyManager.Core.Helpers
                 Category = recurringPayment.Category,
                 CategoryId = recurringPayment.CategoryId,
                 Type = recurringPayment.Type,
-                ReccuringTransactionId = recurringPayment.Id,
+                ReccuringPaymentId = recurringPayment.Id,
                 RecurringPayment = recurringPayment,
                 Note = recurringPayment.Note
             };

@@ -10,12 +10,12 @@ namespace MoneyManager.Core.StatisticProvider
     public class CategorySpreadingProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
         private readonly IRepository<Category> categoryRepository;
-        private readonly ITransactionRepository transactionRepository;
+        private readonly IPaymentRepository paymentRepository;
 
-        public CategorySpreadingProvider(ITransactionRepository transactionRepository,
+        public CategorySpreadingProvider(IPaymentRepository paymentRepository,
             IRepository<Category> categoryRepository)
         {
-            this.transactionRepository = transactionRepository;
+            this.paymentRepository = paymentRepository;
             this.categoryRepository = categoryRepository;
         }
 
@@ -30,10 +30,10 @@ namespace MoneyManager.Core.StatisticProvider
         {
             var transactionListFunc =
                 new Func<List<Payment>>(() =>
-                    transactionRepository.Data
+                    paymentRepository.Data
                         .Where(x => x.Category != null)
                         .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
-                        .Where(x => x.Type == (int) TransactionType.Spending)
+                        .Where(x => x.Type == (int) PaymentType.Spending)
                         .ToList());
 
             return GetSpreadingStatisticItems(transactionListFunc);
@@ -82,8 +82,8 @@ namespace MoneyManager.Core.StatisticProvider
         {
             foreach (var statisticItem in statisticList)
             {
-                statisticItem.Value -= transactionRepository.Data
-                    .Where(x => x.Type == (int) TransactionType.Income)
+                statisticItem.Value -= paymentRepository.Data
+                    .Where(x => x.Type == (int) PaymentType.Income)
                     .Where(x => x.Category != null)
                     .Where(x => x.Category.Name == statisticItem.Category)
                     .Sum(x => x.Amount);

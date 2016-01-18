@@ -11,20 +11,20 @@ using PropertyChanged;
 namespace MoneyManager.Core.Repositories
 {
     [ImplementPropertyChanged]
-    public class TransactionRepository : ITransactionRepository
+    public class PaymentRepository : IPaymentRepository
     {
         private readonly IDataAccess<Payment> dataAccess;
         private readonly IDataAccess<RecurringPayment> recurringDataAccess;
         private ObservableCollection<Payment> data;
 
         /// <summary>
-        ///     Creates a TransactionRepository Object
+        ///     Creates a paymentRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced <see cref="IDataAccess{T}" /> for <see cref="Payment" /></param>
         /// <param name="recurringDataAccess">
         ///     Instanced <see cref="IDataAccess{T}" /> for <see cref="RecurringPayment" />
         /// </param>
-        public TransactionRepository(IDataAccess<Payment> dataAccess,
+        public PaymentRepository(IDataAccess<Payment> dataAccess,
             IDataAccess<RecurringPayment> recurringDataAccess)
         {
             this.dataAccess = dataAccess;
@@ -34,7 +34,7 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     cached transaction data
+        ///     cached paymentToDelete data
         /// </summary>
         public ObservableCollection<Payment> Data
         {
@@ -65,18 +65,18 @@ namespace MoneyManager.Core.Repositories
                 throw new AccountMissingException("charged accout is missing");
             }
 
-            item.IsCleared = item.ClearTransactionNow;
+            item.IsCleared = item.ClearPaymentNow;
 
             if (item.Id == 0)
             {
                 data.Add(item);
             }
 
-            //delete recurring transaction if isRecurring is no longer set.
-            if (!item.IsRecurring && item.ReccuringTransactionId != 0)
+            //delete recurring paymentToDelete if isRecurring is no longer set.
+            if (!item.IsRecurring && item.ReccuringPaymentId != 0)
             {
                 recurringDataAccess.DeleteItem(item.RecurringPayment);
-                item.ReccuringTransactionId = 0;
+                item.ReccuringPaymentId = 0;
             }
 
             dataAccess.SaveItem(item);
@@ -85,19 +85,19 @@ namespace MoneyManager.Core.Repositories
         /// <summary>
         ///     Deletes the passed item and removes the item from cache
         /// </summary>
-        /// <param name="transaction">item to delete</param>
-        public void Delete(Payment transaction)
+        /// <param name="paymentToDelete">item to delete</param>
+        public void Delete(Payment paymentToDelete)
         {
-            var relatedTrans = Data.Where(x => x.Id == transaction.Id).ToList();
+            var payments = Data.Where(x => x.Id == paymentToDelete.Id).ToList();
 
-            foreach (var trans in relatedTrans)
+            foreach (var payment in payments)
             {
-                data.Remove(trans);
-                dataAccess.DeleteItem(trans);
+                data.Remove(payment);
+                dataAccess.DeleteItem(payment);
 
-                // If this transaction was the last finacial transaction for the linked recurring transaction
-                // delete the db entry for the recurring transaction.
-                DeleteRecurringTransactionIfLastAssociated(trans);
+                // If this paymentToDelete was the last finacial paymentToDelete for the linked recurring paymentToDelete
+                // delete the db entry for the recurring paymentToDelete.
+                DeleteRecurringPaymentIfLastAssociated(payment);
             }
         }
 
@@ -110,19 +110,19 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     Returns all uncleared transaction up to today
+        ///     Returns all uncleared paymentToDelete up to today
         /// </summary>
         /// <returns>list of uncleared transactions</returns>
-        public IEnumerable<Payment> GetUnclearedTransactions()
+        public IEnumerable<Payment> GetUnclearedPayments()
         {
-            return GetUnclearedTransactions(DateTime.Today);
+            return GetUnclearedPayments(DateTime.Today);
         }
 
         /// <summary>
-        ///     Returns all uncleared transaction up to the passed date from the database.
+        ///     Returns all uncleared paymentToDelete up to the passed date from the database.
         /// </summary>
         /// <returns>list of uncleared transactions</returns>
-        public IEnumerable<Payment> GetUnclearedTransactions(DateTime date)
+        public IEnumerable<Payment> GetUnclearedPayments(DateTime date)
         {
             return Data
                 .Where(x => !x.IsCleared)
@@ -135,7 +135,7 @@ namespace MoneyManager.Core.Repositories
         /// </summary>
         /// <param name="account">account to search the related</param>
         /// <returns>List of transactions</returns>
-        public IEnumerable<Payment> GetRelatedTransactions(Account account)
+        public IEnumerable<Payment> GetRelatedPayments(Account account)
         {
             return Data.Where(x => x.ChargedAccountId == account.Id
                                    || x.TargetAccountId == account.Id)
@@ -144,32 +144,32 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     returns a list with transaction who recure in a given timeframe
+        ///     returns a list with paymentToDelete who recure in a given timeframe
         /// </summary>
         /// <returns>list of recurring transactions</returns>
         public IEnumerable<Payment> LoadRecurringList(Func<Payment, bool> filter = null)
         {
             var list = Data
-                .Where(x => x.IsRecurring && x.ReccuringTransactionId != 0)
+                .Where(x => x.IsRecurring && x.ReccuringPaymentId != 0)
                 .Where(x => (x.RecurringPayment.IsEndless ||
                              x.RecurringPayment.EndDate >= DateTime.Now.Date)
                             && (filter == null || filter.Invoke(x)))
                 .ToList();
 
             return list
-                .Select(x => x.ReccuringTransactionId)
+                .Select(x => x.ReccuringPaymentId)
                 .Distinct()
-                .Select(id => list.Where(x => x.ReccuringTransactionId == id)
+                .Select(id => list.Where(x => x.ReccuringPaymentId == id)
                     .OrderByDescending(x => x.Date)
                     .Last())
                 .ToList();
         }
 
-        private void DeleteRecurringTransactionIfLastAssociated(Payment item)
+        private void DeleteRecurringPaymentIfLastAssociated(Payment item)
         {
-            if (Data.All(x => x.ReccuringTransactionId != item.ReccuringTransactionId))
+            if (Data.All(x => x.ReccuringPaymentId != item.ReccuringPaymentId))
             {
-                var recurringList = recurringDataAccess.LoadList(x => x.Id == item.ReccuringTransactionId).ToList();
+                var recurringList = recurringDataAccess.LoadList(x => x.Id == item.ReccuringPaymentId).ToList();
 
                 foreach (var recTrans in recurringList)
                 {

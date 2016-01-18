@@ -8,7 +8,7 @@
                       x:Class="MoneyManager.Windows.Views.PaymentListView"
                       mc:Ignorable="d"
                       NavigationCacheMode="Disabled"
-                      DataContext="{Binding TransactionListView, Source={StaticResource CoreModule}}"
+                      DataContext="{Binding PaymentListView, Source={StaticResource CoreModule}}"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.BottomAppBar>

@@ -1,6 +1,6 @@
 ﻿namespace MoneyManager.Foundation
 {
-    public enum TransactionType
+    public enum PaymentType
     {
         Spending,
         Income,

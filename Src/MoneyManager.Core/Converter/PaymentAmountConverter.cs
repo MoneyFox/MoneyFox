@@ -8,14 +8,14 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Converter
 {
-    public class TransactionAmountConverter : IMvxValueConverter
+    public class PaymentAmountConverter : IMvxValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var transaction = (Payment) value;
             string sign;
 
-            if (transaction.Type == (int) TransactionType.Transfer)
+            if (transaction.Type == (int) PaymentType.Transfer)
             {
                 sign = transaction.ChargedAccountId == Mvx.Resolve<IRepository<Account>>().Selected.Id
                     ? "-"
@@ -23,7 +23,7 @@ namespace MoneyManager.Core.Converter
             }
             else
             {
-                sign = transaction.Type == (int) TransactionType.Spending
+                sign = transaction.Type == (int) PaymentType.Spending
                     ? "-"
                     : "+";
             }

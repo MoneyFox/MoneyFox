@@ -22,9 +22,9 @@ namespace MoneyManager.Droid.Activities
         private Button enddateButton;
         private Button transactionDateButton;
 
-        public new ModifyTransactionViewModel ViewModel
+        public new ModifyPaymentViewModel ViewModel
         {
-            get { return (ModifyTransactionViewModel) base.ViewModel; }
+            get { return (ModifyPaymentViewModel) base.ViewModel; }
             set { base.ViewModel = value; }
         }
 
@@ -34,7 +34,7 @@ namespace MoneyManager.Droid.Activities
 
             if (callerButton == transactionDateButton)
             {
-                ViewModel.SelectedTransaction.Date = date;
+                ViewModel.SelectedPayment.Date = date;
             }
             else if (callerButton == enddateButton)
             {
