@@ -19,7 +19,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2, Name = accountname});
 
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new BalanceViewModel(
-                accountRepositorySetup.Object, new Mock<ITransactionRepository>().Object))
+                accountRepositorySetup.Object, new Mock<IPaymentRepository>().Object))
             {IsEdit = true};
 
             viewmodel.Title.ShouldBe(Strings.EditLabel + " " + accountname);
@@ -34,7 +34,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 2, Name = accountname});
 
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object, new BalanceViewModel(
-                accountRepositorySetup.Object, new Mock<ITransactionRepository>().Object))
+                accountRepositorySetup.Object, new Mock<IPaymentRepository>().Object))
             {IsEdit = false};
 
             viewmodel.Title.ShouldBe(Strings.AddAccountTitle);

@@ -19,7 +19,7 @@ namespace MoneyManager.Core.ViewModels.Statistics
     public class StatisticViewModel : BaseViewModel
     {
         private readonly ListStatisticFactory listStatisticFactory;
-        private readonly ITransactionRepository transactionRepository;
+        private readonly IPaymentRepository paymentRepository;
 
         private PlotModel cashFlowModel;
 
@@ -30,13 +30,13 @@ namespace MoneyManager.Core.ViewModels.Statistics
         /// <summary>
         ///     Creates a StatisticViewModel Object.
         /// </summary>
-        /// <param name="transactionRepository">Instance of <see cref="ITransactionRepository" /></param>
+        /// <param name="paymentRepository">Instance of <see cref="IPaymentRepository" /></param>
         /// <param name="categoryRepository">Instance of <see cref="IRepository{T}" /></param>
-        public StatisticViewModel(ITransactionRepository transactionRepository, IRepository<Category> categoryRepository)
+        public StatisticViewModel(IPaymentRepository paymentRepository, IRepository<Category> categoryRepository)
         {
-            this.transactionRepository = transactionRepository;
+            this.paymentRepository = paymentRepository;
 
-            listStatisticFactory = new ListStatisticFactory(transactionRepository, categoryRepository);
+            listStatisticFactory = new ListStatisticFactory(paymentRepository, categoryRepository);
 
             StartDate = DateTime.Today.GetFirstDayOfMonth();
             EndDate = DateTime.Today.GetLastDayOfMonth();
@@ -127,7 +127,7 @@ namespace MoneyManager.Core.ViewModels.Statistics
         public void SetCashFlow()
         {
             CashFlowModel = null;
-            SetCashFlowModel(new CashFlowProvider(transactionRepository).GetValues(StartDate, EndDate));
+            SetCashFlowModel(new CashFlowProvider(paymentRepository).GetValues(StartDate, EndDate));
             RaisePropertyChanged(nameof(CashFlowModel));
         }
 

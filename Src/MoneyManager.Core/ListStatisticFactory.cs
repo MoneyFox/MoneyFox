@@ -10,12 +10,12 @@ namespace MoneyManager.Core
     public class ListStatisticFactory
     {
         private readonly IRepository<Category> categoryRepository;
-        private readonly ITransactionRepository transactionRepository;
+        private readonly IPaymentRepository paymentRepository;
 
-        public ListStatisticFactory(ITransactionRepository transactionRepository,
+        public ListStatisticFactory(IPaymentRepository paymentRepository,
             IRepository<Category> categoryRepository)
         {
-            this.transactionRepository = transactionRepository;
+            this.paymentRepository = paymentRepository;
             this.categoryRepository = categoryRepository;
         }
 
@@ -29,10 +29,10 @@ namespace MoneyManager.Core
             switch (type)
             {
                 case ListStatisticType.CategorySpreading:
-                    return new CategorySpreadingProvider(transactionRepository, categoryRepository);
+                    return new CategorySpreadingProvider(paymentRepository, categoryRepository);
 
                 case ListStatisticType.CategorySummary:
-                    return new CategorySummaryProvider(transactionRepository, categoryRepository);
+                    return new CategorySummaryProvider(paymentRepository, categoryRepository);
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type));

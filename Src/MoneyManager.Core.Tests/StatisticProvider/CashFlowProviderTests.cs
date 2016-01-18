@@ -23,7 +23,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_SetupData_ListWithoutTransfer()
         {
             //Setup
-            var transactionRepoSetup = new Mock<ITransactionRepository>();
+            var transactionRepoSetup = new Mock<IPaymentRepository>();
             transactionRepoSetup.SetupAllProperties();
 
             var transactionRepo = transactionRepoSetup.Object;
@@ -32,21 +32,21 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 1,
-                    Type = (int) TransactionType.Income,
+                    Type = (int) PaymentType.Income,
                     Date = DateTime.Today,
                     Amount = 60
                 },
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 50
                 },
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) TransactionType.Transfer,
+                    Type = (int) PaymentType.Transfer,
                     Date = DateTime.Today,
                     Amount = 40
                 }
@@ -66,7 +66,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_SetupData_CalculatedCorrectTimeRange()
         {
             //Setup
-            var transactionRepoSetup = new Mock<ITransactionRepository>();
+            var transactionRepoSetup = new Mock<IPaymentRepository>();
             transactionRepoSetup.SetupAllProperties();
 
             var transactionRepo = transactionRepoSetup.Object;
@@ -75,21 +75,21 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 1,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today,
                     Amount = 60
                 },
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today.AddDays(5),
                     Amount = 50
                 },
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) TransactionType.Spending,
+                    Type = (int) PaymentType.Spending,
                     Date = DateTime.Today.AddDays(-5),
                     Amount = 40
                 }

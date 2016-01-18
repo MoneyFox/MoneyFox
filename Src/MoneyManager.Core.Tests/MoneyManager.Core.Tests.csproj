@@ -154,9 +154,9 @@
     <Compile Include="Helper\UtilitiesTest.cs" />
     <Compile Include="Helper\TransactionTypeLogicTest.cs" />
     <Compile Include="Manager\DefaultManagerTests.cs" />
-    <Compile Include="Manager\RecurringTransactionManagerTests.cs" />
+    <Compile Include="Manager\RecurringPaymentManagerTests.cs" />
     <Compile Include="Manager\RepositoryManagerTests.cs" />
-    <Compile Include="Manager\TransactionManagerTests.cs" />
+    <Compile Include="Manager\PaymentManagerTests.cs" />
     <Compile Include="Mocks\AccountDataAccessMock.cs" />
     <Compile Include="Mocks\CategoryDataAccessMock.cs" />
     <Compile Include="Mocks\RecurringTransactionDataAccessMock.cs" />
@@ -164,14 +164,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepositoryTests.cs" />
     <Compile Include="Repositories\CategoryRepositoryTests.cs" />
-    <Compile Include="Repositories\TransactionRepositoryTests.cs" />
+    <Compile Include="Repositories\PaymentRepositoryTests.cs" />
     <Compile Include="StatisticProvider\CashFlowProviderTests.cs" />
     <Compile Include="StatisticProvider\CategorySpreadingProviderTests.cs" />
     <Compile Include="StatisticProvider\CategorySummaryProviderTests.cs" />
     <Compile Include="ViewModels\AboutViewModelTests.cs" />
     <Compile Include="ViewModels\AccountListViewModelTests.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModelTests.cs" />
-    <Compile Include="ViewModels\ModifyTransactionViewModelTest.cs" />
+    <Compile Include="ViewModels\ModifyPaymentViewModelTest.cs" />
     <Compile Include="ViewModels\MainViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>

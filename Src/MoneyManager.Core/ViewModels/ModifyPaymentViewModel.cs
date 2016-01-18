@@ -17,30 +17,30 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class ModifyTransactionViewModel : BaseViewModel
+    public class ModifyPaymentViewModel : BaseViewModel
     {
         private readonly IAccountRepository accountRepository;
         private readonly IDefaultManager defaultManager;
         private readonly IDialogService dialogService;
-        private readonly ITransactionManager transactionManager;
-        private readonly ITransactionRepository transactionRepository;
+        private readonly IPaymentManager paymentManager;
+        private readonly IPaymentRepository paymentRepository;
 
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
 
-        public ModifyTransactionViewModel(ITransactionRepository transactionRepository,
+        public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IDialogService dialogService,
-            ITransactionManager transactionManager,
+            IPaymentManager paymentManager,
             IDefaultManager defaultManager)
         {
-            this.transactionRepository = transactionRepository;
+            this.paymentRepository = paymentRepository;
             this.dialogService = dialogService;
-            this.transactionManager = transactionManager;
+            this.paymentManager = paymentManager;
             this.defaultManager = defaultManager;
             this.accountRepository = accountRepository;
 
-            token = MessageHub.Subscribe<CategorySelectedMessage>(message => SelectedTransaction.Category = message.SelectedCategory);
+            token = MessageHub.Subscribe<CategorySelectedMessage>(message => SelectedPayment.Category = message.SelectedCategory);
         }
 
         /// <summary>
@@ -69,37 +69,37 @@ namespace MoneyManager.Core.ViewModels
         {
             // Monkey patch for issues with binding to the account selection
             // TODO: fix this that the binding works without this.
-            SelectedTransaction.ChargedAccount =
-                accountRepository.Data.FirstOrDefault(x => x.Id == SelectedTransaction.ChargedAccountId);
+            SelectedPayment.ChargedAccount =
+                accountRepository.Data.FirstOrDefault(x => x.Id == SelectedPayment.ChargedAccountId);
 
-            IsTransfer = SelectedTransaction.IsTransfer;
+            IsTransfer = SelectedPayment.IsTransfer;
             // set the private amount property. This will get properly formatted and then displayed.
-            amount = SelectedTransaction.Amount;
-            Recurrence = SelectedTransaction.IsRecurring
-                ? SelectedTransaction.RecurringPayment.Recurrence
+            amount = SelectedPayment.Amount;
+            Recurrence = SelectedPayment.IsRecurring
+                ? SelectedPayment.RecurringPayment.Recurrence
                 : 0;
-            EndDate = SelectedTransaction.IsRecurring
-                ? SelectedTransaction.RecurringPayment.EndDate
+            EndDate = SelectedPayment.IsRecurring
+                ? SelectedPayment.RecurringPayment.EndDate
                 : DateTime.Now;
-            IsEndless = !SelectedTransaction.IsRecurring || SelectedTransaction.RecurringPayment.IsEndless;
+            IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
 
         }
 
         private void PrepareDefault(string typeString)
         {
-            var type = (TransactionType) Enum.Parse(typeof (TransactionType), typeString);
+            var type = (PaymentType) Enum.Parse(typeof (PaymentType), typeString);
 
             SetDefaultTransaction(type);
-            SelectedTransaction.ChargedAccount = defaultManager.GetDefaultAccount();
-            IsTransfer = type == TransactionType.Transfer;
+            SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
+            IsTransfer = type == PaymentType.Transfer;
             EndDate = DateTime.Now;
         }
 
-        private void SetDefaultTransaction(TransactionType transactionType)
+        private void SetDefaultTransaction(PaymentType paymentType)
         {
-            SelectedTransaction = new Payment
+            SelectedPayment = new Payment
             {
-                Type = (int) transactionType,
+                Type = (int) paymentType,
                 Date = DateTime.Now,
                 // Assign empty category to reset the GUI
                 Category = new Category()
@@ -108,13 +108,13 @@ namespace MoneyManager.Core.ViewModels
 
         private async void Save()
         {
-            if (SelectedTransaction.ChargedAccount == null)
+            if (SelectedPayment.ChargedAccount == null)
             {
                 ShowAccountRequiredMessage();
                 return;
             }
 
-            if (SelectedTransaction.IsRecurring && !IsEndless && EndDate.Date <= DateTime.Today)
+            if (SelectedPayment.IsRecurring && !IsEndless && EndDate.Date <= DateTime.Today)
             {
                 ShowInvalidEndDateMessage();
                 return;
@@ -122,14 +122,14 @@ namespace MoneyManager.Core.ViewModels
 
             // Make sure that the old amount is removed to not count the amount twice.
             RemoveOldAmount();
-            SelectedTransaction.Amount = amount;
+            SelectedPayment.Amount = amount;
 
             //Create a recurring transaction based on the financial transaction or update an existing
             await PrepareRecurringTransaction();
 
             // SaveItem or update the transaction and add the amount to the account
-            transactionRepository.Save(SelectedTransaction);
-            accountRepository.AddTransactionAmount(SelectedTransaction);
+            paymentRepository.Save(SelectedPayment);
+            accountRepository.AddTransactionAmount(SelectedPayment);
 
             Close(this);
         }
@@ -138,17 +138,17 @@ namespace MoneyManager.Core.ViewModels
         {
             if (IsEdit)
             {
-                accountRepository.RemoveTransactionAmount(SelectedTransaction);
+                accountRepository.RemoveTransactionAmount(SelectedPayment);
             }
         }
 
         private async Task PrepareRecurringTransaction()
         {
-            if ((IsEdit && await transactionManager.CheckForRecurringTransaction(SelectedTransaction))
-                || SelectedTransaction.IsRecurring)
+            if ((IsEdit && await paymentManager.CheckForRecurringPayment(SelectedPayment))
+                || SelectedPayment.IsRecurring)
             {
-                SelectedTransaction.RecurringPayment = RecurringTransactionHelper.
-                    GetRecurringFromFinancialTransaction(SelectedTransaction,
+                SelectedPayment.RecurringPayment = RecurringPaymentHelper.
+                    GetRecurringFromPayment(SelectedPayment,
                         IsEndless,
                         Recurrence,
                         EndDate);
@@ -162,12 +162,10 @@ namespace MoneyManager.Core.ViewModels
 
         private async void Delete()
         {
-            if (
-                await
-                    dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
             {
-                transactionRepository.Delete(transactionRepository.Selected);
-                accountRepository.RemoveTransactionAmount(SelectedTransaction);
+                paymentRepository.Delete(paymentRepository.Selected);
+                accountRepository.RemoveTransactionAmount(SelectedPayment);
                 Close(this);
             }
         }
@@ -187,7 +185,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void ResetSelection()
         {
-            SelectedTransaction.Category = null;
+            SelectedPayment.Category = null;
         }
 
 
@@ -289,10 +287,10 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     The selected transaction
         /// </summary>
-        public Payment SelectedTransaction
+        public Payment SelectedPayment
         {
-            get { return transactionRepository.Selected; }
-            set { transactionRepository.Selected = value; }
+            get { return paymentRepository.Selected; }
+            set { paymentRepository.Selected = value; }
         }
 
         /// <summary>
@@ -303,13 +301,13 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Returns the Title for the page
         /// </summary>
-        public string Title => TransactionTypeHelper.GetViewTitleForType(SelectedTransaction.Type, IsEdit);
+        public string Title => PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, IsEdit);
 
         /// <summary>
         ///     Returns the Header for the account field
         /// </summary>
         public string AccountHeader
-            => SelectedTransaction?.Type == (int) TransactionType.Income
+            => SelectedPayment?.Type == (int) PaymentType.Income
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
 
@@ -320,13 +318,13 @@ namespace MoneyManager.Core.ViewModels
         {
             get
             {
-                if (!IsEdit && SelectedTransaction.Date == DateTime.MinValue)
+                if (!IsEdit && SelectedPayment.Date == DateTime.MinValue)
                 {
-                    SelectedTransaction.Date = DateTime.Now;
+                    SelectedPayment.Date = DateTime.Now;
                 }
-                return SelectedTransaction.Date;
+                return SelectedPayment.Date;
             }
-            set { SelectedTransaction.Date = value; }
+            set { SelectedPayment.Date = value; }
         }
 
         #endregion

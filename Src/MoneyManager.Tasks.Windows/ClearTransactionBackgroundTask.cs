@@ -12,7 +12,7 @@ namespace MoneyManager.Tasks.Windows
 {
     public sealed class ClearTransactionBackgroundTask : IBackgroundTask
     {
-        private readonly TransactionManager transactionManager;
+        private readonly PaymentManager paymentManager;
 
         public ClearTransactionBackgroundTask()
         {
@@ -28,8 +28,8 @@ namespace MoneyManager.Tasks.Windows
 
             var sqliteConnectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
 
-            transactionManager = new TransactionManager(
-                new TransactionRepository(new TransactionDataAccess(sqliteConnectionCreator),
+            paymentManager = new PaymentManager(
+                new PaymentRepository(new TransactionDataAccess(sqliteConnectionCreator),
                     new RecurringTransactionDataAccess(sqliteConnectionCreator)),
                 new AccountRepository(new AccountDataAccess(sqliteConnectionCreator)),
                 null);
@@ -39,7 +39,7 @@ namespace MoneyManager.Tasks.Windows
         {
             try
             {
-                transactionManager.ClearTransactions();
+                paymentManager.ClearPayments();
                 Tile.UpdateMainTile();
             } 
             catch (Exception ex)

@@ -235,18 +235,18 @@ namespace MoneyManager.Localization {
         /// <summary>
         ///   Looks up a localized string similar to This transaction is recurring. Do you want to update the future transactions aswell or just this occurence?.
         /// </summary>
-        public static string ChangeSubsequentTransactionsMessage {
+        public static string ChangeSubsequentPaymentMessage {
             get {
-                return ResourceManager.GetString("ChangeSubsequentTransactionsMessage", resourceCulture);
+                return ResourceManager.GetString("ChangeSubsequentPaymentMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Update Recurrence?.
         /// </summary>
-        public static string ChangeSubsequentTransactionsTitle {
+        public static string ChangeSubsequentPaymentTitle {
             get {
-                return ResourceManager.GetString("ChangeSubsequentTransactionsTitle", resourceCulture);
+                return ResourceManager.GetString("ChangeSubsequentPaymentTitle", resourceCulture);
             }
         }
         

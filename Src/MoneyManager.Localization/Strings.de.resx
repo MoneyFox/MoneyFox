@@ -153,10 +153,10 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>Kapitalfluss</value>
   </data>
-  <data name="ChangeSubsequentTransactionsMessage" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
     <value>Dies ist eine wiederkehrende Zahlung. Möchtest du sie für zukünftige Transaktionen aktualisieren oder nur dieses Mal?</value>
   </data>
-  <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Wiederholungen aktualisieren</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">

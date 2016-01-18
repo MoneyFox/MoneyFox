@@ -51,9 +51,9 @@
   <string name="text_endless">Is Endless</string>
 
   <!--string arrays-->
-  <string-array name="statistic_items">
-    <item>Cashflow</item>
-    <item>Spreading</item>
+  <string-array name="statistic_paymentToDeletes">
+    <paymentToDelete>Cashflow</paymentToDelete>
+    <paymentToDelete>Spreading</paymentToDelete>
   </string-array>
 
 </resources>

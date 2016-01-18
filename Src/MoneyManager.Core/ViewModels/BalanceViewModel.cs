@@ -13,13 +13,13 @@ namespace MoneyManager.Core.ViewModels
     public class BalanceViewModel : BaseViewModel, IBalanceViewModel
     {
         private readonly IAccountRepository accountRepository;
-        private readonly ITransactionRepository transactionRepository;
+        private readonly IPaymentRepository paymentRepository;
 
         public BalanceViewModel(IAccountRepository accountRepository,
-            ITransactionRepository transactionRepository)
+            IPaymentRepository paymentRepository)
         {
             this.accountRepository = accountRepository;
-            this.transactionRepository = transactionRepository;
+            this.paymentRepository = paymentRepository;
         }
 
         private bool IsTransactionView { get; set; }
@@ -59,15 +59,15 @@ namespace MoneyManager.Core.ViewModels
             {
                 switch (transaction.Type)
                 {
-                    case (int) TransactionType.Spending:
+                    case (int) PaymentType.Spending:
                         balance -= transaction.Amount;
                         break;
 
-                    case (int) TransactionType.Income:
+                    case (int) PaymentType.Income:
                         balance += transaction.Amount;
                         break;
 
-                    case (int) TransactionType.Transfer:
+                    case (int) PaymentType.Transfer:
                         balance = HandleTransferAmount(transaction, balance);
                         break;
                 }
@@ -92,7 +92,7 @@ namespace MoneyManager.Core.ViewModels
         private IEnumerable<Payment> LoadUnclreadTransactions()
         {
             var unclearedTransactions =
-                transactionRepository.GetUnclearedTransactions(Utilities.GetEndOfMonth());
+                paymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth());
 
             return IsTransactionView
                 ? unclearedTransactions.Where(

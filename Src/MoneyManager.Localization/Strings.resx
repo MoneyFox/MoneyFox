@@ -153,10 +153,10 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>Cashflow</value>
   </data>
-  <data name="ChangeSubsequentTransactionsMessage" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
     <value>This transaction is recurring. Do you want to update the future transactions aswell or just this occurence?</value>
   </data>
-  <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Update Recurrence?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
