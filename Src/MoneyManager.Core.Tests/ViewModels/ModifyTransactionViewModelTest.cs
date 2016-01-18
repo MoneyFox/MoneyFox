@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using Cirrious.CrossCore;
-using Cirrious.CrossCore.Core;
 using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels;
@@ -19,21 +18,16 @@ namespace MoneyManager.Core.Tests.ViewModels
 {
     public class ModifyTransactionViewModelTest : MvxIoCSupportingTest
     {
-        public ModifyTransactionViewModelTest()
-        {
-            MvxSingleton.ClearAllSingletons();
-            Setup();
-
-            Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
-        }
-
         [Fact]
         public void Init_SpendingNotEditing_PropertiesSetupCorrectly()
         {
-            //Setup
-            var transactionRepositorySetup = new Mock<ITransactionRepository>();
-            transactionRepositorySetup.SetupProperty(x => x.Selected);
+            ClearAll();
+            Setup();
+            Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
 
+            var transactionRepositorySetup = new Mock<ITransactionRepository>();
+            transactionRepositorySetup.SetupGet(x => x.Selected).Returns(new Payment {ChargedAccountId = 3});
+            
             var transactionManager = new TransactionManager(transactionRepositorySetup.Object,
                 new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object);
@@ -43,7 +37,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             accountRepoMock.SetupAllProperties();
 
             var accountRepo = accountRepoMock.Object;
-            accountRepo.Data = new ObservableCollection<Account>();
+            accountRepo.Data = new ObservableCollection<Account> {new Account {Id = 3}};
 
             var defaultManager = new DefaultManager(accountRepo,
                 new SettingDataAccess(new Mock<IRoamingSettings>().Object));
@@ -54,9 +48,8 @@ namespace MoneyManager.Core.Tests.ViewModels
                 transactionManager,
                 defaultManager);
 
-            //Execute and Assert
-            viewmodel.SelectedTransaction.ShouldBeNull();
 
+            //Execute and Assert
             viewmodel.Init("Income", true);
             viewmodel.SelectedTransaction.Type.ShouldBe((int) TransactionType.Spending);
             viewmodel.SelectedTransaction.IsTransfer.ShouldBeFalse();
@@ -66,7 +59,10 @@ namespace MoneyManager.Core.Tests.ViewModels
         [Fact]
         public void Init_IncomeEditing_PropertiesSetupCorrectly()
         {
-            //Setup
+            ClearAll();
+            Setup();
+            Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
+
             var testEndDate = new DateTime(2099, 1, 31);
 
             var transactionRepositorySetup = new Mock<ITransactionRepository>();

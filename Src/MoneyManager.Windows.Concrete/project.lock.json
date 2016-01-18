@@ -171,7 +171,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
-      "Microsoft.OneDriveSDK/1.1.20": {
+      "Microsoft.OneDriveSDK/1.1.29": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -1822,7 +1822,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
-      "Microsoft.OneDriveSDK/1.1.20": {
+      "Microsoft.OneDriveSDK/1.1.29": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -3506,7 +3506,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
-      "Microsoft.OneDriveSDK/1.1.20": {
+      "Microsoft.OneDriveSDK/1.1.29": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -5195,7 +5195,7 @@
           "runtimes/win10-x64/native/_._": {}
         }
       },
-      "Microsoft.OneDriveSDK/1.1.20": {
+      "Microsoft.OneDriveSDK/1.1.29": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -6879,7 +6879,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
-      "Microsoft.OneDriveSDK/1.1.20": {
+      "Microsoft.OneDriveSDK/1.1.29": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -8568,7 +8568,7 @@
           "runtimes/win10-x86/native/_._": {}
         }
       },
-      "Microsoft.OneDriveSDK/1.1.20": {
+      "Microsoft.OneDriveSDK/1.1.29": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -10252,7 +10252,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
-      "Microsoft.OneDriveSDK/1.1.20": {
+      "Microsoft.OneDriveSDK/1.1.29": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
           "Newtonsoft.Json": "[7.0.1, )"
@@ -12335,8 +12335,8 @@
         "runtimes/win8-x86/native/api-ms-win-service-private-l1-1-1.dll"
       ]
     },
-    "Microsoft.OneDriveSDK/1.1.20": {
-      "sha512": "650vvWls5rnJEjemv//LhGv2Njy4UWfyCu6Z6b0wkOscFkbs7MtAIMCJwXZD/ZcsAMgEfDi26+Vl5seyXQ3OGQ==",
+    "Microsoft.OneDriveSDK/1.1.29": {
+      "sha512": "JY7pP12XS9N4GrhgX7UttU+4SIecCr4shYQkbvT+rA/iUu8drHAQm47+1OFoz2PEg3SciI9eKVj6SylxcLY1Ag==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -12350,7 +12350,7 @@
         "lib/win81/OneDriveSdk.WinRT.dll",
         "lib/win81/OneDriveSdk.WinStore.dll",
         "Microsoft.OneDriveSDK.nuspec",
-        "package/services/metadata/core-properties/3cd0116c6dd04f18a847a487fe6a1f3a.psmdcp"
+        "package/services/metadata/core-properties/9198a27bdcb144ae92e001e5b3855179.psmdcp"
       ]
     },
     "Microsoft.VisualBasic/10.0.0": {
@@ -15285,7 +15285,7 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "Microsoft.OneDriveSDK >= 1.1.20",
+      "Microsoft.OneDriveSDK >= 1.1.29",
       "MvvmCross.HotTuna.CrossCore >= 4.0.0-beta7",
       "MvvmCross.HotTuna.MvvmCrossLibraries >= 4.0.0-beta7",
       "NotificationsExtensions.Win10 >= 10586.0.0",

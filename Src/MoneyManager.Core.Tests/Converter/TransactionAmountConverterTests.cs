@@ -15,12 +15,6 @@ namespace MoneyManager.Core.Tests.Converter
 {
     public class TransactionAmountConverterTests : MvxIoCSupportingTest
     {
-        public TransactionAmountConverterTests()
-        {
-            MvxSingleton.ClearAllSingletons();
-            Setup();
-        }
-
         [Theory]
         [InlineData(TransactionType.Spending, "- ")]
         [InlineData(TransactionType.Income, "+ ")]
@@ -33,6 +27,9 @@ namespace MoneyManager.Core.Tests.Converter
         [Fact]
         public void Converter_TransferSameAccount_Minus()
         {
+            ClearAll();
+            Setup();
+
             var account = new Account
             {
                 Id = 4,
@@ -59,6 +56,8 @@ namespace MoneyManager.Core.Tests.Converter
         [Fact]
         public void Converter_TransferSameAccount_Plus()
         {
+            ClearAll();
+            Setup();
             var account = new Account
             {
                 Id = 4,
