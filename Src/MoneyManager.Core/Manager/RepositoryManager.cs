@@ -11,18 +11,18 @@ namespace MoneyManager.Core.Manager
     {
         private readonly IRepository<Account> accountRepository;
         private readonly IRepository<Category> categoryRepository;
-        private readonly ITransactionManager transactionManager;
-        private readonly ITransactionRepository transactionRepository;
+        private readonly IPaymentManager paymentManager;
+        private readonly IPaymentRepository paymentRepository;
 
         public RepositoryManager(IRepository<Account> accountRepository,
-            ITransactionRepository transactionRepository,
+            IPaymentRepository paymentRepository,
             IRepository<Category> categoryRepository,
-            ITransactionManager transactionManager)
+            IPaymentManager paymentManager)
         {
             this.accountRepository = accountRepository;
-            this.transactionRepository = transactionRepository;
+            this.paymentRepository = paymentRepository;
             this.categoryRepository = categoryRepository;
-            this.transactionManager = transactionManager;
+            this.paymentManager = paymentManager;
         }
 
         /// <summary>
@@ -35,14 +35,14 @@ namespace MoneyManager.Core.Manager
             accountRepository.Load();
             accountRepository.Selected = null;
 
-            transactionRepository.Load();
-            transactionRepository.Selected = null;
+            paymentRepository.Load();
+            paymentRepository.Selected = null;
 
             categoryRepository.Load();
             categoryRepository.Selected = null;
 
             //check if there are transactions to clear
-            transactionManager.ClearTransactions();
+            paymentManager.ClearPayments();
         }
     }
 }

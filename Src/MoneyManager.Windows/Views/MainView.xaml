@@ -4,9 +4,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:MoneyManager.Windows.Controls"
-      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
       DataContext="{Binding MainView, Source={StaticResource CoreModule}}"
       mc:Ignorable="d">
 
@@ -24,17 +24,17 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <basicControls:PageHeader>
-            <basicControls:PageHeader.HeaderContent>
+        <userControls:PageHeader>
+            <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Accounts"
                            x:Uid="AccountTitle" />
-            </basicControls:PageHeader.HeaderContent>
-        </basicControls:PageHeader>
+            </userControls:PageHeader.HeaderContent>
+        </userControls:PageHeader>
 
         <Grid Grid.Row="1"
               Margin="0,9.5,0,0"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <controls:AccountListUserControl VerticalAlignment="Stretch" />
+            <userControls:AccountListUserControl VerticalAlignment="Stretch" />
         </Grid>
 
         <CommandBar Grid.Row="2">

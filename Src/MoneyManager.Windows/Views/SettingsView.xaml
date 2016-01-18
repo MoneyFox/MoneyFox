@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:MoneyManager.Windows.Controls"
-    xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
+    xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
     DataContext="{Binding SettingDefaultsView, Source={StaticResource CoreModule}}"
     mc:Ignorable="d">
 
@@ -20,31 +19,31 @@
                 <!--Allgemeines-->
                 <PivotItem>
                     <PivotItem.Header>
-                        <basicControls:TabHeader Label="Tiles"
+                        <userControls:TabHeader Label="Tiles"
                                                  x:Uid="TilesHeader"
                                                  Glyph="&#xE8FC;" />
                     </PivotItem.Header>
-                    <controls:TileSettingsUserControl Margin="-7,0,-7,0" />
+                    <userControls:TileSettingsUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
 
                 <!--Categorie Settings-->
                 <PivotItem>
                     <PivotItem.Header>
-                        <basicControls:TabHeader Label="Categories"
+                        <userControls:TabHeader Label="Categories"
                                                  x:Uid="CategoriesHeader"
                                                  Glyph="&#xE8EC;" />
                     </PivotItem.Header>
-                    <controls:CategoryListUserControl Margin="-7,0,-7,0" x:Name="CategoryListUserControl" />
+                    <userControls:CategoryListUserControl Margin="-7,0,-7,0" x:Name="CategoryListUserControl" />
                 </PivotItem>
 
                 <!--Password Settings-->
                 <PivotItem>
                     <PivotItem.Header>
-                        <basicControls:TabHeader Label="Password"
+                        <userControls:TabHeader Label="Password"
                                                  x:Uid="SecurityHeader"
                                                  Glyph="&#xE8D7;" />
                     </PivotItem.Header>
-                    <controls:PasswordUserControl Margin="-7,0,-7,0" />
+                    <userControls:PasswordUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
             </Pivot>
         </Grid>

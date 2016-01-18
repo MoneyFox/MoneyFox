@@ -4,7 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:converter="using:MoneyManager.Windows.Converter"
-      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
+      xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
       mc:Ignorable="d"
       DataContext="{Binding BackupView, Source={StaticResource CoreModule}}"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -19,11 +19,11 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <basicControls:PageHeader>
-            <basicControls:PageHeader.HeaderContent>
+        <userControls:PageHeader>
+            <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Backup" x:Uid="BackupTitle" />
-            </basicControls:PageHeader.HeaderContent>
-        </basicControls:PageHeader>
+            </userControls:PageHeader.HeaderContent>
+        </userControls:PageHeader>
 
         <StackPanel Grid.Row="1"
                     Margin="19,9.5,19,0"

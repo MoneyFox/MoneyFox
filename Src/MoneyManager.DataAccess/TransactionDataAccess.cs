@@ -15,7 +15,7 @@ namespace MoneyManager.DataAccess
     ///     Handles the access to the transaction table on the database
     /// </summary>
     [ImplementPropertyChanged]
-    public class TransactionDataAccess : AbstractDataAccess<FinancialTransaction>
+    public class TransactionDataAccess : AbstractDataAccess<Payment>
     {
         private readonly ISqliteConnectionCreator connectionCreator;
 
@@ -28,7 +28,7 @@ namespace MoneyManager.DataAccess
         ///     Saves a new item or updates an existing
         /// </summary>
         /// <param name="itemToSave">Item to SaveItem</param>
-        protected override void SaveToDb(FinancialTransaction itemToSave)
+        protected override void SaveToDb(Payment itemToSave)
         {
             using (var db = connectionCreator.GetConnection())
             {
@@ -46,18 +46,18 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        private void SaveRecurringTransaction(FinancialTransaction itemToSave, SQLiteConnection db)
+        private void SaveRecurringTransaction(Payment itemToSave, SQLiteConnection db)
         {
             if (itemToSave.IsRecurring)
             {
                 //Check if the recurring transaction is new or an updated one
-                if (itemToSave.RecurringTransaction.Id == 0)
+                if (itemToSave.RecurringPayment.Id == 0)
                 {
-                    db.Insert(itemToSave.RecurringTransaction);
+                    db.Insert(itemToSave.RecurringPayment);
                 }
                 else
                 {
-                    db.Update(itemToSave.RecurringTransaction);
+                    db.Update(itemToSave.RecurringPayment);
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace MoneyManager.DataAccess
         ///     Deletes an item from the database
         /// </summary>
         /// <param name="transaction">Item to Delete.</param>
-        protected override void DeleteFromDatabase(FinancialTransaction transaction)
+        protected override void DeleteFromDatabase(Payment transaction)
         {
             using (var dbConn = connectionCreator.GetConnection())
             {
@@ -79,16 +79,16 @@ namespace MoneyManager.DataAccess
         /// </summary>
         /// <param name="filter">filter expression.</param>
         /// <returns>List of loaded transactions.</returns>
-        protected override List<FinancialTransaction> GetListFromDb(Expression<Func<FinancialTransaction, bool>> filter)
+        protected override List<Payment> GetListFromDb(Expression<Func<Payment, bool>> filter)
         {
             using (var db = connectionCreator.GetConnection())
             {
                 var list = db.GetAllWithChildren(filter, true).ToList();
 
-                foreach (var transaction in list.Where(x => x.IsRecurring && x.ReccuringTransactionId != 0))
+                foreach (var transaction in list.Where(x => x.IsRecurring && x.ReccuringPaymentId != 0))
                 {
-                    transaction.RecurringTransaction =
-                        db.GetWithChildren<RecurringTransaction>(transaction.ReccuringTransactionId);
+                    transaction.RecurringPayment =
+                        db.GetWithChildren<RecurringPayment>(transaction.ReccuringPaymentId);
                 }
                 return list;
             }

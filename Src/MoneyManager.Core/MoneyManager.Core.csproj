@@ -52,25 +52,25 @@
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
-    <Compile Include="Converter\TransactionAmountConverter.cs" />
+    <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="CoreModule.cs" />
     <Compile Include="DateListGroup.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Helpers\RecurringTransactionHelper.cs" />
+    <Compile Include="Helpers\RecurringPaymentHelper.cs" />
     <Compile Include="Extensions\StreamExtension.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Authentication\PasswordStorage.cs" />
-    <Compile Include="Manager\RecurringTransactionManager.cs" />
-    <Compile Include="Helpers\TransactionTypeHelper.cs" />
+    <Compile Include="Manager\RecurringPaymentManager.cs" />
+    <Compile Include="Helpers\PaymentTypeHelper.cs" />
     <Compile Include="Manager\DefaultManager.cs" />
     <Compile Include="Manager\RepositoryManager.cs" />
-    <Compile Include="Manager\TransactionManager.cs" />
+    <Compile Include="Manager\PaymentManager.cs" />
     <Compile Include="OneDriveService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
-    <Compile Include="Repositories\TransactionRepository.cs" />
+    <Compile Include="Repositories\PaymentRepository.cs" />
     <Compile Include="ListStatisticFactory.cs" />
     <Compile Include="Authentication\Session.cs" />
     <Compile Include="StatisticProvider\CashFlowProvider.cs" />
@@ -80,7 +80,7 @@
     <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\CategoryDialogViewModel.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
-    <Compile Include="ViewModels\ModifyTransactionViewModel.cs" />
+    <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -93,7 +93,7 @@
     <Compile Include="ViewModels\CategoryList\SettingsCategoryListViewModel.cs" />
     <Compile Include="ViewModels\Statistics\StatisticViewModel.cs" />
     <Compile Include="ViewModels\SettingViews\TileSettingsViewModel.cs" />
-    <Compile Include="ViewModels\TransactionListViewModel.cs" />
+    <Compile Include="ViewModels\PaymentListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">

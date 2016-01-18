@@ -6,16 +6,16 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Tests.Mocks
 {
-    public class RecurringTransactionDataAccessMock : IDataAccess<RecurringTransaction>
+    public class RecurringTransactionDataAccessMock : IDataAccess<RecurringPayment>
     {
-        public List<RecurringTransaction> RecurringTransactionTestList = new List<RecurringTransaction>();
+        public List<RecurringPayment> RecurringTransactionTestList = new List<RecurringPayment>();
 
-        public void SaveItem(RecurringTransaction itemToSave)
+        public void SaveItem(RecurringPayment itemToSave)
         {
             RecurringTransactionTestList.Add(itemToSave);
         }
 
-        public void DeleteItem(RecurringTransaction item)
+        public void DeleteItem(RecurringPayment item)
         {
             if (RecurringTransactionTestList.Contains(item))
             {
@@ -23,9 +23,9 @@ namespace MoneyManager.Core.Tests.Mocks
             }
         }
 
-        public List<RecurringTransaction> LoadList(Expression<Func<RecurringTransaction, bool>> filter = null)
+        public List<RecurringPayment> LoadList(Expression<Func<RecurringPayment, bool>> filter = null)
         {
-            return new List<RecurringTransaction>();
+            return new List<RecurringPayment>();
         }
     }
 }

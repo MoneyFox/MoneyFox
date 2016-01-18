@@ -11,12 +11,12 @@ namespace MoneyManager.Core.StatisticProvider
     public class CategorySummaryProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
         private readonly IRepository<Category> categoryRepository;
-        private readonly ITransactionRepository transactionRepository;
+        private readonly IPaymentRepository paymentRepository;
 
-        public CategorySummaryProvider(ITransactionRepository transactionRepository,
+        public CategorySummaryProvider(IPaymentRepository paymentRepository,
             IRepository<Category> categoryRepository)
         {
-            this.transactionRepository = transactionRepository;
+            this.paymentRepository = paymentRepository;
             this.categoryRepository = categoryRepository;
         }
 
@@ -29,11 +29,11 @@ namespace MoneyManager.Core.StatisticProvider
                 categories.Add(new StatisticItem
                 {
                     Category = category.Name,
-                    Value = transactionRepository.Data
+                    Value = paymentRepository.Data
                         .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .Where(x => x.CategoryId == category.Id)
-                        .Where(x => x.Type != (int) TransactionType.Transfer)
-                        .Sum(x => x.Type == (int) TransactionType.Spending
+                        .Where(x => x.Type != (int) PaymentType.Transfer)
+                        .Sum(x => x.Type == (int) PaymentType.Spending
                             ? -x.Amount
                             : x.Amount)
                 });

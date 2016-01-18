@@ -30,8 +30,8 @@ namespace MoneyManager.Foundation
             using (var db = connectionFactory.GetConnection("moneyfox.sqlite"))
             {
                 db.CreateTable<Account>();
-                db.CreateTable<FinancialTransaction>();
-                db.CreateTable<RecurringTransaction>();
+                db.CreateTable<Payment>();
+                db.CreateTable<RecurringPayment>();
                 db.CreateTable<Category>();
             }
         }

@@ -11,7 +11,7 @@ using SQLiteNetExtensions.Extensions;
 namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
-    public class RecurringTransactionDataAccess : AbstractDataAccess<RecurringTransaction>
+    public class RecurringTransactionDataAccess : AbstractDataAccess<RecurringPayment>
     {
         private readonly ISqliteConnectionCreator connectionCreator;
 
@@ -24,7 +24,7 @@ namespace MoneyManager.DataAccess
         ///     Saves an recurring transaction to the database.
         /// </summary>
         /// <param name="itemToSave">Recurring Transaction to save.</param>
-        protected override void SaveToDb(RecurringTransaction itemToSave)
+        protected override void SaveToDb(RecurringPayment itemToSave)
         {
             using (var db = connectionCreator.GetConnection())
             {
@@ -42,12 +42,12 @@ namespace MoneyManager.DataAccess
         /// <summary>
         ///     Deletres an recurring transaction from the database.
         /// </summary>
-        /// <param name="recurringTransaction">recurring transaction to delete.</param>
-        protected override void DeleteFromDatabase(RecurringTransaction recurringTransaction)
+        /// <param name="recurringPayment">recurring transaction to delete.</param>
+        protected override void DeleteFromDatabase(RecurringPayment recurringPayment)
         {
             using (var db = connectionCreator.GetConnection())
             {
-                db.Delete(recurringTransaction);
+                db.Delete(recurringPayment);
             }
         }
 
@@ -56,7 +56,7 @@ namespace MoneyManager.DataAccess
         /// </summary>
         /// <param name="filter">Filter expression.</param>
         /// <returns>List of loaded recurring transactions.</returns>
-        protected override List<RecurringTransaction> GetListFromDb(Expression<Func<RecurringTransaction, bool>> filter)
+        protected override List<RecurringPayment> GetListFromDb(Expression<Func<RecurringPayment, bool>> filter)
         {
             using (var dbConn = connectionCreator.GetConnection())
             {

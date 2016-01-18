@@ -4,7 +4,7 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="using:Cirrious.MvvmCross.WindowsUWP.Views"
-                      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
+                      xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       DataContext="{Binding ModifyAccountView, Source={StaticResource CoreModule}}"
                       mc:Ignorable="d">
@@ -35,13 +35,13 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <basicControls:PageHeader>
-            <basicControls:PageHeader.HeaderContent>
+        <userControls:PageHeader>
+            <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="Add Account"
                            x:Uid="ModifyAccountViewTitle" />
-            </basicControls:PageHeader.HeaderContent>
-        </basicControls:PageHeader>
+            </userControls:PageHeader.HeaderContent>
+        </userControls:PageHeader>
 
         <ScrollViewer Grid.Row="1"
                       HorizontalScrollMode="Auto">

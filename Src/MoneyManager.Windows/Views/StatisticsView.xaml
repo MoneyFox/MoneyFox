@@ -3,8 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
-      xmlns:statisticControls="using:MoneyManager.Windows.Controls.StatisticControls"
+      xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
       DataContext="{Binding StatisticView, Source={StaticResource CoreModule}}"
       mc:Ignorable="d">
 
@@ -16,37 +15,37 @@
         <Pivot Style="{StaticResource TabsStylePivotStyle}">
             <PivotItem>
                 <PivotItem.Header>
-                    <basicControls:TabHeader Label="Cash Flow"
+                    <userControls:TabHeader Label="Cash Flow"
                                              x:Uid="CashFlowTitle"
                                              Glyph="&#xE908;" />
                 </PivotItem.Header>
                 <Grid>
-                    <statisticControls:CashFlowUserControl x:Name="CashFlowUserControl" />
+                    <userControls:CashFlowUserControl x:Name="CashFlowUserControl" />
                 </Grid>
             </PivotItem>
 
             <PivotItem>
                 <PivotItem.Header>
-                    <basicControls:TabHeader Label="Spreading"
+                    <userControls:TabHeader Label="Spreading"
                                              x:Uid="SpreadingTitle"
                                              Glyph="&#xE774;" />
                 </PivotItem.Header>
                 <Grid>
-                    <statisticControls:CategorySpreadingUserControl x:Name="CategorySpreadingUserControl" />
+                    <userControls:CategorySpreadingUserControl x:Name="CategorySpreadingUserControl" />
                 </Grid>
             </PivotItem>
 
             <PivotItem>
                 <PivotItem.Header>
 
-                    <basicControls:TabHeader Label="Category Summary"
+                    <userControls:TabHeader Label="Category Summary"
                                              x:Uid="CategorySummaryTitle"
                                              Glyph="&#xE8EC;" />
                 </PivotItem.Header>
                 <Grid>
                     <TextBlock Text="{Binding Title}"
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-                    <statisticControls:CategorySummaryUserControl HorizontalAlignment="Stretch"
+                    <userControls:CategorySummaryUserControl HorizontalAlignment="Stretch"
                                                                   VerticalAlignment="Stretch"
                                                                   Margin="-12,30,-12,0" />
                 </Grid>

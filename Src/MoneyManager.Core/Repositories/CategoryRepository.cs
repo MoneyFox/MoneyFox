@@ -48,9 +48,9 @@ namespace MoneyManager.Core.Repositories
         public Category Selected { get; set; }
 
         /// <summary>
-        ///     SaveItem a new item or update an existin one.
+        ///     SaveItem a new paymentToDelete or update an existin one.
         /// </summary>
-        /// <param name="item">item to save</param>
+        /// <param name="item">paymentToDelete to save</param>
         public void Save(Category item)
         {
             if (string.IsNullOrWhiteSpace(item.Name))
@@ -69,13 +69,13 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     Deletes the passed item and removes the item from cache
+        ///     Deletes the passed paymentToDelete and removes the paymentToDelete from cache
         /// </summary>
-        /// <param name="item">item to delete</param>
-        public void Delete(Category item)
+        /// <param name="paymentToDelete">paymentToDelete to delete</param>
+        public void Delete(Category paymentToDelete)
         {
-            data.Remove(item);
-            dataAccess.DeleteItem(item);
+            data.Remove(paymentToDelete);
+            dataAccess.DeleteItem(paymentToDelete);
         }
 
         /// <summary>

@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using MoneyManager.Localization;
-using MoneyManager.Windows.Controls.CustomControls;
+using MoneyManager.Windows.Controls;
 using MoneyManager.Windows.Views;
 
 namespace MoneyManager.Windows

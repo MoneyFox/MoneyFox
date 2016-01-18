@@ -14,10 +14,10 @@ namespace MoneyManager.Core.Tests.ViewModels
     internal class MainViewModelTests : MvxIoCSupportingTest
     {
         [Theory]
-        [InlineData("Income", TransactionType.Income)]
-        [InlineData("Spending", TransactionType.Spending)]
-        [InlineData("Transfer", TransactionType.Transfer)]
-        public void GoToAddTransaction_Transactiontype_CorrectPreparation(string typestring, TransactionType type)
+        [InlineData("Income", PaymentType.Income)]
+        [InlineData("Spending", PaymentType.Spending)]
+        [InlineData("Transfer", PaymentType.Transfer)]
+        public void GoToAddTransaction_Transactiontype_CorrectPreparation(string typestring, PaymentType type)
         {
             Setup();
             // for navigation parsing
@@ -25,23 +25,23 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
-            var transactionRepository = new TransactionRepository(new TransactionDataAccess(dbHelper),
+            var transactionRepository = new PaymentRepository(new TransactionDataAccess(dbHelper),
                 new RecurringTransactionDataAccess(dbHelper));
-            var transactionManager = new TransactionManager(transactionRepository, accountRepository,
+            var transactionManager = new PaymentManager(transactionRepository, accountRepository,
                 new Mock<IDialogService>().Object);
 
             var defaultManager = new DefaultManager(accountRepository,
                 new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
             var modifyTransactionViewModel =
-                new ModifyTransactionViewModel(transactionRepository,
+                new ModifyPaymentViewModel(transactionRepository,
                     accountRepository,
                     new Mock<IDialogService>().Object,
                     transactionManager,
                     defaultManager);
 
             var modifyAccountViewModel = new ModifyAccountViewModel(accountRepository,
-                new BalanceViewModel(accountRepository, new Mock<ITransactionRepository>().Object));
+                new BalanceViewModel(accountRepository, new Mock<IPaymentRepository>().Object));
 
             var mainViewModel = new MainViewModel(modifyAccountViewModel, modifyTransactionViewModel,
                 new BalanceViewModel(accountRepository, transactionRepository));
@@ -50,7 +50,7 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             Assert.False(modifyTransactionViewModel.IsEdit);
             Assert.True(modifyTransactionViewModel.IsEndless);
-            if (type == TransactionType.Transfer)
+            if (type == PaymentType.Transfer)
             {
                 Assert.True(modifyTransactionViewModel.IsTransfer);
             }
@@ -58,7 +58,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             {
                 Assert.False(modifyTransactionViewModel.IsTransfer);
             }
-            Assert.Equal((int) type, modifyTransactionViewModel.SelectedTransaction.Type);
+            Assert.Equal((int) type, modifyTransactionViewModel.SelectedPayment.Type);
         }
     }
 }
