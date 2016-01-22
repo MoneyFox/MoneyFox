@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_search_text"
         local:MvxBind="Text SearchText" />
-    <cirrious.mvvmcross.binding.droid.views.MvxListView
+    <MvxListView
         android:orientation="vertical"
         android:choiceMode="singleChoice"
         android:layout_width="fill_parent"

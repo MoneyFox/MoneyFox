@@ -9,8 +9,6 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Cirrious.CrossCore;
-using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Authentication;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Core.ViewModels;
@@ -22,6 +20,8 @@ using MoneyManager.Windows.Views;
 using UniversalRateReminder;
 using Windows.UI.StartScreen;
 using MoneyManager.Foundation;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Windows
 {

@@ -139,8 +139,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="SQLite.UAP.2015, Version=3.10.1">
-      <Name>SQLite for Universal App Platform %28SQLite.UAP.2015, Version=3.10.1%29</Name>
+    <SDKReference Include="SQLite.UAP.2015, Version=3.10.2">
+      <Name>SQLite for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

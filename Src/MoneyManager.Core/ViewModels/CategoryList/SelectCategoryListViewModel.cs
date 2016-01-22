@@ -1,7 +1,7 @@
-﻿using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Foundation.Interfaces;
+﻿using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Messages;
 using MoneyManager.Foundation.Model;
+using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels.CategoryList

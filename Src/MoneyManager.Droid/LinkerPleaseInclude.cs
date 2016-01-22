@@ -9,7 +9,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using Android.Views;
 using Android.Widget;
-using Cirrious.CrossCore.IoC;
+using MvvmCross.Platform.IoC;
 
 namespace MoneyManager.Droid
 {

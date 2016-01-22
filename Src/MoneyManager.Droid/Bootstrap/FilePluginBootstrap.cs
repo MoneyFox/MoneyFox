@@ -1,10 +1,9 @@
-using Cirrious.CrossCore.Plugins;
-using MvvmCross.Plugins.File;
+using MvvmCross.Platform.Plugins;
 
 namespace MoneyManager.Droid.Bootstrap
 {
     public class FilePluginBootstrap
-        : MvxPluginBootstrapAction<PluginLoader>
+        : MvxPluginBootstrapAction<MvvmCross.Plugins.File.PluginLoader>
     {
     }
 }

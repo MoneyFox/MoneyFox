@@ -2,18 +2,17 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Cirrious.CrossCore;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Core.ViewModels.Dialogs;
 using MoneyManager.Droid.Fragments;
 using MoneyManager.Localization;
-using MvvmCross.Droid.Support.V7.Fragging;
+using MvvmCross.Droid.FullFragging.Views;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "CategoryListActivity")]
-    public class SelectCategoryListActivity : MvxFragmentActivity
+    public class SelectCategoryListActivity : MvxActivity
     {
         public new SelectCategoryListViewModel ViewModel
         {
@@ -62,7 +61,7 @@ namespace MoneyManager.Droid.Activities
                         ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
                     };
 
-                    dialog.Show(SupportFragmentManager, "dialog");
+                    dialog.Show(FragmentManager, "dialog");
                     return true;
 
                 default:
@@ -108,7 +107,7 @@ namespace MoneyManager.Droid.Activities
                 ViewModel = viewmodel
             };
 
-            dialog.Show(SupportFragmentManager, "dialog");
+            dialog.Show(FragmentManager, "dialog");
         }
     }
 }

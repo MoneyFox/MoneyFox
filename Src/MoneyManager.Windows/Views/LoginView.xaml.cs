@@ -5,10 +5,9 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using Cirrious.CrossCore;
-using MoneyManager.Core.Authentication;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Views
 {

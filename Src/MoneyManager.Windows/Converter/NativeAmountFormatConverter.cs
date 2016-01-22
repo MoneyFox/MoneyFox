@@ -1,5 +1,5 @@
-﻿using Cirrious.CrossCore.WindowsCommon.Converters;
-using MoneyManager.Core.Converter;
+﻿using MoneyManager.Core.Converter;
+using MvvmCross.Platform.WindowsCommon.Converters;
 
 namespace MoneyManager.Windows.Converter
 {

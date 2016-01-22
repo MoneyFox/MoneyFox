@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
-using Cirrious.CrossCore.Core;
-using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.TestFoundation;
 using Moq;
+using MvvmCross.Platform.Core;
+using MvvmCross.Test.Core;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels

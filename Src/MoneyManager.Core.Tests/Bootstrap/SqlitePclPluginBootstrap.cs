@@ -1,6 +1,6 @@
 using MvvmCross.Platform.Plugins;
 
-namespace MoneyManager.Droid.Bootstrap
+namespace MoneyManager.Core.Tests.Bootstrap
 {
     public class SqlitePluginBootstrap
         : MvxPluginBootstrapAction<MvvmCross.Plugins.Sqlite.PluginLoader>

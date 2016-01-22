@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
-using Cirrious.CrossCore;
-using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.DataAccess;
@@ -11,7 +9,9 @@ using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.TestFoundation;
 using Moq;
+using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
+using MvvmCross.Test.Core;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels

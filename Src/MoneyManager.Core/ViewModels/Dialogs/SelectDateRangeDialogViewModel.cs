@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
-using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.ViewModels.Statistics;
+using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels.Dialogs

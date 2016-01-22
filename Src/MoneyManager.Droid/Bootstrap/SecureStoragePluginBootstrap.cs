@@ -1,5 +1,5 @@
 using Beezy.MvvmCross.Plugins.SecureStorage;
-using Cirrious.CrossCore.Plugins;
+using MvvmCross.Platform.Plugins;
 
 namespace MoneyManager.Droid.Bootstrap
 {
