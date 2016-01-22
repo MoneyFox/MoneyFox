@@ -8,13 +8,13 @@ using Android.Widget;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Fragments;
 using MoneyManager.Localization;
-using MvvmCross.Droid.Support.V7.Fragging;
+using MvvmCross.Droid.FullFragging.Views;
 using MvvmCross.Platform;
 
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "MoneyManager", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : MvxFragmentActivity
+    public class MainActivity : MvxActivity
     {
         private readonly List<string> menuItems = new List<string>
         {
@@ -91,7 +91,7 @@ namespace MoneyManager.Droid.Activities
 
             slidingLayout.ViewTreeObserver.GlobalLayout += FirstLayoutListener;
 
-            var fragmenTransaction = SupportFragmentManager.BeginTransaction();
+            var fragmenTransaction = FragmentManager.BeginTransaction();
             fragmenTransaction.Add(Resource.Id.content_pane, accountListFragment);
             fragmenTransaction.Commit();
         }
@@ -103,21 +103,21 @@ namespace MoneyManager.Droid.Activities
             switch (e.Position)
             {
                 case 0:
-                    SupportFragmentManager.BeginTransaction()
+                    FragmentManager.BeginTransaction()
                         .Replace(Resource.Id.content_pane, accountListFragment)
                         .AddToBackStack("AccountList")
                         .Commit();
                     break;
 
                 case 1:
-                    SupportFragmentManager.BeginTransaction()
+                    FragmentManager.BeginTransaction()
                         .Replace(Resource.Id.content_pane, statisticSelectorFragment)
                         .AddToBackStack("Statistic Selector")
                         .Commit();
                     break;
 
                 case 2:
-                    SupportFragmentManager.BeginTransaction()
+                    FragmentManager.BeginTransaction()
                         .Replace(Resource.Id.content_pane, backupFragment)
                         .AddToBackStack("Backup")
                         .Commit();
@@ -127,7 +127,7 @@ namespace MoneyManager.Droid.Activities
                     break;
 
                 case 4:
-                    SupportFragmentManager.BeginTransaction()
+                    FragmentManager.BeginTransaction()
                         .Replace(Resource.Id.content_pane, aboutFragment)
                         .AddToBackStack("About")
                         .Commit();
