@@ -73,10 +73,10 @@ namespace MoneyManager.Core.Repositories
             }
 
             //delete recurring paymentToDelete if isRecurring is no longer set.
-            if (!item.IsRecurring && item.ReccuringPaymentId != 0)
+            if (!item.IsRecurring && item.ReccuringTransactionId != 0)
             {
                 recurringDataAccess.DeleteItem(item.RecurringPayment);
-                item.ReccuringPaymentId = 0;
+                item.ReccuringTransactionId = 0;
             }
 
             dataAccess.SaveItem(item);
@@ -150,16 +150,16 @@ namespace MoneyManager.Core.Repositories
         public IEnumerable<Payment> LoadRecurringList(Func<Payment, bool> filter = null)
         {
             var list = Data
-                .Where(x => x.IsRecurring && x.ReccuringPaymentId != 0)
+                .Where(x => x.IsRecurring && x.ReccuringTransactionId != 0)
                 .Where(x => (x.RecurringPayment.IsEndless ||
                              x.RecurringPayment.EndDate >= DateTime.Now.Date)
                             && (filter == null || filter.Invoke(x)))
                 .ToList();
 
             return list
-                .Select(x => x.ReccuringPaymentId)
+                .Select(x => x.ReccuringTransactionId)
                 .Distinct()
-                .Select(id => list.Where(x => x.ReccuringPaymentId == id)
+                .Select(id => list.Where(x => x.ReccuringTransactionId == id)
                     .OrderByDescending(x => x.Date)
                     .Last())
                 .ToList();
@@ -167,9 +167,9 @@ namespace MoneyManager.Core.Repositories
 
         private void DeleteRecurringPaymentIfLastAssociated(Payment item)
         {
-            if (Data.All(x => x.ReccuringPaymentId != item.ReccuringPaymentId))
+            if (Data.All(x => x.ReccuringTransactionId != item.ReccuringTransactionId))
             {
-                var recurringList = recurringDataAccess.LoadList(x => x.Id == item.ReccuringPaymentId).ToList();
+                var recurringList = recurringDataAccess.LoadList(x => x.Id == item.ReccuringTransactionId).ToList();
 
                 foreach (var recTrans in recurringList)
                 {

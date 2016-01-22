@@ -85,10 +85,10 @@ namespace MoneyManager.DataAccess
             {
                 var list = db.GetAllWithChildren(filter, true).ToList();
 
-                foreach (var transaction in list.Where(x => x.IsRecurring && x.ReccuringPaymentId != 0))
+                foreach (var transaction in list.Where(x => x.IsRecurring && x.ReccuringTransactionId != 0))
                 {
                     transaction.RecurringPayment =
-                        db.GetWithChildren<RecurringPayment>(transaction.ReccuringPaymentId);
+                        db.GetWithChildren<RecurringPayment>(transaction.ReccuringTransactionId);
                 }
                 return list;
             }

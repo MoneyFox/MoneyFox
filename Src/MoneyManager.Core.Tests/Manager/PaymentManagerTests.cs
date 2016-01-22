@@ -105,7 +105,7 @@ namespace MoneyManager.Core.Tests.Manager
             var trans = new Payment
             {
                 Id = 2,
-                ReccuringPaymentId = 3,
+                ReccuringTransactionId = 3,
                 RecurringPayment = new RecurringPayment {Id = 3},
                 IsRecurring = true
             };
@@ -121,7 +121,7 @@ namespace MoneyManager.Core.Tests.Manager
                 new Mock<IDialogService>().Object).RemoveRecurringForPayments(trans.RecurringPayment);
 
             trans.IsRecurring.ShouldBeFalse();
-            trans.ReccuringPaymentId.ShouldBe(0);
+            trans.ReccuringTransactionId.ShouldBe(0);
         }
     }
 }
