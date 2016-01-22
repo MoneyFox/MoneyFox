@@ -3,10 +3,10 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Cirrious.MvvmCross.Droid.Views;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Fragments;
 using MoneyManager.Localization;
+using MvvmCross.Droid.Views;
 
 namespace MoneyManager.Droid.Activities
 {

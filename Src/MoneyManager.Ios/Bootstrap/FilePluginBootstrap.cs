@@ -1,11 +1,9 @@
-using Cirrious.CrossCore.Plugins;
-using MvvmCross.Plugins.File;
-using MvvmCross.Plugins.File.Touch;
+using MvvmCross.Platform.Plugins;
 
 namespace MoneyManager.Ios.Bootstrap
 {
     public class FilePluginBootstrap
-        : MvxLoaderPluginBootstrapAction<PluginLoader, Plugin>
+        : MvxLoaderPluginBootstrapAction<MvvmCross.Plugins.File.PluginLoader, MvvmCross.Plugins.File.iOS.Plugin>
     {
     }
 }

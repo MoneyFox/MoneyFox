@@ -2,11 +2,11 @@ using Android.Content;
 using Autofac;
 using Cirrious.CrossCore.IoC;
 using Cirrious.CrossCore.Plugins;
-using Cirrious.MvvmCross.Droid.Platform;
-using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
 using MoneyManager.Core.AutoFac;
 using MoneyManager.Localization;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Droid.Platform;
 using Xamarin;
 
 namespace MoneyManager.Droid

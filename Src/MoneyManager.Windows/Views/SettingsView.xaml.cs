@@ -1,8 +1,8 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using Cirrious.CrossCore;
 using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Windows.Dialogs;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Views
 {

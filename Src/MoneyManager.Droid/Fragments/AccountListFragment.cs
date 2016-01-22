@@ -2,7 +2,6 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Cirrious.CrossCore;
-using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;

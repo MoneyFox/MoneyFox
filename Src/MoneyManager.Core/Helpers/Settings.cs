@@ -1,5 +1,5 @@
-using Cirrious.CrossCore;
 using MoneyManager.Foundation.Interfaces;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Core.Helpers
 {

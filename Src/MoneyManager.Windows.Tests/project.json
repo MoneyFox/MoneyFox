@@ -2,10 +2,10 @@
   "dependencies": {
     "Autofac.Extras.MvvmCross": "3.3.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "MvvmCross.HotTuna.Plugin.Email": "4.0.0-beta7",
-    "MvvmCross.HotTuna.Plugin.Messenger": "4.0.0-beta7",
-    "MvvmCross.HotTuna.Plugin.SQLitePCL": "4.0.0-beta7",
-    "MvvmCross.HotTuna.Plugin.WebBrowser": "4.0.0-beta7",
+    "MvvmCross.HotTuna.Plugin.Email": "4.0.0-beta8",
+    "MvvmCross.HotTuna.Plugin.Messenger": "4.0.0-beta8",
+    "MvvmCross.HotTuna.Plugin.SQLitePCL": "4.0.0-beta8",
+    "MvvmCross.HotTuna.Plugin.WebBrowser": "4.0.0-beta8",
     "xunit": "2.1.0",
     "xunit.runner.visualstudio": "2.1.0"
   },

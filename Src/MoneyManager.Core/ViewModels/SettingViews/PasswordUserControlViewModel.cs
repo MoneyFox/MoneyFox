@@ -1,7 +1,7 @@
-﻿using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.Helpers;
+﻿using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
+using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels.SettingViews

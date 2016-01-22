@@ -1,10 +1,9 @@
-using Cirrious.CrossCore.Plugins;
-using MvvmCross.Plugins.Json;
+using MvvmCross.Platform.Plugins;
 
 namespace MoneyManager.Droid.Bootstrap
 {
     public class JsonPluginBootstrap
-        : MvxPluginBootstrapAction<PluginLoader>
+        : MvxPluginBootstrapAction<MvvmCross.Plugins.Json.PluginLoader>
     {
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Autofac;
-using Cirrious.CrossCore;
 using MoneyManager.Core.Authentication;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Core.ViewModels.CategoryList;
@@ -11,6 +10,7 @@ using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using MvvmCross.Platform;
 using Module = Autofac.Module;
 
 namespace MoneyManager.Core

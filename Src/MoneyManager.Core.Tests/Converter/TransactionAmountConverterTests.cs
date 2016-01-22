@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Cirrious.CrossCore;
-using Cirrious.CrossCore.Core;
-using Cirrious.MvvmCross.Test.Core;
 using MoneyManager.Core.Converter;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.TestFoundation;
 using Moq;
+using MvvmCross.Platform;
+using MvvmCross.Test.Core;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Converter
