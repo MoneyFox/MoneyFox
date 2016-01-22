@@ -26,8 +26,6 @@ namespace MoneyManager.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Beezy.MvvmCross.Plugins.SecureStorage.Droid.Resource.String.ApplicationName = global::MoneyManager.Droid.Resource.String.ApplicationName;
-			global::Beezy.MvvmCross.Plugins.SecureStorage.Droid.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
 			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxBind = global::MoneyManager.Droid.Resource.Attribute.MvxBind;
 			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxDropDownItemTemplate;
 			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxGroupItemTemplate;

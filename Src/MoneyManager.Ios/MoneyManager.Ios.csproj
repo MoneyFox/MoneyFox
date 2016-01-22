@@ -107,6 +107,7 @@
     <Compile Include="IosModule.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Src\RoamingSettings.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Src\AppInformation.cs" />

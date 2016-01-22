@@ -1,7 +1,5 @@
 using Windows.UI.Xaml.Controls;
 using Autofac;
-using Beezy.MvvmCross.Plugins.SecureStorage;
-using Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore;
 using MoneyManager.Core;
 using MoneyManager.Core.AutoFac;
 using MvvmCross.Core.ViewModels;
@@ -37,7 +35,6 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IMvxComposeEmailTask, MvxComposeEmailTask>();
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
             Mvx.RegisterType<IMvxSqliteConnectionFactory, WindowsSqliteConnectionFactory>();
-            Mvx.RegisterType<IMvxProtectedData, MvxStoreProtectedData>();
             Mvx.RegisterType<IMvxFileStore, MvxWindowsCommonFileStore>();
         }
 

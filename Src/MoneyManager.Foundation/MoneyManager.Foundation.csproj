@@ -53,6 +53,7 @@
     <Compile Include="Interfaces\IDefaultManager.cs" />
     <Compile Include="Interfaces\ILocalSettings.cs" />
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
+    <Compile Include="Interfaces\IProtectedData.cs" />
     <Compile Include="Interfaces\IRecurringTransactionManager.cs" />
     <Compile Include="Interfaces\IRepositoryManager.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />

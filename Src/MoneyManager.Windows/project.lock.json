@@ -23,16 +23,6 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
         }
       },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -1816,16 +1806,6 @@
         },
         "runtime": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        }
-      },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -3703,16 +3683,6 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
         }
       },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -5558,16 +5528,6 @@
         },
         "runtime": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        }
-      },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -7450,16 +7410,6 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
         }
       },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -9305,16 +9255,6 @@
         },
         "runtime": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        }
-      },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -11197,16 +11137,6 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
         }
       },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -13061,29 +12991,6 @@
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll",
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.xml",
         "package/services/metadata/core-properties/68403287af27443587c502f3b97c0491.psmdcp"
-      ]
-    },
-    "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-      "sha512": "bA7YbP9dSxuK/QuMloVGwaXtrYByLNP+NAU3UR1eQ9DTib/S8RI871ZSIlioSSR/mgak1S5h4P1XwdppkCmS4w==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "Beezy.MvvmCross.Plugins.SecureStorage.nuspec",
-        "content/MonoAndroid/Bootstrap/SecureStoragePluginBootstrap.cs.pp",
-        "content/MonoTouch/Bootstrap/SecureStoragePluginBootstrap.cs.pp",
-        "content/netcore45/Bootstrap/SecureStoragePluginBootstrap.cs.pp",
-        "content/wp8/Bootstrap/SecureStoragePluginBootstrap.cs.pp",
-        "lib/MonoAndroid/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/MonoAndroid/Beezy.MvvmCross.Plugins.SecureStorage.Droid.dll",
-        "lib/MonoTouch/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/MonoTouch/Beezy.MvvmCross.Plugins.SecureStorage.Touch.dll",
-        "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll",
-        "lib/portable-win+net45+sl50+wp8+MonoAndroid+MonoTouch/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/wp8/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/wp8/Beezy.MvvmCross.Plugins.SecureStorage.WindowsPhone.dll",
-        "package/services/metadata/core-properties/03f21e3fb01f4769a05da17e7b00db73.psmdcp"
       ]
     },
     "Microsoft.CSharp/4.0.0": {
@@ -17025,7 +16932,6 @@
     "": [
       "Autofac >= 3.5.2",
       "Autofac.Extras.MvvmCross >= 3.3.0",
-      "Beezy.MvvmCross.Plugins.SecureStorage >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Microsoft.NETNative.Analyzer >= 1.0.0",
       "Microsoft.OneDriveSDK >= 1.1.29",
