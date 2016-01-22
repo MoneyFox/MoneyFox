@@ -2,6 +2,7 @@
   "dependencies": {
     "Autofac.Extras.MvvmCross": "3.3.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "MvvmCross.Plugin.Messenger": "4.0.0-beta8",
     "xunit": "2.1.0",
     "xunit.runner.visualstudio": "2.1.0"
   },
