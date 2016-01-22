@@ -2,8 +2,6 @@
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Microsoft.OneDriveSDK": "1.1.29",
-    "MvvmCross.HotTuna.CrossCore": "4.0.0-beta8",
-    "MvvmCross.HotTuna.MvvmCrossLibraries": "4.0.0-beta8",
     "NotificationsExtensions.Win10": "10586.0.0",
     "Xamarin.Insights": "1.11.3"
   },
