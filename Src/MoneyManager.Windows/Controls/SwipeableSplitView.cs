@@ -109,8 +109,6 @@ namespace MoneyManager.Windows.Controls
 
         private readonly IList<SelectorItem> menuItems = new List<SelectorItem>();
         private int toBeSelectedIndex;
-        private double distancePerItem;
-        private double startingDistance;
 
         #endregion
 

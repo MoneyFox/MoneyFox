@@ -246,7 +246,9 @@
     <AndroidResource Include="Resources\layout\AboutLayout.axml" />
     <AndroidResource Include="Resources\layout\ModifyAccountLayout.axml" />
     <AndroidResource Include="Resources\layout\ModifyTransactionLayout.axml" />
-    <AndroidResource Include="Resources\layout\TransactionListLayout.axml" />
+    <AndroidResource Include="Resources\layout\TransactionListLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\TransactionListItem.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -287,7 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyManager.Core\MoneyManager.Core.csproj">
-      <Project>{64F3A03F-44C2-44FA-BD29-FA23C35C95F0}</Project>
+      <Project>{64f3a03f-44c2-44fa-bd29-fa23c35c95f0}</Project>
       <Name>MoneyManager.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
