@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Core.ViewModels.CategoryList;
 using MoneyManager.Foundation;
@@ -11,6 +10,7 @@ using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Messages;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
 

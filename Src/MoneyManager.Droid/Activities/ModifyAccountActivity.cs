@@ -1,8 +1,8 @@
 using Android.App;
 using Android.OS;
 using Android.Views;
-using Cirrious.MvvmCross.Droid.Views;
 using MoneyManager.Core.ViewModels;
+using MvvmCross.Droid.Views;
 
 namespace MoneyManager.Droid.Activities
 {

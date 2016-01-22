@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
-using Cirrious.CrossCore;
 using MoneyManager.Core.Extensions;
 using MoneyManager.Core.StatisticProvider;
 using MoneyManager.Foundation.Interfaces;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Concrete.Shortcut
 {

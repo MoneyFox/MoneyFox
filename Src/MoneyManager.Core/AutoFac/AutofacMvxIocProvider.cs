@@ -5,8 +5,8 @@ using Autofac;
 using Autofac.Core;
 using Autofac.Core.Lifetime;
 using Autofac.Core.Registration;
-using Cirrious.CrossCore.Core;
-using Cirrious.CrossCore.IoC;
+using MvvmCross.Platform.Core;
+using MvvmCross.Platform.IoC;
 
 namespace MoneyManager.Core.AutoFac
 {

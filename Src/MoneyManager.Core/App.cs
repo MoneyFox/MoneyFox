@@ -1,7 +1,7 @@
-﻿using Cirrious.CrossCore;
-using Cirrious.MvvmCross.ViewModels;
-using MoneyManager.Core.ViewModels;
+﻿using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Interfaces;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Core
 {

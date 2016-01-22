@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Globalization;
-using Cirrious.CrossCore;
-using Cirrious.CrossCore.Converters;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Converters;
 
 namespace MoneyManager.Core.Converter
 {

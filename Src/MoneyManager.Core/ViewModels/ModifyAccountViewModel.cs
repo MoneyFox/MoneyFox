@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
+using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels

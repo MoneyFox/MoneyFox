@@ -1,6 +1,5 @@
 ﻿using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
-using MoneyManager.Windows.Concrete.Shortcut;
 
 namespace MoneyManager.Windows.Concrete
 {

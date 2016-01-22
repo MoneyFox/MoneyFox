@@ -1,12 +1,12 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Cirrious.CrossCore;
-using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using MoneyManager.Core.ViewModels.Statistics;
 using MoneyManager.Foundation;
 using MoneyManager.Localization;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Droid.FullFragging.Fragments;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Droid.Fragments
 {
@@ -30,14 +30,14 @@ namespace MoneyManager.Droid.Fragments
             switch (itemClickEventArgs.Position)
             {
                 case 0:
-                    Activity.SupportFragmentManager.BeginTransaction()
+                    Activity.FragmentManager.BeginTransaction()
                         .Replace(Resource.Id.content_pane, GetGraphicalStatisticFragment(StatisticType.Cashflow))
                         .AddToBackStack("Cash Flow")
                         .Commit();
                     break;
 
                 case 1:
-                    Activity.SupportFragmentManager.BeginTransaction()
+                    Activity.FragmentManager.BeginTransaction()
                         .Replace(Resource.Id.content_pane,
                             GetGraphicalStatisticFragment(StatisticType.CategorySpreading))
                         .AddToBackStack("Category Spreading")
@@ -45,7 +45,7 @@ namespace MoneyManager.Droid.Fragments
                     break;
 
                 case 2:
-                    Activity.SupportFragmentManager.BeginTransaction()
+                    Activity.FragmentManager.BeginTransaction()
                         .Replace(Resource.Id.content_pane, new CategorySummaryFragment())
                         .AddToBackStack("Category Spreading")
                         .Commit();

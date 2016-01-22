@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
-using Cirrious.CrossCore.Converters;
-using Cirrious.CrossCore.UI;
+using MvvmCross.Platform.Converters;
+using MvvmCross.Platform.UI;
 
 namespace MoneyManager.Core.Converter
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Cirrious.CrossCore;
-using Cirrious.MvvmCross.ViewModels;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 
 namespace MoneyManager.Core.ViewModels

@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
-using Cirrious.CrossCore.UI;
 using MoneyManager.Core.Converter;
 using MoneyManager.TestFoundation;
+using MvvmCross.Platform.UI;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Converter

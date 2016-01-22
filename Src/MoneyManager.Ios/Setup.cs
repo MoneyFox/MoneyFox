@@ -1,25 +1,25 @@
 ﻿using Autofac;
-using Cirrious.CrossCore.IoC;
-using Cirrious.CrossCore.Plugins;
-using Cirrious.MvvmCross.Touch.Platform;
-using Cirrious.MvvmCross.Touch.Views.Presenters;
-using Cirrious.MvvmCross.ViewModels;
 using MoneyManager.Core;
 using MoneyManager.Core.AutoFac;
 using MoneyManager.Localization;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.iOS.Platform;
+using MvvmCross.iOS.Views.Presenters;
+using MvvmCross.Platform.IoC;
+using MvvmCross.Platform.Plugins;
 using UIKit;
 using Xamarin;
 
 namespace MoneyManager.Ios
 {
-    public class Setup : MvxTouchSetup
+    public class Setup : MvxIosSetup
     {
         public Setup(IMvxApplicationDelegate applicationDelegate, UIWindow window)
             : base(applicationDelegate, window)
         {
         }
 
-        public Setup(IMvxApplicationDelegate applicationDelegate, IMvxTouchViewPresenter presenter)
+        public Setup(IMvxApplicationDelegate applicationDelegate, IMvxIosViewPresenter presenter)
             : base(applicationDelegate, presenter)
         {
         }

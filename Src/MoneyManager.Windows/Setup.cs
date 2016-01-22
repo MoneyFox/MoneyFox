@@ -2,13 +2,12 @@ using Windows.UI.Xaml.Controls;
 using Autofac;
 using Beezy.MvvmCross.Plugins.SecureStorage;
 using Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore;
-using Cirrious.CrossCore;
-using Cirrious.CrossCore.IoC;
-using Cirrious.CrossCore.Plugins;
-using Cirrious.MvvmCross.ViewModels;
-using Cirrious.MvvmCross.WindowsUWP.Platform;
 using MoneyManager.Core;
 using MoneyManager.Core.AutoFac;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
+using MvvmCross.Platform.IoC;
+using MvvmCross.Platform.Plugins;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.Email.WindowsCommon;
 using MvvmCross.Plugins.File;
@@ -17,6 +16,7 @@ using MvvmCross.Plugins.Sqlite;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Plugins.WebBrowser.WindowsCommon;
+using MvvmCross.WindowsUWP.Platform;
 using Xamarin;
 
 namespace MoneyManager.Windows

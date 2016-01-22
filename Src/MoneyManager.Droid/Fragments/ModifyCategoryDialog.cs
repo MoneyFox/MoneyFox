@@ -1,12 +1,13 @@
 using System;
+using Android.App;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using MoneyManager.Core.ViewModels.Dialogs;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Droid.FullFragging.Fragments;
 
 namespace MoneyManager.Droid.Fragments
 {
@@ -46,7 +47,7 @@ namespace MoneyManager.Droid.Fragments
             Dialog.Window.SetBackgroundDrawable(new ColorDrawable(Color.Transparent));
 
             // Disable standard dialog styling/frame/theme: our custom view should create full UI
-            SetStyle(StyleNormal, Android.Resource.Style.Theme);
+            SetStyle(DialogFragmentStyle.Normal, Android.Resource.Style.Theme);
 
             base.OnResume();
         }

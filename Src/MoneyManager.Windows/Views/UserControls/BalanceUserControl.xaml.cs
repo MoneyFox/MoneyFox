@@ -1,5 +1,5 @@
-﻿using Cirrious.CrossCore;
-using MoneyManager.Foundation.Interfaces.ViewModels;
+﻿using MoneyManager.Foundation.Interfaces.ViewModels;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Views.UserControls
 {
