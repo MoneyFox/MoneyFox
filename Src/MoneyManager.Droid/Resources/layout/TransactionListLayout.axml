@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:layout_marginLeft="6dp"
     android:layout_marginRight="6dp">
-    <cirrious.mvvmcross.binding.droid.views.MvxListView
+    <MvxListView
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
