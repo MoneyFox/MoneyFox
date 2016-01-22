@@ -3,7 +3,7 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -1680,7 +1680,7 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-arm": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -3447,7 +3447,7 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-arm-aot": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -5186,7 +5186,7 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x64": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -6958,7 +6958,7 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x64-aot": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -8697,7 +8697,7 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x86": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -10469,7 +10469,7 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x86-aot": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -12209,8 +12209,8 @@
     }
   },
   "libraries": {
-    "Autofac/3.5.0": {
-      "sha512": "ge1fziLkxQhFEBreAaQlFiIVzpL32rSnpInJCJAmfFnHO6ab0VcW+0nzeZWY8WaSkDFcg6KNxB9v4Tp2icnXSg==",
+    "Autofac/3.5.2": {
+      "sha512": "pGR5LjY8T/16x6SkJNd7u6EjQnE4C7JS0BZJ7Yl7pt313gIUZ/2ZnPSOIM5eaIA7ArxaudlyyLvAT4ayX5UJ/A==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -12220,7 +12220,7 @@
         "lib/net40/Autofac.xml",
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll",
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.xml",
-        "package/services/metadata/core-properties/dddb830c3f5f4799b7e465e0b1547a09.psmdcp"
+        "package/services/metadata/core-properties/14b288cae4b6435c88f25cef31d271e1.psmdcp"
       ]
     },
     "Autofac.Extras.MvvmCross/3.3.0": {

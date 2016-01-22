@@ -60,10 +60,6 @@
       <HintPath>..\packages\Autofac.Extras.MvvmCross.3.3.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.Extras.MvvmCross.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Cirrious.CrossCore, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\.nuget\packages\MvvmCross.HotTuna.CrossCore\4.0.0-beta7\lib\win81\Cirrious.CrossCore.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Export" />
     <Reference Include="mscorlib" />
@@ -259,7 +255,9 @@
     <AndroidResource Include="Resources\layout\TransactionListItem.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\AccountComboBoxItem.axml" />
+    <AndroidResource Include="Resources\layout\AccountComboBoxItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\StatisticLayout.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
