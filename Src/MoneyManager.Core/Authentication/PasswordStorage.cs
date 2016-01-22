@@ -1,5 +1,4 @@
 ﻿using System;
-using Beezy.MvvmCross.Plugins.SecureStorage;
 using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Core.Authentication
@@ -10,9 +9,9 @@ namespace MoneyManager.Core.Authentication
     public class PasswordStorage : IPasswordStorage
     {
         private const string PASSWORD_KEY = "password";
-        private readonly IMvxProtectedData protectedData;
+        private readonly IProtectedData protectedData;
 
-        public PasswordStorage(IMvxProtectedData protectedData)
+        public PasswordStorage(IProtectedData protectedData)
         {
             this.protectedData = protectedData;
         }

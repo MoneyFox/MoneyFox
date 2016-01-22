@@ -11,28 +11,6 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Autofac.Extras.MvvmCross/3.3.0": {
-        "dependencies": {
-          "Autofac": "[3.5.0, 4.0.0)",
-          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
-        },
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        }
-      },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -279,21 +257,6 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/3.2.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.2.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
       "MvvmCross.Platform/4.0.0-beta8": {
         "compile": {
           "lib/win81/MvvmCross.Localization.dll": {},
@@ -370,14 +333,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.2.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -1806,28 +1761,6 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Autofac.Extras.MvvmCross/3.3.0": {
-        "dependencies": {
-          "Autofac": "[3.5.0, 4.0.0)",
-          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
-        },
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        }
-      },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -2117,21 +2050,6 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/3.2.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.2.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
       "MvvmCross.Platform/4.0.0-beta8": {
         "compile": {
           "lib/win81/MvvmCross.Localization.dll": {},
@@ -2208,14 +2126,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.2.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -3691,28 +3601,6 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Autofac.Extras.MvvmCross/3.3.0": {
-        "dependencies": {
-          "Autofac": "[3.5.0, 4.0.0)",
-          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
-        },
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        }
-      },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -3988,21 +3876,6 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/3.2.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.2.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
       "MvvmCross.Platform/4.0.0-beta8": {
         "compile": {
           "lib/win81/MvvmCross.Localization.dll": {},
@@ -4079,14 +3952,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.2.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -5548,28 +5413,6 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Autofac.Extras.MvvmCross/3.3.0": {
-        "dependencies": {
-          "Autofac": "[3.5.0, 4.0.0)",
-          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
-        },
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        }
-      },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -5864,21 +5707,6 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/3.2.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.2.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
       "MvvmCross.Platform/4.0.0-beta8": {
         "compile": {
           "lib/win81/MvvmCross.Localization.dll": {},
@@ -5955,14 +5783,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.2.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -7438,28 +7258,6 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Autofac.Extras.MvvmCross/3.3.0": {
-        "dependencies": {
-          "Autofac": "[3.5.0, 4.0.0)",
-          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
-        },
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        }
-      },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -7735,21 +7533,6 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/3.2.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.2.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
       "MvvmCross.Platform/4.0.0-beta8": {
         "compile": {
           "lib/win81/MvvmCross.Localization.dll": {},
@@ -7826,14 +7609,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.2.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -9295,28 +9070,6 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Autofac.Extras.MvvmCross/3.3.0": {
-        "dependencies": {
-          "Autofac": "[3.5.0, 4.0.0)",
-          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
-        },
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        }
-      },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -9611,21 +9364,6 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/3.2.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.2.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
       "MvvmCross.Platform/4.0.0-beta8": {
         "compile": {
           "lib/win81/MvvmCross.Localization.dll": {},
@@ -9702,14 +9440,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.2.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -11185,28 +10915,6 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         }
       },
-      "Autofac.Extras.MvvmCross/3.3.0": {
-        "dependencies": {
-          "Autofac": "[3.5.0, 4.0.0)",
-          "MvvmCross.HotTuna.CrossCore": "[3.2.1, 4.0.0)"
-        },
-        "compile": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll": {}
-        }
-      },
-      "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-        "compile": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        },
-        "runtime": {
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll": {},
-          "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -11482,21 +11190,6 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.HotTuna.CrossCore/3.2.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.2.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
       "MvvmCross.Platform/4.0.0-beta8": {
         "compile": {
           "lib/win81/MvvmCross.Localization.dll": {},
@@ -11573,14 +11266,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.2.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -13049,43 +12734,6 @@
         "package/services/metadata/core-properties/14b288cae4b6435c88f25cef31d271e1.psmdcp"
       ]
     },
-    "Autofac.Extras.MvvmCross/3.3.0": {
-      "sha512": "5UqEvNWSpVfgXQ7lu/B9r3ROEYOiBM8FS5epvd+vh4XHTQFPWsm4JxRJ7Ucp6M0Aov+0sXfaYxRfEdVc7nxQvQ==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "Autofac.Extras.MvvmCross.nuspec",
-        "lib/net40/Autofac.Extras.MvvmCross.dll",
-        "lib/net40/Autofac.Extras.MvvmCross.xml",
-        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.dll",
-        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.MvvmCross.xml",
-        "package/services/metadata/core-properties/68403287af27443587c502f3b97c0491.psmdcp"
-      ]
-    },
-    "Beezy.MvvmCross.Plugins.SecureStorage/1.0.0": {
-      "sha512": "bA7YbP9dSxuK/QuMloVGwaXtrYByLNP+NAU3UR1eQ9DTib/S8RI871ZSIlioSSR/mgak1S5h4P1XwdppkCmS4w==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "Beezy.MvvmCross.Plugins.SecureStorage.nuspec",
-        "content/MonoAndroid/Bootstrap/SecureStoragePluginBootstrap.cs.pp",
-        "content/MonoTouch/Bootstrap/SecureStoragePluginBootstrap.cs.pp",
-        "content/netcore45/Bootstrap/SecureStoragePluginBootstrap.cs.pp",
-        "content/wp8/Bootstrap/SecureStoragePluginBootstrap.cs.pp",
-        "lib/MonoAndroid/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/MonoAndroid/Beezy.MvvmCross.Plugins.SecureStorage.Droid.dll",
-        "lib/MonoTouch/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/MonoTouch/Beezy.MvvmCross.Plugins.SecureStorage.Touch.dll",
-        "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/netcore45/Beezy.MvvmCross.Plugins.SecureStorage.WindowsStore.dll",
-        "lib/portable-win+net45+sl50+wp8+MonoAndroid+MonoTouch/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/wp8/Beezy.MvvmCross.Plugins.SecureStorage.dll",
-        "lib/wp8/Beezy.MvvmCross.Plugins.SecureStorage.WindowsPhone.dll",
-        "package/services/metadata/core-properties/03f21e3fb01f4769a05da17e7b00db73.psmdcp"
-      ]
-    },
     "Microsoft.CSharp/4.0.0": {
       "sha512": "oWqeKUxHXdK6dL2CFjgMcaBISbkk+AqEg+yvJHE4DElNzS4QaTsCflgkkqZwVlWby1Dg9zo9n+iCAMFefFdJ/A==",
       "type": "Package",
@@ -13849,46 +13497,6 @@
         "package/services/metadata/core-properties/d0b587fca3c14e30ae7bd0b797f118ca.psmdcp"
       ]
     },
-    "MvvmCross.HotTuna.CrossCore/3.2.1": {
-      "sha512": "FDqwDtS1kC7QKTgwd4DR7X8gu/dNSUjMqGPItkh9Owe9QlO0b1uTS15tAqjLoWWoP8vBERze7qnj1IsXatiPPA==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/MonoAndroid/Cirrious.CrossCore.dll",
-        "lib/MonoAndroid/Cirrious.CrossCore.Droid.dll",
-        "lib/MonoAndroid/Cirrious.MvvmCross.Binding.dll",
-        "lib/MonoAndroid/Cirrious.MvvmCross.Binding.Droid.dll",
-        "lib/MonoAndroid/Cirrious.MvvmCross.Localization.dll",
-        "lib/MonoTouch/Cirrious.CrossCore.dll",
-        "lib/MonoTouch/Cirrious.CrossCore.Touch.dll",
-        "lib/MonoTouch/Cirrious.MvvmCross.Binding.dll",
-        "lib/MonoTouch/Cirrious.MvvmCross.Binding.Touch.dll",
-        "lib/MonoTouch/Cirrious.MvvmCross.Localization.dll",
-        "lib/net45/Cirrious.CrossCore.dll",
-        "lib/net45/Cirrious.CrossCore.Wpf.dll",
-        "lib/net45/Cirrious.MvvmCross.Localization.dll",
-        "lib/netcore45/Cirrious.CrossCore.dll",
-        "lib/netcore45/Cirrious.CrossCore.WindowsStore.dll",
-        "lib/netcore45/Cirrious.MvvmCross.Localization.dll",
-        "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/Cirrious.CrossCore.dll",
-        "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/Cirrious.MvvmCross.Localization.dll",
-        "lib/portable-win81+wpa81/Cirrious.CrossCore.dll",
-        "lib/portable-win81+wpa81/Cirrious.CrossCore.WindowsCommon.dll",
-        "lib/portable-win81+wpa81/Cirrious.MvvmCross.Localization.dll",
-        "lib/win81/Cirrious.CrossCore.dll",
-        "lib/win81/Cirrious.CrossCore.WindowsCommon.dll",
-        "lib/win81/Cirrious.MvvmCross.Localization.dll",
-        "lib/wp8/Cirrious.CrossCore.dll",
-        "lib/wp8/Cirrious.CrossCore.WindowsPhone.dll",
-        "lib/wp8/Cirrious.MvvmCross.Localization.dll",
-        "lib/wpa81/Cirrious.CrossCore.dll",
-        "lib/wpa81/Cirrious.CrossCore.WindowsCommon.dll",
-        "lib/wpa81/Cirrious.MvvmCross.Localization.dll",
-        "MvvmCross.HotTuna.CrossCore.nuspec",
-        "package/services/metadata/core-properties/00f4bef7c652486f981455d843645e79.psmdcp"
-      ]
-    },
     "MvvmCross.Platform/4.0.0-beta8": {
       "sha512": "mMDRqDaOjb87DdgKWaGEPC5OeeYjXklIVZNmpEJCPD1aA1B5Jba8jAvV4Hqjk/eRPJ6JDBrS8/z9bfbw+foGrw==",
       "type": "Package",
@@ -14106,21 +13714,6 @@
         "lib/Xamarin.Mac20/MvvmCross.Plugins.WebBrowser.dll",
         "MvvmCross.Plugin.WebBrowser.nuspec",
         "package/services/metadata/core-properties/ecef774afa424514b1ee71f52a3259b6.psmdcp"
-      ]
-    },
-    "MvvmCross.PortableSupport/3.2.1": {
-      "sha512": "HWFIBxnXxsvm/Y+y338pnUOg4jEJtyvKyKIqt7tCd0E4Rolb2kolmI6fDSu5jhuS4prGJ33+hbaXYB/3g3Ijrg==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/MonoAndroid/System.Net.dll",
-        "lib/MonoAndroid/System.Windows.dll",
-        "lib/MonoAndroid/System.Xml.Serialization.dll",
-        "lib/MonoMac/System.Windows.dll",
-        "lib/portable-win+net45+wp8+win8+wpa81+MonoTouch+MonoAndroid/_._",
-        "MvvmCross.PortableSupport.nuspec",
-        "package/services/metadata/core-properties/d3b3a7db7b754d46a7a93511a151fa54.psmdcp"
       ]
     },
     "Newtonsoft.Json/7.0.1": {
@@ -17024,8 +16617,6 @@
   "projectFileDependencyGroups": {
     "": [
       "Autofac >= 3.5.2",
-      "Autofac.Extras.MvvmCross >= 3.3.0",
-      "Beezy.MvvmCross.Plugins.SecureStorage >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Microsoft.NETNative.Analyzer >= 1.0.0",
       "Microsoft.OneDriveSDK >= 1.1.29",
