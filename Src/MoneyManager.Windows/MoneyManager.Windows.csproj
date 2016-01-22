@@ -430,7 +430,7 @@
     <SDKReference Include="Microsoft.NET.Native.Runtime.1.1, Version=1.1">
       <Name>Microsoft .NET Native Runtime Package for Windows</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.UAP.2015, Version=3.10.1">
+    <SDKReference Include="SQLite.UAP.2015, Version=3.10.2">
       <Name>SQLite for Universal App Platform</Name>
     </SDKReference>
     <SDKReference Include="WindowsDesktop, Version=10.0.10586.0">
