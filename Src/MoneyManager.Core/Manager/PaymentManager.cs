@@ -91,12 +91,12 @@ namespace MoneyManager.Core.Manager
             {
                 var relatedPayment = paymentRepository
                     .Data
-                    .Where(x => x.IsRecurring && x.ReccuringPaymentId == recurringPayment.Id);
+                    .Where(x => x.IsRecurring && x.ReccuringTransactionId == recurringPayment.Id);
 
                 foreach (var payment in relatedPayment)
                 {
                     payment.IsRecurring = false;
-                    payment.ReccuringPaymentId = 0;
+                    payment.ReccuringTransactionId = 0;
                     paymentRepository.Save(payment);
                 }
             }

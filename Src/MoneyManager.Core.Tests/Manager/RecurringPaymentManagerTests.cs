@@ -29,7 +29,7 @@ namespace MoneyManager.Core.Tests.Manager
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
                     Date = DateTime.Now.AddDays(-3),
-                    ReccuringPaymentId = 3,
+                    ReccuringTransactionId = 3,
                     RecurringPayment = new RecurringPayment
                     {
                         Id = 3,
@@ -48,7 +48,7 @@ namespace MoneyManager.Core.Tests.Manager
                     Date = DateTime.Now.AddDays(-3),
                     ChargedAccountId = 2,
                     ChargedAccount = new Account {Id = 2},
-                    ReccuringPaymentId = 4,
+                    ReccuringTransactionId = 4,
                     RecurringPayment = new RecurringPayment
                     {
                         Id = 4,
@@ -73,7 +73,7 @@ namespace MoneyManager.Core.Tests.Manager
             resultList.Any().ShouldBeTrue();
             resultList.First().Amount.ShouldBe(95);
             resultList.First().ChargedAccountId.ShouldBe(2);
-            resultList.First().ReccuringPaymentId.ShouldBe(3);
+            resultList.First().ReccuringTransactionId.ShouldBe(3);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace MoneyManager.Core.Manager
         private Payment GetLastOccurence(Payment transaction)
         {
             var transcationList = paymentRepository.Data
-                .Where(x => x.ReccuringPaymentId == transaction.ReccuringPaymentId)
+                .Where(x => x.ReccuringTransactionId == transaction.ReccuringTransactionId)
                 .OrderBy(x => x.Date)
                 .ToList();
 

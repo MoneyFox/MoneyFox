@@ -29,7 +29,7 @@ namespace MoneyManager.Foundation.Model
         public bool IsRecurring { get; set; }
 
         [ForeignKey(typeof (RecurringPayment))]
-        public int ReccuringPaymentId { get; set; }
+        public int ReccuringTransactionId { get; set; }
 
         [ManyToOne("ChargedAccountId", CascadeOperations = CascadeOperation.All)]
         public Account ChargedAccount { get; set; }
@@ -40,7 +40,7 @@ namespace MoneyManager.Foundation.Model
         [ManyToOne]
         public Category Category { get; set; }
 
-        [ManyToOne("ReccuringPaymentId", CascadeOperations = CascadeOperation.All)]
+        [ManyToOne("ReccuringTransactionId", CascadeOperations = CascadeOperation.All)]
         public RecurringPayment RecurringPayment { get; set; }
 
         [Ignore]
