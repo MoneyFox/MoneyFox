@@ -77,7 +77,7 @@
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                 </controls:AlternatingRowListView>
-            </ScrollViewer
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </UserControl>
