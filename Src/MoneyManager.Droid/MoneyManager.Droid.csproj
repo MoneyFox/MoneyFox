@@ -180,7 +180,7 @@
     <Compile Include="Activities\ModifyAccountActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\ModifyPaymentActivity.cs" />
-    <Compile Include="Activities\TransactionListActivity.cs" />
+    <Compile Include="Activities\PaymentListActivity.cs" />
     <Compile Include="AndroidModule.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />

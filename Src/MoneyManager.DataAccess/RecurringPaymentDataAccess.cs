@@ -21,7 +21,7 @@ namespace MoneyManager.DataAccess
         }
 
         /// <summary>
-        ///     Saves an recurring transaction to the database.
+        ///     Saves an recurring payment to the database.
         /// </summary>
         /// <param name="itemToSave">Recurring Payment to save.</param>
         protected override void SaveToDb(RecurringPayment itemToSave)

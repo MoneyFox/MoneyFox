@@ -91,9 +91,9 @@ namespace MoneyManager.Droid.Activities
 
             slidingLayout.ViewTreeObserver.GlobalLayout += FirstLayoutListener;
 
-            var fragmenTransaction = FragmentManager.BeginTransaction();
-            fragmenTransaction.Add(Resource.Id.content_pane, accountListFragment);
-            fragmenTransaction.Commit();
+            var fragmentTransaction = FragmentManager.BeginTransaction();
+            fragmentTransaction.Add(Resource.Id.content_pane, accountListFragment);
+            fragmentTransaction.Commit();
         }
 
         private void NavigationClick(object sender, AdapterView.ItemClickEventArgs e)

@@ -17,15 +17,15 @@ namespace MoneyManager.Windows.Views.UserControls
         private void EditPayment(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var transaction = element.DataContext as Payment;
-            if (transaction == null)
+            var payment = element.DataContext as Payment;
+            if (payment == null)
             {
                 return;
             }
             var viewmodel = DataContext as PaymentListViewModel;
 
             if (viewmodel == null) return;
-            viewmodel.SelectedPayment = transaction;
+            viewmodel.SelectedPayment = payment;
             viewmodel.EditCommand.Execute();
         }
 

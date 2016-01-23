@@ -10,11 +10,11 @@ using Xamarin;
 
 namespace MoneyManager.Tasks.Windows
 {
-    public sealed class ClearTransactionBackgroundTask : IBackgroundTask
+    public sealed class ClearPaymentBackgroundTask : IBackgroundTask
     {
         private readonly PaymentManager paymentManager;
 
-        public ClearTransactionBackgroundTask()
+        public ClearPaymentBackgroundTask()
         {
             var insightKey = "599ff6bfdc79368ff3d5f5629a57c995fe93352e";
 

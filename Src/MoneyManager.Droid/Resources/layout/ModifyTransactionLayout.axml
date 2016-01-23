@@ -33,7 +33,7 @@
         android:hint="@string/button_category"
         local:MvxBind="Text SelectedPayment.Category.Name" />
     <Button
-        android:id="@+id/transactiondate"
+        android:id="@+id/paymentdate"
         android:inputType="date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

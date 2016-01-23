@@ -102,7 +102,7 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     Loads all transactions from the database to the data collection
+        ///     Loads all payments from the database to the data collection
         /// </summary>
         public void Load(Expression<Func<Payment, bool>> filter = null)
         {
@@ -110,18 +110,18 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     Returns all uncleared paymentToDelete up to today
+        ///     Returns all uncleared payments up to today
         /// </summary>
-        /// <returns>list of uncleared transactions</returns>
+        /// <returns>list of uncleared payments</returns>
         public IEnumerable<Payment> GetUnclearedPayments()
         {
             return GetUnclearedPayments(DateTime.Today);
         }
 
         /// <summary>
-        ///     Returns all uncleared paymentToDelete up to the passed date from the database.
+        ///     Returns all uncleared payments up to the passed date from the database.
         /// </summary>
-        /// <returns>list of uncleared transactions</returns>
+        /// <returns>list of uncleared payments</returns>
         public IEnumerable<Payment> GetUnclearedPayments(DateTime date)
         {
             return Data
@@ -131,10 +131,10 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     returns a list with transactions who are related to this account
+        ///     returns a list with payments who are related to this account
         /// </summary>
         /// <param name="account">account to search the related</param>
-        /// <returns>List of transactions</returns>
+        /// <returns>List of payments</returns>
         public IEnumerable<Payment> GetRelatedPayments(Account account)
         {
             return Data.Where(x => x.ChargedAccountId == account.Id
@@ -144,9 +144,9 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     returns a list with paymentToDelete who recure in a given timeframe
+        ///     returns a list with payments who recure in a given timeframe
         /// </summary>
-        /// <returns>list of recurring transactions</returns>
+        /// <returns>list of recurring payments</returns>
         public IEnumerable<Payment> LoadRecurringList(Func<Payment, bool> filter = null)
         {
             var list = Data

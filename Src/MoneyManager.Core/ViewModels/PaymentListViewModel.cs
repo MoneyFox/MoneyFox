@@ -30,7 +30,7 @@ namespace MoneyManager.Core.ViewModels
             this.dialogService = dialogService;
         }
 
-        public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(GoToAddTransaction);
+        public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(GoToAddPayment);
         public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
         public virtual MvxCommand LoadedCommand => new MvxCommand(LoadPayments);
         public MvxCommand EditCommand { get; private set; }
@@ -45,7 +45,7 @@ namespace MoneyManager.Core.ViewModels
         public ObservableCollection<Payment> RelatedPayments { set; get; }
 
         /// <summary>
-        ///     Returns groupped related transactions 
+        ///     Returns groupped related payments
         /// </summary>
         public ObservableCollection<DateListGroup<Payment>> Source { set; get; }
 
@@ -82,7 +82,7 @@ namespace MoneyManager.Core.ViewModels
             EditCommand = new MvxCommand(Edit);
         }
 
-        private void GoToAddTransaction(string type)
+        private void GoToAddPayment(string type)
         {
             ShowViewModel<ModifyPaymentViewModel>(new {isEdit = false, typeString = type});
         }

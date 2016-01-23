@@ -46,8 +46,8 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Init the view. Is executed after the constructor call
         /// </summary>
-        /// <param name="typeString">Type of the transaction.</param>
-        /// <param name="isEdit">Weather the transaction is in edit mode or not.</param>
+        /// <param name="typeString">Type of the payment.</param>
+        /// <param name="isEdit">Weather the payment is in edit mode or not.</param>
         public void Init(string typeString, bool isEdit = false)
         {
             IsEdit = isEdit;
@@ -89,13 +89,13 @@ namespace MoneyManager.Core.ViewModels
         {
             var type = (PaymentType) Enum.Parse(typeof (PaymentType), typeString);
 
-            SetDefaultTransaction(type);
+            SetDefaultPayment(type);
             SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
             IsTransfer = type == PaymentType.Transfer;
             EndDate = DateTime.Now;
         }
 
-        private void SetDefaultTransaction(PaymentType paymentType)
+        private void SetDefaultPayment(PaymentType paymentType)
         {
             SelectedPayment = new Payment
             {
@@ -124,10 +124,10 @@ namespace MoneyManager.Core.ViewModels
             RemoveOldAmount();
             SelectedPayment.Amount = amount;
 
-            //Create a recurring payment based on the financial transaction or update an existing
+            //Create a recurring payment based on the payment or update an existing
             await PrepareRecurringPayment();
 
-            // SaveItem or update the payment and add the amount to the account
+            // Save item or update the payment and add the amount to the account
             paymentRepository.Save(SelectedPayment);
             accountRepository.AddPaymentAmount(SelectedPayment);
 
@@ -207,7 +207,7 @@ namespace MoneyManager.Core.ViewModels
         public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
 
         /// <summary>
-        ///     Delets the transaction or updates the existing depending on the IsEdit Flag.
+        ///     Delets the payment or updates the existing depending on the IsEdit Flag.
         /// </summary>
         public IMvxCommand DeleteCommand => new MvxCommand(Delete);
 
@@ -231,7 +231,7 @@ namespace MoneyManager.Core.ViewModels
         public bool IsEdit { get; private set; }
 
         /// <summary>
-        ///     Indicates if the transaction is a transfer.
+        ///     Indicates if the payment is a transfer.
         /// </summary>
         public bool IsTransfer { get; private set; }
 
@@ -241,7 +241,7 @@ namespace MoneyManager.Core.ViewModels
         public bool IsEndless { get; set; }
 
         /// <summary>
-        ///     The Enddate for recurring transaction
+        ///     The Enddate for recurring payment
         /// </summary>
         public DateTime EndDate { get; set; }
 
@@ -285,7 +285,7 @@ namespace MoneyManager.Core.ViewModels
         };
 
         /// <summary>
-        ///     The selected transaction
+        ///     The selected payment
         /// </summary>
         public Payment SelectedPayment
         {
@@ -312,7 +312,7 @@ namespace MoneyManager.Core.ViewModels
                 : Strings.ChargedAccountLabel;
 
         /// <summary>
-        ///     The transaction date
+        ///     The payment date
         /// </summary>
         public DateTime Date
         {

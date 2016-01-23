@@ -78,17 +78,17 @@ namespace MoneyManager.DataAccess
         ///     Loads a list of payments from the database filtered by the expression
         /// </summary>
         /// <param name="filter">filter expression.</param>
-        /// <returns>List of loaded transactions.</returns>
+        /// <returns>List of loaded payments.</returns>
         protected override List<Payment> GetListFromDb(Expression<Func<Payment, bool>> filter)
         {
             using (var db = connectionCreator.GetConnection())
             {
                 var list = db.GetAllWithChildren(filter, true).ToList();
 
-                foreach (var transaction in list.Where(x => x.IsRecurring && x.RecurringPaymentId != 0))
+                foreach (var payment in list.Where(x => x.IsRecurring && x.RecurringPaymentId != 0))
                 {
-                    transaction.RecurringPayment =
-                        db.GetWithChildren<RecurringPayment>(transaction.RecurringPaymentId);
+                    payment.RecurringPayment =
+                        db.GetWithChildren<RecurringPayment>(payment.RecurringPaymentId);
                 }
                 return list;
             }

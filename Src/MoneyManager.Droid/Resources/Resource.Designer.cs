@@ -252,7 +252,7 @@ namespace MoneyManager.Droid
 			public const int statistic_list = 2131034125;
 			
 			// aapt resource value: 0x7f050009
-			public const int transactiondate = 2131034121;
+			public const int paymentdate = 2131034121;
 			
 			static Id()
 			{
@@ -307,7 +307,7 @@ namespace MoneyManager.Droid
 			public const int ModifyCategoryDialogLayout = 2130903052;
 			
 			// aapt resource value: 0x7f03000d
-			public const int ModifyTransactionLayout = 2130903053;
+			public const int ModifyPaymountLayout = 2130903053;
 			
 			// aapt resource value: 0x7f03000e
 			public const int StatisticLayout = 2130903054;
@@ -319,7 +319,7 @@ namespace MoneyManager.Droid
 			public const int TransactionListItem = 2130903056;
 			
 			// aapt resource value: 0x7f030011
-			public const int TransactionListLayout = 2130903057;
+			public const int PaymentListLayout = 2130903057;
 			
 			static Layout()
 			{

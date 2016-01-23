@@ -233,7 +233,7 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This payment is recurring. Do you want to update the future transactions aswell or just this occurence?.
+        ///   Looks up a localized string similar to This payment is recurring. Do you want to update the future payments aswell or just this occurence?.
         /// </summary>
         public static string ChangeSubsequentPaymentMessage {
             get {
