@@ -237,11 +237,11 @@
     <AndroidResource Include="Resources\layout\ModifyAccountLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\ModifyTransactionLayout.axml" />
-    <AndroidResource Include="Resources\layout\TransactionListLayout.axml">
+    <AndroidResource Include="Resources\layout\ModifyPaymentLayout.axml" />
+    <AndroidResource Include="Resources\layout\PaymentListLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\TransactionListItem.axml">
+    <AndroidResource Include="Resources\layout\PaymentListItem.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AccountComboBoxItem.axml">
