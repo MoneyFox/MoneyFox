@@ -16,7 +16,7 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    public class ModifyTransactionViewModelTest : MvxIoCSupportingTest
+    public class ModifyPaymentViewModelTest : MvxIoCSupportingTest
     {
         [Fact]
         public void Init_SpendingNotEditing_PropertiesSetupCorrectly()
@@ -28,7 +28,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             var paymentRepoSetup = new Mock<IPaymentRepository>();
             paymentRepoSetup.SetupGet(x => x.Selected).Returns(new Payment {ChargedAccountId = 3});
             
-            var transactionManager = new PaymentManager(paymentRepoSetup.Object,
+            var paymentManager = new PaymentManager(paymentRepoSetup.Object,
                 new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object);
 
@@ -45,7 +45,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepo,
                 new Mock<IDialogService>().Object,
-                transactionManager,
+                paymentManager,
                 defaultManager);
 
 

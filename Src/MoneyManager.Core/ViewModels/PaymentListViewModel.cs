@@ -39,7 +39,7 @@ namespace MoneyManager.Core.ViewModels
             => new MvxCommand<Payment>(DeleteTransaction);
 
         /// <summary>
-        ///     Returns all Transaction who are assigned to this repository
+        ///     Returns all Payment who are assigned to this repository
         ///     This has to stay until the android list with headers is implemented.
         /// </summary>
         public ObservableCollection<Payment> RelatedTransactions { set; get; }
@@ -92,7 +92,7 @@ namespace MoneyManager.Core.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 accountRepository.Delete(accountRepository.Selected);
-                accountRepository.RemoveTransactionAmount(SelectedTransaction);
+                accountRepository.RemovePaymentAmount(SelectedTransaction);
                 balanceViewModel.UpdateBalance();
                 Close(this);
             }
@@ -119,7 +119,7 @@ namespace MoneyManager.Core.ViewModels
                 dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
                 return;
 
-            accountRepository.RemoveTransactionAmount(transaction);
+            accountRepository.RemovePaymentAmount(transaction);
             paymentRepository.Delete(transaction);
             RelatedTransactions.Remove(transaction);
             balanceViewModel.UpdateBalance(true);

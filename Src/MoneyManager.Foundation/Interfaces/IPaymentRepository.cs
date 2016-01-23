@@ -15,7 +15,7 @@ namespace MoneyManager.Foundation.Interfaces
         /// <summary>
         ///     Returns all uncleared payments up to the passed date.
         /// </summary>
-        /// <param name="date">Date to which transactions shall be selected.</param>
+        /// <param name="date">Date to which payments shall be selected.</param>
         /// <returns>List of uncleared payments.</returns>
         IEnumerable<Payment> GetUnclearedPayments(DateTime date);
 

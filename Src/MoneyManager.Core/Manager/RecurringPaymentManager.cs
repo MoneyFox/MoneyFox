@@ -5,7 +5,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Manager
 {
-    public class RecurringPaymentManager : IRecurringTransactionManager
+    public class RecurringPaymentManager : IRecurringPaymentManager
     {
         private readonly IPaymentRepository paymentRepository;
 
@@ -15,7 +15,7 @@ namespace MoneyManager.Core.Manager
         }
 
         /// <summary>
-        ///     Checks if one of the recurring transaction has to be repeated
+        ///     Checks if one of the recurring payment has to be repeated
         /// </summary>
         public void CheckRecurringPayments()
         {
@@ -33,10 +33,10 @@ namespace MoneyManager.Core.Manager
             }
         }
 
-        private Payment GetLastOccurence(Payment transaction)
+        private Payment GetLastOccurence(Payment payment)
         {
             var transcationList = paymentRepository.Data
-                .Where(x => x.RecurringPaymentId == transaction.RecurringPaymentId)
+                .Where(x => x.RecurringPaymentId == payment.RecurringPaymentId)
                 .OrderBy(x => x.Date)
                 .ToList();
 

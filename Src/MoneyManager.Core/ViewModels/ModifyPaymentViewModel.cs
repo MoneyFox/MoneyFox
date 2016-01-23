@@ -129,7 +129,7 @@ namespace MoneyManager.Core.ViewModels
 
             // SaveItem or update the transaction and add the amount to the account
             paymentRepository.Save(SelectedPayment);
-            accountRepository.AddTransactionAmount(SelectedPayment);
+            accountRepository.AddPaymentAmount(SelectedPayment);
 
             Close(this);
         }
@@ -138,7 +138,7 @@ namespace MoneyManager.Core.ViewModels
         {
             if (IsEdit)
             {
-                accountRepository.RemoveTransactionAmount(SelectedPayment);
+                accountRepository.RemovePaymentAmount(SelectedPayment);
             }
         }
 
@@ -165,7 +165,7 @@ namespace MoneyManager.Core.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
             {
                 paymentRepository.Delete(paymentRepository.Selected);
-                accountRepository.RemoveTransactionAmount(SelectedPayment);
+                accountRepository.RemovePaymentAmount(SelectedPayment);
                 Close(this);
             }
         }

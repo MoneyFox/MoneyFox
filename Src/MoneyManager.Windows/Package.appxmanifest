@@ -32,7 +32,7 @@
         </uap:InitialRotationPreference>
       </uap:VisualElements>
       <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="MoneyManager.Tasks.Windows.ClearTransactionBackgroundTask">
+        <Extension Category="windows.backgroundTasks" EntryPoint="MoneyManager.Tasks.Windows.ClearPaymentBackgroundTask">
           <BackgroundTasks>
             <Task Type="timer" />
           </BackgroundTasks>

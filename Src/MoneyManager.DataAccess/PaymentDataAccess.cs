@@ -12,14 +12,14 @@ using SQLiteNetExtensions.Extensions;
 namespace MoneyManager.DataAccess
 {
     /// <summary>
-    ///     Handles the access to the transaction table on the database
+    ///     Handles the access to the Payments table on the database
     /// </summary>
     [ImplementPropertyChanged]
-    public class TransactionDataAccess : AbstractDataAccess<Payment>
+    public class PaymentDataAccess : AbstractDataAccess<Payment>
     {
         private readonly ISqliteConnectionCreator connectionCreator;
 
-        public TransactionDataAccess(ISqliteConnectionCreator connectionCreator)
+        public PaymentDataAccess(ISqliteConnectionCreator connectionCreator)
         {
             this.connectionCreator = connectionCreator;
         }

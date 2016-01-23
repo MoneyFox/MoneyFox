@@ -25,14 +25,14 @@ namespace MoneyManager.Core.Tests.Manager
             var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupAllProperties();
 
-            var transactionRepoSetup = new Mock<IPaymentRepository>();
-            transactionRepoSetup.SetupAllProperties();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupAllProperties();
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
             categoryRepoSetup.SetupAllProperties();
 
             var accountRepo = accountRepoSetup.Object;
-            var paymentRepository = transactionRepoSetup.Object;
+            var paymentRepository = paymentRepoSetup.Object;
             var categoryRepo = categoryRepoSetup.Object;
 
             accountRepo.Selected = new Account();

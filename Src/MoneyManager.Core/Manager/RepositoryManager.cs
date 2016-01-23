@@ -27,7 +27,7 @@ namespace MoneyManager.Core.Manager
 
         /// <summary>
         ///     This will reload all Data for the repositories and set the Selected Property to null.
-        ///     After this it checks if there are transactions to cleare and if so will clear them.
+        ///     After this it checks if there are payments to cleare and if so will clear them.
         /// </summary>
         public void ReloadData()
         {
@@ -41,7 +41,7 @@ namespace MoneyManager.Core.Manager
             categoryRepository.Load();
             categoryRepository.Selected = null;
 
-            //check if there are transactions to clear
+            //check if there are payments to clear
             paymentManager.ClearPayments();
         }
     }

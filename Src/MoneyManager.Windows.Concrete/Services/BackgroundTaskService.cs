@@ -11,7 +11,7 @@ namespace MoneyManager.Windows.Concrete.Services
     {
         private Dictionary<string, string> Tasks => new Dictionary<string, string>
         {
-            {"ClearTransactionBackgroundTask", "MoneyManager.Tasks.Windows"}
+            {"ClearPaymentBackgroundTask", "MoneyManager.Tasks.Windows"}
         };
 
         public async Task RegisterTasksAsync()

@@ -23,11 +23,11 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_SetupData_ListWithoutTransfer()
         {
             //Setup
-            var transactionRepoSetup = new Mock<IPaymentRepository>();
-            transactionRepoSetup.SetupAllProperties();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupAllProperties();
 
-            var transactionRepo = transactionRepoSetup.Object;
-            transactionRepo.Data = new ObservableCollection<Payment>(new List<Payment>
+            var paymentRepository = paymentRepoSetup.Object;
+            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
             {
                 new Payment
                 {
@@ -53,7 +53,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             });
 
             //Excution
-            var result = new CashFlowProvider(transactionRepo).GetValues(DateTime.Today.AddDays(-3),
+            var result = new CashFlowProvider(paymentRepository).GetValues(DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(3));
 
             //Assertion

@@ -142,7 +142,7 @@
     <value>Ausgabe hinzufügen</value>
   </data>
   <data name="AddTransactionTitle.Text" xml:space="preserve">
-    <value>Transaction hinzufügen</value>
+    <value>Payment hinzufügen</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
     <value>Übertrag hinzufügen</value>

@@ -85,70 +85,70 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     Adds the transaction Amount from the selected account
+        ///     Adds the payment amount from the selected account
         /// </summary>
-        /// <param name="transaction">Transaction to add the account from.</param>
-        public void AddTransactionAmount(Payment transaction)
+        /// <param name="payment">Payment to add the account from.</param>
+        public void AddPaymentAmount(Payment payment)
         {
-            if (!transaction.IsCleared) return;
+            if (!payment.IsCleared) return;
 
-            PrehandleAddIfTransfer(transaction);
+            PrehandleAddIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                transaction.Type == (int) PaymentType.Income
+                payment.Type == (int) PaymentType.Income
                     ? x
                     : -x;
 
-            HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc());
         }
 
         /// <summary>
-        ///     Removes the transaction Amount from the selected account
+        ///     Removes the payment Amount from the selected account
         /// </summary>
-        /// <param name="transaction">Transaction to remove the account from.</param>
-        public void RemoveTransactionAmount(Payment transaction)
+        /// <param name="payment">Payment to remove the account from.</param>
+        public void RemovePaymentAmount(Payment payment)
         {
-            if (!transaction.IsCleared) return;
+            if (!payment.IsCleared) return;
 
-            PrehandleRemoveIfTransfer(transaction);
+            PrehandleRemoveIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                transaction.Type == (int) PaymentType.Income
+                payment.Type == (int) PaymentType.Income
                     ? -x
                     : x;
 
-            HandleTransactionAmount(transaction, amountFunc, GetChargedAccountFunc());
+            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc());
         }
 
-        private void PrehandleRemoveIfTransfer(Payment transaction)
+        private void PrehandleRemoveIfTransfer(Payment payment)
         {
-            if (transaction.Type == (int) PaymentType.Transfer)
+            if (payment.Type == (int) PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
-                HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
+                HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
             }
         }
 
-        private void HandleTransactionAmount(Payment transaction,
+        private void HandlePaymentAmount(Payment payment,
             Func<double, double> amountFunc,
             Func<Payment, Account> getAccountFunc)
         {
-            var account = getAccountFunc(transaction);
+            var account = getAccountFunc(payment);
             if (account == null)
             {
                 return;
             }
 
-            account.CurrentBalance += amountFunc(transaction.Amount);
+            account.CurrentBalance += amountFunc(payment.Amount);
             Save(account);
         }
 
-        private void PrehandleAddIfTransfer(Payment transaction)
+        private void PrehandleAddIfTransfer(Payment payment)
         {
-            if (transaction.Type == (int) PaymentType.Transfer)
+            if (payment.Type == (int) PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
-                HandleTransactionAmount(transaction, amountFunc, GetTargetAccountFunc());
+                HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
             }
         }
 

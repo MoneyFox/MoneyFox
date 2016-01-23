@@ -32,8 +32,8 @@ namespace MoneyManager.Core
             //We have to register them seperatly, otherwise it wasn't able to resolve them.
             //TODO: Find a better way to do this.
             builder.RegisterType<AccountDataAccess>().As<IDataAccess<Account>>();
-            builder.RegisterType<TransactionDataAccess>().As<IDataAccess<Payment>>();
-            builder.RegisterType<RecurringTransactionDataAccess>().As<IDataAccess<RecurringPayment>>();
+            builder.RegisterType<PaymentDataAccess>().As<IDataAccess<Payment>>();
+            builder.RegisterType<RecurringPaymentDataAccess>().As<IDataAccess<RecurringPayment>>();
             builder.RegisterType<CategoryDataAccess>().As<IDataAccess<Category>>();
             builder.RegisterType<SettingDataAccess>().AsSelf();
 

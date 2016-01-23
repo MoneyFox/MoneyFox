@@ -11,11 +11,11 @@ using SQLiteNetExtensions.Extensions;
 namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
-    public class RecurringTransactionDataAccess : AbstractDataAccess<RecurringPayment>
+    public class RecurringPaymentDataAccess : AbstractDataAccess<RecurringPayment>
     {
         private readonly ISqliteConnectionCreator connectionCreator;
 
-        public RecurringTransactionDataAccess(ISqliteConnectionCreator connectionCreator)
+        public RecurringPaymentDataAccess(ISqliteConnectionCreator connectionCreator)
         {
             this.connectionCreator = connectionCreator;
         }
@@ -23,7 +23,7 @@ namespace MoneyManager.DataAccess
         /// <summary>
         ///     Saves an recurring transaction to the database.
         /// </summary>
-        /// <param name="itemToSave">Recurring Transaction to save.</param>
+        /// <param name="itemToSave">Recurring Payment to save.</param>
         protected override void SaveToDb(RecurringPayment itemToSave)
         {
             using (var db = connectionCreator.GetConnection())

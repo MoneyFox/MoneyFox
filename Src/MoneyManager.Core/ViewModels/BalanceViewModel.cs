@@ -31,10 +31,10 @@ namespace MoneyManager.Core.ViewModels
         ///     Refreshes the balances. Depending on if it is displayed in a transactionview or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        /// <param name="isTransactionView">Indicates if the current view is a transactionView or a generell overview.</param>
-        public void UpdateBalance(bool isTransactionView = false)
+        /// <param name="isPaymentView">Indicates if the current view is a transactionView or a generell overview.</param>
+        public void UpdateBalance(bool isPaymentView = false)
         {
-            IsTransactionView = isTransactionView;
+            IsTransactionView = isPaymentView;
 
             TotalBalance = GetTotalBalance();
             EndOfMonthBalance = GetEndOfMonthValue();

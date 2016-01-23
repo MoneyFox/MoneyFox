@@ -204,7 +204,7 @@ namespace MoneyManager.Core.Tests.Repositories
         }
 
         [Fact]
-        public void GetUnclearedPayments_PastDate_PastTransactions()
+        public void GetUnclearedPayments_PastDate_PastPayments()
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());

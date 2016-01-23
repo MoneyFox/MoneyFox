@@ -50,7 +50,7 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
-        ///     The currently selected Transaction
+        ///     The currently selected Payment
         /// </summary>
         public Payment Selected { get; set; }
 

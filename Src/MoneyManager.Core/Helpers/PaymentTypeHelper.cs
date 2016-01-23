@@ -5,7 +5,7 @@ using MoneyManager.Localization;
 namespace MoneyManager.Core.Helpers
 {
     /// <summary>
-    ///     A collection of helper methods for handling TransactionTypes
+    ///     A collection of helper methods for handling PaymentTypes
     /// </summary>
     public class PaymentTypeHelper
     {
@@ -13,14 +13,14 @@ namespace MoneyManager.Core.Helpers
         ///     Parse a string to PaymentType
         /// </summary>
         /// <param name="input">String to parse.</param>
-        /// <returns>Parsed Transactiontype.</returns>
+        /// <returns>Parsed PaymentType.</returns>
         public static PaymentType GetEnumFromString(string input)
         {
             return (PaymentType) Enum.Parse(typeof (PaymentType), input);
         }
 
         /// <summary>
-        ///     Returns based on an enum int the title for the transaction type.
+        ///     Returns based on an enum int the title for the PaymentType.
         /// </summary>
         /// <param name="type">Int of the enum.</param>
         /// <param name="isEditMode">States if the title is used for the edit mode or for adding</param>
@@ -31,9 +31,9 @@ namespace MoneyManager.Core.Helpers
         }
 
         /// <summary>
-        ///     Returns based on an transaction type the title.
+        ///     Returns based on an PaymentType the title.
         /// </summary>
-        /// <param name="type">Transactiontype for which the title is searched.</param>
+        /// <param name="type">PaymentType for which the title is searched.</param>
         /// <param name="isEditMode">States if the title is used for the edit mode or for adding</param>
         /// <returns>Title for the enum.</returns>
         public static string GetViewTitleForType(PaymentType type, bool isEditMode)
@@ -55,9 +55,9 @@ namespace MoneyManager.Core.Helpers
         }
 
         /// <summary>
-        ///     Determines the string for transaction type based on the passed int.
+        ///     Determines the string for PaymentType based on the passed int.
         /// </summary>
-        /// <param name="type">The Transaction type as int.</param>
+        /// <param name="type">The Payment type as int.</param>
         /// <returns>The string for the determined type.</returns>
         public static string GetTypeString(int type)
         {
@@ -74,7 +74,7 @@ namespace MoneyManager.Core.Helpers
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type),
-                        "Passed Number didn't match to a transaction type.");
+                        "Passed Number didn't match to a payment type.");
             }
         }
     }

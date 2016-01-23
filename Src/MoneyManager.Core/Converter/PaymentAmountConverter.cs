@@ -12,23 +12,23 @@ namespace MoneyManager.Core.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var transaction = (Payment) value;
+            var payment = (Payment) value;
             string sign;
 
-            if (transaction.Type == (int) PaymentType.Transfer)
+            if (payment.Type == (int) PaymentType.Transfer)
             {
-                sign = transaction.ChargedAccountId == Mvx.Resolve<IRepository<Account>>().Selected.Id
+                sign = payment.ChargedAccountId == Mvx.Resolve<IRepository<Account>>().Selected.Id
                     ? "-"
                     : "+";
             }
             else
             {
-                sign = transaction.Type == (int) PaymentType.Spending
+                sign = payment.Type == (int) PaymentType.Spending
                     ? "-"
                     : "+";
             }
 
-            return sign + " " + $"{transaction.Amount:C2}";
+            return sign + " " + $"{payment.Amount:C2}";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -17,7 +17,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         [InlineData("Income", PaymentType.Income)]
         [InlineData("Spending", PaymentType.Spending)]
         [InlineData("Transfer", PaymentType.Transfer)]
-        public void GoToAddTransaction_Transactiontype_CorrectPreparation(string typestring, PaymentType type)
+        public void GoToAddPayment_Transactiontype_CorrectPreparation(string typestring, PaymentType type)
         {
             Setup();
             // for navigation parsing
@@ -25,9 +25,9 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
-            var paymentRepository = new PaymentRepository(new TransactionDataAccess(dbHelper),
-                new RecurringTransactionDataAccess(dbHelper));
-            var transactionManager = new PaymentManager(paymentRepository, accountRepository,
+            var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbHelper),
+                new RecurringPaymentDataAccess(dbHelper));
+            var paymentManager = new PaymentManager(paymentRepository, accountRepository,
                 new Mock<IDialogService>().Object);
 
             var defaultManager = new DefaultManager(accountRepository,
@@ -37,7 +37,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 new ModifyPaymentViewModel(paymentRepository,
                     accountRepository,
                     new Mock<IDialogService>().Object,
-                    transactionManager,
+                    paymentManager,
                     defaultManager);
 
             var modifyAccountViewModel = new ModifyAccountViewModel(accountRepository,

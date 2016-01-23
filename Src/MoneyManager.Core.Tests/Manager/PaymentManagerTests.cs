@@ -15,7 +15,7 @@ namespace MoneyManager.Core.Tests.Manager
     public class PaymentManagerTests
     {
         [Fact]
-        public void DeleteAssociatedPaymentsFromDatabase_Account_DeleteRightTransactions()
+        public void DeleteAssociatedPaymentsFromDatabase_Account_DeleteRightPayments()
         {
             var resultList = new List<int>();
 
@@ -100,7 +100,7 @@ namespace MoneyManager.Core.Tests.Manager
         }
 
         [Fact]
-        public void RemoveRecurringForPayments_RecTrans_TransactionPropertiesProperlyChanged()
+        public void RemoveRecurringForPayments_RecTrans_PaymentPropertiesProperlyChanged()
         {
             var payment = new Payment
             {

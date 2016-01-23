@@ -27,7 +27,7 @@
     public enum InvocationType
     {
         Account,
-        Transaction,
+        Payment,
         Setting
     }
 

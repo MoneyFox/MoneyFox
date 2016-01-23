@@ -7,47 +7,47 @@ namespace MoneyManager.Core.Helpers
     public static class RecurringPaymentHelper
     {
         /// <summary>
-        ///     Creates an recurring Transaction based on the Financial transaction.
+        ///     Creates an recurring Payment based on the Financial payment.
         /// </summary>
-        /// <param name="transaction">The financial transaction the reuccuring shall be based on.</param>
+        /// <param name="payment">The financial payment the reuccuring shall be based on.</param>
         /// <param name="isEndless">If the recurrence is infinite or not.</param>
-        /// <param name="recurrence">How often the transaction shall be repeated.</param>
-        /// <param name="enddate">Enddate for the recurring transaction if it's not endless.</param>
-        /// <returns>The new created recurring transaction</returns>
-        public static RecurringPayment GetRecurringFromPayment(Payment transaction,
+        /// <param name="recurrence">How often the payment shall be repeated.</param>
+        /// <param name="enddate">Enddate for the recurring payment if it's not endless.</param>
+        /// <returns>The new created recurring payment</returns>
+        public static RecurringPayment GetRecurringFromPayment(Payment payment,
             bool isEndless,
             int recurrence,
             DateTime enddate = new DateTime())
         {
             return new RecurringPayment
             {
-                Id = transaction.RecurringPaymentId,
-                ChargedAccount = transaction.ChargedAccount,
-                ChargedAccountId = transaction.ChargedAccount.Id,
-                TargetAccount = transaction.TargetAccount,
-                TargetAccountId = transaction.TargetAccount?.Id ?? 0,
-                StartDate = transaction.Date,
+                Id = payment.RecurringPaymentId,
+                ChargedAccount = payment.ChargedAccount,
+                ChargedAccountId = payment.ChargedAccount.Id,
+                TargetAccount = payment.TargetAccount,
+                TargetAccountId = payment.TargetAccount?.Id ?? 0,
+                StartDate = payment.Date,
                 EndDate = enddate,
                 IsEndless = isEndless,
-                Amount = transaction.Amount,
-                CategoryId = transaction.CategoryId,
-                Category = transaction.Category,
-                Type = transaction.Type,
+                Amount = payment.Amount,
+                CategoryId = payment.CategoryId,
+                Category = payment.Category,
+                Type = payment.Type,
                 Recurrence = recurrence,
-                Note = transaction.Note
+                Note = payment.Note
             };
         }
 
         /// <summary>
-        ///     Creates an Financial Transaction based on the Recurring transaction.
+        ///     Creates an payment based on the recurring payment.
         /// </summary>
-        /// <param name="recurringPayment">The Recurring Transaction the new Transaction shall be based on.</param>
-        /// <returns>The new created Financial Transaction</returns>
+        /// <param name="recurringPayment">The recurring payment the new Payment shall be based on.</param>
+        /// <returns>The new created payment</returns>
         public static Payment GetPaymentFromRecurring(RecurringPayment recurringPayment)
         {
             var date = DateTime.Today;
 
-            //If the transaction is monthly we want it on the same day of month again.
+            //If the payment is monthly we want it on the same day of month again.
             if (recurringPayment.Recurrence == (int) PaymentRecurrence.Monthly)
             {
                 date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
@@ -72,40 +72,40 @@ namespace MoneyManager.Core.Helpers
         }
 
         /// <summary>
-        ///     Checks if the recurring Transaction is up for a repetition based on the passed Financial Transaction
+        ///     Checks if the recurring payment is up for a repetition based on the passed Payment
         /// </summary>
-        /// <param name="recTrans">RecurringPayment to check.</param>
-        /// <param name="relTransaction">Reference Transaction</param>
-        /// <returns>True or False if the transaction have to be repeated.</returns>
-        public static bool CheckIfRepeatable(RecurringPayment recTrans, Payment relTransaction)
+        /// <param name="recurringPayment">Recurring payment to check.</param>
+        /// <param name="relatedPayment">Payment to compare.</param>
+        /// <returns>True or False if the payment have to be repeated.</returns>
+        public static bool CheckIfRepeatable(RecurringPayment recurringPayment, Payment relatedPayment)
         {
-            if (!relTransaction.IsCleared) return false;
+            if (!relatedPayment.IsCleared) return false;
 
-            switch (recTrans.Recurrence)
+            switch (recurringPayment.Recurrence)
             {
                 case (int) PaymentRecurrence.Daily:
-                    return DateTime.Today.Date != relTransaction.Date.Date;
+                    return DateTime.Today.Date != relatedPayment.Date.Date;
 
                 case (int) PaymentRecurrence.DailyWithoutWeekend:
-                    return DateTime.Today.Date != relTransaction.Date.Date
+                    return DateTime.Today.Date != relatedPayment.Date.Date
                            && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
                            && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
 
                 case (int) PaymentRecurrence.Weekly:
-                    var daysWeekly = DateTime.Now - relTransaction.Date;
+                    var daysWeekly = DateTime.Now - relatedPayment.Date;
                     return daysWeekly.Days >= 7;
 
                 case (int) PaymentRecurrence.Biweekly:
-                    var daysBiweekly = DateTime.Now - relTransaction.Date;
+                    var daysBiweekly = DateTime.Now - relatedPayment.Date;
                     return daysBiweekly.Days >= 14;
 
                 case (int) PaymentRecurrence.Monthly:
-                    return DateTime.Now.Month != relTransaction.Date.Month;
+                    return DateTime.Now.Month != relatedPayment.Date.Month;
 
                 case (int) PaymentRecurrence.Yearly:
-                    return (DateTime.Now.Year != relTransaction.Date.Year
-                           && DateTime.Now.Month >= relTransaction.Date.Month)
-                           || (DateTime.Now.Year - relTransaction.Date.Year) > 1;
+                    return (DateTime.Now.Year != relatedPayment.Date.Year
+                           && DateTime.Now.Month >= relatedPayment.Date.Month)
+                           || (DateTime.Now.Year - relatedPayment.Date.Year) > 1;
 
                 default:
                     return false;
