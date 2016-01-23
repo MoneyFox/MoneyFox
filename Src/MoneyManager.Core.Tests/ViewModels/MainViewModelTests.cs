@@ -17,7 +17,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         [InlineData("Income", PaymentType.Income)]
         [InlineData("Spending", PaymentType.Spending)]
         [InlineData("Transfer", PaymentType.Transfer)]
-        public void GoToAddTransaction_Transactiontype_CorrectPreparation(string typestring, PaymentType type)
+        public void GoToAddPayment_PaymentType_CorrectPreparation(string typestring, PaymentType type)
         {
             Setup();
             // for navigation parsing
@@ -25,40 +25,40 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
-            var transactionRepository = new PaymentRepository(new TransactionDataAccess(dbHelper),
-                new RecurringTransactionDataAccess(dbHelper));
-            var transactionManager = new PaymentManager(transactionRepository, accountRepository,
+            var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbHelper),
+                new RecurringPaymentDataAccess(dbHelper));
+            var paymentManager = new PaymentManager(paymentRepository, accountRepository,
                 new Mock<IDialogService>().Object);
 
             var defaultManager = new DefaultManager(accountRepository,
                 new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
-            var modifyTransactionViewModel =
-                new ModifyPaymentViewModel(transactionRepository,
+            var modifyPaymentViewModel =
+                new ModifyPaymentViewModel(paymentRepository,
                     accountRepository,
                     new Mock<IDialogService>().Object,
-                    transactionManager,
+                    paymentManager,
                     defaultManager);
 
             var modifyAccountViewModel = new ModifyAccountViewModel(accountRepository,
                 new BalanceViewModel(accountRepository, new Mock<IPaymentRepository>().Object));
 
-            var mainViewModel = new MainViewModel(modifyAccountViewModel, modifyTransactionViewModel,
-                new BalanceViewModel(accountRepository, transactionRepository));
+            var mainViewModel = new MainViewModel(modifyAccountViewModel, modifyPaymentViewModel,
+                new BalanceViewModel(accountRepository, paymentRepository));
 
-            mainViewModel.GoToAddTransactionCommand.Execute(typestring);
+            mainViewModel.GoToAddPaymentCommand.Execute(typestring);
 
-            Assert.False(modifyTransactionViewModel.IsEdit);
-            Assert.True(modifyTransactionViewModel.IsEndless);
+            Assert.False(modifyPaymentViewModel.IsEdit);
+            Assert.True(modifyPaymentViewModel.IsEndless);
             if (type == PaymentType.Transfer)
             {
-                Assert.True(modifyTransactionViewModel.IsTransfer);
+                Assert.True(modifyPaymentViewModel.IsTransfer);
             }
             else
             {
-                Assert.False(modifyTransactionViewModel.IsTransfer);
+                Assert.False(modifyPaymentViewModel.IsTransfer);
             }
-            Assert.Equal((int) type, modifyTransactionViewModel.SelectedPayment.Type);
+            Assert.Equal((int) type, modifyPaymentViewModel.SelectedPayment.Type);
         }
     }
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -11,14 +11,14 @@
         android:layout_height="wrap_content"
         local:MvxItemTemplate="@layout/accountcomboboxitem"
         local:MvxDropDownItemTemplate="@layout/accountcomboboxitem"
-        local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedTransaction.ChargedAccount" />
+        local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedPayment.ChargedAccount" />
     <Mvx.MvxSpinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         local:MvxItemTemplate="@layout/accountcomboboxitem"
         local:MvxDropDownItemTemplate="@layout/accountcomboboxitem"
-        local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedTransaction.TargetAccount; Visible IsTransfer" />
+        local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedPayment.TargetAccount; Visible IsTransfer" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,30 +31,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/button_category"
-        local:MvxBind="Text SelectedTransaction.Category.Name" />
+        local:MvxBind="Text SelectedPayment.Category.Name" />
     <Button
-        android:id="@+id/transactiondate"
+        android:id="@+id/paymentdate"
         android:inputType="date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/button_date"
-        local:MvxBind="Text SelectedTransaction.Date, Converter=DateTimeFormat" />
+        local:MvxBind="Text SelectedPayment.Date, Converter=DateTimeFormat" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:hint="@string/hint_note"
-        local:MvxBind="Text SelectedTransaction.Note" />
+        local:MvxBind="Text SelectedPayment.Note" />
     <Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_recurring"
-        local:MvxBind="Checked SelectedTransaction.IsRecurring" />
+        local:MvxBind="Checked SelectedPayment.IsRecurring" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        local:MvxBind="Visible SelectedTransaction.IsRecurring">
+        local:MvxBind="Visible SelectedPayment.IsRecurring">
         <Mvx.MvxSpinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

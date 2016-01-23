@@ -91,9 +91,9 @@ namespace MoneyManager.Droid.Activities
 
             slidingLayout.ViewTreeObserver.GlobalLayout += FirstLayoutListener;
 
-            var fragmenTransaction = FragmentManager.BeginTransaction();
-            fragmenTransaction.Add(Resource.Id.content_pane, accountListFragment);
-            fragmenTransaction.Commit();
+            var fragmentTransaction = FragmentManager.BeginTransaction();
+            fragmentTransaction.Add(Resource.Id.content_pane, accountListFragment);
+            fragmentTransaction.Commit();
         }
 
         private void NavigationClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -175,15 +175,15 @@ namespace MoneyManager.Droid.Activities
                     return true;
 
                 case Resource.Id.action_add_income:
-                    ViewModel.GoToAddTransactionCommand.Execute("Income");
+                    ViewModel.GoToAddPaymentCommand.Execute("Income");
                     return true;
 
                 case Resource.Id.action_add_spending:
-                    ViewModel.GoToAddTransactionCommand.Execute("Spending");
+                    ViewModel.GoToAddPaymentCommand.Execute("Spending");
                     return true;
 
                 case Resource.Id.action_add_transfer:
-                    ViewModel.GoToAddTransactionCommand.Execute("Transfer");
+                    ViewModel.GoToAddPaymentCommand.Execute("Transfer");
                     return true;
 
                 case Resource.Id.action_add_account:

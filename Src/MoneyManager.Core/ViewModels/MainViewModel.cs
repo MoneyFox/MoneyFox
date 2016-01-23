@@ -28,9 +28,9 @@ namespace MoneyManager.Core.ViewModels
         public MvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
-        ///     Prepare everything and navigate to AddTransaction view
+        ///     Prepare everything and navigate to the add payment view
         /// </summary>
-        public MvxCommand<string> GoToAddTransactionCommand => new MvxCommand<string>(GoToAddTransaction);
+        public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(GoToAddPayment);
 
         /// <summary>
         ///     Navigates to the About view
@@ -38,7 +38,7 @@ namespace MoneyManager.Core.ViewModels
         public MvxCommand GoToAboutCommand => new MvxCommand(GoToAbout);
 
         /// <summary>
-        ///     Prepare everything and navigate to AddAccount view
+        ///     Prepare everything and navigate to the add account view
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
 
@@ -47,9 +47,9 @@ namespace MoneyManager.Core.ViewModels
             balanceViewModel.UpdateBalance();
         }
 
-        private void GoToAddTransaction(string transactionType)
+        private void GoToAddPayment(string paymentType)
         {
-            ShowViewModel<ModifyPaymentViewModel>(new {typeString = transactionType});
+            ShowViewModel<ModifyPaymentViewModel>(new {typeString = paymentType});
         }
 
         private void GoToAddAccount()

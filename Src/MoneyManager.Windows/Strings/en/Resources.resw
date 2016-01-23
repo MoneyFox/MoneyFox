@@ -141,8 +141,8 @@
   <data name="AddSpendingLabel.Label" xml:space="preserve">
     <value>Add Expense</value>
   </data>
-  <data name="AddTransactionTitle.Text" xml:space="preserve">
-    <value>Add Transaction</value>
+  <data name="AddPaymentTitle.Text" xml:space="preserve">
+    <value>Add Payment</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
     <value>Add Transfer</value>

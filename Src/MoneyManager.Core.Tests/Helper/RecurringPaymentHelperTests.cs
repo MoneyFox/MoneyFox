@@ -7,7 +7,7 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.Helper
 {
-    public class RecurringTransactionHelperTests
+    public class RecurringPaymentHelperTests
     {
         [Theory]
         [InlineData(0, "7.8.2016", true, 1)]
@@ -15,12 +15,12 @@ namespace MoneyManager.Core.Tests.Helper
         [InlineData(2, "7.8.2016", false, 3)]
         [InlineData(3, "7.8.2016", true, 1)]
         [InlineData(4, "7.8.2016", false, 3)]
-        public void GetRecurringFromFinancialTransaction(int recurrence, string date, bool isEndless, int type)
+        public void GetRecurringFromPayment(int recurrence, string date, bool isEndless, int type)
         {
             var startDate = new DateTime(2015, 03, 12);
             var enddate = Convert.ToDateTime(date);
 
-            var transaction = new Payment
+            var payment = new Payment
             {
                 ChargedAccount = new Account {Id = 3},
                 TargetAccount = new Account {Id = 8},
@@ -32,7 +32,7 @@ namespace MoneyManager.Core.Tests.Helper
                 IsRecurring = true
             };
 
-            var recurring = RecurringPaymentHelper.GetRecurringFromPayment(transaction, isEndless,
+            var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, isEndless,
                 recurrence, enddate);
 
             recurring.ChargedAccount.Id.ShouldBe(3);
@@ -40,18 +40,18 @@ namespace MoneyManager.Core.Tests.Helper
             recurring.StartDate.ShouldBe(startDate);
             recurring.EndDate.ShouldBe(enddate);
             recurring.IsEndless.ShouldBe(isEndless);
-            recurring.Amount.ShouldBe(transaction.Amount);
-            recurring.Category.Id.ShouldBe(transaction.Category.Id);
+            recurring.Amount.ShouldBe(payment.Amount);
+            recurring.Category.Id.ShouldBe(payment.Category.Id);
             recurring.Type.ShouldBe(type);
             recurring.Recurrence.ShouldBe(recurrence);
-            recurring.Note.ShouldBe(transaction.Note);
+            recurring.Note.ShouldBe(payment.Note);
         }
 
         [Theory]
         [InlineData(0, "Spending")]
         [InlineData(1, "Income")]
         [InlineData(2, "Transfer")]
-        public void GetTypeString_TransactionType_EnumString(int typeInt, string expectedResult)
+        public void GetTypeString_PaymentType_EnumString(int typeInt, string expectedResult)
         {
             PaymentTypeHelper.GetTypeString(typeInt).ShouldBe(expectedResult);
         }
@@ -63,20 +63,20 @@ namespace MoneyManager.Core.Tests.Helper
         {
             var exception =
                 Assert.Throws<ArgumentOutOfRangeException>(() => PaymentTypeHelper.GetTypeString(typeInt));
-            exception.Message.StartsWith("Passed Number didn't match to a transaction type.").ShouldBeTrue();
+            exception.Message.StartsWith("Passed Number didn't match to a payment type.").ShouldBeTrue();
         }
 
         [Theory]
-        [InlineData(TransactionRecurrence.Daily)]
-        [InlineData(TransactionRecurrence.DailyWithoutWeekend)]
-        [InlineData(TransactionRecurrence.Weekly)]
-        [InlineData(TransactionRecurrence.Yearly)]
-        public void GetFinancialTransactionFromRecurring_RecurringTransaction_CorrectMappedFinancialTrans(
-            TransactionRecurrence recurrence)
+        [InlineData(PaymentRecurrence.Daily)]
+        [InlineData(PaymentRecurrence.DailyWithoutWeekend)]
+        [InlineData(PaymentRecurrence.Weekly)]
+        [InlineData(PaymentRecurrence.Yearly)]
+        public void GetPaymentFromRecurring_RecurringPayment_CorrectMappedFinancialTrans(
+            PaymentRecurrence recurrence)
         {
             var account = new Account {Id = 2};
 
-            var recTrans = new RecurringPayment
+            var recurringPayment = new RecurringPayment
             {
                 Id = 4,
                 Recurrence = (int) recurrence,
@@ -86,7 +86,7 @@ namespace MoneyManager.Core.Tests.Helper
                 Amount = 105
             };
 
-            var result = RecurringPaymentHelper.GetPaymentFromRecurring(recTrans);
+            var result = RecurringPaymentHelper.GetPaymentFromRecurring(recurringPayment);
 
             result.ChargedAccount.ShouldBe(account);
             result.ChargedAccountId.ShouldBe(account.Id);
@@ -95,22 +95,22 @@ namespace MoneyManager.Core.Tests.Helper
         }
 
         [Fact]
-        public void GetFinancialTransactionFromRecurring_MonthlyTransaction_CorrectMappedFinancialTrans()
+        public void GetPaymentFromRecurring_MonthlyPayment_CorrectMappedFinancialTrans()
         {
             var account = new Account {Id = 2};
             var dayOfMonth = 26;
 
-            var recTrans = new RecurringPayment
+            var recurringPayment = new RecurringPayment
             {
                 Id = 4,
-                Recurrence = (int) TransactionRecurrence.Monthly,
+                Recurrence = (int) PaymentRecurrence.Monthly,
                 StartDate = new DateTime(2015, 08, dayOfMonth),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
                 Amount = 105
             };
 
-            var result = RecurringPaymentHelper.GetPaymentFromRecurring(recTrans);
+            var result = RecurringPaymentHelper.GetPaymentFromRecurring(recurringPayment);
 
             result.ChargedAccount.ShouldBe(account);
             result.ChargedAccountId.ShouldBe(account.Id);
@@ -119,16 +119,16 @@ namespace MoneyManager.Core.Tests.Helper
         }
 
         [Theory]
-        [InlineData(TransactionRecurrence.Daily, 1)]
-        [InlineData(TransactionRecurrence.Weekly, 7)]
-        [InlineData(TransactionRecurrence.Monthly, 35)]
-        [InlineData(TransactionRecurrence.Yearly, 380)]
-        public void CheckIfRepeatable_DivRecurrences_ValidatedRecurrence(TransactionRecurrence recurrence,
+        [InlineData(PaymentRecurrence.Daily, 1)]
+        [InlineData(PaymentRecurrence.Weekly, 7)]
+        [InlineData(PaymentRecurrence.Monthly, 35)]
+        [InlineData(PaymentRecurrence.Yearly, 380)]
+        public void CheckIfRepeatable_DivRecurrences_ValidatedRecurrence(PaymentRecurrence recurrence,
             int amountOfDaysBack)
         {
             var account = new Account {Id = 2};
 
-            var recTrans = new RecurringPayment
+            var recurringPayment = new RecurringPayment
             {
                 Id = 4,
                 Recurrence = (int) recurrence,
@@ -138,27 +138,27 @@ namespace MoneyManager.Core.Tests.Helper
                 Amount = 105
             };
 
-            RecurringPaymentHelper.CheckIfRepeatable(recTrans,
+            RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
                 new Payment {Date = DateTime.Today.AddDays(-amountOfDaysBack), IsCleared = true})
                 .ShouldBeTrue();
         }
 
         [Fact]
-        public void CheckIfRepeatable_UnclearedTransaction_ReturnFalse()
+        public void CheckIfRepeatable_UnclearedPayment_ReturnFalse()
         {
             var account = new Account {Id = 2};
 
-            var recTrans = new RecurringPayment
+            var recurringPayment = new RecurringPayment
             {
                 Id = 4,
-                Recurrence = (int) TransactionRecurrence.Weekly,
+                Recurrence = (int) PaymentRecurrence.Weekly,
                 StartDate = new DateTime(2015, 08, 25),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
                 Amount = 105
             };
 
-            RecurringPaymentHelper.CheckIfRepeatable(recTrans,
+            RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
                 new Payment {Date = DateTime.Today.AddDays(11)}).ShouldBeFalse();
         }
     }

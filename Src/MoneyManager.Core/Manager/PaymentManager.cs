@@ -70,13 +70,13 @@ namespace MoneyManager.Core.Manager
                         payment.ChargedAccount =
                             accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
 
-                        Insights.Report(new AccountMissingException("Charged account was missing while clearing transactions"), Insights.Severity.Error);
+                        Insights.Report(new AccountMissingException("Charged account was missing while clearing payments."), Insights.Severity.Error);
                     }
 
                     payment.IsCleared = true;
                     paymentRepository.Save(payment);
 
-                    accountRepository.AddTransactionAmount(payment);
+                    accountRepository.AddPaymentAmount(payment);
                 }
                 catch (Exception ex)
                 {
@@ -91,12 +91,12 @@ namespace MoneyManager.Core.Manager
             {
                 var relatedPayment = paymentRepository
                     .Data
-                    .Where(x => x.IsRecurring && x.ReccuringTransactionId == recurringPayment.Id);
+                    .Where(x => x.IsRecurring && x.RecurringPaymentId == recurringPayment.Id);
 
                 foreach (var payment in relatedPayment)
                 {
                     payment.IsRecurring = false;
-                    payment.ReccuringTransactionId = 0;
+                    payment.RecurringPaymentId = 0;
                     paymentRepository.Save(payment);
                 }
             }

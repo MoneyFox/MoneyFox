@@ -20,7 +20,7 @@ namespace MoneyManager.Core.StatisticProvider
         }
 
         /// <summary>
-        ///     Selects transactions from the given timeframe and calculates the spreading for the six categories
+        ///     Selects payments from the given timeframe and calculates the spreading for the six categories
         ///     with the highest spendings. All others are summarized in a "other" item.
         /// </summary>
         /// <param name="startDate">Startpoint form which to select data.</param>
@@ -28,7 +28,7 @@ namespace MoneyManager.Core.StatisticProvider
         /// <returns>Statistic value for the given time. </returns>
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
         {
-            var transactionListFunc =
+            var getPaymentListFunc =
                 new Func<List<Payment>>(() =>
                     paymentRepository.Data
                         .Where(x => x.Category != null)
@@ -36,18 +36,18 @@ namespace MoneyManager.Core.StatisticProvider
                         .Where(x => x.Type == (int) PaymentType.Spending)
                         .ToList());
 
-            return GetSpreadingStatisticItems(transactionListFunc);
+            return GetSpreadingStatisticItems(getPaymentListFunc);
         }
 
         private List<StatisticItem> GetSpreadingStatisticItems(
-            Func<List<Payment>> getTransactionListFunc)
+            Func<List<Payment>> getPaymentListFunc)
         {
-            var transactionList = getTransactionListFunc();
+            var payments = getPaymentListFunc();
 
             var tempStatisticList = categoryRepository.Data.Select(category => new StatisticItem
             {
                 Category = category.Name,
-                Value = transactionList
+                Value = payments
                     .Where(x => x.Category.Id == category.Id)
                     .Sum(x => x.Amount)
             }).ToList();

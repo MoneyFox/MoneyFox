@@ -22,19 +22,19 @@ namespace MoneyManager.Core.ViewModels
             this.paymentRepository = paymentRepository;
         }
 
-        private bool IsTransactionView { get; set; }
+        private bool IsPaymentView { get; set; }
 
         public double TotalBalance { get; set; }
         public double EndOfMonthBalance { get; set; }
 
         /// <summary>
-        ///     Refreshes the balances. Depending on if it is displayed in a transactionview or a general view it will adjust
+        ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        /// <param name="isTransactionView">Indicates if the current view is a transactionView or a generell overview.</param>
-        public void UpdateBalance(bool isTransactionView = false)
+        /// <param name="isPaymentView">Indicates if the current view is a payment view or a generell overview.</param>
+        public void UpdateBalance(bool isPaymentView = false)
         {
-            IsTransactionView = isTransactionView;
+            IsPaymentView = isPaymentView;
 
             TotalBalance = GetTotalBalance();
             EndOfMonthBalance = GetEndOfMonthValue();
@@ -42,7 +42,7 @@ namespace MoneyManager.Core.ViewModels
 
         private double GetTotalBalance()
         {
-            if (IsTransactionView)
+            if (IsPaymentView)
             {
                 return accountRepository.Selected.CurrentBalance;
             }
@@ -53,22 +53,22 @@ namespace MoneyManager.Core.ViewModels
         private double GetEndOfMonthValue()
         {
             var balance = TotalBalance;
-            var unclearedTransactions = LoadUnclreadTransactions();
+            var unclearedPayments = LoadUnclreadPayments();
 
-            foreach (var transaction in unclearedTransactions)
+            foreach (var payment in unclearedPayments)
             {
-                switch (transaction.Type)
+                switch (payment.Type)
                 {
                     case (int) PaymentType.Spending:
-                        balance -= transaction.Amount;
+                        balance -= payment.Amount;
                         break;
 
                     case (int) PaymentType.Income:
-                        balance += transaction.Amount;
+                        balance += payment.Amount;
                         break;
 
                     case (int) PaymentType.Transfer:
-                        balance = HandleTransferAmount(transaction, balance);
+                        balance = HandleTransferAmount(payment, balance);
                         break;
                 }
             }
@@ -76,30 +76,29 @@ namespace MoneyManager.Core.ViewModels
             return balance;
         }
 
-        private double HandleTransferAmount(Payment transaction, double balance)
+        private double HandleTransferAmount(Payment payment, double balance)
         {
-            if (accountRepository.Selected == transaction.ChargedAccount)
+            if (accountRepository.Selected == payment.ChargedAccount)
             {
-                balance -= transaction.Amount;
+                balance -= payment.Amount;
             }
             else
             {
-                balance += transaction.Amount;
+                balance += payment.Amount;
             }
             return balance;
         }
 
-        private IEnumerable<Payment> LoadUnclreadTransactions()
+        private IEnumerable<Payment> LoadUnclreadPayments()
         {
-            var unclearedTransactions =
-                paymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth());
+            var unclearedPayments = paymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth());
 
-            return IsTransactionView
-                ? unclearedTransactions.Where(
+            return IsPaymentView
+                ? unclearedPayments.Where(
                     x =>
                         x.ChargedAccountId == accountRepository.Selected.Id ||
                         x.TargetAccountId == accountRepository.Selected.Id).ToList()
-                : unclearedTransactions;
+                : unclearedPayments;
         }
     }
 }

@@ -30,22 +30,22 @@ namespace MoneyManager.Core.ViewModels
             this.dialogService = dialogService;
         }
 
-        public MvxCommand<string> GoToAddTransactionCommand => new MvxCommand<string>(GoToAddTransaction);
+        public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(GoToAddPayment);
         public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
-        public virtual MvxCommand LoadedCommand => new MvxCommand(LoadTransactions);
+        public virtual MvxCommand LoadedCommand => new MvxCommand(LoadPayments);
         public MvxCommand EditCommand { get; private set; }
 
-        public MvxCommand<Payment> DeleteTransactionCommand
-            => new MvxCommand<Payment>(DeleteTransaction);
+        public MvxCommand<Payment> DeletePaymentCommand
+            => new MvxCommand<Payment>(DeletePayment);
 
         /// <summary>
-        ///     Returns all Transaction who are assigned to this repository
+        ///     Returns all Payment who are assigned to this repository
         ///     This has to stay until the android list with headers is implemented.
         /// </summary>
-        public ObservableCollection<Payment> RelatedTransactions { set; get; }
+        public ObservableCollection<Payment> RelatedPayments { set; get; }
 
         /// <summary>
-        ///     Returns groupped related transactions 
+        ///     Returns groupped related payments
         /// </summary>
         public ObservableCollection<DateListGroup<Payment>> Source { set; get; }
 
@@ -57,32 +57,32 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Currently selected Item
         /// </summary>
-        public Payment SelectedTransaction { get; set; }
+        public Payment SelectedPayment { get; set; }
 
-        private void LoadTransactions()
+        private void LoadPayments()
         {
             EditCommand = null;
             //Refresh balance control with the current account
             balanceViewModel.UpdateBalance(true);
 
-            SelectedTransaction = null;
-            RelatedTransactions = new ObservableCollection<Payment>(paymentRepository
+            SelectedPayment = null;
+            RelatedPayments = new ObservableCollection<Payment>(paymentRepository
                 .GetRelatedPayments(accountRepository.Selected)
                 .OrderByDescending(x => x.Date)
                 .ToList());
 
             Source = new ObservableCollection<DateListGroup<Payment>>(
-                DateListGroup<Payment>.CreateGroups(RelatedTransactions,
+                DateListGroup<Payment>.CreateGroups(RelatedPayments,
                     CultureInfo.CurrentUICulture,
                     s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
                     s => s.Date, true));
 
-            SelectedTransaction = null;
+            SelectedPayment = null;
             //We have to set the command here to ensure that the selection changed event is triggered earlier
             EditCommand = new MvxCommand(Edit);
         }
 
-        private void GoToAddTransaction(string type)
+        private void GoToAddPayment(string type)
         {
             ShowViewModel<ModifyPaymentViewModel>(new {isEdit = false, typeString = type});
         }
@@ -92,7 +92,7 @@ namespace MoneyManager.Core.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 accountRepository.Delete(accountRepository.Selected);
-                accountRepository.RemoveTransactionAmount(SelectedTransaction);
+                accountRepository.RemovePaymentAmount(SelectedPayment);
                 balanceViewModel.UpdateBalance();
                 Close(this);
             }
@@ -100,28 +100,28 @@ namespace MoneyManager.Core.ViewModels
 
         private void Edit()
         {
-            if (SelectedTransaction == null)
+            if (SelectedPayment == null)
             {
                 return;
             }
 
-            paymentRepository.Selected = SelectedTransaction;
+            paymentRepository.Selected = SelectedPayment;
 
             ShowViewModel<ModifyPaymentViewModel>(
-                new {isEdit = true, typeString = SelectedTransaction.Type.ToString()});
-            SelectedTransaction = null;
+                new {isEdit = true, typeString = SelectedPayment.Type.ToString()});
+            SelectedPayment = null;
         }
 
 
-        private async void DeleteTransaction(Payment transaction)
+        private async void DeletePayment(Payment payment)
         {
             if (!await
-                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
                 return;
 
-            accountRepository.RemoveTransactionAmount(transaction);
-            paymentRepository.Delete(transaction);
-            RelatedTransactions.Remove(transaction);
+            accountRepository.RemovePaymentAmount(payment);
+            paymentRepository.Delete(payment);
+            RelatedPayments.Remove(payment);
             balanceViewModel.UpdateBalance(true);
         }
     }

@@ -15,7 +15,7 @@ namespace MoneyManager.Core.Tests.Manager
     public class PaymentManagerTests
     {
         [Fact]
-        public void DeleteAssociatedTransactionsFromDatabase_Account_DeleteRightTransactions()
+        public void DeleteAssociatedPaymentsFromDatabase_Account_DeleteRightPayments()
         {
             var resultList = new List<int>();
 
@@ -32,35 +32,35 @@ namespace MoneyManager.Core.Tests.Manager
                 CurrentBalance = 900
             };
 
-            var trans1 = new Payment
+            var payment = new Payment
             {
                 Id = 1,
                 ChargedAccount = account1,
                 ChargedAccountId = account1.Id
             };
 
-            var transRepoSetup = new Mock<IPaymentRepository>();
-            transRepoSetup.SetupAllProperties();
-            transRepoSetup.Setup(x => x.Delete(It.IsAny<Payment>()))
+            var paymentRepositorySetup = new Mock<IPaymentRepository>();
+            paymentRepositorySetup.SetupAllProperties();
+            paymentRepositorySetup.Setup(x => x.Delete(It.IsAny<Payment>()))
                 .Callback((Payment trans) => resultList.Add(trans.Id));
-            transRepoSetup.Setup(x => x.GetRelatedPayments(It.IsAny<Account>()))
+            paymentRepositorySetup.Setup(x => x.GetRelatedPayments(It.IsAny<Account>()))
                 .Returns(new List<Payment>
                 {
-                    trans1
+                    payment
                 });
 
-            var repo = transRepoSetup.Object;
+            var repo = paymentRepositorySetup.Object;
             repo.Data = new ObservableCollection<Payment>();
 
             new PaymentManager(repo, new Mock<IAccountRepository>().Object, new Mock<IDialogService>().Object)
                 .DeleteAssociatedPaymentsFromDatabase(account1);
 
             resultList.Count.ShouldBe(1);
-            resultList.First().ShouldBe(trans1.Id);
+            resultList.First().ShouldBe(payment.Id);
         }
 
         [Fact]
-        public void DeleteAssociatedTransactionsFromDatabase_DataNull_DoNothing()
+        public void DeleteAssociatedPaymentsFromDatabase_DataNull_DoNothing()
         {
             new PaymentManager(new Mock<IPaymentRepository>().Object,
                 new Mock<IAccountRepository>().Object,
@@ -69,7 +69,7 @@ namespace MoneyManager.Core.Tests.Manager
         }
 
         [Fact]
-        public async void CheckForRecurringTransaction_IsRecurringFalse_ReturnFalse()
+        public async void CheckForRecurringPayment_IsRecurringFalse_ReturnFalse()
         {
             var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
                 new Mock<IAccountRepository>().Object,
@@ -82,7 +82,7 @@ namespace MoneyManager.Core.Tests.Manager
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public async void CheckForRecurringTransaction_IsRecurringTrue_ReturnUserInput(bool userAnswer)
+        public async void CheckForRecurringPayment_IsRecurringTrue_ReturnUserInput(bool userAnswer)
         {
             var dialogService = new Mock<IDialogService>();
             dialogService.Setup(
@@ -100,28 +100,28 @@ namespace MoneyManager.Core.Tests.Manager
         }
 
         [Fact]
-        public void RemoveRecurringForTransactions_RecTrans_TransactionPropertiesProperlyChanged()
+        public void RemoveRecurringForPayments_RecTrans_PaymentPropertiesProperlyChanged()
         {
-            var trans = new Payment
+            var payment = new Payment
             {
                 Id = 2,
-                ReccuringTransactionId = 3,
+                RecurringPaymentId = 3,
                 RecurringPayment = new RecurringPayment {Id = 3},
                 IsRecurring = true
             };
 
-            var transRepoSetup = new Mock<IPaymentRepository>();
-            transRepoSetup.SetupAllProperties();
+            var paymentRepositorySetup = new Mock<IPaymentRepository>();
+            paymentRepositorySetup.SetupAllProperties();
 
-            var transRepo = transRepoSetup.Object;
-            transRepo.Data = new ObservableCollection<Payment>(new List<Payment> {trans});
+            var paymentRepository = paymentRepositorySetup.Object;
+            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment> {payment});
 
-            new PaymentManager(transRepo,
+            new PaymentManager(paymentRepository,
                 new Mock<IAccountRepository>().Object,
-                new Mock<IDialogService>().Object).RemoveRecurringForPayments(trans.RecurringPayment);
+                new Mock<IDialogService>().Object).RemoveRecurringForPayments(payment.RecurringPayment);
 
-            trans.IsRecurring.ShouldBeFalse();
-            trans.ReccuringTransactionId.ShouldBe(0);
+            payment.IsRecurring.ShouldBeFalse();
+            payment.RecurringPaymentId.ShouldBe(0);
         }
     }
 }

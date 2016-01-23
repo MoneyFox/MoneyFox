@@ -11,19 +11,19 @@ using SQLiteNetExtensions.Extensions;
 namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
-    public class RecurringTransactionDataAccess : AbstractDataAccess<RecurringPayment>
+    public class RecurringPaymentDataAccess : AbstractDataAccess<RecurringPayment>
     {
         private readonly ISqliteConnectionCreator connectionCreator;
 
-        public RecurringTransactionDataAccess(ISqliteConnectionCreator connectionCreator)
+        public RecurringPaymentDataAccess(ISqliteConnectionCreator connectionCreator)
         {
             this.connectionCreator = connectionCreator;
         }
 
         /// <summary>
-        ///     Saves an recurring transaction to the database.
+        ///     Saves an recurring payment to the database.
         /// </summary>
-        /// <param name="itemToSave">Recurring Transaction to save.</param>
+        /// <param name="itemToSave">Recurring Payment to save.</param>
         protected override void SaveToDb(RecurringPayment itemToSave)
         {
             using (var db = connectionCreator.GetConnection())
@@ -40,22 +40,22 @@ namespace MoneyManager.DataAccess
         }
 
         /// <summary>
-        ///     Deletres an recurring transaction from the database.
+        ///     Deletres an recurring payment from the database.
         /// </summary>
-        /// <param name="recurringPayment">recurring transaction to delete.</param>
-        protected override void DeleteFromDatabase(RecurringPayment recurringPayment)
+        /// <param name="payment">recurring payment to delete.</param>
+        protected override void DeleteFromDatabase(RecurringPayment payment)
         {
             using (var db = connectionCreator.GetConnection())
             {
-                db.Delete(recurringPayment);
+                db.Delete(payment);
             }
         }
 
         /// <summary>
-        ///     Loads a list of Recurring Transactions from the database filtered by the filter expression.
+        ///     Loads a list of recurring payments from the database filtered by the filter expression.
         /// </summary>
         /// <param name="filter">Filter expression.</param>
-        /// <returns>List of loaded recurring transactions.</returns>
+        /// <returns>List of loaded recurring payments.</returns>
         protected override List<RecurringPayment> GetListFromDb(Expression<Func<RecurringPayment, bool>> filter)
         {
             using (var dbConn = connectionCreator.GetConnection())

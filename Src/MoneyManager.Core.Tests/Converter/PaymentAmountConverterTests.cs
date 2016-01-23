@@ -12,12 +12,12 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.Converter
 {
-    public class TransactionAmountConverterTests : MvxIoCSupportingTest
+    public class PaymentAmountConverterTests : MvxIoCSupportingTest
     {
         [Theory]
         [InlineData(PaymentType.Spending, "- ")]
         [InlineData(PaymentType.Income, "+ ")]
-        public void Converter_Transaction_AmountSign(PaymentType type, string result)
+        public void Converter_Payment_AmountSign(PaymentType type, string result)
         {
             new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int) type}, null,
                 null, null).ShouldBe(result + 80.ToString("C"));

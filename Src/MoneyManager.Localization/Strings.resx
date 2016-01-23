@@ -154,7 +154,7 @@
     <value>Cashflow</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>This transaction is recurring. Do you want to update the future transactions aswell or just this occurence?</value>
+    <value>This payment is recurring. Do you want to update the future payments aswell or just this occurence?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Update Recurrence?</value>
@@ -177,8 +177,8 @@
   <data name="DeleteTitle" xml:space="preserve">
     <value>Delete?</value>
   </data>
-  <data name="DeleteTransactionConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this transaction?</value>
+  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
+    <value>Do you really want to delete this payment?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
     <value>Edit</value>
@@ -331,7 +331,7 @@
     <value>Target Account</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>The enddate of a recurring transaction has to be in the future. Please check your input.</value>
+    <value>The enddate of a recurring payment has to be in the future. Please check your input.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Invalid End Date</value>

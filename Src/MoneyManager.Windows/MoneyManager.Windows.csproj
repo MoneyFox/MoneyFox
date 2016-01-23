@@ -154,7 +154,7 @@
     <Compile Include="Converter\CultureConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Converter\NativeAmountFormatConverter.cs" />
-    <Compile Include="Converter\NativeTransactionAmountConverter.cs" />
+    <Compile Include="Converter\NativePaymentAmountConverter.cs" />
     <Compile Include="Converter\NoteVisibilityConverter.cs" />
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />

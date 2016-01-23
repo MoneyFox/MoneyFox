@@ -24,34 +24,34 @@ namespace MoneyManager.Core.Tests.Repositories
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var repository = new PaymentRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock());
+            var repository = new PaymentRepository(new PaymentDataAccessMock(),
+                new RecurringPaymentDataAccessMock());
 
-            var transaction = new Payment
+            var payment = new Payment
             {
                 Amount = 20
             };
 
-            Assert.Throws<AccountMissingException>(() => repository.Save(transaction));
+            Assert.Throws<AccountMissingException>(() => repository.Save(payment));
         }
 
         [Theory]
         [InlineData(PaymentType.Income)]
-        public void Save_DifferentTransactionTypes_CorrectlySaved(PaymentType type)
+        public void Save_DifferentPaymentTypes_CorrectlySaved(PaymentType type)
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var transactionDataAccessMock = new TransactionDataAccessMock();
-            var repository = new PaymentRepository(transactionDataAccessMock,
-                new RecurringTransactionDataAccessMock());
+            var paymentDataAccessMock = new PaymentDataAccessMock();
+            var repository = new PaymentRepository(paymentDataAccessMock,
+                new RecurringPaymentDataAccessMock());
 
             var account = new Account
             {
                 Name = "TestAccount"
             };
 
-            var transaction = new Payment
+            var payment = new Payment
             {
                 ChargedAccount = account,
                 TargetAccount = null,
@@ -59,23 +59,23 @@ namespace MoneyManager.Core.Tests.Repositories
                 Type = (int) type
             };
 
-            repository.Save(transaction);
+            repository.Save(payment);
 
-            transactionDataAccessMock.FinancialTransactionTestList[0].ShouldBeSameAs(transaction);
-            transactionDataAccessMock.FinancialTransactionTestList[0].ChargedAccount.ShouldBeSameAs(account);
-            transactionDataAccessMock.FinancialTransactionTestList[0].TargetAccount.ShouldBeNull();
-            transactionDataAccessMock.FinancialTransactionTestList[0].Type.ShouldBe((int) type);
+            paymentDataAccessMock.PaymentTestList[0].ShouldBeSameAs(payment);
+            paymentDataAccessMock.PaymentTestList[0].ChargedAccount.ShouldBeSameAs(account);
+            paymentDataAccessMock.PaymentTestList[0].TargetAccount.ShouldBeNull();
+            paymentDataAccessMock.PaymentTestList[0].Type.ShouldBe((int) type);
         }
 
         [Fact]
-        public void Save_TransferTransaction_CorrectlySaved()
+        public void Save_TransferPayment_CorrectlySaved()
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var transactionDataAccessMock = new TransactionDataAccessMock();
-            var repository = new PaymentRepository(transactionDataAccessMock,
-                new RecurringTransactionDataAccessMock());
+            var paymentDataAccessMock = new PaymentDataAccessMock();
+            var repository = new PaymentRepository(paymentDataAccessMock,
+                new RecurringPaymentDataAccessMock());
 
             var account = new Account
             {
@@ -87,7 +87,7 @@ namespace MoneyManager.Core.Tests.Repositories
                 Name = "targetAccount"
             };
 
-            var transaction = new Payment
+            var payment = new Payment
             {
                 ChargedAccount = account,
                 TargetAccount = targetAccount,
@@ -95,87 +95,87 @@ namespace MoneyManager.Core.Tests.Repositories
                 Type = (int) PaymentType.Transfer
             };
 
-            repository.Save(transaction);
+            repository.Save(payment);
 
-            transactionDataAccessMock.FinancialTransactionTestList[0].ShouldBeSameAs(transaction);
-            transactionDataAccessMock.FinancialTransactionTestList[0].ChargedAccount.ShouldBeSameAs(account);
-            transactionDataAccessMock.FinancialTransactionTestList[0].TargetAccount.ShouldBeSameAs(targetAccount);
-            transactionDataAccessMock.FinancialTransactionTestList[0].Type.ShouldBe((int) PaymentType.Transfer);
+            paymentDataAccessMock.PaymentTestList[0].ShouldBeSameAs(payment);
+            paymentDataAccessMock.PaymentTestList[0].ChargedAccount.ShouldBeSameAs(account);
+            paymentDataAccessMock.PaymentTestList[0].TargetAccount.ShouldBeSameAs(targetAccount);
+            paymentDataAccessMock.PaymentTestList[0].Type.ShouldBe((int) PaymentType.Transfer);
         }
 
         [Fact]
-        public void TransactionRepository_Delete()
+        public void PaymentRepository_Delete()
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var transactionDataAccessMock = new TransactionDataAccessMock();
-            var repository = new PaymentRepository(transactionDataAccessMock,
-                new RecurringTransactionDataAccessMock());
+            var paymentDataAccessMock = new PaymentDataAccessMock();
+            var repository = new PaymentRepository(paymentDataAccessMock,
+                new RecurringPaymentDataAccessMock());
 
             var account = new Account
             {
                 Name = "TestAccount"
             };
 
-            var transaction = new Payment
+            var payment = new Payment
             {
                 ChargedAccount = account,
                 Amount = 20
             };
 
-            repository.Save(transaction);
-            transactionDataAccessMock.FinancialTransactionTestList[0].ShouldBeSameAs(transaction);
+            repository.Save(payment);
+            paymentDataAccessMock.PaymentTestList[0].ShouldBeSameAs(payment);
 
-            repository.Delete(transaction);
+            repository.Delete(payment);
 
-            transactionDataAccessMock.FinancialTransactionTestList.Any().ShouldBeFalse();
+            paymentDataAccessMock.PaymentTestList.Any().ShouldBeFalse();
             repository.Data.Any().ShouldBeFalse();
         }
 
         [Fact]
-        public void TransactionRepository_AccessCache()
+        public void PaymentRepository_AccessCache()
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            new PaymentRepository(new TransactionDataAccessMock(), new RecurringTransactionDataAccessMock())
+            new PaymentRepository(new PaymentDataAccessMock(), new RecurringPaymentDataAccessMock())
                 .Data
                 .ShouldNotBeNull();
         }
 
         [Fact]
-        public void TransactionRepository_AddMultipleToCache()
+        public void PaymentRepository_AddMultipleToCache()
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var repository = new PaymentRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock());
+            var repository = new PaymentRepository(new PaymentDataAccessMock(),
+                new RecurringPaymentDataAccessMock());
 
             var account = new Account
             {
                 Name = "TestAccount"
             };
 
-            var transaction = new Payment
+            var payment = new Payment
             {
                 ChargedAccount = account,
                 Amount = 20
             };
 
-            var secondTransaction = new Payment
+            var secondPayment = new Payment
             {
                 ChargedAccount = account,
                 Amount = 60
             };
 
-            repository.Save(transaction);
-            repository.Save(secondTransaction);
+            repository.Save(payment);
+            repository.Save(secondPayment);
 
             repository.Data.Count.ShouldBe(2);
-            repository.Data[0].ShouldBeSameAs(transaction);
-            repository.Data[1].ShouldBeSameAs(secondTransaction);
+            repository.Data[0].ShouldBeSameAs(payment);
+            repository.Data[1].ShouldBeSameAs(secondPayment);
         }
 
         [Fact]
@@ -184,33 +184,33 @@ namespace MoneyManager.Core.Tests.Repositories
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var repository = new PaymentRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock());
+            var repository = new PaymentRepository(new PaymentDataAccessMock(),
+                new RecurringPaymentDataAccessMock());
 
             var account = new Account
             {
                 Name = "TestAccount"
             };
 
-            var transaction = new Payment
+            var payment = new Payment
             {
                 ChargedAccount = account,
                 Amount = 20,
                 Type = (int) PaymentType.Transfer
             };
 
-            repository.Save(transaction);
-            repository.Data.Contains(transaction).ShouldBeTrue();
+            repository.Save(payment);
+            repository.Data.Contains(payment).ShouldBeTrue();
         }
 
         [Fact]
-        public void GetUnclearedTransactions_PastDate_PastTransactions()
+        public void GetUnclearedPayments_PastDate_PastPayments()
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var repository = new PaymentRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock());
+            var repository = new PaymentRepository(new PaymentDataAccessMock(),
+                new RecurringPaymentDataAccessMock());
 
             var account = new Account
             {
@@ -229,22 +229,22 @@ namespace MoneyManager.Core.Tests.Repositories
                 }
             });
 
-            var transactions = repository.GetUnclearedPayments();
+            var payments = repository.GetUnclearedPayments();
 
-            transactions.Count().ShouldBe(1);
+            payments.Count().ShouldBe(1);
         }
 
         /// <summary>
         ///     This Test may fail if the date overlaps with the month transition.
         /// </summary>
         [Fact]
-        public void GetUnclearedTransactions_FutureDate_PastTransactions()
+        public void GetUnclearedPayments_FutureDate_PastPayments()
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var repository = new PaymentRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock());
+            var repository = new PaymentRepository(new PaymentDataAccessMock(),
+                new RecurringPaymentDataAccessMock());
 
             var account = new Account
             {
@@ -261,21 +261,21 @@ namespace MoneyManager.Core.Tests.Repositories
             }
                 );
 
-            var transactions = repository.GetUnclearedPayments();
-            transactions.Count().ShouldBe(0);
+            var payments = repository.GetUnclearedPayments();
+            payments.Count().ShouldBe(0);
 
-            transactions = repository.GetUnclearedPayments(Utilities.GetEndOfMonth());
-            transactions.Count().ShouldBe(1);
+            payments = repository.GetUnclearedPayments(Utilities.GetEndOfMonth());
+            payments.Count().ShouldBe(1);
         }
 
         [Fact]
-        public void GetUnclearedTransactions_AccountNull()
+        public void GetUnclearedPayments_AccountNull()
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var repository = new PaymentRepository(new TransactionDataAccessMock(),
-                new RecurringTransactionDataAccessMock());
+            var repository = new PaymentRepository(new PaymentDataAccessMock(),
+                new RecurringPaymentDataAccessMock());
 
             repository.Data.Add(new Payment
             {
@@ -286,12 +286,12 @@ namespace MoneyManager.Core.Tests.Repositories
             }
                 );
 
-            var transactions = repository.GetUnclearedPayments();
-            transactions.Count().ShouldBe(1);
+            var payments = repository.GetUnclearedPayments();
+            payments.Count().ShouldBe(1);
         }
 
         [Fact]
-        public void Load_FinancialTransaction_DataInitialized()
+        public void Load_Payment_DataInitialized()
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
@@ -312,7 +312,7 @@ namespace MoneyManager.Core.Tests.Repositories
         }
 
         [Fact]
-        public void GetRelatedTransactions_Account_CorrectAccounts()
+        public void GetRelatedPayments_Account_CorrectAccounts()
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
@@ -332,9 +332,9 @@ namespace MoneyManager.Core.Tests.Repositories
                 new Payment {Id = 5, ChargedAccount = account3, ChargedAccountId = account3.Id}
             });
 
-            var result = repo.GetRelatedPayments(account1);
+            var result = repo.GetRelatedPayments(account1).ToList();
 
-            result.Count().ShouldBe(1);
+            result.Count.ShouldBe(1);
             result.First().Id.ShouldBe(2);
         }
 
@@ -357,7 +357,7 @@ namespace MoneyManager.Core.Tests.Repositories
                         Id = 1,
                         IsRecurring = true,
                         RecurringPayment = new RecurringPayment {Id = 1, IsEndless = true},
-                        ReccuringTransactionId = 1
+                        RecurringPaymentId = 1
                     },
                     new Payment {Id = 2, IsRecurring = false},
                     new Payment
@@ -366,7 +366,7 @@ namespace MoneyManager.Core.Tests.Repositories
                         IsRecurring = true,
                         RecurringPayment =
                             new RecurringPayment {Id = 2, IsEndless = false, EndDate = DateTime.Today.AddDays(10)},
-                        ReccuringTransactionId = 2
+                        RecurringPaymentId = 2
                     },
                     new Payment
                     {
@@ -374,7 +374,7 @@ namespace MoneyManager.Core.Tests.Repositories
                         IsRecurring = true,
                         RecurringPayment =
                             new RecurringPayment {Id = 3, IsEndless = false, EndDate = DateTime.Today.AddDays(-10)},
-                        ReccuringTransactionId = 3
+                        RecurringPaymentId = 3
                     }
                 })
             };
@@ -391,7 +391,7 @@ namespace MoneyManager.Core.Tests.Repositories
         [InlineData(PaymentType.Spending, false)]
         [InlineData(PaymentType.Income, true)]
         [InlineData(PaymentType.Income, false)]
-        public void DeleteTransaction_WithoutSpending_DeletedAccountBalanceSet(PaymentType type, bool cleared)
+        public void DeletePayment_WithoutSpending_DeletedAccountBalanceSet(PaymentType type, bool cleared)
         {
             var deletedId = 0;
 
@@ -402,7 +402,7 @@ namespace MoneyManager.Core.Tests.Repositories
                 CurrentBalance = 500
             };
 
-            var transaction = new Payment
+            var payment = new Payment
             {
                 Id = 10,
                 ChargedAccountId = account.Id,
@@ -415,19 +415,19 @@ namespace MoneyManager.Core.Tests.Repositories
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
             accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account> {account});
 
-            var transDataAccessSetup = new Mock<IDataAccess<Payment>>();
-            transDataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Payment>()))
+            var paymentDataAccessMockSetup = new Mock<IDataAccess<Payment>>();
+            paymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<Payment>()))
                 .Callback((Payment trans) => deletedId = trans.Id);
-            transDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()));
-            transDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment> {transaction});
+            paymentDataAccessMockSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()));
+            paymentDataAccessMockSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment> {payment});
 
-            var recTransDataAccessSetup = new Mock<IDataAccess<RecurringPayment>>();
-            recTransDataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<RecurringPayment>()));
-            recTransDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>()))
+            var recPaymentDataAccessMockSetup = new Mock<IDataAccess<RecurringPayment>>();
+            recPaymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<RecurringPayment>()));
+            recPaymentDataAccessMockSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>()))
                 .Returns(new List<RecurringPayment>());
 
-            new PaymentRepository(transDataAccessSetup.Object, recTransDataAccessSetup.Object).Delete(
-                transaction);
+            new PaymentRepository(paymentDataAccessMockSetup.Object, recPaymentDataAccessMockSetup.Object).Delete(
+                payment);
 
             deletedId.ShouldBe(10);
             account.CurrentBalance.ShouldBe(500);
@@ -436,7 +436,7 @@ namespace MoneyManager.Core.Tests.Repositories
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void DeleteTransaction_Transfer_Deleted(bool isCleared)
+        public void DeletePayment_Transfer_Deleted(bool isCleared)
         {
             var deletedId = 0;
 
@@ -453,7 +453,7 @@ namespace MoneyManager.Core.Tests.Repositories
                 CurrentBalance = 900
             };
 
-            var transaction = new Payment
+            var payment = new Payment
             {
                 Id = 10,
                 ChargedAccountId = account1.Id,
@@ -468,19 +468,19 @@ namespace MoneyManager.Core.Tests.Repositories
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
             accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account> {account1, account2});
 
-            var transDataAccessSetup = new Mock<IDataAccess<Payment>>();
-            transDataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Payment>()))
+            var paymentDataAccessMockSetup = new Mock<IDataAccess<Payment>>();
+            paymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<Payment>()))
                 .Callback((Payment trans) => deletedId = trans.Id);
-            transDataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()));
-            transDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment> {transaction});
+            paymentDataAccessMockSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()));
+            paymentDataAccessMockSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment> {payment});
 
-            var recTransDataAccessSetup = new Mock<IDataAccess<RecurringPayment>>();
-            recTransDataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<RecurringPayment>()));
-            recTransDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>()))
+            var recPaymentDataAccessMockSetup = new Mock<IDataAccess<RecurringPayment>>();
+            recPaymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<RecurringPayment>()));
+            recPaymentDataAccessMockSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>()))
                 .Returns(new List<RecurringPayment>());
 
-            new PaymentRepository(transDataAccessSetup.Object, recTransDataAccessSetup.Object).Delete(
-                transaction);
+            new PaymentRepository(paymentDataAccessMockSetup.Object, recPaymentDataAccessMockSetup.Object).Delete(
+                payment);
 
             deletedId.ShouldBe(10);
             account1.CurrentBalance.ShouldBe(500);

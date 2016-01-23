@@ -25,25 +25,25 @@ namespace MoneyManager.Core.Tests.Manager
             var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupAllProperties();
 
-            var transactionRepoSetup = new Mock<IPaymentRepository>();
-            transactionRepoSetup.SetupAllProperties();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupAllProperties();
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
             categoryRepoSetup.SetupAllProperties();
 
             var accountRepo = accountRepoSetup.Object;
-            var transactionRepo = transactionRepoSetup.Object;
+            var paymentRepository = paymentRepoSetup.Object;
             var categoryRepo = categoryRepoSetup.Object;
 
             accountRepo.Selected = new Account();
-            transactionRepo.Selected = new Payment();
+            paymentRepository.Selected = new Payment();
             categoryRepo.Selected = new Category();
 
-            new RepositoryManager(accountRepo, transactionRepo, categoryRepo,
-                new PaymentManager(transactionRepo, accountRepo, new Mock<IDialogService>().Object)).ReloadData();
+            new RepositoryManager(accountRepo, paymentRepository, categoryRepo,
+                new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object)).ReloadData();
 
             accountRepo.Selected.ShouldBeNull();
-            transactionRepo.Selected.ShouldBeNull();
+            paymentRepository.Selected.ShouldBeNull();
             categoryRepo.Selected.ShouldBeNull();
         }
 
@@ -51,7 +51,7 @@ namespace MoneyManager.Core.Tests.Manager
         public void ReloadData_CollectionNull_CollectionInstantiated()
         {
             var accountsLoaded = false;
-            var transactionsLoaded = false;
+            var paymentsLoaded = false;
             var categoryLoaded = false;
 
             var accountRepoSetup = new Mock<IAccountRepository>();
@@ -59,10 +59,10 @@ namespace MoneyManager.Core.Tests.Manager
             accountRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()))
                 .Callback(() => accountsLoaded = true);
 
-            var transactionRepoSetup = new Mock<IPaymentRepository>();
-            transactionRepoSetup.SetupAllProperties();
-            transactionRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Payment, bool>>>()))
-                .Callback(() => transactionsLoaded = true);
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupAllProperties();
+            paymentRepoSetup.Setup(x => x.Load(It.IsAny<Expression<Func<Payment, bool>>>()))
+                .Callback(() => paymentsLoaded = true);
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
             categoryRepoSetup.SetupAllProperties();
@@ -70,22 +70,22 @@ namespace MoneyManager.Core.Tests.Manager
                 .Callback(() => categoryLoaded = true);
 
             var accountRepo = accountRepoSetup.Object;
-            var transactionRepo = transactionRepoSetup.Object;
+            var paymentRepository = paymentRepoSetup.Object;
 
-            new RepositoryManager(accountRepo, transactionRepo, categoryRepoSetup.Object,
-                new PaymentManager(transactionRepo, accountRepo, new Mock<IDialogService>().Object))
+            new RepositoryManager(accountRepo, paymentRepository, categoryRepoSetup.Object,
+                new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object))
                 .ReloadData();
 
             accountsLoaded.ShouldBeTrue();
-            transactionsLoaded.ShouldBeTrue();
+            paymentsLoaded.ShouldBeTrue();
             categoryLoaded.ShouldBeTrue();
         }
 
         [Fact]
-        public void ReloadData_UnclearedTransaction_Clear()
+        public void ReloadData_UnclearedPayment_Clear()
         {
             var account = new Account {Id = 1, CurrentBalance = 40};
-            var transaction = new Payment
+            var payment = new Payment
             {
                 ChargedAccount = account,
                 ChargedAccountId = 1,
@@ -96,24 +96,24 @@ namespace MoneyManager.Core.Tests.Manager
             var accountRepoSetup = new Mock<IAccountRepository>();
             accountRepoSetup.SetupAllProperties();
 
-            var transactionRepoSetup = new Mock<IPaymentRepository>();
-            transactionRepoSetup.SetupAllProperties();
-            transactionRepoSetup.Setup(x => x.GetUnclearedPayments())
-                .Returns(() => new List<Payment> {transaction});
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupAllProperties();
+            paymentRepoSetup.Setup(x => x.GetUnclearedPayments())
+                .Returns(() => new List<Payment> {payment});
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
             categoryRepoSetup.SetupAllProperties();
 
             var accountRepo = accountRepoSetup.Object;
-            var transactionRepo = transactionRepoSetup.Object;
+            var paymentRepository = paymentRepoSetup.Object;
 
             accountRepo.Data = new ObservableCollection<Account>(new List<Account> {account});
 
-            new RepositoryManager(accountRepo, transactionRepo, categoryRepoSetup.Object,
-                new PaymentManager(transactionRepo, accountRepo, new Mock<IDialogService>().Object))
+            new RepositoryManager(accountRepo, paymentRepository, categoryRepoSetup.Object,
+                new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object))
                 .ReloadData();
 
-            transaction.IsCleared.ShouldBeTrue();
+            payment.IsCleared.ShouldBeTrue();
         }
     }
 }

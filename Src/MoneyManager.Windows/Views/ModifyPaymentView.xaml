@@ -59,7 +59,7 @@
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Add Transaction"
+                           Text="Add Payment"
                            x:Uid="ModifyPaymentViewTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>

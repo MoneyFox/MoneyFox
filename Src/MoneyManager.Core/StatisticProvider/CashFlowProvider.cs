@@ -18,7 +18,7 @@ namespace MoneyManager.Core.StatisticProvider
         }
 
         /// <summary>
-        ///     Selects transactions from the given timeframe and calculates the income, the spendings and the revenue.
+        ///     Selects payments from the given timeframe and calculates the income, the spendings and the revenue.
         ///     There is no differentiation between the accounts, therefore transfers are ignored.
         /// </summary>
         /// <param name="startDate">Startpoint form which to select data.</param>
@@ -26,25 +26,25 @@ namespace MoneyManager.Core.StatisticProvider
         /// <returns>Statistic value for the given timeframe</returns>
         public CashFlow GetValues(DateTime startDate, DateTime endDate)
         {
-            var transactionListFunc =
+            var getPaymentListFunc =
                 new Func<List<Payment>>(() =>
                     paymentRepository.Data
                         .Where(x => x.Type != (int) PaymentType.Transfer)
                         .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
                         .ToList());
 
-            return GetCashFlowStatisticItems(transactionListFunc);
+            return GetCashFlowStatisticItems(getPaymentListFunc);
         }
 
         private CashFlow GetCashFlowStatisticItems(
-            Func<List<Payment>> getTransactionListFunc)
+            Func<List<Payment>> getPaymentListFunc)
         {
-            var transactionList = getTransactionListFunc();
+            var payments = getPaymentListFunc();
 
             var income = new StatisticItem
             {
                 Category = Strings.RevenueLabel,
-                Value = transactionList.Where(x => x.Type == (int) PaymentType.Income).Sum(x => x.Amount)
+                Value = payments.Where(x => x.Type == (int) PaymentType.Income).Sum(x => x.Amount)
             };
             income.Label = income.Category + ": " +
                            Math.Round(income.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
@@ -52,7 +52,7 @@ namespace MoneyManager.Core.StatisticProvider
             var spent = new StatisticItem
             {
                 Category = Strings.ExpenseLabel,
-                Value = transactionList.Where(x => x.Type == (int) PaymentType.Spending).Sum(x => x.Amount)
+                Value = payments.Where(x => x.Type == (int) PaymentType.Spending).Sum(x => x.Amount)
             };
             spent.Label = spent.Category + ": " +
                           Math.Round(spent.Value, 2, MidpointRounding.AwayFromZero).ToString("C");

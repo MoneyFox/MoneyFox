@@ -7,7 +7,7 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.Helper
 {
-    public class TransactionTypeLogicTest
+    public class PaymentTypeHelperTest
     {
         public static IEnumerable GetEnumFrostringWithIntData
         {

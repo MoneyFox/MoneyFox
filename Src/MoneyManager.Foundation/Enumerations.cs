@@ -7,7 +7,7 @@
         Transfer
     }
 
-    public enum TransactionRecurrence
+    public enum PaymentRecurrence
     {
         Daily = 0,
         DailyWithoutWeekend = 1,
@@ -27,7 +27,7 @@
     public enum InvocationType
     {
         Account,
-        Transaction,
+        Payment,
         Setting
     }
 
