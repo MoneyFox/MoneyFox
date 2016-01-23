@@ -21,7 +21,7 @@ namespace MoneyManager.Core.Helpers
         {
             return new RecurringPayment
             {
-                Id = transaction.ReccuringTransactionId,
+                Id = transaction.RecurringPaymentId,
                 ChargedAccount = transaction.ChargedAccount,
                 ChargedAccountId = transaction.ChargedAccount.Id,
                 TargetAccount = transaction.TargetAccount,
@@ -65,7 +65,7 @@ namespace MoneyManager.Core.Helpers
                 Category = recurringPayment.Category,
                 CategoryId = recurringPayment.CategoryId,
                 Type = recurringPayment.Type,
-                ReccuringTransactionId = recurringPayment.Id,
+                RecurringPaymentId = recurringPayment.Id,
                 RecurringPayment = recurringPayment,
                 Note = recurringPayment.Note
             };

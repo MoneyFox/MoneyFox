@@ -357,7 +357,7 @@ namespace MoneyManager.Core.Tests.Repositories
                         Id = 1,
                         IsRecurring = true,
                         RecurringPayment = new RecurringPayment {Id = 1, IsEndless = true},
-                        ReccuringTransactionId = 1
+                        RecurringPaymentId = 1
                     },
                     new Payment {Id = 2, IsRecurring = false},
                     new Payment
@@ -366,7 +366,7 @@ namespace MoneyManager.Core.Tests.Repositories
                         IsRecurring = true,
                         RecurringPayment =
                             new RecurringPayment {Id = 2, IsEndless = false, EndDate = DateTime.Today.AddDays(10)},
-                        ReccuringTransactionId = 2
+                        RecurringPaymentId = 2
                     },
                     new Payment
                     {
@@ -374,7 +374,7 @@ namespace MoneyManager.Core.Tests.Repositories
                         IsRecurring = true,
                         RecurringPayment =
                             new RecurringPayment {Id = 3, IsEndless = false, EndDate = DateTime.Today.AddDays(-10)},
-                        ReccuringTransactionId = 3
+                        RecurringPaymentId = 3
                     }
                 })
             };

@@ -6,19 +6,19 @@ using SQLiteNetExtensions.Attributes;
 namespace MoneyManager.Foundation.Model
 {
     [ImplementPropertyChanged]
-    [Table("RecurringPayments")]
-    public class RecurringPayment
+    [Table("RecurringTransaction")]
+    public class RecurringTransaction
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [ForeignKey(typeof (Account))]
+        [ForeignKey(typeof(Account))]
         public int ChargedAccountId { get; set; }
 
-        [ForeignKey(typeof (Account))]
+        [ForeignKey(typeof(Account))]
         public int TargetAccountId { get; set; }
 
-        [ForeignKey(typeof (Category))]
+        [ForeignKey(typeof(Category))]
         public int? CategoryId { get; set; }
 
         public DateTime StartDate { get; set; }

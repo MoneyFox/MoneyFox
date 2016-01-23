@@ -6,19 +6,19 @@ using SQLiteNetExtensions.Attributes;
 namespace MoneyManager.Foundation.Model
 {
     [ImplementPropertyChanged]
-    [Table("Payments")]
-    public class Payment
+    [Table("FinancialTransactions")]
+    public class FinancialTransaction
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [ForeignKey(typeof (Account))]
+        [ForeignKey(typeof(Account))]
         public int ChargedAccountId { get; set; }
 
-        [ForeignKey(typeof (Account))]
+        [ForeignKey(typeof(Account))]
         public int TargetAccountId { get; set; }
 
-        [ForeignKey(typeof (Category))]
+        [ForeignKey(typeof(Category))]
         public int? CategoryId { get; set; }
 
         public DateTime Date { get; set; }
@@ -28,8 +28,8 @@ namespace MoneyManager.Foundation.Model
         public string Note { get; set; }
         public bool IsRecurring { get; set; }
 
-        [ForeignKey(typeof (RecurringPayment))]
-        public int RecurringPaymentId { get; set; }
+        [ForeignKey(typeof(RecurringTransaction))]
+        public int ReccuringTransactionId { get; set; }
 
         [ManyToOne("ChargedAccountId", CascadeOperations = CascadeOperation.All)]
         public Account ChargedAccount { get; set; }
@@ -41,12 +41,12 @@ namespace MoneyManager.Foundation.Model
         public Category Category { get; set; }
 
         [ManyToOne("RecurringPaymentId", CascadeOperations = CascadeOperation.All)]
-        public RecurringPayment RecurringPayment { get; set; }
+        public RecurringTransaction RecurringTransaction { get; set; }
 
         [Ignore]
-        public bool ClearPaymentNow => Date.Date <= DateTime.Now.Date;
+        public bool ClearTransactionNow => Date.Date <= DateTime.Now.Date;
 
         [Ignore]
-        public bool IsTransfer => Type == (int) PaymentType.Transfer;
+        public bool IsTransfer => Type == (int)PaymentType.Transfer;
     }
 }
