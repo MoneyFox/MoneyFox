@@ -5,6 +5,7 @@ using SQLiteNetExtensions.Attributes;
 
 namespace MoneyManager.Foundation.Model
 {
+    [Obsolete]
     [ImplementPropertyChanged]
     [Table("FinancialTransactions")]
     public class FinancialTransaction
