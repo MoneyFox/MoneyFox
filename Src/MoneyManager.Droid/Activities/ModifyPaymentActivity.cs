@@ -10,8 +10,8 @@ using MvvmCross.Droid.Views;
 
 namespace MoneyManager.Droid.Activities
 {
-    [Activity(Label = "ModifyTransactionActivity")]
-    public class ModifyTransactionActivity : MvxActivity, DatePickerDialog.IOnDateSetListener
+    [Activity(Label = "ModifyPaymentActivity")]
+    public class ModifyPaymentActivity : MvxActivity, DatePickerDialog.IOnDateSetListener
     {
         /// <summary>
         ///     Used to determine which button called the date picker

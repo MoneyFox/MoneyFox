@@ -238,7 +238,7 @@ namespace MoneyManager.Core.Tests.Repositories
         ///     This Test may fail if the date overlaps with the month transition.
         /// </summary>
         [Fact]
-        public void GetUnclearedPayments_FutureDate_PastTransactions()
+        public void GetUnclearedPayments_FutureDate_PastPayments()
         {
             var accountRepoSetup = new Mock<IDataAccess<Account>>();
             accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());

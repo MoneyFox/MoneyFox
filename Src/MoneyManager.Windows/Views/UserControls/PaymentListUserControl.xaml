@@ -21,26 +21,26 @@
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
-        <converter:NativeTransactionAmountConverter x:Key="TransactionAmountConverter" />
+        <converter:NativePaymentAmountConverter x:Key="PaymentAmountConverter" />
         <converter:CultureConverter x:Key="FormatConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
 
-        <DataTemplate x:Key="TransactionTemplate" x:DataType="model:Payment">
+        <DataTemplate x:Key="PaymentTemplate" x:DataType="model:Payment">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
-                        Holding="TransactionList_Holding"
-                        RightTapped="TransactionList_RightTapped">
+                        Holding="PaymentList_Holding"
+                        RightTapped="PaymentList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
                                         Text="Edit"
-                                        Click="EditTransaction" />
+                                        Click="EditPayment" />
                         <MenuFlyoutItem x:Uid="Delete"
                                         Text="Delete"
-                                        Click="DeleteTransaction" />
+                                        Click="DeletePayment" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch"
@@ -48,7 +48,7 @@
                     <TextBlock
                         Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
                     <TextBlock
-                        Text="{Binding Converter={StaticResource TransactionAmountConverter}}"
+                        Text="{Binding Converter={StaticResource PaymentAmountConverter}}"
                         HorizontalAlignment="Right" />
                 </Grid>
                 <Grid>
@@ -138,11 +138,11 @@
                 <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
                                                        EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
                                                        ItemsSource="{Binding Source={StaticResource TransactionGroups}}"
-                                                       ItemTemplate="{StaticResource TransactionTemplate}"
+                                                       ItemTemplate="{StaticResource PaymentTemplate}"
                                                        HorizontalAlignment="Stretch"
                                                        ShowsScrollingPlaceholders="false"
                                                        Margin="0,20,0,0"
-                                                       SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
+                                                       SelectedItem="{Binding SelectedPayment, Mode=TwoWay}">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="SelectionChanged">
                             <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}" />

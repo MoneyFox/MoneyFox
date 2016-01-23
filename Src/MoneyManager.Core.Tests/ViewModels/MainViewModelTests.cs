@@ -17,7 +17,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         [InlineData("Income", PaymentType.Income)]
         [InlineData("Spending", PaymentType.Spending)]
         [InlineData("Transfer", PaymentType.Transfer)]
-        public void GoToAddPayment_Transactiontype_CorrectPreparation(string typestring, PaymentType type)
+        public void GoToAddPayment_PaymentType_CorrectPreparation(string typestring, PaymentType type)
         {
             Setup();
             // for navigation parsing

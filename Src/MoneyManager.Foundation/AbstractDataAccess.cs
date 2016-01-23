@@ -59,7 +59,7 @@ namespace MoneyManager.Foundation
         }
 
         protected abstract void SaveToDb(T itemToAdd);
-        protected abstract void DeleteFromDatabase(T itemToDelete);
+        protected abstract void DeleteFromDatabase(T payment);
         protected abstract List<T> GetListFromDb(Expression<Func<T, bool>> filter);
     }
 }

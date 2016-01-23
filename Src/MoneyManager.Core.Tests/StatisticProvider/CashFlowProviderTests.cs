@@ -66,11 +66,11 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_SetupData_CalculatedCorrectTimeRange()
         {
             //Setup
-            var transactionRepoSetup = new Mock<IPaymentRepository>();
-            transactionRepoSetup.SetupAllProperties();
+            var paymentRepositorySetup = new Mock<IPaymentRepository>();
+            paymentRepositorySetup.SetupAllProperties();
 
-            var transactionRepo = transactionRepoSetup.Object;
-            transactionRepo.Data = new ObservableCollection<Payment>(new List<Payment>
+            var paymentRepository = paymentRepositorySetup.Object;
+            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
             {
                 new Payment
                 {
@@ -96,7 +96,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             });
 
             //Excution
-            var result = new CashFlowProvider(transactionRepo).GetValues(DateTime.Today.AddDays(-3),
+            var result = new CashFlowProvider(paymentRepository).GetValues(DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(3));
 
             //Assertion

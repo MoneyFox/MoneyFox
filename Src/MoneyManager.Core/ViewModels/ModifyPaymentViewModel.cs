@@ -124,10 +124,10 @@ namespace MoneyManager.Core.ViewModels
             RemoveOldAmount();
             SelectedPayment.Amount = amount;
 
-            //Create a recurring transaction based on the financial transaction or update an existing
-            await PrepareRecurringTransaction();
+            //Create a recurring payment based on the financial transaction or update an existing
+            await PrepareRecurringPayment();
 
-            // SaveItem or update the transaction and add the amount to the account
+            // SaveItem or update the payment and add the amount to the account
             paymentRepository.Save(SelectedPayment);
             accountRepository.AddPaymentAmount(SelectedPayment);
 
@@ -142,7 +142,7 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
-        private async Task PrepareRecurringTransaction()
+        private async Task PrepareRecurringPayment()
         {
             if ((IsEdit && await paymentManager.CheckForRecurringPayment(SelectedPayment))
                 || SelectedPayment.IsRecurring)
@@ -162,7 +162,7 @@ namespace MoneyManager.Core.ViewModels
 
         private async void Delete()
         {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteTransactionConfirmationMessage))
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
             {
                 paymentRepository.Delete(paymentRepository.Selected);
                 accountRepository.RemovePaymentAmount(SelectedPayment);
@@ -197,7 +197,7 @@ namespace MoneyManager.Core.ViewModels
         #region Commands
 
         /// <summary>
-        ///     Saves the transaction or updates the existing depending on the IsEdit Flag.
+        ///     Saves the payment or updates the existing depending on the IsEdit Flag.
         /// </summary>
         public IMvxCommand SaveCommand => new MvxCommand(Save);
 
@@ -217,7 +217,7 @@ namespace MoneyManager.Core.ViewModels
         public IMvxCommand CancelCommand => new MvxCommand(Cancel);
 
         /// <summary>
-        ///     Resets the category of the currently selected transaction
+        ///     Resets the category of the currently selected payment
         /// </summary>
         public IMvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
 

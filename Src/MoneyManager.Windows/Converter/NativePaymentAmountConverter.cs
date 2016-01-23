@@ -3,7 +3,7 @@ using MvvmCross.Platform.WindowsCommon.Converters;
 
 namespace MoneyManager.Windows.Converter
 {
-    public class NativeTransactionAmountConverter : MvxNativeValueConverter<PaymentAmountConverter>
+    public class NativePaymentAmountConverter : MvxNativeValueConverter<PaymentAmountConverter>
     {
     }
 }

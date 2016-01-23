@@ -47,9 +47,9 @@ namespace MoneyManager.Core.ViewModels
             balanceViewModel.UpdateBalance();
         }
 
-        private void GoToAddTransaction(string transactionType)
+        private void GoToAddTransaction(string paymentType)
         {
-            ShowViewModel<ModifyPaymentViewModel>(new {typeString = transactionType});
+            ShowViewModel<ModifyPaymentViewModel>(new {typeString = paymentType});
         }
 
         private void GoToAddAccount()

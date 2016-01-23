@@ -82,7 +82,7 @@ namespace MoneyManager.Core.Tests.Manager
         }
 
         [Fact]
-        public void ReloadData_UnclearedTransaction_Clear()
+        public void ReloadData_UnclearedPayment_Clear()
         {
             var account = new Account {Id = 1, CurrentBalance = 40};
             var payment = new Payment

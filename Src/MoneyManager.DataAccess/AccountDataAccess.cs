@@ -42,12 +42,12 @@ namespace MoneyManager.DataAccess
         /// <summary>
         ///     Deletes an Account from the database.
         /// </summary>
-        /// <param name="itemToDelete">Account to delete</param>
-        protected override void DeleteFromDatabase(Account itemToDelete)
+        /// <param name="payment">Account to delete</param>
+        protected override void DeleteFromDatabase(Account payment)
         {
             using (var db = connectionCreator.GetConnection())
             {
-                db.Delete(itemToDelete);
+                db.Delete(payment);
             }
         }
 

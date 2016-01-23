@@ -14,7 +14,7 @@ namespace MoneyManager.Windows.Views.UserControls
 
         }
 
-        private void EditTransaction(object sender, RoutedEventArgs e)
+        private void EditPayment(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
             var transaction = element.DataContext as Payment;
@@ -25,22 +25,22 @@ namespace MoneyManager.Windows.Views.UserControls
             var viewmodel = DataContext as PaymentListViewModel;
 
             if (viewmodel == null) return;
-            viewmodel.SelectedTransaction = transaction;
+            viewmodel.SelectedPayment = transaction;
             viewmodel.EditCommand.Execute();
         }
 
-        private void DeleteTransaction(object sender, RoutedEventArgs e)
+        private void DeletePayment(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var transaction = element.DataContext as Payment;
-            if (transaction == null)
+            var payment = element.DataContext as Payment;
+            if (payment == null)
             {
                 return;
             }
-            (DataContext as PaymentListViewModel)?.DeleteTransactionCommand.Execute(transaction);
+            (DataContext as PaymentListViewModel)?.DeletePaymentCommand.Execute(payment);
         }
 
-        private void TransactionList_Holding(object sender, HoldingRoutedEventArgs e)
+        private void PaymentList_Holding(object sender, HoldingRoutedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
@@ -48,7 +48,7 @@ namespace MoneyManager.Windows.Views.UserControls
             flyoutBase.ShowAt(senderElement);
         }
 
-        private void TransactionList_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void PaymentList_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);

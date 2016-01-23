@@ -32,9 +32,9 @@ namespace MoneyManager.DataAccess
         {
             using (var db = connectionCreator.GetConnection())
             {
-                SaveRecurringTransaction(itemToSave, db);
+                SaveRecurringPayment(itemToSave, db);
 
-                //Check if the transaction is new or an updated one
+                //Check if the payment is new or an updated one
                 if (itemToSave.Id == 0)
                 {
                     db.InsertOrReplaceWithChildren(itemToSave);
@@ -46,11 +46,11 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        private void SaveRecurringTransaction(Payment itemToSave, SQLiteConnection db)
+        private void SaveRecurringPayment(Payment itemToSave, SQLiteConnection db)
         {
             if (itemToSave.IsRecurring)
             {
-                //Check if the recurring transaction is new or an updated one
+                //Check if the recurring payment is new or an updated one
                 if (itemToSave.RecurringPayment.Id == 0)
                 {
                     db.Insert(itemToSave.RecurringPayment);
@@ -65,17 +65,17 @@ namespace MoneyManager.DataAccess
         /// <summary>
         ///     Deletes an item from the database
         /// </summary>
-        /// <param name="transaction">Item to Delete.</param>
-        protected override void DeleteFromDatabase(Payment transaction)
+        /// <param name="payment">Item to Delete.</param>
+        protected override void DeleteFromDatabase(Payment payment)
         {
             using (var dbConn = connectionCreator.GetConnection())
             {
-                dbConn.Delete(transaction);
+                dbConn.Delete(payment);
             }
         }
 
         /// <summary>
-        ///     Loads a list of transactions from the database filtered by the expression
+        ///     Loads a list of payments from the database filtered by the expression
         /// </summary>
         /// <param name="filter">filter expression.</param>
         /// <returns>List of loaded transactions.</returns>
