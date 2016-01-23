@@ -23,7 +23,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            local:MvxBind="Text TransactionAmount(., ChargedAccount)" />
+            local:MvxBind="Text PaymentAmount(., ChargedAccount)" />
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"

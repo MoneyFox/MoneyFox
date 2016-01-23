@@ -40,9 +40,9 @@
     <Compile Include="AccountDataAccess.cs" />
     <Compile Include="CategoryDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecurringTransactionDataAccess.cs" />
+    <Compile Include="RecurringPaymentDataAccess.cs" />
     <Compile Include="SettingDataAccess.cs" />
-    <Compile Include="TransactionDataAccess.cs" />
+    <Compile Include="PaymentDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

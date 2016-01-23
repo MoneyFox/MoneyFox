@@ -6,8 +6,8 @@ using MvvmCross.Droid.Views;
 
 namespace MoneyManager.Droid.Activities
 {
-    [Activity(Label = "TransactionListActivity")]
-    public class TransactionListActivity : MvxActivity
+    [Activity(Label = "PaymentListActivity")]
+    public class PaymentListActivity : MvxActivity
     {
         public new PaymentListViewModel ViewModel
         {
@@ -25,7 +25,7 @@ namespace MoneyManager.Droid.Activities
 
             ViewModel.LoadedCommand.Execute();
 
-            SetContentView(Resource.Layout.TransactionListLayout);
+            SetContentView(Resource.Layout.PaymentListLayout);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.Title = ViewModel.Title;
         }

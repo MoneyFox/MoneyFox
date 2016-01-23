@@ -179,8 +179,8 @@
     <Compile Include="Activities\SelectCategoryListActivity.cs" />
     <Compile Include="Activities\ModifyAccountActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
-    <Compile Include="Activities\ModifyTransactionActivity.cs" />
-    <Compile Include="Activities\TransactionListActivity.cs" />
+    <Compile Include="Activities\ModifyPaymentActivity.cs" />
+    <Compile Include="Activities\PaymentListActivity.cs" />
     <Compile Include="AndroidModule.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
@@ -237,11 +237,11 @@
     <AndroidResource Include="Resources\layout\ModifyAccountLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\ModifyTransactionLayout.axml" />
-    <AndroidResource Include="Resources\layout\TransactionListLayout.axml">
+    <AndroidResource Include="Resources\layout\ModifyPaymentLayout.axml" />
+    <AndroidResource Include="Resources\layout\PaymentListLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\TransactionListItem.axml">
+    <AndroidResource Include="Resources\layout\PaymentListItem.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AccountComboBoxItem.axml">

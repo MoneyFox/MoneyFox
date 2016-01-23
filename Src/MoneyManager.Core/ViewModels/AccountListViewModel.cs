@@ -34,9 +34,9 @@ namespace MoneyManager.Core.ViewModels
         }
 
         /// <summary>
-        ///     Open the transaction overview for this account.
+        ///     Open the payment overview for this account.
         /// </summary>
-        public MvxCommand<Account> OpenOverviewCommand => new MvxCommand<Account>(GoToTransactionOverView);
+        public MvxCommand<Account> OpenOverviewCommand => new MvxCommand<Account>(GoToPaymentOverView);
 
         /// <summary>
         ///     Edit the selected account
@@ -58,7 +58,7 @@ namespace MoneyManager.Core.ViewModels
             ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = account.Id});
         }
 
-        private void GoToTransactionOverView(Account account)
+        private void GoToPaymentOverView(Account account)
         {
             if (account == null)
             {

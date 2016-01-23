@@ -42,12 +42,12 @@ namespace MoneyManager.DataAccess
         /// <summary>
         ///     DeleteItem an item from the database
         /// </summary>
-        /// <param name="category">Category to delete.</param>
-        protected override void DeleteFromDatabase(Category category)
+        /// <param name="payment">Category to delete.</param>
+        protected override void DeleteFromDatabase(Category payment)
         {
             using (var dbConn = connectionCreator.GetConnection())
             {
-                dbConn.Delete(category);
+                dbConn.Delete(payment);
             }
         }
 

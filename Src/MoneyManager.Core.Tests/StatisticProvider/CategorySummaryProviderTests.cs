@@ -25,8 +25,8 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_InitializedData_IgnoreTransfers()
         {
             //Setup
-            var transactionRepoSetup = new Mock<IPaymentRepository>();
-            transactionRepoSetup.SetupAllProperties();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupAllProperties();
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
             categoryRepoSetup.SetupAllProperties();
@@ -37,8 +37,8 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Category {Id = 1, Name = "Ausgehen"}
             });
 
-            var transactionRepo = transactionRepoSetup.Object;
-            transactionRepo.Data = new ObservableCollection<Payment>(new List<Payment>
+            var paymentRepository = paymentRepoSetup.Object;
+            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
             {
                 new Payment
                 {
@@ -71,7 +71,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySummaryProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySummaryProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -83,8 +83,8 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_InitializedData_CalculateIncome()
         {
             //Setup
-            var transactionRepoSetup = new Mock<IPaymentRepository>();
-            transactionRepoSetup.SetupAllProperties();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupAllProperties();
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
             categoryRepoSetup.SetupAllProperties();
@@ -97,8 +97,8 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Category {Id = 3, Name = "Foo"}
             });
 
-            var transactionRepo = transactionRepoSetup.Object;
-            transactionRepo.Data = new ObservableCollection<Payment>(new List<Payment>
+            var paymentRepository = paymentRepoSetup.Object;
+            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
             {
                 new Payment
                 {
@@ -140,7 +140,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySummaryProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySummaryProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -154,8 +154,8 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_InitializedData_HandleDateCorrectly()
         {
             //Setup
-            var transactionRepoSetup = new Mock<IPaymentRepository>();
-            transactionRepoSetup.SetupAllProperties();
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupAllProperties();
 
             var categoryRepoSetup = new Mock<IRepository<Category>>();
             categoryRepoSetup.SetupAllProperties();
@@ -168,8 +168,8 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Category {Id = 3, Name = "Bier"}
             });
 
-            var transactionRepo = transactionRepoSetup.Object;
-            transactionRepo.Data = new ObservableCollection<Payment>(new List<Payment>
+            var paymentRepository = paymentRepoSetup.Object;
+            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
             {
                 new Payment
                 {
@@ -202,7 +202,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySummaryProvider(transactionRepo, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySummaryProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion

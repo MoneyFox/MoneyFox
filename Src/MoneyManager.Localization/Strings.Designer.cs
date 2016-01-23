@@ -233,7 +233,7 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This transaction is recurring. Do you want to update the future transactions aswell or just this occurence?.
+        ///   Looks up a localized string similar to This payment is recurring. Do you want to update the future payments aswell or just this occurence?.
         /// </summary>
         public static string ChangeSubsequentPaymentMessage {
             get {
@@ -305,20 +305,20 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete this payment?.
+        /// </summary>
+        public static string DeletePaymentConfirmationMessage {
+            get {
+                return ResourceManager.GetString("DeletePaymentConfirmationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete?.
         /// </summary>
         public static string DeleteTitle {
             get {
                 return ResourceManager.GetString("DeleteTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete this transaction?.
-        /// </summary>
-        public static string DeleteTransactionConfirmationMessage {
-            get {
-                return ResourceManager.GetString("DeleteTransactionConfirmationMessage", resourceCulture);
             }
         }
         
@@ -440,7 +440,7 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The enddate of a recurring transaction has to be in the future. Please check your input..
+        ///   Looks up a localized string similar to The enddate of a recurring payment has to be in the future. Please check your input..
         /// </summary>
         public static string InvalidEnddateMessage {
             get {

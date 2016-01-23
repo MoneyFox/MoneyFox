@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
@@ -68,17 +69,25 @@ namespace MoneyManager.Core
                 await Login();
             }
 
-            var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
-            var existingBackup = children.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_NAME);
-
-            if (existingBackup != null)
+            try
             {
-                var backup = await OneDriveClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
-                if (fileStore.Exists(OneDriveAuthenticationConstants.DB_NAME))
+                var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
+                var existingBackup = children.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_NAME);
+
+                if (existingBackup != null)
                 {
-                    fileStore.DeleteFile(OneDriveAuthenticationConstants.DB_NAME);
+                    var backup = await OneDriveClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
+                    if (fileStore.Exists(OneDriveAuthenticationConstants.DB_NAME))
+                    {
+                        fileStore.DeleteFile(OneDriveAuthenticationConstants.DB_NAME);
+                    }
+                    fileStore.WriteFile(OneDriveAuthenticationConstants.DB_NAME, backup.ReadToEnd());
                 }
-                fileStore.WriteFile(OneDriveAuthenticationConstants.DB_NAME, backup.ReadToEnd());
+            }
+            catch (OneDriveException ex)
+            {
+                Insights.Report(ex, Insights.Severity.Error);
+                return TaskCompletionType.Unsuccessful;
             }
 
             return TaskCompletionType.Successful;

@@ -16,7 +16,7 @@ using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
-    public class ModifyTransactionViewModelTest : MvxIoCSupportingTest
+    public class ModifyPaymentViewModelTest : MvxIoCSupportingTest
     {
         [Fact]
         public void Init_SpendingNotEditing_PropertiesSetupCorrectly()
@@ -25,10 +25,10 @@ namespace MoneyManager.Core.Tests.ViewModels
             Setup();
             Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
 
-            var transactionRepositorySetup = new Mock<IPaymentRepository>();
-            transactionRepositorySetup.SetupGet(x => x.Selected).Returns(new Payment {ChargedAccountId = 3});
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupGet(x => x.Selected).Returns(new Payment {ChargedAccountId = 3});
             
-            var transactionManager = new PaymentManager(transactionRepositorySetup.Object,
+            var paymentManager = new PaymentManager(paymentRepoSetup.Object,
                 new Mock<IAccountRepository>().Object,
                 new Mock<IDialogService>().Object);
 
@@ -42,10 +42,10 @@ namespace MoneyManager.Core.Tests.ViewModels
             var defaultManager = new DefaultManager(accountRepo,
                 new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
-            var viewmodel = new ModifyPaymentViewModel(transactionRepositorySetup.Object,
+            var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepo,
                 new Mock<IDialogService>().Object,
-                transactionManager,
+                paymentManager,
                 defaultManager);
 
 
@@ -65,8 +65,8 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             var testEndDate = new DateTime(2099, 1, 31);
 
-            var transactionRepositorySetup = new Mock<IPaymentRepository>();
-            transactionRepositorySetup.SetupGet(x => x.Selected).Returns(new Payment
+            var paymentRepoSetup = new Mock<IPaymentRepository>();
+            paymentRepoSetup.SetupGet(x => x.Selected).Returns(new Payment
             {
                 Type = (int)PaymentType.Income,
                 IsRecurring = true,
@@ -83,7 +83,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             var accountRepo = accountRepoMock.Object;
             accountRepo.Data = new ObservableCollection<Account>();
 
-            var transactionManager = new PaymentManager(transactionRepositorySetup.Object,
+            var paymentManager = new PaymentManager(paymentRepoSetup.Object,
                 accountRepo,
                 new Mock<IDialogService>().Object);
 
@@ -91,10 +91,10 @@ namespace MoneyManager.Core.Tests.ViewModels
             var defaultManager = new DefaultManager(accountRepo,
                 new SettingDataAccess(new Mock<IRoamingSettings>().Object));
 
-            var viewmodel = new ModifyPaymentViewModel(transactionRepositorySetup.Object,
+            var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepo,
                 new Mock<IDialogService>().Object,
-                transactionManager,
+                paymentManager,
                 defaultManager);
 
             //Execute and Assert

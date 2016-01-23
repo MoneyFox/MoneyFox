@@ -177,7 +177,7 @@
   <data name="DeleteTitle" xml:space="preserve">
     <value>Löschen?</value>
   </data>
-  <data name="DeleteTransactionConfirmationMessage" xml:space="preserve">
+  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
     <value>Möchtest du diese Zahlung wirklich löschen?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">

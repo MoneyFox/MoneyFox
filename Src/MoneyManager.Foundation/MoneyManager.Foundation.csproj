@@ -54,13 +54,15 @@
     <Compile Include="Interfaces\ILocalSettings.cs" />
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
     <Compile Include="Interfaces\IProtectedData.cs" />
-    <Compile Include="Interfaces\IRecurringTransactionManager.cs" />
+    <Compile Include="Interfaces\IRecurringPaymentManager.cs" />
     <Compile Include="Interfaces\IRepositoryManager.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />
     <Compile Include="Interfaces\IPaymentManager.cs" />
     <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Model\CashFlow.cs" />
+    <Compile Include="Model\FinancialTransaction.cs" />
+    <Compile Include="Model\RecurringTransaction.cs" />
     <Compile Include="OneDriveAuthenticationConstants.cs" />
     <Compile Include="SqliteConnectionCreator.cs" />
     <Compile Include="Enumerations.cs" />

@@ -10,8 +10,8 @@ using MvvmCross.Droid.Views;
 
 namespace MoneyManager.Droid.Activities
 {
-    [Activity(Label = "ModifyTransactionActivity")]
-    public class ModifyTransactionActivity : MvxActivity, DatePickerDialog.IOnDateSetListener
+    [Activity(Label = "ModifyPaymentActivity")]
+    public class ModifyPaymentActivity : MvxActivity, DatePickerDialog.IOnDateSetListener
     {
         /// <summary>
         ///     Used to determine which button called the date picker
@@ -20,7 +20,7 @@ namespace MoneyManager.Droid.Activities
 
         private Button categoryButton;
         private Button enddateButton;
-        private Button transactionDateButton;
+        private Button paymentDateButton;
 
         public new ModifyPaymentViewModel ViewModel
         {
@@ -32,7 +32,7 @@ namespace MoneyManager.Droid.Activities
         {
             var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
 
-            if (callerButton == transactionDateButton)
+            if (callerButton == paymentDateButton)
             {
                 ViewModel.SelectedPayment.Date = date;
             }
@@ -50,16 +50,16 @@ namespace MoneyManager.Droid.Activities
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.ModifyTransactionLayout);
+            SetContentView(Resource.Layout.ModifyPaymentLayout);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.Title = ViewModel.Title;
 
             categoryButton = FindViewById<Button>(Resource.Id.category);
-            transactionDateButton = FindViewById<Button>(Resource.Id.transactiondate);
+            paymentDateButton = FindViewById<Button>(Resource.Id.paymentdate);
             enddateButton = FindViewById<Button>(Resource.Id.enddate);
 
             categoryButton.Click += SelectCategory;
-            transactionDateButton.Click += ShowDatePicker;
+            paymentDateButton.Click += ShowDatePicker;
             enddateButton.Click += ShowDatePicker;
         }
 

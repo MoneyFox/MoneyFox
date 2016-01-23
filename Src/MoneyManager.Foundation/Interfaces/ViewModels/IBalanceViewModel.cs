@@ -6,6 +6,6 @@
 
         double EndOfMonthBalance { get; set; }
 
-        void UpdateBalance(bool isTransactionView = false);
+        void UpdateBalance(bool isPaymentView = false);
     }
 }
