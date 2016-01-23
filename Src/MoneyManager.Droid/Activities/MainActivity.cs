@@ -175,15 +175,15 @@ namespace MoneyManager.Droid.Activities
                     return true;
 
                 case Resource.Id.action_add_income:
-                    ViewModel.GoToAddTransactionCommand.Execute("Income");
+                    ViewModel.GoToAddPaymentCommand.Execute("Income");
                     return true;
 
                 case Resource.Id.action_add_spending:
-                    ViewModel.GoToAddTransactionCommand.Execute("Spending");
+                    ViewModel.GoToAddPaymentCommand.Execute("Spending");
                     return true;
 
                 case Resource.Id.action_add_transfer:
-                    ViewModel.GoToAddTransactionCommand.Execute("Transfer");
+                    ViewModel.GoToAddPaymentCommand.Execute("Transfer");
                     return true;
 
                 case Resource.Id.action_add_account:

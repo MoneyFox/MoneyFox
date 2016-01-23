@@ -6,20 +6,20 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Tests.Mocks
 {
-    public class TransactionDataAccessMock : IDataAccess<Payment>
+    public class PaymentDataAccessMock : IDataAccess<Payment>
     {
-        public List<Payment> FinancialTransactionTestList = new List<Payment>();
+        public List<Payment> PaymentTestList = new List<Payment>();
 
         public void SaveItem(Payment itemToSave)
         {
-            FinancialTransactionTestList.Add(itemToSave);
+            PaymentTestList.Add(itemToSave);
         }
 
         public void DeleteItem(Payment item)
         {
-            if (FinancialTransactionTestList.Contains(item))
+            if (PaymentTestList.Contains(item))
             {
-                FinancialTransactionTestList.Remove(item);
+                PaymentTestList.Remove(item);
             }
         }
 

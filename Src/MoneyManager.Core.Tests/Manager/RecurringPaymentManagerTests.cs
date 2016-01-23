@@ -15,7 +15,7 @@ namespace MoneyManager.Core.Tests.Manager
     public class RecurringPaymentManagerTests
     {
         [Fact]
-        public void CheckRecurringTransactions_None_NewEntryForRecurring()
+        public void CheckRecurringPayments_None_NewEntryForRecurring()
         {
             var repoSetup = new Mock<IPaymentRepository>();
             var resultList = new List<Payment>();
@@ -33,7 +33,7 @@ namespace MoneyManager.Core.Tests.Manager
                     RecurringPayment = new RecurringPayment
                     {
                         Id = 3,
-                        Recurrence = (int) TransactionRecurrence.Daily,
+                        Recurrence = (int) PaymentRecurrence.Daily,
                         ChargedAccountId = 2,
                         ChargedAccount = new Account {Id = 2},
                         Amount = 95
@@ -52,7 +52,7 @@ namespace MoneyManager.Core.Tests.Manager
                     RecurringPayment = new RecurringPayment
                     {
                         Id = 4,
-                        Recurrence = (int) TransactionRecurrence.Weekly,
+                        Recurrence = (int) PaymentRecurrence.Weekly,
                         ChargedAccountId = 2,
                         ChargedAccount = new Account {Id = 2},
                         Amount = 105
@@ -62,7 +62,7 @@ namespace MoneyManager.Core.Tests.Manager
             };
 
             repoSetup.Setup(x => x.Save(It.IsAny<Payment>()))
-                .Callback((Payment transaction) => resultList.Add(transaction));
+                .Callback((Payment payment) => resultList.Add(payment));
 
             repoSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Payment>(testList));
 

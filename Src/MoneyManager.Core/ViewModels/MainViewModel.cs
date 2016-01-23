@@ -30,7 +30,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Prepare everything and navigate to AddTransaction view
         /// </summary>
-        public MvxCommand<string> GoToAddTransactionCommand => new MvxCommand<string>(GoToAddTransaction);
+        public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(GoToAddTransaction);
 
         /// <summary>
         ///     Navigates to the About view

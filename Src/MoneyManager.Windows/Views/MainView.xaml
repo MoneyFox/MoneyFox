@@ -42,17 +42,17 @@
                 <AppBarButton Icon="Add"
                               x:Uid="AddIncomeLabel"
                               Label="add income"
-                              Command="{Binding GoToAddTransactionCommand}"
+                              Command="{Binding GoToAddPaymentCommand}"
                               CommandParameter="Income" />
                 <AppBarButton Icon="Remove"
                               x:Uid="AddSpendingLabel"
                               Label="add spending"
-                              Command="{Binding GoToAddTransactionCommand}"
+                              Command="{Binding GoToAddPaymentCommand}"
                               CommandParameter="Spending" />
                 <AppBarButton Icon="Switch"
                               x:Uid="AddTransferLabel"
                               Label="add transfer"
-                              Command="{Binding GoToAddTransactionCommand}"
+                              Command="{Binding GoToAddPaymentCommand}"
                               CommandParameter="Transfer" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>

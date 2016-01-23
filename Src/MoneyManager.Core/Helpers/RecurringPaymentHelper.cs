@@ -48,7 +48,7 @@ namespace MoneyManager.Core.Helpers
             var date = DateTime.Today;
 
             //If the transaction is monthly we want it on the same day of month again.
-            if (recurringPayment.Recurrence == (int) TransactionRecurrence.Monthly)
+            if (recurringPayment.Recurrence == (int) PaymentRecurrence.Monthly)
             {
                 date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
             }
@@ -83,26 +83,26 @@ namespace MoneyManager.Core.Helpers
 
             switch (recTrans.Recurrence)
             {
-                case (int) TransactionRecurrence.Daily:
+                case (int) PaymentRecurrence.Daily:
                     return DateTime.Today.Date != relTransaction.Date.Date;
 
-                case (int) TransactionRecurrence.DailyWithoutWeekend:
+                case (int) PaymentRecurrence.DailyWithoutWeekend:
                     return DateTime.Today.Date != relTransaction.Date.Date
                            && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
                            && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
 
-                case (int) TransactionRecurrence.Weekly:
+                case (int) PaymentRecurrence.Weekly:
                     var daysWeekly = DateTime.Now - relTransaction.Date;
                     return daysWeekly.Days >= 7;
 
-                case (int) TransactionRecurrence.Biweekly:
+                case (int) PaymentRecurrence.Biweekly:
                     var daysBiweekly = DateTime.Now - relTransaction.Date;
                     return daysBiweekly.Days >= 14;
 
-                case (int) TransactionRecurrence.Monthly:
+                case (int) PaymentRecurrence.Monthly:
                     return DateTime.Now.Month != relTransaction.Date.Month;
 
-                case (int) TransactionRecurrence.Yearly:
+                case (int) PaymentRecurrence.Yearly:
                     return (DateTime.Now.Year != relTransaction.Date.Year
                            && DateTime.Now.Month >= relTransaction.Date.Month)
                            || (DateTime.Now.Year - relTransaction.Date.Year) > 1;
