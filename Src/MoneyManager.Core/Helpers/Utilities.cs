@@ -36,7 +36,7 @@ namespace MoneyManager.Core.Helpers
         /// <returns>Formated string.</returns>
         public static string FormatLargeNumbers(double value)
         {
-            return value.ToString("N", CultureInfo.CurrentCulture);
+            return value.ToString("C", CultureInfo.CurrentCulture);
         }
     }
 }

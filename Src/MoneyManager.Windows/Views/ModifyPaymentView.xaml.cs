@@ -30,7 +30,20 @@ namespace MoneyManager.Windows.Views
                 }
             };
         }
+        
+        private void TextBoxOnFocus(object sender, RoutedEventArgs e)
+        {
+            TextBoxAmount.Text = string.Empty;
+        }
 
+        private void FormatTextBoxOnLostFocus(object sender, RoutedEventArgs e)
+        {
+            double amount;
+            double.TryParse(TextBoxAmount.Text, out amount);
+            TextBoxAmount.Text = Utilities.FormatLargeNumbers(amount);
+        }
+
+        //These method is no longer needed and can safely remove after futher tests.
         private void RemoveZeroOnFocus(object sender, RoutedEventArgs e)
         {
             if (TextBoxAmount.Text == "0")
@@ -41,6 +54,7 @@ namespace MoneyManager.Windows.Views
             TextBoxAmount.SelectAll();
         }
 
+        //These method is no longer needed and can safely remove after futher tests.
         private void AddZeroIfEmpty(object sender, RoutedEventArgs e)
         {
             if (TextBoxAmount.Text == string.Empty)
@@ -49,6 +63,7 @@ namespace MoneyManager.Windows.Views
             }
         }
 
+        //These method is no longer needed and can safely remove after futher tests.
         private async void ReplaceSeparatorChar(object sender, TextChangedEventArgs e)
         {
             double amount;
@@ -83,6 +98,7 @@ namespace MoneyManager.Windows.Views
             }
         }
 
+        //These method is no longer needed and can safely remove after futher tests.
         /// <summary>
         ///     When the text is formated there may be more chars and the cursors positon isn't the same as befor.
         ///     That will cause a jumping cursor and uncontrolled order of input. Therefore we need to adjust the

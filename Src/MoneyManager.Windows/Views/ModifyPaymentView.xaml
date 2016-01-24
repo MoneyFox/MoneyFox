@@ -88,9 +88,8 @@
                              x:Name="TextBoxAmount"
                              x:Uid="AmountTextBox"
                              TextAlignment="Right"
-                             TextChanged="ReplaceSeparatorChar"
-                             GotFocus="RemoveZeroOnFocus"
-                             LostFocus="AddZeroIfEmpty"
+                             GotFocus="TextBoxOnFocus"
+                             LostFocus="FormatTextBoxOnLostFocus"
                              Margin="0,7,0,0" />
                     <Grid Margin="0,7,0,0">
                         <TextBox Header="category"
