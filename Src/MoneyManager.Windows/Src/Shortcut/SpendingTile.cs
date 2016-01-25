@@ -5,7 +5,7 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Localization;
 
-namespace MoneyManager.Windows.Concrete.Shortcut
+namespace MoneyManager.Windows.Shortcut
 {
     public class SpendingTile : Tile, ISpendingShortcut
     {

@@ -1,7 +1,7 @@
 ﻿using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Windows.Concrete
+namespace MoneyManager.Windows
 {
     public class TileHelper : BaseViewModel
     {

@@ -124,10 +124,6 @@
       <Project>{6936f4d3-8889-48c7-a676-80d59b2740ce}</Project>
       <Name>MoneyManager.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyManager.Windows.Concrete\MoneyManager.Windows.Concrete.csproj">
-      <Project>{b227814d-75a1-4194-8138-8a8c8065207b}</Project>
-      <Name>MoneyManager.Windows.Concrete</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Telerik.Windows.Core">

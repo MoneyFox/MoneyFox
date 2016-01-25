@@ -2,8 +2,8 @@
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Windows.Concrete;
-using MoneyManager.Windows.Concrete.Services;
-using MoneyManager.Windows.Concrete.Shortcut;
+using MoneyManager.Windows.Services;
+using MoneyManager.Windows.Shortcut;
 
 namespace MoneyManager.Windows
 {

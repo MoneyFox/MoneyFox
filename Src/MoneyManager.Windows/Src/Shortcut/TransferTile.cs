@@ -5,19 +5,19 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Localization;
 
-namespace MoneyManager.Windows.Concrete.Shortcut
+namespace MoneyManager.Windows.Shortcut
 {
-    public class IncomeTile : Tile, IIncomeShortcut
+    public class TransferTile : Tile, ITransferShortcut
     {
-        public bool IsShortcutExisting => TileExists(Constants.ADD_INCOME_TILE_ID);
+        public bool IsShortcutExisting => TileExists(Constants.ADD_TRANSFER_TILE_ID);
 
         public async Task CreateShortCut()
         {
             await Create(new SecondaryTile(
-                Constants.ADD_INCOME_TILE_ID,
-                Strings.AddIncomeLabel,
+                Constants.ADD_TRANSFER_TILE_ID,
+                Strings.AddTransferLabel,
                 "intake",
-                new Uri("ms-appx:///Assets/IncomeTileIcon.png", UriKind.Absolute),
+                new Uri("ms-appx:///Assets/TransferTileIcon.png", UriKind.Absolute),
                 TileSize.Default));
         }
 
@@ -25,7 +25,7 @@ namespace MoneyManager.Windows.Concrete.Shortcut
         {
             if (IsShortcutExisting)
             {
-                await Remove(new SecondaryTile(Constants.ADD_INCOME_TILE_ID));
+                await Remove(new SecondaryTile(Constants.ADD_TRANSFER_TILE_ID));
             }
         }
     }

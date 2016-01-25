@@ -5,7 +5,7 @@ using MoneyManager.Localization;
 using MvvmCross.Platform;
 using NotificationsExtensions.Tiles;
 
-namespace MoneyManager.Windows.Concrete
+namespace MoneyManager.Windows
 {
     public class UserNotification : IUserNotification
     {
