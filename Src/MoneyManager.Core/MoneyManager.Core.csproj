@@ -86,6 +86,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoryList\AbstractCategoryListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\RecurringPaymentListView.cs" />
     <Compile Include="ViewModels\SettingViews\PasswordUserControlViewModel.cs" />
     <Compile Include="ViewModels\CategoryList\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\SelectDateRangeDialogViewModel.cs" />

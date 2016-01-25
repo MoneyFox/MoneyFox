@@ -75,6 +75,7 @@ namespace MoneyManager.Core
         public static ModifyAccountViewModel ModifyAccountView => Mvx.Resolve<ModifyAccountViewModel>();
         public static ModifyPaymentViewModel ModifyPaymentView => Mvx.Resolve<ModifyPaymentViewModel>();
         public static AboutViewModel AboutView => Mvx.Resolve<AboutViewModel>();
+        public static RecurringPaymentListView RecurringPaymentListView => Mvx.Resolve<RecurringPaymentListView>();
 
         //CategoryList
         public static SelectCategoryListViewModel SelectCategoryListView => Mvx.Resolve<SelectCategoryListViewModel>();

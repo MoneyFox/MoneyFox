@@ -132,6 +132,9 @@
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\TileHelper.cs" />
     <Compile Include="Src\UserNotification.cs" />
+    <Compile Include="Views\RecurringPaymentListView.xaml.cs">
+      <DependentUpon>RecurringPaymentListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>
@@ -317,6 +320,10 @@
     <Page Include="AppShell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RecurringPaymentListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\AccountListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
