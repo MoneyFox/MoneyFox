@@ -3,7 +3,7 @@ using Windows.ApplicationModel.Store;
 using Windows.System;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows.Concrete
+namespace MoneyManager.Windows
 {
     public class StoreFeatures : IStoreFeatures
     {

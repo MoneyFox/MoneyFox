@@ -3,7 +3,7 @@ using System.Globalization;
 using Windows.Storage;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows.Concrete
+namespace MoneyManager.Windows
 {
     public class LocalSettings : ILocalSettings
     {

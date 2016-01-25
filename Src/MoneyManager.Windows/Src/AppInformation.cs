@@ -2,7 +2,7 @@
 using Windows.ApplicationModel;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows.Concrete
+namespace MoneyManager.Windows
 {
     /// <summary>
     ///     Grants access to package information
