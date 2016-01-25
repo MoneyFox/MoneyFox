@@ -4,7 +4,8 @@
     "MvvmCross.Core": "4.0.0-beta8",
     "MvvmCross.Plugin.Messenger": "4.0.0-beta8",
     "MvvmCross.Plugin.SQLitePCL": "4.0.0-beta8",
-    "SQLite.Net-PCL": "3.1.1"
+    "SQLite.Net-PCL": "3.1.1",
+    "Xamarin.Insights": "1.11.3"
   },
   "frameworks": {
     "uap10.0": {}
