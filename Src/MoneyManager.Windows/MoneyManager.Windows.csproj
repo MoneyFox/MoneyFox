@@ -117,6 +117,7 @@
     <Compile Include="Controls\AlternatingRowListView.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Controls\SwipeableSplitView.cs" />
+    <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Services\BackgroundTaskService.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\OneDriveAuthenticator.cs" />
