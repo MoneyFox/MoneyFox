@@ -179,6 +179,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
@@ -233,6 +234,16 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        }
+      },
       "MvvmCross.Core/4.0.0-beta8": {
         "dependencies": {
           "MvvmCross.Platform": "[4.0.0-beta8, )"
@@ -256,6 +267,32 @@
           "lib/win81/MvvmCross.Localization.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Email/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.File/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
         }
       },
       "MvvmCross.Plugin.Messenger/4.0.0-beta8": {
@@ -285,6 +322,19 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
+      "MvvmCross.Plugin.WebBrowser/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
       "Newtonsoft.Json/7.0.1": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
@@ -299,6 +349,25 @@
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "OxyPlot.Core/2015.1.1033-alpha": {
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        }
+      },
+      "OxyPlot.Windows/2015.1.1033-alpha": {
+        "dependencies": {
+          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
+        },
+        "compile": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -1666,6 +1735,14 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        }
+      },
       "Xamarin.Insights/1.11.3": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -1895,6 +1972,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
@@ -1949,6 +2027,16 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        }
+      },
       "MvvmCross.Core/4.0.0-beta8": {
         "dependencies": {
           "MvvmCross.Platform": "[4.0.0-beta8, )"
@@ -1972,6 +2060,32 @@
           "lib/win81/MvvmCross.Localization.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Email/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.File/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
         }
       },
       "MvvmCross.Plugin.Messenger/4.0.0-beta8": {
@@ -2001,6 +2115,19 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
+      "MvvmCross.Plugin.WebBrowser/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
       "Newtonsoft.Json/7.0.1": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
@@ -2015,6 +2142,25 @@
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "OxyPlot.Core/2015.1.1033-alpha": {
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        }
+      },
+      "OxyPlot.Windows/2015.1.1033-alpha": {
+        "dependencies": {
+          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
+        },
+        "compile": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -3429,6 +3575,14 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        }
+      },
       "Xamarin.Insights/1.11.3": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -3644,6 +3798,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
@@ -3698,6 +3853,16 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        }
+      },
       "MvvmCross.Core/4.0.0-beta8": {
         "dependencies": {
           "MvvmCross.Platform": "[4.0.0-beta8, )"
@@ -3721,6 +3886,32 @@
           "lib/win81/MvvmCross.Localization.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Email/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.File/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
         }
       },
       "MvvmCross.Plugin.Messenger/4.0.0-beta8": {
@@ -3750,6 +3941,19 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
+      "MvvmCross.Plugin.WebBrowser/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
       "Newtonsoft.Json/7.0.1": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
@@ -3764,6 +3968,25 @@
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "OxyPlot.Core/2015.1.1033-alpha": {
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        }
+      },
+      "OxyPlot.Windows/2015.1.1033-alpha": {
+        "dependencies": {
+          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
+        },
+        "compile": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -5162,6 +5385,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
       "Xamarin.Insights/1.11.3": {
@@ -5398,6 +5629,7 @@
           "runtimes/win10-x64/native/_._": {}
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
@@ -5452,6 +5684,16 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        }
+      },
       "MvvmCross.Core/4.0.0-beta8": {
         "dependencies": {
           "MvvmCross.Platform": "[4.0.0-beta8, )"
@@ -5475,6 +5717,32 @@
           "lib/win81/MvvmCross.Localization.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Email/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.File/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
         }
       },
       "MvvmCross.Plugin.Messenger/4.0.0-beta8": {
@@ -5504,6 +5772,19 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
+      "MvvmCross.Plugin.WebBrowser/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
       "Newtonsoft.Json/7.0.1": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
@@ -5518,6 +5799,25 @@
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "OxyPlot.Core/2015.1.1033-alpha": {
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        }
+      },
+      "OxyPlot.Windows/2015.1.1033-alpha": {
+        "dependencies": {
+          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
+        },
+        "compile": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -6932,6 +7232,14 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        }
+      },
       "Xamarin.Insights/1.11.3": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -7147,6 +7455,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
@@ -7201,6 +7510,16 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        }
+      },
       "MvvmCross.Core/4.0.0-beta8": {
         "dependencies": {
           "MvvmCross.Platform": "[4.0.0-beta8, )"
@@ -7224,6 +7543,32 @@
           "lib/win81/MvvmCross.Localization.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Email/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.File/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
         }
       },
       "MvvmCross.Plugin.Messenger/4.0.0-beta8": {
@@ -7253,6 +7598,19 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
+      "MvvmCross.Plugin.WebBrowser/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
       "Newtonsoft.Json/7.0.1": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
@@ -7267,6 +7625,25 @@
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "OxyPlot.Core/2015.1.1033-alpha": {
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        }
+      },
+      "OxyPlot.Windows/2015.1.1033-alpha": {
+        "dependencies": {
+          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
+        },
+        "compile": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -8665,6 +9042,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
       "Xamarin.Insights/1.11.3": {
@@ -8901,6 +9286,7 @@
           "runtimes/win10-x86/native/_._": {}
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
@@ -8955,6 +9341,16 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        }
+      },
       "MvvmCross.Core/4.0.0-beta8": {
         "dependencies": {
           "MvvmCross.Platform": "[4.0.0-beta8, )"
@@ -8978,6 +9374,32 @@
           "lib/win81/MvvmCross.Localization.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Email/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.File/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
         }
       },
       "MvvmCross.Plugin.Messenger/4.0.0-beta8": {
@@ -9007,6 +9429,19 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
+      "MvvmCross.Plugin.WebBrowser/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
       "Newtonsoft.Json/7.0.1": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
@@ -9021,6 +9456,25 @@
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "OxyPlot.Core/2015.1.1033-alpha": {
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        }
+      },
+      "OxyPlot.Windows/2015.1.1033-alpha": {
+        "dependencies": {
+          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
+        },
+        "compile": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -10435,6 +10889,14 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        }
+      },
       "Xamarin.Insights/1.11.3": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
@@ -10650,6 +11112,7 @@
           "System.Xml.XmlSerializer": "[4.0.10, )"
         }
       },
+      "Microsoft.NETNative.Analyzer/1.0.0": {},
       "Microsoft.OneDriveSDK/1.1.20": {
         "dependencies": {
           "Microsoft.IdentityModel.Clients.ActiveDirectory": "[2.19.208020213, )",
@@ -10704,6 +11167,16 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
+        }
+      },
       "MvvmCross.Core/4.0.0-beta8": {
         "dependencies": {
           "MvvmCross.Platform": "[4.0.0-beta8, )"
@@ -10727,6 +11200,32 @@
           "lib/win81/MvvmCross.Localization.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Email/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Email.dll": {},
+          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.File/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.File.dll": {},
+          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
         }
       },
       "MvvmCross.Plugin.Messenger/4.0.0-beta8": {
@@ -10756,6 +11255,19 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
         }
       },
+      "MvvmCross.Plugin.WebBrowser/4.0.0-beta8": {
+        "dependencies": {
+          "MvvmCross.Platform": "[4.0.0-beta8, )"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
+          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
+        }
+      },
       "Newtonsoft.Json/7.0.1": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
@@ -10770,6 +11282,25 @@
         },
         "runtime": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
+      "OxyPlot.Core/2015.1.1033-alpha": {
+        "compile": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
+        }
+      },
+      "OxyPlot.Windows/2015.1.1033-alpha": {
+        "dependencies": {
+          "OxyPlot.Core": "[2015.1.1033-alpha, 2015.1.1033-alpha]"
+        },
+        "compile": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        },
+        "runtime": {
+          "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -12168,6 +12699,14 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "UniversalRateReminder/2.0.0": {
+        "compile": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
       "Xamarin.Insights/1.11.3": {
@@ -12804,6 +13343,20 @@
         "runtimes/win8-x86/native/api-ms-win-service-private-l1-1-1.dll"
       ]
     },
+    "Microsoft.NETNative.Analyzer/1.0.0": {
+      "sha512": "fU5kNj59Kdkats3mZ1CaZJCjTPSb1fxgIsIRFWZH7bzT0dRQih09qXlh4G9PowAwKOtLOQxyOOjtDZi6T7HRAg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "analyzers/dotnet/cs/NativeGatekeeper.dll",
+        "Microsoft.NETNative.Analyzer.1.0.0.nupkg.sha512",
+        "Microsoft.NETNative.Analyzer.nuspec",
+        "package/services/metadata/core-properties/5dd9a3149be14fc795a7718dacbee757.psmdcp",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "Microsoft.OneDriveSDK/1.1.20": {
       "sha512": "650vvWls5rnJEjemv//LhGv2Njy4UWfyCu6Z6b0wkOscFkbs7MtAIMCJwXZD/ZcsAMgEfDi26+Vl5seyXQ3OGQ==",
       "type": "Package",
@@ -12883,6 +13436,26 @@
         "ref/net46/Microsoft.Win32.Primitives.dll",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._"
+      ]
+    },
+    "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+      "sha512": "N/HJa+ld/kKIKQaTTBY/ytLukfujKkBMww59p9qmPkEpyHZRMYB8FNalghu1rFMCXoSx9cWD8U4nt/r7qLQmVg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/uap10.0/Design/Microsoft.Xaml.Interactions.Design.dll",
+        "lib/uap10.0/Design/Microsoft.Xaml.Interactivity.Design.dll",
+        "lib/uap10.0/Microsoft.Xaml.Interactions.dll",
+        "lib/uap10.0/Microsoft.Xaml.Interactions.pri",
+        "lib/uap10.0/Microsoft.Xaml.Interactions.xml",
+        "lib/uap10.0/Microsoft.Xaml.Interactions/Properties/Microsoft.Xaml.Interactions.rd.xml",
+        "lib/uap10.0/Microsoft.Xaml.Interactivity.dll",
+        "lib/uap10.0/Microsoft.Xaml.Interactivity.pri",
+        "lib/uap10.0/Microsoft.Xaml.Interactivity.xml",
+        "lib/uap10.0/Microsoft.Xaml.Interactivity/Properties/Microsoft.Xaml.Interactivity.rd.xml",
+        "Microsoft.Xaml.Behaviors.Uwp.Managed.nuspec",
+        "package/services/metadata/core-properties/3c85324cf8b64508a39f4ccba86cb561.psmdcp"
       ]
     },
     "MvvmCross.Core/4.0.0-beta8": {
@@ -12970,6 +13543,84 @@
         "package/services/metadata/core-properties/19f60ec8ebe645aba57d304a14065e59.psmdcp"
       ]
     },
+    "MvvmCross.Plugin.Email/4.0.0-beta8": {
+      "sha512": "ozqI9uuRmnsXyVHE+Zn52yqLohEg0dcCfTL7NDBxgMH3LYf3ihnNmja7jdHQ1SECgvEtDzvLMj7RNTrA4TyU3w==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "content/MonoAndroid/Bootstrap/EmailPluginBootstrap.cs.pp",
+        "content/net45/Bootstrap/EmailPluginBootstrap.cs.pp",
+        "content/netcore45/Bootstrap/EmailPluginBootstrap.cs.pp",
+        "content/win81/Bootstrap/EmailPluginBootstrap.cs.pp",
+        "content/wp8/Bootstrap/EmailPluginBootstrap.cs.pp",
+        "content/wpa81/Bootstrap/EmailPluginBootstrap.cs.pp",
+        "content/Xamarin.iOS10/Bootstrap/EmailPluginBootstrap.cs.pp",
+        "lib/dotnet/MvvmCross.Plugins.Email.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.Email.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.Email.Droid.dll",
+        "lib/net45/MvvmCross.Plugins.Email.dll",
+        "lib/net45/MvvmCross.Plugins.Email.Wpf.dll",
+        "lib/netcore45/MvvmCross.Plugins.Email.dll",
+        "lib/netcore45/MvvmCross.Plugins.Email.WindowsStore.dll",
+        "lib/netcore45/MvvmCross.Plugins.Email.WindowsStore.pri",
+        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.Email.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.WindowsCommon.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.WindowsCommon.pri",
+        "lib/win81/MvvmCross.Plugins.Email.dll",
+        "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll",
+        "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.pri",
+        "lib/wp8/MvvmCross.Plugins.Email.dll",
+        "lib/wp8/MvvmCross.Plugins.Email.WindowsPhone.dll",
+        "lib/wpa81/MvvmCross.Plugins.Email.dll",
+        "lib/wpa81/MvvmCross.Plugins.Email.WindowsCommon.dll",
+        "lib/wpa81/MvvmCross.Plugins.Email.WindowsCommon.pri",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.dll",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.iOS.dll",
+        "lib/Xamarin.Mac20/MvvmCross.Plugins.Email.dll",
+        "MvvmCross.Plugin.Email.nuspec",
+        "package/services/metadata/core-properties/bdabc8d7e654413b95d1d11a4572251d.psmdcp"
+      ]
+    },
+    "MvvmCross.Plugin.File/4.0.0-beta8": {
+      "sha512": "SdSoyDy4OF2CM9lX9MyIG5oCNvbC2adNVsDDkGgaLxmKiSypSscvq0ohkdIy5rKll+c5mwNSi9W5o5yJdPjwAg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "content/MonoAndroid/Bootstrap/FilePluginBootstrap.cs.pp",
+        "content/net45/Bootstrap/FilePluginBootstrap.cs.pp",
+        "content/netcore45/Bootstrap/FilePluginBootstrap.cs.pp",
+        "content/win81/Bootstrap/FilePluginBootstrap.cs.pp",
+        "content/wp8/Bootstrap/FilePluginBootstrap.cs.pp",
+        "content/wpa81/Bootstrap/FilePluginBootstrap.cs.pp",
+        "content/Xamarin.iOS10/Bootstrap/FilePluginBootstrap.cs.pp",
+        "lib/dotnet/MvvmCross.Plugins.File.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.File.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.File.Droid.dll",
+        "lib/net45/MvvmCross.Plugins.File.dll",
+        "lib/net45/MvvmCross.Plugins.File.Wpf.dll",
+        "lib/netcore45/MvvmCross.Plugins.File.dll",
+        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.File.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.File.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.File.WindowsCommon.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.File.WindowsCommon.pri",
+        "lib/win81/MvvmCross.Plugins.File.dll",
+        "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll",
+        "lib/win81/MvvmCross.Plugins.File.WindowsCommon.pri",
+        "lib/wp8/MvvmCross.Plugins.File.dll",
+        "lib/wp8/MvvmCross.Plugins.File.WindowsPhone.dll",
+        "lib/wpa81/MvvmCross.Plugins.File.dll",
+        "lib/wpa81/MvvmCross.Plugins.File.WindowsCommon.dll",
+        "lib/wpa81/MvvmCross.Plugins.File.WindowsCommon.pri",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.File.dll",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.File.iOS.dll",
+        "lib/Xamarin.Mac20/MvvmCross.Plugins.File.dll",
+        "MvvmCross.Plugin.File.nuspec",
+        "package/services/metadata/core-properties/46e606e806544f05956ad27f57e900c5.psmdcp"
+      ]
+    },
     "MvvmCross.Plugin.Messenger/4.0.0-beta8": {
       "sha512": "6KyytEvdR9mgQBHvq32Rjt5zPEkdpXpO3eSnR7okisF0h1tevxTVqMO5Xr4fyLuqXX6Mqy1WPEoIoAM+z0ZRbw==",
       "type": "Package",
@@ -13028,6 +13679,43 @@
         "package/services/metadata/core-properties/fb230642b699421690032f8dbd061070.psmdcp"
       ]
     },
+    "MvvmCross.Plugin.WebBrowser/4.0.0-beta8": {
+      "sha512": "7s9oU7gxPtAzBN5r/Ao7wwgoI1e0GZchBxTQm3045/MeyA75J0fD31DHvruu2SVKloz1IQcOiE6EZtgbZEGIlg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "content/MonoAndroid/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
+        "content/netcore45/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
+        "content/win81/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
+        "content/wp8/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
+        "content/wpa81/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
+        "content/Xamarin.iOS10/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
+        "lib/dotnet/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.WebBrowser.Droid.dll",
+        "lib/netcore45/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/netcore45/MvvmCross.Plugins.WebBrowser.WindowsStore.dll",
+        "lib/netcore45/MvvmCross.Plugins.WebBrowser.WindowsStore.pri",
+        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
+        "lib/win81/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
+        "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
+        "lib/wp8/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/wp8/MvvmCross.Plugins.WebBrowser.WindowsPhone.dll",
+        "lib/wpa81/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
+        "lib/wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.iOS.dll",
+        "lib/Xamarin.Mac20/MvvmCross.Plugins.WebBrowser.dll",
+        "MvvmCross.Plugin.WebBrowser.nuspec",
+        "package/services/metadata/core-properties/ecef774afa424514b1ee71f52a3259b6.psmdcp"
+      ]
+    },
     "Newtonsoft.Json/7.0.1": {
       "sha512": "q3V4KLetMLnt1gpAVWgtXnHjKs0UG/RalBc29u2ZKxd5t5Ze4JBL5WiiYIklJyK/5CRiIiNwigVQUo0FgbsuWA==",
       "type": "Package",
@@ -13070,6 +13758,57 @@
         "lib/uap10.0/NotificationsExtensions.xml",
         "NotificationsExtensions.Win10.nuspec",
         "package/services/metadata/core-properties/5d5cbb4e5ec6464fa0b3cee3b82d40de.psmdcp"
+      ]
+    },
+    "OxyPlot.Core/2015.1.1033-alpha": {
+      "sha512": "To4qVNaOBb+xHUYp7SCJYZQZzB5vlowymNNAmKx/PCXg8plm4osRMLBYwYOCH18uy3hpA/D4bOy5M+I20g9HYQ==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "AUTHORS",
+        "CHANGELOG.md",
+        "CONTRIBUTORS",
+        "lib/net40/OxyPlot.dll",
+        "lib/net40/OxyPlot.pdb",
+        "lib/net40/OxyPlot.XML",
+        "lib/net40-client/OxyPlot.dll",
+        "lib/net40-client/OxyPlot.pdb",
+        "lib/net40-client/OxyPlot.XML",
+        "lib/net45/OxyPlot.dll",
+        "lib/net45/OxyPlot.pdb",
+        "lib/net45/OxyPlot.xml",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.pdb",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.xml",
+        "lib/sl5/OxyPlot.dll",
+        "lib/sl5/OxyPlot.pdb",
+        "lib/sl5/OxyPlot.XML",
+        "LICENSE",
+        "OxyPlot.Core.nuspec",
+        "package/services/metadata/core-properties/9641716e8c784e23abca0d47ca68b2a9.psmdcp",
+        "README.md"
+      ]
+    },
+    "OxyPlot.Windows/2015.1.1033-alpha": {
+      "sha512": "fadYqLF+JBPWI4wlu3lZtODFywrX3HtzNp0/Mzls1/EKV2q8F6mipuKZ56V40GWeVsL6Fs2e2zhT0F5EBIfvSQ==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "AUTHORS",
+        "CHANGELOG.md",
+        "CONTRIBUTORS",
+        "lib/portable-windows8+wpa81/OxyPlot.Windows.dll",
+        "lib/portable-windows8+wpa81/OxyPlot.Windows.pdb",
+        "lib/portable-windows8+wpa81/OxyPlot.Windows.pri",
+        "lib/portable-windows8+wpa81/OxyPlot.Windows.xml",
+        "lib/portable-windows8+wpa81/OxyPlot.Windows/OxyPlot.Windows.xr.xml",
+        "lib/portable-windows8+wpa81/OxyPlot.Windows/Themes/Generic.xbf",
+        "LICENSE",
+        "OxyPlot.Windows.nuspec",
+        "package/services/metadata/core-properties/a4292403266f496984f1b4c78d453d58.psmdcp",
+        "README.md"
       ]
     },
     "SQLite.Net-PCL/3.1.1": {
@@ -15809,6 +16548,23 @@
         "System.Xml.XmlSerializer.nuspec"
       ]
     },
+    "UniversalRateReminder/2.0.0": {
+      "sha512": "LXY44TSgwf4BvswRHh1xHTsqcn6lYxRz3wFA5CM9rp1TVNEzjgtsNThf0DZZbCL+So1nq8kzxtKo32U5yyWW0w==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/portable-netcore451+wpa81/UniversalRateReminder.dll",
+        "lib/portable-netcore451+wpa81/UniversalRateReminder.pri",
+        "lib/portable-netcore451+wpa81/UniversalRateReminder.XML",
+        "lib/uap10.0/UniversalRateReminder.dll",
+        "lib/uap10.0/UniversalRateReminder.pri",
+        "lib/uap10.0/UniversalRateReminder.xml",
+        "lib/uap10.0/UniversalRateReminder/Properties/UniversalRateReminder.rd.xml",
+        "package/services/metadata/core-properties/d779faa918d04526a74f7f11ed292e65.psmdcp",
+        "UniversalRateReminder.nuspec"
+      ]
+    },
     "Xamarin.Insights/1.11.3": {
       "sha512": "ewZ3dXcGONrMmPI22grN91ndL/UtuuQnKllMTFlgz+9WRK2q4i7ELegzV/qJtQ2cESKPgZ7qOE5CfRSlF9rtog==",
       "type": "Package",
@@ -15864,7 +16620,8 @@
       "MvvmCross.Core >= 4.0.0-beta8",
       "MvvmCross.Plugin.Messenger >= 4.0.0-beta8",
       "MvvmCross.Plugin.SQLitePCL >= 4.0.0-beta8",
-      "SQLite.Net-PCL >= 3.1.1"
+      "SQLite.Net-PCL >= 3.1.1",
+      "Xamarin.Insights >= 1.11.3"
     ],
     "UAP,Version=v10.0": []
   }
