@@ -42,6 +42,11 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
 
+        /// <summary>
+        ///     Navigates to the recurring payment overview.
+        /// </summary>
+        public MvxCommand GoToRecurringPaymentListCommand => new MvxCommand(GoToRecurringPaymentList);
+
         private void Loaded()
         {
             balanceViewModel.UpdateBalance();
@@ -63,6 +68,11 @@ namespace MoneyManager.Core.ViewModels
         private void GoToAbout()
         {
             ShowViewModel<AboutViewModel>();
+        }
+
+        private void GoToRecurringPaymentList()
+        {
+            ShowViewModel<RecurringPaymentListViewModel>();
         }
     }
 }

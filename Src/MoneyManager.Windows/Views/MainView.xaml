@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="using:MoneyManager.Windows.Controls"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
@@ -15,7 +14,6 @@
             <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
-
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -60,6 +58,9 @@
                               x:Uid="AddAccountLabel"
                               Label="Add Account"
                               Command="{Binding GoToAddAccountCommand}" />
+                <AppBarButton x:Uid="RecurringPaymentList"
+                              Label="Recurring Payment Overview"
+                              Command="{Binding GoToRecurringPaymentListCommand}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

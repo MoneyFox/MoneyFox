@@ -13,7 +13,6 @@ using MoneyManager.Core.Authentication;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
-using MoneyManager.Windows.Concrete;
 using MoneyManager.Windows.Views;
 using UniversalRateReminder;
 using Windows.UI.StartScreen;

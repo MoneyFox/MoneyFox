@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
-using MoneyManager.Windows.Concrete;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
 

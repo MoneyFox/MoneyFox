@@ -159,6 +159,9 @@
     <Compile Include="Views\UserControls\PasswordUserControl.xaml.cs">
       <DependentUpon>PasswordUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\RecurringPaymentListUserControl.xaml.cs">
+      <DependentUpon>RecurringPaymentListUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\TabHeader.xaml.cs">
       <DependentUpon>TabHeader.xaml</DependentUpon>
     </Compile>
@@ -354,6 +357,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\PasswordUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\RecurringPaymentListUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
