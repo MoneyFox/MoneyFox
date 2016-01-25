@@ -117,6 +117,21 @@
     <Compile Include="Controls\AlternatingRowListView.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Controls\SwipeableSplitView.cs" />
+    <Compile Include="Services\BackgroundTaskService.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\OneDriveAuthenticator.cs" />
+    <Compile Include="Src\AppInformation.cs" />
+    <Compile Include="Src\LocalSettings.cs" />
+    <Compile Include="Src\ProtectedData.cs" />
+    <Compile Include="Src\RoamingSettings.cs" />
+    <Compile Include="Src\Shortcut\IncomeTile.cs" />
+    <Compile Include="Src\Shortcut\SpendingTile.cs" />
+    <Compile Include="Src\Shortcut\Tile.cs" />
+    <Compile Include="Src\Shortcut\TransferTile.cs" />
+    <Compile Include="Src\StoreFeatures.cs" />
+    <Compile Include="Src\ThemedImageConverterLogic.cs" />
+    <Compile Include="Src\TileHelper.cs" />
+    <Compile Include="Src\UserNotification.cs" />
     <Compile Include="Views\UserControls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>
@@ -420,10 +435,6 @@
     <ProjectReference Include="..\MoneyManager.Localization\MoneyManager.Localization.csproj">
       <Project>{90644219-756f-45cc-ab90-253463c5bc5e}</Project>
       <Name>MoneyManager.Localization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyManager.Windows.Concrete\MoneyManager.Windows.Concrete.csproj">
-      <Project>{B227814D-75A1-4194-8138-8A8C8065207B}</Project>
-      <Name>MoneyManager.Windows.Concrete</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@ using Microsoft.OneDrive.Sdk;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows.Concrete.Services
+namespace MoneyManager.Windows.Services
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {

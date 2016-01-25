@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows.Concrete.Services
+namespace MoneyManager.Windows.Services
 {
     public class BackgroundTaskService : IBackgroundTaskService
     {

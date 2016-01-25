@@ -138,10 +138,6 @@
       <Project>{72f45d21-21e2-4e46-8c72-cf855afc3765}</Project>
       <Name>MoneyManager.TestFoundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyManager.Windows.Concrete\MoneyManager.Windows.Concrete.csproj">
-      <Project>{b227814d-75a1-4194-8138-8a8c8065207b}</Project>
-      <Name>MoneyManager.Windows.Concrete</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

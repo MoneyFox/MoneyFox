@@ -4,7 +4,7 @@ using Windows.UI.Popups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 
-namespace MoneyManager.Windows.Concrete.Services
+namespace MoneyManager.Windows.Services
 {
     public class DialogService : IDialogService
     {

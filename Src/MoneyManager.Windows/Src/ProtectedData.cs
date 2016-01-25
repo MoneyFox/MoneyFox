@@ -2,7 +2,7 @@
 using Windows.Security.Credentials;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows.Concrete
+namespace MoneyManager.Windows
 {
     public class ProtectedData : IProtectedData
     {
