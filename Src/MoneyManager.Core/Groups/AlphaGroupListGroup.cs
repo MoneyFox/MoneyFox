@@ -4,6 +4,11 @@ using System.Linq;
 
 namespace MoneyManager.Core.Groups
 {
+    /// <summary>
+    ///     Can be used for a alphanumeric grouping. It will show the whole key as title.
+    ///     This can be a single name or a whole word.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class AlphaGroupListGroup<T> : List<T>
     {
         /// <summary>

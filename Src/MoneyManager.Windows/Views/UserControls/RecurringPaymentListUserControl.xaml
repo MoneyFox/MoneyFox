@@ -95,34 +95,6 @@
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate x:Key="AccountGroupHeaderTemplate">
-            <Border Background="Transparent"
-                    Padding="3">
-                <TextBlock Text="{Binding Key}"
-                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
-                           FontSize="18"
-                           FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center" />
-            </Border>
-        </DataTemplate>
-
-        <DataTemplate x:Key="AccountJumpTemplate">
-            <Border Padding="5">
-                <Border HorizontalAlignment="Left">
-                    <TextBlock Text="{Binding Group.Key}"
-                               Width="150"
-                               Foreground="{StaticResource SystemControlHighlightAccentBrush}"
-                               FontSize="18"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center" />
-                </Border>
-            </Border>
-        </DataTemplate>
-
-        <CollectionViewSource x:Key="PaymentGroups"
-                              IsSourceGrouped="True"
-                              Source="{Binding Source}" />
     </UserControl.Resources>
 
 
@@ -131,7 +103,7 @@
             <SemanticZoom.ZoomedInView>
                 <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
                                                  EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
-                                                 ItemsSource="{Binding Source={StaticResource PaymentGroups}}"
+                                                 ItemsSource="{Binding Source={StaticResource Groups}}"
                                                  ItemTemplate="{StaticResource PaymentTemplate}"
                                                  HorizontalAlignment="Stretch"
                                                  ShowsScrollingPlaceholders="false"
@@ -153,14 +125,14 @@
                     </ListView.ItemContainerStyle>
                     <ListView.GroupStyle>
                         <GroupStyle HidesIfEmpty="True"
-                                    HeaderTemplate="{StaticResource AccountGroupHeaderTemplate}" />
+                                    HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
                     </ListView.GroupStyle>
                 </controls:AlternatingRowListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView Margin="0,12,0,0"
-                          ItemsSource="{Binding Source={StaticResource PaymentGroups}, Path=CollectionGroups}"
-                          ItemTemplate="{StaticResource AccountJumpTemplate}">
+                          ItemsSource="{Binding Source={StaticResource Groups}, Path=CollectionGroups}"
+                          ItemTemplate="{StaticResource JumpTemplate}">
                 </GridView>
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>

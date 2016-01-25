@@ -27,7 +27,8 @@
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
 
-        <DataTemplate x:Key="PaymentTemplate" x:DataType="model:Payment">
+        <DataTemplate x:Key="PaymentTemplate"
+                      x:DataType="model:Payment">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
@@ -45,11 +46,9 @@
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch"
                       Margin="0,0,0,3">
-                    <TextBlock
-                        Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
-                    <TextBlock
-                        Text="{Binding Converter={StaticResource PaymentAmountConverter}}"
-                        HorizontalAlignment="Right" />
+                    <TextBlock Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
+                    <TextBlock Text="{Binding Converter={StaticResource PaymentAmountConverter}}"
+                               HorizontalAlignment="Right" />
                 </Grid>
                 <Grid>
                     <StackPanel Orientation="Horizontal"
@@ -72,62 +71,31 @@
                                 HorizontalAlignment="Right">
                         <Grid HorizontalAlignment="Right"
                               Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <SymbolIcon
-                                Width="30"
-                                Height="30"
-                                Symbol="57660"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center" />
+                            <SymbolIcon Width="30"
+                                        Height="30"
+                                        Symbol="57660"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center" />
                         </Grid>
                         <Grid HorizontalAlignment="Right"
                               Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Image
-                                Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
-                                DataContext="/Assets/{0}/repeat.png"
-                                Width="30"
-                                Height="30" />
+                            <Image Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
+                                   DataContext="/Assets/{0}/repeat.png"
+                                   Width="30"
+                                   Height="30" />
                         </Grid>
                         <Grid HorizontalAlignment="Right"
                               Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Image
-                                Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
-                                DataContext="/Assets/{0}/done.png"
-                                Width="30"
-                                Height="30" />
+                            <Image Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
+                                   DataContext="/Assets/{0}/done.png"
+                                   Width="30"
+                                   Height="30" />
                         </Grid>
                     </StackPanel>
                 </Grid>
             </StackPanel>
         </DataTemplate>
-
-        <DataTemplate x:Key="MonthGroupHeaderTemplate">
-            <Border Background="Transparent"
-                    Padding="3">
-                <TextBlock Text="{Binding Key}"
-                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
-                           FontSize="18"
-                           FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center" />
-            </Border>
-        </DataTemplate>
-
-        <DataTemplate x:Key="MonthJumpTemplate">
-            <Border Padding="5">
-                <Border HorizontalAlignment="Left">
-                    <TextBlock Text="{Binding Group.Key}"
-                               Width="150"
-                               Foreground="{StaticResource SystemControlHighlightAccentBrush}"
-                               FontSize="18"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center" />
-                </Border>
-            </Border>
-        </DataTemplate>
-
-        <CollectionViewSource x:Key="PaymentGroups"
-                              IsSourceGrouped="True"
-                              Source="{Binding Source}"/>
+        
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
@@ -137,7 +105,7 @@
             <SemanticZoom.ZoomedInView>
                 <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
                                                        EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
-                                                       ItemsSource="{Binding Source={StaticResource PaymentGroups}}"
+                                                       ItemsSource="{Binding Source={StaticResource Groups}}"
                                                        ItemTemplate="{StaticResource PaymentTemplate}"
                                                        HorizontalAlignment="Stretch"
                                                        ShowsScrollingPlaceholders="false"
@@ -159,14 +127,14 @@
                     </ListView.ItemContainerStyle>
                     <ListView.GroupStyle>
                         <GroupStyle HidesIfEmpty="True"
-                                    HeaderTemplate="{StaticResource MonthGroupHeaderTemplate}" />
+                                    HeaderTemplate="{StaticResource 1Template}" />
                     </ListView.GroupStyle>
                 </controls:AlternatingRowListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView Margin="0,12,0,0"
-                          ItemsSource="{Binding Source={StaticResource PaymentGroups}, Path=CollectionGroups}"
-                          ItemTemplate="{StaticResource MonthJumpTemplate}">
+                          ItemsSource="{Binding Source={StaticResource Groups}, Path=CollectionGroups}"
+                          ItemTemplate="{StaticResource JumpTemplate}">
                 </GridView>
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>

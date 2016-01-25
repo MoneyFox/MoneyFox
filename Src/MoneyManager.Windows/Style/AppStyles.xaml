@@ -5,6 +5,35 @@
                     xmlns:controls="using:MoneyManager.Windows.Controls"
                     mc:Ignorable="d">
 
+    <CollectionViewSource x:Key="Groups"
+                          IsSourceGrouped="True"
+                          Source="{Binding Source}" />
+
+    <DataTemplate x:Key="GroupHeaderTemplate">
+        <Border Background="Transparent"
+                Padding="3">
+            <TextBlock Text="{Binding Key}"
+                       Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                       FontSize="18"
+                       FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="JumpTemplate">
+        <Border Padding="5">
+            <Border HorizontalAlignment="Left">
+                <TextBlock Text="{Binding Group.Key}"
+                           Width="150"
+                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                           FontSize="18"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center" />
+            </Border>
+        </Border>
+    </DataTemplate>
+
     <Style x:Key="SplitViewTogglePaneButtonStyle"
            TargetType="ToggleButton">
         <Setter Property="FontSize"
