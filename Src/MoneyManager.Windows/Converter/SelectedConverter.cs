@@ -9,7 +9,7 @@ namespace MoneyManager.Windows.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return ((SelectionChangedEventArgs)value).AddedItems.FirstOrDefault();
+            return ((SelectionChangedEventArgs) value)?.AddedItems.FirstOrDefault();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

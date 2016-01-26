@@ -95,7 +95,36 @@
                 </Grid>
             </StackPanel>
         </DataTemplate>
-        
+
+        <DataTemplate x:Key="GroupHeaderTemplate">
+            <Border Background="Transparent"
+                    Padding="3">
+                <TextBlock Text="{Binding Key}"
+                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                           FontSize="18"
+                           FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center" />
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="JumpTemplate">
+            <Border Padding="5">
+                <Border HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Group.Key}"
+                               Width="150"
+                               Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                               FontSize="18"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center" />
+                </Border>
+            </Border>
+        </DataTemplate>
+
+        <CollectionViewSource x:Key="Groups"
+                              IsSourceGrouped="True"
+                              Source="{Binding Source}" />
+
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
@@ -127,7 +156,7 @@
                     </ListView.ItemContainerStyle>
                     <ListView.GroupStyle>
                         <GroupStyle HidesIfEmpty="True"
-                                    HeaderTemplate="{StaticResource 1Template}" />
+                                    HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
                     </ListView.GroupStyle>
                 </controls:AlternatingRowListView>
             </SemanticZoom.ZoomedInView>
