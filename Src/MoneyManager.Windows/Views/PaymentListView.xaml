@@ -10,8 +10,27 @@
                       DataContext="{Binding PaymentListView, Source={StaticResource CoreModule}}"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.BottomAppBar>
-        <CommandBar>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <userControls1:PageHeader>
+            <userControls1:PageHeader.HeaderContent>
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
+                           Text="{Binding Title}" />
+            </userControls1:PageHeader.HeaderContent>
+        </userControls1:PageHeader>
+
+        <Grid Grid.Row="1"
+              Margin="0,9.5,0,0"
+              EntranceNavigationTransitionInfo.IsTargetElement="True">
+            <userControls1:PaymentListUserControl />
+        </Grid>
+
+        <CommandBar Grid.Row="2">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Add"
                               x:Uid="AddIncomeLabel"
@@ -36,25 +55,5 @@
                               Command="{Binding DeleteAccountCommand}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <userControls1:PageHeader>
-            <userControls1:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="{Binding Title}" />
-            </userControls1:PageHeader.HeaderContent>
-        </userControls1:PageHeader>
-
-        <Grid Grid.Row="1"
-              Margin="0,9.5,0,0"
-              EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <userControls1:PaymentListUserControl />
-        </Grid>
     </Grid>
 </views:MvxWindowsPage>
