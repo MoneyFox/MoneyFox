@@ -4,7 +4,7 @@ using MoneyManager.Core.Manager;
 using MoneyManager.Core.Repositories;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
-using MoneyManager.Windows.Concrete.Shortcut;
+using MoneyManager.Windows.Shortcut;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using Xamarin;
 
