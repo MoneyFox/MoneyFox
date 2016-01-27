@@ -346,15 +346,6 @@ Do you want to go the the store to rate?</value>
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Rate this app</value>
   </data>
-  <data name="HalloWeltText" xml:space="preserve">
-    <value>Hallo Welt</value>
-  </data>
-  <data name="HelloWorldResponse" xml:space="preserve">
-    <value>Hello beautiful</value>
-  </data>
-  <data name="HelloWorldText" xml:space="preserve">
-    <value>Hello World</value>
-  </data>
   <data name="BiweeklyLabel" xml:space="preserve">
     <value>Biweekly</value>
   </data>
