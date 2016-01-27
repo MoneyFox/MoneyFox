@@ -404,33 +404,6 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hallo Welt.
-        /// </summary>
-        public static string HalloWeltText {
-            get {
-                return ResourceManager.GetString("HalloWeltText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hello beautiful.
-        /// </summary>
-        public static string HelloWorldResponse {
-            get {
-                return ResourceManager.GetString("HelloWorldResponse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hello World.
-        /// </summary>
-        public static string HelloWorldText {
-            get {
-                return ResourceManager.GetString("HelloWorldText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Gains.
         /// </summary>
         public static string IncreaseLabel {
