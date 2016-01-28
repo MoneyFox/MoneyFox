@@ -8,31 +8,12 @@
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       DataContext="{Binding ModifyAccountView, Source={StaticResource CoreModule}}"
                       mc:Ignorable="d">
-    <Page.BottomAppBar>
-        <CommandBar x:Name="BottomCommandBar">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Save"
-                              x:Uid="Done"
-                              Label="Done"
-                              Command="{Binding SaveCommand}" />
-                <AppBarButton Icon="Cancel"
-                              x:Uid="Cancel"
-                              Label="Cancel"
-                              Command="{Binding CancelCommand}" />
-            </CommandBar.PrimaryCommands>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Delete"
-                              Label="Delete"
-                              x:Uid="DeleteLabel"
-                              Command="{Binding DeleteCommand}" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <userControls:PageHeader>
@@ -76,5 +57,24 @@
                          TextWrapping="Wrap" />
             </StackPanel>
         </ScrollViewer>
+        <CommandBar x:Name="BottomCommandBar" Grid.Row="2">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Save"
+                              x:Uid="Done"
+                              Label="Done"
+                              Command="{Binding SaveCommand}" />
+                <AppBarButton Icon="Cancel"
+                              x:Uid="Cancel"
+                              Label="Cancel"
+                              Command="{Binding CancelCommand}" />
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Delete"
+                              Label="Delete"
+                              x:Uid="DeleteLabel"
+                              Command="{Binding DeleteCommand}" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+
     </Grid>
 </views:MvxWindowsPage>
