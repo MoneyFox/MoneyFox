@@ -2,8 +2,8 @@
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-using MoneyManager.TestFoundation;
 using Xunit;
+using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Helper
 {

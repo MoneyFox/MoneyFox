@@ -1,7 +1,7 @@
 ﻿using System;
 using MoneyManager.Core.Converter;
-using MoneyManager.TestFoundation;
 using Xunit;
+using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Converter
 {

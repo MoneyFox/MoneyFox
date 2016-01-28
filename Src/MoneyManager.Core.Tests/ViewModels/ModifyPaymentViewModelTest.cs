@@ -7,12 +7,12 @@ using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.TestFoundation;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
 using Xunit;
+using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {

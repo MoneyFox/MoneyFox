@@ -1,9 +1,9 @@
 ﻿using System.Runtime.InteropServices;
 using MoneyManager.Core.Authentication;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.TestFoundation;
 using Moq;
 using Xunit;
+using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Authentication
 {
