@@ -6,9 +6,9 @@ using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using MoneyManager.TestFoundation;
 using Moq;
 using Xunit;
+using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Repositories
 {

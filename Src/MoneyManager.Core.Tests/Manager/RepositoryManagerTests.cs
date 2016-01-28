@@ -5,9 +5,9 @@ using System.Linq.Expressions;
 using MoneyManager.Core.Manager;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.TestFoundation;
 using Moq;
 using Xunit;
+using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Manager
 {

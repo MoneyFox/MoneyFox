@@ -1,6 +1,5 @@
-﻿using MoneyManager.TestFoundation;
-using MoneyManager.Windows.Concrete;
-using Xunit;
+﻿using Xunit;
+using XunitShouldExtension;
 
 namespace MoneyManager.Windows.Tests
 {
