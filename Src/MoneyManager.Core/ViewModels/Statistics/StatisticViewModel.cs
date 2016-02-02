@@ -164,17 +164,20 @@ namespace MoneyManager.Core.ViewModels.Statistics
             var model = new PlotModel
             {
                 Background = OxyColors.Black,
-                TextColor = OxyColors.White
+                TextColor = OxyColors.White,
+                IsLegendVisible = true
             };
-            var pieSeries = new PieSeries();
+            var pieSeries = new PieSeries
+            {
+                AreInsideLabelsAngled = true,
+                InsideLabelFormat = "{1}",
+                OutsideLabelFormat = "{0}"
+            };
 
             foreach (var item in statisticItems)
             {
                 pieSeries.Slices.Add(new PieSlice(item.Label, item.Value));
             }
-
-            model.IsLegendVisible = true;
-            model.LegendPosition = LegendPosition.BottomLeft;
 
             model.Series.Add(pieSeries);
             SpreadingModel = model;

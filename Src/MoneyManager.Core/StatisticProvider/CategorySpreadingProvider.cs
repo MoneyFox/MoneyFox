@@ -75,7 +75,7 @@ namespace MoneyManager.Core.StatisticProvider
 
         private void SetLabel(StatisticItem item)
         {
-            item.Label = item.Category + ": " + item.Value;
+            item.Label = item.Category;
         }
 
         private void IncludeIncome(IEnumerable<StatisticItem> statisticList)

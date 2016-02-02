@@ -19,6 +19,7 @@
                           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch"
-                          Margin="0,30,0,0" />
+                          IsEnabled="False"
+                          Margin="0,30,30,0" />
     </Grid>
 </UserControl>
