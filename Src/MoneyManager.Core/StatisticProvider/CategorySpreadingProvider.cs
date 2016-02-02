@@ -28,12 +28,13 @@ namespace MoneyManager.Core.StatisticProvider
         /// <returns>Statistic value for the given time. </returns>
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
         {
+            // Get all Payments inlcuding income.
             var getPaymentListFunc =
                 new Func<List<Payment>>(() =>
                     paymentRepository.Data
                         .Where(x => x.Category != null)
                         .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
-                        .Where(x => x.Type == (int) PaymentType.Spending)
+                        .Where(x => x.Type == (int) PaymentType.Spending || x.Type == (int) PaymentType.Income)
                         .ToList());
 
             return GetSpreadingStatisticItems(getPaymentListFunc);
@@ -48,23 +49,27 @@ namespace MoneyManager.Core.StatisticProvider
             {
                 Category = category.Name,
                 Value = payments
+                    .Where(x => x.Type == (int) PaymentType.Spending)
                     .Where(x => x.Category.Id == category.Id)
                     .Sum(x => x.Amount)
             }).ToList();
 
-            RemoveNullList(tempStatisticList);
+            RemoveZeroAmountEntries(tempStatisticList);
 
             tempStatisticList = tempStatisticList.OrderByDescending(x => x.Value).ToList();
             var statisticList = tempStatisticList.Take(6).ToList();
 
             AddOtherItem(tempStatisticList, statisticList);
 
-            IncludeIncome(statisticList);
+            IncludeIncome(statisticList, payments);
+
+            // Remove again all entries with zero amount.
+            RemoveZeroAmountEntries(statisticList);
 
             return statisticList;
         }
 
-        private void RemoveNullList(ICollection<StatisticItem> tempStatisticList)
+        private void RemoveZeroAmountEntries(ICollection<StatisticItem> tempStatisticList)
         {
             var nullerList = tempStatisticList.Where(x => Math.Abs(x.Value) < 0.001).ToList();
             foreach (var statisticItem in nullerList)
@@ -75,14 +80,14 @@ namespace MoneyManager.Core.StatisticProvider
 
         private void SetLabel(StatisticItem item)
         {
-            item.Label = item.Category + ": " + item.Value;
+            item.Label = item.Category;
         }
 
-        private void IncludeIncome(IEnumerable<StatisticItem> statisticList)
+        private void IncludeIncome(IEnumerable<StatisticItem> statisticList, List<Payment> payments)
         {
             foreach (var statisticItem in statisticList)
             {
-                statisticItem.Value -= paymentRepository.Data
+                statisticItem.Value -= payments
                     .Where(x => x.Type == (int) PaymentType.Income)
                     .Where(x => x.Category != null)
                     .Where(x => x.Category.Name == statisticItem.Category)
@@ -100,7 +105,7 @@ namespace MoneyManager.Core.StatisticProvider
         private void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
             ICollection<StatisticItem> statisticList)
         {
-            if (statisticList.Count < 6)
+            if (statisticList.Count <= 6)
             {
                 return;
             }
