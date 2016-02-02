@@ -2,13 +2,13 @@
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
-using MoneyManager.TestFoundation;
 using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Test.Core;
 using Xunit;
+using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
