@@ -18,7 +18,8 @@
         <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
-        <DataTemplate x:Key="ComboBoxTemplate" x:DataType="model:Account">
+        <DataTemplate x:Key="ComboBoxTemplate"
+                      x:DataType="model:Account">
             <StackPanel Margin="0,0,0,12"
                         Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
@@ -29,31 +30,11 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Page.BottomAppBar>
-        <CommandBar x:Name="BottomCommandBar">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Save"
-                              Label="Done"
-                              x:Uid="Done"
-                              Command="{Binding SaveCommand}" />
-                <AppBarButton Icon="Cancel"
-                              Label="Cancel"
-                              x:Uid="Cancel"
-                              Command="{Binding CancelCommand}" />
-            </CommandBar.PrimaryCommands>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Delete"
-                              Label="Delete"
-                              x:Uid="DeleteLabel"
-                              Command="{Binding DeleteCommand}" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <userControls:PageHeader>
@@ -153,5 +134,23 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
+        <CommandBar x:Name="BottomCommandBar" Grid.Row="2">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Save"
+                              Label="Done"
+                              x:Uid="Done"
+                              Command="{Binding SaveCommand}" />
+                <AppBarButton Icon="Cancel"
+                              Label="Cancel"
+                              x:Uid="Cancel"
+                              Command="{Binding CancelCommand}" />
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Delete"
+                              Label="Delete"
+                              x:Uid="DeleteLabel"
+                              Command="{Binding DeleteCommand}" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
     </Grid>
 </views:MvxWindowsPage>
