@@ -101,11 +101,9 @@ namespace MoneyManager.Core.ViewModels.Statistics
         {
             get
             {
-                return categorySummary == null || !categorySummary.Any()
-                    ? new ObservableCollection<StatisticItem>
-                        (listStatisticFactory.CreateListProvider(ListStatisticType.CategorySummary)
-                            .GetValues(StartDate, EndDate))
-                    : categorySummary;
+                return new ObservableCollection<StatisticItem>
+                    (listStatisticFactory.CreateListProvider(ListStatisticType.CategorySummary)
+                        .GetValues(StartDate, EndDate));
             }
             private set
             {
@@ -141,16 +139,6 @@ namespace MoneyManager.Core.ViewModels.Statistics
                 listStatisticFactory.CreateListProvider(ListStatisticType.CategorySpreading)
                     .GetValues(StartDate, EndDate));
             RaisePropertyChanged(nameof(SpreadingModel));
-        }
-
-        /// <summary>
-        ///     Set a custom CategoryModel with the set Start and Enddate
-        /// </summary>
-        public void SetCustomCategorySummary()
-        {
-            SetSpreadingModel(
-                listStatisticFactory.CreateListProvider(ListStatisticType.CategorySummary).GetValues(StartDate, EndDate));
-            RaisePropertyChanged(nameof(CategorySummary));
         }
 
         private void SetSpreadingModel(IEnumerable<StatisticItem> items)
