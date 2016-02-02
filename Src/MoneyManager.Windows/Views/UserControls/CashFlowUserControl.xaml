@@ -13,7 +13,8 @@
     <Grid>
         <TextBlock Text="{Binding Title}"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-        <windows:PlotView x:Name="CashFlowPlotView"
+        <windows:PlotView x:Name="CashFlowPlotView" 
+                          IsMouseWheelEnabled="False"
                           Model="{Binding CashFlowModel}"
                           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                           HorizontalAlignment="Stretch"

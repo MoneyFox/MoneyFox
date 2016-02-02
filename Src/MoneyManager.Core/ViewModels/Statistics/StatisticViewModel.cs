@@ -193,8 +193,8 @@ namespace MoneyManager.Core.ViewModels.Statistics
             {
                 AxislineColor = OxyColors.White,
                 TextColor = OxyColors.White,
-                IsPanEnabled = false,
-                IsZoomEnabled = false
+                IsPanEnabled = false, 
+                IsZoomEnabled = false,
             };
 
             columnSeries.Items.Add(new ColumnItem(cashFlow.Income.Value));
