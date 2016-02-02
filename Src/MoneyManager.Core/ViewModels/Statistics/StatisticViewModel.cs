@@ -185,7 +185,7 @@ namespace MoneyManager.Core.ViewModels.Statistics
             var model = new PlotModel
             {
                 Background = OxyColors.Black,
-                TextColor = OxyColors.White
+                TextColor = OxyColors.White,
             };
 
             var columnSeries = new ColumnSeries();
@@ -195,6 +195,7 @@ namespace MoneyManager.Core.ViewModels.Statistics
                 TextColor = OxyColors.White,
                 IsPanEnabled = false, 
                 IsZoomEnabled = false,
+                Angle = 45
             };
 
             columnSeries.Items.Add(new ColumnItem(cashFlow.Income.Value));
