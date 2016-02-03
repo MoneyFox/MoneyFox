@@ -105,7 +105,7 @@ namespace MoneyManager.Core.StatisticProvider
         private void AddOtherItem(IEnumerable<StatisticItem> tempStatisticList,
             ICollection<StatisticItem> statisticList)
         {
-            if (statisticList.Count <= 6)
+            if (statisticList.Count < 6)
             {
                 return;
             }
