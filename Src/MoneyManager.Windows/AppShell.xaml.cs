@@ -171,7 +171,8 @@ namespace MoneyManager.Windows
         private void CheckTogglePaneButtonSizeChanged()
         {
             if (RootSplitView.DisplayMode == SplitViewDisplayMode.Inline ||
-                RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay)
+                RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay ||
+                RootSplitView.DisplayMode == SplitViewDisplayMode.CompactOverlay)
             {
                 var transform = TogglePaneButton.TransformToVisual(this);
                 var rect =
@@ -211,7 +212,6 @@ namespace MoneyManager.Windows
             if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
             {
                 TogglePaneButton.Visibility = Visibility.Collapsed;
-                RootSplitView.IsPanSelectorEnabled = false;
             }
             else
             {
@@ -225,7 +225,6 @@ namespace MoneyManager.Windows
             if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
             {
                 TogglePaneButton.Visibility = Visibility.Visible;
-                RootSplitView.IsPanSelectorEnabled = true;
             }
             else
             {
@@ -379,7 +378,9 @@ namespace MoneyManager.Windows
             CheckTogglePaneButtonSizeChanged();
 
             if (SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility ==
-                AppViewBackButtonVisibility.Collapsed || RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay)
+                AppViewBackButtonVisibility.Collapsed 
+                || RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay
+                || RootSplitView.DisplayMode == SplitViewDisplayMode.CompactOverlay)
             {
                 RootSplitView.IsSwipeablePaneOpen = false;
             }
