@@ -101,11 +101,9 @@ namespace MoneyManager.Core.ViewModels.Statistics
         {
             get
             {
-                return categorySummary == null || !categorySummary.Any()
-                    ? new ObservableCollection<StatisticItem>
-                        (listStatisticFactory.CreateListProvider(ListStatisticType.CategorySummary)
-                            .GetValues(StartDate, EndDate))
-                    : categorySummary;
+                return new ObservableCollection<StatisticItem>
+                    (listStatisticFactory.CreateListProvider(ListStatisticType.CategorySummary)
+                        .GetValues(StartDate, EndDate));
             }
             private set
             {
@@ -143,16 +141,6 @@ namespace MoneyManager.Core.ViewModels.Statistics
             RaisePropertyChanged(nameof(SpreadingModel));
         }
 
-        /// <summary>
-        ///     Set a custom CategoryModel with the set Start and Enddate
-        /// </summary>
-        public void SetCustomCategorySummary()
-        {
-            SetSpreadingModel(
-                listStatisticFactory.CreateListProvider(ListStatisticType.CategorySummary).GetValues(StartDate, EndDate));
-            RaisePropertyChanged(nameof(CategorySummary));
-        }
-
         private void SetSpreadingModel(IEnumerable<StatisticItem> items)
         {
             var statisticItems = items as IList<StatisticItem> ?? items.ToList();
@@ -164,17 +152,20 @@ namespace MoneyManager.Core.ViewModels.Statistics
             var model = new PlotModel
             {
                 Background = OxyColors.Black,
-                TextColor = OxyColors.White
+                TextColor = OxyColors.White,
+                IsLegendVisible = true
             };
-            var pieSeries = new PieSeries();
+            var pieSeries = new PieSeries
+            {
+                AreInsideLabelsAngled = true,
+                InsideLabelFormat = "{1}",
+                OutsideLabelFormat = "{0}"
+            };
 
             foreach (var item in statisticItems)
             {
                 pieSeries.Slices.Add(new PieSlice(item.Label, item.Value));
             }
-
-            model.IsLegendVisible = true;
-            model.LegendPosition = LegendPosition.BottomLeft;
 
             model.Series.Add(pieSeries);
             SpreadingModel = model;
@@ -185,7 +176,7 @@ namespace MoneyManager.Core.ViewModels.Statistics
             var model = new PlotModel
             {
                 Background = OxyColors.Black,
-                TextColor = OxyColors.White
+                TextColor = OxyColors.White,
             };
 
             var columnSeries = new ColumnSeries();
@@ -193,8 +184,9 @@ namespace MoneyManager.Core.ViewModels.Statistics
             {
                 AxislineColor = OxyColors.White,
                 TextColor = OxyColors.White,
-                IsPanEnabled = false,
-                IsZoomEnabled = false
+                IsPanEnabled = false, 
+                IsZoomEnabled = false,
+                Angle = 45
             };
 
             columnSeries.Items.Add(new ColumnItem(cashFlow.Income.Value));
