@@ -15,7 +15,7 @@ namespace MoneyManager.Droid
             builder.RegisterType<RoamingSettings>().As<IRoamingSettings>().SingleInstance();
             builder.RegisterType<LocalSettings>().As<ILocalSettings>().SingleInstance();
             builder.RegisterType<OneDriveAuthenticator>().As<IOneDriveAuthenticator>().SingleInstance();
-            builder.RegisterType<ProtectedData>().As<IOneDriveAuthenticator>().SingleInstance();
+            builder.RegisterType<ProtectedData>().As<IProtectedData>().SingleInstance();
         }
     }
 }
