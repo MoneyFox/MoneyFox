@@ -49,8 +49,8 @@
     <DevInstrumentationEnabled>False</DevInstrumentationEnabled>
     <EnableLLVM>true</EnableLLVM>
     <EnableProguard>true</EnableProguard>
-    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Platform)' != 'Unix'">
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
