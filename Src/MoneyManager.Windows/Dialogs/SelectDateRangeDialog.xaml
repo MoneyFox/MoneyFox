@@ -10,7 +10,7 @@
                PrimaryButtonText="done"
                SecondaryButtonText="cancel"
                PrimaryButtonCommand="{Binding LoadStatisticCommand }"
-               DataContext="{Binding SelectDateRangeDialog, Source={StaticResource CoreModule}}" >
+               DataContext="{Binding SelectDateRangeDialog, Source={StaticResource CoreModule}}">
 
     <ContentDialog.Resources>
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
@@ -19,10 +19,12 @@
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <DatePicker Margin="0,5,0,0"
-            Date="{Binding StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Header="startdate" x:Uid="StartDateHeader" />
+                    Date="{Binding StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Header="startdate" x:Uid="StartDateHeader"
+                    HorizontalAlignment="Stretch" />
         <DatePicker Margin="0,5,0,0"
-            Date="{Binding EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Header="enddate" x:Uid="EndDateHeader" />
+                    HorizontalAlignment="Stretch"
+                    Date="{Binding EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Header="enddate" x:Uid="EndDateHeader" />
     </StackPanel>
 </ContentDialog>
