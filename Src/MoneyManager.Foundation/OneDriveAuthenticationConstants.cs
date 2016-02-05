@@ -26,6 +26,11 @@
         public const string MSA_CLIENT_ID = "ID";
 
         /// <summary>
+        ///     Client ID used for the OneDrive authentication
+        /// </summary>
+        public const string MSA_CLIENT_SECRET = "SECRET";
+
+        /// <summary>
         ///     Return url for the OneDrive authentication
         /// </summary>
         public const string RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
