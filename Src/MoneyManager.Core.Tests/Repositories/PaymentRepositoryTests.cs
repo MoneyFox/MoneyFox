@@ -75,8 +75,6 @@ namespace MoneyManager.Core.Tests.Repositories
             repository.Save(payment);
 
             Assert.AreSame(payment, paymentDataAccessMock.PaymentTestList[0]);
-            Assert.AreSame(account, paymentDataAccessMock.PaymentTestList[0].ChargedAccount);
-            Assert.IsNull(paymentDataAccessMock.PaymentTestList[0].TargetAccount);
             Assert.AreEqual((int) PaymentType.Income, paymentDataAccessMock.PaymentTestList[0].Type);
         }
 
@@ -118,8 +116,6 @@ namespace MoneyManager.Core.Tests.Repositories
             repository.Save(payment);
 
             Assert.AreSame(payment, paymentDataAccessMock.PaymentTestList[0]);
-            Assert.AreSame(account, paymentDataAccessMock.PaymentTestList[0].ChargedAccount);
-            Assert.IsNull(paymentDataAccessMock.PaymentTestList[0].TargetAccount);
             Assert.AreEqual((int) PaymentType.Transfer, paymentDataAccessMock.PaymentTestList[0].Type);
         }
 

@@ -58,7 +58,7 @@ namespace MoneyManager.Core.Tests.Authentication
 
             Mvx.RegisterSingleton(settingsSetup.Object);
 
-            Assert.AreEqual(15, new Session().ValidateSession());
+            new Session().ValidateSession().ShouldBeFalse();
         }
 
         [TestMethod]
@@ -73,7 +73,7 @@ namespace MoneyManager.Core.Tests.Authentication
 
             Mvx.RegisterSingleton(settingsSetup.Object);
 
-            Assert.AreEqual(10, new Session().ValidateSession());
+            new Session().ValidateSession().ShouldBeTrue();
         }
 
         [TestMethod]
