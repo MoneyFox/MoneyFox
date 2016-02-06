@@ -154,16 +154,16 @@
     <value>Баланс</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>Это повторяющаяся операция. Вы хотите изменить все будущие операции или только эту?</value>
+    <value>Это повторяющаяся операция. Вы хотите обновить все будущие операции или только эту?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Обновить повторения?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Каждый день</value>
+    <value>Ежедневно</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Каждый день без выходных</value>
+    <value>Ежедневно без выходных</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Вы действительно хотите удалить этот счёт?</value>
@@ -190,7 +190,7 @@
     <value>Обратная связь</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback Money Fox</value>
+    <value>Обратная связь Money Fox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
     <value>Редактировать доход</value>
@@ -319,13 +319,13 @@
     <value>Добавить</value>
   </data>
   <data name="CategorySummary" xml:space="preserve">
-    <value>Суммарная категория</value>
+    <value>Категории</value>
   </data>
   <data name="SpreadingLabel" xml:space="preserve">
     <value>Категория распространения</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Выбранный счёт</value>
+    <value>Исходный счёт</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
     <value>Целевой счет</value>
@@ -345,22 +345,13 @@
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Оценить приложение</value>
   </data>
-  <data name="HalloWeltText" xml:space="preserve">
-    <value>Hallo Welt</value>
-  </data>
-  <data name="HelloWorldResponse" xml:space="preserve">
-    <value>Hello beautiful</value>
-  </data>
-  <data name="HelloWorldText" xml:space="preserve">
-    <value>Здравствуй, мир</value>
-  </data>
   <data name="BiweeklyLabel" xml:space="preserve">
     <value>Раз в две недели</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Add Category </value>
+    <value>Добавить категорию </value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Edit Category</value>
+    <value>Изменить категорию</value>
   </data>
 </root>

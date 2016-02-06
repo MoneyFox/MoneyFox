@@ -154,10 +154,10 @@
     <value>Kapitalfluss</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>Dies ist eine wiederkehrende Zahlung. Möchtest du sie für zukünftige Transaktionen aktualisieren oder nur dieses Mal?</value>
+    <value>Dies ist eine wiederkehrende Zahlung. Soll die Anpassung auch auf künftige Zahlungen übernommen werden oder nur auf diese?</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
-    <value>Wiederholungen aktualisieren</value>
+    <value>Wiederholungen aktualisieren?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>Täglich</value>
@@ -229,7 +229,7 @@
     <value>Keine</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
     <value>Existierende Sicherungen werden überschrieben. Möchtest du Fortfahren?</value>
@@ -345,15 +345,6 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Bewerte dieses App</value>
-  </data>
-  <data name="HalloWeltText" xml:space="preserve">
-    <value>Hallo Welt</value>
-  </data>
-  <data name="HelloWorldResponse" xml:space="preserve">
-    <value>Hallo Schönheit</value>
-  </data>
-  <data name="HelloWorldText" xml:space="preserve">
-    <value>Hello World</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
     <value>Zweiwöchentlich</value>
