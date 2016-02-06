@@ -13,6 +13,8 @@ namespace MoneyManager.Core.Repositories
     [ImplementPropertyChanged]
     public class PaymentRepository : IPaymentRepository
     {
+        private readonly IAccountRepository accountRepository;
+        private readonly IRepository<Category> categoryRepository;
         private readonly IDataAccess<Payment> dataAccess;
         private readonly IDataAccess<RecurringPayment> recurringDataAccess;
         private ObservableCollection<Payment> data;
@@ -24,11 +26,19 @@ namespace MoneyManager.Core.Repositories
         /// <param name="recurringDataAccess">
         ///     Instanced <see cref="IDataAccess{T}" /> for <see cref="RecurringPayment" />
         /// </param>
+        /// <param name="accountRepository">Instanced <see cref="IAccountRepository" /></param>
+        /// <param name="categoryRepository">
+        ///     Instanced <see cref="IRepository{T}" /> for <see cref="Category" />
+        /// </param>
         public PaymentRepository(IDataAccess<Payment> dataAccess,
-            IDataAccess<RecurringPayment> recurringDataAccess)
+            IDataAccess<RecurringPayment> recurringDataAccess,
+            IAccountRepository accountRepository,
+            IRepository<Category> categoryRepository)
         {
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
+            this.accountRepository = accountRepository;
+            this.categoryRepository = categoryRepository;
 
             Load();
         }

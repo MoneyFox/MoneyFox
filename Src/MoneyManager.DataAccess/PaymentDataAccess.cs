@@ -7,7 +7,6 @@ using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 using SQLite.Net;
-using SQLiteNetExtensions.Extensions;
 
 namespace MoneyManager.DataAccess
 {
@@ -30,7 +29,7 @@ namespace MoneyManager.DataAccess
         /// <param name="itemToSave">Item to SaveItem</param>
         protected override void SaveToDb(Payment itemToSave)
         {
-            using (var db = connectionFactory.GetConnection())
+            using (var db = connectionCreator.GetConnection())
             {
                 SaveRecurringPayment(itemToSave, db);
                 itemToSave.Id = db.InsertOrReplace(itemToSave);
@@ -51,7 +50,7 @@ namespace MoneyManager.DataAccess
         /// <param name="payment">Item to Delete.</param>
         protected override void DeleteFromDatabase(Payment payment)
         {
-            using (var dbConn = connectionFactory.GetConnection())
+            using (var dbConn = connectionCreator.GetConnection())
             {
                 dbConn.Delete(payment);
             }
@@ -64,7 +63,7 @@ namespace MoneyManager.DataAccess
         /// <returns>List of loaded payments.</returns>
         protected override List<Payment> GetListFromDb(Expression<Func<Payment, bool>> filter)
         {
-            using (var db = connectionFactory.GetConnection())
+            using (var db = connectionCreator.GetConnection())
             {
                 var listQuery = db.Table<Payment>();
 
