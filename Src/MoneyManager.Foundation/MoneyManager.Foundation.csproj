@@ -61,10 +61,8 @@
     <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Model\CashFlow.cs" />
-    <Compile Include="Model\FinancialTransaction.cs" />
     <Compile Include="Model\Payment.cs" />
     <Compile Include="Model\RecurringPayment.cs" />
-    <Compile Include="Model\RecurringTransaction.cs" />
     <Compile Include="OneDriveAuthenticationConstants.cs" />
     <Compile Include="SqliteConnectionCreator.cs" />
     <Compile Include="Enumerations.cs" />
