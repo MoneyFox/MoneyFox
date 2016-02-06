@@ -26,7 +26,9 @@ namespace MoneyManager.Core.Tests.ViewModels
             var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
             var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
             var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbHelper),
-                new RecurringPaymentDataAccess(dbHelper));
+                new RecurringPaymentDataAccess(dbHelper),
+                accountRepository,
+                new CategoryRepository(new CategoryDataAccess(dbHelper)));
             var paymentManager = new PaymentManager(paymentRepository, accountRepository,
                 new Mock<IDialogService>().Object);
 

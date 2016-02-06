@@ -1,5 +1,4 @@
 ﻿using System;
-using ReactiveUI.Fody.Helpers;
 using SQLite.Net.Attributes;
 
 namespace MoneyManager.Foundation.Model
@@ -116,7 +115,6 @@ namespace MoneyManager.Foundation.Model
         ///     The <see cref="Category" /> for this payment
         /// </summary>
         [Ignore]
-        [Reactive]
         public Category Category
         {
             get { return category; }
