@@ -67,7 +67,7 @@ namespace MoneyManager.Core.Tests.ViewModels
         public void Version_NoParams_ReturnCorrectMail()
         {
             var appinfos = new Mock<IAppInformation>();
-            appinfos.Setup(x => x.GetVersion).Returns("42");
+            appinfos.Setup(x => x.Version).Returns("42");
 
             new AboutViewModel(appinfos.Object,
                 new Mock<IMvxComposeEmailTask>().Object,

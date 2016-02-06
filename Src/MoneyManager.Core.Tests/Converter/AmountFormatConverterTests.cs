@@ -1,20 +1,19 @@
 ﻿using MoneyManager.Core.Converter;
-using Xunit;
-using XunitShouldExtension;
+using NUnit.Framework;
+using Shouldly;
 
 namespace MoneyManager.Core.Tests.Converter
 {
+    [TestFixture]
     public class AmountFormatConverterTests
     {
-        [Theory]
-        [InlineData(123.45)]
-        [InlineData(123)]
-        public void Convert_Amount_ValidString(double amount)
+        public void Convert_FloatAmount_ValidString()
         {
+            var amount = 123.45;
             new AmountFormatConverter().Convert(amount, null, null, null).ShouldBe(amount.ToString("C"));
         }
 
-        [Fact]
+        [Test]
         public void ConvertBack_Input_EqualsInput()
         {
             var converter = new AmountFormatConverter();

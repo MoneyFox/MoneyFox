@@ -21,11 +21,16 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void SaveWithouthAccount_NoAccount_InvalidDataException()
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
 
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
-                new RecurringPaymentDataAccessMock());
+                new RecurringPaymentDataAccessMock(),
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object);
 
             var payment = new Payment
             {
@@ -39,12 +44,17 @@ namespace MoneyManager.Core.Tests.Repositories
         [InlineData(PaymentType.Income)]
         public void Save_DifferentPaymentTypes_CorrectlySaved(PaymentType type)
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
 
             var paymentDataAccessMock = new PaymentDataAccessMock();
             var repository = new PaymentRepository(paymentDataAccessMock,
-                new RecurringPaymentDataAccessMock());
+                new RecurringPaymentDataAccessMock(),
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object);
 
             var account = new Account
             {
@@ -70,12 +80,17 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void Save_TransferPayment_CorrectlySaved()
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
 
             var paymentDataAccessMock = new PaymentDataAccessMock();
-            var repository = new PaymentRepository(paymentDataAccessMock,
-                new RecurringPaymentDataAccessMock());
+            var repository = new PaymentRepository(new PaymentDataAccessMock(),
+                new RecurringPaymentDataAccessMock(),
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object);
 
             var account = new Account
             {
@@ -106,12 +121,17 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void PaymentRepository_Delete()
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
 
             var paymentDataAccessMock = new PaymentDataAccessMock();
-            var repository = new PaymentRepository(paymentDataAccessMock,
-                new RecurringPaymentDataAccessMock());
+            var repository = new PaymentRepository(new PaymentDataAccessMock(),
+                new RecurringPaymentDataAccessMock(),
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object);
 
             var account = new Account
             {
@@ -136,10 +156,16 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void PaymentRepository_AccessCache()
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
-            new PaymentRepository(new PaymentDataAccessMock(), new RecurringPaymentDataAccessMock())
+            var categoryRepositorySetup = new Mock<IRepository<Category>>();
+            categoryRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
+
+            new PaymentRepository(new PaymentDataAccessMock(),
+                new RecurringPaymentDataAccessMock(), 
+                accountRepositorySetup.Object, 
+                categoryRepositorySetup.Object)
                 .Data
                 .ShouldNotBeNull();
         }
@@ -147,11 +173,16 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void PaymentRepository_AddMultipleToCache()
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
 
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
-                new RecurringPaymentDataAccessMock());
+                new RecurringPaymentDataAccessMock(),
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object);
 
             var account = new Account
             {
@@ -181,11 +212,16 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void AddItemToDataList_SaveAccount_IsAddedToData()
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
 
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
-                new RecurringPaymentDataAccessMock());
+                new RecurringPaymentDataAccessMock(),
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object);
 
             var account = new Account
             {
@@ -206,11 +242,16 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void GetUnclearedPayments_PastDate_PastPayments()
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
 
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
-                new RecurringPaymentDataAccessMock());
+                new RecurringPaymentDataAccessMock(),
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object);
 
             var account = new Account
             {
@@ -240,12 +281,16 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void GetUnclearedPayments_FutureDate_PastPayments()
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
 
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
-                new RecurringPaymentDataAccessMock());
-
+                new RecurringPaymentDataAccessMock(),
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object);
             var account = new Account
             {
                 Name = "TestAccount"
@@ -271,11 +316,16 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void GetUnclearedPayments_AccountNull()
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
 
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
-                new RecurringPaymentDataAccessMock());
+                new RecurringPaymentDataAccessMock(),
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object);
 
             repository.Data.Add(new Payment
             {
@@ -293,8 +343,8 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void Load_Payment_DataInitialized()
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var dataAccessSetup = new Mock<IDataAccess<Payment>>();
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>
@@ -303,25 +353,36 @@ namespace MoneyManager.Core.Tests.Repositories
                 new Payment {Id = 15}
             });
 
-            var categoryRepository = new PaymentRepository(dataAccessSetup.Object,
-                new Mock<IDataAccess<RecurringPayment>>().Object);
-            categoryRepository.Load();
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
 
-            categoryRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
-            categoryRepository.Data.Any(x => x.Id == 15).ShouldBeTrue();
+
+            var paymentRepository = new PaymentRepository(dataAccessSetup.Object,
+                new Mock<IDataAccess<RecurringPayment>>().Object,
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object);
+            paymentRepository.Load();
+
+            paymentRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
+            paymentRepository.Data.Any(x => x.Id == 15).ShouldBeTrue();
         }
 
         [Fact]
         public void GetRelatedPayments_Account_CorrectAccounts()
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var dataAccessSetup = new Mock<IDataAccess<Payment>>();
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
 
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
+
             var repo = new PaymentRepository(dataAccessSetup.Object,
-                new Mock<IDataAccess<RecurringPayment>>().Object);
+                new Mock<IDataAccess<RecurringPayment>>().Object,
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object);
 
             var account1 = new Account {Id = 1};
             var account3 = new Account {Id = 3};
@@ -341,14 +402,19 @@ namespace MoneyManager.Core.Tests.Repositories
         [Fact]
         public void LoadRecurringList_NoParameters_ListWithRecurringTrans()
         {
-            var accountRepoSetup = new Mock<IDataAccess<Account>>();
-            accountRepoSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             var dataAccessSetup = new Mock<IDataAccess<Payment>>();
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
 
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
+
             var repo = new PaymentRepository(dataAccessSetup.Object,
-                new Mock<IDataAccess<RecurringPayment>>().Object)
+                new Mock<IDataAccess<RecurringPayment>>().Object,
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object)
             {
                 Data = new ObservableCollection<Payment>(new List<Payment>
                 {
@@ -412,9 +478,6 @@ namespace MoneyManager.Core.Tests.Repositories
                 IsCleared = cleared
             };
 
-            var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
-            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account> {account});
-
             var paymentDataAccessMockSetup = new Mock<IDataAccess<Payment>>();
             paymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<Payment>()))
                 .Callback((Payment trans) => deletedId = trans.Id);
@@ -426,7 +489,17 @@ namespace MoneyManager.Core.Tests.Repositories
             recPaymentDataAccessMockSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>()))
                 .Returns(new List<RecurringPayment>());
 
-            new PaymentRepository(paymentDataAccessMockSetup.Object, recPaymentDataAccessMockSetup.Object).Delete(
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> { account });
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
+
+            new PaymentRepository(paymentDataAccessMockSetup.Object, 
+                recPaymentDataAccessMockSetup.Object, 
+                accountRepositorySetup.Object, 
+                categoryDataAccessSetup.Object)
+                .Delete(
                 payment);
 
             deletedId.ShouldBe(10);
@@ -465,8 +538,6 @@ namespace MoneyManager.Core.Tests.Repositories
                 IsCleared = isCleared
             };
 
-            var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
-            accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account> {account1, account2});
 
             var paymentDataAccessMockSetup = new Mock<IDataAccess<Payment>>();
             paymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<Payment>()))
@@ -479,7 +550,16 @@ namespace MoneyManager.Core.Tests.Repositories
             recPaymentDataAccessMockSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>()))
                 .Returns(new List<RecurringPayment>());
 
-            new PaymentRepository(paymentDataAccessMockSetup.Object, recPaymentDataAccessMockSetup.Object).Delete(
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> { account1, account2 });
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
+
+            new PaymentRepository(paymentDataAccessMockSetup.Object, 
+                recPaymentDataAccessMockSetup.Object,
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object).Delete(
                 payment);
 
             deletedId.ShouldBe(10);

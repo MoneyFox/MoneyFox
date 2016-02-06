@@ -1,7 +1,5 @@
 ﻿using System;
-using PropertyChanged;
 using SQLite.Net.Attributes;
-using SQLiteNetExtensions.Attributes;
 
 namespace MoneyManager.Foundation.Model
 {
@@ -9,7 +7,6 @@ namespace MoneyManager.Foundation.Model
     ///     Databasemodel for payments. Includes expenses, income and transfers.
     ///     Databasetable: Payments
     /// </summary>
-    [ImplementPropertyChanged]
     [Table("Payments")]
     public class Payment
     {
@@ -23,20 +20,17 @@ namespace MoneyManager.Foundation.Model
         ///     In case it's a expense or transfer the foreign key to the <see cref="Account" /> who will be charged.
         ///     In case it's an income the  foreign key to the <see cref="Account" /> who will be credited.
         /// </summary>
-        [ForeignKey(typeof (Account))]
         public int ChargedAccountId { get; set; }
 
         /// <summary>
         ///     Foreign key to the account who will be credited by a transfer.
         ///     Not used for the other payment types.
         /// </summary>
-        [ForeignKey(typeof (Account))]
         public int TargetAccountId { get; set; }
 
         /// <summary>
         ///     Foreign key to the <see cref="Category" /> for this payment
         /// </summary>
-        [ForeignKey(typeof (Category))]
         public int? CategoryId { get; set; }
 
         /// <summary>
@@ -73,34 +67,85 @@ namespace MoneyManager.Foundation.Model
         /// <summary>
         ///     Foreign key to the <see cref="RecurringPayment" /> if it's recurring.
         /// </summary>
-        [ForeignKey(typeof (RecurringPayment))]
         public int RecurringPaymentId { get; set; }
+
+        private Account chargedAccount;
 
         /// <summary>
         ///     In case it's a expense or transfer the account who will be charged.
         ///     In case it's an income the account who will be credited.
         /// </summary>
-        [ManyToOne("ChargedAccountId", CascadeOperations = CascadeOperation.All)]
-        public Account ChargedAccount { get; set; }
+        [Ignore]
+        public Account ChargedAccount
+        {
+            get { return chargedAccount; }
+            set
+            {
+                if (chargedAccount != value)
+                {
+                    chargedAccount = value;
+                    ChargedAccountId = value.Id;
+                }
+            }
+        }
+
+        private Account targetAccount;
 
         /// <summary>
         ///     The <see cref="Account" /> who will be credited by a transfer.
         ///     Not used for the other payment types.
         /// </summary>
-        [ManyToOne("TargetAccountId", CascadeOperations = CascadeOperation.All)]
-        public Account TargetAccount { get; set; }
+        [Ignore]
+        public Account TargetAccount
+        {
+            get { return targetAccount; }
+            set
+            {
+                if (targetAccount != value)
+                {
+                    targetAccount = value;
+                    TargetAccountId = value.Id;
+                }
+            }
+        }
+
+        private Category category;
 
         /// <summary>
         ///     The <see cref="Category" /> for this payment
         /// </summary>
-        [ManyToOne]
-        public Category Category { get; set; }
+        [Ignore]
+        public Category Category
+        {
+            get { return category; }
+            set
+            {
+                if (category != value)
+                {
+                    category = value;
+                    CategoryId = value?.Id;
+                }
+            }
+        }
+
+        private RecurringPayment recurringPayment;
 
         /// <summary>
         ///     The <see cref="RecurringPayment" /> if it's recurring.
         /// </summary>
-        [ManyToOne("RecurringPaymentId", CascadeOperations = CascadeOperation.All)]
-        public RecurringPayment RecurringPayment { get; set; }
+        [Ignore]
+        public RecurringPayment RecurringPayment
+        {
+            get { return recurringPayment; }
+            set
+            {
+                if (recurringPayment != value)
+                {
+                    recurringPayment = value;
+                    RecurringPaymentId = value.Id;
+                }
+            }
+        }
 
         /// <summary>
         ///     Checks if the payment is ready to clear based on the date of

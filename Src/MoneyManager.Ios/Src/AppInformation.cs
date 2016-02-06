@@ -4,6 +4,6 @@ namespace MoneyManager.Ios
 {
     public class AppInformation : IAppInformation
     {
-        public string GetVersion { get; }
+        public string Version { get; }
     }
 }
