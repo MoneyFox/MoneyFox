@@ -2,6 +2,8 @@
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmCross.Plugin.Messenger": "4.0.0-beta8",
+    "NUnit": "3.0.1",
+    "NUnit.Runners": "3.0.1",
     "xunit": "2.1.0",
     "xunit.assert": "2.1.0",
     "xunit.core": "2.1.0",

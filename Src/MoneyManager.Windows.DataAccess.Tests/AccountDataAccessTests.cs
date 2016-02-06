@@ -1,23 +1,23 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.DataAccess;
+﻿using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
+using NUnit.Framework;
 
 namespace MoneyManager.Windows.DataAccess.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class AccountDataAccessTests
     {
         private SqliteConnectionCreator connectionCreator;
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
         }
 
-        [TestMethod]
+        [Test]
         public void SaveToDatabase_NewAccount_CorrectId()
         {
             var name = "Sparkonto";
@@ -36,7 +36,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
             Assert.AreEqual(balance, account.CurrentBalance);
         }
 
-        [TestMethod]
+        [Test]
         public void SaveToDatabase_ExistingAccount_CorrectId()
         {
             var balance = 456468;
