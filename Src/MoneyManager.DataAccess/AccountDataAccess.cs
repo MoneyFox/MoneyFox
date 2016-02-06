@@ -6,7 +6,6 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
-using SQLiteNetExtensions.Extensions;
 
 namespace MoneyManager.DataAccess
 {
