@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
@@ -23,6 +22,8 @@ namespace MoneyManager.Core.Repositories
         {
             this.dataAccess = dataAccess;
             data = new ObservableCollection<Category>(this.dataAccess.LoadList());
+
+            Load();
         }
 
         /// <summary>
@@ -30,13 +31,9 @@ namespace MoneyManager.Core.Repositories
         /// </summary>
         public ObservableCollection<Category> Data
         {
-            get { return data ?? (data = new ObservableCollection<Category>(dataAccess.LoadList())); }
+            get { return data; }
             set
             {
-                if (data == null)
-                {
-                    data = new ObservableCollection<Category>(dataAccess.LoadList());
-                }
                 if (Equals(data, value))
                 {
                     return;
@@ -48,34 +45,33 @@ namespace MoneyManager.Core.Repositories
         public Category Selected { get; set; }
 
         /// <summary>
-        ///     SaveItem a new paymentToDelete or update an existin one.
+        ///     Save a new category or update an existing one.
         /// </summary>
-        /// <param name="item">paymentToDelete to save</param>
-        public void Save(Category item)
+        /// <param name="category">accountToDelete to save</param>
+        public void Save(Category category)
         {
-            if (string.IsNullOrWhiteSpace(item.Name))
+            if (string.IsNullOrWhiteSpace(category.Name))
             {
-                item.Name = Strings.NoNamePlaceholderLabel;
+                category.Name = Strings.NoNamePlaceholderLabel;
             }
 
-            if (item.Id == 0)
-            {
-                var list = data.ToList();
-                list.Add(item);
+            dataAccess.SaveItem(category);
 
-                data = new ObservableCollection<Category>(list.OrderBy(x => x.Name).ToList());
+            if (category.Id == 0)
+            {
+                // Reload data
+                Load();
             }
-            dataAccess.SaveItem(item);
         }
 
         /// <summary>
-        ///     Deletes the passed paymentToDelete and removes the paymentToDelete from cache
+        ///     Deletes the passed category and removes it from cache
         /// </summary>
-        /// <param name="paymentToDelete">paymentToDelete to delete</param>
-        public void Delete(Category paymentToDelete)
+        /// <param name="categoryToDelete">accountToDelete to delete</param>
+        public void Delete(Category categoryToDelete)
         {
-            data.Remove(paymentToDelete);
-            dataAccess.DeleteItem(paymentToDelete);
+            data.Remove(categoryToDelete);
+            dataAccess.DeleteItem(categoryToDelete);
         }
 
         /// <summary>
@@ -83,7 +79,12 @@ namespace MoneyManager.Core.Repositories
         /// </summary>
         public void Load(Expression<Func<Category, bool>> filter = null)
         {
-            Data = new ObservableCollection<Category>(dataAccess.LoadList(filter));
+            Data = new ObservableCollection<Category>();
+
+            foreach (var category in dataAccess.LoadList(filter))
+            {
+                Data.Add(category);
+            }
         }
     }
 }
