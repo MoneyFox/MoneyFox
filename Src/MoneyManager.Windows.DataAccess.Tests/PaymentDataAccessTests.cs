@@ -1,23 +1,23 @@
-﻿using MoneyManager.DataAccess;
+﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using NUnit.Framework;
 
 namespace MoneyManager.Windows.DataAccess.Tests
 {
-    [TestFixture()]
+    [TestClass]
     public class PaymentDataAccessTests
     {
         private SqliteConnectionCreator connectionCreator;
 
-        [SetUp]
+        [TestInitialize]
         public void Init()
         {
             connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
         }
 
-        [Test]
+        [TestMethod]
         public void SaveToDatabase_NewPayment_CorrectId()
         {
             var amount = 789;
@@ -33,7 +33,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
             Assert.AreEqual(amount, payment.Amount);
         }
 
-        [Test]
+        [TestMethod]
         public void SaveToDatabase_ExistingPayment_CorrectId()
         {
             var payment = new Payment();

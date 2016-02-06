@@ -1,23 +1,23 @@
-﻿using MoneyManager.DataAccess;
+﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using NUnit.Framework;
 
 namespace MoneyManager.Windows.DataAccess.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class CategoryDataAccessTests
     {
         private SqliteConnectionCreator connectionCreator;
 
-        [SetUp]
+        [TestInitialize]
         public void Init()
         {
             connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
         }
 
-        [Test]
+        [TestMethod]
         public void SaveToDatabase_NewCategory_CorrectId()
         {
             var name = "TestCategory";
@@ -33,7 +33,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
             Assert.AreEqual(name, category.Name);
         }
 
-        [Test]
+        [TestMethod]
         public void SaveToDatabase_ExistingCategory_CorrectId()
         {
             var category = new Category();
