@@ -10,7 +10,6 @@ namespace MoneyManager.Core.Tests.Converter
         public void Convert_FloatAmount_ValidString()
         {
             var amount = 123.45;
-           
             Assert.AreEqual(amount.ToString("C"), new AmountFormatConverter().Convert(amount, null, null, null));
         }
 
@@ -19,7 +18,6 @@ namespace MoneyManager.Core.Tests.Converter
         {
             var amount = 30;
             Assert.AreEqual(amount, new AmountFormatConverter().Convert(amount, null, null, null));
-
         }
     }
 }
