@@ -40,7 +40,7 @@ namespace MoneyManager.Core.Helpers
         {
             switch (type)
             {
-                case PaymentType.Spending:
+                case PaymentType.Expense:
                     return isEditMode ? Strings.EditSpendingTitle : Strings.AddSpendingTitle;
 
                 case PaymentType.Income:
@@ -66,8 +66,8 @@ namespace MoneyManager.Core.Helpers
                 case (int) PaymentType.Income:
                     return PaymentType.Income.ToString();
 
-                case (int) PaymentType.Spending:
-                    return PaymentType.Spending.ToString();
+                case (int) PaymentType.Expense:
+                    return PaymentType.Expense.ToString();
 
                 case (int) PaymentType.Transfer:
                     return PaymentType.Transfer.ToString();

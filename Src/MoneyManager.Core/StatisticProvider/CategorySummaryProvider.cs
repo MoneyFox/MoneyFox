@@ -33,7 +33,7 @@ namespace MoneyManager.Core.StatisticProvider
                         .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .Where(x => x.CategoryId == category.Id)
                         .Where(x => x.Type != (int) PaymentType.Transfer)
-                        .Sum(x => x.Type == (int) PaymentType.Spending
+                        .Sum(x => x.Type == (int) PaymentType.Expense
                             ? -x.Amount
                             : x.Amount)
                 });
