@@ -1,9 +1,11 @@
 ﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using Xunit;
 using XunitShouldExtension;
+using Assert = Xunit.Assert;
 
 namespace MoneyManager.Core.Tests.Helper
 {
@@ -94,7 +96,7 @@ namespace MoneyManager.Core.Tests.Helper
             result.Date.ShouldBe(DateTime.Today);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetPaymentFromRecurring_MonthlyPayment_CorrectMappedFinancialTrans()
         {
             var account = new Account {Id = 2};
@@ -143,7 +145,7 @@ namespace MoneyManager.Core.Tests.Helper
                 .ShouldBeTrue();
         }
 
-        [Fact]
+        [TestMethod]
         public void CheckIfRepeatable_UnclearedPayment_ReturnFalse()
         {
             var account = new Account {Id = 2};

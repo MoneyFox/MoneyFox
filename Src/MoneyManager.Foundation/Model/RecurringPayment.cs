@@ -6,6 +6,12 @@ namespace MoneyManager.Foundation.Model
     [Table("RecurringPayments")]
     public class RecurringPayment
     {
+        private Category category;
+
+        private Account chargedAccount;
+
+        private Account targetAccount;
+
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
@@ -23,13 +29,58 @@ namespace MoneyManager.Foundation.Model
         public int Recurrence { get; set; }
         public string Note { get; set; }
 
+        /// <summary>
+        ///     In case it's a expense or transfer the account who will be charged.
+        ///     In case it's an income the account who will be credited.
+        /// </summary>
         [Ignore]
-        public Account ChargedAccount { get; set; }
+        public Account ChargedAccount
+        {
+            get { return chargedAccount; }
+            set
+            {
+                if (chargedAccount != value)
+                {
+                    chargedAccount = value;
+                    ChargedAccountId = value?.Id ?? 0;
+                }
+            }
+        }
 
-        [Ignore]
-        public Account TargetAccount { get; set; }
 
+        /// <summary>
+        ///     The <see cref="Account" /> who will be credited by a transfer.
+        ///     Not used for the other payment types.
+        /// </summary>
         [Ignore]
-        public Category Category { get; set; }
+        public Account TargetAccount
+        {
+            get { return targetAccount; }
+            set
+            {
+                if (targetAccount != value)
+                {
+                    targetAccount = value;
+                    TargetAccountId = value?.Id ?? 0;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     The <see cref="Category" /> for this payment
+        /// </summary>
+        [Ignore]
+        public Category Category
+        {
+            get { return category; }
+            set
+            {
+                if (category != value)
+                {
+                    category = value;
+                    CategoryId = value?.Id ?? 0;
+                }
+            }
+        }
     }
 }
