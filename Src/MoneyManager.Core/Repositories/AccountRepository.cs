@@ -26,18 +26,16 @@ namespace MoneyManager.Core.Repositories
             data = new ObservableCollection<Account>(this.dataAccess.LoadList());
         }
 
+        public Account Selected { get; set; }
+
         /// <summary>
         ///     Cached account data
         /// </summary>
         public ObservableCollection<Account> Data
         {
-            get { return data ?? (data = new ObservableCollection<Account>(dataAccess.LoadList())); }
+            get { return data; }
             set
             {
-                if (data == null)
-                {
-                    data = new ObservableCollection<Account>(dataAccess.LoadList());
-                }
                 if (Equals(data, value))
                 {
                     return;
@@ -46,34 +44,34 @@ namespace MoneyManager.Core.Repositories
             }
         }
 
-        public Account Selected { get; set; }
-
         /// <summary>
-        ///     SaveItem a new paymentToDelete or update an existin one.
+        ///     Save a new account or update an existing one.
         /// </summary>
-        /// <param name="item">paymentToDelete to save</param>
-        public void Save(Account item)
+        /// <param name="account">accountToDelete to save</param>
+        public void Save(Account account)
         {
-            if (string.IsNullOrWhiteSpace(item.Name))
+            if (string.IsNullOrWhiteSpace(account.Name))
             {
-                item.Name = Strings.NoNamePlaceholderLabel;
+                account.Name = Strings.NoNamePlaceholderLabel;
             }
 
-            if (item.Id == 0)
+            dataAccess.SaveItem(account);
+
+            if (account.Id == 0)
             {
-                data.Add(item);
+                // Reload data
+                Load();
             }
-            dataAccess.SaveItem(item);
         }
 
         /// <summary>
-        ///     Deletes the passed paymentToDelete and removes the paymentToDelete from cache
+        ///     Deletes the passed account and removes it from cache
         /// </summary>
-        /// <param name="paymentToDelete">paymentToDelete to delete</param>
-        public void Delete(Account paymentToDelete)
+        /// <param name="accountToDelete">accountToDelete to delete</param>
+        public void Delete(Account accountToDelete)
         {
-            data.Remove(paymentToDelete);
-            dataAccess.DeleteItem(paymentToDelete);
+            data.Remove(accountToDelete);
+            dataAccess.DeleteItem(accountToDelete);
         }
 
         /// <summary>
@@ -81,7 +79,12 @@ namespace MoneyManager.Core.Repositories
         /// </summary>
         public void Load(Expression<Func<Account, bool>> filter = null)
         {
-            Data = new ObservableCollection<Account>(dataAccess.LoadList(filter));
+            Data = new ObservableCollection<Account>();
+
+            foreach (var account in dataAccess.LoadList(filter))
+            {
+                Data.Add(account);
+            }
         }
 
         /// <summary>
@@ -95,7 +98,7 @@ namespace MoneyManager.Core.Repositories
             PrehandleAddIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int) PaymentType.Income
+                payment.Type == (int)PaymentType.Income
                     ? x
                     : -x;
 
@@ -113,7 +116,7 @@ namespace MoneyManager.Core.Repositories
             PrehandleRemoveIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int) PaymentType.Income
+                payment.Type == (int)PaymentType.Income
                     ? -x
                     : x;
 
@@ -122,7 +125,7 @@ namespace MoneyManager.Core.Repositories
 
         private void PrehandleRemoveIfTransfer(Payment payment)
         {
-            if (payment.Type == (int) PaymentType.Transfer)
+            if (payment.Type == (int)PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
@@ -145,7 +148,7 @@ namespace MoneyManager.Core.Repositories
 
         private void PrehandleAddIfTransfer(Payment payment)
         {
-            if (payment.Type == (int) PaymentType.Transfer)
+            if (payment.Type == (int)PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());

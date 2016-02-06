@@ -30,19 +30,10 @@ namespace MoneyManager.DataAccess
         /// <param name="itemToSave">Item to SaveItem</param>
         protected override void SaveToDb(Payment itemToSave)
         {
-            using (var db = connectionCreator.GetConnection())
+            using (var db = connectionFactory.GetConnection())
             {
                 SaveRecurringPayment(itemToSave, db);
-
-                //Check if the payment is new or an updated one
-                if (itemToSave.Id == 0)
-                {
-                    db.InsertOrReplaceWithChildren(itemToSave);
-                }
-                else
-                {
-                    db.UpdateWithChildren(itemToSave);
-                }
+                itemToSave.Id = db.InsertOrReplace(itemToSave);
             }
         }
 
@@ -50,15 +41,7 @@ namespace MoneyManager.DataAccess
         {
             if (itemToSave.IsRecurring)
             {
-                //Check if the recurring payment is new or an updated one
-                if (itemToSave.RecurringPayment.Id == 0)
-                {
-                    db.Insert(itemToSave.RecurringPayment);
-                }
-                else
-                {
-                    db.Update(itemToSave.RecurringPayment);
-                }
+                db.InsertOrReplace(itemToSave.RecurringPayment);
             }
         }
 
@@ -68,7 +51,7 @@ namespace MoneyManager.DataAccess
         /// <param name="payment">Item to Delete.</param>
         protected override void DeleteFromDatabase(Payment payment)
         {
-            using (var dbConn = connectionCreator.GetConnection())
+            using (var dbConn = connectionFactory.GetConnection())
             {
                 dbConn.Delete(payment);
             }
@@ -81,16 +64,17 @@ namespace MoneyManager.DataAccess
         /// <returns>List of loaded payments.</returns>
         protected override List<Payment> GetListFromDb(Expression<Func<Payment, bool>> filter)
         {
-            using (var db = connectionCreator.GetConnection())
+            using (var db = connectionFactory.GetConnection())
             {
-                var list = db.GetAllWithChildren(filter, true).ToList();
+                var listQuery = db.Table<Payment>();
 
-                foreach (var payment in list.Where(x => x.IsRecurring && x.RecurringPaymentId != 0))
+                if (filter != null)
                 {
-                    payment.RecurringPayment =
-                        db.GetWithChildren<RecurringPayment>(payment.RecurringPaymentId);
+                    var compiledFilter = filter.Compile();
+                    listQuery = listQuery.Where(x => compiledFilter(x));
                 }
-                return list;
+
+                return listQuery.ToList();
             }
         }
     }

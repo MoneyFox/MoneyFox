@@ -28,14 +28,7 @@ namespace MoneyManager.DataAccess
         {
             using (var db = connectionCreator.GetConnection())
             {
-                if (itemToSave.Id == 0)
-                {
-                    db.InsertWithChildren(itemToSave);
-                }
-                else
-                {
-                    db.UpdateWithChildren(itemToSave);
-                }
+                itemToSave.Id = db.InsertOrReplace(itemToSave);
             }
         }
 
