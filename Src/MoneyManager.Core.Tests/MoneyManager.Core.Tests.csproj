@@ -130,7 +130,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="XunitShouldExtension, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xunit.Should.Extension.1.0.1\lib\XunitShouldExtension.dll</HintPath>
+      <HintPath>..\packages\Xunit.Should.Extension.1.0.4\lib\net45\XunitShouldExtension.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
