@@ -1,15 +1,23 @@
-﻿using MoneyManager.DataAccess;
+﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Windows.DataAccess.Tests
 {
+    [TestClass]
     public class CategoryDataAccessTests
     {
-        [Fact]
+        private SqliteConnectionCreator connectionCreator;
+
+        [TestInitialize]
+        public void Init()
+        {
+            connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
+        }
+
+        [TestMethod]
         public void SaveToDatabase_NewCategory_CorrectId()
         {
             var name = "TestCategory";
@@ -19,28 +27,29 @@ namespace MoneyManager.Windows.DataAccess.Tests
                 Name = name
             };
 
-            new CategoryDataAccess(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory())).SaveItem(category);
+            new CategoryDataAccess(connectionCreator).SaveItem(category);
 
-            category.Id.ShouldBeGreaterThanOrEqualTo(1);
-            category.Name.ShouldBe(name);
+            Assert.AreEqual(1, category.Id);
+            Assert.AreEqual(name, category.Name);
         }
 
-        [Fact]
+        [TestMethod]
         public void SaveToDatabase_ExistingCategory_CorrectId()
         {
             var category = new Category();
 
-            var dataAccess = new CategoryDataAccess(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory()));
+            var dataAccess = new CategoryDataAccess(connectionCreator);
             dataAccess.SaveItem(category);
 
-            category.Name.ShouldBeNull();
+            Assert.IsNull(category.Name);
+
             var id = category.Id;
 
             var name = "TestCategory";
             category.Name = name;
 
-            category.Id.ShouldBe(id);
-            category.Name.ShouldBe(name);
+            Assert.AreEqual(id, category.Id);
+            Assert.AreEqual(name, category.Name);
         }
     }
 }

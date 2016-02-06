@@ -1,25 +1,28 @@
-﻿using System.Linq;
+﻿using System;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Plugins.Sqlite;
+using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using SQLite.Net;
 
-namespace MoneyManager.Foundation
+namespace MoneyManager.Windows.DataAccess.Tests.Testdata
 {
-    public class SqliteConnectionCreator : ISqliteConnectionCreator
+    public class SqliteTestConnectionCreator:ISqliteConnectionCreator
     {
-        private readonly IMvxSqliteConnectionFactory connectionFactory;
+        private readonly string dbname;
+        private readonly MvxSqliteConnectionFactoryBase connectionFactory;
 
-        public SqliteConnectionCreator(IMvxSqliteConnectionFactory connectionFactory)
+        public SqliteTestConnectionCreator()
         {
-            this.connectionFactory = connectionFactory;
-
+            connectionFactory = new WindowsSqliteConnectionFactory();
+            dbname = DateTime.Now.ToString("O");
             CreateDb();
         }
 
         private void CreateDb()
         {
-            using (var db = connectionFactory.GetConnection(OneDriveAuthenticationConstants.DB_NAME))
+            using (var db = connectionFactory.GetConnection(dbname))
             {
                 db.CreateTable<Account>();
                 db.CreateTable<Payment>();
@@ -28,10 +31,6 @@ namespace MoneyManager.Foundation
             }
         }
 
-        /// <summary>
-        ///     Creates the config and establishe the connection to the sqlite database.
-        /// </summary>
-        /// <returns>Established SQLiteConnection.</returns>
         public SQLiteConnection GetConnection()
         {
             return connectionFactory.GetConnection(new SqLiteConfig(OneDriveAuthenticationConstants.DB_NAME, false));

@@ -1,15 +1,23 @@
-﻿using MoneyManager.DataAccess;
+﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Windows.DataAccess.Tests
 {
+    [TestClass]
     public class AccountDataAccessTests
     {
-        [Fact]
+        private SqliteConnectionCreator connectionCreator;
+
+        [TestInitialize]
+        public void Init()
+        {
+            connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
+        }
+
+        [TestMethod]
         public void SaveToDatabase_NewAccount_CorrectId()
         {
             var name = "Sparkonto";
@@ -21,14 +29,14 @@ namespace MoneyManager.Windows.DataAccess.Tests
                 CurrentBalance = balance
             };
 
-            new AccountDataAccess(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory())).SaveItem(account);
+            new AccountDataAccess(connectionCreator).SaveItem(account);
 
-            account.Id.ShouldBeGreaterThanOrEqualTo(1);
-            account.Name.ShouldBe(name);
-            account.CurrentBalance.ShouldBe(balance);
+            Assert.AreEqual(1, account.Id);
+            Assert.AreEqual(name, account.Name);
+            Assert.AreEqual(balance, account.CurrentBalance);
         }
 
-        [Fact]
+        [TestMethod]
         public void SaveToDatabase_ExistingAccount_CorrectId()
         {
             var balance = 456468;
@@ -38,18 +46,19 @@ namespace MoneyManager.Windows.DataAccess.Tests
                 CurrentBalance = balance
             };
 
-            var dataAccess = new AccountDataAccess(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory()));
+            var dataAccess = new AccountDataAccess(connectionCreator);
             dataAccess.SaveItem(account);
 
-            account.Name.ShouldBeNull();
+            Assert.IsNull(account.Name);
+
             var id = account.Id;
 
             var name = "Sparkonto";
             account.Name = name;
 
-            account.Id.ShouldBe(id);
-            account.Name.ShouldBe(name);
-            account.CurrentBalance.ShouldBe(balance);
+            Assert.AreEqual(id, account.Id);
+            Assert.AreEqual(name, account.Name);
+            Assert.AreEqual(balance, account.CurrentBalance);
         }
     }
 }

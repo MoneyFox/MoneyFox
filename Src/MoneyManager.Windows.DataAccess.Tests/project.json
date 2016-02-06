@@ -2,11 +2,7 @@
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmCross.Plugin.Messenger": "4.0.0-beta8",
-    "MvvmCross.Plugin.SQLitePCL": "4.0.0-beta8",
-    "xunit.assert": "2.1.0",
-    "xunit.core": "2.1.0",
-    "xunit.runner.visualstudio": "2.1.0",
-    "Xunit.Should.Extension": "1.0.4"
+    "MvvmCross.Plugin.SQLitePCL": "4.0.0-beta8"
   },
   "frameworks": {
     "uap10.0": {}

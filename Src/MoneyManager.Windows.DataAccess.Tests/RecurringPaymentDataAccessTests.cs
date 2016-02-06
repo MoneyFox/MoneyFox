@@ -1,15 +1,23 @@
-﻿using MoneyManager.DataAccess;
+﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Windows.DataAccess.Tests
 {
+    [TestClass]
     public class RecurringPaymentDataAccessTests
     {
-        [Fact]
+        private SqliteConnectionCreator connectionCreator;
+
+        [TestInitialize]
+        public void Init()
+        {
+            connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
+        }
+
+        [TestMethod]
         public void SaveToDatabase_NewRecurringPayment_CorrectId()
         {
             var amount = 789;
@@ -19,28 +27,29 @@ namespace MoneyManager.Windows.DataAccess.Tests
                 Amount = amount
             };
 
-            new RecurringPaymentDataAccess(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory())).SaveItem(payment);
+            new RecurringPaymentDataAccess(connectionCreator).SaveItem(payment);
 
-            payment.Id.ShouldBeGreaterThanOrEqualTo(1);
-            payment.Amount.ShouldBe(amount);
+            Assert.AreEqual(1, payment.Id);
+            Assert.AreEqual(amount, payment.Amount);
         }
 
-        [Fact]
+        [TestMethod]
         public void SaveToDatabase_ExistingRecurringPayment_CorrectId()
         {
             var payment = new RecurringPayment();
 
-            var dataAccess = new RecurringPaymentDataAccess(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory()));
+            var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
             dataAccess.SaveItem(payment);
 
-            payment.Amount.ShouldBe(0);
+            Assert.AreEqual(0, payment.Amount);
+
             var id = payment.Id;
 
             var amount = 789;
             payment.Amount = amount;
 
-            payment.Id.ShouldBe(id);
-            payment.Amount.ShouldBe(amount);
+            Assert.AreEqual(id, payment.Id);
+            Assert.AreEqual(amount, payment.Amount);
         }
     }
 }
