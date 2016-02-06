@@ -39,7 +39,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 50
                 },
@@ -75,21 +75,21 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 1,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 60
                 },
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today.AddDays(5),
                     Amount = 50
                 },
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today.AddDays(-5),
                     Amount = 40
                 }

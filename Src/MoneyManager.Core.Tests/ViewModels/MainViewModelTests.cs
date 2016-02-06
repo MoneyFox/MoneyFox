@@ -15,7 +15,7 @@ namespace MoneyManager.Core.Tests.ViewModels
     {
         [Theory]
         [InlineData("Income", PaymentType.Income)]
-        [InlineData("Spending", PaymentType.Spending)]
+        [InlineData("Expense", PaymentType.Expense)]
         [InlineData("Transfer", PaymentType.Transfer)]
         public void GoToAddPayment_PaymentType_CorrectPreparation(string typestring, PaymentType type)
         {

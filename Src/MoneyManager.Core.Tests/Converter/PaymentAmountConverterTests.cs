@@ -15,7 +15,7 @@ namespace MoneyManager.Core.Tests.Converter
     public class PaymentAmountConverterTests : MvxIoCSupportingTest
     {
         [Theory]
-        [InlineData(PaymentType.Spending, "- ")]
+        [InlineData(PaymentType.Expense, "- ")]
         [InlineData(PaymentType.Income, "+ ")]
         public void Converter_Payment_AmountSign(PaymentType type, string result)
         {

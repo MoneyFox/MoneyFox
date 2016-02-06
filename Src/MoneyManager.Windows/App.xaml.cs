@@ -85,7 +85,7 @@ namespace MoneyManager.Windows
                 shell.AppFrame.Navigate(typeof (LoginView));
             }
 
-            new TileHelper(Mvx.Resolve<ModifyPaymentViewModel>()).DoNavigation(string.IsNullOrEmpty(e.Arguments)
+            new TileHelper().DoNavigation(string.IsNullOrEmpty(e.Arguments)
                 ? e.TileId
                 : e.Arguments);
 

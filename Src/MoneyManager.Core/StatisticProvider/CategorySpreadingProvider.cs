@@ -34,7 +34,7 @@ namespace MoneyManager.Core.StatisticProvider
                     paymentRepository.Data
                         .Where(x => x.Category != null)
                         .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
-                        .Where(x => x.Type == (int) PaymentType.Spending || x.Type == (int) PaymentType.Income)
+                        .Where(x => x.Type == (int) PaymentType.Expense || x.Type == (int) PaymentType.Income)
                         .ToList());
 
             return GetSpreadingStatisticItems(getPaymentListFunc);
@@ -49,7 +49,7 @@ namespace MoneyManager.Core.StatisticProvider
             {
                 Category = category.Name,
                 Value = payments
-                    .Where(x => x.Type == (int) PaymentType.Spending)
+                    .Where(x => x.Type == (int) PaymentType.Expense)
                     .Where(x => x.Category.Id == category.Id)
                     .Sum(x => x.Amount)
             }).ToList();

@@ -28,7 +28,7 @@
         /// <summary>
         ///     ID string for spending shortcuts
         /// </summary>
-        public const string SPENDING_TILE_ID = "Spending";
+        public const string SPENDING_TILE_ID = "Expense";
 
         /// <summary>
         ///     ID string for transfer shortcuts

@@ -179,7 +179,7 @@ namespace MoneyManager.Droid.Activities
                     return true;
 
                 case Resource.Id.action_add_spending:
-                    ViewModel.GoToAddPaymentCommand.Execute("Spending");
+                    ViewModel.GoToAddPaymentCommand.Execute("Expense");
                     return true;
 
                 case Resource.Id.action_add_transfer:

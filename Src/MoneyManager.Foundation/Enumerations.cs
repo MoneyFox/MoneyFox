@@ -2,7 +2,7 @@
 {
     public enum PaymentType
     {
-        Spending,
+        Expense,
         Income,
         Transfer
     }

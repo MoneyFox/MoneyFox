@@ -5,7 +5,7 @@
 
   <!--actions-->
   <string name="action_add_income">Add Income</string>
-  <string name="action_add_spending">Add Spending</string>
+  <string name="action_add_spending">Add Expense</string>
   <string name="action_add_transfer">Add Transfer</string>
   <string name="action_add_account">Add Account</string>
   <string name="action_add">Add</string>
