@@ -44,10 +44,10 @@
                               Command="{Binding GoToAddPaymentCommand}"
                               CommandParameter="Income" />
                 <AppBarButton Icon="Remove"
-                              x:Uid="AddSpendingLabel"
+                              x:Uid="AddExpenseLabel"
                               Label="add spending"
                               Command="{Binding GoToAddPaymentCommand}"
-                              CommandParameter="Spending" />
+                              CommandParameter="Expense" />
                 <AppBarButton Icon="Switch"
                               x:Uid="AddTransferLabel"
                               Label="add transfer"

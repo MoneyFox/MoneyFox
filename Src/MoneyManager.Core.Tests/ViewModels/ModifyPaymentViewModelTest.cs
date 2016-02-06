@@ -51,7 +51,7 @@ namespace MoneyManager.Core.Tests.ViewModels
 
             //Execute and Assert
             viewmodel.Init("Income", true);
-            viewmodel.SelectedPayment.Type.ShouldBe((int) PaymentType.Spending);
+            viewmodel.SelectedPayment.Type.ShouldBe((int) PaymentType.Expense);
             viewmodel.SelectedPayment.IsTransfer.ShouldBeFalse();
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
         }

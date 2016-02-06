@@ -23,7 +23,7 @@
         /// <summary>
         ///     Client ID used for the OneDrive authentication
         /// </summary>
-        public const string MSA_CLIENT_ID = "ID";
+        public const string MSA_CLIENT_ID = "000000004416B470";
 
         /// <summary>
         ///     Client ID used for the OneDrive authentication

@@ -75,7 +75,7 @@
                            HorizontalAlignment="Stretch" />
                 </Grid>
                 <Button Content="create spending tile"
-                        x:Uid="AddSpendingTile"
+                        x:Uid="AddExpenseTile"
                         Grid.Column="1"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Stretch"
@@ -83,7 +83,7 @@
                         Visibility="{Binding IsSpendingShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}"
                         Margin="12,0,0,0" />
                 <Button Content="remove spending tile"
-                        x:Uid="RemoveSpendingTile"
+                        x:Uid="RemoveExpenseTile"
                         Grid.Column="1"
                         Visibility="{Binding IsSpendingShortcutPinned, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Command="{Binding RemoveSpendingShortcutCommand}"

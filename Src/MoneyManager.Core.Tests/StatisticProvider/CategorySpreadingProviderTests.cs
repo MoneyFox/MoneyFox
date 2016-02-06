@@ -52,7 +52,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 90,
                     Category = categoryRepo.Data.First(),
@@ -112,7 +112,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 90,
                     Category = categoryRepo.Data[0],
@@ -121,7 +121,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 40,
                     Category = categoryRepo.Data[1],
@@ -180,7 +180,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 90,
                     Category = categoryRepo.Data[0],
@@ -222,7 +222,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 1,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today.AddDays(-5),
                     Amount = 60,
                     Category = categoryRepo.Data[0],
@@ -231,7 +231,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 90,
                     Category = categoryRepo.Data[1],
@@ -240,7 +240,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today.AddDays(5),
                     Amount = 40,
                     Category = categoryRepo.Data[2],
@@ -287,7 +287,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 1,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 10,
                     Category = categoryRepo.Data[0],
@@ -296,7 +296,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 20,
                     Category = categoryRepo.Data[1],
@@ -305,7 +305,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 30,
                     Category = categoryRepo.Data[2],
@@ -314,7 +314,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 40,
                     Category = categoryRepo.Data[3],
@@ -323,7 +323,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 50,
                     Category = categoryRepo.Data[4],
@@ -332,7 +332,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 60,
                     Category = categoryRepo.Data[5],
@@ -341,7 +341,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 70,
                     Category = categoryRepo.Data[6],
@@ -350,7 +350,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 80,
                     Category = categoryRepo.Data[7],

@@ -453,8 +453,8 @@ namespace MoneyManager.Core.Tests.Repositories
         }
 
         [Theory]
-        [InlineData(PaymentType.Spending, true)]
-        [InlineData(PaymentType.Spending, false)]
+        [InlineData(PaymentType.Expense, true)]
+        [InlineData(PaymentType.Expense, false)]
         [InlineData(PaymentType.Income, true)]
         [InlineData(PaymentType.Income, false)]
         public void DeletePayment_WithoutSpending_DeletedAccountBalanceSet(PaymentType type, bool cleared)
