@@ -3,21 +3,23 @@ using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
+using NUnit.Framework;
+using Assert = Microsoft.VisualStudio.TestPlatform.UnitTestFramework.Assert;
 
 namespace MoneyManager.Windows.DataAccess.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class RecurringPaymentDataAccessTests
     {
         private SqliteConnectionCreator connectionCreator;
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
         }
 
-        [TestMethod]
+        [Test]
         public void SaveToDatabase_NewRecurringPayment_CorrectId()
         {
             var amount = 789;
@@ -33,7 +35,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
             Assert.AreEqual(amount, payment.Amount);
         }
 
-        [TestMethod]
+        [Test]
         public void SaveToDatabase_ExistingRecurringPayment_CorrectId()
         {
             var payment = new RecurringPayment();

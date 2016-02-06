@@ -1,8 +1,8 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "MvvmCross.Plugin.Messenger": "4.0.0-beta8",
-    "MvvmCross.Plugin.SQLitePCL": "4.0.0-beta8",
+    "MvvmCross.Plugin.Messenger": "4.0.0",
+    "MvvmCross.Plugin.SQLitePCL": "4.0.0",
     "NUnit": "3.0.1",
     "NUnit.Runners": "3.0.1"
   },
