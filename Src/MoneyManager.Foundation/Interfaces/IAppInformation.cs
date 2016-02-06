@@ -8,6 +8,6 @@
         /// <summary>
         ///     Returns the version of the package.
         /// </summary>
-        string GetVersion { get; }
+        string Version { get; }
     }
 }
