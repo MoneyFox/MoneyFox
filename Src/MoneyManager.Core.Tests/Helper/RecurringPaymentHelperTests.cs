@@ -9,6 +9,7 @@ using Assert = Xunit.Assert;
 
 namespace MoneyManager.Core.Tests.Helper
 {
+    [TestClass]
     public class RecurringPaymentHelperTests
     {
         [Theory]
