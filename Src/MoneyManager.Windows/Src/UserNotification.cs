@@ -13,7 +13,7 @@ namespace MoneyManager.Windows
         ///     Sets the MainTile with new Information
         /// </summary>
         /// <param name="income">Income of these month</param>
-        /// <param name="spending">Spending of these month</param>
+        /// <param name="spending">Expense of these month</param>
         /// <param name="earnings">Earnings of these month </param>
         public void UpdateMainTile(string income, string spending, string earnings)
         {

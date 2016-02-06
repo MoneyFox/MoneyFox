@@ -23,7 +23,7 @@ namespace MoneyManager.Core.Converter
             }
             else
             {
-                sign = payment.Type == (int) PaymentType.Spending
+                sign = payment.Type == (int) PaymentType.Expense
                     ? "-"
                     : "+";
             }

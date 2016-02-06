@@ -48,7 +48,7 @@ namespace MoneyManager.Core.Tests.Helper
         }
 
         [Theory]
-        [InlineData(0, "Spending")]
+        [InlineData(0, "Expense")]
         [InlineData(1, "Income")]
         [InlineData(2, "Transfer")]
         public void GetTypeString_PaymentType_EnumString(int typeInt, string expectedResult)
