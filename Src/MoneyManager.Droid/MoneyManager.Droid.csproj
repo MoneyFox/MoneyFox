@@ -249,6 +249,7 @@
     <Compile Include="Fragments\BalanceFragment.cs" />
     <Compile Include="Fragments\CategorySummaryFragment.cs" />
     <Compile Include="Fragments\DatePickerDialogFragment.cs" />
+    <Compile Include="Fragments\MenuFragment.cs" />
     <Compile Include="Fragments\ModifyCategoryDialog.cs" />
     <Compile Include="Fragments\StatisticFragment.cs" />
     <Compile Include="Fragments\StatisticSelectorFragment.cs" />
@@ -267,6 +268,8 @@
     <Compile Include="Src\RoamingSettings.cs" />
     <Compile Include="Src\StoreFeatures.cs" />
     <Compile Include="Src\TempMessage.cs" />
+    <Compile Include="ViewModels\DroidMainViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
