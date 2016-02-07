@@ -21,7 +21,7 @@
     </NuGetPackageImportStamp>
     <ReleaseVersion>0.12.0.0</ReleaseVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Platform)' != 'Unix'">
+  <PropertyGroup Condition="'$(OS)' != 'Unix'">
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
