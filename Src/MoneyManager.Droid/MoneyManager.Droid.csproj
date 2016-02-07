@@ -230,6 +230,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\Caching\FragmentCacheConfigurationCustomFragmentInfo.cs" />
+    <Compile Include="Activities\Caching\MainActivityFragmentCacheInfoFactory.cs" />
     <Compile Include="Activities\SelectCategoryListActivity.cs" />
     <Compile Include="Activities\ModifyAccountActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />

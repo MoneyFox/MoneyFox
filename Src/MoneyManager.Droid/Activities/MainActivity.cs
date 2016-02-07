@@ -5,15 +5,15 @@ using Android.OS;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Views;
+using MoneyManager.Droid.Activities.Caching;
 using MoneyManager.Droid.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.Fragging.Caching;
 
 namespace MoneyManager.Droid.Activities
 {
-    [Activity(Label = "MoneyManager", 
-        MainLauncher = true,
-        Icon = "@drawable/icon", 
+    [Activity(Label = "MoneyManager",
+        Icon = "@drawable/icon",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop,
         Name = "moneyfox.droid.activities.MainActivity")]
@@ -23,14 +23,24 @@ namespace MoneyManager.Droid.Activities
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
+            if (bundle == null)
+            {
+                ViewModel.ShowMenuAndFirstDetail();
+            }
+            else
+            {
+                base.OnCreate(bundle);
+            }
 
             SetContentView(Resource.Layout.activity_main);
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.main_layout);
+        }
 
-            if (bundle == null)
-                ViewModel.ShowMenuAndFirstDetail();
+        public override IFragmentCacheConfiguration BuildFragmentCacheConfiguration()
+        {
+            return new FragmentCacheConfigurationCustomFragmentInfo();
+                // custom FragmentCacheConfiguration is used because custom IMvxFragmentInfo is used -> CustomFragmentInfo
         }
 
         public override void OnFragmentChanged(IMvxCachedFragmentInfo fragmentInfo)
@@ -38,6 +48,7 @@ namespace MoneyManager.Droid.Activities
             var myCustomInfo = fragmentInfo as CustomFragmentInfo;
             CheckIfMenuIsNeeded(myCustomInfo);
         }
+
         private void CheckIfMenuIsNeeded(CustomFragmentInfo myCustomInfo)
         {
             //If not root, we will block the menu sliding gesture and show the back button on top
@@ -46,6 +57,7 @@ namespace MoneyManager.Droid.Activities
             else
                 ShowBackButton();
         }
+
         private void ShowBackButton()
         {
             //TODO Tell the toggle to set the indicator off
@@ -62,12 +74,6 @@ namespace MoneyManager.Droid.Activities
 
             //Unlock the menu sliding gesture
             DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeUnlocked);
-        }
-
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.menu_main, menu);
-            return true;
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -107,7 +113,8 @@ namespace MoneyManager.Droid.Activities
 
         public class CustomFragmentInfo : MvxCachedFragmentInfo
         {
-            public CustomFragmentInfo(string tag, Type fragmentType, Type viewModelType, bool cacheFragment = true, bool addToBackstack = false,
+            public CustomFragmentInfo(string tag, Type fragmentType, Type viewModelType, bool cacheFragment = true,
+                bool addToBackstack = false,
                 bool isRoot = false)
                 : base(tag, fragmentType, viewModelType, cacheFragment, addToBackstack)
             {

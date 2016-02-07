@@ -13,10 +13,18 @@ namespace MoneyManager.Core
         public override void Initialize()
         {
             // Start the app with the Main View Model.
-            RegisterAppStart<MainViewModel>();
+            RegisterAppStart(new AppStart());
 
             Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
             Mvx.Resolve<IPaymentManager>().ClearPayments();
+        }
+    }
+
+    public class AppStart : MvxNavigatingObject, IMvxAppStart
+    {
+        public void Start(object hint = null)
+        {
+            ShowViewModel<MainViewModel>();
         }
     }
 }
