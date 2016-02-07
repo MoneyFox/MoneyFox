@@ -30,25 +30,25 @@ namespace MoneyManager.Droid.Fragments
             switch (itemClickEventArgs.Position)
             {
                 case 0:
-                    Activity.FragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, GetGraphicalStatisticFragment(StatisticType.Cashflow))
-                        .AddToBackStack("Cash Flow")
-                        .Commit();
+                    //Activity.FragmentManager.BeginTransaction()
+                    //    .Replace(Resource.Id.content_pane, GetGraphicalStatisticFragment(StatisticType.Cashflow))
+                    //    .AddToBackStack("Cash Flow")
+                    //    .Commit();
                     break;
 
                 case 1:
-                    Activity.FragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane,
-                            GetGraphicalStatisticFragment(StatisticType.CategorySpreading))
-                        .AddToBackStack("Category Spreading")
-                        .Commit();
+                    //Activity.FragmentManager.BeginTransaction()
+                    //    .Replace(Resource.Id.content_pane,
+                    //        GetGraphicalStatisticFragment(StatisticType.CategorySpreading))
+                    //    .AddToBackStack("Category Spreading")
+                    //    .Commit();
                     break;
 
                 case 2:
-                    Activity.FragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, new CategorySummaryFragment())
-                        .AddToBackStack("Category Spreading")
-                        .Commit();
+                    //Activity.FragmentManager.BeginTransaction()
+                    //    .Replace(Resource.Id.content_pane, new CategorySummaryFragment())
+                    //    .AddToBackStack("Category Spreading")
+                    //    .Commit();
                     break;
             }
         }

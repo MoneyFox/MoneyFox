@@ -1,38 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
+using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Widget;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Fragments;
 using MoneyManager.Localization;
-using MvvmCross.Droid.FullFragging.Views;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Droid.Support.V7.Fragging.Caching;
 using MvvmCross.Platform;
 
 namespace MoneyManager.Droid.Activities
 {
-    [Activity(Label = "MoneyManager", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : MvxActivity
+    [Activity(Label = "MoneyManager", 
+        MainLauncher = true,
+        Icon = "@drawable/icon", 
+        Theme = "@style/AppTheme",
+        LaunchMode = LaunchMode.SingleTop)]
+    public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
-        private readonly List<string> menuItems = new List<string>
-        {
-            Strings.AccountsLabel,
-            Strings.StatisticTitle,
-            Strings.BackupLabel,
-            Strings.SettingsLabel,
-            Strings.AboutLabel
-        };
-
         private AboutFragment aboutFragment;
 
         private AccountListFragment accountListFragment;
         private BackupFragment backupFragment;
 
         private string drawerTitle;
-        private ListView menuListView;
-        private SlidingPaneLayout slidingLayout;
+        private DrawerLayout drawerLayout;
         private StatisticSelectorFragment statisticSelectorFragment;
         private string title;
 
@@ -49,8 +45,7 @@ namespace MoneyManager.Droid.Activities
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
-            slidingLayout = FindViewById<SlidingPaneLayout>(Resource.Id.main_layout);
-            menuListView = FindViewById<ListView>(Resource.Id.left_pane);
+            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.main_layout);
             accountListFragment = new AccountListFragment
             {
                 ViewModel = Mvx.Resolve<AccountListViewModel>()
@@ -67,58 +62,84 @@ namespace MoneyManager.Droid.Activities
                 ViewModel = Mvx.Resolve<AboutViewModel>()
             };
 
-            slidingLayout.PanelOpened += (sender, e) =>
+            drawerLayout.DrawerOpened += (sender, e) =>
             {
                 ActionBar.SetHomeButtonEnabled(false);
                 ActionBar.SetDisplayHomeAsUpEnabled(false);
                 ActionBar.Title = drawerTitle;
             };
 
-            slidingLayout.PanelClosed += (sender, e) =>
+            drawerLayout.DrawerClosed += (sender, e) =>
             {
                 ActionBar.SetDisplayHomeAsUpEnabled(true);
                 ActionBar.SetHomeButtonEnabled(true);
                 ActionBar.Title = title;
             };
 
-            menuListView.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, menuItems);
-            menuListView.ItemClick += NavigationClick;
+            //ActionBar.SetDisplayHomeAsUpEnabled(true);
+            //ActionBar.SetHomeButtonEnabled(true);
 
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.SetHomeButtonEnabled(true);
-            title = menuItems[0];
             drawerTitle = Strings.MenuTitle;
 
-            slidingLayout.ViewTreeObserver.GlobalLayout += FirstLayoutListener;
+            //drawerLayout.ViewTreeObserver.GlobalLayout += FirstLayoutListener;
 
             var fragmentTransaction = FragmentManager.BeginTransaction();
-            fragmentTransaction.Add(Resource.Id.content_pane, accountListFragment);
+            fragmentTransaction.Add(Resource.Id.content_frame, accountListFragment);
             fragmentTransaction.Commit();
+        }
+
+        public override void OnFragmentChanged(IMvxCachedFragmentInfo fragmentInfo)
+        {
+            var myCustomInfo = fragmentInfo as CustomFragmentInfo;
+            CheckIfMenuIsNeeded(myCustomInfo);
+        }
+        private void CheckIfMenuIsNeeded(CustomFragmentInfo myCustomInfo)
+        {
+            //If not root, we will block the menu sliding gesture and show the back button on top
+            if (myCustomInfo.IsRoot)
+                ShowHamburguerMenu();
+            else
+                ShowBackButton();
+        }
+        private void ShowBackButton()
+        {
+            //TODO Tell the toggle to set the indicator off
+            //this.DrawerToggle.DrawerIndicatorEnabled = false;
+
+            //Block the menu slide gesture
+            drawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
+        }
+
+        private void ShowHamburguerMenu()
+        {
+            //TODO set toggle indicator as enabled 
+            //this.DrawerToggle.DrawerIndicatorEnabled = true;
+
+            //Unlock the menu sliding gesture
+            drawerLayout.SetDrawerLockMode(DrawerLayout.LockModeUnlocked);
         }
 
         private void NavigationClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            title = menuItems[e.Position];
-
             switch (e.Position)
             {
                 case 0:
                     FragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, accountListFragment)
+                        .Replace(Resource.Id.content_frame, accountListFragment)
                         .AddToBackStack("AccountList")
                         .Commit();
                     break;
 
                 case 1:
                     FragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, statisticSelectorFragment)
+                        .Replace(Resource.Id.content_frame, statisticSelectorFragment)
                         .AddToBackStack("Statistic Selector")
                         .Commit();
                     break;
 
                 case 2:
                     FragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, backupFragment)
+                        .Replace(Resource.Id.content_frame, backupFragment)
                         .AddToBackStack("Backup")
                         .Commit();
                     break;
@@ -128,31 +149,31 @@ namespace MoneyManager.Droid.Activities
 
                 case 4:
                     FragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, aboutFragment)
+                        .Replace(Resource.Id.content_frame, aboutFragment)
                         .AddToBackStack("About")
                         .Commit();
                     break;
             }
-            slidingLayout.ClosePane();
+            drawerLayout.CloseDrawer(GravityCompat.End);
         }
 
-        private void FirstLayoutListener(object sender, EventArgs e)
-        {
-            if (slidingLayout.IsSlideable && !slidingLayout.IsOpen)
-            {
-                ActionBar.SetDisplayHomeAsUpEnabled(true);
-                ActionBar.SetHomeButtonEnabled(true);
-                ActionBar.Title = title;
-            }
-            else
-            {
-                ActionBar.SetDisplayHomeAsUpEnabled(false);
-                ActionBar.SetHomeButtonEnabled(false);
-                ActionBar.Title = drawerTitle;
-            }
+        //private void FirstLayoutListener(object sender, EventArgs e)
+        //{
+        //    if (drawerLayout != null && !drawerLayout.IsDrawerOpen(GravityCompat.Start))
+        //    {
+        //        ActionBar.SetDisplayHomeAsUpEnabled(true);
+        //        ActionBar.SetHomeButtonEnabled(true);
+        //        ActionBar.Title = title;
+        //    }
+        //    else
+        //    {
+        //        ActionBar.SetDisplayHomeAsUpEnabled(false);
+        //        ActionBar.SetHomeButtonEnabled(false);
+        //        ActionBar.Title = drawerTitle;
+        //    }
 
-            slidingLayout.ViewTreeObserver.GlobalLayout -= FirstLayoutListener;
-        }
+        //    drawerLayout.ViewTreeObserver.GlobalLayout -= FirstLayoutListener;
+        //}
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
@@ -162,16 +183,16 @@ namespace MoneyManager.Droid.Activities
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (item.ItemId == Android.Resource.Id.Home && !slidingLayout.IsOpen)
+            if (item.ItemId == Android.Resource.Id.Home && !drawerLayout.IsDrawerOpen(GravityCompat.Start))
             {
-                slidingLayout.OpenPane();
+                drawerLayout.OpenDrawer(GravityCompat.Start);
                 return true;
             }
 
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    slidingLayout.OpenPane();
+                    drawerLayout.OpenDrawer(GravityCompat.Start);
                     return true;
 
                 case Resource.Id.action_add_income:
@@ -193,6 +214,17 @@ namespace MoneyManager.Droid.Activities
                 default:
                     return base.OnOptionsItemSelected(item);
             }
+        }
+        public class CustomFragmentInfo : MvxCachedFragmentInfo
+        {
+            public CustomFragmentInfo(string tag, Type fragmentType, Type viewModelType, bool cacheFragment = true, bool addToBackstack = false,
+                bool isRoot = false)
+                : base(tag, fragmentType, viewModelType, cacheFragment, addToBackstack)
+            {
+                IsRoot = isRoot;
+            }
+
+            public bool IsRoot { get; set; }
         }
     }
 }
