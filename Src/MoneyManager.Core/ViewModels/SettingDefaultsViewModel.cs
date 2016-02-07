@@ -2,7 +2,7 @@
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Core.ViewModels.SettingViews
+namespace MoneyManager.Core.ViewModels
 {
     public class SettingDefaultsViewModel
     {

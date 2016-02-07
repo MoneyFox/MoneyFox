@@ -4,7 +4,7 @@ using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels.SettingViews
+namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class PasswordUserControlViewModel : BaseViewModel

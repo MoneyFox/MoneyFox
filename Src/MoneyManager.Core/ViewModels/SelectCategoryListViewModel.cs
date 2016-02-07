@@ -4,7 +4,7 @@ using MoneyManager.Foundation.Model;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels.CategoryList
+namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel

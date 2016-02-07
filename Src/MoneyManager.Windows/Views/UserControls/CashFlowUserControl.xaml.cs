@@ -1,5 +1,5 @@
 ﻿using System;
-using MoneyManager.Core.ViewModels.Statistics;
+using MoneyManager.Core.ViewModels;
 using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Views.UserControls
