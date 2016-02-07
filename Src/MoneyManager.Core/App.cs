@@ -1,5 +1,4 @@
-﻿using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation.Interfaces;
+﻿using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 
@@ -17,14 +16,6 @@ namespace MoneyManager.Core
 
             Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
             Mvx.Resolve<IPaymentManager>().ClearPayments();
-        }
-    }
-
-    public class AppStart : MvxNavigatingObject, IMvxAppStart
-    {
-        public void Start(object hint = null)
-        {
-            ShowViewModel<MainViewModel>();
         }
     }
 }

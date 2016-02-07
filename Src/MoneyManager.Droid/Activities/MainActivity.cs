@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Views;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Activities.Caching;
 using MoneyManager.Droid.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
@@ -13,11 +14,12 @@ using MvvmCross.Droid.Support.V7.Fragging.Caching;
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "MoneyManager",
+        MainLauncher = true,
         Icon = "@drawable/icon",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop,
         Name = "moneyfox.droid.activities.MainActivity")]
-    public class MainActivity : MvxCachingFragmentCompatActivity<DroidMainViewModel>
+    public class MainActivity : MvxFragmentCompatActivity<MainViewModel>
     {
         public DrawerLayout DrawerLayout;
 
@@ -25,7 +27,7 @@ namespace MoneyManager.Droid.Activities
         {
             if (bundle == null)
             {
-                ViewModel.ShowMenuAndFirstDetail();
+                //ViewModel.ShowMenuAndFirstDetail();
             }
             else
             {
@@ -35,18 +37,7 @@ namespace MoneyManager.Droid.Activities
             SetContentView(Resource.Layout.activity_main);
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.main_layout);
-        }
-
-        public override IFragmentCacheConfiguration BuildFragmentCacheConfiguration()
-        {
-            return new FragmentCacheConfigurationCustomFragmentInfo();
-                // custom FragmentCacheConfiguration is used because custom IMvxFragmentInfo is used -> CustomFragmentInfo
-        }
-
-        public override void OnFragmentChanged(IMvxCachedFragmentInfo fragmentInfo)
-        {
-            var myCustomInfo = fragmentInfo as CustomFragmentInfo;
-            CheckIfMenuIsNeeded(myCustomInfo);
+            ShowHamburguerMenu();
         }
 
         private void CheckIfMenuIsNeeded(CustomFragmentInfo myCustomInfo)

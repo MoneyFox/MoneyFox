@@ -11,6 +11,7 @@ using MvvmCross.Droid.Support.V7.Fragging.Presenter;
 using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
+using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using Xamarin;
 
@@ -71,6 +72,11 @@ namespace MoneyManager.Droid
             Strings.Culture = new Localize().GetCurrentCultureInfo();
 
             return new App();
+        }
+
+        protected override IMvxTrace CreateDebugTrace()
+        {
+            return new DebugTrace();
         }
     }
 }
