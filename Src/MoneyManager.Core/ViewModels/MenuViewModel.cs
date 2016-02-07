@@ -4,7 +4,7 @@ namespace MoneyManager.Core.ViewModels
 {
     public class MenuViewModel : BaseViewModel
     {
-        public void ShowViewModelAndroid(Type viewModel)
+        public void ShowViewModelByType(Type viewModel)
         {
             ShowViewModel(viewModel);
         }

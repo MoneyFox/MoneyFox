@@ -49,29 +49,25 @@ namespace MoneyManager.Droid.Fragments
             ((MainActivity)Activity).DrawerLayout.CloseDrawers ();
             await Task.Delay (TimeSpan.FromMilliseconds (250));
 
-            //switch (itemId) {
-            //case Resource.Id.nav_home:
-            //    ViewModel.ShowViewModelAndroid(typeof(HomeViewModel));
-            //    break;
-            //case Resource.Id.nav_viewpager:
-            //    ViewModel.ShowViewModelAndroid(typeof(ExampleViewPagerViewModel));
-            //    break;
-            //case Resource.Id.nav_viewpager_state:
-            //    ViewModel.ShowViewModelAndroid(typeof(ExampleViewPagerStateViewModel));
-            //    break;
-            //case Resource.Id.nav_recyclerview:
-            //    ViewModel.ShowViewModelAndroid(typeof(ExampleRecyclerViewModel));
-            //    break;
-            //case Resource.Id.nav_compose_message:
-            //    ViewModel.ShowViewModelAndroid(typeof(ComposeMessageViewModel));
-            //    break;
-            //    case Resource.Id.nav_settings:
-            //    ViewModel.ShowViewModelAndroid(typeof(SettingsViewModel));
-            //    break;
-            //case Resource.Id.nav_helpfeedback:
-            //    ViewModel.ShowViewModelAndroid(typeof(SettingsViewModel));
-            //    break;
-            //}
+            switch (itemId)
+            {
+                case Resource.Id.nav_accounts:
+                    ViewModel.ShowViewModelByType(typeof(AccountListViewModel));
+                    ViewModel.ShowViewModelByType(typeof(BalanceViewModel));
+                    break;
+                case Resource.Id.nav_statistics:
+                    ViewModel.ShowViewModelByType(typeof(StatisticSelectorViewModel));
+                    break;
+                case Resource.Id.nav_backup:
+                    ViewModel.ShowViewModelByType(typeof(BackupViewModel));
+                    break;
+                case Resource.Id.nav_settings:
+                    //ViewModel.ShowViewModelByType(typeof());
+                    break;
+                case Resource.Id.nav_about:
+                    ViewModel.ShowViewModelByType(typeof(AboutViewModel));
+                    break;
+            }
         }
     }
 }
