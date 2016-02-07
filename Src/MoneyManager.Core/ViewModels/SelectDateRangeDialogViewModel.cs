@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
-using MoneyManager.Core.ViewModels.Statistics;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels.Dialogs
+namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class SelectDateRangeDialogViewModel : BaseViewModel

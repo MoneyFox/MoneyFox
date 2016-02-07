@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Notifications;
-using MoneyManager.Core.ViewModels.SettingViews;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 using MvvmCross.Platform;

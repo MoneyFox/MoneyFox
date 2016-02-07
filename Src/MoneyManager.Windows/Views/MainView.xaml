@@ -6,7 +6,6 @@
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
-      DataContext="{Binding MainView, Source={StaticResource CoreModule}}"
       mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>

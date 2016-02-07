@@ -6,7 +6,6 @@
                       xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                      DataContext="{Binding ModifyAccountView, Source={StaticResource CoreModule}}"
                       mc:Ignorable="d">
 
     <Grid>

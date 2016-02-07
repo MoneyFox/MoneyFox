@@ -1,7 +1,7 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using MoneyManager.Core.ViewModels.Statistics;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Localization;
 using MvvmCross.Binding.Droid.BindingContext;

@@ -9,7 +9,7 @@ namespace MoneyManager.Windows.Views.UserControls
         {
             InitializeComponent();
 
-            // This has to be done here. Otherwise the NotifyPropertyChanged event won't be fired anymore.
+            // TODO: Set this in the hosting viewmodel.
             DataContext = Mvx.Resolve<IBalanceViewModel>();
         }
     }

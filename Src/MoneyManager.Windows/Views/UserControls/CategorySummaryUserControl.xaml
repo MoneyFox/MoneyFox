@@ -5,7 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="using:MoneyManager.Windows.Converter"
              xmlns:controls="using:MoneyManager.Windows.Controls"
-             DataContext="{Binding StatisticView, Source={StaticResource CoreModule}}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">

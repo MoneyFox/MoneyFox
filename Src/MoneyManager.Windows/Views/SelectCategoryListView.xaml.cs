@@ -2,8 +2,9 @@
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
-using MoneyManager.Core.ViewModels.CategoryList;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Windows.Dialogs;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Views
 {
@@ -12,6 +13,7 @@ namespace MoneyManager.Windows.Views
         public SelectCategoryListView()
         {
             InitializeComponent();
+            DataContext = Mvx.Resolve<SelectCategoryListViewModel>();
         }
 
         private async void AddCategory(object sender, RoutedEventArgs e)

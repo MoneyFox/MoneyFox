@@ -3,6 +3,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Views.UserControls
 {
@@ -11,7 +12,7 @@ namespace MoneyManager.Windows.Views.UserControls
         public PaymentListUserControl()
         {
             InitializeComponent();
-
+            DataContext = Mvx.Resolve<PaymentListViewModel>();
         }
 
         private void EditPayment(object sender, RoutedEventArgs e)
