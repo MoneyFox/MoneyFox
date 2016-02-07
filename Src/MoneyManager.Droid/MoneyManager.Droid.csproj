@@ -260,6 +260,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="SplashScreen.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\AndroidAuthenticationProvider.cs" />
     <Compile Include="Src\CustomServiceInfoProvider.cs" />
@@ -335,6 +336,8 @@
     <AndroidResource Include="Resources\menu\navigation_drawer.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\splash_screen.axml" />
+    <AndroidResource Include="Resources\layout\toolbar_actionbar.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml" />

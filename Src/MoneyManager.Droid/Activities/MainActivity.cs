@@ -6,15 +6,12 @@ using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Views;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Droid.Activities.Caching;
-using MoneyManager.Droid.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.Fragging.Caching;
 
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "MoneyManager",
-        MainLauncher = true,
         Icon = "@drawable/icon",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop,
