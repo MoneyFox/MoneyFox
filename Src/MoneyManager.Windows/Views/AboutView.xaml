@@ -7,7 +7,6 @@
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
       mc:Ignorable="d"
-      DataContext="{Binding AboutView, Source={StaticResource CoreModule}}"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
