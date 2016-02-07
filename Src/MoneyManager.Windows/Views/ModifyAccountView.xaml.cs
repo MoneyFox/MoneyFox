@@ -1,6 +1,8 @@
 ﻿using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using MoneyManager.Core.Helpers;
+using MoneyManager.Core.ViewModels;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Views
 {
@@ -9,6 +11,7 @@ namespace MoneyManager.Windows.Views
         public ModifyAccountView()
         {
             InitializeComponent();
+            DataContext = Mvx.Resolve<ModifyAccountViewModel>();
 
             // code to handle bottom app bar when keyboard appears
             // workaround since otherwise the keyboard would overlay some controls

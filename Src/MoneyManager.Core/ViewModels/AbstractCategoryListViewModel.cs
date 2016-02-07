@@ -5,7 +5,7 @@ using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyManager.Core.ViewModels.CategoryList
+namespace MoneyManager.Core.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : BaseViewModel
     {

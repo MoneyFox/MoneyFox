@@ -9,7 +9,8 @@
              xmlns:converter="using:MoneyManager.Windows.Converter"
              xmlns:model="using:MoneyManager.Foundation.Model"
              xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
-             DataContext="{Binding AccountListView, Source={StaticResource CoreModule}}"
+             xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
+             d:DataContext="{d:DesignInstance designTime:DesignTimeAccountListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">

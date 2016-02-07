@@ -1,6 +1,6 @@
 using Android.OS;
 using Android.Views;
-using MoneyManager.Core.ViewModels.Statistics;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.FullFragging.Fragments;

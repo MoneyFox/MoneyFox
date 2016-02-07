@@ -13,7 +13,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels.Statistics
+namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class StatisticViewModel : BaseViewModel
