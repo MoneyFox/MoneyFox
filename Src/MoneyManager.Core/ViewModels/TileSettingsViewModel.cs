@@ -4,7 +4,7 @@ using MvvmCross.Core.ViewModels;
 
 // ReSharper disable ExplicitCallerInfoArgument
 
-namespace MoneyManager.Core.ViewModels.SettingViews
+namespace MoneyManager.Core.ViewModels
 {
     /// <summary>
     ///     Provides the information for the TileSettingsView

@@ -2,7 +2,7 @@
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels.CategoryList
+namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class SettingsCategoryListViewModel : AbstractCategoryListViewModel

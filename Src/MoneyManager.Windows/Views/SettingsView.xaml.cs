@@ -1,6 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using MoneyManager.Core.ViewModels.CategoryList;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Windows.Dialogs;
 using MvvmCross.Platform;
 

@@ -2,10 +2,6 @@
 using Autofac;
 using MoneyManager.Core.Authentication;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Core.ViewModels.CategoryList;
-using MoneyManager.Core.ViewModels.Dialogs;
-using MoneyManager.Core.ViewModels.SettingViews;
-using MoneyManager.Core.ViewModels.Statistics;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;

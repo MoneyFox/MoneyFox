@@ -2,7 +2,7 @@
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
-using MoneyManager.Core.ViewModels.CategoryList;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Windows.Dialogs;
 
 namespace MoneyManager.Windows.Views
