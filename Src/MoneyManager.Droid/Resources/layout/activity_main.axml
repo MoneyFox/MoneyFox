@@ -18,6 +18,5 @@
     <FrameLayout
         android:id="@+id/navigation_frame"
         android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        android:layout_gravity="left|start" />
+        android:layout_width="wrap_content" />
 </android.support.v4.widget.DrawerLayout>

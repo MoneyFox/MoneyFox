@@ -24,7 +24,7 @@ namespace MoneyManager.Droid.Activities
         {
             if (bundle == null)
             {
-                //ViewModel.ShowMenuAndFirstDetail();
+                //ViewModel.GoToAboutCommand.Execute();
             }
             else
             {
