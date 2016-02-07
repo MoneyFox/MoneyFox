@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Fragments;
-using MoneyManager.Droid.ViewModels;
 using MvvmCross.Droid.Support.V7.Fragging.Caching;
 
 namespace MoneyManager.Droid.Activities.Caching

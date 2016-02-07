@@ -6,7 +6,6 @@ using Android.Support.Design.Widget;
 using Android.Views;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Activities;
-using MoneyManager.Droid.ViewModels;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
@@ -14,7 +13,7 @@ using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 namespace MoneyManager.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.navigation_frame)]
-    [Register("example.droid.fragments.MenuFragment")]
+    [Register("moneymanager.droid.fragments.MenuFragment")]
     public class MenuFragment : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
         private NavigationView navigationView;

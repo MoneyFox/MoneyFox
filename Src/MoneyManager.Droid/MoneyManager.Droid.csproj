@@ -246,6 +246,7 @@
     <Compile Include="Fragments\AccountListFragment.cs" />
     <Compile Include="Fragments\BackupFragment.cs" />
     <Compile Include="Fragments\BalanceFragment.cs" />
+    <Compile Include="Fragments\BaseFragment.cs" />
     <Compile Include="Fragments\CategorySummaryFragment.cs" />
     <Compile Include="Fragments\DatePickerDialogFragment.cs" />
     <Compile Include="Fragments\MenuFragment.cs" />
@@ -268,8 +269,6 @@
     <Compile Include="Src\RoamingSettings.cs" />
     <Compile Include="Src\StoreFeatures.cs" />
     <Compile Include="Src\TempMessage.cs" />
-    <Compile Include="ViewModels\DroidMainViewModel.cs" />
-    <Compile Include="ViewModels\MenuViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -289,7 +288,7 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\AccountListLayout.axml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_about.axml" />
     <AndroidResource Include="Resources\layout\ModifyAccountLayout.axml">

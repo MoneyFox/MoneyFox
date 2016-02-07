@@ -3053,6 +3053,12 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f080038
 			public const int create_backup = 2131230776;
 			
+			// aapt resource value: 0x7f08003d
+			public const int drawer_close = 2131230781;
+			
+			// aapt resource value: 0x7f08003c
+			public const int drawer_open = 2131230780;
+			
 			// aapt resource value: 0x7f080024
 			public const int hint_account_name = 2131230756;
 			

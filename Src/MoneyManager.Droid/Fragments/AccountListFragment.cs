@@ -1,22 +1,19 @@
 using Android.OS;
+using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
 using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Droid.FullFragging.Fragments;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 using MvvmCross.Platform;
 
 namespace MoneyManager.Droid.Fragments
 {
-    public class AccountListFragment : MvxFragment
+    [MvxFragment(typeof(AccountListViewModel), Resource.Id.content_frame)]
+    [Register("moneymanager.droid.fragments.AccountListFragment")]
+    public class AccountListFragment : BaseFragment<AccountListViewModel>
     {
-        public new AccountListViewModel ViewModel
-        {
-            get { return (AccountListViewModel) base.ViewModel; }
-            set { base.ViewModel = value; }
-        }
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -31,9 +28,9 @@ namespace MoneyManager.Droid.Fragments
 
                 fragment.ViewModel.UpdateBalance();
 
-                FragmentManager.BeginTransaction()
-                    .Replace(Resource.Id.balance_pane, fragment)
-                    .Commit();
+                //FragmentManager.BeginTransaction()
+                //    .Replace(Resource.Id.balance_pane, fragment)
+                //    .Commit();
             }
 
             var list = view.FindViewById<ListView>(Resource.Id.accountList);
@@ -41,6 +38,8 @@ namespace MoneyManager.Droid.Fragments
 
             return view;
         }
+
+        protected override int FragmentId => Resource.Layout.AccountListLayout;
 
         public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
         {

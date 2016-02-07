@@ -82,6 +82,7 @@
     <Compile Include="ViewModels\CategoryDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />
