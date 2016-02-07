@@ -6,5 +6,5 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:choiceMode="singleChoice"
-    local:MvxItemTemplate="@layout/categorysummarylistitem"
+    local:MvxItemTemplate="@layout/listitem_category_summary"
     local:MvxBind="ItemsSource CategorySummary" />

@@ -50,7 +50,7 @@ namespace MoneyManager.Droid.Activities
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.ModifyPaymentLayout);
+            SetContentView(Resource.Layout.activity_modify_payment);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.Title = ViewModel.Title;
 

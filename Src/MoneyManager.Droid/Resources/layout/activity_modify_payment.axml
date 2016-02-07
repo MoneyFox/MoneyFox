@@ -8,16 +8,16 @@
     android:paddingRight="6dp">
     <Mvx.MvxSpinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        local:MvxItemTemplate="@layout/accountcomboboxitem"
-        local:MvxDropDownItemTemplate="@layout/accountcomboboxitem"
+        android:layout_height="10dp"
+        local:MvxItemTemplate="@layout/comboboxitem_account"
+        local:MvxDropDownItemTemplate="@layout/comboboxitem_account"
         local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedPayment.ChargedAccount" />
     <Mvx.MvxSpinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="10dp"
         android:layout_marginTop="5dp"
-        local:MvxItemTemplate="@layout/accountcomboboxitem"
-        local:MvxDropDownItemTemplate="@layout/accountcomboboxitem"
+        local:MvxItemTemplate="@layout/comboboxitem_account"
+        local:MvxDropDownItemTemplate="@layout/comboboxitem_account"
         local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedPayment.TargetAccount; Visible IsTransfer" />
     <EditText
         android:layout_width="match_parent"
