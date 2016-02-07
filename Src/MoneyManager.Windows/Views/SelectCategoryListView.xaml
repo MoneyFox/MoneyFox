@@ -6,7 +6,6 @@
                       xmlns:userControls1="using:MoneyManager.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
                       mc:Ignorable="d"
-                      DataContext="{Binding SelectCategoryListView, Source={StaticResource CoreModule}}"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.BottomAppBar>

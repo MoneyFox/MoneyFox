@@ -13,6 +13,7 @@ namespace MoneyManager.Windows.Views
             InitializeComponent();
 
             CategoryListUserControl.DataContext = Mvx.Resolve<SettingsCategoryListViewModel>();
+            DataContext = Mvx.Resolve<SettingDefaultsViewModel>();
         }
 
         private async void AddCategory(object sender, RoutedEventArgs e)
