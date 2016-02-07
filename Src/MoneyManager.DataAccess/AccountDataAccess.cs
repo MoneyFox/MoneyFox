@@ -6,7 +6,6 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
-using SQLiteNetExtensions.Extensions;
 
 namespace MoneyManager.DataAccess
 {
@@ -20,6 +19,7 @@ namespace MoneyManager.DataAccess
             this.connectionCreator = connectionCreator;
         }
 
+
         /// <summary>
         ///     Saves a Account to the database.
         /// </summary>
@@ -28,14 +28,7 @@ namespace MoneyManager.DataAccess
         {
             using (var db = connectionCreator.GetConnection())
             {
-                if (itemToSave.Id == 0)
-                {
-                    db.InsertWithChildren(itemToSave);
-                }
-                else
-                {
-                    db.UpdateWithChildren(itemToSave);
-                }
+                itemToSave.Id = db.InsertOrReplace(itemToSave);
             }
         }
 

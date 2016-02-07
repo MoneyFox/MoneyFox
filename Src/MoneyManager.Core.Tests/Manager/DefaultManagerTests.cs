@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Manager;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.TestFoundation;
 using Moq;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Manager
 {
+    [TestClass]
     public class DefaultManagerTests
     {
         [Theory]
@@ -43,7 +44,7 @@ namespace MoneyManager.Core.Tests.Manager
             account.Id.ShouldBe(result);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetDefaultAccount_SelectedSettingsData_CorrectFallbackValue()
         {
             //Setup
@@ -71,7 +72,7 @@ namespace MoneyManager.Core.Tests.Manager
             account.Id.ShouldBe(2);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetDefaultAccount_NoSettingsNoData_CorrectFallbackValue()
         {
             //Setup
@@ -88,7 +89,7 @@ namespace MoneyManager.Core.Tests.Manager
             account.Id.ShouldBe(5);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetDefaultAccount_DataIsNull_SetData()
         {
             //Setup
@@ -106,7 +107,7 @@ namespace MoneyManager.Core.Tests.Manager
         }
 
 
-        [Fact]
+        [TestMethod]
         public void GetDefaultAccount_SelectedAndDataNoSettings_CorrectFallbackValue()
         {
             //Setup
@@ -130,7 +131,7 @@ namespace MoneyManager.Core.Tests.Manager
             account.Id.ShouldBe(2);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetDefaultAccount_NoSettingsNoDataNoSelected_CorrectFallbackValue()
         {
             //Setup

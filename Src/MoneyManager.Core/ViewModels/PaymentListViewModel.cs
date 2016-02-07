@@ -137,8 +137,7 @@ namespace MoneyManager.Core.ViewModels
 
             accountRepository.RemovePaymentAmount(payment);
             paymentRepository.Delete(payment);
-            RelatedPayments.Remove(payment);
-            balanceViewModel.UpdateBalance(true);
+            LoadedCommand.Execute();
         }
     }
 }

@@ -28,10 +28,14 @@ namespace MoneyManager.Tasks.Windows
 
             var sqliteConnectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
 
+            var accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnectionCreator));
+
             paymentManager = new PaymentManager(
                 new PaymentRepository(new PaymentDataAccess(sqliteConnectionCreator),
-                    new RecurringPaymentDataAccess(sqliteConnectionCreator)),
-                new AccountRepository(new AccountDataAccess(sqliteConnectionCreator)),
+                    new RecurringPaymentDataAccess(sqliteConnectionCreator),
+                    accountRepository,
+                    new CategoryRepository(new CategoryDataAccess(sqliteConnectionCreator))), 
+                accountRepository,
                 null);
         }
 

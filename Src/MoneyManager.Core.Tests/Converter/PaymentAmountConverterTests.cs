@@ -1,29 +1,34 @@
 ﻿using System;
 using System.Linq.Expressions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Converter;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.TestFoundation;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
-using Xunit;
 
 namespace MoneyManager.Core.Tests.Converter
 {
+    [TestClass]
     public class PaymentAmountConverterTests : MvxIoCSupportingTest
     {
-        [Theory]
-        [InlineData(PaymentType.Spending, "- ")]
-        [InlineData(PaymentType.Income, "+ ")]
-        public void Converter_Payment_AmountSign(PaymentType type, string result)
+        [TestMethod]
+        public void Converter_Payment_NegativeAmountSign()
         {
-            new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int) type}, null,
-                null, null).ShouldBe(result + 80.ToString("C"));
+            new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int)PaymentType.Expense}, null,
+                null, null).ShouldBe("- " + 80.ToString("C"));
+        }
+        
+        [TestMethod]
+        public void Converter_Payment_PositiveAmountSign()
+        {
+            new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int)PaymentType.Income }, null,
+                null, null).ShouldBe("+ " + 80.ToString("C"));
         }
 
-        [Fact]
+        [TestMethod]
         public void Converter_TransferSameAccount_Minus()
         {
             ClearAll();
@@ -52,7 +57,7 @@ namespace MoneyManager.Core.Tests.Converter
                 .ShouldBe("- " + 80.ToString("C"));
         }
 
-        [Fact]
+        [TestMethod]
         public void Converter_TransferSameAccount_Plus()
         {
             ClearAll();

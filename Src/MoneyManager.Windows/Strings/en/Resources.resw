@@ -264,7 +264,7 @@ Tap to visit the Repository:</value>
     <value>Remove Income Tile</value>
   </data>
   <data name="RemoveSpendingTile.Content" xml:space="preserve">
-    <value>Remove Spending Tile</value>
+    <value>Remove Expense Tile</value>
   </data>
   <data name="RemoveTransferTile.Content" xml:space="preserve">
     <value>Remove Transfer Tile</value>

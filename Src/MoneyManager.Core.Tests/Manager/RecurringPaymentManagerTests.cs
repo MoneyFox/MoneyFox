@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Manager;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.TestFoundation;
 using Moq;
-using Xunit;
 
 namespace MoneyManager.Core.Tests.Manager
 {
+    [TestClass]
     public class RecurringPaymentManagerTests
     {
-        [Fact]
+        [TestMethod]
         public void CheckRecurringPayments_None_NewEntryForRecurring()
         {
             var repoSetup = new Mock<IPaymentRepository>();

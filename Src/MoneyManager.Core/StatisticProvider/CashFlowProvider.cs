@@ -52,7 +52,7 @@ namespace MoneyManager.Core.StatisticProvider
             var spent = new StatisticItem
             {
                 Category = Strings.ExpenseLabel,
-                Value = payments.Where(x => x.Type == (int) PaymentType.Spending).Sum(x => x.Amount)
+                Value = payments.Where(x => x.Type == (int) PaymentType.Expense).Sum(x => x.Amount)
             };
             spent.Label = spent.Category + ": " +
                           Math.Round(spent.Value, 2, MidpointRounding.AwayFromZero).ToString("C");

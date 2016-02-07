@@ -10,7 +10,26 @@
                       DataContext="{Binding PaymentListView, Source={StaticResource CoreModule}}"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.BottomAppBar >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <userControls1:PageHeader>
+            <userControls1:PageHeader.HeaderContent>
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
+                           Text="{Binding Title}" />
+            </userControls1:PageHeader.HeaderContent>
+        </userControls1:PageHeader>
+
+        <Grid Grid.Row="1"
+              Margin="0,9.5,0,0"
+              EntranceNavigationTransitionInfo.IsTargetElement="True">
+            <userControls1:PaymentListUserControl />
+        </Grid>
+
         <CommandBar Grid.Row="2">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Add"
@@ -19,10 +38,10 @@
                               Command="{Binding GoToAddPaymentCommand}"
                               CommandParameter="Income" />
                 <AppBarButton Icon="Remove"
-                              x:Uid="AddSpendingLabel"
+                              x:Uid="AddExpenseLabel"
                               Label="add spending"
                               Command="{Binding GoToAddPaymentCommand}"
-                              CommandParameter="Spending" />
+                              CommandParameter="Expense" />
                 <AppBarButton Icon="Switch"
                               x:Uid="AddTransferLabel"
                               Label="add transfer"
@@ -36,26 +55,5 @@
                               Command="{Binding DeleteAccountCommand}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        
-        <userControls1:PageHeader>
-            <userControls1:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="{Binding Title}" />
-            </userControls1:PageHeader.HeaderContent>
-        </userControls1:PageHeader>
-
-        <Grid Grid.Row="1"
-              Margin="0,9.5,0,0"
-              EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <userControls1:PaymentListUserControl />
-        </Grid>
     </Grid>
 </views:MvxWindowsPage>

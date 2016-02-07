@@ -59,7 +59,7 @@ namespace MoneyManager.Core.ViewModels
             {
                 switch (payment.Type)
                 {
-                    case (int) PaymentType.Spending:
+                    case (int) PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
 

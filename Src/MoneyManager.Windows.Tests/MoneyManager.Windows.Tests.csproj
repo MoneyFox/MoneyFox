@@ -127,10 +127,6 @@
       <Project>{6936f4d3-8889-48c7-a676-80d59b2740ce}</Project>
       <Name>MoneyManager.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyManager.TestFoundation\MoneyManager.TestFoundation.csproj">
-      <Project>{72f45d21-21e2-4e46-8c72-cf855afc3765}</Project>
-      <Name>MoneyManager.TestFoundation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyManager.Windows\MoneyManager.Windows.csproj">
       <Project>{31D78E14-8DC1-490C-A401-F88F6E36DB96}</Project>
       <Name>MoneyManager.Windows</Name>

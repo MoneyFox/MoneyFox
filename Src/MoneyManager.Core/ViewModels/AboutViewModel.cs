@@ -63,7 +63,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Returns the Version of App
         /// </summary>
-        public string Version => appInformation.GetVersion;
+        public string Version => appInformation.Version;
 
         /// <summary>
         ///     Returns the apply solutions webite url from the

@@ -2,19 +2,20 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Manager;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using MoneyManager.TestFoundation;
 using Moq;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Manager
 {
+    [TestClass]
     public class PaymentManagerTests
     {
-        [Fact]
+        [TestMethod]
         public void DeleteAssociatedPaymentsFromDatabase_Account_DeleteRightPayments()
         {
             var resultList = new List<int>();
@@ -59,7 +60,7 @@ namespace MoneyManager.Core.Tests.Manager
             resultList.First().ShouldBe(payment.Id);
         }
 
-        [Fact]
+        [TestMethod]
         public void DeleteAssociatedPaymentsFromDatabase_DataNull_DoNothing()
         {
             new PaymentManager(new Mock<IPaymentRepository>().Object,
@@ -68,7 +69,7 @@ namespace MoneyManager.Core.Tests.Manager
                     new Account {Id = 3});
         }
 
-        [Fact]
+        [TestMethod]
         public async void CheckForRecurringPayment_IsRecurringFalse_ReturnFalse()
         {
             var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
@@ -99,7 +100,7 @@ namespace MoneyManager.Core.Tests.Manager
             result.ShouldBe(userAnswer);
         }
 
-        [Fact]
+        [TestMethod]
         public void RemoveRecurringForPayments_RecTrans_PaymentPropertiesProperlyChanged()
         {
             var payment = new Payment

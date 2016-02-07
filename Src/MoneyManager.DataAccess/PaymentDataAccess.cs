@@ -7,7 +7,6 @@ using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 using SQLite.Net;
-using SQLiteNetExtensions.Extensions;
 
 namespace MoneyManager.DataAccess
 {
@@ -33,16 +32,7 @@ namespace MoneyManager.DataAccess
             using (var db = connectionCreator.GetConnection())
             {
                 SaveRecurringPayment(itemToSave, db);
-
-                //Check if the payment is new or an updated one
-                if (itemToSave.Id == 0)
-                {
-                    db.InsertOrReplaceWithChildren(itemToSave);
-                }
-                else
-                {
-                    db.UpdateWithChildren(itemToSave);
-                }
+                itemToSave.Id = db.InsertOrReplace(itemToSave);
             }
         }
 
@@ -50,15 +40,7 @@ namespace MoneyManager.DataAccess
         {
             if (itemToSave.IsRecurring)
             {
-                //Check if the recurring payment is new or an updated one
-                if (itemToSave.RecurringPayment.Id == 0)
-                {
-                    db.Insert(itemToSave.RecurringPayment);
-                }
-                else
-                {
-                    db.Update(itemToSave.RecurringPayment);
-                }
+                db.InsertOrReplace(itemToSave.RecurringPayment);
             }
         }
 
@@ -83,14 +65,15 @@ namespace MoneyManager.DataAccess
         {
             using (var db = connectionCreator.GetConnection())
             {
-                var list = db.GetAllWithChildren(filter, true).ToList();
+                var listQuery = db.Table<Payment>();
 
-                foreach (var payment in list.Where(x => x.IsRecurring && x.RecurringPaymentId != 0))
+                if (filter != null)
                 {
-                    payment.RecurringPayment =
-                        db.GetWithChildren<RecurringPayment>(payment.RecurringPaymentId);
+                    var compiledFilter = filter.Compile();
+                    listQuery = listQuery.Where(x => compiledFilter(x));
                 }
-                return list;
+
+                return listQuery.ToList();
             }
         }
     }

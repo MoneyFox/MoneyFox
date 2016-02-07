@@ -1,37 +1,38 @@
 ﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Authentication;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.TestFoundation;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
-using Xunit;
 
 namespace MoneyManager.Core.Tests.Authentication
 {
+    [TestClass]
     public class SessionTests : MvxIoCSupportingTest
     {
-        [Fact]
-        public void ValidateSession_PasswordNotRequired_SessionValid()
+        [TestInitialize]
+        public void Init()
         {
             ClearAll();
             Setup();
+        }
 
+        [TestMethod]
+        public void ValidateSession_PasswordNotRequired_SessionValid()
+        {
             var settingsSetup = new Mock<ILocalSettings>();
             settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(false);
 
             Mvx.RegisterSingleton(settingsSetup.Object);
 
-            new Session().ValidateSession().ShouldBeTrue();
+            Assert.IsTrue(new Session().ValidateSession());
         }
 
-        [Fact]
+        [TestMethod]
         public void ValidateSession_PasswordRequiredSessionNeverSet_SessionInvalid()
         {
-            ClearAll();
-            Setup();
-
             var settingsSetup = new Mock<ILocalSettings>();
             settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(true);
@@ -42,35 +43,42 @@ namespace MoneyManager.Core.Tests.Authentication
 
             Mvx.RegisterSingleton(settingsSetup.Object);
 
-            new Session().ValidateSession().ShouldBeFalse();
+            Assert.IsFalse(new Session().ValidateSession());
         }
 
-        [Theory]
-        [InlineData(15, false)]
-        [InlineData(5, true)]
-        public void ValidateSession_PasswordRequiredSession_SessioncorrectValidated(int diffMinutes, bool expectedResult)
+        [TestMethod]
+        public void ValidateSession_PasswordRequiredSession_SessionInvalid()
         {
-            ClearAll();
-            Setup();
-
             var settingsSetup = new Mock<ILocalSettings>();
             settingsSetup.Setup(
                 x => x.GetValueOrDefault(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>()))
-                .Returns(DateTime.Now.AddMinutes(-diffMinutes).ToString);
+                .Returns(DateTime.Now.AddMinutes(-15).ToString);
             settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
                 .Returns(true);
 
             Mvx.RegisterSingleton(settingsSetup.Object);
 
-            new Session().ValidateSession().ShouldBe(expectedResult);
+            new Session().ValidateSession().ShouldBeFalse();
         }
 
-        [Fact]
+        [TestMethod]
+        public void ValidateSession_PasswordRequiredSession_SessionValid()
+        {
+            var settingsSetup = new Mock<ILocalSettings>();
+            settingsSetup.Setup(
+                x => x.GetValueOrDefault(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>()))
+                .Returns(DateTime.Now.AddMinutes(-5).ToString);
+            settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
+                .Returns(true);
+
+            Mvx.RegisterSingleton(settingsSetup.Object);
+
+            new Session().ValidateSession().ShouldBeTrue();
+        }
+
+        [TestMethod]
         public void AddSession_SessionTimestampAdded()
         {
-            ClearAll();
-            Setup();
-
             var resultDateTime = DateTime.Today.AddDays(-10);
 
             var settingsSetup = new Mock<ILocalSettings>();
@@ -82,7 +90,7 @@ namespace MoneyManager.Core.Tests.Authentication
             Mvx.RegisterSingleton(settingsSetup.Object);
 
             new Session().AddSession();
-            resultDateTime.Date.ShouldBe(DateTime.Today);
+            Assert.AreEqual(DateTime.Today, resultDateTime.Date);
         }
     }
 }

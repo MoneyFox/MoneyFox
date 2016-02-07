@@ -2,14 +2,13 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Droid
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
-        private const string MSA_CLIENT_ID = "000000004016F96F";
-        private const string MSA_SECRET = "eBl-PFgd-bBANvHaPKkajuTeYUCXo52Z";
         private const string RETURN_URL = @"https://login.live.com/oauth20_desktop.srf";
 
         private readonly IDialogService dialogService;
@@ -27,9 +26,9 @@ namespace MoneyManager.Droid
             if (oneDriveClient == null)
             {
                 oneDriveClient = OneDriveClient.GetMicrosoftAccountClient(
-                    MSA_CLIENT_ID,
+                    OneDriveAuthenticationConstants.MSA_CLIENT_ID,
                     RETURN_URL,
-                    scopes, MSA_SECRET,
+					scopes, OneDriveAuthenticationConstants.MSA_CLIENT_SECRET,
                     null, null,
                     new CustomServiceInfoProvider());
                 try

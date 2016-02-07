@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Manager;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.TestFoundation;
 using Moq;
-using Xunit;
 
 namespace MoneyManager.Core.Tests.Manager
 {
+    [TestClass]
     public class RepositoryManagerTests
     {
-        [Fact]
+        [TestMethod]
         public void Constructor_NullValues_NoException()
         {
             new RepositoryManager(null, null, null, null).ShouldNotBeNull();
         }
 
-        [Fact]
+        [TestMethod]
         public void ReloadData_SelectedNotNull_SelectedSetToNull()
         {
             var accountRepoSetup = new Mock<IAccountRepository>();
@@ -47,7 +47,7 @@ namespace MoneyManager.Core.Tests.Manager
             categoryRepo.Selected.ShouldBeNull();
         }
 
-        [Fact]
+        [TestMethod]
         public void ReloadData_CollectionNull_CollectionInstantiated()
         {
             var accountsLoaded = false;
@@ -81,7 +81,7 @@ namespace MoneyManager.Core.Tests.Manager
             categoryLoaded.ShouldBeTrue();
         }
 
-        [Fact]
+        [TestMethod]
         public void ReloadData_UnclearedPayment_Clear()
         {
             var account = new Account {Id = 1, CurrentBalance = 40};

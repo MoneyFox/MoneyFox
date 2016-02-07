@@ -39,7 +39,7 @@ namespace MoneyManager.Core.ViewModels.SettingViews
         }
 
         /// <summary>
-        ///     Creates a Spending Shortcut
+        ///     Creates a Expense Shortcut
         /// </summary>
         public MvxCommand CreateSpendingShortcutCommand => new MvxCommand(CreateSpendingShortcut);
 
@@ -69,7 +69,7 @@ namespace MoneyManager.Core.ViewModels.SettingViews
         public bool IsTransferShortcutPinned => transferShortcut.IsShortcutExisting;
 
         /// <summary>
-        ///     Removes the existing Spending Shortcut
+        ///     Removes the existing Expense Shortcut
         /// </summary>
         public MvxCommand RemoveSpendingShortcutCommand => new MvxCommand(RemoveSpendingShortcut);
 
