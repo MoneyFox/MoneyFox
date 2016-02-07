@@ -17,7 +17,7 @@ namespace MoneyManager.Core.Tests.Converter
         public void ConvertBack_Input_EqualsInput()
         {
             var amount = 30;
-            Assert.AreEqual(amount, new AmountFormatConverter().Convert(amount, null, null, null));
+            new AmountFormatConverter().Convert(amount, null, null, null).ShouldBe(amount.ToString("C"));
         }
     }
 }

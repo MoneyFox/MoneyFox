@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Manager;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.DataAccess;
@@ -12,17 +13,22 @@ using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
+    [TestClass]
     public class ModifyPaymentViewModelTest : MvxIoCSupportingTest
     {
-        [Fact]
-        public void Init_SpendingNotEditing_PropertiesSetupCorrectly()
+        [TestInitialize]
+        public void Init()
         {
             ClearAll();
             Setup();
+        }
+
+        [TestMethod]
+        public void Init_SpendingNotEditing_PropertiesSetupCorrectly()
+        {
             Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
 
             var paymentRepoSetup = new Mock<IPaymentRepository>();
@@ -56,11 +62,9 @@ namespace MoneyManager.Core.Tests.ViewModels
             viewmodel.SelectedPayment.IsRecurring.ShouldBeFalse();
         }
 
-        [Fact]
+        [TestMethod]
         public void Init_IncomeEditing_PropertiesSetupCorrectly()
         {
-            ClearAll();
-            Setup();
             Mvx.RegisterSingleton(() => new Mock<IMvxMessenger>().Object);
 
             var testEndDate = new DateTime(2099, 1, 31);

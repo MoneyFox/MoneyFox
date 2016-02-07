@@ -12,13 +12,16 @@ using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using Moq;
+using MvvmCross.Platform;
+using MvvmCross.Plugins.Messenger;
+using MvvmCross.Test.Core;
 using Xunit;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace MoneyManager.Core.Tests.Repositories
 {
     [TestClass]
-    public class PaymentRepositoryTests
+    public class PaymentRepositoryTests : MvxIoCSupportingTest
     {
         [TestMethod]
         [ExpectedException(typeof (AccountMissingException))]
@@ -101,22 +104,24 @@ namespace MoneyManager.Core.Tests.Repositories
 
             var targetAccount = new Account
             {
-                Id = 2,
+                Id = 3,
                 Name = "targetAccount"
             };
 
             var payment = new Payment
             {
                 ChargedAccount = account,
+                ChargedAccountId = 2,
                 TargetAccount = targetAccount,
+                TargetAccountId = 3,
                 Amount = 20,
                 Type = (int) PaymentType.Transfer
             };
 
             repository.Save(payment);
 
-            Assert.AreSame(payment, paymentDataAccessMock.PaymentTestList[0]);
-            Assert.AreEqual((int) PaymentType.Transfer, paymentDataAccessMock.PaymentTestList[0].Type);
+            Assert.AreSame(payment, repository.Data[0]);
+            Assert.AreEqual((int) PaymentType.Transfer, repository.Data[0].Type);
         }
 
         [TestMethod]
@@ -143,15 +148,15 @@ namespace MoneyManager.Core.Tests.Repositories
             var payment = new Payment
             {
                 ChargedAccount = account,
+                ChargedAccountId = 2,
                 Amount = 20
             };
 
             repository.Save(payment);
-            Assert.AreSame(payment, paymentDataAccessMock.PaymentTestList[0]);
+            Assert.AreSame(payment, repository.Data[0]);
 
             repository.Delete(payment);
 
-            Assert.IsFalse(paymentDataAccessMock.PaymentTestList.Any());
             Assert.IsFalse(repository.Data.Any());
         }
 
@@ -169,47 +174,7 @@ namespace MoneyManager.Core.Tests.Repositories
                 accountRepositorySetup.Object,
                 categoryRepositorySetup.Object);
 
-            Assert.IsNull(paymentRepo);
-        }
-
-        [TestMethod]
-        public void PaymentRepository_AddMultipleToCache()
-        {
-            var accountRepositorySetup = new Mock<IAccountRepository>();
-            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
-
-            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
-            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
-
-            var repository = new PaymentRepository(new PaymentDataAccessMock(),
-                new RecurringPaymentDataAccessMock(),
-                accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object);
-
-            var account = new Account
-            {
-                Id = 2,
-                Name = "TestAccount"
-            };
-
-            var payment = new Payment
-            {
-                ChargedAccount = account,
-                Amount = 20
-            };
-
-            var secondPayment = new Payment
-            {
-                ChargedAccount = account,
-                Amount = 60
-            };
-
-            repository.Save(payment);
-            repository.Save(secondPayment);
-
-            Assert.AreEqual(2, repository.Data);
-            Assert.AreEqual(payment, repository.Data[0]);
-            Assert.AreEqual(secondPayment, repository.Data[1]);
+            Assert.IsFalse(paymentRepo.Data.Any());
         }
 
         [TestMethod]

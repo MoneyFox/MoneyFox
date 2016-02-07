@@ -21,7 +21,7 @@ namespace MoneyManager.Core.Tests.Converter
         {
             var date = new DateTime(2015, 09, 15, 14, 56, 48);
 
-            Assert.AreEqual(date.ToString("d"), new DateTimeFormatConverter()
+            Assert.AreEqual(date.ToString("D"), new DateTimeFormatConverter()
                 .Convert(date, null, null, null));
         }
     }

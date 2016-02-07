@@ -7,7 +7,6 @@ using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
