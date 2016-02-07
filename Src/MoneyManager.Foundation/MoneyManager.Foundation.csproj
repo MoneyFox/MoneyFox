@@ -47,6 +47,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
+    <Compile Include="Interfaces\ViewModels\IAccountListViewModel.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\IBackgroundTaskService.cs" />
