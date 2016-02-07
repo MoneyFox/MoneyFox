@@ -1,12 +1,13 @@
 ﻿using System.Runtime.InteropServices;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Authentication;
 using MoneyManager.Foundation.Interfaces;
 using Moq;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Authentication
 {
+    [TestClass]
     public class PasswordStorageTests
     {
         [Theory]
@@ -31,7 +32,7 @@ namespace MoneyManager.Core.Tests.Authentication
             resultPassword.ShouldBe(passwordString);
         }
 
-        [Fact]
+        [TestMethod]
         public void LoadPassword_ReturnSavedPassword()
         {
             const string expectedPassword = "fooo";
@@ -41,7 +42,7 @@ namespace MoneyManager.Core.Tests.Authentication
             new PasswordStorage(mockSetup.Object).LoadPassword().ShouldBe(expectedPassword);
         }
 
-        [Fact]
+        [TestMethod]
         public void RemovePassword_RemoveMethodWasCalled()
         {
             var called = false;
@@ -53,7 +54,7 @@ namespace MoneyManager.Core.Tests.Authentication
             called.ShouldBeTrue();
         }
 
-        [Fact]
+        [TestMethod]
         public void RemovePassword_WrongKey_ExceptionCatched()
         {
             var called = false;

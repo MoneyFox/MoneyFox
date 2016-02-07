@@ -138,11 +138,6 @@
   <ItemGroup>
     <Folder Include="Assets\" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="XunitShouldExtension">
-      <HintPath>..\packages\Xunit.Should.Extension.1.0.1\lib\XunitShouldExtension.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

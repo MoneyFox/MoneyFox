@@ -25,7 +25,7 @@ namespace MoneyManager.Core.Tests.Mocks
 
         public List<RecurringPayment> LoadList(Expression<Func<RecurringPayment, bool>> filter = null)
         {
-            return new List<RecurringPayment>();
+            return RecurringPaymentTestList;
         }
     }
 }

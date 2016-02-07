@@ -1,11 +1,11 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace MoneyManager.Windows.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class AppInformationTests
     {
-        [Test]
+        [TestMethod]
         public void GetVersion_VersionInAppManifest_CorrectVersion()
         {
             Assert.AreEqual("1.0.0.0", new AppInformation().Version);

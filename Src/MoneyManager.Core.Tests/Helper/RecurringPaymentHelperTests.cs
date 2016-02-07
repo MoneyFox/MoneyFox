@@ -1,12 +1,13 @@
 ﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Helper
 {
+    [TestClass]
     public class RecurringPaymentHelperTests
     {
         [Theory]
@@ -56,14 +57,18 @@ namespace MoneyManager.Core.Tests.Helper
             PaymentTypeHelper.GetTypeString(typeInt).ShouldBe(expectedResult);
         }
 
-        [Theory]
-        [InlineData(3)]
-        [InlineData(-1)]
-        public void GetTypeString_InvalidType_Exception(int typeInt)
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void GetTypeString_InvalidType_Exception()
         {
-            var exception =
-                Assert.Throws<ArgumentOutOfRangeException>(() => PaymentTypeHelper.GetTypeString(typeInt));
-            exception.Message.StartsWith("Passed Number didn't match to a payment type.").ShouldBeTrue();
+            PaymentTypeHelper.GetTypeString(3);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void GetTypeString_NegativeType_Exception()
+        {
+            PaymentTypeHelper.GetTypeString(-1);
         }
 
         [Theory]
@@ -94,7 +99,7 @@ namespace MoneyManager.Core.Tests.Helper
             result.Date.ShouldBe(DateTime.Today);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetPaymentFromRecurring_MonthlyPayment_CorrectMappedFinancialTrans()
         {
             var account = new Account {Id = 2};
@@ -143,7 +148,7 @@ namespace MoneyManager.Core.Tests.Helper
                 .ShouldBeTrue();
         }
 
-        [Fact]
+        [TestMethod]
         public void CheckIfRepeatable_UnclearedPayment_ReturnFalse()
         {
             var account = new Account {Id = 2};

@@ -2,7 +2,6 @@
 using MoneyManager.Core.Converter;
 using MvvmCross.Platform.UI;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Converter
 {
