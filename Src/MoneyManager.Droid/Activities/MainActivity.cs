@@ -36,7 +36,7 @@ namespace MoneyManager.Droid.Activities
 
             SetContentView(Resource.Layout.activity_main);
 
-            DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.main_layout);
+            DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             ShowHamburguerMenu();
         }
 

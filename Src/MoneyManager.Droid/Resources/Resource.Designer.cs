@@ -3639,6 +3639,9 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f09001e
 			public const int disableHome = 2131296286;
 			
+			// aapt resource value: 0x7f090084
+			public const int drawer_layout = 2131296388;
+			
 			// aapt resource value: 0x7f09009a
 			public const int dummy = 2131296410;
 			
@@ -3893,9 +3896,6 @@ namespace MoneyManager.Droid
 			
 			// aapt resource value: 0x7f0900b9
 			public const int main_image = 2131296441;
-			
-			// aapt resource value: 0x7f090084
-			public const int main_layout = 2131296388;
 			
 			// aapt resource value: 0x7f09003c
 			public const int maxLines = 2131296316;
