@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Model;
 using Xunit;
-using XunitShouldExtension;
+using Assert = Xunit.Assert;
 
 namespace MoneyManager.Core.Tests.Helper
 {
+    [TestClass]
     public class UtilitiesTest
     {
-        [Fact]
+        [TestMethod]
         public void RoundStatisticItems_ListOfItems_ListWithRoundedItems()
         {
             var statisticItems = new List<StatisticItem>
@@ -39,10 +41,10 @@ namespace MoneyManager.Core.Tests.Helper
             Assert.Equal(statisticItems[3].Value, 9);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetEndOfMonth_NoneInput_LastDayOfMonth()
         {
-            Utilities.GetEndOfMonth().ShouldBeInstanceOf<DateTime>();
+            Utilities.GetEndOfMonth().ShouldBeInstanceOf(typeof(DateTime));
         }
 
         [Theory]

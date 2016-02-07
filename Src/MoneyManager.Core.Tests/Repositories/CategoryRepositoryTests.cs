@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation.Interfaces;
@@ -8,10 +9,10 @@ using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 using Moq;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Repositories
 {
+    [TestClass]
     public class CategoryRepositoryTests
     {
         public static IEnumerable NamePlaceholder
@@ -42,7 +43,7 @@ namespace MoneyManager.Core.Tests.Repositories
             categoryDataAccessMock.CategoryTestList[0].Name.ShouldBe(expectedResult);
         }
 
-        [Fact]
+        [TestMethod]
         public void CategoryRepository_Delete()
         {
             var categoryDataAccessMock = new CategoryDataAccessMock();
@@ -63,13 +64,13 @@ namespace MoneyManager.Core.Tests.Repositories
             repository.Data.Any().ShouldBeFalse();
         }
 
-        [Fact]
+        [TestMethod]
         public void CategoryRepository_AccessCache()
         {
             new CategoryRepository(new CategoryDataAccessMock()).Data.ShouldNotBeNull();
         }
 
-        [Fact]
+        [TestMethod]
         public void CategoryRepository_AddMultipleToCache()
         {
             var repository = new CategoryRepository(new CategoryDataAccessMock());
@@ -91,7 +92,7 @@ namespace MoneyManager.Core.Tests.Repositories
             repository.Data[1].ShouldBeSameAs(secondCategory);
         }
 
-        [Fact]
+        [TestMethod]
         public void Load_CategoryDataAccess_DataInitialized()
         {
             var dataAccessSetup = new Mock<IDataAccess<Category>>();

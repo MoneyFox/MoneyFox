@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
 using Moq;
-using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Repositories
 {
+    [TestClass]
     public class AccountRepositoryTests
     {
-        [Fact]
+        [TestMethod]
         public void Save_InputName_CorrectNameAssigned()
         {
             var testList = new List<Account>();
@@ -35,11 +34,11 @@ namespace MoneyManager.Core.Tests.Repositories
 
             accountRepository.Save(account);
 
-            testList[0].ShouldBeSameAs(account);
-            testList[0].Name.ShouldBe(nameInput);
+            Assert.AreSame(testList[0], account);
+            Assert.AreSame(testList[0].Name, account.Name);
         }
 
-        [Fact]
+        [TestMethod]
         public void Save_EmptyName_CorrectDefault()
         {
             var testList = new List<Account>();
@@ -61,17 +60,17 @@ namespace MoneyManager.Core.Tests.Repositories
 
             accountRepository.Save(account);
 
-            testList[0].ShouldBeSameAs(account);
-            testList[0].Name.ShouldBe(Strings.NoNamePlaceholderLabel);
+            Assert.AreSame(testList[0], account);
+            Assert.AreSame(testList[0].Name, account.Name);
         }
 
-        [Fact]
+        [TestMethod]
         public void AccessCache()
         {
-            new AccountRepository(new AccountDataAccessMock()).Data.ShouldNotBeNull();
+            Assert.IsNotNull(new AccountRepository(new AccountDataAccessMock()).Data);
         }
 
-        [Fact]
+        [TestMethod]
         public void Delete_None_AccountDeleted()
         {
             var testList = new List<Account>();
@@ -95,11 +94,11 @@ namespace MoneyManager.Core.Tests.Repositories
 
             repository.Delete(account);
 
-            testList.Any().ShouldBeFalse();
-            repository.Data.Any().ShouldBeFalse();
+            Assert.IsFalse(testList.Any());
+            Assert.IsFalse(repository.Data.Any());
         }
 
-        [Fact]
+        [TestMethod]
         public void Load_AccountDataAccess_DataInitialized()
         {
             var accountDataAccessSetup = new Mock<IDataAccess<Account>>();
@@ -112,8 +111,8 @@ namespace MoneyManager.Core.Tests.Repositories
             var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
             accountRepository.Load();
 
-            accountRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
-            accountRepository.Data.Any(x => x.Id == 15).ShouldBeTrue();
+            Assert.IsTrue(accountRepository.Data.Any(x => x.Id == 10));
+            Assert.IsTrue(accountRepository.Data.Any(x => x.Id == 15));
         }
     }
 }

@@ -84,7 +84,7 @@ namespace MoneyManager.Foundation.Model
                 if (chargedAccount != value)
                 {
                     chargedAccount = value;
-                    ChargedAccountId = value.Id;
+                    ChargedAccountId = value?.Id ?? 0;
                 }
             }
         }
@@ -104,7 +104,7 @@ namespace MoneyManager.Foundation.Model
                 if (targetAccount != value)
                 {
                     targetAccount = value;
-                    TargetAccountId = value.Id;
+                    TargetAccountId = value?.Id ?? 0;
                 }
             }
         }
@@ -123,7 +123,7 @@ namespace MoneyManager.Foundation.Model
                 if (category != value)
                 {
                     category = value;
-                    CategoryId = value?.Id;
+                    CategoryId = value?.Id ?? 0;
                 }
             }
         }
@@ -142,7 +142,7 @@ namespace MoneyManager.Foundation.Model
                 if (recurringPayment != value)
                 {
                     recurringPayment = value;
-                    RecurringPaymentId = value.Id;
+                    RecurringPaymentId = value?.Id ?? 0;
                 }
             }
         }

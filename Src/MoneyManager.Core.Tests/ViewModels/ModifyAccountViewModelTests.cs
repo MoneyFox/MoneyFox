@@ -1,16 +1,16 @@
-﻿using MoneyManager.Core.ViewModels;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 using Moq;
-using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
+    [TestClass]
     public class ModifyAccountViewModelTests
     {
-        [Fact]
+        [TestMethod]
         public void Title_EditAccount_CorrectTitle()
         {
             var accountname = "Sparkonto";
@@ -25,7 +25,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             viewmodel.Title.ShouldBe(Strings.EditLabel + " " + accountname);
         }
 
-        [Fact]
+        [TestMethod]
         public void Title_AddAccount_CorrectTitle()
         {
             var accountname = "Sparkonto";
