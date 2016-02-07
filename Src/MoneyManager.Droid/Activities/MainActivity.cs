@@ -50,7 +50,7 @@ namespace MoneyManager.Droid.Activities
         private void CheckIfMenuIsNeeded(CustomFragmentInfo myCustomInfo)
         {
             //If not root, we will block the menu sliding gesture and show the back button on top
-            if (myCustomInfo.IsRoot)
+            if (myCustomInfo != null && myCustomInfo.IsRoot)
             {
                 ShowHamburguerMenu();
             }

@@ -1,13 +1,11 @@
 using Android.OS;
 using Android.Runtime;
-using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using MvvmCross.Platform;
 
 namespace MoneyManager.Droid.Fragments
