@@ -23,7 +23,7 @@ namespace MoneyManager.Droid.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-            var view = this.BindingInflate(Resource.Layout.fragment_statistic, null);
+            var view = this.BindingInflate(Resource.Layout.StatisticLayout, null);
 
             SetGraphicalStatistic(view);
 

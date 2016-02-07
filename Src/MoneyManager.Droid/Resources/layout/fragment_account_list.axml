@@ -18,6 +18,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/accountList"
-        local:MvxItemTemplate="@layout/listitem_account"
+        local:MvxItemTemplate="@layout/accountlistitem"
         local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />
 </LinearLayout>
