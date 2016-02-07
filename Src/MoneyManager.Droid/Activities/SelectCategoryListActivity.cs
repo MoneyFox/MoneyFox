@@ -34,7 +34,7 @@ namespace MoneyManager.Droid.Activities
         /// <returns>To be added.</returns>
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            MenuInflater.Inflate(Resource.Menu.SelectMenu, menu);
+            MenuInflater.Inflate(Resource.Menu.menu_select, menu);
             return base.OnCreateOptionsMenu(menu);
         }
 

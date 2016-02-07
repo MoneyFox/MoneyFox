@@ -47,7 +47,7 @@ namespace MoneyManager.Droid.Activities
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.MainLayout);
+            SetContentView(Resource.Layout.activity_main);
 
             slidingLayout = FindViewById<SlidingPaneLayout>(Resource.Id.main_layout);
             menuListView = FindViewById<ListView>(Resource.Id.left_pane);
@@ -156,7 +156,7 @@ namespace MoneyManager.Droid.Activities
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            MenuInflater.Inflate(Resource.Menu.MainMenu, menu);
+            MenuInflater.Inflate(Resource.Menu.menu_main, menu);
             return true;
         }
 

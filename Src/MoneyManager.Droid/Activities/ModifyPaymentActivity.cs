@@ -82,7 +82,7 @@ namespace MoneyManager.Droid.Activities
         /// <returns>To be added.</returns>
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            MenuInflater.Inflate(ViewModel.IsEdit ? Resource.Menu.ModificationMenu : Resource.Menu.AddMenu, menu);
+            MenuInflater.Inflate(ViewModel.IsEdit ? Resource.Menu.menu_modification : Resource.Menu.menu_add, menu);
 
             return base.OnCreateOptionsMenu(menu);
         }
