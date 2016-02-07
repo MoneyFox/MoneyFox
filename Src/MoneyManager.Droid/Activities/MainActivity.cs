@@ -61,7 +61,7 @@ namespace MoneyManager.Droid.Activities
         }
 
         private void ShowBackButton()
-        {
+            {
             //TODO Tell the toggle to set the indicator off
             //this.DrawerToggle.DrawerIndicatorEnabled = false;
 

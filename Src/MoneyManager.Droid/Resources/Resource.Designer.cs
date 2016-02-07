@@ -2134,6 +2134,9 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f06006c
 			public const int accountList = 2131099756;
 			
+			// aapt resource value: 0x7f06006b
+			public const int account_list_balance_frame = 2131099755;
+			
 			// aapt resource value: 0x7f060081
 			public const int action0 = 2131099777;
 			
@@ -2214,9 +2217,6 @@ namespace MoneyManager.Droid
 			
 			// aapt resource value: 0x7f060094
 			public const int appbar = 2131099796;
-			
-			// aapt resource value: 0x7f06006b
-			public const int balance_pane = 2131099755;
 			
 			// aapt resource value: 0x7f06001c
 			public const int beginning = 2131099676;

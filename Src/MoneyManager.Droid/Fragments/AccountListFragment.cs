@@ -6,7 +6,6 @@ using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
-using MvvmCross.Platform;
 
 namespace MoneyManager.Droid.Fragments
 {
@@ -21,12 +20,12 @@ namespace MoneyManager.Droid.Fragments
 
             if (savedInstanceState == null)
             {
-                var fragment = new BalanceFragment
-                {
-                    ViewModel = Mvx.Resolve<BalanceViewModel>()
-                };
+                //var fragment = new BalanceFragment
+                //{
+                //    ViewModel = Mvx.Resolve<BalanceViewModel>()
+                //};
 
-                fragment.ViewModel.UpdateBalance();
+                //fragment.ViewModel.UpdateBalance();
 
                 //FragmentManager.BeginTransaction()
                 //    .Replace(Resource.Id.balance_pane, fragment)

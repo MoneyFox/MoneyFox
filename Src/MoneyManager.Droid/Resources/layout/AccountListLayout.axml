@@ -8,7 +8,7 @@
     android:paddingRight="6dp"
     android:orientation="vertical">
     <FrameLayout
-        android:id="@+id/balance_pane"
+        android:id="@+id/account_list_balance_frame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent" />
