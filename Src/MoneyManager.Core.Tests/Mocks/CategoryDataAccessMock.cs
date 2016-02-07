@@ -25,7 +25,7 @@ namespace MoneyManager.Core.Tests.Mocks
 
         public List<Category> LoadList(Expression<Func<Category, bool>> filter = null)
         {
-            return new List<Category>();
+            return CategoryTestList;
         }
     }
 }

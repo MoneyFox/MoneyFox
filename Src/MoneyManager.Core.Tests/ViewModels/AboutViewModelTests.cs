@@ -1,4 +1,5 @@
-﻿using MoneyManager.Core.ViewModels;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
@@ -7,11 +8,10 @@ using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Test.Core;
-using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
+    [TestClass]
     public class AboutViewModelTests : MvxIoCSupportingTest
     {
         public AboutViewModelTests()
@@ -20,7 +20,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             Setup();
         }
 
-        [Fact]
+        [TestMethod]
         public void SendMail_NoParams_CommandCalled()
         {
             var commandCalled = false;
@@ -43,7 +43,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             commandCalled.ShouldBeTrue();
         }
 
-        [Fact]
+        [TestMethod]
         public void SupportMail_NoParams_ReturnCorrectMail()
         {
             new AboutViewModel(new Mock<IAppInformation>().Object,
@@ -53,7 +53,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 .SupportMail.ShouldBe(Constants.SUPPORT_MAIL);
         }
 
-        [Fact]
+        [TestMethod]
         public void Website_NoParams_ReturnCorrectMail()
         {
             new AboutViewModel(new Mock<IAppInformation>().Object,
@@ -63,11 +63,11 @@ namespace MoneyManager.Core.Tests.ViewModels
                 .Website.ShouldBe(Constants.WEBSITE_URL);
         }
 
-        [Fact]
+        [TestMethod]
         public void Version_NoParams_ReturnCorrectMail()
         {
             var appinfos = new Mock<IAppInformation>();
-            appinfos.Setup(x => x.GetVersion).Returns("42");
+            appinfos.Setup(x => x.Version).Returns("42");
 
             new AboutViewModel(appinfos.Object,
                 new Mock<IMvxComposeEmailTask>().Object,
@@ -76,7 +76,7 @@ namespace MoneyManager.Core.Tests.ViewModels
                 .Version.ShouldBe("42");
         }
 
-        [Fact]
+        [TestMethod]
         public void GoToWebsite_NoParams_Called()
         {
             var commandCalled = false;
@@ -94,7 +94,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             commandCalled.ShouldBeTrue();
         }
 
-        [Fact]
+        [TestMethod]
         public void GoToRepository_NoParams_CommandCalled()
         {
             var commandCalled = false;
@@ -112,7 +112,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             commandCalled.ShouldBeTrue();
         }
 
-        [Fact]
+        [TestMethod]
         public void RateApp_NoParams_CommandCalled()
         {
             var commandCalled = false;

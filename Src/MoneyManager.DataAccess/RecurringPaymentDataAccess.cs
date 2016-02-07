@@ -6,7 +6,6 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
-using SQLiteNetExtensions.Extensions;
 
 namespace MoneyManager.DataAccess
 {
@@ -28,14 +27,7 @@ namespace MoneyManager.DataAccess
         {
             using (var db = connectionCreator.GetConnection())
             {
-                if (itemToSave.Id == 0)
-                {
-                    db.InsertWithChildren(itemToSave);
-                }
-                else
-                {
-                    db.UpdateWithChildren(itemToSave);
-                }
+                itemToSave.Id = db.InsertOrReplace(itemToSave);
             }
         }
 
@@ -58,9 +50,17 @@ namespace MoneyManager.DataAccess
         /// <returns>List of loaded recurring payments.</returns>
         protected override List<RecurringPayment> GetListFromDb(Expression<Func<RecurringPayment, bool>> filter)
         {
-            using (var dbConn = connectionCreator.GetConnection())
+            using (var db = connectionCreator.GetConnection())
             {
-                return dbConn.GetAllWithChildren(filter).ToList();
+                var listQuery = db.Table<RecurringPayment>();
+
+                if (filter != null)
+                {
+                    var compiledFilter = filter.Compile();
+                    listQuery = listQuery.Where(x => compiledFilter(x));
+                }
+
+                return listQuery.ToList();
             }
         }
     }

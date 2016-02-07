@@ -5,13 +5,6 @@ namespace MoneyManager.Windows
 {
     public class TileHelper : BaseViewModel
     {
-        private readonly ModifyPaymentViewModel modifyPaymentViewModel;
-
-        public TileHelper(ModifyPaymentViewModel modifyPaymentViewModel)
-        {
-            this.modifyPaymentViewModel = modifyPaymentViewModel;
-        }
-
         public bool DoNavigation(string tileId)
         {
             switch (tileId)

@@ -3,7 +3,6 @@ using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Localization;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Helper
 {
@@ -30,19 +29,19 @@ namespace MoneyManager.Core.Tests.Helper
             get
             {
                 //Editmode true
-                yield return new object[] {PaymentType.Spending, Strings.EditSpendingTitle, true};
+                yield return new object[] {PaymentType.Expense, Strings.EditSpendingTitle, true};
                 yield return new object[] {PaymentType.Income, Strings.EditIncomeTitle, true};
                 yield return new object[] {PaymentType.Transfer, Strings.EditTransferTitle, true};
 
                 //Editmode false
-                yield return new object[] {PaymentType.Spending, Strings.AddSpendingTitle, false};
+                yield return new object[] {PaymentType.Expense, Strings.AddSpendingTitle, false};
                 yield return new object[] {PaymentType.Income, Strings.AddIncomeTitle, false};
                 yield return new object[] {PaymentType.Transfer, Strings.AddTransferTitle, false};
             }
         }
 
         [Theory]
-        [InlineData("Spending", PaymentType.Spending)]
+        [InlineData("Expense", PaymentType.Expense)]
         [InlineData("Income", PaymentType.Income)]
         [InlineData("Transfer", PaymentType.Transfer)]
         public void GetEnumFrostring_String_Titel(string inputString, PaymentType expectedType)

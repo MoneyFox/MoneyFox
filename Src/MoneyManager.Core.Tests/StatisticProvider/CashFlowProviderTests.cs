@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.StatisticProvider;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using Moq;
-using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.StatisticProvider
 {
+    [TestClass]
     public class CashFlowProviderTests
     {
-        [Fact]
+        [TestMethod]
         public void Constructor_Null_NotNullObject()
         {
             new CashFlowProvider(null).ShouldNotBeNull();
         }
 
-        [Fact]
+        [TestMethod]
         public void GetValues_SetupData_ListWithoutTransfer()
         {
             //Setup
@@ -39,7 +39,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 50
                 },
@@ -62,7 +62,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             result.Revenue.Value.ShouldBe(10);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetValues_SetupData_CalculatedCorrectTimeRange()
         {
             //Setup
@@ -75,21 +75,21 @@ namespace MoneyManager.Core.Tests.StatisticProvider
                 new Payment
                 {
                     Id = 1,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today,
                     Amount = 60
                 },
                 new Payment
                 {
                     Id = 2,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today.AddDays(5),
                     Amount = 50
                 },
                 new Payment
                 {
                     Id = 3,
-                    Type = (int) PaymentType.Spending,
+                    Type = (int) PaymentType.Expense,
                     Date = DateTime.Today.AddDays(-5),
                     Amount = 40
                 }
@@ -105,11 +105,11 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             result.Revenue.Value.ShouldBe(-60);
         }
 
-        [Fact]
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
         public void GetValues_NullDependency_NullReferenceException()
         {
-            Assert.Throws<NullReferenceException>(
-                () => new CashFlowProvider(null).GetValues(DateTime.Today, DateTime.Today));
+            new CashFlowProvider(null).GetValues(DateTime.Today, DateTime.Today);
         }
     }
 }

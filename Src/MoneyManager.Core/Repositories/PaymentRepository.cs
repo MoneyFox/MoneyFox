@@ -13,6 +13,8 @@ namespace MoneyManager.Core.Repositories
     [ImplementPropertyChanged]
     public class PaymentRepository : IPaymentRepository
     {
+        private readonly IAccountRepository accountRepository;
+        private readonly IRepository<Category> categoryRepository;
         private readonly IDataAccess<Payment> dataAccess;
         private readonly IDataAccess<RecurringPayment> recurringDataAccess;
         private ObservableCollection<Payment> data;
@@ -24,17 +26,25 @@ namespace MoneyManager.Core.Repositories
         /// <param name="recurringDataAccess">
         ///     Instanced <see cref="IDataAccess{T}" /> for <see cref="RecurringPayment" />
         /// </param>
+        /// <param name="accountRepository">Instanced <see cref="IAccountRepository" /></param>
+        /// <param name="categoryRepository">
+        ///     Instanced <see cref="IRepository{T}" /> for <see cref="Category" />
+        /// </param>
         public PaymentRepository(IDataAccess<Payment> dataAccess,
-            IDataAccess<RecurringPayment> recurringDataAccess)
+            IDataAccess<RecurringPayment> recurringDataAccess,
+            IAccountRepository accountRepository,
+            IRepository<Category> categoryRepository)
         {
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
+            this.accountRepository = accountRepository;
+            this.categoryRepository = categoryRepository;
 
             Load();
         }
 
         /// <summary>
-        ///     cached paymentToDelete data
+        ///     Cached accountToDelete data
         /// </summary>
         public ObservableCollection<Payment> Data
         {
@@ -55,37 +65,38 @@ namespace MoneyManager.Core.Repositories
         public Payment Selected { get; set; }
 
         /// <summary>
-        ///     SaveItem a new item or update an existin one.
+        ///     Save a new payment or update an existin one.
         /// </summary>
-        /// <param name="item">item to save</param>
-        public void Save(Payment item)
+        /// <param name="payment">item to save</param>
+        public void Save(Payment payment)
         {
-            if (item.ChargedAccount == null)
+            if (payment.ChargedAccountId == 0)
             {
                 throw new AccountMissingException("charged accout is missing");
             }
 
-            item.IsCleared = item.ClearPaymentNow;
+            payment.IsCleared = payment.ClearPaymentNow;
 
-            if (item.Id == 0)
+            //delete recurring payment if isRecurring is no longer set.
+            if (!payment.IsRecurring && payment.RecurringPaymentId != 0)
             {
-                data.Add(item);
+                recurringDataAccess.DeleteItem(payment.RecurringPayment);
+                payment.RecurringPaymentId = 0;
             }
 
-            //delete recurring paymentToDelete if isRecurring is no longer set.
-            if (!item.IsRecurring && item.RecurringPaymentId != 0)
-            {
-                recurringDataAccess.DeleteItem(item.RecurringPayment);
-                item.RecurringPaymentId = 0;
-            }
+            dataAccess.SaveItem(payment);
 
-            dataAccess.SaveItem(item);
+            if (payment.Id == 0)
+            {
+                //Reload data.
+                Load();
+            }
         }
 
         /// <summary>
-        ///     Deletes the passed item and removes the item from cache
+        ///     Deletes the passed payment and removes the item from cache
         /// </summary>
-        /// <param name="paymentToDelete">item to delete</param>
+        /// <param name="paymentToDelete">Payment to delete.</param>
         public void Delete(Payment paymentToDelete)
         {
             var payments = Data.Where(x => x.Id == paymentToDelete.Id).ToList();
@@ -95,8 +106,8 @@ namespace MoneyManager.Core.Repositories
                 data.Remove(payment);
                 dataAccess.DeleteItem(payment);
 
-                // If this paymentToDelete was the last finacial paymentToDelete for the linked recurring paymentToDelete
-                // delete the db entry for the recurring paymentToDelete.
+                // If this accountToDelete was the last finacial accountToDelete for the linked recurring accountToDelete
+                // delete the db entry for the recurring accountToDelete.
                 DeleteRecurringPaymentIfLastAssociated(payment);
             }
         }
@@ -106,7 +117,24 @@ namespace MoneyManager.Core.Repositories
         /// </summary>
         public void Load(Expression<Func<Payment, bool>> filter = null)
         {
-            Data = new ObservableCollection<Payment>(dataAccess.LoadList(filter));
+            var payments = dataAccess.LoadList(filter);
+            var recurringTransactions = recurringDataAccess.LoadList();
+
+            foreach (var payment in payments)
+            {
+                payment.ChargedAccount = accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                payment.TargetAccount = accountRepository.Data.FirstOrDefault(x => x.Id == payment.TargetAccountId);
+
+                payment.Category = categoryRepository.Data.FirstOrDefault(x => x.Id == payment.CategoryId);
+
+                if (payment.IsRecurring)
+                {
+                    payment.RecurringPayment =
+                        recurringTransactions.FirstOrDefault(x => x.Id == payment.RecurringPaymentId);
+                }
+            }
+
+            Data = new ObservableCollection<Payment>(payments);
         }
 
         /// <summary>

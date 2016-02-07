@@ -12,7 +12,7 @@ namespace MoneyManager.Windows
         /// <summary>
         ///     Reads the version from the AppManifest and returns it formated.
         /// </summary>
-        public string GetVersion
+        public string Version
         {
             get
             {
