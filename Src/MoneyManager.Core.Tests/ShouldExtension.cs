@@ -100,7 +100,7 @@ namespace MoneyManager.Core.Tests
             Assert.IsTrue(comparer.Compare(self, other) <= 0);
         }
 
-        public static void ShouldBeInstanceOf<T>(this object self, Type type)
+        public static void ShouldBeInstanceOf(this object self, Type type)
         {
             Assert.IsInstanceOfType(self, type);
         }

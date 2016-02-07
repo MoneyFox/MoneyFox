@@ -4,8 +4,6 @@ using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using Xunit;
-using XunitShouldExtension;
-using Assert = Xunit.Assert;
 
 namespace MoneyManager.Core.Tests.Helper
 {
@@ -59,14 +57,18 @@ namespace MoneyManager.Core.Tests.Helper
             PaymentTypeHelper.GetTypeString(typeInt).ShouldBe(expectedResult);
         }
 
-        [Theory]
-        [InlineData(3)]
-        [InlineData(-1)]
-        public void GetTypeString_InvalidType_Exception(int typeInt)
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void GetTypeString_InvalidType_Exception()
         {
-            var exception =
-                Assert.Throws<ArgumentOutOfRangeException>(() => PaymentTypeHelper.GetTypeString(typeInt));
-            exception.Message.StartsWith("Passed Number didn't match to a payment type.").ShouldBeTrue();
+            PaymentTypeHelper.GetTypeString(3);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void GetTypeString_NegativeType_Exception()
+        {
+            PaymentTypeHelper.GetTypeString(-1);
         }
 
         [Theory]

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
@@ -6,10 +7,10 @@ using MoneyManager.Foundation.Model;
 using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
-using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
+    [TestClass]
     public class AccountListViewModelTests : MvxIoCSupportingTest
     {
         public AccountListViewModelTests()
@@ -18,7 +19,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             Setup();
         }
 
-        [Fact]
+        [TestMethod]
         public void OpenOverviewCommand_Account_SelectedSet()
         {
             var accountRepoSetup = new Mock<IAccountRepository>();
@@ -35,7 +36,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             accountRepo.Selected.Id.ShouldBe(42);
         }
 
-        [Fact]
+        [TestMethod]
         public void OpenOverviewCommand_NullAccount_DoNothing()
         {
             var accountRepoSetup = new Mock<IAccountRepository>();
@@ -51,7 +52,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             accountRepo.Selected.ShouldBeNull();
         }
 
-        [Fact]
+        [TestMethod]
         public void DeleteAccountCommand_UserReturnTrue_ExecuteDeletion()
         {
             var deleteCalled = false;
@@ -80,7 +81,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             updateBalanceCalled.ShouldBeTrue();
         }
 
-        [Fact]
+        [TestMethod]
         public void DeleteAccountCommand_UserReturnFalse_SkipDeletion()
         {
             var deleteCalled = false;
@@ -109,7 +110,7 @@ namespace MoneyManager.Core.Tests.ViewModels
             updateBalanceCalled.ShouldBeFalse();
         }
 
-        [Fact]
+        [TestMethod]
         public void DeleteAccountCommand_AccountNull_DoNothing()
         {
             var deleteCalled = false;

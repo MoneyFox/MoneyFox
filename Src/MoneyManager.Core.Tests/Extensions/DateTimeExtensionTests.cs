@@ -1,7 +1,6 @@
 ﻿using System;
 using MoneyManager.Core.Extensions;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Extensions
 {

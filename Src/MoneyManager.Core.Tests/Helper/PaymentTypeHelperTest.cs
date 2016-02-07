@@ -3,7 +3,6 @@ using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Localization;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyManager.Core.Tests.Helper
 {
