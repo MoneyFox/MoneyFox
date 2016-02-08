@@ -107,8 +107,10 @@ namespace MoneyManager.Windows.Controls
         private Storyboard openSwipeablePane;
         private Storyboard closeSwipeablePane;
 
+        private Selector menuHost;
         private readonly IList<SelectorItem> menuItems = new List<SelectorItem>();
         private int toBeSelectedIndex;
+        private static readonly double TOTAL_PANNING_DISTANCE = 160d;
         private double distancePerItem;
         private double startingDistance;
 
@@ -243,7 +245,7 @@ namespace MoneyManager.Windows.Controls
                 case SplitViewDisplayMode.Inline:
                 case SplitViewDisplayMode.CompactOverlay:
                 case SplitViewDisplayMode.CompactInline:
-                    splitView.IsPaneOpen = !splitView.IsPaneOpen;
+                    splitView.IsPaneOpen = (bool) e.NewValue;
                     break;
 
                 case SplitViewDisplayMode.Overlay:
@@ -281,6 +283,22 @@ namespace MoneyManager.Windows.Controls
             DependencyProperty.Register("PanAreaThreshold", typeof (double), typeof (SwipeableSplitView),
                 new PropertyMetadata(36d));
 
+
+        /// <summary>
+        ///     enabling this will allow users to select a menu item by panning up/down on the bottom area of the left pane,
+        ///     this could be particularly helpful when holding large phones since users don't need to stretch their fingers to
+        ///     reach the top part of the screen to select a different menu item.
+        /// </summary>
+        public bool IsPanSelectorEnabled
+        {
+            get { return (bool) GetValue(IsPanSelectorEnabledProperty); }
+            set { SetValue(IsPanSelectorEnabledProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsPanSelectorEnabledProperty =
+            DependencyProperty.Register("IsPanSelectorEnabled", typeof (bool), typeof (SwipeableSplitView),
+                new PropertyMetadata(true));
+
         #endregion
 
         #region manipulation event handlers
@@ -289,6 +307,11 @@ namespace MoneyManager.Windows.Controls
         {
             panAreaTransform = PanArea.RenderTransform as CompositeTransform;
             paneRootTransform = PaneRoot.RenderTransform as CompositeTransform;
+
+            if (panAreaTransform == null || paneRootTransform == null)
+            {
+                throw new ArgumentException("Make sure you have copied the default style to Generic.xaml!!");
+            }
         }
 
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
@@ -300,12 +323,36 @@ namespace MoneyManager.Windows.Controls
 
             // while we are panning the PanArea on X axis, let's sync the PaneRoot's position X too
             paneRootTransform.TranslateX = panAreaTransform.TranslateX = x;
+
+            if (sender == paneRoot && IsPanSelectorEnabled)
+            {
+                // un-highlight everything first
+                foreach (var item in menuItems)
+                {
+                    VisualStateManager.GoToState(item, "Normal", true);
+                }
+
+                toBeSelectedIndex =
+                    (int)
+                        Math.Round((e.Cumulative.Translation.Y + startingDistance)/distancePerItem,
+                            MidpointRounding.AwayFromZero);
+                if (toBeSelectedIndex < 0)
+                {
+                    toBeSelectedIndex = 0;
+                }
+                else if (toBeSelectedIndex >= menuItems.Count)
+                {
+                    toBeSelectedIndex = menuItems.Count - 1;
+                }
+
+                // highlight the item that's going to be selected
+                var itemContainer = menuItems[toBeSelectedIndex];
+                VisualStateManager.GoToState(itemContainer, "PointerOver", true);
+            }
         }
 
-        private void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        private async void OnManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            if (Math.Abs(e.Velocities.Linear.Y) > 0.1) return;
-
             var x = e.Velocities.Linear.X;
 
             // ignore a little bit velocity (+/-0.1)
@@ -327,6 +374,44 @@ namespace MoneyManager.Windows.Controls
             else
             {
                 OpenSwipeablePane();
+            }
+
+            if (IsPanSelectorEnabled)
+            {
+                if (sender == paneRoot)
+                {
+                    // if it's a flick, meaning the user wants to cancel the action, so we remove all the highlights;
+                    // or it's intended to be a horizontal gesture, we also remove all the highlights
+                    if (Math.Abs(e.Velocities.Linear.Y) >= 2 ||
+                        Math.Abs(e.Cumulative.Translation.X) > Math.Abs(e.Cumulative.Translation.Y))
+                    {
+                        foreach (var item in menuItems)
+                        {
+                            VisualStateManager.GoToState(item, "Normal", true);
+                        }
+
+                        return;
+                    }
+
+                    // un-highlight everything first
+                    foreach (var item in menuItems)
+                    {
+                        VisualStateManager.GoToState(item, "Unselected", true);
+                    }
+
+                    // highlight the item that's going to be selected
+                    var itemContainer = menuItems[toBeSelectedIndex];
+                    VisualStateManager.GoToState(itemContainer, "Selected", true);
+
+                    // do a selection after a short delay to allow visual effect takes place first
+                    await Task.Delay(250);
+                    menuHost.SelectedIndex = toBeSelectedIndex;
+                }
+                else
+                {
+                    // recalculate the starting distance
+                    startingDistance = distancePerItem*menuHost.SelectedIndex;
+                }
             }
         }
 
@@ -358,7 +443,7 @@ namespace MoneyManager.Windows.Controls
                 }
                 catch (Exception ex)
                 {
-                    Insights.Report(ex, Insights.Severity.Error);
+                    Insights.Report(ex, Insights.Severity.Warning);
                 }
             }
             else
@@ -377,7 +462,7 @@ namespace MoneyManager.Windows.Controls
                 }
                 catch (Exception ex)
                 {
-                    Insights.Report(ex, Insights.Severity.Error);
+                    Insights.Report(ex);
                 }
             }
             else

@@ -72,6 +72,7 @@
         <!-- Top-level navigation menu + app content -->
         <controls:SwipeableSplitView x:Name="RootSplitView"
                                      DisplayMode="Overlay"
+                                     IsPanSelectorEnabled="False"
                                      OpenPaneLength="256"
                                      IsTabStop="False">
             <controls:SwipeableSplitView.Pane>
