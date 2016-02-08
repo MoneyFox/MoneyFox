@@ -71,9 +71,9 @@
 
         <!-- Top-level navigation menu + app content -->
         <controls:SwipeableSplitView x:Name="RootSplitView"
-                                           DisplayMode="Overlay"
-                                           OpenPaneLength="256"
-                                           IsTabStop="False">
+                                     DisplayMode="Overlay"
+                                     OpenPaneLength="256"
+                                     IsTabStop="False">
             <controls:SwipeableSplitView.Pane>
                 <Grid>
                     <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
@@ -116,6 +116,7 @@
 
         <!-- Declared last to have it rendered above everything else, but it needs to be the first item in the tab sequence. -->
         <ToggleButton x:Name="TogglePaneButton"
+                      Foreground="White"
                       TabIndex="1"
                       Style="{StaticResource SplitViewTogglePaneButtonStyle}"
                       IsChecked="{Binding IsSwipeablePaneOpen, ElementName=RootSplitView, Mode=TwoWay}"

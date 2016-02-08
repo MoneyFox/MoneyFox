@@ -38,9 +38,9 @@
                 <Grid HorizontalAlignment="Stretch">
                     <TextBlock Text="{x:Bind Name}"
                                TextTrimming="CharacterEllipsis"
-                               Style="{ThemeResource SubtitleTextBlockStyle}" />
+                               Style="{StaticResource CustomSubtitleTextBlockStyle}" />
                     <TextBlock TextAlignment="Right"
-                               Style="{ThemeResource SubtitleTextBlockStyle}"
+                               Style="{StaticResource CustomSubtitleTextBlockStyle}"
                                Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                HorizontalAlignment="Right" />
                 </Grid>

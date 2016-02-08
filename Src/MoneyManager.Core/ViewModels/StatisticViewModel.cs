@@ -151,8 +151,6 @@ namespace MoneyManager.Core.ViewModels
 
             var model = new PlotModel
             {
-                Background = OxyColors.Black,
-                TextColor = OxyColors.White,
                 IsLegendVisible = true
             };
             var pieSeries = new PieSeries
@@ -173,17 +171,11 @@ namespace MoneyManager.Core.ViewModels
 
         private void SetCashFlowModel(CashFlow cashFlow)
         {
-            var model = new PlotModel
-            {
-                Background = OxyColors.Black,
-                TextColor = OxyColors.White,
-            };
+            var model = new PlotModel();
 
             var columnSeries = new ColumnSeries();
             var axe = new CategoryAxis
             {
-                AxislineColor = OxyColors.White,
-                TextColor = OxyColors.White,
                 IsPanEnabled = false, 
                 IsZoomEnabled = false,
                 Angle = 45
