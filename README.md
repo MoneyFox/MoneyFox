@@ -32,6 +32,9 @@ Head to the Issues to see all the details.
 
 Head over [here] (https://github.com/Apply-Solutions/MoneyManager/blob/master/CONTRIBUTE.md)
 
+### Translations
+
+Help us translate the money fox to as many languages as possible. Head over [here](https://crowdin.com/project/money-fox) and get involved!
 
 ### Tools
 We use Visual Studio 2015. If you use resharper please ensure to use the settings in the repository for this project.
