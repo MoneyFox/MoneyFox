@@ -24,6 +24,12 @@ namespace MoneyManager.Droid.Activities.Caching
 					typeof (AccountListViewModel), isRoot: true)
 			},
 			{
+				typeof (BalanceViewModel).ToString(),
+				new MainActivity.CustomFragmentInfo(typeof (BalanceViewModel).Name,
+					typeof (BalanceFragment),
+					typeof (BalanceViewModel), isRoot: true)
+			},
+			{
 				typeof (StatisticViewModel).ToString(),
 				new MainActivity.CustomFragmentInfo(typeof (StatisticViewModel).Name,
 					typeof (StatisticSelectorFragment),
