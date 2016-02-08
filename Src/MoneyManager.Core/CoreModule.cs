@@ -48,7 +48,7 @@ namespace MoneyManager.Core
                 .SingleInstance();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(t => t.Name.EndsWith("ViewModel"))
+                .Where(t => t.Name.EndsWith("ViewModel") && !t.Name.StartsWith("DesignTime"))
                 .AsImplementedInterfaces()
                 .SingleInstance(); ;
 
