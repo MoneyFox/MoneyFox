@@ -27,7 +27,14 @@ namespace MoneyManager.DataAccess
         {
             using (var db = connectionCreator.GetConnection())
             {
-                itemToSave.Id = db.InsertOrReplace(itemToSave);
+                //Don't use insert or replace here, becuase it will always replace the first element
+                if (itemToSave.Id == 0)
+                {
+                    itemToSave.Id = db.Insert(itemToSave);
+                } else
+                {
+                    db.Update(itemToSave);
+                }
             }
         }
 
