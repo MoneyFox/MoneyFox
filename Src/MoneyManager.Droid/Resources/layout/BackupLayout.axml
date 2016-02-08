@@ -10,8 +10,9 @@
     <LinearLayout
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
         <TextView
             android:text="@string/backup_information"
             android:textAppearance="?android:attr/textAppearanceSmall"
