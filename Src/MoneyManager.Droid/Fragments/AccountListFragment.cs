@@ -16,7 +16,7 @@ namespace MoneyManager.Droid.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-            var view = this.BindingInflate(Resource.Layout.AccountListLayout, null);
+            var view = this.BindingInflate(Resource.Layout.fragment_account_list, null);
 
             var list = view.FindViewById<ListView>(Resource.Id.accountList);
             RegisterForContextMenu(list);
@@ -24,7 +24,7 @@ namespace MoneyManager.Droid.Fragments
             return view;
         }
 
-        protected override int FragmentId => Resource.Layout.AccountListLayout;
+		protected override int FragmentId => Resource.Layout.fragment_account_list;
 
         public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
         {
