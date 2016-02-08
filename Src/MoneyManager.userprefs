@@ -1,11 +1,6 @@
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.AVD_GalaxyNexus_ToolsForApacheCordova" />
-  <MonoDevelop.Ide.Workbench>
-    <Files>
-      <File FileName="MoneyManager.Droid\Src\OneDriveAuthenticator.cs" Line="42" Column="14" />
-      <File FileName="MoneyManager.Foundation\OneDriveAuthenticationConstants.cs" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Nexus4" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

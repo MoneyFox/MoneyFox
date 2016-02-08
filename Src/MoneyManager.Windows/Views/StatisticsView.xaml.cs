@@ -1,7 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Windows.Dialogs;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Views
 {
@@ -10,6 +12,7 @@ namespace MoneyManager.Windows.Views
         public StatisticsView()
         {
             InitializeComponent();
+            DataContext = Mvx.Resolve<StatisticViewModel>();
         }
 
         private async void SetDate(object sender, RoutedEventArgs e)

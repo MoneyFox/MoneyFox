@@ -19,7 +19,7 @@
     </NuGetPackageImportStamp>
     <ReleaseVersion>0.12.0.0</ReleaseVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Platform)' != 'Unix'">
+  <PropertyGroup Condition="'$(OS)' != 'Unix'">
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -78,21 +78,23 @@
     <Compile Include="StatisticProvider\CategorySummaryProvider.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
-    <Compile Include="ViewModels\Dialogs\CategoryDialogViewModel.cs" />
+    <Compile Include="ViewModels\CategoryDialogViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewModel.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
     <Compile Include="ViewModels\BackupViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\CategoryList\AbstractCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\SettingViews\PasswordUserControlViewModel.cs" />
-    <Compile Include="ViewModels\CategoryList\SelectCategoryListViewModel.cs" />
-    <Compile Include="ViewModels\Dialogs\SelectDateRangeDialogViewModel.cs" />
-    <Compile Include="ViewModels\SettingViews\SettingDefaultsViewModel.cs" />
-    <Compile Include="ViewModels\CategoryList\SettingsCategoryListViewModel.cs" />
-    <Compile Include="ViewModels\Statistics\StatisticViewModel.cs" />
-    <Compile Include="ViewModels\SettingViews\TileSettingsViewModel.cs" />
+    <Compile Include="ViewModels\PasswordUserControlViewModel.cs" />
+    <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
+    <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
+    <Compile Include="ViewModels\SettingsCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\StatisticViewModel.cs" />
+    <Compile Include="ViewModels\TileSettingsViewModel.cs" />
     <Compile Include="ViewModels\PaymentListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

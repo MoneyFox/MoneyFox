@@ -21,7 +21,7 @@
     </NuGetPackageImportStamp>
     <ReleaseVersion>0.12.0.0</ReleaseVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Platform)' != 'Unix'">
+  <PropertyGroup Condition="'$(OS)' != 'Unix'">
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -47,6 +47,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
+    <Compile Include="Interfaces\ViewModels\IAccountListViewModel.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\IBackgroundTaskService.cs" />
