@@ -75,10 +75,9 @@
                                      OpenPaneLength="256"
                                      IsTabStop="False">
             <controls:SwipeableSplitView.Pane>
-                <Grid Background="{StaticResource PrimaryDarkBrush}">
+                <Grid Background="{StaticResource PrimaryDarkBrush}" RequestedTheme="Dark">
                     <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
                     <controls:NavMenuListView x:Name="NavMenuListTop"
-                                              RequestedTheme="Dark"
                                                 VerticalAlignment="Top"
                                                 TabIndex="3"
                                                 Margin="0,48,0,0"
@@ -88,7 +87,6 @@
                                                 ItemInvoked="NavMenuList_ItemInvoked" />
                     <!-- A buttom section to seperate common functions with uncommon -->
                     <controls:NavMenuListView x:Name="NavMenuListBottom"
-                                              RequestedTheme="Dark"
                                                 VerticalAlignment="Bottom"
                                                 TabIndex="3"
                                                 Margin="0,48,0,0"
