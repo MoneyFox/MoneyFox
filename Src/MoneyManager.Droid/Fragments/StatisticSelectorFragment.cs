@@ -15,7 +15,7 @@ namespace MoneyManager.Droid.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-            var view = this.BindingInflate(Resource.Layout.fragment_statistic_selector, null);
+            var view = this.BindingInflate(Resource.Layout.StatisticSelectorLayout, null);
 
             var listview = view.FindViewById<ListView>(Resource.Id.statistic_list);
             listview.Adapter = new ArrayAdapter(Context, Android.Resource.Layout.SimpleListItem1,

@@ -23,7 +23,7 @@ namespace MoneyManager.Droid.Activities
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.activity_modify_account);
+            SetContentView(Resource.Layout.ModifyAccountLayout);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.Title = ViewModel.Title;
         }

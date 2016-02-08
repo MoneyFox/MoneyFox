@@ -8,6 +8,6 @@ namespace MoneyManager.Droid.Fragments
     [Register("moneymanager.droid.fragments.BalanceFragment")]
     public class BalanceFragment : BaseFragment<BalanceViewModel>
     {
-        protected override int FragmentId => Resource.Layout.fragment_balance;
+        protected override int FragmentId => Resource.Layout.BalanceLayout;
     }
 }

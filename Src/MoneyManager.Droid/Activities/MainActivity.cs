@@ -87,32 +87,6 @@ namespace MoneyManager.Droid.Activities
                     return true;
             }
             return base.OnOptionsItemSelected(item);
-
-            //switch (item.ItemId)
-            //{
-            //    case Android.Resource.Id.Home:
-            //        DrawerLayout.OpenDrawer(GravityCompat.Start);
-            //        return true;
-
-            //    case Resource.Id.action_add_income:
-            //        ViewModel.GoToAddPaymentCommand.Execute("Income");
-            //        return true;
-
-            //    case Resource.Id.action_add_spending:
-            //        ViewModel.GoToAddPaymentCommand.Execute("Expense");
-            //        return true;
-
-            //    case Resource.Id.action_add_transfer:
-            //        ViewModel.GoToAddPaymentCommand.Execute("Transfer");
-            //        return true;
-
-            //    case Resource.Id.action_add_account:
-            //        ViewModel.GoToAddAccountCommand.Execute();
-            //        return true;
-
-            //    default:
-            //        return base.OnOptionsItemSelected(item);
-            //}
         }
 
         public class CustomFragmentInfo : MvxCachedFragmentInfo

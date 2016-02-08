@@ -69,6 +69,7 @@ namespace MoneyManager.Core.ViewModels
         {
             ShowViewModel<MenuViewModel>();
             ShowViewModel<AccountListViewModel>();
+            ShowViewModel<BalanceViewModel>();
         }
     }
 }

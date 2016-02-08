@@ -8,6 +8,6 @@ namespace MoneyManager.Droid.Fragments
     [Register("moneymanager.droid.fragments.BackupFragment")]
     public class BackupFragment : BaseFragment<BackupViewModel>
     {
-        protected override int FragmentId => Resource.Layout.fragment_backup;
+        protected override int FragmentId => Resource.Layout.BackupLayout;
     }
 }
