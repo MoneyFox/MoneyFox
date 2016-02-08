@@ -217,7 +217,3 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
-Src/MoneyManager.Windows/project.json
-Src/MoneyManager.Windows.Tests/project.json
-Src/MoneyManager.Windows.DataAccess.Tests/project.json
-Src/MoneyManager.Tasks.Windows/project.json
