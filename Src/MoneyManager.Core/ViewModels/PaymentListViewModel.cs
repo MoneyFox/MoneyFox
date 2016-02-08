@@ -48,7 +48,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Edits the currently selected payment.
         /// </summary>
-        public MvxCommand EditCommand { get; private set; }
+        public MvxCommand<Payment> EditCommand { get; private set; }
 
         /// <summary>
         ///     Deletes the passed payment.
@@ -96,7 +96,7 @@ namespace MoneyManager.Core.ViewModels
 
             SelectedPayment = null;
             //We have to set the command here to ensure that the selection changed event is triggered earlier
-            EditCommand = new MvxCommand(Edit);
+            EditCommand = new MvxCommand<Payment>(Edit);
         }
 
         private void GoToAddPayment(string type)
@@ -114,18 +114,12 @@ namespace MoneyManager.Core.ViewModels
             }
         }
 
-        private void Edit()
+        private void Edit(Payment payment)
         {
-            if (SelectedPayment == null)
-            {
-                return;
-            }
-
-            paymentRepository.Selected = SelectedPayment;
+            paymentRepository.Selected = payment;
 
             ShowViewModel<ModifyPaymentViewModel>(
                 new {isEdit = true, typeString = SelectedPayment.Type.ToString()});
-            SelectedPayment = null;
         }
 
 

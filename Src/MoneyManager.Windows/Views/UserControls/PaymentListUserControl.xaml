@@ -25,6 +25,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
+        <converter:SelectedConverter x:Key="SelectedConverter" />
 
         <DataTemplate x:Key="PaymentTemplate"
                       x:DataType="model:Payment">
@@ -141,7 +142,8 @@
                                                        SelectedItem="{Binding SelectedPayment, Mode=TwoWay}">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="SelectionChanged">
-                            <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}" />
+                            <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}"
+                                                      InputConverter="{StaticResource SelectedConverter}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
 
