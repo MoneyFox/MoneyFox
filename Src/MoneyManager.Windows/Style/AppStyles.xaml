@@ -10,17 +10,20 @@
     <SolidColorBrush x:Key="ListViewBackgroundOddBrush"
                      Color="{StaticResource ListOddColor}" />
 
-    <SolidColorBrush x:Key="AppForegroundDarkBrush"
+    <SolidColorBrush x:Key="AppForegroundPrimaryBrush"
                      Color="{StaticResource AppForegroundColorPrimary}" />
 
-    <SolidColorBrush x:Key="AppForegroundLightBrush"
+    <SolidColorBrush x:Key="AppForegroundSecondaryBrush"
                      Color="{StaticResource AppForegroundColorSecondary}" />
 
     <SolidColorBrush x:Key="PrimaryBrush"
                      Color="{StaticResource ColorPrimary}" />
-    
+
     <SolidColorBrush x:Key="PrimaryDarkBrush"
                      Color="{StaticResource ColorPrimaryDark}" />
+    
+    <SolidColorBrush x:Key="AppBarBrush"
+                     Color="{StaticResource ColorAppBar}" />
 
     <!--Accent Color -->
     <SolidColorBrush x:Key="SystemControlBackgroundAccentBrush"

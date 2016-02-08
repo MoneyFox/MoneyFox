@@ -316,19 +316,19 @@
                                     <ResourceDictionary.ThemeDictionaries>
                                         <ResourceDictionary x:Key="Default">
                                             <SolidColorBrush x:Key="SystemControlPageBackgroundChromeMediumBrush"
-                                                             Color="{ThemeResource SystemChromeMediumColor}" />
+                                                             Color="{StaticResource Primary}" />
                                             <SolidColorBrush x:Key="SystemControlForegroundChromeMediumBrush"
                                                              Color="{ThemeResource SystemChromeMediumColor}" />
                                         </ResourceDictionary>
                                         <ResourceDictionary x:Key="Light">
                                             <SolidColorBrush x:Key="SystemControlPageBackgroundChromeMediumBrush"
-                                                             Color="{ThemeResource SystemChromeMediumColor}" />
+                                                             Color="{StaticResource ColorPrimary}" />
                                             <SolidColorBrush x:Key="SystemControlForegroundChromeMediumBrush"
                                                              Color="{ThemeResource SystemChromeMediumColor}" />
                                         </ResourceDictionary>
                                         <ResourceDictionary x:Key="HighContrast">
                                             <SolidColorBrush x:Key="SystemControlPageBackgroundChromeMediumBrush"
-                                                             Color="{ThemeResource SystemColorWindowColor}" />
+                                                             Color="{StaticResource ColorPrimary}" />
                                             <SolidColorBrush x:Key="SystemControlForegroundChromeMediumBrush"
                                                              Color="{ThemeResource SystemColorButtonTextColor}" />
                                         </ResourceDictionary>

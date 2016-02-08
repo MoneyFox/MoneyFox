@@ -5,6 +5,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.System.UserProfile;
+using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -117,23 +118,28 @@ namespace MoneyManager.Windows
         {
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
 
-            //// set up our brushes
-            //var bkgColor = Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush;
-            ////var backgroundColor = Current.Resources["TitleBarBackgroundThemeBrush"] as SolidColorBrush;
-            ////var appForegroundColor = Current.Resources["AppForegroundBrush"] as SolidColorBrush;
+            // set up our brushes
+            var bkgColor = Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush;
+            var backgroundColor = Current.Resources["AppBarBrush"] as SolidColorBrush;
+            var appForegroundColor = Current.Resources["AppForegroundPrimaryBrush"] as SolidColorBrush;
 
-            //// override colors!
-            //if (bkgColor != null && appForegroundColor != null)
-            //{
-            //    // If on a mobile device set the status bar
-            //    if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            //    {
-            //        //StatusBar.GetForCurrentView().BackgroundColor = backgroundColor?.Color;
-            //        StatusBar.GetForCurrentView().BackgroundOpacity = 1;
-            //        //StatusBar.GetForCurrentView().ForegroundColor = appForegroundColor.Color;
-            //    }
-            //    //titleBar.ButtonInactiveForegroundColor = appForegroundColor.Color;
-            //}
+            // override colors!
+            if (bkgColor != null && appForegroundColor != null)
+            {
+                // If on a mobile device set the status bar
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                {
+                    StatusBar.GetForCurrentView().BackgroundColor = backgroundColor?.Color;
+                    StatusBar.GetForCurrentView().BackgroundOpacity = 0.6;
+                    StatusBar.GetForCurrentView().ForegroundColor = appForegroundColor.Color;
+                }
+
+                titleBar.BackgroundColor = backgroundColor?.Color;
+                titleBar.ButtonBackgroundColor = backgroundColor?.Color;
+
+                titleBar.ForegroundColor = Colors.White;
+                titleBar.ButtonForegroundColor = Colors.White;
+            }
         }
 
         private async void SetJumplist()
