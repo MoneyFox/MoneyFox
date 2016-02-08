@@ -1,7 +1,8 @@
 ## Money Fox
-[![Join the chat at https://gitter.im/Apply-Solutions/MoneyManager](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Apply-Solutions/MoneyManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 A way to make budgeting easy. A basic idea for the community, made even better by the community.
+
+### Talk with us
+We have a slack team to make communication a bit easier. Write me a mail to get your invitation.
 
 ### Try it
 There are two versions in the Windows Marketplace available for all devices with Windows 10:
