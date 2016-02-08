@@ -1,7 +1,8 @@
 ## Money Fox
-[![Join the chat at https://gitter.im/Apply-Solutions/MoneyManager](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Apply-Solutions/MoneyManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 A way to make budgeting easy. A basic idea for the community, made even better by the community.
+
+### Talk with us
+We have a slack team to make communication a bit easier. Write me a mail to get your invitation.
 
 ### Try it
 There are two versions in the Windows Marketplace available for all devices with Windows 10:
@@ -31,6 +32,9 @@ Head to the Issues to see all the details.
 
 Head over [here] (https://github.com/Apply-Solutions/MoneyManager/blob/master/CONTRIBUTE.md)
 
+### Translations
+
+Help us translate the money fox to as many languages as possible. Head over [here](https://crowdin.com/project/money-fox) and get involved!
 
 ### Tools
 We use Visual Studio 2015. If you use resharper please ensure to use the settings in the repository for this project.
