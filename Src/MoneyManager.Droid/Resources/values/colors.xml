@@ -2,8 +2,8 @@
 <resources>
 
     <!-- General colors -->
-    <color name="colorPrimary">#1a264c</color>
-    <color name="colorPrimaryDark">#263873</color>
+    <color name="colorPrimary">#263873</color>
+    <color name="colorPrimaryDark">#1a264c</color>
     <color name="colorAccent">#314a9b</color>
 
     <!-- White to Black -->
