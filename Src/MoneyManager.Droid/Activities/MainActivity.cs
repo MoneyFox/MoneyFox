@@ -49,11 +49,8 @@ namespace MoneyManager.Droid.Activities
 
         private void CheckIfMenuIsNeeded(CustomFragmentInfo myCustomInfo)
         {
-			if (myCustomInfo == null)
-				return;
-			
             //If not root, we will block the menu sliding gesture and show the back button on top
-            if (myCustomInfo.IsRoot)
+			if (myCustomInfo != null && myCustomInfo.IsRoot)
             {
                 ShowHamburguerMenu();
             }
@@ -65,18 +62,12 @@ namespace MoneyManager.Droid.Activities
 
         private void ShowBackButton()
         {
-            //TODO Tell the toggle to set the indicator off
-            //this.DrawerToggle.DrawerIndicatorEnabled = false;
-
             //Block the menu slide gesture
             DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
         }
 
         private void ShowHamburguerMenu()
         {
-            //TODO set toggle indicator as enabled 
-            //this.DrawerToggle.DrawerIndicatorEnabled = true;
-
             //Unlock the menu sliding gesture
             DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeUnlocked);
         }
