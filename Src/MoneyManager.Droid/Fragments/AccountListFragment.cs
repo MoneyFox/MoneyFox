@@ -4,8 +4,8 @@ using Android.Views;
 using Android.Widget;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
-using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyManager.Droid.Fragments
 {
@@ -14,6 +14,16 @@ namespace MoneyManager.Droid.Fragments
     public class AccountListFragment : BaseFragment<AccountListViewModel>
     {
 		protected override int FragmentId => Resource.Layout.fragment_account_list;
+
+		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+		{
+			var view =  base.OnCreateView (inflater, container, savedInstanceState);
+
+			var list = view.FindViewById<ListView>(Resource.Id.account_list);
+			RegisterForContextMenu(list);
+
+			return view;
+		}
 
         public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
         {

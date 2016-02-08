@@ -17,7 +17,7 @@
         android:layout_height="fill_parent"
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
-        android:id="@+id/accountList"
+        android:id="@+id/account_list"
         local:MvxItemTemplate="@layout/accountlistitem"
         local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />
 </LinearLayout>
