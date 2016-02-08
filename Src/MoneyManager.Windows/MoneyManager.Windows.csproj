@@ -328,6 +328,7 @@
     <Page Include="Views\RecurringPaymentListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Style\ControlStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
