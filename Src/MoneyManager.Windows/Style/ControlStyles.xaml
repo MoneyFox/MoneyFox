@@ -316,7 +316,7 @@
                                     <ResourceDictionary.ThemeDictionaries>
                                         <ResourceDictionary x:Key="Default">
                                             <SolidColorBrush x:Key="SystemControlPageBackgroundChromeMediumBrush"
-                                                             Color="{StaticResource Primary}" />
+                                                             Color="{StaticResource ColorPrimary}" />
                                             <SolidColorBrush x:Key="SystemControlForegroundChromeMediumBrush"
                                                              Color="{ThemeResource SystemChromeMediumColor}" />
                                         </ResourceDictionary>

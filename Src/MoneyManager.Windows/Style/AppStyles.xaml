@@ -21,7 +21,7 @@
 
     <SolidColorBrush x:Key="PrimaryDarkBrush"
                      Color="{StaticResource ColorPrimaryDark}" />
-    
+
     <SolidColorBrush x:Key="AppBarBrush"
                      Color="{StaticResource ColorAppBar}" />
 
