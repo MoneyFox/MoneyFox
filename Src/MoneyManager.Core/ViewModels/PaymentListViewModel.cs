@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using MoneyManager.Core.Groups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using MoneyManager.Windows.Concrete;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
@@ -30,13 +30,30 @@ namespace MoneyManager.Core.ViewModels
             this.dialogService = dialogService;
         }
 
+        /// <summary>
+        ///     Navigate to the add payment view.
+        /// </summary>
         public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(GoToAddPayment);
-        public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
-        public virtual MvxCommand LoadedCommand => new MvxCommand(LoadPayments);
-        public MvxCommand EditCommand { get; private set; }
 
-        public MvxCommand<Payment> DeletePaymentCommand
-            => new MvxCommand<Payment>(DeletePayment);
+        /// <summary>
+        ///     Deletes the current account and updates the balance.
+        /// </summary>
+        public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
+
+        /// <summary>
+        ///     Loads the data for this view.
+        /// </summary>
+        public virtual MvxCommand LoadedCommand => new MvxCommand(LoadPayments);
+
+        /// <summary>
+        ///     Edits the currently selected payment.
+        /// </summary>
+        public MvxCommand<Payment> EditCommand { get; private set; }
+
+        /// <summary>
+        ///     Deletes the passed payment.
+        /// </summary>
+        public MvxCommand<Payment> DeletePaymentCommand => new MvxCommand<Payment>(DeletePayment);
 
         /// <summary>
         ///     Returns all Payment who are assigned to this repository
@@ -79,7 +96,7 @@ namespace MoneyManager.Core.ViewModels
 
             SelectedPayment = null;
             //We have to set the command here to ensure that the selection changed event is triggered earlier
-            EditCommand = new MvxCommand(Edit);
+            EditCommand = new MvxCommand<Payment>(Edit);
         }
 
         private void GoToAddPayment(string type)
@@ -92,24 +109,17 @@ namespace MoneyManager.Core.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 accountRepository.Delete(accountRepository.Selected);
-                accountRepository.RemovePaymentAmount(SelectedPayment);
                 balanceViewModel.UpdateBalance();
                 Close(this);
             }
         }
 
-        private void Edit()
+        private void Edit(Payment payment)
         {
-            if (SelectedPayment == null)
-            {
-                return;
-            }
-
-            paymentRepository.Selected = SelectedPayment;
+            paymentRepository.Selected = payment;
 
             ShowViewModel<ModifyPaymentViewModel>(
                 new {isEdit = true, typeString = SelectedPayment.Type.ToString()});
-            SelectedPayment = null;
         }
 
 
