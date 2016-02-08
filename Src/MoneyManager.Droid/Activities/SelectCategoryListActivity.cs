@@ -23,7 +23,7 @@ namespace MoneyManager.Droid.Activities
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.CategoryListLayout);
+            SetContentView(Resource.Layout.activity_category_list);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
         }
 

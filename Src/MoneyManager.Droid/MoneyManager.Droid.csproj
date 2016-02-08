@@ -256,9 +256,6 @@
     <AndroidResource Include="Resources\menu\menu_modification.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\AccountListItem.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_about.axml" />
     <AndroidResource Include="Resources\layout\ModifyAccountLayout.axml">
       <SubType>Designer</SubType>
@@ -276,19 +273,13 @@
     <AndroidResource Include="Resources\layout\StatisticLayout.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\CategoryListLayout.axml" />
-    <AndroidResource Include="Resources\layout\CategoryListItem.axml" />
     <AndroidResource Include="Resources\menu\menu_select.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\BalanceLayout.axml" />
     <AndroidResource Include="Resources\layout\ModifyCategoryDialogLayout.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\StatisticSelectorLayout.axml" />
-    <AndroidResource Include="Resources\layout\BackupLayout.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\CategorySummaryLayout.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -303,6 +294,15 @@
     <AndroidResource Include="Resources\layout\splash_screen.axml" />
     <AndroidResource Include="Resources\layout\toolbar_actionbar.axml" />
     <AndroidResource Include="Resources\layout\fragment_account_list.axml" />
+    <AndroidResource Include="Resources\layout\listitem_account.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\listitem_category.axml" />
+    <AndroidResource Include="Resources\layout\activity_category_list.axml" />
+    <AndroidResource Include="Resources\layout\BalanceLayout.axml" />
+    <AndroidResource Include="Resources\layout\BackupLayout.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml" />

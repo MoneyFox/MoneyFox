@@ -18,6 +18,6 @@
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
         android:id="@+id/account_list"
-        local:MvxItemTemplate="@layout/accountlistitem"
+        local:MvxItemTemplate="@layout/listitem_account"
         local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />
 </LinearLayout>
