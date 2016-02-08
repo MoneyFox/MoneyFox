@@ -18,20 +18,6 @@ namespace MoneyManager.Droid.Fragments
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.AccountListLayout, null);
 
-            if (savedInstanceState == null)
-            {
-                //var fragment = new BalanceFragment
-                //{
-                //    ViewModel = Mvx.Resolve<BalanceViewModel>()
-                //};
-
-                //fragment.ViewModel.UpdateBalance();
-
-                //FragmentManager.BeginTransaction()
-                //    .Replace(Resource.Id.balance_pane, fragment)
-                //    .Commit();
-            }
-
             var list = view.FindViewById<ListView>(Resource.Id.accountList);
             RegisterForContextMenu(list);
 

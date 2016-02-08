@@ -16,7 +16,31 @@ namespace MoneyManager.Droid.Activities.Caching
                 new MainActivity.CustomFragmentInfo(typeof (MenuViewModel).Name,
                     typeof (MenuFragment),
                     typeof (MenuViewModel))
-            }
+			},
+			{
+				typeof (AccountListViewModel).ToString(),
+				new MainActivity.CustomFragmentInfo(typeof (AccountListViewModel).Name,
+					typeof (AccountListFragment),
+					typeof (AccountListViewModel), isRoot: true)
+			},
+			{
+				typeof (StatisticViewModel).ToString(),
+				new MainActivity.CustomFragmentInfo(typeof (StatisticViewModel).Name,
+					typeof (StatisticSelectorFragment),
+					typeof (StatisticViewModel), isRoot: true)
+			},
+			{
+				typeof (BackupViewModel).ToString(),
+				new MainActivity.CustomFragmentInfo(typeof (BackupViewModel).Name,
+					typeof (BackupFragment),
+					typeof (BackupViewModel), isRoot: true)
+			},
+			{
+				typeof (AboutViewModel).ToString(),
+				new MainActivity.CustomFragmentInfo(typeof (AboutViewModel).Name,
+					typeof (AboutFragment),
+					typeof (AboutViewModel), isRoot: true)
+			}
         };
 
         public Dictionary<string, MainActivity.CustomFragmentInfo> GetFragmentsRegistrationData()
