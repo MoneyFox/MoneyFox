@@ -1,5 +1,8 @@
 ﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Windows.Views.UserControls
 {
@@ -12,22 +15,41 @@ namespace MoneyManager.Windows.Views.UserControls
 
         private void PaymentList_Holding(object sender, HoldingRoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            var senderElement = sender as FrameworkElement;
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+
+            flyoutBase.ShowAt(senderElement);
         }
 
         private void PaymentList_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            var senderElement = sender as FrameworkElement;
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+
+            flyoutBase.ShowAt(senderElement);
         }
 
         private void EditPayment(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            var element = (FrameworkElement)sender;
+            var payment = element.DataContext as Payment;
+            if (payment == null)
+            {
+                return;
+            }
+
+            (DataContext as RecurringPaymentListViewModel)?.EditCommand.Execute(payment);
         }
 
         private void DeletePayment(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            var element = (FrameworkElement)sender;
+            var payment = element.DataContext as Payment;
+            if (payment == null)
+            {
+                return;
+            }
+            (DataContext as RecurringPaymentListViewModel)?.DeleteCommand.Execute(payment);
         }
     }
 }

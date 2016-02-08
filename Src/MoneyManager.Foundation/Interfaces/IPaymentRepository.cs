@@ -7,6 +7,12 @@ namespace MoneyManager.Foundation.Interfaces
     public interface IPaymentRepository : IRepository<Payment>
     {
         /// <summary>
+        ///     Delete the specified payment.
+        /// </summary>
+        /// <param name="paymentToDelete">Recurring payment to delete.</param>
+        void DeleteRecurring(Payment paymentToDelete);
+
+        /// <summary>
         ///     Returns all uncleared payments.
         /// </summary>
         /// <returns>List of uncleared payments.</returns>

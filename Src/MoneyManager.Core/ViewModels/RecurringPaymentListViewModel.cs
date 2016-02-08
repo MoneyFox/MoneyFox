@@ -3,6 +3,7 @@ using System.Globalization;
 using MoneyManager.Core.Groups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
@@ -10,14 +11,17 @@ namespace MoneyManager.Core.ViewModels
     public class RecurringPaymentListViewModel : BaseViewModel
     {
         private readonly IPaymentRepository paymentRepository;
+        private readonly IDialogService dialogService;
 
-        public RecurringPaymentListViewModel(IPaymentRepository paymentRepository)
+        public RecurringPaymentListViewModel(IPaymentRepository paymentRepository, IDialogService dialogService)
         {
             this.paymentRepository = paymentRepository;
+            this.dialogService = dialogService;
+
             AllPayments = new ObservableCollection<Payment>();
         }
 
-        public ObservableCollection<Payment> AllPayments { get; private set; }
+        public ObservableCollection<Payment> AllPayments { get; }
 
         /// <summary>
         ///     Returns groupped related payments
@@ -33,6 +37,11 @@ namespace MoneyManager.Core.ViewModels
         ///     Edits the currently selected payment.
         /// </summary>
         public MvxCommand<Payment> EditCommand { get; private set; }
+
+        /// <summary>
+        ///     Deletes the selected payment
+        /// </summary>
+        public MvxCommand<Payment> DeleteCommand => new MvxCommand<Payment>(Delete);
 
         private void Loaded()
         {
@@ -53,9 +62,22 @@ namespace MoneyManager.Core.ViewModels
             EditCommand = new MvxCommand<Payment>(Edit);
         }
 
-        private void Edit(Payment obj)
+        private void Edit(Payment payment)
         {
-            throw new System.NotImplementedException();
+            paymentRepository.Selected = payment;
+
+            ShowViewModel<ModifyPaymentViewModel>(
+                new { isEdit = true, typeString = payment.Type.ToString() });
+        }
+
+        private async void Delete(Payment payment)
+        {
+            if (!await
+                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
+                return;
+
+            paymentRepository.Delete(payment);
+            LoadedCommand.Execute();
         }
     }
 }

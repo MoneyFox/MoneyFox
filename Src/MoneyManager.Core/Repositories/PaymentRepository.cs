@@ -113,6 +113,24 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
+        ///     Deletes the passed recurring payment
+        /// </summary>
+        /// <param name="paymentToDelete">Recurring payment to delete.</param>
+        public void DeleteRecurring(Payment paymentToDelete)
+        {
+            var payments = Data.Where(x => x.Id == paymentToDelete.Id).ToList();
+
+            recurringDataAccess.DeleteItem(paymentToDelete.RecurringPayment);
+
+            foreach (var payment in payments)
+            {
+                payment.RecurringPayment = null;
+                payment.IsRecurring = false;
+                Save(payment);
+            }
+        }
+
+        /// <summary>
         ///     Loads all payments from the database to the data collection
         /// </summary>
         public void Load(Expression<Func<Payment, bool>> filter = null)
