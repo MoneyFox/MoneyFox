@@ -75,7 +75,7 @@
                                      OpenPaneLength="256"
                                      IsTabStop="False">
             <controls:SwipeableSplitView.Pane>
-                <Grid Background="{StaticResource PrimaryDarkBrush}" RequestedTheme="Dark">
+                <Grid>
                     <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
                     <controls:NavMenuListView x:Name="NavMenuListTop"
                                                 VerticalAlignment="Top"

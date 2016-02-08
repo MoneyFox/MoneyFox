@@ -7,7 +7,6 @@
              VerticalContentAlignment="Top"
              HorizontalAlignment="Stretch"
              HorizontalContentAlignment="Stretch"
-             Background="{StaticResource PrimaryBrush}"
              Height="48"
              mc:Ignorable="d"
              d:DesignHeight="300"
