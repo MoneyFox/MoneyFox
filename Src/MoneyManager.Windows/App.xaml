@@ -10,14 +10,13 @@
             <core:CoreModule x:Key="CoreModule" />
             <windows:WindowsModule x:Key="WindowsModule" />
 
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Style/AppStyles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Default">
                     <ResourceDictionary.MergedDictionaries>
                         <ResourceDictionary Source="Style/ColorsDark.xaml" />
                         <ResourceDictionary Source="Style/AppStyles.xaml" />
+                        <ResourceDictionary Source="Style/ControlStyles.xaml" />
+                        <ResourceDictionary Source="Style/TextStyles.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
 
@@ -25,6 +24,8 @@
                     <ResourceDictionary.MergedDictionaries>
                         <ResourceDictionary Source="Style/ColorsDark.xaml" />
                         <ResourceDictionary Source="Style/AppStyles.xaml" />
+                        <ResourceDictionary Source="Style/ControlStyles.xaml" />
+                        <ResourceDictionary Source="Style/TextStyles.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
 
@@ -32,6 +33,8 @@
                     <ResourceDictionary.MergedDictionaries>
                         <ResourceDictionary Source="Style/ColorsLight.xaml" />
                         <ResourceDictionary Source="Style/AppStyles.xaml" />
+                        <ResourceDictionary Source="Style/ControlStyles.xaml" />
+                        <ResourceDictionary Source="Style/TextStyles.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>

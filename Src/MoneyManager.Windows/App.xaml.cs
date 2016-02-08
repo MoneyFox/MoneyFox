@@ -5,13 +5,13 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.System.UserProfile;
+using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MoneyManager.Core.Authentication;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
 using MoneyManager.Windows.Views;
 using UniversalRateReminder;
@@ -120,8 +120,8 @@ namespace MoneyManager.Windows
 
             // set up our brushes
             var bkgColor = Current.Resources["SystemControlHighlightAccentBrush"] as SolidColorBrush;
-            var backgroundColor = Current.Resources["TitleBarBackgroundThemeBrush"] as SolidColorBrush;
-            var appForegroundColor = Current.Resources["AppForegroundBrush"] as SolidColorBrush;
+            var backgroundColor = Current.Resources["AppBarBrush"] as SolidColorBrush;
+            var appForegroundColor = Current.Resources["AppForegroundPrimaryBrush"] as SolidColorBrush;
 
             // override colors!
             if (bkgColor != null && appForegroundColor != null)
@@ -130,10 +130,15 @@ namespace MoneyManager.Windows
                 if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
                 {
                     StatusBar.GetForCurrentView().BackgroundColor = backgroundColor?.Color;
-                    StatusBar.GetForCurrentView().BackgroundOpacity = 1;
+                    StatusBar.GetForCurrentView().BackgroundOpacity = 0.6;
                     StatusBar.GetForCurrentView().ForegroundColor = appForegroundColor.Color;
                 }
-                titleBar.ButtonInactiveForegroundColor = appForegroundColor.Color;
+
+                titleBar.BackgroundColor = backgroundColor?.Color;
+                titleBar.ButtonBackgroundColor = backgroundColor?.Color;
+
+                titleBar.ForegroundColor = Colors.White;
+                titleBar.ButtonForegroundColor = Colors.White;
             }
         }
 
