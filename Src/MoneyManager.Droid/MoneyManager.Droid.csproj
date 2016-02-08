@@ -202,7 +202,6 @@
     <Compile Include="Activities\Caching\MainActivityFragmentCacheInfoFactory.cs" />
     <Compile Include="Activities\SelectCategoryListActivity.cs" />
     <Compile Include="Activities\ModifyAccountActivity.cs" />
-    <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\ModifyPaymentActivity.cs" />
     <Compile Include="Activities\PaymentListActivity.cs" />
     <Compile Include="AndroidModule.cs" />
@@ -241,6 +240,7 @@
     <Compile Include="Src\RoamingSettings.cs" />
     <Compile Include="Src\StoreFeatures.cs" />
     <Compile Include="Src\TempMessage.cs" />
+    <Compile Include="Activities\MainActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
