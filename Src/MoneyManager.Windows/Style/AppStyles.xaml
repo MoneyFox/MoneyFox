@@ -4,9 +4,6 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     mc:Ignorable="d">
 
-    <SolidColorBrush x:Key="SystemControlHighlightAccentBrush"
-                     Color="Orange" />
-
     <SolidColorBrush x:Key="ListViewBackgroundEvenBrush"
                      Color="{StaticResource ListEvenColor}" />
 
@@ -18,4 +15,47 @@
 
     <SolidColorBrush x:Key="AppForegroundLightBrush"
                      Color="{StaticResource AppForegroundColorSecondary}" />
+
+    <SolidColorBrush x:Key="PrimaryBrush"
+                     Color="{StaticResource ColorPrimary}" />
+    
+    <SolidColorBrush x:Key="PrimaryDarkBrush"
+                     Color="{StaticResource ColorPrimaryDark}" />
+
+    <!--Accent Color -->
+    <SolidColorBrush x:Key="SystemControlBackgroundAccentBrush"
+                     Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush x:Key="SystemControlDisabledAccentBrush"
+                     Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush x:Key="SystemControlForegroundAccentBrush"
+                     Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush x:Key="SystemControlHighlightAccentBrush"
+                     Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush x:Key="SystemControlHighlightAltAccentBrush"
+                     Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush x:Key="SystemControlHighlightAltListAccentHighBrush"
+                     Color="{ThemeResource SystemAccentColor}"
+                     Opacity="0.9" />
+    <SolidColorBrush x:Key="SystemControlHighlightAltListAccentLowBrush"
+                     Color="{ThemeResource SystemAccentColor}"
+                     Opacity="0.6" />
+    <SolidColorBrush x:Key="SystemControlHighlightAltListAccentMediumBrush"
+                     Color="{ThemeResource SystemAccentColor}"
+                     Opacity="0.8" />
+    <SolidColorBrush x:Key="SystemControlHighlightListAccentHighBrush"
+                     Color="{ThemeResource SystemAccentColor}"
+                     Opacity="0.9" />
+    <SolidColorBrush x:Key="SystemControlHighlightListAccentLowBrush"
+                     Color="{ThemeResource SystemAccentColor}"
+                     Opacity="0.6" />
+    <SolidColorBrush x:Key="SystemControlHighlightListAccentMediumBrush"
+                     Color="{ThemeResource SystemAccentColor}"
+                     Opacity="0.8" />
+    <SolidColorBrush x:Key="SystemControlHyperlinkTextBrush"
+                     Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush x:Key="ContentDialogBorderThemeBrush"
+                     Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush x:Key="JumpListDefaultEnabledBackground"
+                     Color="{ThemeResource SystemAccentColor}" />
+
 </ResourceDictionary>

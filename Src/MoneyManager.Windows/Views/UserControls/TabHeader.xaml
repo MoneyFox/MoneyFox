@@ -3,18 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Background="{StaticResource PrimaryBrush}"
              mc:Ignorable="d"
-             Width="64"
-             Height="68"
+             HorizontalAlignment="Stretch"
+             HorizontalContentAlignment="Stretch"
              IsTabStop="False">
 
-    <StackPanel>
+    <StackPanel Background="{x:Bind Background}" HorizontalAlignment="Stretch">
         <FontIcon HorizontalAlignment="Center"
                   Margin="0,12,0,0"
+                  Foreground="white"
                   Glyph="{Binding Glyph}"
                   FontSize="16" />
         <TextBlock FontFamily="Segoe UI"
                    Text="{Binding Label}"
+                   Foreground="white"
                    Style="{StaticResource CaptionTextBlockStyle}"
                    LineStackingStrategy="BlockLineHeight"
                    LineHeight="14"
