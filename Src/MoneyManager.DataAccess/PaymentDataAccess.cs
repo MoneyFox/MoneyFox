@@ -48,7 +48,7 @@ namespace MoneyManager.DataAccess
         {
             if (itemToSave.IsRecurring)
             {
-                //Don't use insert or replace here, becuase it will always replace the first element
+                //Don't use insert or replace here, because it will always replace the first element
                 if (itemToSave.Id == 0)
                 {
                     db.Insert(itemToSave.RecurringPayment);

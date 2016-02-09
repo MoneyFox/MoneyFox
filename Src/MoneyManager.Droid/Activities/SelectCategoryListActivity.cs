@@ -5,26 +5,27 @@ using Android.Widget;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Fragments;
 using MoneyManager.Localization;
-using MvvmCross.Droid.FullFragging.Views;
 using MvvmCross.Platform;
+using Android.Content.PM;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyManager.Droid.Activities
 {
-    [Activity(Label = "CategoryListActivity")]
-    public class SelectCategoryListActivity : MvxActivity
+    [Activity(Label = "CategoryListActivity",
+        Name = "moneymanager.droid.activities.SelectCategoryListActivity",
+        Theme = "@style/AppTheme",
+        LaunchMode = LaunchMode.SingleTop)]
+    public class SelectCategoryListActivity : MvxCachingFragmentCompatActivity<SelectCategoryListViewModel>
     {
-        public new SelectCategoryListViewModel ViewModel
-        {
-            get { return (SelectCategoryListViewModel) base.ViewModel; }
-            set { base.ViewModel = value; }
-        }
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.CategoryListLayout);
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
+            SetContentView(Resource.Layout.activity_category_list);
+
+            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace MoneyManager.Droid.Activities
         /// <returns>To be added.</returns>
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            MenuInflater.Inflate(Resource.Menu.SelectMenu, menu);
+            MenuInflater.Inflate(Resource.Menu.menu_select, menu);
             return base.OnCreateOptionsMenu(menu);
         }
 

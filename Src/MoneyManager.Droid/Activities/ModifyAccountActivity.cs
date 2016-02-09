@@ -2,19 +2,18 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using MoneyManager.Core.ViewModels;
-using MvvmCross.Droid.Views;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using Android.Content.PM;
+using Android.Support.V7.Widget;
 
 namespace MoneyManager.Droid.Activities
 {
-    [Activity(Label = "ModifyAccountActivity")]
-    public class ModifyAccountActivity : MvxActivity
+    [Activity(Label = "ModifyAccountActivity",
+        Name = "moneymanager.droid.activities.ModifyAccountActivity",
+        Theme = "@style/AppTheme",
+        LaunchMode = LaunchMode.SingleTop)]
+    public class ModifyAccountActivity : MvxCachingFragmentCompatActivity<ModifyAccountViewModel>
     {
-        public new ModifyAccountViewModel ViewModel
-        {
-            get { return (ModifyAccountViewModel) base.ViewModel; }
-            set { base.ViewModel = value; }
-        }
-
         /// <summary>
         ///     Raises the create event.
         /// </summary>
@@ -23,9 +22,10 @@ namespace MoneyManager.Droid.Activities
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.ModifyAccountLayout);
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.Title = ViewModel.Title;
+            SetContentView(Resource.Layout.activity_modify_account);
+
+            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
         }
 
         /// <summary>
@@ -35,9 +35,8 @@ namespace MoneyManager.Droid.Activities
         /// <returns>To be added.</returns>
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            MenuInflater.Inflate(ViewModel.IsEdit ? Resource.Menu.ModificationMenu : Resource.Menu.AddMenu, menu);
-
-            return base.OnCreateOptionsMenu(menu);
+            MenuInflater.Inflate(ViewModel.IsEdit ? Resource.Menu.menu_modification : Resource.Menu.menu_add, menu);
+            return true;
         }
 
         /// <summary>

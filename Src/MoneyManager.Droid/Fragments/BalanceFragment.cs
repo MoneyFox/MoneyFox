@@ -1,23 +1,13 @@
-using Android.OS;
-using Android.Views;
+using Android.Runtime;
 using MoneyManager.Core.ViewModels;
-using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Droid.FullFragging.Fragments;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 
 namespace MoneyManager.Droid.Fragments
 {
-    public class BalanceFragment : MvxFragment
+    [MvxFragment(typeof(MainViewModel), Resource.Id.account_list_balance_frame)]
+    [Register("moneymanager.droid.fragments.BalanceFragment")]
+    public class BalanceFragment : BaseFragment<BalanceViewModel>
     {
-        public new BalanceViewModel ViewModel
-        {
-            get { return (BalanceViewModel) base.ViewModel; }
-            set { base.ViewModel = value; }
-        }
-
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            base.OnCreateView(inflater, container, savedInstanceState);
-            return this.BindingInflate(Resource.Layout.BalanceLayout, null);
-        }
+        protected override int FragmentId => Resource.Layout.fragment_balance;
     }
 }

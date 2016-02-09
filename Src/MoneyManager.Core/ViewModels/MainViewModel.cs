@@ -74,5 +74,13 @@ namespace MoneyManager.Core.ViewModels
         {
             ShowViewModel<RecurringPaymentListViewModel>();
         }
+
+        //Only used in Android so far.
+        public void ShowMenuAndFirstDetail()
+        {
+            ShowViewModel<MenuViewModel>();
+            ShowViewModel<AccountListViewModel>();
+            ShowViewModel<BalanceViewModel>();
+        }
     }
 }
