@@ -4,18 +4,20 @@
     android:background="?android:windowBackground"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:paddingLeft="6dp"
-    android:paddingRight="6dp"
     android:orientation="vertical">
+    <include
+        layout="@layout/toolbar_actionbar" />
     <FrameLayout
-        android:id="@+id/balance_pane"
+        android:id="@+id/account_list_balance_frame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent" />
     <MvxListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/accountList"
-        local:MvxItemTemplate="@layout/accountlistitem"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:id="@+id/account_list"
+        local:MvxItemTemplate="@layout/listitem_account"
         local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />
 </LinearLayout>

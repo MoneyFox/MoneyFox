@@ -46,10 +46,14 @@
 
   <!--labels-->
   <string name="label_cleared">IsCleared: </string>
+  <string name="label_slogan">A way to make budgeting easy.</string>
 
   <!--text-->
   <string name="text_endless">Is Endless</string>
 
+  <string name="drawer_open">Open navigation drawer</string>
+  <string name="drawer_close">Close navigation drawer</string>
+  
   <!--string arrays-->
   <string-array name="statistic_items">
     <item>Cashflow</item>
