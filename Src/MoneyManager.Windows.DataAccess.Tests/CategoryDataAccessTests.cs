@@ -77,7 +77,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
         }
 
         [TestMethod]
-        public void SaveToDatabase_CRUDCategory_CorrectlyUpdated()
+        public void SaveToDatabase_CreateAndUpdateCategory_CorrectlyUpdated()
         {
             var firstName = "old name";
             var secondName = "new name";
@@ -98,6 +98,23 @@ namespace MoneyManager.Windows.DataAccess.Tests
             var categories = dataAccess.LoadList();
             Assert.IsFalse(categories.Any(x => x.Name == firstName));
             Assert.AreEqual(secondName, categories.First(x => x.Id == category.Id).Name);
+        }
+
+        [TestMethod]
+        public void DeleteFromDatabase_CategoryToDelete_CorrectlyDelete()
+        {
+            var category = new Category
+            {
+                Name = "categoryToDelete",
+            };
+
+            var dataAccess = new CategoryDataAccess(connectionCreator);
+            dataAccess.SaveItem(category);
+
+            Assert.IsTrue(dataAccess.LoadList(x => x.Id == category.Id).Any());
+
+            dataAccess.DeleteItem(category);
+            Assert.IsFalse(dataAccess.LoadList(x => x.Id == category.Id).Any());
         }
     }
 }

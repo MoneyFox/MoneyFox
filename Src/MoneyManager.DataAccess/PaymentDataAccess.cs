@@ -37,7 +37,8 @@ namespace MoneyManager.DataAccess
                 {
                     db.Insert(itemToSave);
                     itemToSave.Id = db.Table<Payment>().OrderByDescending(x => x.Id).First().Id;
-                } else
+                }
+                else
                 {
                     db.Update(itemToSave);
                 }
@@ -53,8 +54,8 @@ namespace MoneyManager.DataAccess
                 {
                     db.Insert(itemToSave.RecurringPayment);
                     itemToSave.Id = db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First().Id;
-
-                } else
+                }
+                else
                 {
                     db.Update(itemToSave.RecurringPayment);
                 }
@@ -86,8 +87,7 @@ namespace MoneyManager.DataAccess
 
                 if (filter != null)
                 {
-                    var compiledFilter = filter.Compile();
-                    listQuery = listQuery.Where(x => compiledFilter(x));
+                    listQuery = listQuery.Where(filter);
                 }
 
                 return listQuery.ToList();

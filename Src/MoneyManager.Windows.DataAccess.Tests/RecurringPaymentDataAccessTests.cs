@@ -77,17 +77,17 @@ namespace MoneyManager.Windows.DataAccess.Tests
         }
 
         [TestMethod]
-        public void SaveToDatabase_CRUDRecurringPayment_CorrectlyUpdated()
+        public void SaveToDatabase_CreateAndUpdateRecurringPayment_CorrectlyUpdated()
         {
             var firstAmount = 5555555;
             var secondAmount = 222222222;
 
-            var payment = new Payment
+            var payment = new RecurringPayment
             {
                 Amount = firstAmount
             };
 
-            var dataAccess = new PaymentDataAccess(connectionCreator);
+            var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
             dataAccess.SaveItem(payment);
 
             Assert.AreEqual(firstAmount, dataAccess.LoadList().FirstOrDefault(x => x.Id == payment.Id).Amount);
@@ -100,5 +100,21 @@ namespace MoneyManager.Windows.DataAccess.Tests
             Assert.AreEqual(secondAmount, categories.First(x => x.Id == payment.Id).Amount);
         }
 
+        [TestMethod]
+        public void DeleteFromDatabase_RecurringPaymentToDelete_CorrectlyDelete()
+        {
+            var payment = new RecurringPayment
+            {
+                Note = "paymentToDelete",
+            };
+
+            var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
+            dataAccess.SaveItem(payment);
+
+            Assert.IsTrue(dataAccess.LoadList(x => x.Id == payment.Id).Any());
+
+            dataAccess.DeleteItem(payment);
+            Assert.IsFalse(dataAccess.LoadList(x => x.Id == payment.Id).Any());
+        }
     }
 }

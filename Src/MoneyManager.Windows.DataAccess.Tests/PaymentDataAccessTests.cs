@@ -77,7 +77,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
         }
 
         [TestMethod]
-        public void SaveToDatabase_CRUDPayment_CorrectlyUpdated()
+        public void SaveToDatabase_CreateAndUpdatePayment_CorrectlyUpdated()
         {
             var firstAmount = 5555555;
             var secondAmount = 222222222;
@@ -96,8 +96,25 @@ namespace MoneyManager.Windows.DataAccess.Tests
             dataAccess.SaveItem(payment);
 
             var categories = dataAccess.LoadList();
-            Assert.IsFalse(categories.Any(x => x.Amount == firstAmount));
+            Assert.IsFalse(categories.Any(x => Math.Abs(x.Amount - firstAmount) < 0.1));
             Assert.AreEqual(secondAmount, categories.First(x => x.Id == payment.Id).Amount);
+        }
+
+        [TestMethod]
+        public void DeleteFromDatabase_PaymentToDelete_CorrectlyDelete()
+        {
+            var payment = new Payment
+            {
+                Note = "paymentToDelete",
+            };
+
+            var dataAccess = new PaymentDataAccess(connectionCreator);
+            dataAccess.SaveItem(payment);
+
+            Assert.IsTrue(dataAccess.LoadList(x => x.Id == payment.Id).Any());
+
+            dataAccess.DeleteItem(payment);
+            Assert.IsFalse(dataAccess.LoadList(x => x.Id == payment.Id).Any());
         }
     }
 }
