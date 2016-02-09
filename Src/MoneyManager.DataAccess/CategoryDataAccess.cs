@@ -30,7 +30,8 @@ namespace MoneyManager.DataAccess
                 //Don't use insert or replace here, becuase it will always replace the first element
                 if (itemToSave.Id == 0)
                 {
-                    itemToSave.Id = db.Insert(itemToSave);
+                    db.Insert(itemToSave);
+                    itemToSave.Id = db.Table<Category>().OrderByDescending(x => x.Id).First().Id;
                 } else
                 {
                     db.Update(itemToSave);
