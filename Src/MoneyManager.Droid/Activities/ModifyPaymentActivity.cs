@@ -6,12 +6,16 @@ using Android.Widget;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Fragments;
 using MoneyManager.Localization;
-using MvvmCross.Droid.Views;
+using Android.Content.PM;
+using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace MoneyManager.Droid.Activities
 {
-    [Activity(Label = "ModifyPaymentActivity")]
-    public class ModifyPaymentActivity : MvxActivity, DatePickerDialog.IOnDateSetListener
+    [Activity(Label = "ModifyPaymentActivity",
+        Name = "moneymanager.droid.activities.ModifyPaymentActivity",
+        Theme = "@style/AppTheme",
+        LaunchMode = LaunchMode.SingleTop)]
+    public class ModifyPaymentActivity : MvxCachingFragmentCompatActivity<ModifyPaymentViewModel>, DatePickerDialog.IOnDateSetListener
     {
         /// <summary>
         ///     Used to determine which button called the date picker
@@ -21,12 +25,6 @@ namespace MoneyManager.Droid.Activities
         private Button categoryButton;
         private Button enddateButton;
         private Button paymentDateButton;
-
-        public new ModifyPaymentViewModel ViewModel
-        {
-            get { return (ModifyPaymentViewModel) base.ViewModel; }
-            set { base.ViewModel = value; }
-        }
 
         public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
         {
@@ -51,8 +49,10 @@ namespace MoneyManager.Droid.Activities
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.activity_modify_payment);
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.Title = ViewModel.Title;
+
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             categoryButton = FindViewById<Button>(Resource.Id.category);
             paymentDateButton = FindViewById<Button>(Resource.Id.paymentdate);
