@@ -24,8 +24,7 @@ namespace MoneyManager.Droid.Activities
 
             SetContentView(Resource.Layout.activity_modify_account);
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
+            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
         }
 

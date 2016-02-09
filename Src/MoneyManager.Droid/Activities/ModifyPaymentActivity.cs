@@ -8,6 +8,7 @@ using MoneyManager.Droid.Fragments;
 using MoneyManager.Localization;
 using Android.Content.PM;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyManager.Droid.Activities
 {
@@ -50,8 +51,7 @@ namespace MoneyManager.Droid.Activities
 
             SetContentView(Resource.Layout.activity_modify_payment);
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
+            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             categoryButton = FindViewById<Button>(Resource.Id.category);
