@@ -4,6 +4,7 @@ using Android.Views;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Android.Content.PM;
+using Android.Support.V7.Widget;
 
 namespace MoneyManager.Droid.Activities
 {
@@ -22,6 +23,10 @@ namespace MoneyManager.Droid.Activities
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.ModifyAccountLayout);
+
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
         }
 
         /// <summary>
