@@ -17,6 +17,18 @@ namespace MoneyManager.Windows.DataAccess.Tests
             connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            var dataAccess = new AccountDataAccess(connectionCreator);
+            var list = dataAccess.LoadList();
+
+            foreach (var account in list)
+            {
+                dataAccess.DeleteItem(account);
+            }
+        }
+
         [TestMethod]
         public void SaveToDatabase_NewAccount_CorrectId()
         {
@@ -59,6 +71,30 @@ namespace MoneyManager.Windows.DataAccess.Tests
             Assert.AreEqual(id, account.Id);
             Assert.AreEqual(name, account.Name);
             Assert.AreEqual(balance, account.CurrentBalance);
+        }
+
+        [TestMethod]
+        public void SaveToDatabase_MultipleAccounts_AllSaved()
+        {
+            var account1 = new Account
+            {
+                Name = "Sparkonto",
+                CurrentBalance = 1234
+            };
+
+            var account2 = new Account
+            {
+                Name = "Jugenkonto",
+                CurrentBalance = 999
+            };
+
+            var dataAccess = new AccountDataAccess(connectionCreator);
+            dataAccess.SaveItem(account1);
+            dataAccess.SaveItem(account2);
+
+            var resultList = dataAccess.LoadList();
+
+            Assert.AreEqual(2, resultList.Count);
         }
     }
 }

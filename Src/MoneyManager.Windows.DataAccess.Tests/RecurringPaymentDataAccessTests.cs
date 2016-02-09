@@ -17,6 +17,18 @@ namespace MoneyManager.Windows.DataAccess.Tests
             connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
+            var list = dataAccess.LoadList();
+
+            foreach (var payment in list)
+            {
+                dataAccess.DeleteItem(payment);
+            }
+        }
+
         [TestMethod]
         public void SaveToDatabase_NewRecurringPayment_CorrectId()
         {
@@ -50,6 +62,28 @@ namespace MoneyManager.Windows.DataAccess.Tests
 
             Assert.AreEqual(id, payment.Id);
             Assert.AreEqual(amount, payment.Amount);
+        }
+
+        [TestMethod]
+        public void SaveToDatabase_MultipleRecurringPayment_AllSaved()
+        {
+            var payment1 = new RecurringPayment
+            {
+                Amount = 123,
+            };
+
+            var payment2 = new RecurringPayment
+            {
+                Amount = 789,
+            };
+
+            var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
+            dataAccess.SaveItem(payment1);
+            dataAccess.SaveItem(payment2);
+
+            var resultList = dataAccess.LoadList();
+
+            Assert.AreEqual(2, resultList.Count);
         }
     }
 }

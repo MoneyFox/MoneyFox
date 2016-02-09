@@ -17,6 +17,18 @@ namespace MoneyManager.Windows.DataAccess.Tests
             connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            var dataAccess = new CategoryDataAccess(connectionCreator);
+            var list = dataAccess.LoadList();
+
+            foreach (var category in list)
+            {
+                dataAccess.DeleteItem(category);
+            }
+        }
+
         [TestMethod]
         public void SaveToDatabase_NewCategory_CorrectId()
         {
@@ -50,6 +62,28 @@ namespace MoneyManager.Windows.DataAccess.Tests
 
             Assert.AreEqual(id, category.Id);
             Assert.AreEqual(name, category.Name);
+        }
+
+        [TestMethod]
+        public void SaveToDatabase_MultipleCategories_AllSaved()
+        {
+            var category1 = new Category
+            {
+                Name = "Einkaufen",
+            };
+
+            var category2 = new Category
+            {
+                Name = "Beer",
+            };
+
+            var dataAccess = new CategoryDataAccess(connectionCreator);
+            dataAccess.SaveItem(category1);
+            dataAccess.SaveItem(category2);
+
+            var resultList = dataAccess.LoadList();
+
+            Assert.AreEqual(2, resultList.Count);
         }
     }
 }
