@@ -21,8 +21,8 @@ namespace MoneyManager.Core.Repositories
         public CategoryRepository(IDataAccess<Category> dataAccess)
         {
             this.dataAccess = dataAccess;
-            data = new ObservableCollection<Category>(this.dataAccess.LoadList());
 
+            Data = new ObservableCollection<Category>();
             Load();
         }
 
@@ -75,8 +75,7 @@ namespace MoneyManager.Core.Repositories
         /// </summary>
         public void Load(Expression<Func<Category, bool>> filter = null)
         {
-            Data = new ObservableCollection<Category>();
-
+            Data.Clear();
             foreach (var category in dataAccess.LoadList(filter))
             {
                 Data.Add(category);

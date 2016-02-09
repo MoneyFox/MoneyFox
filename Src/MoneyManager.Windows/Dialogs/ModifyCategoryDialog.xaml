@@ -10,8 +10,7 @@
                x:Uid="ModifyCategoryDialog"
                PrimaryButtonText="done"
                SecondaryButtonText="cancel"
-               PrimaryButtonCommand="{Binding DoneCommand}"
-               DataContext="{Binding CategoryDialog, Source={StaticResource CoreModule}}">
+               PrimaryButtonCommand="{Binding DoneCommand}">
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">

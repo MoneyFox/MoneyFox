@@ -40,6 +40,7 @@ namespace MoneyManager.Core.Repositories
             this.accountRepository = accountRepository;
             this.categoryRepository = categoryRepository;
 
+            Data = new ObservableCollection<Payment>();
             Load();
         }
 
@@ -87,7 +88,6 @@ namespace MoneyManager.Core.Repositories
             dataAccess.SaveItem(payment);
             //Reload data.
             Load();
-
         }
 
         /// <summary>
@@ -132,6 +132,7 @@ namespace MoneyManager.Core.Repositories
         /// </summary>
         public void Load(Expression<Func<Payment, bool>> filter = null)
         {
+            Data.Clear();
             var payments = dataAccess.LoadList(filter);
             var recurringTransactions = recurringDataAccess.LoadList();
 
@@ -147,9 +148,9 @@ namespace MoneyManager.Core.Repositories
                     payment.RecurringPayment =
                         recurringTransactions.FirstOrDefault(x => x.Id == payment.RecurringPaymentId);
                 }
-            }
 
-            Data = new ObservableCollection<Payment>(payments);
+                Data.Add(payment);
+            }
         }
 
         /// <summary>
