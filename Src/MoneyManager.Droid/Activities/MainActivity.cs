@@ -1,177 +1,89 @@
 ﻿using System;
-using System.Collections.Generic;
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
+using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Views;
-using Android.Widget;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Droid.Fragments;
-using MoneyManager.Localization;
-using MvvmCross.Droid.FullFragging.Views;
-using MvvmCross.Platform;
+using MoneyManager.Droid.Activities.Caching;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Droid.Support.V7.Fragging.Caching;
 
 namespace MoneyManager.Droid.Activities
 {
-    [Activity(Label = "MoneyManager", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : MvxActivity
+    [Activity(Label = "MoneyManager",
+        Icon = "@drawable/icon",
+        Theme = "@style/AppTheme",
+        LaunchMode = LaunchMode.SingleTop,
+        Name = "moneymanager.droid.activities.MainActivity")]
+    public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
-        private readonly List<string> menuItems = new List<string>
-        {
-            Strings.AccountsLabel,
-            Strings.StatisticTitle,
-            Strings.BackupLabel,
-            Strings.SettingsLabel,
-            Strings.AboutLabel
-        };
-
-        private AboutFragment aboutFragment;
-
-        private AccountListFragment accountListFragment;
-        private BackupFragment backupFragment;
-
-        private string drawerTitle;
-        private ListView menuListView;
-        private SlidingPaneLayout slidingLayout;
-        private StatisticSelectorFragment statisticSelectorFragment;
-        private string title;
-
-        public new MainViewModel ViewModel
-        {
-            get { return (MainViewModel) base.ViewModel; }
-            set { base.ViewModel = value; }
-        }
+        public DrawerLayout DrawerLayout;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.MainLayout);
+            SetContentView(Resource.Layout.activity_main);
 
-            slidingLayout = FindViewById<SlidingPaneLayout>(Resource.Id.main_layout);
-            menuListView = FindViewById<ListView>(Resource.Id.left_pane);
-            accountListFragment = new AccountListFragment
+            DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+
+            if (bundle == null)
             {
-                ViewModel = Mvx.Resolve<AccountListViewModel>()
-            };
-
-            statisticSelectorFragment = new StatisticSelectorFragment();
-            backupFragment = new BackupFragment
-            {
-                ViewModel = Mvx.Resolve<BackupViewModel>()
-            };
-
-            aboutFragment = new AboutFragment
-            {
-                ViewModel = Mvx.Resolve<AboutViewModel>()
-            };
-
-            slidingLayout.PanelOpened += (sender, e) =>
-            {
-                ActionBar.SetHomeButtonEnabled(false);
-                ActionBar.SetDisplayHomeAsUpEnabled(false);
-                ActionBar.Title = drawerTitle;
-            };
-
-            slidingLayout.PanelClosed += (sender, e) =>
-            {
-                ActionBar.SetDisplayHomeAsUpEnabled(true);
-                ActionBar.SetHomeButtonEnabled(true);
-                ActionBar.Title = title;
-            };
-
-            menuListView.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, menuItems);
-            menuListView.ItemClick += NavigationClick;
-
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.SetHomeButtonEnabled(true);
-            title = menuItems[0];
-            drawerTitle = Strings.MenuTitle;
-
-            slidingLayout.ViewTreeObserver.GlobalLayout += FirstLayoutListener;
-
-            var fragmentTransaction = FragmentManager.BeginTransaction();
-            fragmentTransaction.Add(Resource.Id.content_pane, accountListFragment);
-            fragmentTransaction.Commit();
-        }
-
-        private void NavigationClick(object sender, AdapterView.ItemClickEventArgs e)
-        {
-            title = menuItems[e.Position];
-
-            switch (e.Position)
-            {
-                case 0:
-                    FragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, accountListFragment)
-                        .AddToBackStack("AccountList")
-                        .Commit();
-                    break;
-
-                case 1:
-                    FragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, statisticSelectorFragment)
-                        .AddToBackStack("Statistic Selector")
-                        .Commit();
-                    break;
-
-                case 2:
-                    FragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, backupFragment)
-                        .AddToBackStack("Backup")
-                        .Commit();
-                    break;
-
-                case 3:
-                    break;
-
-                case 4:
-                    FragmentManager.BeginTransaction()
-                        .Replace(Resource.Id.content_pane, aboutFragment)
-                        .AddToBackStack("About")
-                        .Commit();
-                    break;
+                ViewModel.ShowMenuAndFirstDetail();
             }
-            slidingLayout.ClosePane();
-        }
-
-        private void FirstLayoutListener(object sender, EventArgs e)
-        {
-            if (slidingLayout.IsSlideable && !slidingLayout.IsOpen)
-            {
-                ActionBar.SetDisplayHomeAsUpEnabled(true);
-                ActionBar.SetHomeButtonEnabled(true);
-                ActionBar.Title = title;
-            }
-            else
-            {
-                ActionBar.SetDisplayHomeAsUpEnabled(false);
-                ActionBar.SetHomeButtonEnabled(false);
-                ActionBar.Title = drawerTitle;
-            }
-
-            slidingLayout.ViewTreeObserver.GlobalLayout -= FirstLayoutListener;
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            MenuInflater.Inflate(Resource.Menu.MainMenu, menu);
+            MenuInflater.Inflate(Resource.Menu.menu_main, menu);
             return true;
+        }
+
+        public override IFragmentCacheConfiguration BuildFragmentCacheConfiguration()
+        {
+            // custom FragmentCacheConfiguration is used because custom IMvxFragmentInfo is used -> CustomFragmentInfo
+            return new FragmentCacheConfigurationCustomFragmentInfo();
+        }
+
+        public override void OnFragmentChanged(IMvxCachedFragmentInfo fragmentInfo)
+        {
+            var myCustomInfo = fragmentInfo as CustomFragmentInfo;
+            CheckIfMenuIsNeeded(myCustomInfo);
+        }
+
+        private void CheckIfMenuIsNeeded(CustomFragmentInfo myCustomInfo)
+        {
+            //If not root, we will block the menu sliding gesture and show the back button on top
+			if (myCustomInfo != null && myCustomInfo.IsRoot)
+            {
+                ShowHamburguerMenu();
+            }
+            else
+            {
+                ShowBackButton();
+            }
+        }
+
+        private void ShowBackButton()
+        {
+            //Block the menu slide gesture
+            DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
+        }
+
+        private void ShowHamburguerMenu()
+        {
+            //Unlock the menu sliding gesture
+            DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeUnlocked);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (item.ItemId == Android.Resource.Id.Home && !slidingLayout.IsOpen)
-            {
-                slidingLayout.OpenPane();
-                return true;
-            }
-
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    slidingLayout.OpenPane();
+                    DrawerLayout.OpenDrawer(GravityCompat.Start);
                     return true;
 
                 case Resource.Id.action_add_income:
@@ -189,10 +101,21 @@ namespace MoneyManager.Droid.Activities
                 case Resource.Id.action_add_account:
                     ViewModel.GoToAddAccountCommand.Execute();
                     return true;
-
-                default:
-                    return base.OnOptionsItemSelected(item);
             }
+            return base.OnOptionsItemSelected(item);
+        }
+
+        public class CustomFragmentInfo : MvxCachedFragmentInfo
+        {
+            public CustomFragmentInfo(string tag, Type fragmentType, Type viewModelType, bool cacheFragment = true,
+                bool addToBackstack = false,
+                bool isRoot = false)
+                : base(tag, fragmentType, viewModelType, cacheFragment, addToBackstack)
+            {
+                IsRoot = isRoot;
+            }
+
+            public bool IsRoot { get; set; }
         }
     }
 }
