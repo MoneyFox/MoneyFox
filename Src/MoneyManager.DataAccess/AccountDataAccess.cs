@@ -61,9 +61,15 @@ namespace MoneyManager.DataAccess
         {
             using (var db = connectionCreator.GetConnection())
             {
-                return db.Table<Account>()
-                    .OrderBy(x => x.Name)
-                    .ToList();
+                var listQuery = db.Table<Account>();
+
+                if (filter != null)
+                {
+                    var compiledFilter = filter.Compile();
+                    listQuery = listQuery.Where(x => compiledFilter(x));
+                }
+
+                return listQuery.OrderBy(x => x.Name).ToList();
             }
         }
     }
