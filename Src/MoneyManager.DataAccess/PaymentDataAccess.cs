@@ -32,7 +32,14 @@ namespace MoneyManager.DataAccess
             using (var db = connectionCreator.GetConnection())
             {
                 SaveRecurringPayment(itemToSave, db);
-                itemToSave.Id = db.InsertOrReplace(itemToSave);
+                //Don't use insert or replace here, because it will always replace the first element
+                if (itemToSave.Id == 0)
+                {
+                    itemToSave.Id = db.Insert(itemToSave);
+                } else
+                {
+                    db.Update(itemToSave);
+                }
             }
         }
 
@@ -43,10 +50,10 @@ namespace MoneyManager.DataAccess
                 //Don't use insert or replace here, becuase it will always replace the first element
                 if (itemToSave.Id == 0)
                 {
-                    itemToSave.Id = db.Insert(itemToSave);
+                    itemToSave.Id = db.Insert(itemToSave.RecurringPayment);
                 } else
                 {
-                    db.Update(itemToSave);
+                    db.Update(itemToSave.RecurringPayment);
                 }
             }
         }
