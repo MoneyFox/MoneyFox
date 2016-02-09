@@ -303,6 +303,7 @@
     <AndroidResource Include="Resources\layout\fragment_payment_list.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\icon_wide.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml" />
