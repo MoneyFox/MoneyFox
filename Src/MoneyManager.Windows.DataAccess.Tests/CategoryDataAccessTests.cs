@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using System.Linq;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -17,18 +18,6 @@ namespace MoneyManager.Windows.DataAccess.Tests
             connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
         }
 
-        [TestCleanup]
-        public void Cleanup()
-        {
-            var dataAccess = new CategoryDataAccess(connectionCreator);
-            var list = dataAccess.LoadList();
-
-            foreach (var category in list)
-            {
-                dataAccess.DeleteItem(category);
-            }
-        }
-
         [TestMethod]
         public void SaveToDatabase_NewCategory_CorrectId()
         {
@@ -41,7 +30,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
 
             new CategoryDataAccess(connectionCreator).SaveItem(category);
 
-            Assert.AreEqual(1, category.Id);
+            Assert.IsTrue(category.Id >= 1);
             Assert.AreEqual(name, category.Name);
         }
 
@@ -83,7 +72,32 @@ namespace MoneyManager.Windows.DataAccess.Tests
 
             var resultList = dataAccess.LoadList();
 
-            Assert.AreEqual(2, resultList.Count);
+            Assert.IsTrue(resultList.Any(x => x.Id == category1.Id && x.Name == category1.Name));
+            Assert.IsTrue(resultList.Any(x => x.Id == category2.Id && x.Name == category2.Name));
+        }
+
+        [TestMethod]
+        public void SaveToDatabase_CRUDCategory_CorrectlyUpdated()
+        {
+            var firstName = "old name";
+            var secondName = "new name";
+
+            var category = new Category
+            {
+                Name = firstName
+            };
+
+            var dataAccess = new CategoryDataAccess(connectionCreator);
+            dataAccess.SaveItem(category);
+
+            Assert.AreEqual(firstName, dataAccess.LoadList().FirstOrDefault(x => x.Id == category.Id).Name);
+
+            category.Name = secondName;
+            dataAccess.SaveItem(category);
+
+            var categories = dataAccess.LoadList();
+            Assert.IsFalse(categories.Any(x => x.Name == firstName));
+            Assert.AreEqual(secondName, categories.First(x => x.Id == category.Id).Name);
         }
     }
 }

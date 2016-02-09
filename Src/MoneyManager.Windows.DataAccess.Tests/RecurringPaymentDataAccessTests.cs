@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using System;
+using System.Linq;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
@@ -15,18 +17,6 @@ namespace MoneyManager.Windows.DataAccess.Tests
         public void Init()
         {
             connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
-        }
-
-        [TestCleanup]
-        public void Cleanup()
-        {
-            var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
-            var list = dataAccess.LoadList();
-
-            foreach (var payment in list)
-            {
-                dataAccess.DeleteItem(payment);
-            }
         }
 
         [TestMethod]
@@ -69,12 +59,12 @@ namespace MoneyManager.Windows.DataAccess.Tests
         {
             var payment1 = new RecurringPayment
             {
-                Amount = 123,
+                Note = "MultiRecPayment1",
             };
 
             var payment2 = new RecurringPayment
             {
-                Amount = 789,
+                Note = "MultiRecPayment2",
             };
 
             var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
@@ -83,7 +73,33 @@ namespace MoneyManager.Windows.DataAccess.Tests
 
             var resultList = dataAccess.LoadList();
 
-            Assert.AreEqual(2, resultList.Count);
+            Assert.IsTrue(resultList.Any(x => x.Id == payment1.Id && x.Note == payment1.Note));
+            Assert.IsTrue(resultList.Any(x => x.Id == payment2.Id && x.Note == payment2.Note));
         }
+
+        [TestMethod]
+        public void SaveToDatabase_CRUDRecurringPayment_CorrectlyUpdated()
+        {
+            var firstAmount = 5555555;
+            var secondAmount = 222222222;
+
+            var payment = new Payment
+            {
+                Amount = firstAmount
+            };
+
+            var dataAccess = new PaymentDataAccess(connectionCreator);
+            dataAccess.SaveItem(payment);
+
+            Assert.AreEqual(firstAmount, dataAccess.LoadList().FirstOrDefault(x => x.Id == payment.Id).Amount);
+
+            payment.Amount = secondAmount;
+            dataAccess.SaveItem(payment);
+
+            var categories = dataAccess.LoadList();
+            Assert.IsFalse(categories.Any(x => x.Amount == firstAmount));
+            Assert.AreEqual(secondAmount, categories.First(x => x.Id == payment.Id).Amount);
+        }
+
     }
 }
