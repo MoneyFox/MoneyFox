@@ -44,9 +44,9 @@ namespace MoneyManager.DataAccess
         /// <param name="payment">Category to delete.</param>
         protected override void DeleteFromDatabase(Category payment)
         {
-            using (var dbConn = connectionCreator.GetConnection())
+            using (var db = connectionCreator.GetConnection())
             {
-                dbConn.Delete(payment);
+                db.Delete(payment);
             }
         }
 
@@ -57,11 +57,17 @@ namespace MoneyManager.DataAccess
         /// <returns>Loaded categories.</returns>
         protected override List<Category> GetListFromDb(Expression<Func<Category, bool>> filter)
         {
-            using (var dbConn = connectionCreator.GetConnection())
+            using (var db = connectionCreator.GetConnection())
             {
-                return dbConn.Table<Category>()
-                    .OrderBy(x => x.Name)
-                    .ToList();
+                var listQuery = db.Table<Category>();
+
+                if (filter != null)
+                {
+                    var compiledFilter = filter.Compile();
+                    listQuery = listQuery.Where(x => compiledFilter(x));
+                }
+
+                return listQuery.OrderBy(x => x.Name).ToList();
             }
         }
     }
