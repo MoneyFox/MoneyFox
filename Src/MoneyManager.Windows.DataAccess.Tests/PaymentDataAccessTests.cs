@@ -77,7 +77,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
         }
 
         [TestMethod]
-        public void SaveToDatabase_CRUDPayment_CorrectlyUpdated()
+        public void SaveToDatabase_CreateAndUpdatePayment_CorrectlyUpdated()
         {
             var firstAmount = 5555555;
             var secondAmount = 222222222;

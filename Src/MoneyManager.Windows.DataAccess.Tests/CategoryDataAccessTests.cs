@@ -77,7 +77,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
         }
 
         [TestMethod]
-        public void SaveToDatabase_CRUDCategory_CorrectlyUpdated()
+        public void SaveToDatabase_CreateAndUpdateCategory_CorrectlyUpdated()
         {
             var firstName = "old name";
             var secondName = "new name";

@@ -64,8 +64,7 @@ namespace MoneyManager.DataAccess
 
                 if (filter != null)
                 {
-                    var compiledFilter = filter.Compile();
-                    listQuery = listQuery.Where(x => compiledFilter(x));
+                    listQuery = listQuery.Where(filter);
                 }
 
                 return listQuery.ToList();

@@ -94,7 +94,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
         }
 
         [TestMethod]
-        public void SaveToDatabase_CRUDAccount_CorrectlyUpdated()
+        public void SaveToDatabase_CreateAndUpdateAccount_CorrectlyUpdated()
         {
             var firstName = "old name";
             var secondName = "new name";
@@ -116,6 +116,24 @@ namespace MoneyManager.Windows.DataAccess.Tests
             var accounts = dataAccess.LoadList();
             Assert.IsFalse(accounts.Any(x => x.Name == firstName));
             Assert.AreEqual(secondName, accounts.First(x => x.Id == account.Id).Name);
+        }
+
+        [TestMethod]
+        public void DeleteFromDatabase_AccontToDelete_CorrectlyDelete()
+        {
+            var account = new Account
+            {
+                Name = "accountToDelete",
+                CurrentBalance = 1234
+            };
+
+            var dataAccess = new AccountDataAccess(connectionCreator);
+            dataAccess.SaveItem(account);
+
+            Assert.IsTrue(dataAccess.LoadList(x => x.Id == account.Id).Any());
+
+            dataAccess.DeleteItem(account);
+            Assert.IsFalse(dataAccess.LoadList(x => x.Id == account.Id).Any());
         }
     }
 }
