@@ -51,7 +51,7 @@ namespace MoneyManager.Droid.Activities
 
             SetContentView(Resource.Layout.activity_modify_payment);
 
-            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             categoryButton = FindViewById<Button>(Resource.Id.category);
