@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
@@ -31,7 +30,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
 
             new RecurringPaymentDataAccess(connectionCreator).SaveItem(payment);
 
-            Assert.AreEqual(1, payment.Id);
+            Assert.IsTrue(payment.Id >= 1);
             Assert.AreEqual(amount, payment.Amount);
         }
 
