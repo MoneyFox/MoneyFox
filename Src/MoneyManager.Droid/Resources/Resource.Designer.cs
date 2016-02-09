@@ -2107,10 +2107,13 @@ namespace MoneyManager.Droid
 			public const int Icon = 2130837582;
 			
 			// aapt resource value: 0x7f02004f
-			public const int logo = 2130837583;
+			public const int icon_wide = 2130837583;
 			
 			// aapt resource value: 0x7f020050
-			public const int notification_template_icon_bg = 2130837584;
+			public const int logo = 2130837584;
+			
+			// aapt resource value: 0x7f020051
+			public const int notification_template_icon_bg = 2130837585;
 			
 			static Drawable()
 			{
