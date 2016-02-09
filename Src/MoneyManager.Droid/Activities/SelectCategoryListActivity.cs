@@ -13,7 +13,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "CategoryListActivity",
-        Name = "moneymanager.droid.activities.CategoryListActivity",
+        Name = "moneymanager.droid.activities.SelectCategoryListActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
     public class SelectCategoryListActivity : MvxCachingFragmentCompatActivity<SelectCategoryListViewModel>
