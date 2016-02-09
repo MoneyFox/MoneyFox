@@ -99,5 +99,22 @@ namespace MoneyManager.Windows.DataAccess.Tests
             Assert.IsFalse(categories.Any(x => x.Name == firstName));
             Assert.AreEqual(secondName, categories.First(x => x.Id == category.Id).Name);
         }
+
+        [TestMethod]
+        public void DeleteFromDatabase_CategoryToDelete_CorrectlyDelete()
+        {
+            var category = new Category
+            {
+                Name = "categoryToDelete",
+            };
+
+            var dataAccess = new CategoryDataAccess(connectionCreator);
+            dataAccess.SaveItem(category);
+
+            Assert.IsTrue(dataAccess.LoadList(x => x.Id == category.Id).Any());
+
+            dataAccess.DeleteItem(category);
+            Assert.IsFalse(dataAccess.LoadList(x => x.Id == category.Id).Any());
+        }
     }
 }

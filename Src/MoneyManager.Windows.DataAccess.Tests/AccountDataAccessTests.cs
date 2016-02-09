@@ -119,7 +119,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
         }
 
         [TestMethod]
-        public void DeleteFromDatabase_AccontToDelete_CorrectlyDelete()
+        public void DeleteFromDatabase_AccountToDelete_CorrectlyDelete()
         {
             var account = new Account
             {
