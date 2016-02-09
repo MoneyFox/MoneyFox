@@ -26,8 +26,6 @@ namespace MoneyManager.Core.ViewModels
         {
             CategoryRepository = categoryRepository;
             DialogService = dialogService;
-
-            Categories = categoryRepository.Data;
         }
 
         /// <summary>
@@ -37,12 +35,8 @@ namespace MoneyManager.Core.ViewModels
 
         public ObservableCollection<Category> Categories
         {
-            get { return categories; }
-            set
-            {
-                categories = value;
-                RaisePropertyChanged(() => Categories);
-            }
+            get { return CategoryRepository.Data; }
+            set { CategoryRepository.Data = value; }
         }
 
         /// <summary>

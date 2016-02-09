@@ -23,7 +23,9 @@ namespace MoneyManager.Core.Repositories
         public AccountRepository(IDataAccess<Account> dataAccess)
         {
             this.dataAccess = dataAccess;
-            data = new ObservableCollection<Account>(this.dataAccess.LoadList());
+
+            Data = new ObservableCollection<Account>();
+            Load();
         }
 
         public Account Selected { get; set; }
@@ -75,7 +77,7 @@ namespace MoneyManager.Core.Repositories
         /// </summary>
         public void Load(Expression<Func<Account, bool>> filter = null)
         {
-            Data = new ObservableCollection<Account>();
+            Data.Clear();
 
             foreach (var account in dataAccess.LoadList(filter))
             {
