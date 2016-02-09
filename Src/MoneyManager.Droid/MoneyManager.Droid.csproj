@@ -203,7 +203,6 @@
     <Compile Include="Activities\SelectCategoryListActivity.cs" />
     <Compile Include="Activities\ModifyAccountActivity.cs" />
     <Compile Include="Activities\ModifyPaymentActivity.cs" />
-    <Compile Include="Activities\PaymentListActivity.cs" />
     <Compile Include="AndroidModule.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
@@ -241,6 +240,7 @@
     <Compile Include="Src\StoreFeatures.cs" />
     <Compile Include="Src\TempMessage.cs" />
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Fragments\PaymentListFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -300,7 +300,7 @@
     <AndroidResource Include="Resources\layout\fragment_statistic.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\activity_payment_list.axml">
+    <AndroidResource Include="Resources\layout\fragment_payment_list.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -2131,14 +2131,14 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f06000c
 			public const int MvxBindingTagUnique = 2131099660;
 			
-			// aapt resource value: 0x7f060073
-			public const int accountList = 2131099763;
-			
-			// aapt resource value: 0x7f06007d
-			public const int account_list = 2131099773;
+			// aapt resource value: 0x7f060081
+			public const int accountList = 2131099777;
 			
 			// aapt resource value: 0x7f06007c
-			public const int account_list_balance_frame = 2131099772;
+			public const int account_list = 2131099772;
+			
+			// aapt resource value: 0x7f06007b
+			public const int account_list_balance_frame = 2131099771;
 			
 			// aapt resource value: 0x7f060084
 			public const int action0 = 2131099780;
@@ -2230,8 +2230,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f060046
 			public const int buttonPanel = 2131099718;
 			
-			// aapt resource value: 0x7f06007b
-			public const int button_save_category = 2131099771;
+			// aapt resource value: 0x7f06007a
+			public const int button_save_category = 2131099770;
 			
 			// aapt resource value: 0x7f060085
 			public const int cancel_action = 2131099781;
@@ -2281,17 +2281,17 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f060042
 			public const int default_activity_button = 2131099714;
 			
-			// aapt resource value: 0x7f06007a
-			public const int design_menu_item_action_area = 2131099770;
-			
 			// aapt resource value: 0x7f060079
-			public const int design_menu_item_action_area_stub = 2131099769;
+			public const int design_menu_item_action_area = 2131099769;
 			
 			// aapt resource value: 0x7f060078
-			public const int design_menu_item_text = 2131099768;
+			public const int design_menu_item_action_area_stub = 2131099768;
 			
 			// aapt resource value: 0x7f060077
-			public const int design_navigation_view = 2131099767;
+			public const int design_menu_item_text = 2131099767;
+			
+			// aapt resource value: 0x7f060076
+			public const int design_navigation_view = 2131099766;
 			
 			// aapt resource value: 0x7f060010
 			public const int disableHome = 2131099664;
@@ -2356,8 +2356,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f060041
 			public const int image = 2131099713;
 			
-			// aapt resource value: 0x7f06007f
-			public const int image_view_row_icon = 2131099775;
+			// aapt resource value: 0x7f06007e
+			public const int image_view_row_icon = 2131099774;
 			
 			// aapt resource value: 0x7f06008f
 			public const int info = 2131099791;
@@ -2425,11 +2425,11 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f06006e
 			public const int navigation_frame = 2131099758;
 			
-			// aapt resource value: 0x7f060076
-			public const int navigation_header_container = 2131099766;
+			// aapt resource value: 0x7f060075
+			public const int navigation_header_container = 2131099765;
 			
-			// aapt resource value: 0x7f06007e
-			public const int navigation_view = 2131099774;
+			// aapt resource value: 0x7f06007d
+			public const int navigation_view = 2131099773;
 			
 			// aapt resource value: 0x7f060022
 			public const int never = 2131099682;
@@ -2533,11 +2533,11 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f060015
 			public const int showTitle = 2131099669;
 			
-			// aapt resource value: 0x7f060075
-			public const int snackbar_action = 2131099765;
-			
 			// aapt resource value: 0x7f060074
-			public const int snackbar_text = 2131099764;
+			public const int snackbar_action = 2131099764;
+			
+			// aapt resource value: 0x7f060073
+			public const int snackbar_text = 2131099763;
 			
 			// aapt resource value: 0x7f060029
 			public const int snap = 2131099689;
@@ -2575,8 +2575,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f06000f
 			public const int tabMode = 2131099663;
 			
-			// aapt resource value: 0x7f060081
-			public const int test_slogan = 2131099777;
+			// aapt resource value: 0x7f060080
+			public const int test_slogan = 2131099776;
 			
 			// aapt resource value: 0x7f06008e
 			public const int text = 2131099790;
@@ -2587,8 +2587,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f06004f
 			public const int textSpacerNoButtons = 2131099727;
 			
-			// aapt resource value: 0x7f060080
-			public const int text_container = 2131099776;
+			// aapt resource value: 0x7f06007f
+			public const int text_container = 2131099775;
 			
 			// aapt resource value: 0x7f06008a
 			public const int time = 2131099786;
@@ -2755,67 +2755,67 @@ namespace MoneyManager.Droid
 			public const int activity_modify_payment = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int activity_payment_list = 2130903069;
+			public const int comboboxitem_account = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int comboboxitem_account = 2130903070;
+			public const int design_layout_snackbar = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int design_layout_snackbar = 2130903071;
+			public const int design_layout_snackbar_include = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int design_layout_snackbar_include = 2130903072;
+			public const int design_layout_tab_icon = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int design_layout_tab_icon = 2130903073;
+			public const int design_layout_tab_text = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int design_layout_tab_text = 2130903074;
+			public const int design_menu_item_action_area = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int design_menu_item_action_area = 2130903075;
+			public const int design_navigation_item = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int design_navigation_item = 2130903076;
+			public const int design_navigation_item_header = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int design_navigation_item_header = 2130903077;
+			public const int design_navigation_item_separator = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int design_navigation_item_separator = 2130903078;
+			public const int design_navigation_item_subheader = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int design_navigation_item_subheader = 2130903079;
+			public const int design_navigation_menu = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int design_navigation_menu = 2130903080;
+			public const int design_navigation_menu_item = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int design_navigation_menu_item = 2130903081;
+			public const int dialog_modify_category = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int dialog_modify_category = 2130903082;
+			public const int fragment_about = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int fragment_about = 2130903083;
+			public const int fragment_account_list = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int fragment_account_list = 2130903084;
+			public const int fragment_backup = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int fragment_backup = 2130903085;
+			public const int fragment_balance = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int fragment_balance = 2130903086;
+			public const int fragment_category_summary = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int fragment_category_summary = 2130903087;
+			public const int fragment_navigation = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int fragment_navigation = 2130903088;
+			public const int fragment_navigation_header = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int fragment_navigation_header = 2130903089;
+			public const int fragment_payment_list = 2130903089;
 			
 			// aapt resource value: 0x7f030032
 			public const int fragment_statistic = 2130903090;
