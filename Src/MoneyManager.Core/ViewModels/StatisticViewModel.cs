@@ -152,8 +152,7 @@ namespace MoneyManager.Core.ViewModels
             var model = new PlotModel
             {
                 Background = OxyColors.Black,
-                TextColor = OxyColors.White,
-                IsLegendVisible = true
+                TextColor = OxyColors.White
             };
             var pieSeries = new PieSeries
             {
@@ -176,7 +175,7 @@ namespace MoneyManager.Core.ViewModels
             var model = new PlotModel
             {
                 Background = OxyColors.Black,
-                TextColor = OxyColors.White,
+                TextColor = OxyColors.White
             };
 
             var columnSeries = new ColumnSeries();

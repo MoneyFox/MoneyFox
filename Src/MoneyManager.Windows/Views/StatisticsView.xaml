@@ -16,7 +16,7 @@
                 <PivotItem.Header>
                     <userControls:TabHeader Label="Cash Flow"
                                              x:Uid="CashFlowTitle"
-                                             Glyph="&#xE908;" />
+                                             Glyph="&#xE908;"  />
                 </PivotItem.Header>
                 <Grid>
                     <userControls:CashFlowUserControl x:Name="CashFlowUserControl" />

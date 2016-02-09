@@ -14,7 +14,6 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -58,6 +57,9 @@
                               x:Uid="AddAccountLabel"
                               Label="Add Account"
                               Command="{Binding GoToAddAccountCommand}" />
+                <AppBarButton x:Uid="RecurringPaymentList"
+                              Label="Recurring Payment Overview"
+                              Command="{Binding GoToRecurringPaymentListCommand}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

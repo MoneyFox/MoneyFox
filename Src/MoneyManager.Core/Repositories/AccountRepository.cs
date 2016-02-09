@@ -56,12 +56,8 @@ namespace MoneyManager.Core.Repositories
             }
 
             dataAccess.SaveItem(account);
-
-            if (account.Id == 0)
-            {
-                // Reload data
-                Load();
-            }
+            //Reload data.
+            Load();
         }
 
         /// <summary>

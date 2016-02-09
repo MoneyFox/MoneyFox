@@ -85,12 +85,9 @@ namespace MoneyManager.Core.Repositories
             }
 
             dataAccess.SaveItem(payment);
+            //Reload data.
+            Load();
 
-            if (payment.Id == 0)
-            {
-                //Reload data.
-                Load();
-            }
         }
 
         /// <summary>
@@ -109,6 +106,24 @@ namespace MoneyManager.Core.Repositories
                 // If this accountToDelete was the last finacial accountToDelete for the linked recurring accountToDelete
                 // delete the db entry for the recurring accountToDelete.
                 DeleteRecurringPaymentIfLastAssociated(payment);
+            }
+        }
+
+        /// <summary>
+        ///     Deletes the passed recurring payment
+        /// </summary>
+        /// <param name="paymentToDelete">Recurring payment to delete.</param>
+        public void DeleteRecurring(Payment paymentToDelete)
+        {
+            var payments = Data.Where(x => x.Id == paymentToDelete.Id).ToList();
+
+            recurringDataAccess.DeleteItem(paymentToDelete.RecurringPayment);
+
+            foreach (var payment in payments)
+            {
+                payment.RecurringPayment = null;
+                payment.IsRecurring = false;
+                Save(payment);
             }
         }
 
