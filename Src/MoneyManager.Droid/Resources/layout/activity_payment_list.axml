@@ -13,6 +13,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/accountList"
-        local:MvxItemTemplate="@layout/paymentlistitem"
+        local:MvxItemTemplate="@layout/listitem_payment"
         local:MvxBind="ItemsSource RelatedPayments;SelectedItem SelectedPayment;ItemClick EditCommand" />
 </LinearLayout>

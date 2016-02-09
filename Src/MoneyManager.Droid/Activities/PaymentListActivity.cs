@@ -25,7 +25,7 @@ namespace MoneyManager.Droid.Activities
 
             ViewModel.LoadedCommand.Execute();
 
-            SetContentView(Resource.Layout.PaymentListLayout);
+            SetContentView(Resource.Layout.activity_payment_list);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.Title = ViewModel.Title;
         }

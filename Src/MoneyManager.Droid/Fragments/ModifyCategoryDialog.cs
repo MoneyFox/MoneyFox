@@ -18,7 +18,7 @@ namespace MoneyManager.Droid.Fragments
             ViewModel.LoadedCommand.Execute();
 
             base.OnCreateView(inflater, container, savedInstanceState);
-            var view = this.BindingInflate(Resource.Layout.ModifyCategoryDialogLayout, container, true);
+            var view = this.BindingInflate(Resource.Layout.dialog_modify_category, container, true);
 
             // Handle dismiss button click
             var button = view.FindViewById<Button>(Resource.Id.button_save_category);
