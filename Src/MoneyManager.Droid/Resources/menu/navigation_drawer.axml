@@ -1,18 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:local="http://schemas.android.com/apk/res-auto">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:id="@+id/nav_items">
-        <item
+    	<item
             android:id="@+id/nav_accounts"
             android:title="Accounts" />
-      <item
+      	<item
             android:id="@+id/nav_statistics"
             android:title="Statistics" />
     </group>
-
 	<group android:id="@+id/nav_footer">
-    <item
+    	<item
             android:id="@+id/nav_backup"
             android:title="Backup" />
         <item
