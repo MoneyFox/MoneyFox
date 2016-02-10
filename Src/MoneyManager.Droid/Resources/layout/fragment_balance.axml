@@ -8,6 +8,7 @@
     android:paddingRight="6dp"
     android:background="?android:attr/activatedBackgroundIndicator">
     <TextView
+        android:id="@+id/foo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="fill_horizontal"
@@ -22,6 +23,7 @@
         android:layout_marginTop="5dp"
         android:text=" / " />
     <TextView
+        android:id="@+id/foo1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="fill_horizontal"
