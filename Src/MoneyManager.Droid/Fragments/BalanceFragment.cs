@@ -10,7 +10,7 @@ namespace MoneyManager.Droid.Fragments
     {
         protected override int FragmentId => Resource.Layout.fragment_balance;
 
-        public override void OnResume()
+        public override void OnStart()
         {
             base.OnResume();
 
