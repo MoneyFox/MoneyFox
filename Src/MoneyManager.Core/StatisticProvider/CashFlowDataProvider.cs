@@ -8,11 +8,11 @@ using MoneyManager.Localization;
 
 namespace MoneyManager.Core.StatisticProvider
 {
-    public class CashFlowProvider : IStatisticProvider<CashFlow>
+    public class CashFlowDataProvider : IStatisticProvider<CashFlow>
     {
         private readonly IPaymentRepository paymentRepository;
 
-        public CashFlowProvider(IPaymentRepository paymentRepository)
+        public CashFlowDataProvider(IPaymentRepository paymentRepository)
         {
             this.paymentRepository = paymentRepository;
         }

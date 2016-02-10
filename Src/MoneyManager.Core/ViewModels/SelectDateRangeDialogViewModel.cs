@@ -35,16 +35,5 @@ namespace MoneyManager.Core.ViewModels
             get { return statisticViewModel.EndDate; }
             set { statisticViewModel.EndDate = value; }
         }
-
-        /// <summary>
-        ///     Reloads the statistic with the new daterange.
-        /// </summary>
-        public ICommand LoadStatisticCommand => new MvxCommand(LoadStatistic);
-
-        private void LoadStatistic()
-        {
-            statisticViewModel.SetCashFlow();
-            statisticViewModel.SetSpreading();
-        }
     }
 }
