@@ -101,6 +101,7 @@
     <Compile Include="ViewModels\StatisticViewModel.cs" />
     <Compile Include="ViewModels\TileSettingsViewModel.cs" />
     <Compile Include="ViewModels\PaymentListViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PropertyChanged">
