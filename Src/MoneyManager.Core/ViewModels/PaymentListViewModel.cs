@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using MoneyManager.Core.Groups;
+using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
@@ -12,14 +12,12 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class PaymentListViewModel : BaseViewModel
+    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
         private readonly IAccountRepository accountRepository;
         private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
         private readonly IPaymentRepository paymentRepository;
-
-        public IBalanceViewModel BalanceViewModel { get; }
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
@@ -31,8 +29,15 @@ namespace MoneyManager.Core.ViewModels
             this.balanceViewModel = balanceViewModel;
             this.dialogService = dialogService;
 
-            BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
+            BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository);
         }
+
+        /// <summary>
+        ///     Loads the data for this view.
+        /// </summary>
+        public virtual MvxCommand LoadedCommand => new MvxCommand(LoadPayments);
+
+        public IBalanceViewModel BalanceViewModel { get; }
 
         /// <summary>
         ///     Navigate to the add payment view.
@@ -43,11 +48,6 @@ namespace MoneyManager.Core.ViewModels
         ///     Deletes the current account and updates the balance.
         /// </summary>
         public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
-
-        /// <summary>
-        ///     Loads the data for this view.
-        /// </summary>
-        public virtual MvxCommand LoadedCommand => new MvxCommand(LoadPayments);
 
         /// <summary>
         ///     Edits the currently selected payment.
@@ -63,12 +63,12 @@ namespace MoneyManager.Core.ViewModels
         ///     Returns all Payment who are assigned to this repository
         ///     This has to stay until the android list with headers is implemented.
         /// </summary>
-        public ObservableCollection<Payment> RelatedPayments { set; get; }
+        public ObservableCollection<Payment> RelatedPayments { get; set; }
 
         /// <summary>
         ///     Returns groupped related payments
         /// </summary>
-        public ObservableCollection<DateListGroup<Payment>> Source { set; get; }
+        public ObservableCollection<DateListGroup<Payment>> Source { get; set; }
 
         /// <summary>
         ///     Returns the name of the account title for the current page

@@ -55,8 +55,6 @@
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
     <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="CoreModule.cs" />
-    <Compile Include="Groups\AlphaGroupListGroup.cs" />
-    <Compile Include="Groups\DateListGroup.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\RecurringPaymentHelper.cs" />
@@ -86,6 +84,7 @@
     <Compile Include="ViewModels\CategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewModel.cs" />
+    <Compile Include="ViewModels\IPaymentListViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />

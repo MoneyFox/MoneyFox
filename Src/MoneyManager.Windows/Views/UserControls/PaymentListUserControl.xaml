@@ -128,7 +128,7 @@
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <userControls:BalanceUserControl />
+        <userControls:BalanceUserControl DataContext="{Binding BalanceViewModel}" />
 
         <SemanticZoom>
             <SemanticZoom.ZoomedInView>

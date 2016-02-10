@@ -47,6 +47,8 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
+    <Compile Include="Groups\AlphaGroupListGroup.cs" />
+    <Compile Include="Groups\DateListGroup.cs" />
     <Compile Include="Interfaces\ViewModels\IAccountListViewModel.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="Interfaces\IStatisticProvider.cs" />
     <Compile Include="Interfaces\IPaymentManager.cs" />
     <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Model\CashFlow.cs" />
     <Compile Include="Model\Payment.cs" />
