@@ -129,7 +129,7 @@
 
     </UserControl.Resources>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <StackPanel EntranceNavigationTransitionInfo.IsTargetElement="True">
         <userControls:BalanceUserControl DataContext="{Binding BalanceViewModel}" />
 
         <SemanticZoom>
@@ -140,7 +140,6 @@
                                                        ItemTemplate="{StaticResource PaymentTemplate}"
                                                        HorizontalAlignment="Stretch"
                                                        ShowsScrollingPlaceholders="false"
-                                                       Margin="0,20,0,0"
                                                        SelectedItem="{Binding SelectedPayment, Mode=TwoWay}">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="SelectionChanged">
@@ -170,5 +169,5 @@
                 </GridView>
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
-    </Grid>
+    </StackPanel>
 </UserControl>
