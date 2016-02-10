@@ -75,7 +75,7 @@
     <Compile Include="Authentication\Session.cs" />
     <Compile Include="StatisticProvider\CashFlowDataProvider.cs" />
     <Compile Include="StatisticProvider\CategorySpreadingDataProvider.cs" />
-    <Compile Include="StatisticProvider\CategorySummaryProvider.cs" />
+    <Compile Include="StatisticProvider\CategorySummaryDataProvider.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\CashFlowViewModel.cs" />

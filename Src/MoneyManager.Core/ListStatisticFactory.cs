@@ -32,7 +32,7 @@ namespace MoneyManager.Core
                     return new CategorySpreadingDataProvider(paymentRepository, categoryRepository);
 
                 case ListStatisticType.CategorySummary:
-                    return new CategorySummaryProvider(paymentRepository, categoryRepository);
+                    return new CategorySummaryDataProvider(paymentRepository, categoryRepository);
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type));

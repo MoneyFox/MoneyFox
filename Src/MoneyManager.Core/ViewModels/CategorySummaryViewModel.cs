@@ -7,13 +7,13 @@ namespace MoneyManager.Core.ViewModels
 {
     public class CategorySummaryViewModel : StatisticViewModel
     {
-        private readonly CategorySummaryProvider categorySummaryDataProvider;
+        private readonly CategorySummaryDataProvider categorySummaryDataDataProvider;
 
         private ObservableCollection<StatisticItem> categorySummary;
 
         public CategorySummaryViewModel(IPaymentRepository paymentRepository, IRepository<Category> categoryRepository)
         {
-            categorySummaryDataProvider = new CategorySummaryProvider(paymentRepository, categoryRepository);
+            categorySummaryDataDataProvider = new CategorySummaryDataProvider(paymentRepository, categoryRepository);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace MoneyManager.Core.ViewModels
 
         public void SetCategorySummaryData()
         {
-            categorySummary = new ObservableCollection<StatisticItem>(categorySummaryDataProvider.GetValues(StartDate, EndDate));
+            categorySummary = new ObservableCollection<StatisticItem>(categorySummaryDataDataProvider.GetValues(StartDate, EndDate));
         }
     }
 }

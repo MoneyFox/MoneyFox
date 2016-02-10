@@ -64,6 +64,7 @@
     <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />
+    <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="Model\CashFlow.cs" />
     <Compile Include="Model\Payment.cs" />
     <Compile Include="Model\RecurringPayment.cs" />

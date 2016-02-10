@@ -1,16 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using MoneyManager.Core.Extensions;
-using MoneyManager.Core.StatisticProvider;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyManager.Foundation.Messages;
 using MoneyManager.Localization;
-using OxyPlot;
-using OxyPlot.Axes;
-using OxyPlot.Series;
+using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -18,6 +10,9 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class StatisticViewModel : BaseViewModel
     {
+        //this token ensures that we will be notified when a message is sent.
+        private readonly MvxSubscriptionToken token;
+
         /// <summary>
         ///     Creates a StatisticViewModel Object.
         /// </summary>
@@ -25,6 +20,12 @@ namespace MoneyManager.Core.ViewModels
         {
             StartDate = DateTime.Today.GetFirstDayOfMonth();
             EndDate = DateTime.Today.GetLastDayOfMonth();
+
+            token = MessageHub.Subscribe<DateSelectedMessage>(message =>
+            {
+                StartDate = message.StartDate;
+                EndDate = message.EndDate;
+            });
         }
 
         /// <summary>
