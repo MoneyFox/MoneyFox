@@ -20,6 +20,8 @@ namespace MoneyManager.Core.ViewModels
         {
             this.accountRepository = accountRepository;
             this.paymentRepository = paymentRepository;
+
+            UpdateBalance();
         }
 
         private bool IsPaymentView { get; set; }
