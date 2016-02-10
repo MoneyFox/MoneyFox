@@ -62,6 +62,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Returns all Payment who are assigned to this repository
         ///     This has to stay until the android list with headers is implemented.
+        ///     Currently only used for Android
         /// </summary>
         public ObservableCollection<Payment> RelatedPayments { get; set; }
 
