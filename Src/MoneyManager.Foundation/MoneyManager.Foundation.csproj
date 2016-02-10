@@ -64,6 +64,7 @@
     <Compile Include="Model\CashFlow.cs" />
     <Compile Include="Model\Payment.cs" />
     <Compile Include="Model\RecurringPayment.cs" />
+    <Compile Include="Model\StatisticSelectorType.cs" />
     <Compile Include="OneDriveAuthenticationConstants.cs" />
     <Compile Include="SqliteConnectionCreator.cs" />
     <Compile Include="Enumerations.cs" />
