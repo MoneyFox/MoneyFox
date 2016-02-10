@@ -203,6 +203,7 @@
     <Compile Include="Activities\SelectCategoryListActivity.cs" />
     <Compile Include="Activities\ModifyAccountActivity.cs" />
     <Compile Include="Activities\ModifyPaymentActivity.cs" />
+    <Compile Include="Activities\StatisticActivity.cs" />
     <Compile Include="AndroidModule.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
@@ -217,11 +218,12 @@
     <Compile Include="Fragments\BackupFragment.cs" />
     <Compile Include="Fragments\BalanceFragment.cs" />
     <Compile Include="Fragments\BaseFragment.cs" />
+    <Compile Include="Fragments\CashFlowFragment.cs" />
+    <Compile Include="Fragments\CategorySpreadingFragment.cs" />
     <Compile Include="Fragments\CategorySummaryFragment.cs" />
     <Compile Include="Fragments\DatePickerDialogFragment.cs" />
     <Compile Include="Fragments\MenuFragment.cs" />
     <Compile Include="Fragments\ModifyCategoryDialog.cs" />
-    <Compile Include="Fragments\StatisticFragment.cs" />
     <Compile Include="Fragments\StatisticSelectorFragment.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -297,7 +299,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_modify_payment.axml" />
     <AndroidResource Include="Resources\layout\fragment_statistic_selector.axml" />
-    <AndroidResource Include="Resources\layout\fragment_statistic.axml">
+    <AndroidResource Include="Resources\layout\fragment_graphical_statistic.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_payment_list.axml">

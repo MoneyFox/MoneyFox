@@ -2134,8 +2134,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f06000c
 			public const int MvxBindingTagUnique = 2131099660;
 			
-			// aapt resource value: 0x7f060081
-			public const int accountList = 2131099777;
+			// aapt resource value: 0x7f060082
+			public const int accountList = 2131099778;
 			
 			// aapt resource value: 0x7f06007c
 			public const int account_list = 2131099772;
@@ -2359,8 +2359,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f060041
 			public const int image = 2131099713;
 			
-			// aapt resource value: 0x7f06007e
-			public const int image_view_row_icon = 2131099774;
+			// aapt resource value: 0x7f06007f
+			public const int image_view_row_icon = 2131099775;
 			
 			// aapt resource value: 0x7f06008f
 			public const int info = 2131099791;
@@ -2431,8 +2431,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f060075
 			public const int navigation_header_container = 2131099765;
 			
-			// aapt resource value: 0x7f06007d
-			public const int navigation_view = 2131099773;
+			// aapt resource value: 0x7f06007e
+			public const int navigation_view = 2131099774;
 			
 			// aapt resource value: 0x7f060022
 			public const int never = 2131099682;
@@ -2455,8 +2455,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f06002b
 			public const int pin = 2131099691;
 			
-			// aapt resource value: 0x7f060082
-			public const int plotViewModel = 2131099778;
+			// aapt resource value: 0x7f06007d
+			public const int plotViewModel = 2131099773;
 			
 			// aapt resource value: 0x7f060006
 			public const int progress_circular = 2131099654;
@@ -2578,8 +2578,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f06000f
 			public const int tabMode = 2131099663;
 			
-			// aapt resource value: 0x7f060080
-			public const int test_slogan = 2131099776;
+			// aapt resource value: 0x7f060081
+			public const int test_slogan = 2131099777;
 			
 			// aapt resource value: 0x7f06008e
 			public const int text = 2131099790;
@@ -2590,8 +2590,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f06004f
 			public const int textSpacerNoButtons = 2131099727;
 			
-			// aapt resource value: 0x7f06007f
-			public const int text_container = 2131099775;
+			// aapt resource value: 0x7f060080
+			public const int text_container = 2131099776;
 			
 			// aapt resource value: 0x7f06008a
 			public const int time = 2131099786;
@@ -2812,16 +2812,16 @@ namespace MoneyManager.Droid
 			public const int fragment_category_summary = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int fragment_navigation = 2130903087;
+			public const int fragment_graphical_statistic = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int fragment_navigation_header = 2130903088;
+			public const int fragment_navigation = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int fragment_payment_list = 2130903089;
+			public const int fragment_navigation_header = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int fragment_statistic = 2130903090;
+			public const int fragment_payment_list = 2130903090;
 			
 			// aapt resource value: 0x7f030033
 			public const int fragment_statistic_selector = 2130903091;
