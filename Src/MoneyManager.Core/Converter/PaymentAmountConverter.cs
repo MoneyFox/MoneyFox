@@ -26,7 +26,7 @@ namespace MoneyManager.Core.Converter
                 }
                 else
                 {
-                    sign = payment.ChargedAccountId == Mvx.Resolve<IRepository<Account>>().Selected.Id
+                    sign = payment.ChargedAccountId == Mvx.Resolve<IAccountRepository>().Selected.Id
                     ? "-"
                     : "+";
                 }

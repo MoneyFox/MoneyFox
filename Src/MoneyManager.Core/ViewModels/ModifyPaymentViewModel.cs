@@ -66,11 +66,6 @@ namespace MoneyManager.Core.ViewModels
 
         private void PrepareEdit()
         {
-            // Monkey patch for issues with binding to the account selection
-            // TODO: fix this that the binding works without this.
-            SelectedPayment.ChargedAccount =
-                accountRepository.Data.FirstOrDefault(x => x.Id == SelectedPayment.ChargedAccountId);
-
             IsTransfer = SelectedPayment.IsTransfer;
             // set the private amount property. This will get properly formatted and then displayed.
             amount = SelectedPayment.Amount;
@@ -81,7 +76,6 @@ namespace MoneyManager.Core.ViewModels
                 ? SelectedPayment.RecurringPayment.EndDate
                 : DateTime.Now;
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
-
         }
 
         private void PrepareDefault(string typeString)
