@@ -14,7 +14,7 @@ namespace MoneyManager.Droid.Fragments
         {
             base.OnResume();
 
-            ViewModel.UpdateBalance();
+            ViewModel.UpdateBalanceCommand.Execute();
         }
     }
 }

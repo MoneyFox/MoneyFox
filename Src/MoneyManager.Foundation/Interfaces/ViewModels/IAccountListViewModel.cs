@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using MoneyManager.Foundation.Model;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Foundation.Interfaces.ViewModels
 {
@@ -10,5 +11,7 @@ namespace MoneyManager.Foundation.Interfaces.ViewModels
         Account SelectedAccount { get; set; }
 
         IBalanceViewModel BalanceViewModel { get; }
+
+        MvxCommand LoadedCommand { get; }
     }
 }

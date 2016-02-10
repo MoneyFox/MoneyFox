@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
@@ -12,13 +11,11 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class ModifyAccountViewModel : BaseViewModel
     {
-        private readonly IRepository<Account> accountRepository;
-        private readonly IBalanceViewModel balanceViewModel;
+        private readonly IAccountRepository accountRepository;
 
-        public ModifyAccountViewModel(IRepository<Account> accountRepository, IBalanceViewModel balanceViewModel)
+        public ModifyAccountViewModel(IAccountRepository accountRepository)
         {
             this.accountRepository = accountRepository;
-            this.balanceViewModel = balanceViewModel;
         }
 
         /// <summary>
@@ -91,8 +88,6 @@ namespace MoneyManager.Core.ViewModels
         private void SaveAccount()
         {
             accountRepository.Save(accountRepository.Selected);
-            balanceViewModel.UpdateBalance();
-
             Close(this);
         }
 

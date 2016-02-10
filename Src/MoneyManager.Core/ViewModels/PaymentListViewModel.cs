@@ -19,6 +19,8 @@ namespace MoneyManager.Core.ViewModels
         private readonly IDialogService dialogService;
         private readonly IPaymentRepository paymentRepository;
 
+        public IBalanceViewModel BalanceViewModel { get; }
+
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IBalanceViewModel balanceViewModel,
@@ -28,6 +30,8 @@ namespace MoneyManager.Core.ViewModels
             this.accountRepository = accountRepository;
             this.balanceViewModel = balanceViewModel;
             this.dialogService = dialogService;
+
+            BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
         }
 
         /// <summary>
@@ -80,7 +84,7 @@ namespace MoneyManager.Core.ViewModels
         {
             EditCommand = null;
             //Refresh balance control with the current account
-            balanceViewModel.UpdateBalance(true);
+            BalanceViewModel.UpdateBalanceCommand.Execute();
 
             SelectedPayment = null;
             RelatedPayments = new ObservableCollection<Payment>(paymentRepository
@@ -109,7 +113,7 @@ namespace MoneyManager.Core.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 accountRepository.Delete(accountRepository.Selected);
-                balanceViewModel.UpdateBalance();
+                balanceViewModel.UpdateBalanceCommand.Execute();
                 Close(this);
             }
         }
