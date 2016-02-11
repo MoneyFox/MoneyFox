@@ -16,7 +16,7 @@ namespace MoneyManager.Windows.Shortcut
             await Create(new SecondaryTile(
                 Constants.ADD_TRANSFER_TILE_ID,
                 Strings.AddTransferLabel,
-                "intake",
+                Constants.ADD_TRANSFER_TILE_ID,
                 new Uri("ms-appx:///Assets/TransferTileIcon.png", UriKind.Absolute),
                 TileSize.Default));
         }
