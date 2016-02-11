@@ -57,34 +57,38 @@
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <StackPanel>
-            <userControls:BalanceUserControl DataContext="{Binding BalanceViewModel}" />
-            <ScrollViewer>
-                <controls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
-                                                 OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                                 EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                 ItemTemplate="{StaticResource AccountTemplate}"
-                                                 HorizontalAlignment="Stretch"
-                                                 ShowsScrollingPlaceholders="False"
-                                                 EntranceNavigationTransitionInfo.IsTargetElement="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment"
-                                    Value="Stretch" />
-                            <Setter Property="VerticalContentAlignment"
-                                    Value="Stretch" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
+        <userControls:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" />
+        
+        <ScrollViewer Grid.Row="1">
+            <controls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
+                                             OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                             ItemTemplate="{StaticResource AccountTemplate}"
+                                             HorizontalAlignment="Stretch"
+                                             ShowsScrollingPlaceholders="False"
+                                             EntranceNavigationTransitionInfo.IsTargetElement="True">
 
-                    <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="SelectionChanged">
-                            <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
-                                                      InputConverter="{StaticResource SelectedAccountConverter}" />
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
-                </controls:AlternatingRowListView>
-            </ScrollViewer>
-        </StackPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment"
+                                Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                        <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
+                                                  InputConverter="{StaticResource SelectedAccountConverter}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </controls:AlternatingRowListView>
+        </ScrollViewer>
     </Grid>
 </UserControl>

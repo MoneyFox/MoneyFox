@@ -17,7 +17,7 @@
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+            <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
@@ -129,10 +129,16 @@
 
     </UserControl.Resources>
 
-    <StackPanel EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <userControls:BalanceUserControl DataContext="{Binding BalanceViewModel}" />
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-        <SemanticZoom>
+        <userControls:BalanceUserControl Grid.Row="0"
+                                         DataContext="{Binding BalanceViewModel}" />
+
+        <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
                 <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
                                                        EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
@@ -169,5 +175,5 @@
                 </GridView>
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
-    </StackPanel>
+    </Grid>
 </UserControl>
