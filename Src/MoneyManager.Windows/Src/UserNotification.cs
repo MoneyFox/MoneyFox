@@ -19,7 +19,7 @@ namespace MoneyManager.Windows
         {
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 
-            if (Mvx.Resolve<TileSettingsViewModel>().ShowInfoOnMainTile)
+            if (Mvx.Resolve<SettingsShortcutsViewModel>().ShowInfoOnMainTile)
             {
                 var content = new TileContent
                 {

@@ -171,6 +171,8 @@ namespace MoneyManager.Core.ViewModels
             set { SelectedPayment.Date = value; }
         }
 
+        private Account AccountBeforeEdit { get; set; }
+
         /// <summary>
         ///     Init the view. Is executed after the constructor call
         /// </summary>
@@ -191,6 +193,8 @@ namespace MoneyManager.Core.ViewModels
             {
                 PrepareDefault(typeString);
             }
+
+            AccountBeforeEdit = SelectedPayment.ChargedAccount;
         }
 
         private void PrepareEdit()
@@ -260,7 +264,7 @@ namespace MoneyManager.Core.ViewModels
         {
             if (IsEdit)
             {
-                accountRepository.RemovePaymentAmount(SelectedPayment);
+                accountRepository.RemovePaymentAmount(SelectedPayment, AccountBeforeEdit);
             }
         }
 
@@ -309,7 +313,6 @@ namespace MoneyManager.Core.ViewModels
         {
             SelectedPayment.Category = null;
         }
-
 
         private void Cancel()
         {

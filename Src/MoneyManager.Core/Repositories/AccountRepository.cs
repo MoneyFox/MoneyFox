@@ -57,9 +57,11 @@ namespace MoneyManager.Core.Repositories
                 account.Name = Strings.NoNamePlaceholderLabel;
             }
 
+            if (account.Id == 0)
+            {
+                data.Add(account);
+            }
             dataAccess.SaveItem(account);
-            //Reload data.
-            Load();
         }
 
         /// <summary>
@@ -100,14 +102,24 @@ namespace MoneyManager.Core.Repositories
                     ? x
                     : -x;
 
-            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc());
+            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(payment.ChargedAccount));
+        }
+
+        /// <summary>
+        ///     Removes the payment Amount from the charged account of this payment
+        /// </summary>
+        /// <param name="payment">Payment to remove the account from.</param>
+        public void RemovePaymentAmount(Payment payment)
+        {
+            RemovePaymentAmount(payment, payment.ChargedAccount);
         }
 
         /// <summary>
         ///     Removes the payment Amount from the selected account
         /// </summary>
-        /// <param name="payment">Payment to remove the account from.</param>
-        public void RemovePaymentAmount(Payment payment)
+        /// <param name="payment">Payment to remove.</param>
+        /// <param name="account">Account to remove the amount from.</param>
+        public void RemovePaymentAmount(Payment payment, Account account)
         {
             if (!payment.IsCleared) return;
 
@@ -118,7 +130,7 @@ namespace MoneyManager.Core.Repositories
                     ? -x
                     : x;
 
-            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc());
+            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(account));
         }
 
         private void PrehandleRemoveIfTransfer(Payment payment)
@@ -160,10 +172,10 @@ namespace MoneyManager.Core.Repositories
             return targetAccountFunc;
         }
 
-        private Func<Payment, Account> GetChargedAccountFunc()
+        private Func<Payment, Account> GetChargedAccountFunc(Account account)
         {
             Func<Payment, Account> accountFunc =
-                trans => Data.FirstOrDefault(x => x.Id == trans.ChargedAccountId);
+                trans => Data.FirstOrDefault(x => x.Id == account.Id);
             return accountFunc;
         }
     }

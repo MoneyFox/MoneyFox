@@ -55,9 +55,11 @@ namespace MoneyManager.Core.Repositories
                 category.Name = Strings.NoNamePlaceholderLabel;
             }
 
+            if (category.Id == 0)
+            {
+                data.Add(category);
+            }
             dataAccess.SaveItem(category);
-            //Reload data.
-            Load();
         }
 
         /// <summary>

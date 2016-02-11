@@ -28,9 +28,9 @@ namespace MoneyManager.Droid.Fragments
                 var fragments = new List<MvxFragmentPagerAdapter.FragmentInfo>
                     {
                         new MvxFragmentPagerAdapter.FragmentInfo(Strings.ShortcutsTitle, typeof (SettingsShortcutsFragment),
-                            typeof (TileSettingsViewModel)),
+                            typeof (SettingsShortcutsViewModel)),
                         new MvxFragmentPagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof (SettingsSecurityFragment),
-                            typeof (PasswordUserControlViewModel))
+                            typeof (SettingsSecurityViewModel))
                     };
                 viewPager.Adapter = new MvxFragmentPagerAdapter(Activity, ChildFragmentManager, fragments);
             }

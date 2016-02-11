@@ -95,7 +95,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
     <Compile Include="ViewModels\RecurringPaymentListViewModel.cs" />
-    <Compile Include="ViewModels\PasswordUserControlViewModel.cs" />
+    <Compile Include="ViewModels\SettingsSecurityViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
@@ -103,7 +103,7 @@
     <Compile Include="ViewModels\SpreadingViewModel.cs" />
     <Compile Include="ViewModels\StatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
-    <Compile Include="ViewModels\TileSettingsViewModel.cs" />
+    <Compile Include="ViewModels\SettingsShortcutsViewModel.cs" />
     <Compile Include="ViewModels\PaymentListViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
   </ItemGroup>
