@@ -16,7 +16,7 @@ namespace MoneyManager.Windows.Shortcut
             await Create(new SecondaryTile(
                 Constants.ADD_INCOME_TILE_ID,
                 Strings.AddIncomeLabel,
-                "intake",
+                Constants.ADD_INCOME_TILE_ID,
                 new Uri("ms-appx:///Assets/IncomeTileIcon.png", UriKind.Absolute),
                 TileSize.Default));
         }
