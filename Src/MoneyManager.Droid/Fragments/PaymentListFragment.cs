@@ -9,7 +9,14 @@ namespace MoneyManager.Droid.Fragments
     [Register("moneymanager.droid.fragments.PaymentListFragment")]
     public class PaymentListFragment : BaseFragment<PaymentListViewModel>
     {
-        protected override int FragmentId => Resource.Layout.fragment_payment_list;        
+        protected override int FragmentId => Resource.Layout.fragment_payment_list;
+
+		public override void OnResume ()
+		{
+			base.OnResume ();
+
+			ViewModel.LoadCommand.Execute();
+		}
     }
 }
 

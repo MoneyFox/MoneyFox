@@ -25,6 +25,5 @@ namespace MoneyManager.Core.ViewModels.DesignTime
         };
 
         public string Title => "Sparkonto";
-        public Payment SelectedPayment => new Payment();
     }
 }
