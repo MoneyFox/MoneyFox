@@ -151,22 +151,6 @@ namespace MoneyManager.Droid
 			}
 		}
 		
-		public partial class Array
-		{
-			
-			// aapt resource value: 0x7f0c0000
-			public const int statistic_items = 2131492864;
-			
-			static Array()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Array()
-			{
-			}
-		}
-		
 		public partial class Attribute
 		{
 			
@@ -2947,20 +2931,20 @@ namespace MoneyManager.Droid
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f0d0000
-			public const int menu_add = 2131558400;
+			// aapt resource value: 0x7f0c0000
+			public const int menu_add = 2131492864;
 			
-			// aapt resource value: 0x7f0d0001
-			public const int menu_main = 2131558401;
+			// aapt resource value: 0x7f0c0001
+			public const int menu_main = 2131492865;
 			
-			// aapt resource value: 0x7f0d0002
-			public const int menu_modification = 2131558402;
+			// aapt resource value: 0x7f0c0002
+			public const int menu_modification = 2131492866;
 			
-			// aapt resource value: 0x7f0d0003
-			public const int menu_select = 2131558403;
+			// aapt resource value: 0x7f0c0003
+			public const int menu_select = 2131492867;
 			
-			// aapt resource value: 0x7f0d0004
-			public const int navigation_drawer = 2131558404;
+			// aapt resource value: 0x7f0c0004
+			public const int navigation_drawer = 2131492868;
 			
 			static Menu()
 			{
@@ -3068,32 +3052,38 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f080016
 			public const int appbar_scrolling_view_behavior = 2131230742;
 			
-			// aapt resource value: 0x7f080031
-			public const int backup_information = 2131230769;
-			
-			// aapt resource value: 0x7f080034
-			public const int button_category = 2131230772;
-			
 			// aapt resource value: 0x7f080033
-			public const int button_date = 2131230771;
-			
-			// aapt resource value: 0x7f080035
-			public const int button_rate = 2131230773;
+			public const int backup_information = 2131230771;
 			
 			// aapt resource value: 0x7f080036
-			public const int button_save_category = 2131230774;
+			public const int button_category = 2131230774;
+			
+			// aapt resource value: 0x7f08003a
+			public const int button_create_backup = 2131230778;
+			
+			// aapt resource value: 0x7f080035
+			public const int button_date = 2131230773;
+			
+			// aapt resource value: 0x7f08003b
+			public const int button_done = 2131230779;
+			
+			// aapt resource value: 0x7f080037
+			public const int button_rate = 2131230775;
+			
+			// aapt resource value: 0x7f080039
+			public const int button_restore_backup = 2131230777;
+			
+			// aapt resource value: 0x7f080038
+			public const int button_save_category = 2131230776;
 			
 			// aapt resource value: 0x7f080017
 			public const int character_counter_pattern = 2131230743;
 			
-			// aapt resource value: 0x7f080038
-			public const int create_backup = 2131230776;
+			// aapt resource value: 0x7f080042
+			public const int drawer_close = 2131230786;
 			
-			// aapt resource value: 0x7f08003d
-			public const int drawer_close = 2131230781;
-			
-			// aapt resource value: 0x7f08003c
-			public const int drawer_open = 2131230780;
+			// aapt resource value: 0x7f080041
+			public const int drawer_open = 2131230785;
 			
 			// aapt resource value: 0x7f080024
 			public const int hint_account_name = 2131230756;
@@ -3116,44 +3106,53 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f080028
 			public const int hint_note = 2131230760;
 			
+			// aapt resource value: 0x7f08002d
+			public const int hint_password = 2131230765;
+			
+			// aapt resource value: 0x7f08002e
+			public const int hint_password_confirmation = 2131230766;
+			
 			// aapt resource value: 0x7f08002a
 			public const int hint_recurring = 2131230762;
 			
 			// aapt resource value: 0x7f08002c
 			public const int hint_search_text = 2131230764;
 			
-			// aapt resource value: 0x7f080039
-			public const int label_cleared = 2131230777;
+			// aapt resource value: 0x7f08003c
+			public const int label_cleared = 2131230780;
 			
-			// aapt resource value: 0x7f08003a
-			public const int label_slogan = 2131230778;
+			// aapt resource value: 0x7f08003f
+			public const int label_password_activated = 2131230783;
+			
+			// aapt resource value: 0x7f08003e
+			public const int label_password_deactivated = 2131230782;
+			
+			// aapt resource value: 0x7f08003d
+			public const int label_slogan = 2131230781;
 			
 			// aapt resource value: 0x7f08001a
 			public const int library_name = 2131230746;
 			
-			// aapt resource value: 0x7f080037
-			public const int restore_backup = 2131230775;
-			
-			// aapt resource value: 0x7f080032
-			public const int restore_information = 2131230770;
+			// aapt resource value: 0x7f080034
+			public const int restore_information = 2131230772;
 			
 			// aapt resource value: 0x7f080015
 			public const int status_bar_notification_info_overflow = 2131230741;
 			
-			// aapt resource value: 0x7f08003b
-			public const int text_endless = 2131230779;
-			
-			// aapt resource value: 0x7f08002e
-			public const int textview_contact = 2131230766;
-			
-			// aapt resource value: 0x7f08002f
-			public const int textview_github = 2131230767;
+			// aapt resource value: 0x7f080040
+			public const int text_endless = 2131230784;
 			
 			// aapt resource value: 0x7f080030
-			public const int textview_opensource = 2131230768;
+			public const int textview_contact = 2131230768;
 			
-			// aapt resource value: 0x7f08002d
-			public const int textview_version = 2131230765;
+			// aapt resource value: 0x7f080031
+			public const int textview_github = 2131230769;
+			
+			// aapt resource value: 0x7f080032
+			public const int textview_opensource = 2131230770;
+			
+			// aapt resource value: 0x7f08002f
+			public const int textview_version = 2131230767;
 			
 			// aapt resource value: 0x7f080000
 			public const int v7_preference_off = 2131230720;
