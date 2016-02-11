@@ -195,6 +195,12 @@
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.23.1.1.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
     </Reference>
+    <Reference Include="MvvmCross.Droid.Support.Design">
+      <HintPath>..\packages\MvvmCross.Droid.Support.Design.4.0.0\lib\MonoAndroid403\MvvmCross.Droid.Support.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Droid.Support.V4">
+      <HintPath>..\packages\MvvmCross.Droid.Support.V4.4.0.0\lib\MonoAndroid403\MvvmCross.Droid.Support.V4.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\Caching\FragmentCacheConfigurationCustomFragmentInfo.cs" />
@@ -242,6 +248,9 @@
     <Compile Include="Src\TempMessage.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Fragments\PaymentListFragment.cs" />
+    <Compile Include="Fragments\SettingsFragment.cs" />
+    <Compile Include="Fragments\SettingsShortcutsFragment.cs" />
+    <Compile Include="Fragments\SettingsSecurityFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -311,6 +320,9 @@
     <AndroidResource Include="Resources\layout\activity_frame.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_settings.axml" />
+    <AndroidResource Include="Resources\layout\fragment_settings_shortcuts.axml" />
+    <AndroidResource Include="Resources\layout\fragment_settings_security.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml" />

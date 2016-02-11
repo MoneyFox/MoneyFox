@@ -1,8 +1,9 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	  xmlns:local="http://schemas.android.com/apk/res-auto">
   <item android:id="@+id/action_done"
         android:icon="@drawable/ic_done"
         android:title="@string/action_done"
-        android:showAsAction="ifRoom|withText" />
+        local:showAsAction="always|withText" />
   
   <item android:id="@+id/action_add"
       android:icon="@drawable/ic_add"

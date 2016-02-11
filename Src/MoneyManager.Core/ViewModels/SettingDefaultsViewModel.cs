@@ -4,6 +4,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels
 {
+    //TODO: Check if somewhere used
     public class SettingDefaultsViewModel
     {
         private readonly IDefaultManager defaultManager;
