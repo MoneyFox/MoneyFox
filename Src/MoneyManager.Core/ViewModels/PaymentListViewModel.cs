@@ -35,7 +35,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Loads the data for this view.
         /// </summary>
-        public virtual MvxCommand LoadedCommand => new MvxCommand(LoadPayments);
+        public virtual MvxCommand LoadCommand => new MvxCommand(LoadPayments);
 
         public IBalanceViewModel BalanceViewModel { get; }
 
@@ -136,7 +136,7 @@ namespace MoneyManager.Core.ViewModels
 
             accountRepository.RemovePaymentAmount(payment);
             paymentRepository.Delete(payment);
-            LoadedCommand.Execute();
+            LoadCommand.Execute();
         }
     }
 }
