@@ -8,11 +8,11 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class CategorySummaryViewModel : StatisticViewModel
+    public class StatisticCategorySummaryViewModel : StatisticViewModel
     {
         private readonly CategorySummaryDataProvider categorySummaryDataDataProvider;
 
-        public CategorySummaryViewModel(IPaymentRepository paymentRepository, IRepository<Category> categoryRepository)
+        public StatisticCategorySummaryViewModel(IPaymentRepository paymentRepository, IRepository<Category> categoryRepository)
         {
             categorySummaryDataDataProvider = new CategorySummaryDataProvider(paymentRepository, categoryRepository);
         }

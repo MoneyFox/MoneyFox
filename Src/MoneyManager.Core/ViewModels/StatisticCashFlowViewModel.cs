@@ -9,11 +9,11 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class CashFlowViewModel : StatisticViewModel
+    public class StatisticCashFlowViewModel : StatisticViewModel
     {
         private readonly CashFlowDataProvider cashFlowDataProvider;
 
-        public CashFlowViewModel(IPaymentRepository paymentRepository)
+        public StatisticCashFlowViewModel(IPaymentRepository paymentRepository)
         {
             cashFlowDataProvider = new CashFlowDataProvider(paymentRepository);
 

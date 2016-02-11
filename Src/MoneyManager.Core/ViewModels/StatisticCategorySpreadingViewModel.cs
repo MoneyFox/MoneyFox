@@ -11,11 +11,11 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class CategorySpreadingViewModel : StatisticViewModel
+    public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
         private readonly CategorySpreadingDataProvider speadingDataProvider;
 
-        public CategorySpreadingViewModel(IPaymentRepository paymentRepository, IRepository<Category> categoryRepository)
+        public StatisticCategorySpreadingViewModel(IPaymentRepository paymentRepository, IRepository<Category> categoryRepository)
         {
             speadingDataProvider = new CategorySpreadingDataProvider(paymentRepository, categoryRepository);
         }

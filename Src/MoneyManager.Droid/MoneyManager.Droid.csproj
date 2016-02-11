@@ -223,9 +223,9 @@
     <Compile Include="Fragments\BackupFragment.cs" />
     <Compile Include="Fragments\BalanceFragment.cs" />
     <Compile Include="Fragments\BaseFragment.cs" />
-    <Compile Include="Fragments\CashFlowFragment.cs" />
-    <Compile Include="Fragments\CategorySpreadingFragment.cs" />
-    <Compile Include="Fragments\CategorySummaryFragment.cs" />
+    <Compile Include="Fragments\StatisticCashFlowFragment.cs" />
+    <Compile Include="Fragments\StatisticCategorySpreadingFragment.cs" />
+    <Compile Include="Fragments\StatisticCategorySummaryFragment.cs" />
     <Compile Include="Fragments\DatePickerDialogFragment.cs" />
     <Compile Include="Fragments\MenuFragment.cs" />
     <Compile Include="Fragments\ModifyCategoryDialog.cs" />
