@@ -32,12 +32,12 @@ namespace MoneyManager.Core.ViewModels
             BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository);
         }
 
+        public IBalanceViewModel BalanceViewModel { get; }
+
         /// <summary>
         ///     Loads the data for this view.
         /// </summary>
         public virtual MvxCommand LoadedCommand => new MvxCommand(LoadPayments);
-
-        public IBalanceViewModel BalanceViewModel { get; }
 
         /// <summary>
         ///     Navigate to the add payment view.
@@ -126,7 +126,6 @@ namespace MoneyManager.Core.ViewModels
             ShowViewModel<ModifyPaymentViewModel>(
                 new {isEdit = true, typeString = SelectedPayment.Type.ToString()});
         }
-
 
         private async void DeletePayment(Payment payment)
         {
