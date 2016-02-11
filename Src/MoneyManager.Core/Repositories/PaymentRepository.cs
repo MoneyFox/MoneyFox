@@ -85,9 +85,11 @@ namespace MoneyManager.Core.Repositories
                 payment.RecurringPaymentId = 0;
             }
 
+            if (payment.Id == 0)
+            {
+                data.Add(payment);
+            }
             dataAccess.SaveItem(payment);
-            //Reload data.
-            Load();
         }
 
         /// <summary>

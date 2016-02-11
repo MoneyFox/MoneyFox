@@ -22,7 +22,7 @@
                                                  x:Uid="TilesHeader"
                                                  Glyph="&#xE8FC;" />
                     </PivotItem.Header>
-                    <userControls:TileSettingsUserControl Margin="-7,0,-7,0" />
+                    <userControls:SettingsShortcutsUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
 
                 <!--Categorie Settings-->
@@ -42,7 +42,7 @@
                                                  x:Uid="SecurityHeader"
                                                  Glyph="&#xE8D7;" />
                     </PivotItem.Header>
-                    <userControls:PasswordUserControl Margin="-7,0,-7,0" />
+                    <userControls:SettingsSecurityUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
             </Pivot>
         </Grid>
