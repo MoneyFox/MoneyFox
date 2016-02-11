@@ -7,12 +7,12 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class PasswordUserControlViewModel : BaseViewModel
+    public class SettingsSecurityViewModel : BaseViewModel
     {
         private readonly IDialogService dialogService;
         private readonly IPasswordStorage passwordStorage;
 
-        public PasswordUserControlViewModel(IPasswordStorage passwordStorage, IDialogService dialogService)
+        public SettingsSecurityViewModel(IPasswordStorage passwordStorage, IDialogService dialogService)
         {
             this.passwordStorage = passwordStorage;
             this.dialogService = dialogService;

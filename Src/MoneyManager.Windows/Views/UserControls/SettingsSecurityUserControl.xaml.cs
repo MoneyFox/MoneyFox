@@ -3,12 +3,12 @@ using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Views.UserControls
 {
-    public sealed partial class PasswordUserControl
+    public sealed partial class SettingsSecurityUserControl
     {
-        public PasswordUserControl()
+        public SettingsSecurityUserControl()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<PasswordUserControlViewModel>();
+            DataContext = Mvx.Resolve<SettingsSecurityViewModel>();
         }
     }
 }

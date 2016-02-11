@@ -3,12 +3,12 @@ using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Views.UserControls
 {
-    public sealed partial class TileSettingsUserControl
+    public sealed partial class SettingsShortcutsUserControl
     {
-        public TileSettingsUserControl()
+        public SettingsShortcutsUserControl()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<TileSettingsViewModel>();
+            DataContext = Mvx.Resolve<SettingsShortcutsViewModel>();
         }
     }
 }
