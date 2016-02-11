@@ -9,5 +9,15 @@ namespace MoneyManager.Droid.Fragments
     public class CashFlowFragment :  BaseFragment<CashFlowViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_graphical_statistic;
+
+
+
+        public override void OnStart()
+        {
+            OnResume();
+
+            ViewModel.LoadCommand.Execute();
+        }
+
     }
 }

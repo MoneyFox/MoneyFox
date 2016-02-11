@@ -2,14 +2,15 @@
 using MoneyManager.Core.StatisticProvider;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using MvvmCross.Core.ViewModels;
+using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
 {
+    [ImplementPropertyChanged]
     public class CategorySummaryViewModel : StatisticViewModel
     {
         private readonly CategorySummaryDataProvider categorySummaryDataDataProvider;
-
-        private ObservableCollection<StatisticItem> categorySummary;
 
         public CategorySummaryViewModel(IPaymentRepository paymentRepository, IRepository<Category> categoryRepository)
         {
@@ -17,28 +18,24 @@ namespace MoneyManager.Core.ViewModels
         }
 
         /// <summary>
-        ///     Returns the Category Summary
+        ///     Loads the data with the current start and end date.
         /// </summary>
-        public ObservableCollection<StatisticItem> CategorySummary
+        public MvxCommand LoadCommand => new MvxCommand(Load);
+
+        private void Load()
         {
-            get
-            {
-                if (categorySummary == null)
-                {
-                    SetCategorySummaryData();
-                }
-                return categorySummary;
-            }
-            private set
-            {
-                categorySummary = value;
-                RaisePropertyChanged();
-            }
+            CategorySummary = null;
+            CategorySummary = GetCategorySummaryData();
         }
 
-        public void SetCategorySummaryData()
+        /// <summary>
+        ///     Returns the Category Summary
+        /// </summary>
+        public ObservableCollection<StatisticItem> CategorySummary { get; set; }
+
+        private ObservableCollection<StatisticItem> GetCategorySummaryData()
         {
-            categorySummary = new ObservableCollection<StatisticItem>(categorySummaryDataDataProvider.GetValues(StartDate, EndDate));
+            return new ObservableCollection<StatisticItem>(categorySummaryDataDataProvider.GetValues(StartDate, EndDate));
         }
     }
 }

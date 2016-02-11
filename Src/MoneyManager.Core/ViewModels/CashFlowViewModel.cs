@@ -1,47 +1,45 @@
 ﻿using MoneyManager.Core.StatisticProvider;
 using MoneyManager.Foundation.Interfaces;
+using MvvmCross.Core.ViewModels;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
+using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
 {
+    [ImplementPropertyChanged]
     public class CashFlowViewModel : StatisticViewModel
     {
         private readonly CashFlowDataProvider cashFlowDataProvider;
 
-        private PlotModel cashFlowModel;
-
         public CashFlowViewModel(IPaymentRepository paymentRepository)
         {
             cashFlowDataProvider = new CashFlowDataProvider(paymentRepository);
+
+            CashFlowModel = GetCashFlowModel();
+        }
+
+        /// <summary>
+        ///     Loads the data with the current start and end date.
+        /// </summary>
+        public MvxCommand LoadCommand => new MvxCommand(Load);
+
+        private void Load()
+        {
+            CashFlowModel = null;
+            CashFlowModel = GetCashFlowModel();
         }
 
         /// <summary>
         ///     Contains the PlotModel for the CashFlow graph
         /// </summary>
-        public PlotModel CashFlowModel
-        {
-            get
-            {
-                if (cashFlowModel == null)
-                {
-                    SetCashFlowModel();
-                }
-
-                return cashFlowModel;
-            }
-            private set
-            {
-                cashFlowModel = value;
-                RaisePropertyChanged();
-            }
-        }
+        public PlotModel CashFlowModel { get; set; }
 
         /// <summary>
         ///     Set a custom CashFlowModel with the set Start and Enddate
         /// </summary>
-        public void SetCashFlowModel()
+        public PlotModel GetCashFlowModel()
         {
             CashFlowModel = null;
             var cashFlow = cashFlowDataProvider.GetValues(StartDate, EndDate);
@@ -75,7 +73,7 @@ namespace MoneyManager.Core.ViewModels
 
             model.Axes.Add(axe);
             model.Series.Add(columnSeries);
-            CashFlowModel = model;
+            return model;
         }
     }
 }

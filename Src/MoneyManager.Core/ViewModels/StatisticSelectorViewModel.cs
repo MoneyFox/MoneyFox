@@ -48,7 +48,7 @@ namespace MoneyManager.Core.ViewModels
                     break;
 
                 case StatisticType.CategorySpreading:
-                    ShowViewModel<SpreadingViewModel>();
+                    ShowViewModel<CategorySpreadingViewModel>();
                     break;
 
                 case StatisticType.CategorySummary:
