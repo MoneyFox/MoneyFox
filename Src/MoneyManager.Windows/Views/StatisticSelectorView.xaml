@@ -62,7 +62,7 @@
             <ListView ItemsSource="{Binding StatisticItems}"
                       ItemTemplate="{StaticResource StatistcTypeTemplate}">
                 <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="ItemClick">
+                    <core:EventTriggerBehavior EventName="SelectionChanged">
                         <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}"
                                                   InputConverter="{StaticResource SelectedConverter}" />
                     </core:EventTriggerBehavior>
