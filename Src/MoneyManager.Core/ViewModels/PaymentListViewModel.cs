@@ -76,18 +76,12 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public string Title => accountRepository.Selected.Name;
 
-        /// <summary>
-        ///     Currently selected Item
-        /// </summary>
-        public Payment SelectedPayment { get; set; }
-
         private void LoadPayments()
         {
             EditCommand = null;
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute();
 
-            SelectedPayment = null;
             RelatedPayments = new ObservableCollection<Payment>(paymentRepository
                 .GetRelatedPayments(accountRepository.Selected)
                 .OrderByDescending(x => x.Date)
@@ -99,7 +93,6 @@ namespace MoneyManager.Core.ViewModels
                     s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
                     s => s.Date, true));
 
-            SelectedPayment = null;
             //We have to set the command here to ensure that the selection changed event is triggered earlier
             EditCommand = new MvxCommand<Payment>(Edit);
         }
@@ -124,7 +117,7 @@ namespace MoneyManager.Core.ViewModels
             paymentRepository.Selected = payment;
 
             ShowViewModel<ModifyPaymentViewModel>(
-                new {isEdit = true, typeString = SelectedPayment.Type.ToString()});
+				new {isEdit = true, typeString = payment.Type.ToString()});
         }
 
 

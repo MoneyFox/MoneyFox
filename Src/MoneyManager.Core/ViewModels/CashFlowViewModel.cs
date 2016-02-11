@@ -41,7 +41,6 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public PlotModel GetCashFlowModel()
         {
-            CashFlowModel = null;
             var cashFlow = cashFlowDataProvider.GetValues(StartDate, EndDate);
 
             var model = new PlotModel
