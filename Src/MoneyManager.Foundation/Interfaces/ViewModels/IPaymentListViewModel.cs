@@ -9,7 +9,7 @@ namespace MoneyManager.Foundation.Interfaces.ViewModels
     {
         IBalanceViewModel BalanceViewModel { get; }
 
-        MvxCommand LoadedCommand { get; }
+        MvxCommand LoadCommand { get; }
 
         MvxCommand<string> GoToAddPaymentCommand { get; }
 
