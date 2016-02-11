@@ -3,7 +3,7 @@ using MoneyManager.Core.ViewModels;
 using Android.Runtime;
 using MoneyManager.Droid.Fragments;
 
-namespace MoneyManager.Droid
+namespace MoneyManager.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.PaymentListFragment")]
