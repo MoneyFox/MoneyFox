@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Windows.Input;
+using MoneyManager.Foundation.Messages;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
@@ -8,12 +8,8 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class SelectDateRangeDialogViewModel : BaseViewModel
     {
-        private readonly StatisticViewModel statisticViewModel;
-
-        public SelectDateRangeDialogViewModel(StatisticViewModel statisticViewModel)
+        public SelectDateRangeDialogViewModel()
         {
-            this.statisticViewModel = statisticViewModel;
-
             StartDate = DateTime.Today.Date.AddDays(-1);
             EndDate = DateTime.Today;
         }
@@ -21,30 +17,21 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Startdate for the custom date range
         /// </summary>
-        public DateTime StartDate
-        {
-            get { return statisticViewModel.StartDate; }
-            set { statisticViewModel.StartDate = value; }
-        }
+        public DateTime StartDate { get; set; }
 
         /// <summary>
         ///     Enddate for the custom date range
         /// </summary>
-        public DateTime EndDate
-        {
-            get { return statisticViewModel.EndDate; }
-            set { statisticViewModel.EndDate = value; }
-        }
+        public DateTime EndDate { get; set; }
 
         /// <summary>
-        ///     Reloads the statistic with the new daterange.
+        ///     Selects the dates and notifies observer via the MessageHub
         /// </summary>
-        public ICommand LoadStatisticCommand => new MvxCommand(LoadStatistic);
+        public MvxCommand DoneCommand => new MvxCommand(Done);
 
-        private void LoadStatistic()
+        private void Done()
         {
-            statisticViewModel.SetCashFlow();
-            statisticViewModel.SetSpreading();
+            MessageHub.Publish(new DateSelectedMessage(this, StartDate, EndDate));
         }
     }
 }

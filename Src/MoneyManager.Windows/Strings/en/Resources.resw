@@ -341,4 +341,7 @@ Tap to visit the Repository:</value>
   <data name="RecurringPaymentList.Label" xml:space="preserve">
     <value>Recurring Payment Overview</value>
   </data>
+  <data name="StatisticSelectorTitle.Text" xml:space="preserve">
+    <value>Select Statistic</value>
+  </data>
 </root>

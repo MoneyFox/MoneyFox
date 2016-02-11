@@ -2,7 +2,6 @@
 using Android.Runtime;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
-using MoneyManager.Core;
 using Android.Views;
 using Android.OS;
 using Android.Support.V4.View;
@@ -11,7 +10,7 @@ using System.Collections.Generic;
 using MoneyManager.Localization;
 using Android.Support.Design.Widget;
 
-namespace MoneyManager.Droid
+namespace MoneyManager.Droid.Fragments
 {    
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.SettingsFragment")]
@@ -29,9 +28,9 @@ namespace MoneyManager.Droid
                 var fragments = new List<MvxFragmentPagerAdapter.FragmentInfo>
                     {
                         new MvxFragmentPagerAdapter.FragmentInfo(Strings.ShortcutsTitle, typeof (SettingsShortcutsFragment),
-                            typeof (TileSettingsViewModel)),
+                            typeof (SettingsShortcutsViewModel)),
                         new MvxFragmentPagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof (SettingsSecurityFragment),
-                            typeof (PasswordUserControlViewModel))
+                            typeof (SettingsSecurityViewModel))
                     };
                 viewPager.Adapter = new MvxFragmentPagerAdapter(Activity, ChildFragmentManager, fragments);
             }

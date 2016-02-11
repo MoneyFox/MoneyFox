@@ -9,6 +9,8 @@
              xmlns:converter="using:MoneyManager.Windows.Converter"
              xmlns:model="using:MoneyManager.Foundation.Model"
              xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
+             xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
+             d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -127,8 +129,8 @@
 
     </UserControl.Resources>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <userControls:BalanceUserControl />
+    <StackPanel EntranceNavigationTransitionInfo.IsTargetElement="True">
+        <userControls:BalanceUserControl DataContext="{Binding BalanceViewModel}" />
 
         <SemanticZoom>
             <SemanticZoom.ZoomedInView>
@@ -138,7 +140,6 @@
                                                        ItemTemplate="{StaticResource PaymentTemplate}"
                                                        HorizontalAlignment="Stretch"
                                                        ShowsScrollingPlaceholders="false"
-                                                       Margin="0,20,0,0"
                                                        SelectedItem="{Binding SelectedPayment, Mode=TwoWay}">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="SelectionChanged">
@@ -168,5 +169,5 @@
                 </GridView>
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
-    </Grid>
+    </StackPanel>
 </UserControl>

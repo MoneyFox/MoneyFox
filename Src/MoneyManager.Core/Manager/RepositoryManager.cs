@@ -9,12 +9,12 @@ namespace MoneyManager.Core.Manager
     /// </summary>
     public class RepositoryManager : IRepositoryManager
     {
-        private readonly IRepository<Account> accountRepository;
+        private readonly IAccountRepository accountRepository;
         private readonly IRepository<Category> categoryRepository;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
 
-        public RepositoryManager(IRepository<Account> accountRepository,
+        public RepositoryManager(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
             IRepository<Category> categoryRepository,
             IPaymentManager paymentManager)

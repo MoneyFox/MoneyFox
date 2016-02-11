@@ -8,12 +8,12 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.StatisticProvider
 {
-    public class CategorySummaryProvider : IStatisticProvider<IEnumerable<StatisticItem>>
+    public class CategorySummaryDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
         private readonly IRepository<Category> categoryRepository;
         private readonly IPaymentRepository paymentRepository;
 
-        public CategorySummaryProvider(IPaymentRepository paymentRepository,
+        public CategorySummaryDataProvider(IPaymentRepository paymentRepository,
             IRepository<Category> categoryRepository)
         {
             this.paymentRepository = paymentRepository;

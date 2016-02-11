@@ -16,7 +16,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         [TestMethod]
         public void Constructor_Null_NotNullObject()
         {
-            new CashFlowProvider(null).ShouldNotBeNull();
+            new CashFlowDataProvider(null).ShouldNotBeNull();
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             });
 
             //Excution
-            var result = new CashFlowProvider(paymentRepository).GetValues(DateTime.Today.AddDays(-3),
+            var result = new CashFlowDataProvider(paymentRepository).GetValues(DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(3));
 
             //Assertion
@@ -96,7 +96,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
             });
 
             //Excution
-            var result = new CashFlowProvider(paymentRepository).GetValues(DateTime.Today.AddDays(-3),
+            var result = new CashFlowDataProvider(paymentRepository).GetValues(DateTime.Today.AddDays(-3),
                 DateTime.Today.AddDays(3));
 
             //Assertion
@@ -109,7 +109,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         [ExpectedException(typeof(NullReferenceException))]
         public void GetValues_NullDependency_NullReferenceException()
         {
-            new CashFlowProvider(null).GetValues(DateTime.Today, DateTime.Today);
+            new CashFlowDataProvider(null).GetValues(DateTime.Today, DateTime.Today);
         }
     }
 }

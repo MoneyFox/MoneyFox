@@ -40,7 +40,7 @@ namespace MoneyManager.Core.Tests.Converter
                 CurrentBalance = 400
             };
 
-            var mock = new Mock<IRepository<Account>>();
+            var mock = new Mock<IAccountRepository>();
             mock.Setup(x => x.Load(It.IsAny<Expression<Func<Account, bool>>>()));
             mock.SetupGet(x => x.Selected).Returns(account);
 
@@ -68,7 +68,7 @@ namespace MoneyManager.Core.Tests.Converter
                 CurrentBalance = 400
             };
 
-            var mock = new Mock<IRepository<Account>>();
+            var mock = new Mock<IAccountRepository>();
             mock.SetupGet(x => x.Selected).Returns(account);
 
             Mvx.RegisterSingleton(mock.Object);

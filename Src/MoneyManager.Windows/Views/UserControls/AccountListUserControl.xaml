@@ -15,6 +15,12 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
+
     <UserControl.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
@@ -52,7 +58,7 @@
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <StackPanel>
-            <userControls:BalanceUserControl />
+            <userControls:BalanceUserControl DataContext="{Binding BalanceViewModel}" />
             <ScrollViewer>
                 <controls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
                                                  OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"

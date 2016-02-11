@@ -1,13 +1,11 @@
 ﻿using Android.Runtime;
-using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Fragments;
 
-namespace MoneyManager.Droid
+namespace MoneyManager.Droid.Fragments
 {
-    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
-    [Register("moneymanager.droid.fragments.SettingsShortcutsFragment")]
-    public class SettingsShortcutsFragment : BaseFragment<TileSettingsViewModel>
+	[Register("moneymanager.droid.fragments.SettingsShortcutsFragment")]
+    public class SettingsShortcutsFragment : BaseFragment<SettingsShortcutsViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_settings_shortcuts;
     }

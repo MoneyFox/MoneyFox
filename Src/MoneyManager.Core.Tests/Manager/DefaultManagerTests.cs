@@ -21,7 +21,7 @@ namespace MoneyManager.Core.Tests.Manager
         public void GetDefaultAccount_DefaultAccountSettings_CorrectlySelectedAccount(int defaultAccountId, int result)
         {
             //Setup
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>(
                 new List<Account>
                 {
@@ -48,7 +48,7 @@ namespace MoneyManager.Core.Tests.Manager
         public void GetDefaultAccount_SelectedSettingsData_CorrectFallbackValue()
         {
             //Setup
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>(
                 new List<Account>
                 {
@@ -76,7 +76,7 @@ namespace MoneyManager.Core.Tests.Manager
         public void GetDefaultAccount_NoSettingsNoData_CorrectFallbackValue()
         {
             //Setup
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
             accountRepositorySetup.SetupGet(x => x.Selected).Returns(new Account {Id = 5});
 
@@ -93,7 +93,7 @@ namespace MoneyManager.Core.Tests.Manager
         public void GetDefaultAccount_DataIsNull_SetData()
         {
             //Setup
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupAllProperties();
             var repo = accountRepositorySetup.Object;
 
@@ -111,7 +111,7 @@ namespace MoneyManager.Core.Tests.Manager
         public void GetDefaultAccount_SelectedAndDataNoSettings_CorrectFallbackValue()
         {
             //Setup
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>(
                 new List<Account>
                 {
@@ -135,7 +135,7 @@ namespace MoneyManager.Core.Tests.Manager
         public void GetDefaultAccount_NoSettingsNoDataNoSelected_CorrectFallbackValue()
         {
             //Setup
-            var accountRepositorySetup = new Mock<IRepository<Account>>();
+            var accountRepositorySetup = new Mock<IAccountRepository>();
             accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account>());
 
             //Execute

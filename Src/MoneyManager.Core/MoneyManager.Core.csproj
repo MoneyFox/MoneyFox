@@ -55,8 +55,6 @@
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
     <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="CoreModule.cs" />
-    <Compile Include="Groups\AlphaGroupListGroup.cs" />
-    <Compile Include="Groups\DateListGroup.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\RecurringPaymentHelper.cs" />
@@ -75,14 +73,18 @@
     <Compile Include="Repositories\PaymentRepository.cs" />
     <Compile Include="ListStatisticFactory.cs" />
     <Compile Include="Authentication\Session.cs" />
-    <Compile Include="StatisticProvider\CashFlowProvider.cs" />
-    <Compile Include="StatisticProvider\CategorySpreadingProvider.cs" />
-    <Compile Include="StatisticProvider\CategorySummaryProvider.cs" />
+    <Compile Include="StatisticProvider\CashFlowDataProvider.cs" />
+    <Compile Include="StatisticProvider\CategorySpreadingDataProvider.cs" />
+    <Compile Include="StatisticProvider\CategorySummaryDataProvider.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
+    <Compile Include="ViewModels\CashFlowViewModel.cs" />
     <Compile Include="ViewModels\CategoryDialogViewModel.cs" />
+    <Compile Include="ViewModels\CategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\CategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
@@ -91,15 +93,17 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
     <Compile Include="ViewModels\RecurringPaymentListViewModel.cs" />
-    <Compile Include="ViewModels\PasswordUserControlViewModel.cs" />
+    <Compile Include="ViewModels\SettingsSecurityViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
     <Compile Include="ViewModels\SettingsCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\SpreadingViewModel.cs" />
     <Compile Include="ViewModels\StatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
-    <Compile Include="ViewModels\TileSettingsViewModel.cs" />
+    <Compile Include="ViewModels\SettingsShortcutsViewModel.cs" />
     <Compile Include="ViewModels\PaymentListViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
   </ItemGroup>
@@ -127,18 +131,6 @@
     </Reference>
     <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Splat.1.6.2\lib\Portable-net45+win+wpa81+wp80\Splat.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\packages\Rx-Core.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\packages\Rx-Linq.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Insights, Version=1.11.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Xamarin.Insights.1.11.3\lib\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.dll</HintPath>

@@ -136,6 +136,9 @@
     <Compile Include="Views\RecurringPaymentListView.xaml.cs">
       <DependentUpon>RecurringPaymentListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StatisticSelectorView.xaml.cs">
+      <DependentUpon>StatisticSelectorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\AccountListUserControl.xaml.cs">
       <DependentUpon>AccountListUserControl.xaml</DependentUpon>
     </Compile>
@@ -157,8 +160,8 @@
     <Compile Include="Views\UserControls\CategoryListUserControl.xaml.cs">
       <DependentUpon>CategoryListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\PasswordUserControl.xaml.cs">
-      <DependentUpon>PasswordUserControl.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\SettingsSecurityUserControl.xaml.cs">
+      <DependentUpon>SettingsSecurityUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\RecurringPaymentListUserControl.xaml.cs">
       <DependentUpon>RecurringPaymentListUserControl.xaml</DependentUpon>
@@ -166,8 +169,8 @@
     <Compile Include="Views\UserControls\TabHeader.xaml.cs">
       <DependentUpon>TabHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\TileSettingsUserControl.xaml.cs">
-      <DependentUpon>TileSettingsUserControl.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\SettingsShortcutsUserControl.xaml.cs">
+      <DependentUpon>SettingsShortcutsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
       <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
@@ -339,6 +342,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Views\StatisticSelectorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\AccountListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -367,7 +374,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\PasswordUserControl.xaml">
+    <Page Include="Views\UserControls\SettingsSecurityUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -379,7 +386,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\TileSettingsUserControl.xaml">
+    <Page Include="Views\UserControls\SettingsShortcutsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

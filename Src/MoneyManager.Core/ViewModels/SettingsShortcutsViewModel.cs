@@ -9,7 +9,7 @@ namespace MoneyManager.Core.ViewModels
     /// <summary>
     ///     Provides the information for the TileSettingsView
     /// </summary>
-    public class TileSettingsViewModel : BaseViewModel
+    public class SettingsShortcutsViewModel : BaseViewModel
     {
         private readonly IIncomeShortcut incomeShortcut;
         private readonly SettingDataAccess settingsDataAccess;
@@ -17,9 +17,9 @@ namespace MoneyManager.Core.ViewModels
         private readonly ITransferShortcut transferShortcut;
 
         /// <summary>
-        ///     Creates a TileSettingsViewModel object
+        ///     Creates a SettingsShortcutsViewModel object
         /// </summary>
-        public TileSettingsViewModel(ISpendingShortcut spendingShortcut, IIncomeShortcut incomeShortcut,
+        public SettingsShortcutsViewModel(ISpendingShortcut spendingShortcut, IIncomeShortcut incomeShortcut,
             ITransferShortcut transferShortcut, SettingDataAccess settingsDataAccess)
         {
             this.spendingShortcut = spendingShortcut;

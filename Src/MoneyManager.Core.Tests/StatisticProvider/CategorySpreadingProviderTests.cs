@@ -19,7 +19,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_NullDependency_NullReferenceException()
         {
             Assert.Throws<NullReferenceException>(
-                () => new CategorySpreadingProvider(null, null).GetValues(DateTime.Today, DateTime.Today));
+                () => new CategorySpreadingDataProvider(null, null).GetValues(DateTime.Today, DateTime.Today));
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySpreadingProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -141,7 +141,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySpreadingProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -202,7 +202,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySpreadingProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -312,7 +312,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySpreadingProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion

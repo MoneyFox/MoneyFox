@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
@@ -27,6 +26,9 @@ namespace MoneyManager.Core.ViewModels
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;
 
+        // This has to be static in order to keep the value even if you leave the page to select a category.
+        private double amount;
+
         public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IDialogService dialogService,
@@ -39,7 +41,134 @@ namespace MoneyManager.Core.ViewModels
             this.defaultManager = defaultManager;
             this.accountRepository = accountRepository;
 
-            token = MessageHub.Subscribe<CategorySelectedMessage>(message => SelectedPayment.Category = message.SelectedCategory);
+            token =
+                MessageHub.Subscribe<CategorySelectedMessage>(
+                    message => SelectedPayment.Category = message.SelectedCategory);
+        }
+
+        /// <summary>
+        ///     Saves the payment or updates the existing depending on the IsEdit Flag.
+        /// </summary>
+        public IMvxCommand SaveCommand => new MvxCommand(Save);
+
+        /// <summary>
+        ///     Opens to the SelectCategoryView
+        /// </summary>
+        public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
+
+        /// <summary>
+        ///     Delets the payment or updates the existing depending on the IsEdit Flag.
+        /// </summary>
+        public IMvxCommand DeleteCommand => new MvxCommand(Delete);
+
+        /// <summary>
+        ///     Cancels the operations.
+        /// </summary>
+        public IMvxCommand CancelCommand => new MvxCommand(Cancel);
+
+        /// <summary>
+        ///     Resets the category of the currently selected payment
+        /// </summary>
+        public IMvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
+
+
+        /// <summary>
+        ///     Indicates if the view is in Edit mode.
+        /// </summary>
+        public bool IsEdit { get; private set; }
+
+        /// <summary>
+        ///     Indicates if the payment is a transfer.
+        /// </summary>
+        public bool IsTransfer { get; private set; }
+
+        /// <summary>
+        ///     Indicates if the reminder is endless
+        /// </summary>
+        public bool IsEndless { get; set; }
+
+        /// <summary>
+        ///     The Enddate for recurring payment
+        /// </summary>
+        public DateTime EndDate { get; set; }
+
+        /// <summary>
+        ///     The selected recurrence
+        /// </summary>
+        public int Recurrence { get; set; }
+
+        /// <summary>
+        ///     Property to format amount string to double with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to double
+        ///     without the correct culture.
+        /// </summary>
+        public string AmountString
+        {
+            get { return Utilities.FormatLargeNumbers(amount); }
+            set
+            {
+                double convertedValue;
+                if (double.TryParse(value, out convertedValue))
+                {
+                    amount = convertedValue;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     List with the different recurrence types.
+        /// </summary>
+        public List<string> RecurrenceList => new List<string>
+        {
+            Strings.DailyLabel,
+            Strings.DailyWithoutWeekendLabel,
+            Strings.WeeklyLabel,
+            Strings.MonthlyLabel,
+            Strings.YearlyLabel,
+            Strings.BiweeklyLabel
+        };
+
+        /// <summary>
+        ///     The selected payment
+        /// </summary>
+        public Payment SelectedPayment
+        {
+            get { return paymentRepository.Selected; }
+            set { paymentRepository.Selected = value; }
+        }
+
+        /// <summary>
+        ///     Gives access to all accounts
+        /// </summary>
+        public ObservableCollection<Account> AllAccounts => accountRepository.Data;
+
+        /// <summary>
+        ///     Returns the Title for the page
+        /// </summary>
+        public string Title => PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, IsEdit);
+
+        /// <summary>
+        ///     Returns the Header for the account field
+        /// </summary>
+        public string AccountHeader
+            => SelectedPayment?.Type == (int) PaymentType.Income
+                ? Strings.TargetAccountLabel
+                : Strings.ChargedAccountLabel;
+
+        /// <summary>
+        ///     The payment date
+        /// </summary>
+        public DateTime Date
+        {
+            get
+            {
+                if (!IsEdit && SelectedPayment.Date == DateTime.MinValue)
+                {
+                    SelectedPayment.Date = DateTime.Now;
+                }
+                return SelectedPayment.Date;
+            }
+            set { SelectedPayment.Date = value; }
         }
 
         /// <summary>
@@ -57,7 +186,7 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit)
             {
                 PrepareEdit();
-            } 
+            }
             else
             {
                 PrepareDefault(typeString);
@@ -66,11 +195,6 @@ namespace MoneyManager.Core.ViewModels
 
         private void PrepareEdit()
         {
-            // Monkey patch for issues with binding to the account selection
-            // TODO: fix this that the binding works without this.
-            SelectedPayment.ChargedAccount =
-                accountRepository.Data.FirstOrDefault(x => x.Id == SelectedPayment.ChargedAccountId);
-
             IsTransfer = SelectedPayment.IsTransfer;
             // set the private amount property. This will get properly formatted and then displayed.
             amount = SelectedPayment.Amount;
@@ -81,7 +205,6 @@ namespace MoneyManager.Core.ViewModels
                 ? SelectedPayment.RecurringPayment.EndDate
                 : DateTime.Now;
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
-
         }
 
         private void PrepareDefault(string typeString)
@@ -192,140 +315,5 @@ namespace MoneyManager.Core.ViewModels
         {
             Close(this);
         }
-
-        #region Commands
-
-        /// <summary>
-        ///     Saves the payment or updates the existing depending on the IsEdit Flag.
-        /// </summary>
-        public IMvxCommand SaveCommand => new MvxCommand(Save);
-
-        /// <summary>
-        ///     Opens to the SelectCategoryView
-        /// </summary>
-        public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
-
-        /// <summary>
-        ///     Delets the payment or updates the existing depending on the IsEdit Flag.
-        /// </summary>
-        public IMvxCommand DeleteCommand => new MvxCommand(Delete);
-
-        /// <summary>
-        ///     Cancels the operations.
-        /// </summary>
-        public IMvxCommand CancelCommand => new MvxCommand(Cancel);
-
-        /// <summary>
-        ///     Resets the category of the currently selected payment
-        /// </summary>
-        public IMvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        ///     Indicates if the view is in Edit mode.
-        /// </summary>
-        public bool IsEdit { get; private set; }
-
-        /// <summary>
-        ///     Indicates if the payment is a transfer.
-        /// </summary>
-        public bool IsTransfer { get; private set; }
-
-        /// <summary>
-        ///     Indicates if the reminder is endless
-        /// </summary>
-        public bool IsEndless { get; set; }
-
-        /// <summary>
-        ///     The Enddate for recurring payment
-        /// </summary>
-        public DateTime EndDate { get; set; }
-
-        /// <summary>
-        ///     The selected recurrence
-        /// </summary>
-        public int Recurrence { get; set; }
-
-        // This has to be static in order to keep the value even if you leave the page to select a category.
-        private double amount;
-
-        /// <summary>
-        ///     Property to format amount string to double with the proper culture.
-        ///     This is used to prevent issues when converting the amount string to double
-        ///     without the correct culture.
-        /// </summary>
-        public string AmountString
-        {
-            get { return Utilities.FormatLargeNumbers(amount); }
-            set
-            {
-                double convertedValue;
-                if (double.TryParse(value, out convertedValue))
-                {
-                    amount = convertedValue;
-                }
-            }
-        }
-
-        /// <summary>
-        ///     List with the different recurrence types.
-        /// </summary>
-        public List<string> RecurrenceList => new List<string>
-        {
-            Strings.DailyLabel,
-            Strings.DailyWithoutWeekendLabel,
-            Strings.WeeklyLabel,
-            Strings.MonthlyLabel,
-            Strings.YearlyLabel,
-            Strings.BiweeklyLabel
-        };
-
-        /// <summary>
-        ///     The selected payment
-        /// </summary>
-        public Payment SelectedPayment
-        {
-            get { return paymentRepository.Selected; }
-            set { paymentRepository.Selected = value; }
-        }
-
-        /// <summary>
-        ///     Gives access to all accounts
-        /// </summary>
-        public ObservableCollection<Account> AllAccounts => accountRepository.Data;
-
-        /// <summary>
-        ///     Returns the Title for the page
-        /// </summary>
-        public string Title => PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, IsEdit);
-
-        /// <summary>
-        ///     Returns the Header for the account field
-        /// </summary>
-        public string AccountHeader
-            => SelectedPayment?.Type == (int) PaymentType.Income
-                ? Strings.TargetAccountLabel
-                : Strings.ChargedAccountLabel;
-
-        /// <summary>
-        ///     The payment date
-        /// </summary>
-        public DateTime Date
-        {
-            get
-            {
-                if (!IsEdit && SelectedPayment.Date == DateTime.MinValue)
-                {
-                    SelectedPayment.Date = DateTime.Now;
-                }
-                return SelectedPayment.Date;
-            }
-            set { SelectedPayment.Date = value; }
-        }
-
-        #endregion
     }
 }

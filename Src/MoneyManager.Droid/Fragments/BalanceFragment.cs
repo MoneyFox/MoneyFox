@@ -9,5 +9,12 @@ namespace MoneyManager.Droid.Fragments
     public class BalanceFragment : BaseFragment<BalanceViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_balance;
+
+        public override void OnStart()
+        {
+            base.OnResume();
+
+            ViewModel.UpdateBalanceCommand.Execute();
+        }
     }
 }

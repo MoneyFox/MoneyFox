@@ -11,17 +11,19 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class AccountListViewModel : BaseViewModel
     {
-        private readonly IRepository<Account> accountRepository;
-        private readonly IBalanceViewModel balanceViewModel;
+        private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
 
-        public AccountListViewModel(IRepository<Account> accountRepository,
-            IBalanceViewModel balanceViewModel,
+        public IBalanceViewModel BalanceViewModel { get; }
+
+        public AccountListViewModel(IAccountRepository accountRepository,
+            IPaymentRepository paymentRepository,
             IDialogService dialogService)
         {
             this.accountRepository = accountRepository;
-            this.balanceViewModel = balanceViewModel;
             this.dialogService = dialogService;
+
+            BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
         }
 
         /// <summary>
@@ -32,6 +34,11 @@ namespace MoneyManager.Core.ViewModels
             get { return accountRepository.Data; }
             set { accountRepository.Data = value; }
         }
+
+        /// <summary>
+        ///     Prepares the account list
+        /// </summary>
+        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
         ///     Open the payment overview for this account.
@@ -58,6 +65,11 @@ namespace MoneyManager.Core.ViewModels
             ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = account.Id});
         }
 
+        private void Loaded()
+        {
+            BalanceViewModel.UpdateBalanceCommand.Execute();
+        }
+
         private void GoToPaymentOverView(Account account)
         {
             if (account == null)
@@ -79,7 +91,6 @@ namespace MoneyManager.Core.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 accountRepository.Delete(item);
-                balanceViewModel.UpdateBalance();
             }
         }
 

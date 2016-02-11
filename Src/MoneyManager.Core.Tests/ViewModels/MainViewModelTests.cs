@@ -42,11 +42,9 @@ namespace MoneyManager.Core.Tests.ViewModels
                     paymentManager,
                     defaultManager);
 
-            var modifyAccountViewModel = new ModifyAccountViewModel(accountRepository,
-                new BalanceViewModel(accountRepository, new Mock<IPaymentRepository>().Object));
+            var modifyAccountViewModel = new ModifyAccountViewModel(accountRepository);
 
-            var mainViewModel = new MainViewModel(modifyAccountViewModel, modifyPaymentViewModel,
-                new BalanceViewModel(accountRepository, paymentRepository));
+            var mainViewModel = new MainViewModel(modifyAccountViewModel);
 
             mainViewModel.GoToAddPaymentCommand.Execute(typestring);
 

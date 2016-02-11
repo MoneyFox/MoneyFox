@@ -62,7 +62,7 @@ namespace MoneyManager.Droid.Fragments
                     ViewModel.ShowViewModelByType(typeof(BackupViewModel));
                     break;
                 case Resource.Id.nav_settings:
-                    //ViewModel.ShowViewModelByType(typeof());
+                    ViewModel.ShowViewModelByType(typeof(SettingsViewModel));
                     break;
                 case Resource.Id.nav_about:
                     ViewModel.ShowViewModelByType(typeof(AboutViewModel));

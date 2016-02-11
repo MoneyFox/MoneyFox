@@ -1,6 +1,6 @@
 ﻿using MoneyManager.Core.ViewModels;
 
-namespace MoneyManager.Core
+namespace MoneyManager.Core.ViewModels
 {
     public class SettingsViewModel : BaseViewModel
     {

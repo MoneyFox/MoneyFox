@@ -41,6 +41,7 @@
     public enum StatisticType
     {
         Cashflow,
-        CategorySpreading
+        CategorySpreading,
+        CategorySummary
     }
 }

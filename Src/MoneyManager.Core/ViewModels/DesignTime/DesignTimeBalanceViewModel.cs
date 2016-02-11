@@ -1,5 +1,5 @@
-﻿using System;
-using MoneyManager.Foundation.Interfaces.ViewModels;
+﻿using MoneyManager.Foundation.Interfaces.ViewModels;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels.DesignTime
 {
@@ -13,15 +13,9 @@ namespace MoneyManager.Core.ViewModels.DesignTime
 
         public bool IsPaymentView { get; set; }
         public double TotalBalance { get; set; }
+
         public double EndOfMonthBalance { get; set; }
 
-        public void UpdateBalance(bool isPaymentView = false)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateBalance()
-        {
-        }
+        public MvxCommand UpdateBalanceCommand => new MvxCommand(() => { });
     }
 }

@@ -4,7 +4,7 @@ using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
-using MoneyManager.Foundation.Model;
+using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -12,93 +12,76 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class BalanceViewModel : BaseViewModel, IBalanceViewModel
     {
-        private readonly IAccountRepository accountRepository;
-        private readonly IPaymentRepository paymentRepository;
+        protected readonly IAccountRepository AccountRepository;
+        protected readonly IPaymentRepository PaymentRepository;
 
         public BalanceViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository)
         {
-            this.accountRepository = accountRepository;
-            this.paymentRepository = paymentRepository;
+            AccountRepository = accountRepository;
+            PaymentRepository = paymentRepository;
         }
 
-        private bool IsPaymentView { get; set; }
-
+        /// <summary>
+        ///     Balance of all relevant accounts at the end of the month.
+        /// </summary>
         public double TotalBalance { get; set; }
+
+        /// <summary>
+        ///     Current Balance of all accounts.
+        /// </summary>
         public double EndOfMonthBalance { get; set; }
 
         /// <summary>
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        /// <param name="isPaymentView">Indicates if the current view is a payment view or a generell overview.</param>
-        public void UpdateBalance(bool isPaymentView = false)
-        {
-            IsPaymentView = isPaymentView;
+        public MvxCommand UpdateBalanceCommand => new  MvxCommand(UpdateBalance);
 
+        /// <summary>
+        ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
+        ///     itself and show different data.
+        /// </summary>
+        private void UpdateBalance()
+        {
             TotalBalance = GetTotalBalance();
             EndOfMonthBalance = GetEndOfMonthValue();
         }
 
-        private double GetTotalBalance()
+        /// <summary>
+        ///     Calculates the sum of all accounts at the current moment.
+        /// </summary>
+        /// <returns>Sum of the balance of all accounts.</returns>
+        protected virtual double GetTotalBalance()
         {
-            if (IsPaymentView)
-            {
-                return accountRepository.Selected.CurrentBalance;
-            }
-
-            return accountRepository.Data?.Sum(x => x.CurrentBalance) ?? 0;
+            return AccountRepository.Data?.Sum(x => x.CurrentBalance) ?? 0;
         }
 
-        private double GetEndOfMonthValue()
+        /// <summary>
+        ///     Calculates the sum of all accounts at the end of the month.
+        /// </summary>
+        /// <returns>Sum of all balances including all payments to come till end of month.</returns>
+        protected virtual double GetEndOfMonthValue()
         {
             var balance = TotalBalance;
-            var unclearedPayments = LoadUnclreadPayments();
+            var unclearedPayments = PaymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth());
 
             foreach (var payment in unclearedPayments)
             {
+                //Transfer can be ignored since they don't change the summary.
                 switch (payment.Type)
                 {
-                    case (int) PaymentType.Expense:
+                    case (int)PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
 
-                    case (int) PaymentType.Income:
+                    case (int)PaymentType.Income:
                         balance += payment.Amount;
-                        break;
-
-                    case (int) PaymentType.Transfer:
-                        balance = HandleTransferAmount(payment, balance);
                         break;
                 }
             }
 
             return balance;
-        }
-
-        private double HandleTransferAmount(Payment payment, double balance)
-        {
-            if (accountRepository.Selected == payment.ChargedAccount)
-            {
-                balance -= payment.Amount;
-            }
-            else
-            {
-                balance += payment.Amount;
-            }
-            return balance;
-        }
-
-        private IEnumerable<Payment> LoadUnclreadPayments()
-        {
-            var unclearedPayments = paymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth());
-
-            return IsPaymentView
-                ? unclearedPayments.Where(
-                    x =>
-                        x.ChargedAccountId == accountRepository.Selected.Id ||
-                        x.TargetAccountId == accountRepository.Selected.Id).ToList()
-                : unclearedPayments;
         }
     }
 }
