@@ -13,8 +13,8 @@ namespace MoneyManager.Windows
                     ShowViewModel<ModifyPaymentViewModel>(new {typeString = Constants.INCOME_TILE_ID});
                     return true;
 
-                case Constants.ADD_SPENDING_TILE_ID:
-                    ShowViewModel<ModifyPaymentViewModel>(new {typeString = Constants.SPENDING_TILE_ID});
+                case Constants.ADD_EXPENSE_TILE_ID:
+                    ShowViewModel<ModifyPaymentViewModel>(new {typeString = Constants.EXPENSE_TILE_ID});
                     return true;
 
                 case Constants.ADD_TRANSFER_TILE_ID:

@@ -152,7 +152,7 @@ namespace MoneyManager.Windows
             listItemAddIncome.Logo = new Uri("ms-appx:///Assets/IncomeTileIcon.png");
             jumpList.Items.Add(listItemAddIncome);
 
-            var listItemAddSpending = JumpListItem.CreateWithArguments(Constants.ADD_SPENDING_TILE_ID, Strings.AddSpendingLabel);
+            var listItemAddSpending = JumpListItem.CreateWithArguments(Constants.ADD_EXPENSE_TILE_ID, Strings.AddSpendingLabel);
             listItemAddSpending.Logo = new Uri("ms-appx:///Assets/SpendingTileIcon.png");
             jumpList.Items.Add(listItemAddSpending);
 
