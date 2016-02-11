@@ -251,6 +251,9 @@
     <Compile Include="Fragments\SettingsFragment.cs" />
     <Compile Include="Fragments\SettingsShortcutsFragment.cs" />
     <Compile Include="Fragments\SettingsSecurityFragment.cs" />
+    <Compile Include="Src\Widgets\ExpenseWidget.cs" />
+    <Compile Include="Src\Widgets\IncomeWidget.cs" />
+    <Compile Include="Src\Widgets\TransferWidget.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -422,4 +425,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Src\Widgets\" />
+  </ItemGroup>
 </Project>
