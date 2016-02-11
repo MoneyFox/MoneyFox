@@ -2,7 +2,6 @@
 using Android.Runtime;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
-using MoneyManager.Core;
 using Android.Views;
 using Android.OS;
 using Android.Support.V4.View;
@@ -11,7 +10,7 @@ using System.Collections.Generic;
 using MoneyManager.Localization;
 using Android.Support.Design.Widget;
 
-namespace MoneyManager.Droid
+namespace MoneyManager.Droid.Fragments
 {    
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.SettingsFragment")]

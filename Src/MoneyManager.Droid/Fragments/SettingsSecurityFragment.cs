@@ -1,11 +1,9 @@
-﻿using MvvmCross.Droid.Support.V7.Fragging.Attributes;
-using MoneyManager.Core.ViewModels;
+﻿using MoneyManager.Core.ViewModels;
 using Android.Runtime;
 using MoneyManager.Droid.Fragments;
 
-namespace MoneyManager.Droid
+namespace MoneyManager.Droid.Fragments
 {
-    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
 	[Register("moneymanager.droid.fragments.SettingsSecurityFragment")]
     public class SettingsSecurityFragment : BaseFragment<PasswordUserControlViewModel>
     {
