@@ -1741,7 +1741,7 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.3": {
+      "Xamarin.Insights/1.11.4": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -3579,7 +3579,7 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.3": {
+      "Xamarin.Insights/1.11.4": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -5389,7 +5389,7 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.3": {
+      "Xamarin.Insights/1.11.4": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -7232,7 +7232,7 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.3": {
+      "Xamarin.Insights/1.11.4": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -9042,7 +9042,7 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.3": {
+      "Xamarin.Insights/1.11.4": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -10885,7 +10885,7 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.3": {
+      "Xamarin.Insights/1.11.4": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -12695,7 +12695,7 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.3": {
+      "Xamarin.Insights/1.11.4": {
         "compile": {
           "lib/windows8/Xamarin.Insights.dll": {}
         },
@@ -16585,8 +16585,8 @@
         "UniversalRateReminder.nuspec"
       ]
     },
-    "Xamarin.Insights/1.11.3": {
-      "sha512": "ewZ3dXcGONrMmPI22grN91ndL/UtuuQnKllMTFlgz+9WRK2q4i7ELegzV/qJtQ2cESKPgZ7qOE5CfRSlF9rtog==",
+    "Xamarin.Insights/1.11.4": {
+      "sha512": "7O4GGdIsIwFFx84m4hLhXOMJJfIrOPZlfj/jUF1gQc13a08OQKCJjZRgybseHbtgO2xLRuwk6wxUcQQBhRQmlg==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -16629,7 +16629,7 @@
         "lib/Xamarin.iOS10/Xamarin.Insights.XML",
         "lib/Xamarin.Mac20/Xamarin.Insights.dll",
         "lib/Xamarin.Mac20/Xamarin.Insights.XML",
-        "package/services/metadata/core-properties/227e4d45b85c4456ab9e04ca94981ecd.psmdcp",
+        "package/services/metadata/core-properties/856ef0cb27714afa8bc93399f487e858.psmdcp",
         "Xamarin.Insights.nuspec"
       ]
     }
@@ -16652,7 +16652,7 @@
       "OxyPlot.Windows >= 2015.1.1033-alpha",
       "SQLite.Net-PCL >= 3.1.1",
       "UniversalRateReminder >= 2.0.0",
-      "Xamarin.Insights >= 1.11.3"
+      "Xamarin.Insights >= 1.11.4"
     ],
     "UAP,Version=v10.0": []
   }
