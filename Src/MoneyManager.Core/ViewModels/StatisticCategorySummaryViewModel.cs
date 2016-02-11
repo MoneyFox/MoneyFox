@@ -2,7 +2,6 @@
 using MoneyManager.Core.StatisticProvider;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -17,12 +16,7 @@ namespace MoneyManager.Core.ViewModels
             categorySummaryDataDataProvider = new CategorySummaryDataProvider(paymentRepository, categoryRepository);
         }
 
-        /// <summary>
-        ///     Loads the data with the current start and end date.
-        /// </summary>
-        public MvxCommand LoadCommand => new MvxCommand(Load);
-
-        private void Load()
+        protected override void Load()
         {
             CategorySummary = null;
             CategorySummary = GetCategorySummaryData();
