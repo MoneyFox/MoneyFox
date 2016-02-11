@@ -138,7 +138,7 @@
   <data name="AddIncomeLabel.Label" xml:space="preserve">
     <value>Add Income</value>
   </data>
-  <data name="AddSpendingLabel.Label" xml:space="preserve">
+  <data name="AddExpenseLabel.Label" xml:space="preserve">
     <value>Add Expense</value>
   </data>
   <data name="AddPaymentTitle.Text" xml:space="preserve">
@@ -242,7 +242,7 @@ Tap to visit the Repository:</value>
   <data name="AddIncomeTile.Content" xml:space="preserve">
     <value>Create Income Tile</value>
   </data>
-  <data name="AddSpendingTile.Content" xml:space="preserve">
+  <data name="AddExpenseTile.Content" xml:space="preserve">
     <value>Create Expense Tile</value>
   </data>
   <data name="AddTransferTile.Content" xml:space="preserve">
@@ -263,7 +263,7 @@ Tap to visit the Repository:</value>
   <data name="RemoveIncomeTile.Content" xml:space="preserve">
     <value>Remove Income Tile</value>
   </data>
-  <data name="RemoveSpendingTile.Content" xml:space="preserve">
+  <data name="RemoveExpenseTile.Content" xml:space="preserve">
     <value>Remove Expense Tile</value>
   </data>
   <data name="RemoveTransferTile.Content" xml:space="preserve">

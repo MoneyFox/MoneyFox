@@ -126,7 +126,7 @@
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Src\RoamingSettings.cs" />
     <Compile Include="Src\Shortcut\IncomeTile.cs" />
-    <Compile Include="Src\Shortcut\SpendingTile.cs" />
+    <Compile Include="Src\Shortcut\ExpenseTile.cs" />
     <Compile Include="Src\Shortcut\Tile.cs" />
     <Compile Include="Src\Shortcut\TransferTile.cs" />
     <Compile Include="Src\StoreFeatures.cs" />
