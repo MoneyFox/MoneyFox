@@ -48,7 +48,6 @@
     <AotAssemblies>True</AotAssemblies>
     <DevInstrumentationEnabled>False</DevInstrumentationEnabled>
     <EnableLLVM>true</EnableLLVM>
-    <EnableProguard>true</EnableProguard>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
   </PropertyGroup>
