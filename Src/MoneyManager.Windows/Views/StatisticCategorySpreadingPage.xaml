@@ -15,6 +15,9 @@
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
+        <core:EventTriggerBehavior EventName="Unloaded">
+            <core:InvokeCommandAction Command="{Binding UnloadCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -28,16 +31,15 @@
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Cash Flow"
-                           x:Uid="CashFlowTitle" />
+                           Text="Spreading"
+                           x:Uid="SpreadingTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
         <StackPanel Grid.Row="1">
             <TextBlock Text="{Binding Title}"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-            <windows:PlotView x:Name="CategorySpreadingPlotView"
-                              Model="{Binding SpreadingModel}"
+            <windows:PlotView Model="{Binding SpreadingModel}"
                               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"

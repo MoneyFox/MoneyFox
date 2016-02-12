@@ -3,6 +3,7 @@ using System.Linq;
 using MoneyManager.Core.StatisticProvider;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using MvvmCross.Core.ViewModels;
 using OxyPlot;
 using OxyPlot.Series;
 using PropertyChanged;
@@ -14,10 +15,18 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly CategorySpreadingDataProvider speadingDataProvider;
 
-        public StatisticCategorySpreadingViewModel(IPaymentRepository paymentRepository, IRepository<Category> categoryRepository)
+        public StatisticCategorySpreadingViewModel(IPaymentRepository paymentRepository,
+            IRepository<Category> categoryRepository)
         {
             speadingDataProvider = new CategorySpreadingDataProvider(paymentRepository, categoryRepository);
         }
+
+        public MvxCommand UnloadCommand => new MvxCommand(Unload);
+
+        /// <summary>
+        ///     Contains the PlotModel for the CategorySpreading graph
+        /// </summary>
+        public PlotModel SpreadingModel { get; set; }
 
         protected override void Load()
         {
@@ -25,10 +34,10 @@ namespace MoneyManager.Core.ViewModels
             SpreadingModel = GetSpreadingModel();
         }
 
-        /// <summary>
-        ///     Contains the PlotModel for the CategorySpreading graph
-        /// </summary>
-        public PlotModel SpreadingModel { get; set; }
+        private void Unload()
+        {
+            SpreadingModel = null;
+        }
 
         /// <summary>
         ///     Set a custom CategprySpreadingModel with the set Start and Enddate

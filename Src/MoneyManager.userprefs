@@ -1,5 +1,5 @@
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.169.254.56.136:5555" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.AVD_GalaxyNexus_ToolsForApacheCordova" />
   <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="MoneyManager.Droid\Resources\values\styles.xml" Line="5" Column="1" />

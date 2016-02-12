@@ -157,13 +157,13 @@ WARNING: Local changes you made meanwhile we be lost.</value>
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>Backup</value>
   </data>
-  <data name="CashFlowTitle.Label" xml:space="preserve">
+  <data name="CashFlowTitle.Text" xml:space="preserve">
     <value>Cash Flow</value>
   </data>
   <data name="CategoriesHeader.Label" xml:space="preserve">
     <value>Categories</value>
   </data>
-  <data name="CategorySummaryTitle.Label" xml:space="preserve">
+  <data name="CategorySummaryTitle.Text" xml:space="preserve">
     <value>Category Summary</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
@@ -206,7 +206,7 @@ Tap to visit the Repository:</value>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="SpreadingTitle.Label" xml:space="preserve">
+  <data name="SpreadingTitle.Text" xml:space="preserve">
     <value>Spreading</value>
   </data>
   <data name="TilesHeader.Label" xml:space="preserve">

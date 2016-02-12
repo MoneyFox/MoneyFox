@@ -19,7 +19,7 @@ namespace MoneyManager.Windows.Views
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            CashFlowPlotView = null;
+            CashFlowUserControl.Dispose();
 
             base.OnNavigatedFrom(e);
         }
