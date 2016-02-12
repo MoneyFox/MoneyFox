@@ -36,7 +36,7 @@ namespace MoneyManager.Windows
                 {
                     Symbol = Symbol.View,
                     Label = Strings.StatisticsLabel,
-                    DestPage = typeof (StatisticsView)
+                    DestPage = typeof (StatisticSelectorView)
                 }
             });
 

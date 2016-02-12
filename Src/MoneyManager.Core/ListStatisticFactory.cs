@@ -29,10 +29,10 @@ namespace MoneyManager.Core
             switch (type)
             {
                 case ListStatisticType.CategorySpreading:
-                    return new CategorySpreadingProvider(paymentRepository, categoryRepository);
+                    return new CategorySpreadingDataProvider(paymentRepository, categoryRepository);
 
                 case ListStatisticType.CategorySummary:
-                    return new CategorySummaryProvider(paymentRepository, categoryRepository);
+                    return new CategorySummaryDataProvider(paymentRepository, categoryRepository);
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type));

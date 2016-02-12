@@ -1,46 +1,29 @@
 using Android.OS;
+using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
-using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Droid.FullFragging.Fragments;
-using MvvmCross.Platform;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyManager.Droid.Fragments
 {
-    public class AccountListFragment : MvxFragment
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
+    [Register("moneymanager.droid.fragments.AccountListFragment")]
+    public class AccountListFragment : BaseFragment<AccountListViewModel>
     {
-        public new AccountListViewModel ViewModel
-        {
-            get { return (AccountListViewModel) base.ViewModel; }
-            set { base.ViewModel = value; }
-        }
+		protected override int FragmentId => Resource.Layout.fragment_account_list;
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            base.OnCreateView(inflater, container, savedInstanceState);
-            var view = this.BindingInflate(Resource.Layout.AccountListLayout, null);
+		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+		{
+			var view =  base.OnCreateView (inflater, container, savedInstanceState);
 
-            if (savedInstanceState == null)
-            {
-                var fragment = new BalanceFragment
-                {
-                    ViewModel = Mvx.Resolve<BalanceViewModel>()
-                };
+			var list = view.FindViewById<ListView>(Resource.Id.account_list);
+			RegisterForContextMenu(list);
 
-                fragment.ViewModel.UpdateBalance();
-
-                FragmentManager.BeginTransaction()
-                    .Replace(Resource.Id.balance_pane, fragment)
-                    .Commit();
-            }
-
-            var list = view.FindViewById<ListView>(Resource.Id.accountList);
-            RegisterForContextMenu(list);
-
-            return view;
-        }
+			return view;
+		}
 
         public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
         {

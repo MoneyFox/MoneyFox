@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels.DesignTime
 {
@@ -24,5 +25,6 @@ namespace MoneyManager.Core.ViewModels.DesignTime
         public ObservableCollection<Account> AllAccounts { get; set; }
         public Account SelectedAccount { get; set; }
         public IBalanceViewModel BalanceViewModel { get; }
+        public MvxCommand LoadedCommand => new MvxCommand(() => { });
     }
 }

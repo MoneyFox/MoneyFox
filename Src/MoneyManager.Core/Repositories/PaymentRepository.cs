@@ -40,6 +40,7 @@ namespace MoneyManager.Core.Repositories
             this.accountRepository = accountRepository;
             this.categoryRepository = categoryRepository;
 
+            Data = new ObservableCollection<Payment>();
             Load();
         }
 
@@ -84,13 +85,11 @@ namespace MoneyManager.Core.Repositories
                 payment.RecurringPaymentId = 0;
             }
 
-            dataAccess.SaveItem(payment);
-
             if (payment.Id == 0)
             {
-                //Reload data.
-                Load();
+                data.Add(payment);
             }
+            dataAccess.SaveItem(payment);
         }
 
         /// <summary>
@@ -113,10 +112,29 @@ namespace MoneyManager.Core.Repositories
         }
 
         /// <summary>
+        ///     Deletes the passed recurring payment
+        /// </summary>
+        /// <param name="paymentToDelete">Recurring payment to delete.</param>
+        public void DeleteRecurring(Payment paymentToDelete)
+        {
+            var payments = Data.Where(x => x.Id == paymentToDelete.Id).ToList();
+
+            recurringDataAccess.DeleteItem(paymentToDelete.RecurringPayment);
+
+            foreach (var payment in payments)
+            {
+                payment.RecurringPayment = null;
+                payment.IsRecurring = false;
+                Save(payment);
+            }
+        }
+
+        /// <summary>
         ///     Loads all payments from the database to the data collection
         /// </summary>
         public void Load(Expression<Func<Payment, bool>> filter = null)
         {
+            Data.Clear();
             var payments = dataAccess.LoadList(filter);
             var recurringTransactions = recurringDataAccess.LoadList();
 
@@ -132,9 +150,9 @@ namespace MoneyManager.Core.Repositories
                     payment.RecurringPayment =
                         recurringTransactions.FirstOrDefault(x => x.Id == payment.RecurringPaymentId);
                 }
-            }
 
-            Data = new ObservableCollection<Payment>(payments);
+                Data.Add(payment);
+            }
         }
 
         /// <summary>

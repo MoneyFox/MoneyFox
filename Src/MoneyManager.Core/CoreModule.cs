@@ -48,15 +48,20 @@ namespace MoneyManager.Core
                 .SingleInstance();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
+                .Where(t => t.Name.EndsWith("Shortcut"))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("ViewModel") && !t.Name.StartsWith("DesignTime"))
                 .AsImplementedInterfaces()
-                .SingleInstance(); ;
+                .SingleInstance();
 
             //TODO: Implement for each ViewModel an Interface
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => t.Name.EndsWith("ViewModel"))
                 .AsSelf()
-                .SingleInstance();;
+                .SingleInstance();
         }
     }
 }

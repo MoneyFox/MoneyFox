@@ -138,7 +138,7 @@
   <data name="AddIncomeLabel.Label" xml:space="preserve">
     <value>Einnahme hinzufügen</value>
   </data>
-  <data name="AddSpendingLabel.Label" xml:space="preserve">
+  <data name="AddExpenseLabel.Label" xml:space="preserve">
     <value>Ausgabe hinzufügen</value>
   </data>
   <data name="AddPaymentTitle.Text" xml:space="preserve">
@@ -241,8 +241,8 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="AddIncomeTile.Content" xml:space="preserve">
     <value>Einnahme Tile erstellen</value>
   </data>
-  <data name="AddSpendingTile.Content" xml:space="preserve">
-    <value>Ausgabetile erstellen</value>
+  <data name="AddExpenseTile.Content" xml:space="preserve">
+    <value>Ausgaben Tile erstellen</value>
   </data>
   <data name="AddTransferTile.Content" xml:space="preserve">
     <value>Übertragtile erstellen</value>
@@ -262,8 +262,8 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="RemoveIncomeTile.Content" xml:space="preserve">
     <value>Einnahmetile entfernen</value>
   </data>
-  <data name="RemoveSpendingTile.Content" xml:space="preserve">
-    <value>Ausgabetile entfernen</value>
+  <data name="RemoveExpenseTile.Content" xml:space="preserve">
+    <value>Ausgaben Tile entfernen</value>
   </data>
   <data name="RemoveTransferTile.Content" xml:space="preserve">
     <value>Übertragtile entfernen</value>
@@ -317,7 +317,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Gutschriftskonto</value>
   </data>
   <data name="PrivacyInfo.Text" xml:space="preserve">
-    <value>Zur Verbesserung dieser App sammeln wir anonyme Informationen über auftretende Fehler.</value>
+    <value>Zur Verbesserung dieser App sammeln wir anonymisierte Informationen über auftretende Fehler.</value>
   </data>
   <data name="DeleteLabel.Label" xml:space="preserve">
     <value>Löschen</value>
@@ -336,5 +336,8 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Startdatum</value>
+  </data>
+  <data name="RecurringPaymentList.Label" xml:space="preserve">
+    <value>Übersicht Zahlungsaufträge</value>
   </data>
 </root>

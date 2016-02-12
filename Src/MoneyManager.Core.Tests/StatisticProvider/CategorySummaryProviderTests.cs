@@ -19,7 +19,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_NullDependency_NullReferenceException()
         {
             Assert.Throws<NullReferenceException>(
-                () => new CategorySummaryProvider(null, null).GetValues(DateTime.Today, DateTime.Today));
+                () => new CategorySummaryDataProvider(null, null).GetValues(DateTime.Today, DateTime.Today));
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySummaryProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySummaryDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -141,7 +141,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySummaryProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySummaryDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -203,7 +203,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySummaryProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySummaryDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion

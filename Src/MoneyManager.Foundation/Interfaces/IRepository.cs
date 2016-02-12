@@ -7,7 +7,7 @@ namespace MoneyManager.Foundation.Interfaces
     public interface IRepository<T>
     {
         /// <summary>
-        ///     All paymentToDelete loaded from the database
+        ///     All payment loaded from the database
         /// </summary>
         ObservableCollection<T> Data { get; set; }
 
@@ -23,9 +23,9 @@ namespace MoneyManager.Foundation.Interfaces
         void Save(T item);
 
         /// <summary>
-        ///     DeleteItem the specified paymentToDelete.
+        ///     Delete the specified payment.
         /// </summary>
-        /// <param name="paymentToDelete">Item.</param>
+        /// <param name="paymentToDelete">Payment to delete.</param>
         void Delete(T paymentToDelete);
 
         /// <summary>

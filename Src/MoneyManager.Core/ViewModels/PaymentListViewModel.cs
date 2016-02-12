@@ -1,18 +1,18 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using MoneyManager.Windows.Concrete;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class PaymentListViewModel : BaseViewModel
+    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
         private readonly IAccountRepository accountRepository;
         private readonly IBalanceViewModel balanceViewModel;
@@ -28,44 +28,60 @@ namespace MoneyManager.Core.ViewModels
             this.accountRepository = accountRepository;
             this.balanceViewModel = balanceViewModel;
             this.dialogService = dialogService;
+
+            BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository);
         }
 
-        public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(GoToAddPayment);
-        public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
-        public virtual MvxCommand LoadedCommand => new MvxCommand(LoadPayments);
-        public MvxCommand EditCommand { get; private set; }
+        public IBalanceViewModel BalanceViewModel { get; }
 
-        public MvxCommand<Payment> DeletePaymentCommand
-            => new MvxCommand<Payment>(DeletePayment);
+        /// <summary>
+        ///     Loads the data for this view.
+        /// </summary>
+        public virtual MvxCommand LoadCommand => new MvxCommand(LoadPayments);
+
+        /// <summary>
+        ///     Navigate to the add payment view.
+        /// </summary>
+        public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(GoToAddPayment);
+
+        /// <summary>
+        ///     Deletes the current account and updates the balance.
+        /// </summary>
+        public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
+
+        /// <summary>
+        ///     Edits the currently selected payment.
+        /// </summary>
+        public MvxCommand<Payment> EditCommand { get; private set; }
+
+        /// <summary>
+        ///     Deletes the passed payment.
+        /// </summary>
+        public MvxCommand<Payment> DeletePaymentCommand => new MvxCommand<Payment>(DeletePayment);
 
         /// <summary>
         ///     Returns all Payment who are assigned to this repository
         ///     This has to stay until the android list with headers is implemented.
+        ///     Currently only used for Android
         /// </summary>
-        public ObservableCollection<Payment> RelatedPayments { set; get; }
+        public ObservableCollection<Payment> RelatedPayments { get; set; }
 
         /// <summary>
         ///     Returns groupped related payments
         /// </summary>
-        public ObservableCollection<DateListGroup<Payment>> Source { set; get; }
+        public ObservableCollection<DateListGroup<Payment>> Source { get; set; }
 
         /// <summary>
         ///     Returns the name of the account title for the current page
         /// </summary>
         public string Title => accountRepository.Selected.Name;
 
-        /// <summary>
-        ///     Currently selected Item
-        /// </summary>
-        public Payment SelectedPayment { get; set; }
-
         private void LoadPayments()
         {
             EditCommand = null;
             //Refresh balance control with the current account
-            balanceViewModel.UpdateBalance(true);
+            BalanceViewModel.UpdateBalanceCommand.Execute();
 
-            SelectedPayment = null;
             RelatedPayments = new ObservableCollection<Payment>(paymentRepository
                 .GetRelatedPayments(accountRepository.Selected)
                 .OrderByDescending(x => x.Date)
@@ -77,9 +93,8 @@ namespace MoneyManager.Core.ViewModels
                     s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
                     s => s.Date, true));
 
-            SelectedPayment = null;
             //We have to set the command here to ensure that the selection changed event is triggered earlier
-            EditCommand = new MvxCommand(Edit);
+            EditCommand = new MvxCommand<Payment>(Edit);
         }
 
         private void GoToAddPayment(string type)
@@ -92,26 +107,18 @@ namespace MoneyManager.Core.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 accountRepository.Delete(accountRepository.Selected);
-                accountRepository.RemovePaymentAmount(SelectedPayment);
-                balanceViewModel.UpdateBalance();
+                balanceViewModel.UpdateBalanceCommand.Execute();
                 Close(this);
             }
         }
 
-        private void Edit()
+        private void Edit(Payment payment)
         {
-            if (SelectedPayment == null)
-            {
-                return;
-            }
-
-            paymentRepository.Selected = SelectedPayment;
+            paymentRepository.Selected = payment;
 
             ShowViewModel<ModifyPaymentViewModel>(
-                new {isEdit = true, typeString = SelectedPayment.Type.ToString()});
-            SelectedPayment = null;
+				new {isEdit = true, typeString = payment.Type.ToString()});
         }
-
 
         private async void DeletePayment(Payment payment)
         {
@@ -121,7 +128,7 @@ namespace MoneyManager.Core.ViewModels
 
             accountRepository.RemovePaymentAmount(payment);
             paymentRepository.Delete(payment);
-            LoadedCommand.Execute();
+            LoadCommand.Execute();
         }
     }
 }

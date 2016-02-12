@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MvxListView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:background="?android:windowBackground"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:choiceMode="singleChoice"
+    local:MvxItemTemplate="@layout/listitem_category_summary"
+    local:MvxBind="ItemsSource CategorySummary" />

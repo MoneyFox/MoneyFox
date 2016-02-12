@@ -32,7 +32,16 @@ namespace MoneyManager.DataAccess
             using (var db = connectionCreator.GetConnection())
             {
                 SaveRecurringPayment(itemToSave, db);
-                itemToSave.Id = db.InsertOrReplace(itemToSave);
+                //Don't use insert or replace here, because it will always replace the first element
+                if (itemToSave.Id == 0)
+                {
+                    db.Insert(itemToSave);
+                    itemToSave.Id = db.Table<Payment>().OrderByDescending(x => x.Id).First().Id;
+                }
+                else
+                {
+                    db.Update(itemToSave);
+                }
             }
         }
 
@@ -40,7 +49,16 @@ namespace MoneyManager.DataAccess
         {
             if (itemToSave.IsRecurring)
             {
-                db.InsertOrReplace(itemToSave.RecurringPayment);
+                //Don't use insert or replace here, because it will always replace the first element
+                if (itemToSave.Id == 0)
+                {
+                    db.Insert(itemToSave.RecurringPayment);
+                    itemToSave.Id = db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First().Id;
+                }
+                else
+                {
+                    db.Update(itemToSave.RecurringPayment);
+                }
             }
         }
 
@@ -69,8 +87,7 @@ namespace MoneyManager.DataAccess
 
                 if (filter != null)
                 {
-                    var compiledFilter = filter.Compile();
-                    listQuery = listQuery.Where(x => compiledFilter(x));
+                    listQuery = listQuery.Where(filter);
                 }
 
                 return listQuery.ToList();

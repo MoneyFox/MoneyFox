@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
-using MoneyManager.Windows.Concrete;
 
 namespace MoneyManager.Windows.Converter
 {

@@ -38,7 +38,7 @@ namespace MoneyManager.Windows.Shortcut
         private static  void UpdateTile()
         {
             var cashFlow =
-                new CashFlowProvider(Mvx.Resolve<IPaymentRepository>()).GetValues(
+                new CashFlowDataProvider(Mvx.Resolve<IPaymentRepository>()).GetValues(
                     DateTime.Today.GetFirstDayOfMonth(),
                     DateTime.Today.GetLastDayOfMonth());
 

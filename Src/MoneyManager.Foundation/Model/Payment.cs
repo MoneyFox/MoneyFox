@@ -1,4 +1,5 @@
 ﻿using System;
+using PropertyChanged;
 using SQLite.Net.Attributes;
 
 namespace MoneyManager.Foundation.Model
@@ -8,6 +9,7 @@ namespace MoneyManager.Foundation.Model
     ///     Databasetable: Payments
     /// </summary>
     [Table("Payments")]
+    [ImplementPropertyChanged]
     public class Payment
     {
         /// <summary>

@@ -8,7 +8,7 @@
              Height="68"
              IsTabStop="False">
 
-    <StackPanel>
+    <StackPanel Background="{x:Bind Background}" HorizontalAlignment="Stretch">
         <FontIcon HorizontalAlignment="Center"
                   Margin="0,12,0,0"
                   Glyph="{Binding Glyph}"

@@ -9,8 +9,7 @@
                x:Uid="SelectDateRangeDialog"
                PrimaryButtonText="done"
                SecondaryButtonText="cancel"
-               PrimaryButtonCommand="{Binding LoadStatisticCommand }"
-               DataContext="{Binding SelectDateRangeDialog, Source={StaticResource CoreModule}}">
+               PrimaryButtonCommand="{Binding DoneCommand}">
 
     <ContentDialog.Resources>
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />

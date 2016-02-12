@@ -27,7 +27,15 @@ namespace MoneyManager.DataAccess
         {
             using (var db = connectionCreator.GetConnection())
             {
-                itemToSave.Id = db.InsertOrReplace(itemToSave);
+                //Don't use insert or replace here, because it will always replace the first element
+                if (itemToSave.Id == 0)
+                {
+                    db.Insert(itemToSave);
+                    itemToSave.Id = db.Table<Category>().OrderByDescending(x => x.Id).First().Id;
+                } else
+                {
+                    db.Update(itemToSave);
+                }
             }
         }
 
@@ -37,9 +45,9 @@ namespace MoneyManager.DataAccess
         /// <param name="payment">Category to delete.</param>
         protected override void DeleteFromDatabase(Category payment)
         {
-            using (var dbConn = connectionCreator.GetConnection())
+            using (var db = connectionCreator.GetConnection())
             {
-                dbConn.Delete(payment);
+                db.Delete(payment);
             }
         }
 
@@ -50,11 +58,16 @@ namespace MoneyManager.DataAccess
         /// <returns>Loaded categories.</returns>
         protected override List<Category> GetListFromDb(Expression<Func<Category, bool>> filter)
         {
-            using (var dbConn = connectionCreator.GetConnection())
+            using (var db = connectionCreator.GetConnection())
             {
-                return dbConn.Table<Category>()
-                    .OrderBy(x => x.Name)
-                    .ToList();
+                var listQuery = db.Table<Category>();
+
+                if (filter != null)
+                {
+                    listQuery = listQuery.Where(filter);
+                }
+
+                return listQuery.OrderBy(x => x.Name).ToList();
             }
         }
     }

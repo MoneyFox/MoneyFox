@@ -10,16 +10,26 @@ namespace MoneyManager.Core.Converter
 {
     public class PaymentAmountConverter : IMvxValueConverter
     {
+        private const string IGNORE_TRANSFER = "IgnoreTransfer";
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var payment = (Payment) value;
+            var param = parameter as string;
             string sign;
 
             if (payment.Type == (int) PaymentType.Transfer)
             {
-                sign = payment.ChargedAccountId == Mvx.Resolve<IRepository<Account>>().Selected.Id
+                if (param == IGNORE_TRANSFER)
+                {
+                    sign = "-";
+                }
+                else
+                {
+                    sign = payment.ChargedAccountId == Mvx.Resolve<IAccountRepository>().Selected.Id
                     ? "-"
                     : "+";
+                }
             }
             else
             {

@@ -19,7 +19,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         public void GetValues_NullDependency_NullReferenceException()
         {
             Assert.Throws<NullReferenceException>(
-                () => new CategorySpreadingProvider(null, null).GetValues(DateTime.Today, DateTime.Today));
+                () => new CategorySpreadingDataProvider(null, null).GetValues(DateTime.Today, DateTime.Today));
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySpreadingProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -141,63 +141,13 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySpreadingProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
             result.Count.ShouldBe(2);
             result[0].Value.ShouldBe(30);
             result[1].Value.ShouldBe(40);
-        }
-
-        [TestMethod]
-        [Ignore]
-        public void GetValues_IncomeHigherThanSpending_SpendingSetToZero()
-        {
-            //Setup
-            var paymentRepoSetup = new Mock<IPaymentRepository>();
-            paymentRepoSetup.SetupAllProperties();
-
-            var categoryRepoSetup = new Mock<IRepository<Category>>();
-            categoryRepoSetup.SetupAllProperties();
-
-            var categoryRepo = categoryRepoSetup.Object;
-            categoryRepo.Data = new ObservableCollection<Category>(new List<Category>
-            {
-                new Category {Id = 1, Name = "Einkaufen"}
-            });
-
-            var paymentRepository = paymentRepoSetup.Object;
-            paymentRepository.Data = new ObservableCollection<Payment>(new List<Payment>
-            {
-                new Payment
-                {
-                    Id = 1,
-                    Type = (int) PaymentType.Income,
-                    Date = DateTime.Today,
-                    Amount = 100,
-                    Category = categoryRepo.Data[0],
-                    CategoryId = 1
-                },
-                new Payment
-                {
-                    Id = 2,
-                    Type = (int) PaymentType.Expense,
-                    Date = DateTime.Today,
-                    Amount = 90,
-                    Category = categoryRepo.Data[0],
-                    CategoryId = 1
-                }
-            });
-
-            //Excution
-            var result =
-                new CategorySpreadingProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
-                    DateTime.Today.AddDays(3)).ToList();
-
-            //Assertion
-            result.Count.ShouldBe(1);
-            result[0].Value.ShouldBe(0);
         }
 
         [TestMethod]
@@ -252,7 +202,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySpreadingProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion
@@ -362,7 +312,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
 
             //Excution
             var result =
-                new CategorySpreadingProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
+                new CategorySpreadingDataProvider(paymentRepository, categoryRepo).GetValues(DateTime.Today.AddDays(-3),
                     DateTime.Today.AddDays(3)).ToList();
 
             //Assertion

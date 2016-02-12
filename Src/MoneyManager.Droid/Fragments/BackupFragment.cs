@@ -1,25 +1,13 @@
-using Android.OS;
-using Android.Views;
+using Android.Runtime;
 using MoneyManager.Core.ViewModels;
-using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Droid.FullFragging.Fragments;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 
 namespace MoneyManager.Droid.Fragments
 {
-    public class BackupFragment : MvxFragment
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
+    [Register("moneymanager.droid.fragments.BackupFragment")]
+    public class BackupFragment : BaseFragment<BackupViewModel>
     {
-        public new BackupViewModel ViewModel
-        {
-            get { return (BackupViewModel) base.ViewModel; }
-            set { base.ViewModel = value; }
-        }
-
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            base.OnCreateView(inflater, container, savedInstanceState);
-            var view = this.BindingInflate(Resource.Layout.BackupLayout, null);
-
-            return view;
-        }
+        protected override int FragmentId => Resource.Layout.fragment_backup;
     }
 }

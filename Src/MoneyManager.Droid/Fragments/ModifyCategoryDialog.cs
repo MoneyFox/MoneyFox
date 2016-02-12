@@ -11,20 +11,14 @@ using MvvmCross.Droid.FullFragging.Fragments;
 
 namespace MoneyManager.Droid.Fragments
 {
-    public class ModifyCategoryDialog : MvxDialogFragment
+    public class ModifyCategoryDialog : MvxDialogFragment<CategoryDialogViewModel>
     {
-        public new CategoryDialogViewModel ViewModel
-        {
-            get { return (CategoryDialogViewModel) base.ViewModel; }
-            set { base.ViewModel = value; }
-        }
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             ViewModel.LoadedCommand.Execute();
 
             base.OnCreateView(inflater, container, savedInstanceState);
-            var view = this.BindingInflate(Resource.Layout.ModifyCategoryDialogLayout, container, true);
+            var view = this.BindingInflate(Resource.Layout.dialog_modify_category, container, true);
 
             // Handle dismiss button click
             var button = view.FindViewById<Button>(Resource.Id.button_save_category);

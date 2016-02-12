@@ -21,7 +21,7 @@ namespace MoneyManager.Windows
             builder.RegisterType<OneDriveAuthenticator>().As<IOneDriveAuthenticator>().SingleInstance();
             builder.RegisterType<ProtectedData>().As<IProtectedData>().SingleInstance();
 
-            builder.RegisterType<SpendingTile>().As<ISpendingShortcut>().SingleInstance();
+            builder.RegisterType<ExpenseTile>().As<ISpendingShortcut>().SingleInstance();
             builder.RegisterType<IncomeTile>().As<IIncomeShortcut>().SingleInstance();
             builder.RegisterType<TransferTile>().As<ITransferShortcut>().SingleInstance();
         }

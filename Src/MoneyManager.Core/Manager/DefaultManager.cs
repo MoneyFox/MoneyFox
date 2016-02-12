@@ -8,10 +8,10 @@ namespace MoneyManager.Core.Manager
 {
     public class DefaultManager : IDefaultManager
     {
-        private readonly IRepository<Account> accountRepository;
+        private readonly IAccountRepository accountRepository;
         private readonly SettingDataAccess settings;
 
-        public DefaultManager(IRepository<Account> accountRepository, SettingDataAccess settings)
+        public DefaultManager(IAccountRepository accountRepository, SettingDataAccess settings)
         {
             this.accountRepository = accountRepository;
             this.settings = settings;

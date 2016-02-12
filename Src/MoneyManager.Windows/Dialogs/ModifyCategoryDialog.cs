@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Input;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Dialogs
 {
@@ -10,6 +11,8 @@ namespace MoneyManager.Windows.Dialogs
         public ModifyCategoryDialog(Category category = null)
         {
             InitializeComponent();
+
+            DataContext = Mvx.Resolve<CategoryDialogViewModel>();
 
             if (category != null)
             {

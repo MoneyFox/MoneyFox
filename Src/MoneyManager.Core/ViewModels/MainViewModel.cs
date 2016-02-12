@@ -1,31 +1,19 @@
-﻿using MoneyManager.Foundation.Interfaces.ViewModels;
-using MoneyManager.Foundation.Model;
+﻿using MoneyManager.Foundation.Model;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private readonly IBalanceViewModel balanceViewModel;
         private readonly ModifyAccountViewModel modifyAccountViewModel;
-        private readonly ModifyPaymentViewModel modifyPaymentViewModel;
 
         /// <summary>
         ///     Creates an MainViewModel object.
         /// </summary>
-        public MainViewModel(ModifyAccountViewModel modifyAccountViewModel,
-            ModifyPaymentViewModel modifyPaymentViewModel,
-            IBalanceViewModel balanceViewModel)
+        public MainViewModel(ModifyAccountViewModel modifyAccountViewModel)
         {
             this.modifyAccountViewModel = modifyAccountViewModel;
-            this.modifyPaymentViewModel = modifyPaymentViewModel;
-            this.balanceViewModel = balanceViewModel;
         }
-
-        /// <summary>
-        ///     Prepares the MainView
-        /// </summary>
-        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
         ///     Prepare everything and navigate to the add payment view
@@ -42,10 +30,10 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
 
-        private void Loaded()
-        {
-            balanceViewModel.UpdateBalance();
-        }
+        /// <summary>
+        ///     Navigates to the recurring payment overview.
+        /// </summary>
+        public MvxCommand GoToRecurringPaymentListCommand => new MvxCommand(GoToRecurringPaymentList);
 
         private void GoToAddPayment(string paymentType)
         {
@@ -63,6 +51,19 @@ namespace MoneyManager.Core.ViewModels
         private void GoToAbout()
         {
             ShowViewModel<AboutViewModel>();
+        }
+
+        private void GoToRecurringPaymentList()
+        {
+            ShowViewModel<RecurringPaymentListViewModel>();
+        }
+
+        //Only used in Android so far.
+        public void ShowMenuAndFirstDetail()
+        {
+            ShowViewModel<MenuViewModel>();
+            ShowViewModel<AccountListViewModel>();
+            ShowViewModel<BalanceViewModel>();
         }
     }
 }
