@@ -126,8 +126,7 @@ namespace MoneyManager.Droid.Activities.Caching
         internal class SerializableCustomFragmentInfo : SerializableMvxCachedFragmentInfo
         {
             public SerializableCustomFragmentInfo()
-            {
-            }
+            {}
 
             public SerializableCustomFragmentInfo(SerializableMvxCachedFragmentInfo baseFragmentInfo)
             {
