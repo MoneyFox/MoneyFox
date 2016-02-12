@@ -15,9 +15,6 @@
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
-        <core:EventTriggerBehavior EventName="Unloaded">
-            <core:InvokeCommandAction Command="{Binding UnloadCommand, Mode=OneWay}" />
-        </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -44,6 +41,10 @@
                               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
+                              VerticalContentAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch"
+                              MinHeight="60"
+                              MinWidth="40"
                               IsEnabled="False"
                               Margin="15" />
         </StackPanel>

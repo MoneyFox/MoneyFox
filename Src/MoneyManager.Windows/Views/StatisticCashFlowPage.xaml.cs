@@ -29,7 +29,6 @@ namespace MoneyManager.Windows.Views
         public void Dispose()
         {
             CashFlowPlotView.Model = null;
-            //CashFlowPlotView = null;
         }
     }
 }

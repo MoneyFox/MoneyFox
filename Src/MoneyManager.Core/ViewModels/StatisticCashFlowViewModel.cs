@@ -20,8 +20,6 @@ namespace MoneyManager.Core.ViewModels
             CashFlowModel = GetCashFlowModel();
         }
 
-        public MvxCommand UnloadCommand => new MvxCommand(Unload);
-
         /// <summary>
         ///     Contains the PlotModel for the CashFlow graph
         /// </summary>
@@ -34,11 +32,6 @@ namespace MoneyManager.Core.ViewModels
         {
             CashFlowModel = null;
             CashFlowModel = GetCashFlowModel();
-        }
-
-        private void Unload()
-        {
-            //CashFlowModel = null;
         }
 
         /// <summary>
