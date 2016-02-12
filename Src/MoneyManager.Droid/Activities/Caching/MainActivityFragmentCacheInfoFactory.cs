@@ -52,6 +52,30 @@ namespace MoneyManager.Droid.Activities.Caching
                 new MainActivity.CustomFragmentInfo(typeof (PaymentListViewModel).Name,
                     typeof (PaymentListFragment),
                     typeof (PaymentListViewModel), isRoot: false)
+            },
+            {
+                typeof (StatisticSelectorViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof (StatisticSelectorViewModel).Name,
+                    typeof (StatisticSelectorFragment),
+                    typeof (StatisticSelectorViewModel), isRoot: true)
+            },
+            {
+                typeof (StatisticCashFlowViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof (StatisticCashFlowViewModel).Name,
+                    typeof (StatisticCashFlowFragment),
+                    typeof (StatisticCashFlowViewModel), isRoot: false)
+            },
+            {
+                typeof (StatisticCategorySpreadingViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof (StatisticCategorySpreadingViewModel).Name,
+                    typeof (StatisticCategorySpreadingFragment),
+                    typeof (StatisticCategorySpreadingViewModel), isRoot: false)
+            },
+            {
+                typeof (StatisticCategorySummaryViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof (StatisticCategorySummaryViewModel).Name,
+                    typeof (StatisticCategorySummaryFragment),
+                    typeof (StatisticCategorySummaryViewModel), isRoot: false)
             }
         };
 

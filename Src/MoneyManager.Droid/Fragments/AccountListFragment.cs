@@ -22,6 +22,8 @@ namespace MoneyManager.Droid.Fragments
 			var list = view.FindViewById<ListView>(Resource.Id.account_list);
 			RegisterForContextMenu(list);
 
+            HasOptionsMenu = true;
+
 			return view;
 		}
 
@@ -33,6 +35,12 @@ namespace MoneyManager.Droid.Fragments
                 menu.Add(Strings.EditLabel);
                 menu.Add(Strings.DeleteLabel);
             }
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            inflater.Inflate(Resource.Menu.menu_main, menu);            
+            base.OnCreateOptionsMenu(menu, inflater);
         }
 
         public override bool OnContextItemSelected(IMenuItem item)

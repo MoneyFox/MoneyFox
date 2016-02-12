@@ -35,12 +35,6 @@ namespace MoneyManager.Droid.Activities
             }
         }
 
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.menu_main, menu);
-            return true;
-        }
-
         public override IFragmentCacheConfiguration BuildFragmentCacheConfiguration()
         {
             // custom FragmentCacheConfiguration is used because custom IMvxFragmentInfo is used -> CustomFragmentInfo

@@ -4,7 +4,7 @@ using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 
 namespace MoneyManager.Droid.Fragments
 {
-    [MvxFragment(typeof(StatisticViewModel), Resource.Id.content_frame)]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.StatisticCategorySummaryFragment")]
     public class StatisticCategorySummaryFragment : BaseFragment<StatisticCategorySummaryViewModel>
     {

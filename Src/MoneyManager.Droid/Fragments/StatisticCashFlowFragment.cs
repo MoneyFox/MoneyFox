@@ -7,7 +7,7 @@ using OxyPlot.Xamarin.Android;
 
 namespace MoneyManager.Droid.Fragments
 {
-    [MvxFragment(typeof(StatisticViewModel), Resource.Id.content_frame)]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.StatisticCashFlowFragment")]
     public class StatisticCashFlowFragment :  BaseFragment<StatisticCashFlowViewModel>
     {
@@ -20,7 +20,7 @@ namespace MoneyManager.Droid.Fragments
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             plotModel = view.FindViewById<PlotView>(Resource.Id.plotViewModel);
-            plotModel.Model = ViewModel.CashFlowModel;
+            plotModel.Model = ViewModel.CashFlowModel;          
 
             return view;
         }
