@@ -19,9 +19,7 @@ namespace MoneyManager.Core.ViewModels
             IRepository<Category> categoryRepository)
         {
             speadingDataProvider = new CategorySpreadingDataProvider(paymentRepository, categoryRepository);
-        }
-
-        public MvxCommand UnloadCommand => new MvxCommand(Unload);
+        }            
 
         /// <summary>
         ///     Contains the PlotModel for the CategorySpreading graph
@@ -32,12 +30,7 @@ namespace MoneyManager.Core.ViewModels
         {
             SpreadingModel = null;
             SpreadingModel = GetSpreadingModel();
-        }
-
-        private void Unload()
-        {
-            SpreadingModel = null;
-        }
+        }            
 
         /// <summary>
         ///     Set a custom CategprySpreadingModel with the set Start and Enddate
