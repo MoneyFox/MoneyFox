@@ -55,21 +55,31 @@
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
-        <ScrollViewer>
-            <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                             ItemsSource="{Binding CategorySummary}"
-                                             ItemTemplate="{StaticResource CategoryTemplate}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
-                        <Setter Property="VerticalContentAlignment"
-                                Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </controls:AlternatingRowListView>
-        </ScrollViewer>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="{Binding Title}"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+
+            <ScrollViewer Grid.Row="1">
+                <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                                 EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                                 ItemsSource="{Binding CategorySummary}"
+                                                 ItemTemplate="{StaticResource CategoryTemplate}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </controls:AlternatingRowListView>
+            </ScrollViewer>
+        </Grid>
         <CommandBar Grid.Row="2"
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
