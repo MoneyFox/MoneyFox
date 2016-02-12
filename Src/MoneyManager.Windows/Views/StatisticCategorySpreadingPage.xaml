@@ -39,7 +39,8 @@
         <StackPanel Grid.Row="1">
             <TextBlock Text="{Binding Title}"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-            <windows:PlotView Model="{Binding SpreadingModel}"
+            <windows:PlotView x:Name="SpreadingPlotView"
+                              Model="{Binding SpreadingModel}"
                               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"

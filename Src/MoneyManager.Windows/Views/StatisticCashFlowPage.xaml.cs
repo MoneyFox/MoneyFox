@@ -1,11 +1,10 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Navigation;
 using MoneyManager.Windows.Dialogs;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class StatisticCashFlowPage
+    public sealed partial class StatisticCashFlowPage : IDisposable
     {
         public StatisticCashFlowPage()
         {
@@ -17,11 +16,10 @@ namespace MoneyManager.Windows.Views
             await new SelectDateRangeDialog().ShowAsync();
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        public void Dispose()
         {
-            CashFlowUserControl.Dispose();
-
-            base.OnNavigatedFrom(e);
+            CashFlowPlotView.Model = null;
+            CashFlowPlotView = null;
         }
     }
 }

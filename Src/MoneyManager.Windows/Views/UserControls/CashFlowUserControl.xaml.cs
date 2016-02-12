@@ -9,7 +9,6 @@ namespace MoneyManager.Windows.Views.UserControls
         public CashFlowUserControl()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<StatisticViewModel>();
         }
 
         public void Dispose()

@@ -16,7 +16,7 @@
             <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
         <core:EventTriggerBehavior EventName="Unloaded">
-            <core:InvokeCommandAction Command="{Binding UnloadCommand, Mode=OneWay}" />
+            <core:InvokeCommandAction Command="{Binding UnLoadCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
@@ -34,10 +34,19 @@
                            x:Uid="CashFlowTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
-
-        <userControls:CashFlowUserControl Grid.Row="1"
-                                          x:Name="CashFlowUserControl"  />
         
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="{Binding Title}"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+            <windows:PlotView x:Name="CashFlowPlotView"
+                              IsMouseWheelEnabled="False"
+                              Model="{Binding CashFlowModel}"
+                              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              IsEnabled="False"
+                              Margin="0,30,30,0" />
+        </StackPanel>
         <CommandBar Grid.Row="2"
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
