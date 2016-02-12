@@ -4,8 +4,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="?android:windowBackground">
+    <include
+        layout="@layout/toolbar_actionbar" />
     <oxyplot.xamarin.android.PlotView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:minHeight="60dp"
+        android:minWidth="40dp"
         android:id="@+id/plotViewModel" />
 </LinearLayout>
