@@ -15,9 +15,6 @@
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
-        <core:EventTriggerBehavior EventName="Unloaded">
-            <core:InvokeCommandAction Command="{Binding UnLoadCommand, Mode=OneWay}" />
-        </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -40,11 +37,14 @@
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
             <windows:PlotView x:Name="CashFlowPlotView"
                               IsMouseWheelEnabled="False"
-                              Model="{Binding CashFlowModel}"
                               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              IsEnabled="False"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
-                              IsEnabled="False"
+                              VerticalContentAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch"
+                              MinHeight="60"
+                              MinWidth="40"
                               Margin="0,30,30,0" />
         </StackPanel>
         <CommandBar Grid.Row="2"
