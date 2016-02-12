@@ -1,6 +1,8 @@
 using Android.Runtime;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
+using Android.Views;
+using Android.OS;
 
 namespace MoneyManager.Droid.Fragments
 {
@@ -9,5 +11,14 @@ namespace MoneyManager.Droid.Fragments
     public class AboutFragment : BaseFragment<AboutViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_about;
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            var view = base.OnViewCreated(inflater, container, savedInstanceState);
+
+            RetainInstance = true;
+
+            return view;
+        }
     }
 }
