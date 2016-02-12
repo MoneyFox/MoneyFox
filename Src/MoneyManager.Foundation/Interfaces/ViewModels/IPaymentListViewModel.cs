@@ -9,6 +9,8 @@ namespace MoneyManager.Foundation.Interfaces.ViewModels
     {
         IBalanceViewModel BalanceViewModel { get; }
 
+        MvxCommand LoadCommand { get; }
+
         MvxCommand<string> GoToAddPaymentCommand { get; }
 
         MvxCommand DeleteAccountCommand { get; }
@@ -22,7 +24,5 @@ namespace MoneyManager.Foundation.Interfaces.ViewModels
         ObservableCollection<DateListGroup<Payment>> Source { get; }
 
         string Title { get; }
-
-        Payment SelectedPayment { get; }
     }
 }

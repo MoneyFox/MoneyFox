@@ -1,12 +1,8 @@
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus4" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MoneyManager.Droid\Resources\menu\menu_main.axml">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.169.254.56.136:5555" />
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="MoneyManager.Droid\Resources\menu\menu_add.axml" Line="7" Column="8" />
-      <File FileName="MoneyManager.Droid\Resources\menu\menu_main.axml" Line="22" Column="8" />
-      <File FileName="MoneyManager.Droid\Resources\menu\menu_modification.axml" Line="2" Column="4" />
-      <File FileName="MoneyManager.Droid\Resources\menu\menu_select.axml" Line="2" Column="4" />
-      <File FileName="MoneyManager.Droid\Resources\menu\navigation_drawer.axml" Line="12" Column="6" />
+      <File FileName="MoneyManager.Droid\Resources\values\styles.xml" Line="5" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

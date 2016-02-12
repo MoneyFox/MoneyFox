@@ -25,9 +25,7 @@ namespace MoneyManager.Windows.Views.UserControls
             }
             var viewmodel = DataContext as PaymentListViewModel;
 
-            if (viewmodel == null) return;
-            viewmodel.SelectedPayment = payment;
-            viewmodel.EditCommand.Execute();
+            viewmodel?.EditCommand.Execute(payment);
         }
 
         private void DeletePayment(object sender, RoutedEventArgs e)

@@ -1,8 +1,42 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    <include
+        layout="@layout/toolbar_actionbar" />
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp">
+	    <Switch
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        local:MvxBind="Checked SelectedPayment.IsRecurring"/>
+	        <LinearLayout
+	            android:orientation="vertical"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	            local:MvxBind="Visible SelectedPayment.IsRecurring">
+		        <EditText
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="5dp"
+		            android:hint="@string/hint_password"
+		            local:MvxBind="Text Password" />
+			    <EditText
+				    android:layout_width="match_parent"
+				    android:layout_height="wrap_content"
+				    android:layout_marginTop="5dp"
+				    android:hint="@string/hint_password_confirmation"
+				    local:MvxBind="Text PasswordConfirmation" />
+				<Button
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:hint="@string/button_done"
+		            local:MvxBind="Click SavePasswordCommand" />
+			</LinearLayout>
+		</LinearLayout>
 </LinearLayout>
-

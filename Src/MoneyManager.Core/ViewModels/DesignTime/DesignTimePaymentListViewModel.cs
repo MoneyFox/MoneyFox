@@ -9,6 +9,7 @@ namespace MoneyManager.Core.ViewModels.DesignTime
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {
         public IBalanceViewModel BalanceViewModel { get; }
+        public MvxCommand LoadCommand { get; }
         public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(s => { });
         public MvxCommand DeleteAccountCommand => new MvxCommand(() => { });
         public MvxCommand<Payment> EditCommand => new MvxCommand<Payment>(s => { });
@@ -24,6 +25,5 @@ namespace MoneyManager.Core.ViewModels.DesignTime
         };
 
         public string Title => "Sparkonto";
-        public Payment SelectedPayment => new Payment();
     }
 }
