@@ -38,7 +38,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void Unload()
         {
-            CashFlowModel = null;
+            //CashFlowModel = null;
         }
 
         /// <summary>
