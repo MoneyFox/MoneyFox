@@ -72,6 +72,18 @@ namespace MoneyManager.Droid.Activities
             DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeUnlocked);
         }
 
+        public override void OnBackPressed()
+        {
+            if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
+            {
+                DrawerLayout.CloseDrawers();
+            }
+            else
+            {
+                base.OnBackPressed();
+            }
+        }
+
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)

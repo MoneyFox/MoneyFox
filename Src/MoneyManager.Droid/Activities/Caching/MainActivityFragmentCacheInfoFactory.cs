@@ -86,7 +86,7 @@ namespace MoneyManager.Droid.Activities.Caching
 
         public override IMvxCachedFragmentInfo CreateFragmentInfo(string tag, Type fragmentType, Type viewModelType,
             bool cacheFragment = true,
-            bool addToBackstack = false)
+            bool addToBackstack = true)
         {
             var viewModelTypeString = viewModelType.ToString();
             if (!MyFragmentsInfo.ContainsKey(viewModelTypeString))
