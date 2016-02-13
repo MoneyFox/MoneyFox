@@ -234,6 +234,7 @@ Global
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{6936F4D3-8889-48C7-A676-80D59B2740CE}.Debug|x86.Build.0 = Debug|Any CPU
@@ -343,6 +344,7 @@ Global
 		{90644219-756F-45CC-AB90-253463C5BC5E}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{90644219-756F-45CC-AB90-253463C5BC5E}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{90644219-756F-45CC-AB90-253463C5BC5E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{90644219-756F-45CC-AB90-253463C5BC5E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{90644219-756F-45CC-AB90-253463C5BC5E}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{90644219-756F-45CC-AB90-253463C5BC5E}.Debug|x64.Build.0 = Debug|Any CPU
 		{90644219-756F-45CC-AB90-253463C5BC5E}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -398,6 +400,7 @@ Global
 		{038DFD1B-3B87-4098-8B16-8BC011B9EEFC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
 		{038DFD1B-3B87-4098-8B16-8BC011B9EEFC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{038DFD1B-3B87-4098-8B16-8BC011B9EEFC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{038DFD1B-3B87-4098-8B16-8BC011B9EEFC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{038DFD1B-3B87-4098-8B16-8BC011B9EEFC}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{038DFD1B-3B87-4098-8B16-8BC011B9EEFC}.Debug|x64.Build.0 = Debug|Any CPU
 		{038DFD1B-3B87-4098-8B16-8BC011B9EEFC}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -690,8 +693,6 @@ Global
 		{09B31D96-0408-4197-A7AC-3760D757BE9D}.Debug|iPhone.ActiveCfg = Debug|x86
 		{09B31D96-0408-4197-A7AC-3760D757BE9D}.Debug|iPhoneSimulator.ActiveCfg = Debug|x86
 		{09B31D96-0408-4197-A7AC-3760D757BE9D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{09B31D96-0408-4197-A7AC-3760D757BE9D}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{09B31D96-0408-4197-A7AC-3760D757BE9D}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
 		{09B31D96-0408-4197-A7AC-3760D757BE9D}.Debug|x64.ActiveCfg = Debug|x64
 		{09B31D96-0408-4197-A7AC-3760D757BE9D}.Debug|x64.Build.0 = Debug|x64
 		{09B31D96-0408-4197-A7AC-3760D757BE9D}.Debug|x64.Deploy.0 = Debug|x64
