@@ -217,3 +217,7 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+Src/MoneyManager.Tasks.Windows/project.lock.json
+Src/MoneyManager.Windows.Tests/project.lock.json
+Src/MoneyManager.Windows/project.lock.json
+Src/MoneyManager.Windows.DataAccess.Tests/project.lock.json
