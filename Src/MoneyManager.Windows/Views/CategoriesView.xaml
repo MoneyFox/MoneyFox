@@ -26,12 +26,12 @@
         <userControls:CategoryListUserControl Grid.Row="1" x:Name="CategoryListUserControl"/>
 
         <CommandBar Grid.Row="2">
-            <CommandBar.SecondaryCommands>
+            <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Add"
                               Label="New Category"
                               x:Uid="AddCategoryLabel"
                               Click="AddCategory" />
-            </CommandBar.SecondaryCommands>
+            </CommandBar.PrimaryCommands>
         </CommandBar>
     </Grid>
 </Page>
