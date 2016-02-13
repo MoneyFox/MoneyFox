@@ -44,15 +44,15 @@ namespace MoneyManager.Core.ViewModels
             switch (item.Type)
             {
                 case StatisticType.Cashflow:
-                    ShowViewModel<CashFlowViewModel>();
+                    ShowViewModel<StatisticCashFlowViewModel>();
                     break;
 
                 case StatisticType.CategorySpreading:
-                    ShowViewModel<CategorySpreadingViewModel>();
+                    ShowViewModel<StatisticCategorySpreadingViewModel>();
                     break;
 
                 case StatisticType.CategorySummary:
-                    ShowViewModel<CategorySummaryViewModel>();
+                    ShowViewModel<StatisticCategorySummaryViewModel>();
                     break;
             }
         }
