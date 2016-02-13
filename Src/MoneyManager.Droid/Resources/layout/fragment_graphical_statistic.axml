@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="?android:windowBackground">
     <include
         layout="@layout/toolbar_actionbar" />
+    <TextView
+        android:text="@string/restore_information"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        local:MvxBind="Text Title" />
     <oxyplot.xamarin.android.PlotView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
