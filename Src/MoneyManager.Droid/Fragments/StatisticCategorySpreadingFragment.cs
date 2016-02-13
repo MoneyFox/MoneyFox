@@ -2,6 +2,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using MoneyManager.Core.ViewModels;
+using MvvmCross.Droid.FullFragging.Fragments;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 using OxyPlot.Xamarin.Android;
 
@@ -9,10 +10,8 @@ namespace MoneyManager.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.StatisticCategorySpreadingFragment")]
-    public class StatisticCategorySpreadingFragment : BaseFragment<StatisticCategorySpreadingViewModel>
+    public class StatisticCategorySpreadingFragment : MvxFragment<StatisticCategorySpreadingViewModel>
     {
-        protected override int FragmentId => Resource.Layout.fragment_graphical_statistic;
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
@@ -22,7 +21,6 @@ namespace MoneyManager.Droid.Fragments
 
             return view;
         }
-
         public override void OnStart()
         {
             OnResume();

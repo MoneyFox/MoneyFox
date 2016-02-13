@@ -1,13 +1,28 @@
+using Android.OS;
 using Android.Runtime;
+using Android.Support.V7.Widget;
+using Android.Views;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Droid.Activities;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Droid.FullFragging.Fragments;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 
 namespace MoneyManager.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.StatisticCategorySummaryFragment")]
-    public class StatisticCategorySummaryFragment : BaseFragment<StatisticCategorySummaryViewModel>
+    public class StatisticCategorySummaryFragment : MvxFragment<StatisticCategorySummaryViewModel>
     {
-        protected override int FragmentId => Resource.Layout.fragment_category_summary;
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            var ignore = base.OnCreateView(inflater, container, savedInstanceState);
+            var view = this.BindingInflate(Resource.Layout.fragment_category_summary, null);
+
+            ((MainActivity)Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
+            ((MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            return view;
+        }
     }
 }
