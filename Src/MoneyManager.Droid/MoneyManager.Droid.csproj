@@ -326,6 +326,8 @@
     <AndroidResource Include="Resources\layout\fragment_settings.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_shortcuts.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_security.axml" />
+    <AndroidResource Include="Resources\drawable\ic_done_black.png" />
+    <AndroidResource Include="Resources\drawable\ic_recurring.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml" />
@@ -367,9 +369,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_recurring.png" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.NETNative.Analyzer.1.0.0\analyzers\dotnet\cs\NativeGatekeeper.dll" />

@@ -2076,28 +2076,31 @@ namespace MoneyManager.Droid
 			public const int ic_done = 2130837577;
 			
 			// aapt resource value: 0x7f02004a
-			public const int ic_forward = 2130837578;
+			public const int ic_done_black = 2130837578;
 			
 			// aapt resource value: 0x7f02004b
-			public const int ic_recurring = 2130837579;
+			public const int ic_forward = 2130837579;
 			
 			// aapt resource value: 0x7f02004c
-			public const int ic_remove = 2130837580;
+			public const int ic_recurring = 2130837580;
 			
 			// aapt resource value: 0x7f02004d
-			public const int ic_save = 2130837581;
+			public const int ic_remove = 2130837581;
 			
 			// aapt resource value: 0x7f02004e
-			public const int Icon = 2130837582;
+			public const int ic_save = 2130837582;
 			
 			// aapt resource value: 0x7f02004f
-			public const int icon_wide = 2130837583;
+			public const int Icon = 2130837583;
 			
 			// aapt resource value: 0x7f020050
-			public const int logo = 2130837584;
+			public const int icon_wide = 2130837584;
 			
 			// aapt resource value: 0x7f020051
-			public const int notification_template_icon_bg = 2130837585;
+			public const int logo = 2130837585;
+			
+			// aapt resource value: 0x7f020052
+			public const int notification_template_icon_bg = 2130837586;
 			
 			static Drawable()
 			{
