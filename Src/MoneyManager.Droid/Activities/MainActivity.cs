@@ -35,12 +35,6 @@ namespace MoneyManager.Droid.Activities
             }
         }
 
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.menu_main, menu);
-            return true;
-        }
-
         public override IFragmentCacheConfiguration BuildFragmentCacheConfiguration()
         {
             // custom FragmentCacheConfiguration is used because custom IMvxFragmentInfo is used -> CustomFragmentInfo
@@ -76,6 +70,18 @@ namespace MoneyManager.Droid.Activities
         {
             //Unlock the menu sliding gesture
             DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeUnlocked);
+        }
+
+        public override void OnBackPressed()
+        {
+            if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
+            {
+                DrawerLayout.CloseDrawers();
+            }
+            else
+            {
+                base.OnBackPressed();
+            }
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

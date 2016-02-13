@@ -9,11 +9,11 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class CashFlowViewModel : StatisticViewModel
+    public class StatisticCashFlowViewModel : StatisticViewModel
     {
         private readonly CashFlowDataProvider cashFlowDataProvider;
 
-        public CashFlowViewModel(IPaymentRepository paymentRepository)
+        public StatisticCashFlowViewModel(IPaymentRepository paymentRepository)
         {
             cashFlowDataProvider = new CashFlowDataProvider(paymentRepository);
 
@@ -21,20 +21,18 @@ namespace MoneyManager.Core.ViewModels
         }
 
         /// <summary>
-        ///     Loads the data with the current start and end date.
+        ///     Contains the PlotModel for the CashFlow graph
         /// </summary>
-        public MvxCommand LoadCommand => new MvxCommand(Load);
+        public PlotModel CashFlowModel { get; set; }
 
-        private void Load()
+        /// <summary>
+        ///     Loads the cashflow with the current start and end date.
+        /// </summary>
+        protected override void Load()
         {
             CashFlowModel = null;
             CashFlowModel = GetCashFlowModel();
         }
-
-        /// <summary>
-        ///     Contains the PlotModel for the CashFlow graph
-        /// </summary>
-        public PlotModel CashFlowModel { get; set; }
 
         /// <summary>
         ///     Set a custom CashFlowModel with the set Start and Enddate

@@ -45,12 +45,12 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Loads the password from the secure storage
         /// </summary>
-        public MvxCommand LoadedCommand => new MvxCommand(LoadData);
+        public MvxCommand LoadCommand => new MvxCommand(LoadData);
 
         /// <summary>
         ///     Remove the password from the secure storage
         /// </summary>
-        public MvxCommand UnloadedCommand => new MvxCommand(RemovePassword);
+        public MvxCommand UnloadCommand => new MvxCommand(RemovePassword);
 
         private void SavePassword()
         {

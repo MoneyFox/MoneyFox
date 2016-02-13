@@ -7,9 +7,9 @@ using OxyPlot.Xamarin.Android;
 
 namespace MoneyManager.Droid.Fragments
 {
-    [MvxFragment(typeof(StatisticViewModel), Resource.Id.content_frame)]
-    [Register("moneymanager.droid.fragments.CategorySpreadingFragment")]
-    public class CategorySpreadingFragment : BaseFragment<CategorySpreadingViewModel>
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
+    [Register("moneymanager.droid.fragments.StatisticCategorySpreadingFragment")]
+    public class StatisticCategorySpreadingFragment : BaseFragment<StatisticCategorySpreadingViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_graphical_statistic;
 
