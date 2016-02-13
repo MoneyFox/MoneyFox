@@ -7,12 +7,19 @@
     android:background="?android:windowBackground">
     <include
         layout="@layout/toolbar_actionbar" />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        local:MvxBind="Visibility Visibility(IsLoading)" />
     <LinearLayout
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        local:MvxBind="Visibility InvertedVisibility(IsLoading)">
         <TextView
             android:text="@string/backup_information"
             android:textAppearance="?android:attr/textAppearanceSmall"
