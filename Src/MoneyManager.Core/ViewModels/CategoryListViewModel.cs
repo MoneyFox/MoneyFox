@@ -5,14 +5,14 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class SettingsCategoryListViewModel : AbstractCategoryListViewModel
+    public class CategoryListViewModel : AbstractCategoryListViewModel
     {
         /// <summary>
         ///     Creates an CategoryListViewModel for usage when the list including the option is needed.
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        public SettingsCategoryListViewModel(IRepository<Category> categoryRepository, IDialogService dialogService)
+        public CategoryListViewModel(IRepository<Category> categoryRepository, IDialogService dialogService)
             : base(categoryRepository, dialogService)
         {
         }

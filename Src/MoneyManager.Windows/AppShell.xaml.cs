@@ -45,6 +45,12 @@ namespace MoneyManager.Windows
             {
                 new NavMenuItem
                 {
+                    Symbol = Symbol.Tag,
+                    Label = Strings.CategoriesLabel,
+                    DestPage = typeof(CategoriesView)
+                },
+                new NavMenuItem
+                {
                     Symbol = Symbol.SyncFolder,
                     Label = Strings.BackupLabel,
                     DestPage = typeof (BackupView)

@@ -5,6 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:model="using:MoneyManager.Foundation.Model"
              xmlns:controls="using:MoneyManager.Windows.Controls"
+             xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
+             d:DataContext="{d:DesignInstance designTime:DesignTimeCategoryListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
