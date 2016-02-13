@@ -5,7 +5,6 @@ using Windows.UI.Xaml.Input;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Dialogs;
-using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Views.UserControls
 {
