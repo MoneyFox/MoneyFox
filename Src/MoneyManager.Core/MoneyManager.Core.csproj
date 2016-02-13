@@ -78,6 +78,7 @@
     <Compile Include="StatisticProvider\CategorySummaryDataProvider.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
     <Compile Include="ViewModels\StatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\CategoryDialogViewModel.cs" />
     <Compile Include="ViewModels\StatisticCategorySummaryViewModel.cs" />
@@ -98,7 +99,7 @@
     <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
-    <Compile Include="ViewModels\SettingsCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\CategoryListViewModel.cs" />
     <Compile Include="ViewModels\StatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\StatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />

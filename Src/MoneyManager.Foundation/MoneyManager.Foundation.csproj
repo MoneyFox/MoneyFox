@@ -62,6 +62,7 @@
     <Compile Include="Interfaces\IStatisticProvider.cs" />
     <Compile Include="Interfaces\IPaymentManager.cs" />
     <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\ICategoryListViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
     <Compile Include="Messages\CategorySelectedMessage.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />

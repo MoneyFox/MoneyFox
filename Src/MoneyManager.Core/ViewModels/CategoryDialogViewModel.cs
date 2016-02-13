@@ -7,12 +7,12 @@ namespace MoneyManager.Core.ViewModels
 {
     public class CategoryDialogViewModel : BaseViewModel
     {
-        private readonly SettingsCategoryListViewModel categoryListViewModel;
+        private readonly CategoryListViewModel categoryListViewModel;
         private readonly IRepository<Category> categoryRepository;
         private readonly IDialogService dialogService;
 
         public CategoryDialogViewModel(IRepository<Category> categoryRepository, IDialogService dialogService,
-            SettingsCategoryListViewModel categoryListViewModel)
+            CategoryListViewModel categoryListViewModel)
         {
             this.categoryRepository = categoryRepository;
             this.dialogService = dialogService;

@@ -361,4 +361,7 @@ Do you want to go the the store to rate?</value>
   <data name="EditCategoryTitle" xml:space="preserve">
     <value>Edit Category</value>
   </data>
+  <data name="CategoriesLabel" xml:space="preserve">
+    <value>Categories</value>
+  </data>
 </root>
