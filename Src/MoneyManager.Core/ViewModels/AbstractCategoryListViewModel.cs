@@ -26,6 +26,8 @@ namespace MoneyManager.Core.ViewModels
         {
             CategoryRepository = categoryRepository;
             DialogService = dialogService;
+
+            Categories = CategoryRepository.Data;
         }
 
         /// <summary>
@@ -33,11 +35,7 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public MvxCommand<Category> DeleteCategoryCommand => new MvxCommand<Category>(DeleteCategory);
 
-        public ObservableCollection<Category> Categories
-        {
-            get { return CategoryRepository.Data; }
-            set { CategoryRepository.Data = value; }
-        }
+        public ObservableCollection<Category> Categories { get; set; }
 
         /// <summary>
         ///     Text to search for. Will perform the search when the text changes.
