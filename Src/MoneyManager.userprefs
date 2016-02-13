@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.AVD_GalaxyNexus_ToolsForApacheCordova" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="MoneyManager.Foundation\OneDriveAuthenticationConstants.cs">
     <Files>
-      <File FileName="MoneyManager.Droid\Resources\values\styles.xml" Line="5" Column="1" />
+      <File FileName="MoneyManager.Foundation\OneDriveAuthenticationConstants.cs" Line="31" Column="76" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
