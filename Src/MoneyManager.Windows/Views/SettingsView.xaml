@@ -25,16 +25,6 @@
                     <userControls:SettingsShortcutsUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
 
-                <!--Categorie Settings-->
-                <PivotItem>
-                    <PivotItem.Header>
-                        <userControls:TabHeader Label="Categories"
-                                                 x:Uid="CategoriesHeader"
-                                                 Glyph="&#xE8EC;" />
-                    </PivotItem.Header>
-                    <userControls:CategoryListUserControl Margin="-7,0,-7,0" x:Name="CategoryListUserControl" />
-                </PivotItem>
-
                 <!--Password Settings-->
                 <PivotItem>
                     <PivotItem.Header>
