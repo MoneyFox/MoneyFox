@@ -114,9 +114,8 @@ namespace MoneyManager.Droid.Activities
         public class CustomFragmentInfo : MvxCachedFragmentInfo
         {
             public CustomFragmentInfo(string tag, Type fragmentType, Type viewModelType, bool cacheFragment = true,
-                bool addToBackstack = false,
                 bool isRoot = false)
-                : base(tag, fragmentType, viewModelType, cacheFragment, addToBackstack)
+                : base(tag, fragmentType, viewModelType, cacheFragment, true)
             {
                 IsRoot = isRoot;
             }

@@ -2,9 +2,7 @@
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 using MoneyManager.Core.ViewModels;
 using Android.Runtime;
-using Android.Support.V7.Widget;
 using Android.Views;
-using MoneyManager.Droid.Activities;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
@@ -19,8 +17,7 @@ namespace MoneyManager.Droid.Fragments
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.fragment_payment_list, null);
 
-            ((MainActivity)Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
-            ((MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            HasOptionsMenu = true;
 
             return view;
         }
@@ -31,6 +28,11 @@ namespace MoneyManager.Droid.Fragments
 
 			ViewModel.LoadCommand.Execute();
 		}
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            inflater.Inflate(Resource.Menu.menu_main, menu);
+            base.OnCreateOptionsMenu(menu, inflater);
+        }
     }
 }
-

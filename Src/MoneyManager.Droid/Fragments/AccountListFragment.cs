@@ -5,7 +5,6 @@ using Android.Widget;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Localization;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
-using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyManager.Droid.Fragments
 {
