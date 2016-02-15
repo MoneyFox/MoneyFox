@@ -16,19 +16,19 @@ namespace MoneyManager.Core.ViewModels
             new StatisticSelectorType
             {
                 Name = Strings.CashflowLabel,
-                Description = "Test Text",
+                Description = Strings.CashflowDescription,
                 Type = StatisticType.Cashflow
             },
             new StatisticSelectorType
             {
                 Name = Strings.SpreadingLabel,
-                Description = "Test Text",
+                Description = Strings.CategorieSpreadingDescription,
                 Type = StatisticType.CategorySpreading
             },
             new StatisticSelectorType
             {
                 Name = Strings.CategorySummary,
-                Description = "Test Text",
+                Description = Strings.CategorySummaryDescription,
                 Type = StatisticType.CategorySummary
             }
         };
