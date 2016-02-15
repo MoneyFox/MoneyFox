@@ -44,19 +44,19 @@ namespace MoneyManager.DataAccess
             }
         }
 
-        private void SaveRecurringPayment(Payment itemToSave, SQLiteConnection db)
+        private void SaveRecurringPayment(Payment payment, SQLiteConnection db)
         {
-            if (itemToSave.IsRecurring)
+            if (payment.IsRecurring)
             {
                 //Don't use insert or replace here, because it will always replace the first element
-                if (itemToSave.Id == 0)
+                if (payment.Id == 0)
                 {
-                    db.Insert(itemToSave.RecurringPayment);
-                    itemToSave.Id = db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First().Id;
-
-                } else
+                    db.Insert(payment.RecurringPayment);
+                    payment.RecurringPayment = db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First();
+                }
+                else
                 {
-                    db.Update(itemToSave.RecurringPayment);
+                    db.Update(payment.RecurringPayment);
                 }
             }
         }
