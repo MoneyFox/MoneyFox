@@ -16,6 +16,7 @@ using MoneyManager.Localization;
 using MoneyManager.Windows.Views;
 using UniversalRateReminder;
 using Windows.UI.StartScreen;
+using Microsoft.ApplicationInsights;
 using MoneyManager.Foundation;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
@@ -36,6 +37,8 @@ namespace MoneyManager.Windows
         public App()
         {
             InitializeComponent();
+            WindowsAppInitializer.InitializeAsync();
+
             Suspending += OnSuspending;
         }
 
