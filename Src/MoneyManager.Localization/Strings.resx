@@ -364,4 +364,13 @@ Do you want to go the the store to rate?</value>
   <data name="CategoriesLabel" xml:space="preserve">
     <value>Categories</value>
   </data>
+  <data name="CashflowDescription" xml:space="preserve">
+    <value>Income, expenses and gain for the selected time period.</value>
+  </data>
+  <data name="CategorieSpreadingDescription" xml:space="preserve">
+    <value>Spreading of the expenses to the categories.</value>
+  </data>
+  <data name="CategorySummaryDescription" xml:space="preserve">
+    <value>Summary of the categories with a payment.</value>
+  </data>
 </root>

@@ -215,6 +215,15 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Income, expenses and gain for the selected time period..
+        /// </summary>
+        public static string CashflowDescription {
+            get {
+                return ResourceManager.GetString("CashflowDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cashflow.
         /// </summary>
         public static string CashflowLabel {
@@ -233,11 +242,29 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Spreading of the expenses to the categories..
+        /// </summary>
+        public static string CategorieSpreadingDescription {
+            get {
+                return ResourceManager.GetString("CategorieSpreadingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category Summary.
         /// </summary>
         public static string CategorySummary {
             get {
                 return ResourceManager.GetString("CategorySummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary of the categories with a payment..
+        /// </summary>
+        public static string CategorySummaryDescription {
+            get {
+                return ResourceManager.GetString("CategorySummaryDescription", resourceCulture);
             }
         }
         
