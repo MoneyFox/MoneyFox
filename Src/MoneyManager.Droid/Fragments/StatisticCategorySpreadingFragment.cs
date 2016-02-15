@@ -2,8 +2,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using MoneyManager.Core.ViewModels;
-using MvvmCross.Droid.FullFragging.Fragments;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
+using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using OxyPlot.Xamarin.Android;
 
 namespace MoneyManager.Droid.Fragments
