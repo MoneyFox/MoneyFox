@@ -14,7 +14,7 @@ namespace MoneyManager.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnViewCreated(inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             RetainInstance = true;
 
