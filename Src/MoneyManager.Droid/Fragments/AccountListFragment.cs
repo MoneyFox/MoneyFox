@@ -18,13 +18,26 @@ namespace MoneyManager.Droid.Fragments
 		{
 			var view =  base.OnCreateView (inflater, container, savedInstanceState);
 
-			var list = view.FindViewById<ListView>(Resource.Id.account_list);
-			RegisterForContextMenu(list);
+            LoadBalancePanel();
 
+            var list = view.FindViewById<ListView>(Resource.Id.account_list);
+            RegisterForContextMenu(list);
             HasOptionsMenu = true;
 
 			return view;
 		}
+
+        private void LoadBalancePanel()
+        {
+            var fragment = new BalanceFragment
+                {
+                    ViewModel = (BalanceViewModel) ViewModel.BalanceViewModel
+                };
+
+            FragmentManager.BeginTransaction()
+                .Replace(Resource.Id.account_list_balance_frame, fragment)
+                .Commit();
+        }
 
         public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
         {
