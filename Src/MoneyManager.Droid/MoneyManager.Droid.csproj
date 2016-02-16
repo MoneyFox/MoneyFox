@@ -254,6 +254,7 @@
     <Compile Include="Src\Widgets\ExpenseWidget.cs" />
     <Compile Include="Src\Widgets\IncomeWidget.cs" />
     <Compile Include="Src\Widgets\TransferWidget.cs" />
+    <Compile Include="Fragments\CategoriesFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -285,7 +286,6 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\listitem_category.axml" />
-    <AndroidResource Include="Resources\layout\activity_category_list.axml" />
     <AndroidResource Include="Resources\layout\comboboxitem_account.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -326,6 +326,7 @@
     <AndroidResource Include="Resources\layout\fragment_settings.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_shortcuts.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_security.axml" />
+    <AndroidResource Include="Resources\layout\fragment_category_list.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml" />

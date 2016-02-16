@@ -3,20 +3,23 @@
     <group android:id="@+id/nav_items">
     	<item
             android:id="@+id/nav_accounts"
-            android:title="Accounts" />
+            android:title="@string/title_accounts" />
       	<item
             android:id="@+id/nav_statistics"
-            android:title="Statistics" />
+            android:title="@string/title_statistics" />
     </group>
 	<group android:id="@+id/nav_footer">
+		<item
+            android:id="@+id/nav_categories"
+            android:title="@string/title_categories" />
     	<item
             android:id="@+id/nav_backup"
-            android:title="Backup" />
+            android:title="@string/title_backup" />
         <item
             android:id="@+id/nav_settings"
-            android:title="Settings" />
+            android:title="@string/title_settings" />
         <item
             android:id="@+id/nav_about"
-            android:title="About" />
+            android:title="@string/title_about" />
     </group>
 </menu>
