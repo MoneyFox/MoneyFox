@@ -23,6 +23,7 @@ namespace MoneyManager.Droid.Fragments
             var view = this.BindingInflate(Resource.Layout.fragment_graphical_statistic, null);
 
             ((MainActivity)Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
+            ((MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             plotModel = view.FindViewById<PlotView>(Resource.Id.plotViewModel);        
 

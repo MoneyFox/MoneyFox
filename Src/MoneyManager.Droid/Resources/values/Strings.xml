@@ -49,7 +49,6 @@
   <!--labels-->
   <string name="label_cleared">IsCleared: </string>
   <string name="label_slogan">A way to make budgeting easy.</string>
-  <string name="label_password_deactivated">Password protection is deactivated</string>
   <string name="label_password_activated">Password protection is activated</string>
 
   <!--text-->
