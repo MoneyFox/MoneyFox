@@ -64,7 +64,7 @@ namespace MoneyManager.Droid.Activities
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    if (currentFragmentInfo.IsRoot)
+                    if (currentFragmentInfo != null && currentFragmentInfo.IsRoot)
                     {
                         DrawerLayout.OpenDrawer(GravityCompat.Start);
                     }

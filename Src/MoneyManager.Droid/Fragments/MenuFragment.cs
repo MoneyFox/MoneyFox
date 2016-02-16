@@ -53,7 +53,6 @@ namespace MoneyManager.Droid.Fragments
             {
                 case Resource.Id.nav_accounts:
                     ViewModel.ShowViewModelByType(typeof(AccountListViewModel));
-                    ViewModel.ShowViewModelByType(typeof(BalanceViewModel));
                     break;
                 case Resource.Id.nav_statistics:
                     ViewModel.ShowViewModelByType(typeof(StatisticSelectorViewModel));

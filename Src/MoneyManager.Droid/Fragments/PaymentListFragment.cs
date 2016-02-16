@@ -5,6 +5,8 @@ using Android.Runtime;
 using Android.Views;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using Android.Support.V7.Widget;
+using MoneyManager.Droid.Activities;
 
 namespace MoneyManager.Droid.Fragments
 {
@@ -16,6 +18,9 @@ namespace MoneyManager.Droid.Fragments
         {
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.fragment_payment_list, null);
+
+            ((MainActivity)Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
+            ((MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             HasOptionsMenu = true;
 

@@ -40,7 +40,13 @@ namespace MoneyManager.Droid.Activities.Caching
 				new MainActivity.CustomFragmentInfo(typeof (BackupViewModel).Name,
 					typeof (BackupFragment),
 					typeof (BackupViewModel), isRoot: true)
-			},
+            },
+            {
+                typeof (SettingsViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof (SettingsViewModel).Name,
+                    typeof (SettingsFragment),
+                    typeof (SettingsViewModel), isRoot: true)
+            },
 			{
 				typeof (AboutViewModel).ToString(),
 				new MainActivity.CustomFragmentInfo(typeof (AboutViewModel).Name,
