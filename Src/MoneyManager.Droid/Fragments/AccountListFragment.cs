@@ -41,7 +41,7 @@ namespace MoneyManager.Droid.Fragments
 
         public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
         {
-            if (v.Id == Resource.Id.accountList)
+            if (v.Id == Resource.Id.account_list)
             {
                 menu.SetHeaderTitle(Strings.SelectOperationLabel);
                 menu.Add(Strings.EditLabel);
