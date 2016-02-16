@@ -3085,11 +3085,11 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f080017
 			public const int character_counter_pattern = 2131230743;
 			
-			// aapt resource value: 0x7f080042
-			public const int drawer_close = 2131230786;
-			
 			// aapt resource value: 0x7f080041
-			public const int drawer_open = 2131230785;
+			public const int drawer_close = 2131230785;
+			
+			// aapt resource value: 0x7f080040
+			public const int drawer_open = 2131230784;
 			
 			// aapt resource value: 0x7f080024
 			public const int hint_account_name = 2131230756;
@@ -3127,11 +3127,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f08003c
 			public const int label_cleared = 2131230780;
 			
-			// aapt resource value: 0x7f08003f
-			public const int label_password_activated = 2131230783;
-			
 			// aapt resource value: 0x7f08003e
-			public const int label_password_deactivated = 2131230782;
+			public const int label_password_activated = 2131230782;
 			
 			// aapt resource value: 0x7f08003d
 			public const int label_slogan = 2131230781;
@@ -3145,8 +3142,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f080015
 			public const int status_bar_notification_info_overflow = 2131230741;
 			
-			// aapt resource value: 0x7f080040
-			public const int text_endless = 2131230784;
+			// aapt resource value: 0x7f08003f
+			public const int text_endless = 2131230783;
 			
 			// aapt resource value: 0x7f080030
 			public const int textview_contact = 2131230768;
