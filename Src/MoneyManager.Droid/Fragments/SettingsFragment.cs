@@ -32,8 +32,8 @@ namespace MoneyManager.Droid.Fragments
             {
                 var fragments = new List<MvxFragmentPagerAdapter.FragmentInfo>
                     {
-                        new MvxFragmentPagerAdapter.FragmentInfo(Strings.ShortcutsTitle, typeof (SettingsShortcutsFragment),
-                            typeof (SettingsShortcutsViewModel)),
+//                        new MvxFragmentPagerAdapter.FragmentInfo(Strings.ShortcutsTitle, typeof (SettingsShortcutsFragment),
+//                            typeof (SettingsShortcutsViewModel)),
                         new MvxFragmentPagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof (SettingsSecurityFragment),
                             typeof (SettingsSecurityViewModel))
                     };
