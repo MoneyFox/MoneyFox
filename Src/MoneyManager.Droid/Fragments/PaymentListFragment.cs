@@ -21,10 +21,23 @@ namespace MoneyManager.Droid.Fragments
 
             ((MainActivity)Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
             ((MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-
             HasOptionsMenu = true;
 
+            LoadBalancePanel();
+
             return view;
+        }
+
+        private void LoadBalancePanel()
+        {
+            var fragment = new BalanceFragment
+                {
+                    ViewModel = (PaymentListBalanceViewModel) ViewModel.BalanceViewModel
+                };
+
+            FragmentManager.BeginTransaction()
+                .Replace(Resource.Id.payment_list_balance_frame, fragment)
+                .Commit();
         }
 
         public override void OnResume ()
