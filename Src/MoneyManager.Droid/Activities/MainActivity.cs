@@ -20,6 +20,7 @@ namespace MoneyManager.Droid.Activities
     public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
         public DrawerLayout DrawerLayout;
+        private CustomFragmentInfo currentFragmentInfo;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -40,7 +41,12 @@ namespace MoneyManager.Droid.Activities
             // custom FragmentCacheConfiguration is used because custom IMvxFragmentInfo is used -> CustomFragmentInfo
             return new FragmentCacheConfigurationCustomFragmentInfo();
         }
-           
+
+        public override void OnFragmentChanged(IMvxCachedFragmentInfo fragmentInfo)
+        {
+            currentFragmentInfo = fragmentInfo as CustomFragmentInfo;
+        }
+
         public override void OnBackPressed()
         {
             if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
@@ -58,7 +64,14 @@ namespace MoneyManager.Droid.Activities
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    DrawerLayout.OpenDrawer(GravityCompat.Start);
+                    if (currentFragmentInfo.IsRoot)
+                    {
+                        DrawerLayout.OpenDrawer(GravityCompat.Start);
+                    }
+                    else
+                    {
+                        SupportFragmentManager.PopBackStackImmediate();
+                    }    
                     return true;
 
                 case Resource.Id.action_add_income:
