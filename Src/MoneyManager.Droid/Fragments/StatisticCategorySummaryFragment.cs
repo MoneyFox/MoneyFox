@@ -23,6 +23,6 @@ namespace MoneyManager.Droid.Fragments
             ((MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             return view;
-        }
+        }            
     }
 }

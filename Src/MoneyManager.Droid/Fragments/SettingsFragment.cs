@@ -9,6 +9,8 @@ using MvvmCross.Droid.Support.V4;
 using System.Collections.Generic;
 using MoneyManager.Localization;
 using Android.Support.Design.Widget;
+using MoneyManager.Droid.Activities;
+using Android.Support.V7.Widget;
 
 namespace MoneyManager.Droid.Fragments
 {    
@@ -22,13 +24,16 @@ namespace MoneyManager.Droid.Fragments
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
+            ((MainActivity)Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
+            ((MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
             var viewPager = view.FindViewById<ViewPager>(Resource.Id.viewpager);
             if (viewPager != null)
             {
                 var fragments = new List<MvxFragmentPagerAdapter.FragmentInfo>
                     {
-                        new MvxFragmentPagerAdapter.FragmentInfo(Strings.ShortcutsTitle, typeof (SettingsShortcutsFragment),
-                            typeof (SettingsShortcutsViewModel)),
+//                        new MvxFragmentPagerAdapter.FragmentInfo(Strings.ShortcutsTitle, typeof (SettingsShortcutsFragment),
+//                            typeof (SettingsShortcutsViewModel)),
                         new MvxFragmentPagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof (SettingsSecurityFragment),
                             typeof (SettingsSecurityViewModel))
                     };

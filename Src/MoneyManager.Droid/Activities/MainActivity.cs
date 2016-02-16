@@ -20,6 +20,7 @@ namespace MoneyManager.Droid.Activities
     public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
         public DrawerLayout DrawerLayout;
+        private CustomFragmentInfo currentFragmentInfo;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -43,33 +44,7 @@ namespace MoneyManager.Droid.Activities
 
         public override void OnFragmentChanged(IMvxCachedFragmentInfo fragmentInfo)
         {
-            var myCustomInfo = fragmentInfo as CustomFragmentInfo;
-            CheckIfMenuIsNeeded(myCustomInfo);
-        }
-
-        private void CheckIfMenuIsNeeded(CustomFragmentInfo myCustomInfo)
-        {
-            //If not root, we will block the menu sliding gesture and show the back button on top
-			if (myCustomInfo != null && myCustomInfo.IsRoot)
-            {
-                ShowHamburguerMenu();
-            }
-            else
-            {
-                ShowBackButton();
-            }
-        }
-
-        private void ShowBackButton()
-        {
-            //Block the menu slide gesture
-            DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
-        }
-
-        private void ShowHamburguerMenu()
-        {
-            //Unlock the menu sliding gesture
-            DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeUnlocked);
+            currentFragmentInfo = fragmentInfo as CustomFragmentInfo;
         }
 
         public override void OnBackPressed()
@@ -89,7 +64,14 @@ namespace MoneyManager.Droid.Activities
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    DrawerLayout.OpenDrawer(GravityCompat.Start);
+                    if (currentFragmentInfo != null && currentFragmentInfo.IsRoot)
+                    {
+                        DrawerLayout.OpenDrawer(GravityCompat.Start);
+                    }
+                    else
+                    {
+                        SupportFragmentManager.PopBackStackImmediate();
+                    }    
                     return true;
 
                 case Resource.Id.action_add_income:

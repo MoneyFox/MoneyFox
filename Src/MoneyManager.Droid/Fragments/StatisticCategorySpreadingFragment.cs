@@ -5,6 +5,9 @@ using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using OxyPlot.Xamarin.Android;
+using MvvmCross.Binding.Droid.BindingContext;
+using MoneyManager.Droid.Activities;
+using Android.Support.V7.Widget;
 
 namespace MoneyManager.Droid.Fragments
 {
@@ -14,7 +17,11 @@ namespace MoneyManager.Droid.Fragments
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            var ignore = base.OnCreateView(inflater, container, savedInstanceState);
+            var view = this.BindingInflate(Resource.Layout.fragment_graphical_statistic, null);
+
+            ((MainActivity)Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
+            ((MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             var model = view.FindViewById<PlotView>(Resource.Id.plotViewModel);
             model.Model = ViewModel.SpreadingModel;
