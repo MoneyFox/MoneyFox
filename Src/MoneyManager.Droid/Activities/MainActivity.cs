@@ -40,38 +40,7 @@ namespace MoneyManager.Droid.Activities
             // custom FragmentCacheConfiguration is used because custom IMvxFragmentInfo is used -> CustomFragmentInfo
             return new FragmentCacheConfigurationCustomFragmentInfo();
         }
-
-        public override void OnFragmentChanged(IMvxCachedFragmentInfo fragmentInfo)
-        {
-            var myCustomInfo = fragmentInfo as CustomFragmentInfo;
-            CheckIfMenuIsNeeded(myCustomInfo);
-        }
-
-        private void CheckIfMenuIsNeeded(CustomFragmentInfo myCustomInfo)
-        {
-            //If not root, we will block the menu sliding gesture and show the back button on top
-			if (myCustomInfo != null && myCustomInfo.IsRoot)
-            {
-                ShowHamburguerMenu();
-            }
-            else
-            {
-                ShowBackButton();
-            }
-        }
-
-        private void ShowBackButton()
-        {
-            //Block the menu slide gesture
-            DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeLockedClosed);
-        }
-
-        private void ShowHamburguerMenu()
-        {
-            //Unlock the menu sliding gesture
-            DrawerLayout.SetDrawerLockMode(DrawerLayout.LockModeUnlocked);
-        }
-
+           
         public override void OnBackPressed()
         {
             if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))

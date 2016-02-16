@@ -1,5 +1,5 @@
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.169.254.56.136:5555" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Nexus4" />
   <MonoDevelop.Ide.Workbench ActiveDocument="MoneyManager.Foundation\OneDriveAuthenticationConstants.cs">
     <Files>
       <File FileName="MoneyManager.Foundation\OneDriveAuthenticationConstants.cs" Line="31" Column="58" />
