@@ -13,7 +13,6 @@ namespace MoneyManager.Windows.Views.UserControls
         {
             InitializeComponent();
             DataContext = Mvx.Resolve<PaymentListViewModel>();
-            paymentList.SelectedItem = null;
         }
 
         private void EditPayment(object sender, RoutedEventArgs e)
