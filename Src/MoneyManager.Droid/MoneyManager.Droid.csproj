@@ -254,6 +254,7 @@
     <Compile Include="Src\Widgets\ExpenseWidget.cs" />
     <Compile Include="Src\Widgets\IncomeWidget.cs" />
     <Compile Include="Src\Widgets\TransferWidget.cs" />
+    <Compile Include="Fragments\CategoriesFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -261,9 +262,6 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\menu\menu_main.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\menu\menu_add.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\menu\menu_modification.axml">
@@ -285,7 +283,6 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\listitem_category.axml" />
-    <AndroidResource Include="Resources\layout\activity_category_list.axml" />
     <AndroidResource Include="Resources\layout\comboboxitem_account.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -326,6 +323,11 @@
     <AndroidResource Include="Resources\layout\fragment_settings.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_shortcuts.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_security.axml" />
+    <AndroidResource Include="Resources\layout\fragment_category_list.axml" />
+    <AndroidResource Include="Resources\menu\menu_save.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\menu_add.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml" />

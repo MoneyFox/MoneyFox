@@ -1,8 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 	  xmlns:local="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_add"
-        android:icon="@drawable/ic_add"
-        android:title="@string/action_add"
+  <item android:id="@+id/action_save"
+        android:icon="@drawable/ic_save"
+        android:title="@string/action_save"
         local:showAsAction="always" />
 </menu>
