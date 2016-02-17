@@ -2133,8 +2133,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f06008d
 			public const int action0 = 2131099789;
 			
-			// aapt resource value: 0x7f0600a5
-			public const int action_add = 2131099813;
+			// aapt resource value: 0x7f06009e
+			public const int action_add = 2131099806;
 			
 			// aapt resource value: 0x7f0600a2
 			public const int action_add_account = 2131099810;
@@ -2172,14 +2172,14 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f06005d
 			public const int action_context_bar = 2131099741;
 			
-			// aapt resource value: 0x7f0600a3
-			public const int action_delete = 2131099811;
+			// aapt resource value: 0x7f0600a4
+			public const int action_delete = 2131099812;
 			
 			// aapt resource value: 0x7f060091
 			public const int action_divider = 2131099793;
 			
-			// aapt resource value: 0x7f0600a4
-			public const int action_done = 2131099812;
+			// aapt resource value: 0x7f0600a5
+			public const int action_done = 2131099813;
 			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
@@ -2196,8 +2196,8 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f06003e
 			public const int action_mode_close_button = 2131099710;
 			
-			// aapt resource value: 0x7f06009e
-			public const int action_save = 2131099806;
+			// aapt resource value: 0x7f0600a3
+			public const int action_save = 2131099811;
 			
 			// aapt resource value: 0x7f06003f
 			public const int activity_chooser_view_content = 2131099711;
@@ -2953,10 +2953,13 @@ namespace MoneyManager.Droid
 			public const int menu_modification = 2131492866;
 			
 			// aapt resource value: 0x7f0c0003
-			public const int menu_select = 2131492867;
+			public const int menu_save = 2131492867;
 			
 			// aapt resource value: 0x7f0c0004
-			public const int navigation_drawer = 2131492868;
+			public const int menu_select = 2131492868;
+			
+			// aapt resource value: 0x7f0c0005
+			public const int navigation_drawer = 2131492869;
 			
 			static Menu()
 			{

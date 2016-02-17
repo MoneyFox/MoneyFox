@@ -5,6 +5,7 @@ using Android.Widget;
 using Android.Views;
 using MoneyManager.Localization;
 using Android.OS;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Droid.Fragments
 {
@@ -38,6 +39,28 @@ namespace MoneyManager.Droid.Fragments
                 menu.SetHeaderTitle(Strings.SelectOperationLabel);
                 menu.Add(Strings.EditLabel);
                 menu.Add(Strings.DeleteLabel);
+            }
+        }
+
+        /// <summary>
+        ///     This hook is called whenever an item in your options menu is selected.
+        /// </summary>
+        /// <param name="item">The menu item that was selected.</param>
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.action_add:
+                    var dialog = new ModifyCategoryDialog
+                        {
+                            ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
+                        };
+
+                    dialog.Show(Activity.FragmentManager, "dialog");
+                    return true;
+
+                default:
+                    return false;
             }
         }
     }

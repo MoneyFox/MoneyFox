@@ -264,9 +264,6 @@
     <AndroidResource Include="Resources\menu\menu_main.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\menu\menu_add.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\menu\menu_modification.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -327,6 +324,10 @@
     <AndroidResource Include="Resources\layout\fragment_settings_shortcuts.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_security.axml" />
     <AndroidResource Include="Resources\layout\fragment_category_list.axml" />
+    <AndroidResource Include="Resources\menu\menu_save.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\menu_add.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml" />
