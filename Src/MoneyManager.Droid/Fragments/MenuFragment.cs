@@ -57,6 +57,9 @@ namespace MoneyManager.Droid.Fragments
                 case Resource.Id.nav_statistics:
                     ViewModel.ShowViewModelByType(typeof(StatisticSelectorViewModel));
                     break;
+                case Resource.Id.nav_categories:
+                    ViewModel.ShowViewModelByType(typeof(CategoryListViewModel));
+                    break;
                 case Resource.Id.nav_backup:
                     ViewModel.ShowViewModelByType(typeof(BackupViewModel));
                     break;
