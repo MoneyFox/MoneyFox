@@ -116,8 +116,7 @@ namespace MoneyManager.Core.ViewModels
         {
             paymentRepository.Selected = payment;
 
-            ShowViewModel<ModifyPaymentViewModel>(
-				new {isEdit = true, typeString = payment.Type.ToString()});
+            ShowViewModel<ModifyPaymentViewModel>(new {isEdit = true, typeString = payment.Type.ToString()});
         }
 
         private async void DeletePayment(Payment payment)
