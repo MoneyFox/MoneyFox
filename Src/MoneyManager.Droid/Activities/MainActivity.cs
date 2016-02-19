@@ -9,6 +9,7 @@ using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Activities.Caching;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.Fragging.Caching;
+using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace MoneyManager.Droid.Activities
 {
@@ -40,6 +41,12 @@ namespace MoneyManager.Droid.Activities
         {
             // custom FragmentCacheConfiguration is used because custom IMvxFragmentInfo is used -> CustomFragmentInfo
             return new FragmentCacheConfigurationCustomFragmentInfo();
+        }
+
+        public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo, FragmentTransaction transaction)
+        {
+            transaction.SetCustomAnimations(Resource.Animation.abc_grow_fade_in_from_bottom, Resource.Animation.abc_fade_out);
+            base.OnBeforeFragmentChanging(fragmentInfo, transaction);
         }
 
         public override void OnFragmentChanged(IMvxCachedFragmentInfo fragmentInfo)

@@ -52,7 +52,7 @@ namespace MoneyManager.Droid
 
         protected override IMvxAndroidViewPresenter CreateViewPresenter()
         {
-            var mvxFragmentsPresenter = new MvxFragmentsPresenter(AndroidViewAssemblies);
+            var mvxFragmentsPresenter = new CustomPresenter(AndroidViewAssemblies);
             Mvx.RegisterSingleton<IMvxAndroidViewPresenter>(mvxFragmentsPresenter);
             return mvxFragmentsPresenter;
         }
