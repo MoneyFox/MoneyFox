@@ -237,6 +237,7 @@
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\AndroidAuthenticationProvider.cs" />
+    <Compile Include="Src\CustomPresenter.cs" />
     <Compile Include="Src\CustomServiceInfoProvider.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\Localize.cs" />

@@ -50,7 +50,7 @@ namespace MoneyManager.Core.ViewModels
         public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
 
         /// <summary>
-        ///     Edits the currently selected payment.
+        ///     Edits the passed payment.
         /// </summary>
         public MvxCommand<Payment> EditCommand { get; private set; }
 
