@@ -1,13 +1,6 @@
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.AVD_GalaxyNexus_ToolsForApacheCordova" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MoneyManager.Droid\Activities\MainActivity.cs">
-    <Files>
-      <File FileName="MoneyManager.Foundation\OneDriveAuthenticationConstants.cs" Line="1" Column="1" />
-      <File FileName="MoneyManager.Droid\Resources\values\colors.xml" Line="1" Column="1" />
-      <File FileName="MoneyManager.Droid\Resources\values\styles.xml" Line="1" Column="1" />
-      <File FileName="MoneyManager.Droid\Activities\MainActivity.cs" Line="62" Column="14" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus4" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

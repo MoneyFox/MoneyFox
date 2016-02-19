@@ -51,6 +51,14 @@
   <string name="label_slogan">A way to make budgeting easy.</string>
   <string name="label_password_activated">Password protection is activated</string>
 
+  <!---titles-->
+  <string name="title_accounts">Accounts</string>
+  <string name="title_statistics">Statistics</string>
+  <string name="title_categories">Categories</string>
+  <string name="title_backup">Backup</string>
+  <string name="title_settings">Settings</string>
+  <string name="title_about">About</string>
+
   <!--text-->
   <string name="text_endless">Is Endless</string>
 
