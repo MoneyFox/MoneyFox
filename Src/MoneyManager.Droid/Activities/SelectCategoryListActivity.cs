@@ -7,8 +7,8 @@ using MoneyManager.Droid.Fragments;
 using MoneyManager.Localization;
 using MvvmCross.Platform;
 using Android.Content.PM;
-using MvvmCross.Droid.Support.V7.AppCompat;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace MoneyManager.Droid.Activities
 {
@@ -16,7 +16,7 @@ namespace MoneyManager.Droid.Activities
         Name = "moneymanager.droid.activities.SelectCategoryListActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class SelectCategoryListActivity : MvxCachingFragmentCompatActivity<SelectCategoryListViewModel>
+    public class SelectCategoryListActivity : MvxFragmentCompatActivity<SelectCategoryListViewModel>
     {
         protected override void OnCreate(Bundle bundle)
         {
@@ -52,6 +52,7 @@ namespace MoneyManager.Droid.Activities
                     return true;
 
                 case Resource.Id.action_done:
+                    //ViewModel.SelectedCategory = categoryList.SelectedItem;
                     ViewModel.DoneCommand.Execute(null);
                     return true;
 
