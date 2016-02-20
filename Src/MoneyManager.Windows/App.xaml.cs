@@ -18,6 +18,7 @@ using UniversalRateReminder;
 using Windows.UI.StartScreen;
 using Microsoft.ApplicationInsights;
 using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
@@ -185,12 +186,14 @@ namespace MoneyManager.Windows
         /// <param name="e">Details about the suspend request.</param>
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            Tile.UpdateMainTile();
+            var deferral = e.SuspendingOperation.GetDeferral();
 
+            Tile.UpdateMainTile();
             Settings.SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
-            var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: SaveItem application state and stop any background activity
+            //upload a db backup when the app is suspended
+            Mvx.Resolve<IAutobackupManager>().UploadBackupIfNewwer();
+
             deferral.Complete();
         }
     }

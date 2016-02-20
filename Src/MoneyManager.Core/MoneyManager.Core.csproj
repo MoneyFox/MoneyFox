@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AppStart.cs" />
+    <Compile Include="Manager\AutoBackupManager.cs" />
     <Compile Include="AutoFac\AutofacMvxIocProvider.cs" />
     <Compile Include="AutoFac\AutofacMvxIocProviderResources.Designer.cs">
       <AutoGen>True</AutoGen>
