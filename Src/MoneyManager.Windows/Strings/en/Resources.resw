@@ -347,4 +347,7 @@ Tap to visit the Repository:</value>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
     <value>Last Backup was created at:</value>
   </data>
+  <data name="AutoBackupSettingHeader.Header" xml:space="preserve">
+    <value>Upload and download backup manually</value>
+  </data>
 </root>

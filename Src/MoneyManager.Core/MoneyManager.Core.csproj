@@ -80,6 +80,7 @@
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\SettingsGeneralViewModel.cs" />
     <Compile Include="ViewModels\StatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\CategoryDialogViewModel.cs" />
     <Compile Include="ViewModels\StatisticCategorySummaryViewModel.cs" />
