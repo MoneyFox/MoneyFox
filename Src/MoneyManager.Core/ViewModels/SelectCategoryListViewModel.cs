@@ -18,15 +18,19 @@ namespace MoneyManager.Core.ViewModels
             IDialogService dialogService) : base(categoryRepository, dialogService)
         {}
 
-        public Category SelectedCategory { get; set; }
+        /// <summary>
+        ///     Selects the clicked category and sends it to the message hub.
+        /// </summary>
+        public MvxCommand<Category> DoneCommand => new MvxCommand<Category>(Done);
 
-        public MvxCommand DoneCommand => new MvxCommand(Done);
-
+        /// <summary>
+        ///     Closes this activity without selecting something.
+        /// </summary>
         public MvxCommand CancelCommand => new MvxCommand(Cancel);
 
-        private void Done()
+        private void Done(Category category)
         {
-            MessageHub.Publish(new CategorySelectedMessage(this, SelectedCategory));
+            MessageHub.Publish(new CategorySelectedMessage(this, category));
             Close(this);
         }
 

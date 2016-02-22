@@ -51,11 +51,6 @@ namespace MoneyManager.Droid.Activities
                     Finish();
                     return true;
 
-                case Resource.Id.action_done:
-                    //ViewModel.SelectedCategory = categoryList.SelectedItem;
-                    ViewModel.DoneCommand.Execute(null);
-                    return true;
-
                 case Resource.Id.action_add:
                     var dialog = new ModifyCategoryDialog
                     {
