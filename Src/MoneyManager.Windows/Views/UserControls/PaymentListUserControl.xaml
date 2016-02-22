@@ -145,9 +145,11 @@
                                                        ItemsSource="{Binding Source={StaticResource Groups}}"
                                                        ItemTemplate="{StaticResource PaymentTemplate}"
                                                        HorizontalAlignment="Stretch"
-                                                       ShowsScrollingPlaceholders="false">
+                                                       ShowsScrollingPlaceholders="false"
+                                                       IsItemClickEnabled="True"
+                                                       IsSynchronizedWithCurrentItem="False">
                     <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                        <core:EventTriggerBehavior EventName="ItemClick">
                             <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}"
                                                       InputConverter="{StaticResource ClickConverter}" />
                         </core:EventTriggerBehavior>
