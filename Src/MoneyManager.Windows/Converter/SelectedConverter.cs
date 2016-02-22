@@ -17,4 +17,17 @@ namespace MoneyManager.Windows.Converter
             throw new NotImplementedException();
         }
     }
+
+    public class ClickConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return ((ItemClickEventArgs) value)?.ClickedItem;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
