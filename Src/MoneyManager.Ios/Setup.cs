@@ -31,7 +31,6 @@ namespace MoneyManager.Ios
 
         }
 
-
         protected override IMvxIoCProvider CreateIocProvider()
         {
             var cb = new ContainerBuilder();
@@ -41,7 +40,6 @@ namespace MoneyManager.Ios
 
             return new AutofacMvxIocProvider(cb.Build());
         }
-
 
         protected override IMvxApplication CreateApp()
         {
