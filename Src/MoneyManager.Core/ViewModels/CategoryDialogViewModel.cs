@@ -7,7 +7,6 @@ namespace MoneyManager.Core.ViewModels
 {
     public class CategoryDialogViewModel : BaseViewModel
     {
-        private readonly CategoryListViewModel categoryListViewModel;
         private readonly IRepository<Category> categoryRepository;
         private readonly IDialogService dialogService;
 
@@ -16,7 +15,6 @@ namespace MoneyManager.Core.ViewModels
         {
             this.categoryRepository = categoryRepository;
             this.dialogService = dialogService;
-            this.categoryListViewModel = categoryListViewModel;
         }
 
         public Category Selected { get; set; }
@@ -34,11 +32,6 @@ namespace MoneyManager.Core.ViewModels
             if (IsEdit) return;
 
             Selected = new Category();
-
-            if (!string.IsNullOrEmpty(categoryListViewModel.SearchText))
-            {
-                Selected.Name = categoryListViewModel.SearchText;
-            }
         }
 
         private async void Done()

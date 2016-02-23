@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
@@ -9,7 +8,7 @@ using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Plugins.File;
 using Xamarin;
 
-namespace MoneyManager.Core
+namespace MoneyManager.Core.Services
 {
     public class OneDriveService : IBackupService
     {
