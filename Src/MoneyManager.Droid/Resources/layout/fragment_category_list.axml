@@ -25,6 +25,6 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             local:MvxItemTemplate="@layout/listitem_category"
-            local:MvxBind="ItemsSource Categories; SelectedItem SelectedCategory" />
+            local:MvxBind="ItemsSource Categories; ItemClick DoneCommand" />
     </LinearLayout>
 </LinearLayout>
