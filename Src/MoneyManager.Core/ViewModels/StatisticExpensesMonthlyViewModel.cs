@@ -1,4 +1,5 @@
-﻿using MoneyManager.Core.StatisticDataProvider;
+﻿using System;
+using MoneyManager.Core.StatisticDataProvider;
 using MoneyManager.Foundation.Interfaces;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -12,7 +13,8 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
 
-        public StatisticExpensesMonthlyViewModel(IPaymentRepository paymentRepository)
+        public StatisticExpensesMonthlyViewModel(IPaymentRepository paymentRepository) 
+            : base(DateTime.Today.AddMonths(-6), DateTime.Today)
         {
             monthlyExpensesDataProvider = new MonthlyExpensesDataProvider(paymentRepository);
 
