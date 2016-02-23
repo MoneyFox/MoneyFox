@@ -350,7 +350,7 @@ Tap to visit the Repository:</value>
   <data name="AutoBackupSettingHeader.Header" xml:space="preserve">
     <value>Upload and download backup manually</value>
   </data>
-  <data name="GeneralHeader.Header" xml:space="preserve">
+  <data name="GeneralHeader.Label" xml:space="preserve">
     <value>General</value>
   </data>
 </root>
