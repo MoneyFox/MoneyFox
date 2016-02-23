@@ -6,7 +6,7 @@ using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
 
-namespace MoneyManager.Core.StatisticProvider
+namespace MoneyManager.Core.StatisticDataProvider
 {
     public class CashFlowDataProvider : IStatisticProvider<CashFlow>
     {

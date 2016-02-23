@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MoneyManager.Core.StatisticProvider;
+using MoneyManager.Core.StatisticDataProvider;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using OxyPlot;
