@@ -62,7 +62,7 @@ namespace MoneyManager.Core.ViewModels
                     break;
 
                 case StatisticType.ExpenseHistory:
-                    ShowViewModel<StatisticExpensesMonthlyViewModel>();
+                    ShowViewModel<StatisticMonthlyExpensesViewModel>();
                     break;
             }
         }

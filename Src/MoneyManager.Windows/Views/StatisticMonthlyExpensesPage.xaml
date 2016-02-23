@@ -1,4 +1,4 @@
-﻿<Page
+﻿<views:MvxWindowsPage
     x:Class="MoneyManager.Windows.Views.StatisticMonthlyExpensesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,6 +8,7 @@
     xmlns:windows="using:OxyPlot.Windows"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:views="using:MvvmCross.WindowsUWP.Views"
     mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
@@ -56,4 +57,5 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
-</Page>
+</views:MvxWindowsPage>
+

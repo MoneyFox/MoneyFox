@@ -9,11 +9,11 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class StatisticExpensesMonthlyViewModel : StatisticViewModel
+    public class StatisticMonthlyExpensesViewModel : StatisticViewModel
     {
         private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
 
-        public StatisticExpensesMonthlyViewModel(IPaymentRepository paymentRepository) 
+        public StatisticMonthlyExpensesViewModel(IPaymentRepository paymentRepository) 
             : base(DateTime.Today.AddMonths(-6), DateTime.Today)
         {
             monthlyExpensesDataProvider = new MonthlyExpensesDataProvider(paymentRepository);
@@ -37,7 +37,7 @@ namespace MoneyManager.Core.ViewModels
 
         private PlotModel GetModel()
         {
-            var cashFlow = monthlyExpensesDataProvider.GetValues(StartDate, EndDate);
+            var monthlyExpenses = monthlyExpensesDataProvider.GetValues(StartDate, EndDate);
 
             var model = new PlotModel
             {
@@ -55,7 +55,7 @@ namespace MoneyManager.Core.ViewModels
                 Angle = 45
             };
 
-            foreach (var statisticItem in cashFlow)
+            foreach (var statisticItem in monthlyExpenses)
             {
                 columnSeries.Items.Add(new ColumnItem(statisticItem.Value) {Color = OxyColors.Red});
                 axe.Labels.Add(statisticItem.Label);

@@ -17,7 +17,7 @@ namespace MoneyManager.Windows.Views
         {
             base.OnNavigatedTo(e);
 
-            ExpensePlotView.Model = (DataContext as StatisticExpensesMonthlyViewModel)?.MonthlyExpensesModel;
+            ExpensePlotView.Model = (DataContext as StatisticMonthlyExpensesViewModel)?.MonthlyExpensesModel;
         }
 
         private async void SetDate(object sender, RoutedEventArgs e)

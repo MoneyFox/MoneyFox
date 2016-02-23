@@ -95,7 +95,7 @@
     <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
     <Compile Include="ViewModels\CategoryListViewModel.cs" />
     <Compile Include="ViewModels\StatisticCategorySpreadingViewModel.cs" />
-    <Compile Include="ViewModels\StatisticExpensesMonthlyViewModel.cs" />
+    <Compile Include="ViewModels\StatisticMonthlyExpensesViewModel.cs" />
     <Compile Include="ViewModels\StatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
     <Compile Include="ViewModels\SettingsShortcutsViewModel.cs" />
