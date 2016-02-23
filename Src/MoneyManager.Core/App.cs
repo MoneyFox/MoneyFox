@@ -1,6 +1,11 @@
-﻿using MoneyManager.Foundation.Interfaces;
+﻿using System.Reflection;
+using MoneyManager.Core.Authentication;
+using MoneyManager.DataAccess;
+using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+using MvvmCross.Platform.IoC;
 
 namespace MoneyManager.Core
 {
@@ -11,11 +16,46 @@ namespace MoneyManager.Core
         /// </summary>
         public override void Initialize()
         {
+            RegisterDependencies();
+
             // Start the app with the Main View Model.
             RegisterAppStart(new AppStart());
 
             Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
             Mvx.Resolve<IPaymentManager>().ClearPayments();
+        }
+
+        private void RegisterDependencies()
+        {
+            Mvx.RegisterType<ISqliteConnectionCreator, SqliteConnectionCreator>();
+            Mvx.RegisterSingleton<IPasswordStorage>(new PasswordStorage(Mvx.Resolve<IProtectedData>()));
+            Mvx.RegisterType(() => new Session());
+
+            CreatableTypes()
+                .EndingWith("Service")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
+            CreatableTypes(typeof (AccountDataAccess).GetTypeInfo().Assembly)
+                .EndingWith("DataAccess")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
+            // Used for the settings data access who doesn't have an interface
+            CreatableTypes(typeof (AccountDataAccess).GetTypeInfo().Assembly)
+                .EndingWith("DataAccess")
+                .AsTypes()
+                .RegisterAsLazySingleton();
+
+            CreatableTypes()
+                .EndingWith("Repository")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
+            CreatableTypes()
+                .EndingWith("Manager")
+                .AsTypes()
+                .RegisterAsLazySingleton();
         }
     }
 }

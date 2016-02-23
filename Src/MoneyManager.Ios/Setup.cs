@@ -1,12 +1,16 @@
 ﻿using Autofac;
 using MoneyManager.Core;
 using MoneyManager.Core.AutoFac;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.iOS.Views.Presenters;
+using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using MvvmCross.Platform.Plugins;
+using SQLite.Net.Interop;
+using SQLite.Net.Platform.XamarinIOS;
 using UIKit;
 using Xamarin;
 
@@ -31,6 +35,17 @@ namespace MoneyManager.Ios
 
         }
 
+        protected override void InitializeFirstChance()
+        {
+            base.InitializeFirstChance();
+
+            Mvx.RegisterType<IDialogService, DialogService>();
+            Mvx.RegisterType<IAppInformation, AppInformation>();
+            Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
+            Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
+            Mvx.RegisterType<ILocalSettings, LocalSettings>();
+            Mvx.RegisterType<IProtectedData, ProtectedData>();
+        }
 
         protected override IMvxIoCProvider CreateIocProvider()
         {

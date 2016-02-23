@@ -26,7 +26,8 @@ namespace MoneyManager.Droid
             try
             {
                 return preferences.GetString(key, null);
-            } catch
+            } 
+            catch
             {
                 return null;
             }
