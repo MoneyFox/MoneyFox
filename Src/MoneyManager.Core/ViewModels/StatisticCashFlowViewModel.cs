@@ -1,6 +1,5 @@
 ﻿using MoneyManager.Core.StatisticProvider;
 using MoneyManager.Foundation.Interfaces;
-using MvvmCross.Core.ViewModels;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
