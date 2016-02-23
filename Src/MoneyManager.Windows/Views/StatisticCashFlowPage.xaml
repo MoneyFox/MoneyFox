@@ -32,7 +32,7 @@
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
         
-        <StackPanel Grid.Row="1">
+        <Grid Grid.Row="1">
             <TextBlock Text="{Binding Title}"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
             <windows:PlotView x:Name="CashFlowPlotView"
@@ -47,7 +47,7 @@
                               MinHeight="60"
                               MinWidth="40"
                               Margin="0,30,30,0" />
-        </StackPanel>
+        </Grid>
         <CommandBar Grid.Row="2"
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>

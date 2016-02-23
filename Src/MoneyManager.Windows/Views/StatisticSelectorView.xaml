@@ -25,7 +25,8 @@
                            TextTrimming="CharacterEllipsis"
                            Style="{StaticResource CustomSubtitleTextBlockStyle}" />
                 <TextBlock Text="{x:Bind Description}"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                           TextWrapping="WrapWholeWords"/>
                 <Path Data="M9,242 L456,242"
                       Height="5"
                       Margin="-7,0,-7,0"

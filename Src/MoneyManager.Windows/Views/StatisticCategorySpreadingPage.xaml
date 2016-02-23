@@ -33,7 +33,7 @@
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
-        <StackPanel Grid.Row="1">
+        <Grid Grid.Row="1">
             <TextBlock Text="{Binding Title}"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
             <windows:PlotView x:Name="SpreadingPlotView"
@@ -47,7 +47,7 @@
                               MinWidth="40"
                               IsEnabled="False"
                               Margin="15" />
-        </StackPanel>
+        </Grid>
         <CommandBar Grid.Row="2"
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>

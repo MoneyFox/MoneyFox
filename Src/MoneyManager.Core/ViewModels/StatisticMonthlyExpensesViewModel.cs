@@ -57,7 +57,7 @@ namespace MoneyManager.Core.ViewModels
 
             foreach (var statisticItem in monthlyExpenses)
             {
-                columnSeries.Items.Add(new ColumnItem(statisticItem.Value) {Color = OxyColors.Red});
+                columnSeries.Items.Add(new ColumnItem(statisticItem.Value) {Color = OxyColor.FromRgb(196, 54, 51)});
                 axe.Labels.Add(statisticItem.Label);
             }
 

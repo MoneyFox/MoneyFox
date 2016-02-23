@@ -15,7 +15,7 @@ namespace MoneyManager.Windows.Views
         private async void SetDate(object sender, RoutedEventArgs e)
         {
             await new SelectDateRangeDialog().ShowAsync();
-            (DataContext as StatisticCashFlowViewModel)?.LoadCommand.Execute();
+            (DataContext as StatisticMonthlyExpensesViewModel)?.LoadCommand.Execute();
         }
 
         public void Dispose()

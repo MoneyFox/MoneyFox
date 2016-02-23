@@ -51,8 +51,6 @@ namespace MoneyManager.Core.ViewModels
             {
                 AxislineColor = OxyColors.White,
                 TextColor = OxyColors.White,
-                IsPanEnabled = false,
-                IsZoomEnabled = false,
                 Angle = 45
             };
 
