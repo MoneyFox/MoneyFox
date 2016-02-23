@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Navigation;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Windows.Dialogs;
 
@@ -11,13 +10,6 @@ namespace MoneyManager.Windows.Views
         public StatisticCashFlowPage()
         {
             InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-
-            CashFlowPlotView.Model = (DataContext as StatisticCashFlowViewModel)?.CashFlowModel;
         }
 
         private async void SetDate(object sender, RoutedEventArgs e)

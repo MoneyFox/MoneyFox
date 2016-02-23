@@ -56,12 +56,16 @@ namespace MoneyManager.Core.ViewModels
                 Angle = 45
             };
 
-            columnSeries.Items.Add(new ColumnItem(cashFlow.Income.Value) {Color = OxyColors.LightGreen});
+            columnSeries.Items.Add(new ColumnItem(cashFlow.Income.Value));
             axe.Labels.Add(cashFlow.Income.Label);
-            columnSeries.Items.Add(new ColumnItem(cashFlow.Spending.Value) {Color = OxyColors.Red});
+            columnSeries.Items.Add(new ColumnItem(cashFlow.Spending.Value));
             axe.Labels.Add(cashFlow.Spending.Label);
-            columnSeries.Items.Add(new ColumnItem(cashFlow.Revenue.Value) {Color = OxyColors.Cyan});
+            columnSeries.Items.Add(new ColumnItem(cashFlow.Revenue.Value));
             axe.Labels.Add(cashFlow.Revenue.Label);
+
+            columnSeries.Items[0].Color = OxyColors.LightGreen;
+            columnSeries.Items[1].Color = OxyColors.Red;
+            columnSeries.Items[2].Color = OxyColors.Cyan;
 
             model.Axes.Add(axe);
             model.Series.Add(columnSeries);
