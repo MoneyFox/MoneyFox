@@ -9,6 +9,7 @@
     xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:viewModels="using:MoneyManager.Core.ViewModels"
     mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
@@ -16,12 +17,30 @@
             <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
+    
+    <Page.Resources>
+        <windows:OxyColorConverter x:Key="OxyColorConverter" />
+        
+        <DataTemplate x:Key="LegendListTemplate" x:DataType="viewModels:LegendItem">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Stretch"
+                        Margin="0,-10,0,-10" >
+                <Grid Height="20" 
+                      Width="20"
+                      Background="{x:Bind Color, Converter={StaticResource OxyColorConverter}}"/>
+                <TextBlock Text="{x:Bind Text}"
+                           Margin="5,0,0,0"
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -46,8 +65,14 @@
                               MinHeight="60"
                               MinWidth="40"
                               Margin="15" />
+
         </Grid>
-        <CommandBar Grid.Row="2"
+        <ListView Grid.Row="2"
+                  HorizontalAlignment="Stretch"
+                  ItemsSource="{Binding LegendList}"
+                  ItemTemplate="{StaticResource LegendListTemplate}" />
+
+        <CommandBar Grid.Row="3"
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Calendar"

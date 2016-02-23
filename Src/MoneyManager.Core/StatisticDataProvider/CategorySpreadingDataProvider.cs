@@ -66,7 +66,23 @@ namespace MoneyManager.Core.StatisticDataProvider
             // Remove again all entries with zero amount.
             RemoveZeroAmountEntries(statisticList);
 
+            SetLabel(statisticList);
+
             return statisticList;
+        }
+
+        private static void SetLabel(List<StatisticItem> statisticList)
+        {
+            var totAmount = statisticList.Sum(x => x.Value);
+            foreach (var statisticItem in statisticList)
+            {
+                statisticItem.Label = statisticItem.Category 
+                    + ": "
+                    + statisticItem.Value.ToString("C") 
+                    + " ("
+                    + Math.Round(statisticItem.Value/totAmount*100, 2)
+                    + "%)";
+            }
         }
 
         private void RemoveZeroAmountEntries(ICollection<StatisticItem> tempStatisticList)

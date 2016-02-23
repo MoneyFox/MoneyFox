@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using MoneyManager.Core.StatisticDataProvider;
 using MoneyManager.Foundation.Interfaces;
@@ -33,9 +34,12 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public PlotModel SpreadingModel { get; set; }
 
+        public ObservableCollection<LegendItem> LegendList { get; set; }
+
         protected override void Load()
         {
             SpreadingModel = null;
+            LegendList = new ObservableCollection<LegendItem>();
             SpreadingModel = GetSpreadingModel();
         }
 
@@ -45,7 +49,6 @@ namespace MoneyManager.Core.ViewModels
         private PlotModel GetSpreadingModel()
         {
             var items = speadingDataProvider.GetValues(StartDate, EndDate);
-            var totalAmount = items.Sum(x => x.Value);
 
             var statisticItems = items as IList<StatisticItem> ?? items.ToList();
             if (!statisticItems.Any())
@@ -60,20 +63,25 @@ namespace MoneyManager.Core.ViewModels
             };
             var pieSeries = new PieSeries
             {
-                AreInsideLabelsAngled = true,
-                InsideLabelFormat = "{1}",
-                OutsideLabelFormat = "{0}"
+                InsideLabelFormat = ""
             };
 
             var colorIndex = 0;
             foreach (var item in statisticItems)
             {
                 pieSeries.Slices.Add(new PieSlice(item.Label, item.Value) {Fill = colors[colorIndex]});
+                LegendList.Add(new LegendItem {Color = colors[colorIndex], Text = item.Label });
                 colorIndex ++;
             }
 
             model.Series.Add(pieSeries);
             return model;
         }
+    }
+
+    public class LegendItem
+    {
+        public OxyColor Color { get; set; }
+        public string Text { get; set; }
     }
 }
