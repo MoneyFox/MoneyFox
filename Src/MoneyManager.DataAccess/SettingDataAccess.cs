@@ -16,7 +16,7 @@ namespace MoneyManager.DataAccess
         // Default Settings
         private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
         private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = false;
-        private const bool AUTOUPLOAD_BACKUP_KEYDEFAULT = true;
+        private const bool AUTOUPLOAD_BACKUP_KEYDEFAULT = false;
 
         private readonly IRoamingSettings roamingSettings;
 

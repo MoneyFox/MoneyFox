@@ -10,6 +10,7 @@
 
     <Grid>
         <StackPanel>
+            <TextBlock Text="Add Explanation here" />
             <ToggleSwitch VerticalAlignment="Center"
                           Header="Upload and download backup manually"
                           x:Uid="AutoBackupSettingHeader"

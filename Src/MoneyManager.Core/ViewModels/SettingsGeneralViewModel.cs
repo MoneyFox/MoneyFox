@@ -10,5 +10,15 @@ namespace MoneyManager.Core.ViewModels
         {
             this.settingsDataAccess = settingsDataAccess;
         }
+
+        public bool IsAutoBackupEnabled
+        {
+            get { return settingsDataAccess.IsBackupAutouploadEnabled; }
+            set
+            {
+                settingsDataAccess.IsBackupAutouploadEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
     }
 }

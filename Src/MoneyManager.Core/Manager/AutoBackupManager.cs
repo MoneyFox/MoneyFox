@@ -1,6 +1,7 @@
 ﻿using MoneyManager.Core.Helpers;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
+using MvvmCross.Platform;
 
 namespace MoneyManager.Core.Manager
 {
@@ -11,16 +12,19 @@ namespace MoneyManager.Core.Manager
     {
         private readonly IBackupService backupService;
         private readonly SettingDataAccess roamingSettings;
+        private readonly IRepositoryManager repositoryManager;
 
         /// <summary>
         ///     Creates a new instance
         /// </summary>
         /// <param name="backupService">Helper for uploading and downloading to the respective backup service.</param>
         /// <param name="roamingSettings">Access to the roaming settings.</param>
-        public AutoBackupManager(IBackupService backupService, SettingDataAccess roamingSettings)
+        /// <param name="repositoryManager">An instance of the repository manager to reload data.</param>
+        public AutoBackupManager(IBackupService backupService, SettingDataAccess roamingSettings, IRepositoryManager repositoryManager)
         {
             this.backupService = backupService;
             this.roamingSettings = roamingSettings;
+            this.repositoryManager = repositoryManager;
         }
 
         /// <summary>
@@ -28,7 +32,7 @@ namespace MoneyManager.Core.Manager
         /// </summary>
         public async void UploadBackupIfNewwer()
         {
-            if (roamingSettings.IsBackupAutouploadEnabled) return;
+            if (!roamingSettings.IsBackupAutouploadEnabled) return;
 
             if (await backupService.GetBackupDate() < Settings.LastDatabaseUpdate)
             {
@@ -41,11 +45,12 @@ namespace MoneyManager.Core.Manager
         /// </summary>
         public async void RestoreBackupIfNewer()
         {
-            if (roamingSettings.IsBackupAutouploadEnabled) return;
+            if (!roamingSettings.IsBackupAutouploadEnabled) return;
 
             if (await backupService.GetBackupDate() > Settings.LastDatabaseUpdate)
             {
                 await backupService.Restore();
+                repositoryManager.ReloadData();
             }
         }
     }
