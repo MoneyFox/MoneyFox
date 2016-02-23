@@ -1,6 +1,4 @@
-﻿using Autofac;
-using MoneyManager.Core;
-using MoneyManager.Core.AutoFac;
+﻿using MoneyManager.Core;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
@@ -9,8 +7,6 @@ using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using MvvmCross.Platform.Plugins;
-using SQLite.Net.Interop;
-using SQLite.Net.Platform.XamarinIOS;
 using UIKit;
 using Xamarin;
 
@@ -46,17 +42,6 @@ namespace MoneyManager.Ios
             Mvx.RegisterType<ILocalSettings, LocalSettings>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
         }
-
-        protected override IMvxIoCProvider CreateIocProvider()
-        {
-            var cb = new ContainerBuilder();
-
-            cb.RegisterModule<CoreModule>();
-            cb.RegisterModule<IosModule>();
-
-            return new AutofacMvxIocProvider(cb.Build());
-        }
-
 
         protected override IMvxApplication CreateApp()
         {
