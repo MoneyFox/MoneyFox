@@ -373,4 +373,10 @@ Do you want to go the the store to rate?</value>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Summary of the categories with a payment.</value>
   </data>
+  <data name="ExpenseHistory" xml:space="preserve">
+    <value>Expense History</value>
+  </data>
+  <data name="ExpenseHistoryDescription" xml:space="preserve">
+    <value>Shows a month by month comparison over your total expenses for the selected time range.</value>
+  </data>
 </root>

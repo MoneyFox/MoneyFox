@@ -5,7 +5,7 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Core.StatisticProvider
+namespace MoneyManager.Core.StatisticDataProvider
 {
     public class CategorySpreadingDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
@@ -66,7 +66,23 @@ namespace MoneyManager.Core.StatisticProvider
             // Remove again all entries with zero amount.
             RemoveZeroAmountEntries(statisticList);
 
+            SetLabel(statisticList);
+
             return statisticList;
+        }
+
+        private static void SetLabel(List<StatisticItem> statisticList)
+        {
+            var totAmount = statisticList.Sum(x => x.Value);
+            foreach (var statisticItem in statisticList)
+            {
+                statisticItem.Label = statisticItem.Category 
+                    + ": "
+                    + statisticItem.Value.ToString("C") 
+                    + " ("
+                    + Math.Round(statisticItem.Value/totAmount*100, 2)
+                    + "%)";
+            }
         }
 
         private void RemoveZeroAmountEntries(ICollection<StatisticItem> tempStatisticList)

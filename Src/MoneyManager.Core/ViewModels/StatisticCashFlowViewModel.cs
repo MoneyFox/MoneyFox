@@ -1,4 +1,4 @@
-﻿using MoneyManager.Core.StatisticProvider;
+﻿using MoneyManager.Core.StatisticDataProvider;
 using MoneyManager.Foundation.Interfaces;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -51,21 +51,15 @@ namespace MoneyManager.Core.ViewModels
             {
                 AxislineColor = OxyColors.White,
                 TextColor = OxyColors.White,
-                IsPanEnabled = false,
-                IsZoomEnabled = false,
                 Angle = 45
             };
 
-            columnSeries.Items.Add(new ColumnItem(cashFlow.Income.Value));
+            columnSeries.Items.Add(new ColumnItem(cashFlow.Income.Value) { Color = OxyColors.LightGreen });
             axe.Labels.Add(cashFlow.Income.Label);
-            columnSeries.Items.Add(new ColumnItem(cashFlow.Spending.Value));
+            columnSeries.Items.Add(new ColumnItem(cashFlow.Spending.Value) { Color = OxyColor.FromRgb(196, 54, 51) });
             axe.Labels.Add(cashFlow.Spending.Label);
-            columnSeries.Items.Add(new ColumnItem(cashFlow.Revenue.Value));
+            columnSeries.Items.Add(new ColumnItem(cashFlow.Revenue.Value) { Color = OxyColors.Cyan });
             axe.Labels.Add(cashFlow.Revenue.Label);
-
-            columnSeries.Items[0].Color = OxyColors.LightGreen;
-            columnSeries.Items[1].Color = OxyColors.Red;
-            columnSeries.Items[2].Color = OxyColors.Cyan;
 
             model.Axes.Add(axe);
             model.Series.Add(columnSeries);

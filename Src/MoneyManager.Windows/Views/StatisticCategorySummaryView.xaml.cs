@@ -4,9 +4,9 @@ using MoneyManager.Windows.Dialogs;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class StatisticCategorySummaryPage
+    public sealed partial class StatisticCategorySummaryView
     {
-        public StatisticCategorySummaryPage()
+        public StatisticCategorySummaryView()
         {
             InitializeComponent();
         }

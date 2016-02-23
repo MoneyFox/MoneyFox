@@ -5,9 +5,9 @@ using MoneyManager.Windows.Dialogs;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class StatisticCategorySpreadingPage : IDisposable
+    public sealed partial class StatisticCategorySpreadingView : IDisposable
     {
-        public StatisticCategorySpreadingPage()
+        public StatisticCategorySpreadingView()
         {
             InitializeComponent();
         }

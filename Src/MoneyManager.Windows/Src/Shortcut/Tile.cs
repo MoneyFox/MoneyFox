@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using MoneyManager.Core.Extensions;
-using MoneyManager.Core.StatisticProvider;
+using MoneyManager.Core.StatisticDataProvider;
 using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Platform;
 

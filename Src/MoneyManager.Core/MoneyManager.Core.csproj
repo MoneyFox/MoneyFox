@@ -73,9 +73,10 @@
     <Compile Include="Repositories\PaymentRepository.cs" />
     <Compile Include="ListStatisticFactory.cs" />
     <Compile Include="Authentication\Session.cs" />
-    <Compile Include="StatisticProvider\CashFlowDataProvider.cs" />
-    <Compile Include="StatisticProvider\CategorySpreadingDataProvider.cs" />
-    <Compile Include="StatisticProvider\CategorySummaryDataProvider.cs" />
+    <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
+    <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
+    <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />
+    <Compile Include="StatisticDataProvider\ExpensesMonthlyDataProvider.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
     <Compile Include="ViewModels\CategoryListViewModel.cs" />
     <Compile Include="ViewModels\StatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\StatisticMonthlyExpensesViewModel.cs" />
     <Compile Include="ViewModels\StatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
     <Compile Include="ViewModels\SettingsShortcutsViewModel.cs" />
