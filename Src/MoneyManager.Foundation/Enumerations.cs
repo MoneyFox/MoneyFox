@@ -42,6 +42,7 @@
     {
         Cashflow,
         CategorySpreading,
-        CategorySummary
+        CategorySummary,
+        ExpenseHistory
     }
 }
