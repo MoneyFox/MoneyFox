@@ -5,9 +5,9 @@ using MoneyManager.Windows.Dialogs;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class StatisticMonthlyExpensesPage : IDisposable
+    public sealed partial class StatisticMonthlyExpensesView : IDisposable
     {
-        public StatisticMonthlyExpensesPage()
+        public StatisticMonthlyExpensesView()
         {
             InitializeComponent();
         }
