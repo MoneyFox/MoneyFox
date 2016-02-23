@@ -14,6 +14,14 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly CategorySpreadingDataProvider speadingDataProvider;
 
+        private readonly OxyColor[] colors =
+        {
+            OxyColor.Parse("#411718"), OxyColor.Parse("#5c2021"),
+            OxyColor.Parse("#77292a"), OxyColor.Parse("#933233"),
+            OxyColor.Parse("#af3a3c"), OxyColor.Parse("#c44a4c"),
+            OxyColor.Parse("#ce6466")
+        };
+
         public StatisticCategorySpreadingViewModel(IPaymentRepository paymentRepository,
             IRepository<Category> categoryRepository)
         {
@@ -37,6 +45,7 @@ namespace MoneyManager.Core.ViewModels
         private PlotModel GetSpreadingModel()
         {
             var items = speadingDataProvider.GetValues(StartDate, EndDate);
+            var totalAmount = items.Sum(x => x.Value);
 
             var statisticItems = items as IList<StatisticItem> ?? items.ToList();
             if (!statisticItems.Any())
@@ -56,9 +65,11 @@ namespace MoneyManager.Core.ViewModels
                 OutsideLabelFormat = "{0}"
             };
 
+            var colorIndex = 0;
             foreach (var item in statisticItems)
             {
-                pieSeries.Slices.Add(new PieSlice(item.Label, item.Value));
+                pieSeries.Slices.Add(new PieSlice(item.Label, item.Value) {Fill = colors[colorIndex]});
+                colorIndex ++;
             }
 
             model.Series.Add(pieSeries);

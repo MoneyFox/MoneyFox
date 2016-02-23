@@ -39,7 +39,6 @@
                               IsMouseWheelEnabled="False"
                               Model="{Binding CashFlowModel}"
                               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                              IsEnabled="False"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
                               VerticalContentAlignment="Stretch"

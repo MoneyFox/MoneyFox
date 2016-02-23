@@ -39,7 +39,6 @@
                               IsMouseWheelEnabled="False"
                               Model="{Binding MonthlyExpensesModel}"
                               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                              IsEnabled="True"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
                               VerticalContentAlignment="Stretch"

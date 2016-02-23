@@ -45,7 +45,6 @@
                               HorizontalContentAlignment="Stretch"
                               MinHeight="60"
                               MinWidth="40"
-                              IsEnabled="False"
                               Margin="15" />
         </Grid>
         <CommandBar Grid.Row="2"
