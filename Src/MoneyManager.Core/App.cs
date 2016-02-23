@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using MoneyManager.Core.Authentication;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
@@ -54,6 +55,18 @@ namespace MoneyManager.Core
 
             CreatableTypes()
                 .EndingWith("Manager")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
+            CreatableTypes()
+                .EndingWith("ViewModel")
+                .Where(x => !x.Name.StartsWith("DesignTime"))
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
+
+            CreatableTypes()
+                .EndingWith("ViewModel")
                 .AsTypes()
                 .RegisterAsLazySingleton();
         }
