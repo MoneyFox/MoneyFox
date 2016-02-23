@@ -6,12 +6,17 @@
              xmlns:model="using:MoneyManager.Foundation.Model"
              xmlns:controls="using:MoneyManager.Windows.Controls"
              xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:converter="using:MoneyManager.Windows.Converter"
              d:DataContext="{d:DesignInstance designTime:DesignTimeCategoryListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
 
     <UserControl.Resources>
+        <converter:ClickConverter x:Key="ClickConverter" />
+
         <DataTemplate x:Key="CategoryTemplate"
                       x:DataType="model:Category">
             <StackPanel Margin="0,6,0,6"
@@ -47,10 +52,16 @@
                  Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <ScrollViewer Margin="0,7,0,0" Grid.Row="1">
             <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                                   EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                   ItemsSource="{Binding Categories}"
-                                                   ItemTemplate="{StaticResource CategoryTemplate }"
-                                                   SelectedItem="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                             ItemsSource="{Binding Categories}"
+                                             ItemTemplate="{StaticResource CategoryTemplate }"
+                                             IsItemClickEnabled="True">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="ItemClick">
+                        <core:InvokeCommandAction Command="{Binding DoneCommand, Mode=OneWay}"
+                                                  InputConverter="{StaticResource ClickConverter}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment"

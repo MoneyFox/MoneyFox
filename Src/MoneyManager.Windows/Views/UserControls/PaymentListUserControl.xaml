@@ -27,7 +27,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
-        <converter:SelectedConverter x:Key="SelectedConverter" />
+        <converter:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="PaymentTemplate"
                       x:DataType="model:Payment">
@@ -145,11 +145,13 @@
                                                        ItemsSource="{Binding Source={StaticResource Groups}}"
                                                        ItemTemplate="{StaticResource PaymentTemplate}"
                                                        HorizontalAlignment="Stretch"
-                                                       ShowsScrollingPlaceholders="false">
+                                                       ShowsScrollingPlaceholders="false"
+                                                       IsItemClickEnabled="True"
+                                                       IsSynchronizedWithCurrentItem="False">
                     <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                        <core:EventTriggerBehavior EventName="ItemClick">
                             <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}"
-                                                      InputConverter="{StaticResource SelectedConverter}" />
+                                                      InputConverter="{StaticResource ClickConverter}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
 

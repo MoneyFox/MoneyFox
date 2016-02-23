@@ -2178,9 +2178,6 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f060091
 			public const int action_divider = 2131099793;
 			
-			// aapt resource value: 0x7f0600a5
-			public const int action_done = 2131099813;
-			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
 			
@@ -2403,29 +2400,29 @@ namespace MoneyManager.Droid
 			// aapt resource value: 0x7f060017
 			public const int multiply = 2131099671;
 			
-			// aapt resource value: 0x7f0600ad
-			public const int nav_about = 2131099821;
-			
-			// aapt resource value: 0x7f0600a7
-			public const int nav_accounts = 2131099815;
-			
-			// aapt resource value: 0x7f0600ab
-			public const int nav_backup = 2131099819;
-			
-			// aapt resource value: 0x7f0600aa
-			public const int nav_categories = 2131099818;
-			
-			// aapt resource value: 0x7f0600a9
-			public const int nav_footer = 2131099817;
+			// aapt resource value: 0x7f0600ac
+			public const int nav_about = 2131099820;
 			
 			// aapt resource value: 0x7f0600a6
-			public const int nav_items = 2131099814;
+			public const int nav_accounts = 2131099814;
 			
-			// aapt resource value: 0x7f0600ac
-			public const int nav_settings = 2131099820;
+			// aapt resource value: 0x7f0600aa
+			public const int nav_backup = 2131099818;
+			
+			// aapt resource value: 0x7f0600a9
+			public const int nav_categories = 2131099817;
 			
 			// aapt resource value: 0x7f0600a8
-			public const int nav_statistics = 2131099816;
+			public const int nav_footer = 2131099816;
+			
+			// aapt resource value: 0x7f0600a5
+			public const int nav_items = 2131099813;
+			
+			// aapt resource value: 0x7f0600ab
+			public const int nav_settings = 2131099819;
+			
+			// aapt resource value: 0x7f0600a7
+			public const int nav_statistics = 2131099815;
 			
 			// aapt resource value: 0x7f06006e
 			public const int navigation_frame = 2131099758;

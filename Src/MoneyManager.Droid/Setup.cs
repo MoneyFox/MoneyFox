@@ -1,16 +1,15 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Android.Content;
-using Autofac;
 using MoneyManager.Core;
-using MoneyManager.Core.AutoFac;
+using MoneyManager.Droid.Src.Widgets;
+using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
-using MvvmCross.Droid.Support.V7.Fragging.Presenter;
 using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
-using MvvmCross.Platform.IoC;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using Xamarin;
@@ -30,14 +29,20 @@ namespace MoneyManager.Droid
             pluginManager.EnsurePluginLoaded<MvvmCross.Plugins.Messenger.PluginLoader>();
         }
 
-        protected override IMvxIoCProvider CreateIocProvider()
+        protected override void InitializeFirstChance()
         {
-            var cb = new ContainerBuilder();
+            base.InitializeFirstChance();
 
-            cb.RegisterModule<CoreModule>();
-            cb.RegisterModule<AndroidModule>();
-
-            return new AutofacMvxIocProvider(cb.Build());
+            Mvx.RegisterType<IDialogService, DialogService>();
+            Mvx.RegisterType<IAppInformation, AppInformation>();
+            Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
+            Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
+            Mvx.RegisterType<ILocalSettings, LocalSettings>();
+            Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
+            Mvx.RegisterType<IProtectedData, ProtectedData>();
+            Mvx.RegisterType<ISpendingShortcut, ExpenseWidget>();
+            Mvx.RegisterType<IIncomeShortcut, IncomeWidget>();
+            Mvx.RegisterType<ITransferShortcut, TransferWidget>();
         }
 
         protected override IEnumerable<Assembly> AndroidViewAssemblies => new List<Assembly>(base.AndroidViewAssemblies)
