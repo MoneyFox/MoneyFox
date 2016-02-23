@@ -1,5 +1,6 @@
 <<<<<<< Updated upstream
 ﻿<Properties StartupItem="MoneyManager.Droid\MoneyManager.Droid.csproj" RefactoringSettings.EnableRefactorings="True">
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus4" />
   <MonoDevelop.Ide.Workbench ActiveDocument="MoneyManager.Droid\Activities\SelectCategoryListActivity.cs">
     <Files>
@@ -16,10 +17,12 @@
 >>>>>>> Stashed changes
     </Files>
   </MonoDevelop.Ide.Workbench>
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.AVD_GalaxyNexus_ToolsForApacheCordova" />
+  <MonoDevelop.Ide.Workbench />
+>>>>>>> origin/master
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Users\padruttn\Documents\GitHub\MoneyManager\Src\MoneyManager.Droid\Activities\SelectCategoryListActivity.cs" line="61" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
