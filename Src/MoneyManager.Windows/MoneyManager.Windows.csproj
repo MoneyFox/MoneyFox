@@ -148,6 +148,9 @@
     <Compile Include="Views\StatisticCategorySummaryPage.xaml.cs">
       <DependentUpon>StatisticCategorySummaryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StatisticMonthlyExpensesPage.xaml.cs">
+      <DependentUpon>StatisticMonthlyExpensesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StatisticSelectorView.xaml.cs">
       <DependentUpon>StatisticSelectorView.xaml</DependentUpon>
     </Compile>
@@ -354,6 +357,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StatisticCategorySummaryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StatisticMonthlyExpensesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
