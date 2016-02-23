@@ -45,12 +45,6 @@
     <Compile Include="App.cs" />
     <Compile Include="AppStart.cs" />
     <Compile Include="Manager\AutoBackupManager.cs" />
-    <Compile Include="AutoFac\AutofacMvxIocProvider.cs" />
-    <Compile Include="AutoFac\AutofacMvxIocProviderResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AutofacMvxIocProviderResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
