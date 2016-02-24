@@ -1,23 +1,15 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Navigation;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Windows.Dialogs;
 
 namespace MoneyManager.Windows.Views
 {
-    public sealed partial class StatisticCashFlowPage : IDisposable
+    public sealed partial class StatisticCashFlowView : IDisposable
     {
-        public StatisticCashFlowPage()
+        public StatisticCashFlowView()
         {
             InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-
-            CashFlowPlotView.Model = (DataContext as StatisticCashFlowViewModel)?.CashFlowModel;
         }
 
         private async void SetDate(object sender, RoutedEventArgs e)

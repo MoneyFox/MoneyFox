@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
@@ -24,6 +25,16 @@ namespace MoneyManager.Core.ViewModels
         }
 
         /// <summary>
+        ///     The Date when the backup was modified the last time.
+        /// </summary>
+        public DateTime BackupLastModified { get; private set; }
+
+        /// <summary>
+        ///     Prepares the View when loaded.
+        /// </summary>
+        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
+
+        /// <summary>
         ///     The Backup Service for the current platform.
         ///     On Android this needs to be overwritten with an
         ///     instance with the current activity setup.
@@ -46,6 +57,11 @@ namespace MoneyManager.Core.ViewModels
         ///     Indicator if something is in work.
         /// </summary>
         public bool IsLoading { get; private set; }
+
+        private async void Loaded()
+        {
+            BackupLastModified = await BackupService.GetBackupDate();
+        }
 
         private async void CreateBackup()
         {

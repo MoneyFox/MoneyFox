@@ -1,5 +1,7 @@
 ﻿using Foundation;
 using UIKit;
+using MvvmCross.Platform;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Ios
 {
@@ -24,11 +26,14 @@ namespace MoneyManager.Ios
             // create a new window instance based on the screen size
             window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            // If you have defined a view, add it here:
-            // window.RootViewController  = navigationController;
+			//var setup = new Setup(this, Window);
+			//setup.Initialize();
 
-            // make the window visible
-            window.MakeKeyAndVisible();
+			var startup = Mvx.Resolve<IMvxAppStart>();
+			startup.Start();
+
+			// make the window visible
+			Window.MakeKeyAndVisible();
 
             return true;
         }

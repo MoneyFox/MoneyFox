@@ -1,10 +1,10 @@
 using Windows.UI.Xaml.Controls;
-using Autofac;
-using MoneyManager.Core;
-using MoneyManager.Core.AutoFac;
+using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Interfaces.Shotcuts;
+using MoneyManager.Windows.Services;
+using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
-using MvvmCross.Platform.IoC;
 using MvvmCross.Platform.Plugins;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.Email.WindowsCommon;
@@ -38,14 +38,21 @@ namespace MoneyManager.Windows
             Mvx.RegisterType<IMvxFileStore, MvxWindowsCommonFileStore>();
         }
 
-        protected override IMvxIoCProvider CreateIocProvider()
+        protected override void InitializeFirstChance()
         {
-            var cb = new ContainerBuilder();
+            base.InitializeFirstChance();
 
-            cb.RegisterModule<CoreModule>();
-            cb.RegisterModule<WindowsModule>();
-
-            return new AutofacMvxIocProvider(cb.Build());
+            Mvx.RegisterType<IDialogService, DialogService>();
+            Mvx.RegisterType<IAppInformation, AppInformation>();
+            Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
+            Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
+            Mvx.RegisterType<ILocalSettings, LocalSettings>();
+            Mvx.RegisterType<IUserNotification, UserNotification>();
+            Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
+            Mvx.RegisterType<IProtectedData, ProtectedData>();
+            Mvx.RegisterType<ISpendingShortcut, ExpenseTile>();
+            Mvx.RegisterType<IIncomeShortcut, IncomeTile>();
+            Mvx.RegisterType<ITransferShortcut, TransferTile>();
         }
 
         protected override IMvxApplication CreateApp()

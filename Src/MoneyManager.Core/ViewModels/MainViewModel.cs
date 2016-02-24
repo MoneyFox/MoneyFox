@@ -1,19 +1,14 @@
-﻿using MoneyManager.Foundation.Model;
+﻿using MoneyManager.Core.Helpers;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private readonly ModifyAccountViewModel modifyAccountViewModel;
-
         /// <summary>
-        ///     Creates an MainViewModel object.
+        ///     Returns the timestamp when the last change was made to the database
         /// </summary>
-        public MainViewModel(ModifyAccountViewModel modifyAccountViewModel)
-        {
-            this.modifyAccountViewModel = modifyAccountViewModel;
-        }
+        public string TimeStampDbUpdate => Settings.LastDatabaseUpdate.ToString();
 
         /// <summary>
         ///     Prepare everything and navigate to the add payment view
@@ -42,10 +37,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void GoToAddAccount()
         {
-            modifyAccountViewModel.IsEdit = false;
-            modifyAccountViewModel.SelectedAccount = new Account();
-
-            ShowViewModel<ModifyAccountViewModel>();
+            ShowViewModel<ModifyAccountViewModel>(new {isEdit = false});
         }
 
         private void GoToAbout()

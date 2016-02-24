@@ -18,6 +18,16 @@
                 <!--Allgemeines-->
                 <PivotItem>
                     <PivotItem.Header>
+                        <userControls:TabHeader Label="General"
+                                                x:Uid="GeneralHeader"
+                                                Glyph="&#xE80F;" />
+                    </PivotItem.Header>
+                    <userControls:SettingsGeneralUserControl Margin="-7,0,-7,0" />
+                </PivotItem>                
+                
+                <!--Tiles-->
+                <PivotItem>
+                    <PivotItem.Header>
                         <userControls:TabHeader Label="Tiles"
                                                  x:Uid="TilesHeader"
                                                  Glyph="&#xE8FC;" />

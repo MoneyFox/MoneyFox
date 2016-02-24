@@ -5,8 +5,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:converter="using:MoneyManager.Windows.Converter"
       xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
@@ -45,6 +53,17 @@
                         x:Uid="RestoreBackup"
                         Command="{Binding RestoreCommand}"
                         HorizontalAlignment="Stretch" />
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,15,0,7">
+                    <TextBlock x:Uid="BackupLastModifiedText"
+                               Text="Last Backup created at:"
+                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                               Margin="-5,0,0,0"/>
+                    <TextBlock Text="{Binding BackupLastModified}"
+                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                               Margin="5,0,0,0" />
+
+                </StackPanel>
             </StackPanel>
         </StackPanel>
 

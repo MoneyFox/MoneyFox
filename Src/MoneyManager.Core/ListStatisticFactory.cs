@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MoneyManager.Core.StatisticProvider;
+using MoneyManager.Core.StatisticDataProvider;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;

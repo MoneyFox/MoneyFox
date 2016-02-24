@@ -18,6 +18,16 @@ namespace MoneyManager.Core.ViewModels
             this.accountRepository = accountRepository;
         }
 
+        public void Init(bool isEdit)
+        {
+            IsEdit = isEdit;
+
+            if (!IsEdit)
+            {
+                SelectedAccount = new Account();
+            }
+        }
+
         /// <summary>
         ///     Saves all changes to the database
         ///     or creates a new account depending on

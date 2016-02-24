@@ -139,14 +139,17 @@
     <Compile Include="Views\RecurringPaymentListView.xaml.cs">
       <DependentUpon>RecurringPaymentListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StatisticCashFlowPage.xaml.cs">
-      <DependentUpon>StatisticCashFlowPage.xaml</DependentUpon>
+    <Compile Include="Views\StatisticCashFlowView.xaml.cs">
+      <DependentUpon>StatisticCashFlowView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StatisticCategorySpreadingPage.xaml.cs">
-      <DependentUpon>StatisticCategorySpreadingPage.xaml</DependentUpon>
+    <Compile Include="Views\StatisticCategorySpreadingView.xaml.cs">
+      <DependentUpon>StatisticCategorySpreadingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StatisticCategorySummaryPage.xaml.cs">
-      <DependentUpon>StatisticCategorySummaryPage.xaml</DependentUpon>
+    <Compile Include="Views\StatisticCategorySummaryView.xaml.cs">
+      <DependentUpon>StatisticCategorySummaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StatisticMonthlyExpensesView.xaml.cs">
+      <DependentUpon>StatisticMonthlyExpensesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StatisticSelectorView.xaml.cs">
       <DependentUpon>StatisticSelectorView.xaml</DependentUpon>
@@ -162,6 +165,9 @@
     </Compile>
     <Compile Include="Views\UserControls\CategoryListUserControl.xaml.cs">
       <DependentUpon>CategoryListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\SettingsGeneralUserControl.xaml.cs">
+      <DependentUpon>SettingsGeneralUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\SettingsSecurityUserControl.xaml.cs">
       <DependentUpon>SettingsSecurityUserControl.xaml</DependentUpon>
@@ -223,7 +229,6 @@
     <Compile Include="Views\PaymentListView.xaml.cs">
       <DependentUpon>PaymentListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowsModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -346,15 +351,19 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
-    <Page Include="Views\StatisticCashFlowPage.xaml">
+    <Page Include="Views\StatisticCashFlowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\StatisticCategorySpreadingPage.xaml">
+    <Page Include="Views\StatisticCategorySpreadingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\StatisticCategorySummaryPage.xaml">
+    <Page Include="Views\StatisticCategorySummaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StatisticMonthlyExpensesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,6 +386,10 @@
     <Page Include="Views\UserControls\CategoryListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\SettingsGeneralUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\SettingsSecurityUserControl.xaml">
       <SubType>Designer</SubType>
