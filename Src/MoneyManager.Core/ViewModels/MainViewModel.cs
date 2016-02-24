@@ -1,9 +1,15 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using MoneyManager.Core.Helpers;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        /// <summary>
+        ///     Returns the timestamp when the last change was made to the database
+        /// </summary>
+        public string TimeStampDbUpdate => Settings.LastDatabaseUpdate.ToString();
+
         /// <summary>
         ///     Prepare everything and navigate to the add payment view
         /// </summary>

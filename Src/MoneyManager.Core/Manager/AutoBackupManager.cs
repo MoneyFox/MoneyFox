@@ -1,7 +1,10 @@
-﻿using MoneyManager.Core.Helpers;
+﻿using System.Threading.Tasks;
+using Microsoft.OneDrive.Sdk;
+using MoneyManager.Core.Helpers;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Platform;
+using Xamarin;
 
 namespace MoneyManager.Core.Manager
 {
@@ -43,14 +46,23 @@ namespace MoneyManager.Core.Manager
         /// <summary>
         ///     Restores the backup from OneDrive when the backup is newer then the last modification.
         /// </summary>
-        public async void RestoreBackupIfNewer()
+        public async Task RestoreBackupIfNewer()
         {
-            if (!roamingSettings.IsBackupAutouploadEnabled) return;
-
-            if (await backupService.GetBackupDate() > Settings.LastDatabaseUpdate)
+            try
             {
-                await backupService.Restore();
-                repositoryManager.ReloadData();
+                if (!roamingSettings.IsBackupAutouploadEnabled) return;
+
+                var backupDate = await backupService.GetBackupDate();
+                if (backupDate > Settings.LastDatabaseUpdate)
+                {
+                    await backupService.Restore();
+                    repositoryManager.ReloadData();
+                    Settings.LastDatabaseUpdate = backupDate;
+                }
+            }
+            catch (OneDriveException ex)
+            {
+                Insights.Report(ex);
             }
         }
     }

@@ -353,4 +353,7 @@ Tap to visit the Repository:</value>
   <data name="GeneralHeader.Label" xml:space="preserve">
     <value>General</value>
   </data>
+  <data name="DatabaseModifiedText.Text" xml:space="preserve">
+    <value>Last database modification:</value>
+  </data>
 </root>

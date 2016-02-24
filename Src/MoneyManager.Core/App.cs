@@ -15,14 +15,14 @@ namespace MoneyManager.Core
         /// <summary>
         ///     Initializes this instance.
         /// </summary>
-        public override void Initialize()
+        public override async void Initialize()
         {
             RegisterDependencies();
 
             // Start the app with the Main View Model.
             RegisterAppStart(new AppStart());
 
-            Mvx.Resolve<IAutobackupManager>().RestoreBackupIfNewer();
+            await Mvx.Resolve<IAutobackupManager>().RestoreBackupIfNewer();
             Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
             Mvx.Resolve<IPaymentManager>().ClearPayments();
         }
