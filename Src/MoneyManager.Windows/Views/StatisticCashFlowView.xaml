@@ -37,6 +37,7 @@
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
             <windows:PlotView x:Name="CashFlowPlotView"
                               IsMouseWheelEnabled="False"
+                              IsEnabled="False"
                               Model="{Binding CashFlowModel}"
                               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                               HorizontalAlignment="Stretch"
