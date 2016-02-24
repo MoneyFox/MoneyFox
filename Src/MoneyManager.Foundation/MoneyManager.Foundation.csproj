@@ -49,6 +49,7 @@
     <Compile Include="Exceptions\ExtendedFormatException.cs" />
     <Compile Include="Groups\AlphaGroupListGroup.cs" />
     <Compile Include="Groups\DateListGroup.cs" />
+    <Compile Include="Interfaces\IAutobackupManager.cs" />
     <Compile Include="Interfaces\ViewModels\IAccountListViewModel.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />

@@ -344,4 +344,16 @@ Tap to visit the Repository:</value>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
     <value>Select Statistic</value>
   </data>
+  <data name="BackupLastModifiedText.Text" xml:space="preserve">
+    <value>Last Backup was created at:</value>
+  </data>
+  <data name="AutoBackupSettingHeader.Header" xml:space="preserve">
+    <value>Upload and download backup manually</value>
+  </data>
+  <data name="GeneralHeader.Label" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="DatabaseModifiedText.Text" xml:space="preserve">
+    <value>Last database modification:</value>
+  </data>
 </root>

@@ -26,8 +26,8 @@ namespace MoneyManager.Ios
             // create a new window instance based on the screen size
             window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-			var setup = new Setup(this, Window);
-			setup.Initialize();
+			//var setup = new Setup(this, Window);
+			//setup.Initialize();
 
 			var startup = Mvx.Resolve<IMvxAppStart>();
 			startup.Start();

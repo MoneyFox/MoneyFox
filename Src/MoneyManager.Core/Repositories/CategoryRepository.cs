@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
+using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
@@ -60,6 +61,7 @@ namespace MoneyManager.Core.Repositories
                 data.Add(category);
             }
             dataAccess.SaveItem(category);
+            Settings.LastDatabaseUpdate = DateTime.Now;
         }
 
         /// <summary>
@@ -70,6 +72,7 @@ namespace MoneyManager.Core.Repositories
         {
             data.Remove(categoryToDelete);
             dataAccess.DeleteItem(categoryToDelete);
+            Settings.LastDatabaseUpdate = DateTime.Now;
         }
 
         /// <summary>

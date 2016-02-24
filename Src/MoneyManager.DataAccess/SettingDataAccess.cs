@@ -11,10 +11,12 @@ namespace MoneyManager.DataAccess
         // Settings Names
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
         private const string SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME = "ShowCashFlowOnMainTile";
+        private const string AUTOUPLOAD_BACKUP_KEYNAME = "AutoUploadBackup";
 
         // Default Settings
         private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
         private const bool SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT = false;
+        private const bool AUTOUPLOAD_BACKUP_KEYDEFAULT = false;
 
         private readonly IRoamingSettings roamingSettings;
 
@@ -58,6 +60,19 @@ namespace MoneyManager.DataAccess
             set
             {
                 AddOrUpdateValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value);
+                OnPropertyChanged();
+            }
+        }
+        public bool IsBackupAutouploadEnabled
+        {
+            get
+            {
+                return roamingSettings.GetValueOrDefault(AUTOUPLOAD_BACKUP_KEYNAME,
+                    AUTOUPLOAD_BACKUP_KEYDEFAULT);
+            }
+            set
+            {
+                AddOrUpdateValue(AUTOUPLOAD_BACKUP_KEYNAME, value);
                 OnPropertyChanged();
             }
         }
