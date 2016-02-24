@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
@@ -90,6 +91,7 @@ namespace MoneyManager.Core.Repositories
                 data.Add(payment);
             }
             dataAccess.SaveItem(payment);
+            Settings.LastDatabaseUpdate = DateTime.Now;
         }
 
         /// <summary>
@@ -109,6 +111,7 @@ namespace MoneyManager.Core.Repositories
                 // delete the db entry for the recurring accountToDelete.
                 DeleteRecurringPaymentIfLastAssociated(payment);
             }
+            Settings.LastDatabaseUpdate = DateTime.Now;
         }
 
         /// <summary>

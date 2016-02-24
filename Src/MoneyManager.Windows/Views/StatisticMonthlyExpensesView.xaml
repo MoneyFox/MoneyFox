@@ -37,6 +37,7 @@
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
             <windows:PlotView x:Name="ExpensePlotView"
                               IsMouseWheelEnabled="False"
+                              IsEnabled="False"
                               Model="{Binding MonthlyExpensesModel}"
                               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                               HorizontalAlignment="Stretch"

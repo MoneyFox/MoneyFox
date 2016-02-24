@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
@@ -29,7 +30,10 @@ namespace MoneyManager.Core.Services
 
         public async Task Login()
         {
-            OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+            if (!IsLoggedIn)
+            {
+                OneDriveClient = await oneDriveAuthenticator.LoginAsync();
+            }
 
             if (OneDriveClient.IsAuthenticated)
             {
@@ -39,6 +43,11 @@ namespace MoneyManager.Core.Services
 
         public async Task<TaskCompletionType> Upload()
         {
+            if (!IsLoggedIn)
+            {
+                await Login();
+            }
+
             try
             {
                 using (var dbstream = fileStore.OpenRead(OneDriveAuthenticationConstants.DB_NAME))
@@ -63,7 +72,7 @@ namespace MoneyManager.Core.Services
 
         public async Task<TaskCompletionType> Restore()
         {
-            if (BackupFolder == null)
+            if (!IsLoggedIn)
             {
                 await Login();
             }
@@ -90,6 +99,23 @@ namespace MoneyManager.Core.Services
             }
 
             return TaskCompletionType.Successful;
+        }
+
+        public async Task<DateTime> GetBackupDate()
+        {
+            if (!IsLoggedIn)
+            {
+                await Login();
+            }
+
+            var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
+            var existingBackup = children.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_NAME);
+
+            if (existingBackup != null)
+            {
+                return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
+            }
+            return DateTime.MinValue;
         }
 
         private async Task GetBackupFolder()

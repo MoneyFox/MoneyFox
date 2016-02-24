@@ -20,7 +20,7 @@ namespace MoneyManager.Windows.Services
         {
             if (oneDriveClient == null)
             {
-                oneDriveClient = OneDriveClientExtensions.GetClientUsingWebAuthenticationBroker(OneDriveAuthenticationConstants.MSA_CLIENT_ID, OneDriveAuthenticationConstants.Scopes);
+                oneDriveClient = OneDriveClientExtensions.GetUniversalClient(OneDriveAuthenticationConstants.Scopes);
                 await oneDriveClient.AuthenticateAsync();
             }
 

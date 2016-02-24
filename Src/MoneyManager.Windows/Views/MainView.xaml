@@ -10,6 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -26,7 +27,16 @@
             <userControls:AccountListUserControl VerticalAlignment="Stretch" />
         </Grid>
 
-        <CommandBar Grid.Row="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock Text="Database modified at:"
+                       x:Uid="DatabaseModifiedText"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"/>
+            <TextBlock Text="{Binding TimeStampDbUpdate}"
+                       Margin="5,0,0,0"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+        </StackPanel>
+
+        <CommandBar Grid.Row="3">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Add"
                               x:Uid="AddIncomeLabel"

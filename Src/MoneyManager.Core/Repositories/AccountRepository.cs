@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
@@ -62,6 +63,7 @@ namespace MoneyManager.Core.Repositories
                 data.Add(account);
             }
             dataAccess.SaveItem(account);
+            Settings.LastDatabaseUpdate = DateTime.Now;
         }
 
         /// <summary>
@@ -72,6 +74,7 @@ namespace MoneyManager.Core.Repositories
         {
             data.Remove(accountToDelete);
             dataAccess.DeleteItem(accountToDelete);
+            Settings.LastDatabaseUpdate = DateTime.Now;
         }
 
         /// <summary>
