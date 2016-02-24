@@ -30,6 +30,12 @@ namespace MoneyManager.Core.ViewModels
                 Name = Strings.CategorySummary,
                 Description = Strings.CategorySummaryDescription,
                 Type = StatisticType.CategorySummary
+            },
+            new StatisticSelectorType
+            {
+                Name = Strings.ExpenseHistory,
+                Description = Strings.ExpenseHistoryDescription,
+                Type = StatisticType.ExpenseHistory
             }
         };
 
@@ -53,6 +59,10 @@ namespace MoneyManager.Core.ViewModels
 
                 case StatisticType.CategorySummary:
                     ShowViewModel<StatisticCategorySummaryViewModel>();
+                    break;
+
+                case StatisticType.ExpenseHistory:
+                    ShowViewModel<StatisticMonthlyExpensesViewModel>();
                     break;
             }
         }

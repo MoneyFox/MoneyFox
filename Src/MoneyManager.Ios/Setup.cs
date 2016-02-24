@@ -1,10 +1,10 @@
-﻿using Autofac;
-using MoneyManager.Core;
-using MoneyManager.Core.AutoFac;
+﻿using MoneyManager.Core;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.iOS.Views.Presenters;
+using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using MvvmCross.Platform.Plugins;
 using UIKit;
@@ -31,17 +31,17 @@ namespace MoneyManager.Ios
 
         }
 
-
-        protected override IMvxIoCProvider CreateIocProvider()
+        protected override void InitializeFirstChance()
         {
-            var cb = new ContainerBuilder();
+            base.InitializeFirstChance();
 
-            cb.RegisterModule<CoreModule>();
-            cb.RegisterModule<IosModule>();
-
-            return new AutofacMvxIocProvider(cb.Build());
+            Mvx.RegisterType<IDialogService, DialogService>();
+            Mvx.RegisterType<IAppInformation, AppInformation>();
+            Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
+            Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
+            Mvx.RegisterType<ILocalSettings, LocalSettings>();
+            Mvx.RegisterType<IProtectedData, ProtectedData>();
         }
-
 
         protected override IMvxApplication CreateApp()
         {

@@ -413,6 +413,24 @@ namespace MoneyManager.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expense History.
+        /// </summary>
+        public static string ExpenseHistory {
+            get {
+                return ResourceManager.GetString("ExpenseHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shows a month by month comparison over your total expenses for the selected time range..
+        /// </summary>
+        public static string ExpenseHistoryDescription {
+            get {
+                return ResourceManager.GetString("ExpenseHistoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expenses.
         /// </summary>
         public static string ExpenseLabel {
