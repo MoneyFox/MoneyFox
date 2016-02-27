@@ -18,7 +18,6 @@ using UniversalRateReminder;
 using Windows.UI.StartScreen;
 using Microsoft.ApplicationInsights;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
@@ -190,10 +189,7 @@ namespace MoneyManager.Windows
 
             Tile.UpdateMainTile();
             Settings.SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
-
-            //upload a db backup when the app is suspended
-            Mvx.Resolve<IAutobackupManager>().UploadBackupIfNewwer();
-
+            
             deferral.Complete();
         }
     }
