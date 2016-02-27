@@ -257,7 +257,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
@@ -265,19 +265,6 @@
         "runtime": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
-        }
-      },
-      "MvvmCross.Core/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
       "MvvmCross.Platform/4.0.0": {
@@ -288,43 +275,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Email/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.File/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Messenger/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.Plugin.SQLitePCL/4.0.0": {
@@ -341,19 +291,6 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.WebBrowser/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -2071,7 +2008,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
@@ -2079,19 +2016,6 @@
         "runtime": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
-        }
-      },
-      "MvvmCross.Core/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
       "MvvmCross.Platform/4.0.0": {
@@ -2102,43 +2026,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Email/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.File/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Messenger/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.Plugin.SQLitePCL/4.0.0": {
@@ -2155,19 +2042,6 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.WebBrowser/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -3918,7 +3792,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
@@ -3926,19 +3800,6 @@
         "runtime": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
-        }
-      },
-      "MvvmCross.Core/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
       "MvvmCross.Platform/4.0.0": {
@@ -3949,43 +3810,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Email/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.File/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Messenger/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.Plugin.SQLitePCL/4.0.0": {
@@ -4002,19 +3826,6 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.WebBrowser/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -5770,7 +5581,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
@@ -5778,19 +5589,6 @@
         "runtime": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
-        }
-      },
-      "MvvmCross.Core/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
       "MvvmCross.Platform/4.0.0": {
@@ -5801,43 +5599,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Email/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.File/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Messenger/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.Plugin.SQLitePCL/4.0.0": {
@@ -5854,19 +5615,6 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.WebBrowser/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -7617,7 +7365,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
@@ -7625,19 +7373,6 @@
         "runtime": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
-        }
-      },
-      "MvvmCross.Core/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
       "MvvmCross.Platform/4.0.0": {
@@ -7648,43 +7383,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Email/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.File/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Messenger/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.Plugin.SQLitePCL/4.0.0": {
@@ -7701,19 +7399,6 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.WebBrowser/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -9469,7 +9154,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
@@ -9477,19 +9162,6 @@
         "runtime": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
-        }
-      },
-      "MvvmCross.Core/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
       "MvvmCross.Platform/4.0.0": {
@@ -9500,43 +9172,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Email/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.File/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Messenger/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.Plugin.SQLitePCL/4.0.0": {
@@ -9553,19 +9188,6 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.WebBrowser/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -11316,7 +10938,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
+      "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
         "compile": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
@@ -11324,19 +10946,6 @@
         "runtime": {
           "lib/uap10.0/Microsoft.Xaml.Interactions.dll": {},
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
-        }
-      },
-      "MvvmCross.Core/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
-        },
-        "runtime": {
-          "lib/uap/MvvmCross.Core.dll": {},
-          "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
       "MvvmCross.Platform/4.0.0": {
@@ -11347,43 +10956,6 @@
         "runtime": {
           "lib/win81/MvvmCross.Platform.dll": {},
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Email/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Email.dll": {},
-          "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.File/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.File.dll": {},
-          "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.Messenger/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.Plugin.SQLitePCL/4.0.0": {
@@ -11400,19 +10972,6 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {}
-        }
-      },
-      "MvvmCross.Plugin.WebBrowser/4.0.0": {
-        "dependencies": {
-          "MvvmCross.Platform": "[4.0.0, )"
-        },
-        "compile": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
-        },
-        "runtime": {
-          "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {},
-          "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {}
         }
       },
       "Newtonsoft.Json/7.0.1": {
@@ -13623,8 +13182,8 @@
         "ref/xamarinmac20/_._"
       ]
     },
-    "Microsoft.Xaml.Behaviors.Uwp.Managed/1.0.3": {
-      "sha512": "N/HJa+ld/kKIKQaTTBY/ytLukfujKkBMww59p9qmPkEpyHZRMYB8FNalghu1rFMCXoSx9cWD8U4nt/r7qLQmVg==",
+    "Microsoft.Xaml.Behaviors.Uwp.Managed/1.1.0": {
+      "sha512": "Qxe4fblviCn2oFf7C4ahCsZHC0GzRa7Tz5z+L1QUHUljY3Oj/TMoT1O0jJ+ru6RcJ9qS8yFw/jIvstg2dxxpGA==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -13634,53 +13193,11 @@
         "lib/uap10.0/Microsoft.Xaml.Interactions.dll",
         "lib/uap10.0/Microsoft.Xaml.Interactions.pri",
         "lib/uap10.0/Microsoft.Xaml.Interactions.xml",
-        "lib/uap10.0/Microsoft.Xaml.Interactions/Properties/Microsoft.Xaml.Interactions.rd.xml",
         "lib/uap10.0/Microsoft.Xaml.Interactivity.dll",
         "lib/uap10.0/Microsoft.Xaml.Interactivity.pri",
         "lib/uap10.0/Microsoft.Xaml.Interactivity.xml",
-        "lib/uap10.0/Microsoft.Xaml.Interactivity/Properties/Microsoft.Xaml.Interactivity.rd.xml",
         "Microsoft.Xaml.Behaviors.Uwp.Managed.nuspec",
-        "package/services/metadata/core-properties/3c85324cf8b64508a39f4ccba86cb561.psmdcp"
-      ]
-    },
-    "MvvmCross.Core/4.0.0": {
-      "sha512": "tUS2aluir/2ie82ILmQFZoIhxT8o+MgDMv4z8NCLGwHVGoqU1WA238lA0fcXVFNXvcMktnr6iV6S0cpxo7IpZQ==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/dotnet/MvvmCross.Core.dll",
-        "lib/MonoAndroid/MvvmCross.Core.dll",
-        "lib/MonoAndroid/MvvmCross.Droid.dll",
-        "lib/net45/MvvmCross.Core.dll",
-        "lib/net45/MvvmCross.Wpf.dll",
-        "lib/netcore45/MvvmCross.Core.dll",
-        "lib/netcore45/MvvmCross.WindowsStore.dll",
-        "lib/netcore45/MvvmCross.WindowsStore.pri",
-        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Core.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Core.dll",
-        "lib/portable-win81+wpa81/MvvmCross.WindowsCommon.dll",
-        "lib/portable-win81+wpa81/MvvmCross.WindowsCommon.pri",
-        "lib/uap/MvvmCross.Core.dll",
-        "lib/uap/MvvmCross.WindowsUWP.dll",
-        "lib/uap/MvvmCross.WindowsUWP.pri",
-        "lib/uap/MvvmCross.WindowsUWP/Properties/MvvmCross.WindowsUWP.rd.xml",
-        "lib/win81/MvvmCross.Core.dll",
-        "lib/win81/MvvmCross.WindowsCommon.dll",
-        "lib/win81/MvvmCross.WindowsCommon.pri",
-        "lib/wp8/MvvmCross.Core.dll",
-        "lib/wp8/MvvmCross.WindowsPhone.dll",
-        "lib/wpa81/MvvmCross.Core.dll",
-        "lib/wpa81/MvvmCross.WindowsCommon.dll",
-        "lib/wpa81/MvvmCross.WindowsCommon.pri",
-        "lib/Xamarin.iOS10/MvvmCross.Core.dll",
-        "lib/Xamarin.iOS10/MvvmCross.iOS.dll",
-        "lib/Xamarin.iOS10/MvvmCross.iOS.dll.mdb",
-        "lib/Xamarin.Mac20/MvvmCross.Core.dll",
-        "lib/Xamarin.Mac20/MvvmCross.Mac.dll",
-        "lib/Xamarin.Mac20/MvvmCross.Mac.dll.mdb",
-        "MvvmCross.Core.nuspec",
-        "package/services/metadata/core-properties/3e50cbf4348a49d98dc7158115dedfa6.psmdcp"
+        "package/services/metadata/core-properties/aa8a385ed5b94b29a44c3a4ace39232c.psmdcp"
       ]
     },
     "MvvmCross.Platform/4.0.0": {
@@ -13730,134 +13247,6 @@
         "package/services/metadata/core-properties/61c744d2795d43adbb5960b10d375fdf.psmdcp"
       ]
     },
-    "MvvmCross.Plugin.Email/4.0.0": {
-      "sha512": "QHMv6A/nX8xy26BmXOEKdMAxyqvNTPxryB3J4hLHdd2l4B/XoyajBuDnt+gH+kFvISix47CgQfJTgvo/iv1YGw==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "content/MonoAndroid/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "content/net45/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "content/netcore45/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "content/win81/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "content/wp8/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "content/wpa81/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "content/Xamarin.iOS10/Bootstrap/EmailPluginBootstrap.cs.pp",
-        "lib/dotnet/MvvmCross.Plugins.Email.dll",
-        "lib/dotnet/MvvmCross.Plugins.Email.dll.mdb",
-        "lib/MonoAndroid/MvvmCross.Plugins.Email.dll",
-        "lib/MonoAndroid/MvvmCross.Plugins.Email.dll.mdb",
-        "lib/MonoAndroid/MvvmCross.Plugins.Email.Droid.dll",
-        "lib/net45/MvvmCross.Plugins.Email.dll",
-        "lib/net45/MvvmCross.Plugins.Email.dll.mdb",
-        "lib/net45/MvvmCross.Plugins.Email.Wpf.dll",
-        "lib/netcore45/MvvmCross.Plugins.Email.dll",
-        "lib/netcore45/MvvmCross.Plugins.Email.dll.mdb",
-        "lib/netcore45/MvvmCross.Plugins.Email.WindowsStore.dll",
-        "lib/netcore45/MvvmCross.Plugins.Email.WindowsStore.pri",
-        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.Email.dll",
-        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.Email.dll.mdb",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.dll.mdb",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.WindowsCommon.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.Email.WindowsCommon.pri",
-        "lib/win81/MvvmCross.Plugins.Email.dll",
-        "lib/win81/MvvmCross.Plugins.Email.dll.mdb",
-        "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll",
-        "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.pri",
-        "lib/wp8/MvvmCross.Plugins.Email.dll",
-        "lib/wp8/MvvmCross.Plugins.Email.dll.mdb",
-        "lib/wp8/MvvmCross.Plugins.Email.WindowsPhone.dll",
-        "lib/wpa81/MvvmCross.Plugins.Email.dll",
-        "lib/wpa81/MvvmCross.Plugins.Email.dll.mdb",
-        "lib/wpa81/MvvmCross.Plugins.Email.WindowsCommon.dll",
-        "lib/wpa81/MvvmCross.Plugins.Email.WindowsCommon.pri",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.dll",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.dll.mdb",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.Email.iOS.dll",
-        "lib/Xamarin.Mac20/MvvmCross.Plugins.Email.dll",
-        "lib/Xamarin.Mac20/MvvmCross.Plugins.Email.dll.mdb",
-        "MvvmCross.Plugin.Email.nuspec",
-        "package/services/metadata/core-properties/494adaa080ec44508a325b3fcb3207db.psmdcp"
-      ]
-    },
-    "MvvmCross.Plugin.File/4.0.0": {
-      "sha512": "9IfLxLfYmKN5Ijcz3ryw9azMdG4w3c1YC8WZcvKEGSgg7w0e8RB19QDSNNT3xMfo72J+kDjo78Ut3hfwlc5nFA==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "content/MonoAndroid/Bootstrap/FilePluginBootstrap.cs.pp",
-        "content/net45/Bootstrap/FilePluginBootstrap.cs.pp",
-        "content/netcore45/Bootstrap/FilePluginBootstrap.cs.pp",
-        "content/win81/Bootstrap/FilePluginBootstrap.cs.pp",
-        "content/wp8/Bootstrap/FilePluginBootstrap.cs.pp",
-        "content/wpa81/Bootstrap/FilePluginBootstrap.cs.pp",
-        "content/Xamarin.iOS10/Bootstrap/FilePluginBootstrap.cs.pp",
-        "lib/dotnet/MvvmCross.Plugins.File.dll",
-        "lib/dotnet/MvvmCross.Plugins.File.dll.mdb",
-        "lib/MonoAndroid/MvvmCross.Plugins.File.dll",
-        "lib/MonoAndroid/MvvmCross.Plugins.File.dll.mdb",
-        "lib/MonoAndroid/MvvmCross.Plugins.File.Droid.dll",
-        "lib/net45/MvvmCross.Plugins.File.dll",
-        "lib/net45/MvvmCross.Plugins.File.dll.mdb",
-        "lib/net45/MvvmCross.Plugins.File.Wpf.dll",
-        "lib/netcore45/MvvmCross.Plugins.File.dll",
-        "lib/netcore45/MvvmCross.Plugins.File.dll.mdb",
-        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.File.dll",
-        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.File.dll.mdb",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.File.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.File.dll.mdb",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.File.WindowsCommon.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.File.WindowsCommon.pri",
-        "lib/win81/MvvmCross.Plugins.File.dll",
-        "lib/win81/MvvmCross.Plugins.File.dll.mdb",
-        "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll",
-        "lib/win81/MvvmCross.Plugins.File.WindowsCommon.pri",
-        "lib/wp8/MvvmCross.Plugins.File.dll",
-        "lib/wp8/MvvmCross.Plugins.File.dll.mdb",
-        "lib/wp8/MvvmCross.Plugins.File.WindowsPhone.dll",
-        "lib/wpa81/MvvmCross.Plugins.File.dll",
-        "lib/wpa81/MvvmCross.Plugins.File.dll.mdb",
-        "lib/wpa81/MvvmCross.Plugins.File.WindowsCommon.dll",
-        "lib/wpa81/MvvmCross.Plugins.File.WindowsCommon.pri",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.File.dll",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.File.dll.mdb",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.File.iOS.dll",
-        "lib/Xamarin.Mac20/MvvmCross.Plugins.File.dll",
-        "lib/Xamarin.Mac20/MvvmCross.Plugins.File.dll.mdb",
-        "MvvmCross.Plugin.File.nuspec",
-        "package/services/metadata/core-properties/74fce5d39b9e4014a84b97745d6abe0a.psmdcp"
-      ]
-    },
-    "MvvmCross.Plugin.Messenger/4.0.0": {
-      "sha512": "5vo8XYoEct2Pea8w1ukf3wk4AM4Bb0OFD64LXohLuWi66LaTcTl6YONV5Vip0DCu5EJhLRmxaZrwi9JXty/ybA==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "content/MonoAndroid/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "content/net45/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "content/netcore45/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "content/win81/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "content/wp8/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "content/wpa81/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "content/Xamarin.iOS10/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "lib/dotnet/MvvmCross.Plugins.Messenger.dll",
-        "lib/MonoAndroid/MvvmCross.Plugins.Messenger.dll",
-        "lib/net45/MvvmCross.Plugins.Messenger.dll",
-        "lib/netcore45/MvvmCross.Plugins.Messenger.dll",
-        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.Messenger.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.Messenger.dll",
-        "lib/win81/MvvmCross.Plugins.Messenger.dll",
-        "lib/wp8/MvvmCross.Plugins.Messenger.dll",
-        "lib/wpa81/MvvmCross.Plugins.Messenger.dll",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.Messenger.dll",
-        "lib/Xamarin.Mac20/MvvmCross.Plugins.Messenger.dll",
-        "MvvmCross.Plugin.Messenger.nuspec",
-        "package/services/metadata/core-properties/db0d94912e2b45caa4ac5ca9fb85578c.psmdcp"
-      ]
-    },
     "MvvmCross.Plugin.SQLitePCL/4.0.0": {
       "sha512": "T//iOzB1javLN3ep4BEkX4irzrmlZobzFL411c3/huJzRXB9smPfK8LmVx71xQKtk5UTQmH1K0HdFvQhAvBvNA==",
       "type": "Package",
@@ -13886,53 +13275,6 @@
         "lib/Xamarin.Mac20/MvvmCross.Plugins.Sqlite.dll",
         "MvvmCross.Plugin.SQLitePCL.nuspec",
         "package/services/metadata/core-properties/8ecc916a32944496bcd0e3eac0db305a.psmdcp"
-      ]
-    },
-    "MvvmCross.Plugin.WebBrowser/4.0.0": {
-      "sha512": "b5K78KAOY8ipuHIGc8ywvEQPoG1TAsmtaq2H76KpVqmn7MPQoeET6oVeHGFlWWMSkRTUh+dyZMDPbi0qplg9WQ==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "content/MonoAndroid/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "content/netcore45/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "content/win81/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "content/wp8/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "content/wpa81/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "content/Xamarin.iOS10/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
-        "lib/dotnet/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/dotnet/MvvmCross.Plugins.WebBrowser.dll.mdb",
-        "lib/MonoAndroid/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/MonoAndroid/MvvmCross.Plugins.WebBrowser.dll.mdb",
-        "lib/MonoAndroid/MvvmCross.Plugins.WebBrowser.Droid.dll",
-        "lib/netcore45/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/netcore45/MvvmCross.Plugins.WebBrowser.dll.mdb",
-        "lib/netcore45/MvvmCross.Plugins.WebBrowser.WindowsStore.dll",
-        "lib/netcore45/MvvmCross.Plugins.WebBrowser.WindowsStore.pri",
-        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.WebBrowser.dll.mdb",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.dll.mdb",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
-        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
-        "lib/win81/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/win81/MvvmCross.Plugins.WebBrowser.dll.mdb",
-        "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
-        "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
-        "lib/wp8/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/wp8/MvvmCross.Plugins.WebBrowser.dll.mdb",
-        "lib/wp8/MvvmCross.Plugins.WebBrowser.WindowsPhone.dll",
-        "lib/wpa81/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/wpa81/MvvmCross.Plugins.WebBrowser.dll.mdb",
-        "lib/wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
-        "lib/wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.dll.mdb",
-        "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.iOS.dll",
-        "lib/Xamarin.Mac20/MvvmCross.Plugins.WebBrowser.dll",
-        "lib/Xamarin.Mac20/MvvmCross.Plugins.WebBrowser.dll.mdb",
-        "MvvmCross.Plugin.WebBrowser.nuspec",
-        "package/services/metadata/core-properties/432e54cde83b45169701dd8c61c11477.psmdcp"
       ]
     },
     "Newtonsoft.Json/7.0.1": {
@@ -16836,9 +16178,6 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "MvvmCross.Core >= 4.0.0",
-      "MvvmCross.Plugin.Messenger >= 4.0.0",
-      "MvvmCross.Plugin.SQLitePCL >= 4.0.0",
       "SQLite.Net-PCL >= 3.1.1",
       "Xamarin.Insights >= 1.11.4"
     ],
