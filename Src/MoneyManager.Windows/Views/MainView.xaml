@@ -27,15 +27,6 @@
             <userControls:AccountListUserControl VerticalAlignment="Stretch" />
         </Grid>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <TextBlock Text="Database modified at:"
-                       x:Uid="DatabaseModifiedText"
-                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"/>
-            <TextBlock Text="{Binding TimeStampDbUpdate}"
-                       Margin="5,0,0,0"
-                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
-        </StackPanel>
-
         <CommandBar Grid.Row="3">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Add"

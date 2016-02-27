@@ -35,11 +35,18 @@ namespace MoneyManager.Core.Manager
         /// </summary>
         public async void UploadBackupIfNewwer()
         {
-            if (!roamingSettings.IsBackupAutouploadEnabled) return;
-
-            if (await backupService.GetBackupDate() < Settings.LastDatabaseUpdate)
+            try
             {
-                await backupService.Upload();
+                if (!roamingSettings.IsBackupAutouploadEnabled) return;
+
+                if (await backupService.GetBackupDate() < Settings.LastDatabaseUpdate)
+                {
+                    await backupService.Upload();
+                }
+            }
+            catch (OneDriveException ex)
+            {
+                Insights.Report(ex);
             }
         }
 

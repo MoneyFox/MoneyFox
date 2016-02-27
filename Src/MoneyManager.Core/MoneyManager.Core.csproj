@@ -65,7 +65,6 @@
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\PaymentRepository.cs" />
-    <Compile Include="ListStatisticFactory.cs" />
     <Compile Include="Authentication\Session.cs" />
     <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />

@@ -13,7 +13,7 @@ namespace MoneyManager.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.StatisticMonthlyExpenseFragment")]
-    public class StatisticMonthlyExpenseFragment : MvxFragment<StatisticCashFlowViewModel>
+    public class StatisticMonthlyExpenseFragment : MvxFragment<StatisticMonthlyExpensesViewModel>
     {
         private PlotView plotModel;
 
@@ -35,7 +35,7 @@ namespace MoneyManager.Droid.Fragments
             OnResume();
 
             ViewModel.LoadCommand.Execute();
-            plotModel.Model = ViewModel.CashFlowModel;
+            plotModel.Model = ViewModel.MonthlyExpensesModel;
         }
     }
 }
