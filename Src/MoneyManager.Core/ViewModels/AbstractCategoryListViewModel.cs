@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
@@ -33,7 +33,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Deletes the passed Category after show a confirmation dialog.
         /// </summary>
-        public MvxCommand<Category> DeleteCategoryCommand => new MvxCommand<Category>(DeleteCategory);
+        public RelayCommand<Category> DeleteCategoryCommand => new RelayCommand<Category>(DeleteCategory);
 
         public ObservableCollection<Category> Categories { get; set; }
 

@@ -1,12 +1,8 @@
-﻿using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using MoneyManager.Core.Authentication;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
-using MvvmCross.Platform.IoC;
 
 namespace MoneyManager.Core
 {

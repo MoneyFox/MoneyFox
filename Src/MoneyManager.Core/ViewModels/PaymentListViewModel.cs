@@ -1,12 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -37,27 +37,27 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Loads the data for this view.
         /// </summary>
-        public virtual MvxCommand LoadCommand => new MvxCommand(LoadPayments);
+        public virtual RelayCommand LoadCommand => new RelayCommand(LoadPayments);
 
         /// <summary>
         ///     Navigate to the add payment view.
         /// </summary>
-        public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(GoToAddPayment);
+        public RelayCommand<string> GoToAddPaymentCommand => new RelayCommand<string>(GoToAddPayment);
 
         /// <summary>
         ///     Deletes the current account and updates the balance.
         /// </summary>
-        public MvxCommand DeleteAccountCommand => new MvxCommand(DeleteAccount);
+        public RelayCommand DeleteAccountCommand => new RelayCommand(DeleteAccount);
 
         /// <summary>
         ///     Edits the passed payment.
         /// </summary>
-        public MvxCommand<Payment> EditCommand { get; private set; }
+        public RelayCommand<Payment> EditCommand { get; private set; }
 
         /// <summary>
         ///     Deletes the passed payment.
         /// </summary>
-        public MvxCommand<Payment> DeletePaymentCommand => new MvxCommand<Payment>(DeletePayment);
+        public RelayCommand<Payment> DeletePaymentCommand => new RelayCommand<Payment>(DeletePayment);
 
         /// <summary>
         ///     Returns all Payment who are assigned to this repository
@@ -94,7 +94,7 @@ namespace MoneyManager.Core.ViewModels
                     s => s.Date, true));
 
             //We have to set the command here to ensure that the selection changed event is triggered earlier
-            EditCommand = new MvxCommand<Payment>(Edit);
+            EditCommand = new RelayCommand<Payment>(Edit);
         }
 
         private void GoToAddPayment(string type)

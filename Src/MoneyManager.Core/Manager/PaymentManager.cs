@@ -70,7 +70,9 @@ namespace MoneyManager.Core.Manager
                         payment.ChargedAccount =
                             accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
 
-                        Insights.Report(new AccountMissingException("Charged account was missing while clearing payments."), Insights.Severity.Error);
+                        Insights.Report(
+                            new AccountMissingException("Charged account was missing while clearing payments."),
+                            Insights.Severity.Error);
                     }
 
                     payment.IsCleared = true;

@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -14,8 +14,6 @@ namespace MoneyManager.Core.ViewModels
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
 
-        public IBalanceViewModel BalanceViewModel { get; }
-
         public AccountListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
             IDialogService dialogService)
@@ -25,6 +23,8 @@ namespace MoneyManager.Core.ViewModels
 
             BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
         }
+
+        public IBalanceViewModel BalanceViewModel { get; }
 
         /// <summary>
         ///     All existing accounts.
@@ -38,27 +38,27 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Prepares the account list
         /// </summary>
-        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
+        public RelayCommand LoadedCommand => new RelayCommand(Loaded);
 
         /// <summary>
         ///     Open the payment overview for this account.
         /// </summary>
-        public MvxCommand<Account> OpenOverviewCommand => new MvxCommand<Account>(GoToPaymentOverView);
+        public RelayCommand<Account> OpenOverviewCommand => new RelayCommand<Account>(GoToPaymentOverView);
 
         /// <summary>
         ///     Edit the selected account
         /// </summary>
-        public MvxCommand<Account> EditAccountCommand => new MvxCommand<Account>(EditAccount);
+        public RelayCommand<Account> EditAccountCommand => new RelayCommand<Account>(EditAccount);
 
         /// <summary>
         ///     Deletes the selected account
         /// </summary>
-        public MvxCommand<Account> DeleteAccountCommand => new MvxCommand<Account>(Delete);
+        public RelayCommand<Account> DeleteAccountCommand => new RelayCommand<Account>(Delete);
 
         /// <summary>
         ///     Prepare everything and navigate to AddAccount view
         /// </summary>
-        public MvxCommand GoToAddAccountCommand => new MvxCommand(GoToAddAccount);
+        public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
 
         private void EditAccount(Account account)
         {

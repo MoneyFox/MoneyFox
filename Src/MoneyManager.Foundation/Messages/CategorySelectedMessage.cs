@@ -1,5 +1,4 @@
 using MoneyManager.Foundation.Model;
-using MvvmCross.Plugins.Messenger;
 
 namespace MoneyManager.Foundation.Messages
 {

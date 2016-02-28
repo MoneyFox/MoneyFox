@@ -1,7 +1,7 @@
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
@@ -21,9 +21,9 @@ namespace MoneyManager.Core.ViewModels
 
         public bool IsEdit { get; set; }
 
-        public IMvxCommand LoadedCommand => new MvxCommand(Loaded);
+        public RelayCommand LoadedCommand => new RelayCommand(Loaded);
 
-        public IMvxCommand DoneCommand => new MvxCommand(Done);
+        public RelayCommand DoneCommand => new RelayCommand(Done);
 
         public string Title => IsEdit ? Strings.EditCategoryTitle : Strings.AddCategoryTitle;
 

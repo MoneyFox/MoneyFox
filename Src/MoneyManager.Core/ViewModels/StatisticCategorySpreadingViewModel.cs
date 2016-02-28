@@ -13,8 +13,6 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
-        private readonly CategorySpreadingDataProvider speadingDataProvider;
-
         private readonly OxyColor[] colors =
         {
             OxyColor.Parse("#411718"), OxyColor.Parse("#5c2021"),
@@ -22,6 +20,8 @@ namespace MoneyManager.Core.ViewModels
             OxyColor.Parse("#af3a3c"), OxyColor.Parse("#c44a4c"),
             OxyColor.Parse("#ce6466")
         };
+
+        private readonly CategorySpreadingDataProvider speadingDataProvider;
 
         public StatisticCategorySpreadingViewModel(IPaymentRepository paymentRepository,
             IRepository<Category> categoryRepository)
@@ -70,7 +70,7 @@ namespace MoneyManager.Core.ViewModels
             foreach (var item in statisticItems)
             {
                 pieSeries.Slices.Add(new PieSlice(item.Label, item.Value) {Fill = colors[colorIndex]});
-                LegendList.Add(new LegendItem {Color = colors[colorIndex], Text = item.Label });
+                LegendList.Add(new LegendItem {Color = colors[colorIndex], Text = item.Label});
                 colorIndex ++;
             }
 

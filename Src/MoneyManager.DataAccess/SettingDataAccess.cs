@@ -63,6 +63,7 @@ namespace MoneyManager.DataAccess
                 OnPropertyChanged();
             }
         }
+
         public bool IsBackupAutouploadEnabled
         {
             get

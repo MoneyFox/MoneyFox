@@ -2,7 +2,6 @@
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
@@ -42,8 +41,8 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Navigates to the statistic view and shows the selected statistic
         /// </summary>
-        public MvxCommand<StatisticSelectorType> GoToStatisticCommand
-            => new MvxCommand<StatisticSelectorType>(GoToStatistic);
+        public RelayCommand<StatisticSelectorType> GoToStatisticCommand
+            => new RelayCommand<StatisticSelectorType>(GoToStatistic);
 
         private void GoToStatistic(StatisticSelectorType item)
         {

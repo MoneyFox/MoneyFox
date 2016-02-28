@@ -1,9 +1,9 @@
 ﻿using System.Linq;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -18,32 +18,22 @@ namespace MoneyManager.Core.ViewModels
             this.accountRepository = accountRepository;
         }
 
-        public void Init(bool isEdit)
-        {
-            IsEdit = isEdit;
-
-            if (!IsEdit)
-            {
-                SelectedAccount = new Account();
-            }
-        }
-
         /// <summary>
         ///     Saves all changes to the database
         ///     or creates a new account depending on
         ///     the <see cref="IsEdit" /> property
         /// </summary>
-        public MvxCommand SaveCommand => new MvxCommand(SaveAccount);
+        public RelayCommand SaveCommand => new RelayCommand(SaveAccount);
 
         /// <summary>
         ///     Deletes the selected account from the database
         /// </summary>
-        public MvxCommand DeleteCommand => new MvxCommand(DeleteAccount);
+        public RelayCommand DeleteCommand => new RelayCommand(DeleteAccount);
 
         /// <summary>
         ///     Cancels the operation and will revert the changes
         /// </summary>
-        public MvxCommand CancelCommand => new MvxCommand(Cancel);
+        public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <summary>
         ///     indicates if the account already exists and shall
@@ -80,6 +70,16 @@ namespace MoneyManager.Core.ViewModels
         {
             get { return accountRepository.Selected; }
             set { accountRepository.Selected = value; }
+        }
+
+        public void Init(bool isEdit)
+        {
+            IsEdit = isEdit;
+
+            if (!IsEdit)
+            {
+                SelectedAccount = new Account();
+            }
         }
 
         /// <summary>

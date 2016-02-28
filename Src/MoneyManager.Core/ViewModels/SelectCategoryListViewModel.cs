@@ -1,7 +1,7 @@
-﻿using MoneyManager.Foundation.Interfaces;
+﻿using GalaSoft.MvvmLight.Command;
+using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Messages;
 using MoneyManager.Foundation.Model;
-using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -16,17 +16,18 @@ namespace MoneyManager.Core.ViewModels
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         public SelectCategoryListViewModel(IRepository<Category> categoryRepository,
             IDialogService dialogService) : base(categoryRepository, dialogService)
-        {}
+        {
+        }
 
         /// <summary>
         ///     Selects the clicked category and sends it to the message hub.
         /// </summary>
-        public MvxCommand<Category> DoneCommand => new MvxCommand<Category>(Done);
+        public RelayCommand<Category> DoneCommand => new RelayCommand<Category>(Done);
 
         /// <summary>
         ///     Closes this activity without selecting something.
         /// </summary>
-        public MvxCommand CancelCommand => new MvxCommand(Cancel);
+        public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         private void Done(Category category)
         {

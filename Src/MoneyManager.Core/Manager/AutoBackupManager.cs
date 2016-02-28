@@ -3,7 +3,6 @@ using Microsoft.OneDrive.Sdk;
 using MoneyManager.Core.Helpers;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
-using MvvmCross.Platform;
 using Xamarin;
 
 namespace MoneyManager.Core.Manager
@@ -14,8 +13,8 @@ namespace MoneyManager.Core.Manager
     public class AutoBackupManager : IAutobackupManager
     {
         private readonly IBackupService backupService;
-        private readonly SettingDataAccess roamingSettings;
         private readonly IRepositoryManager repositoryManager;
+        private readonly SettingDataAccess roamingSettings;
 
         /// <summary>
         ///     Creates a new instance
@@ -23,7 +22,8 @@ namespace MoneyManager.Core.Manager
         /// <param name="backupService">Helper for uploading and downloading to the respective backup service.</param>
         /// <param name="roamingSettings">Access to the roaming settings.</param>
         /// <param name="repositoryManager">An instance of the repository manager to reload data.</param>
-        public AutoBackupManager(IBackupService backupService, SettingDataAccess roamingSettings, IRepositoryManager repositoryManager)
+        public AutoBackupManager(IBackupService backupService, SettingDataAccess roamingSettings,
+            IRepositoryManager repositoryManager)
         {
             this.backupService = backupService;
             this.roamingSettings = roamingSettings;

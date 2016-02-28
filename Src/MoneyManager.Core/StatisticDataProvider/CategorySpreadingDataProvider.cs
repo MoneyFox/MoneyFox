@@ -76,12 +76,12 @@ namespace MoneyManager.Core.StatisticDataProvider
             var totAmount = statisticList.Sum(x => x.Value);
             foreach (var statisticItem in statisticList)
             {
-                statisticItem.Label = statisticItem.Category 
-                    + ": "
-                    + statisticItem.Value.ToString("C") 
-                    + " ("
-                    + Math.Round(statisticItem.Value/totAmount*100, 2)
-                    + "%)";
+                statisticItem.Label = statisticItem.Category
+                                      + ": "
+                                      + statisticItem.Value.ToString("C")
+                                      + " ("
+                                      + Math.Round(statisticItem.Value/totAmount*100, 2)
+                                      + "%)";
             }
         }
 

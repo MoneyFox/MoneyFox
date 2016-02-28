@@ -1,17 +1,17 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
     public class RecurringPaymentListViewModel : BaseViewModel
     {
-        private readonly IPaymentRepository paymentRepository;
         private readonly IDialogService dialogService;
+        private readonly IPaymentRepository paymentRepository;
 
         public RecurringPaymentListViewModel(IPaymentRepository paymentRepository, IDialogService dialogService)
         {
@@ -31,17 +31,17 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Prepares the recurring payment list view
         /// </summary>
-        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
+        public RelayCommand LoadedCommand => new RelayCommand(Loaded);
 
         /// <summary>
         ///     Edits the currently selected payment.
         /// </summary>
-        public MvxCommand<Payment> EditCommand { get; private set; }
+        public RelayCommand<Payment> EditCommand { get; private set; }
 
         /// <summary>
         ///     Deletes the selected payment
         /// </summary>
-        public MvxCommand<Payment> DeleteCommand => new MvxCommand<Payment>(Delete);
+        public RelayCommand<Payment> DeleteCommand => new RelayCommand<Payment>(Delete);
 
         private void Loaded()
         {
@@ -59,7 +59,7 @@ namespace MoneyManager.Core.ViewModels
                     s => s.ChargedAccount.Name));
 
             //We have to set the command here to ensure that the selection changed event is triggered earlier
-            EditCommand = new MvxCommand<Payment>(Edit);
+            EditCommand = new RelayCommand<Payment>(Edit);
         }
 
         private void Edit(Payment payment)
@@ -67,7 +67,7 @@ namespace MoneyManager.Core.ViewModels
             paymentRepository.Selected = payment;
 
             ShowViewModel<ModifyPaymentViewModel>(
-                new { isEdit = true, typeString = payment.Type.ToString() });
+                new {isEdit = true, typeString = payment.Type.ToString()});
         }
 
         private async void Delete(Payment payment)

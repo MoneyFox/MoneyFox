@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Model;
-using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Foundation.Interfaces.ViewModels
 {
@@ -9,15 +9,15 @@ namespace MoneyManager.Foundation.Interfaces.ViewModels
     {
         IBalanceViewModel BalanceViewModel { get; }
 
-        MvxCommand LoadCommand { get; }
+        RelayCommand LoadCommand { get; }
 
-        MvxCommand<string> GoToAddPaymentCommand { get; }
+        RelayCommand<string> GoToAddPaymentCommand { get; }
 
-        MvxCommand DeleteAccountCommand { get; }
+        RelayCommand DeleteAccountCommand { get; }
 
-        MvxCommand<Payment> EditCommand { get; }
+        RelayCommand<Payment> EditCommand { get; }
 
-        MvxCommand<Payment> DeletePaymentCommand { get; }
+        RelayCommand<Payment> DeletePaymentCommand { get; }
 
         ObservableCollection<Payment> RelatedPayments { get; }
 

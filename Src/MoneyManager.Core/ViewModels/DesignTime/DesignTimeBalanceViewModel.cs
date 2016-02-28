@@ -1,5 +1,5 @@
-﻿using MoneyManager.Foundation.Interfaces.ViewModels;
-using MvvmCross.Core.ViewModels;
+﻿using GalaSoft.MvvmLight.Command;
+using MoneyManager.Foundation.Interfaces.ViewModels;
 
 namespace MoneyManager.Core.ViewModels.DesignTime
 {
@@ -16,6 +16,6 @@ namespace MoneyManager.Core.ViewModels.DesignTime
 
         public double EndOfMonthBalance { get; set; }
 
-        public MvxCommand UpdateBalanceCommand => new MvxCommand(() => { });
+        public RelayCommand UpdateBalanceCommand => new RelayCommand(() => { });
     }
 }

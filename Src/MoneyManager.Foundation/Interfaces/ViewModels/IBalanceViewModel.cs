@@ -1,4 +1,4 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using GalaSoft.MvvmLight.Command;
 
 namespace MoneyManager.Foundation.Interfaces.ViewModels
 {
@@ -18,6 +18,6 @@ namespace MoneyManager.Foundation.Interfaces.ViewModels
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        MvxCommand UpdateBalanceCommand { get; }
+        RelayCommand UpdateBalanceCommand { get; }
     }
 }

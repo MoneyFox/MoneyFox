@@ -1,7 +1,7 @@
-﻿using MoneyManager.Core.Helpers;
+﻿using GalaSoft.MvvmLight.Command;
+using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
-using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -24,8 +24,8 @@ namespace MoneyManager.Core.ViewModels
         public bool IsPasswortActive
         {
             get { return Settings.PasswordRequired; }
-            set 
-            { 
+            set
+            {
                 Settings.PasswordRequired = value;
                 RaisePropertyChanged();
             }
@@ -44,17 +44,17 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Save the password to the secure storage of the current platform
         /// </summary>
-        public MvxCommand SavePasswordCommand => new MvxCommand(SavePassword);
+        public RelayCommand SavePasswordCommand => new RelayCommand(SavePassword);
 
         /// <summary>
         ///     Loads the password from the secure storage
         /// </summary>
-        public MvxCommand LoadCommand => new MvxCommand(LoadData);
+        public RelayCommand LoadCommand => new RelayCommand(LoadData);
 
         /// <summary>
         ///     Remove the password from the secure storage
         /// </summary>
-        public MvxCommand UnloadCommand => new MvxCommand(RemovePassword);
+        public RelayCommand UnloadCommand => new RelayCommand(RemovePassword);
 
         private void SavePassword()
         {

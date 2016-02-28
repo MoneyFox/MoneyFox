@@ -1,19 +1,19 @@
 ﻿using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
-using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels.DesignTime
 {
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {
         public IBalanceViewModel BalanceViewModel { get; }
-        public MvxCommand LoadCommand { get; }
-        public MvxCommand<string> GoToAddPaymentCommand => new MvxCommand<string>(s => { });
-        public MvxCommand DeleteAccountCommand => new MvxCommand(() => { });
-        public MvxCommand<Payment> EditCommand => new MvxCommand<Payment>(s => { });
-        public MvxCommand<Payment> DeletePaymentCommand => new MvxCommand<Payment>(s => { });
+        public RelayCommand LoadCommand { get; }
+        public RelayCommand<string> GoToAddPaymentCommand => new RelayCommand<string>(s => { });
+        public RelayCommand DeleteAccountCommand => new RelayCommand(() => { });
+        public RelayCommand<Payment> EditCommand => new RelayCommand<Payment>(s => { });
+        public RelayCommand<Payment> DeletePaymentCommand => new RelayCommand<Payment>(s => { });
         public ObservableCollection<Payment> RelatedPayments => new ObservableCollection<Payment>();
 
         public ObservableCollection<DateListGroup<Payment>> Source => new ObservableCollection<DateListGroup<Payment>>

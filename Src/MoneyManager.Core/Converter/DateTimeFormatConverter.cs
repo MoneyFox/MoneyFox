@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using MvvmCross.Platform.Converters;
 
 namespace MoneyManager.Core.Converter
 {

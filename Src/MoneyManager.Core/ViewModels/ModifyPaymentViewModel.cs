@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Messages;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -49,27 +48,27 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Saves the payment or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        public IMvxCommand SaveCommand => new MvxCommand(Save);
+        public RelayCommand SaveCommand => new RelayCommand(Save);
 
         /// <summary>
         ///     Opens to the SelectCategoryView
         /// </summary>
-        public IMvxCommand GoToSelectCategorydialogCommand => new MvxCommand(OpenSelectCategoryList);
+        public RelayCommand GoToSelectCategorydialogCommand => new RelayCommand(OpenSelectCategoryList);
 
         /// <summary>
         ///     Delets the payment or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        public IMvxCommand DeleteCommand => new MvxCommand(Delete);
+        public RelayCommand DeleteCommand => new RelayCommand(Delete);
 
         /// <summary>
         ///     Cancels the operations.
         /// </summary>
-        public IMvxCommand CancelCommand => new MvxCommand(Cancel);
+        public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <summary>
         ///     Resets the category of the currently selected payment
         /// </summary>
-        public IMvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
+        public RelayCommand ResetCategoryCommand => new RelayCommand(ResetSelection);
 
 
         /// <summary>

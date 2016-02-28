@@ -3,8 +3,6 @@ using System.Globalization;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Converters;
 
 namespace MoneyManager.Core.Converter
 {
@@ -27,8 +25,8 @@ namespace MoneyManager.Core.Converter
                 else
                 {
                     sign = payment.ChargedAccountId == Mvx.Resolve<IAccountRepository>().Selected.Id
-                    ? "-"
-                    : "+";
+                        ? "-"
+                        : "+";
                 }
             }
             else

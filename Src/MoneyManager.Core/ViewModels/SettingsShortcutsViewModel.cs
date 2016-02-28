@@ -1,6 +1,6 @@
-﻿using MoneyManager.DataAccess;
+﻿using GalaSoft.MvvmLight.Command;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
-using MvvmCross.Core.ViewModels;
 
 // ReSharper disable ExplicitCallerInfoArgument
 
@@ -41,17 +41,17 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Creates a Expense Shortcut
         /// </summary>
-        public MvxCommand CreateSpendingShortcutCommand => new MvxCommand(CreateSpendingShortcut);
+        public RelayCommand CreateSpendingShortcutCommand => new RelayCommand(CreateSpendingShortcut);
 
         /// <summary>
         ///     Creates an Income Shortcut
         /// </summary>
-        public MvxCommand CreateIncomeShortcutCommand => new MvxCommand(CreateIncomeShortcut);
+        public RelayCommand CreateIncomeShortcutCommand => new RelayCommand(CreateIncomeShortcut);
 
         /// <summary>
         ///     Creates an Transfer Shortcut
         /// </summary>
-        public MvxCommand CreateTransferShortcutCommand => new MvxCommand(CreateTransferShortcut);
+        public RelayCommand CreateTransferShortcutCommand => new RelayCommand(CreateTransferShortcut);
 
         /// <summary>
         ///     Indicates if there exists a spending shortcut
@@ -71,17 +71,17 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Removes the existing Expense Shortcut
         /// </summary>
-        public MvxCommand RemoveSpendingShortcutCommand => new MvxCommand(RemoveSpendingShortcut);
+        public RelayCommand RemoveSpendingShortcutCommand => new RelayCommand(RemoveSpendingShortcut);
 
         /// <summary>
         ///     Removes the existing Income Shortcut
         /// </summary>
-        public MvxCommand RemoveIncomeShortcutCommand => new MvxCommand(RemoveIncomeShortcut);
+        public RelayCommand RemoveIncomeShortcutCommand => new RelayCommand(RemoveIncomeShortcut);
 
         /// <summary>
         ///     Removes the existing Transfer Shortcut
         /// </summary>
-        public MvxCommand RemoveTransferShortcutCommand => new MvxCommand(RemoveTransferShortcut);
+        public RelayCommand RemoveTransferShortcutCommand => new RelayCommand(RemoveTransferShortcut);
 
         private async void CreateSpendingShortcut()
         {

@@ -8,7 +8,7 @@
         /// <summary>
         ///     Url to the Apply Solutions website
         /// </summary>
-        public	const string WEBSITE_URL = "http://www.apply-solutions.ch";
+        public const string WEBSITE_URL = "http://www.apply-solutions.ch";
 
         /// <summary>
         ///     Mailaddress for support
@@ -39,10 +39,12 @@
         ///     ID string for add income shortcuts
         /// </summary>
         public const string ADD_INCOME_TILE_ID = "AddIncomeTile";
+
         /// <summary>
         ///     ID string for add transfer shortcuts
         /// </summary>
         public const string ADD_EXPENSE_TILE_ID = "AddSpendingTile";
+
         /// <summary>
         ///     ID string for add transfer shortcuts
         /// </summary>

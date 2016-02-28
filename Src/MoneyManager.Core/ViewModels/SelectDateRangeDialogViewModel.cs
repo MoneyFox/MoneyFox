@@ -1,6 +1,6 @@
 ﻿using System;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Foundation.Messages;
-using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
@@ -27,7 +27,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Selects the dates and notifies observer via the MessageHub
         /// </summary>
-        public MvxCommand DoneCommand => new MvxCommand(Done);
+        public RelayCommand DoneCommand => new RelayCommand(Done);
 
         private void Done()
         {

@@ -104,8 +104,8 @@ namespace MoneyManager.Core.Helpers
 
                 case (int) PaymentRecurrence.Yearly:
                     return (DateTime.Now.Year != relatedPayment.Date.Year
-                           && DateTime.Now.Month >= relatedPayment.Date.Month)
-                           || (DateTime.Now.Year - relatedPayment.Date.Year) > 1;
+                            && DateTime.Now.Month >= relatedPayment.Date.Month)
+                           || DateTime.Now.Year - relatedPayment.Date.Year > 1;
 
                 default:
                     return false;

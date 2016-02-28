@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.OneDrive.Sdk;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
-using MvvmCross.Core.ViewModels;
 using Xamarin;
 
 namespace MoneyManager.Core.ViewModels
@@ -32,7 +32,7 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Prepares the View when loaded.
         /// </summary>
-        public MvxCommand LoadedCommand => new MvxCommand(Loaded);
+        public RelayCommand LoadedCommand => new RelayCommand(Loaded);
 
         /// <summary>
         ///     The Backup Service for the current platform.
@@ -44,14 +44,14 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Will create a backup of the database and upload it to onedrive
         /// </summary>
-        public MvxCommand BackupCommand => new MvxCommand(CreateBackup);
+        public RelayCommand BackupCommand => new RelayCommand(CreateBackup);
 
         /// <summary>
         ///     Will download the database backup from onedrive and overwrite the
         ///     local database with the downloaded.
         ///     All datamodels are then reloaded.
         /// </summary>
-        public MvxCommand RestoreCommand => new MvxCommand(RestoreBackup);
+        public RelayCommand RestoreCommand => new RelayCommand(RestoreBackup);
 
         /// <summary>
         ///     Indicator if something is in work.

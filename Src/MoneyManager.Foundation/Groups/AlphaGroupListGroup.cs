@@ -30,7 +30,7 @@ namespace MoneyManager.Foundation.Groups
         /// <summary>
         ///     The Key of this group.
         /// </summary>
-        public string Key { get; private set; }
+        public string Key { get; }
 
         /// <summary>
         ///     Create a list of AlphaGroup<T> with keys set by a SortedLocaleGrouping.
@@ -40,11 +40,12 @@ namespace MoneyManager.Foundation.Groups
         /// <param name="getKey">A delegate to get the key from an item.</param>
         /// <param name="sort">Will sort the data if true.</param>
         /// <returns>An items source for a LongListSelector</returns>
-        public static List<AlphaGroupListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci, GetKeyDelegate getKey, bool sort = true)
+        public static List<AlphaGroupListGroup<T>> CreateGroups(IEnumerable<T> items, CultureInfo ci,
+            GetKeyDelegate getKey, bool sort = true)
         {
             var list = new List<AlphaGroupListGroup<T>>();
 
-            foreach (T item in items)
+            foreach (var item in items)
             {
                 var index = getKey(item);
 

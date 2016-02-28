@@ -1,5 +1,4 @@
 ﻿using MoneyManager.Core.ViewModels;
-using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core
 {

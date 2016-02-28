@@ -1,9 +1,7 @@
-﻿using MoneyManager.Foundation;
+﻿using GalaSoft.MvvmLight.Command;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Email;
-using MvvmCross.Plugins.WebBrowser;
 
 namespace MoneyManager.Core.ViewModels
 {
@@ -31,34 +29,34 @@ namespace MoneyManager.Core.ViewModels
             this.webBrowserTask = webBrowserTask;
             this.storeFeatures = storeFeatures;
 
-            GoToWebsiteCommand = new MvxCommand(GoToWebsite);
-            SendMailCommand = new MvxCommand(SendMail);
-            RateAppCommand = new MvxCommand(RateApp);
-            GoToRepositoryCommand = new MvxCommand(GoToRepository);
+            GoToWebsiteCommand = new RelayCommand(GoToWebsite);
+            SendMailCommand = new RelayCommand(SendMail);
+            RateAppCommand = new RelayCommand(RateApp);
+            GoToRepositoryCommand = new RelayCommand(GoToRepository);
         }
 
         /// <summary>
         ///     Opens the webbrowser and loads to the apply solutions
         ///     website
         /// </summary>
-        public MvxCommand GoToWebsiteCommand { get; set; }
+        public RelayCommand GoToWebsiteCommand { get; set; }
 
         /// <summary>
         ///     Sends a feedback mail to the apply solutions support
         ///     mail address
         /// </summary>
-        public MvxCommand SendMailCommand { get; set; }
+        public RelayCommand SendMailCommand { get; set; }
 
         /// <summary>
         ///     Opens the store to rate the app.
         /// </summary>
-        public MvxCommand RateAppCommand { get; set; }
+        public RelayCommand RateAppCommand { get; set; }
 
         /// <summary>
         ///     Opens the webbrowser and loads repository page
         ///     on GitHub
         /// </summary>
-        public MvxCommand GoToRepositoryCommand { get; set; }
+        public RelayCommand GoToRepositoryCommand { get; set; }
 
         /// <summary>
         ///     Returns the Version of App

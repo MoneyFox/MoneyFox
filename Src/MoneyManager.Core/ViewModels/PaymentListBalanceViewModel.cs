@@ -12,10 +12,11 @@ namespace MoneyManager.Core.ViewModels
     /// </summary>
     public class PaymentListBalanceViewModel : BalanceViewModel
     {
-        public PaymentListBalanceViewModel(IAccountRepository accountRepository, 
-            IPaymentRepository paymentRepository) 
+        public PaymentListBalanceViewModel(IAccountRepository accountRepository,
+            IPaymentRepository paymentRepository)
             : base(accountRepository, paymentRepository)
-        {}
+        {
+        }
 
         /// <summary>
         ///     Calculates the sum of all accounts at the current moment.
@@ -40,15 +41,15 @@ namespace MoneyManager.Core.ViewModels
             {
                 switch (payment.Type)
                 {
-                    case (int)PaymentType.Expense:
+                    case (int) PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
 
-                    case (int)PaymentType.Income:
+                    case (int) PaymentType.Income:
                         balance += payment.Amount;
                         break;
 
-                    case (int)PaymentType.Transfer:
+                    case (int) PaymentType.Transfer:
                         balance = HandleTransferAmount(payment, balance);
                         break;
                 }
@@ -62,7 +63,8 @@ namespace MoneyManager.Core.ViewModels
             if (AccountRepository.Selected == payment.ChargedAccount)
             {
                 balance -= payment.Amount;
-            } else
+            }
+            else
             {
                 balance += payment.Amount;
             }

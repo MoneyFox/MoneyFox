@@ -1,12 +1,10 @@
 ﻿using System;
-using MoneyManager.Foundation.Model;
-using MvvmCross.Plugins.Messenger;
 
 namespace MoneyManager.Foundation.Messages
 {
     public class DateSelectedMessage : MvxMessage
     {
-        public DateSelectedMessage(object sender, DateTime startDate, DateTime endDate) 
+        public DateSelectedMessage(object sender, DateTime startDate, DateTime endDate)
             : base(sender)
         {
             StartDate = startDate;
@@ -22,6 +20,5 @@ namespace MoneyManager.Foundation.Messages
         ///     The selected end date
         /// </summary>
         public DateTime EndDate { get; private set; }
-
     }
 }

@@ -5,6 +5,7 @@
     "Microsoft.NETNative.Analyzer": "1.0.0",
     "Microsoft.OneDriveSDK": "1.1.20",
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
+    "MvvmLightLibs": "5.2.0",
     "NotificationsExtensions.Win10": "10586.0.2",
     "OxyPlot.Windows": "2015.1.1033-alpha",
     "SQLite.Net-PCL": "3.1.1",

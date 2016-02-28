@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
-using MvvmCross.Plugins.Messenger;
 
 namespace MoneyManager.Core.ViewModels
 {
