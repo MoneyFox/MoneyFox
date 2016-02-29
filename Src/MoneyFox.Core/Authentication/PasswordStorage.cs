@@ -1,7 +1,9 @@
 ﻿using System;
+using Windows.ApplicationModel;
+using Windows.Security.Credentials;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Core.Authentication
+namespace MoneyFox.Core.Authentication
 {
     /// <summary>
     ///     Wrapper object for IMvxProtectedData to provide a nicer access.
@@ -9,12 +11,6 @@ namespace MoneyManager.Core.Authentication
     public class PasswordStorage : IPasswordStorage
     {
         private const string PASSWORD_KEY = "password";
-        private readonly IProtectedData protectedData;
-
-        public PasswordStorage(IProtectedData protectedData)
-        {
-            this.protectedData = protectedData;
-        }
 
         /// <summary>
         ///     Saves a password to the secure storage of the current platform
@@ -22,7 +18,8 @@ namespace MoneyManager.Core.Authentication
         /// <param name="password">Password to save.</param>
         public void SavePassword(string password)
         {
-            protectedData.Protect(PASSWORD_KEY, password);
+            var vault = new PasswordVault();
+            vault.Add(new PasswordCredential(Package.Current.Id.Name, PASSWORD_KEY, password));
         }
 
         /// <summary>
@@ -31,7 +28,14 @@ namespace MoneyManager.Core.Authentication
         /// <returns>Loaded password.</returns>
         public string LoadPassword()
         {
-            return protectedData.Unprotect(PASSWORD_KEY);
+            try
+            {
+                return new PasswordVault().Retrieve(Package.Current.Id.Name, PASSWORD_KEY).Password;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -42,7 +46,9 @@ namespace MoneyManager.Core.Authentication
             // If there where no element to remove it will throw a com exception who we handle.
             try
             {
-                protectedData.Remove(PASSWORD_KEY);
+                var vault = new PasswordVault();
+                var passwordCredential = vault.Retrieve(Windows.ApplicationModel.Package.Current.Id.Name, PASSWORD_KEY);
+                vault.Remove(passwordCredential);
             }
             catch (Exception)
             {

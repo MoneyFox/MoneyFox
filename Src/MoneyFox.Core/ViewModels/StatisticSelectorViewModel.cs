@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using GalaSoft.MvvmLight.Command;
+using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
 using MoneyManager.Localization;

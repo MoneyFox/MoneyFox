@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;

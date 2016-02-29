@@ -40,21 +40,9 @@ namespace MoneyManager.Core.ViewModels
             ShowViewModel<ModifyAccountViewModel>(new {isEdit = false});
         }
 
-        private void GoToAbout()
-        {
-            ShowViewModel<AboutViewModel>();
-        }
-
         private void GoToRecurringPaymentList()
         {
             ShowViewModel<RecurringPaymentListViewModel>();
-        }
-
-        //Only used in Android so far.
-        public void ShowMenuAndFirstDetail()
-        {
-            ShowViewModel<MenuViewModel>();
-            ShowViewModel<AccountListViewModel>();
         }
     }
 }

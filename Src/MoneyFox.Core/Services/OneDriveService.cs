@@ -65,7 +65,7 @@ namespace MoneyManager.Core.Services
             }
             catch (OneDriveException ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                new TelemetryClient().TrackException(ex);
                 return TaskCompletionType.Unsuccessful;
             }
         }
@@ -94,7 +94,7 @@ namespace MoneyManager.Core.Services
             }
             catch (OneDriveException ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                new TelemetryClient().TrackException(ex);
                 return TaskCompletionType.Unsuccessful;
             }
 

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Microsoft.ApplicationInsights;
 using MoneyManager.Foundation.Interfaces;
-using Xamarin;
 
-namespace MoneyManager.Foundation
+namespace MoneyFox.DataAccess
 {
     public abstract class AbstractDataAccess<T> : IDataAccess<T>
     {
@@ -21,7 +21,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                new TelemetryClient().TrackException(ex);
             }
         }
 
@@ -37,7 +37,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                new TelemetryClient().TrackException(ex);
             }
         }
 
@@ -53,7 +53,7 @@ namespace MoneyManager.Foundation
             }
             catch (Exception ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                new TelemetryClient().TrackException(ex);
             }
             return new List<T>();
         }

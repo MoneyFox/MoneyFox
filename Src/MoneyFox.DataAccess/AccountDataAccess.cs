@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
-namespace MoneyManager.DataAccess
+namespace MoneyFox.DataAccess
 {
     [ImplementPropertyChanged]
     public class AccountDataAccess : AbstractDataAccess<Account>

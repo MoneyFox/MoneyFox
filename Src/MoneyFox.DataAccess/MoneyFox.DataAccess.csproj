@@ -107,6 +107,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractDataAccess.cs" />
     <Compile Include="AccountDataAccess.cs" />
     <Compile Include="CategoryDataAccess.cs" />
     <Compile Include="PaymentDataAccess.cs" />
@@ -114,6 +115,17 @@
     <Compile Include="RecurringPaymentDataAccess.cs" />
     <Compile Include="SettingDataAccess.cs" />
     <EmbeddedResource Include="Properties\MoneyFox.DataAccess.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="PropertyChanged">
+      <HintPath>..\..\..\..\..\.nuget\packages\PropertyChanged.Fody\1.50.4\Lib\dotnet\PropertyChanged.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+      <Project>{1CFF6968-BA09-48AF-9718-5D1E02E656E6}</Project>
+      <Name>MoneyFox.Foundation</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

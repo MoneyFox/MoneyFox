@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.ApplicationInsights;
 using Microsoft.OneDrive.Sdk;
 using MoneyManager.Core.Helpers;
 using MoneyManager.DataAccess;
@@ -46,7 +47,7 @@ namespace MoneyManager.Core.Manager
             }
             catch (OneDriveException ex)
             {
-                Insights.Report(ex);
+                new TelemetryClient().TrackException(ex);
             }
         }
 
@@ -69,7 +70,7 @@ namespace MoneyManager.Core.Manager
             }
             catch (OneDriveException ex)
             {
-                Insights.Report(ex);
+                new TelemetryClient().TrackException(ex);
             }
         }
     }

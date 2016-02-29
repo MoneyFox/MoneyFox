@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 

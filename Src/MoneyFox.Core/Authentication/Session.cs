@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using MoneyManager.Core.Helpers;
 
 namespace MoneyManager.Core.Authentication
@@ -30,7 +31,7 @@ namespace MoneyManager.Core.Authentication
         /// </summary>
         public void AddSession()
         {
-            Settings.SessionTimestamp = DateTime.Now.ToString();
+            Settings.SessionTimestamp = DateTime.Now.ToString(CultureInfo.CurrentCulture);
         }
     }
 }

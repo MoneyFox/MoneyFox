@@ -462,7 +462,7 @@ namespace MoneyManager.Windows.Controls
                 }
                 catch (Exception ex)
                 {
-                    Insights.Report(ex);
+                    new TelemetryClient().TrackException(ex);
                 }
             }
             else

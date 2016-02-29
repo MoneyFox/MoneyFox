@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.ApplicationInsights;
 using Microsoft.OneDrive.Sdk;
+using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Localization;
@@ -110,7 +112,7 @@ namespace MoneyManager.Core.ViewModels
             }
             catch (OneDriveException ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                new TelemetryClient().TrackException(ex);
                 await dialogService.ShowMessage(Strings.LoginFailedTitle, Strings.LoginFailedMessage);
             }
         }

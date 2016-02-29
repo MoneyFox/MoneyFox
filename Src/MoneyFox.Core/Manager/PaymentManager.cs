@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
@@ -82,7 +83,7 @@ namespace MoneyManager.Core.Manager
                 }
                 catch (Exception ex)
                 {
-                    Insights.Report(ex, Insights.Severity.Error);
+                    new TelemetryClient().TrackException(ex);
                 }
             }
         }
@@ -104,7 +105,7 @@ namespace MoneyManager.Core.Manager
             }
             catch (Exception ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                new TelemetryClient().TrackException(ex);
             }
         }
     }

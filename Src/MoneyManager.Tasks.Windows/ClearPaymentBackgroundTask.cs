@@ -48,7 +48,7 @@ namespace MoneyManager.Tasks.Windows
             } 
             catch (Exception ex)
             {
-                Insights.Report(ex);
+                new TelemetryClient().TrackException(ex);
             }
         }
     }
