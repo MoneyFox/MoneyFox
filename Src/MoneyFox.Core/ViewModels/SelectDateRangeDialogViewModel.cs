@@ -1,11 +1,12 @@
 ﻿using System;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class SelectDateRangeDialogViewModel : BaseViewModel
+    public class SelectDateRangeDialogViewModel : ViewModelBase
     {
         public SelectDateRangeDialogViewModel()
         {

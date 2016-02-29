@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Interfaces;
@@ -7,7 +8,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public abstract class AbstractCategoryListViewModel : BaseViewModel
+    public abstract class AbstractCategoryListViewModel : ViewModelBase
     {
         protected readonly IRepository<Category> CategoryRepository;
         protected readonly IDialogService DialogService;

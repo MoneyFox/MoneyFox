@@ -1,8 +1,9 @@
-﻿using MoneyManager.DataAccess;
+﻿using GalaSoft.MvvmLight;
+using MoneyManager.DataAccess;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class SettingsGeneralViewModel : BaseViewModel
+    public class SettingsGeneralViewModel : ViewModelBase
     {
         private readonly SettingDataAccess settingsDataAccess;
 

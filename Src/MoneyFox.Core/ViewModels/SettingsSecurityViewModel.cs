@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
@@ -7,7 +8,7 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class SettingsSecurityViewModel : BaseViewModel
+    public class SettingsSecurityViewModel : ViewModelBase
     {
         private readonly IDialogService dialogService;
         private readonly IPasswordStorage passwordStorage;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Helpers;
@@ -13,7 +14,7 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class ModifyPaymentViewModel : BaseViewModel
+    public class ModifyPaymentViewModel : ViewModelBase
     {
         private readonly IAccountRepository accountRepository;
         private readonly IDefaultManager defaultManager;

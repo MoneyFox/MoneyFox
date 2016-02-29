@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Helpers;
@@ -9,7 +10,7 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class ModifyAccountViewModel : BaseViewModel
+    public class ModifyAccountViewModel : ViewModelBase
     {
         private readonly IAccountRepository accountRepository;
 

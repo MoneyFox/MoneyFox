@@ -1,6 +1,8 @@
-﻿namespace MoneyManager.Core.ViewModels
+﻿using GalaSoft.MvvmLight;
+
+namespace MoneyManager.Core.ViewModels
 {
-    public class SettingsViewModel : BaseViewModel
+    public class SettingsViewModel : ViewModelBase
     {
     }
 }

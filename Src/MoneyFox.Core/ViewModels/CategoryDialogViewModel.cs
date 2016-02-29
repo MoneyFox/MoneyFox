@@ -1,3 +1,4 @@
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Interfaces;
@@ -5,7 +6,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class CategoryDialogViewModel : BaseViewModel
+    public class CategoryDialogViewModel : ViewModelBase
     {
         private readonly IRepository<Category> categoryRepository;
         private readonly IDialogService dialogService;

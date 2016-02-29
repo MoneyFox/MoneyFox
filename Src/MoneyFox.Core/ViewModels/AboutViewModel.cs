@@ -1,10 +1,11 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class AboutViewModel : ViewModelBase
     {
         private readonly IAppInformation appInformation;
         private readonly IMvxComposeEmailTask composeEmailTask;

@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Groups;
@@ -12,7 +13,7 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
+    public class PaymentListViewModel : ViewModelBase, IPaymentListViewModel
     {
         private readonly IAccountRepository accountRepository;
         private readonly IBalanceViewModel balanceViewModel;

@@ -1,4 +1,5 @@
 using System;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Extensions;
@@ -7,7 +8,7 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public abstract class StatisticViewModel : BaseViewModel
+    public abstract class StatisticViewModel : ViewModelBase
     {
         //this token ensures that we will be notified when a message is sent.
         private readonly MvxSubscriptionToken token;

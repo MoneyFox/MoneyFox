@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.ApplicationInsights;
 using Microsoft.OneDrive.Sdk;
@@ -9,7 +10,7 @@ using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class BackupViewModel : BaseViewModel
+    public class BackupViewModel : ViewModelBase
     {
         private readonly IDialogService dialogService;
         private readonly IRepositoryManager repositoryManager;

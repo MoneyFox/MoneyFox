@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Interfaces;
@@ -9,7 +10,7 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class AccountListViewModel : BaseViewModel
+    public class AccountListViewModel : ViewModelBase
     {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;

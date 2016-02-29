@@ -1,9 +1,10 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.Core.Helpers;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : ViewModelBase
     {
         /// <summary>
         ///     Returns the timestamp when the last change was made to the database

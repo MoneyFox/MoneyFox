@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
@@ -6,7 +7,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class StatisticSelectorViewModel : BaseViewModel
+    public class StatisticSelectorViewModel : ViewModelBase
     {
         /// <summary>
         ///     All possible statistic to choose from

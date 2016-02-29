@@ -1,6 +1,6 @@
 ﻿namespace MoneyManager.Windows
 {
-    public class TileHelper : BaseViewModel
+    public class TileHelper : ViewModelBase
     {
         public bool DoNavigation(string tileId)
         {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Groups;
@@ -8,7 +9,7 @@ using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels
 {
-    public class RecurringPaymentListViewModel : BaseViewModel
+    public class RecurringPaymentListViewModel : ViewModelBase
     {
         private readonly IDialogService dialogService;
         private readonly IPaymentRepository paymentRepository;

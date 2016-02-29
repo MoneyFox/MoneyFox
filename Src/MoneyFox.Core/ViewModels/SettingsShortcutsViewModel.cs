@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 
@@ -9,7 +10,7 @@ namespace MoneyManager.Core.ViewModels
     /// <summary>
     ///     Provides the information for the TileSettingsView
     /// </summary>
-    public class SettingsShortcutsViewModel : BaseViewModel
+    public class SettingsShortcutsViewModel : ViewModelBase
     {
         private readonly IIncomeShortcut incomeShortcut;
         private readonly SettingDataAccess settingsDataAccess;

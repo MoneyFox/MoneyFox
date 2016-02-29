@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
@@ -9,7 +10,7 @@ using PropertyChanged;
 namespace MoneyManager.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class BalanceViewModel : BaseViewModel, IBalanceViewModel
+    public class BalanceViewModel : ViewModelBase, IBalanceViewModel
     {
         protected readonly IAccountRepository AccountRepository;
         protected readonly IPaymentRepository PaymentRepository;
