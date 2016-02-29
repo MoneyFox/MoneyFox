@@ -22,7 +22,7 @@
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
-        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
 
         <DataTemplate x:Key="AccountTemplate" x:DataType="model:Account">
