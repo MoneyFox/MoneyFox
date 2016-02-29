@@ -14,7 +14,7 @@
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-        <converter:AmountFormatConverter x:Key="AmountConverter" />
+        <converter1:AmountFormatConverter x:Key="AmountConverter" />
         <converter1:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converters:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate"

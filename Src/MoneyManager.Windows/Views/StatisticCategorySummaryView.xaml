@@ -9,6 +9,7 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:converter1="using:MoneyManager.Core.Converter"
+    xmlns:converter="using:MoneyManager.Windows.Converter"
     mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
@@ -18,7 +19,7 @@
     </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
-        <converter1:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="CategoryTemplate">
             <Grid HorizontalAlignment="Stretch"
                   VerticalAlignment="Center"

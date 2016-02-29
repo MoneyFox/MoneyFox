@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
 using Microsoft.Practices.ServiceLocation;
+using MoneyFox.DataAccess;
 using SimpleInjector;
 
 namespace MoneyManager.Windows
@@ -26,5 +27,10 @@ namespace MoneyManager.Windows
                 container.Register(reg.Service, reg.Implementation, Lifestyle.Transient);
             }
         }
+    }
+
+    public class NavigationConstants
+    {
+        
     }
 }

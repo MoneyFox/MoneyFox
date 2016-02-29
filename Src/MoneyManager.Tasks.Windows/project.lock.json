@@ -34,6 +34,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -358,6 +359,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.50.4": {
+        "dependencies": {
+          "Fody": "[1.29.2, )"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SimpleInjector/3.1.2": {
@@ -1763,6 +1775,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -2130,6 +2143,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.50.4": {
+        "dependencies": {
+          "Fody": "[1.29.2, )"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SimpleInjector/3.1.2": {
@@ -3582,6 +3606,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -3935,6 +3960,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.50.4": {
+        "dependencies": {
+          "Fody": "[1.29.2, )"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SimpleInjector/3.1.2": {
@@ -5373,6 +5409,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -5745,6 +5782,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.50.4": {
+        "dependencies": {
+          "Fody": "[1.29.2, )"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SimpleInjector/3.1.2": {
@@ -7197,6 +7245,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -7550,6 +7599,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.50.4": {
+        "dependencies": {
+          "Fody": "[1.29.2, )"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SimpleInjector/3.1.2": {
@@ -8988,6 +9048,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -9360,6 +9421,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.50.4": {
+        "dependencies": {
+          "Fody": "[1.29.2, )"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SimpleInjector/3.1.2": {
@@ -10812,6 +10884,7 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/1.2.3": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -11165,6 +11238,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.50.4": {
+        "dependencies": {
+          "Fody": "[1.29.2, )"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SimpleInjector/3.1.2": {
@@ -12646,6 +12730,29 @@
         "package/services/metadata/core-properties/99be0c88b2fd41c8b07c42071005ee47.psmdcp"
       ]
     },
+    "Fody/1.29.2": {
+      "sha512": "7SoewNkJQFedmOiJHD5P1akJ1fRow+tFjj/M4QlJ5M5RTHdnDXxEnuSKF2t22aSxTmn9+4wO3FbtOrJYy31xmA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "build/dotnet/Fody.targets",
+        "build/portable-net+sl+win+wpa+wp/Fody.targets",
+        "Content/FodyWeavers.xml",
+        "Fody.dll",
+        "Fody.nuspec",
+        "Fody.pdb",
+        "FodyCommon.dll",
+        "FodyCommon.pdb",
+        "FodyIsolated.dll",
+        "FodyIsolated.pdb",
+        "Mono.Cecil.dll",
+        "Mono.Cecil.Mdb.dll",
+        "Mono.Cecil.Pdb.dll",
+        "Mono.Cecil.Rocks.dll",
+        "package/services/metadata/core-properties/b094559303b349a78e387aa14ccb27d7.psmdcp"
+      ]
+    },
     "Microsoft.ApplicationInsights/1.2.3": {
       "sha512": "a34atobxpucCTTX9VCD7aIu6Ydzry+Va7TxK2tTQcfaMvefGW4kUKtg9GHKIn19IaXe+A4oZt/GBqsOt5vQrBA==",
       "type": "Package",
@@ -13693,6 +13800,24 @@
         "OxyPlot.Windows.nuspec",
         "package/services/metadata/core-properties/a4292403266f496984f1b4c78d453d58.psmdcp",
         "README.md"
+      ]
+    },
+    "PropertyChanged.Fody/1.50.4": {
+      "sha512": "RcYoNikGPm9koqwsrffX5PS4dDxBTPHvpddzY+TXFgoHdbh6fKAsQTuIxIB2qklkTANPMMBRJ2K+6ehW+Ci8YQ==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "Lib/dotnet/PropertyChanged.dll",
+        "Lib/dotnet/PropertyChanged.xml",
+        "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.dll",
+        "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.xml",
+        "package/services/metadata/core-properties/4aaa1e89f960409c9283732f854ee889.psmdcp",
+        "PropertyChanged.Fody.dll",
+        "PropertyChanged.Fody.nuspec",
+        "PropertyChanged.Fody.pdb",
+        "Tools/install.ps1",
+        "Tools/uninstall.ps1"
       ]
     },
     "SimpleInjector/3.1.2": {
