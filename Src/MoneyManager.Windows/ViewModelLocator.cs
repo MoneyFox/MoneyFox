@@ -1,35 +1,31 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
+﻿using System.Linq;
+using System.Reflection;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Core.ViewModels;
+using MoneyManager.DataAccess;
+using SimpleInjector;
 
-namespace MoneyManager.Core
+namespace MoneyManager.Windows
 {
     public class ViewModelLocator
     {
         public ViewModelLocator()
         {
-            SimpleIoc.Default.Register(CreateNavigationService);
+            var container = new Container();
 
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            ServiceLocator.SetLocatorProvider(() => new SimpleInjectorServiceLocatorAdapter(container));
 
-            SimpleIoc.Default.Register<ModifyMedicineViewModel>();
-            SimpleIoc.Default.Register<MedicineListViewModel>();
+            var dataAccessAssembly = typeof(AccountDataAccess).GetTypeInfo().Assembly;
 
-            SimpleIoc.Default.Register<AboutViewModel>();
+            var registrations =
+                from type in dataAccessAssembly.GetExportedTypes()
+                where type.Namespace == "MoneyManager.DataAccess"
+                where type.GetInterfaces().Any()
+                select new { Service = type.GetInterfaces().Single(), Implementation = type };
 
-            SimpleIoc.Default.Register<IGenericDataRepository<Medicine>, GenericDataRepository<Medicine>>();
-            SimpleIoc.Default.Register<IGenericDataRepository<IntakeReason>, GenericDataRepository<IntakeReason>>();
-            SimpleIoc.Default.Register<IGenericDataRepository<IntakeReminder>, GenericDataRepository<IntakeReminder>>();
-            SimpleIoc.Default.Register<IGenericDataRepository<MedicineType>, GenericDataRepository<MedicineType>>();
-        }
-
-        private static INavigationService CreateNavigationService()
-        {
-            var navigationService = new PageNavigationService();
-            navigationService.Configure(NavigationConstants.MODIFY_MEDICINE_VIEW, typeof(ModifyMedicineView));
-
-            return navigationService;
+            foreach (var reg in registrations)
+            {
+                container.Register(reg.Service, reg.Implementation, Lifestyle.Transient);
+            }
         }
     }
 }

@@ -122,6 +122,7 @@
     <Compile Include="Services\BackgroundTaskService.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\OneDriveAuthenticator.cs" />
+    <Compile Include="SimpleInjectorServiceLocatorAdapter.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\LocalSettings.cs" />
     <Compile Include="Src\ProtectedData.cs" />
@@ -474,6 +475,10 @@
     <ProjectReference Include="..\MoneyManager.Core\MoneyManager.Core.csproj">
       <Project>{64f3a03f-44c2-44fa-bd29-fa23c35c95f0}</Project>
       <Name>MoneyManager.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyManager.DataAccess\MoneyManager.DataAccess.csproj">
+      <Project>{038DFD1B-3B87-4098-8B16-8BC011B9EEFC}</Project>
+      <Name>MoneyManager.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
       <Project>{6936F4D3-8889-48C7-A676-80D59B2740CE}</Project>

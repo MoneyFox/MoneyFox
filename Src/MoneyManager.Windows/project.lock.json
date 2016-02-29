@@ -325,6 +325,14 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
+      "SimpleInjector/3.1.2": {
+        "compile": {
+          "lib/dotnet/SimpleInjector.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/SimpleInjector.dll": {}
+        }
+      },
       "SQLite.Net-PCL/3.1.1": {
         "dependencies": {
           "SQLite.Net.Core-PCL": "[3.1.1, )"
@@ -2060,6 +2068,14 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "SimpleInjector/3.1.2": {
+        "compile": {
+          "lib/dotnet/SimpleInjector.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/SimpleInjector.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -3830,6 +3846,14 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "SimpleInjector/3.1.2": {
+        "compile": {
+          "lib/dotnet/SimpleInjector.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/SimpleInjector.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -5607,6 +5631,14 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
+      "SimpleInjector/3.1.2": {
+        "compile": {
+          "lib/dotnet/SimpleInjector.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/SimpleInjector.dll": {}
+        }
+      },
       "SQLite.Net-PCL/3.1.1": {
         "dependencies": {
           "SQLite.Net.Core-PCL": "[3.1.1, )"
@@ -7375,6 +7407,14 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "SimpleInjector/3.1.2": {
+        "compile": {
+          "lib/dotnet/SimpleInjector.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/SimpleInjector.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -9152,6 +9192,14 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
+      "SimpleInjector/3.1.2": {
+        "compile": {
+          "lib/dotnet/SimpleInjector.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/SimpleInjector.dll": {}
+        }
+      },
       "SQLite.Net-PCL/3.1.1": {
         "dependencies": {
           "SQLite.Net.Core-PCL": "[3.1.1, )"
@@ -10920,6 +10968,14 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "SimpleInjector/3.1.2": {
+        "compile": {
+          "lib/dotnet/SimpleInjector.dll": {}
+        },
+        "runtime": {
+          "lib/dotnet/SimpleInjector.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -13344,6 +13400,24 @@
         "OxyPlot.Windows.nuspec",
         "package/services/metadata/core-properties/a4292403266f496984f1b4c78d453d58.psmdcp",
         "README.md"
+      ]
+    },
+    "SimpleInjector/3.1.2": {
+      "sha512": "nJVFKygDGBMaubMThDmrxGIdhTTYsYq1A+qRTroR+l8EpwKIbQ0Iv/8BZ3TdKbVJb5x1hD8EjZlRyfCWZZIzmg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/dotnet/SimpleInjector.dll",
+        "lib/dotnet/SimpleInjector.xml",
+        "lib/net40-client/SimpleInjector.dll",
+        "lib/net40-client/SimpleInjector.xml",
+        "lib/net45/SimpleInjector.dll",
+        "lib/net45/SimpleInjector.xml",
+        "lib/portable-net4+sl4+wp8+win8+wpa81/SimpleInjector.dll",
+        "lib/portable-net4+sl4+wp8+win8+wpa81/SimpleInjector.xml",
+        "package/services/metadata/core-properties/dfb38ae7e1694306864087f7d15ab279.psmdcp",
+        "SimpleInjector.nuspec"
       ]
     },
     "SQLite.Net-PCL/3.1.1": {
@@ -16140,6 +16214,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "CommonServiceLocator >= 1.3.0",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.1.1",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Microsoft.NETNative.Analyzer >= 1.0.0",
@@ -16148,6 +16223,7 @@
       "MvvmLightLibs >= 5.2.0",
       "NotificationsExtensions.Win10 >= 10586.0.2",
       "OxyPlot.Windows >= 2015.1.1033-alpha",
+      "SimpleInjector >= 3.1.2",
       "SQLite.Net-PCL >= 3.1.1",
       "UniversalRateReminder >= 2.0.0",
       "Xamarin.Insights >= 1.11.4"
