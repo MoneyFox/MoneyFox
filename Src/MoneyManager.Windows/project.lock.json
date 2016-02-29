@@ -151,6 +151,35 @@
           "lib/win8/_._": {}
         }
       },
+      "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
+        "frameworkAssemblies": [
+          "System"
+        ]
+      },
+      "Microsoft.CodeAnalysis.Common/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Analyzers": "[1.0.0, 1.0.0]",
+          "System.Collections.Immutable": "[1.1.36, )",
+          "System.Reflection.Metadata": "[1.0.21, )"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.CSharp/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Common": "[1.0.0, 1.0.0]"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -2223,6 +2252,35 @@
         },
         "runtime": {
           "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
+        "frameworkAssemblies": [
+          "System"
+        ]
+      },
+      "Microsoft.CodeAnalysis.Common/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Analyzers": "[1.0.0, 1.0.0]",
+          "System.Collections.Immutable": "[1.1.36, )",
+          "System.Reflection.Metadata": "[1.0.21, )"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.CSharp/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Common": "[1.0.0, 1.0.0]"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -4389,6 +4447,35 @@
           "lib/win8/_._": {}
         }
       },
+      "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
+        "frameworkAssemblies": [
+          "System"
+        ]
+      },
+      "Microsoft.CodeAnalysis.Common/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Analyzers": "[1.0.0, 1.0.0]",
+          "System.Collections.Immutable": "[1.1.36, )",
+          "System.Reflection.Metadata": "[1.0.21, )"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.CSharp/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Common": "[1.0.0, 1.0.0]"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -6523,6 +6610,35 @@
         },
         "runtime": {
           "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
+        "frameworkAssemblies": [
+          "System"
+        ]
+      },
+      "Microsoft.CodeAnalysis.Common/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Analyzers": "[1.0.0, 1.0.0]",
+          "System.Collections.Immutable": "[1.1.36, )",
+          "System.Reflection.Metadata": "[1.0.21, )"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.CSharp/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Common": "[1.0.0, 1.0.0]"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -8697,6 +8813,35 @@
           "lib/win8/_._": {}
         }
       },
+      "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
+        "frameworkAssemblies": [
+          "System"
+        ]
+      },
+      "Microsoft.CodeAnalysis.Common/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Analyzers": "[1.0.0, 1.0.0]",
+          "System.Collections.Immutable": "[1.1.36, )",
+          "System.Reflection.Metadata": "[1.0.21, )"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.CSharp/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Common": "[1.0.0, 1.0.0]"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.10, )",
@@ -10834,6 +10979,35 @@
         },
         "runtime": {
           "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
+        "frameworkAssemblies": [
+          "System"
+        ]
+      },
+      "Microsoft.CodeAnalysis.Common/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Analyzers": "[1.0.0, 1.0.0]",
+          "System.Collections.Immutable": "[1.1.36, )",
+          "System.Reflection.Metadata": "[1.0.21, )"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.CSharp/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Common": "[1.0.0, 1.0.0]"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -13006,6 +13180,35 @@
         },
         "runtime": {
           "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
+        "frameworkAssemblies": [
+          "System"
+        ]
+      },
+      "Microsoft.CodeAnalysis.Common/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Analyzers": "[1.0.0, 1.0.0]",
+          "System.Collections.Immutable": "[1.1.36, )",
+          "System.Reflection.Metadata": "[1.0.21, )"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll": {}
+        }
+      },
+      "Microsoft.CodeAnalysis.CSharp/1.0.0": {
+        "dependencies": {
+          "Microsoft.CodeAnalysis.Common": "[1.0.0, 1.0.0]"
+        },
+        "compile": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -15255,6 +15458,53 @@
         "License-Stable.rtf",
         "Microsoft.Bcl.Compression.nuspec",
         "package/services/metadata/core-properties/71e716530e0746f5935fdafbd13788de.psmdcp"
+      ]
+    },
+    "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
+      "sha512": "E7VdmGw6xO3VHWapC+pNLZmo6yncS53UY3bmb5WZm9wliJBB1A6brgzKA4fcqiLrmJFx71r0M2zEbRDphRLUNg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "analyzers/dotnet/cs/Microsoft.CodeAnalysis.Analyzers.dll",
+        "analyzers/dotnet/cs/Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
+        "analyzers/dotnet/vb/Microsoft.CodeAnalysis.Analyzers.dll",
+        "analyzers/dotnet/vb/Microsoft.CodeAnalysis.VisualBasic.Analyzers.dll",
+        "Microsoft.CodeAnalysis.Analyzers.nuspec",
+        "package/services/metadata/core-properties/bb00b7c8816849f1b8d83e16942f9a7a.psmdcp",
+        "ThirdPartyNotices.rtf",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "Microsoft.CodeAnalysis.Common/1.0.0": {
+      "sha512": "MhxsY8N9veim57uXqcRCJb7X9xZoWhMDU4/EyIqNkS7qfRsLxrzELSpjp6NjFkISZElvwIV2Ehi3UxyJui/gPw==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net45/Microsoft.CodeAnalysis.dll",
+        "lib/net45/Microsoft.CodeAnalysis.xml",
+        "lib/portable-net45+win8/Microsoft.CodeAnalysis.dll",
+        "lib/portable-net45+win8/Microsoft.CodeAnalysis.xml",
+        "Microsoft.CodeAnalysis.Common.nuspec",
+        "package/services/metadata/core-properties/9991ac73b29c4a1f888c11aa29a17b55.psmdcp",
+        "ThirdPartyNotices.rtf"
+      ]
+    },
+    "Microsoft.CodeAnalysis.CSharp/1.0.0": {
+      "sha512": "KZ70r7EF+Dn8qp2p1CiBJGVoIG6el7Q9cLhnXuq+3oLcnMvUk2XzimB36AgO/Qg/liqRzf992WmFWhwqZSaIEg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/net45/Microsoft.CodeAnalysis.CSharp.dll",
+        "lib/net45/Microsoft.CodeAnalysis.CSharp.xml",
+        "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.dll",
+        "lib/portable-net45+win8/Microsoft.CodeAnalysis.CSharp.xml",
+        "Microsoft.CodeAnalysis.CSharp.nuspec",
+        "package/services/metadata/core-properties/2a8f21ef37764da99375d42c0c71cdbb.psmdcp",
+        "ThirdPartyNotices.rtf"
       ]
     },
     "Microsoft.CSharp/4.0.0": {

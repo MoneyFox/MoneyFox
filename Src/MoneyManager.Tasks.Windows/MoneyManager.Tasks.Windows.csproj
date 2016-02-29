@@ -112,6 +112,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj">
+      <Project>{2F774D5A-E9B5-4AB2-84AA-51A6E9BDB456}</Project>
+      <Name>MoneyFox.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+      <Project>{1CFF6968-BA09-48AF-9718-5D1E02E656E6}</Project>
+      <Name>MoneyFox.Foundation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyManager.Windows\MoneyManager.Windows.csproj">
       <Project>{31D78E14-8DC1-490C-A401-F88F6E36DB96}</Project>
       <Name>MoneyManager.Windows</Name>

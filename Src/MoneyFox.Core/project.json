@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "EntityFramework.Sqlite": "7.0.0-rc1-final",
     "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
     "Microsoft.CodeAnalysis.CSharp": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",

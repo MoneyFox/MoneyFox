@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
 namespace MoneyFox.Core.Repositories
@@ -13,16 +13,16 @@ namespace MoneyFox.Core.Repositories
     [ImplementPropertyChanged]
     public class CategoryRepository : IRepository<Category>
     {
-        private readonly IDataAccess<Category> dataAccess;
+        private readonly IGenericDataRepository<Category> categoryDataAccess;
         private ObservableCollection<Category> data;
 
         /// <summary>
         ///     Creates a CategoryRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced Category data Access</param>
-        public CategoryRepository(IDataAccess<Category> dataAccess)
+        /// <param name="categoryDataAccess">Instanced Category data Access</param>
+        public CategoryRepository(IGenericDataRepository<Category> categoryDataAccess)
         {
-            this.dataAccess = dataAccess;
+            this.categoryDataAccess = categoryDataAccess;
 
             Data = new ObservableCollection<Category>();
             Load();
@@ -60,8 +60,9 @@ namespace MoneyFox.Core.Repositories
             if (category.Id == 0)
             {
                 data.Add(category);
+                categoryDataAccess.Add(category);
             }
-            dataAccess.SaveItem(category);
+            categoryDataAccess.Update(category);
             Settings.LastDatabaseUpdate = DateTime.Now;
         }
 
@@ -72,7 +73,7 @@ namespace MoneyFox.Core.Repositories
         public void Delete(Category categoryToDelete)
         {
             data.Remove(categoryToDelete);
-            dataAccess.DeleteItem(categoryToDelete);
+            categoryDataAccess.Delete(categoryToDelete);
             Settings.LastDatabaseUpdate = DateTime.Now;
         }
 
@@ -82,7 +83,7 @@ namespace MoneyFox.Core.Repositories
         public void Load(Expression<Func<Category, bool>> filter = null)
         {
             Data.Clear();
-            foreach (var category in dataAccess.LoadList(filter))
+            foreach (var category in categoryDataAccess.GetList(filter))
             {
                 Data.Add(category);
             }

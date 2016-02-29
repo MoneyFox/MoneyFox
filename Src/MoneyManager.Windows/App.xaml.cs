@@ -12,6 +12,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.ApplicationInsights;
+using MoneyFox.Foundation.Resources;
+using MoneyManager.Foundation;
 using MoneyManager.Localization;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;

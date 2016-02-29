@@ -1,5 +1,10 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
+using Microsoft.ApplicationInsights;
+using MoneyFox.Core.Repositories;
+using MoneyFox.Foundation.Model;
+using MoneyManager.Core.Manager;
+using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Shortcut;
 
 namespace MoneyManager.Tasks.Windows
@@ -10,25 +15,13 @@ namespace MoneyManager.Tasks.Windows
 
         public ClearPaymentBackgroundTask()
         {
-            var insightKey = "599ff6bfdc79368ff3d5f5629a57c995fe93352e";
-
-#if DEBUG
-            insightKey = Insights.DebugModeKey;
-#endif
-            if (!Insights.IsInitialized)
-            {
-                Insights.Initialize(insightKey);
-            }
-
-            var sqliteConnectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
-
-            var accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnectionCreator));
+            var accountRepository = new AccountRepository(new GenericDataRepository<Account>());
 
             paymentManager = new PaymentManager(
-                new PaymentRepository(new PaymentDataAccess(sqliteConnectionCreator),
-                    new RecurringPaymentDataAccess(sqliteConnectionCreator),
+                new PaymentRepository(new GenericDataRepository<Payment>(),
+                    new GenericDataRepository<RecurringPayment>(),
                     accountRepository,
-                    new CategoryRepository(new CategoryDataAccess(sqliteConnectionCreator))),
+                    new CategoryRepository(new GenericDataRepository<Category>())),
                 accountRepository,
                 null);
         }

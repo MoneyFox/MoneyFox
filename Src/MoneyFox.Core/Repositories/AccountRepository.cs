@@ -16,16 +16,16 @@ namespace MoneyFox.Core.Repositories
     [ImplementPropertyChanged]
     public class AccountRepository : IAccountRepository
     {
-        private readonly IGenericDataRepository<Account> dataAccess;
+        private readonly IGenericDataRepository<Account> accountDataAccess;
         private ObservableCollection<Account> data;
 
         /// <summary>
         ///     Creates a AccountRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced account data Access</param>
-        public AccountRepository(IGenericDataRepository<Account> dataAccess)
+        /// <param name="accountDataAccess">Instanced account data Access</param>
+        public AccountRepository(IGenericDataRepository<Account> accountDataAccess)
         {
-            this.dataAccess = dataAccess;
+            this.accountDataAccess = accountDataAccess;
 
             Data = new ObservableCollection<Account>();
             Load();
@@ -63,8 +63,9 @@ namespace MoneyFox.Core.Repositories
             if (account.Id == 0)
             {
                 data.Add(account);
+                accountDataAccess.Add(account);
             }
-            dataAccess.SaveItem(account);
+            accountDataAccess.Update(account);
             Settings.LastDatabaseUpdate = DateTime.Now;
         }
 
@@ -75,7 +76,7 @@ namespace MoneyFox.Core.Repositories
         public void Delete(Account accountToDelete)
         {
             data.Remove(accountToDelete);
-            dataAccess.DeleteItem(accountToDelete);
+            accountDataAccess.Delete(accountToDelete);
             Settings.LastDatabaseUpdate = DateTime.Now;
         }
 
@@ -86,7 +87,7 @@ namespace MoneyFox.Core.Repositories
         {
             Data.Clear();
 
-            foreach (var account in dataAccess.LoadList(filter))
+            foreach (var account in accountDataAccess.GetList(filter))
             {
                 Data.Add(account);
             }
