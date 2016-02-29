@@ -1,7 +1,8 @@
 ﻿using Microsoft.Data.Entity;
+using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation.Model;
 
-namespace MoneyFox.DataAccess
+namespace MoneyFox.Core.Repositories
 {
     public class MoneyFoxDataContext : DbContext
     {

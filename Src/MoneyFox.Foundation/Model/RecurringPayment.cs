@@ -1,8 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using MoneyFox.Foundation.Model;
 
 namespace MoneyManager.Foundation.Model
 {
-    [Table("RecurringPayments")]
     public class RecurringPayment
     {
         private Category category;
@@ -11,7 +12,6 @@ namespace MoneyManager.Foundation.Model
 
         private Account targetAccount;
 
-        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
         public int ChargedAccountId { get; set; }
@@ -32,7 +32,7 @@ namespace MoneyManager.Foundation.Model
         ///     In case it's a expense or transfer the account who will be charged.
         ///     In case it's an income the account who will be credited.
         /// </summary>
-        [Ignore]
+        [NotMapped]
         public Account ChargedAccount
         {
             get { return chargedAccount; }
@@ -51,7 +51,7 @@ namespace MoneyManager.Foundation.Model
         ///     The <see cref="Account" /> who will be credited by a transfer.
         ///     Not used for the other payment types.
         /// </summary>
-        [Ignore]
+        [NotMapped]
         public Account TargetAccount
         {
             get { return targetAccount; }
@@ -68,7 +68,7 @@ namespace MoneyManager.Foundation.Model
         /// <summary>
         ///     The <see cref="Category" /> for this payment
         /// </summary>
-        [Ignore]
+        [NotMapped]
         public Category Category
         {
             get { return category; }

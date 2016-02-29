@@ -2,6 +2,7 @@
 using System.Globalization;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces;

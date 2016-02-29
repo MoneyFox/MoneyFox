@@ -10,6 +10,7 @@
              xmlns:model="using:MoneyManager.Foundation.Model"
              xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
              xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
+             xmlns:model1="using:MoneyFox.Foundation.Model"
              d:DataContext="{d:DesignInstance designTime:DesignTimeAccountListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -25,7 +26,7 @@
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
 
-        <DataTemplate x:Key="AccountTemplate" x:DataType="model:Account">
+        <DataTemplate x:Key="AccountTemplate" x:DataType="model1:Account">
             <StackPanel HorizontalAlignment="Stretch"
                         Holding="AccountList_Holding"
                         RightTapped="AccountList_RightTapped"

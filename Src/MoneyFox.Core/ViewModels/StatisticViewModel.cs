@@ -2,6 +2,7 @@ using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation;
+using MoneyFox.Foundation.Messages;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Extensions;
 using PropertyChanged;

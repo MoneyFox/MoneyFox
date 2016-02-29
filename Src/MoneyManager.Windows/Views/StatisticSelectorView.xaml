@@ -10,6 +10,7 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converter="using:MoneyManager.Windows.Converter"
     xmlns:viewModels="using:MoneyManager.Core.ViewModels"
+    xmlns:model1="using:MoneyFox.Foundation.Model"
     d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel, IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
 
@@ -17,7 +18,7 @@
         <converter:SelectedConverter x:Key="SelectedConverter" />
 
         <DataTemplate x:Key="StatistcTypeTemplate"
-                      x:DataType="model:StatisticSelectorType">
+                      x:DataType="model1:StatisticSelectorType">
             <StackPanel HorizontalAlignment="Stretch"
                         Background="Transparent"
                         Margin="0,2,0,4">

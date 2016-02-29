@@ -1,12 +1,10 @@
 ﻿using PropertyChanged;
 
-namespace MoneyManager.Foundation.Model
+namespace MoneyFox.Foundation.Model
 {
     [ImplementPropertyChanged]
-    [Table("Accounts")]
     public class Account
     {
-        [PrimaryKey, AutoIncrement, Indexed]
         public int Id { get; set; }
 
         public string Name { get; set; }

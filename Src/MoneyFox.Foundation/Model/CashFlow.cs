@@ -1,4 +1,6 @@
-﻿namespace MoneyManager.Foundation.Model
+﻿using MoneyManager.Foundation.Model;
+
+namespace MoneyFox.Foundation.Model
 {
     /// <summary>
     ///     Represents a cash flow object for usage in statistics

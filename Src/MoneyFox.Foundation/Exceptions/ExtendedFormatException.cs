@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace MoneyManager.Foundation.Exceptions
+namespace MoneyFox.Foundation.Exceptions
 {
     /// <summary>
     ///     A custom format exception who contains more specific informations.

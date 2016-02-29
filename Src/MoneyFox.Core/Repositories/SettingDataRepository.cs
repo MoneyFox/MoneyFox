@@ -3,10 +3,10 @@ using System.Runtime.CompilerServices;
 using MoneyManager.Foundation.Interfaces;
 using PropertyChanged;
 
-namespace MoneyManager.DataAccess
+namespace MoneyFox.DataAccess
 {
     [ImplementPropertyChanged]
-    public class SettingDataAccess : INotifyPropertyChanged
+    public class SettingDataRepository : INotifyPropertyChanged
     {
         // Settings Names
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
@@ -20,7 +20,7 @@ namespace MoneyManager.DataAccess
 
         private readonly IRoamingSettings roamingSettings;
 
-        public SettingDataAccess(IRoamingSettings roamingSettings)
+        public SettingDataRepository(IRoamingSettings roamingSettings)
         {
             this.roamingSettings = roamingSettings;
         }

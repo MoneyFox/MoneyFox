@@ -487,10 +487,6 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
-      <Project>{3E45C5FD-119A-4CBC-9B39-6DCB2F91A925}</Project>
-      <Name>MoneyFox.DataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{1CFF6968-BA09-48AF-9718-5D1E02E656E6}</Project>
       <Name>MoneyFox.Foundation</Name>

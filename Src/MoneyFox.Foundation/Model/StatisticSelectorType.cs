@@ -1,4 +1,6 @@
-﻿namespace MoneyManager.Foundation.Model
+﻿using MoneyManager.Foundation;
+
+namespace MoneyFox.Foundation.Model
 {
     /// <summary>
     ///     Represents a item for the selector to choose the statistic.

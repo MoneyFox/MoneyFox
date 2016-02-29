@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.Data.Entity;
+using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Interfaces;
 
-namespace MoneyFox.DataAccess
+namespace MoneyFox.Core.Repositories
 {
     /// <summary>
     ///     a collection of default operation to access the database.

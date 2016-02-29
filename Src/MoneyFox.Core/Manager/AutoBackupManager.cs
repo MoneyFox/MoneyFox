@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
 using Microsoft.OneDrive.Sdk;
+using MoneyFox.DataAccess;
 using MoneyManager.Core.Helpers;
-using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Core.Manager
@@ -14,7 +14,7 @@ namespace MoneyManager.Core.Manager
     {
         private readonly IBackupService backupService;
         private readonly IRepositoryManager repositoryManager;
-        private readonly SettingDataAccess roamingSettings;
+        private readonly SettingDataRepository roamingSettings;
 
         /// <summary>
         ///     Creates a new instance
@@ -22,7 +22,7 @@ namespace MoneyManager.Core.Manager
         /// <param name="backupService">Helper for uploading and downloading to the respective backup service.</param>
         /// <param name="roamingSettings">Access to the roaming settings.</param>
         /// <param name="repositoryManager">An instance of the repository manager to reload data.</param>
-        public AutoBackupManager(IBackupService backupService, SettingDataAccess roamingSettings,
+        public AutoBackupManager(IBackupService backupService, SettingDataRepository roamingSettings,
             IRepositoryManager repositoryManager)
         {
             this.backupService = backupService;

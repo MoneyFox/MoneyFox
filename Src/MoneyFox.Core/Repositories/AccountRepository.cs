@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
@@ -9,19 +11,19 @@ using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
-namespace MoneyManager.Core.Repositories
+namespace MoneyFox.Core.Repositories
 {
     [ImplementPropertyChanged]
     public class AccountRepository : IAccountRepository
     {
-        private readonly IDataAccess<Account> dataAccess;
+        private readonly IGenericDataRepository<Account> dataAccess;
         private ObservableCollection<Account> data;
 
         /// <summary>
         ///     Creates a AccountRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced account data Access</param>
-        public AccountRepository(IDataAccess<Account> dataAccess)
+        public AccountRepository(IGenericDataRepository<Account> dataAccess)
         {
             this.dataAccess = dataAccess;
 

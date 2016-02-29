@@ -1,4 +1,5 @@
-﻿using MoneyManager.DataAccess;
+﻿using MoneyFox.DataAccess;
+using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 
@@ -8,9 +9,9 @@ namespace MoneyManager.Core.ViewModels
     public class SettingDefaultsViewModel
     {
         private readonly IDefaultManager defaultManager;
-        private readonly SettingDataAccess settings;
+        private readonly SettingDataRepository settings;
 
-        public SettingDefaultsViewModel(IDefaultManager defaultManager, SettingDataAccess settings)
+        public SettingDefaultsViewModel(IDefaultManager defaultManager, SettingDataRepository settings)
         {
             this.defaultManager = defaultManager;
             this.settings = settings;

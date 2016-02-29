@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 

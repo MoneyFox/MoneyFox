@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyManager.DataAccess;
+using MoneyFox.DataAccess;
+using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 
@@ -9,9 +10,9 @@ namespace MoneyManager.Core.Manager
     public class DefaultManager : IDefaultManager
     {
         private readonly IAccountRepository accountRepository;
-        private readonly SettingDataAccess settings;
+        private readonly SettingDataRepository settings;
 
-        public DefaultManager(IAccountRepository accountRepository, SettingDataAccess settings)
+        public DefaultManager(IAccountRepository accountRepository, SettingDataRepository settings)
         {
             this.accountRepository = accountRepository;
             this.settings = settings;

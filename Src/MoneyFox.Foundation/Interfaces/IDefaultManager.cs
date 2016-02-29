@@ -1,3 +1,4 @@
+using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Foundation.Interfaces

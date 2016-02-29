@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
+using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
-namespace MoneyManager.Core.Repositories
+namespace MoneyFox.Core.Repositories
 {
     [ImplementPropertyChanged]
     public class CategoryRepository : IRepository<Category>

@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;

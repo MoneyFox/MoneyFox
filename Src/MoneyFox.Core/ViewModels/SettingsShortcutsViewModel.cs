@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyManager.DataAccess;
+using MoneyFox.DataAccess;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 
 // ReSharper disable ExplicitCallerInfoArgument
@@ -13,7 +13,7 @@ namespace MoneyManager.Core.ViewModels
     public class SettingsShortcutsViewModel : ViewModelBase
     {
         private readonly IIncomeShortcut incomeShortcut;
-        private readonly SettingDataAccess settingsDataAccess;
+        private readonly SettingDataRepository settingsDataRepository;
         private readonly ISpendingShortcut spendingShortcut;
         private readonly ITransferShortcut transferShortcut;
 
@@ -21,20 +21,20 @@ namespace MoneyManager.Core.ViewModels
         ///     Creates a SettingsShortcutsViewModel object
         /// </summary>
         public SettingsShortcutsViewModel(ISpendingShortcut spendingShortcut, IIncomeShortcut incomeShortcut,
-            ITransferShortcut transferShortcut, SettingDataAccess settingsDataAccess)
+            ITransferShortcut transferShortcut, SettingDataRepository settingsDataRepository)
         {
             this.spendingShortcut = spendingShortcut;
             this.incomeShortcut = incomeShortcut;
             this.transferShortcut = transferShortcut;
-            this.settingsDataAccess = settingsDataAccess;
+            this.settingsDataRepository = settingsDataRepository;
         }
 
         public bool ShowInfoOnMainTile
         {
-            get { return settingsDataAccess.ShowCashFlowOnMainTile; }
+            get { return settingsDataRepository.ShowCashFlowOnMainTile; }
             set
             {
-                settingsDataAccess.ShowCashFlowOnMainTile = value;
+                settingsDataRepository.ShowCashFlowOnMainTile = value;
                 RaisePropertyChanged();
             }
         }

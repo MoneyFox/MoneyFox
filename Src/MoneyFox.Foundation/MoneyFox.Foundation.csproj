@@ -108,7 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="DateSelectedMessage.cs" />
+    <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\BackupException.cs" />
@@ -177,7 +177,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="SqliteConnectionCreator.cs" />
     <EmbeddedResource Include="Properties\MoneyFox.Foundation.rd.xml" />
     <EmbeddedResource Include="Resources\Strings.de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

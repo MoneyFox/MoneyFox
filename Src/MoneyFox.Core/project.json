@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
+    "Microsoft.CodeAnalysis.CSharp": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Microsoft.NETNative.Analyzer": "1.0.0",
     "Microsoft.OneDriveSDK": "1.1.20",

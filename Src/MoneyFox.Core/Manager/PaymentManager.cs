@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 

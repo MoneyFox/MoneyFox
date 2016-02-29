@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Foundation.Interfaces
