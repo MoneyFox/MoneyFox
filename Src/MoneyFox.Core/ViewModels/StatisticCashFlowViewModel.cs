@@ -1,4 +1,5 @@
-﻿using MoneyManager.Core.StatisticDataProvider;
+﻿using MoneyFox.Core.ViewModels;
+using MoneyManager.Core.StatisticDataProvider;
 using MoneyManager.Foundation.Interfaces;
 using OxyPlot;
 using OxyPlot.Axes;

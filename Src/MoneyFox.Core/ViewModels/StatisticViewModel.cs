@@ -1,18 +1,16 @@
 using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Extensions;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public abstract class StatisticViewModel : ViewModelBase
     {
-        //this token ensures that we will be notified when a message is sent.
-        private readonly MvxSubscriptionToken token;
-
         /// <summary>
         ///     Creates a StatisticViewModel Object and passes the first and last day of the current month
         ///     as a start and end date.
@@ -32,7 +30,7 @@ namespace MoneyManager.Core.ViewModels
             StartDate = startDate;
             EndDate = endDate;
 
-            token = MessageHub.Subscribe<DateSelectedMessage>(message =>
+            MessengerInstance.Register<DateSelectedMessage>(this,  message =>
             {
                 StartDate = message.StartDate;
                 EndDate = message.EndDate;
