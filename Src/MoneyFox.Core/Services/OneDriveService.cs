@@ -6,7 +6,6 @@ using Microsoft.OneDrive.Sdk;
 using MoneyManager.Core.Extensions;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
-using Xamarin;
 
 namespace MoneyManager.Core.Services
 {

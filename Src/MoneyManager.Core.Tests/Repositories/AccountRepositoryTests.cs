@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using Moq;
 
 namespace MoneyManager.Core.Tests.Repositories

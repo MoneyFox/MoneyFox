@@ -1,20 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Core.Repositories;
 using MoneyManager.Core.Tests.Mocks;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Exceptions;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using Moq;
-using MvvmCross.Platform;
-using MvvmCross.Plugins.Messenger;
-using MvvmCross.Test.Core;
 using Xunit;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 

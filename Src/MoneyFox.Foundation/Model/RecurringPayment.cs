@@ -1,5 +1,4 @@
 ﻿using System;
-using SQLite.Net.Attributes;
 
 namespace MoneyManager.Foundation.Model
 {

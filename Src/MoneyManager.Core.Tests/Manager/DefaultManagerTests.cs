@@ -1,10 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.Manager;
-using MoneyManager.DataAccess;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using Moq;
 using Xunit;
 

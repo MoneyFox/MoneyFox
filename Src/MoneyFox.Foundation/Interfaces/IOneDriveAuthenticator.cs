@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.OneDrive.Sdk;
 
 namespace MoneyManager.Foundation.Interfaces
 {

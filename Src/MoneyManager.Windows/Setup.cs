@@ -1,21 +1,6 @@
 using Windows.UI.Xaml.Controls;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Plugins;
-using MvvmCross.Plugins.Email;
-using MvvmCross.Plugins.Email.WindowsCommon;
-using MvvmCross.Plugins.File;
-using MvvmCross.Plugins.File.WindowsCommon;
-using MvvmCross.Plugins.Sqlite;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using MvvmCross.Plugins.WebBrowser;
-using MvvmCross.Plugins.WebBrowser.WindowsCommon;
-using MvvmCross.WindowsUWP.Platform;
-using Xamarin;
 
 namespace MoneyManager.Windows
 {

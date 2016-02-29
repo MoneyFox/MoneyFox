@@ -57,7 +57,7 @@
                             Margin="0,15,0,7">
                     <TextBlock x:Uid="BackupLastModifiedText"
                                Text="Last Backup created at:"
-                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}"/>
+                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
                     <TextBlock Text="{Binding BackupLastModified}"
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                                Margin="5,0,0,0" />

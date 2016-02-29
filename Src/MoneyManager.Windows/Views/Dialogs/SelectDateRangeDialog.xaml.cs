@@ -1,6 +1,4 @@
-﻿using MoneyManager.Core.ViewModels;
-
-namespace MoneyManager.Windows.Views.Dialogs
+﻿namespace MoneyManager.Windows.Views.Dialogs
 {
     public sealed partial class SelectDateRangeDialog
     {

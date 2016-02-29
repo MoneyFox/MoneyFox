@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Windows.Views.Dialogs;
 
 namespace MoneyManager.Windows.Views
@@ -12,15 +11,15 @@ namespace MoneyManager.Windows.Views
             InitializeComponent();
         }
 
+        public void Dispose()
+        {
+            ExpensePlotView.Model = null;
+        }
+
         private async void SetDate(object sender, RoutedEventArgs e)
         {
             await new SelectDateRangeDialog().ShowAsync();
             (DataContext as StatisticMonthlyExpensesViewModel)?.LoadCommand.Execute();
-        }
-
-        public void Dispose()
-        {
-            ExpensePlotView.Model = null;
         }
     }
 }

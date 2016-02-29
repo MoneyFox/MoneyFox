@@ -47,7 +47,7 @@ namespace MoneyFox.Core.Authentication
             try
             {
                 var vault = new PasswordVault();
-                var passwordCredential = vault.Retrieve(Windows.ApplicationModel.Package.Current.Id.Name, PASSWORD_KEY);
+                var passwordCredential = vault.Retrieve(Package.Current.Id.Name, PASSWORD_KEY);
                 vault.Remove(passwordCredential);
             }
             catch (Exception)

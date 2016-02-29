@@ -7,7 +7,6 @@ using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels

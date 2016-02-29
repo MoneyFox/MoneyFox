@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
-using MoneyManager.Core.Extensions;
-using MoneyManager.Core.StatisticDataProvider;
-using MoneyManager.Foundation.Interfaces;
-using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Shortcut
 {
@@ -35,7 +31,7 @@ namespace MoneyManager.Windows.Shortcut
             await task;
         }
 
-        private static  void UpdateTile()
+        private static void UpdateTile()
         {
             var cashFlow =
                 new CashFlowDataProvider(Mvx.Resolve<IPaymentRepository>()).GetValues(
@@ -44,8 +40,6 @@ namespace MoneyManager.Windows.Shortcut
 
             Mvx.Resolve<IUserNotification>()
                 .UpdateMainTile(cashFlow.Income.Label, cashFlow.Spending.Label, cashFlow.Revenue.Label);
-
         }
-
     }
 }

@@ -67,7 +67,7 @@ namespace MoneyManager.Windows
         /// </summary>
         public void GoBack()
         {
-            var shell = ((AppShell) Window.Current.Content);
+            var shell = (AppShell) Window.Current.Content;
 
             if (shell.AppFrame.CanGoBack)
             {
@@ -124,7 +124,7 @@ namespace MoneyManager.Windows
                         "pageKey");
                 }
 
-                var shell = ((AppShell) Window.Current.Content);
+                var shell = (AppShell) Window.Current.Content;
                 shell.AppFrame.Navigate(pagesByKey[pageKey], parameter);
             }
         }

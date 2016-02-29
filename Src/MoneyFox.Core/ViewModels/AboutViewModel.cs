@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Localization;
 
 namespace MoneyManager.Core.ViewModels
 {

@@ -1,8 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
-using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Windows.Views.UserControls
 {
@@ -31,7 +29,7 @@ namespace MoneyManager.Windows.Views.UserControls
 
         private void EditPayment(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement)sender;
+            var element = (FrameworkElement) sender;
             var payment = element.DataContext as Payment;
             if (payment == null)
             {
@@ -43,7 +41,7 @@ namespace MoneyManager.Windows.Views.UserControls
 
         private void DeletePayment(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement)sender;
+            var element = (FrameworkElement) sender;
             var payment = element.DataContext as Payment;
             if (payment == null)
             {

@@ -79,25 +79,25 @@
                 <Grid>
                     <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
                     <controls:NavMenuListView x:Name="NavMenuListTop"
-                                                VerticalAlignment="Top"
-                                                TabIndex="3"
-                                                Margin="0,48,0,0"
-                                                ContainerContentChanging="NavMenuItemContainerContentChanging"
-                                                ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
-                                                ItemTemplate="{StaticResource NavMenuItemTemplate}"
-                                                ItemInvoked="NavMenuList_ItemInvoked" />
+                                              VerticalAlignment="Top"
+                                              TabIndex="3"
+                                              Margin="0,48,0,0"
+                                              ContainerContentChanging="NavMenuItemContainerContentChanging"
+                                              ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
+                                              ItemTemplate="{StaticResource NavMenuItemTemplate}"
+                                              ItemInvoked="NavMenuList_ItemInvoked" />
                     <!-- A buttom section to seperate common functions with uncommon -->
                     <controls:NavMenuListView x:Name="NavMenuListBottom"
-                                                VerticalAlignment="Bottom"
-                                                TabIndex="3"
-                                                Margin="0,48,0,0"
-                                                ContainerContentChanging="NavMenuItemContainerContentChanging"
-                                                ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
-                                                ItemTemplate="{StaticResource NavMenuItemTemplate}"
-                                                ItemInvoked="NavMenuList_ItemInvoked" />
+                                              VerticalAlignment="Bottom"
+                                              TabIndex="3"
+                                              Margin="0,48,0,0"
+                                              ContainerContentChanging="NavMenuItemContainerContentChanging"
+                                              ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
+                                              ItemTemplate="{StaticResource NavMenuItemTemplate}"
+                                              ItemInvoked="NavMenuList_ItemInvoked" />
                 </Grid>
             </controls:SwipeableSplitView.Pane>
-            
+
             <controls:SwipeableSplitView.Content>
                 <Frame x:Name="Frame"
                        Navigating="OnNavigatingToPage"

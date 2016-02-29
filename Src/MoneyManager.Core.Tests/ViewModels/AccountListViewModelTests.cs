@@ -1,8 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using Moq;
 
 namespace MoneyManager.Core.Tests.ViewModels

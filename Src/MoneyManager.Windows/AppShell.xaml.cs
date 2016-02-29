@@ -22,23 +22,6 @@ namespace MoneyManager.Windows
     public sealed partial class AppShell
     {
         public static AppShell Current;
-        // Declare the top level nav items
-        private readonly List<NavMenuItem> navlistTop = new List<NavMenuItem>(
-            new[]
-            {
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Library,
-                    Label = Strings.AccountsLabel,
-                    DestPage = typeof (MainView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.View,
-                    Label = Strings.StatisticsLabel,
-                    DestPage = typeof (StatisticSelectorView)
-                }
-            });
 
         private readonly List<NavMenuItem> navlistBottom = new List<NavMenuItem>(
             new[]
@@ -47,7 +30,7 @@ namespace MoneyManager.Windows
                 {
                     Symbol = Symbol.Tag,
                     Label = Strings.CategoriesLabel,
-                    DestPage = typeof(CategoriesView)
+                    DestPage = typeof (CategoriesView)
                 },
                 new NavMenuItem
                 {
@@ -66,6 +49,24 @@ namespace MoneyManager.Windows
                     Symbol = Symbol.Account,
                     Label = Strings.AboutLabel,
                     DestPage = typeof (AboutView)
+                }
+            });
+
+        // Declare the top level nav items
+        private readonly List<NavMenuItem> navlistTop = new List<NavMenuItem>(
+            new[]
+            {
+                new NavMenuItem
+                {
+                    Symbol = Symbol.Library,
+                    Label = Strings.AccountsLabel,
+                    DestPage = typeof (MainView)
+                },
+                new NavMenuItem
+                {
+                    Symbol = Symbol.View,
+                    Label = Strings.StatisticsLabel,
+                    DestPage = typeof (StatisticSelectorView)
                 }
             });
 
@@ -239,6 +240,20 @@ namespace MoneyManager.Windows
             }
         }
 
+        private void Root_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            var temp = false;
+            var properties = e.GetCurrentPoint(this).Properties;
+            if (properties.IsXButton1Pressed)
+            {
+                BackRequested(ref temp);
+            }
+            else if (properties.IsXButton2Pressed)
+            {
+                ForwardRequested(ref temp);
+            }
+        }
+
         #region BackRequested Handlers
 
         private void SystemNavigationManager_BackRequested(object sender, BackRequestedEventArgs e)
@@ -263,6 +278,7 @@ namespace MoneyManager.Windows
                 AppFrame.GoBack();
             }
         }
+
         private void ForwardRequested(ref bool handled)
         {
             // Get a hold of the current Frame so that we can inspect the app back stack.
@@ -319,23 +335,27 @@ namespace MoneyManager.Windows
         {
             if (e.NavigationMode == NavigationMode.Back)
             {
-                var item = (from p in navlistTop.Union(navlistBottom) where p.DestPage == e.SourcePageType select p).SingleOrDefault();
+                var item =
+                    (from p in navlistTop.Union(navlistBottom) where p.DestPage == e.SourcePageType select p)
+                        .SingleOrDefault();
                 if (item == null && AppFrame.BackStackDepth > 0)
                 {
                     // In cases where a page drills into sub-pages then we'll highlight the most recent
                     // navigation menu item that appears in the BackStack
                     foreach (var entry in AppFrame.BackStack.Reverse())
                     {
-                        item = (from p in navlistTop.Union(navlistBottom) where p.DestPage == entry.SourcePageType select p).SingleOrDefault();
+                        item =
+                            (from p in navlistTop.Union(navlistBottom) where p.DestPage == entry.SourcePageType select p)
+                                .SingleOrDefault();
                         if (item != null)
                             break;
                     }
                 }
 
                 var container = (ListViewItem) NavMenuListTop.ContainerFromItem(item);
-                if(container == null)
+                if (container == null)
                 {
-                    container = (ListViewItem)NavMenuListBottom.ContainerFromItem(item);
+                    container = (ListViewItem) NavMenuListBottom.ContainerFromItem(item);
                     // While updating the selection state of the item prevent it from taking keyboard focus.  If a
                     // user is invoking the back button via the keyboard causing the selected nav menu item to change
                     // then focus will remain on the back button.
@@ -373,7 +393,6 @@ namespace MoneyManager.Windows
                     ((Frame) sender).CanGoBack
                         ? AppViewBackButtonVisibility.Visible
                         : AppViewBackButtonVisibility.Collapsed;
-
             }
         }
 
@@ -384,7 +403,7 @@ namespace MoneyManager.Windows
             CheckTogglePaneButtonSizeChanged();
 
             if (SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility ==
-                AppViewBackButtonVisibility.Collapsed 
+                AppViewBackButtonVisibility.Collapsed
                 || RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay
                 || RootSplitView.DisplayMode == SplitViewDisplayMode.CompactOverlay)
             {
@@ -393,19 +412,5 @@ namespace MoneyManager.Windows
         }
 
         #endregion
-
-        private void Root_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            var temp = false;
-            var properties = e.GetCurrentPoint(this).Properties;
-            if (properties.IsXButton1Pressed)
-            {
-                BackRequested(ref temp);
-            } 
-            else if(properties.IsXButton2Pressed)
-            {
-                ForwardRequested(ref temp);
-            }
-        }
     }
 }

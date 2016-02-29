@@ -9,9 +9,9 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <userControls:PageHeader>
@@ -22,7 +22,7 @@
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
-        <userControls:CategoryListUserControl Grid.Row="1" x:Name="CategoryListUserControl"/>
+        <userControls:CategoryListUserControl Grid.Row="1" x:Name="CategoryListUserControl" />
 
         <CommandBar Grid.Row="2">
             <CommandBar.PrimaryCommands>

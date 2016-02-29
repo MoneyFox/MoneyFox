@@ -63,7 +63,7 @@
         </Grid.RowDefinitions>
 
         <userControls:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" />
-        
+
         <ScrollViewer Grid.Row="1">
             <controls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
                                              OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"

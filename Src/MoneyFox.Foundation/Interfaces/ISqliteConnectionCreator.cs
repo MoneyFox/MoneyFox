@@ -1,6 +1,4 @@
-﻿using SQLite.Net;
-
-namespace MoneyManager.Foundation.Interfaces
+﻿namespace MoneyManager.Foundation.Interfaces
 {
     public interface ISqliteConnectionCreator
     {

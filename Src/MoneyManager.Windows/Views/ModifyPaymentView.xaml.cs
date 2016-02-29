@@ -2,9 +2,6 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using MoneyManager.Core.Helpers;
-using MvvmCross.Platform;
-using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views
 {
@@ -27,7 +24,7 @@ namespace MoneyManager.Windows.Views
                 }
             };
         }
-        
+
         private void TextBoxOnFocus(object sender, RoutedEventArgs e)
         {
             TextBoxAmount.SelectAll();

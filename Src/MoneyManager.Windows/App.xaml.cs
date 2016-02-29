@@ -6,22 +6,17 @@ using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI;
+using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using MoneyManager.Core.Authentication;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Localization;
-using MoneyManager.Windows.Views;
-using UniversalRateReminder;
-using Windows.UI.StartScreen;
 using Microsoft.ApplicationInsights;
-using MoneyManager.Foundation;
+using MoneyManager.Localization;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
+using MoneyManager.Windows.Views;
+using UniversalRateReminder;
 
 namespace MoneyManager.Windows
 {
@@ -151,15 +146,18 @@ namespace MoneyManager.Windows
             jumpList.Items.Clear();
             jumpList.SystemGroupKind = JumpListSystemGroupKind.None;
 
-            var listItemAddIncome = JumpListItem.CreateWithArguments(Constants.ADD_INCOME_TILE_ID, Strings.AddIncomeLabel);
+            var listItemAddIncome = JumpListItem.CreateWithArguments(Constants.ADD_INCOME_TILE_ID,
+                Strings.AddIncomeLabel);
             listItemAddIncome.Logo = new Uri("ms-appx:///Assets/IncomeTileIcon.png");
             jumpList.Items.Add(listItemAddIncome);
 
-            var listItemAddSpending = JumpListItem.CreateWithArguments(Constants.ADD_EXPENSE_TILE_ID, Strings.AddSpendingLabel);
+            var listItemAddSpending = JumpListItem.CreateWithArguments(Constants.ADD_EXPENSE_TILE_ID,
+                Strings.AddSpendingLabel);
             listItemAddSpending.Logo = new Uri("ms-appx:///Assets/SpendingTileIcon.png");
             jumpList.Items.Add(listItemAddSpending);
 
-            var listItemAddTransfer = JumpListItem.CreateWithArguments(Constants.ADD_TRANSFER_TILE_ID, Strings.AddTransferLabel);
+            var listItemAddTransfer = JumpListItem.CreateWithArguments(Constants.ADD_TRANSFER_TILE_ID,
+                Strings.AddTransferLabel);
             listItemAddTransfer.Logo = new Uri("ms-appx:///Assets/TransferTileIcon.png");
             jumpList.Items.Add(listItemAddTransfer);
 
@@ -189,7 +187,7 @@ namespace MoneyManager.Windows
 
             Tile.UpdateMainTile();
             Settings.SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
-            
+
             deferral.Complete();
         }
     }

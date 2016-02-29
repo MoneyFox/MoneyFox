@@ -48,7 +48,8 @@
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch"
                       Margin="0,0,0,3">
-                    <TextBlock Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
+                    <TextBlock
+                        Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
                     <TextBlock Text="{Binding Converter={StaticResource PaymentAmountConverter}}"
                                HorizontalAlignment="Right" />
                 </Grid>
@@ -81,17 +82,19 @@
                         </Grid>
                         <Grid HorizontalAlignment="Right"
                               Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Image Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
-                                   DataContext="/Assets/{0}/repeat.png"
-                                   Width="30"
-                                   Height="30" />
+                            <Image
+                                Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
+                                DataContext="/Assets/{0}/repeat.png"
+                                Width="30"
+                                Height="30" />
                         </Grid>
                         <Grid HorizontalAlignment="Right"
                               Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Image Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
-                                   DataContext="/Assets/{0}/done.png"
-                                   Width="30"
-                                   Height="30" />
+                            <Image
+                                Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush}, Converter={StaticResource ThemedImageConverter}}"
+                                DataContext="/Assets/{0}/done.png"
+                                Width="30"
+                                Height="30" />
                         </Grid>
                     </StackPanel>
                 </Grid>
@@ -141,13 +144,13 @@
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
                 <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
-                                                       EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
-                                                       ItemsSource="{Binding Source={StaticResource Groups}}"
-                                                       ItemTemplate="{StaticResource PaymentTemplate}"
-                                                       HorizontalAlignment="Stretch"
-                                                       ShowsScrollingPlaceholders="false"
-                                                       IsItemClickEnabled="True"
-                                                       IsSynchronizedWithCurrentItem="False">
+                                                 EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                                 ItemsSource="{Binding Source={StaticResource Groups}}"
+                                                 ItemTemplate="{StaticResource PaymentTemplate}"
+                                                 HorizontalAlignment="Stretch"
+                                                 ShowsScrollingPlaceholders="false"
+                                                 IsItemClickEnabled="True"
+                                                 IsSynchronizedWithCurrentItem="False">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
                             <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}"
@@ -172,8 +175,7 @@
             <SemanticZoom.ZoomedOutView>
                 <GridView Margin="0,12,0,0"
                           ItemsSource="{Binding Source={StaticResource Groups}, Path=CollectionGroups}"
-                          ItemTemplate="{StaticResource JumpTemplate}">
-                </GridView>
+                          ItemTemplate="{StaticResource JumpTemplate}" />
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
     </Grid>

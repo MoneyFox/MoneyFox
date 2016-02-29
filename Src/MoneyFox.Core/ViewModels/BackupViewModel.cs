@@ -6,8 +6,6 @@ using Microsoft.OneDrive.Sdk;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Localization;
-using Xamarin;
 
 namespace MoneyManager.Core.ViewModels
 {

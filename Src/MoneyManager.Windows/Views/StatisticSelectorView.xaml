@@ -11,7 +11,7 @@
     xmlns:converter="using:MoneyManager.Windows.Converter"
     xmlns:viewModels="using:MoneyManager.Core.ViewModels"
     d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel, IsDesignTimeCreatable=True}"
-      mc:Ignorable="d">
+    mc:Ignorable="d">
 
     <Page.Resources>
         <converter:SelectedConverter x:Key="SelectedConverter" />
@@ -26,7 +26,7 @@
                            Style="{StaticResource CustomSubtitleTextBlockStyle}" />
                 <TextBlock Text="{x:Bind Description}"
                            Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                           TextWrapping="WrapWholeWords"/>
+                           TextWrapping="WrapWholeWords" />
                 <Path Data="M9,242 L456,242"
                       Height="5"
                       Margin="-7,0,-7,0"

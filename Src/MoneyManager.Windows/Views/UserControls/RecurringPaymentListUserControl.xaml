@@ -47,8 +47,9 @@
                       Margin="0,0,0,3">
                     <TextBlock
                         Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
-                    <TextBlock Text="{Binding Converter={StaticResource PaymentAmountConverter}, ConverterParameter=IgnoreTransfer}"
-                               HorizontalAlignment="Right" />
+                    <TextBlock
+                        Text="{Binding Converter={StaticResource PaymentAmountConverter}, ConverterParameter=IgnoreTransfer}"
+                        HorizontalAlignment="Right" />
                 </Grid>
                 <Grid>
                     <StackPanel Orientation="Horizontal"

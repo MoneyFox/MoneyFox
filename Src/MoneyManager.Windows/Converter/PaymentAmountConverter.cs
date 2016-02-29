@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Converter
 {

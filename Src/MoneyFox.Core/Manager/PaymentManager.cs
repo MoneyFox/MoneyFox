@@ -5,8 +5,6 @@ using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
-using Xamarin;
 
 namespace MoneyManager.Core.Manager
 {

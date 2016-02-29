@@ -5,7 +5,6 @@ using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
 
 namespace MoneyManager.Core.ViewModels
 {

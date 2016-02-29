@@ -1,8 +1,5 @@
 ﻿using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Core.ViewModels;
-using MvvmCross.Platform;
 
 namespace MoneyManager.Windows.Views
 {

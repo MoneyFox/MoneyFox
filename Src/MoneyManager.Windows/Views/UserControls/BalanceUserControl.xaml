@@ -21,14 +21,16 @@
                    x:Uid="TotalLabel"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    Margin="0,0,5,10" />
-        <TextBlock Text="{Binding TotalBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                   Margin="0,0,5,0" />
+        <TextBlock
+            Text="{Binding TotalBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}"
+            Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+            Margin="0,0,5,0" />
         <TextBlock Text=" / "
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    Margin="0,0,5,0" />
-        <TextBlock Text="{Binding EndOfMonthBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                   Margin="0,0,5,0" />
+        <TextBlock
+            Text="{Binding EndOfMonthBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}"
+            Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+            Margin="0,0,5,0" />
     </StackPanel>
 </UserControl>

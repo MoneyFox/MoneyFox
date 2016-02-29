@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation.Model;
 using Xunit;
 using Assert = Xunit.Assert;
 
@@ -44,7 +42,7 @@ namespace MoneyManager.Core.Tests.Helper
         [TestMethod]
         public void GetEndOfMonth_NoneInput_LastDayOfMonth()
         {
-            Utilities.GetEndOfMonth().ShouldBeInstanceOf(typeof(DateTime));
+            Utilities.GetEndOfMonth().ShouldBeInstanceOf(typeof (DateTime));
         }
 
         [Theory]

@@ -1,7 +1,5 @@
 ﻿using Windows.System;
 using Windows.UI.Xaml.Input;
-using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Windows.Views.Dialogs
 {

@@ -31,7 +31,7 @@
                            x:Uid="CashFlowTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
-        
+
         <Grid Grid.Row="1">
             <TextBlock Text="{Binding Title}"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
@@ -59,4 +59,3 @@
         </CommandBar>
     </Grid>
 </views:MvxWindowsPage>
-

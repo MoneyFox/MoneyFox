@@ -17,15 +17,15 @@
             <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
-    
+
     <Page.Resources>
         <windows:OxyColorConverter x:Key="OxyColorConverter" />
-        
+
         <DataTemplate x:Key="LegendListTemplate" x:DataType="viewModels:LegendItem">
             <StackPanel Orientation="Horizontal">
-                <Grid Height="20" 
+                <Grid Height="20"
                       Width="20"
-                      Background="{x:Bind Color, Converter={StaticResource OxyColorConverter}}"/>
+                      Background="{x:Bind Color, Converter={StaticResource OxyColorConverter}}" />
                 <TextBlock Text="{x:Bind Text}"
                            Margin="5,0,0,0"
                            VerticalAlignment="Center"

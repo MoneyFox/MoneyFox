@@ -1,8 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Helper
@@ -58,14 +55,14 @@ namespace MoneyManager.Core.Tests.Helper
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof (ArgumentOutOfRangeException))]
         public void GetTypeString_InvalidType_Exception()
         {
             PaymentTypeHelper.GetTypeString(3);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof (ArgumentOutOfRangeException))]
         public void GetTypeString_NegativeType_Exception()
         {
             PaymentTypeHelper.GetTypeString(-1);

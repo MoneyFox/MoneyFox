@@ -1,12 +1,6 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
-using MoneyManager.Core.Manager;
-using MoneyManager.Core.Repositories;
-using MoneyManager.DataAccess;
-using MoneyManager.Foundation;
 using MoneyManager.Windows.Shortcut;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using Xamarin;
 
 namespace MoneyManager.Tasks.Windows
 {
@@ -34,7 +28,7 @@ namespace MoneyManager.Tasks.Windows
                 new PaymentRepository(new PaymentDataAccess(sqliteConnectionCreator),
                     new RecurringPaymentDataAccess(sqliteConnectionCreator),
                     accountRepository,
-                    new CategoryRepository(new CategoryDataAccess(sqliteConnectionCreator))), 
+                    new CategoryRepository(new CategoryDataAccess(sqliteConnectionCreator))),
                 accountRepository,
                 null);
         }
@@ -45,7 +39,7 @@ namespace MoneyManager.Tasks.Windows
             {
                 paymentManager.ClearPayments();
                 Tile.UpdateMainTile();
-            } 
+            }
             catch (Exception ex)
             {
                 new TelemetryClient().TrackException(ex);

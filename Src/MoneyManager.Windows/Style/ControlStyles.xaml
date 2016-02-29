@@ -133,7 +133,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="NavigationBackButtonStyle"
            TargetType="Button"
            BasedOn="{StaticResource NavigationBackButtonNormalStyle}">
@@ -350,8 +350,9 @@
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightBaseMediumBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                           Storyboard.TargetProperty="Foreground">
+                                                            <ObjectAnimationUsingKeyFrames
+                                                                Storyboard.TargetName="Arrow"
+                                                                Storyboard.TargetProperty="Foreground">
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightAltAltMediumHighBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
@@ -364,8 +365,9 @@
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightBaseMediumHighBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                           Storyboard.TargetProperty="Foreground">
+                                                            <ObjectAnimationUsingKeyFrames
+                                                                Storyboard.TargetName="Arrow"
+                                                                Storyboard.TargetProperty="Foreground">
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightAltAltMediumHighBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
@@ -400,8 +402,9 @@
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightBaseMediumBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                           Storyboard.TargetProperty="Foreground">
+                                                            <ObjectAnimationUsingKeyFrames
+                                                                Storyboard.TargetName="Arrow"
+                                                                Storyboard.TargetProperty="Foreground">
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightAltAltMediumHighBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
@@ -414,8 +417,9 @@
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightBaseMediumHighBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
-                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                           Storyboard.TargetProperty="Foreground">
+                                                            <ObjectAnimationUsingKeyFrames
+                                                                Storyboard.TargetName="Arrow"
+                                                                Storyboard.TargetProperty="Foreground">
                                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                                         Value="{ThemeResource SystemControlHighlightAltAltMediumHighBrush}" />
                                                             </ObjectAnimationUsingKeyFrames>
@@ -658,13 +662,15 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="Visible" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="HorizontalAlignment"
-                                                                           Storyboard.TargetName="PaneRoot">
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="HorizontalAlignment"
+                                                Storyboard.TargetName="PaneRoot">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="Right" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="HorizontalAlignment"
-                                                                           Storyboard.TargetName="HCPaneBorder">
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="HorizontalAlignment"
+                                                Storyboard.TargetName="HCPaneBorder">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="Left" />
                                             </ObjectAnimationUsingKeyFrames>
@@ -701,8 +707,9 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="1" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)"
-                                                                           Storyboard.TargetName="ContentRoot">
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="(Grid.ColumnSpan)"
+                                                Storyboard.TargetName="ContentRoot">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="1" />
                                             </ObjectAnimationUsingKeyFrames>
@@ -744,8 +751,9 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="{Binding TemplateSettings.CompactPaneGridLength, FallbackValue=0, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)"
-                                                                           Storyboard.TargetName="ContentRoot">
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="(Grid.ColumnSpan)"
+                                                Storyboard.TargetName="ContentRoot">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="1" />
                                             </ObjectAnimationUsingKeyFrames>
@@ -754,13 +762,15 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="Visible" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="HorizontalAlignment"
-                                                                           Storyboard.TargetName="PaneRoot">
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="HorizontalAlignment"
+                                                Storyboard.TargetName="PaneRoot">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="Right" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="HorizontalAlignment"
-                                                                           Storyboard.TargetName="HCPaneBorder">
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="HorizontalAlignment"
+                                                Storyboard.TargetName="HCPaneBorder">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="Left" />
                                             </ObjectAnimationUsingKeyFrames>
@@ -813,13 +823,15 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="Visible" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="HorizontalAlignment"
-                                                                           Storyboard.TargetName="PaneRoot">
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="HorizontalAlignment"
+                                                Storyboard.TargetName="PaneRoot">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="Right" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="HorizontalAlignment"
-                                                                           Storyboard.TargetName="HCPaneBorder">
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="HorizontalAlignment"
+                                                Storyboard.TargetName="HCPaneBorder">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="Left" />
                                             </ObjectAnimationUsingKeyFrames>
@@ -849,8 +861,9 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="1" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)"
-                                                                           Storyboard.TargetName="ContentRoot">
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="(Grid.ColumnSpan)"
+                                                Storyboard.TargetName="ContentRoot">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="1" />
                                             </ObjectAnimationUsingKeyFrames>
@@ -887,8 +900,9 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="{Binding TemplateSettings.CompactPaneGridLength, FallbackValue=0, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)"
-                                                                           Storyboard.TargetName="ContentRoot">
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="(Grid.ColumnSpan)"
+                                                Storyboard.TargetName="ContentRoot">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="1" />
                                             </ObjectAnimationUsingKeyFrames>
@@ -897,13 +911,15 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="Visible" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="HorizontalAlignment"
-                                                                           Storyboard.TargetName="PaneRoot">
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="HorizontalAlignment"
+                                                Storyboard.TargetName="PaneRoot">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="Right" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="HorizontalAlignment"
-                                                                           Storyboard.TargetName="HCPaneBorder">
+                                            <ObjectAnimationUsingKeyFrames
+                                                Storyboard.TargetProperty="HorizontalAlignment"
+                                                Storyboard.TargetName="HCPaneBorder">
                                                 <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                         Value="Left" />
                                             </ObjectAnimationUsingKeyFrames>
@@ -1230,7 +1246,8 @@
                               Grid.ColumnSpan="2"
                               Grid.Column="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="{Binding TemplateSettings.OpenPaneGridLength, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                <ColumnDefinition
+                                    Width="{Binding TemplateSettings.OpenPaneGridLength, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
@@ -1241,7 +1258,8 @@
                                        Width="{Binding PanAreaThreshold, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                        Grid.Column="1">
                                 <Rectangle.RenderTransform>
-                                    <CompositeTransform TranslateX="{Binding PanAreaInitialTranslateX, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                    <CompositeTransform
+                                        TranslateX="{Binding PanAreaInitialTranslateX, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                                 </Rectangle.RenderTransform>
                             </Rectangle>
                             <!--this is used to dismiss this swipeable pane-->

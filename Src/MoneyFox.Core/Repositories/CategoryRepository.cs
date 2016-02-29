@@ -5,7 +5,6 @@ using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
 using PropertyChanged;
 
 namespace MoneyManager.Core.Repositories

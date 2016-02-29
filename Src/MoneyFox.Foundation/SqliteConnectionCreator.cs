@@ -1,6 +1,5 @@
 ﻿using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using SQLite.Net;
 
 namespace MoneyManager.Foundation
 {

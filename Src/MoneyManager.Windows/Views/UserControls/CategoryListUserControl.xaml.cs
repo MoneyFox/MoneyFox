@@ -2,9 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
-using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation.Model;
-using ModifyCategoryDialog = MoneyManager.Windows.Views.Dialogs.ModifyCategoryDialog;
+using MoneyManager.Windows.Views.Dialogs;
 
 namespace MoneyManager.Windows.Views.UserControls
 {
