@@ -108,11 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractDataAccess.cs" />
-    <Compile Include="AccountDataAccess.cs" />
-    <Compile Include="CategoryDataAccess.cs" />
+    <Compile Include="GenericDataRepository.cs" />
+    <Compile Include="MoneyFoxDataContext.cs" />
     <Compile Include="PaymentDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecurringPaymentDataAccess.cs" />
     <Compile Include="SettingDataAccess.cs" />
     <EmbeddedResource Include="Properties\MoneyFox.DataAccess.rd.xml" />
   </ItemGroup>
