@@ -1,6 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using MoneyManager.Windows.Dialogs;
+using MoneyManager.Windows.Views.Dialogs;
 
 namespace MoneyManager.Windows.Views
 {

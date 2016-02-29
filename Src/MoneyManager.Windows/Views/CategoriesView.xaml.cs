@@ -2,8 +2,8 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Windows.Dialogs;
 using MvvmCross.Platform;
+using ModifyCategoryDialog = MoneyManager.Windows.Views.Dialogs.ModifyCategoryDialog;
 
 namespace MoneyManager.Windows.Views
 {

@@ -1729,14 +1729,6 @@
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
-      },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-arm": {
@@ -3556,14 +3548,6 @@
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
-      },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
@@ -5354,14 +5338,6 @@
         },
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
-        }
-      },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
         }
       }
     },
@@ -7187,14 +7163,6 @@
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
-      },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
@@ -8985,14 +8953,6 @@
         },
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
-        }
-      },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
         }
       }
     },
@@ -10818,14 +10778,6 @@
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
-      },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
@@ -12616,14 +12568,6 @@
         },
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
-        }
-      },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
         }
       }
     }
@@ -16510,54 +16454,6 @@
         "lib/uap10.0/UniversalRateReminder/Properties/UniversalRateReminder.rd.xml",
         "package/services/metadata/core-properties/d779faa918d04526a74f7f11ed292e65.psmdcp",
         "UniversalRateReminder.nuspec"
-      ]
-    },
-    "Xamarin.Insights/1.11.4": {
-      "sha512": "7O4GGdIsIwFFx84m4hLhXOMJJfIrOPZlfj/jUF1gQc13a08OQKCJjZRgybseHbtgO2xLRuwk6wxUcQQBhRQmlg==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "build/MonoAndroid10/Xamarin.Insights.Build.Task.dll",
-        "build/MonoAndroid10/Xamarin.Insights.targets",
-        "build/MonoTouch10/Xamarin.Insights.Build.Task.dll",
-        "build/MonoTouch10/Xamarin.Insights.targets",
-        "build/portable-win+net40/Xamarin.Insights.Build.Task.dll",
-        "build/portable-win+net40/Xamarin.Insights.targets",
-        "build/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.Build.Task.dll",
-        "build/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.targets",
-        "build/windows8/Xamarin.Insights.Build.Task.dll",
-        "build/windows8/Xamarin.Insights.targets",
-        "build/WP80/Xamarin.Insights.Build.Task.dll",
-        "build/WP80/Xamarin.Insights.targets",
-        "build/wpa/Xamarin.Insights.Build.Task.dll",
-        "build/wpa/Xamarin.Insights.targets",
-        "build/Xamarin.iOS10/Xamarin.Insights.Build.Task.dll",
-        "build/Xamarin.iOS10/Xamarin.Insights.targets",
-        "build/Xamarin.Mac20/Xamarin.Insights.Build.Task.dll",
-        "build/Xamarin.Mac20/Xamarin.Insights.targets",
-        "lib/MonoAndroid10/Xamarin.Insights.dll",
-        "lib/MonoAndroid10/Xamarin.Insights.XML",
-        "lib/MonoTouch10/PLCrashReporter.dll",
-        "lib/MonoTouch10/Xamarin.Insights.dll",
-        "lib/MonoTouch10/Xamarin.Insights.XML",
-        "lib/net40/Xamarin.Insights.dll",
-        "lib/net40/Xamarin.Insights.XML",
-        "lib/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.dll",
-        "lib/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.XML",
-        "lib/windows8/Xamarin.Insights.dll",
-        "lib/windows8/Xamarin.Insights.XML",
-        "lib/WP80/Xamarin.Insights.dll",
-        "lib/WP80/Xamarin.Insights.XML",
-        "lib/wpa/Xamarin.Insights.dll",
-        "lib/wpa/Xamarin.Insights.XML",
-        "lib/Xamarin.iOS10/PLCrashReporterUnifiedBinding.dll",
-        "lib/Xamarin.iOS10/Xamarin.Insights.dll",
-        "lib/Xamarin.iOS10/Xamarin.Insights.XML",
-        "lib/Xamarin.Mac20/Xamarin.Insights.dll",
-        "lib/Xamarin.Mac20/Xamarin.Insights.XML",
-        "package/services/metadata/core-properties/856ef0cb27714afa8bc93399f487e858.psmdcp",
-        "Xamarin.Insights.nuspec"
       ]
     }
   },
