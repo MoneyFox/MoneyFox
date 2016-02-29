@@ -117,6 +117,8 @@
     <Compile Include="Controls\AlternatingRowListView.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Controls\SwipeableSplitView.cs" />
+    <Compile Include="Converter\AmountFormatConverter.cs" />
+    <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="PageNavigationService.cs" />
     <Compile Include="Services\BackgroundTaskService.cs" />
@@ -190,8 +192,6 @@
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\CultureConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
-    <Compile Include="Converter\NativeAmountFormatConverter.cs" />
-    <Compile Include="Converter\NativePaymentAmountConverter.cs" />
     <Compile Include="Converter\NoteVisibilityConverter.cs" />
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />

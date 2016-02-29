@@ -3,6 +3,29 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "Cimbalino.Toolkit/2.1.2": {
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "[2.1.2, )",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "[1.0.3, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.1.2": {
+        "dependencies": {
+          "Microsoft.Bcl.Compression": "[3.9.85, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "CommonServiceLocator/1.3.0": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
@@ -40,6 +63,18 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
+      "Microsoft.Bcl.Compression/3.9.85": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -1695,14 +1730,6 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
-      },
       "xunit/2.1.0": {
         "dependencies": {
           "xunit.assert": "[2.1.0, 2.1.0]",
@@ -1756,6 +1783,29 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-arm": {
+      "Cimbalino.Toolkit/2.1.2": {
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "[2.1.2, )",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "[1.0.3, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.1.2": {
+        "dependencies": {
+          "Microsoft.Bcl.Compression": "[3.9.85, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "CommonServiceLocator/1.3.0": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
@@ -1793,6 +1843,18 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
+      "Microsoft.Bcl.Compression/3.9.85": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -3538,14 +3600,6 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
-      },
       "xunit/2.1.0": {
         "dependencies": {
           "xunit.assert": "[2.1.0, 2.1.0]",
@@ -3599,6 +3653,29 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "Cimbalino.Toolkit/2.1.2": {
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "[2.1.2, )",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "[1.0.3, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.1.2": {
+        "dependencies": {
+          "Microsoft.Bcl.Compression": "[3.9.85, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "CommonServiceLocator/1.3.0": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
@@ -3636,6 +3713,18 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
+      "Microsoft.Bcl.Compression/3.9.85": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -5353,14 +5442,6 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
-      },
       "xunit/2.1.0": {
         "dependencies": {
           "xunit.assert": "[2.1.0, 2.1.0]",
@@ -5414,6 +5495,29 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x64": {
+      "Cimbalino.Toolkit/2.1.2": {
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "[2.1.2, )",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "[1.0.3, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.1.2": {
+        "dependencies": {
+          "Microsoft.Bcl.Compression": "[3.9.85, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "CommonServiceLocator/1.3.0": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
@@ -5451,6 +5555,18 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
+      "Microsoft.Bcl.Compression/3.9.85": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -7201,14 +7317,6 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
-      },
       "xunit/2.1.0": {
         "dependencies": {
           "xunit.assert": "[2.1.0, 2.1.0]",
@@ -7262,6 +7370,29 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "Cimbalino.Toolkit/2.1.2": {
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "[2.1.2, )",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "[1.0.3, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.1.2": {
+        "dependencies": {
+          "Microsoft.Bcl.Compression": "[3.9.85, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "CommonServiceLocator/1.3.0": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
@@ -7299,6 +7430,18 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
+      "Microsoft.Bcl.Compression/3.9.85": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -9016,14 +9159,6 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
-      },
       "xunit/2.1.0": {
         "dependencies": {
           "xunit.assert": "[2.1.0, 2.1.0]",
@@ -9077,6 +9212,29 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x86": {
+      "Cimbalino.Toolkit/2.1.2": {
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "[2.1.2, )",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "[1.0.3, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.1.2": {
+        "dependencies": {
+          "Microsoft.Bcl.Compression": "[3.9.85, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "CommonServiceLocator/1.3.0": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
@@ -9114,6 +9272,18 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
+      "Microsoft.Bcl.Compression/3.9.85": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -10864,14 +11034,6 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
-      },
       "xunit/2.1.0": {
         "dependencies": {
           "xunit.assert": "[2.1.0, 2.1.0]",
@@ -10925,6 +11087,29 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "Cimbalino.Toolkit/2.1.2": {
+        "dependencies": {
+          "Cimbalino.Toolkit.Core": "[2.1.2, )",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "[1.0.3, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.dll": {}
+        }
+      },
+      "Cimbalino.Toolkit.Core/2.1.2": {
+        "dependencies": {
+          "Microsoft.Bcl.Compression": "[3.9.85, )"
+        },
+        "compile": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
+        }
+      },
       "CommonServiceLocator/1.3.0": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
@@ -10962,6 +11147,18 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
+      "Microsoft.Bcl.Compression/3.9.85": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -12679,14 +12876,6 @@
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
       },
-      "Xamarin.Insights/1.11.4": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
-      },
       "xunit/2.1.0": {
         "dependencies": {
           "xunit.assert": "[2.1.0, 2.1.0]",
@@ -12741,6 +12930,64 @@
     }
   },
   "libraries": {
+    "Cimbalino.Toolkit/2.1.2": {
+      "sha512": "IEv0JWFOrC10M6QMEHd/v1qmbfTCxkInowgFvCJMVfrfB2PMhkWcTjP5UlbI+digFULplx/dOjotNyXhvTL5Wg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "Cimbalino.Toolkit.nuspec",
+        "lib/uap10.0/Cimbalino.Toolkit.dll",
+        "lib/uap10.0/Cimbalino.Toolkit.pdb",
+        "lib/uap10.0/Cimbalino.Toolkit.pri",
+        "lib/uap10.0/Cimbalino.Toolkit.xml",
+        "lib/win81/Cimbalino.Toolkit.dll",
+        "lib/win81/Cimbalino.Toolkit.pdb",
+        "lib/win81/Cimbalino.Toolkit.pri",
+        "lib/win81/Cimbalino.Toolkit.xml",
+        "lib/wp8/Cimbalino.Toolkit.dll",
+        "lib/wp8/Cimbalino.Toolkit.pdb",
+        "lib/wp8/Cimbalino.Toolkit.xml",
+        "lib/wpa81/Cimbalino.Toolkit.dll",
+        "lib/wpa81/Cimbalino.Toolkit.pdb",
+        "lib/wpa81/Cimbalino.Toolkit.pri",
+        "lib/wpa81/Cimbalino.Toolkit.xml",
+        "package/services/metadata/core-properties/5a88c65e46344b27a175960f9b227232.psmdcp",
+        "tools/win8/Install.ps1",
+        "tools/win8/Uninstall.ps1",
+        "tools/wpa81/Install.ps1",
+        "tools/wpa81/Uninstall.ps1"
+      ]
+    },
+    "Cimbalino.Toolkit.Core/2.1.2": {
+      "sha512": "L35KEVokHiY8AcMGawa8oJpmgsSLhLChKRr0Jbr+fXsUEPZ5ayXkS2Cmml/WZL6r+jv1S/EoUh2jQ8vYUlBB2w==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "Cimbalino.Toolkit.Core.nuspec",
+        "lib/portable-net45+wp8+win8+wpa81/Cimbalino.Toolkit.Core.dll",
+        "lib/portable-net45+wp8+win8+wpa81/Cimbalino.Toolkit.Core.pdb",
+        "lib/portable-net45+wp8+win8+wpa81/Cimbalino.Toolkit.Core.xml",
+        "lib/uap10.0/Cimbalino.Toolkit.Core.dll",
+        "lib/uap10.0/Cimbalino.Toolkit.Core.pdb",
+        "lib/uap10.0/Cimbalino.Toolkit.Core.pri",
+        "lib/uap10.0/Cimbalino.Toolkit.Core.xml",
+        "lib/win81/Cimbalino.Toolkit.Core.dll",
+        "lib/win81/Cimbalino.Toolkit.Core.pdb",
+        "lib/win81/Cimbalino.Toolkit.Core.pri",
+        "lib/win81/Cimbalino.Toolkit.Core.xml",
+        "lib/wp8/Cimbalino.Toolkit.Core.dll",
+        "lib/wp8/Cimbalino.Toolkit.Core.pdb",
+        "lib/wp8/Cimbalino.Toolkit.Core.xml",
+        "lib/wpa81/Cimbalino.Toolkit.Core.dll",
+        "lib/wpa81/Cimbalino.Toolkit.Core.pdb",
+        "lib/wpa81/Cimbalino.Toolkit.Core.pri",
+        "lib/wpa81/Cimbalino.Toolkit.Core.xml",
+        "package/services/metadata/core-properties/1f40c84b99d141b7ad753f59c98c8d64.psmdcp",
+        "tools/Cimbalino.Toolkit.Core.targets"
+      ]
+    },
     "CommonServiceLocator/1.3.0": {
       "sha512": "fbjO0SNwbOFPdwVfyqv+B7gIJ2CVBOFPKqn1mDDECK7KER8jFaOdcvroFYoAHa0ktPbxi5s+15qOLnA96f8GSA==",
       "type": "Package",
@@ -12806,6 +13053,52 @@
         "lib/wpa81/Microsoft.ApplicationInsights.Extensibility.Windows.XML",
         "Microsoft.ApplicationInsights.WindowsApps.nuspec",
         "package/services/metadata/core-properties/8265b8c93c244c80b4e8bce27f31849d.psmdcp"
+      ]
+    },
+    "Microsoft.Bcl.Build/1.0.14": {
+      "sha512": "cDLKSvNvRa519hplsbSoYqO69TjdDIhfjtKUM0g20/nVROoWsGav9KCI9HtnGjLmdV1+TcUUDhbotcllibjPEA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "content/net40/_._",
+        "content/netcore45/_._",
+        "content/portable-net40+win8+sl4+wp71+wpa81/_._",
+        "content/sl4/_._",
+        "content/sl4-windowsphone71/_._",
+        "License-Stable.rtf",
+        "Microsoft.Bcl.Build.nuspec",
+        "package/services/metadata/core-properties/ded9cfb683144eaba586f13af4ae979c.psmdcp",
+        "tools/Install.ps1",
+        "tools/Microsoft.Bcl.Build.targets",
+        "tools/Microsoft.Bcl.Build.Tasks.dll",
+        "tools/Uninstall.ps1"
+      ]
+    },
+    "Microsoft.Bcl.Compression/3.9.85": {
+      "sha512": "3DO/7SNSF3GV25zR8CllyFeRYTUWGhW4pQvQMTlrrHHNXgADaTnVZn67KAc8fOV4sn1yp3X1ZsfMb28O0sdb5Q==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "build/wp8/Microsoft.Bcl.Compression.targets",
+        "lib/native/ARM/ClrCompression.dll",
+        "lib/native/ARM/ClrCompression.winmd",
+        "lib/native/x86/ClrCompression.dll",
+        "lib/native/x86/ClrCompression.winmd",
+        "lib/net45/_._",
+        "lib/portable-net45+win8+wp8+wpa81/System.IO.Compression.dll",
+        "lib/portable-net45+win8+wp8+wpa81/System.IO.Compression.xml",
+        "lib/portable-net45+win8+wpa81/_._",
+        "lib/portable-net45+wp8+wpa81/System.IO.Compression.dll",
+        "lib/portable-net45+wp8+wpa81/System.IO.Compression.xml",
+        "lib/win8/_._",
+        "lib/wp8/System.IO.Compression.dll",
+        "lib/wp8/System.IO.Compression.xml",
+        "lib/wpa81/_._",
+        "License-Stable.rtf",
+        "Microsoft.Bcl.Compression.nuspec",
+        "package/services/metadata/core-properties/71e716530e0746f5935fdafbd13788de.psmdcp"
       ]
     },
     "Microsoft.CSharp/4.0.0": {
@@ -16518,54 +16811,6 @@
         "lib/uap10.0/UniversalRateReminder/Properties/UniversalRateReminder.rd.xml",
         "package/services/metadata/core-properties/d779faa918d04526a74f7f11ed292e65.psmdcp",
         "UniversalRateReminder.nuspec"
-      ]
-    },
-    "Xamarin.Insights/1.11.4": {
-      "sha512": "7O4GGdIsIwFFx84m4hLhXOMJJfIrOPZlfj/jUF1gQc13a08OQKCJjZRgybseHbtgO2xLRuwk6wxUcQQBhRQmlg==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "build/MonoAndroid10/Xamarin.Insights.Build.Task.dll",
-        "build/MonoAndroid10/Xamarin.Insights.targets",
-        "build/MonoTouch10/Xamarin.Insights.Build.Task.dll",
-        "build/MonoTouch10/Xamarin.Insights.targets",
-        "build/portable-win+net40/Xamarin.Insights.Build.Task.dll",
-        "build/portable-win+net40/Xamarin.Insights.targets",
-        "build/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.Build.Task.dll",
-        "build/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.targets",
-        "build/windows8/Xamarin.Insights.Build.Task.dll",
-        "build/windows8/Xamarin.Insights.targets",
-        "build/WP80/Xamarin.Insights.Build.Task.dll",
-        "build/WP80/Xamarin.Insights.targets",
-        "build/wpa/Xamarin.Insights.Build.Task.dll",
-        "build/wpa/Xamarin.Insights.targets",
-        "build/Xamarin.iOS10/Xamarin.Insights.Build.Task.dll",
-        "build/Xamarin.iOS10/Xamarin.Insights.targets",
-        "build/Xamarin.Mac20/Xamarin.Insights.Build.Task.dll",
-        "build/Xamarin.Mac20/Xamarin.Insights.targets",
-        "lib/MonoAndroid10/Xamarin.Insights.dll",
-        "lib/MonoAndroid10/Xamarin.Insights.XML",
-        "lib/MonoTouch10/PLCrashReporter.dll",
-        "lib/MonoTouch10/Xamarin.Insights.dll",
-        "lib/MonoTouch10/Xamarin.Insights.XML",
-        "lib/net40/Xamarin.Insights.dll",
-        "lib/net40/Xamarin.Insights.XML",
-        "lib/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.dll",
-        "lib/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.XML",
-        "lib/windows8/Xamarin.Insights.dll",
-        "lib/windows8/Xamarin.Insights.XML",
-        "lib/WP80/Xamarin.Insights.dll",
-        "lib/WP80/Xamarin.Insights.XML",
-        "lib/wpa/Xamarin.Insights.dll",
-        "lib/wpa/Xamarin.Insights.XML",
-        "lib/Xamarin.iOS10/PLCrashReporterUnifiedBinding.dll",
-        "lib/Xamarin.iOS10/Xamarin.Insights.dll",
-        "lib/Xamarin.iOS10/Xamarin.Insights.XML",
-        "lib/Xamarin.Mac20/Xamarin.Insights.dll",
-        "lib/Xamarin.Mac20/Xamarin.Insights.XML",
-        "package/services/metadata/core-properties/856ef0cb27714afa8bc93399f487e858.psmdcp",
-        "Xamarin.Insights.nuspec"
       ]
     },
     "xunit/2.1.0": {
