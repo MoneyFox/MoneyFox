@@ -1,22 +1,22 @@
-﻿<views:MvxWindowsPage x:Class="MoneyManager.Windows.Views.ModifyPaymentView"
+﻿<Page x:Class="MoneyManager.Windows.Views.ModifyPaymentView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:converter="using:MoneyManager.Windows.Converter"
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                      xmlns:model="using:MoneyManager.Foundation.Model"
                       xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
-                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      xmlns:converter="using:MoneyManager.Core.Converter"
+                      xmlns:converter1="using:MoneyManager.Windows.Converter"
+                      xmlns:converters="using:Cimbalino.Toolkit.Converters"
                       mc:Ignorable="d"
                       NavigationCacheMode="Enabled"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
         <converter:AmountFormatConverter x:Key="AmountConverter" />
-        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter1:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <converters:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate"
                       x:DataType="model:Account">
             <StackPanel Margin="0,0,0,12"
@@ -152,4 +152,4 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
-</views:MvxWindowsPage>
+</Page>

@@ -189,7 +189,6 @@
     <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
       <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\CultureConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Converter\NoteVisibilityConverter.cs" />
