@@ -112,18 +112,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyManager.Core\MoneyManager.Core.csproj">
-      <Project>{64f3a03f-44c2-44fa-bd29-fa23c35c95f0}</Project>
-      <Name>MoneyManager.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyManager.DataAccess\MoneyManager.DataAccess.csproj">
-      <Project>{038dfd1b-3b87-4098-8b16-8bc011b9eefc}</Project>
-      <Name>MoneyManager.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
-      <Project>{6936f4d3-8889-48c7-a676-80d59b2740ce}</Project>
-      <Name>MoneyManager.Foundation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyManager.Windows\MoneyManager.Windows.csproj">
       <Project>{31D78E14-8DC1-490C-A401-F88F6E36DB96}</Project>
       <Name>MoneyManager.Windows</Name>

@@ -470,24 +470,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyManager.Core\MoneyManager.Core.csproj">
-      <Project>{64f3a03f-44c2-44fa-bd29-fa23c35c95f0}</Project>
-      <Name>MoneyManager.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyManager.DataAccess\MoneyManager.DataAccess.csproj">
-      <Project>{038DFD1B-3B87-4098-8B16-8BC011B9EEFC}</Project>
-      <Name>MoneyManager.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyManager.Foundation\MoneyManager.Foundation.csproj">
-      <Project>{6936F4D3-8889-48C7-A676-80D59B2740CE}</Project>
-      <Name>MoneyManager.Foundation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyManager.Localization\MoneyManager.Localization.csproj">
-      <Project>{90644219-756f-45cc-ab90-253463c5bc5e}</Project>
-      <Name>MoneyManager.Localization</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <SDKReference Include="Microsoft.NET.Native.Runtime.1.1, Version=1.1">
       <Name>Microsoft .NET Native Runtime Package for Windows</Name>
     </SDKReference>
