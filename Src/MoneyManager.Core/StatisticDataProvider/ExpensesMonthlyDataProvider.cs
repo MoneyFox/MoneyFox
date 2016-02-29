@@ -23,14 +23,9 @@ namespace MoneyManager.Core.StatisticDataProvider
                 .Where(x => x.Type == (int) PaymentType.Expense)
                 .Where(x => x.Date >= startDate && x.Date <= endDate)
                 .GroupBy(x => x.Date.ToString("MMMM", CultureInfo.InvariantCulture))
-                .Select(
-                    group =>
-                        new StatisticItem
-                        {
-                            Category = group.Key,
-                            Label = group.Key,
-                            Value = group.ToList().Sum(x => x.Amount)
-                        })
+                .Select(group => new StatisticItem {Category = group.Key,
+                    Label = group.Key + ": " + group.ToList().Sum(x => x.Amount).ToString("C"),
+                    Value = group.ToList().Sum(x => x.Amount)})
                 .ToList();
         }
     }
