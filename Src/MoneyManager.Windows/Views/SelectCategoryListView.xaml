@@ -11,21 +11,11 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Accept"
-                              Label="Done"
-                              x:Uid="DoneLabel"
-                              Command="{Binding DoneCommand}" />
-                <AppBarButton Icon="Cancel"
-                              x:Uid="Cancel"
-                              Label="Cancel"
-                              Command="{Binding CancelCommand}" />
-            </CommandBar.PrimaryCommands>
-            <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Add"
                               Label="add"
                               x:Uid="AddCategoryLabel"
                               Click="AddCategory" />
-            </CommandBar.SecondaryCommands>
+            </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
 
