@@ -90,7 +90,7 @@ namespace MoneyManager.Core.ViewModels
             Source = new ObservableCollection<DateListGroup<Payment>>(
                 DateListGroup<Payment>.CreateGroups(RelatedPayments,
                     CultureInfo.CurrentUICulture,
-                    s => s.Date.ToString("d", CultureInfo.InvariantCulture),
+                    s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
                     s => s.Date, true));
 
             //We have to set the command here to ensure that the selection changed event is triggered earlier
