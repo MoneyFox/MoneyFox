@@ -137,7 +137,6 @@
     <Compile Include="Interfaces\IRoamingSettings.cs" />
     <Compile Include="Interfaces\ISqliteConnectionCreator.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />
-    <Compile Include="Interfaces\IStoreFeatures.cs" />
     <Compile Include="Interfaces\IUserNotification.cs" />
     <Compile Include="Interfaces\Shotcuts\IIncomeShortcut.cs" />
     <Compile Include="Interfaces\Shotcuts\IShortcut.cs" />

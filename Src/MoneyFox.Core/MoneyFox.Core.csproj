@@ -174,6 +174,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Cimbalino.Toolkit.Core">
+      <HintPath>..\..\..\..\..\.nuget\packages\Cimbalino.Toolkit.Core\2.1.2\lib\uap10.0\Cimbalino.Toolkit.Core.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework.Core">
       <HintPath>..\..\..\..\..\.nuget\packages\EntityFramework.Core\7.0.0-rc1-final\lib\netcore50\EntityFramework.Core.dll</HintPath>
     </Reference>

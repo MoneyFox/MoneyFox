@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
+using MoneyFox.Foundation.Interfaces;
 using MoneyManager.Core.Extensions;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;

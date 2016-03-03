@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using System.Reflection;
+using Cimbalino.Toolkit.Services;
 using Microsoft.Practices.ServiceLocation;
-using MoneyFox.DataAccess;
+using MoneyFox.Core.Repositories;
 using SimpleInjector;
 
 namespace MoneyManager.Windows
@@ -14,7 +15,10 @@ namespace MoneyManager.Windows
 
             ServiceLocator.SetLocatorProvider(() => new SimpleInjectorServiceLocatorAdapter(container));
 
-            var dataAccessAssembly = typeof (AccountDataAccess).GetTypeInfo().Assembly;
+            container.Register<IEmailComposeService>(() => new EmailComposeService());
+            container.Register<IStoreService>(() => new StoreService());
+
+            var dataAccessAssembly = typeof (GenericDataRepository<>).GetTypeInfo().Assembly;
 
             var registrations =
                 from type in dataAccessAssembly.GetExportedTypes()

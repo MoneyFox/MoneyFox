@@ -1,5 +1,7 @@
 ﻿using System.Globalization;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Store;
+using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyManager.Windows
 {
@@ -8,6 +10,11 @@ namespace MoneyManager.Windows
     /// </summary>
     public class AppInformation : IAppInformation
     {
+        /// <summary>
+        ///     Returns the Id of the current App.
+        /// </summary>
+        public string Id => CurrentApp.AppId.ToString();
+
         /// <summary>
         ///     Reads the version from the AppManifest and returns it formated.
         /// </summary>

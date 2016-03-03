@@ -133,7 +133,6 @@
     <Compile Include="Src\Shortcut\ExpenseTile.cs" />
     <Compile Include="Src\Shortcut\Tile.cs" />
     <Compile Include="Src\Shortcut\TransferTile.cs" />
-    <Compile Include="Src\StoreFeatures.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\TileHelper.cs" />
     <Compile Include="Src\UserNotification.cs" />

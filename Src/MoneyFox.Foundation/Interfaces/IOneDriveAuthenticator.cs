@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.OneDrive.Sdk;
 
-namespace MoneyManager.Foundation.Interfaces
+namespace MoneyFox.Foundation.Interfaces
 {
     public interface IOneDriveAuthenticator
     {
