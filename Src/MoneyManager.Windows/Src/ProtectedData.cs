@@ -1,5 +1,6 @@
 ﻿using Windows.ApplicationModel;
 using Windows.Security.Credentials;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Windows
 {

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
-using MoneyManager.Localization;
+using MoneyFox.Foundation.Resources;
+using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces.Shotcuts;
 
 namespace MoneyManager.Windows.Shortcut
 {
