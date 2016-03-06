@@ -35,6 +35,5 @@ namespace MoneyManager.Windows
 
     public class NavigationConstants
     {
-        
     }
 }

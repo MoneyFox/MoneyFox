@@ -1,13 +1,17 @@
 ﻿using System;
-using System.Globalization;
+using Windows.UI.Xaml.Data;
+using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Foundation.Model;
+using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Core.Converter
+namespace MoneyManager.Windows.Converter
 {
-    public class PaymentAmountConverter : IMvxValueConverter
+    public class PaymentAmountConverter : IValueConverter
     {
         private const string IGNORE_TRANSFER = "IgnoreTransfer";
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, string language)
         {
             var payment = (Payment) value;
             var param = parameter as string;
@@ -21,7 +25,8 @@ namespace MoneyManager.Core.Converter
                 }
                 else
                 {
-                    sign = payment.ChargedAccountId == Mvx.Resolve<IAccountRepository>().Selected.Id
+                    sign = payment.ChargedAccountId ==
+                           ServiceLocator.Current.GetInstance<IAccountRepository>().Selected.Id
                         ? "-"
                         : "+";
                 }
@@ -36,7 +41,7 @@ namespace MoneyManager.Core.Converter
             return sign + " " + $"{payment.Amount:C2}";
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();
         }

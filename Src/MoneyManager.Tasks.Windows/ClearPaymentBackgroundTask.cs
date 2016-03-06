@@ -1,10 +1,9 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
 using Microsoft.ApplicationInsights;
+using MoneyFox.Core.Manager;
 using MoneyFox.Core.Repositories;
-using MoneyFox.Foundation.Model;
 using MoneyManager.Core.Manager;
-using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Shortcut;
 
 namespace MoneyManager.Tasks.Windows

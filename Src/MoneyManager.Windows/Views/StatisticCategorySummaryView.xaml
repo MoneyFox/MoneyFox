@@ -8,7 +8,6 @@
     xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:converter1="using:MoneyManager.Core.Converter"
     xmlns:converter="using:MoneyManager.Windows.Converter"
     mc:Ignorable="d">
 

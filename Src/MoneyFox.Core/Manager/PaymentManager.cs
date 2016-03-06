@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
+using IDialogService = GalaSoft.MvvmLight.Views.IDialogService;
 
-namespace MoneyManager.Core.Manager
+namespace MoneyFox.Core.Manager
 {
     public class PaymentManager : IPaymentManager
     {
@@ -70,9 +72,8 @@ namespace MoneyManager.Core.Manager
                         payment.ChargedAccount =
                             accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
 
-                        Insights.Report(
-                            new AccountMissingException("Charged account was missing while clearing payments."),
-                            Insights.Severity.Error);
+                        new TelemetryClient().TrackException(
+                            new AccountMissingException("Charged account was missing while clearing payments.");
                     }
 
                     payment.IsCleared = true;

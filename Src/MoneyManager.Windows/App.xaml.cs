@@ -12,9 +12,11 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.ApplicationInsights;
+using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Foundation.Resources;
+using MoneyManager.Core.Authentication;
+using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
-using MoneyManager.Localization;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
 using MoneyManager.Windows.Views;
@@ -66,14 +68,11 @@ namespace MoneyManager.Windows
             {
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                var setup = new Setup(shell.AppFrame);
-                setup.Initialize();
+                shell.AppFrame.Navigate(typeof(MainView));
 
-                var start = Mvx.Resolve<IMvxAppStart>();
-                start.Start();
             }
 
-            if (Mvx.Resolve<Session>().ValidateSession())
+            if (ServiceLocator.Current.GetInstance<Session>().ValidateSession())
             {
                 shell.SetLoggedInView();
                 shell.AppFrame.Navigate(typeof (MainView));
