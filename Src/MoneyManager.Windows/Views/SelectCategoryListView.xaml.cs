@@ -4,7 +4,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.ViewModels;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Windows.Views.Dialogs;
 
 namespace MoneyManager.Windows.Views

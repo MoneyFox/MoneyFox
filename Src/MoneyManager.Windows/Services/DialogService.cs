@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using MoneyFox.Foundation.Resources;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Windows.Services
 {

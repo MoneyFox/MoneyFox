@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
+using Microsoft.ApplicationInsights;
 
 namespace MoneyManager.Windows.Controls
 {
@@ -442,7 +443,7 @@ namespace MoneyManager.Windows.Controls
                 }
                 catch (Exception ex)
                 {
-                    Insights.Report(ex, Insights.Severity.Warning);
+                    new TelemetryClient().TrackException(ex);
                 }
             }
             else

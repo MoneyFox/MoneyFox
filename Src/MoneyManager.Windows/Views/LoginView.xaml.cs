@@ -8,7 +8,6 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Localization;
 
 namespace MoneyManager.Windows.Views
 {
