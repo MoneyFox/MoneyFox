@@ -126,6 +126,7 @@
     <Compile Include="Services\OneDriveAuthenticator.cs" />
     <Compile Include="SimpleInjectorServiceLocatorAdapter.cs" />
     <Compile Include="Src\AppInformation.cs" />
+    <Compile Include="Src\FileStore.cs" />
     <Compile Include="Src\LocalSettings.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Src\RoamingSettings.cs" />

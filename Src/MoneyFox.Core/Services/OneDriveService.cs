@@ -9,14 +9,14 @@ using MoneyManager.Core.Extensions;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Core.Services
+namespace MoneyFox.Core.Services
 {
     public class OneDriveService : IBackupService
     {
-        private readonly IMvxFileStore fileStore;
+        private readonly IFileStore fileStore;
         private readonly IOneDriveAuthenticator oneDriveAuthenticator;
 
-        public OneDriveService(IMvxFileStore fileStore, IOneDriveAuthenticator oneDriveAuthenticator)
+        public OneDriveService(IFileStore fileStore, IOneDriveAuthenticator oneDriveAuthenticator)
         {
             this.fileStore = fileStore;
             this.oneDriveAuthenticator = oneDriveAuthenticator;

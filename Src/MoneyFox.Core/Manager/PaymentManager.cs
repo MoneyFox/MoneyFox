@@ -7,7 +7,7 @@ using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using IDialogService = GalaSoft.MvvmLight.Views.IDialogService;
+using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.Manager
 {
@@ -73,7 +73,7 @@ namespace MoneyFox.Core.Manager
                             accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
 
                         new TelemetryClient().TrackException(
-                            new AccountMissingException("Charged account was missing while clearing payments.");
+                            new AccountMissingException("Charged account was missing while clearing payments."));
                     }
 
                     payment.IsCleared = true;
