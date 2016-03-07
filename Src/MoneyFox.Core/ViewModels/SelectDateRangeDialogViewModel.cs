@@ -1,9 +1,10 @@
 ﻿using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Foundation.Messages;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class SelectDateRangeDialogViewModel : ViewModelBase
@@ -31,7 +32,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void Done()
         {
-            MessageHub.Publish(new DateSelectedMessage(this, StartDate, EndDate));
+            MessengerInstance.Send(new DateSelectedMessage(StartDate, EndDate));
         }
     }
 }

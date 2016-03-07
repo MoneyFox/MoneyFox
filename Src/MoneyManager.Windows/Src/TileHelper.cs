@@ -1,4 +1,8 @@
-﻿namespace MoneyManager.Windows
+﻿using GalaSoft.MvvmLight;
+using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation;
+
+namespace MoneyManager.Windows
 {
     public class TileHelper : ViewModelBase
     {

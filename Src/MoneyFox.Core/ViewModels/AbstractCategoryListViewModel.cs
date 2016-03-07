@@ -2,17 +2,19 @@
 using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : ViewModelBase
     {
         protected readonly IRepository<Category> CategoryRepository;
         protected readonly IDialogService DialogService;
+        protected readonly INavigationService NavigationService;
 
         private ObservableCollection<Category> categories = new ObservableCollection<Category>();
 
@@ -23,11 +25,14 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
+        /// <param name="navigationService">An instance of <see cref="INavigationService" /></param>
         protected AbstractCategoryListViewModel(IRepository<Category> categoryRepository,
-            IDialogService dialogService)
+            IDialogService dialogService,
+            INavigationService navigationService)
         {
             CategoryRepository = categoryRepository;
             DialogService = dialogService;
+            NavigationService = navigationService;
 
             Categories = CategoryRepository.Data;
         }

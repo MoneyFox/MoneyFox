@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
+using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Core.Extensions;
+using MoneyManager.Core.StatisticDataProvider;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Windows.Shortcut
 {
@@ -34,11 +38,11 @@ namespace MoneyManager.Windows.Shortcut
         private static void UpdateTile()
         {
             var cashFlow =
-                new CashFlowDataProvider(Mvx.Resolve<IPaymentRepository>()).GetValues(
+                new CashFlowDataProvider(ServiceLocator.Current.GetInstance<IPaymentRepository>()).GetValues(
                     DateTime.Today.GetFirstDayOfMonth(),
                     DateTime.Today.GetLastDayOfMonth());
 
-            Mvx.Resolve<IUserNotification>()
+            ServiceLocator.Current.GetInstance<IUserNotification>()
                 .UpdateMainTile(cashFlow.Income.Label, cashFlow.Spending.Label, cashFlow.Revenue.Label);
         }
     }

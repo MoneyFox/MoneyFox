@@ -8,7 +8,7 @@
     xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:viewModels="using:MoneyManager.Core.ViewModels"
+    xmlns:viewModels1="using:MoneyFox.Core.ViewModels"
     mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
@@ -20,7 +20,7 @@
     <Page.Resources>
         <windows:OxyColorConverter x:Key="OxyColorConverter" />
 
-        <DataTemplate x:Key="LegendListTemplate" x:DataType="viewModels:LegendItem">
+        <DataTemplate x:Key="LegendListTemplate" x:DataType="viewModels1:LegendItem">
             <StackPanel Orientation="Horizontal">
                 <Grid Height="20"
                       Width="20"

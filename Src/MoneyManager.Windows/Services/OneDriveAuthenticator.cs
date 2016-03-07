@@ -1,5 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
+using MoneyFox.Foundation.Interfaces;
+using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Windows.Services
 {

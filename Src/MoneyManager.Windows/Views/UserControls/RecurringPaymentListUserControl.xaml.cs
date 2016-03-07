@@ -1,6 +1,8 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using MoneyFox.Foundation.Model;
+using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views.UserControls
 {

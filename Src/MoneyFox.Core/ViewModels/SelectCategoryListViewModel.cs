@@ -1,10 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using MoneyFox.Foundation.Model;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using PropertyChanged;
+using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel
@@ -14,8 +16,10 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
+        /// <param name="navigationService">An instance of <see cref="INavigationService" /></param>
         public SelectCategoryListViewModel(IRepository<Category> categoryRepository,
-            IDialogService dialogService) : base(categoryRepository, dialogService)
+            IDialogService dialogService,
+            INavigationService navigationService) : base(categoryRepository, dialogService, navigationService)
         {
         }
 
@@ -31,13 +35,13 @@ namespace MoneyManager.Core.ViewModels
 
         private void Done(Category category)
         {
-            MessageHub.Publish(new CategorySelectedMessage(this, category));
-            Close(this);
+            MessengerInstance.Send(category);
+            NavigationService.GoBack();
         }
 
         private void Cancel()
         {
-            Close(this);
+            NavigationService.GoBack();
         }
     }
 }

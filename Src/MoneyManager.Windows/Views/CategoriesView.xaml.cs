@@ -1,5 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml;
+using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Core.ViewModels;
 using MoneyManager.Windows.Views.Dialogs;
 
 namespace MoneyManager.Windows.Views
@@ -9,7 +11,7 @@ namespace MoneyManager.Windows.Views
         public CategoriesView()
         {
             InitializeComponent();
-            CategoryListUserControl.DataContext = Mvx.Resolve<CategoryListViewModel>();
+            CategoryListUserControl.DataContext = ServiceLocator.Current.GetInstance<CategoryListViewModel>();
         }
 
         private async void AddCategory(object sender, RoutedEventArgs e)

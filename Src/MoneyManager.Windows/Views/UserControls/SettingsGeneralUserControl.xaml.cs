@@ -1,11 +1,14 @@
-﻿namespace MoneyManager.Windows.Views.UserControls
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Core.ViewModels;
+
+namespace MoneyManager.Windows.Views.UserControls
 {
     public sealed partial class SettingsGeneralUserControl
     {
         public SettingsGeneralUserControl()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<SettingsGeneralViewModel>();
+            DataContext = ServiceLocator.Current.GetInstance<SettingsGeneralViewModel>();
         }
     }
 }

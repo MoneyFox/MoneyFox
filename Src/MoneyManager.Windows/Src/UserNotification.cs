@@ -1,5 +1,8 @@
 ﻿using Windows.UI.Notifications;
-using MoneyManager.Localization;
+using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Foundation.Resources;
+using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation.Interfaces;
 using NotificationsExtensions.Tiles;
 
 namespace MoneyManager.Windows
@@ -16,7 +19,7 @@ namespace MoneyManager.Windows
         {
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
 
-            if (Mvx.Resolve<SettingsShortcutsViewModel>().ShowInfoOnMainTile)
+            if (ServiceLocator.Current.GetInstance<SettingsShortcutsViewModel>().ShowInfoOnMainTile)
             {
                 var content = new TileContent
                 {

@@ -1,11 +1,14 @@
-﻿namespace MoneyManager.Windows.Views
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Core.ViewModels;
+
+namespace MoneyManager.Windows.Views
 {
     public sealed partial class BackupView
     {
         public BackupView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<BackupViewModel>();
+            DataContext = ServiceLocator.Current.GetInstance<BackupViewModel>();
         }
     }
 }

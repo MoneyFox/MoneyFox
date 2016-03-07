@@ -1,11 +1,14 @@
-﻿namespace MoneyManager.Windows.Views
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Core.ViewModels;
+
+namespace MoneyManager.Windows.Views
 {
     public sealed partial class PaymentListView
     {
         public PaymentListView()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<PaymentListViewModel>();
+            DataContext = ServiceLocator.Current.GetInstance<PaymentListViewModel>();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Foundation.Model;
 using MoneyManager.Core.ViewModels;
 
@@ -11,7 +12,7 @@ namespace MoneyManager.Windows.Views.UserControls
         public AccountListUserControl()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<AccountListViewModel>();
+            DataContext = ServiceLocator.Current.GetInstance<AccountListViewModel>();
         }
 
         private void AccountList_Holding(object sender, HoldingRoutedEventArgs e)

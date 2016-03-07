@@ -1,11 +1,14 @@
-﻿namespace MoneyManager.Windows.Views.Dialogs
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Core.ViewModels;
+
+namespace MoneyManager.Windows.Views.Dialogs
 {
     public sealed partial class SelectDateRangeDialog
     {
         public SelectDateRangeDialog()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<SelectDateRangeDialogViewModel>();
+            DataContext = ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
         }
     }
 }

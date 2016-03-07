@@ -1,6 +1,9 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Foundation.Model;
+using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views.UserControls
 {
@@ -9,7 +12,7 @@ namespace MoneyManager.Windows.Views.UserControls
         public PaymentListUserControl()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<PaymentListViewModel>();
+            DataContext = ServiceLocator.Current.GetInstance<PaymentListViewModel>();
         }
 
         private void EditPayment(object sender, RoutedEventArgs e)

@@ -50,7 +50,7 @@ namespace MoneyFox.Core.Services
 
             try
             {
-                using (var dbstream = fileStore.OpenRead(OneDriveAuthenticationConstants.DB_NAME))
+                using (var dbstream = await fileStore.OpenRead(OneDriveAuthenticationConstants.DB_NAME))
                 {
                     var uploadedItem = await OneDriveClient
                         .Drive
@@ -86,7 +86,7 @@ namespace MoneyFox.Core.Services
                 if (existingBackup != null)
                 {
                     var backup = await OneDriveClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
-                    if (fileStore.Exists(OneDriveAuthenticationConstants.DB_NAME))
+                    if (await fileStore.Exists(OneDriveAuthenticationConstants.DB_NAME))
                     {
                         fileStore.DeleteFile(OneDriveAuthenticationConstants.DB_NAME);
                     }

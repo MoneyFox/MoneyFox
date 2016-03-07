@@ -1,5 +1,8 @@
 ﻿using Windows.System;
 using Windows.UI.Xaml.Input;
+using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Core.ViewModels;
+using MoneyFox.Foundation.Model;
 
 namespace MoneyManager.Windows.Views.Dialogs
 {
@@ -9,7 +12,7 @@ namespace MoneyManager.Windows.Views.Dialogs
         {
             InitializeComponent();
 
-            DataContext = Mvx.Resolve<CategoryDialogViewModel>();
+            DataContext = ServiceLocator.Current.GetInstance<CategoryDialogViewModel>();
 
             if (category != null)
             {

@@ -1,11 +1,14 @@
-﻿namespace MoneyManager.Windows.Views.UserControls
+﻿using Microsoft.Practices.ServiceLocation;
+using MoneyManager.Core.ViewModels;
+
+namespace MoneyManager.Windows.Views.UserControls
 {
     public sealed partial class SettingsShortcutsUserControl
     {
         public SettingsShortcutsUserControl()
         {
             InitializeComponent();
-            DataContext = Mvx.Resolve<SettingsShortcutsViewModel>();
+            DataContext = ServiceLocator.Current.GetInstance<SettingsShortcutsViewModel>();
         }
     }
 }
