@@ -18,7 +18,7 @@ namespace MoneyFox.Core.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Make Blog.Url required
+            // Make Account.Name required
             modelBuilder.Entity<Account>()
                 .Property(b => b.Name)
                 .IsRequired();
