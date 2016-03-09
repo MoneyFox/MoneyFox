@@ -19,14 +19,7 @@ Windows (Mobile / Desktop)
 
 [Beta Version](https://www.microsoft.com/store/apps/9nblggh68h8m)
 
-If you wanna have a look how the current development of our Android App is going, you can have a look at our Alpha. Be aware that this isn't nearly stable or feature complete.
-
-[Android Alpha  Version](https://play.google.com/apps/testing/com.applysolutions.moneyfox)
-
-### Next steps
-
-We’re in the process of improve our apps for Windows 10 Desktop and Mobile. We’re also working towards a release on Android and iOS via Xamarin.
-Head to the Issues to see all the details.
+Head over to our Android Repository if you're interessted in the version for Android.
 
 ### Contribution
 
@@ -39,9 +32,8 @@ Help us translate the money fox to as many languages as possible. Head over [her
 ### Tools
 We use Visual Studio 2015. If you use resharper please ensure to use the settings in the repository for this project.
 
-If you don't have a Xamarin Subscription, you may apply for an open source license directly at Xamarin. [Application Formula](https://resources.xamarin.com/open-source-contributor.html)
-
-NOTE: I assume they will only offer this to contributors of an open source project.
-
 ### Contact
-Feel free to contact me. Just write me a mail or join our gitter chat. 
+Feel free to contact me. Just write me a mail or even better join our slack channel.
+
+### Sponsoring
+The development of this app is supported by [Apply Solutions](http://www.apply-solutions.ch/).
