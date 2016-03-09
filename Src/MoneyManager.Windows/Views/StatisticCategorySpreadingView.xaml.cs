@@ -21,7 +21,7 @@ namespace MoneyManager.Windows.Views
         private async void SetDate(object sender, RoutedEventArgs e)
         {
             await new SelectDateRangeDialog().ShowAsync();
-            (DataContext as StatisticCategorySpreadingViewModel)?.LoadCommand.Execute();
+            (DataContext as StatisticCategorySpreadingViewModel)?.LoadCommand.Execute(null);
         }
     }
 }

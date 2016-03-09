@@ -20,7 +20,7 @@ namespace MoneyManager.Windows.Views
         private async void SetDate(object sender, RoutedEventArgs e)
         {
             await new SelectDateRangeDialog().ShowAsync();
-            (DataContext as StatisticMonthlyExpensesViewModel)?.LoadCommand.Execute();
+            (DataContext as StatisticMonthlyExpensesViewModel)?.LoadCommand.Execute(null);
         }
     }
 }

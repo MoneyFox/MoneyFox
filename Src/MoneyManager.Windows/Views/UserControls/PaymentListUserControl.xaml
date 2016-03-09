@@ -7,10 +7,10 @@
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:converter="using:MoneyManager.Windows.Converter"
-             xmlns:model="using:MoneyManager.Foundation.Model"
              xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
              xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
              xmlns:model1="using:MoneyFox.Foundation.Model"
+             xmlns:converters="using:Cimbalino.Toolkit.Converters"
              d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -25,7 +25,7 @@
     <UserControl.Resources>
         <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         <converter:CultureConverter x:Key="FormatConverter" />
-        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />

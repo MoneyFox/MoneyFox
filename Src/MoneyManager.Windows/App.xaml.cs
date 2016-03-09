@@ -84,7 +84,7 @@ namespace MoneyManager.Windows
                 shell.AppFrame.Navigate(typeof (LoginView));
             }
 
-            new TileHelper().DoNavigation(string.IsNullOrEmpty(e.Arguments)
+            ServiceLocator.Current.GetInstance<TileHelper>().DoNavigation(string.IsNullOrEmpty(e.Arguments)
                 ? e.TileId
                 : e.Arguments);
 

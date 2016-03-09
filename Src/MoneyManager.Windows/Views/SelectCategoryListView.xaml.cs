@@ -32,7 +32,7 @@ namespace MoneyManager.Windows.Views
         {
             if (e.Key == VirtualKey.Enter)
             {
-                ((SelectCategoryListViewModel) DataContext).DoneCommand.Execute();
+                ((SelectCategoryListViewModel) DataContext).DoneCommand.Execute(null);
             }
 
             base.OnKeyDown(e);

@@ -3,10 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:converter="using:MoneyManager.Windows.Converter"
       xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:converters="using:Cimbalino.Toolkit.Converters"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -17,7 +17,7 @@
     </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
-        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converters:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
     </Page.Resources>
 
     <Grid>

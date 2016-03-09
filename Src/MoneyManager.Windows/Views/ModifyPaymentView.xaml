@@ -6,15 +6,16 @@
                       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
-      xmlns:converter1="using:MoneyManager.Windows.Converter"
+                      xmlns:converter="using:MoneyManager.Windows.Converter"
                       xmlns:converters="using:Cimbalino.Toolkit.Converters"
+                      xmlns:model="using:MoneyFox.Foundation.Model"
                       mc:Ignorable="d"
                       NavigationCacheMode="Enabled"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-        <converter1:AmountFormatConverter x:Key="AmountConverter" />
-        <converter1:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <converter:AmountFormatConverter x:Key="AmountConverter" />
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converters:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate"
                       x:DataType="model:Account">
