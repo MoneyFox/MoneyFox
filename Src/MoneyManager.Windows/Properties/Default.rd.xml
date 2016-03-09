@@ -26,6 +26,6 @@
 
     <!-- Add your application specific runtime directives here. -->
 
-
+    <Type Name="System.Collections.ArrayList" Dynamic="Required All" />
   </Application>
 </Directives>

@@ -29,6 +29,6 @@
   <Library Name="MoneyFox.Core">
 
     <!-- add directives for your library here -->
-
+    <Type Name="System.Collections.ArrayList" Dynamic="Required All" />
   </Library>
 </Directives>
