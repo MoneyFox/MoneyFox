@@ -290,6 +290,11 @@ namespace MoneyManager.Core.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
             {
+                if (await paymentManager.CheckForRecurringPayment(SelectedPayment))
+                {
+                    paymentRepository.DeleteRecurring(SelectedPayment);
+                }
+
                 paymentRepository.Delete(paymentRepository.Selected);
                 accountRepository.RemovePaymentAmount(SelectedPayment);
                 Close(this);

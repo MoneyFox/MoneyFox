@@ -108,13 +108,21 @@ namespace MoneyManager.Core.Services
                 await Login();
             }
 
-            var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
-            var existingBackup = children.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_NAME);
-
-            if (existingBackup != null)
+            try
             {
-                return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
+                var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
+                var existingBackup = children.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_NAME);
+
+                if (existingBackup != null)
+                {
+                    return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
+                }
             }
+            catch (Exception ex)
+            {
+                Insights.Report(ex);
+            }
+
             return DateTime.MinValue;
         }
 
