@@ -11,6 +11,17 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational.Design": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "dependencies": {
           "Ix-Async": "[1.2.5, )",
@@ -61,6 +72,17 @@
         },
         "runtime": {
           "lib/netcore50/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
         }
       },
       "EntityFramework.Sqlite/7.0.0-rc1-final": {
@@ -2026,6 +2048,17 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational.Design": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "dependencies": {
           "Ix-Async": "[1.2.5, )",
@@ -2076,6 +2109,17 @@
         },
         "runtime": {
           "lib/netcore50/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
         }
       },
       "EntityFramework.Sqlite/7.0.0-rc1-final": {
@@ -4131,6 +4175,17 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational.Design": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "dependencies": {
           "Ix-Async": "[1.2.5, )",
@@ -4181,6 +4236,17 @@
         },
         "runtime": {
           "lib/netcore50/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
         }
       },
       "EntityFramework.Sqlite/7.0.0-rc1-final": {
@@ -6208,6 +6274,17 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational.Design": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "dependencies": {
           "Ix-Async": "[1.2.5, )",
@@ -6258,6 +6335,17 @@
         },
         "runtime": {
           "lib/netcore50/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
         }
       },
       "EntityFramework.Sqlite/7.0.0-rc1-final": {
@@ -8321,6 +8409,17 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational.Design": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "dependencies": {
           "Ix-Async": "[1.2.5, )",
@@ -8371,6 +8470,17 @@
         },
         "runtime": {
           "lib/netcore50/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
         }
       },
       "EntityFramework.Sqlite/7.0.0-rc1-final": {
@@ -10401,6 +10511,17 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational.Design": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "dependencies": {
           "Ix-Async": "[1.2.5, )",
@@ -10451,6 +10572,17 @@
         },
         "runtime": {
           "lib/netcore50/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
         }
       },
       "EntityFramework.Sqlite/7.0.0-rc1-final": {
@@ -12514,6 +12646,17 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
         }
       },
+      "EntityFramework.Commands/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational.Design": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
+        }
+      },
       "EntityFramework.Core/7.0.0-rc1-final": {
         "dependencies": {
           "Ix-Async": "[1.2.5, )",
@@ -12564,6 +12707,17 @@
         },
         "runtime": {
           "lib/netcore50/EntityFramework.Relational.dll": {}
+        }
+      },
+      "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+        "dependencies": {
+          "EntityFramework.Relational": "[7.0.0-rc1-final, )"
+        },
+        "compile": {
+          "lib/netcore50/_._": {}
+        },
+        "runtime": {
+          "lib/netcore50/_._": {}
         }
       },
       "EntityFramework.Sqlite/7.0.0-rc1-final": {
@@ -14602,6 +14756,32 @@
         "package/services/metadata/core-properties/99be0c88b2fd41c8b07c42071005ee47.psmdcp"
       ]
     },
+    "EntityFramework.Commands/7.0.0-rc1-final": {
+      "sha512": "+wa2VWX3/vDkOpeCeIotMevqpIISimGqeYNTGYRLRhv+8HzsCLeymLzmmYpjav6zYQVvuJiJodapQvijAIfRrA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "app/ef",
+        "app/ef.cmd",
+        "app/project.json",
+        "build/netcore50/EntityFramework.Commands.props",
+        "EntityFramework.Commands.nuspec",
+        "lib/dnx451/EntityFramework.Commands.dll",
+        "lib/dnx451/EntityFramework.Commands.xml",
+        "lib/dnxcore50/EntityFramework.Commands.dll",
+        "lib/dnxcore50/EntityFramework.Commands.xml",
+        "lib/net451/EntityFramework.Commands.dll",
+        "lib/net451/EntityFramework.Commands.xml",
+        "lib/netcore50/_._",
+        "tools/about_EntityFramework.help.txt",
+        "tools/EntityFramework.psd1",
+        "tools/EntityFramework.psm1",
+        "tools/init.ps1",
+        "tools/install.ps1",
+        "tools/OperationHandlers.cs"
+      ]
+    },
     "EntityFramework.Core/7.0.0-rc1-final": {
       "sha512": "afwsjOF4xM5KiwAxKMz9R0H8TigWE/jX0FwGBO/QtuA1ElEVLqlQVH4+7PyZaA35HguYRm0wOCmUq9RVTmiAfA==",
       "type": "Package",
@@ -14632,6 +14812,23 @@
         "lib/net451/EntityFramework.Relational.xml",
         "lib/netcore50/EntityFramework.Relational.dll",
         "lib/netcore50/EntityFramework.Relational.xml"
+      ]
+    },
+    "EntityFramework.Relational.Design/7.0.0-rc1-final": {
+      "sha512": "sXAqOxpHmbqOELC21vAzKlsjqgNCrk3jEjyJxjGnn1+j4hazxiqgSBTl8ZofqYzLO6ias9WfeXJy8HcXOl7waw==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "build/netcore50/EntityFramework.Relational.Design.props",
+        "EntityFramework.Relational.Design.nuspec",
+        "lib/dnx451/EntityFramework.Relational.Design.dll",
+        "lib/dnx451/EntityFramework.Relational.Design.xml",
+        "lib/dnxcore50/EntityFramework.Relational.Design.dll",
+        "lib/dnxcore50/EntityFramework.Relational.Design.xml",
+        "lib/net451/EntityFramework.Relational.Design.dll",
+        "lib/net451/EntityFramework.Relational.Design.xml",
+        "lib/netcore50/_._"
       ]
     },
     "EntityFramework.Sqlite/7.0.0-rc1-final": {
@@ -18647,6 +18844,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "EntityFramework.Commands >= 7.0.0-rc1-final",
       "EntityFramework.Sqlite >= 7.0.0-rc1-final",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.1.1",
       "Microsoft.CodeAnalysis.CSharp >= 1.1.1",

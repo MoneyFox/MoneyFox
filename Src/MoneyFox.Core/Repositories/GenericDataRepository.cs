@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.Data.Entity;
-using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Interfaces;
 
 namespace MoneyFox.Core.Repositories
