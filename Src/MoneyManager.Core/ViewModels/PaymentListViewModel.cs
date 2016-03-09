@@ -18,16 +18,18 @@ namespace MoneyManager.Core.ViewModels
         private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
         private readonly IPaymentRepository paymentRepository;
+        private readonly IPaymentManager paymentManager;
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IBalanceViewModel balanceViewModel,
-            IDialogService dialogService)
+            IDialogService dialogService, IPaymentManager paymentManager)
         {
             this.paymentRepository = paymentRepository;
             this.accountRepository = accountRepository;
             this.balanceViewModel = balanceViewModel;
             this.dialogService = dialogService;
+            this.paymentManager = paymentManager;
 
             BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository);
         }
@@ -124,6 +126,11 @@ namespace MoneyManager.Core.ViewModels
             if (!await
                 dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
                 return;
+
+            if (await paymentManager.CheckForRecurringPayment(payment))
+            {
+                paymentRepository.DeleteRecurring(payment);
+            }
 
             accountRepository.RemovePaymentAmount(payment);
             paymentRepository.Delete(payment);
