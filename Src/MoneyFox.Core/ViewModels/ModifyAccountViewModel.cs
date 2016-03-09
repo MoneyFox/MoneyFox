@@ -1,23 +1,25 @@
 ﻿using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class ModifyAccountViewModel : ViewModelBase
     {
         private readonly IAccountRepository accountRepository;
+        private readonly INavigationService navigationService;
 
-        public ModifyAccountViewModel(IAccountRepository accountRepository)
+        public ModifyAccountViewModel(IAccountRepository accountRepository, INavigationService navigationService)
         {
             this.accountRepository = accountRepository;
+            this.navigationService = navigationService;
         }
 
         /// <summary>
@@ -100,19 +102,19 @@ namespace MoneyManager.Core.ViewModels
         private void SaveAccount()
         {
             accountRepository.Save(accountRepository.Selected);
-            Close(this);
+            navigationService.GoBack();
         }
 
         private void DeleteAccount()
         {
             accountRepository.Delete(accountRepository.Selected);
-            Close(this);
+            navigationService.GoBack();
         }
 
         private void Cancel()
         {
             //TODO: revert changes
-            Close(this);
+            navigationService.GoBack();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using MoneyFox.Core.ViewModels;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 

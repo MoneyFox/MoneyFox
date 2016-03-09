@@ -1,27 +1,33 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
+using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
-using MoneyManager.Foundation.Model;
 using PropertyChanged;
+using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class AccountListViewModel : ViewModelBase
     {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
+        private readonly INavigationService navigationService;
 
         public AccountListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
-            IDialogService dialogService)
+            IDialogService dialogService, 
+            INavigationService navigationService)
         {
             this.accountRepository = accountRepository;
             this.dialogService = dialogService;
+            this.navigationService = navigationService;
 
             BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
         }
@@ -64,7 +70,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void EditAccount(Account account)
         {
-            ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = account.Id});
+            navigationService.NavigateTo(NavigationConstants.MODIFY_ACCOUNT_VIEW, account);
         }
 
         private void Loaded()
@@ -80,7 +86,7 @@ namespace MoneyManager.Core.ViewModels
             }
 
             accountRepository.Selected = account;
-            ShowViewModel<PaymentListViewModel>();
+            navigationService.NavigateTo(NavigationConstants.PAYMENT_LIST_VIEW);
         }
 
         private async void Delete(Account item)
@@ -98,7 +104,7 @@ namespace MoneyManager.Core.ViewModels
 
         private void GoToAddAccount()
         {
-            ShowViewModel<ModifyAccountViewModel>(new {isEdit = true, selectedAccountId = 0});
+            navigationService.NavigateTo(NavigationConstants.MODIFY_ACCOUNT_VIEW);
         }
     }
 }

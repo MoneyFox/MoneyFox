@@ -1,8 +1,10 @@
 ﻿using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Core.ViewModels;
+using MoneyFox.Foundation.Model;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views
 {
@@ -25,6 +27,26 @@ namespace MoneyManager.Windows.Views
                 }
             };
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var viewModel = (ModifyAccountViewModel) DataContext;
+
+            var account = e.Parameter as Account;
+            if (account != null)
+            {
+                viewModel.IsEdit = true;
+                viewModel.SelectedAccount = account;
+            }
+            else
+            {
+                viewModel.IsEdit = false;
+                viewModel.SelectedAccount = new Account();
+            }
+
+            base.OnNavigatedTo(e);
+        }
+
 
         private void TextBoxOnFocus(object sender, RoutedEventArgs e)
         {

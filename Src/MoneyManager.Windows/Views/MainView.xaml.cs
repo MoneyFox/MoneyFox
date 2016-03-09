@@ -1,5 +1,5 @@
 ﻿using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Core.ViewModels;
+using MoneyFox.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views
 {

@@ -1,25 +1,32 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Globalization;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyManager.Core.Helpers;
+using GalaSoft.MvvmLight.Views;
+using MoneyFox.Core.Helpers;
+using MoneyFox.Foundation.Constants;
+using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private readonly INavigationService navigationService;
+
+        public MainViewModel(INavigationService navigationService)
+        {
+            this.navigationService = navigationService;
+        }
+
         /// <summary>
         ///     Returns the timestamp when the last change was made to the database
         /// </summary>
-        public string TimeStampDbUpdate => Settings.LastDatabaseUpdate.ToString();
+        public string TimeStampDbUpdate => Settings.LastDatabaseUpdate.ToString(CultureInfo.InvariantCulture);
 
         /// <summary>
         ///     Prepare everything and navigate to the add payment view
         /// </summary>
         public RelayCommand<string> GoToAddPaymentCommand => new RelayCommand<string>(GoToAddPayment);
-
-        /// <summary>
-        ///     Navigates to the About view
-        /// </summary>
-        public RelayCommand GoToAboutCommand => new RelayCommand(GoToAbout);
 
         /// <summary>
         ///     Prepare everything and navigate to the add account view
@@ -31,19 +38,19 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public RelayCommand GoToRecurringPaymentListCommand => new RelayCommand(GoToRecurringPaymentList);
 
-        private void GoToAddPayment(string paymentType)
+        private void GoToAddPayment(PaymentType paymentType)
         {
-            ShowViewModel<ModifyPaymentViewModel>(new {typeString = paymentType});
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, paymentType);
         }
 
         private void GoToAddAccount()
         {
-            ShowViewModel<ModifyAccountViewModel>(new {isEdit = false});
+            navigationService.NavigateTo(NavigationConstants.MODIFY_ACCOUNT_VIEW);
         }
 
         private void GoToRecurringPaymentList()
         {
-            ShowViewModel<RecurringPaymentListViewModel>();
+            navigationService.NavigateTo(NavigationConstants.RECURRING_PAYMENT_LIST_VIEW);
         }
     }
 }

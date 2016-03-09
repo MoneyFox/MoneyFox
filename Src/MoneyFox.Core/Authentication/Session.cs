@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using MoneyFox.Core.Helpers;
 using MoneyManager.Core.Helpers;
 
 namespace MoneyManager.Core.Authentication

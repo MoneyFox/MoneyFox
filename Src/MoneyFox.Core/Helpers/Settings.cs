@@ -1,7 +1,8 @@
 using System;
+using Microsoft.Practices.ServiceLocation;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Core.Helpers
+namespace MoneyFox.Core.Helpers
 {
     /// <summary>
     ///     This is the Settings static class that can be used in your Core solution or in any
@@ -18,7 +19,7 @@ namespace MoneyManager.Core.Helpers
         private const bool PASSWORD_REQUIRED_KEYDEFAULT = false;
         private static DateTime DatabaseLastUpdateKeydefault { get; } = DateTime.MinValue;
 
-        private static ILocalSettings AppSettings => Mvx.Resolve<ILocalSettings>();
+        private static ILocalSettings AppSettings => ServiceLocator.Current.GetInstance<ILocalSettings>();
 
         public static string SessionTimestamp
         {

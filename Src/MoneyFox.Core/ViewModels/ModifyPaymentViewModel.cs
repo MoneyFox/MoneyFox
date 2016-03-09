@@ -4,16 +4,14 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Core.ViewModels;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class ModifyPaymentViewModel : ViewModelBase
@@ -23,9 +21,6 @@ namespace MoneyManager.Core.ViewModels
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
-
-        //this token ensures that we will be notified when a message is sent.
-        private readonly MvxSubscriptionToken token;
 
         // This has to be static in order to keep the value even if you leave the page to select a category.
         private double amount;
@@ -42,9 +37,7 @@ namespace MoneyManager.Core.ViewModels
             this.defaultManager = defaultManager;
             this.accountRepository = accountRepository;
 
-            token =
-                MessageHub.Subscribe<CategorySelectedMessage>(
-                    message => SelectedPayment.Category = message.SelectedCategory);
+            MessengerInstance.Register<Category>(this, category => SelectedPayment.Category = category);
         }
 
         /// <summary>

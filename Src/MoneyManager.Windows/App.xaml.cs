@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.ApplicationInsights;
 using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Core.Helpers;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Authentication;
 using MoneyManager.Core.Helpers;
