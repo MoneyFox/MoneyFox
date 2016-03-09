@@ -177,9 +177,6 @@
     <Reference Include="Cimbalino.Toolkit.Core">
       <HintPath>..\..\..\..\..\.nuget\packages\Cimbalino.Toolkit.Core\2.1.2\lib\uap10.0\Cimbalino.Toolkit.Core.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.Core">
-      <HintPath>..\..\..\..\..\.nuget\packages\EntityFramework.Core\7.0.0-rc1-final\lib\netcore50\EntityFramework.Core.dll</HintPath>
-    </Reference>
     <Reference Include="OxyPlot">
       <HintPath>..\..\..\..\..\.nuget\packages\OxyPlot.Core\2015.1.1033-alpha\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\OxyPlot.dll</HintPath>
     </Reference>
