@@ -2,24 +2,29 @@
 using System.Globalization;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Core.ViewModels;
+using GalaSoft.MvvmLight.Views;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     public class RecurringPaymentListViewModel : ViewModelBase
     {
         private readonly IDialogService dialogService;
         private readonly IPaymentRepository paymentRepository;
+        private readonly INavigationService navigationService;
 
-        public RecurringPaymentListViewModel(IPaymentRepository paymentRepository, IDialogService dialogService)
+        public RecurringPaymentListViewModel(IPaymentRepository paymentRepository,
+            IDialogService dialogService,
+            INavigationService navigationService)
         {
             this.paymentRepository = paymentRepository;
             this.dialogService = dialogService;
+            this.navigationService = navigationService;
 
             AllPayments = new ObservableCollection<Payment>();
         }
@@ -69,8 +74,7 @@ namespace MoneyManager.Core.ViewModels
         {
             paymentRepository.Selected = payment;
 
-            ShowViewModel<ModifyPaymentViewModel>(
-                new {isEdit = true, typeString = payment.Type.ToString()});
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, payment);
         }
 
         private async void Delete(Payment payment)
@@ -80,7 +84,7 @@ namespace MoneyManager.Core.ViewModels
                 return;
 
             paymentRepository.Delete(payment);
-            LoadedCommand.Execute();
+            LoadedCommand.Execute(null);
         }
     }
 }

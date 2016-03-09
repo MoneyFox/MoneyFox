@@ -1,11 +1,14 @@
-﻿using Windows.UI.ViewManagement;
+﻿using System;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.ViewModels;
+using MoneyFox.Foundation.Model;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Windows.Views
 {
@@ -27,6 +30,24 @@ namespace MoneyManager.Windows.Views
                     BottomCommandBar.Visibility = Visibility.Visible;
                 }
             };
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var viewModel = (ModifyPaymentViewModel)DataContext;
+
+            var payment = e.Parameter as Payment;
+            if (payment != null)
+            {
+                //TODO Refactor this that on edit the payment type isn't necessary since we don't need it here.
+                viewModel.Init(PaymentType.Expense, true);
+            } 
+            else if(e.Parameter?.GetType() == typeof (PaymentType))
+            {
+                viewModel.Init((PaymentType) e.Parameter);
+            }
+
+            base.OnNavigatedTo(e);
         }
 
         private void TextBoxOnFocus(object sender, RoutedEventArgs e)

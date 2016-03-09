@@ -4,12 +4,15 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using PropertyChanged;
+using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.ViewModels
 {
@@ -21,6 +24,7 @@ namespace MoneyFox.Core.ViewModels
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
+        private readonly INavigationService navigationService;
 
         // This has to be static in order to keep the value even if you leave the page to select a category.
         private double amount;
@@ -29,12 +33,14 @@ namespace MoneyFox.Core.ViewModels
             IAccountRepository accountRepository,
             IDialogService dialogService,
             IPaymentManager paymentManager,
-            IDefaultManager defaultManager)
+            IDefaultManager defaultManager, 
+            INavigationService navigationService)
         {
             this.paymentRepository = paymentRepository;
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
             this.defaultManager = defaultManager;
+            this.navigationService = navigationService;
             this.accountRepository = accountRepository;
 
             MessengerInstance.Register<Category>(this, category => SelectedPayment.Category = category);
@@ -170,9 +176,9 @@ namespace MoneyFox.Core.ViewModels
         /// <summary>
         ///     Init the view. Is executed after the constructor call
         /// </summary>
-        /// <param name="typeString">Type of the payment.</param>
+        /// <param name="type">Type of the payment.</param>
         /// <param name="isEdit">Weather the payment is in edit mode or not.</param>
-        public void Init(string typeString, bool isEdit = false)
+        public void Init(PaymentType type, bool isEdit = false)
         {
             IsEdit = isEdit;
             IsEndless = true;
@@ -185,7 +191,7 @@ namespace MoneyFox.Core.ViewModels
             }
             else
             {
-                PrepareDefault(typeString);
+                PrepareDefault(type);
             }
 
             AccountBeforeEdit = SelectedPayment.ChargedAccount;
@@ -205,10 +211,8 @@ namespace MoneyFox.Core.ViewModels
             IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
         }
 
-        private void PrepareDefault(string typeString)
+        private void PrepareDefault(PaymentType type)
         {
-            var type = (PaymentType) Enum.Parse(typeof (PaymentType), typeString);
-
             SetDefaultPayment(type);
             SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
             IsTransfer = type == PaymentType.Transfer;
@@ -251,7 +255,7 @@ namespace MoneyFox.Core.ViewModels
             paymentRepository.Save(SelectedPayment);
             accountRepository.AddPaymentAmount(SelectedPayment);
 
-            Close(this);
+            navigationService.GoBack();
         }
 
         private void RemoveOldAmount()
@@ -277,7 +281,7 @@ namespace MoneyFox.Core.ViewModels
 
         private void OpenSelectCategoryList()
         {
-            ShowViewModel<SelectCategoryListViewModel>();
+            navigationService.NavigateTo(NavigationConstants.SELECT_CATEGORY_LIST_VIEW);
         }
 
         private async void Delete()
@@ -286,7 +290,7 @@ namespace MoneyFox.Core.ViewModels
             {
                 paymentRepository.Delete(paymentRepository.Selected);
                 accountRepository.RemovePaymentAmount(SelectedPayment);
-                Close(this);
+                navigationService.GoBack();
             }
         }
 
@@ -310,7 +314,7 @@ namespace MoneyFox.Core.ViewModels
 
         private void Cancel()
         {
-            Close(this);
+            navigationService.GoBack();
         }
     }
 }

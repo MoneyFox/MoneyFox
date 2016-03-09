@@ -75,7 +75,7 @@ namespace MoneyFox.Core.ViewModels
 
         private void Loaded()
         {
-            BalanceViewModel.UpdateBalanceCommand.Execute();
+            BalanceViewModel.UpdateBalanceCommand.Execute(null);
         }
 
         private void GoToPaymentOverView(Account account)

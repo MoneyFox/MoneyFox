@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.ViewModels;
@@ -10,6 +12,13 @@ namespace MoneyFox.Core.ViewModels
 {
     public class StatisticSelectorViewModel : ViewModelBase
     {
+        private readonly INavigationService navigationService;
+
+        public StatisticSelectorViewModel(INavigationService navigationService)
+        {
+            this.navigationService = navigationService;
+        }
+
         /// <summary>
         ///     All possible statistic to choose from
         /// </summary>
@@ -52,19 +61,19 @@ namespace MoneyFox.Core.ViewModels
             switch (item.Type)
             {
                 case StatisticType.Cashflow:
-                    ShowViewModel<StatisticCashFlowViewModel>();
+                    navigationService.NavigateTo(NavigationConstants.STATISTIC_CASH_FLOW_VIEW);
                     break;
 
                 case StatisticType.CategorySpreading:
-                    ShowViewModel<StatisticCategorySpreadingViewModel>();
+                    navigationService.NavigateTo(NavigationConstants.STATISTIC_CATEGORY_SPREADING_VIEW);
                     break;
 
                 case StatisticType.CategorySummary:
-                    ShowViewModel<StatisticCategorySummaryViewModel>();
+                    navigationService.NavigateTo(NavigationConstants.STATISTIC_CATEGORY_SUMMARY_VIEW);
                     break;
 
                 case StatisticType.ExpenseHistory:
-                    ShowViewModel<StatisticMonthlyExpensesViewModel>();
+                    navigationService.NavigateTo(NavigationConstants.STATISTIC_MONTHLY_EXPENSES_VIEW);
                     break;
             }
         }

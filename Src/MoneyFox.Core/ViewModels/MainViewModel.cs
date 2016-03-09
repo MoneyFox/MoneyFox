@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -38,9 +39,9 @@ namespace MoneyFox.Core.ViewModels
         /// </summary>
         public RelayCommand GoToRecurringPaymentListCommand => new RelayCommand(GoToRecurringPaymentList);
 
-        private void GoToAddPayment(PaymentType paymentType)
+        private void GoToAddPayment(string typeString)
         {
-            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, paymentType);
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, Enum.Parse(typeof(PaymentType), typeString));
         }
 
         private void GoToAddAccount()

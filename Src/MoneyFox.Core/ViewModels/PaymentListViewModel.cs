@@ -1,18 +1,22 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Core.ViewModels;
+using GalaSoft.MvvmLight.Views;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
+using MoneyManager.Core.ViewModels;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
-using MoneyManager.Foundation.Model;
 using PropertyChanged;
+using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class PaymentListViewModel : ViewModelBase, IPaymentListViewModel
@@ -21,16 +25,19 @@ namespace MoneyManager.Core.ViewModels
         private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
         private readonly IPaymentRepository paymentRepository;
+        private readonly INavigationService navigationService;
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IBalanceViewModel balanceViewModel,
-            IDialogService dialogService)
+            IDialogService dialogService, 
+            INavigationService navigationService)
         {
             this.paymentRepository = paymentRepository;
             this.accountRepository = accountRepository;
             this.balanceViewModel = balanceViewModel;
             this.dialogService = dialogService;
+            this.navigationService = navigationService;
 
             BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository);
         }
@@ -83,7 +90,7 @@ namespace MoneyManager.Core.ViewModels
         {
             EditCommand = null;
             //Refresh balance control with the current account
-            BalanceViewModel.UpdateBalanceCommand.Execute();
+            BalanceViewModel.UpdateBalanceCommand.Execute(null);
 
             RelatedPayments = new ObservableCollection<Payment>(paymentRepository
                 .GetRelatedPayments(accountRepository.Selected)
@@ -100,9 +107,9 @@ namespace MoneyManager.Core.ViewModels
             EditCommand = new RelayCommand<Payment>(Edit);
         }
 
-        private void GoToAddPayment(string type)
+        private void GoToAddPayment(string typeString)
         {
-            ShowViewModel<ModifyPaymentViewModel>(new {isEdit = false, typeString = type});
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, Enum.Parse(typeof(PaymentType), typeString));
         }
 
         private async void DeleteAccount()
@@ -110,8 +117,8 @@ namespace MoneyManager.Core.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 accountRepository.Delete(accountRepository.Selected);
-                balanceViewModel.UpdateBalanceCommand.Execute();
-                Close(this);
+                balanceViewModel.UpdateBalanceCommand.Execute(null);
+                navigationService.GoBack();
             }
         }
 
@@ -119,7 +126,7 @@ namespace MoneyManager.Core.ViewModels
         {
             paymentRepository.Selected = payment;
 
-            ShowViewModel<ModifyPaymentViewModel>(new {isEdit = true, typeString = payment.Type.ToString()});
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, payment);
         }
 
         private async void DeletePayment(Payment payment)
@@ -130,7 +137,7 @@ namespace MoneyManager.Core.ViewModels
 
             accountRepository.RemovePaymentAmount(payment);
             paymentRepository.Delete(payment);
-            LoadCommand.Execute();
+            LoadCommand.Execute(null);
         }
     }
 }
