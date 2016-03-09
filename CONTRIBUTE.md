@@ -1,19 +1,12 @@
 ## Contributing
 
 Thanks for your interest! We appreciate any contribution to the project.
-This document tries to help you get started. If you have questions please join our chat in Gitter: [![Join the chat at https://gitter.im/Apply-Solutions/MoneyManager](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Apply-Solutions/MoneyManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  or contact me directly (see profile).
-
+This document tries to help you get started. If you have questions please write me a mail (see profile).
 
 ## Tools
-We use Visual Studio 2015 and Xamarin for Android and IOS. If you use resharper please ensure to use the settings in the repository for this project.
+You will need the SQLite UWP plugin for Visual Studio.
 
-If you don't have a Xamarin Subscription, you may apply for an open source license directly at Xamarin. [Application Formula](https://resources.xamarin.com/open-source-contributor.html) Otherwise you can just unload the Android and iOS project.
-
-NOTE: I assume they will only offer this to contributors of an open source project.
-
-Also you will need the SQLite UWP plugin for Visual Studio.
-
-For more information see this [wiki page](https://github.com/Apply-Solutions/MoneyManager/wiki/Getting-Started)
+For more information see this [wiki page](https://github.com/MoneyFox/MoneyFox.Windows/wiki/Getting-Started)
 
 ## Feature Requests / Bug reports
 Is there a feature you would like to see in a future release? Or have you found a bug? Create a new issue and give describe it as good as possible.
