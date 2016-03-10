@@ -41,8 +41,6 @@ namespace MoneyFox.Windows
 #if !DEBUG
             WindowsAppInitializer.InitializeAsync();
 #endif
-            WindowsAppInitializer.InitializeAsync();
-
 
             Suspending += OnSuspending;
         }
