@@ -11,7 +11,7 @@ namespace MoneyFox.Core
 {
     public class SqLiteConnectionFactory : ISqliteConnectionFactory
     {
-        protected SqLiteConnectionFactory()
+        public SqLiteConnectionFactory()
         {
             CreateDb();
         }
