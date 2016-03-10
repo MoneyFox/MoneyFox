@@ -1,5 +1,8 @@
 namespace MoneyFox.Foundation.Constants
 {
+    /// <summary>
+    ///     Contains the constants strings for the MVVM Light Navigationservice
+    /// </summary>
     public class NavigationConstants
     {
         public const string MODIFY_PAYMENT_VIEW = "ModifyPayment";

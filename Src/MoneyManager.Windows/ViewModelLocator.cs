@@ -74,7 +74,6 @@ namespace MoneyManager.Windows
                 .AsSelf()
                 .SingleInstance();
 
-
             builder.RegisterAssemblyTypes(typeof(Settings).GetTypeInfo().Assembly)
                 .Where(t => t.Name.EndsWith("Settings"))
                 .AsImplementedInterfaces()
@@ -87,6 +86,15 @@ namespace MoneyManager.Windows
         {
             var navigationService = new PageNavigationService();
             navigationService.Configure(NavigationConstants.MODIFY_PAYMENT_VIEW, typeof(ModifyPaymentView));
+            navigationService.Configure(NavigationConstants.MAIN_VIEW, typeof(MainView));
+            navigationService.Configure(NavigationConstants.MODIFY_ACCOUNT_VIEW, typeof(ModifyAccountView));
+            navigationService.Configure(NavigationConstants.PAYMENT_LIST_VIEW, typeof(PaymentListView));
+            navigationService.Configure(NavigationConstants.RECURRING_PAYMENT_LIST_VIEW, typeof(RecurringPaymentListView));
+            navigationService.Configure(NavigationConstants.SELECT_CATEGORY_LIST_VIEW, typeof(SelectCategoryListView));
+            navigationService.Configure(NavigationConstants.STATISTIC_CASH_FLOW_VIEW, typeof(StatisticCashFlowView));
+            navigationService.Configure(NavigationConstants.STATISTIC_CATEGORY_SPREADING_VIEW, typeof(StatisticCategorySpreadingView));
+            navigationService.Configure(NavigationConstants.STATISTIC_CATEGORY_SUMMARY_VIEW, typeof(StatisticCategorySummaryView));
+            navigationService.Configure(NavigationConstants.STATISTIC_MONTHLY_EXPENSES_VIEW, typeof(StatisticMonthlyExpensesView));
 
             return navigationService;
         }
