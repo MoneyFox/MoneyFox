@@ -121,7 +121,7 @@ namespace MoneyFox.Core.Services
             }
             catch (Exception ex)
             {
-                Insights.Report(ex);
+                new TelemetryClient().TrackException(ex);
             }
 
             return DateTime.MinValue;

@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="MoneyManager.Windows.Views.UserControls.AccountListUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="using:MoneyManager.Windows.Controls"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:converter="using:MoneyManager.Windows.Converter"
+             xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
+             xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
+             xmlns:model1="using:MoneyFox.Foundation.Model"
+             d:DataContext="{d:DesignInstance designTime:DesignTimeAccountListViewModel, IsDesignTimeCreatable=True}"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
+
+    <UserControl.Resources>
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
+
+        <DataTemplate x:Key="AccountTemplate" x:DataType="model1:Account">
+            <StackPanel HorizontalAlignment="Stretch"
+                        Holding="AccountList_Holding"
+                        RightTapped="AccountList_RightTapped"
+                        Background="Transparent"
+                        Margin="0,0,0,12">
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem x:Uid="Edit"
+                                        Text="Edit"
+                                        Click="Edit_OnClick" />
+                        <MenuFlyoutItem x:Uid="Delete"
+                                        Text="Delete"
+                                        Click="Delete_OnClick" />
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+                <Grid HorizontalAlignment="Stretch">
+                    <TextBlock Text="{x:Bind Name}"
+                               TextTrimming="CharacterEllipsis"
+                               Style="{StaticResource CustomSubtitleTextBlockStyle}" />
+                    <TextBlock TextAlignment="Right"
+                               Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                               Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                               HorizontalAlignment="Right" />
+                </Grid>
+                <TextBlock Text="{x:Bind Iban}"
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <userControls:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" />
+
+        <ScrollViewer Grid.Row="1">
+            <controls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
+                                             OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                             ItemTemplate="{StaticResource AccountTemplate}"
+                                             HorizontalAlignment="Stretch"
+                                             ShowsScrollingPlaceholders="False"
+                                             EntranceNavigationTransitionInfo.IsTargetElement="True">
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment"
+                                Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                        <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
+                                                  InputConverter="{StaticResource SelectedAccountConverter}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </controls:AlternatingRowListView>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
