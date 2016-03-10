@@ -6,7 +6,8 @@
     "Microsoft.NETNative.Analyzer": "1.0.0",
     "Microsoft.OneDriveSDK": "1.1.20",
     "MvvmLightLibs": "5.2.0",
-    "PropertyChanged.Fody": "1.50.4"
+    "PropertyChanged.Fody": "1.50.4",
+    "SQLite.Net-PCL": "3.1.1"
   },
   "frameworks": {
     "uap10.0": {}

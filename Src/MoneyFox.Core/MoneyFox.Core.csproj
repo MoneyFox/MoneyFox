@@ -125,6 +125,7 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\PaymentRepository.cs" />
     <Compile Include="Services\OneDriveService.cs" />
+    <Compile Include="SQLiteConnectionFactory.cs" />
     <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />
