@@ -16,11 +16,11 @@ namespace MoneyFox.DataAccess
     [ImplementPropertyChanged]
     public class PaymentDataAccess : AbstractDataAccess<Payment>
     {
-        private readonly ISqliteConnectionFactory connectionCreator;
+        private readonly ISqliteConnectionFactory connectionFactory;
 
-        public PaymentDataAccess(ISqliteConnectionFactory connectionCreator)
+        public PaymentDataAccess(ISqliteConnectionFactory connectionFactory)
         {
-            this.connectionCreator = connectionCreator;
+            this.connectionFactory = connectionFactory;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace MoneyFox.DataAccess
         /// <param name="itemToSave">Item to SaveItem</param>
         protected override void SaveToDb(Payment itemToSave)
         {
-            using (var db = connectionCreator.GetConnection())
+            using (var db = connectionFactory.GetConnection())
             {
                 SaveRecurringPayment(itemToSave, db);
                 //Don't use insert or replace here, because it will always replace the first element
@@ -68,7 +68,7 @@ namespace MoneyFox.DataAccess
         /// <param name="payment">Item to Delete.</param>
         protected override void DeleteFromDatabase(Payment payment)
         {
-            using (var dbConn = connectionCreator.GetConnection())
+            using (var dbConn = connectionFactory.GetConnection())
             {
                 dbConn.Delete(payment);
             }
@@ -81,7 +81,7 @@ namespace MoneyFox.DataAccess
         /// <returns>List of loaded payments.</returns>
         protected override List<Payment> GetListFromDb(Expression<Func<Payment, bool>> filter)
         {
-            using (var db = connectionCreator.GetConnection())
+            using (var db = connectionFactory.GetConnection())
             {
                 var listQuery = db.Table<Payment>();
 

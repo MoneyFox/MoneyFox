@@ -2,7 +2,6 @@
 using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using Cimbalino.Toolkit.Services;
-using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core;
 using MoneyFox.Core.Authentication;
@@ -27,10 +26,9 @@ namespace MoneyManager.Windows
     {
         public ViewModelLocator()
         {
-            SimpleIoc.Default.Register(CreateNavigationService);
-
             var builder = new ContainerBuilder();
 
+            builder.RegisterInstance(CreateNavigationService()).As<INavigationService>();
             builder.RegisterType<EmailComposeService>().As<IEmailComposeService>();
             builder.RegisterType<StoreService>().As<IStoreService>();
             builder.RegisterType<SqLiteConnectionFactory>().As<ISqliteConnectionFactory>();
@@ -80,7 +78,7 @@ namespace MoneyManager.Windows
 
             ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(builder.Build()));
         }
-        private static INavigationService CreateNavigationService()
+        private static PageNavigationService CreateNavigationService()
         {
             var navigationService = new PageNavigationService();
             navigationService.Configure(NavigationConstants.MODIFY_PAYMENT_VIEW, typeof(ModifyPaymentView));
