@@ -1,7 +1,7 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.ViewModels;
 
-namespace MoneyManager.Windows.Views
+namespace MoneyFox.Windows.Views
 {
     public sealed partial class PaymentListView
     {

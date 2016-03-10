@@ -18,8 +18,17 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Windows;
-using MoneyManager.Windows.Views;
 using INavigationService = GalaSoft.MvvmLight.Views.INavigationService;
+using MainView = MoneyFox.Windows.Views.MainView;
+using ModifyAccountView = MoneyFox.Windows.Views.ModifyAccountView;
+using ModifyPaymentView = MoneyFox.Windows.Views.ModifyPaymentView;
+using PaymentListView = MoneyFox.Windows.Views.PaymentListView;
+using RecurringPaymentListView = MoneyFox.Windows.Views.RecurringPaymentListView;
+using SelectCategoryListView = MoneyFox.Windows.Views.SelectCategoryListView;
+using StatisticCashFlowView = MoneyFox.Windows.Views.StatisticCashFlowView;
+using StatisticCategorySpreadingView = MoneyFox.Windows.Views.StatisticCategorySpreadingView;
+using StatisticCategorySummaryView = MoneyFox.Windows.Views.StatisticCategorySummaryView;
+using StatisticMonthlyExpensesView = MoneyFox.Windows.Views.StatisticMonthlyExpensesView;
 
 namespace MoneyFox.Windows
 {

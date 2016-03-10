@@ -10,9 +10,12 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Windows.Controls;
 using MoneyFox.Windows.Views;
-using MoneyManager.Windows.Controls;
-using MoneyManager.Windows.Views;
+using AboutView = MoneyFox.Windows.Views.AboutView;
+using CategoriesView = MoneyFox.Windows.Views.CategoriesView;
+using MainView = MoneyFox.Windows.Views.MainView;
+using SettingsView = MoneyFox.Windows.Views.SettingsView;
 
 namespace MoneyManager.Windows
 {

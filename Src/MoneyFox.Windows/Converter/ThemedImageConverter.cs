@@ -1,7 +1,8 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
+using MoneyManager.Windows;
 
-namespace MoneyManager.Windows.Converter
+namespace MoneyFox.Windows.Converter
 {
     public class ThemedImageConverter : IValueConverter
     {

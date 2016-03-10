@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.Windows.Views
+﻿namespace MoneyFox.Windows.Views
 {
     public sealed partial class RecurringPaymentListView
     {

@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-namespace MoneyManager.Windows.Controls
+namespace MoneyFox.Windows.Controls
 {
     public class AlternatingRowListView : ListView
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml;
+using MoneyFox.Windows.Views.Dialogs;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Windows.Views.Dialogs;
 
-namespace MoneyManager.Windows.Views
+namespace MoneyFox.Windows.Views
 {
     public sealed partial class StatisticCashFlowView : IDisposable
     {

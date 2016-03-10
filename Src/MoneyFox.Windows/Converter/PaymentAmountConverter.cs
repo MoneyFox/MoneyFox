@@ -5,7 +5,7 @@ using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows.Converter
+namespace MoneyFox.Windows.Converter
 {
     public class PaymentAmountConverter : IValueConverter
     {

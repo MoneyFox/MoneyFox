@@ -1,7 +1,7 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.ViewModels;
 
-namespace MoneyManager.Windows.Views.Dialogs
+namespace MoneyFox.Windows.Views.Dialogs
 {
     public sealed partial class SelectDateRangeDialog
     {

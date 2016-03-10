@@ -1,16 +1,16 @@
-﻿<UserControl x:Class="MoneyManager.Windows.Views.UserControls.PaymentListUserControl"
+﻿<UserControl x:Class="MoneyFox.Windows.Views.UserControls.PaymentListUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="using:MoneyManager.Windows.Controls"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-             xmlns:converter="using:MoneyManager.Windows.Converter"
-             xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
              xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
              xmlns:model1="using:MoneyFox.Foundation.Model"
              xmlns:converters="using:Cimbalino.Toolkit.Converters"
+             xmlns:controls1="using:MoneyFox.Windows.Controls"
+             xmlns:converter1="using:MoneyFox.Windows.Converter"
+             xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
              d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -23,12 +23,12 @@
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
-        <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
-        <converter:CultureConverter x:Key="FormatConverter" />
+        <converter1:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+        <converter1:CultureConverter x:Key="FormatConverter" />
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
-        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
-        <converter:ClickConverter x:Key="ClickConverter" />
+        <converter1:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
+        <converter1:ThemedImageConverter x:Key="ThemedImageConverter" />
+        <converter1:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="PaymentTemplate"
                       x:DataType="model1:Payment">
@@ -139,12 +139,12 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <userControls:BalanceUserControl Grid.Row="0"
+        <userControls1:BalanceUserControl Grid.Row="0"
                                          DataContext="{Binding BalanceViewModel}" />
 
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
-                <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                <controls1:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
                                                  EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
                                                  ItemsSource="{Binding Source={StaticResource Groups}}"
                                                  ItemTemplate="{StaticResource PaymentTemplate}"
@@ -171,7 +171,7 @@
                         <GroupStyle HidesIfEmpty="True"
                                     HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
                     </ListView.GroupStyle>
-                </controls:AlternatingRowListView>
+                </controls1:AlternatingRowListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView Margin="0,12,0,0"

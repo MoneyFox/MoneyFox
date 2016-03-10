@@ -1,21 +1,21 @@
-﻿<UserControl x:Class="MoneyManager.Windows.Views.UserControls.CategoryListUserControl"
+﻿<UserControl x:Class="MoneyFox.Windows.Views.UserControls.CategoryListUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="using:MoneyManager.Windows.Controls"
              xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-             xmlns:converter="using:MoneyManager.Windows.Converter"
              xmlns:model1="using:MoneyFox.Foundation.Model"
+             xmlns:controls1="using:MoneyFox.Windows.Controls"
+             xmlns:converter1="using:MoneyFox.Windows.Converter"
              d:DataContext="{d:DesignInstance designTime:DesignTimeCategoryListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
 
     <UserControl.Resources>
-        <converter:ClickConverter x:Key="ClickConverter" />
+        <converter1:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="CategoryTemplate"
                       x:DataType="model1:Category">
@@ -51,7 +51,7 @@
                  x:Uid="SearchHeader"
                  Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <ScrollViewer Margin="0,7,0,0" Grid.Row="1">
-            <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+            <controls1:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
                                              EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
                                              ItemsSource="{Binding Categories}"
                                              ItemTemplate="{StaticResource CategoryTemplate }"
@@ -70,7 +70,7 @@
                                 Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
-            </controls:AlternatingRowListView>
+            </controls1:AlternatingRowListView>
         </ScrollViewer>
     </Grid>
 </UserControl>

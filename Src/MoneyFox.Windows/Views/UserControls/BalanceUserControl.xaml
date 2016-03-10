@@ -1,17 +1,17 @@
-﻿<UserControl x:Class="MoneyManager.Windows.Views.UserControls.BalanceUserControl"
+﻿<UserControl x:Class="MoneyFox.Windows.Views.UserControls.BalanceUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converter="using:MoneyManager.Windows.Converter"
              xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
+             xmlns:converter1="using:MoneyFox.Windows.Converter"
              d:DataContext="{d:DesignInstance designTime:DesignTimeBalanceViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="50"
              d:DesignWidth="400">
 
     <UserControl.Resources>
-        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter1:AmountFormatConverter x:Key="AmountFormatConverter" />
     </UserControl.Resources>
 
     <StackPanel Orientation="Horizontal"

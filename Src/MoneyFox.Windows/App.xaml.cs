@@ -20,8 +20,9 @@ using MoneyFox.Core.Shortcut;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
 using MoneyManager.Windows;
-using MoneyManager.Windows.Views;
 using UniversalRateReminder;
+using LoginView = MoneyFox.Windows.Views.LoginView;
+using MainView = MoneyFox.Windows.Views.MainView;
 
 namespace MoneyFox.Windows
 {

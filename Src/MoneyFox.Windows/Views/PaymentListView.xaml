@@ -2,9 +2,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
       xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
-      x:Class="MoneyManager.Windows.Views.PaymentListView"
+      xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
+      x:Class="MoneyFox.Windows.Views.PaymentListView"
       d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel, IsDesignTimeCreatable=True}"
       mc:Ignorable="d"
       NavigationCacheMode="Disabled"
@@ -17,17 +17,17 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <userControls:PageHeader>
-            <userControls:PageHeader.HeaderContent>
+        <userControls1:PageHeader>
+            <userControls1:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="{Binding Title}" />
-            </userControls:PageHeader.HeaderContent>
-        </userControls:PageHeader>
+            </userControls1:PageHeader.HeaderContent>
+        </userControls1:PageHeader>
 
         <Grid Grid.Row="1"
               Margin="0,9.5,0,0"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <userControls:PaymentListUserControl />
+            <userControls1:PaymentListUserControl />
         </Grid>
 
         <CommandBar Grid.Row="2">

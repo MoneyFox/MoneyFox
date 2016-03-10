@@ -4,9 +4,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.ViewModels;
-using MoneyManager.Windows.Views.Dialogs;
+using ModifyCategoryDialog = MoneyFox.Windows.Views.Dialogs.ModifyCategoryDialog;
 
-namespace MoneyManager.Windows.Views
+namespace MoneyFox.Windows.Views
 {
     public sealed partial class SelectCategoryListView
     {

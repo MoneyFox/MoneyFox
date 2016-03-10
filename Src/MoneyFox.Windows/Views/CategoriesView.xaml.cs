@@ -2,9 +2,9 @@
 using Windows.UI.Xaml;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.ViewModels;
-using MoneyManager.Windows.Views.Dialogs;
+using MoneyFox.Windows.Views.Dialogs;
 
-namespace MoneyManager.Windows.Views
+namespace MoneyFox.Windows.Views
 {
     public sealed partial class CategoriesView
     {

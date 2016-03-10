@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using MoneyFox.Core.ViewModels;
-using MoneyManager.Windows.Views.Dialogs;
+using MoneyFox.Windows.Views.Dialogs;
 
-namespace MoneyManager.Windows.Views
+namespace MoneyFox.Windows.Views
 {
     public sealed partial class StatisticCategorySpreadingView : IDisposable
     {

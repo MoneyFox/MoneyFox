@@ -3,10 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:converters="using:Cimbalino.Toolkit.Converters"
+      xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -26,11 +26,11 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <userControls:PageHeader>
-            <userControls:PageHeader.HeaderContent>
+        <userControls1:PageHeader>
+            <userControls1:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Backup" x:Uid="BackupTitle" />
-            </userControls:PageHeader.HeaderContent>
-        </userControls:PageHeader>
+            </userControls1:PageHeader.HeaderContent>
+        </userControls1:PageHeader>
 
         <StackPanel Grid.Row="1"
                     Margin="19,9.5,19,0"

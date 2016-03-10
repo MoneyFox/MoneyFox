@@ -5,7 +5,7 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.ViewModels;
 using MoneyFox.Foundation.Model;
 
-namespace MoneyManager.Windows.Views.UserControls
+namespace MoneyFox.Windows.Views.UserControls
 {
     public partial class PaymentListUserControl
     {

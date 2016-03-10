@@ -8,8 +8,9 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Windows;
 
-namespace MoneyManager.Windows.Views
+namespace MoneyFox.Windows.Views
 {
     public sealed partial class LoginView
     {

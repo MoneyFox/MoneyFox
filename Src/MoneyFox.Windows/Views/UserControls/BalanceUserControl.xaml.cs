@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.Windows.Views.UserControls
+﻿namespace MoneyFox.Windows.Views.UserControls
 {
     public sealed partial class BalanceUserControl
     {

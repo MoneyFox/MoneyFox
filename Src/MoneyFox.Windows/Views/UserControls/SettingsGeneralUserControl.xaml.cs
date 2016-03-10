@@ -1,7 +1,7 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.ViewModels;
 
-namespace MoneyManager.Windows.Views.UserControls
+namespace MoneyFox.Windows.Views.UserControls
 {
     public sealed partial class SettingsGeneralUserControl
     {

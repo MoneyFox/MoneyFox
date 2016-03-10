@@ -6,7 +6,7 @@ using MoneyFox.Core.ViewModels;
 using MoneyFox.Foundation.Model;
 using MoneyManager.Core.Helpers;
 
-namespace MoneyManager.Windows.Views
+namespace MoneyFox.Windows.Views
 {
     public sealed partial class ModifyAccountView
     {

@@ -8,7 +8,7 @@ using MoneyFox.Foundation.Model;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Windows.Views
+namespace MoneyFox.Windows.Views
 {
     public sealed partial class ModifyPaymentView
     {

@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Input;
 using MoneyFox.Core.ViewModels;
 using MoneyFox.Foundation.Model;
 
-namespace MoneyManager.Windows.Views.UserControls
+namespace MoneyFox.Windows.Views.UserControls
 {
     public sealed partial class RecurringPaymentListUserControl
     {
