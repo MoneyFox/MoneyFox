@@ -4,7 +4,7 @@ using Windows.UI.Popups;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows.Services
+namespace MoneyFox.Core.Services
 {
     public class DialogService : IDialogService
     {

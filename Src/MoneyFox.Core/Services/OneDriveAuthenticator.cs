@@ -4,7 +4,7 @@ using MoneyFox.Foundation.Interfaces;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows.Services
+namespace MoneyFox.Core.Services
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {
