@@ -124,7 +124,6 @@
     <Compile Include="Services\BackgroundTaskService.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\OneDriveAuthenticator.cs" />
-    <Compile Include="SimpleInjectorServiceLocatorAdapter.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\FileStore.cs" />
     <Compile Include="Src\LocalSettings.cs" />

@@ -3,7 +3,7 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -390,14 +390,6 @@
         },
         "runtime": {
           "Lib/dotnet/PropertyChanged.dll": {}
-        }
-      },
-      "SimpleInjector/3.1.2": {
-        "compile": {
-          "lib/dotnet/SimpleInjector.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/SimpleInjector.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -1764,7 +1756,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -2194,14 +2186,6 @@
         },
         "runtime": {
           "Lib/dotnet/PropertyChanged.dll": {}
-        }
-      },
-      "SimpleInjector/3.1.2": {
-        "compile": {
-          "lib/dotnet/SimpleInjector.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/SimpleInjector.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -3615,7 +3599,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -4031,14 +4015,6 @@
         },
         "runtime": {
           "Lib/dotnet/PropertyChanged.dll": {}
-        }
-      },
-      "SimpleInjector/3.1.2": {
-        "compile": {
-          "lib/dotnet/SimpleInjector.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/SimpleInjector.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -5438,7 +5414,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -5873,14 +5849,6 @@
         },
         "runtime": {
           "Lib/dotnet/PropertyChanged.dll": {}
-        }
-      },
-      "SimpleInjector/3.1.2": {
-        "compile": {
-          "lib/dotnet/SimpleInjector.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/SimpleInjector.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -7294,7 +7262,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -7710,14 +7678,6 @@
         },
         "runtime": {
           "Lib/dotnet/PropertyChanged.dll": {}
-        }
-      },
-      "SimpleInjector/3.1.2": {
-        "compile": {
-          "lib/dotnet/SimpleInjector.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/SimpleInjector.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -9117,7 +9077,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -9552,14 +9512,6 @@
         },
         "runtime": {
           "Lib/dotnet/PropertyChanged.dll": {}
-        }
-      },
-      "SimpleInjector/3.1.2": {
-        "compile": {
-          "lib/dotnet/SimpleInjector.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/SimpleInjector.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -10973,7 +10925,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
-      "Autofac/3.5.0": {
+      "Autofac/3.5.2": {
         "compile": {
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
         },
@@ -11389,14 +11341,6 @@
         },
         "runtime": {
           "Lib/dotnet/PropertyChanged.dll": {}
-        }
-      },
-      "SimpleInjector/3.1.2": {
-        "compile": {
-          "lib/dotnet/SimpleInjector.dll": {}
-        },
-        "runtime": {
-          "lib/dotnet/SimpleInjector.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -12797,8 +12741,8 @@
     }
   },
   "libraries": {
-    "Autofac/3.5.0": {
-      "sha512": "ge1fziLkxQhFEBreAaQlFiIVzpL32rSnpInJCJAmfFnHO6ab0VcW+0nzeZWY8WaSkDFcg6KNxB9v4Tp2icnXSg==",
+    "Autofac/3.5.2": {
+      "sha512": "pGR5LjY8T/16x6SkJNd7u6EjQnE4C7JS0BZJ7Yl7pt313gIUZ/2ZnPSOIM5eaIA7ArxaudlyyLvAT4ayX5UJ/A==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -12808,7 +12752,7 @@
         "lib/net40/Autofac.xml",
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll",
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.xml",
-        "package/services/metadata/core-properties/dddb830c3f5f4799b7e465e0b1547a09.psmdcp"
+        "package/services/metadata/core-properties/14b288cae4b6435c88f25cef31d271e1.psmdcp"
       ]
     },
     "Autofac.Extras.CommonServiceLocator/3.2.0": {
@@ -13986,24 +13930,6 @@
         "PropertyChanged.Fody.pdb",
         "Tools/install.ps1",
         "Tools/uninstall.ps1"
-      ]
-    },
-    "SimpleInjector/3.1.2": {
-      "sha512": "nJVFKygDGBMaubMThDmrxGIdhTTYsYq1A+qRTroR+l8EpwKIbQ0Iv/8BZ3TdKbVJb5x1hD8EjZlRyfCWZZIzmg==",
-      "type": "Package",
-      "files": [
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "lib/dotnet/SimpleInjector.dll",
-        "lib/dotnet/SimpleInjector.xml",
-        "lib/net40-client/SimpleInjector.dll",
-        "lib/net40-client/SimpleInjector.xml",
-        "lib/net45/SimpleInjector.dll",
-        "lib/net45/SimpleInjector.xml",
-        "lib/portable-net4+sl4+wp8+win8+wpa81/SimpleInjector.dll",
-        "lib/portable-net4+sl4+wp8+win8+wpa81/SimpleInjector.xml",
-        "package/services/metadata/core-properties/dfb38ae7e1694306864087f7d15ab279.psmdcp",
-        "SimpleInjector.nuspec"
       ]
     },
     "SQLite.Net-PCL/3.1.1": {
@@ -16752,6 +16678,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "Autofac >= 3.5.2",
       "Autofac.Extras.CommonServiceLocator >= 3.2.0",
       "Cimbalino.Toolkit >= 2.1.2",
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.2.3",
@@ -16763,7 +16690,6 @@
       "MvvmLightLibs >= 5.2.0",
       "NotificationsExtensions.Win10 >= 10586.0.2",
       "OxyPlot.Windows >= 2015.1.1033-alpha",
-      "SimpleInjector >= 3.1.2",
       "SQLite.Net-PCL >= 3.1.1",
       "UniversalRateReminder >= 2.0.0"
     ],

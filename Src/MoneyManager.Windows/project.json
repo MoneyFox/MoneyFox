@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "Autofac": "3.5.2",
     "Autofac.Extras.CommonServiceLocator": "3.2.0",
     "Cimbalino.Toolkit": "2.1.2",
     "Microsoft.ApplicationInsights.PersistenceChannel": "1.2.3",
@@ -11,7 +12,6 @@
     "MvvmLightLibs": "5.2.0",
     "NotificationsExtensions.Win10": "10586.0.2",
     "OxyPlot.Windows": "2015.1.1033-alpha",
-    "SimpleInjector": "3.1.2",
     "SQLite.Net-PCL": "3.1.1",
     "UniversalRateReminder": "2.0.0"
   },
