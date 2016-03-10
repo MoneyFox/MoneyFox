@@ -4,7 +4,7 @@ using GalaSoft.MvvmLight.Views;
 using MoneyFox.Foundation.Constants;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Windows
+namespace MoneyFox.Core.Helpers
 {
     public class TileHelper : ViewModelBase
     {

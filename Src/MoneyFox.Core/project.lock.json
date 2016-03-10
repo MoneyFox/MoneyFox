@@ -289,6 +289,14 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
+      "NotificationsExtensions.Win10/10586.0.2": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
       "PropertyChanged.Fody/1.50.4": {
         "dependencies": {
           "Fody": "[1.29.2, )"
@@ -1983,6 +1991,14 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10586.0.2": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "PropertyChanged.Fody/1.50.4": {
@@ -3712,6 +3728,14 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10586.0.2": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "PropertyChanged.Fody/1.50.4": {
@@ -5448,6 +5472,14 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
+      "NotificationsExtensions.Win10/10586.0.2": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
       "PropertyChanged.Fody/1.50.4": {
         "dependencies": {
           "Fody": "[1.29.2, )"
@@ -7175,6 +7207,14 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10586.0.2": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "PropertyChanged.Fody/1.50.4": {
@@ -8911,6 +8951,14 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
+      "NotificationsExtensions.Win10/10586.0.2": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
       "PropertyChanged.Fody/1.50.4": {
         "dependencies": {
           "Fody": "[1.29.2, )"
@@ -10638,6 +10686,14 @@
         },
         "runtime": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/10586.0.2": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "PropertyChanged.Fody/1.50.4": {
@@ -12990,6 +13046,27 @@
         "Newtonsoft.Json.nuspec",
         "package/services/metadata/core-properties/49e907fc018c4c7ab632e6d4ad4766f8.psmdcp",
         "tools/install.ps1"
+      ]
+    },
+    "NotificationsExtensions.Win10/10586.0.2": {
+      "sha512": "iNcgYPxhjNu9DZcBmIl0nqJHYsoguq4MlZn0YdtmMR7HLBUxiiOIz9192hBUWxpbz8qFAKPRmngyzr3Ay1SimA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.dll",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.pdb",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.XML",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.dll",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.pdb",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.XML",
+        "lib/uap10.0/NotificationsExtensions.pdb",
+        "lib/uap10.0/NotificationsExtensions.pri",
+        "lib/uap10.0/NotificationsExtensions.winmd",
+        "lib/uap10.0/NotificationsExtensions.winmd.xml",
+        "lib/uap10.0/NotificationsExtensions.xml",
+        "NotificationsExtensions.Win10.nuspec",
+        "package/services/metadata/core-properties/49df0f54ac15402c9123916d2b4cb9fe.psmdcp"
       ]
     },
     "PropertyChanged.Fody/1.50.4": {
@@ -15745,6 +15822,7 @@
       "Microsoft.NETNative.Analyzer >= 1.0.0",
       "Microsoft.OneDriveSDK >= 1.1.20",
       "MvvmLightLibs >= 5.2.0",
+      "NotificationsExtensions.Win10 >= 10586.0.2",
       "PropertyChanged.Fody >= 1.50.4",
       "SQLite.Net-PCL >= 3.1.1"
     ],

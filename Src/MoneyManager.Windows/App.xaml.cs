@@ -15,9 +15,9 @@ using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.Authentication;
 using MoneyFox.Core.Services;
 using MoneyFox.Core.SettingAccess;
+using MoneyFox.Core.Shortcut;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
-using MoneyManager.Windows.Shortcut;
 using MoneyManager.Windows.Views;
 using UniversalRateReminder;
 

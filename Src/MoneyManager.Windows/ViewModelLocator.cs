@@ -5,16 +5,19 @@ using Cimbalino.Toolkit.Services;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core;
 using MoneyFox.Core.Authentication;
+using MoneyFox.Core.Helpers;
 using MoneyFox.Core.Manager;
 using MoneyFox.Core.Repositories;
 using MoneyFox.Core.Services;
 using MoneyFox.Core.SettingAccess;
+using MoneyFox.Core.Shortcut;
 using MoneyFox.Core.ViewModels;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MoneyManager.Windows.Views;
 using INavigationService = GalaSoft.MvvmLight.Views.INavigationService;
 
@@ -47,6 +50,9 @@ namespace MoneyManager.Windows
             builder.RegisterType<CategoryDataAccess>().As<IDataAccess<Category>>();
             builder.RegisterType<Settings>().AsSelf();
 
+            builder.RegisterType<ProtectedData>().As<IProtectedData>();
+            builder.RegisterType<TileHelper>().AsSelf();
+
             // This is needed for Settings
             builder.RegisterAssemblyTypes(typeof(AccountDataAccess).GetTypeInfo().Assembly)
                 .Where(t => t.Name.EndsWith("DataAccesss"))
@@ -60,6 +66,11 @@ namespace MoneyManager.Windows
 
             builder.RegisterAssemblyTypes(typeof(PaymentManager).GetTypeInfo().Assembly)
                 .Where(t => t.Name.EndsWith("Manager"))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterAssemblyTypes(typeof(TransferTile).GetTypeInfo().Assembly)
+                .Where(t => t.Name.EndsWith("Tile"))
                 .AsImplementedInterfaces()
                 .SingleInstance();
 

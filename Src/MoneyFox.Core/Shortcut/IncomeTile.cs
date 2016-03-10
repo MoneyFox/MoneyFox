@@ -5,19 +5,19 @@ using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 
-namespace MoneyManager.Windows.Shortcut
+namespace MoneyFox.Core.Shortcut
 {
-    public class ExpenseTile : Tile, ISpendingShortcut
+    public class IncomeTile : Tile, IIncomeShortcut
     {
         public bool IsShortcutExisting => TileExists(Constants.ADD_INCOME_TILE_ID);
 
         public async Task CreateShortCut()
         {
             await Create(new SecondaryTile(
-                Constants.ADD_EXPENSE_TILE_ID,
-                Strings.AddSpendingLabel,
-                Constants.ADD_EXPENSE_TILE_ID,
-                new Uri("ms-appx:///Assets/SpendingTileIcon.png", UriKind.Absolute),
+                Constants.ADD_INCOME_TILE_ID,
+                Strings.AddIncomeLabel,
+                Constants.ADD_INCOME_TILE_ID,
+                new Uri("ms-appx:///Assets/IncomeTileIcon.png", UriKind.Absolute),
                 TileSize.Default));
         }
 
@@ -25,7 +25,7 @@ namespace MoneyManager.Windows.Shortcut
         {
             if (IsShortcutExisting)
             {
-                await Remove(new SecondaryTile(Constants.ADD_EXPENSE_TILE_ID));
+                await Remove(new SecondaryTile(Constants.ADD_INCOME_TILE_ID));
             }
         }
     }

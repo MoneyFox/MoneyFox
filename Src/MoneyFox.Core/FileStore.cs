@@ -7,7 +7,7 @@ using Windows.Storage;
 using Microsoft.ApplicationInsights;
 using MoneyFox.Foundation.Interfaces;
 
-namespace MoneyManager.Windows
+namespace MoneyFox.Core
 {
     public class FileStore : IFileStore
     {

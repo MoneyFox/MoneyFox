@@ -107,13 +107,17 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppInformation.cs" />
     <Compile Include="Authentication\PasswordStorage.cs" />
     <Compile Include="Authentication\Session.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\StreamExtension.cs" />
+    <Compile Include="FileStore.cs" />
     <Compile Include="Helpers\PaymentTypeHelper.cs" />
     <Compile Include="Helpers\RecurringPaymentHelper.cs" />
+    <Compile Include="Helpers\TileHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
+    <Compile Include="Authentication\ProtectedData.cs" />
     <Compile Include="SettingAccess\LocalSettings.cs" />
     <Compile Include="Manager\AutoBackupManager.cs" />
     <Compile Include="Manager\DefaultManager.cs" />
@@ -130,11 +134,16 @@
     <Compile Include="Services\OneDriveAuthenticator.cs" />
     <Compile Include="Services\OneDriveService.cs" />
     <Compile Include="SettingAccess\Settings.cs" />
+    <Compile Include="Shortcut\ExpenseTile.cs" />
+    <Compile Include="Shortcut\IncomeTile.cs" />
+    <Compile Include="Shortcut\Tile.cs" />
+    <Compile Include="Shortcut\TransferTile.cs" />
     <Compile Include="SQLiteConnectionFactory.cs" />
     <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />
     <Compile Include="StatisticDataProvider\ExpensesMonthlyDataProvider.cs" />
+    <Compile Include="UserNotification.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />

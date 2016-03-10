@@ -121,16 +121,7 @@
     <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="PageNavigationService.cs" />
-    <Compile Include="Src\AppInformation.cs" />
-    <Compile Include="Src\FileStore.cs" />
-    <Compile Include="Src\ProtectedData.cs" />
-    <Compile Include="Src\Shortcut\IncomeTile.cs" />
-    <Compile Include="Src\Shortcut\ExpenseTile.cs" />
-    <Compile Include="Src\Shortcut\Tile.cs" />
-    <Compile Include="Src\Shortcut\TransferTile.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
-    <Compile Include="Src\TileHelper.cs" />
-    <Compile Include="Src\UserNotification.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="Views\CategoriesView.xaml.cs">
       <DependentUpon>CategoriesView.xaml</DependentUpon>

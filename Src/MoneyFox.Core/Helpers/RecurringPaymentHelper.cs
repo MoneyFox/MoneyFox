@@ -2,7 +2,7 @@
 using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Core.Helpers
+namespace MoneyFox.Core.Helpers
 {
     public static class RecurringPaymentHelper
     {

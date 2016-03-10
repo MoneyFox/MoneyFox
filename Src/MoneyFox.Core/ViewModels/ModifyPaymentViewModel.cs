@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using MoneyFox.Core.Helpers;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;

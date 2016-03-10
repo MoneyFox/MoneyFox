@@ -3,7 +3,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Store;
 using MoneyFox.Foundation.Interfaces;
 
-namespace MoneyManager.Windows
+namespace MoneyFox.Core
 {
     /// <summary>
     ///     Grants access to package information

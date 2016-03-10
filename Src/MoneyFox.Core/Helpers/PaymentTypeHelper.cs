@@ -2,7 +2,7 @@
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Core.Helpers
+namespace MoneyFox.Core.Helpers
 {
     /// <summary>
     ///     A collection of helper methods for handling PaymentTypes

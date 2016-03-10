@@ -5,7 +5,7 @@ using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Interfaces;
 using NotificationsExtensions.Tiles;
 
-namespace MoneyManager.Windows
+namespace MoneyFox.Core
 {
     public class UserNotification : IUserNotification
     {
