@@ -6,7 +6,6 @@ using System.Linq.Expressions;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
 namespace MoneyFox.Core.Repositories

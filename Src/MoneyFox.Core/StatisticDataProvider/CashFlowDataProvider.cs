@@ -5,7 +5,6 @@ using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.StatisticDataProvider
 {

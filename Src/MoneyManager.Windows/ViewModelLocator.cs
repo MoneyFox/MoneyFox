@@ -16,7 +16,6 @@ using MoneyFox.Foundation.Model;
 using MoneyManager.Core.Authentication;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using MoneyManager.Windows.Views;
 using INavigationService = GalaSoft.MvvmLight.Views.INavigationService;
 

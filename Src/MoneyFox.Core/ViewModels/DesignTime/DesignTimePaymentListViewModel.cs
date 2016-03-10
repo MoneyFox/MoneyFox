@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces.ViewModels;
-using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels.DesignTime
 {

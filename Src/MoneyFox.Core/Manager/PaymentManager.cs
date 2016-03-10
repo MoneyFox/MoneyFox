@@ -6,7 +6,6 @@ using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.Manager

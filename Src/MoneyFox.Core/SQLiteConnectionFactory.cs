@@ -3,7 +3,6 @@ using Windows.Storage;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
 using SQLite.Net;
 using SQLite.Net.Platform.WinRT;
 

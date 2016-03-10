@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Foundation.Model;
 using PropertyChanged;
 
 namespace MoneyFox.DataAccess

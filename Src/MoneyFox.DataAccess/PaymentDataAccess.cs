@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation.Model;
 using PropertyChanged;
 using SQLite.Net;
 

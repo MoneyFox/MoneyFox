@@ -3,7 +3,6 @@ using MoneyFox.Core.ViewModels;
 using MoneyFox.Foundation.Model;
 using MoneyManager.Core.StatisticDataProvider;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels

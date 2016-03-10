@@ -1,7 +1,6 @@
 ﻿using System;
 using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Helpers
 {

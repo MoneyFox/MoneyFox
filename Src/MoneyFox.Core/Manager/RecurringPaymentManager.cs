@@ -2,7 +2,6 @@
 using MoneyFox.Foundation.Model;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 
 namespace MoneyManager.Core.Manager
 {
