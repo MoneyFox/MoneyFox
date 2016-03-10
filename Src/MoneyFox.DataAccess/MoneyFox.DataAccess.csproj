@@ -113,7 +113,6 @@
     <Compile Include="PaymentDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecurringPaymentDataAccess.cs" />
-    <Compile Include="SettingDataAccess.cs" />
     <EmbeddedResource Include="Properties\MoneyFox.DataAccess.rd.xml" />
   </ItemGroup>
   <ItemGroup>

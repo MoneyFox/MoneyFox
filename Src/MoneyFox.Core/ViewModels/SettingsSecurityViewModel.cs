@@ -1,12 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Core.Helpers;
+using MoneyFox.Core.SettingAccess;
 using MoneyFox.Foundation.Resources;
-using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class SettingsSecurityViewModel : ViewModelBase

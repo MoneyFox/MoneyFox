@@ -123,9 +123,7 @@
     <Compile Include="PageNavigationService.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\FileStore.cs" />
-    <Compile Include="Src\LocalSettings.cs" />
     <Compile Include="Src\ProtectedData.cs" />
-    <Compile Include="Src\RoamingSettings.cs" />
     <Compile Include="Src\Shortcut\IncomeTile.cs" />
     <Compile Include="Src\Shortcut\ExpenseTile.cs" />
     <Compile Include="Src\Shortcut\Tile.cs" />

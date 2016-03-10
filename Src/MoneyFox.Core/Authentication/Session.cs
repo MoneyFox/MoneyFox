@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Globalization;
-using MoneyFox.Core.Helpers;
-using MoneyManager.Core.Helpers;
+using MoneyFox.Core.SettingAccess;
 
-namespace MoneyManager.Core.Authentication
+namespace MoneyFox.Core.Authentication
 {
     public class Session
     {

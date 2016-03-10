@@ -8,13 +8,12 @@ using MoneyFox.Core.Authentication;
 using MoneyFox.Core.Manager;
 using MoneyFox.Core.Repositories;
 using MoneyFox.Core.Services;
+using MoneyFox.Core.SettingAccess;
 using MoneyFox.Core.ViewModels;
 using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Model;
-using MoneyManager.Core.Authentication;
-using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Windows.Views;
 using INavigationService = GalaSoft.MvvmLight.Views.INavigationService;
@@ -46,9 +45,9 @@ namespace MoneyManager.Windows
             builder.RegisterType<PaymentDataAccess>().As<IDataAccess<Payment>>();
             builder.RegisterType<RecurringPaymentDataAccess>().As<IDataAccess<RecurringPayment>>();
             builder.RegisterType<CategoryDataAccess>().As<IDataAccess<Category>>();
-            builder.RegisterType<SettingDataAccess>().AsSelf();
+            builder.RegisterType<Settings>().AsSelf();
 
-            // This is needed for SettingDataAccess
+            // This is needed for Settings
             builder.RegisterAssemblyTypes(typeof(AccountDataAccess).GetTypeInfo().Assembly)
                 .Where(t => t.Name.EndsWith("DataAccesss"))
                 .AsSelf()
@@ -75,7 +74,14 @@ namespace MoneyManager.Windows
                 .AsSelf()
                 .SingleInstance();
 
-            ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(builder.Build()));
+
+            builder.RegisterAssemblyTypes(typeof(Settings).GetTypeInfo().Assembly)
+                .Where(t => t.Name.EndsWith("Settings"))
+                .AsSelf()
+                .SingleInstance();
+
+            var container = builder.Build();
+            ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
         }
         private static PageNavigationService CreateNavigationService()
         {

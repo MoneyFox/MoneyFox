@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
 using Microsoft.OneDrive.Sdk;
-using MoneyFox.Core.Helpers;
-using MoneyManager.DataAccess;
+using MoneyFox.Core.SettingAccess;
 using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyFox.Core.Manager
@@ -14,19 +13,16 @@ namespace MoneyFox.Core.Manager
     {
         private readonly IBackupService backupService;
         private readonly IRepositoryManager repositoryManager;
-        private readonly SettingDataAccess roamingSettings;
 
         /// <summary>
         ///     Creates a new instance
         /// </summary>
         /// <param name="backupService">Helper for uploading and downloading to the respective backup service.</param>
-        /// <param name="roamingSettings">Access to the roaming settings.</param>
         /// <param name="repositoryManager">An instance of the repository manager to reload data.</param>
-        public AutoBackupManager(IBackupService backupService, SettingDataAccess roamingSettings,
+        public AutoBackupManager(IBackupService backupService,
             IRepositoryManager repositoryManager)
         {
             this.backupService = backupService;
-            this.roamingSettings = roamingSettings;
             this.repositoryManager = repositoryManager;
         }
 
@@ -37,7 +33,7 @@ namespace MoneyFox.Core.Manager
         {
             try
             {
-                if (!roamingSettings.IsBackupAutouploadEnabled) return;
+                if (!Settings.IsBackupAutouploadEnabled) return;
 
                 if (await backupService.GetBackupDate() < Settings.LastDatabaseUpdate)
                 {
@@ -57,7 +53,7 @@ namespace MoneyFox.Core.Manager
         {
             try
             {
-                if (!roamingSettings.IsBackupAutouploadEnabled) return;
+                if (!Settings.IsBackupAutouploadEnabled) return;
 
                 var backupDate = await backupService.GetBackupDate();
                 if (backupDate > Settings.LastDatabaseUpdate)

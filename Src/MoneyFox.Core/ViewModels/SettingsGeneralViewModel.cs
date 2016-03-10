@@ -1,23 +1,16 @@
 ﻿using GalaSoft.MvvmLight;
-using MoneyManager.DataAccess;
+using MoneyFox.Core.SettingAccess;
 
 namespace MoneyFox.Core.ViewModels
 {
     public class SettingsGeneralViewModel : ViewModelBase
     {
-        private readonly SettingDataAccess settingsDataRepository;
-
-        public SettingsGeneralViewModel(SettingDataAccess settingsDataRepository)
-        {
-            this.settingsDataRepository = settingsDataRepository;
-        }
-
         public bool IsAutoBackupEnabled
         {
-            get { return settingsDataRepository.IsBackupAutouploadEnabled; }
+            get { return Settings.IsBackupAutouploadEnabled; }
             set
             {
-                settingsDataRepository.IsBackupAutouploadEnabled = value;
+                Settings.IsBackupAutouploadEnabled = value;
                 RaisePropertyChanged();
             }
         }

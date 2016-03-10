@@ -3,7 +3,7 @@ using System.Globalization;
 using Windows.Storage;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Windows
+namespace MoneyFox.Core.SettingAccess
 {
     public class LocalSettings : ILocalSettings
     {
