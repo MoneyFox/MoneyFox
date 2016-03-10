@@ -52,6 +52,8 @@ namespace MoneyFox.Windows
 
             builder.RegisterType<ProtectedData>().As<IProtectedData>();
             builder.RegisterType<TileHelper>().AsSelf();
+            builder.RegisterType<FileStore>().As<IFileStore>();
+            builder.RegisterType<UserNotification>().As<IUserNotification>();
 
             // This is needed for Settings
             builder.RegisterAssemblyTypes(typeof (AccountDataAccess).GetTypeInfo().Assembly)

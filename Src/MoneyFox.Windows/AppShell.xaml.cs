@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Navigation;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Windows.Controls;
 using MoneyManager.Windows.Views;
+using BackupView = MoneyFox.Windows.Views.BackupView;
 
 namespace MoneyManager.Windows
 {

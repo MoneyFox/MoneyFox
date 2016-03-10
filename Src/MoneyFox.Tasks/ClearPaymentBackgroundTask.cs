@@ -1,12 +1,13 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
 using Microsoft.ApplicationInsights;
+using MoneyFox.Core;
 using MoneyFox.Core.Manager;
 using MoneyFox.Core.Repositories;
-using MoneyManager.Core.Manager;
-using MoneyManager.Windows.Shortcut;
+using MoneyFox.Core.Shortcut;
+using MoneyFox.DataAccess;
 
-namespace MoneyManager.Tasks.Windows
+namespace MoneyFOy.Tasks
 {
     public sealed class ClearPaymentBackgroundTask : IBackgroundTask
     {
@@ -14,13 +15,14 @@ namespace MoneyManager.Tasks.Windows
 
         public ClearPaymentBackgroundTask()
         {
-            var accountRepository = new AccountRepository(new GenericDataRepository<Account>());
+            var sqliteConnectionFactory = new SqLiteConnectionFactory();
+            var accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnectionFactory));
 
             paymentManager = new PaymentManager(
-                new PaymentRepository(new GenericDataRepository<Payment>(),
-                    new GenericDataRepository<RecurringPayment>(),
+                new PaymentRepository(new PaymentDataAccess(sqliteConnectionFactory), 
+                    new RecurringPaymentDataAccess(sqliteConnectionFactory), 
                     accountRepository,
-                    new CategoryRepository(new GenericDataRepository<Category>())),
+                    new CategoryRepository(new CategoryDataAccess(sqliteConnectionFactory))),
                 accountRepository,
                 null);
         }

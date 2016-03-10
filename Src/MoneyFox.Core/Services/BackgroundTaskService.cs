@@ -11,7 +11,7 @@ namespace MoneyFox.Core.Services
     {
         private Dictionary<string, string> Tasks => new Dictionary<string, string>
         {
-            {"ClearPaymentBackgroundTask", "MoneyManager.Tasks.Windows"}
+            {"ClearPaymentBackgroundTask", "MoneyFox.Tasks"}
         };
 
         public async Task RegisterTasksAsync()
