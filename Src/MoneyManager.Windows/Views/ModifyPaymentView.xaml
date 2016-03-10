@@ -1,17 +1,17 @@
 ﻿<Page x:Class="MoneyManager.Windows.Views.ModifyPaymentView"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                      xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
-                      xmlns:converter="using:MoneyManager.Windows.Converter"
-                      xmlns:converters="using:Cimbalino.Toolkit.Converters"
-                      xmlns:model="using:MoneyFox.Foundation.Model"
-                      mc:Ignorable="d"
-                      NavigationCacheMode="Enabled"
-                      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
+      xmlns:converter="using:MoneyManager.Windows.Converter"
+      xmlns:converters="using:Cimbalino.Toolkit.Converters"
+      xmlns:model="using:MoneyFox.Foundation.Model"
+      mc:Ignorable="d"
+      NavigationCacheMode="Enabled"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
         <converter:AmountFormatConverter x:Key="AmountConverter" />

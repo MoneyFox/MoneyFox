@@ -23,9 +23,9 @@ namespace MoneyFox.Core.ViewModels
         private readonly IAccountRepository accountRepository;
         private readonly IDefaultManager defaultManager;
         private readonly IDialogService dialogService;
+        private readonly INavigationService navigationService;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
-        private readonly INavigationService navigationService;
 
         // This has to be static in order to keep the value even if you leave the page to select a category.
         private double amount;
@@ -34,7 +34,7 @@ namespace MoneyFox.Core.ViewModels
             IAccountRepository accountRepository,
             IDialogService dialogService,
             IPaymentManager paymentManager,
-            IDefaultManager defaultManager, 
+            IDefaultManager defaultManager,
             INavigationService navigationService)
         {
             this.paymentRepository = paymentRepository;

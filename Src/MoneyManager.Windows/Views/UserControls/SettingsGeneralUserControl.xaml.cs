@@ -1,6 +1,5 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.ViewModels;
-using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Windows.Views.UserControls
 {

@@ -7,9 +7,10 @@ using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.ViewModels
 {
-    public class AboutViewModel : ViewModelBase {
-        private readonly IEmailComposeService emailComposeService;
+    public class AboutViewModel : ViewModelBase
+    {
         private readonly IAppInformation appInformation;
+        private readonly IEmailComposeService emailComposeService;
         private readonly ILauncherService launcherService;
         private readonly IStoreService storeService;
 

@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Foundation.Model;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using PropertyChanged;
 using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
@@ -15,8 +14,8 @@ namespace MoneyFox.Core.ViewModels
         ///     Creates an CategoryListViewModel for the usage of providing a category selection.
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
-        /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
-        /// <param name="navigationService">An instance of <see cref="INavigationService" /></param>
+        /// <param name="dialogService">An instance of <see cref="MoneyManager.Foundation.Interfaces.IDialogService" /></param>
+        /// <param name="navigationService">An instance of <see cref="GalaSoft.MvvmLight.Views.INavigationService" /></param>
         public SelectCategoryListViewModel(IRepository<Category> categoryRepository,
             IDialogService dialogService,
             INavigationService navigationService) : base(categoryRepository, dialogService, navigationService)

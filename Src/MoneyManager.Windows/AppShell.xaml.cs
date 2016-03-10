@@ -268,7 +268,9 @@ namespace MoneyManager.Windows
             // Get a hold of the current Frame so that we can inspect the app back stack.
 
             if (AppFrame == null)
+            {
                 return;
+            }
 
             // Check to see if this is the top-most page on the app back stack.
             if (AppFrame.CanGoBack && !handled)
@@ -284,7 +286,9 @@ namespace MoneyManager.Windows
             // Get a hold of the current Frame so that we can inspect the app back stack.
 
             if (AppFrame == null)
+            {
                 return;
+            }
 
             // Check to see if this is the top-most page on the app back stack.
             if (AppFrame.CanGoForward && !handled)
@@ -348,7 +352,9 @@ namespace MoneyManager.Windows
                             (from p in navlistTop.Union(navlistBottom) where p.DestPage == entry.SourcePageType select p)
                                 .SingleOrDefault();
                         if (item != null)
+                        {
                             break;
+                        }
                     }
                 }
 
@@ -360,9 +366,15 @@ namespace MoneyManager.Windows
                     // user is invoking the back button via the keyboard causing the selected nav menu item to change
                     // then focus will remain on the back button.
                     //this is for the bottom section
-                    if (container != null) container.IsTabStop = false;
+                    if (container != null)
+                    {
+                        container.IsTabStop = false;
+                    }
                     NavMenuListBottom.SetSelectedItem(container);
-                    if (container != null) container.IsTabStop = true;
+                    if (container != null)
+                    {
+                        container.IsTabStop = true;
+                    }
                     //reset the top section
                     NavMenuListTop.SetSelectedItem(null);
                 }

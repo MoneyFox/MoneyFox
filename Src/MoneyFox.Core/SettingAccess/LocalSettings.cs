@@ -53,9 +53,13 @@ namespace MoneyFox.Core.SettingAccess
                         ? -1
                         : Convert.ToInt64(savedTime, CultureInfo.InvariantCulture);
                     if (ticks == -1)
+                    {
                         value = defaultValue;
+                    }
                     else
+                    {
                         value = new DateTime(ticks);
+                    }
 
                     return null != value ? (T) value : defaultValue;
                 }
@@ -65,9 +69,13 @@ namespace MoneyFox.Core.SettingAccess
                 {
                     var tempValue = AppSettings.Values[key];
                     if (tempValue != null)
+                    {
                         value = (T) tempValue;
+                    }
                     else
+                    {
                         value = defaultValue;
+                    }
                 }
                 // Otherwise, use the default value.
                 else

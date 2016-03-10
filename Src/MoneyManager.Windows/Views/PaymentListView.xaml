@@ -1,14 +1,14 @@
 ﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
-                      xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
-                      x:Class="MoneyManager.Windows.Views.PaymentListView"
-                      d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel, IsDesignTimeCreatable=True}"
-                      mc:Ignorable="d"
-                      NavigationCacheMode="Disabled"
-                      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:userControls="using:MoneyManager.Windows.Views.UserControls"
+      xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
+      x:Class="MoneyManager.Windows.Views.PaymentListView"
+      d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel, IsDesignTimeCreatable=True}"
+      mc:Ignorable="d"
+      NavigationCacheMode="Disabled"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
         <Grid.RowDefinitions>

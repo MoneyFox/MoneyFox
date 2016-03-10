@@ -22,7 +22,7 @@ namespace MoneyFox.Core.ViewModels
 
         public AccountListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
-            IDialogService dialogService, 
+            IDialogService dialogService,
             INavigationService navigationService)
         {
             this.accountRepository = accountRepository;

@@ -31,7 +31,8 @@ namespace MoneyFox.DataAccess
                 {
                     db.Insert(itemToSave);
                     itemToSave.Id = db.Table<Category>().OrderByDescending(x => x.Id).First().Id;
-                } else
+                }
+                else
                 {
                     db.Update(itemToSave);
                 }

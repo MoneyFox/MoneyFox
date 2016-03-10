@@ -5,7 +5,6 @@ using GalaSoft.MvvmLight.Views;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
-using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.ViewModels

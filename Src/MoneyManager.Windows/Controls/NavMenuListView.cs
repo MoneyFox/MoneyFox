@@ -76,7 +76,10 @@ namespace MoneyManager.Windows.Controls
         /// <param name="item"></param>
         public void SetSelectedItem(ListViewItem item)
         {
-            if (Items == null) return;
+            if (Items == null)
+            {
+                return;
+            }
 
             var index = -1;
             if (item != null)
@@ -88,7 +91,10 @@ namespace MoneyManager.Windows.Controls
             {
                 var lvi = (ListViewItem) ContainerFromIndex(i);
 
-                if (lvi == null) continue;
+                if (lvi == null)
+                {
+                    continue;
+                }
 
                 if (i != index)
                 {

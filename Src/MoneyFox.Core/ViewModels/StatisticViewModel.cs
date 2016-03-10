@@ -1,7 +1,6 @@
 using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Foundation;
 using MoneyFox.Foundation.Messages;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Extensions;
@@ -31,7 +30,7 @@ namespace MoneyFox.Core.ViewModels
             StartDate = startDate;
             EndDate = endDate;
 
-            MessengerInstance.Register<DateSelectedMessage>(this,  message =>
+            MessengerInstance.Register<DateSelectedMessage>(this, message =>
             {
                 StartDate = message.StartDate;
                 EndDate = message.EndDate;

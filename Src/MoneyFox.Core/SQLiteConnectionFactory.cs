@@ -15,6 +15,13 @@ namespace MoneyFox.Core
             CreateDb();
         }
 
+        public SQLiteConnection GetConnection(string databaseName = null)
+        {
+            var dbName = databaseName ?? OneDriveAuthenticationConstants.DB_NAME;
+
+            return new SQLiteConnection(new SQLitePlatformWinRT(), GetDefaultBasePath(dbName));
+        }
+
         private void CreateDb()
         {
             using (var db = GetConnection(OneDriveAuthenticationConstants.DB_NAME))
@@ -24,13 +31,6 @@ namespace MoneyFox.Core
                 db.CreateTable<RecurringPayment>();
                 db.CreateTable<Category>();
             }
-        }
-
-        public SQLiteConnection GetConnection(string databaseName = null)
-        {
-            var dbName = databaseName ?? OneDriveAuthenticationConstants.DB_NAME;
-
-            return new SQLiteConnection(new SQLitePlatformWinRT(), GetDefaultBasePath(dbName));
         }
 
         private string GetDefaultBasePath(string databaseName)

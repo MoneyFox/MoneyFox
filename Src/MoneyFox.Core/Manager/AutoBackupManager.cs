@@ -33,7 +33,10 @@ namespace MoneyFox.Core.Manager
         {
             try
             {
-                if (!Settings.IsBackupAutouploadEnabled) return;
+                if (!Settings.IsBackupAutouploadEnabled)
+                {
+                    return;
+                }
 
                 if (await backupService.GetBackupDate() < Settings.LastDatabaseUpdate)
                 {
@@ -53,7 +56,10 @@ namespace MoneyFox.Core.Manager
         {
             try
             {
-                if (!Settings.IsBackupAutouploadEnabled) return;
+                if (!Settings.IsBackupAutouploadEnabled)
+                {
+                    return;
+                }
 
                 var backupDate = await backupService.GetBackupDate();
                 if (backupDate > Settings.LastDatabaseUpdate)

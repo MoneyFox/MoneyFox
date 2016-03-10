@@ -15,8 +15,8 @@ namespace MoneyFox.Core.ViewModels
     public class RecurringPaymentListViewModel : ViewModelBase
     {
         private readonly IDialogService dialogService;
-        private readonly IPaymentRepository paymentRepository;
         private readonly INavigationService navigationService;
+        private readonly IPaymentRepository paymentRepository;
 
         public RecurringPaymentListViewModel(IPaymentRepository paymentRepository,
             IDialogService dialogService,
@@ -81,7 +81,9 @@ namespace MoneyFox.Core.ViewModels
         {
             if (!await
                 dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
+            {
                 return;
+            }
 
             paymentRepository.Delete(payment);
             LoadedCommand.Execute(null);

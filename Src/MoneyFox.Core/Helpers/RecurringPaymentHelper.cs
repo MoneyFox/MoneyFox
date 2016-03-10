@@ -79,7 +79,10 @@ namespace MoneyFox.Core.Helpers
         /// <returns>True or False if the payment have to be repeated.</returns>
         public static bool CheckIfRepeatable(RecurringPayment recurringPayment, Payment relatedPayment)
         {
-            if (!relatedPayment.IsCleared) return false;
+            if (!relatedPayment.IsCleared)
+            {
+                return false;
+            }
 
             switch (recurringPayment.Recurrence)
             {

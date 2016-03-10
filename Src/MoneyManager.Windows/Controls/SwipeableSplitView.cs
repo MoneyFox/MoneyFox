@@ -250,7 +250,9 @@ namespace MoneyManager.Windows.Controls
 
                 case SplitViewDisplayMode.Overlay:
                     if (splitView.OpenSwipeablePaneAnimation == null || splitView.CloseSwipeablePaneAnimation == null)
+                    {
                         return;
+                    }
                     if ((bool) e.NewValue)
                     {
                         splitView.OpenSwipeablePane();
@@ -319,7 +321,10 @@ namespace MoneyManager.Windows.Controls
             var x = panAreaTransform.TranslateX + e.Delta.Translation.X;
 
             // keep the pan within the bountry
-            if (x < PanAreaInitialTranslateX || x > 0) return;
+            if (x < PanAreaInitialTranslateX || x > 0)
+            {
+                return;
+            }
 
             // while we are panning the PanArea on X axis, let's sync the PaneRoot's position X too
             paneRootTransform.TranslateX = panAreaTransform.TranslateX = x;

@@ -19,7 +19,9 @@ namespace MoneyFox.Core.Services
             foreach (var kvTask in Tasks)
             {
                 if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == kvTask.Key))
+                {
                     break;
+                }
 
                 await RegisterTaskAsync(kvTask.Key, kvTask.Value);
             }

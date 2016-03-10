@@ -24,13 +24,13 @@ namespace MoneyFox.Core.ViewModels
         private readonly IAccountRepository accountRepository;
         private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
-        private readonly IPaymentRepository paymentRepository;
         private readonly INavigationService navigationService;
+        private readonly IPaymentRepository paymentRepository;
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IBalanceViewModel balanceViewModel,
-            IDialogService dialogService, 
+            IDialogService dialogService,
             INavigationService navigationService)
         {
             this.paymentRepository = paymentRepository;
@@ -109,7 +109,8 @@ namespace MoneyFox.Core.ViewModels
 
         private void GoToAddPayment(string typeString)
         {
-            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, Enum.Parse(typeof(PaymentType), typeString));
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW,
+                Enum.Parse(typeof (PaymentType), typeString));
         }
 
         private async void DeleteAccount()
@@ -133,7 +134,9 @@ namespace MoneyFox.Core.ViewModels
         {
             if (!await
                 dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
+            {
                 return;
+            }
 
             accountRepository.RemovePaymentAmount(payment);
             paymentRepository.Delete(payment);

@@ -14,7 +14,8 @@ namespace MoneyFox.Core.ViewModels
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
         /// <param name="dialogService">An instance of <see cref="MoneyManager.Foundation.Interfaces.IDialogService" /></param>
-        public CategoryListViewModel(IRepository<Category> categoryRepository, IDialogService dialogService, INavigationService navigationService)
+        public CategoryListViewModel(IRepository<Category> categoryRepository, IDialogService dialogService,
+            INavigationService navigationService)
             : base(categoryRepository, dialogService, navigationService)
         {
         }
@@ -24,7 +25,10 @@ namespace MoneyFox.Core.ViewModels
             get { return CategoryRepository.Selected ?? new Category(); }
             set
             {
-                if (value == null) return;
+                if (value == null)
+                {
+                    return;
+                }
 
                 CategoryRepository.Selected = value;
             }

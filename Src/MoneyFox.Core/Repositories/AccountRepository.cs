@@ -93,12 +93,15 @@ namespace MoneyFox.Core.Repositories
         /// <param name="payment">Payment to add the account from.</param>
         public void AddPaymentAmount(Payment payment)
         {
-            if (!payment.IsCleared) return;
+            if (!payment.IsCleared)
+            {
+                return;
+            }
 
             PrehandleAddIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int)PaymentType.Income
+                payment.Type == (int) PaymentType.Income
                     ? x
                     : -x;
 
@@ -121,12 +124,15 @@ namespace MoneyFox.Core.Repositories
         /// <param name="account">Account to remove the amount from.</param>
         public void RemovePaymentAmount(Payment payment, Account account)
         {
-            if (!payment.IsCleared) return;
+            if (!payment.IsCleared)
+            {
+                return;
+            }
 
             PrehandleRemoveIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int)PaymentType.Income
+                payment.Type == (int) PaymentType.Income
                     ? -x
                     : x;
 
@@ -135,7 +141,7 @@ namespace MoneyFox.Core.Repositories
 
         private void PrehandleRemoveIfTransfer(Payment payment)
         {
-            if (payment.Type == (int)PaymentType.Transfer)
+            if (payment.Type == (int) PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
@@ -158,7 +164,7 @@ namespace MoneyFox.Core.Repositories
 
         private void PrehandleAddIfTransfer(Payment payment)
         {
-            if (payment.Type == (int)PaymentType.Transfer)
+            if (payment.Type == (int) PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());

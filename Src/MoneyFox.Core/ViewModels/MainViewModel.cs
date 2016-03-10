@@ -40,7 +40,8 @@ namespace MoneyFox.Core.ViewModels
 
         private void GoToAddPayment(string typeString)
         {
-            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, Enum.Parse(typeof(PaymentType), typeString));
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW,
+                Enum.Parse(typeof (PaymentType), typeString));
         }
 
         private void GoToAddAccount()
