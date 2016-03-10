@@ -4,6 +4,6 @@
     <NuGetPackageRoot>$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
   </PropertyGroup>
   <ImportGroup>
-    <Import Project="$(NuGetPackageRoot)\Microsoft.Data.Sqlite\1.0.0-rc1-final\build\netcore50\Microsoft.Data.Sqlite.targets" Condition="Exists('$(NuGetPackageRoot)\Microsoft.Data.Sqlite\1.0.0-rc1-final\build\netcore50\Microsoft.Data.Sqlite.targets')" />
+    <Import Project="$(NuGetPackageRoot)\Fody\1.29.2\build\dotnet\Fody.targets" Condition="Exists('$(NuGetPackageRoot)\Fody\1.29.2\build\dotnet\Fody.targets')" />
   </ImportGroup>
 </Project>

@@ -3,10 +3,10 @@ using System.Runtime.CompilerServices;
 using MoneyManager.Foundation.Interfaces;
 using PropertyChanged;
 
-namespace MoneyFox.DataAccess
+namespace MoneyManager.DataAccess
 {
     [ImplementPropertyChanged]
-    public class SettingDataRepository : INotifyPropertyChanged
+    public class SettingDataAccess : INotifyPropertyChanged
     {
         // Settings Names
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
@@ -20,7 +20,7 @@ namespace MoneyFox.DataAccess
 
         private readonly IRoamingSettings roamingSettings;
 
-        public SettingDataRepository(IRoamingSettings roamingSettings)
+        public SettingDataAccess(IRoamingSettings roamingSettings)
         {
             this.roamingSettings = roamingSettings;
         }
@@ -63,7 +63,6 @@ namespace MoneyFox.DataAccess
                 OnPropertyChanged();
             }
         }
-
         public bool IsBackupAutouploadEnabled
         {
             get

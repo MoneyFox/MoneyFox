@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IFileStore.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="Enumerations.cs" />

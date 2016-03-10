@@ -2,14 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using MoneyFox.Core.Helpers;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
-using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
 namespace MoneyFox.Core.Repositories
@@ -17,16 +13,16 @@ namespace MoneyFox.Core.Repositories
     [ImplementPropertyChanged]
     public class AccountRepository : IAccountRepository
     {
-        private readonly IGenericDataRepository<Account> accountDataAccess;
+        private readonly IDataAccess<Account> dataAccess;
         private ObservableCollection<Account> data;
 
         /// <summary>
         ///     Creates a AccountRepository Object
         /// </summary>
-        /// <param name="accountDataAccess">Instanced account data Access</param>
-        public AccountRepository(IGenericDataRepository<Account> accountDataAccess)
+        /// <param name="dataAccess">Instanced account data Access</param>
+        public AccountRepository(IDataAccess<Account> dataAccess)
         {
-            this.accountDataAccess = accountDataAccess;
+            this.dataAccess = dataAccess;
 
             Data = new ObservableCollection<Account>();
             Load();
@@ -64,10 +60,8 @@ namespace MoneyFox.Core.Repositories
             if (account.Id == 0)
             {
                 data.Add(account);
-                accountDataAccess.Add(account);
             }
-            accountDataAccess.Update(account);
-            Settings.LastDatabaseUpdate = DateTime.Now;
+            dataAccess.SaveItem(account);
         }
 
         /// <summary>
@@ -77,8 +71,7 @@ namespace MoneyFox.Core.Repositories
         public void Delete(Account accountToDelete)
         {
             data.Remove(accountToDelete);
-            accountDataAccess.Delete(accountToDelete);
-            Settings.LastDatabaseUpdate = DateTime.Now;
+            dataAccess.DeleteItem(accountToDelete);
         }
 
         /// <summary>
@@ -88,7 +81,7 @@ namespace MoneyFox.Core.Repositories
         {
             Data.Clear();
 
-            foreach (var account in accountDataAccess.GetList(filter))
+            foreach (var account in dataAccess.LoadList(filter))
             {
                 Data.Add(account);
             }
@@ -105,7 +98,7 @@ namespace MoneyFox.Core.Repositories
             PrehandleAddIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int) PaymentType.Income
+                payment.Type == (int)PaymentType.Income
                     ? x
                     : -x;
 
@@ -133,7 +126,7 @@ namespace MoneyFox.Core.Repositories
             PrehandleRemoveIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int) PaymentType.Income
+                payment.Type == (int)PaymentType.Income
                     ? -x
                     : x;
 
@@ -142,7 +135,7 @@ namespace MoneyFox.Core.Repositories
 
         private void PrehandleRemoveIfTransfer(Payment payment)
         {
-            if (payment.Type == (int) PaymentType.Transfer)
+            if (payment.Type == (int)PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
@@ -165,7 +158,7 @@ namespace MoneyFox.Core.Repositories
 
         private void PrehandleAddIfTransfer(Payment payment)
         {
-            if (payment.Type == (int) PaymentType.Transfer)
+            if (payment.Type == (int)PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());

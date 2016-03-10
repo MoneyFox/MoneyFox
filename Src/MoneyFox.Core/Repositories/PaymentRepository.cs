@@ -3,43 +3,39 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using MoneyFox.Core.Helpers;
-using MoneyFox.Foundation.Exceptions;
-using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Model;
-using MoneyManager.Core.Helpers;
+using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 
-namespace MoneyFox.Core.Repositories
+namespace MoneyManager.Core.Repositories
 {
     [ImplementPropertyChanged]
     public class PaymentRepository : IPaymentRepository
     {
         private readonly IAccountRepository accountRepository;
         private readonly IRepository<Category> categoryRepository;
-        private readonly IGenericDataRepository<Payment> paymentDataAccess;
-        private readonly IGenericDataRepository<RecurringPayment> recurringDataAccess;
+        private readonly IDataAccess<Payment> dataAccess;
+        private readonly IDataAccess<RecurringPayment> recurringDataAccess;
         private ObservableCollection<Payment> data;
 
         /// <summary>
         ///     Creates a paymentRepository Object
         /// </summary>
-        /// <param name="paymentDataAccess">Instanced <see cref="IGenericDataRepository{T}" /> for <see cref="Payment" /></param>
+        /// <param name="dataAccess">Instanced <see cref="IDataAccess{T}" /> for <see cref="Payment" /></param>
         /// <param name="recurringDataAccess">
-        ///     Instanced <see cref="IGenericDataRepository{T}" /> for <see cref="RecurringPayment" />
+        ///     Instanced <see cref="IDataAccess{T}" /> for <see cref="RecurringPayment" />
         /// </param>
         /// <param name="accountRepository">Instanced <see cref="IAccountRepository" /></param>
         /// <param name="categoryRepository">
         ///     Instanced <see cref="IRepository{T}" /> for <see cref="Category" />
         /// </param>
-        public PaymentRepository(IGenericDataRepository<Payment> paymentDataAccess,
-            IGenericDataRepository<RecurringPayment> recurringDataAccess,
+        public PaymentRepository(IDataAccess<Payment> dataAccess,
+            IDataAccess<RecurringPayment> recurringDataAccess,
             IAccountRepository accountRepository,
             IRepository<Category> categoryRepository)
         {
-            this.paymentDataAccess = paymentDataAccess;
+            this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
             this.accountRepository = accountRepository;
             this.categoryRepository = categoryRepository;
@@ -85,17 +81,15 @@ namespace MoneyFox.Core.Repositories
             //delete recurring payment if isRecurring is no longer set.
             if (!payment.IsRecurring && payment.RecurringPaymentId != 0)
             {
-                recurringDataAccess.Delete(payment.RecurringPayment);
+                recurringDataAccess.DeleteItem(payment.RecurringPayment);
                 payment.RecurringPaymentId = 0;
             }
 
             if (payment.Id == 0)
             {
                 data.Add(payment);
-                paymentDataAccess.Add(payment);
             }
-            paymentDataAccess.Update(payment);
-            Settings.LastDatabaseUpdate = DateTime.Now;
+            dataAccess.SaveItem(payment);
         }
 
         /// <summary>
@@ -109,13 +103,12 @@ namespace MoneyFox.Core.Repositories
             foreach (var payment in payments)
             {
                 data.Remove(payment);
-                paymentDataAccess.Delete(payment);
+                dataAccess.DeleteItem(payment);
 
                 // If this accountToDelete was the last finacial accountToDelete for the linked recurring accountToDelete
                 // delete the db entry for the recurring accountToDelete.
                 DeleteRecurringPaymentIfLastAssociated(payment);
             }
-            Settings.LastDatabaseUpdate = DateTime.Now;
         }
 
         /// <summary>
@@ -126,7 +119,7 @@ namespace MoneyFox.Core.Repositories
         {
             var payments = Data.Where(x => x.Id == paymentToDelete.Id).ToList();
 
-            recurringDataAccess.Delete(paymentToDelete.RecurringPayment);
+            recurringDataAccess.DeleteItem(paymentToDelete.RecurringPayment);
 
             foreach (var payment in payments)
             {
@@ -142,8 +135,8 @@ namespace MoneyFox.Core.Repositories
         public void Load(Expression<Func<Payment, bool>> filter = null)
         {
             Data.Clear();
-            var payments = paymentDataAccess.GetList(filter);
-            var recurringTransactions = recurringDataAccess.GetAll();
+            var payments = dataAccess.LoadList(filter);
+            var recurringTransactions = recurringDataAccess.LoadList();
 
             foreach (var payment in payments)
             {
@@ -222,11 +215,11 @@ namespace MoneyFox.Core.Repositories
         {
             if (Data.All(x => x.RecurringPaymentId != item.RecurringPaymentId))
             {
-                var recurringList = recurringDataAccess.GetList(x => x.Id == item.RecurringPaymentId).ToList();
+                var recurringList = recurringDataAccess.LoadList(x => x.Id == item.RecurringPaymentId).ToList();
 
                 foreach (var recTrans in recurringList)
                 {
-                    recurringDataAccess.Delete(recTrans);
+                    recurringDataAccess.DeleteItem(recTrans);
                 }
             }
         }
