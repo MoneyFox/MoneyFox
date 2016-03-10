@@ -37,7 +37,9 @@ namespace MoneyManager.Windows
         public App()
         {
             InitializeComponent();
+#if !DEBUG
             WindowsAppInitializer.InitializeAsync();
+#endif
 
             Suspending += OnSuspending;
         }
