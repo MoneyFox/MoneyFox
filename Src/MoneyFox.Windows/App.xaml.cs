@@ -11,7 +11,6 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.ApplicationInsights;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.Authentication;
 using MoneyFox.Core.Helpers;

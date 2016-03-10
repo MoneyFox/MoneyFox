@@ -10,9 +10,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Windows.Views;
 using MoneyManager.Windows.Controls;
 using MoneyManager.Windows.Views;
-using BackupView = MoneyFox.Windows.Views.BackupView;
 
 namespace MoneyManager.Windows
 {
