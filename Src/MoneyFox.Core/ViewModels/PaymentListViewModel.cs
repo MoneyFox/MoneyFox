@@ -26,18 +26,21 @@ namespace MoneyFox.Core.ViewModels
         private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
         private readonly IPaymentRepository paymentRepository;
+        private readonly IPaymentManager paymentManager;
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IBalanceViewModel balanceViewModel,
             IDialogService dialogService,
-            INavigationService navigationService)
+            INavigationService navigationService,
+            IPaymentManager paymentManager)
         {
             this.paymentRepository = paymentRepository;
             this.accountRepository = accountRepository;
             this.balanceViewModel = balanceViewModel;
             this.dialogService = dialogService;
             this.navigationService = navigationService;
+            this.paymentManager = paymentManager;
 
             BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository);
         }
@@ -136,6 +139,11 @@ namespace MoneyFox.Core.ViewModels
                 dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
             {
                 return;
+            }
+
+            if (await paymentManager.CheckForRecurringPayment(payment))
+            {
+                paymentRepository.DeleteRecurring(payment);
             }
 
             accountRepository.RemovePaymentAmount(payment);

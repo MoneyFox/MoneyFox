@@ -70,8 +70,7 @@ namespace MoneyManager.Windows
             {
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                shell.AppFrame.Navigate(typeof(MainView));
-
+                shell.AppFrame.Navigate(typeof (MainView));
             }
 
             if (ServiceLocator.Current.GetInstance<Session>().ValidateSession())
