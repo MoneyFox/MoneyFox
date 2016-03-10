@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Microsoft.ApplicationInsights;
 using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyFox.DataAccess
@@ -20,7 +21,7 @@ namespace MoneyFox.DataAccess
             }
             catch (Exception ex)
             {
-                new TelemetryManager
+                new TelemetryClient().TrackException(ex);
             }
         }
 
@@ -36,7 +37,7 @@ namespace MoneyFox.DataAccess
             }
             catch (Exception ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                new TelemetryClient().TrackException(ex);
             }
         }
 
@@ -52,7 +53,7 @@ namespace MoneyFox.DataAccess
             }
             catch (Exception ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                new TelemetryClient().TrackException(ex);
             }
             return new List<T>();
         }

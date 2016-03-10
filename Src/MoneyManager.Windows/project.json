@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "Autofac.Extras.CommonServiceLocator": "3.2.0",
     "Cimbalino.Toolkit": "2.1.2",
     "Microsoft.ApplicationInsights.PersistenceChannel": "1.2.3",
     "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",

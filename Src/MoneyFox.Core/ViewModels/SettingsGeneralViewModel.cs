@@ -1,13 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
-using MoneyFox.DataAccess;
+using MoneyManager.DataAccess;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     public class SettingsGeneralViewModel : ViewModelBase
     {
-        private readonly SettingDataRepository settingsDataRepository;
+        private readonly SettingDataAccess settingsDataRepository;
 
-        public SettingsGeneralViewModel(SettingDataRepository settingsDataRepository)
+        public SettingsGeneralViewModel(SettingDataAccess settingsDataRepository)
         {
             this.settingsDataRepository = settingsDataRepository;
         }

@@ -1,18 +1,17 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Model;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Core.Manager
+namespace MoneyFox.Core.Manager
 {
     public class DefaultManager : IDefaultManager
     {
         private readonly IAccountRepository accountRepository;
-        private readonly SettingDataRepository settings;
+        private readonly SettingDataAccess settings;
 
-        public DefaultManager(IAccountRepository accountRepository, SettingDataRepository settings)
+        public DefaultManager(IAccountRepository accountRepository, SettingDataAccess settings)
         {
             this.accountRepository = accountRepository;
             this.settings = settings;

@@ -3,6 +3,26 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "Autofac/3.5.0": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.CommonServiceLocator/3.2.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "CommonServiceLocator": "[1.2.0, )"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        }
+      },
       "Cimbalino.Toolkit/2.1.2": {
         "dependencies": {
           "Cimbalino.Toolkit.Core": "[2.1.2, )",
@@ -1744,6 +1764,26 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "Autofac/3.5.0": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.CommonServiceLocator/3.2.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "CommonServiceLocator": "[1.2.0, )"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        }
+      },
       "Cimbalino.Toolkit/2.1.2": {
         "dependencies": {
           "Cimbalino.Toolkit.Core": "[2.1.2, )",
@@ -3575,6 +3615,26 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "Autofac/3.5.0": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.CommonServiceLocator/3.2.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "CommonServiceLocator": "[1.2.0, )"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        }
+      },
       "Cimbalino.Toolkit/2.1.2": {
         "dependencies": {
           "Cimbalino.Toolkit.Core": "[2.1.2, )",
@@ -5378,6 +5438,26 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "Autofac/3.5.0": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.CommonServiceLocator/3.2.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "CommonServiceLocator": "[1.2.0, )"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        }
+      },
       "Cimbalino.Toolkit/2.1.2": {
         "dependencies": {
           "Cimbalino.Toolkit.Core": "[2.1.2, )",
@@ -7214,6 +7294,26 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "Autofac/3.5.0": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.CommonServiceLocator/3.2.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "CommonServiceLocator": "[1.2.0, )"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        }
+      },
       "Cimbalino.Toolkit/2.1.2": {
         "dependencies": {
           "Cimbalino.Toolkit.Core": "[2.1.2, )",
@@ -9017,6 +9117,26 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "Autofac/3.5.0": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.CommonServiceLocator/3.2.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "CommonServiceLocator": "[1.2.0, )"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        }
+      },
       "Cimbalino.Toolkit/2.1.2": {
         "dependencies": {
           "Cimbalino.Toolkit.Core": "[2.1.2, )",
@@ -10853,6 +10973,26 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "Autofac/3.5.0": {
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll": {}
+        }
+      },
+      "Autofac.Extras.CommonServiceLocator/3.2.0": {
+        "dependencies": {
+          "Autofac": "[3.5.0, 4.0.0)",
+          "CommonServiceLocator": "[1.2.0, )"
+        },
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
+        }
+      },
       "Cimbalino.Toolkit/2.1.2": {
         "dependencies": {
           "Cimbalino.Toolkit.Core": "[2.1.2, )",
@@ -12657,6 +12797,34 @@
     }
   },
   "libraries": {
+    "Autofac/3.5.0": {
+      "sha512": "ge1fziLkxQhFEBreAaQlFiIVzpL32rSnpInJCJAmfFnHO6ab0VcW+0nzeZWY8WaSkDFcg6KNxB9v4Tp2icnXSg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "Autofac.nuspec",
+        "lib/net40/Autofac.dll",
+        "lib/net40/Autofac.xml",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.xml",
+        "package/services/metadata/core-properties/dddb830c3f5f4799b7e465e0b1547a09.psmdcp"
+      ]
+    },
+    "Autofac.Extras.CommonServiceLocator/3.2.0": {
+      "sha512": "+mtd8dCs4moK7mnXann6yglUMcw3RxLmtlerv5ss+j7mF71NmteYa9fDVFufAK9P+w1RoSWMOkTv4TnlCnnApw==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "Autofac.Extras.CommonServiceLocator.nuspec",
+        "lib/net40/Autofac.Extras.CommonServiceLocator.dll",
+        "lib/net40/Autofac.Extras.CommonServiceLocator.xml",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.xml",
+        "package/services/metadata/core-properties/3f4a052a769145d9924d0070094b0481.psmdcp"
+      ]
+    },
     "Cimbalino.Toolkit/2.1.2": {
       "sha512": "IEv0JWFOrC10M6QMEHd/v1qmbfTCxkInowgFvCJMVfrfB2PMhkWcTjP5UlbI+digFULplx/dOjotNyXhvTL5Wg==",
       "type": "Package",
@@ -16584,6 +16752,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "Autofac.Extras.CommonServiceLocator >= 3.2.0",
       "Cimbalino.Toolkit >= 2.1.2",
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.2.3",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.1.1",

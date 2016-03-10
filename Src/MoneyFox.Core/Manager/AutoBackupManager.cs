@@ -2,7 +2,6 @@
 using Microsoft.ApplicationInsights;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Core.Helpers;
-using MoneyFox.DataAccess;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 

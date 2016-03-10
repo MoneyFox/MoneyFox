@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using MoneyFox.DataAccess;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
 using SQLite.Net;
 
-namespace MoneyManager.DataAccess
+namespace MoneyFox.DataAccess
 {
     /// <summary>
     ///     Handles the access to the Payments table on the database
@@ -17,9 +16,9 @@ namespace MoneyManager.DataAccess
     [ImplementPropertyChanged]
     public class PaymentDataAccess : AbstractDataAccess<Payment>
     {
-        private readonly ISqliteConnectionCreator connectionCreator;
+        private readonly ISqliteConnectionFactory connectionCreator;
 
-        public PaymentDataAccess(ISqliteConnectionCreator connectionCreator)
+        public PaymentDataAccess(ISqliteConnectionFactory connectionCreator)
         {
             this.connectionCreator = connectionCreator;
         }

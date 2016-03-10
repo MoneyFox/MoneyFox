@@ -149,7 +149,6 @@
     <Compile Include="ViewModels\RecurringPaymentListViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
-    <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
     <Compile Include="ViewModels\SettingsGeneralViewModel.cs" />
     <Compile Include="ViewModels\SettingsSecurityViewModel.cs" />
     <Compile Include="ViewModels\SettingsShortcutsViewModel.cs" />

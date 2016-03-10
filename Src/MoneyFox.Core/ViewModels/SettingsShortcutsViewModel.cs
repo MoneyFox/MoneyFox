@@ -1,11 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.DataAccess;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 
 // ReSharper disable ExplicitCallerInfoArgument
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     /// <summary>
     ///     Provides the information for the TileSettingsView
@@ -13,7 +13,7 @@ namespace MoneyManager.Core.ViewModels
     public class SettingsShortcutsViewModel : ViewModelBase
     {
         private readonly IIncomeShortcut incomeShortcut;
-        private readonly SettingDataRepository settingsDataRepository;
+        private readonly SettingDataAccess settingsDataRepository;
         private readonly ISpendingShortcut spendingShortcut;
         private readonly ITransferShortcut transferShortcut;
 
@@ -21,7 +21,7 @@ namespace MoneyManager.Core.ViewModels
         ///     Creates a SettingsShortcutsViewModel object
         /// </summary>
         public SettingsShortcutsViewModel(ISpendingShortcut spendingShortcut, IIncomeShortcut incomeShortcut,
-            ITransferShortcut transferShortcut, SettingDataRepository settingsDataRepository)
+            ITransferShortcut transferShortcut, SettingDataAccess settingsDataRepository)
         {
             this.spendingShortcut = spendingShortcut;
             this.incomeShortcut = incomeShortcut;

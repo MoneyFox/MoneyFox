@@ -2,20 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using MoneyFox.DataAccess;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Model;
 using PropertyChanged;
 
-namespace MoneyManager.DataAccess
+namespace MoneyFox.DataAccess
 {
     [ImplementPropertyChanged]
     public class CategoryDataAccess : AbstractDataAccess<Category>
     {
-        private readonly ISqliteConnectionCreator connectionCreator;
+        private readonly ISqliteConnectionFactory connectionCreator;
 
-        public CategoryDataAccess(ISqliteConnectionCreator connectionCreator)
+        public CategoryDataAccess(ISqliteConnectionFactory connectionCreator)
         {
             this.connectionCreator = connectionCreator;
         }

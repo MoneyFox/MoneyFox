@@ -1,9 +1,25 @@
-﻿using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
+using Autofac;
+using Autofac.Extras.CommonServiceLocator;
 using Cimbalino.Toolkit.Services;
+using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Core;
+using MoneyFox.Core.Authentication;
+using MoneyFox.Core.Manager;
 using MoneyFox.Core.Repositories;
-using SimpleInjector;
+using MoneyFox.Core.Services;
+using MoneyFox.Core.ViewModels;
+using MoneyFox.DataAccess;
+using MoneyFox.Foundation.Constants;
+using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Foundation.Model;
+using MoneyManager.Core.Authentication;
+using MoneyManager.DataAccess;
+using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Model;
+using MoneyManager.Windows.Views;
+using INavigationService = GalaSoft.MvvmLight.Views.INavigationService;
 
 namespace MoneyManager.Windows
 {
@@ -11,25 +27,65 @@ namespace MoneyManager.Windows
     {
         public ViewModelLocator()
         {
-            var container = new Container();
+            SimpleIoc.Default.Register(CreateNavigationService);
 
-            ServiceLocator.SetLocatorProvider(() => new SimpleInjectorServiceLocatorAdapter(container));
+            var builder = new ContainerBuilder();
 
-            container.Register<IEmailComposeService>(() => new EmailComposeService());
-            container.Register<IStoreService>(() => new StoreService());
+            builder.RegisterType<EmailComposeService>().As<IEmailComposeService>();
+            builder.RegisterType<StoreService>().As<IStoreService>();
+            builder.RegisterType<SqLiteConnectionFactory>().As<ISqliteConnectionFactory>();
 
-            var dataAccessAssembly = typeof (GenericDataRepository<>).GetTypeInfo().Assembly;
+            builder.RegisterType<PasswordStorage>().As<IPasswordStorage>();
+            builder.RegisterType<Session>().AsSelf();
 
-            var registrations =
-                from type in dataAccessAssembly.GetExportedTypes()
-                where type.Namespace == "MoneyManager.DataAccess"
-                where type.GetInterfaces().Any()
-                select new {Service = type.GetInterfaces().Single(), Implementation = type};
+            builder.RegisterAssemblyTypes(typeof(OneDriveService).GetTypeInfo().Assembly)
+                .Where(t => t.Name.EndsWith("Service"))
+                .AsImplementedInterfaces()
+                .SingleInstance();
 
-            foreach (var reg in registrations)
-            {
-                container.Register(reg.Service, reg.Implementation, Lifestyle.Transient);
-            }
+            //We have to register them seperatly, otherwise it wasn't able to resolve them.
+            //TODO: Find a better way to do this.
+            builder.RegisterType<AccountDataAccess>().As<IDataAccess<Account>>();
+            builder.RegisterType<PaymentDataAccess>().As<IDataAccess<Payment>>();
+            builder.RegisterType<RecurringPaymentDataAccess>().As<IDataAccess<RecurringPayment>>();
+            builder.RegisterType<CategoryDataAccess>().As<IDataAccess<Category>>();
+            builder.RegisterType<SettingDataAccess>().AsSelf();
+
+            // This is needed for SettingDataAccess
+            builder.RegisterAssemblyTypes(typeof(AccountDataAccess).GetTypeInfo().Assembly)
+                .Where(t => t.Name.EndsWith("DataAccesss"))
+                .AsSelf()
+                .SingleInstance();
+
+            builder.RegisterAssemblyTypes(typeof (AccountRepository).GetTypeInfo().Assembly)
+                .Where(t => t.Name.EndsWith("Repository"))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterAssemblyTypes(typeof(PaymentManager).GetTypeInfo().Assembly)
+                .Where(t => t.Name.EndsWith("Manager"))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            builder.RegisterAssemblyTypes(typeof(AboutViewModel).GetTypeInfo().Assembly)
+                .Where(t => t.Name.EndsWith("ViewModel"))
+                .AsImplementedInterfaces()
+                .SingleInstance();
+
+            //TODO: Implement for each ViewModel an Interface
+            builder.RegisterAssemblyTypes(typeof(AboutViewModel).GetTypeInfo().Assembly)
+                .Where(t => t.Name.EndsWith("ViewModel"))
+                .AsSelf()
+                .SingleInstance();
+
+            ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(builder.Build()));
+        }
+        private static INavigationService CreateNavigationService()
+        {
+            var navigationService = new PageNavigationService();
+            navigationService.Configure(NavigationConstants.MODIFY_PAYMENT_VIEW, typeof(ModifyPaymentView));
+
+            return navigationService;
         }
     }
 }

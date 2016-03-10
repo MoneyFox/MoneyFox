@@ -27,9 +27,11 @@ namespace MoneyFox.Core
             }
         }
 
-        public SQLiteConnection GetConnection(string databaseName)
+        public SQLiteConnection GetConnection(string databaseName = null)
         {
-            return new SQLiteConnection(new SQLitePlatformWinRT(), GetDefaultBasePath(databaseName));
+            var dbName = databaseName ?? OneDriveAuthenticationConstants.DB_NAME;
+
+            return new SQLiteConnection(new SQLitePlatformWinRT(), GetDefaultBasePath(dbName));
         }
 
         private string GetDefaultBasePath(string databaseName)
