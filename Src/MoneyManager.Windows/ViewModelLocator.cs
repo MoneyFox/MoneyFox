@@ -77,7 +77,7 @@ namespace MoneyManager.Windows
 
             builder.RegisterAssemblyTypes(typeof(Settings).GetTypeInfo().Assembly)
                 .Where(t => t.Name.EndsWith("Settings"))
-                .AsSelf()
+                .AsImplementedInterfaces()
                 .SingleInstance();
 
             var container = builder.Build();
