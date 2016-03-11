@@ -1,6 +1,4 @@
 ﻿using System.Globalization;
-using MoneyManager.Core.Converter;
-using MvvmCross.Platform.UI;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Converter

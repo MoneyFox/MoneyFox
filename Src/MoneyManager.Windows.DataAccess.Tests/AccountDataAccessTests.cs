@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.DataAccess;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
+﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace MoneyManager.Windows.DataAccess.Tests
 {

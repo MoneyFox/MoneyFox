@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.StatisticDataProvider;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using Moq;
 
 namespace MoneyManager.Core.Tests.StatisticProvider
@@ -106,7 +102,7 @@ namespace MoneyManager.Core.Tests.StatisticProvider
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof (NullReferenceException))]
         public void GetValues_NullDependency_NullReferenceException()
         {
             new CashFlowDataProvider(null).GetValues(DateTime.Today, DateTime.Today);
