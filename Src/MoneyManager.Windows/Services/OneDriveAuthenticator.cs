@@ -21,12 +21,11 @@ namespace MoneyManager.Windows.Services
             try
             {
                 if (oneDriveClient == null)
-            {
-                oneDriveClient = OneDriveClientExtensions.GetUniversalClient(OneDriveAuthenticationConstants.Scopes);
-                await oneDriveClient.AuthenticateAsync();
-            }
+                {
+                    oneDriveClient = OneDriveClientExtensions.GetUniversalClient(OneDriveAuthenticationConstants.Scopes);
+                    await oneDriveClient.AuthenticateAsync();
+                }
 
-            
                 if (!oneDriveClient.IsAuthenticated)
                 {
                     await oneDriveClient.AuthenticateAsync();
