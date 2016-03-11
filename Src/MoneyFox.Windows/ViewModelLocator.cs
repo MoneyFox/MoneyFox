@@ -16,19 +16,10 @@ using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Model;
+using MoneyFox.Windows.Views;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Windows;
 using INavigationService = GalaSoft.MvvmLight.Views.INavigationService;
-using MainView = MoneyFox.Windows.Views.MainView;
-using ModifyAccountView = MoneyFox.Windows.Views.ModifyAccountView;
-using ModifyPaymentView = MoneyFox.Windows.Views.ModifyPaymentView;
-using PaymentListView = MoneyFox.Windows.Views.PaymentListView;
-using RecurringPaymentListView = MoneyFox.Windows.Views.RecurringPaymentListView;
-using SelectCategoryListView = MoneyFox.Windows.Views.SelectCategoryListView;
-using StatisticCashFlowView = MoneyFox.Windows.Views.StatisticCashFlowView;
-using StatisticCategorySpreadingView = MoneyFox.Windows.Views.StatisticCategorySpreadingView;
-using StatisticCategorySummaryView = MoneyFox.Windows.Views.StatisticCategorySummaryView;
-using StatisticMonthlyExpensesView = MoneyFox.Windows.Views.StatisticMonthlyExpensesView;
 
 namespace MoneyFox.Windows
 {
@@ -63,6 +54,7 @@ namespace MoneyFox.Windows
             builder.RegisterType<TileHelper>().AsSelf();
             builder.RegisterType<FileStore>().As<IFileStore>();
             builder.RegisterType<UserNotification>().As<IUserNotification>();
+            builder.RegisterType<OneDriveAuthenticator>().As<IOneDriveAuthenticator>();
 
             // This is needed for Settings
             builder.RegisterAssemblyTypes(typeof (AccountDataAccess).GetTypeInfo().Assembly)

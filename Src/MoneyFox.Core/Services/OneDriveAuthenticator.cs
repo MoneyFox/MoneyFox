@@ -19,14 +19,15 @@ namespace MoneyFox.Core.Services
 
         public async Task<IOneDriveClient> LoginAsync()
         {
-            if (oneDriveClient == null)
-            {
-                oneDriveClient = OneDriveClientExtensions.GetUniversalClient(OneDriveAuthenticationConstants.Scopes);
-                await oneDriveClient.AuthenticateAsync();
-            }
-
             try
             {
+                if (oneDriveClient == null)
+                {
+                    oneDriveClient = OneDriveClientExtensions.GetUniversalClient(OneDriveAuthenticationConstants.Scopes);
+                    await oneDriveClient.AuthenticateAsync();
+                }
+
+
                 if (!oneDriveClient.IsAuthenticated)
                 {
                     await oneDriveClient.AuthenticateAsync();
