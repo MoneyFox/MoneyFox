@@ -103,8 +103,8 @@
     <None Include="MoneyManager.Windows_StoreKey.pfx" />
     <None Include="MoneyManager.Windows_TemporaryKey.pfx" />
     <None Include="project.json" />
-    <PRIResource Include="Strings\de\Resources.resw" />
     <PRIResource Include="Strings\ru\Resources.resw" />
+    <PRIResource Include="Strings\de\Resources.resw" />
     <PRIResource Include="Strings\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>

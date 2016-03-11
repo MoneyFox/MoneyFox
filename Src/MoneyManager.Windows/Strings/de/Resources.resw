@@ -138,11 +138,11 @@
   <data name="AddIncomeLabel.Label" xml:space="preserve">
     <value>Einnahme hinzufügen</value>
   </data>
-  <data name="AddSpendingLabel.Label" xml:space="preserve">
+  <data name="AddExpenseLabel.Label" xml:space="preserve">
     <value>Ausgabe hinzufügen</value>
   </data>
-  <data name="AddTransactionTitle.Text" xml:space="preserve">
-    <value>Transaction hinzufügen</value>
+  <data name="AddPaymentTitle.Text" xml:space="preserve">
+    <value>Zahlung hinzufügen</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
     <value>Übertrag hinzufügen</value>
@@ -157,14 +157,14 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>Sicherung</value>
   </data>
-  <data name="CashFlowTitle.Label" xml:space="preserve">
+  <data name="CashFlowTitle.Text" xml:space="preserve">
     <value>Kapitalfluss</value>
   </data>
   <data name="CategoriesHeader.Label" xml:space="preserve">
     <value>Kategorien</value>
   </data>
-  <data name="CategorySummaryTitle.Label" xml:space="preserve">
-    <value>Kategorie Zusammenfassung</value>
+  <data name="CategorySummaryTitle.Text" xml:space="preserve">
+    <value>Zusammenfassung Kategorien</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
     <value>Kontakt:</value>
@@ -205,7 +205,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
-  <data name="SpreadingTitle.Label" xml:space="preserve">
+  <data name="SpreadingTitle.Text" xml:space="preserve">
     <value>Verteilung</value>
   </data>
   <data name="TilesHeader.Label" xml:space="preserve">
@@ -241,8 +241,8 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="AddIncomeTile.Content" xml:space="preserve">
     <value>Einnahme Tile erstellen</value>
   </data>
-  <data name="AddSpendingTile.Content" xml:space="preserve">
-    <value>Ausgabetile erstellen</value>
+  <data name="AddExpenseTile.Content" xml:space="preserve">
+    <value>Ausgaben Tile erstellen</value>
   </data>
   <data name="AddTransferTile.Content" xml:space="preserve">
     <value>Übertragtile erstellen</value>
@@ -262,14 +262,14 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="RemoveIncomeTile.Content" xml:space="preserve">
     <value>Einnahmetile entfernen</value>
   </data>
-  <data name="RemoveSpendingTile.Content" xml:space="preserve">
-    <value>Ausgabetile entfernen</value>
+  <data name="RemoveExpenseTile.Content" xml:space="preserve">
+    <value>Ausgaben Tile entfernen</value>
   </data>
   <data name="RemoveTransferTile.Content" xml:space="preserve">
     <value>Übertragtile entfernen</value>
   </data>
   <data name="RestoreBackup.Content" xml:space="preserve">
-    <value>Backup wiederherstellen</value>
+    <value>Sicherung wiederherstellen</value>
   </data>
   <data name="SelectDateRangeDialog.PrimaryButtonText" xml:space="preserve">
     <value>Fertig</value>
@@ -317,7 +317,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Gutschriftskonto</value>
   </data>
   <data name="PrivacyInfo.Text" xml:space="preserve">
-    <value>Zur Verbesserung dieser App sammeln wir anonyme Informationen über auftretende Fehler.</value>
+    <value>Zur Verbesserung dieser App sammeln wir anonymisierte Informationen über auftretende Fehler.</value>
   </data>
   <data name="DeleteLabel.Label" xml:space="preserve">
     <value>Löschen</value>
@@ -336,5 +336,23 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Startdatum</value>
+  </data>
+  <data name="RecurringPaymentList.Label" xml:space="preserve">
+    <value>Übersicht Zahlungsaufträge</value>
+  </data>
+  <data name="StatisticSelectorTitle.Text" xml:space="preserve">
+    <value>Statistik auswählen</value>
+  </data>
+  <data name="BackupLastModifiedText.Text" xml:space="preserve">
+    <value>Letzte Sicherung wurde erstellt am:</value>
+  </data>
+  <data name="AutoBackupSettingHeader.Header" xml:space="preserve">
+    <value>Backup manuell hoch- und herunterladen</value>
+  </data>
+  <data name="GeneralHeader.Label" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="DatabaseModifiedText.Text" xml:space="preserve">
+    <value>Letzte Datenbankänderung:</value>
   </data>
 </root>
