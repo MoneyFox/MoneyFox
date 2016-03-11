@@ -18,14 +18,15 @@ namespace MoneyManager.Windows.Services
 
         public async Task<IOneDriveClient> LoginAsync()
         {
-            if (oneDriveClient == null)
+            try
+            {
+                if (oneDriveClient == null)
             {
                 oneDriveClient = OneDriveClientExtensions.GetUniversalClient(OneDriveAuthenticationConstants.Scopes);
                 await oneDriveClient.AuthenticateAsync();
             }
 
-            try
-            {
+            
                 if (!oneDriveClient.IsAuthenticated)
                 {
                     await oneDriveClient.AuthenticateAsync();
