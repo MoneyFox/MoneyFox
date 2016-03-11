@@ -27,6 +27,25 @@ namespace MoneyManager.Windows
     {
         public static AppShell Current;
 
+        // Declare the top level nav items
+
+        private readonly List<NavMenuItem> navlistTop = new List<NavMenuItem>(
+            new[]
+            {
+                new NavMenuItem
+                {
+                    Symbol = Symbol.Library,
+                    Label = Strings.AccountsLabel,
+                    DestPage = typeof (MainView)
+                },
+                new NavMenuItem
+                {
+                    Symbol = Symbol.View,
+                    Label = Strings.StatisticsLabel,
+                    DestPage = typeof (StatisticSelectorView)
+                }
+            });
+
         private readonly List<NavMenuItem> navlistBottom = new List<NavMenuItem>(
             new[]
             {
@@ -53,24 +72,6 @@ namespace MoneyManager.Windows
                     Symbol = Symbol.Account,
                     Label = Strings.AboutLabel,
                     DestPage = typeof (AboutView)
-                }
-            });
-
-        // Declare the top level nav items
-        private readonly List<NavMenuItem> navlistTop = new List<NavMenuItem>(
-            new[]
-            {
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Library,
-                    Label = Strings.AccountsLabel,
-                    DestPage = typeof (MainView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.View,
-                    Label = Strings.StatisticsLabel,
-                    DestPage = typeof (StatisticSelectorView)
                 }
             });
 

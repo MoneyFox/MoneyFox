@@ -19,7 +19,7 @@ namespace MoneyFox.Core
         {
             var dbName = databaseName ?? OneDriveAuthenticationConstants.DB_NAME;
 
-            return new SQLiteConnection(new SQLitePlatformWinRT(), GetDefaultBasePath(dbName));
+            return new SQLiteConnection(new SQLitePlatformWinRT(), GetDefaultBasePath(dbName), false);
         }
 
         private void CreateDb()
