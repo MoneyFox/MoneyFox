@@ -27,10 +27,6 @@ namespace MoneyFox.Core.Services
                     await oneDriveClient.AuthenticateAsync();
                 }
 
-<<<<<<< HEAD:Src/MoneyFox.Core/Services/OneDriveAuthenticator.cs
-
-=======
->>>>>>> refs/remotes/MoneyFox/master:Src/MoneyManager.Windows/Services/OneDriveAuthenticator.cs
                 if (!oneDriveClient.IsAuthenticated)
                 {
                     await oneDriveClient.AuthenticateAsync();
