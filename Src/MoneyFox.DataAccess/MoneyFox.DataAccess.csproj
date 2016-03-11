@@ -116,13 +116,13 @@
     <EmbeddedResource Include="Properties\MoneyFox.DataAccess.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
-      <Project>{1CFF6968-BA09-48AF-9718-5D1E02E656E6}</Project>
-      <Name>MoneyFox.Foundation</Name>
-    </ProjectReference>
+    <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FodyWeavers.xml" />
+    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
+      <Project>{1cff6968-ba09-48af-9718-5d1e02e656e6}</Project>
+      <Name>MoneyFox.Foundation</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
