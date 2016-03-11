@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.Converter;
 
 namespace MoneyManager.Core.Tests.Converter
 {

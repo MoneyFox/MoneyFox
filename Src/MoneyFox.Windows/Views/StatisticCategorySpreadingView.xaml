@@ -1,0 +1,84 @@
+﻿<Page
+    x:Class="MoneyFox.Windows.Views.StatisticCategorySpreadingView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:windows="using:OxyPlot.Windows"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:viewModels1="using:MoneyFox.Core.ViewModels"
+    xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
+    mc:Ignorable="d">
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
+
+    <Page.Resources>
+        <windows:OxyColorConverter x:Key="OxyColorConverter" />
+
+        <DataTemplate x:Key="LegendListTemplate" x:DataType="viewModels1:LegendItem">
+            <StackPanel Orientation="Horizontal">
+                <Grid Height="20"
+                      Width="20"
+                      Background="{x:Bind Color, Converter={StaticResource OxyColorConverter}}" />
+                <TextBlock Text="{x:Bind Text}"
+                           Margin="5,0,0,0"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <userControls1:PageHeader>
+            <userControls1:PageHeader.HeaderContent>
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
+                           Text="Spreading"
+                           x:Uid="SpreadingTitle" />
+            </userControls1:PageHeader.HeaderContent>
+        </userControls1:PageHeader>
+
+        <Grid Grid.Row="1">
+            <TextBlock Text="{Binding Title}"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+            <windows:PlotView x:Name="SpreadingPlotView"
+                              Model="{Binding SpreadingModel}"
+                              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              VerticalContentAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch"
+                              MinHeight="150"
+                              MinWidth="40"
+                              Margin="15, 20, 15, 15" />
+
+        </Grid>
+
+        <ListView Grid.Row="2"
+                  HorizontalAlignment="Stretch"
+                  ItemsSource="{Binding LegendList}"
+                  ItemTemplate="{StaticResource LegendListTemplate}" />
+
+        <CommandBar Grid.Row="3"
+                    ClosedDisplayMode="Minimal">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Calendar"
+                              x:Uid="SetDate"
+                              Label="Set Date"
+                              Click="SetDate" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Grid>
+</Page>

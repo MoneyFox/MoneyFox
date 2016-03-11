@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.DataAccess;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
 
 namespace MoneyManager.Windows.DataAccess.Tests
 {
@@ -53,17 +48,18 @@ namespace MoneyManager.Windows.DataAccess.Tests
             Assert.AreEqual(id, payment.Id);
             Assert.AreEqual(amount, payment.Amount);
         }
+
         [TestMethod]
         public void SaveToDatabase_MultipleRecurringPayment_AllSaved()
         {
             var payment1 = new RecurringPayment
             {
-                Note = "MultiPayment1",
+                Note = "MultiPayment1"
             };
 
             var payment2 = new RecurringPayment
             {
-                Note = "MultiPayment2",
+                Note = "MultiPayment2"
             };
 
             var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
@@ -105,7 +101,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
         {
             var payment = new Payment
             {
-                Note = "paymentToDelete",
+                Note = "paymentToDelete"
             };
 
             var dataAccess = new PaymentDataAccess(connectionCreator);

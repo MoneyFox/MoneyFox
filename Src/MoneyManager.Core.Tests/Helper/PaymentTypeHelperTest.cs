@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
 using MoneyManager.Localization;
 using Xunit;
 
