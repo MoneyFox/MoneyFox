@@ -6,10 +6,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:viewModels="using:MoneyManager.Core.ViewModels"
     xmlns:model1="using:MoneyFox.Foundation.Model"
     xmlns:converter1="using:MoneyFox.Windows.Converter"
     xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
+    xmlns:viewModels="using:MoneyFox.Core.ViewModels"
     d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel, IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
 
