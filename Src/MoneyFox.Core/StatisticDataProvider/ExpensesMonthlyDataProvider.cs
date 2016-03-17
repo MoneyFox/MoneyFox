@@ -21,7 +21,7 @@ namespace MoneyManager.Core.StatisticDataProvider
         {
             return paymentRepository.Data
                 .Where(x => x.Type == (int) PaymentType.Expense)
-                .Where(x => x.Date >= startDate && x.Date <= endDate)
+                .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                 .GroupBy(x => x.Date.ToString("MMMM", CultureInfo.InvariantCulture))
                 .Select(group => new StatisticItem
                 {

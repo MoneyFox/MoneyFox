@@ -8,10 +8,13 @@ namespace MoneyManager.Core.Manager
     public class RecurringPaymentManager : IRecurringPaymentManager
     {
         private readonly IPaymentRepository paymentRepository;
+        private readonly IAccountRepository accountRepository;
 
-        public RecurringPaymentManager(IPaymentRepository paymentRepository)
+        public RecurringPaymentManager(IPaymentRepository paymentRepository, 
+            IAccountRepository accountRepository)
         {
             this.paymentRepository = paymentRepository;
+            this.accountRepository = accountRepository;
         }
 
         /// <summary>
@@ -27,8 +30,10 @@ namespace MoneyManager.Core.Manager
 
                 if (RecurringPaymentHelper.CheckIfRepeatable(payment.RecurringPayment, relatedPayment))
                 {
-                    paymentRepository.Save(
-                        RecurringPaymentHelper.GetPaymentFromRecurring(payment.RecurringPayment));
+                    var newPayment = RecurringPaymentHelper.GetPaymentFromRecurring(payment.RecurringPayment);
+
+                    paymentRepository.Save(newPayment);
+                    accountRepository.AddPaymentAmount(newPayment);
                 }
             }
         }

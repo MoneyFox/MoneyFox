@@ -21,16 +21,6 @@
         public const string BACKUP_NAME = "backupmoneyfox.sqlite";
 
         /// <summary>
-        ///     Client ID used for the OneDrive authentication
-        /// </summary>
-        public const string MSA_CLIENT_ID = "000000004416B470";
-
-        /// <summary>
-        ///     Client ID used for the OneDrive authentication
-        /// </summary>
-        public const string MSA_CLIENT_SECRET = "SECRET";
-
-        /// <summary>
         ///     Return url for the OneDrive authentication
         /// </summary>
         public const string RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
