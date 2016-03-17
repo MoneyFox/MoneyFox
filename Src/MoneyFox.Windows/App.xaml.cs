@@ -11,6 +11,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.ApplicationInsights;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.Authentication;
 using MoneyFox.Core.Helpers;
@@ -18,11 +19,10 @@ using MoneyFox.Core.Services;
 using MoneyFox.Core.SettingAccess;
 using MoneyFox.Core.Shortcut;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Windows.Views;
 using MoneyManager.Foundation;
 using MoneyManager.Windows;
 using UniversalRateReminder;
-using LoginView = MoneyFox.Windows.Views.LoginView;
-using MainView = MoneyFox.Windows.Views.MainView;
 
 namespace MoneyFox.Windows
 {
