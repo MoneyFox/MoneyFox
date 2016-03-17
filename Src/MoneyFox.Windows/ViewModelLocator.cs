@@ -51,6 +51,8 @@ namespace MoneyFox.Windows
             builder.RegisterType<Settings>().AsSelf();
 
             builder.RegisterType<ProtectedData>().As<IProtectedData>();
+            builder.RegisterType<AppInformation>().As<IAppInformation>();
+            builder.RegisterType<LauncherService>().As<ILauncherService>();
             builder.RegisterType<TileHelper>().AsSelf();
             builder.RegisterType<FileStore>().As<IFileStore>();
             builder.RegisterType<UserNotification>().As<IUserNotification>();
