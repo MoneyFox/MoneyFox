@@ -1,10 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.Authentication;
-using MoneyManager.Foundation.Interfaces;
 using Moq;
-using MvvmCross.Platform;
-using MvvmCross.Test.Core;
 
 namespace MoneyManager.Core.Tests.Authentication
 {

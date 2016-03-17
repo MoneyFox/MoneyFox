@@ -1,24 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Interfaces.ViewModels;
-using MoneyManager.Foundation.Model;
 using Moq;
-using MvvmCross.Platform.Core;
-using MvvmCross.Test.Core;
 
 namespace MoneyManager.Core.Tests.ViewModels
 {
     [TestClass]
-    public class AccountListViewModelTests : MvxIoCSupportingTest
+    public class AccountListViewModelTests
     {
-        public AccountListViewModelTests()
-        {
-            MvxSingleton.ClearAllSingletons();
-            Setup();
-        }
-
         [TestMethod]
         public void OpenOverviewCommand_Account_SelectedSet()
         {

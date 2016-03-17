@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.DataAccess;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
+﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace MoneyManager.Windows.DataAccess.Tests
 {
@@ -58,12 +53,12 @@ namespace MoneyManager.Windows.DataAccess.Tests
         {
             var category1 = new Category
             {
-                Name = "Einkaufen",
+                Name = "Einkaufen"
             };
 
             var category2 = new Category
             {
-                Name = "Beer",
+                Name = "Beer"
             };
 
             var dataAccess = new CategoryDataAccess(connectionCreator);
@@ -105,7 +100,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
         {
             var category = new Category
             {
-                Name = "categoryToDelete",
+                Name = "categoryToDelete"
             };
 
             var dataAccess = new CategoryDataAccess(connectionCreator);

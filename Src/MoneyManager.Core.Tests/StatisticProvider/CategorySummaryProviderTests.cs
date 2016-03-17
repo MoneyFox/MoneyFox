@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.StatisticDataProvider;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using Moq;
 using Assert = Xunit.Assert;
 

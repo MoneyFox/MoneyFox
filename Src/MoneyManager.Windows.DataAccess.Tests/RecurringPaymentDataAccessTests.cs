@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using MoneyManager.DataAccess;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
-using MvvmCross.Plugins.Sqlite.WindowsUWP;
+﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace MoneyManager.Windows.DataAccess.Tests
 {
@@ -58,12 +53,12 @@ namespace MoneyManager.Windows.DataAccess.Tests
         {
             var payment1 = new RecurringPayment
             {
-                Note = "MultiRecPayment1",
+                Note = "MultiRecPayment1"
             };
 
             var payment2 = new RecurringPayment
             {
-                Note = "MultiRecPayment2",
+                Note = "MultiRecPayment2"
             };
 
             var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
@@ -105,7 +100,7 @@ namespace MoneyManager.Windows.DataAccess.Tests
         {
             var payment = new RecurringPayment
             {
-                Note = "paymentToDelete",
+                Note = "paymentToDelete"
             };
 
             var dataAccess = new RecurringPaymentDataAccess(connectionCreator);

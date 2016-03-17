@@ -1,12 +1,4 @@
-using MoneyManager.Core.Manager;
-using MoneyManager.Core.Repositories;
-using MoneyManager.Core.ViewModels;
-using MoneyManager.DataAccess;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
 using Moq;
-using MvvmCross.Core.Platform;
-using MvvmCross.Test.Core;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.ViewModels
