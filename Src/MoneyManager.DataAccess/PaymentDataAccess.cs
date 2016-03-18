@@ -50,7 +50,7 @@ namespace MoneyManager.DataAccess
             if (payment.IsRecurring)
             {
                 //Don't use insert or replace here, because it will always replace the first element
-                if (payment.Id == 0)
+                if (payment.RecurringPaymentId == 0)
                 {
                     db.Insert(payment.RecurringPayment);
                     payment.RecurringPayment = db.Table<RecurringPayment>().OrderByDescending(x => x.Id).First();
