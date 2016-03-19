@@ -136,6 +136,26 @@
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
                     </TextBlock>
+                </StackPanel><TextBlock TextWrapping="Wrap"
+                           Style="{ThemeResource BodyTextBlockStyle}"
+                           Text="Translation Note"
+                           HorizontalAlignment="Center"
+                           x:Uid="TranslationMissingHelpText"
+                           VerticalAlignment="Top" />
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,0,0,20"
+                            HorizontalAlignment="Center">
+                    <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
+                               TextWrapping="Wrap"
+                               Text="www.crowdin.com"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Tapped">
+                                <core:InvokeCommandAction Command="{Binding GoToRepositoryCommand, Mode=OneWay}" />
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
+                    </TextBlock>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

@@ -356,4 +356,10 @@ Tap to visit the Repository:</value>
   <data name="DatabaseModifiedText.Text" xml:space="preserve">
     <value>Last database modification:</value>
   </data>
+  <data name="TranslationMissingHelpText.Text" xml:space="preserve">
+    <value>Do you miss a translation for your mother tongue? Help us!</value>
+  </data>
+  <data name="GoToProject.Text" xml:space="preserve">
+    <value>Go to the project.</value>
+  </data>
 </root>

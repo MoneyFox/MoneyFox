@@ -30,35 +30,36 @@ namespace MoneyManager.Core.ViewModels
             this.composeEmailTask = composeEmailTask;
             this.webBrowserTask = webBrowserTask;
             this.storeFeatures = storeFeatures;
-
-            GoToWebsiteCommand = new MvxCommand(GoToWebsite);
-            SendMailCommand = new MvxCommand(SendMail);
-            RateAppCommand = new MvxCommand(RateApp);
-            GoToRepositoryCommand = new MvxCommand(GoToRepository);
         }
 
         /// <summary>
         ///     Opens the webbrowser and loads to the apply solutions
         ///     website
         /// </summary>
-        public MvxCommand GoToWebsiteCommand { get; set; }
+        public MvxCommand GoToWebsiteCommand => new MvxCommand(GoToWebsite);
 
         /// <summary>
         ///     Sends a feedback mail to the apply solutions support
         ///     mail address
         /// </summary>
-        public MvxCommand SendMailCommand { get; set; }
+        public MvxCommand SendMailCommand => new MvxCommand(SendMail);
 
         /// <summary>
         ///     Opens the store to rate the app.
         /// </summary>
-        public MvxCommand RateAppCommand { get; set; }
+        public MvxCommand RateAppCommand => new MvxCommand(RateApp);
 
         /// <summary>
         ///     Opens the webbrowser and loads repository page
         ///     on GitHub
         /// </summary>
-        public MvxCommand GoToRepositoryCommand { get; set; }
+        public MvxCommand GoToRepositoryCommand => new MvxCommand(GoToRepository);
+        
+        /// <summary>
+        ///     Opens the webbrowser and loads repository page
+        ///     on GitHub
+        /// </summary>
+        public MvxCommand GoToTranslationProjectCommand => new MvxCommand(GoToTranslationProject);
 
         /// <summary>
         ///     Returns the Version of App
@@ -99,6 +100,11 @@ namespace MoneyManager.Core.ViewModels
         private void GoToRepository()
         {
             webBrowserTask.ShowWebPage(Constants.GIT_HUB_REPOSITORY_URL);
+        }
+
+        private void GoToTranslationProject()
+        {
+            webBrowserTask.ShowWebPage(Constants.CROWDIN_URL);
         }
     }
 }
