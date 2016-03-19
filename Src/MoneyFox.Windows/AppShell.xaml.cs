@@ -12,12 +12,9 @@ using Windows.UI.Xaml.Navigation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Windows.Controls;
 using MoneyFox.Windows.Views;
-using AboutView = MoneyFox.Windows.Views.AboutView;
-using CategoriesView = MoneyFox.Windows.Views.CategoriesView;
-using MainView = MoneyFox.Windows.Views.MainView;
-using SettingsView = MoneyFox.Windows.Views.SettingsView;
+using MoneyManager.Windows;
 
-namespace MoneyManager.Windows
+namespace MoneyFox.Windows
 {
     /// <summary>
     ///     The "chrome" layer of the app that provides top-level navigation with
