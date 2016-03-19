@@ -153,11 +153,11 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>Kapitalfluss</value>
   </data>
-  <data name="ChangeSubsequentTransactionsMessage" xml:space="preserve">
-    <value>Dies ist eine wiederkehrende Zahlung. Möchtest du sie für zukünftige Transaktionen aktualisieren oder nur dieses Mal?</value>
+  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
+    <value>Dies ist eine wiederkehrende Zahlung. Soll die Anpassung auch auf künftige Zahlungen übernommen werden oder nur auf diese?</value>
   </data>
-  <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
-    <value>Wiederholungen aktualisieren</value>
+  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
+    <value>Wiederholungen aktualisieren?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>Täglich</value>
@@ -174,10 +174,16 @@
   <data name="DeleteLabel" xml:space="preserve">
     <value>Löschen</value>
   </data>
+  <data name="ShortcutsTitle" xml:space="preserve">
+    <value>Verknüpfungen</value>
+  </data>
+  <data name="SecurityTitle" xml:space="preserve">
+    <value>Sicherheit</value>
+  </data>
   <data name="DeleteTitle" xml:space="preserve">
     <value>Löschen?</value>
   </data>
-  <data name="DeleteTransactionConfirmationMessage" xml:space="preserve">
+  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
     <value>Möchtest du diese Zahlung wirklich löschen?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
@@ -196,7 +202,7 @@
     <value>Einnahme bearbeiten</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Einnahmen</value>
+    <value>Gewinn</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
     <value>Nur diese</value>
@@ -229,7 +235,7 @@
     <value>Keine</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
     <value>Existierende Sicherungen werden überschrieben. Möchtest du Fortfahren?</value>
@@ -244,7 +250,7 @@
     <value>Wiederherstellen fehlgeschlagen!</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Gewinn</value>
+    <value>Einkommen</value>
   </data>
   <data name="SelectDateTitle" xml:space="preserve">
     <value>Datum wählen</value>
@@ -346,15 +352,6 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Bewerte dieses App</value>
   </data>
-  <data name="HalloWeltText" xml:space="preserve">
-    <value>Hallo Welt</value>
-  </data>
-  <data name="HelloWorldResponse" xml:space="preserve">
-    <value>Hallo Schönheit</value>
-  </data>
-  <data name="HelloWorldText" xml:space="preserve">
-    <value>Hello World</value>
-  </data>
   <data name="BiweeklyLabel" xml:space="preserve">
     <value>Zweiwöchentlich</value>
   </data>
@@ -363,5 +360,23 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
     <value>Kategorie bearbeiten</value>
+  </data>
+  <data name="CategoriesLabel" xml:space="preserve">
+    <value>Kategorien</value>
+  </data>
+  <data name="CashflowDescription" xml:space="preserve">
+    <value>Einnahmen, Ausgaben und Gewinn für den ausgewählten Zeitraum.</value>
+  </data>
+  <data name="CategorieSpreadingDescription" xml:space="preserve">
+    <value>Die Verteilung der Ausgaben per Kategorie.</value>
+  </data>
+  <data name="CategorySummaryDescription" xml:space="preserve">
+    <value>Zusammenfassung der Kategorien mit einer Zahlung.</value>
+  </data>
+  <data name="ExpenseHistory" xml:space="preserve">
+    <value>Ausgabenverlauf</value>
+  </data>
+  <data name="ExpenseHistoryDescription" xml:space="preserve">
+    <value>Zeigt ein monatlicher Vergleich über deine gesamtem Ausgaben für den gewünschten Zeitraum.</value>
   </data>
 </root>
