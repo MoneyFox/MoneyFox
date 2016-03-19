@@ -21,6 +21,11 @@
         public const string GIT_HUB_REPOSITORY_URL = "https://github.com/Apply-Solutions/MoneyManager";
 
         /// <summary>
+        ///     URL to the crowdin project for translation
+        /// </summary>
+        public const string CROWDIN_URL = "https://crowdin.com/project/money-fox";
+
+        /// <summary>
         ///     ID string for income shortcuts
         /// </summary>
         public const string INCOME_TILE_ID = "Income";
