@@ -138,10 +138,10 @@
   <data name="AddIncomeLabel.Label" xml:space="preserve">
     <value>Доход</value>
   </data>
-  <data name="AddExpenseLabel.Label" xml:space="preserve">
-    <value>Add Expense</value>
+  <data name="AddSpendingLabel.Label" xml:space="preserve">
+    <value>Расход</value>
   </data>
-  <data name="AddPaymentTitle.Text" xml:space="preserve">
+  <data name="AddTransactionTitle.Text" xml:space="preserve">
     <value>Добавить операцию</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
@@ -157,14 +157,14 @@
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>Резервная копия</value>
   </data>
-  <data name="CashFlowTitle.Text" xml:space="preserve">
-    <value>Cash Flow</value>
+  <data name="CashFlowTitle.Label" xml:space="preserve">
+    <value>Баланс</value>
   </data>
   <data name="CategoriesHeader.Label" xml:space="preserve">
     <value>Категории</value>
   </data>
-  <data name="CategorySummaryTitle.Text" xml:space="preserve">
-    <value>Category Summary</value>
+  <data name="CategorySummaryTitle.Label" xml:space="preserve">
+    <value>Суммарная категория</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
     <value>Связаться с нами:</value>
@@ -205,8 +205,8 @@
   <data name="SettingsTitle" xml:space="preserve">
     <value>Параметры</value>
   </data>
-  <data name="SpreadingTitle.Text" xml:space="preserve">
-    <value>Spreading</value>
+  <data name="SpreadingTitle.Label" xml:space="preserve">
+    <value>Расходы</value>
   </data>
   <data name="TilesHeader.Label" xml:space="preserve">
     <value>Плитки</value>
@@ -241,8 +241,8 @@
   <data name="AddIncomeTile.Content" xml:space="preserve">
     <value>Создать плитку дохода</value>
   </data>
-  <data name="AddExpenseTile.Content" xml:space="preserve">
-    <value>Create Expense Tile</value>
+  <data name="AddSpendingTile.Content" xml:space="preserve">
+    <value>Создать плитку расхода</value>
   </data>
   <data name="AddTransferTile.Content" xml:space="preserve">
     <value>Создать плитку перевода</value>
@@ -262,8 +262,8 @@
   <data name="RemoveIncomeTile.Content" xml:space="preserve">
     <value>Удалить плитку дохода</value>
   </data>
-  <data name="RemoveExpenseTile.Content" xml:space="preserve">
-    <value>Remove Expense Tile</value>
+  <data name="RemoveSpendingTile.Content" xml:space="preserve">
+    <value>Удалить плитку расхода</value>
   </data>
   <data name="RemoveTransferTile.Content" xml:space="preserve">
     <value>Удалить плитку перевода</value>
@@ -281,7 +281,7 @@
     <value>Выберите диапазон дат</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
-    <value>Показывать денежный поток на основной плитке</value>
+    <value>Показывать баланс на основной плитке</value>
   </data>
   <data name="SearchHeader.Header" xml:space="preserve">
     <value>Поиск</value>
@@ -336,23 +336,5 @@
   </data>
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Дата начала</value>
-  </data>
-  <data name="RecurringPaymentList.Label" xml:space="preserve">
-    <value>Recurring Payment Overview</value>
-  </data>
-  <data name="StatisticSelectorTitle.Text" xml:space="preserve">
-    <value>Select Statistic</value>
-  </data>
-  <data name="BackupLastModifiedText.Text" xml:space="preserve">
-    <value>Last Backup was created at:</value>
-  </data>
-  <data name="AutoBackupSettingHeader.Header" xml:space="preserve">
-    <value>Upload and download backup manually</value>
-  </data>
-  <data name="GeneralHeader.Label" xml:space="preserve">
-    <value>General</value>
-  </data>
-  <data name="DatabaseModifiedText.Text" xml:space="preserve">
-    <value>Last database modification:</value>
   </data>
 </root>

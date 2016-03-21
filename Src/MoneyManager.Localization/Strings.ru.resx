@@ -153,17 +153,17 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>Баланс</value>
   </data>
-  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>Это повторяющаяся операция. Вы хотите обновить все будущие операции или только эту?</value>
+  <data name="ChangeSubsequentTransactionsMessage" xml:space="preserve">
+    <value>Это повторяющаяся операция. Вы хотите изменить все будущие операции или только эту?</value>
   </data>
-  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
+  <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
     <value>Обновить повторения?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Ежедневно</value>
+    <value>Каждый день</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Ежедневно без выходных</value>
+    <value>Каждый день без выходных</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Вы действительно хотите удалить этот счёт?</value>
@@ -177,7 +177,7 @@
   <data name="DeleteTitle" xml:space="preserve">
     <value>Удалить?</value>
   </data>
-  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
+  <data name="DeleteTransactionConfirmationMessage" xml:space="preserve">
     <value>Вы действительно хотите удалить эту операцию?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
@@ -190,7 +190,7 @@
     <value>Обратная связь</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Обратная связь Money Fox</value>
+    <value>Feedback Money Fox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
     <value>Редактировать доход</value>
@@ -319,7 +319,7 @@
     <value>Добавить</value>
   </data>
   <data name="CategorySummary" xml:space="preserve">
-    <value>Категории</value>
+    <value>Суммарная категория</value>
   </data>
   <data name="SpreadingLabel" xml:space="preserve">
     <value>Категория распространения</value>
@@ -345,13 +345,22 @@
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Оценить приложение</value>
   </data>
+  <data name="HalloWeltText" xml:space="preserve">
+    <value>Hallo Welt</value>
+  </data>
+  <data name="HelloWorldResponse" xml:space="preserve">
+    <value>Hello beautiful</value>
+  </data>
+  <data name="HelloWorldText" xml:space="preserve">
+    <value>Здравствуй, мир</value>
+  </data>
   <data name="BiweeklyLabel" xml:space="preserve">
     <value>Раз в две недели</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Добавить категорию </value>
+    <value>Add Category </value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Изменить категорию</value>
+    <value>Edit Category</value>
   </data>
 </root>
