@@ -105,6 +105,11 @@ namespace MoneyManager.Core.Repositories
                     ? x
                     : -x;
 
+            if (payment.ChargedAccount == null && payment.ChargedAccountId != 0)
+            {
+                payment.ChargedAccount = data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+            }
+
             HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(payment.ChargedAccount));
         }
 
