@@ -111,7 +111,6 @@
     <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IFileStore.cs" />
     <Compile Include="Interfaces\ISqliteConnectionFactory.cs" />
-    <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\BackupException.cs" />
@@ -148,6 +147,7 @@
     <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\ICategoryListViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
+    <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\CashFlow.cs" />
     <Compile Include="Model\Category.cs" />
@@ -163,6 +163,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.de.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Strings.pt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.pt.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Strings.ru.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -177,6 +182,10 @@
     <EmbeddedResource Include="Resources\Strings.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.pt.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.pt.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
