@@ -32,17 +32,20 @@ namespace MoneyFox.Windows.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var viewModel = (ModifyPaymentViewModel) DataContext;
+            if (e.NavigationMode != NavigationMode.Back)
+            {
+                var viewModel = (ModifyPaymentViewModel) DataContext;
 
-            var payment = e.Parameter as Payment;
-            if (payment != null)
-            {
-                //TODO Refactor this that on edit the payment type isn't necessary since we don't need it here.
-                viewModel.Init(PaymentType.Expense, true);
-            }
-            else if (e.Parameter?.GetType() == typeof (PaymentType))
-            {
-                viewModel.Init((PaymentType) e.Parameter);
+                var payment = e.Parameter as Payment;
+                if (payment != null)
+                {
+                    //TODO Refactor this that on edit the payment type isn't necessary since we don't need it here.
+                    viewModel.Init(PaymentType.Expense, true);
+                }
+                else if (e.Parameter?.GetType() == typeof (PaymentType))
+                {
+                    viewModel.Init((PaymentType) e.Parameter);
+                }
             }
 
             base.OnNavigatedTo(e);

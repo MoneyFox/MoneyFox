@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using MoneyManager.Foundation;
 using SQLite.Net.Attributes;
 
@@ -9,7 +11,7 @@ namespace MoneyFox.Foundation.Model
     ///     Databasetable: Payments
     /// </summary>
     [Table("Payments")]
-    public class Payment
+    public class Payment : INotifyPropertyChanged
     {
         private Category category;
 
@@ -127,6 +129,7 @@ namespace MoneyFox.Foundation.Model
                 {
                     category = value;
                     CategoryId = value?.Id;
+                    OnPropertyChanged();
                 }
             }
         }
@@ -160,5 +163,12 @@ namespace MoneyFox.Foundation.Model
         /// </summary>
         [Ignore]
         public bool IsTransfer => Type == (int) PaymentType.Transfer;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
