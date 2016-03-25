@@ -47,7 +47,7 @@
             <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="Spreading"
-                           x:Uid="SpreadingTitle" />
+                           x:Uid="SpreadingStatisticTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 

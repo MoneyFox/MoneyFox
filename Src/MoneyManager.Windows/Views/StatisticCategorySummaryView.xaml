@@ -51,7 +51,7 @@
             <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="Category Summary"
-                           x:Uid="CategorySummaryTitle" />
+                           x:Uid="CategorySummaryStatisticTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 

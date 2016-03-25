@@ -28,7 +28,7 @@
             <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="Cash Flow"
-                           x:Uid="CashFlowTitle" />
+                           x:Uid="MonthlyExpenseStatisticTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 

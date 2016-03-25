@@ -53,6 +53,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,6 +79,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.zh-CN.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
