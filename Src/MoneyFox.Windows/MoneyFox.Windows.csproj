@@ -103,10 +103,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />
+    <PRIResource Include="Strings\zh-cn\Resources.resw" />
+    <PRIResource Include="Strings\ru\Resources.resw" />
     <PRIResource Include="Strings\pt\Resources.resw" />
     <PRIResource Include="Strings\ru\Resources.resw" />
     <PRIResource Include="Strings\de\Resources.resw" />
-    <PRIResource Include="Strings\en\Resources.resw" />
+    <PRIResource Include="Strings\en\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -311,9 +315,6 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\de\Resources.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\ru\Resources.resw" />
