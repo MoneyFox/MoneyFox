@@ -116,7 +116,7 @@ namespace MoneyFox.Core.Services
 
                 if (existingBackup != null)
                 {
-                    return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
+                    return existingBackup.LastModifiedDateTime?.DateTime.ToLocalTime() ?? DateTime.MinValue;
                 }
             }
             catch (Exception ex)
