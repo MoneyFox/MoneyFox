@@ -110,6 +110,8 @@
     <Compile Include="AppInformation.cs" />
     <Compile Include="Authentication\PasswordStorage.cs" />
     <Compile Include="Authentication\Session.cs" />
+    <Compile Include="DataAccess\GenericDataRepository.cs" />
+    <Compile Include="DataAccess\MoneyFoxDataContext.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\StreamExtension.cs" />
     <Compile Include="FileStore.cs" />
@@ -118,6 +120,11 @@
     <Compile Include="Helpers\TileHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Authentication\ProtectedData.cs" />
+    <Compile Include="Migrations\20160330194134_InitMigration.cs" />
+    <Compile Include="Migrations\20160330194134_InitMigration.designer.cs">
+      <DependentUpon>20160330194134_InitMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MoneyFoxDataContextModelSnapshot.cs" />
     <Compile Include="SettingAccess\LocalSettings.cs" />
     <Compile Include="Manager\AutoBackupManager.cs" />
     <Compile Include="Manager\DefaultManager.cs" />

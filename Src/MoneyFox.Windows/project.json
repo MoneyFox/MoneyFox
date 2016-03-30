@@ -3,6 +3,8 @@
     "Autofac": "3.5.2",
     "Autofac.Extras.CommonServiceLocator": "3.2.0",
     "Cimbalino.Toolkit": "2.1.2",
+    "EntityFramework.Commands": "7.0.0-rc1-final",
+    "EntityFramework.SQLite": "7.0.0-rc1-final",
     "Microsoft.ApplicationInsights": "1.2.3",
     "Microsoft.ApplicationInsights.PersistenceChannel": "1.2.3",
     "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
