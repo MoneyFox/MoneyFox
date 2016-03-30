@@ -166,12 +166,11 @@
     </Compile>
     <Compile Include="Migrations\MoneyFoxDataContextModelSnapshot.cs" />
     <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\CashFlow.cs" />
+    <Compile Include="Statistics\Models\CashFlow.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Payment.cs" />
     <Compile Include="Model\RecurringPayment.cs" />
-    <Compile Include="Model\StatisticItem.cs" />
-    <Compile Include="Model\StatisticSelectorType.cs" />
+    <Compile Include="Statistics\Models\StatisticItem.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\PaymentRepository.cs" />
@@ -222,10 +221,10 @@
     <Compile Include="Shortcut\IncomeTile.cs" />
     <Compile Include="Shortcut\Tile.cs" />
     <Compile Include="Shortcut\TransferTile.cs" />
-    <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
-    <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
-    <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />
-    <Compile Include="StatisticDataProvider\ExpensesMonthlyDataProvider.cs" />
+    <Compile Include="Statistics\DataProviders\CashFlowDataProvider.cs" />
+    <Compile Include="Statistics\DataProviders\CategorySpreadingDataProvider.cs" />
+    <Compile Include="Statistics\DataProviders\CategorySummaryDataProvider.cs" />
+    <Compile Include="Statistics\DataProviders\ExpensesMonthlyDataProvider.cs" />
     <Compile Include="UserNotification.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />

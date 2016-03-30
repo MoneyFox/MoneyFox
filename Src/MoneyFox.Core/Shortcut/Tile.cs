@@ -4,7 +4,7 @@ using Windows.UI.StartScreen;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.Extensions;
 using MoneyFox.Core.Interfaces;
-using MoneyManager.Core.StatisticDataProvider;
+using MoneyFox.Core.Statistics.DataProviders;
 
 namespace MoneyFox.Core.Shortcut
 {

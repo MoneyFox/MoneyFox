@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using MoneyFox.Core.Model;
+using MoneyFox.Core.Statistics.Models;
 using MoneyFox.Foundation.Model;
 
 namespace MoneyManager.Core.Helpers

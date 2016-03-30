@@ -4,10 +4,10 @@ using System.Globalization;
 using System.Linq;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Model;
+using MoneyFox.Core.Statistics.Models;
 using MoneyManager.Foundation;
 
-namespace MoneyManager.Core.StatisticDataProvider
+namespace MoneyFox.Core.Statistics.DataProviders
 {
     public class MonthlyExpensesDataProvider : IStatisticProvider<IEnumerable<StatisticItem>>
     {
