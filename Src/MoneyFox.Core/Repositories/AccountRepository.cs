@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
@@ -13,14 +14,14 @@ namespace MoneyFox.Core.Repositories
     [ImplementPropertyChanged]
     public class AccountRepository : IAccountRepository
     {
-        private readonly IDataAccess<Account> dataAccess;
+        private readonly IGenericDataRepository<Account> dataAccess;
         private ObservableCollection<Account> data;
 
         /// <summary>
         ///     Creates a AccountRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced account data Access</param>
-        public AccountRepository(IDataAccess<Account> dataAccess)
+        /// <param name="dataAccess">Instanced a <see cref="IGenericDataRepository{T}"/> type of <see cref="Account"/></param>
+        public AccountRepository(IGenericDataRepository<Account> dataAccess)
         {
             this.dataAccess = dataAccess;
 
@@ -60,8 +61,9 @@ namespace MoneyFox.Core.Repositories
             if (account.Id == 0)
             {
                 data.Add(account);
+                dataAccess.Update(account);
             }
-            dataAccess.SaveItem(account);
+            dataAccess.Add(account);
         }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace MoneyFox.Core.Repositories
         public void Delete(Account accountToDelete)
         {
             data.Remove(accountToDelete);
-            dataAccess.DeleteItem(accountToDelete);
+            dataAccess.Delete(accountToDelete);
         }
 
         /// <summary>
@@ -81,7 +83,7 @@ namespace MoneyFox.Core.Repositories
         {
             Data.Clear();
 
-            foreach (var account in dataAccess.LoadList(filter))
+            foreach (var account in dataAccess.GetList(filter))
             {
                 Data.Add(account);
             }

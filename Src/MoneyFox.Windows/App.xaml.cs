@@ -12,8 +12,10 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.ApplicationInsights;
+using Microsoft.Data.Entity;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.Authentication;
+using MoneyFox.Core.DataAccess;
 using MoneyFox.Core.Helpers;
 using MoneyFox.Core.Services;
 using MoneyFox.Core.SettingAccess;
@@ -41,6 +43,10 @@ namespace MoneyFox.Windows
 #if !DEBUG
             WindowsAppInitializer.InitializeAsync();
 #endif
+            using (var db = new MoneyFoxDataContext())
+            {
+                db.Database.Migrate();
+            }
 
             Suspending += OnSuspending;
         }

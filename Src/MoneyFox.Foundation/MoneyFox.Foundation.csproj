@@ -148,6 +148,8 @@
     <Compile Include="Interfaces\ViewModels\ICategoryListViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />
+    <Compile Include="Constants\NavigationConstants.cs" />
+    <Compile Include="Constants\OneDriveAuthenticationConstants.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\CashFlow.cs" />
     <Compile Include="Model\Category.cs" />
@@ -155,8 +157,6 @@
     <Compile Include="Model\RecurringPayment.cs" />
     <Compile Include="Model\StatisticItem.cs" />
     <Compile Include="Model\StatisticSelectorType.cs" />
-    <Compile Include="Constants\NavigationConstants.cs" />
-    <Compile Include="Constants\OneDriveAuthenticationConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Strings.de.Designer.cs">
       <AutoGen>True</AutoGen>
