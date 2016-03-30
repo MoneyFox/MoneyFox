@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Core.Constants;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.ViewModels

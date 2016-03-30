@@ -166,6 +166,11 @@
     </Compile>
     <Compile Include="Migrations\MoneyFoxDataContextModelSnapshot.cs" />
     <Compile Include="Model\Account.cs" />
+    <Compile Include="Resources\Strings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Statistics\Models\CashFlow.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Payment.cs" />
@@ -178,11 +183,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.de.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Strings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Strings.pt.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -198,11 +198,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.zh-CN.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Strings1.Designer.cs">
-      <DependentUpon>Strings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="SettingAccess\LocalSettings.cs" />
     <Compile Include="Manager\AutoBackupManager.cs" />

@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Core.Extensions;
 using MoneyFox.Core.Messages;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 using PropertyChanged;
 
 namespace MoneyFox.Core.ViewModels

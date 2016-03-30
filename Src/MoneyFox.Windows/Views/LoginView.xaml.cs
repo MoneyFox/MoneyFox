@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 
 namespace MoneyFox.Windows.Views
 {

@@ -1,5 +1,5 @@
 ﻿using System;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.Helpers

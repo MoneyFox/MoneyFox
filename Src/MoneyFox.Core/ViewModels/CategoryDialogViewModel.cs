@@ -2,7 +2,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 
 namespace MoneyFox.Core.ViewModels
 {

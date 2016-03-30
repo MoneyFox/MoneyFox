@@ -43,7 +43,7 @@ namespace MoneyFox.Core.DataAccess
         /// <param name="filter">Conditions to filter the data.</param>
         /// <param name="navigationProperties">Navigation Properties to load.</param>
         /// <returns>IList with all loaded items.</returns>
-        public virtual IList<T> GetList(Expression<Func<T, bool>> filter,
+        public virtual IList<T> GetList(Expression<Func<T, bool>> filter = null,
             params Expression<Func<T, object>>[] navigationProperties)
         {
             List<T> list;
@@ -55,10 +55,14 @@ namespace MoneyFox.Core.DataAccess
                 dbQuery = navigationProperties.Aggregate(dbQuery,
                     (current, navigationProperty) => current.Include(navigationProperty));
 
-                list = dbQuery
-                    .AsNoTracking()
-                    .Where(filter)
-                    .ToList();
+                dbQuery = dbQuery
+                    .AsNoTracking();
+
+                if (filter != null)
+                {
+                    dbQuery = dbQuery.Where(filter);
+                }
+                list = dbQuery.ToList();
             }
             return list;
         }

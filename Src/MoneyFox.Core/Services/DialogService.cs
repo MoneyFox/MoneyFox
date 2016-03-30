@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 
 namespace MoneyFox.Core.Services
 {

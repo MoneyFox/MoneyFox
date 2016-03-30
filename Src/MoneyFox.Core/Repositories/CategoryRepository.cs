@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 using PropertyChanged;
 
 namespace MoneyFox.Core.Repositories

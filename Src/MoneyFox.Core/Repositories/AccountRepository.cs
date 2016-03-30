@@ -4,8 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
+using MoneyFox.Core.Resources;
 using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
 using PropertyChanged;
 

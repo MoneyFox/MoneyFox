@@ -4,7 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 using MoneyManager.Core.Helpers;
 using PropertyChanged;
 

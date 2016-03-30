@@ -6,7 +6,7 @@ using Microsoft.ApplicationInsights;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Core.Exceptions;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 
 namespace MoneyManager.Core.ViewModels
 {

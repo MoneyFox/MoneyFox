@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 using MoneyFox.Windows.Controls;
 using MoneyFox.Windows.Views;
 using MoneyManager.Windows;

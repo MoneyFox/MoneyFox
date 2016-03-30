@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using MoneyFox.Core.Interfaces.Shotcuts;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 
 namespace MoneyFox.Core.Shortcut
 {

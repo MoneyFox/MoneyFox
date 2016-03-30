@@ -2,7 +2,7 @@
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.ViewModels;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 using NotificationsExtensions.Tiles;
 
 namespace MoneyFox.Core

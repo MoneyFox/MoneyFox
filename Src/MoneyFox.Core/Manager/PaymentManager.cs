@@ -6,7 +6,7 @@ using MoneyFox.Core.Exceptions;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
 using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 
 namespace MoneyFox.Core.Manager
 {

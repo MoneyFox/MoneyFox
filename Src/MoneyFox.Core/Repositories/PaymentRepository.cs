@@ -138,7 +138,7 @@ namespace MoneyFox.Core.Repositories
         {
             Data.Clear();
             var payments = dataAccess.GetList(filter);
-            var recurringTransactions = recurringDataAccess.GetAll();
+            var recurringTransactions = recurringDataAccess.GetList();
 
             foreach (var payment in payments)
             {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Resources;
 using MoneyFox.Core.Statistics.Models;
 using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.Statistics.DataProviders

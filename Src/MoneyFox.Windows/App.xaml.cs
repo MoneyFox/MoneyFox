@@ -21,7 +21,7 @@ using MoneyFox.Core.Helpers;
 using MoneyFox.Core.Services;
 using MoneyFox.Core.SettingAccess;
 using MoneyFox.Core.Shortcut;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 using MoneyFox.Windows.Views;
 using UniversalRateReminder;
 

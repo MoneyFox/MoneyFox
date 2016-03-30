@@ -7,7 +7,7 @@ using MoneyFox.Core.Constants;
 using MoneyFox.Core.Groups;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.ViewModels

@@ -10,7 +10,7 @@ using MoneyFox.Core.Groups;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Interfaces.ViewModels;
 using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
 using PropertyChanged;
