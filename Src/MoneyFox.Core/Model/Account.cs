@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Foundation.Model
+﻿namespace MoneyFox.Core.Model
 {
     public class Account
     {

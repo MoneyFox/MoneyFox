@@ -15,6 +15,7 @@ using Microsoft.ApplicationInsights;
 using Microsoft.Data.Entity;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.Authentication;
+using MoneyFox.Core.Constants;
 using MoneyFox.Core.DataAccess;
 using MoneyFox.Core.Helpers;
 using MoneyFox.Core.Services;

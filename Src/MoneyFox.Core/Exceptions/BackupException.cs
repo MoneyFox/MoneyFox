@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoneyFox.Foundation.Exceptions
+namespace MoneyFox.Core.Exceptions
 {
     public class BackupException : Exception
     {

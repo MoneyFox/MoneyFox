@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Core.Groups;
 using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation.Groups;
 
 namespace MoneyManager.Foundation.Interfaces.ViewModels
 {

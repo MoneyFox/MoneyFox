@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MoneyFox.Core.Model;
 using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;

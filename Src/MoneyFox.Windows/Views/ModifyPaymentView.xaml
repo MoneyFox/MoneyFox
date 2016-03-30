@@ -9,6 +9,7 @@
       xmlns:model="using:MoneyFox.Foundation.Model"
       xmlns:converter1="using:MoneyFox.Windows.Converter"
       xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
+      xmlns:model1="using:MoneyFox.Core.Model"
       mc:Ignorable="d"
       NavigationCacheMode="Enabled"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -18,7 +19,7 @@
         <converter1:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converters:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate"
-                      x:DataType="model:Account">
+                      x:DataType="model1:Account">
             <StackPanel Margin="0,0,0,12"
                         Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />

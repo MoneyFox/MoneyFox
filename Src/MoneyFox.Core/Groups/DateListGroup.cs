@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace MoneyManager.Foundation.Groups
+namespace MoneyFox.Core.Groups
 {
     public class DateListGroup<T> : List<T>
     {

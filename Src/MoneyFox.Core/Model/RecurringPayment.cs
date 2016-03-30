@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using MoneyFox.Core.Model;
 
 namespace MoneyFox.Foundation.Model
 {

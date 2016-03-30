@@ -3,8 +3,8 @@ using System.Globalization;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using MoneyFox.Core.Constants;
 using MoneyFox.Core.SettingAccess;
-using MoneyFox.Foundation.Constants;
 using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.ViewModels

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
+using MoneyFox.Core.Model;
 using MoneyManager.Foundation;
 
 namespace MoneyFox.Foundation.Model

@@ -9,6 +9,7 @@
              xmlns:model1="using:MoneyFox.Foundation.Model"
              xmlns:controls1="using:MoneyFox.Windows.Controls"
              xmlns:converter1="using:MoneyFox.Windows.Converter"
+             xmlns:model="using:MoneyFox.Core.Model"
              d:DataContext="{d:DesignInstance designTime:DesignTimeCategoryListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -18,7 +19,7 @@
         <converter1:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="CategoryTemplate"
-                      x:DataType="model1:Category">
+                      x:DataType="model:Category">
             <StackPanel Margin="0,6,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="300"

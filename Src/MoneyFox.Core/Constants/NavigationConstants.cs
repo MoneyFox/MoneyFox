@@ -1,4 +1,4 @@
-namespace MoneyFox.Foundation.Constants
+namespace MoneyFox.Core.Constants
 {
     /// <summary>
     ///     Contains the constants strings for the MVVM Light Navigationservice

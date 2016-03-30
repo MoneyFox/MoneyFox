@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
 using Microsoft.OneDrive.Sdk;
+using MoneyFox.Core.Constants;
+using MoneyFox.Core.Extensions;
 using MoneyFox.Foundation.Interfaces;
-using MoneyManager.Core.Extensions;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 

@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.Foundation
+﻿namespace MoneyFox.Core.Constants
 {
     /// <summary>
     ///     Contains constant values used for the onedrive authentication

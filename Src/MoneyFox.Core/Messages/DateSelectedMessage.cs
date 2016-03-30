@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoneyFox.Foundation.Messages
+namespace MoneyFox.Core.Messages
 {
     public class DateSelectedMessage
     {

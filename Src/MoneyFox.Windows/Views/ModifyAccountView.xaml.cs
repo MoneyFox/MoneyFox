@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Core.Model;
 using MoneyFox.Core.ViewModels;
 using MoneyFox.Foundation.Model;
 using MoneyManager.Core.Helpers;

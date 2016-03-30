@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Core.Extensions;
+using MoneyFox.Core.Extensions;
 using MoneyManager.Core.StatisticDataProvider;
 using MoneyManager.Foundation.Interfaces;
 

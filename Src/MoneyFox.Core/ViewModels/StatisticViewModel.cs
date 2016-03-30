@@ -1,9 +1,9 @@
 using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Foundation.Messages;
+using MoneyFox.Core.Extensions;
+using MoneyFox.Core.Messages;
 using MoneyFox.Foundation.Resources;
-using MoneyManager.Core.Extensions;
 using PropertyChanged;
 
 namespace MoneyFox.Core.ViewModels

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyFox.Core.Model;
 using MoneyFox.Foundation.Model;
 using MoneyManager.Core.StatisticDataProvider;
 using MoneyManager.Foundation.Interfaces;
