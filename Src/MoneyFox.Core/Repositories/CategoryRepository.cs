@@ -58,9 +58,12 @@ namespace MoneyFox.Core.Repositories
             if (category.Id == 0)
             {
                 data.Add(category);
+                dataAccess.Add(category);
+            }
+            else
+            {
                 dataAccess.Update(category);
             }
-            dataAccess.Add(category);
         }
 
         /// <summary>

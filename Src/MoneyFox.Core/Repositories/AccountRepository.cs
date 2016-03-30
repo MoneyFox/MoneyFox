@@ -61,9 +61,12 @@ namespace MoneyFox.Core.Repositories
             if (account.Id == 0)
             {
                 data.Add(account);
+                dataAccess.Add(account);
+            }
+            else
+            {
                 dataAccess.Update(account);
             }
-            dataAccess.Add(account);
         }
 
         /// <summary>

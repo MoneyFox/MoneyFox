@@ -91,7 +91,10 @@ namespace MoneyFox.Core.Repositories
                 data.Add(payment);
                 dataAccess.Add(payment);
             }
-            dataAccess.Update(payment);
+            else
+            {
+                dataAccess.Update(payment);
+            }
         }
 
         /// <summary>
