@@ -8,7 +8,7 @@
         /// <summary>
         ///     Url to the Apply Solutions website
         /// </summary>
-        public const string WEBSITE_URL = "http://www.apply-solutions.ch";
+        public const string WEBSITE_URL = "http://www.apply-solutions.com";
 
         /// <summary>
         ///     Mailaddress for support
@@ -18,7 +18,7 @@
         /// <summary>
         ///     Url to the GitHub repository
         /// </summary>
-        public const string GIT_HUB_REPOSITORY_URL = "https://github.com/Apply-Solutions/MoneyManager";
+        public const string GIT_HUB_REPOSITORY_URL = "https://github.com/MoneyFox/MoneyFox.Windows";
 
         /// <summary>
         ///     URL to the crowdin project for translation
