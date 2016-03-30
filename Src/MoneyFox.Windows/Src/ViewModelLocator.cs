@@ -16,7 +16,6 @@ using MoneyFox.Core.SettingAccess;
 using MoneyFox.Core.Shortcut;
 using MoneyFox.Core.ViewModels;
 using MoneyFox.Windows.Views;
-using MoneyManager.Windows;
 using INavigationService = GalaSoft.MvvmLight.Views.INavigationService;
 
 namespace MoneyFox.Windows

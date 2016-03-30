@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
@@ -11,10 +12,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Core.Resources;
 using MoneyFox.Windows.Controls;
-using MoneyFox.Windows.Views;
-using MoneyManager.Windows;
 
-namespace MoneyFox.Windows
+namespace MoneyFox.Windows.Views
 {
     /// <summary>
     ///     The "chrome" layer of the app that provides top-level navigation with
@@ -426,5 +425,19 @@ namespace MoneyFox.Windows
         }
 
         #endregion
+    }
+
+    /// <summary>
+    ///     Data to represent an item in the nav menu.
+    /// </summary>
+    public class NavMenuItem
+    {
+        public string Label { get; set; }
+        public Symbol Symbol { get; set; }
+
+        public char SymbolAsChar => (char)Symbol;
+
+        public Type DestPage { get; set; }
+        public object Arguments { get; set; }
     }
 }

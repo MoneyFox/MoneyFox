@@ -4,14 +4,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
-             xmlns:converter1="using:MoneyFox.Windows.Converter"
+             xmlns:converter="using:MoneyFox.Windows.Converter"
              d:DataContext="{d:DesignInstance designTime:DesignTimeBalanceViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="50"
              d:DesignWidth="400">
 
     <UserControl.Resources>
-        <converter1:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </UserControl.Resources>
 
     <StackPanel Orientation="Horizontal"

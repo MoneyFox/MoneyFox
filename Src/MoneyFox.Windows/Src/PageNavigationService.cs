@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml;
 using GalaSoft.MvvmLight.Views;
-using MoneyFox.Windows;
 
-namespace MoneyManager.Windows
+namespace MoneyFox.Windows
 {
     public class PageNavigationService : INavigationService
     {
@@ -35,7 +34,7 @@ namespace MoneyManager.Windows
             {
                 lock (pagesByKey)
                 {
-                    var frame = ((AppShell) Window.Current.Content).AppFrame;
+                    var frame = ((Views.AppShell) Window.Current.Content).AppFrame;
 
                     if (frame.BackStackDepth == 0)
                     {
@@ -68,7 +67,7 @@ namespace MoneyManager.Windows
         /// </summary>
         public void GoBack()
         {
-            var shell = (AppShell) Window.Current.Content;
+            var shell = (Views.AppShell) Window.Current.Content;
 
             if (shell.AppFrame.CanGoBack)
             {
@@ -125,7 +124,7 @@ namespace MoneyManager.Windows
                         "pageKey");
                 }
 
-                var shell = (AppShell) Window.Current.Content;
+                var shell = (Views.AppShell) Window.Current.Content;
                 shell.AppFrame.Navigate(pagesByKey[pageKey], parameter);
             }
         }

@@ -6,14 +6,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:converter1="using:MoneyFox.Windows.Converter"
-    xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
+    xmlns:converter="using:MoneyFox.Windows.Converter"
+    xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
     xmlns:viewModels="using:MoneyFox.Core.ViewModels"
     d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel, IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
 
     <Page.Resources>
-        <converter1:SelectedConverter x:Key="SelectedConverter" />
+        <converter:SelectedConverter x:Key="SelectedConverter" />
 
         <DataTemplate x:Key="StatistcTypeTemplate"
                       x:DataType="viewModels:StatisticSelectorType">
@@ -46,13 +46,13 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <userControls1:PageHeader>
-            <userControls1:PageHeader.HeaderContent>
+        <userControls:PageHeader>
+            <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="Select Statistic"
                            x:Uid="StatisticSelectorViewTitle" />
-            </userControls1:PageHeader.HeaderContent>
-        </userControls1:PageHeader>
+            </userControls:PageHeader.HeaderContent>
+        </userControls:PageHeader>
         <ScrollViewer Margin="7,7,7,0"
                       Grid.Row="1"
                       VerticalScrollBarVisibility="Disabled"

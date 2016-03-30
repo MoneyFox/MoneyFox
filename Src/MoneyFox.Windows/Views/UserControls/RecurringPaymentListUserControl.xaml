@@ -6,10 +6,9 @@
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:converters="using:Cimbalino.Toolkit.Converters"
-             xmlns:model="using:MoneyFox.Foundation.Model"
-             xmlns:controls1="using:MoneyFox.Windows.Controls"
-             xmlns:converter1="using:MoneyFox.Windows.Converter"
-             xmlns:model1="using:MoneyFox.Core.Model"
+             xmlns:controls="using:MoneyFox.Windows.Controls"
+             xmlns:converter="using:MoneyFox.Windows.Converter"
+             xmlns:model="using:MoneyFox.Core.Model"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -21,15 +20,15 @@
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
-        <converter1:PaymentAmountConverter x:Key="PaymentAmountConverter" />
-        <converter1:CultureConverter x:Key="FormatConverter" />
+        <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+        <converter:CultureConverter x:Key="FormatConverter" />
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <converter1:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
-        <converter1:ThemedImageConverter x:Key="ThemedImageConverter" />
-        <converter1:SelectedConverter x:Key="SelectedConverter" />
+        <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
+        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
+        <converter:SelectedConverter x:Key="SelectedConverter" />
 
         <DataTemplate x:Key="PaymentTemplate"
-                      x:DataType="model1:Payment">
+                      x:DataType="model:Payment">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
@@ -134,7 +133,7 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <SemanticZoom>
             <SemanticZoom.ZoomedInView>
-                <controls1:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
                                                   EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
                                                   ItemsSource="{Binding Source={StaticResource Groups}}"
                                                   ItemTemplate="{StaticResource PaymentTemplate}"
@@ -160,7 +159,7 @@
                         <GroupStyle HidesIfEmpty="True"
                                     HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
                     </ListView.GroupStyle>
-                </controls1:AlternatingRowListView>
+                </controls:AlternatingRowListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView Margin="0,12,0,0"
