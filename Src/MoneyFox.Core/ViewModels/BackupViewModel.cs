@@ -5,8 +5,8 @@ using GalaSoft.MvvmLight.Command;
 using Microsoft.ApplicationInsights;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Core.Exceptions;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Core.ViewModels
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.Data.Entity;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Core.Interfaces;
 
 namespace MoneyFox.Core.DataAccess
 {

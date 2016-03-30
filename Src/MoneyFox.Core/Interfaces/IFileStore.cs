@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Foundation.Interfaces
+namespace MoneyFox.Core.Interfaces
 {
     public interface IFileStore
     {

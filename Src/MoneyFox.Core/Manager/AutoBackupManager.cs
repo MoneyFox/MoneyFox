@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
 using Microsoft.OneDrive.Sdk;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.SettingAccess;
-using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyFox.Core.Manager
 {

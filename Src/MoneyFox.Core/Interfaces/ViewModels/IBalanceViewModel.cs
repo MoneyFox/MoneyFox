@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 
-namespace MoneyManager.Foundation.Interfaces.ViewModels
+namespace MoneyFox.Core.Interfaces.ViewModels
 {
     public interface IBalanceViewModel
     {

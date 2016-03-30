@@ -1,7 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using MoneyManager.Foundation;
 
-namespace MoneyManager.Foundation.Interfaces
+namespace MoneyFox.Core.Interfaces
 {
     public interface IBackupService
     {

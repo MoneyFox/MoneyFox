@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.Extensions;
+using MoneyFox.Core.Interfaces;
 using MoneyManager.Core.StatisticDataProvider;
-using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyFox.Core.Shortcut
 {

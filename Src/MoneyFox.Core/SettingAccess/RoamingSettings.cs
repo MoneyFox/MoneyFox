@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using Windows.Storage;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.Interfaces;
 
 namespace MoneyFox.Core.SettingAccess
 {

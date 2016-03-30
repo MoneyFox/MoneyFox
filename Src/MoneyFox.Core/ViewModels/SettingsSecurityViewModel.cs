@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.SettingAccess;
 using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation.Interfaces;
 using PropertyChanged;
 
 namespace MoneyFox.Core.ViewModels

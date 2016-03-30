@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using MoneyFox.Core.Helpers;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Core.Manager
 {

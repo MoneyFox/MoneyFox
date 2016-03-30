@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.Interfaces;
 
 namespace MoneyFox.Core.Services
 {

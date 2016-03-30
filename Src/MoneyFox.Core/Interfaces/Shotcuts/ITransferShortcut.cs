@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.Foundation.Interfaces.Shotcuts
+﻿namespace MoneyFox.Core.Interfaces.Shotcuts
 {
     /// <summary>
     ///     Interface for managing transfer shortcuts

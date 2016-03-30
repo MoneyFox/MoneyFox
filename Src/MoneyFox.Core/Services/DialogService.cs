@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyFox.Core.Services
 {

@@ -1,8 +1,8 @@
 ﻿using Windows.UI.Notifications;
 using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.ViewModels;
 using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation.Interfaces;
 using NotificationsExtensions.Tiles;
 
 namespace MoneyFox.Core

@@ -1,7 +1,7 @@
 ﻿using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
 

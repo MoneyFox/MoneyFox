@@ -7,14 +7,14 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Core.Constants;
 using MoneyFox.Core.Helpers;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
 using PropertyChanged;
-using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
+using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.ViewModels
 {

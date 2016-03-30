@@ -8,15 +8,14 @@ using MoneyFox.Core.Authentication;
 using MoneyFox.Core.Constants;
 using MoneyFox.Core.DataAccess;
 using MoneyFox.Core.Helpers;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Manager;
 using MoneyFox.Core.Repositories;
 using MoneyFox.Core.Services;
 using MoneyFox.Core.SettingAccess;
 using MoneyFox.Core.Shortcut;
 using MoneyFox.Core.ViewModels;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Windows.Views;
-using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Windows;
 using INavigationService = GalaSoft.MvvmLight.Views.INavigationService;
 

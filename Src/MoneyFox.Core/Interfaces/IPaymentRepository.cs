@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MoneyFox.Core.Model;
 using MoneyFox.Foundation.Model;
 
-namespace MoneyManager.Foundation.Interfaces
+namespace MoneyFox.Core.Interfaces
 {
     public interface IPaymentRepository : IRepository<Payment>
     {

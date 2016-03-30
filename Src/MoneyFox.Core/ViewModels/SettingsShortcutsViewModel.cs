@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Core.Interfaces.Shotcuts;
 using MoneyFox.Core.SettingAccess;
-using MoneyManager.Foundation.Interfaces.Shotcuts;
 
 // ReSharper disable ExplicitCallerInfoArgument
 

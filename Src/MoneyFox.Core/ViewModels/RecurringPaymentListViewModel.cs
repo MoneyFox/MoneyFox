@@ -5,10 +5,10 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Core.Constants;
 using MoneyFox.Core.Groups;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation.Interfaces;
-using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
+using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.ViewModels
 {

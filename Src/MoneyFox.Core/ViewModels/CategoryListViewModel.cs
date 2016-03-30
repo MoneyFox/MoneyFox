@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Views;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
 using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation.Interfaces;
 using PropertyChanged;
-using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
+using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.ViewModels
 {
@@ -14,7 +14,7 @@ namespace MoneyFox.Core.ViewModels
         ///     Creates an CategoryListViewModel for usage when the list including the option is needed.
         /// </summary>
         /// <param name="categoryRepository">An instance of <see cref="IRepository{T}" /> of type category.</param>
-        /// <param name="dialogService">An instance of <see cref="MoneyManager.Foundation.Interfaces.IDialogService" /></param>
+        /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         public CategoryListViewModel(IRepository<Category> categoryRepository, IDialogService dialogService,
             INavigationService navigationService)
             : base(categoryRepository, dialogService, navigationService)

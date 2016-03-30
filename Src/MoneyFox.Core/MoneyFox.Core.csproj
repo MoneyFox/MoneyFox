@@ -135,12 +135,10 @@
     <Compile Include="Interfaces\IAutobackupManager.cs" />
     <Compile Include="Interfaces\IBackgroundTaskService.cs" />
     <Compile Include="Interfaces\IBackupService.cs" />
-    <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IDefaultManager.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
     <Compile Include="Interfaces\IFileStore.cs" />
     <Compile Include="Interfaces\IGenericDataRepository.cs" />
-    <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Interfaces\ILocalSettings.cs" />
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Interfaces.ViewModels;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Interfaces.ViewModels;
 using PropertyChanged;
 
 namespace MoneyManager.Core.ViewModels

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace MoneyFox.Foundation.Interfaces
+namespace MoneyFox.Core.Interfaces
 {
     public interface IGenericDataRepository<T> where T : class
     {

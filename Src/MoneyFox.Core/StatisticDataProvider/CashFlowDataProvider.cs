@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Core.StatisticDataProvider
 {

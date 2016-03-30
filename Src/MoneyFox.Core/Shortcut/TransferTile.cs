@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
+using MoneyFox.Core.Interfaces.Shotcuts;
 using MoneyFox.Foundation.Resources;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces.Shotcuts;
 
 namespace MoneyFox.Core.Shortcut
 {

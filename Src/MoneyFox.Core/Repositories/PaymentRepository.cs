@@ -4,10 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Core.Exceptions;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Interfaces;
 using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation.Interfaces;
 using PropertyChanged;
 
 namespace MoneyFox.Core.Repositories

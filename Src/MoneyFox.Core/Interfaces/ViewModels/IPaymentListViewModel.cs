@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using MoneyFox.Core.Groups;
 using MoneyFox.Foundation.Model;
 
-namespace MoneyManager.Foundation.Interfaces.ViewModels
+namespace MoneyFox.Core.Interfaces.ViewModels
 {
     public interface IPaymentListViewModel
     {
