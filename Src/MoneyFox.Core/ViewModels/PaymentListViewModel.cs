@@ -9,6 +9,7 @@ using MoneyFox.Core.Constants;
 using MoneyFox.Core.Groups;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Interfaces.ViewModels;
+using MoneyFox.Core.Model;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Core.Resources;
 using MoneyManager.Core.ViewModels;

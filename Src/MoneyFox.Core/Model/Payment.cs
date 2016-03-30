@@ -2,10 +2,10 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
-using MoneyFox.Core.Model;
+using MoneyFox.Foundation.Model;
 using MoneyManager.Foundation;
 
-namespace MoneyFox.Foundation.Model
+namespace MoneyFox.Core.Model
 {
     /// <summary>
     ///     Databasemodel for payments. Includes expenses, income and transfers.

@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Views;
 using MoneyFox.Core.Constants;
 using MoneyFox.Core.Groups;
 using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Model;
 using MoneyFox.Foundation.Model;
 using MoneyFox.Core.Resources;
 using IDialogService = MoneyFox.Core.Interfaces.IDialogService;

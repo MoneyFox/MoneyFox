@@ -11,6 +11,7 @@
              xmlns:controls1="using:MoneyFox.Windows.Controls"
              xmlns:converter1="using:MoneyFox.Windows.Converter"
              xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
+             xmlns:model="using:MoneyFox.Core.Model"
              d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -31,7 +32,7 @@
         <converter1:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="PaymentTemplate"
-                      x:DataType="model1:Payment">
+                      x:DataType="model:Payment">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
