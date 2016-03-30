@@ -1,6 +1,5 @@
 ﻿using Windows.Foundation;
 using Windows.UI.Xaml;
-using MoneyManager.Windows;
 
 namespace MoneyFox.Windows.Views.UserControls
 {

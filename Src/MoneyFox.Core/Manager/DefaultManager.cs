@@ -3,7 +3,6 @@ using System.Linq;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
 using MoneyFox.Core.SettingAccess;
-using MoneyFox.Foundation.Model;
 
 namespace MoneyFox.Core.Manager
 {

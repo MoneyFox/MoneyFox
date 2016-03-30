@@ -4,7 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.ViewModels;
-using ModifyCategoryDialog = MoneyFox.Windows.Views.Dialogs.ModifyCategoryDialog;
+using MoneyFox.Windows.Views.Dialogs;
 
 namespace MoneyFox.Windows.Views
 {

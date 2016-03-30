@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Core.Interfaces.ViewModels;
 using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Model;
 
 namespace MoneyManager.Core.ViewModels.DesignTime
 {

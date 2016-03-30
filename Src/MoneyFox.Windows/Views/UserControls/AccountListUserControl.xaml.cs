@@ -4,7 +4,6 @@ using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.Model;
 using MoneyFox.Core.ViewModels;
-using MoneyFox.Foundation.Model;
 
 namespace MoneyFox.Windows.Views.UserControls
 {

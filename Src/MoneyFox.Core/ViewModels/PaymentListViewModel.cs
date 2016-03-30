@@ -25,8 +25,8 @@ namespace MoneyFox.Core.ViewModels
         private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
-        private readonly IPaymentRepository paymentRepository;
         private readonly IPaymentManager paymentManager;
+        private readonly IPaymentRepository paymentRepository;
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,

@@ -1,5 +1,6 @@
 namespace MoneyFox.Core.Model
-{    public class Category
+{
+    public class Category
     {
         public int Id { get; set; }
 

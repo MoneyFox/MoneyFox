@@ -14,10 +14,10 @@ namespace MoneyFox.Core.Repositories
     [ImplementPropertyChanged]
     public class PaymentRepository : IPaymentRepository
     {
-        private readonly IGenericDataRepository<Payment> dataAccess;
-        private readonly IGenericDataRepository<RecurringPayment> recurringDataAccess;
         private readonly IAccountRepository accountRepository;
         private readonly IRepository<Category> categoryRepository;
+        private readonly IGenericDataRepository<Payment> dataAccess;
+        private readonly IGenericDataRepository<RecurringPayment> recurringDataAccess;
         private ObservableCollection<Payment> data;
 
         /// <summary>

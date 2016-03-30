@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Model;
 using MoneyFox.Core.Statistics.Models;
 using MoneyManager.Foundation;
 

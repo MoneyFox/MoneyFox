@@ -134,12 +134,12 @@
         <SemanticZoom>
             <SemanticZoom.ZoomedInView>
                 <controls1:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
-                                                 EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
-                                                 ItemsSource="{Binding Source={StaticResource Groups}}"
-                                                 ItemTemplate="{StaticResource PaymentTemplate}"
-                                                 HorizontalAlignment="Stretch"
-                                                 ShowsScrollingPlaceholders="false"
-                                                 Margin="0,20,0,0">
+                                                  EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                                  ItemsSource="{Binding Source={StaticResource Groups}}"
+                                                  ItemTemplate="{StaticResource PaymentTemplate}"
+                                                  HorizontalAlignment="Stretch"
+                                                  ShowsScrollingPlaceholders="false"
+                                                  Margin="0,20,0,0">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="SelectionChanged">
                             <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}"

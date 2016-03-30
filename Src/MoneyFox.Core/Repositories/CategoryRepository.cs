@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Model;
 using MoneyFox.Foundation.Resources;
 using PropertyChanged;
 
@@ -18,7 +17,7 @@ namespace MoneyFox.Core.Repositories
         /// <summary>
         ///     Creates a CategoryRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced a <see cref="IGenericDataRepository{T}"/> type of <see cref="Category"/></param>
+        /// <param name="dataAccess">Instanced a <see cref="IGenericDataRepository{T}" /> type of <see cref="Category" /></param>
         public CategoryRepository(IGenericDataRepository<Category> dataAccess)
         {
             this.dataAccess = dataAccess;

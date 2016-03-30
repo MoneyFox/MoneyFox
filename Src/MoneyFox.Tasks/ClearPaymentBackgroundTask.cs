@@ -19,8 +19,8 @@ namespace MoneyFox.Tasks
             var accountRepository = new AccountRepository(new GenericDataRepository<Account>());
 
             paymentManager = new PaymentManager(
-                new PaymentRepository(new GenericDataRepository<Payment>(), 
-                    new GenericDataRepository<RecurringPayment>(), 
+                new PaymentRepository(new GenericDataRepository<Payment>(),
+                    new GenericDataRepository<RecurringPayment>(),
                     accountRepository,
                     new CategoryRepository(new GenericDataRepository<Category>())),
                 accountRepository,

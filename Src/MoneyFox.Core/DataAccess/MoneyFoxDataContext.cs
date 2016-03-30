@@ -29,7 +29,7 @@ namespace MoneyFox.Core.DataAccess
             modelBuilder.Entity<Payment>()
                 .Property(p => p.ChargedAccountId)
                 .IsRequired();
-            
+
             modelBuilder.Entity<RecurringPayment>()
                 .Property(p => p.ChargedAccountId)
                 .IsRequired();

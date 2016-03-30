@@ -39,7 +39,9 @@ namespace MoneyFox.Windows
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
-            builder.RegisterGeneric(typeof(GenericDataRepository<>)).As(typeof(IGenericDataRepository<>)).InstancePerDependency();
+            builder.RegisterGeneric(typeof (GenericDataRepository<>))
+                .As(typeof (IGenericDataRepository<>))
+                .InstancePerDependency();
             builder.RegisterType<Settings>().AsSelf();
 
             builder.RegisterType<ProtectedData>().As<IProtectedData>();
@@ -49,7 +51,7 @@ namespace MoneyFox.Windows
             builder.RegisterType<FileStore>().As<IFileStore>();
             builder.RegisterType<UserNotification>().As<IUserNotification>();
             builder.RegisterType<OneDriveAuthenticator>().As<IOneDriveAuthenticator>();
-            
+
             builder.RegisterAssemblyTypes(typeof (AccountRepository).GetTypeInfo().Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces()

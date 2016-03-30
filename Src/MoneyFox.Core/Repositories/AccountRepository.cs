@@ -20,7 +20,7 @@ namespace MoneyFox.Core.Repositories
         /// <summary>
         ///     Creates a AccountRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced a <see cref="IGenericDataRepository{T}"/> type of <see cref="Account"/></param>
+        /// <param name="dataAccess">Instanced a <see cref="IGenericDataRepository{T}" /> type of <see cref="Account" /></param>
         public AccountRepository(IGenericDataRepository<Account> dataAccess)
         {
             this.dataAccess = dataAccess;

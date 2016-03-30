@@ -53,10 +53,10 @@
                  Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <ScrollViewer Margin="0,7,0,0" Grid.Row="1">
             <controls1:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                             ItemsSource="{Binding Categories}"
-                                             ItemTemplate="{StaticResource CategoryTemplate }"
-                                             IsItemClickEnabled="True">
+                                              EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                              ItemsSource="{Binding Categories}"
+                                              ItemTemplate="{StaticResource CategoryTemplate }"
+                                              IsItemClickEnabled="True">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="ItemClick">
                         <core:InvokeCommandAction Command="{Binding DoneCommand, Mode=OneWay}"

@@ -30,7 +30,7 @@
                            x:Uid="CashFlowStatisticTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
-        
+
         <Grid Grid.Row="1">
             <TextBlock Text="{Binding Title}"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />

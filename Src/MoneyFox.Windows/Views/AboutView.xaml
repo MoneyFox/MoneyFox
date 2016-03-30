@@ -136,7 +136,8 @@
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
                     </TextBlock>
-                </StackPanel><TextBlock TextWrapping="Wrap"
+                </StackPanel>
+                <TextBlock TextWrapping="Wrap"
                            Style="{ThemeResource BodyTextBlockStyle}"
                            Text="Translation Note"
                            HorizontalAlignment="Center"

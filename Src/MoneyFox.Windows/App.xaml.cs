@@ -23,8 +23,6 @@ using MoneyFox.Core.SettingAccess;
 using MoneyFox.Core.Shortcut;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Windows.Views;
-using MoneyManager.Foundation;
-using MoneyManager.Windows;
 using UniversalRateReminder;
 
 namespace MoneyFox.Windows

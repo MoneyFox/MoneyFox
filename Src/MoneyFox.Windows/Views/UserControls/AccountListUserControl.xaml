@@ -67,12 +67,12 @@
 
         <ScrollViewer Grid.Row="1">
             <controls1:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
-                                             OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                             ItemTemplate="{StaticResource AccountTemplate}"
-                                             HorizontalAlignment="Stretch"
-                                             ShowsScrollingPlaceholders="False"
-                                             EntranceNavigationTransitionInfo.IsTargetElement="True">
+                                              OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                              EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                              ItemTemplate="{StaticResource AccountTemplate}"
+                                              HorizontalAlignment="Stretch"
+                                              ShowsScrollingPlaceholders="False"
+                                              EntranceNavigationTransitionInfo.IsTargetElement="True">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
