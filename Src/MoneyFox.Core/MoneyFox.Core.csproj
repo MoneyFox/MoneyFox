@@ -186,10 +186,6 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
-      <Project>{6BB2D9A2-ED2E-4103-921C-D26B548F6B9A}</Project>
-      <Name>MoneyFox.DataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{1CFF6968-BA09-48AF-9718-5D1E02E656E6}</Project>
       <Name>MoneyFox.Foundation</Name>

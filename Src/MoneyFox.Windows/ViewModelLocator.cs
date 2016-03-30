@@ -5,6 +5,7 @@ using Cimbalino.Toolkit.Services;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core;
 using MoneyFox.Core.Authentication;
+using MoneyFox.Core.DataAccess;
 using MoneyFox.Core.Helpers;
 using MoneyFox.Core.Manager;
 using MoneyFox.Core.Repositories;
@@ -12,10 +13,8 @@ using MoneyFox.Core.Services;
 using MoneyFox.Core.SettingAccess;
 using MoneyFox.Core.Shortcut;
 using MoneyFox.Core.ViewModels;
-using MoneyFox.DataAccess;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Model;
 using MoneyFox.Windows.Views;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Windows;
@@ -32,7 +31,6 @@ namespace MoneyFox.Windows
             builder.RegisterInstance(CreateNavigationService()).As<INavigationService>();
             builder.RegisterType<EmailComposeService>().As<IEmailComposeService>();
             builder.RegisterType<StoreService>().As<IStoreService>();
-            builder.RegisterType<SqLiteConnectionFactory>().As<ISqliteConnectionFactory>();
 
             builder.RegisterType<PasswordStorage>().As<IPasswordStorage>();
             builder.RegisterType<Session>().AsSelf();
@@ -42,12 +40,7 @@ namespace MoneyFox.Windows
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
-            //We have to register them seperatly, otherwise it wasn't able to resolve them.
-            //TODO: Find a better way to do this.
-            builder.RegisterType<AccountDataAccess>().As<IDataAccess<Account>>();
-            builder.RegisterType<PaymentDataAccess>().As<IDataAccess<Payment>>();
-            builder.RegisterType<RecurringPaymentDataAccess>().As<IDataAccess<RecurringPayment>>();
-            builder.RegisterType<CategoryDataAccess>().As<IDataAccess<Category>>();
+            builder.RegisterGeneric(typeof(GenericDataRepository<>)).As(typeof(IGenericDataRepository<>)).InstancePerDependency();
             builder.RegisterType<Settings>().AsSelf();
 
             builder.RegisterType<ProtectedData>().As<IProtectedData>();
@@ -57,13 +50,7 @@ namespace MoneyFox.Windows
             builder.RegisterType<FileStore>().As<IFileStore>();
             builder.RegisterType<UserNotification>().As<IUserNotification>();
             builder.RegisterType<OneDriveAuthenticator>().As<IOneDriveAuthenticator>();
-
-            // This is needed for Settings
-            builder.RegisterAssemblyTypes(typeof (AccountDataAccess).GetTypeInfo().Assembly)
-                .Where(t => t.Name.EndsWith("DataAccesss"))
-                .AsSelf()
-                .SingleInstance();
-
+            
             builder.RegisterAssemblyTypes(typeof (AccountRepository).GetTypeInfo().Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces()

@@ -116,10 +116,6 @@
       <Project>{2F774D5A-E9B5-4AB2-84AA-51A6E9BDB456}</Project>
       <Name>MoneyFox.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
-      <Project>{6BB2D9A2-ED2E-4103-921C-D26B548F6B9A}</Project>
-      <Name>MoneyFox.DataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
       <Project>{1cff6968-ba09-48af-9718-5d1e02e656e6}</Project>
       <Name>MoneyFox.Foundation</Name>
