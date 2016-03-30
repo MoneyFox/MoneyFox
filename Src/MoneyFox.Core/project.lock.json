@@ -18844,8 +18844,7 @@
       "Microsoft.OneDriveSDK >= 1.1.20",
       "MvvmLightLibs >= 5.2.0",
       "NotificationsExtensions.Win10 >= 10586.0.2",
-      "PropertyChanged.Fody >= 1.50.4",
-      "SQLite.Net-PCL >= 3.1.1"
+      "PropertyChanged.Fody >= 1.50.4"
     ],
     "UAP,Version=v10.0": []
   }
