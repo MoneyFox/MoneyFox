@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:MoneyFox.Windows.Controls"
-      xmlns:windows="using:MoneyFox.Windows"
+      xmlns:views="using:MoneyFox.Windows.Views"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       KeyDown="AppShell_KeyDown"
       TabNavigation="Cycle"
@@ -19,7 +19,7 @@
     -->
 
     <Page.Resources>
-        <DataTemplate x:Key="NavMenuItemTemplate" x:DataType="windows:NavMenuItem">
+        <DataTemplate x:Key="NavMenuItemTemplate" x:DataType="views:NavMenuItem">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />

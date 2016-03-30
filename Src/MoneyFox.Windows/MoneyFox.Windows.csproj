@@ -98,10 +98,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="app.config" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="ApplicationInsights.config" />
     <None Include="project.json" />
     <PRIResource Include="Strings\en\Resources.resw" />
     <PRIResource Include="Strings\zh-cn\Resources.resw" />
