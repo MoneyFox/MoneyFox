@@ -1,5 +1,5 @@
-﻿using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation.Interfaces;
+﻿using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Model;
 
 namespace MoneyManager.Core.Manager
 {

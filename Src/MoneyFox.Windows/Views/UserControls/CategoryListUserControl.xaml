@@ -6,19 +6,19 @@
              xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-             xmlns:model1="using:MoneyFox.Foundation.Model"
-             xmlns:controls1="using:MoneyFox.Windows.Controls"
-             xmlns:converter1="using:MoneyFox.Windows.Converter"
+             xmlns:controls="using:MoneyFox.Windows.Controls"
+             xmlns:converter="using:MoneyFox.Windows.Converter"
+             xmlns:model="using:MoneyFox.Core.Model"
              d:DataContext="{d:DesignInstance designTime:DesignTimeCategoryListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
 
     <UserControl.Resources>
-        <converter1:ClickConverter x:Key="ClickConverter" />
+        <converter:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="CategoryTemplate"
-                      x:DataType="model1:Category">
+                      x:DataType="model:Category">
             <StackPanel Margin="0,6,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="300"
@@ -51,11 +51,11 @@
                  x:Uid="SearchHeader"
                  Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <ScrollViewer Margin="0,7,0,0" Grid.Row="1">
-            <controls1:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                             ItemsSource="{Binding Categories}"
-                                             ItemTemplate="{StaticResource CategoryTemplate }"
-                                             IsItemClickEnabled="True">
+            <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                              EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                              ItemsSource="{Binding Categories}"
+                                              ItemTemplate="{StaticResource CategoryTemplate }"
+                                              IsItemClickEnabled="True">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="ItemClick">
                         <core:InvokeCommandAction Command="{Binding DoneCommand, Mode=OneWay}"
@@ -70,7 +70,7 @@
                                 Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
-            </controls1:AlternatingRowListView>
+            </controls:AlternatingRowListView>
         </ScrollViewer>
     </Grid>
 </UserControl>

@@ -6,8 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:controls1="using:MoneyFox.Windows.Controls"
-    xmlns:converter1="using:MoneyFox.Windows.Converter"
+    xmlns:controls="using:MoneyFox.Windows.Controls"
+    xmlns:converter="using:MoneyFox.Windows.Converter"
     xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
     mc:Ignorable="d">
 
@@ -18,7 +18,7 @@
     </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
-        <converter1:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="CategoryTemplate">
             <Grid HorizontalAlignment="Stretch"
                   VerticalAlignment="Center"
@@ -64,10 +64,10 @@
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
 
             <ScrollViewer Grid.Row="1">
-                <controls1:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                                 EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                 ItemsSource="{Binding CategorySummary}"
-                                                 ItemTemplate="{StaticResource CategoryTemplate}">
+                <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                                  EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                                  ItemsSource="{Binding CategorySummary}"
+                                                  ItemTemplate="{StaticResource CategoryTemplate}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment"
@@ -76,7 +76,7 @@
                                     Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
-                </controls1:AlternatingRowListView>
+                </controls:AlternatingRowListView>
             </ScrollViewer>
         </Grid>
         <CommandBar Grid.Row="2"

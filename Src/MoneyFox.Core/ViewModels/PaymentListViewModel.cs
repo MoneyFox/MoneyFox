@@ -5,16 +5,17 @@ using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using MoneyFox.Foundation.Constants;
+using MoneyFox.Core.Constants;
+using MoneyFox.Core.Groups;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Interfaces.ViewModels;
+using MoneyFox.Core.Model;
 using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Groups;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Interfaces.ViewModels;
 using PropertyChanged;
-using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
+using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.ViewModels
 {
@@ -25,8 +26,8 @@ namespace MoneyFox.Core.ViewModels
         private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
-        private readonly IPaymentRepository paymentRepository;
         private readonly IPaymentManager paymentManager;
+        private readonly IPaymentRepository paymentRepository;
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,

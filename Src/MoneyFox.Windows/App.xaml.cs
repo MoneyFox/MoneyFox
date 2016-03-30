@@ -12,16 +12,17 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.ApplicationInsights;
+using Microsoft.Data.Entity;
 using Microsoft.Practices.ServiceLocation;
 using MoneyFox.Core.Authentication;
+using MoneyFox.Core.Constants;
+using MoneyFox.Core.DataAccess;
 using MoneyFox.Core.Helpers;
 using MoneyFox.Core.Services;
 using MoneyFox.Core.SettingAccess;
 using MoneyFox.Core.Shortcut;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Resources;
 using MoneyFox.Windows.Views;
-using MoneyManager.Foundation;
-using MoneyManager.Windows;
 using UniversalRateReminder;
 
 namespace MoneyFox.Windows
@@ -41,6 +42,10 @@ namespace MoneyFox.Windows
 #if !DEBUG
             WindowsAppInitializer.InitializeAsync();
 #endif
+            using (var db = new MoneyFoxDataContext())
+            {
+                db.Database.Migrate();
+            }
 
             Suspending += OnSuspending;
         }
@@ -52,14 +57,14 @@ namespace MoneyFox.Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-            var shell = Window.Current.Content as AppShell;
+            var shell = Window.Current.Content as Views.AppShell;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (shell == null)
             {
                 // Create a AppShell to act as the navigation context and navigate to the first page
-                shell = new AppShell {Language = ApplicationLanguages.Languages[0]};
+                shell = new Views.AppShell {Language = ApplicationLanguages.Languages[0]};
 
                 shell.AppFrame.NavigationFailed += OnNavigationFailed;
             }

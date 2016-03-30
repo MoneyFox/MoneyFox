@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
+    xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -14,15 +14,15 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <userControls1:PageHeader>
-            <userControls1:PageHeader.HeaderContent>
+        <userControls:PageHeader>
+            <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="Categories"
                            x:Uid="CategoriesTitle" />
-            </userControls1:PageHeader.HeaderContent>
-        </userControls1:PageHeader>
+            </userControls:PageHeader.HeaderContent>
+        </userControls:PageHeader>
 
-        <userControls1:CategoryListUserControl Grid.Row="1" x:Name="CategoryListUserControl" />
+        <userControls:CategoryListUserControl Grid.Row="1" x:Name="CategoryListUserControl" />
 
         <CommandBar Grid.Row="2">
             <CommandBar.PrimaryCommands>

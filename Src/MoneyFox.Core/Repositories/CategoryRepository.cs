@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
-using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Model;
+using MoneyFox.Core.Resources;
 using PropertyChanged;
 
 namespace MoneyFox.Core.Repositories
@@ -11,14 +11,14 @@ namespace MoneyFox.Core.Repositories
     [ImplementPropertyChanged]
     public class CategoryRepository : IRepository<Category>
     {
-        private readonly IDataAccess<Category> dataAccess;
+        private readonly IGenericDataRepository<Category> dataAccess;
         private ObservableCollection<Category> data;
 
         /// <summary>
         ///     Creates a CategoryRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced Category data Access</param>
-        public CategoryRepository(IDataAccess<Category> dataAccess)
+        /// <param name="dataAccess">Instanced a <see cref="IGenericDataRepository{T}" /> type of <see cref="Category" /></param>
+        public CategoryRepository(IGenericDataRepository<Category> dataAccess)
         {
             this.dataAccess = dataAccess;
 
@@ -58,8 +58,12 @@ namespace MoneyFox.Core.Repositories
             if (category.Id == 0)
             {
                 data.Add(category);
+                dataAccess.Add(category);
             }
-            dataAccess.SaveItem(category);
+            else
+            {
+                dataAccess.Update(category);
+            }
         }
 
         /// <summary>
@@ -69,7 +73,7 @@ namespace MoneyFox.Core.Repositories
         public void Delete(Category categoryToDelete)
         {
             data.Remove(categoryToDelete);
-            dataAccess.DeleteItem(categoryToDelete);
+            dataAccess.Delete(categoryToDelete);
         }
 
         /// <summary>
@@ -78,7 +82,7 @@ namespace MoneyFox.Core.Repositories
         public void Load(Expression<Func<Category, bool>> filter = null)
         {
             Data.Clear();
-            foreach (var category in dataAccess.LoadList(filter))
+            foreach (var category in dataAccess.GetList(filter))
             {
                 Data.Add(category);
             }

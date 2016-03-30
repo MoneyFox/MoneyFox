@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
-using MoneyFox.Foundation.Interfaces;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.Constants;
+using MoneyFox.Core.Interfaces;
 
 namespace MoneyFox.Core.Services
 {
@@ -26,7 +25,7 @@ namespace MoneyFox.Core.Services
                     oneDriveClient = OneDriveClientExtensions.GetUniversalClient(OneDriveAuthenticationConstants.Scopes);
                     await oneDriveClient.AuthenticateAsync();
                 }
- 
+
                 if (!oneDriveClient.IsAuthenticated)
                 {
                     await oneDriveClient.AuthenticateAsync();

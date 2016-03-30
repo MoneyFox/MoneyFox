@@ -1,16 +1,17 @@
 ﻿using System.Linq;
 using MoneyFox.Core.Helpers;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Model;
 using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyManager.Core.Manager
 {
     public class RecurringPaymentManager : IRecurringPaymentManager
     {
-        private readonly IPaymentRepository paymentRepository;
         private readonly IAccountRepository accountRepository;
+        private readonly IPaymentRepository paymentRepository;
 
-        public RecurringPaymentManager(IPaymentRepository paymentRepository, 
+        public RecurringPaymentManager(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository)
         {
             this.paymentRepository = paymentRepository;

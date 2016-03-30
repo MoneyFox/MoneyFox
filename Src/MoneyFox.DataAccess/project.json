@@ -1,12 +1,14 @@
 ﻿{
-    "dependencies": {
-        "Microsoft.ApplicationInsights.PersistenceChannel": "1.2.3",
-        "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
-        "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-        "PropertyChanged.Fody": "1.50.4",
-        "NotificationsExtensions.Win10": "10586.0.2",
-        "SQLite.Net-PCL": "3.1.1"
-    },
+  "dependencies": {
+    "EntityFramework.Commands": "7.0.0-rc1-final",
+    "EntityFramework.SQLite": "7.0.0-rc1-final",
+    "Microsoft.ApplicationInsights.PersistenceChannel": "1.2.3",
+    "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "NotificationsExtensions.Win10": "10586.0.2",
+    "PropertyChanged.Fody": "1.50.4",
+    "SQLite.Net-PCL": "3.1.1"
+  },
   "frameworks": {
     "uap10.0": {}
   },

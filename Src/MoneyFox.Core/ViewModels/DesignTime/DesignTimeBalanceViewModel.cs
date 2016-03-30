@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MoneyManager.Foundation.Interfaces.ViewModels;
+using MoneyFox.Core.Interfaces.ViewModels;
 
 namespace MoneyManager.Core.ViewModels.DesignTime
 {

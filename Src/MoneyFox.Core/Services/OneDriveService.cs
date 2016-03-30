@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
 using Microsoft.OneDrive.Sdk;
-using MoneyFox.Foundation.Interfaces;
-using MoneyManager.Core.Extensions;
+using MoneyFox.Core.Constants;
+using MoneyFox.Core.Extensions;
+using MoneyFox.Core.Interfaces;
 using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyFox.Core.Services
 {

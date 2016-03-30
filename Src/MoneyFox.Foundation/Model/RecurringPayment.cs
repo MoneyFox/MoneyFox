@@ -1,12 +1,10 @@
 ﻿using System;
-using SQLite.Net.Attributes;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MoneyFox.Foundation.Model
 {
-    [Table("RecurringPayments")]
     public class RecurringPayment
     {
-        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
         public int ChargedAccountId { get; set; }
@@ -23,13 +21,13 @@ namespace MoneyFox.Foundation.Model
         public int Recurrence { get; set; }
         public string Note { get; set; }
 
-        [Ignore]
+        [NotMapped]
         public Account ChargedAccount { get; set; }
 
-        [Ignore]
+        [NotMapped]
         public Account TargetAccount { get; set; }
 
-        [Ignore]
+        [NotMapped]
         public Category Category { get; set; }
     }
 }

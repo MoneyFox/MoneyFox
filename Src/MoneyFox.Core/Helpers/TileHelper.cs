@@ -1,7 +1,7 @@
 ﻿using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
-using MoneyFox.Foundation.Constants;
+using MoneyFox.Core.Constants;
 using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.Helpers
@@ -19,19 +19,19 @@ namespace MoneyFox.Core.Helpers
         {
             switch (tileId)
             {
-                case Constants.ADD_INCOME_TILE_ID:
+                case Constants.Constants.ADD_INCOME_TILE_ID:
                     navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW,
-                        Enum.Parse(typeof (PaymentType), Constants.INCOME_TILE_ID));
+                        Enum.Parse(typeof (PaymentType), Constants.Constants.INCOME_TILE_ID));
                     return true;
 
-                case Constants.ADD_EXPENSE_TILE_ID:
+                case Constants.Constants.ADD_EXPENSE_TILE_ID:
                     navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW,
-                        Enum.Parse(typeof (PaymentType), Constants.EXPENSE_TILE_ID));
+                        Enum.Parse(typeof (PaymentType), Constants.Constants.EXPENSE_TILE_ID));
                     return true;
 
-                case Constants.ADD_TRANSFER_TILE_ID:
+                case Constants.Constants.ADD_TRANSFER_TILE_ID:
                     navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW,
-                        Enum.Parse(typeof (PaymentType), Constants.TRANSFER_TILE_ID));
+                        Enum.Parse(typeof (PaymentType), Constants.Constants.TRANSFER_TILE_ID));
                     return true;
                 default:
                     return false;

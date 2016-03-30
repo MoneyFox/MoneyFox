@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Store;
-using MoneyFox.Foundation.Interfaces;
+using MoneyFox.Core.Interfaces;
 
 namespace MoneyFox.Core
 {

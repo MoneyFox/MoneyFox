@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using MoneyFox.Foundation.Model;
+using MoneyFox.Core.Statistics.Models;
 
 namespace MoneyManager.Core.Helpers
 {

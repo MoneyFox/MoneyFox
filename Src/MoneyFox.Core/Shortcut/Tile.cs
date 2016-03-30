@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Core.Extensions;
-using MoneyManager.Core.StatisticDataProvider;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.Extensions;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Statistics.DataProviders;
 
 namespace MoneyFox.Core.Shortcut
 {

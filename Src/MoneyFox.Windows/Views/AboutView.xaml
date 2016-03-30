@@ -5,7 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
+      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -15,13 +15,13 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <userControls1:PageHeader>
-            <userControls1:PageHeader.HeaderContent>
+        <userControls:PageHeader>
+            <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
                            Text="About"
                            x:Uid="AboutTitle" />
-            </userControls1:PageHeader.HeaderContent>
-        </userControls1:PageHeader>
+            </userControls:PageHeader.HeaderContent>
+        </userControls:PageHeader>
 
         <ScrollViewer Margin="12,12,12,0"
                       Grid.Row="1"
@@ -136,7 +136,8 @@
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
                     </TextBlock>
-                </StackPanel><TextBlock TextWrapping="Wrap"
+                </StackPanel>
+                <TextBlock TextWrapping="Wrap"
                            Style="{ThemeResource BodyTextBlockStyle}"
                            Text="Translation Note"
                            HorizontalAlignment="Center"

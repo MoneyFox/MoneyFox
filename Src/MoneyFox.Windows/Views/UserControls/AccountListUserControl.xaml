@@ -6,10 +6,10 @@
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
-             xmlns:model1="using:MoneyFox.Foundation.Model"
-             xmlns:controls1="using:MoneyFox.Windows.Controls"
-             xmlns:converter1="using:MoneyFox.Windows.Converter"
-             xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
+             xmlns:controls="using:MoneyFox.Windows.Controls"
+             xmlns:converter="using:MoneyFox.Windows.Converter"
+             xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+             xmlns:model="using:MoneyFox.Core.Model"
              d:DataContext="{d:DesignInstance designTime:DesignTimeAccountListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -22,10 +22,10 @@
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
-        <converter1:AmountFormatConverter x:Key="AmountFormatConverter" />
-        <converter1:SelectedAccountConverter x:Key="SelectedAccountConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
 
-        <DataTemplate x:Key="AccountTemplate" x:DataType="model1:Account">
+        <DataTemplate x:Key="AccountTemplate" x:DataType="model:Account">
             <StackPanel HorizontalAlignment="Stretch"
                         Holding="AccountList_Holding"
                         RightTapped="AccountList_RightTapped"
@@ -62,16 +62,16 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <userControls1:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" />
+        <userControls:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" />
 
         <ScrollViewer Grid.Row="1">
-            <controls1:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
-                                             OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                             ItemTemplate="{StaticResource AccountTemplate}"
-                                             HorizontalAlignment="Stretch"
-                                             ShowsScrollingPlaceholders="False"
-                                             EntranceNavigationTransitionInfo.IsTargetElement="True">
+            <controls:AlternatingRowListView ItemsSource="{Binding AllAccounts}"
+                                              OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                              EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                              ItemTemplate="{StaticResource AccountTemplate}"
+                                              HorizontalAlignment="Stretch"
+                                              ShowsScrollingPlaceholders="False"
+                                              EntranceNavigationTransitionInfo.IsTargetElement="True">
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -88,7 +88,7 @@
                                                   InputConverter="{StaticResource SelectedAccountConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-            </controls1:AlternatingRowListView>
+            </controls:AlternatingRowListView>
         </ScrollViewer>
     </Grid>
 </UserControl>

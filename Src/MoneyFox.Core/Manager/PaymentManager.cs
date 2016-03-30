@@ -2,10 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
-using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Core.Exceptions;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Model;
 using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.Resources;
 
 namespace MoneyFox.Core.Manager
 {
