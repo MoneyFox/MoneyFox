@@ -145,7 +145,6 @@
     <Compile Include="Shortcut\IncomeTile.cs" />
     <Compile Include="Shortcut\Tile.cs" />
     <Compile Include="Shortcut\TransferTile.cs" />
-    <Compile Include="SQLiteConnectionFactory.cs" />
     <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />

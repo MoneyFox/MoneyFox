@@ -110,7 +110,6 @@
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IFileStore.cs" />
-    <Compile Include="Interfaces\ISqliteConnectionFactory.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\BackupException.cs" />
