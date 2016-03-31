@@ -160,9 +160,9 @@
     <Compile Include="Interfaces\ViewModels\ICategoryListViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />
-    <Compile Include="Migrations\20160330194134_InitMigration.cs" />
-    <Compile Include="Migrations\20160330194134_InitMigration.designer.cs">
-      <DependentUpon>20160330194134_InitMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20160331202149_InitMigration.cs" />
+    <Compile Include="Migrations\20160331202149_InitMigration.designer.cs">
+      <DependentUpon>20160331202149_InitMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\MoneyFoxDataContextModelSnapshot.cs" />
     <Compile Include="Model\Account.cs" />
