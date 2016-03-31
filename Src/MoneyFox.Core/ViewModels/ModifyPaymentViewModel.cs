@@ -6,11 +6,11 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Core.Constants;
+using MoneyFox.Core.DatabaseModels;
 using MoneyFox.Core.Helpers;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Model;
-using MoneyFox.Core.Repositories;
 using MoneyFox.Core.Resources;
+using MoneyFox.Core.ViewModels.Models;
 using MoneyManager.Core.Helpers;
 using PropertyChanged;
 using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
@@ -18,7 +18,7 @@ using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 namespace MoneyFox.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class ModifyPaymentViewModelViewModel : ViewModelBase
+    public class ModifyPaymentViewModel : ViewModelBase
     {
         private readonly IAccountRepository accountRepository;
         private readonly IDefaultManager defaultManager;
@@ -30,7 +30,7 @@ namespace MoneyFox.Core.ViewModels
         // This has to be static in order to keep the value even if you leave the page to select a category.
         private double amount;
 
-        public ModifyPaymentViewModelViewModel(IPaymentRepository paymentRepository,
+        public ModifyPaymentViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IDialogService dialogService,
             IPaymentManager paymentManager,

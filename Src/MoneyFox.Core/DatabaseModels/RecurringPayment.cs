@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MoneyFox.Core.Model
+namespace MoneyFox.Core.DatabaseModels
 {
+    [Table("RecurringPayments")]
     public class RecurringPayment
     {
         public int Id { get; set; }

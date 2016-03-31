@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
              xmlns:converter="using:MoneyFox.Windows.Converter"
-             d:DataContext="{d:DesignInstance designTime:DesignTimeBalanceViewModel, IsDesignTimeCreatable=True}"
+             xmlns:designTime1="using:MoneyFox.Core.ViewModels.DesignTime"
+             d:DataContext="{d:DesignInstance designTime1:DesignTimeBalanceViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="50"
              d:DesignWidth="400">

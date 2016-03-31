@@ -6,8 +6,8 @@ using GalaSoft.MvvmLight.Views;
 using MoneyFox.Core.Constants;
 using MoneyFox.Core.Groups;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Model;
 using MoneyFox.Core.Resources;
+using MoneyFox.Core.ViewModels.Models;
 using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.ViewModels

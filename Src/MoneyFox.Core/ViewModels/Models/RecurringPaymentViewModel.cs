@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Windows.ApplicationModel.Appointments;
+using MoneyFox.Core.DatabaseModels;
 
-namespace MoneyFox.Core.Model
+namespace MoneyFox.Core.ViewModels.Models
 {
     /// <summary>
     ///     Provides and abstraction layer between the recurring payment database model and the use in the application.

@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Core.Interfaces.ViewModels;
 
-namespace MoneyManager.Core.ViewModels.DesignTime
+namespace MoneyFox.Core.ViewModels.DesignTime
 {
     public class DesignTimeBalanceViewModel : IBalanceViewModel
     {

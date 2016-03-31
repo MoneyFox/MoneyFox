@@ -8,7 +8,7 @@
       xmlns:converters="using:Cimbalino.Toolkit.Converters"
       xmlns:converter="using:MoneyFox.Windows.Converter"
       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-      xmlns:model="using:MoneyFox.Core.Model"
+      xmlns:databaseModels="using:MoneyFox.Core.DatabaseModels"
       mc:Ignorable="d"
       NavigationCacheMode="Enabled"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -18,7 +18,7 @@
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converters:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate"
-                      x:DataType="model:Account">
+                      x:DataType="databaseModels:Account">
             <StackPanel Margin="0,0,0,12"
                         Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
@@ -52,14 +52,14 @@
                               HorizontalAlignment="Stretch"
                               ItemTemplate="{StaticResource ComboBoxTemplate}"
                               ItemsSource="{Binding AllAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedItem="{Binding SelectedPaymentViewModel.ChargedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedPayment.ChargedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Margin="0,7,0,0" />
                     <ComboBox Header="target account"
                               x:Uid="TargetAccountTextBox"
                               HorizontalAlignment="Stretch"
                               ItemTemplate="{StaticResource ComboBoxTemplate}"
                               ItemsSource="{Binding AllAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedItem="{Binding SelectedPaymentViewModel.TargetAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding SelectedPayment.TargetAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Visibility="{Binding IsTransfer, Converter={StaticResource BooleanVisibilityConverter}}"
                               Margin="0,7,0,0" />
                     <TextBox Text="{Binding AmountString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -74,7 +74,7 @@
                     <Grid Margin="0,7,0,0">
                         <TextBox Header="category"
                                  x:Uid="CategoryTextBox"
-                                 Text="{Binding SelectedPaymentViewModel.Category.Name, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding SelectedPayment.Category.Name, UpdateSourceTrigger=PropertyChanged}"
                                  IsReadOnly="True">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="GotFocus">
@@ -103,16 +103,15 @@
                         x:Uid="DateDatePicker" />
                     <TextBox Header="note"
                              x:Uid="NoteTextBox"
-                             Text="{Binding SelectedPaymentViewModel.Note, Mode=TwoWay}"
+                             Text="{Binding SelectedPayment.Note, Mode=TwoWay}"
                              TextWrapping="Wrap"
                              Margin="0,7,0,0" />
                     <ToggleSwitch Header="repeat"
                                   x:Uid="RepeatSwitch"
                                   VerticalAlignment="Stretch"
-                                  IsOn="{Binding SelectedPaymentViewModel.IsRecurring, Mode=TwoWay}"
+                                  IsOn="{Binding SelectedPayment.IsRecurring, Mode=TwoWay}"
                                   Margin="0,7,0,0" />
-                    <StackPanel
-                        Visibility="{Binding SelectedPaymentViewModel.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
+                    <StackPanel Visibility="{Binding SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
                         <ComboBox Header="Reccurence"
                                   x:Uid="RecurrenceComboBox"
                                   HorizontalAlignment="Stretch"

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyFox.Core.DatabaseModels;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Model;
 using MoneyFox.Core.Statistics.DataProviders;
 using MoneyFox.Core.Statistics.Models;
 using OxyPlot;

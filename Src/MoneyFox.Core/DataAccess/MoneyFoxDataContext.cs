@@ -1,5 +1,5 @@
 ﻿using Microsoft.Data.Entity;
-using MoneyFox.Core.Model;
+using MoneyFox.Core.DatabaseModels;
 
 namespace MoneyFox.Core.DataAccess
 {

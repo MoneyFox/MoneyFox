@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MoneyFox.Core.DatabaseModels;
 
-namespace MoneyFox.Core.Model
+namespace MoneyFox.Core.ViewModels.Models
 {
     /// <summary>
     ///     Provides and abstraction layer between the payment database model and the use in the application.

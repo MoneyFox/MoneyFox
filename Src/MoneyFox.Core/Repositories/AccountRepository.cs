@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Linq.Expressions;
+using MoneyFox.Core.DatabaseModels;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Model;
 using MoneyFox.Core.Resources;
+using MoneyFox.Core.ViewModels.Models;
 using PropertyChanged;
 
 namespace MoneyFox.Core.Repositories

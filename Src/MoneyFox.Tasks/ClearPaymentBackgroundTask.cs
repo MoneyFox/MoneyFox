@@ -2,8 +2,8 @@
 using Windows.ApplicationModel.Background;
 using Microsoft.ApplicationInsights;
 using MoneyFox.Core.DataAccess;
+using MoneyFox.Core.DatabaseModels;
 using MoneyFox.Core.Manager;
-using MoneyFox.Core.Model;
 using MoneyFox.Core.Repositories;
 using MoneyFox.Core.Shortcut;
 

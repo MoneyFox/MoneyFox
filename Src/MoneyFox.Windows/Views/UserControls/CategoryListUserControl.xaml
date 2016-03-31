@@ -8,8 +8,9 @@
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:controls="using:MoneyFox.Windows.Controls"
              xmlns:converter="using:MoneyFox.Windows.Converter"
-             xmlns:model="using:MoneyFox.Core.Model"
-             d:DataContext="{d:DesignInstance designTime:DesignTimeCategoryListViewModel, IsDesignTimeCreatable=True}"
+             xmlns:designTime1="using:MoneyFox.Core.ViewModels.DesignTime"
+             xmlns:databaseModels="using:MoneyFox.Core.DatabaseModels"
+             d:DataContext="{d:DesignInstance designTime1:DesignTimeCategoryListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -18,7 +19,7 @@
         <converter:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="CategoryTemplate"
-                      x:DataType="model:Category">
+                      x:DataType="databaseModels:Category">
             <StackPanel Margin="0,6,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="300"

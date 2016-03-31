@@ -1,7 +1,7 @@
 ﻿using Windows.System;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
-using MoneyFox.Core.Model;
+using MoneyFox.Core.DatabaseModels;
 using MoneyFox.Core.ViewModels;
 
 namespace MoneyFox.Windows.Views.Dialogs

@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using MoneyFox.Core.DatabaseModels;
 using MoneyFox.Core.Interfaces.ViewModels;
-using MoneyFox.Core.Model;
 
-namespace MoneyManager.Core.ViewModels.DesignTime
+namespace MoneyFox.Core.ViewModels.DesignTime
 {
     public class DesignTimeCategoryListViewModel : ICategoryListViewModel
     {

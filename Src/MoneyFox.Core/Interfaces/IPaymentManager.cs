@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
-using MoneyFox.Core.Model;
+using MoneyFox.Core.DatabaseModels;
+using MoneyFox.Core.ViewModels.Models;
 
 namespace MoneyFox.Core.Interfaces
 {

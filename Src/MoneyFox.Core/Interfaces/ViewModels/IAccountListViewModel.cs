@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Core.Model;
+using MoneyFox.Core.DatabaseModels;
 
 namespace MoneyFox.Core.Interfaces.ViewModels
 {

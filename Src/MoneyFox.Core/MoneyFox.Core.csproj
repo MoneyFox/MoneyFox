@@ -165,18 +165,18 @@
       <DependentUpon>20160331202149_InitMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\MoneyFoxDataContextModelSnapshot.cs" />
-    <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\PaymentViewModel.cs" />
-    <Compile Include="Model\RecurringPaymentViewModel.cs" />
+    <Compile Include="DatabaseModels\Account.cs" />
+    <Compile Include="ViewModels\Models\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\Models\RecurringPaymentViewModel.cs" />
     <Compile Include="Resources\Strings1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="Statistics\Models\CashFlow.cs" />
-    <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\Payment.cs" />
-    <Compile Include="Model\RecurringPayment.cs" />
+    <Compile Include="DatabaseModels\Category.cs" />
+    <Compile Include="DatabaseModels\Payment.cs" />
+    <Compile Include="DatabaseModels\RecurringPayment.cs" />
     <Compile Include="Statistics\Models\StatisticItem.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />

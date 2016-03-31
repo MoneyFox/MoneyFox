@@ -3,12 +3,13 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 
-namespace MoneyFox.Core.Model
+namespace MoneyFox.Core.DatabaseModels
 {
     /// <summary>
     ///     Databasemodel for payments. Includes expenses, income and transfers.
     ///     Databasetable: Payments
     /// </summary>
+    [Table("Payments")]
     public class Payment : INotifyPropertyChanged
     {
         private Category category;
