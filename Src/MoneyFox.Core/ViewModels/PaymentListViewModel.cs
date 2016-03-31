@@ -18,7 +18,7 @@ using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 namespace MoneyFox.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class PaymentViewModelListViewModel : ViewModelBase, IPaymentViewModelListViewModel
+    public class PaymentListViewModel : ViewModelBase, IPaymentViewModelListViewModel
     {
         private readonly IAccountRepository accountRepository;
         private readonly IBalanceViewModel balanceViewModel;
@@ -27,7 +27,7 @@ namespace MoneyFox.Core.ViewModels
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
 
-        public PaymentViewModelListViewModel(IPaymentRepository paymentRepository,
+        public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
             IBalanceViewModel balanceViewModel,
             IDialogService dialogService,
@@ -111,7 +111,7 @@ namespace MoneyFox.Core.ViewModels
 
         private void GoToAddPaymentViewModel(string typeString)
         {
-            navigationService.NavigateTo(NavigationConstants.MODIFY_PaymentViewModel_VIEW,
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW,
                 Enum.Parse(typeof (PaymentType), typeString));
         }
 
@@ -129,7 +129,7 @@ namespace MoneyFox.Core.ViewModels
         {
             paymentRepository.Selected = paymentViewModel;
 
-            navigationService.NavigateTo(NavigationConstants.MODIFY_PaymentViewModel_VIEW, paymentViewModel);
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, paymentViewModel);
         }
 
         private async void DeletePaymentViewModel(PaymentViewModel PaymentViewModel)

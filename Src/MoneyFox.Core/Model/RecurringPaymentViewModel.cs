@@ -17,6 +17,9 @@ namespace MoneyFox.Core.Model
             this.recurringPayment = recurringPayment;
         }
 
+        public RecurringPaymentViewModel() : this(new RecurringPayment())
+        {}
+
         public int Id => recurringPayment.Id;
 
         public Account ChargedAccount
@@ -66,10 +69,15 @@ namespace MoneyFox.Core.Model
             get { return recurringPayment.Note; }
             set { recurringPayment.Note = value; }
         }
-
-        public RecurrenceType Recurrence
+        public bool IsEndless
         {
-            get { return (RecurrenceType) Enum.ToObject(typeof (RecurrenceType), recurringPayment.Recurrence); }
+            get { return recurringPayment.IsEndless; }
+            set { recurringPayment.IsEndless = value; }
+        }
+
+        public PaymentRecurrence Recurrence
+        {
+            get { return (PaymentRecurrence) Enum.ToObject(typeof (PaymentRecurrence), recurringPayment.Recurrence); }
             set { recurringPayment.Recurrence = Convert.ToInt16(value); }
         }
 

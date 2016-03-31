@@ -272,11 +272,12 @@ namespace MoneyFox.Core.ViewModels
             if ((IsEdit && await paymentManager.CheckForRecurringPayment(SelectedPaymentViewModel))
                 || SelectedPaymentViewModel.IsRecurring)
             {
-                SelectedPaymentViewModel.RecurringPayment = RecurringPaymentViewModelHelper.
+                SelectedPaymentViewModel.RecurringPayment = RecurringPaymentHelper.
                     GetRecurringFromPaymentViewModel(SelectedPaymentViewModel,
                         IsEndless,
-                        Recurrence,
-                        EndDate);
+                        (PaymentRecurrence) Enum.ToObject(typeof (PaymentRecurrence), Recurrence),
+                        EndDate)
+                    .GetRecurringPayment();
             }
         }
 

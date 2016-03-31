@@ -86,7 +86,7 @@ namespace MoneyFox.Core.Manager
             }
         }
 
-        public void RemoveRecurringForPayments(RecurringPayment recurringPayment)
+        public void RemoveRecurringForPayments(RecurringPaymentViewModel recurringPayment)
         {
             try
             {

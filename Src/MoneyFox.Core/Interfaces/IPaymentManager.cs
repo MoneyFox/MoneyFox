@@ -11,6 +11,6 @@ namespace MoneyFox.Core.Interfaces
 
         void ClearPayments();
 
-        void RemoveRecurringForPayments(RecurringPayment recurringPayment);
+        void RemoveRecurringForPayments(RecurringPaymentViewModel recurringPayment);
     }
 }

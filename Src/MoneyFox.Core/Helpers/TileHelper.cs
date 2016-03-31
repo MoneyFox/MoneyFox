@@ -19,17 +19,17 @@ namespace MoneyFox.Core.Helpers
             switch (tileId)
             {
                 case Constants.Constants.ADD_INCOME_TILE_ID:
-                    navigationService.NavigateTo(NavigationConstants.MODIFY_PaymentViewModel_VIEW,
+                    navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW,
                         Enum.Parse(typeof (PaymentType), Constants.Constants.INCOME_TILE_ID));
                     return true;
 
                 case Constants.Constants.ADD_EXPENSE_TILE_ID:
-                    navigationService.NavigateTo(NavigationConstants.MODIFY_PaymentViewModel_VIEW,
+                    navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW,
                         Enum.Parse(typeof (PaymentType), Constants.Constants.EXPENSE_TILE_ID));
                     return true;
 
                 case Constants.Constants.ADD_TRANSFER_TILE_ID:
-                    navigationService.NavigateTo(NavigationConstants.MODIFY_PaymentViewModel_VIEW,
+                    navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW,
                         Enum.Parse(typeof (PaymentType), Constants.Constants.TRANSFER_TILE_ID));
                     return true;
                 default:

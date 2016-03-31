@@ -3,12 +3,12 @@ using MoneyFox.Core.ViewModels;
 
 namespace MoneyFox.Windows.Views
 {
-    public sealed partial class PaymentViewModelListView
+    public sealed partial class PaymentListView
     {
-        public PaymentViewModelListView()
+        public PaymentListView()
         {
             InitializeComponent();
-            DataContext = ServiceLocator.Current.GetInstance<PaymentViewModelListViewModel>();
+            DataContext = ServiceLocator.Current.GetInstance<PaymentListViewModel>();
         }
     }
 }

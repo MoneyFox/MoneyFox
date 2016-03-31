@@ -74,7 +74,7 @@ namespace MoneyFox.Core.ViewModels
         {
             paymentRepository.Selected = paymentViewModel;
 
-            navigationService.NavigateTo(NavigationConstants.MODIFY_PaymentViewModel_VIEW, paymentViewModel);
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, paymentViewModel);
         }
 
         private async void Delete(PaymentViewModel paymentViewModel)

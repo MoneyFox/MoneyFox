@@ -7,7 +7,7 @@
         Transfer
     }
 
-    public enum PaymentViewModelRecurrence
+    public enum PaymentRecurrence
     {
         Daily = 0,
         DailyWithoutWeekend = 1,

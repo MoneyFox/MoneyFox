@@ -39,7 +39,7 @@ namespace MoneyFox.Core.ViewModels
 
         private void GoToAddPaymentViewModel(string typeString)
         {
-            navigationService.NavigateTo(NavigationConstants.MODIFY_PaymentViewModel_VIEW,
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW,
                 Enum.Parse(typeof (PaymentType), typeString));
         }
 
@@ -50,7 +50,7 @@ namespace MoneyFox.Core.ViewModels
 
         private void GoToRecurringPaymentViewModelList()
         {
-            navigationService.NavigateTo(NavigationConstants.RECURRING_PaymentViewModel_LIST_VIEW);
+            navigationService.NavigateTo(NavigationConstants.RECURRING_PAYMENT_LIST_VIEW);
         }
     }
 }

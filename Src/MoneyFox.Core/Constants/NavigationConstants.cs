@@ -5,11 +5,11 @@ namespace MoneyFox.Core.Constants
     /// </summary>
     public class NavigationConstants
     {
-        public const string MODIFY_PaymentViewModel_VIEW = "ModifyPaymentViewModel";
+        public const string MODIFY_PAYMENT_VIEW = "ModifyPaymentViewModel";
         public const string MODIFY_ACCOUNT_VIEW = "ModifyAccount";
         public const string MAIN_VIEW = "Main";
-        public const string PaymentViewModel_LIST_VIEW = "PaymentViewModelList";
-        public const string RECURRING_PaymentViewModel_LIST_VIEW = "RecurringPaymentViewModelList";
+        public const string PAYMENT_LIST_VIEW = "PaymentViewModelList";
+        public const string RECURRING_PAYMENT_LIST_VIEW = "RecurringPaymentViewModelList";
         public const string SELECT_CATEGORY_LIST_VIEW = "SelectCategoryList";
         public const string STATISTIC_CASH_FLOW_VIEW = "StatisticCashFlow";
         public const string STATISTIC_CATEGORY_SPREADING_VIEW = "StatisticCategorySpreading";

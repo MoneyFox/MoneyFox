@@ -3,7 +3,7 @@ using MoneyFox.Core.Model;
 
 namespace MoneyFox.Core.Helpers
 {
-    public static class RecurringPaymentViewModelHelper
+    public static class RecurringPaymentHelper
     {
         /// <summary>
         ///     Creates an recurring PaymentViewModel based on the Financial PaymentViewModel.
@@ -13,23 +13,19 @@ namespace MoneyFox.Core.Helpers
         /// <param name="recurrence">How often the PaymentViewModel shall be repeated.</param>
         /// <param name="enddate">Enddate for the recurring PaymentViewModel if it's not endless.</param>
         /// <returns>The new created recurring PaymentViewModel</returns>
-        public static RecurringPayment GetRecurringFromPaymentViewModel(PaymentViewModel paymentViewModel,
+        public static RecurringPaymentViewModel GetRecurringFromPaymentViewModel(PaymentViewModel paymentViewModel,
             bool isEndless,
-            int recurrence,
+            PaymentRecurrence recurrence,
             DateTime enddate = new DateTime())
         {
-            return new RecurringPayment
+            return new RecurringPaymentViewModel
             {
-                Id = paymentViewModel.RecurringPayment.Id,
                 ChargedAccount = paymentViewModel.ChargedAccount,
-                ChargedAccountId = paymentViewModel.ChargedAccount.Id,
                 TargetAccount = paymentViewModel.TargetAccount,
-                TargetAccountId = paymentViewModel.TargetAccount?.Id ?? 0,
                 StartDate = paymentViewModel.Date,
                 EndDate = enddate,
                 IsEndless = isEndless,
                 Amount = paymentViewModel.Amount,
-                CategoryId = paymentViewModel.Category.Id,
                 Category = paymentViewModel.Category,
                 Type = paymentViewModel.Type,
                 Recurrence = recurrence,
@@ -42,30 +38,32 @@ namespace MoneyFox.Core.Helpers
         /// </summary>
         /// <param name="recurringPayment">The recurring PaymentViewModel the new PaymentViewModel shall be based on.</param>
         /// <returns>The new created PaymentViewModel</returns>
-        public static PaymentViewModel GetPaymentViewModelFromRecurring(RecurringPayment recurringPayment)
+        public static PaymentViewModel GetPaymentFromRecurring(RecurringPayment recurringPayment)
         {
             var date = DateTime.Today;
+            var recurringVm = new RecurringPaymentViewModel(recurringPayment);
 
             //If the PaymentViewModel is monthly we want it on the same day of month again.
-            if (recurringPayment.Recurrence == (int) PaymentViewModelRecurrence.Monthly)
+            if (recurringVm.Recurrence == PaymentRecurrence.Monthly)
             {
-                date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
+                date = DateTime.Today.AddDays(recurringVm.StartDate.Day - DateTime.Today.Day);
             }
 
             return new PaymentViewModel
             {
-                ChargedAccount = recurringPayment.ChargedAccount,
-                TargetAccount = recurringPayment.TargetAccount,
+                ChargedAccount = recurringVm.ChargedAccount,
+                TargetAccount = recurringVm.TargetAccount,
                 Date = date,
                 IsRecurring = true,
-                Amount = recurringPayment.Amount,
-                Category = recurringPayment.Category,
-                Type = recurringPayment.Type,
-                RecurringPayment = recurringPayment,
-                Note = recurringPayment.Note
+                Amount = recurringVm.Amount,
+                Category = recurringVm.Category,
+                Type = recurringVm.Type,
+                RecurringPayment = recurringVm.GetRecurringPayment(),
+                Note = recurringVm.Note
             };
         }
 
+        //TODO: check if can be used with a recurring payment view model.
         /// <summary>
         ///     Checks if the recurring PaymentViewModel is up for a repetition based on the passed PaymentViewModel
         /// </summary>
@@ -79,28 +77,28 @@ namespace MoneyFox.Core.Helpers
                 return false;
             }
 
-            switch (recurringPayment.Recurrence)
+            switch (new RecurringPaymentViewModel(recurringPayment).Recurrence)
             {
-                case (int) PaymentViewModelRecurrence.Daily:
+                case PaymentRecurrence.Daily:
                     return DateTime.Today.Date != relatedPaymentViewModel.Date.Date;
 
-                case (int) PaymentViewModelRecurrence.DailyWithoutWeekend:
+                case PaymentRecurrence.DailyWithoutWeekend:
                     return DateTime.Today.Date != relatedPaymentViewModel.Date.Date
                            && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
                            && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
 
-                case (int) PaymentViewModelRecurrence.Weekly:
+                case PaymentRecurrence.Weekly:
                     var daysWeekly = DateTime.Now - relatedPaymentViewModel.Date;
                     return daysWeekly.Days >= 7;
 
-                case (int) PaymentViewModelRecurrence.Biweekly:
+                case PaymentRecurrence.Biweekly:
                     var daysBiweekly = DateTime.Now - relatedPaymentViewModel.Date;
                     return daysBiweekly.Days >= 14;
 
-                case (int) PaymentViewModelRecurrence.Monthly:
+                case PaymentRecurrence.Monthly:
                     return DateTime.Now.Month != relatedPaymentViewModel.Date.Month;
 
-                case (int) PaymentViewModelRecurrence.Yearly:
+                case PaymentRecurrence.Yearly:
                     return (DateTime.Now.Year != relatedPaymentViewModel.Date.Year
                             && DateTime.Now.Month >= relatedPaymentViewModel.Date.Month)
                            || DateTime.Now.Year - relatedPaymentViewModel.Date.Year > 1;

@@ -86,7 +86,7 @@ namespace MoneyFox.Core.ViewModels
             }
 
             accountRepository.Selected = account;
-            navigationService.NavigateTo(NavigationConstants.PaymentViewModel_LIST_VIEW);
+            navigationService.NavigateTo(NavigationConstants.PAYMENT_LIST_VIEW);
         }
 
         private async void Delete(Account item)

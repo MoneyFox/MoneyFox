@@ -28,9 +28,9 @@ namespace MoneyFox.Core.Manager
             {
                 var relatedPaymentViewModel = GetLastOccurence(paymentViewModel);
 
-                if (RecurringPaymentViewModelHelper.CheckIfRepeatable(paymentViewModel.RecurringPayment, relatedPaymentViewModel))
+                if (RecurringPaymentHelper.CheckIfRepeatable(paymentViewModel.RecurringPayment, relatedPaymentViewModel))
                 {
-                    var newPaymentViewModel = RecurringPaymentViewModelHelper.GetPaymentViewModelFromRecurring(paymentViewModel.RecurringPayment);
+                    var newPaymentViewModel = RecurringPaymentHelper.GetPaymentFromRecurring(paymentViewModel.RecurringPayment);
 
                     paymentRepository.Save(newPaymentViewModel);
                     accountRepository.AddPaymentAmount(newPaymentViewModel);

@@ -12,7 +12,7 @@ namespace MoneyFox.Windows.Views.UserControls
         public PaymentViewModelListUserControl()
         {
             InitializeComponent();
-            DataContext = ServiceLocator.Current.GetInstance<PaymentViewModelListViewModel>();
+            DataContext = ServiceLocator.Current.GetInstance<PaymentListViewModel>();
         }
 
         private void EditPaymentViewModel(object sender, RoutedEventArgs e)
@@ -23,7 +23,7 @@ namespace MoneyFox.Windows.Views.UserControls
             {
                 return;
             }
-            var viewmodel = DataContext as PaymentViewModelListViewModel;
+            var viewmodel = DataContext as PaymentListViewModel;
 
             viewmodel?.EditCommand.Execute(paymentViewModel);
         }
@@ -36,7 +36,7 @@ namespace MoneyFox.Windows.Views.UserControls
             {
                 return;
             }
-            (DataContext as PaymentViewModelListViewModel)?.DeletePaymentViewModelCommand.Execute(paymentViewModel);
+            (DataContext as PaymentListViewModel)?.DeletePaymentViewModelCommand.Execute(paymentViewModel);
         }
 
         private void PaymentViewModelList_Holding(object sender, HoldingRoutedEventArgs e)

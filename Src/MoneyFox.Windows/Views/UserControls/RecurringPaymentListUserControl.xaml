@@ -32,16 +32,16 @@
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
-                        Holding="PaymentViewModelList_Holding"
-                        RightTapped="PaymentViewModelList_RightTapped">
+                        Holding="PaymentList_Holding"
+                        RightTapped="PaymentList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
                                         Text="Edit"
-                                        Click="EditPaymentViewModel" />
+                                        Click="EditPayment" />
                         <MenuFlyoutItem x:Uid="Delete"
                                         Text="Delete"
-                                        Click="DeletePaymentViewModel" />
+                                        Click="DeletePayment" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch"

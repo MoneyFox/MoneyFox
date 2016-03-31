@@ -20,6 +20,6 @@
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
-        <userControls:RecurringPaymentViewModelListUserControl Grid.Row="1" />
+        <userControls:RecurringPaymentListUserControl Grid.Row="1" />
     </Grid>
 </Page>
