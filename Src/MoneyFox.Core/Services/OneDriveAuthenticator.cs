@@ -22,7 +22,7 @@ namespace MoneyFox.Core.Services
             {
                 if (oneDriveClient == null)
                 {
-                    oneDriveClient = OneDriveClientExtensions.GetUniversalClient(OneDriveAuthenticationConstants.Scopes);
+                    oneDriveClient = OneDriveClientExtensions.GetUniversalClient(OneDriveConstants.Scopes);
                     await oneDriveClient.AuthenticateAsync();
                 }
 

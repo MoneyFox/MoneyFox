@@ -3,7 +3,7 @@
     /// <summary>
     ///     Contains constant values used for the onedrive authentication
     /// </summary>
-    public class OneDriveAuthenticationConstants
+    public class OneDriveConstants
     {
         /// <summary>
         ///     Name of the sqlite database
