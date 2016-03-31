@@ -21,16 +21,6 @@
         public const string BACKUP_NAME = "backupmoneyfox.sqlite";
 
         /// <summary>
-        ///     Return url for the OneDrive authentication
-        /// </summary>
-        public const string RETURN_URL = "https://login.live.com/oauth20_desktop.srf";
-
-        /// <summary>
-        ///     Authentication url for the OneDrive authentication
-        /// </summary>
-        public const string AUTHENTICATION_URL = "https://login.live.com/oauth20_authorize.srf";
-
-        /// <summary>
         ///     Scopes for OneDrive access
         /// </summary>
         public static string[] Scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly"};
