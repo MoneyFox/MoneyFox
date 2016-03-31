@@ -72,7 +72,7 @@ namespace MoneyFox.Core.Repositories
             paymentVm.IsCleared = paymentVm.ClearPaymentNow;
 
             //delete recurring payment if isRecurring is no longer set.
-            if (!paymentVm.IsRecurring && paymentVm.RecurringPayment.Id != 0)
+            if (!paymentVm.IsRecurring)
             {
                 recurringDataAccess.Delete(paymentVm.RecurringPayment);
                 paymentVm.RecurringPayment.Id = 0;

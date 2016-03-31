@@ -44,7 +44,7 @@ namespace MoneyFox.Core.ViewModels
             this.navigationService = navigationService;
             this.accountRepository = accountRepository;
 
-            MessengerInstance.Register<Category>(this, category => SelectedPaymentViewModel.Category = category);
+            MessengerInstance.Register<Category>(this, category => SelectedPayment.Category = category);
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace MoneyFox.Core.ViewModels
         /// <summary>
         ///     The selected PaymentViewModel
         /// </summary>
-        public PaymentViewModel SelectedPaymentViewModel
+        public PaymentViewModel SelectedPayment
         {
             get { return paymentRepository.Selected; }
             set { paymentRepository.Selected = value; }
@@ -146,13 +146,13 @@ namespace MoneyFox.Core.ViewModels
         /// <summary>
         ///     Returns the Title for the page
         /// </summary>
-        public string Title => PaymentViewModelTypeHelper.GetViewTitleForType(SelectedPaymentViewModel.Type, IsEdit);
+        public string Title => PaymentViewModelTypeHelper.GetViewTitleForType(SelectedPayment.Type, IsEdit);
 
         /// <summary>
         ///     Returns the Header for the account field
         /// </summary>
         public string AccountHeader
-            => SelectedPaymentViewModel?.Type == PaymentType.Income
+            => SelectedPayment?.Type == PaymentType.Income
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
 
@@ -163,13 +163,13 @@ namespace MoneyFox.Core.ViewModels
         {
             get
             {
-                if (!IsEdit && SelectedPaymentViewModel.Date == DateTime.MinValue)
+                if (!IsEdit && SelectedPayment.Date == DateTime.MinValue)
                 {
-                    SelectedPaymentViewModel.Date = DateTime.Now;
+                    SelectedPayment.Date = DateTime.Now;
                 }
-                return SelectedPaymentViewModel.Date;
+                return SelectedPayment.Date;
             }
-            set { SelectedPaymentViewModel.Date = value; }
+            set { SelectedPayment.Date = value; }
         }
 
         private Account AccountBeforeEdit { get; set; }
@@ -195,34 +195,34 @@ namespace MoneyFox.Core.ViewModels
                 PrepareDefault(type);
             }
 
-            AccountBeforeEdit = SelectedPaymentViewModel.ChargedAccount;
+            AccountBeforeEdit = SelectedPayment.ChargedAccount;
         }
 
         private void PrepareEdit()
         {
-            IsTransfer = SelectedPaymentViewModel.IsTransfer;
+            IsTransfer = SelectedPayment.IsTransfer;
             // set the private amount property. This will get properly formatted and then displayed.
-            amount = SelectedPaymentViewModel.Amount;
-            Recurrence = SelectedPaymentViewModel.IsRecurring
-                ? SelectedPaymentViewModel.RecurringPayment.Recurrence
+            amount = SelectedPayment.Amount;
+            Recurrence = SelectedPayment.IsRecurring
+                ? SelectedPayment.RecurringPayment.Recurrence
                 : 0;
-            EndDate = SelectedPaymentViewModel.IsRecurring
-                ? SelectedPaymentViewModel.RecurringPayment.EndDate
+            EndDate = SelectedPayment.IsRecurring
+                ? SelectedPayment.RecurringPayment.EndDate
                 : DateTime.Now;
-            IsEndless = !SelectedPaymentViewModel.IsRecurring || SelectedPaymentViewModel.RecurringPayment.IsEndless;
+            IsEndless = !SelectedPayment.IsRecurring || SelectedPayment.RecurringPayment.IsEndless;
         }
 
         private void PrepareDefault(PaymentType type)
         {
             SetDefaultPaymentViewModel(type);
-            SelectedPaymentViewModel.ChargedAccount = defaultManager.GetDefaultAccount();
+            SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
             IsTransfer = type == PaymentType.Transfer;
             EndDate = DateTime.Now;
         }
 
         private void SetDefaultPaymentViewModel(PaymentType paymentType)
         {
-            SelectedPaymentViewModel = new PaymentViewModel()
+            SelectedPayment = new PaymentViewModel()
             {
                 Type = paymentType,
                 Date = DateTime.Now,
@@ -233,13 +233,13 @@ namespace MoneyFox.Core.ViewModels
 
         private async void Save()
         {
-            if (SelectedPaymentViewModel.ChargedAccount == null)
+            if (SelectedPayment.ChargedAccount == null)
             {
                 ShowAccountRequiredMessage();
                 return;
             }
 
-            if (SelectedPaymentViewModel.IsRecurring && !IsEndless && EndDate.Date <= DateTime.Today)
+            if (SelectedPayment.IsRecurring && !IsEndless && EndDate.Date <= DateTime.Today)
             {
                 ShowInvalidEndDateMessage();
                 return;
@@ -247,14 +247,14 @@ namespace MoneyFox.Core.ViewModels
 
             // Make sure that the old amount is removed to not count the amount twice.
             RemoveOldAmount();
-            SelectedPaymentViewModel.Amount = amount;
+            SelectedPayment.Amount = amount;
 
             //Create a recurring PaymentViewModel based on the PaymentViewModel or update an existing
             await PrepareRecurringPayment();
 
             // Save item or update the PaymentViewModel and add the amount to the account
-            paymentRepository.Save(SelectedPaymentViewModel);
-            accountRepository.AddPaymentAmount(SelectedPaymentViewModel);
+            paymentRepository.Save(SelectedPayment);
+            accountRepository.AddPaymentAmount(SelectedPayment);
 
             navigationService.GoBack();
         }
@@ -263,17 +263,17 @@ namespace MoneyFox.Core.ViewModels
         {
             if (IsEdit)
             {
-                accountRepository.RemovePaymentAmount(SelectedPaymentViewModel, AccountBeforeEdit);
+                accountRepository.RemovePaymentAmount(SelectedPayment, AccountBeforeEdit);
             }
         }
 
         private async Task PrepareRecurringPayment()
         {
-            if ((IsEdit && await paymentManager.CheckForRecurringPayment(SelectedPaymentViewModel))
-                || SelectedPaymentViewModel.IsRecurring)
+            if ((IsEdit && await paymentManager.CheckForRecurringPayment(SelectedPayment))
+                || SelectedPayment.IsRecurring)
             {
-                SelectedPaymentViewModel.RecurringPayment = RecurringPaymentHelper.
-                    GetRecurringFromPaymentViewModel(SelectedPaymentViewModel,
+                SelectedPayment.RecurringPayment = RecurringPaymentHelper.
+                    GetRecurringFromPaymentViewModel(SelectedPayment,
                         IsEndless,
                         (PaymentRecurrence) Enum.ToObject(typeof (PaymentRecurrence), Recurrence),
                         EndDate)
@@ -290,13 +290,13 @@ namespace MoneyFox.Core.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentViewModelConfirmationMessage))
             {
-                if (await paymentManager.CheckForRecurringPayment(SelectedPaymentViewModel))
+                if (await paymentManager.CheckForRecurringPayment(SelectedPayment))
                 {
-                    paymentRepository.DeleteRecurring(SelectedPaymentViewModel);
+                    paymentRepository.DeleteRecurring(SelectedPayment);
                 }
 
                 paymentRepository.Delete(paymentRepository.Selected);
-                accountRepository.RemovePaymentAmount(SelectedPaymentViewModel);
+                accountRepository.RemovePaymentAmount(SelectedPayment);
                 navigationService.GoBack();
             }
         }
@@ -316,7 +316,7 @@ namespace MoneyFox.Core.ViewModels
 
         private void ResetSelection()
         {
-            SelectedPaymentViewModel.Category = null;
+            SelectedPayment.Category = null;
         }
 
         private void Cancel()
