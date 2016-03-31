@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Core.Constants
 {
     /// <summary>
-    ///     Contains constant values used for the onedrive authentication
+    ///     Contains constant values used for the onedrive sync
     /// </summary>
     public class OneDriveConstants
     {
