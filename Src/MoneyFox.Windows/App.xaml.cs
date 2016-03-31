@@ -42,12 +42,33 @@ namespace MoneyFox.Windows
 #if !DEBUG
             WindowsAppInitializer.InitializeAsync();
 #endif
+
+            MigrateDatabase();
+            Suspending += OnSuspending;
+        }
+
+        private async void MigrateDatabase()
+        {
             using (var db = new MoneyFoxDataContext())
             {
+                if (await db.Accounts.AnyAsync())
+                {
+                    try
+                    {
+                        db.Database.Migrate();
+                    }
+                    catch (Exception)
+                    {
+                        const string migrationId = "20160331205612_InitMigration";
+                        const string productVersion = "7.0.0-rc1-16348";
+                        const string sqlInsert =
+                            "INSERT INTO __EFMigrationsHistory (MigrationId, ProductVersion) VALUES (@p0, @p1)";
+                        db.Database.ExecuteSqlCommand(sqlInsert, migrationId, productVersion);
+                    }
+                }
+
                 db.Database.Migrate();
             }
-
-            Suspending += OnSuspending;
         }
 
         /// <summary>
