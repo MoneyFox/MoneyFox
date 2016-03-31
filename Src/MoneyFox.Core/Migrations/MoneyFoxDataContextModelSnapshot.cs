@@ -15,7 +15,7 @@ namespace MoneyFox.Core.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348");
 
-            modelBuilder.Entity("MoneyFox.Core.Model.Account", b =>
+            modelBuilder.Entity("MoneyFox.Core.DatabaseModels.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -29,9 +29,11 @@ namespace MoneyFox.Core.Migrations
                     b.Property<string>("Note");
 
                     b.HasKey("Id");
+
+                    b.HasAnnotation("Relational:TableName", "Accounts");
                 });
 
-            modelBuilder.Entity("MoneyFox.Core.Model.Category", b =>
+            modelBuilder.Entity("MoneyFox.Core.DatabaseModels.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -39,9 +41,11 @@ namespace MoneyFox.Core.Migrations
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
+
+                    b.HasAnnotation("Relational:TableName", "Categories");
                 });
 
-            modelBuilder.Entity("MoneyFox.Core.Model.Payment", b =>
+            modelBuilder.Entity("MoneyFox.Core.DatabaseModels.Payment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -67,9 +71,11 @@ namespace MoneyFox.Core.Migrations
                     b.Property<int>("Type");
 
                     b.HasKey("Id");
+
+                    b.HasAnnotation("Relational:TableName", "Payments");
                 });
 
-            modelBuilder.Entity("MoneyFox.Core.Model.RecurringPayment", b =>
+            modelBuilder.Entity("MoneyFox.Core.DatabaseModels.RecurringPayment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -95,6 +101,8 @@ namespace MoneyFox.Core.Migrations
                     b.Property<int>("Type");
 
                     b.HasKey("Id");
+
+                    b.HasAnnotation("Relational:TableName", "RecurringPayments");
                 });
         }
     }

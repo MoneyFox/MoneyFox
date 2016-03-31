@@ -9,7 +9,7 @@ namespace MoneyFox.Core.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Account",
+                name: "Accounts",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -24,7 +24,7 @@ namespace MoneyFox.Core.Migrations
                     table.PrimaryKey("PK_Account", x => x.Id);
                 });
             migrationBuilder.CreateTable(
-                name: "Category",
+                name: "Categories",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -36,7 +36,7 @@ namespace MoneyFox.Core.Migrations
                     table.PrimaryKey("PK_Category", x => x.Id);
                 });
             migrationBuilder.CreateTable(
-                name: "Payment",
+                name: "Payments",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -57,7 +57,7 @@ namespace MoneyFox.Core.Migrations
                     table.PrimaryKey("PK_Payment", x => x.Id);
                 });
             migrationBuilder.CreateTable(
-                name: "RecurringPayment",
+                name: "RecurringPayments",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -81,10 +81,10 @@ namespace MoneyFox.Core.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable("Account");
-            migrationBuilder.DropTable("Category");
-            migrationBuilder.DropTable("Payment");
-            migrationBuilder.DropTable("RecurringPayment");
+            migrationBuilder.DropTable("Accounts");
+            migrationBuilder.DropTable("Categories");
+            migrationBuilder.DropTable("Payments");
+            migrationBuilder.DropTable("RecurringPayments");
         }
     }
 }

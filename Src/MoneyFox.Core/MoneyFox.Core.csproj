@@ -160,12 +160,12 @@
     <Compile Include="Interfaces\ViewModels\ICategoryListViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />
-    <Compile Include="Migrations\20160331202149_InitMigration.cs" />
-    <Compile Include="Migrations\20160331202149_InitMigration.designer.cs">
-      <DependentUpon>20160331202149_InitMigration.cs</DependentUpon>
+    <Compile Include="DatabaseModels\Account.cs" />
+    <Compile Include="Migrations\20160331205612_InitMigration.cs" />
+    <Compile Include="Migrations\20160331205612_InitMigration.designer.cs">
+      <DependentUpon>20160331205612_InitMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\MoneyFoxDataContextModelSnapshot.cs" />
-    <Compile Include="DatabaseModels\Account.cs" />
     <Compile Include="ViewModels\Models\PaymentViewModel.cs" />
     <Compile Include="ViewModels\Models\RecurringPaymentViewModel.cs" />
     <Compile Include="Resources\Strings1.Designer.cs">
