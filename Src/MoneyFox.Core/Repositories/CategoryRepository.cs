@@ -79,10 +79,10 @@ namespace MoneyFox.Core.Repositories
         /// <summary>
         ///     Loads all categories from the database to the data collection
         /// </summary>
-        public void Load(Expression<Func<Category, bool>> filter = null)
+        public void Load()
         {
             Data.Clear();
-            foreach (var category in dataAccess.GetList(filter))
+            foreach (var category in dataAccess.GetList())
             {
                 Data.Add(category);
             }

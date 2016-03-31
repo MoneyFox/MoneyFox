@@ -5,7 +5,6 @@ using Microsoft.ApplicationInsights;
 using MoneyFox.Core.Exceptions;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Model;
 using MoneyFox.Core.Resources;
 
 namespace MoneyFox.Core.Manager
@@ -45,7 +44,7 @@ namespace MoneyFox.Core.Manager
             }
         }
 
-        public async Task<bool> CheckForRecurringPayment(Payment payment)
+        public async Task<bool> CheckForRecurringPayment(PaymentViewModel payment)
         {
             if (!payment.IsRecurring)
             {
@@ -69,7 +68,7 @@ namespace MoneyFox.Core.Manager
                     if (payment.ChargedAccount == null)
                     {
                         payment.ChargedAccount =
-                            accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                            accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccount.Id);
 
                         new TelemetryClient().TrackException(
                             new AccountMissingException("Charged account was missing while clearing payments."));
@@ -93,12 +92,12 @@ namespace MoneyFox.Core.Manager
             {
                 var relatedPayment = paymentRepository
                     .Data
-                    .Where(x => x.IsRecurring && x.RecurringPaymentId == recurringPayment.Id);
+                    .Where(x => x.IsRecurring && x.RecurringPayment.Id == recurringPayment.Id);
 
                 foreach (var payment in relatedPayment)
                 {
                     payment.IsRecurring = false;
-                    payment.RecurringPaymentId = 0;
+                    payment.RecurringPayment.Id = 0;
                     paymentRepository.Save(payment);
                 }
             }

@@ -49,9 +49,9 @@ namespace MoneyFox.Core.ViewModels
         public RelayCommand LoadedCommand => new RelayCommand(Loaded);
 
         /// <summary>
-        ///     Open the payment overview for this account.
+        ///     Open the PaymentViewModel overview for this account.
         /// </summary>
-        public RelayCommand<Account> OpenOverviewCommand => new RelayCommand<Account>(GoToPaymentOverView);
+        public RelayCommand<Account> OpenOverviewCommand => new RelayCommand<Account>(GoToPaymentViewModelOverView);
 
         /// <summary>
         ///     Edit the selected account
@@ -78,7 +78,7 @@ namespace MoneyFox.Core.ViewModels
             BalanceViewModel.UpdateBalanceCommand.Execute(null);
         }
 
-        private void GoToPaymentOverView(Account account)
+        private void GoToPaymentViewModelOverView(Account account)
         {
             if (account == null)
             {
@@ -86,7 +86,7 @@ namespace MoneyFox.Core.ViewModels
             }
 
             accountRepository.Selected = account;
-            navigationService.NavigateTo(NavigationConstants.PAYMENT_LIST_VIEW);
+            navigationService.NavigateTo(NavigationConstants.PaymentViewModel_LIST_VIEW);
         }
 
         private async void Delete(Account item)

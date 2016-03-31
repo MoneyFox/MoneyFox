@@ -41,51 +41,51 @@ namespace MoneyFox.Core.Migrations
             },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecurringPayment", x => x.Id);
-                    table.ForeignKey("FK_RecurringPayment_Category_CategoryId", x => x.CategoryId, "Category", "Id",
+                    table.PrimaryKey("PK_RecurringPaymentViewModel", x => x.Id);
+                    table.ForeignKey("FK_RecurringPaymentViewModel_Category_CategoryId", x => x.CategoryId, "Category", "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey("FK_RecurringPayment_Account_ChargedAccountId", x => x.ChargedAccountId, "Account",
+                    table.ForeignKey("FK_RecurringPaymentViewModel_Account_ChargedAccountId", x => x.ChargedAccountId, "Account",
                         "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey("FK_RecurringPayment_Account_TargetAccountId", x => x.TargetAccountId, "Account",
+                    table.ForeignKey("FK_RecurringPaymentViewModel_Account_TargetAccountId", x => x.TargetAccountId, "Account",
                         "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-            migrationBuilder.CreateTable("Payment", table => new
+            migrationBuilder.CreateTable("PaymentViewModel", table => new
             {
                 Id = table.Column<int>(nullable: false)
                     .Annotation("Sqlite:Autoincrement", true),
                 Amount = table.Column<double>(nullable: false),
                 CategoryId = table.Column<int>(nullable: true),
                 ChargedAccountId = table.Column<int>(nullable: false),
-                ClearPaymentNow = table.Column<bool>(nullable: false),
+                ClearPaymentViewModelNow = table.Column<bool>(nullable: false),
                 Date = table.Column<DateTime>(nullable: false),
                 IsCleared = table.Column<bool>(nullable: false),
                 IsRecurring = table.Column<bool>(nullable: false),
                 IsTransfer = table.Column<bool>(nullable: false),
                 Note = table.Column<string>(nullable: true),
-                RecurringPaymentId = table.Column<int>(nullable: false),
+                RecurringPaymentViewModelId = table.Column<int>(nullable: false),
                 TargetAccountId = table.Column<int>(nullable: false),
                 Type = table.Column<int>(nullable: false)
             },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Payment", x => x.Id);
-                    table.ForeignKey("FK_Payment_Category_CategoryId", x => x.CategoryId, "Category", "Id",
+                    table.PrimaryKey("PK_PaymentViewModel", x => x.Id);
+                    table.ForeignKey("FK_PaymentViewModel_Category_CategoryId", x => x.CategoryId, "Category", "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey("FK_Payment_Account_ChargedAccountId", x => x.ChargedAccountId, "Account", "Id",
+                    table.ForeignKey("FK_PaymentViewModel_Account_ChargedAccountId", x => x.ChargedAccountId, "Account", "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey("FK_Payment_RecurringPayment_RecurringPaymentId", x => x.RecurringPaymentId,
+                    table.ForeignKey("FK_PaymentViewModel_RecurringPaymentViewModel_RecurringPaymentViewModelId", x => x.RecurringPaymentViewModelId,
                         "RecurringPayment", "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey("FK_Payment_Account_TargetAccountId", x => x.TargetAccountId, "Account", "Id",
+                    table.ForeignKey("FK_PaymentViewModel_Account_TargetAccountId", x => x.TargetAccountId, "Account", "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable("Payment");
+            migrationBuilder.DropTable("PaymentViewModel");
             migrationBuilder.DropTable("RecurringPayment");
             migrationBuilder.DropTable("Category");
             migrationBuilder.DropTable("Account");

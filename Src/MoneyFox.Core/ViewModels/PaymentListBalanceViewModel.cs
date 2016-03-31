@@ -2,18 +2,17 @@
 using System.Linq;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Model;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
+using MoneyManager.Core.ViewModels;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     /// <summary>
-    ///     This ViewModel is for the usage in the paymentlist when a concret account is selected
+    ///     This ViewModel is for the usage in the PaymentViewModellist when a concret account is selected
     /// </summary>
-    public class PaymentListBalanceViewModel : BalanceViewModel
+    public class PaymentViewModelListBalanceViewModel : BalanceViewModel
     {
-        public PaymentListBalanceViewModel(IAccountRepository accountRepository,
+        public PaymentViewModelListBalanceViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository)
             : base(accountRepository, paymentRepository)
         {
@@ -30,28 +29,28 @@ namespace MoneyManager.Core.ViewModels
 
         /// <summary>
         ///     Calculates the sum of the selected account at the end of the month.
-        ///     This includes all payments coming until the end of month.
+        ///     This includes all PaymentViewModels coming until the end of month.
         /// </summary>
-        /// <returns>Balance of the selected accont including all payments to come till end of month.</returns>
+        /// <returns>Balance of the selected accont including all PaymentViewModels to come till end of month.</returns>
         protected override double GetEndOfMonthValue()
         {
             var balance = TotalBalance;
-            var unclearedPayments = LoadUnclreadPayments();
+            var unclearedPaymentViewModels = LoadUnclreadPaymentViewModels();
 
-            foreach (var payment in unclearedPayments)
+            foreach (var paymentViewModel in unclearedPaymentViewModels)
             {
-                switch (payment.Type)
+                switch (paymentViewModel.Type)
                 {
-                    case (int) PaymentType.Expense:
-                        balance -= payment.Amount;
+                    case PaymentType.Expense:
+                        balance -= paymentViewModel.Amount;
                         break;
 
-                    case (int) PaymentType.Income:
-                        balance += payment.Amount;
+                    case PaymentType.Income:
+                        balance += paymentViewModel.Amount;
                         break;
 
-                    case (int) PaymentType.Transfer:
-                        balance = HandleTransferAmount(payment, balance);
+                    case PaymentType.Transfer:
+                        balance = HandleTransferAmount(paymentViewModel, balance);
                         break;
                 }
             }
@@ -59,24 +58,24 @@ namespace MoneyManager.Core.ViewModels
             return balance;
         }
 
-        private double HandleTransferAmount(Payment payment, double balance)
+        private double HandleTransferAmount(PaymentViewModel PaymentViewModel, double balance)
         {
-            if (AccountRepository.Selected == payment.ChargedAccount)
+            if (AccountRepository.Selected == PaymentViewModel.ChargedAccount)
             {
-                balance -= payment.Amount;
+                balance -= PaymentViewModel.Amount;
             }
             else
             {
-                balance += payment.Amount;
+                balance += PaymentViewModel.Amount;
             }
             return balance;
         }
 
-        private IEnumerable<Payment> LoadUnclreadPayments()
+        private IEnumerable<PaymentViewModel> LoadUnclreadPaymentViewModels()
         {
             return PaymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth())
-                .Where(x => x.ChargedAccountId == AccountRepository.Selected.Id
-                            || x.TargetAccountId == AccountRepository.Selected.Id)
+                .Where(x => x.ChargedAccount.Id == AccountRepository.Selected.Id
+                            || x.TargetAccount.Id == AccountRepository.Selected.Id)
                 .ToList();
         }
     }

@@ -2,27 +2,26 @@ using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Core.Groups;
 using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Model;
 
 namespace MoneyFox.Core.Interfaces.ViewModels
 {
-    public interface IPaymentListViewModel
+    public interface IPaymentViewModelListViewModel
     {
         IBalanceViewModel BalanceViewModel { get; }
 
         RelayCommand LoadCommand { get; }
 
-        RelayCommand<string> GoToAddPaymentCommand { get; }
+        RelayCommand<string> GoToAddPaymentViewModelCommand { get; }
 
         RelayCommand DeleteAccountCommand { get; }
 
-        RelayCommand<Payment> EditCommand { get; }
+        RelayCommand<PaymentViewModel> EditCommand { get; }
 
-        RelayCommand<Payment> DeletePaymentCommand { get; }
+        RelayCommand<PaymentViewModel> DeletePaymentViewModelCommand { get; }
 
-        ObservableCollection<Payment> RelatedPayments { get; }
+        ObservableCollection<PaymentViewModel> RelatedPaymentViewModels { get; }
 
-        ObservableCollection<DateListGroup<Payment>> Source { get; }
+        ObservableCollection<DateListGroup<PaymentViewModel>> Source { get; }
 
         string Title { get; }
     }

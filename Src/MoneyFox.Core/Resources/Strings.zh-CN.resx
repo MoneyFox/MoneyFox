@@ -153,10 +153,10 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>现金流</value>
   </data>
-  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentViewModelMessage" xml:space="preserve">
     <value>这笔款项会重复发生。您想将当前改变应用到将来重复的款项或仅限于此次？</value>
   </data>
-  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentViewModelTitle" xml:space="preserve">
     <value>应用到将来的重复？</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
@@ -183,7 +183,7 @@
   <data name="DeleteTitle" xml:space="preserve">
     <value>删除？</value>
   </data>
-  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
+  <data name="DeletePaymentViewModelConfirmationMessage" xml:space="preserve">
     <value>您真的要删除此笔支付吗？</value>
   </data>
   <data name="EditLabel" xml:space="preserve">

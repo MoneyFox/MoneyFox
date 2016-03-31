@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.Foundation
+﻿namespace MoneyFox.Core
 {
     public enum PaymentType
     {
@@ -7,7 +7,7 @@
         Transfer
     }
 
-    public enum PaymentRecurrence
+    public enum PaymentViewModelRecurrence
     {
         Daily = 0,
         DailyWithoutWeekend = 1,
@@ -26,7 +26,7 @@
     public enum InvocationType
     {
         Account,
-        Payment,
+        PaymentViewModel,
         Setting
     }
 

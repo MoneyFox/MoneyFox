@@ -1,10 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Core;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation;
 
 namespace MoneyFox.Windows.Converter
 {
@@ -14,11 +13,11 @@ namespace MoneyFox.Windows.Converter
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var payment = (Payment) value;
+            var paymentViewModel = (PaymentViewModel) value;
             var param = parameter as string;
             string sign;
 
-            if (payment.Type == (int) PaymentType.Transfer)
+            if (paymentViewModel.Type == PaymentType.Transfer)
             {
                 if (param == IGNORE_TRANSFER)
                 {
@@ -26,20 +25,20 @@ namespace MoneyFox.Windows.Converter
                 }
                 else
                 {
-                    sign = payment.ChargedAccountId ==
-                           ServiceLocator.Current.GetInstance<IAccountRepository>().Selected.Id
+                    sign = paymentViewModel.ChargedAccount ==
+                           ServiceLocator.Current.GetInstance<IAccountRepository>().Selected
                         ? "-"
                         : "+";
                 }
             }
             else
             {
-                sign = payment.Type == (int) PaymentType.Expense
+                sign = paymentViewModel.Type == PaymentType.Expense
                     ? "-"
                     : "+";
             }
 
-            return sign + " " + $"{payment.Amount:C2}";
+            return sign + " " + $"{paymentViewModel.Amount:C2}";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

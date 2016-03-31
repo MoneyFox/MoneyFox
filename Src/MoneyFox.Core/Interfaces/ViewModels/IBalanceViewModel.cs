@@ -15,7 +15,7 @@ namespace MoneyFox.Core.Interfaces.ViewModels
         double EndOfMonthBalance { get; set; }
 
         /// <summary>
-        ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
+        ///     Refreshes the balances. Depending on if it is displayed in a PaymentViewModel view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
         RelayCommand UpdateBalanceCommand { get; }

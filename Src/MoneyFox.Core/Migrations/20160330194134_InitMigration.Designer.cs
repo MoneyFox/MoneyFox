@@ -44,7 +44,7 @@ namespace MoneyFox.Core.Migrations
                     b.HasKey("Id");
                 });
 
-            modelBuilder.Entity("MoneyFox.Foundation.Model.Payment", b =>
+            modelBuilder.Entity("MoneyFox.Foundation.Model.PaymentViewModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -55,7 +55,7 @@ namespace MoneyFox.Core.Migrations
 
                     b.Property<int>("ChargedAccountId");
 
-                    b.Property<bool>("ClearPaymentNow");
+                    b.Property<bool>("ClearPaymentViewModelNow");
 
                     b.Property<DateTime>("Date");
 
@@ -67,7 +67,7 @@ namespace MoneyFox.Core.Migrations
 
                     b.Property<string>("Note");
 
-                    b.Property<int>("RecurringPaymentId");
+                    b.Property<int>("RecurringPaymentViewModelId");
 
                     b.Property<int>("TargetAccountId");
 
@@ -104,7 +104,7 @@ namespace MoneyFox.Core.Migrations
                     b.HasKey("Id");
                 });
 
-            modelBuilder.Entity("MoneyFox.Foundation.Model.Payment", b =>
+            modelBuilder.Entity("MoneyFox.Foundation.Model.PaymentViewModel", b =>
                 {
                     b.HasOne("MoneyFox.Foundation.Model.Category")
                         .WithMany()
@@ -116,7 +116,7 @@ namespace MoneyFox.Core.Migrations
 
                     b.HasOne("MoneyFox.Foundation.Model.RecurringPayment")
                         .WithMany()
-                        .HasForeignKey("RecurringPaymentId");
+                        .HasForeignKey("RecurringPaymentViewModelId");
 
                     b.HasOne("MoneyFox.Foundation.Model.Account")
                         .WithMany()

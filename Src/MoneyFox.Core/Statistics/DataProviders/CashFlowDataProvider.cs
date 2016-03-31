@@ -5,8 +5,6 @@ using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
 using MoneyFox.Core.Resources;
 using MoneyFox.Core.Statistics.Models;
-using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.Statistics.DataProviders
 {
@@ -29,9 +27,9 @@ namespace MoneyFox.Core.Statistics.DataProviders
         public CashFlow GetValues(DateTime startDate, DateTime endDate)
         {
             var getPaymentListFunc =
-                new Func<List<Payment>>(() =>
+                new Func<List<PaymentViewModel>>(() =>
                     paymentRepository.Data
-                        .Where(x => x.Type != (int) PaymentType.Transfer)
+                        .Where(x => x.Type != PaymentType.Transfer)
                         .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
                         .ToList());
 
@@ -39,14 +37,14 @@ namespace MoneyFox.Core.Statistics.DataProviders
         }
 
         private CashFlow GetCashFlowStatisticItems(
-            Func<List<Payment>> getPaymentListFunc)
+            Func<List<PaymentViewModel>> getPaymentListFunc)
         {
             var payments = getPaymentListFunc();
 
             var income = new StatisticItem
             {
                 Category = Strings.RevenueLabel,
-                Value = payments.Where(x => x.Type == (int) PaymentType.Income).Sum(x => x.Amount)
+                Value = payments.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount)
             };
             income.Label = income.Category + ": " +
                            Math.Round(income.Value, 2, MidpointRounding.AwayFromZero).ToString("C");
@@ -54,7 +52,7 @@ namespace MoneyFox.Core.Statistics.DataProviders
             var spent = new StatisticItem
             {
                 Category = Strings.ExpenseLabel,
-                Value = payments.Where(x => x.Type == (int) PaymentType.Expense).Sum(x => x.Amount)
+                Value = payments.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount)
             };
             spent.Label = spent.Category + ": " +
                           Math.Round(spent.Value, 2, MidpointRounding.AwayFromZero).ToString("C");

@@ -32,17 +32,17 @@
                 <AppBarButton Icon="Add"
                               x:Uid="AddIncomeLabel"
                               Label="add income"
-                              Command="{Binding GoToAddPaymentCommand}"
+                              Command="{Binding GoToAddPaymentViewModelCommand}"
                               CommandParameter="Income" />
                 <AppBarButton Icon="Remove"
                               x:Uid="AddExpenseLabel"
                               Label="add spending"
-                              Command="{Binding GoToAddPaymentCommand}"
+                              Command="{Binding GoToAddPaymentViewModelCommand}"
                               CommandParameter="Expense" />
                 <AppBarButton Icon="Switch"
                               x:Uid="AddTransferLabel"
                               Label="add transfer"
-                              Command="{Binding GoToAddPaymentCommand}"
+                              Command="{Binding GoToAddPaymentViewModelCommand}"
                               CommandParameter="Transfer" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
@@ -50,10 +50,10 @@
                               x:Uid="AddAccountLabel"
                               Label="Add Account"
                               Command="{Binding GoToAddAccountCommand}" />
-                <AppBarButton x:Uid="RecurringPaymentList"
-                              Label="Recurring Payment Overview"
+                <AppBarButton x:Uid="RecurringPaymentViewModelList"
+                              Label="Recurring PaymentViewModel Overview"
                               Visibility="Collapsed"
-                              Command="{Binding GoToRecurringPaymentListCommand}" />
+                              Command="{Binding GoToRecurringPaymentViewModelListCommand}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

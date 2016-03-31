@@ -260,7 +260,7 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Summary of the categories with a payment..
+        ///   Looks up a localized string similar to Summary of the categories with a PaymentViewModel..
         /// </summary>
         public static string CategorySummaryDescription {
             get {
@@ -269,11 +269,11 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This payment is recurring. Do you want to update the future payments aswell or just this occurence?.
+        ///   Looks up a localized string similar to This PaymentViewModel is recurring. Do you want to update the future PaymentViewModels aswell or just this occurence?.
         /// </summary>
         public static string ChangeSubsequentPaymentMessage {
             get {
-                return ResourceManager.GetString("ChangeSubsequentPaymentMessage", resourceCulture);
+                return ResourceManager.GetString("ChangeSubsequentPaymentViewModelMessage", resourceCulture);
             }
         }
         
@@ -282,7 +282,7 @@ namespace MoneyFox.Core.Resources {
         /// </summary>
         public static string ChangeSubsequentPaymentTitle {
             get {
-                return ResourceManager.GetString("ChangeSubsequentPaymentTitle", resourceCulture);
+                return ResourceManager.GetString("ChangeSubsequentPaymentViewModelTitle", resourceCulture);
             }
         }
         
@@ -341,11 +341,11 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to delete this payment?.
+        ///   Looks up a localized string similar to Do you really want to delete this PaymentViewModel?.
         /// </summary>
-        public static string DeletePaymentConfirmationMessage {
+        public static string DeletePaymentViewModelConfirmationMessage {
             get {
-                return ResourceManager.GetString("DeletePaymentConfirmationMessage", resourceCulture);
+                return ResourceManager.GetString("DeletePaymentViewModelConfirmationMessage", resourceCulture);
             }
         }
         
@@ -467,7 +467,7 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The enddate of a recurring payment has to be in the future. Please check your input..
+        ///   Looks up a localized string similar to The enddate of a recurring PaymentViewModel has to be in the future. Please check your input..
         /// </summary>
         public static string InvalidEnddateMessage {
             get {

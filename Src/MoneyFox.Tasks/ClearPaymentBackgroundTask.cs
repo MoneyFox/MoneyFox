@@ -6,7 +6,6 @@ using MoneyFox.Core.Manager;
 using MoneyFox.Core.Model;
 using MoneyFox.Core.Repositories;
 using MoneyFox.Core.Shortcut;
-using MoneyFox.Foundation.Model;
 
 namespace MoneyFox.Tasks
 {

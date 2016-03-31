@@ -3,11 +3,10 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Core;
 using MoneyFox.Core.Model;
 using MoneyFox.Core.ViewModels;
-using MoneyFox.Foundation.Model;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
 
 namespace MoneyFox.Windows.Views
 {
@@ -16,7 +15,7 @@ namespace MoneyFox.Windows.Views
         public ModifyPaymentView()
         {
             InitializeComponent();
-            DataContext = ServiceLocator.Current.GetInstance<ModifyPaymentViewModel>();
+            DataContext = ServiceLocator.Current.GetInstance<ModifyPaymentViewModelViewModel>();
 
             // code to handle bottom app bar when keyboard appears
             // workaround since otherwise the keyboard would overlay some controls
@@ -35,12 +34,12 @@ namespace MoneyFox.Windows.Views
         {
             if (e.NavigationMode != NavigationMode.Back)
             {
-                var viewModel = (ModifyPaymentViewModel) DataContext;
+                var viewModel = (ModifyPaymentViewModelViewModel) DataContext;
 
-                var payment = e.Parameter as Payment;
-                if (payment != null)
+                var paymentViewModel = e.Parameter as PaymentViewModel;
+                if (paymentViewModel != null)
                 {
-                    //TODO Refactor this that on edit the payment type isn't necessary since we don't need it here.
+                    //TODO Refactor this that on edit the PaymentViewModel type isn't necessary since we don't need it here.
                     viewModel.Init(PaymentType.Expense, true);
                 }
                 else if (e.Parameter?.GetType() == typeof (PaymentType))

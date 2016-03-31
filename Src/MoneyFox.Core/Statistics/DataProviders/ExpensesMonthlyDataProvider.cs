@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Statistics.Models;
-using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.Statistics.DataProviders
 {

@@ -89,12 +89,12 @@ namespace MoneyFox.Windows
         private static PageNavigationService CreateNavigationService()
         {
             var navigationService = new PageNavigationService();
-            navigationService.Configure(NavigationConstants.MODIFY_PAYMENT_VIEW, typeof (ModifyPaymentView));
+            navigationService.Configure(NavigationConstants.MODIFY_PaymentViewModel_VIEW, typeof (ModifyPaymentView));
             navigationService.Configure(NavigationConstants.MAIN_VIEW, typeof (MainView));
             navigationService.Configure(NavigationConstants.MODIFY_ACCOUNT_VIEW, typeof (ModifyAccountView));
-            navigationService.Configure(NavigationConstants.PAYMENT_LIST_VIEW, typeof (PaymentListView));
-            navigationService.Configure(NavigationConstants.RECURRING_PAYMENT_LIST_VIEW,
-                typeof (RecurringPaymentListView));
+            navigationService.Configure(NavigationConstants.PaymentViewModel_LIST_VIEW, typeof (PaymentViewModelListView));
+            navigationService.Configure(NavigationConstants.RECURRING_PaymentViewModel_LIST_VIEW,
+                typeof (RecurringPaymentViewModelListView));
             navigationService.Configure(NavigationConstants.SELECT_CATEGORY_LIST_VIEW, typeof (SelectCategoryListView));
             navigationService.Configure(NavigationConstants.STATISTIC_CASH_FLOW_VIEW, typeof (StatisticCashFlowView));
             navigationService.Configure(NavigationConstants.STATISTIC_CATEGORY_SPREADING_VIEW,

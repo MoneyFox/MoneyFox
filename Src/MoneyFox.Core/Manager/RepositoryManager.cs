@@ -1,7 +1,7 @@
 ﻿using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
 
-namespace MoneyManager.Core.Manager
+namespace MoneyFox.Core.Manager
 {
     /// <summary>
     ///     This helper can be used to reinstantiate all Repositories, for example when you
@@ -27,7 +27,7 @@ namespace MoneyManager.Core.Manager
 
         /// <summary>
         ///     This will reload all Data for the repositories and set the Selected Property to null.
-        ///     After this it checks if there are payments to cleare and if so will clear them.
+        ///     After this it checks if there are PaymentViewModels to cleare and if so will clear them.
         /// </summary>
         public void ReloadData()
         {
@@ -41,7 +41,7 @@ namespace MoneyManager.Core.Manager
             categoryRepository.Load();
             categoryRepository.Selected = null;
 
-            //check if there are payments to clear
+            //check if there are PaymentViewModels to clear
             paymentManager.ClearPayments();
         }
     }

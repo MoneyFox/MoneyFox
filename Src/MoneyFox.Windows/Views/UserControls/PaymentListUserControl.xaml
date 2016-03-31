@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MoneyFox.Windows.Views.UserControls.PaymentListUserControl"
+﻿<UserControl x:Class="MoneyFox.Windows.Views.UserControls.PaymentViewModelListUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,7 +11,7 @@
              xmlns:converter="using:MoneyFox.Windows.Converter"
              xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
              xmlns:model="using:MoneyFox.Core.Model"
-             d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel, IsDesignTimeCreatable=True}"
+             d:DataContext="{d:DesignInstance designTime:DesignTimePaymentViewModelListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -23,35 +23,35 @@
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
-        <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+        <converter:PaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
         <converter:CultureConverter x:Key="FormatConverter" />
         <cimbalinoConverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 
-        <DataTemplate x:Key="PaymentTemplate"
-                      x:DataType="model:Payment">
+        <DataTemplate x:Key="PaymentViewModelTemplate"
+                      x:DataType="model:PaymentViewModel">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
-                        Holding="PaymentList_Holding"
-                        RightTapped="PaymentList_RightTapped">
+                        Holding="PaymentViewModelList_Holding"
+                        RightTapped="PaymentViewModelList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="Edit"
                                         Text="Edit"
-                                        Click="EditPayment" />
+                                        Click="EditPaymentViewModel" />
                         <MenuFlyoutItem x:Uid="Delete"
                                         Text="Delete"
-                                        Click="DeletePayment" />
+                                        Click="DeletePaymentViewModel" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <Grid HorizontalAlignment="Stretch"
                       Margin="0,0,0,3">
                     <TextBlock
                         Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
-                    <TextBlock Text="{Binding Converter={StaticResource PaymentAmountConverter}}"
+                    <TextBlock Text="{Binding Converter={StaticResource PaymentViewModelAmountConverter}}"
                                HorizontalAlignment="Right" />
                 </Grid>
                 <Grid>
@@ -147,7 +147,7 @@
                 <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
                                                   EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
                                                   ItemsSource="{Binding Source={StaticResource Groups}}"
-                                                  ItemTemplate="{StaticResource PaymentTemplate}"
+                                                  ItemTemplate="{StaticResource PaymentViewModelTemplate}"
                                                   HorizontalAlignment="Stretch"
                                                   ShowsScrollingPlaceholders="false"
                                                   IsItemClickEnabled="True"

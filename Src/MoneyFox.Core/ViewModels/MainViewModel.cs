@@ -5,7 +5,6 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Core.Constants;
 using MoneyFox.Core.SettingAccess;
-using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.ViewModels
 {
@@ -24,9 +23,9 @@ namespace MoneyFox.Core.ViewModels
         public string TimeStampDbUpdate => Settings.LastDatabaseUpdate.ToString(CultureInfo.InvariantCulture);
 
         /// <summary>
-        ///     Prepare everything and navigate to the add payment view
+        ///     Prepare everything and navigate to the add PaymentViewModel view
         /// </summary>
-        public RelayCommand<string> GoToAddPaymentCommand => new RelayCommand<string>(GoToAddPayment);
+        public RelayCommand<string> GoToAddPaymentViewModelCommand => new RelayCommand<string>(GoToAddPaymentViewModel);
 
         /// <summary>
         ///     Prepare everything and navigate to the add account view
@@ -34,13 +33,13 @@ namespace MoneyFox.Core.ViewModels
         public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
 
         /// <summary>
-        ///     Navigates to the recurring payment overview.
+        ///     Navigates to the recurring PaymentViewModel overview.
         /// </summary>
-        public RelayCommand GoToRecurringPaymentListCommand => new RelayCommand(GoToRecurringPaymentList);
+        public RelayCommand GoToRecurringPaymentViewModelListCommand => new RelayCommand(GoToRecurringPaymentViewModelList);
 
-        private void GoToAddPayment(string typeString)
+        private void GoToAddPaymentViewModel(string typeString)
         {
-            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW,
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PaymentViewModel_VIEW,
                 Enum.Parse(typeof (PaymentType), typeString));
         }
 
@@ -49,9 +48,9 @@ namespace MoneyFox.Core.ViewModels
             navigationService.NavigateTo(NavigationConstants.MODIFY_ACCOUNT_VIEW);
         }
 
-        private void GoToRecurringPaymentList()
+        private void GoToRecurringPaymentViewModelList()
         {
-            navigationService.NavigateTo(NavigationConstants.RECURRING_PAYMENT_LIST_VIEW);
+            navigationService.NavigateTo(NavigationConstants.RECURRING_PaymentViewModel_LIST_VIEW);
         }
     }
 }

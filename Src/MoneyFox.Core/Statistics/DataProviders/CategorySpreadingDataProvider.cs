@@ -4,8 +4,6 @@ using System.Linq;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
 using MoneyFox.Core.Statistics.Models;
-using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.Statistics.DataProviders
 {
@@ -22,7 +20,7 @@ namespace MoneyFox.Core.Statistics.DataProviders
         }
 
         /// <summary>
-        ///     Selects payments from the given timeframe and calculates the spreading for the six categories
+        ///     Selects PaymentViewModels from the given timeframe and calculates the spreading for the six categories
         ///     with the highest spendings. All others are summarized in a "other" item.
         /// </summary>
         /// <param name="startDate">Startpoint form which to select data.</param>
@@ -30,27 +28,27 @@ namespace MoneyFox.Core.Statistics.DataProviders
         /// <returns>Statistic value for the given time. </returns>
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
         {
-            // Get all Payments inlcuding income.
-            var getPaymentListFunc =
-                new Func<List<Payment>>(() =>
+            // Get all PaymentViewModels inlcuding income.
+            var getPaymentViewModelListFunc =
+                new Func<List<PaymentViewModel>>(() =>
                     paymentRepository.Data
                         .Where(x => x.Category != null)
                         .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
-                        .Where(x => x.Type == (int) PaymentType.Expense || x.Type == (int) PaymentType.Income)
+                        .Where(x => x.Type == (int) PaymentType.Expense || x.Type == PaymentType.Income)
                         .ToList());
 
-            return GetSpreadingStatisticItems(getPaymentListFunc);
+            return GetSpreadingStatisticItems(getPaymentViewModelListFunc);
         }
 
         private List<StatisticItem> GetSpreadingStatisticItems(
-            Func<List<Payment>> getPaymentListFunc)
+            Func<List<PaymentViewModel>> getPaymentViewModelListFunc)
         {
-            var payments = getPaymentListFunc();
+            var paymentViewModels = getPaymentViewModelListFunc();
 
             var tempStatisticList = categoryRepository.Data.Select(category => new StatisticItem
             {
                 Category = category.Name,
-                Value = payments
+                Value = paymentViewModels
                     .Where(x => x.Type == (int) PaymentType.Expense)
                     .Where(x => x.Category.Id == category.Id)
                     .Sum(x => x.Amount)
@@ -63,7 +61,7 @@ namespace MoneyFox.Core.Statistics.DataProviders
 
             AddOtherItem(tempStatisticList, statisticList);
 
-            IncludeIncome(statisticList, payments);
+            IncludeIncome(statisticList, paymentViewModels);
 
             // Remove again all entries with zero amount.
             RemoveZeroAmountEntries(statisticList);
@@ -101,12 +99,12 @@ namespace MoneyFox.Core.Statistics.DataProviders
             item.Label = item.Category;
         }
 
-        private void IncludeIncome(IEnumerable<StatisticItem> statisticList, List<Payment> payments)
+        private void IncludeIncome(IEnumerable<StatisticItem> statisticList, List<PaymentViewModel> PaymentViewModels)
         {
             foreach (var statisticItem in statisticList)
             {
-                statisticItem.Value -= payments
-                    .Where(x => x.Type == (int) PaymentType.Income)
+                statisticItem.Value -= PaymentViewModels
+                    .Where(x => x.Type == PaymentType.Income)
                     .Where(x => x.Category != null)
                     .Where(x => x.Category.Name == statisticItem.Category)
                     .Sum(x => x.Amount);

@@ -2,16 +2,15 @@
 using MoneyFox.Core.Helpers;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Model;
 
-namespace MoneyManager.Core.Manager
+namespace MoneyFox.Core.Manager
 {
-    public class RecurringPaymentManager : IRecurringPaymentManager
+    public class RecurringPaymentViewModelManager : IRecurringPaymentViewModelManager
     {
         private readonly IAccountRepository accountRepository;
         private readonly IPaymentRepository paymentRepository;
 
-        public RecurringPaymentManager(IPaymentRepository paymentRepository,
+        public RecurringPaymentViewModelManager(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository)
         {
             this.paymentRepository = paymentRepository;
@@ -19,30 +18,30 @@ namespace MoneyManager.Core.Manager
         }
 
         /// <summary>
-        ///     Checks if one of the recurring payment has to be repeated
+        ///     Checks if one of the recurring PaymentViewModel has to be repeated
         /// </summary>
-        public void CheckRecurringPayments()
+        public void CheckRecurringPaymentViewModels()
         {
-            var paymentList = paymentRepository.LoadRecurringList();
+            var paymentViewModelList = paymentRepository.LoadRecurringList();
 
-            foreach (var payment in paymentList.Where(x => x.ChargedAccount != null))
+            foreach (var paymentViewModel in paymentViewModelList.Where(x => x.ChargedAccount != null))
             {
-                var relatedPayment = GetLastOccurence(payment);
+                var relatedPaymentViewModel = GetLastOccurence(paymentViewModel);
 
-                if (RecurringPaymentHelper.CheckIfRepeatable(payment.RecurringPayment, relatedPayment))
+                if (RecurringPaymentViewModelHelper.CheckIfRepeatable(paymentViewModel.RecurringPayment, relatedPaymentViewModel))
                 {
-                    var newPayment = RecurringPaymentHelper.GetPaymentFromRecurring(payment.RecurringPayment);
+                    var newPaymentViewModel = RecurringPaymentViewModelHelper.GetPaymentViewModelFromRecurring(paymentViewModel.RecurringPayment);
 
-                    paymentRepository.Save(newPayment);
-                    accountRepository.AddPaymentAmount(newPayment);
+                    paymentRepository.Save(newPaymentViewModel);
+                    accountRepository.AddPaymentAmount(newPaymentViewModel);
                 }
             }
         }
 
-        private Payment GetLastOccurence(Payment payment)
+        private PaymentViewModel GetLastOccurence(PaymentViewModel paymentVm)
         {
             var transcationList = paymentRepository.Data
-                .Where(x => x.RecurringPaymentId == payment.RecurringPaymentId)
+                .Where(x => x.RecurringPayment == paymentVm.RecurringPayment)
                 .OrderBy(x => x.Date)
                 .ToList();
 
