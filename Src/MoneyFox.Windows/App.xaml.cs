@@ -66,29 +66,29 @@ namespace MoneyFox.Windows
                 // Create a AppShell to act as the navigation context and navigate to the first page
                 shell = new Views.AppShell {Language = ApplicationLanguages.Languages[0]};
 
-                shell.AppFrame.NavigationFailed += OnNavigationFailed;
+                shell.AppMyFrame.NavigationFailed += OnNavigationFailed;
             }
 
             // Place our app shell in the current Window
             Window.Current.Content = shell;
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
-            if (shell.AppFrame.Content == null)
+            if (shell.AppMyFrame.Content == null)
             {
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                shell.AppFrame.Navigate(typeof (MainView));
+                shell.AppMyFrame.Navigate(typeof (MainView));
             }
 
             if (ServiceLocator.Current.GetInstance<Session>().ValidateSession())
             {
                 shell.SetLoggedInView();
-                shell.AppFrame.Navigate(typeof (MainView));
+                shell.AppMyFrame.Navigate(typeof (MainView));
             }
             else
             {
                 shell.SetLoginView();
-                shell.AppFrame.Navigate(typeof (LoginView));
+                shell.AppMyFrame.Navigate(typeof (LoginView));
             }
 
             ServiceLocator.Current.GetInstance<TileHelper>().DoNavigation(string.IsNullOrEmpty(e.Arguments)

@@ -34,7 +34,7 @@ namespace MoneyFox.Windows
             {
                 lock (pagesByKey)
                 {
-                    var frame = ((Views.AppShell) Window.Current.Content).AppFrame;
+                    var frame = ((Views.AppShell) Window.Current.Content).AppMyFrame;
 
                     if (frame.BackStackDepth == 0)
                     {
@@ -69,9 +69,9 @@ namespace MoneyFox.Windows
         {
             var shell = (Views.AppShell) Window.Current.Content;
 
-            if (shell.AppFrame.CanGoBack)
+            if (shell.AppMyFrame.CanGoBack)
             {
-                shell.AppFrame.GoBack();
+                shell.AppMyFrame.GoBack();
             }
         }
 
@@ -125,7 +125,7 @@ namespace MoneyFox.Windows
                 }
 
                 var shell = (Views.AppShell) Window.Current.Content;
-                shell.AppFrame.Navigate(pagesByKey[pageKey], parameter);
+                shell.AppMyFrame.Navigate(pagesByKey[pageKey], parameter);
             }
         }
 

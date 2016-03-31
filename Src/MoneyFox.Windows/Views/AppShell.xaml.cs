@@ -97,7 +97,7 @@ namespace MoneyFox.Windows.Views
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
-        public Frame AppFrame => Frame;
+        public Frame AppMyFrame => MyFrame;
 
         public Rect TogglePaneButtonRect { get; private set; }
 
@@ -266,37 +266,37 @@ namespace MoneyFox.Windows.Views
 
         private void BackRequested(ref bool handled)
         {
-            // Get a hold of the current Frame so that we can inspect the app back stack.
+            // Get a hold of the current MyFrame so that we can inspect the app back stack.
 
-            if (AppFrame == null)
+            if (AppMyFrame == null)
             {
                 return;
             }
 
             // Check to see if this is the top-most page on the app back stack.
-            if (AppFrame.CanGoBack && !handled)
+            if (AppMyFrame.CanGoBack && !handled)
             {
                 // If not, set the event to handled and go back to the previous page in the app.
                 handled = true;
-                AppFrame.GoBack();
+                AppMyFrame.GoBack();
             }
         }
 
         private void ForwardRequested(ref bool handled)
         {
-            // Get a hold of the current Frame so that we can inspect the app back stack.
+            // Get a hold of the current MyFrame so that we can inspect the app back stack.
 
-            if (AppFrame == null)
+            if (AppMyFrame == null)
             {
                 return;
             }
 
             // Check to see if this is the top-most page on the app back stack.
-            if (AppFrame.CanGoForward && !handled)
+            if (AppMyFrame.CanGoForward && !handled)
             {
                 // If not, set the event to handled and go back to the previous page in the app.
                 handled = true;
-                AppFrame.GoForward();
+                AppMyFrame.GoForward();
             }
         }
 
@@ -314,9 +314,9 @@ namespace MoneyFox.Windows.Views
             var item = (NavMenuItem) ((NavMenuListView) sender).ItemFromContainer(listViewItem);
 
             if (item?.DestPage != null &&
-                item.DestPage != AppFrame.CurrentSourcePageType)
+                item.DestPage != AppMyFrame.CurrentSourcePageType)
             {
-                AppFrame.Navigate(item.DestPage, item.Arguments);
+                AppMyFrame.Navigate(item.DestPage, item.Arguments);
             }
 
             //reset the bottom or top section depending on which section the user clicked
@@ -343,11 +343,11 @@ namespace MoneyFox.Windows.Views
                 var item =
                     (from p in navlistTop.Union(navlistBottom) where p.DestPage == e.SourcePageType select p)
                         .SingleOrDefault();
-                if (item == null && AppFrame.BackStackDepth > 0)
+                if (item == null && AppMyFrame.BackStackDepth > 0)
                 {
                     // In cases where a page drills into sub-pages then we'll highlight the most recent
                     // navigation menu item that appears in the BackStack
-                    foreach (var entry in AppFrame.BackStack.Reverse())
+                    foreach (var entry in AppMyFrame.BackStack.Reverse())
                     {
                         item =
                             (from p in navlistTop.Union(navlistBottom) where p.DestPage == entry.SourcePageType select p)

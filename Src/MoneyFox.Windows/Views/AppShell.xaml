@@ -99,7 +99,7 @@
             </controls:SwipeableSplitView.Pane>
 
             <controls:SwipeableSplitView.Content>
-                <Frame x:Name="Frame"
+                <Frame x:Name="MyFrame"
                        Navigating="OnNavigatingToPage"
                        Navigated="OnNavigatedToPage">
                     <Frame.ContentTransitions>
