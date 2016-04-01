@@ -165,6 +165,10 @@
     <Compile Include="Migrations\20160331205612_InitMigration.designer.cs">
       <DependentUpon>20160331205612_InitMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20160401224634_AddConstraints.cs" />
+    <Compile Include="Migrations\20160401224634_AddConstraints.designer.cs">
+      <DependentUpon>20160401224634_AddConstraints.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MoneyFoxDataContextModelSnapshot.cs" />
     <Compile Include="ViewModels\Models\AccountViewModel.cs" />
     <Compile Include="ViewModels\Models\CategoryViewModel.cs" />
