@@ -1,7 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
+using PropertyChanged;
 
 namespace MoneyFox.Core.DatabaseModels
 {
@@ -10,18 +10,13 @@ namespace MoneyFox.Core.DatabaseModels
     ///     Databasetable: Payments
     /// </summary>
     [Table("Payments")]
-    public class Payment : INotifyPropertyChanged
+    [ImplementPropertyChanged]
+    public class Payment
     {
-        private Category category;
-
-        private Account chargedAccount;
-
-        private RecurringPayment recurringPayment;
-
-        private Account targetAccount;
-
+        [Key]
         public int Id { get; set; }
 
+        [Required]
         public int ChargedAccountId { get; set; }
 
         public int TargetAccountId { get; set; }
@@ -34,6 +29,7 @@ namespace MoneyFox.Core.DatabaseModels
 
         public bool IsCleared { get; set; }
 
+        [Required]
         public int Type { get; set; }
 
         public string Note { get; set; }
@@ -42,68 +38,16 @@ namespace MoneyFox.Core.DatabaseModels
 
         public int RecurringPaymentId { get; set; }
 
-        [NotMapped]
-        public Account ChargedAccount
-        {
-            get { return chargedAccount; }
-            set
-            {
-                if (chargedAccount != value)
-                {
-                    chargedAccount = value;
-                    ChargedAccountId = value.Id;
-                }
-            }
-        }
+        [ForeignKey(nameof(CategoryId))]
+        public Category Category;
 
-        [NotMapped]
-        public Account TargetAccount
-        {
-            get { return targetAccount; }
-            set
-            {
-                if (targetAccount != value)
-                {
-                    targetAccount = value;
-                    TargetAccountId = value.Id;
-                }
-            }
-        }
+        [ForeignKey(nameof(ChargedAccountId))]
+        public Account ChargedAccount;
 
-        [NotMapped]
-        public Category Category
-        {
-            get { return category; }
-            set
-            {
-                if (category != value)
-                {
-                    category = value;
-                    CategoryId = value?.Id;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        [ForeignKey(nameof(RecurringPaymentId))]
+        public RecurringPayment RecurringPayment;
 
-        [NotMapped]
-        public RecurringPayment RecurringPayment
-        {
-            get { return recurringPayment; }
-            set
-            {
-                if (recurringPayment != value)
-                {
-                    recurringPayment = value;
-                    RecurringPaymentId = value.Id;
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        [ForeignKey(nameof(TargetAccountId))]
+        public Account TargetAccount;
     }
 }
