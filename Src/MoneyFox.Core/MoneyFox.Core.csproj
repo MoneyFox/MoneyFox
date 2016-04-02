@@ -115,6 +115,10 @@
     <Compile Include="Constants\OneDriveConstants.cs" />
     <Compile Include="DataAccess\GenericDataRepository.cs" />
     <Compile Include="DataAccess\MoneyFoxDataContext.cs" />
+    <Compile Include="DatabaseModels\Old\Account.cs" />
+    <Compile Include="DatabaseModels\Old\Category.cs" />
+    <Compile Include="DatabaseModels\Old\Payment.cs" />
+    <Compile Include="DatabaseModels\Old\RecurringPayment.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\BackupException.cs" />

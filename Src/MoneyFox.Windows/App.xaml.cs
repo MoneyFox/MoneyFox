@@ -51,29 +51,7 @@ namespace MoneyFox.Windows
         {
             using (var db = new MoneyFoxDataContext())
             {
-                try
-                {
-                    if (await db.Accounts.AnyAsync())
-                    {
-                        try
-                        {
-                            db.Database.Migrate();
-                        }
-                        catch (Exception)
-                        {
-                            // DB exists already. Therefore we add a entry that the first migration won't be executed.
-                            const string migrationId = "20160331205612_InitMigration";
-                            const string productVersion = "7.0.0-rc1-16348";
-                            const string sqlInsert =
-                                "INSERT INTO __EFMigrationsHistory (MigrationId, ProductVersion) VALUES (@p0, @p1)";
-                            db.Database.ExecuteSqlCommand(sqlInsert, migrationId, productVersion);
-                        }
-                    }
-                }
-                catch (AggregateException)
-                {
-                    //DB doesn't exist yet. Just create a new one.
-                }
+                
 
                 db.Database.Migrate();
             }
