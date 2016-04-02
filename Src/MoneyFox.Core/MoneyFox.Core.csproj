@@ -114,6 +114,7 @@
     <Compile Include="Constants\NavigationConstants.cs" />
     <Compile Include="Constants\OneDriveConstants.cs" />
     <Compile Include="DataAccess\GenericDataRepository.cs" />
+    <Compile Include="DataAccess\MoneyFoxOldDataContext.cs" />
     <Compile Include="DataAccess\MoneyFoxDataContext.cs" />
     <Compile Include="DatabaseModels\Old\Account.cs" />
     <Compile Include="DatabaseModels\Old\Category.cs" />

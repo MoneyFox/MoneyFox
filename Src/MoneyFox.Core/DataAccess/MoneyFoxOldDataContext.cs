@@ -1,13 +1,14 @@
 ﻿using Microsoft.Data.Entity;
 using MoneyFox.Core.Constants;
-using MoneyFox.Core.DatabaseModels;
+using MoneyFox.Core.DatabaseModels.Old;
 
 namespace MoneyFox.Core.DataAccess
 {
     /// <summary>
-    ///     Provides an datacontext to access the moneyfox.db database.
+    ///     Provides an datacontext to access the moneyfox.sqlite database.
+    ///     THIS IS ONLY USED TO UPGRADE THE OLD TO THE NEW DATABASE.
     /// </summary>
-    public class MoneyFoxDataContext : DbContext
+    public class MoneyFoxOldDataContext : DbContext
     {
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Payment> Payments { get; set; }
@@ -16,7 +17,7 @@ namespace MoneyFox.Core.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Filename={OneDriveConstants.DB_NAME}");
+            optionsBuilder.UseSqlite($"Filename={OneDriveConstants.DB_NAME_OLD}");
         }
     }
 }
