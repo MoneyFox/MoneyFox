@@ -48,7 +48,7 @@ namespace MoneyFox.Core.ViewModels.Models
 
         public DateTime EndDate
         {
-            get { return recurringPayment.EndDate; }
+            get { return recurringPayment.EndDate ; }
             set { recurringPayment.EndDate = value; }
         }
 

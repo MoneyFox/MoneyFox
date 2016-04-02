@@ -14,29 +14,6 @@ namespace MoneyFox.Core.DataAccess
     public class GenericDataRepository<T> : IGenericDataRepository<T> where T : class
     {
         /// <summary>
-        ///     Loads all items from the database table inclusive the associated tables via navigation properties
-        /// </summary>
-        /// <param name="navigationProperties">Navigation Properties to load.</param>
-        /// <returns>IList with all loaded items.</returns>
-        public virtual IList<T> GetAll(params Expression<Func<T, object>>[] navigationProperties)
-        {
-            List<T> list;
-            using (var context = new MoneyFoxDataContext())
-            {
-                IQueryable<T> dbQuery = context.Set<T>();
-
-                //Apply eager loading
-                dbQuery = navigationProperties.Aggregate(dbQuery,
-                    (current, navigationProperty) => current.Include(navigationProperty));
-
-                list = dbQuery
-                    .AsNoTracking()
-                    .ToList();
-            }
-            return list;
-        }
-
-        /// <summary>
         ///     Loads all items from the database table inclusive the associated tables via
         ///     navigation properties filtered by the filter expression.
         /// </summary>

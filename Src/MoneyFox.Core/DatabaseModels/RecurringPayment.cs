@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using PropertyChanged;
@@ -12,7 +13,7 @@ namespace MoneyFox.Core.DatabaseModels
         public int Id { get; set; }
 
         public DateTime StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; set; }
         public bool IsEndless { get; set; }
         public double Amount { get; set; }
 
@@ -37,6 +38,8 @@ namespace MoneyFox.Core.DatabaseModels
         public Category Category { get; set; }
 
         public int? CategoryId { get; set; }
+
+        public List<Payment> Payments { get; set; } 
 
         public override string ToString()
         {

@@ -12,9 +12,10 @@ namespace MoneyFox.Core.ViewModels.Models
     {
         private readonly Payment payment;
 
-        public PaymentViewModel() 
+        public PaymentViewModel()
             : this(new Payment())
-        {}
+        {
+        }
 
         public PaymentViewModel(Payment payment)
         {
@@ -34,8 +35,8 @@ namespace MoneyFox.Core.ViewModels.Models
 
         public Account TargetAccount
         {
-            get { return payment.ChargedAccount; }
-            set { payment.ChargedAccount = value; }
+            get { return payment.TargetAccount; }
+            set { payment.TargetAccount = value; }
         }
 
         public Category Category
@@ -97,14 +98,14 @@ namespace MoneyFox.Core.ViewModels.Models
         /// </summary>
         public bool IsTransfer => Type == PaymentType.Transfer;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         ///     Returns the underlying payment.
         ///     This should not be used to make modifications to the payment object!
         /// </summary>
         /// <returns></returns>
         public Payment GetPayment() => payment;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

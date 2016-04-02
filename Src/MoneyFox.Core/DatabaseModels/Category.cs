@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using PropertyChanged;
@@ -12,6 +13,8 @@ namespace MoneyFox.Core.DatabaseModels
 
         [Required]
         public string Name { get; set; }
+
+        public List<Payment> Payments { get; set; } 
 
         public override string ToString()
         {

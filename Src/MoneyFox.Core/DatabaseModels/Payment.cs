@@ -18,7 +18,7 @@ namespace MoneyFox.Core.DatabaseModels
 
         [Required]
         public int ChargedAccountId { get; set; }
-
+        
         public int? TargetAccountId { get; set; }
 
         public int? CategoryId { get; set; }
@@ -39,16 +39,16 @@ namespace MoneyFox.Core.DatabaseModels
         public int? RecurringPaymentId { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
-        public Category Category;
+        public Category Category { get; set; }
 
         [ForeignKey(nameof(ChargedAccountId))]
-        public Account ChargedAccount;
+        public Account ChargedAccount { get; set; }
 
         [ForeignKey(nameof(TargetAccountId))]
-        public Account TargetAccount;
+        public Account TargetAccount { get; set; }
 
         [ForeignKey(nameof(RecurringPaymentId))]
-        public RecurringPayment RecurringPayment;
+        public RecurringPayment RecurringPayment { get; set; }
 
         public override string ToString()
         {

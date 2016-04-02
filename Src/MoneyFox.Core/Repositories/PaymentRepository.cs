@@ -133,22 +133,12 @@ namespace MoneyFox.Core.Repositories
         public void Load()
         {
             Data.Clear();
-            var payments = dataAccess.GetList();
-            var recurringTransactions = recurringDataAccess.GetList();
+            var payments = dataAccess.GetList(null, payment => payment.ChargedAccount,
+                payment => payment.Category,
+                payment => payment.RecurringPayment);
 
             foreach (var payment in payments)
             {
-                payment.ChargedAccount = accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccount.Id);
-                payment.TargetAccount = accountRepository.Data.FirstOrDefault(x => x.Id == payment.TargetAccount.Id);
-
-                payment.Category = categoryRepository.Data.FirstOrDefault(x => x.Id == payment.Category.Id);
-
-                if (payment.IsRecurring)
-                {
-                    payment.RecurringPayment =
-                        recurringTransactions.FirstOrDefault(x => x.Id == payment.RecurringPayment.Id);
-                }
-
                 Data.Add(new PaymentViewModel(payment));
             }
         }
