@@ -16,11 +16,11 @@
     <SolidColorBrush x:Key="AppForegroundSecondaryBrush"
                      Color="{StaticResource AppForegroundColorSecondary}" />
 
-    <!--<SolidColorBrush x:Key="PrimaryBrush"
+    <SolidColorBrush x:Key="PrimaryBrush"
                      Color="{StaticResource ColorPrimary}" />
 
     <SolidColorBrush x:Key="PrimaryDarkBrush"
-                     Color="{StaticResource ColorPrimaryDark}" />-->
+                     Color="{StaticResource ColorPrimaryDark}" />
 
     <SolidColorBrush x:Key="AppBarBrush"
                      Color="{StaticResource ColorAppBar}" />
