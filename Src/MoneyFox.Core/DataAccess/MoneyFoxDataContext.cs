@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Entity;
+using MoneyFox.Core.Constants;
 using MoneyFox.Core.DatabaseModels;
 
 namespace MoneyFox.Core.DataAccess
@@ -15,7 +16,7 @@ namespace MoneyFox.Core.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=moneyfox.sqlite");
+            optionsBuilder.UseSqlite($"Filename={OneDriveConstants.DB_NAME}");
         }
     }
 }
