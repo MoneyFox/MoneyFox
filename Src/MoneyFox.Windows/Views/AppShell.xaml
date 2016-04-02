@@ -30,8 +30,9 @@
                      value when the SplitView is 'Compact' while reducing the likelihood of showing
                      redundant information when the label is shown.-->
                 <FontIcon x:Name="Glyph" FontSize="16" Glyph="{x:Bind SymbolAsChar}" VerticalAlignment="Center"
-                          HorizontalAlignment="Center" ToolTipService.ToolTip="{x:Bind Label}" />
-                <TextBlock x:Name="Text" Grid.Column="1" Text="{x:Bind Label}" />
+                          HorizontalAlignment="Center" ToolTipService.ToolTip="{x:Bind Label}"
+                          Foreground="White" />
+                <TextBlock x:Name="Text" Grid.Column="1" Text="{x:Bind Label}" Foreground="White" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -76,7 +77,7 @@
                                      OpenPaneLength="256"
                                      IsTabStop="False">
             <controls:SwipeableSplitView.Pane>
-                <Grid>
+                <Grid Background="{StaticResource PrimaryBrush}">
                     <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
                     <controls:NavMenuListView x:Name="NavMenuListTop"
                                               VerticalAlignment="Top"

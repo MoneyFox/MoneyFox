@@ -57,14 +57,14 @@ namespace MoneyFox.Windows
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-            var shell = Window.Current.Content as Views.AppShell;
+            var shell = Window.Current.Content as AppShell;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (shell == null)
             {
                 // Create a AppShell to act as the navigation context and navigate to the first page
-                shell = new Views.AppShell {Language = ApplicationLanguages.Languages[0]};
+                shell = new AppShell {Language = ApplicationLanguages.Languages[0]};
 
                 shell.AppMyFrame.NavigationFailed += OnNavigationFailed;
             }
