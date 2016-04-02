@@ -9,7 +9,6 @@ namespace MoneyFox.Core.DatabaseModels
     [ImplementPropertyChanged]
     public class RecurringPayment
     {
-        [Key]
         public int Id { get; set; }
 
         public DateTime StartDate { get; set; }
@@ -29,14 +28,19 @@ namespace MoneyFox.Core.DatabaseModels
         [Required]
         public int ChargedAccountId { get; set; }
 
-        [ForeignKey(nameof(TargetAccountId))]
+        //[ForeignKey(nameof(TargetAccountId))]
         public Account TargetAccount { get; set; }
 
-        public int TargetAccountId { get; set; }
+        public int?TargetAccountId { get; set; }
 
-        [ForeignKey(nameof(CategoryId))]
+        //[ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; }
 
         public int? CategoryId { get; set; }
+
+        public override string ToString()
+        {
+            return $"ID: {Id}; ChargedAccountId: {ChargedAccountId}";
+        }
     }
 }

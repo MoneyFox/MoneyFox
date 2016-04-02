@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using PropertyChanged;
@@ -13,13 +14,12 @@ namespace MoneyFox.Core.DatabaseModels
     [ImplementPropertyChanged]
     public class Payment
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]
         public int ChargedAccountId { get; set; }
 
-        public int TargetAccountId { get; set; }
+        public int? TargetAccountId { get; set; }
 
         public int? CategoryId { get; set; }
 
@@ -44,10 +44,15 @@ namespace MoneyFox.Core.DatabaseModels
         [ForeignKey(nameof(ChargedAccountId))]
         public Account ChargedAccount;
 
+        [ForeignKey(nameof(TargetAccountId))]
+        public Account TargetAccount;
+
         [ForeignKey(nameof(RecurringPaymentId))]
         public RecurringPayment RecurringPayment;
 
-        [ForeignKey(nameof(TargetAccountId))]
-        public Account TargetAccount;
+        public override string ToString()
+        {
+            return $"ID: {Id}; ChargedAccountId: {ChargedAccountId}";
+        }
     }
 }

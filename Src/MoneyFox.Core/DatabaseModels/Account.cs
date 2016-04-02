@@ -8,7 +8,6 @@ namespace MoneyFox.Core.DatabaseModels
     [ImplementPropertyChanged]
     public class Account
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -16,5 +15,10 @@ namespace MoneyFox.Core.DatabaseModels
         public string Iban { get; set; }
         public double CurrentBalance { get; set; }
         public string Note { get; set; }
+
+        public override string ToString()
+        {
+            return $"ID: {Id}; Name: {Name}";
+        }
     }
 }
