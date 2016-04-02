@@ -114,7 +114,6 @@
     <Compile Include="Constants\NavigationConstants.cs" />
     <Compile Include="Constants\OneDriveConstants.cs" />
     <Compile Include="DataAccess\GenericDataRepository.cs" />
-    <Compile Include="DataAccess\MoneyFoxOldDataContext.cs" />
     <Compile Include="DataAccess\MoneyFoxDataContext.cs" />
     <Compile Include="DatabaseModels\Old\Account.cs" />
     <Compile Include="DatabaseModels\Old\Category.cs" />
@@ -166,11 +165,6 @@
     <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
     <Compile Include="Messages\DateSelectedMessage.cs" />
     <Compile Include="DatabaseModels\Account.cs" />
-    <Compile Include="Migrations\20160402115321_InitMigration.cs" />
-    <Compile Include="Migrations\20160402115321_InitMigration.Designer.cs">
-      <DependentUpon>20160402115321_InitMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\MoneyFoxDataContextModelSnapshot.cs" />
     <Compile Include="ViewModels\Models\AccountViewModel.cs" />
     <Compile Include="ViewModels\Models\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Models\PaymentViewModel.cs" />
@@ -293,7 +287,9 @@
       <HintPath>..\..\..\..\..\.nuget\packages\OxyPlot.Core\2015.1.1033-alpha\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\OxyPlot.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

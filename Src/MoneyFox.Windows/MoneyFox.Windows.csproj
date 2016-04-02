@@ -466,6 +466,10 @@
       <Project>{2F774D5A-E9B5-4AB2-84AA-51A6E9BDB456}</Project>
       <Name>MoneyFox.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Tasks\MoneyFox.Tasks.csproj">
+      <Project>{55dd9633-db49-4e60-8805-4db14603b160}</Project>
+      <Name>MoneyFox.Tasks</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">

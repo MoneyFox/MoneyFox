@@ -8,7 +8,7 @@ using MoneyFox.Core.DataAccess;
 namespace MoneyFox.Core.Migrations
 {
     [DbContext(typeof(MoneyFoxDataContext))]
-    [Migration("20160402115321_InitMigration")]
+    [Migration("20160402144253_InitMigration")]
     partial class InitMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
