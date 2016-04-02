@@ -15746,11 +15746,10 @@
     },
     "EntityFramework.SQLite/7.0.0-rc1-final": {
       "sha512": "B+h4HHUnCSN/d4DIxW89B6q4efcZzQjajQb1yrlALEeZuCBDIzO0nrEdRZsRSNqJaNzmxRu/OsYqrZVOORUrGw==",
-      "type": "Package",
+      "type": "package",
       "files": [
+        "EntityFramework.Sqlite.7.0.0-rc1-final.nupkg.sha512",
         "EntityFramework.Sqlite.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
         "lib/dotnet5.4/EntityFramework.Sqlite.dll",
         "lib/dotnet5.4/EntityFramework.Sqlite.xml",
         "lib/net451/EntityFramework.Sqlite.dll",
@@ -16258,13 +16257,11 @@
       ]
     },
     "Microsoft.NETCore.Runtime.CoreCLR-arm/1.0.0": {
-      "sha512": "hoJfIl981eXwn9Tz8onO/J1xaYApIfp/YrhjSh9rRhml1U5Wj80LBgyp/6n+KI3VlvcAraThhnHnCTp+M3Uh+w==",
-      "type": "Package",
+      "sha512": "vUQyaKbHCa7BJAAzdfCP2FfBYOSt0YnDw7VMJLmD1/k68HIJgw1QO7GAfHhqoa39zkkvimC47QBH27wG4C5OGQ==",
+      "type": "package",
       "files": [
+        "Microsoft.NETCore.Runtime.CoreCLR-arm.1.0.0.nupkg.sha512",
         "Microsoft.NETCore.Runtime.CoreCLR-arm.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "package/services/metadata/core-properties/c1cbeaed81514106b6b7971ac193f132.psmdcp",
         "ref/dotnet/_._",
         "runtimes/win8-arm/lib/dotnet/mscorlib.ni.dll",
         "runtimes/win8-arm/native/clretwrc.dll",
@@ -16707,12 +16704,11 @@
       ]
     },
     "Microsoft.OneDriveSDK/1.1.20": {
-      "sha512": "650vvWls5rnJEjemv//LhGv2Njy4UWfyCu6Z6b0wkOscFkbs7MtAIMCJwXZD/ZcsAMgEfDi26+Vl5seyXQ3OGQ==",
-      "type": "Package",
+      "sha512": "bEIs/XUM6CqFdHvRLm4Wt0KjEK3aAPPbXeZbMOsfTbCUTQVJ1UzY/hBZ+2F2mXCRTZs+K0/xSVfLkxf9fQy+7A==",
+      "type": "package",
       "files": [
+        "Microsoft.OneDriveSDK.1.1.20.nupkg.sha512",
         "Microsoft.OneDriveSDK.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
         "lib/net451/OneDriveSdk.WindowsForms.dll",
         "lib/net451/OneDriveSdk.dll",
         "lib/portable-net45+netcore45+wpa81+win8/OneDriveSdk.dll",
@@ -16720,8 +16716,7 @@
         "lib/portable-win81+wpa81/OneDriveSdk.dll",
         "lib/win81/OneDriveSdk.WinRT.dll",
         "lib/win81/OneDriveSdk.WinStore.dll",
-        "lib/win81/OneDriveSdk.dll",
-        "package/services/metadata/core-properties/3cd0116c6dd04f18a847a487fe6a1f3a.psmdcp"
+        "lib/win81/OneDriveSdk.dll"
       ]
     },
     "Microsoft.VisualBasic/10.0.0": {
@@ -16963,12 +16958,11 @@
       ]
     },
     "NotificationsExtensions.Win10/10586.0.2": {
-      "sha512": "iNcgYPxhjNu9DZcBmIl0nqJHYsoguq4MlZn0YdtmMR7HLBUxiiOIz9192hBUWxpbz8qFAKPRmngyzr3Ay1SimA==",
-      "type": "Package",
+      "sha512": "aK0M0hQdG0L1qjkmrHIp4WYro6afeBg6ljMfg6jP5cswqQg4gW2WppFOcCLJaWa+ZGVGSgYXkazWEbA0MwRpow==",
+      "type": "package",
       "files": [
+        "NotificationsExtensions.Win10.10586.0.2.nupkg.sha512",
         "NotificationsExtensions.Win10.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.XML",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.dll",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.pdb",
@@ -16979,8 +16973,7 @@
         "lib/uap10.0/NotificationsExtensions.pri",
         "lib/uap10.0/NotificationsExtensions.winmd",
         "lib/uap10.0/NotificationsExtensions.winmd.xml",
-        "lib/uap10.0/NotificationsExtensions.xml",
-        "package/services/metadata/core-properties/49df0f54ac15402c9123916d2b4cb9fe.psmdcp"
+        "lib/uap10.0/NotificationsExtensions.xml"
       ]
     },
     "OxyPlot.Core/2015.1.1033-alpha": {
