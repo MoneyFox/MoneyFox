@@ -1,139 +1,145 @@
 using System;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
+using Microsoft.Data.Entity.Metadata;
+using Microsoft.Data.Entity.Migrations;
 using MoneyFox.Core.DataAccess;
 
 namespace MoneyFox.Core.Migrations
 {
-    [DbContext(typeof (MoneyFoxDataContext))]
-    internal class MoneyFoxDataContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MoneyFoxDataContext))]
+    partial class MoneyFoxDataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348");
 
-            modelBuilder.Entity("MoneyFox.Foundation.Model.Account", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+            modelBuilder.Entity("MoneyFox.Core.DatabaseModels.Account", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                b.Property<double>("CurrentBalance");
+                    b.Property<double>("CurrentBalance");
 
-                b.Property<string>("Iban");
+                    b.Property<string>("Iban");
 
-                b.Property<string>("Name")
-                    .IsRequired();
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                b.Property<string>("Note");
+                    b.Property<string>("Note");
 
-                b.HasKey("Id");
-            });
+                    b.HasKey("Id");
 
-            modelBuilder.Entity("MoneyFox.Foundation.Model.Category", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                    b.HasAnnotation("Relational:TableName", "Accounts");
+                });
 
-                b.Property<string>("Name")
-                    .IsRequired();
+            modelBuilder.Entity("MoneyFox.Core.DatabaseModels.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                b.HasKey("Id");
-            });
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-            modelBuilder.Entity("MoneyFox.Foundation.Model.Payment", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                    b.HasKey("Id");
 
-                b.Property<double>("Amount");
+                    b.HasAnnotation("Relational:TableName", "Categories");
+                });
 
-                b.Property<int?>("CategoryId");
+            modelBuilder.Entity("MoneyFox.Core.DatabaseModels.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                b.Property<int>("ChargedAccountId");
+                    b.Property<double>("Amount");
 
-                b.Property<bool>("ClearPaymentNow");
+                    b.Property<int?>("CategoryId");
 
-                b.Property<DateTime>("Date");
+                    b.Property<int>("ChargedAccountId");
 
-                b.Property<bool>("IsCleared");
+                    b.Property<DateTime>("Date");
 
-                b.Property<bool>("IsRecurring");
+                    b.Property<bool>("IsCleared");
 
-                b.Property<bool>("IsTransfer");
+                    b.Property<bool>("IsRecurring");
 
-                b.Property<string>("Note");
+                    b.Property<string>("Note");
 
-                b.Property<int>("RecurringPaymentId");
+                    b.Property<int?>("RecurringPaymentId");
 
-                b.Property<int>("TargetAccountId");
+                    b.Property<int?>("TargetAccountId");
 
-                b.Property<int>("Type");
+                    b.Property<int>("Type");
 
-                b.HasKey("Id");
-            });
+                    b.HasKey("Id");
 
-            modelBuilder.Entity("MoneyFox.Foundation.Model.RecurringPayment", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                    b.HasAnnotation("Relational:TableName", "Payments");
+                });
 
-                b.Property<double>("Amount");
+            modelBuilder.Entity("MoneyFox.Core.DatabaseModels.RecurringPayment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                b.Property<int?>("CategoryId");
+                    b.Property<double>("Amount");
 
-                b.Property<int>("ChargedAccountId");
+                    b.Property<int?>("CategoryId");
 
-                b.Property<DateTime>("EndDate");
+                    b.Property<int>("ChargedAccountId");
 
-                b.Property<bool>("IsEndless");
+                    b.Property<DateTime>("EndDate");
 
-                b.Property<string>("Note");
+                    b.Property<bool>("IsEndless");
 
-                b.Property<int>("Recurrence");
+                    b.Property<string>("Note");
 
-                b.Property<DateTime>("StartDate");
+                    b.Property<int>("Recurrence");
 
-                b.Property<int>("TargetAccountId");
+                    b.Property<DateTime>("StartDate");
 
-                b.Property<int>("Type");
+                    b.Property<int?>("TargetAccountId");
 
-                b.HasKey("Id");
-            });
+                    b.Property<int>("Type");
 
-            modelBuilder.Entity("MoneyFox.Foundation.Model.Payment", b =>
-            {
-                b.HasOne("MoneyFox.Foundation.Model.Category")
-                    .WithMany()
-                    .HasForeignKey("CategoryId");
+                    b.HasKey("Id");
 
-                b.HasOne("MoneyFox.Foundation.Model.Account")
-                    .WithMany()
-                    .HasForeignKey("ChargedAccountId");
+                    b.HasAnnotation("Relational:TableName", "RecurringPayments");
+                });
 
-                b.HasOne("MoneyFox.Foundation.Model.RecurringPayment")
-                    .WithMany()
-                    .HasForeignKey("RecurringPaymentId");
+            modelBuilder.Entity("MoneyFox.Core.DatabaseModels.Payment", b =>
+                {
+                    b.HasOne("MoneyFox.Core.DatabaseModels.Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
 
-                b.HasOne("MoneyFox.Foundation.Model.Account")
-                    .WithMany()
-                    .HasForeignKey("TargetAccountId");
-            });
+                    b.HasOne("MoneyFox.Core.DatabaseModels.Account")
+                        .WithMany()
+                        .HasForeignKey("ChargedAccountId");
 
-            modelBuilder.Entity("MoneyFox.Foundation.Model.RecurringPayment", b =>
-            {
-                b.HasOne("MoneyFox.Foundation.Model.Category")
-                    .WithMany()
-                    .HasForeignKey("CategoryId");
+                    b.HasOne("MoneyFox.Core.DatabaseModels.RecurringPayment")
+                        .WithMany()
+                        .HasForeignKey("RecurringPaymentId");
 
-                b.HasOne("MoneyFox.Foundation.Model.Account")
-                    .WithMany()
-                    .HasForeignKey("ChargedAccountId");
+                    b.HasOne("MoneyFox.Core.DatabaseModels.Account")
+                        .WithMany()
+                        .HasForeignKey("TargetAccountId");
+                });
 
-                b.HasOne("MoneyFox.Foundation.Model.Account")
-                    .WithMany()
-                    .HasForeignKey("TargetAccountId");
-            });
+            modelBuilder.Entity("MoneyFox.Core.DatabaseModels.RecurringPayment", b =>
+                {
+                    b.HasOne("MoneyFox.Core.DatabaseModels.Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("MoneyFox.Core.DatabaseModels.Account")
+                        .WithMany()
+                        .HasForeignKey("ChargedAccountId");
+
+                    b.HasOne("MoneyFox.Core.DatabaseModels.Account")
+                        .WithMany()
+                        .HasForeignKey("TargetAccountId");
+                });
         }
     }
 }

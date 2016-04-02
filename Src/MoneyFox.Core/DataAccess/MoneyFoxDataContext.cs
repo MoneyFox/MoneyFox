@@ -1,11 +1,11 @@
 ﻿using Microsoft.Data.Entity;
-using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Model;
+using MoneyFox.Core.Constants;
+using MoneyFox.Core.DatabaseModels;
 
 namespace MoneyFox.Core.DataAccess
 {
     /// <summary>
-    ///     Provides an datacontext to access the moneyfox.sqlite database.
+    ///     Provides an datacontext to access the moneyfox.db database.
     /// </summary>
     public class MoneyFoxDataContext : DbContext
     {
@@ -16,27 +16,7 @@ namespace MoneyFox.Core.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=monefox.sqlite");
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // Make Blog.Url required
-            modelBuilder.Entity<Account>()
-                .Property(a => a.Name)
-                .IsRequired();
-
-            modelBuilder.Entity<Payment>()
-                .Property(p => p.ChargedAccountId)
-                .IsRequired();
-
-            modelBuilder.Entity<RecurringPayment>()
-                .Property(p => p.ChargedAccountId)
-                .IsRequired();
-
-            modelBuilder.Entity<Category>()
-                .Property(c => c.Name)
-                .IsRequired();
+            optionsBuilder.UseSqlite($"Filename={OneDriveConstants.DB_NAME}");
         }
     }
 }

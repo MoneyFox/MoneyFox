@@ -32,7 +32,7 @@
         </uap:InitialRotationPreference>
       </uap:VisualElements>
       <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="MoneyFox.Tasks.ClearPaymentBackgroundTask">
+        <Extension Category="windows.backgroundTasks" EntryPoint="MoneyFox.Tasks.ClearPaymentViewModelBackgroundTask">
           <BackgroundTasks>
             <Task Type="timer" />
           </BackgroundTasks>

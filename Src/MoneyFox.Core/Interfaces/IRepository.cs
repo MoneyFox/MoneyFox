@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq.Expressions;
+﻿using System.Collections.ObjectModel;
 
 namespace MoneyFox.Core.Interfaces
 {
@@ -31,6 +29,6 @@ namespace MoneyFox.Core.Interfaces
         /// <summary>
         ///     Loads the data from the database and fills it to the data collection.
         /// </summary>
-        void Load(Expression<Func<T, bool>> filter = null);
+        void Load();
     }
 }

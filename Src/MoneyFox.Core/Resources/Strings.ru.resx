@@ -379,7 +379,7 @@
     <value>Spreading of the expenses to the categories.</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Summary of the categories with a payment.</value>
+    <value>Summary of the categories with a PaymentViewModel.</value>
   </data>
   <data name="ExpenseHistory" xml:space="preserve">
     <value>Expense History</value>

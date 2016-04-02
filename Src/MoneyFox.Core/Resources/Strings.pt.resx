@@ -153,10 +153,10 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>Fluxo de caixa</value>
   </data>
-  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentViewModelMessage" xml:space="preserve">
     <value>Este pagamento é recorrente. Você quer atualizar os pagamentos futuros ou apenas esta ocorrência?</value>
   </data>
-  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentViewModelTitle" xml:space="preserve">
     <value>Atualizar a recorrência?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
@@ -183,7 +183,7 @@
   <data name="DeleteTitle" xml:space="preserve">
     <value>Apagar?</value>
   </data>
-  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
+  <data name="DeletePaymentViewModelConfirmationMessage" xml:space="preserve">
     <value>Você realmente deseja excluir este pagamento?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">

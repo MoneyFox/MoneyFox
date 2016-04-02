@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Views;
+using MoneyFox.Core.DatabaseModels;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Model;
 using PropertyChanged;
 using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 

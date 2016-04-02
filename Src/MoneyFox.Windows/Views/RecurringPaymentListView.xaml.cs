@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Windows.Views
 {
-    public sealed partial class RecurringPaymentListView
+    public sealed partial class RecurringPaymentViewModelListView
     {
-        public RecurringPaymentListView()
+        public RecurringPaymentViewModelListView()
         {
             InitializeComponent();
         }

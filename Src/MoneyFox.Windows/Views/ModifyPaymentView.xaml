@@ -8,7 +8,7 @@
       xmlns:converters="using:Cimbalino.Toolkit.Converters"
       xmlns:converter="using:MoneyFox.Windows.Converter"
       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-      xmlns:model="using:MoneyFox.Core.Model"
+      xmlns:databaseModels="using:MoneyFox.Core.DatabaseModels"
       mc:Ignorable="d"
       NavigationCacheMode="Enabled"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -18,7 +18,7 @@
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converters:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate"
-                      x:DataType="model:Account">
+                      x:DataType="databaseModels:Account">
             <StackPanel Margin="0,0,0,12"
                         Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
@@ -39,7 +39,7 @@
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Add Payment"
+                           Text="Add PaymentViewModel"
                            x:Uid="ModifyPaymentViewTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
@@ -111,8 +111,7 @@
                                   VerticalAlignment="Stretch"
                                   IsOn="{Binding SelectedPayment.IsRecurring, Mode=TwoWay}"
                                   Margin="0,7,0,0" />
-                    <StackPanel
-                        Visibility="{Binding SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
+                    <StackPanel Visibility="{Binding SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
                         <ComboBox Header="Reccurence"
                                   x:Uid="RecurrenceComboBox"
                                   HorizontalAlignment="Stretch"

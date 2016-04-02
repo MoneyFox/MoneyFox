@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
-using MoneyFox.Core.Model;
-using MoneyFox.Foundation.Model;
+using MoneyFox.Core.DatabaseModels;
+using MoneyFox.Core.ViewModels.Models;
 
 namespace MoneyFox.Core.Interfaces
 {
@@ -8,10 +8,10 @@ namespace MoneyFox.Core.Interfaces
     {
         void DeleteAssociatedPaymentsFromDatabase(Account account);
 
-        Task<bool> CheckForRecurringPayment(Payment payment);
+        Task<bool> CheckForRecurringPayment(PaymentViewModel payment);
 
         void ClearPayments();
 
-        void RemoveRecurringForPayments(RecurringPayment recurringPayment);
+        void RemoveRecurringForPayments(RecurringPaymentViewModel recurringPayment);
     }
 }

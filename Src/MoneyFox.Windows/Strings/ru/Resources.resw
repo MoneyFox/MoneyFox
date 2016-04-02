@@ -141,7 +141,7 @@
   <data name="AddExpenseLabel.Label" xml:space="preserve">
     <value>Расход</value>
   </data>
-  <data name="AddPaymentTitle.Text" xml:space="preserve">
+  <data name="AddPaymentViewModelTitle.Text" xml:space="preserve">
     <value>Добавить операцию</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
@@ -337,7 +337,7 @@
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Дата начала</value>
   </data>
-  <data name="RecurringPaymentList.Label" xml:space="preserve">
+  <data name="RecurringPaymentViewModelList.Label" xml:space="preserve">
     <value>Обзор повторяющийся оплаты</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">

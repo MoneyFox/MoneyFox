@@ -1,7 +1,7 @@
 namespace MoneyFox.Core.Interfaces
 {
-    public interface IRecurringPaymentManager
+    public interface IRecurringPaymentViewModelManager
     {
-        void CheckRecurringPayments();
+        void CheckRecurringPaymentViewModels();
     }
 }

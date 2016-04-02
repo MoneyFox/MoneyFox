@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyFox.Core.DatabaseModels;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Model;
 using MoneyFox.Core.Statistics.Models;
-using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.Statistics.DataProviders
 {
@@ -32,8 +31,8 @@ namespace MoneyFox.Core.Statistics.DataProviders
                     Category = category.Name,
                     Value = paymentRepository.Data
                         .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
-                        .Where(x => x.CategoryId == category.Id)
-                        .Where(x => x.Type != (int) PaymentType.Transfer)
+                        .Where(x => x.Category.Id == category.Id)
+                        .Where(x => x.Type != PaymentType.Transfer)
                         .Sum(x => x.Type == (int) PaymentType.Expense
                             ? -x.Amount
                             : x.Amount)

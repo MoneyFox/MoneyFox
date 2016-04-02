@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Linq.Expressions;
+using MoneyFox.Core.DatabaseModels;
 using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Model;
 using MoneyFox.Core.Resources;
-using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation;
+using MoneyFox.Core.ViewModels.Models;
 using PropertyChanged;
 
 namespace MoneyFox.Core.Repositories
@@ -82,115 +80,116 @@ namespace MoneyFox.Core.Repositories
         /// <summary>
         ///     Loads all accounts from the database to the data collection
         /// </summary>
-        public void Load(Expression<Func<Account, bool>> filter = null)
+        public void Load()
         {
             Data.Clear();
 
-            foreach (var account in dataAccess.GetList(filter))
+            foreach (var account in dataAccess.GetList())
             {
                 Data.Add(account);
             }
         }
 
         /// <summary>
-        ///     Adds the payment amount from the selected account
+        ///     Adds the PaymentViewModel amount from the selected account
         /// </summary>
-        /// <param name="payment">Payment to add the account from.</param>
-        public void AddPaymentAmount(Payment payment)
+        /// <param name="paymentVm">PaymentViewModel to add the account from.</param>
+        public void AddPaymentAmount(PaymentViewModel paymentVm)
         {
-            if (!payment.IsCleared)
+            if (!paymentVm.IsCleared)
             {
                 return;
             }
 
-            PrehandleAddIfTransfer(payment);
+            PrehandleAddIfTransfer(paymentVm);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int) PaymentType.Income
+                paymentVm.Type == PaymentType.Income
                     ? x
                     : -x;
 
-            if (payment.ChargedAccount == null && payment.ChargedAccountId != 0)
+            if (paymentVm.ChargedAccount == null)
             {
-                payment.ChargedAccount = data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                paymentVm.ChargedAccount = data.FirstOrDefault(x => x.Id == paymentVm.ChargedAccount.Id);
             }
 
-            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(payment.ChargedAccount));
+            HandlePaymentViewModelAmount(paymentVm, amountFunc, GetChargedAccountFunc(paymentVm.ChargedAccount));
         }
 
         /// <summary>
-        ///     Removes the payment Amount from the charged account of this payment
+        ///     Removes the PaymentViewModel Amount from the charged account of this PaymentViewModel
         /// </summary>
-        /// <param name="payment">Payment to remove the account from.</param>
-        public void RemovePaymentAmount(Payment payment)
+        /// <param name="paymentVm">PaymentViewModel to remove the account from.</param>
+        public void RemovePaymentAmount(PaymentViewModel paymentVm)
         {
-            RemovePaymentAmount(payment, payment.ChargedAccount);
+            RemovePaymentAmount(paymentVm, paymentVm.ChargedAccount);
         }
 
         /// <summary>
-        ///     Removes the payment Amount from the selected account
+        ///     Removes the PaymentViewModel Amount from the selected account
         /// </summary>
-        /// <param name="payment">Payment to remove.</param>
+        /// <param name="paymentVm">PaymentViewModel to remove.</param>
         /// <param name="account">Account to remove the amount from.</param>
-        public void RemovePaymentAmount(Payment payment, Account account)
+        public void RemovePaymentAmount(PaymentViewModel paymentVm, Account account)
         {
-            if (!payment.IsCleared)
+            if (!paymentVm.IsCleared)
             {
                 return;
             }
 
-            PrehandleRemoveIfTransfer(payment);
+            PrehandleRemoveIfTransfer(paymentVm);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int) PaymentType.Income
+                paymentVm.Type == PaymentType.Income
                     ? -x
                     : x;
 
-            HandlePaymentAmount(payment, amountFunc, GetChargedAccountFunc(account));
+            HandlePaymentViewModelAmount(paymentVm, amountFunc, GetChargedAccountFunc(account));
         }
 
-        private void PrehandleRemoveIfTransfer(Payment payment)
+        private void PrehandleRemoveIfTransfer(PaymentViewModel paymentVm)
         {
-            if (payment.Type == (int) PaymentType.Transfer)
+            if (paymentVm.Type ==  PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
-                HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
+                HandlePaymentViewModelAmount(paymentVm, amountFunc, GetTargetAccountFunc());
             }
         }
 
-        private void HandlePaymentAmount(Payment payment,
+        private void HandlePaymentViewModelAmount(PaymentViewModel paymentVm,
             Func<double, double> amountFunc,
-            Func<Payment, Account> getAccountFunc)
+            Func<PaymentViewModel, Account> getAccountFunc)
         {
-            var account = getAccountFunc(payment);
+            var account = getAccountFunc(paymentVm);
             if (account == null)
             {
                 return;
             }
 
-            account.CurrentBalance += amountFunc(payment.Amount);
+            account.CurrentBalance += amountFunc(paymentVm.Amount);
             Save(account);
         }
 
-        private void PrehandleAddIfTransfer(Payment payment)
+        private void PrehandleAddIfTransfer(PaymentViewModel paymentVm)
         {
-            if (payment.Type == (int) PaymentType.Transfer)
+            if (paymentVm.Type == PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
-                HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
+                HandlePaymentViewModelAmount(paymentVm, amountFunc, GetTargetAccountFunc());
             }
         }
 
-        private Func<Payment, Account> GetTargetAccountFunc()
+        private Func<PaymentViewModel, Account> GetTargetAccountFunc()
         {
-            Func<Payment, Account> targetAccountFunc =
-                trans => Data.FirstOrDefault(x => x.Id == trans.TargetAccountId);
+            //TODO: Check if needs refactoring
+            Func<PaymentViewModel, Account> targetAccountFunc =
+                trans => Data.FirstOrDefault(x => x.Id == trans.TargetAccount.Id);
             return targetAccountFunc;
         }
 
-        private Func<Payment, Account> GetChargedAccountFunc(Account account)
+        private Func<PaymentViewModel, Account> GetChargedAccountFunc(Account account)
         {
-            Func<Payment, Account> accountFunc =
+            Func<PaymentViewModel, Account> accountFunc =
                 trans => Data.FirstOrDefault(x => x.Id == account.Id);
             return accountFunc;
         }

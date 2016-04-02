@@ -7,7 +7,6 @@ using Microsoft.OneDrive.Sdk;
 using MoneyFox.Core.Constants;
 using MoneyFox.Core.Extensions;
 using MoneyFox.Core.Interfaces;
-using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.Services
 {

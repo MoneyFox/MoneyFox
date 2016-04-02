@@ -153,10 +153,10 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>Kapitalfluss</value>
   </data>
-  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentViewModelMessage" xml:space="preserve">
     <value>Dies ist eine wiederkehrende Zahlung. Soll die Anpassung auch auf künftige Zahlungen übernommen werden oder nur auf diese?</value>
   </data>
-  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentViewModelTitle" xml:space="preserve">
     <value>Wiederholungen aktualisieren?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
@@ -183,7 +183,7 @@
   <data name="DeleteTitle" xml:space="preserve">
     <value>Löschen?</value>
   </data>
-  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
+  <data name="DeletePaymentViewModelConfirmationMessage" xml:space="preserve">
     <value>Möchtest du diese Zahlung wirklich löschen?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">

@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.Foundation
+﻿namespace MoneyFox.Core
 {
     public enum PaymentType
     {
@@ -26,7 +26,7 @@
     public enum InvocationType
     {
         Account,
-        Payment,
+        PaymentViewModel,
         Setting
     }
 

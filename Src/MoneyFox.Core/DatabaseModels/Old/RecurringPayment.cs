@@ -1,8 +1,6 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using MoneyFox.Core.Model;
 
-namespace MoneyFox.Foundation.Model
+namespace MoneyFox.Core.DatabaseModels.Old
 {
     public class RecurringPayment
     {
@@ -21,14 +19,5 @@ namespace MoneyFox.Foundation.Model
         public int Type { get; set; }
         public int Recurrence { get; set; }
         public string Note { get; set; }
-
-        [NotMapped]
-        public Account ChargedAccount { get; set; }
-
-        [NotMapped]
-        public Account TargetAccount { get; set; }
-
-        [NotMapped]
-        public Category Category { get; set; }
     }
 }

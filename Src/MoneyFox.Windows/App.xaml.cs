@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Metadata;
 using Windows.Globalization;
+using Windows.Storage;
 using Windows.System.UserProfile;
 using Windows.UI;
 using Windows.UI.StartScreen;
@@ -14,9 +16,11 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.ApplicationInsights;
 using Microsoft.Data.Entity;
 using Microsoft.Practices.ServiceLocation;
+using MoneyFox.Core;
 using MoneyFox.Core.Authentication;
 using MoneyFox.Core.Constants;
 using MoneyFox.Core.DataAccess;
+using MoneyFox.Core.DatabaseModels;
 using MoneyFox.Core.Helpers;
 using MoneyFox.Core.Services;
 using MoneyFox.Core.SettingAccess;
@@ -42,12 +46,87 @@ namespace MoneyFox.Windows
 #if !DEBUG
             WindowsAppInitializer.InitializeAsync();
 #endif
+
+            MigrateDatabase();
+            Suspending += OnSuspending;
+        }
+
+        private async void MigrateDatabase()
+        {
             using (var db = new MoneyFoxDataContext())
             {
                 db.Database.Migrate();
-            }
 
-            Suspending += OnSuspending;
+                var filestore = new FileStore();
+
+                if (!await filestore.Exists(Path.Combine(ApplicationData.Current.LocalFolder.Path,
+                            OneDriveConstants.DB_NAME_OLD)))
+                {
+                    return;
+                }
+
+                using (var oldDb = new MoneyFoxOldDataContext())
+                {
+                    foreach (var oldCategory in oldDb.Categories)
+                    {
+                        db.Categories.Add(new Category
+                        {
+                            Id = oldCategory.Id,
+                            Name = oldCategory.Name
+                        });
+                    }
+
+                    foreach (var oldAccount in oldDb.Accounts)
+                    {
+                        db.Accounts.Add(new Account
+                        {
+                            Id = oldAccount.Id,
+                            Name = oldAccount.Name,
+                            CurrentBalance = oldAccount.CurrentBalance,
+                            Iban = oldAccount.Iban,
+                            Note = oldAccount.Note
+                        });
+                    }
+
+                    foreach (var oldPayment in oldDb.Payments)
+                    {
+                        db.Payments.Add(new Payment
+                        {
+                            Id = oldPayment.Id,
+                            ChargedAccountId = oldPayment.ChargedAccountId,
+                            TargetAccountId = oldPayment.TargetAccountId,
+                            Amount = oldPayment.Amount,
+                            CategoryId = oldPayment.CategoryId,
+                            Date = oldPayment.Date,
+                            IsCleared = oldPayment.IsCleared,
+                            IsRecurring = oldPayment.IsRecurring,
+                            Note = oldPayment.Note,
+                            RecurringPaymentId = oldPayment.RecurringPaymentId,
+                            Type = oldPayment.Type
+                        });
+                    }
+
+                    foreach (var oldRecPayments in oldDb.RecurringPayments)
+                    {
+                        db.RecurringPayments.Add(new RecurringPayment
+                        {
+                            Id = oldRecPayments.Id,
+                            Amount = oldRecPayments.Amount,
+                            CategoryId = oldRecPayments.CategoryId,
+                            ChargedAccountId = oldRecPayments.ChargedAccountId,
+                            TargetAccountId = oldRecPayments.TargetAccountId,
+                            Recurrence = oldRecPayments.Recurrence,
+                            IsEndless = oldRecPayments.IsEndless,
+                            Note = oldRecPayments.Note,
+                            StartDate = oldRecPayments.StartDate,
+                            EndDate = oldRecPayments.EndDate,
+                            Type = oldRecPayments.Type
+                        });
+                    }
+
+                    oldDb.Database.EnsureDeleted();
+                }
+            }
         }
 
         /// <summary>

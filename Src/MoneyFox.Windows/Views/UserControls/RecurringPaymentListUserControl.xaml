@@ -8,7 +8,7 @@
              xmlns:converters="using:Cimbalino.Toolkit.Converters"
              xmlns:controls="using:MoneyFox.Windows.Controls"
              xmlns:converter="using:MoneyFox.Windows.Converter"
-             xmlns:model="using:MoneyFox.Core.Model"
+             xmlns:models="using:MoneyFox.Core.ViewModels.Models"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -20,15 +20,15 @@
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
-        <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+        <converter:PaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
         <converter:CultureConverter x:Key="FormatConverter" />
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:SelectedConverter x:Key="SelectedConverter" />
 
-        <DataTemplate x:Key="PaymentTemplate"
-                      x:DataType="model:Payment">
+        <DataTemplate x:Key="PaymentViewModelTemplate"
+                      x:DataType="models:PaymentViewModel">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
@@ -49,7 +49,7 @@
                     <TextBlock
                         Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
                     <TextBlock
-                        Text="{Binding Converter={StaticResource PaymentAmountConverter}, ConverterParameter=IgnoreTransfer}"
+                        Text="{Binding Converter={StaticResource PaymentViewModelAmountConverter}, ConverterParameter=IgnoreTransfer}"
                         HorizontalAlignment="Right" />
                 </Grid>
                 <Grid>
@@ -136,7 +136,7 @@
                 <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
                                                   EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
                                                   ItemsSource="{Binding Source={StaticResource Groups}}"
-                                                  ItemTemplate="{StaticResource PaymentTemplate}"
+                                                  ItemTemplate="{StaticResource PaymentViewModelTemplate}"
                                                   HorizontalAlignment="Stretch"
                                                   ShowsScrollingPlaceholders="false"
                                                   Margin="0,20,0,0">

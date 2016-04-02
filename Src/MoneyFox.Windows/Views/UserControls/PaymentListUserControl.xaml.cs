@@ -2,45 +2,44 @@
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Microsoft.Practices.ServiceLocation;
-using MoneyFox.Core.Model;
 using MoneyFox.Core.ViewModels;
-using MoneyFox.Foundation.Model;
+using MoneyFox.Core.ViewModels.Models;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
-    public partial class PaymentListUserControl
+    public partial class PaymentViewModelListUserControl
     {
-        public PaymentListUserControl()
+        public PaymentViewModelListUserControl()
         {
             InitializeComponent();
             DataContext = ServiceLocator.Current.GetInstance<PaymentListViewModel>();
         }
 
-        private void EditPayment(object sender, RoutedEventArgs e)
+        private void EditPaymentViewModel(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var payment = element.DataContext as Payment;
-            if (payment == null)
+            var paymentViewModel = element.DataContext as PaymentViewModel;
+            if (paymentViewModel == null)
             {
                 return;
             }
             var viewmodel = DataContext as PaymentListViewModel;
 
-            viewmodel?.EditCommand.Execute(payment);
+            viewmodel?.EditCommand.Execute(paymentViewModel);
         }
 
-        private void DeletePayment(object sender, RoutedEventArgs e)
+        private void DeletePaymentViewModel(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var payment = element.DataContext as Payment;
-            if (payment == null)
+            var paymentViewModel = element.DataContext as PaymentViewModel;
+            if (paymentViewModel == null)
             {
                 return;
             }
-            (DataContext as PaymentListViewModel)?.DeletePaymentCommand.Execute(payment);
+            (DataContext as PaymentListViewModel)?.DeletePaymentViewModelCommand.Execute(paymentViewModel);
         }
 
-        private void PaymentList_Holding(object sender, HoldingRoutedEventArgs e)
+        private void PaymentViewModelList_Holding(object sender, HoldingRoutedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
@@ -48,7 +47,7 @@ namespace MoneyFox.Windows.Views.UserControls
             flyoutBase.ShowAt(senderElement);
         }
 
-        private void PaymentList_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void PaymentViewModelList_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
             var senderElement = sender as FrameworkElement;
             var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);

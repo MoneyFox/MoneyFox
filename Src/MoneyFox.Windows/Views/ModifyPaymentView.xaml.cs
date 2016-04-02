@@ -3,11 +3,10 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Practices.ServiceLocation;
-using MoneyFox.Core.Model;
+using MoneyFox.Core;
 using MoneyFox.Core.ViewModels;
-using MoneyFox.Foundation.Model;
+using MoneyFox.Core.ViewModels.Models;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
 
 namespace MoneyFox.Windows.Views
 {
@@ -37,10 +36,10 @@ namespace MoneyFox.Windows.Views
             {
                 var viewModel = (ModifyPaymentViewModel) DataContext;
 
-                var payment = e.Parameter as Payment;
-                if (payment != null)
+                var paymentViewModel = e.Parameter as PaymentViewModel;
+                if (paymentViewModel != null)
                 {
-                    //TODO Refactor this that on edit the payment type isn't necessary since we don't need it here.
+                    //TODO Refactor this that on edit the PaymentViewModel type isn't necessary since we don't need it here.
                     viewModel.Init(PaymentType.Expense, true);
                 }
                 else if (e.Parameter?.GetType() == typeof (PaymentType))

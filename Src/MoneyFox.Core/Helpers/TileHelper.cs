@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Core.Constants;
-using MoneyManager.Foundation;
 
 namespace MoneyFox.Core.Helpers
 {

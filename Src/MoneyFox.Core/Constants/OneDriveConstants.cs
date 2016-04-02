@@ -8,7 +8,12 @@
         /// <summary>
         ///     Name of the sqlite database
         /// </summary>
-        public const string DB_NAME = "moneyfox.sqlite";
+        public const string DB_NAME = "moneyfox.db";
+
+        /// <summary>
+        ///     Name of the sqlite database before v2.0. Used for compatibility reasons.
+        /// </summary>
+        public const string DB_NAME_OLD = "moneyfox.sqlite";
 
         /// <summary>
         ///     Name of the Backup Folder

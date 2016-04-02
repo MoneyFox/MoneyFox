@@ -1,4 +1,4 @@
-using MoneyFox.Core.Model;
+using MoneyFox.Core.DatabaseModels;
 
 namespace MoneyFox.Core.Interfaces
 {
