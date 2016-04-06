@@ -7,6 +7,7 @@ using MoneyManager.Core.Extensions;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using Xamarin;
+using MvvmCross.Plugins.File;
 
 namespace MoneyManager.Core.Services
 {

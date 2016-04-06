@@ -4,8 +4,8 @@ using System.Linq.Expressions;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
 using PropertyChanged;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyManager.Core.Repositories
 {

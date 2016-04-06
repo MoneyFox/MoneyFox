@@ -1,6 +1,6 @@
-﻿using MoneyManager.Foundation;
+﻿using MoneyFox.Shared.Resources;
+using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;

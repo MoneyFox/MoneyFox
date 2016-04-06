@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
 using Xamarin;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyManager.Core.Manager
 {

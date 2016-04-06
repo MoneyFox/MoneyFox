@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
 using Xamarin;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyManager.Core.ViewModels
 {

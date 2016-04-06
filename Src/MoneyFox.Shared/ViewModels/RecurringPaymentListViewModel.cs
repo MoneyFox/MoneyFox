@@ -3,8 +3,8 @@ using System.Globalization;
 using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyManager.Core.ViewModels
 {

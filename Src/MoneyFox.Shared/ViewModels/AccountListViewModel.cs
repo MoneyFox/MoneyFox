@@ -2,9 +2,9 @@
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyManager.Core.ViewModels
 {
