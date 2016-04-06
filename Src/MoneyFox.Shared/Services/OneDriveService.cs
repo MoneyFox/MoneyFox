@@ -3,9 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
-using MoneyManager.Core.Extensions;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Shared.Constants;
+using MoneyFox.Shared.Extensions;
+using MoneyFox.Shared.Interfaces;
 using MvvmCross.Plugins.File;
 using Xamarin;
 

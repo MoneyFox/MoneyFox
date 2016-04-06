@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
-using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.ViewModels;
 using Moq;
 
 namespace MoneyManager.Core.Tests.ViewModels

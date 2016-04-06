@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
-using MoneyManager.Foundation.Groups;
-using MoneyManager.Foundation.Interfaces.ViewModels;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Groups;
+using MoneyFox.Shared.Interfaces.ViewModels;
+using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyManager.Core.ViewModels.DesignTime
+namespace MoneyFox.Shared.ViewModels.DesignTime
 {
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {

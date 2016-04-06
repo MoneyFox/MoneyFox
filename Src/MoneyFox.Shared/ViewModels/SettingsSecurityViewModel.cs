@@ -1,11 +1,10 @@
-﻿using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation.Interfaces;
+﻿using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class SettingsSecurityViewModel : BaseViewModel

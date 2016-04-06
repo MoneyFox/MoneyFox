@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 
-namespace MoneyManager.Core.Manager
+namespace MoneyFox.Shared.Manager
 {
     public class RecurringPaymentManager : IRecurringPaymentManager
     {

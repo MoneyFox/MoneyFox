@@ -1,10 +1,10 @@
-﻿using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Messages;
-using MoneyManager.Foundation.Model;
+﻿using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Messages;
+using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel

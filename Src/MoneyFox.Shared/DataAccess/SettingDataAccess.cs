@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Shared.Interfaces;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.DataAccess

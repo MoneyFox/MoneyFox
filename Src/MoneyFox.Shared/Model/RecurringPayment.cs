@@ -1,7 +1,7 @@
 ﻿using System;
 using SQLite.Net.Attributes;
 
-namespace MoneyManager.Foundation.Model
+namespace MoneyFox.Shared.Model
 {
     [Table("RecurringPayments")]
     public class RecurringPayment

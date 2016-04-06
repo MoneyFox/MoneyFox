@@ -1,10 +1,9 @@
 ﻿using System;
-using MoneyFox.Shared.ViewModels;
-using MoneyManager.Foundation.Messages;
+using MoneyFox.Shared.Messages;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class SelectDateRangeDialogViewModel : BaseViewModel

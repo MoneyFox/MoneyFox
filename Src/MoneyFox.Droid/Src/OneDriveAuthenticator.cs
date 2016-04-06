@@ -2,8 +2,8 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Shared.Constants;
+using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Droid
 {

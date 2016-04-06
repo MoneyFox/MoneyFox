@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     /// <summary>
     ///     This ViewModel is for the usage in the paymentlist when a concret account is selected

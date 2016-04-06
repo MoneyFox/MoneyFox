@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.DataAccess;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
 using Xamarin;
 
-namespace MoneyManager.Core.Manager
+namespace MoneyFox.Shared.Manager
 {
     /// <summary>
     ///     Handles the automatich backup upload and download

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using MoneyManager.Core.Manager;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using Moq;
 using Xunit;
 using MoneyFox.Shared.DataAccess;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Manager;
+using MoneyFox.Shared.Model;
 
 namespace MoneyManager.Core.Tests.Manager
 {

@@ -1,13 +1,12 @@
 using System;
+using MoneyFox.Shared.Extensions;
+using MoneyFox.Shared.Messages;
 using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
-using MoneyManager.Core.Extensions;
-using MoneyManager.Foundation.Messages;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public abstract class StatisticViewModel : BaseViewModel

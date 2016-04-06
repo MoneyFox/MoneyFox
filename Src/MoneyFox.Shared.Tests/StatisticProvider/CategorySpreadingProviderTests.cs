@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyManager.Core.StatisticDataProvider;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
+using MoneyFox.Shared.StatisticDataProvider;
 using Moq;
 using Xunit;
 

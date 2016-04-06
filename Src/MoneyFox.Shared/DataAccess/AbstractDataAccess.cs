@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Shared.Interfaces;
 using Xamarin;
 
-namespace MoneyManager.Foundation
+namespace MoneyFox.Shared.DataAccess
 {
     public abstract class AbstractDataAccess<T> : IDataAccess<T>
     {

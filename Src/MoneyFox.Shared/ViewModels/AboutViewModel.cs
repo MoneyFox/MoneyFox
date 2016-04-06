@@ -1,6 +1,5 @@
-﻿using MoneyFox.Shared.Resources;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
+﻿using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
@@ -69,22 +68,22 @@ namespace MoneyFox.Shared.ViewModels
         ///     Returns the apply solutions webite url from the
         ///     ressource file
         /// </summary>
-        public string Website => Constants.WEBSITE_URL;
+        public string Website => Constants.Constants.WEBSITE_URL;
 
         /// <summary>
         ///     Returns the mailaddress for support cases from the
         ///     ressource file
         /// </summary>
-        public string SupportMail => Constants.SUPPORT_MAIL;
+        public string SupportMail => Constants.Constants.SUPPORT_MAIL;
 
         private void GoToWebsite()
         {
-            webBrowserTask.ShowWebPage(Constants.WEBSITE_URL);
+            webBrowserTask.ShowWebPage(Constants.Constants.WEBSITE_URL);
         }
 
         private void SendMail()
         {
-            composeEmailTask.ComposeEmail(Constants.SUPPORT_MAIL,
+            composeEmailTask.ComposeEmail(Constants.Constants.SUPPORT_MAIL,
                 string.Empty,
                 Strings.FeedbackSubject,
                 string.Empty,
@@ -98,7 +97,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private void GoToRepository()
         {
-            webBrowserTask.ShowWebPage(Constants.GIT_HUB_REPOSITORY_URL);
+            webBrowserTask.ShowWebPage(Constants.Constants.GIT_HUB_REPOSITORY_URL);
         }
     }
 }

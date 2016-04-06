@@ -1,5 +1,5 @@
 using Android.App;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Droid
 {

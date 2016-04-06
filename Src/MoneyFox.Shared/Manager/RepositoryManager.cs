@@ -1,7 +1,7 @@
-﻿using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+﻿using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 
-namespace MoneyManager.Core.Manager
+namespace MoneyFox.Shared.Manager
 {
     /// <summary>
     ///     This helper can be used to reinstantiate all Repositories, for example when you

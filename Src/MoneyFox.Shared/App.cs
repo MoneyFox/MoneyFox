@@ -1,14 +1,13 @@
 ﻿using System.Linq;
 using System.Reflection;
-using MoneyFox.Shared;
-using MoneyManager.Core.Authentication;
-using MoneyManager.DataAccess;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Shared.Authentication;
+using MoneyFox.Shared.DataAccess;
+using MoneyFox.Shared.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 
-namespace MoneyManager.Core
+namespace MoneyFox.Shared
 {
     public class App : MvxApplication
     {

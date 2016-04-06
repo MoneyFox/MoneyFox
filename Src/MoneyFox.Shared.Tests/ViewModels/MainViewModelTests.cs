@@ -1,10 +1,9 @@
+using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
-using MoneyManager.Core.Manager;
-using MoneyManager.Core.Repositories;
-using MoneyManager.Core.ViewModels;
-using MoneyManager.DataAccess;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Manager;
+using MoneyFox.Shared.Repositories;
+using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Core.Platform;
 using MvvmCross.Test.Core;

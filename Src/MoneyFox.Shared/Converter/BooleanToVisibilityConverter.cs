@@ -3,7 +3,7 @@ using System.Globalization;
 using MvvmCross.Platform.Converters;
 using MvvmCross.Platform.UI;
 
-namespace MoneyManager.Core.Converter
+namespace MoneyFox.Shared.Converter
 {
     public class BooleanToVisibilityConverter : IMvxValueConverter
     {

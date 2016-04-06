@@ -1,6 +1,6 @@
 ﻿using PropertyChanged;
 
-namespace MoneyManager.Foundation.Model
+namespace MoneyFox.Shared.Model
 {
     [ImplementPropertyChanged]
     public class StatisticItem

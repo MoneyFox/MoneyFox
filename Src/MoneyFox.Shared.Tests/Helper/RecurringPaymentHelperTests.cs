@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared;
+using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Model;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Helper

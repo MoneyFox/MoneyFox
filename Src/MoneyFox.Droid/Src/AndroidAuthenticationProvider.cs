@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Microsoft.OneDrive.Sdk;
-using MoneyManager.Foundation;
+using MoneyFox.Shared.Constants;
 using Xamarin.Auth;
 using Constants = Microsoft.OneDrive.Sdk.Constants;
 

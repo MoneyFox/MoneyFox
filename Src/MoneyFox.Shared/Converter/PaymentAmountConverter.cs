@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Globalization;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Converters;
 
-namespace MoneyManager.Core.Converter
+namespace MoneyFox.Shared.Converter
 {
     public class PaymentAmountConverter : IMvxValueConverter
     {

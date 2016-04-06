@@ -1,13 +1,12 @@
 ﻿using System.Collections.ObjectModel;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Interfaces.ViewModels;
+using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Interfaces.ViewModels;
-using MoneyManager.Foundation.Model;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class AccountListViewModel : BaseViewModel

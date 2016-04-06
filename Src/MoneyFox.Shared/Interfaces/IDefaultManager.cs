@@ -1,6 +1,6 @@
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Model;
 
-namespace MoneyManager.Foundation.Interfaces
+namespace MoneyFox.Shared.Interfaces
 {
     public interface IDefaultManager
     {

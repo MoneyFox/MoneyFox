@@ -1,8 +1,8 @@
 using System;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Shared.Interfaces;
 using MvvmCross.Platform;
 
-namespace MoneyManager.Core.Helpers
+namespace MoneyFox.Shared.Helpers
 {
     /// <summary>
     ///     This is the Settings static class that can be used in your Core solution or in any

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace MoneyManager.Foundation.Interfaces
+namespace MoneyFox.Shared.Interfaces
 {
     public interface IBackgroundTaskService
     {

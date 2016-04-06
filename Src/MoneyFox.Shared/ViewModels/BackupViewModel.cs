@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
+using MoneyFox.Shared.Exceptions;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
-using MoneyManager.Foundation.Exceptions;
-using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Core.ViewModels;
 using Xamarin;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     public class BackupViewModel : BaseViewModel
     {

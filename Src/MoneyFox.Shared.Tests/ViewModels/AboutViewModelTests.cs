@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoneyFox.Shared.Constants;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
 using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Email;

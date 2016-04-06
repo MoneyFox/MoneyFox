@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace MoneyManager.Foundation.Interfaces
+namespace MoneyFox.Shared.Interfaces
 {
     /// <summary>
     ///     Defines the basic Input / Output Operations for the database

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace MoneyManager.Foundation.Interfaces
+namespace MoneyFox.Shared.Interfaces
 {
     /// <summary>
     ///     Interface for Manager who manages automatic upload and download of backups

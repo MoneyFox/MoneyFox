@@ -1,6 +1,4 @@
-﻿using MoneyFox.Shared.ViewModels;
-
-namespace MoneyManager.Core.ViewModels
+﻿namespace MoneyFox.Shared.ViewModels
 {
     public class SettingsViewModel : BaseViewModel
     {

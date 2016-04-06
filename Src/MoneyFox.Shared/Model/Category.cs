@@ -1,7 +1,7 @@
 using PropertyChanged;
 using SQLite.Net.Attributes;
 
-namespace MoneyManager.Foundation.Model
+namespace MoneyFox.Shared.Model
 {
     [ImplementPropertyChanged]
     [Table("Categories")]

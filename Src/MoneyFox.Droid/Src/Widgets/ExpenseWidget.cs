@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using MoneyManager.Foundation.Interfaces.Shotcuts;
+using MoneyFox.Shared.Interfaces.Shotcuts;
 
 namespace MoneyFox.Droid.Widgets
 {

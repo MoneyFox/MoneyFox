@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.Shared.Exceptions;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
-using MoneyManager.Foundation.Exceptions;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using Xamarin;
 
-namespace MoneyManager.Core.Manager
+namespace MoneyFox.Shared.Manager
 {
     public class PaymentManager : IPaymentManager
     {

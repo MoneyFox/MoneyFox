@@ -1,6 +1,6 @@
 ﻿using SQLite.Net;
 
-namespace MoneyManager.Foundation.Interfaces
+namespace MoneyFox.Shared.Interfaces
 {
     public interface ISqliteConnectionCreator
     {

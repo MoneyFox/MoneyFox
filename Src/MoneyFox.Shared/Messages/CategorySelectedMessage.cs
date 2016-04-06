@@ -1,7 +1,7 @@
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Model;
 using MvvmCross.Plugins.Messenger;
 
-namespace MoneyManager.Foundation.Messages
+namespace MoneyFox.Shared.Messages
 {
     public class CategorySelectedMessage : MvxMessage
     {

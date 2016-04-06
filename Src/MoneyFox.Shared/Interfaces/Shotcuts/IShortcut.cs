@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace MoneyManager.Foundation.Interfaces.Shotcuts
+namespace MoneyFox.Shared.Interfaces.Shotcuts
 {
     /// <summary>
     ///     Defines a interface to handling Shortcut

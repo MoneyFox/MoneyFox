@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Messages;
+using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Messages;
-using MoneyManager.Foundation.Model;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class ModifyPaymentViewModel : BaseViewModel

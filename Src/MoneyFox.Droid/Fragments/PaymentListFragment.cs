@@ -3,7 +3,7 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyFox.Droid.Activities;
-using MoneyManager.Core.ViewModels;
+using MoneyFox.Shared.ViewModels;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;

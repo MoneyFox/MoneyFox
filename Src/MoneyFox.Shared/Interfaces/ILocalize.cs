@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace MoneyManager.Foundation.Interfaces
+namespace MoneyFox.Shared.Interfaces
 {
     public interface ILocalize
     {

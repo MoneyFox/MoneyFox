@@ -1,10 +1,9 @@
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     public class CategoryDialogViewModel : BaseViewModel
     {

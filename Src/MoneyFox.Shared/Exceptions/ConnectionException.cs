@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoneyManager.Foundation.Exceptions
+namespace MoneyFox.Shared.Exceptions
 {
     public class ConnectionException : Exception
     {

@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using MoneyManager.Core.Repositories;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Repositories;
 using MoneyManager.Core.Tests.Mocks;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 using Moq;
 using Xunit;
 using MoneyFox.Shared.Resources;

@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.Foundation.Interfaces
+﻿namespace MoneyFox.Shared.Interfaces
 {
     /// <summary>
     ///     Grants CRUD operations to the settings on each plattform

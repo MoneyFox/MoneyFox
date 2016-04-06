@@ -1,8 +1,7 @@
-﻿using MoneyFox.Shared.ViewModels;
-using MoneyManager.Core.Helpers;
+﻿using MoneyFox.Shared.Helpers;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using MoneyManager.Core.Helpers;
+using MoneyFox.Shared.Helpers;
 
-namespace MoneyManager.Core.Authentication
+namespace MoneyFox.Shared.Authentication
 {
     public class Session
     {

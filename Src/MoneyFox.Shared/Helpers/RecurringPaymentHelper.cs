@@ -1,8 +1,7 @@
 ﻿using System;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Model;
 
-namespace MoneyManager.Core.Helpers
+namespace MoneyFox.Shared.Helpers
 {
     public static class RecurringPaymentHelper
     {

@@ -1,12 +1,12 @@
 ﻿using System;
-using MoneyManager.Core.StatisticDataProvider;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class StatisticMonthlyExpensesViewModel : StatisticViewModel

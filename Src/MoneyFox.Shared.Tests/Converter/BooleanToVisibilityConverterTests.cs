@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using MoneyManager.Core.Converter;
+using MoneyFox.Shared.Converter;
 using MvvmCross.Platform.UI;
 using Xunit;
 

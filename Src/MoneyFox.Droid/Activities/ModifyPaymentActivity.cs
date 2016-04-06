@@ -6,7 +6,7 @@ using Android.Views;
 using Android.Widget;
 using MoneyFox.Droid.Fragments;
 using MoneyFox.Shared.Resources;
-using MoneyManager.Core.ViewModels;
+using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 

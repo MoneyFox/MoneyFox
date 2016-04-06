@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 using PropertyChanged;
 
-namespace MoneyManager.DataAccess
+namespace MoneyFox.Shared.DataAccess
 {
     [ImplementPropertyChanged]
     public class RecurringPaymentDataAccess : AbstractDataAccess<RecurringPayment>

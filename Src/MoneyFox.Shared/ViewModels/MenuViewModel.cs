@@ -1,7 +1,6 @@
 ﻿using System;
-using MoneyFox.Shared.ViewModels;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     public class MenuViewModel : BaseViewModel
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Model;
 
-namespace MoneyManager.Core.Helpers
+namespace MoneyFox.Shared.Helpers
 {
     public class Utilities
     {

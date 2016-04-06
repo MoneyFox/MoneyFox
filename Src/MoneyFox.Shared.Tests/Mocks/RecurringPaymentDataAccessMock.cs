@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 
 namespace MoneyManager.Core.Tests.Mocks
 {

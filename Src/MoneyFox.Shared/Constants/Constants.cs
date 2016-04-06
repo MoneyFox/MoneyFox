@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.Foundation
+﻿namespace MoneyFox.Shared.Constants
 {
     /// <summary>
     ///     String Constants for usage in the app

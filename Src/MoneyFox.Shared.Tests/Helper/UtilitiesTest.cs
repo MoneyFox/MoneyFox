@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Model;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Helper

@@ -2,7 +2,7 @@
 using PropertyChanged;
 using SQLite.Net.Attributes;
 
-namespace MoneyManager.Foundation.Model
+namespace MoneyFox.Shared.Model
 {
     /// <summary>
     ///     Databasemodel for payments. Includes expenses, income and transfers.

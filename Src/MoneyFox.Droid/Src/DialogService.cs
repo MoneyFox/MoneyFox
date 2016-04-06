@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Android.App;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
-using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 

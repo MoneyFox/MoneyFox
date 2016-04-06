@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.Foundation.Interfaces
+﻿namespace MoneyFox.Shared.Interfaces
 {
     /// <summary>
     ///     Interface to access information of the app package.

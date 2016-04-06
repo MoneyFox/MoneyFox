@@ -1,5 +1,5 @@
 ﻿using System;
-using MoneyManager.Core.Extensions;
+using MoneyFox.Shared.Extensions;
 using Xunit;
 
 namespace MoneyManager.Core.Tests.Extensions

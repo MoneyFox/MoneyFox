@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyManager.Core.Manager;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Manager;
+using MoneyFox.Shared.Model;
 using Moq;
 
 namespace MoneyManager.Core.Tests.Manager

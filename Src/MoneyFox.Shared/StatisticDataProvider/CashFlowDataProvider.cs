@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
 
-namespace MoneyManager.Core.StatisticDataProvider
+namespace MoneyFox.Shared.StatisticDataProvider
 {
     public class CashFlowDataProvider : IStatisticProvider<CashFlow>
     {

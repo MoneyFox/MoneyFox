@@ -1,4 +1,4 @@
-﻿namespace MoneyManager.Foundation.Interfaces.Shotcuts
+﻿namespace MoneyFox.Shared.Interfaces.Shotcuts
 {
     /// <summary>
     ///     Interface for managing income shortcuts

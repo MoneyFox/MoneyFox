@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation.Exceptions;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Exceptions;
+using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 using PropertyChanged;
 
-namespace MoneyManager.Core.Repositories
+namespace MoneyFox.Shared.Repositories
 {
     [ImplementPropertyChanged]
     public class PaymentRepository : IPaymentRepository

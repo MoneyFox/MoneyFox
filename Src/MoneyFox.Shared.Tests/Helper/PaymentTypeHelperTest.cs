@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
+using MoneyFox.Shared;
+using MoneyFox.Shared.Helpers;
 using Xunit;
 using MoneyFox.Shared.Resources;
 

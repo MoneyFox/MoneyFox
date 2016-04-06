@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyManager.Core.StatisticDataProvider;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
+using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Series;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     [ImplementPropertyChanged]
     public class StatisticCategorySpreadingViewModel : StatisticViewModel

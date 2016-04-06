@@ -1,7 +1,7 @@
 ﻿using System;
 using MvvmCross.Plugins.Messenger;
 
-namespace MoneyManager.Foundation.Messages
+namespace MoneyFox.Shared.Messages
 {
     public class DateSelectedMessage : MvxMessage
     {

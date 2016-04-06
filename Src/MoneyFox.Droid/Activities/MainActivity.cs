@@ -6,7 +6,7 @@ using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Views;
 using MoneyFox.Droid.Activities.Caching;
-using MoneyManager.Core.ViewModels;
+using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.Fragging.Caching;
 using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;

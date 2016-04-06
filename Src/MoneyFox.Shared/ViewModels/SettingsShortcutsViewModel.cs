@@ -1,11 +1,10 @@
 ﻿using MoneyFox.Shared.DataAccess;
-using MoneyFox.Shared.ViewModels;
-using MoneyManager.Foundation.Interfaces.Shotcuts;
+using MoneyFox.Shared.Interfaces.Shotcuts;
 using MvvmCross.Core.ViewModels;
 
 // ReSharper disable ExplicitCallerInfoArgument
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     /// <summary>
     ///     Provides the information for the TileSettingsView

@@ -2,7 +2,7 @@
 using System.Globalization;
 using MvvmCross.Platform.Converters;
 
-namespace MoneyManager.Core.Converter
+namespace MoneyFox.Shared.Converter
 {
     public class AmountFormatConverter : IMvxValueConverter
     {

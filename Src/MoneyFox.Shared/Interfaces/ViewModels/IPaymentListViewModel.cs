@@ -1,9 +1,9 @@
 using System.Collections.ObjectModel;
-using MoneyManager.Foundation.Groups;
-using MoneyManager.Foundation.Model;
+using MoneyFox.Shared.Groups;
+using MoneyFox.Shared.Model;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyManager.Foundation.Interfaces.ViewModels
+namespace MoneyFox.Shared.Interfaces.ViewModels
 {
     public interface IPaymentListViewModel
     {

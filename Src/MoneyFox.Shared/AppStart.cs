@@ -1,7 +1,7 @@
-﻿using MoneyManager.Core.ViewModels;
+﻿using MoneyFox.Shared.ViewModels;
 using MvvmCross.Core.ViewModels;
 
-namespace MoneyManager.Core
+namespace MoneyFox.Shared
 {
     public class AppStart : MvxNavigatingObject, IMvxAppStart
     {
