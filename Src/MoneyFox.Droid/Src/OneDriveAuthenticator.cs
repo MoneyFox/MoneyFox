@@ -23,9 +23,9 @@ namespace MoneyManager.Droid
             {
                 oneDriveClient = OneDriveClient.GetMicrosoftAccountClient(
                     OneDriveAuthenticationConstants.MSA_CLIENT_ID,
-                    OneDriveAuthenticationConstants.RETURN_URL,
-                    OneDriveAuthenticationConstants.Scopes,
-                    OneDriveAuthenticationConstants.MSA_CLIENT_SECRET,
+					OneDriveAuthenticationConstants.RETURN_URL,
+					OneDriveAuthenticationConstants.Scopes,
+					OneDriveAuthenticationConstants.MSA_CLIENT_SECRET,
                     null, null,
                     new CustomServiceInfoProvider());
                 try

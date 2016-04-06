@@ -5,23 +5,23 @@ using Android.OS;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Views;
-using MoneyFox.Droid.Activities.Caching;
 using MoneyManager.Core.ViewModels;
-using MvvmCross.Droid.Shared.Caching;
+using MoneyManager.Droid.Activities.Caching;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Droid.Support.V7.Fragging.Caching;
 using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
-namespace MoneyFox.Droid.Activities
+namespace MoneyManager.Droid.Activities
 {
-    [Activity(Label = "Money Fox",
+    [Activity(Label = "MoneyManager",
         Icon = "@drawable/icon",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop,
-        Name = "moneyfox.droid.activities.MainActivity")]
+        Name = "moneymanager.droid.activities.MainActivity")]
     public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
-        private CustomFragmentInfo currentFragmentInfo;
         public DrawerLayout DrawerLayout;
+        private CustomFragmentInfo currentFragmentInfo;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -43,11 +43,9 @@ namespace MoneyFox.Droid.Activities
             return new FragmentCacheConfigurationCustomFragmentInfo();
         }
 
-        public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
-            FragmentTransaction transaction)
+        public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo, FragmentTransaction transaction)
         {
-            transaction.SetCustomAnimations(Resource.Animation.abc_grow_fade_in_from_bottom,
-                Resource.Animation.abc_fade_out);
+            transaction.SetCustomAnimations(Resource.Animation.abc_grow_fade_in_from_bottom, Resource.Animation.abc_fade_out);
             base.OnBeforeFragmentChanging(fragmentInfo, transaction);
         }
 
@@ -80,7 +78,7 @@ namespace MoneyFox.Droid.Activities
                     else
                     {
                         SupportFragmentManager.PopBackStackImmediate();
-                    }
+                    }    
                     return true;
 
                 case Resource.Id.action_add_income:

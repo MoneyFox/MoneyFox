@@ -1,10 +1,9 @@
 using MvvmCross.Platform.Plugins;
-using MvvmCross.Plugins.Json;
 
-namespace MoneyFox.Droid.Bootstrap
+namespace MoneyManager.Droid.Bootstrap
 {
     public class JsonPluginBootstrap
-        : MvxPluginBootstrapAction<PluginLoader>
+        : MvxPluginBootstrapAction<MvvmCross.Plugins.Json.PluginLoader>
     {
     }
 }

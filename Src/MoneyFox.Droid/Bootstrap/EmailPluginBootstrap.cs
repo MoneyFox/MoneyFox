@@ -1,10 +1,9 @@
 using MvvmCross.Platform.Plugins;
-using MvvmCross.Plugins.Email;
 
-namespace MoneyFox.Droid.Bootstrap
+namespace MoneyManager.Droid.Bootstrap
 {
     public class EmailPluginBootstrap
-        : MvxPluginBootstrapAction<PluginLoader>
+        : MvxPluginBootstrapAction<MvvmCross.Plugins.Email.PluginLoader>
     {
     }
 }

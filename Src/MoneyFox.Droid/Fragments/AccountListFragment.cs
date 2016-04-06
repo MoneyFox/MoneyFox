@@ -4,19 +4,19 @@ using Android.Views;
 using Android.Widget;
 using MoneyFox.Shared.Resources;
 using MoneyManager.Core.ViewModels;
-using MvvmCross.Droid.Shared.Attributes;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 
-namespace MoneyFox.Droid.Fragments
+namespace MoneyManager.Droid.Fragments
 {
-    [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
-    [Register("moneyfox.droid.fragments.AccountListFragment")]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
+    [Register("moneymanager.droid.fragments.AccountListFragment")]
     public class AccountListFragment : BaseFragment<AccountListViewModel>
     {
-        protected override int FragmentId => Resource.Layout.fragment_account_list;
+		protected override int FragmentId => Resource.Layout.fragment_account_list;
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
+		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+		{
+			var view =  base.OnCreateView (inflater, container, savedInstanceState);
 
             LoadBalancePanel();
 
@@ -24,15 +24,15 @@ namespace MoneyFox.Droid.Fragments
             RegisterForContextMenu(list);
             HasOptionsMenu = true;
 
-            return view;
-        }
+			return view;
+		}
 
         private void LoadBalancePanel()
         {
             var fragment = new BalanceFragment
-            {
-                ViewModel = (BalanceViewModel) ViewModel.BalanceViewModel
-            };
+                {
+                    ViewModel = (BalanceViewModel) ViewModel.BalanceViewModel
+                };
 
             FragmentManager.BeginTransaction()
                 .Replace(Resource.Id.account_list_balance_frame, fragment)
@@ -51,7 +51,7 @@ namespace MoneyFox.Droid.Fragments
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
-            inflater.Inflate(Resource.Menu.menu_main, menu);
+            inflater.Inflate(Resource.Menu.menu_main, menu);            
             base.OnCreateOptionsMenu(menu, inflater);
         }
 

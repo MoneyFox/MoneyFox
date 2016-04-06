@@ -1,19 +1,19 @@
 using Android.App;
-using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using MoneyFox.Droid.Fragments;
-using MoneyFox.Shared.Resources;
 using MoneyManager.Core.ViewModels;
-using MvvmCross.Droid.Support.V7.AppCompat;
+using MoneyManager.Droid.Fragments;
 using MvvmCross.Platform;
+using Android.Content.PM;
+using MoneyFox.Shared.Resources;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using MvvmCross.Droid.Support.V7.AppCompat;
 
-namespace MoneyFox.Droid.Activities
+namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "CategoryListActivity",
-        Name = "moneyfox.droid.activities.SelectCategoryListActivity",
+        Name = "moneymanager.droid.activities.SelectCategoryListActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
     public class SelectCategoryListActivity : MvxFragmentCompatActivity<SelectCategoryListViewModel>

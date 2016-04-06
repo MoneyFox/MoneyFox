@@ -6,7 +6,7 @@ using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 
-namespace MoneyFox.Droid
+namespace MoneyManager.Droid
 {
     public class DialogService : IDialogService
     {

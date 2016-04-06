@@ -1,17 +1,17 @@
 ﻿using Android.OS;
-using Android.Runtime;
-using Android.Support.V7.Widget;
-using Android.Views;
-using MoneyFox.Droid.Activities;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 using MoneyManager.Core.ViewModels;
+using Android.Runtime;
+using Android.Views;
 using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using Android.Support.V7.Widget;
+using MoneyManager.Droid.Activities;
 
-namespace MoneyFox.Droid.Fragments
+namespace MoneyManager.Droid.Fragments
 {
-    [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
-    [Register("moneyfox.droid.fragments.PaymentListFragment")]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
+    [Register("moneymanager.droid.fragments.PaymentListFragment")]
     public class PaymentListFragment : MvxFragment<PaymentListViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -19,8 +19,8 @@ namespace MoneyFox.Droid.Fragments
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.fragment_payment_list, null);
 
-            ((MainActivity) Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
-            ((MainActivity) Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            ((MainActivity)Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
+            ((MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             HasOptionsMenu = true;
 
             LoadBalancePanel();
@@ -31,21 +31,21 @@ namespace MoneyFox.Droid.Fragments
         private void LoadBalancePanel()
         {
             var fragment = new BalanceFragment
-            {
-                ViewModel = (PaymentListBalanceViewModel) ViewModel.BalanceViewModel
-            };
+                {
+                    ViewModel = (PaymentListBalanceViewModel) ViewModel.BalanceViewModel
+                };
 
             FragmentManager.BeginTransaction()
                 .Replace(Resource.Id.payment_list_balance_frame, fragment)
                 .Commit();
         }
 
-        public override void OnResume()
-        {
-            base.OnResume();
+        public override void OnResume ()
+		{
+			base.OnResume ();
 
-            ViewModel.LoadCommand.Execute();
-        }
+			ViewModel.LoadCommand.Execute();
+		}
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {

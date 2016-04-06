@@ -1,23 +1,23 @@
-﻿using Android.OS;
+﻿using MoneyManager.Core.ViewModels;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 using Android.Runtime;
-using Android.Views;
 using Android.Widget;
+using Android.Views;
+using Android.OS;
 using MoneyFox.Shared.Resources;
-using MoneyManager.Core.ViewModels;
-using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Platform;
 
-namespace MoneyFox.Droid.Fragments
+namespace MoneyManager.Droid.Fragments
 {
-    [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
-    [Register("moneyfox.droid.fragments.CategoriesFragment")]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
+    [Register("moneymanager.droid.fragments.CategoriesFragment")]
     public class CategoriesFragment : BaseFragment<CategoryListViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_category_list;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
+            var view =  base.OnCreateView (inflater, container, savedInstanceState);
 
             var list = view.FindViewById<ListView>(Resource.Id.category_list);
             RegisterForContextMenu(list);
@@ -28,7 +28,7 @@ namespace MoneyFox.Droid.Fragments
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
-            inflater.Inflate(Resource.Menu.menu_add, menu);
+            inflater.Inflate(Resource.Menu.menu_add, menu);            
             base.OnCreateOptionsMenu(menu, inflater);
         }
 
@@ -52,9 +52,9 @@ namespace MoneyFox.Droid.Fragments
             {
                 case Resource.Id.action_add:
                     var dialog = new ModifyCategoryDialog
-                    {
-                        ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
-                    };
+                        {
+                            ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
+                        };
 
                     dialog.Show(Activity.FragmentManager, "dialog");
                     return true;
@@ -65,3 +65,4 @@ namespace MoneyFox.Droid.Fragments
         }
     }
 }
+

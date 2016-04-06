@@ -1,14 +1,14 @@
-using Android.OS;
 using Android.Runtime;
-using Android.Views;
-using MoneyFox.Shared.ViewModels;
 using MoneyManager.Core.ViewModels;
-using MvvmCross.Droid.Shared.Attributes;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
+using Android.Views;
+using Android.OS;
+using MoneyFox.Shared.ViewModels;
 
-namespace MoneyFox.Droid.Fragments
+namespace MoneyManager.Droid.Fragments
 {
-    [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
-    [Register("moneyfox.droid.fragments.AboutFragment")]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
+    [Register("moneymanager.droid.fragments.AboutFragment")]
     public class AboutFragment : BaseFragment<AboutViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_about;

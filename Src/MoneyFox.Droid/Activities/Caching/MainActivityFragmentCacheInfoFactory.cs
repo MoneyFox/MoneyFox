@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using MoneyFox.Droid.Fragments;
 using MoneyFox.Shared.ViewModels;
 using MoneyManager.Core.ViewModels;
-using MvvmCross.Droid.Shared.Caching;
+using MoneyManager.Droid.Fragments;
+using MvvmCross.Droid.Support.V7.Fragging.Caching;
 
-namespace MoneyFox.Droid.Activities.Caching
+namespace MoneyManager.Droid.Activities.Caching
 {
     internal class MainActivityFragmentCacheInfoFactory : MvxCachedFragmentInfoFactory
     {
@@ -17,30 +17,30 @@ namespace MoneyFox.Droid.Activities.Caching
                 new MainActivity.CustomFragmentInfo(typeof (MenuViewModel).Name,
                     typeof (MenuFragment),
                     typeof (MenuViewModel))
-            },
-            {
-                typeof (AccountListViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (AccountListViewModel).Name,
-                    typeof (AccountListFragment),
-                    typeof (AccountListViewModel), isRoot: true)
-            },
-            {
-                typeof (BalanceViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (BalanceViewModel).Name,
-                    typeof (BalanceFragment),
-                    typeof (BalanceViewModel), isRoot: true)
-            },
-            {
-                typeof (StatisticViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (StatisticViewModel).Name,
-                    typeof (StatisticSelectorFragment),
-                    typeof (StatisticViewModel), isRoot: true)
-            },
-            {
-                typeof (BackupViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (BackupViewModel).Name,
-                    typeof (BackupFragment),
-                    typeof (BackupViewModel), isRoot: true)
+			},
+			{
+				typeof (AccountListViewModel).ToString(),
+				new MainActivity.CustomFragmentInfo(typeof (AccountListViewModel).Name,
+					typeof (AccountListFragment),
+					typeof (AccountListViewModel), isRoot: true)
+			},
+			{
+				typeof (BalanceViewModel).ToString(),
+				new MainActivity.CustomFragmentInfo(typeof (BalanceViewModel).Name,
+					typeof (BalanceFragment),
+					typeof (BalanceViewModel), isRoot: true)
+			},
+			{
+				typeof (StatisticViewModel).ToString(),
+				new MainActivity.CustomFragmentInfo(typeof (StatisticViewModel).Name,
+					typeof (StatisticSelectorFragment),
+					typeof (StatisticViewModel), isRoot: true)
+			},
+			{
+				typeof (BackupViewModel).ToString(),
+				new MainActivity.CustomFragmentInfo(typeof (BackupViewModel).Name,
+					typeof (BackupFragment),
+					typeof (BackupViewModel), isRoot: true)
             },
             {
                 typeof (SettingsViewModel).ToString(),
@@ -48,11 +48,11 @@ namespace MoneyFox.Droid.Activities.Caching
                     typeof (SettingsFragment),
                     typeof (SettingsViewModel), isRoot: true)
             },
-            {
-                typeof (AboutViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (AboutViewModel).Name,
-                    typeof (AboutFragment),
-                    typeof (AboutViewModel), isRoot: true)
+			{
+				typeof (AboutViewModel).ToString(),
+				new MainActivity.CustomFragmentInfo(typeof (AboutViewModel).Name,
+					typeof (AboutFragment),
+					typeof (AboutViewModel), isRoot: true)
             },
             {
                 typeof (PaymentListViewModel).ToString(),
@@ -97,9 +97,7 @@ namespace MoneyFox.Droid.Activities.Caching
         {
             var viewModelTypeString = viewModelType.ToString();
             if (!MyFragmentsInfo.ContainsKey(viewModelTypeString))
-            {
                 return base.CreateFragmentInfo(tag, fragmentType, viewModelType, cacheFragment, true);
-            }
 
             var fragInfo = MyFragmentsInfo[viewModelTypeString];
             return fragInfo;
@@ -135,8 +133,7 @@ namespace MoneyFox.Droid.Activities.Caching
         internal class SerializableCustomFragmentInfo : SerializableMvxCachedFragmentInfo
         {
             public SerializableCustomFragmentInfo()
-            {
-            }
+            {}
 
             public SerializableCustomFragmentInfo(SerializableMvxCachedFragmentInfo baseFragmentInfo)
             {

@@ -1,23 +1,22 @@
 using System;
 using Android.App;
-using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using MoneyFox.Droid.Fragments;
-using MoneyFox.Shared.Resources;
 using MoneyManager.Core.ViewModels;
+using MoneyManager.Droid.Fragments;
+using Android.Content.PM;
+using MoneyFox.Shared.Resources;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
-namespace MoneyFox.Droid.Activities
+namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "ModifyPaymentActivity",
-        Name = "moneyfox.droid.activities.ModifyPaymentActivity",
+        Name = "moneymanager.droid.activities.ModifyPaymentActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class ModifyPaymentActivity : MvxCachingFragmentCompatActivity<ModifyPaymentViewModel>,
-        DatePickerDialog.IOnDateSetListener
+    public class ModifyPaymentActivity : MvxCachingFragmentCompatActivity<ModifyPaymentViewModel>, DatePickerDialog.IOnDateSetListener
     {
         /// <summary>
         ///     Used to determine which button called the date picker

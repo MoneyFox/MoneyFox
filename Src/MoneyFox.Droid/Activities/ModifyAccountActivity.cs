@@ -1,15 +1,15 @@
 using Android.App;
-using Android.Content.PM;
 using Android.OS;
-using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using Android.Content.PM;
+using Android.Support.V7.Widget;
 
-namespace MoneyFox.Droid.Activities
+namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "ModifyAccountActivity",
-        Name = "moneyfox.droid.activities.ModifyAccountActivity",
+        Name = "moneymanager.droid.activities.ModifyAccountActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
     public class ModifyAccountActivity : MvxCachingFragmentCompatActivity<ModifyAccountViewModel>

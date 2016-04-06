@@ -1,21 +1,21 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Android.Content;
-using MvvmCross.Droid.Shared.Presenter;
+using MvvmCross.Droid.Support.V7.Fragging.Presenter;
 
-namespace MoneyFox.Droid
+namespace MoneyManager.Droid
 {
     public class CustomPresenter : MvxFragmentsPresenter
     {
-        public CustomPresenter(IEnumerable<Assembly> androidViewAssemblies) : base(androidViewAssemblies)
+        public CustomPresenter(IEnumerable<Assembly> AndroidViewAssemblies) : base(AndroidViewAssemblies)
         {
         }
 
         protected override void Show(Intent intent)
         {
             Activity.StartActivity(intent);
-            Activity.OverridePendingTransition(Resource.Animation.abc_grow_fade_in_from_bottom,
-                Resource.Animation.abc_fade_out);
+            Activity.OverridePendingTransition(Resource.Animation.abc_grow_fade_in_from_bottom, Resource.Animation.abc_fade_out);
         }
+
     }
 }

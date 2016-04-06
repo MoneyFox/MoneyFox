@@ -1,16 +1,17 @@
 using Android.Runtime;
 using MoneyManager.Core.ViewModels;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 
-namespace MoneyFox.Droid.Fragments
+namespace MoneyManager.Droid.Fragments
 {
-    [Register("moneyfox.droid.fragments.BalanceFragment")]
+    [Register("moneymanager.droid.fragments.BalanceFragment")]
     public class BalanceFragment : BaseFragment<BalanceViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_balance;
 
         public override void OnStart()
         {
-            OnResume();
+            base.OnResume();
 
             ViewModel.UpdateBalanceCommand.Execute();
         }

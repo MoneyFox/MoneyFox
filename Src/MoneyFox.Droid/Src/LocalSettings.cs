@@ -107,18 +107,12 @@ namespace MoneyManager.Droid
                         resave = true;
                     }
                     if (string.IsNullOrWhiteSpace(savedDecimal))
-                    {
                         value = Convert.ToDecimal(defaultValue, CultureInfo.InvariantCulture);
-                    }
                     else
-                    {
                         value = Convert.ToDecimal(savedDecimal, CultureInfo.InvariantCulture);
-                    }
 
                     if (resave)
-                    {
                         AddOrUpdateValue(key, value);
-                    }
 
                     break;
                 case TypeCode.Boolean:
@@ -160,18 +154,12 @@ namespace MoneyManager.Droid
                         resave = true;
                     }
                     if (string.IsNullOrWhiteSpace(savedDouble))
-                    {
                         value = Convert.ToDouble(defaultValue, CultureInfo.InvariantCulture);
-                    }
                     else
-                    {
                         value = Convert.ToDouble(savedDouble, CultureInfo.InvariantCulture);
-                    }
 
                     if (resave)
-                    {
                         AddOrUpdateValue(key, value);
-                    }
                     break;
                 case TypeCode.Int32:
                     value = sharedPreferences.GetInt(key,
@@ -184,13 +172,9 @@ namespace MoneyManager.Droid
                 case TypeCode.DateTime:
                     var ticks = sharedPreferences.GetLong(key, -1);
                     if (ticks == -1)
-                    {
                         value = defaultValue;
-                    }
                     else
-                    {
                         value = new DateTime(ticks);
-                    }
                     break;
                 default:
 

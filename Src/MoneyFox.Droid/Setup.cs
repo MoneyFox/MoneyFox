@@ -1,13 +1,8 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Android.Content;
-using Android.Support.Design.Widget;
-using Android.Support.V4.View;
-using Android.Support.V4.Widget;
-using Android.Support.V7.Widget;
 using MoneyFox.Shared.Resources;
 using MoneyManager.Core;
-using MoneyManager.Droid;
 using MoneyManager.Droid.Src.Widgets;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
@@ -17,10 +12,9 @@ using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
-using MvvmCross.Plugins.Messenger;
 using Xamarin;
 
-namespace MoneyFox.Droid
+namespace MoneyManager.Droid
 {
     public class Setup : MvxAndroidSetup
     {
@@ -29,20 +23,10 @@ namespace MoneyFox.Droid
         {
         }
 
-        protected override IEnumerable<Assembly> AndroidViewAssemblies => new List<Assembly>(base.AndroidViewAssemblies)
-        {
-            typeof (NavigationView).Assembly,
-            typeof (FloatingActionButton).Assembly,
-            typeof (Toolbar).Assembly,
-            typeof (DrawerLayout).Assembly,
-            typeof (ViewPager).Assembly
-            //typeof(MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView).Assembly
-        };
-
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
             base.LoadPlugins(pluginManager);
-            pluginManager.EnsurePluginLoaded<PluginLoader>();
+            pluginManager.EnsurePluginLoaded<MvvmCross.Plugins.Messenger.PluginLoader>();
         }
 
         protected override void InitializeFirstChance()
@@ -61,6 +45,16 @@ namespace MoneyFox.Droid
             Mvx.RegisterType<ITransferShortcut, TransferWidget>();
         }
 
+        protected override IEnumerable<Assembly> AndroidViewAssemblies => new List<Assembly>(base.AndroidViewAssemblies)
+        {
+            typeof(Android.Support.Design.Widget.NavigationView).Assembly,
+            typeof(Android.Support.Design.Widget.FloatingActionButton).Assembly,
+            typeof(Android.Support.V7.Widget.Toolbar).Assembly,
+            typeof(Android.Support.V4.Widget.DrawerLayout).Assembly,
+            typeof(Android.Support.V4.View.ViewPager).Assembly,
+            //typeof(MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView).Assembly
+        };
+
         protected override IMvxAndroidViewPresenter CreateViewPresenter()
         {
             var mvxFragmentsPresenter = new CustomPresenter(AndroidViewAssemblies);
@@ -77,7 +71,7 @@ namespace MoneyFox.Droid
 #endif
             if (!Insights.IsInitialized)
             {
-                //Insights.Initialize(insightKey);
+                Insights.Initialize(insightKey, ApplicationContext);
             }
 
             Strings.Culture = new Localize().GetCurrentCultureInfo();

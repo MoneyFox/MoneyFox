@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using MvvmCross.Platform.Platform;
 
-namespace MoneyFox.Droid
+namespace MoneyManager.Droid
 {
     public class DebugTrace : IMvxTrace
     {
@@ -20,9 +20,8 @@ namespace MoneyFox.Droid
         {
             try
             {
-                Debug.WriteLine(tag + ":" + level + ":" + message, args);
-            }
-            catch (FormatException)
+                Debug.WriteLine(string.Format(tag + ":" + level + ":" + message, args));
+            } catch (FormatException)
             {
                 Trace(MvxTraceLevel.Error, tag, "Exception during trace of {0} {1}", level, message);
             }

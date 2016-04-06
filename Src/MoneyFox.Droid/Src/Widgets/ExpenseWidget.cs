@@ -1,6 +1,5 @@
-﻿using System;
+﻿using MoneyManager.Foundation.Interfaces.Shotcuts;
 using System.Threading.Tasks;
-using MoneyManager.Foundation.Interfaces.Shotcuts;
 
 namespace MoneyManager.Droid.Src.Widgets
 {
@@ -8,17 +7,19 @@ namespace MoneyManager.Droid.Src.Widgets
     {
         public Task CreateShortCut()
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
-
         public Task RemoveShortcut()
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
-
         public bool IsShortcutExisting
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new System.NotImplementedException();
+            }
         }
     }
 }
+

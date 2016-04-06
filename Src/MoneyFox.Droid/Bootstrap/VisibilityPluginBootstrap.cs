@@ -1,10 +1,9 @@
 using MvvmCross.Platform.Plugins;
-using MvvmCross.Plugins.Visibility;
 
-namespace MoneyFox.Droid.Bootstrap
+namespace MoneyManager.Droid.Bootstrap
 {
     public class VisibilityPluginBootstrap
-        : MvxPluginBootstrapAction<PluginLoader>
+        : MvxPluginBootstrapAction<MvvmCross.Plugins.Visibility.PluginLoader>
     {
     }
 }
