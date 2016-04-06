@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/label_password_activated"
+        local:MvxBind="Checked IsPasswortActive, Mode=TwoWay" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        local:MvxBind="Visible IsPasswortActive">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="@string/hint_password"
+            local:MvxBind="Text Password" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="@string/hint_password_confirmation"
+            local:MvxBind="Text PasswordConfirmation" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/button_done"
+            local:MvxBind="Click SavePasswordCommand" />
+    </LinearLayout>
+</LinearLayout>
