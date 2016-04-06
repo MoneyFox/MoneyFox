@@ -5,7 +5,7 @@ using Microsoft.OneDrive.Sdk;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {

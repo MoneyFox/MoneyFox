@@ -9,7 +9,7 @@ using MoneyManager.Core.ViewModels;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.FullFragging.Fragments;
 
-namespace MoneyManager.Droid.Fragments
+namespace MoneyFox.Droid.Fragments
 {
     public class ModifyCategoryDialog : MvxDialogFragment<CategoryDialogViewModel>
     {

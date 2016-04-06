@@ -1,7 +1,7 @@
 using Android.App;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class AppInformation : IAppInformation
     {

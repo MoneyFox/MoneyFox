@@ -1,6 +1,6 @@
 ﻿using MoneyManager.Foundation.Interfaces.Shotcuts;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid.Widgets
 {
     public class TransferWidget : ITransferShortcut
     {

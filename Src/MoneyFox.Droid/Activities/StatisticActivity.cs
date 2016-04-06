@@ -6,7 +6,7 @@ using Android.Views;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 
-namespace MoneyManager.Droid.Activities
+namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "StatisticActivity",
         Name = "moneymanager.droid.activities.StatisticActivity",

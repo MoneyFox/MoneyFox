@@ -1,16 +1,16 @@
 using System;
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using MoneyManager.Core.ViewModels;
-using MoneyManager.Droid.Fragments;
-using Android.Content.PM;
+using MoneyFox.Droid.Fragments;
 using MoneyFox.Shared.Resources;
+using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
-namespace MoneyManager.Droid.Activities
+namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "ModifyPaymentActivity",
         Name = "moneymanager.droid.activities.ModifyPaymentActivity",

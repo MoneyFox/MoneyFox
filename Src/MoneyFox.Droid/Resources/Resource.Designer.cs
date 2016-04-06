@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("MoneyManager.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("MoneyFox.Droid.Resource", IsApplication=true)]
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
 	
 	
@@ -26,73 +26,73 @@ namespace MoneyManager.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxBind = global::MoneyManager.Droid.Resource.Attribute.MvxBind;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxDropDownItemTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxGroupItemTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxItemTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxLang = global::MoneyManager.Droid.Resource.Attribute.MvxLang;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxSource = global::MoneyManager.Droid.Resource.Attribute.MvxSource;
-			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Id.MvvmCrossTagId = global::MoneyManager.Droid.Resource.Id.MvvmCrossTagId;
-			global::MvvmCross.Binding.Droid.Resource.Id.MvxBindingTagUnique = global::MoneyManager.Droid.Resource.Id.MvxBindingTagUnique;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxBinding = global::MoneyManager.Droid.Resource.Styleable.MvxBinding;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxBinding_MvxBind = global::MoneyManager.Droid.Resource.Styleable.MvxBinding_MvxBind;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxBinding_MvxLang = global::MoneyManager.Droid.Resource.Styleable.MvxBinding_MvxLang;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxControl = global::MoneyManager.Droid.Resource.Styleable.MvxControl;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxControl_MvxTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxExpandableListView = global::MoneyManager.Droid.Resource.Styleable.MvxExpandableListView;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxImageView = global::MoneyManager.Droid.Resource.Styleable.MvxImageView;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxImageView_MvxSource = global::MoneyManager.Droid.Resource.Styleable.MvxImageView_MvxSource;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView = global::MoneyManager.Droid.Resource.Styleable.MvxListView;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
-			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
-			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxBind = global::MoneyManager.Droid.Resource.Attribute.MvxBind;
-			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxDropDownItemTemplate;
-			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxGroupItemTemplate;
-			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxItemTemplate;
-			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxLang = global::MoneyManager.Droid.Resource.Attribute.MvxLang;
-			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxSource = global::MoneyManager.Droid.Resource.Attribute.MvxSource;
-			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxTemplate;
-			global::MvvmCross.Droid.FullFragging.Resource.Id.MvvmCrossTagId = global::MoneyManager.Droid.Resource.Id.MvvmCrossTagId;
-			global::MvvmCross.Droid.FullFragging.Resource.Id.MvxBindingTagUnique = global::MoneyManager.Droid.Resource.Id.MvxBindingTagUnique;
-			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxBinding = global::MoneyManager.Droid.Resource.Styleable.MvxBinding;
-			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxBinding_MvxBind = global::MoneyManager.Droid.Resource.Styleable.MvxBinding_MvxBind;
-			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxBinding_MvxLang = global::MoneyManager.Droid.Resource.Styleable.MvxBinding_MvxLang;
-			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxControl = global::MoneyManager.Droid.Resource.Styleable.MvxControl;
-			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxControl_MvxTemplate;
-			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxExpandableListView = global::MoneyManager.Droid.Resource.Styleable.MvxExpandableListView;
-			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
-			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxImageView = global::MoneyManager.Droid.Resource.Styleable.MvxImageView;
-			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxImageView_MvxSource = global::MoneyManager.Droid.Resource.Styleable.MvxImageView_MvxSource;
-			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxListView = global::MoneyManager.Droid.Resource.Styleable.MvxListView;
-			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
-			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxBind = global::MoneyManager.Droid.Resource.Attribute.MvxBind;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxDropDownItemTemplate;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxGroupItemTemplate;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxItemTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxItemTemplate;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxLang = global::MoneyManager.Droid.Resource.Attribute.MvxLang;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxSource = global::MoneyManager.Droid.Resource.Attribute.MvxSource;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxTemplate = global::MoneyManager.Droid.Resource.Attribute.MvxTemplate;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Id.MvvmCrossTagId = global::MoneyManager.Droid.Resource.Id.MvvmCrossTagId;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Id.MvxBindingTagUnique = global::MoneyManager.Droid.Resource.Id.MvxBindingTagUnique;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.String.ApplicationName = global::MoneyManager.Droid.Resource.String.ApplicationName;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxBinding = global::MoneyManager.Droid.Resource.Styleable.MvxBinding;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxBinding_MvxBind = global::MoneyManager.Droid.Resource.Styleable.MvxBinding_MvxBind;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxBinding_MvxLang = global::MoneyManager.Droid.Resource.Styleable.MvxBinding_MvxLang;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxControl = global::MoneyManager.Droid.Resource.Styleable.MvxControl;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxControl_MvxTemplate;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxExpandableListView = global::MoneyManager.Droid.Resource.Styleable.MvxExpandableListView;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxImageView = global::MoneyManager.Droid.Resource.Styleable.MvxImageView;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxImageView_MvxSource = global::MoneyManager.Droid.Resource.Styleable.MvxImageView_MvxSource;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxListView = global::MoneyManager.Droid.Resource.Styleable.MvxListView;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
-			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyManager.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
-			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::MoneyManager.Droid.Resource.String.ApplicationName;
-			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::MoneyManager.Droid.Resource.String.Hello;
+			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxBind = global::MoneyFox.Droid.Resource.Attribute.MvxBind;
+			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxDropDownItemTemplate;
+			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxGroupItemTemplate;
+			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxItemTemplate;
+			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxLang = global::MoneyFox.Droid.Resource.Attribute.MvxLang;
+			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxSource = global::MoneyFox.Droid.Resource.Attribute.MvxSource;
+			global::MvvmCross.Binding.Droid.Resource.Attribute.MvxTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxTemplate;
+			global::MvvmCross.Binding.Droid.Resource.Id.MvvmCrossTagId = global::MoneyFox.Droid.Resource.Id.MvvmCrossTagId;
+			global::MvvmCross.Binding.Droid.Resource.Id.MvxBindingTagUnique = global::MoneyFox.Droid.Resource.Id.MvxBindingTagUnique;
+			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxBinding = global::MoneyFox.Droid.Resource.Styleable.MvxBinding;
+			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxBinding_MvxBind = global::MoneyFox.Droid.Resource.Styleable.MvxBinding_MvxBind;
+			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxBinding_MvxLang = global::MoneyFox.Droid.Resource.Styleable.MvxBinding_MvxLang;
+			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxControl = global::MoneyFox.Droid.Resource.Styleable.MvxControl;
+			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxControl_MvxTemplate;
+			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxExpandableListView = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView;
+			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
+			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxImageView = global::MoneyFox.Droid.Resource.Styleable.MvxImageView;
+			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxImageView_MvxSource = global::MoneyFox.Droid.Resource.Styleable.MvxImageView_MvxSource;
+			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView = global::MoneyFox.Droid.Resource.Styleable.MvxListView;
+			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
+			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxBind = global::MoneyFox.Droid.Resource.Attribute.MvxBind;
+			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxDropDownItemTemplate;
+			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxGroupItemTemplate;
+			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxItemTemplate;
+			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxLang = global::MoneyFox.Droid.Resource.Attribute.MvxLang;
+			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxSource = global::MoneyFox.Droid.Resource.Attribute.MvxSource;
+			global::MvvmCross.Droid.FullFragging.Resource.Attribute.MvxTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxTemplate;
+			global::MvvmCross.Droid.FullFragging.Resource.Id.MvvmCrossTagId = global::MoneyFox.Droid.Resource.Id.MvvmCrossTagId;
+			global::MvvmCross.Droid.FullFragging.Resource.Id.MvxBindingTagUnique = global::MoneyFox.Droid.Resource.Id.MvxBindingTagUnique;
+			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxBinding = global::MoneyFox.Droid.Resource.Styleable.MvxBinding;
+			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxBinding_MvxBind = global::MoneyFox.Droid.Resource.Styleable.MvxBinding_MvxBind;
+			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxBinding_MvxLang = global::MoneyFox.Droid.Resource.Styleable.MvxBinding_MvxLang;
+			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxControl = global::MoneyFox.Droid.Resource.Styleable.MvxControl;
+			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxControl_MvxTemplate;
+			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxExpandableListView = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView;
+			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
+			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxImageView = global::MoneyFox.Droid.Resource.Styleable.MvxImageView;
+			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxImageView_MvxSource = global::MoneyFox.Droid.Resource.Styleable.MvxImageView_MvxSource;
+			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxListView = global::MoneyFox.Droid.Resource.Styleable.MvxListView;
+			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
+			global::MvvmCross.Droid.FullFragging.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxBind = global::MoneyFox.Droid.Resource.Attribute.MvxBind;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxDropDownItemTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxGroupItemTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxItemTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxItemTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxLang = global::MoneyFox.Droid.Resource.Attribute.MvxLang;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxSource = global::MoneyFox.Droid.Resource.Attribute.MvxSource;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Attribute.MvxTemplate = global::MoneyFox.Droid.Resource.Attribute.MvxTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Id.MvvmCrossTagId = global::MoneyFox.Droid.Resource.Id.MvvmCrossTagId;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Id.MvxBindingTagUnique = global::MoneyFox.Droid.Resource.Id.MvxBindingTagUnique;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.String.ApplicationName = global::MoneyFox.Droid.Resource.String.ApplicationName;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.String.Hello = global::MoneyFox.Droid.Resource.String.Hello;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxBinding = global::MoneyFox.Droid.Resource.Styleable.MvxBinding;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxBinding_MvxBind = global::MoneyFox.Droid.Resource.Styleable.MvxBinding_MvxBind;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxBinding_MvxLang = global::MoneyFox.Droid.Resource.Styleable.MvxBinding_MvxLang;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxControl = global::MoneyFox.Droid.Resource.Styleable.MvxControl;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxControl_MvxTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxControl_MvxTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxExpandableListView = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxExpandableListView_MvxGroupItemTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxImageView = global::MoneyFox.Droid.Resource.Styleable.MvxImageView;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxImageView_MvxSource = global::MoneyFox.Droid.Resource.Styleable.MvxImageView_MvxSource;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxListView = global::MoneyFox.Droid.Resource.Styleable.MvxListView;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxDropDownItemTemplate;
+			global::MvvmCross.Plugins.Sqlite.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::MoneyFox.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::MoneyFox.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::MoneyFox.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Animation

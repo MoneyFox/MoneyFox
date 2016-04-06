@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class CustomServiceInfoProvider : ServiceInfoProvider
     {

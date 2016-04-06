@@ -4,14 +4,14 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Views;
+using MoneyFox.Droid.Activities;
 using MoneyFox.Shared.ViewModels;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Droid.Activities;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
-namespace MoneyManager.Droid.Fragments
+namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.navigation_frame)]
     [Register("moneymanager.droid.fragments.MenuFragment")]

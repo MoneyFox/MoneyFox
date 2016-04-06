@@ -1,14 +1,14 @@
 ﻿using Android.Content.Res;
 using Android.OS;
 using Android.Views;
-using MoneyManager.Droid.Activities;
+using MoneyFox.Droid.Activities;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
-namespace MoneyManager.Droid.Fragments
+namespace MoneyFox.Droid.Fragments
 {
     public abstract class BaseFragment : MvxFragment
     {

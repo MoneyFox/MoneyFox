@@ -3,7 +3,7 @@ using Android.App;
 using Android.Preferences;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class RoamingSettings : IRoamingSettings
     {

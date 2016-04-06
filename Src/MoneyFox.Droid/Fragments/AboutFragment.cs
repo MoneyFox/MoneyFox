@@ -1,11 +1,11 @@
+using Android.OS;
 using Android.Runtime;
+using Android.Views;
+using MoneyFox.Shared.ViewModels;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
-using Android.Views;
-using Android.OS;
-using MoneyFox.Shared.ViewModels;
 
-namespace MoneyManager.Droid.Fragments
+namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.AboutFragment")]

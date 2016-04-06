@@ -3,7 +3,7 @@ using Android.Content;
 using Android.Net;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     /// <summary>
     ///     Gives access to the features of google play on android.

@@ -1,6 +1,6 @@
 ﻿using MoneyManager.Foundation.Interfaces.Shotcuts;
 
-namespace MoneyManager.Droid.Src.Widgets
+namespace MoneyFox.Droid.Widgets
 {
     public class IncomeWidget : IIncomeShortcut
     {

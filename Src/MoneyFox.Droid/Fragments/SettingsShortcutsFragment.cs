@@ -1,8 +1,7 @@
 ﻿using Android.Runtime;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Droid.Fragments;
 
-namespace MoneyManager.Droid.Fragments
+namespace MoneyFox.Droid.Fragments
 {
 	[Register("moneymanager.droid.fragments.SettingsShortcutsFragment")]
     public class SettingsShortcutsFragment : BaseFragment<SettingsShortcutsViewModel>

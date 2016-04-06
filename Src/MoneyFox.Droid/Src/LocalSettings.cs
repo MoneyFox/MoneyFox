@@ -6,7 +6,7 @@ using Android.Preferences;
 using Java.Lang;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class LocalSettings : ILocalSettings
     {

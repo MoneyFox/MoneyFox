@@ -2,7 +2,7 @@ using System.Globalization;
 using Java.Util;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class Localize : ILocalize
     {

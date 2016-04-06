@@ -1,8 +1,6 @@
-
 using System.Collections.Generic;
-using MvvmCross.Plugins.Messenger;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class TempMessage 
     {

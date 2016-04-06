@@ -5,13 +5,13 @@ using Android.OS;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Views;
+using MoneyFox.Droid.Activities.Caching;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Droid.Activities.Caching;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.Fragging.Caching;
 using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
-namespace MoneyManager.Droid.Activities
+namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "MoneyManager",
         Icon = "@drawable/icon",

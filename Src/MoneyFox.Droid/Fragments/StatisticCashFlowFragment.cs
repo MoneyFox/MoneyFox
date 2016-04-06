@@ -1,15 +1,15 @@
-using Android.Runtime;
-using MoneyManager.Core.ViewModels;
-using MvvmCross.Droid.Support.V7.Fragging.Attributes;
-using Android.Views;
 using Android.OS;
-using OxyPlot.Xamarin.Android;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
-using MvvmCross.Binding.Droid.BindingContext;
-using MoneyManager.Droid.Activities;
+using Android.Runtime;
 using Android.Support.V7.Widget;
+using Android.Views;
+using MoneyFox.Droid.Activities;
+using MoneyManager.Core.ViewModels;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
+using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using OxyPlot.Xamarin.Android;
 
-namespace MoneyManager.Droid.Fragments
+namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.StatisticCashFlowFragment")]

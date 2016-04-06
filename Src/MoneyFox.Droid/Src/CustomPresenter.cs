@@ -3,11 +3,11 @@ using System.Reflection;
 using Android.Content;
 using MvvmCross.Droid.Support.V7.Fragging.Presenter;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class CustomPresenter : MvxFragmentsPresenter
     {
-        public CustomPresenter(IEnumerable<Assembly> AndroidViewAssemblies) : base(AndroidViewAssemblies)
+        public CustomPresenter(IEnumerable<Assembly> androidViewAssemblies) : base(androidViewAssemblies)
         {
         }
 

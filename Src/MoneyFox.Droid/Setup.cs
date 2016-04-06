@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Android.Content;
+using MoneyFox.Droid.Widgets;
 using MoneyFox.Shared.Resources;
 using MoneyManager.Core;
-using MoneyManager.Droid.Src.Widgets;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MvvmCross.Core.ViewModels;
@@ -14,7 +14,7 @@ using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using Xamarin;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class Setup : MvxAndroidSetup
     {

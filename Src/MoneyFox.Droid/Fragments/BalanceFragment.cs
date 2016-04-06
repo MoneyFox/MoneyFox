@@ -1,8 +1,7 @@
 using Android.Runtime;
 using MoneyManager.Core.ViewModels;
-using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 
-namespace MoneyManager.Droid.Fragments
+namespace MoneyFox.Droid.Fragments
 {
     [Register("moneymanager.droid.fragments.BalanceFragment")]
     public class BalanceFragment : BaseFragment<BalanceViewModel>

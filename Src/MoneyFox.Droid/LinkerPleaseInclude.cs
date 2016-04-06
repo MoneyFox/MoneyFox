@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 using MvvmCross.Platform.IoC;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     /// <summary>
     ///     Defines the LinkerPleaseInclude type.

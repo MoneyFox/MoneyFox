@@ -1,7 +1,7 @@
-﻿using MoneyManager.Foundation.Interfaces.Shotcuts;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using MoneyManager.Foundation.Interfaces.Shotcuts;
 
-namespace MoneyManager.Droid.Src.Widgets
+namespace MoneyFox.Droid.Widgets
 {
     public class ExpenseWidget : ISpendingShortcut
     {

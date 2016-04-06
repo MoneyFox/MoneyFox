@@ -2,7 +2,7 @@ using Android.App;
 using Android.Content;
 using MoneyManager.Foundation.Interfaces;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class ProtectedData : IProtectedData
     {

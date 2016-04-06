@@ -1,17 +1,17 @@
-﻿using Android.Runtime;
-using MoneyManager.Core.ViewModels;
-using MvvmCross.Droid.Support.V7.Fragging.Attributes;
-using Android.Views;
+﻿using System.Collections.Generic;
 using Android.OS;
-using Android.Support.V4.View;
-using MvvmCross.Droid.Support.V4;
-using System.Collections.Generic;
+using Android.Runtime;
 using Android.Support.Design.Widget;
-using MoneyManager.Droid.Activities;
+using Android.Support.V4.View;
 using Android.Support.V7.Widget;
+using Android.Views;
+using MoneyFox.Droid.Activities;
 using MoneyFox.Shared.Resources;
+using MoneyManager.Core.ViewModels;
+using MvvmCross.Droid.Support.V4;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 
-namespace MoneyManager.Droid.Fragments
+namespace MoneyFox.Droid.Fragments
 {    
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.SettingsFragment")]

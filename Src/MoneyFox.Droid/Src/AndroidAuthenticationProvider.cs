@@ -9,7 +9,7 @@ using MoneyManager.Foundation;
 using Xamarin.Auth;
 using Constants = Microsoft.OneDrive.Sdk.Constants;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class AndroidAuthenticationProvider : AuthenticationProvider
     {

@@ -1,8 +1,7 @@
-﻿using MoneyManager.Core.ViewModels;
-using Android.Runtime;
-using MoneyManager.Droid.Fragments;
+﻿using Android.Runtime;
+using MoneyManager.Core.ViewModels;
 
-namespace MoneyManager.Droid.Fragments
+namespace MoneyFox.Droid.Fragments
 {
 	[Register("moneymanager.droid.fragments.SettingsSecurityFragment")]
     public class SettingsSecurityFragment : BaseFragment<SettingsSecurityViewModel>

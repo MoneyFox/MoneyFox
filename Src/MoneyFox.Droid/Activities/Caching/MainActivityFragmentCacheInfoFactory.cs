@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
+using MoneyFox.Droid.Fragments;
 using MoneyFox.Shared.ViewModels;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Droid.Fragments;
 using MvvmCross.Droid.Support.V7.Fragging.Caching;
 
-namespace MoneyManager.Droid.Activities.Caching
+namespace MoneyFox.Droid.Activities.Caching
 {
     internal class MainActivityFragmentCacheInfoFactory : MvxCachedFragmentInfoFactory
     {

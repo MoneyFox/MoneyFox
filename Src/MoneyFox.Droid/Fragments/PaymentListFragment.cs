@@ -1,14 +1,14 @@
 ﻿using Android.OS;
-using MvvmCross.Droid.Support.V7.Fragging.Attributes;
-using MoneyManager.Core.ViewModels;
 using Android.Runtime;
-using Android.Views;
-using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using Android.Support.V7.Widget;
-using MoneyManager.Droid.Activities;
+using Android.Views;
+using MoneyFox.Droid.Activities;
+using MoneyManager.Core.ViewModels;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
+using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
-namespace MoneyManager.Droid.Fragments
+namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.PaymentListFragment")]
