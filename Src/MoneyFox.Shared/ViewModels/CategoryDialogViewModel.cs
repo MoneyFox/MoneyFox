@@ -1,6 +1,6 @@
+using MoneyFox.Shared.Resources;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels

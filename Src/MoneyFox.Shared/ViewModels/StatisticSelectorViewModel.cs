@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyManager.Core.ViewModels
 {

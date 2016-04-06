@@ -7,10 +7,10 @@ using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Messages;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyManager.Core.ViewModels
 {

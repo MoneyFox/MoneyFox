@@ -4,7 +4,7 @@ using System.Linq;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
-using MoneyManager.Localization;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyManager.Core.StatisticDataProvider
 {
