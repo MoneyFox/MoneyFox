@@ -394,22 +394,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="xamandroidsupportdesign">
-      <Visible>False</Visible>
-      <Version>23.1.1.1</Version>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="xamandroidsupportv4-18">
-      <Visible>False</Visible>
-      <Version>23.1.1.1</Version>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="xamandroidsupportv7appcompat">
-      <Visible>False</Visible>
-      <Version>23.1.1.1</Version>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="xamandroidsupportv7recyclerview">
-      <Visible>False</Visible>
-      <Version>23.1.1.1</Version>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="xamarin.auth">
       <Visible>False</Visible>
       <Version>1.2.3.1</Version>
