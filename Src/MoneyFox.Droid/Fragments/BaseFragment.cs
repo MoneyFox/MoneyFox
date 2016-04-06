@@ -1,23 +1,26 @@
 ﻿using Android.Content.Res;
 using Android.OS;
+using Android.Support.V7.Widget;
 using Android.Views;
+using MoneyFox.Droid.Activities;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
-using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyFox.Droid.Fragments
 {
     public abstract class BaseFragment : MvxFragment
     {
-        private Toolbar _toolbar;
         private MvxActionBarDrawerToggle _drawerToggle;
+        private Toolbar _toolbar;
 
         protected BaseFragment()
         {
-            this.RetainInstance = true;
+            RetainInstance = true;
         }
+
+        protected abstract int FragmentId { get; }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -28,37 +31,39 @@ namespace MoneyFox.Droid.Fragments
             _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
             if (_toolbar != null)
             {
-                ((Activities.MainActivity)Activity).SetSupportActionBar(_toolbar);
-                ((Activities.MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+                ((MainActivity) Activity).SetSupportActionBar(_toolbar);
+                ((MainActivity) Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
                 _drawerToggle = new MvxActionBarDrawerToggle(
-                    Activity,                               // host Activity
-                    ((Activities.MainActivity)Activity).DrawerLayout,  // DrawerLayout object
-                    _toolbar,                               // nav drawer icon to replace 'Up' caret
-                    Resource.String.drawer_open,            // "open drawer" description
-                    Resource.String.drawer_close            // "close drawer" description
-                );
+                    Activity, // host Activity
+                    ((MainActivity) Activity).DrawerLayout, // DrawerLayout object
+                    _toolbar, // nav drawer icon to replace 'Up' caret
+                    Resource.String.drawer_open, // "open drawer" description
+                    Resource.String.drawer_close // "close drawer" description
+                    );
 
-                ((Activities.MainActivity)Activity).DrawerLayout.SetDrawerListener(_drawerToggle);
+                ((MainActivity) Activity).DrawerLayout.SetDrawerListener(_drawerToggle);
             }
 
             return view;
         }
 
-        protected abstract int FragmentId { get; }
-
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
             if (_toolbar != null)
+            {
                 _drawerToggle.OnConfigurationChanged(newConfig);
+            }
         }
 
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
             if (_toolbar != null)
+            {
                 _drawerToggle.SyncState();
+            }
         }
     }
 
@@ -66,9 +71,8 @@ namespace MoneyFox.Droid.Fragments
     {
         public new TViewModel ViewModel
         {
-            get { return (TViewModel)base.ViewModel; }
+            get { return (TViewModel) base.ViewModel; }
             set { base.ViewModel = value; }
         }
     }
 }
-

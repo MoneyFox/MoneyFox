@@ -97,7 +97,9 @@ namespace MoneyFox.Droid.Activities.Caching
         {
             var viewModelTypeString = viewModelType.ToString();
             if (!MyFragmentsInfo.ContainsKey(viewModelTypeString))
+            {
                 return base.CreateFragmentInfo(tag, fragmentType, viewModelType, cacheFragment, true);
+            }
 
             var fragInfo = MyFragmentsInfo[viewModelTypeString];
             return fragInfo;
@@ -133,7 +135,8 @@ namespace MoneyFox.Droid.Activities.Caching
         internal class SerializableCustomFragmentInfo : SerializableMvxCachedFragmentInfo
         {
             public SerializableCustomFragmentInfo()
-            {}
+            {
+            }
 
             public SerializableCustomFragmentInfo(SerializableMvxCachedFragmentInfo baseFragmentInfo)
             {

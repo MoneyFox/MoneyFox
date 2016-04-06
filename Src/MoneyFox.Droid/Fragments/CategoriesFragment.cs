@@ -9,7 +9,7 @@ using MvvmCross.Platform;
 
 namespace MoneyFox.Droid.Fragments
 {
-    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
+    [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
     [Register("moneyfox.droid.fragments.CategoriesFragment")]
     public class CategoriesFragment : BaseFragment<CategoryListViewModel>
     {
@@ -17,7 +17,7 @@ namespace MoneyFox.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view =  base.OnCreateView (inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             var list = view.FindViewById<ListView>(Resource.Id.category_list);
             RegisterForContextMenu(list);
@@ -28,7 +28,7 @@ namespace MoneyFox.Droid.Fragments
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
-            inflater.Inflate(Resource.Menu.menu_add, menu);            
+            inflater.Inflate(Resource.Menu.menu_add, menu);
             base.OnCreateOptionsMenu(menu, inflater);
         }
 
@@ -52,9 +52,9 @@ namespace MoneyFox.Droid.Fragments
             {
                 case Resource.Id.action_add:
                     var dialog = new ModifyCategoryDialog
-                        {
-                            ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
-                        };
+                    {
+                        ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
+                    };
 
                     dialog.Show(Activity.FragmentManager, "dialog");
                     return true;
@@ -65,4 +65,3 @@ namespace MoneyFox.Droid.Fragments
         }
     }
 }
-

@@ -1,24 +1,24 @@
-﻿using MoneyManager.Foundation.Interfaces.Shotcuts;
+﻿using System;
+using System.Threading.Tasks;
+using MoneyManager.Foundation.Interfaces.Shotcuts;
 
 namespace MoneyManager.Droid
 {
     public class TransferWidget : ITransferShortcut
     {
-        public System.Threading.Tasks.Task CreateShortCut()
+        public Task CreateShortCut()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
-        public System.Threading.Tasks.Task RemoveShortcut()
+
+        public Task RemoveShortcut()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
+
         public bool IsShortcutExisting
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
+            get { throw new NotImplementedException(); }
         }
     }
 }
-

@@ -1,9 +1,10 @@
 using MvvmCross.Platform.Plugins;
+using MvvmCross.Plugins.WebBrowser;
 
 namespace MoneyFox.Droid.Bootstrap
 {
     public class WebBrowserPluginBootstrap
-        : MvxPluginBootstrapAction<MvvmCross.Plugins.WebBrowser.PluginLoader>
+        : MvxPluginBootstrapAction<PluginLoader>
     {
     }
 }

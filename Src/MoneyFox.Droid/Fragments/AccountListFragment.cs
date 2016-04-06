@@ -8,7 +8,7 @@ using MvvmCross.Droid.Shared.Attributes;
 
 namespace MoneyFox.Droid.Fragments
 {
-    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
+    [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
     [Register("moneyfox.droid.fragments.AccountListFragment")]
     public class AccountListFragment : BaseFragment<AccountListViewModel>
     {
@@ -16,7 +16,7 @@ namespace MoneyFox.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view =  base.OnCreateView (inflater, container, savedInstanceState);
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             LoadBalancePanel();
 
@@ -30,9 +30,9 @@ namespace MoneyFox.Droid.Fragments
         private void LoadBalancePanel()
         {
             var fragment = new BalanceFragment
-                {
-                    ViewModel = (BalanceViewModel) ViewModel.BalanceViewModel
-                };
+            {
+                ViewModel = (BalanceViewModel) ViewModel.BalanceViewModel
+            };
 
             FragmentManager.BeginTransaction()
                 .Replace(Resource.Id.account_list_balance_frame, fragment)
@@ -51,7 +51,7 @@ namespace MoneyFox.Droid.Fragments
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
-            inflater.Inflate(Resource.Menu.menu_main, menu);            
+            inflater.Inflate(Resource.Menu.menu_main, menu);
             base.OnCreateOptionsMenu(menu, inflater);
         }
 

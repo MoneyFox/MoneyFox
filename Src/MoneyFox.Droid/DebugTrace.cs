@@ -20,8 +20,9 @@ namespace MoneyFox.Droid
         {
             try
             {
-                Debug.WriteLine(string.Format(tag + ":" + level + ":" + message, args));
-            } catch (FormatException)
+                Debug.WriteLine(tag + ":" + level + ":" + message, args);
+            }
+            catch (FormatException)
             {
                 Trace(MvxTraceLevel.Error, tag, "Exception during trace of {0} {1}", level, message);
             }
