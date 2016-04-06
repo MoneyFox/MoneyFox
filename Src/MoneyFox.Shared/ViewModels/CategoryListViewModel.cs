@@ -22,7 +22,10 @@ namespace MoneyManager.Core.ViewModels
             get { return CategoryRepository.Selected ?? new Category(); }
             set
             {
-                if (value == null) return;
+                if (value == null)
+                {
+                    return;
+                }
 
                 CategoryRepository.Selected = value;
             }

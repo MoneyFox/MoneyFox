@@ -1,18 +1,18 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
+using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Core.ViewModels;
-using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
     public class RecurringPaymentListViewModel : BaseViewModel
     {
-        private readonly IPaymentRepository paymentRepository;
         private readonly IDialogService dialogService;
+        private readonly IPaymentRepository paymentRepository;
 
         public RecurringPaymentListViewModel(IPaymentRepository paymentRepository, IDialogService dialogService)
         {
@@ -68,14 +68,16 @@ namespace MoneyManager.Core.ViewModels
             paymentRepository.Selected = payment;
 
             ShowViewModel<ModifyPaymentViewModel>(
-                new { isEdit = true, typeString = payment.Type.ToString() });
+                new {isEdit = true, typeString = payment.Type.ToString()});
         }
 
         private async void Delete(Payment payment)
         {
             if (!await
                 dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
+            {
                 return;
+            }
 
             paymentRepository.Delete(payment);
             LoadedCommand.Execute();

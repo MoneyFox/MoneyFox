@@ -3,7 +3,6 @@ using System.Reflection;
 using MoneyFox.Shared;
 using MoneyManager.Core.Authentication;
 using MoneyManager.DataAccess;
-using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;

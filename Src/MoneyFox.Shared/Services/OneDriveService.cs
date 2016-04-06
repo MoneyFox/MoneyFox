@@ -55,7 +55,8 @@ namespace MoneyFox.Shared.Services
                     var uploadedItem = await OneDriveClient
                         .Drive
                         .Root
-                        .ItemWithPath(Path.Combine(OneDriveAuthenticationConstants.BACKUP_FOLDER_NAME, OneDriveAuthenticationConstants.BACKUP_NAME))
+                        .ItemWithPath(Path.Combine(OneDriveAuthenticationConstants.BACKUP_FOLDER_NAME,
+                            OneDriveAuthenticationConstants.BACKUP_NAME))
                         .Content
                         .Request()
                         .PutAsync<Item>(dbstream);
@@ -129,7 +130,8 @@ namespace MoneyFox.Shared.Services
         private async Task GetBackupFolder()
         {
             var children = await OneDriveClient.Drive.Root.Children.Request().GetAsync();
-            BackupFolder = children.CurrentPage.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_FOLDER_NAME);
+            BackupFolder =
+                children.CurrentPage.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_FOLDER_NAME);
 
             if (BackupFolder == null)
             {
@@ -139,7 +141,11 @@ namespace MoneyFox.Shared.Services
 
         private async Task CreateBackupFolder()
         {
-            var folderToCreate = new Item {Name = OneDriveAuthenticationConstants.BACKUP_FOLDER_NAME, Folder = new Folder()};
+            var folderToCreate = new Item
+            {
+                Name = OneDriveAuthenticationConstants.BACKUP_FOLDER_NAME,
+                Folder = new Folder()
+            };
 
             var root = await OneDriveClient.Drive.Root.Request().GetAsync();
 

@@ -1,6 +1,6 @@
 ﻿using System;
-using MoneyManager.Foundation;
 using MoneyFox.Shared.Resources;
+using MoneyManager.Foundation;
 
 namespace MoneyManager.Core.Helpers
 {

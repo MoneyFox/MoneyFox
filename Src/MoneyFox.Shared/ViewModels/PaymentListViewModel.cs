@@ -1,14 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 using MoneyManager.Foundation.Groups;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
@@ -18,8 +18,8 @@ namespace MoneyManager.Core.ViewModels
         private readonly IAccountRepository accountRepository;
         private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
-        private readonly IPaymentRepository paymentRepository;
         private readonly IPaymentManager paymentManager;
+        private readonly IPaymentRepository paymentRepository;
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
@@ -126,7 +126,9 @@ namespace MoneyManager.Core.ViewModels
         {
             if (!await
                 dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
+            {
                 return;
+            }
 
             if (await paymentManager.CheckForRecurringPayment(payment))
             {

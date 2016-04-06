@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.Shared.Resources;
 using MoneyManager.Foundation.Exceptions;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using Xamarin;
-using MoneyFox.Shared.Resources;
 
 namespace MoneyManager.Core.Manager
 {
@@ -70,7 +70,9 @@ namespace MoneyManager.Core.Manager
                         payment.ChargedAccount =
                             accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
 
-                        Insights.Report(new AccountMissingException("Charged account was missing while clearing payments."), Insights.Severity.Error);
+                        Insights.Report(
+                            new AccountMissingException("Charged account was missing while clearing payments."),
+                            Insights.Severity.Error);
                     }
 
                     payment.IsCleared = true;

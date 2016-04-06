@@ -36,7 +36,7 @@ namespace MoneyManager.Core.ViewModels
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        public MvxCommand UpdateBalanceCommand => new  MvxCommand(UpdateBalance);
+        public MvxCommand UpdateBalanceCommand => new MvxCommand(UpdateBalance);
 
         /// <summary>
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
@@ -71,11 +71,11 @@ namespace MoneyManager.Core.ViewModels
                 //Transfer can be ignored since they don't change the summary.
                 switch (payment.Type)
                 {
-                    case (int)PaymentType.Expense:
+                    case (int) PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
 
-                    case (int)PaymentType.Income:
+                    case (int) PaymentType.Income:
                         balance += payment.Amount;
                         break;
                 }

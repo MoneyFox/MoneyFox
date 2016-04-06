@@ -16,7 +16,8 @@ namespace MoneyManager.Core.ViewModels
         /// <param name="dialogService">An instance of <see cref="IDialogService" /></param>
         public SelectCategoryListViewModel(IRepository<Category> categoryRepository,
             IDialogService dialogService) : base(categoryRepository, dialogService)
-        {}
+        {
+        }
 
         /// <summary>
         ///     Selects the clicked category and sends it to the message hub.

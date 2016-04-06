@@ -6,7 +6,7 @@ namespace MoneyManager.Foundation.Interfaces.ViewModels
 {
     public interface IAccountListViewModel
     {
-        ObservableCollection<Account>  AllAccounts { get; set; }
+        ObservableCollection<Account> AllAccounts { get; set; }
 
         Account SelectedAccount { get; set; }
 

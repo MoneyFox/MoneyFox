@@ -1,5 +1,4 @@
 ﻿using MoneyFox.Shared.ViewModels;
-using MoneyManager.Core.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
@@ -7,4 +6,3 @@ namespace MoneyManager.Core.ViewModels
     {
     }
 }
-

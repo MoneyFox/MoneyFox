@@ -1,11 +1,11 @@
 using System;
+using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 using MoneyManager.Core.Extensions;
 using MoneyManager.Foundation.Messages;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using PropertyChanged;
-using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
@@ -19,9 +19,10 @@ namespace MoneyManager.Core.ViewModels
         ///     Creates a StatisticViewModel Object and passes the first and last day of the current month
         ///     as a start and end date.
         /// </summary>
-        protected StatisticViewModel() 
+        protected StatisticViewModel()
             : this(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth())
-        {}
+        {
+        }
 
         /// <summary>
         ///     Creates a Statistic ViewModel with custom start and end date
@@ -45,8 +46,6 @@ namespace MoneyManager.Core.ViewModels
         /// </summary>
         public MvxCommand LoadCommand => new MvxCommand(Load);
 
-        protected abstract void Load();
-
         /// <summary>
         ///     Startdate for a custom statistic
         /// </summary>
@@ -63,5 +62,7 @@ namespace MoneyManager.Core.ViewModels
         public string Title => Strings.StatisticTitle + " " + StartDate.ToString("d") +
                                " - " +
                                EndDate.ToString("d");
+
+        protected abstract void Load();
     }
 }

@@ -63,6 +63,7 @@ namespace MoneyFox.Shared.DataAccess
                 OnPropertyChanged();
             }
         }
+
         public bool IsBackupAutouploadEnabled
         {
             get

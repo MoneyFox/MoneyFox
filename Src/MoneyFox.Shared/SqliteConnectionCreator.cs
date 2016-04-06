@@ -17,6 +17,15 @@ namespace MoneyFox.Shared
             CreateDb();
         }
 
+        /// <summary>
+        ///     Creates the config and establishe the connection to the sqlite database.
+        /// </summary>
+        /// <returns>Established SQLiteConnection.</returns>
+        public SQLiteConnection GetConnection()
+        {
+            return connectionFactory.GetConnection(new SqLiteConfig(OneDriveAuthenticationConstants.DB_NAME, false));
+        }
+
         private void CreateDb()
         {
             using (var db = connectionFactory.GetConnection(OneDriveAuthenticationConstants.DB_NAME))
@@ -26,15 +35,6 @@ namespace MoneyFox.Shared
                 db.CreateTable<RecurringPayment>();
                 db.CreateTable<Category>();
             }
-        }
-
-        /// <summary>
-        ///     Creates the config and establishe the connection to the sqlite database.
-        /// </summary>
-        /// <returns>Established SQLiteConnection.</returns>
-        public SQLiteConnection GetConnection()
-        {
-            return connectionFactory.GetConnection(new SqLiteConfig(OneDriveAuthenticationConstants.DB_NAME, false));
         }
     }
 }

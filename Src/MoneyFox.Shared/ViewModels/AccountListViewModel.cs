@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
+using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.ViewModels;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
@@ -14,8 +14,6 @@ namespace MoneyManager.Core.ViewModels
     {
         private readonly IAccountRepository accountRepository;
         private readonly IDialogService dialogService;
-
-        public IBalanceViewModel BalanceViewModel { get; }
 
         public AccountListViewModel(IAccountRepository accountRepository,
             IPaymentRepository paymentRepository,
@@ -26,6 +24,8 @@ namespace MoneyManager.Core.ViewModels
 
             BalanceViewModel = new BalanceViewModel(accountRepository, paymentRepository);
         }
+
+        public IBalanceViewModel BalanceViewModel { get; }
 
         /// <summary>
         ///     All existing accounts.

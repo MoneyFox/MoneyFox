@@ -7,10 +7,10 @@ namespace MoneyManager.Core.Manager
 {
     public class RecurringPaymentManager : IRecurringPaymentManager
     {
-        private readonly IPaymentRepository paymentRepository;
         private readonly IAccountRepository accountRepository;
+        private readonly IPaymentRepository paymentRepository;
 
-        public RecurringPaymentManager(IPaymentRepository paymentRepository, 
+        public RecurringPaymentManager(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository)
         {
             this.paymentRepository = paymentRepository;

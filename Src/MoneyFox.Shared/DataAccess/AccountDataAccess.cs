@@ -1,11 +1,11 @@
-﻿using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Model;
-using PropertyChanged;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyManager.Foundation;
+using MoneyManager.Foundation.Interfaces;
+using MoneyManager.Foundation.Model;
+using PropertyChanged;
 
 namespace MoneyManager.DataAccess
 {

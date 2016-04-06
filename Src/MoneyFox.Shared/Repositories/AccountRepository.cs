@@ -2,12 +2,12 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyFox.Shared.Resources;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using PropertyChanged;
-using MoneyFox.Shared.Resources;
 
 namespace MoneyManager.Core.Repositories
 {
@@ -96,12 +96,15 @@ namespace MoneyManager.Core.Repositories
         /// <param name="payment">Payment to add the account from.</param>
         public void AddPaymentAmount(Payment payment)
         {
-            if (!payment.IsCleared) return;
+            if (!payment.IsCleared)
+            {
+                return;
+            }
 
             PrehandleAddIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int)PaymentType.Income
+                payment.Type == (int) PaymentType.Income
                     ? x
                     : -x;
 
@@ -129,12 +132,15 @@ namespace MoneyManager.Core.Repositories
         /// <param name="account">Account to remove the amount from.</param>
         public void RemovePaymentAmount(Payment payment, Account account)
         {
-            if (!payment.IsCleared) return;
+            if (!payment.IsCleared)
+            {
+                return;
+            }
 
             PrehandleRemoveIfTransfer(payment);
 
             Func<double, double> amountFunc = x =>
-                payment.Type == (int)PaymentType.Income
+                payment.Type == (int) PaymentType.Income
                     ? -x
                     : x;
 
@@ -143,7 +149,7 @@ namespace MoneyManager.Core.Repositories
 
         private void PrehandleRemoveIfTransfer(Payment payment)
         {
-            if (payment.Type == (int)PaymentType.Transfer)
+            if (payment.Type == (int) PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => -x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());
@@ -166,7 +172,7 @@ namespace MoneyManager.Core.Repositories
 
         private void PrehandleAddIfTransfer(Payment payment)
         {
-            if (payment.Type == (int)PaymentType.Transfer)
+            if (payment.Type == (int) PaymentType.Transfer)
             {
                 Func<double, double> amountFunc = x => x;
                 HandlePaymentAmount(payment, amountFunc, GetTargetAccountFunc());

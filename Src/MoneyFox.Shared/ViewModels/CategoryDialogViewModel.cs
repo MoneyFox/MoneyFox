@@ -30,7 +30,10 @@ namespace MoneyManager.Core.ViewModels
 
         private void Loaded()
         {
-            if (IsEdit) return;
+            if (IsEdit)
+            {
+                return;
+            }
 
             Selected = new Category();
         }

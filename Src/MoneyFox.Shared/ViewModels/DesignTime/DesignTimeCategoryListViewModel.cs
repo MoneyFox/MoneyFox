@@ -10,7 +10,7 @@ namespace MoneyManager.Core.ViewModels.DesignTime
         {
             Categories = new ObservableCollection<Category>
             {
-                new Category { Name = "Design Time Category 1"}
+                new Category {Name = "Design Time Category 1"}
             };
         }
 

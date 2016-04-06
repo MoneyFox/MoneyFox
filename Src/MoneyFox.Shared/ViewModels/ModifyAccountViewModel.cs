@@ -1,11 +1,11 @@
 ﻿using System.Linq;
+using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {
@@ -17,16 +17,6 @@ namespace MoneyManager.Core.ViewModels
         public ModifyAccountViewModel(IAccountRepository accountRepository)
         {
             this.accountRepository = accountRepository;
-        }
-
-        public void Init(bool isEdit)
-        {
-            IsEdit = isEdit;
-
-            if (!IsEdit)
-            {
-                SelectedAccount = new Account();
-            }
         }
 
         /// <summary>
@@ -81,6 +71,16 @@ namespace MoneyManager.Core.ViewModels
         {
             get { return accountRepository.Selected; }
             set { accountRepository.Selected = value; }
+        }
+
+        public void Init(bool isEdit)
+        {
+            IsEdit = isEdit;
+
+            if (!IsEdit)
+            {
+                SelectedAccount = new Account();
+            }
         }
 
         /// <summary>

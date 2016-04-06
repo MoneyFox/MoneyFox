@@ -79,7 +79,10 @@ namespace MoneyManager.Core.Helpers
         /// <returns>True or False if the payment have to be repeated.</returns>
         public static bool CheckIfRepeatable(RecurringPayment recurringPayment, Payment relatedPayment)
         {
-            if (!relatedPayment.IsCleared) return false;
+            if (!relatedPayment.IsCleared)
+            {
+                return false;
+            }
 
             switch (recurringPayment.Recurrence)
             {
@@ -104,8 +107,8 @@ namespace MoneyManager.Core.Helpers
 
                 case (int) PaymentRecurrence.Yearly:
                     return (DateTime.Now.Year != relatedPayment.Date.Year
-                           && DateTime.Now.Month >= relatedPayment.Date.Month)
-                           || (DateTime.Now.Year - relatedPayment.Date.Year) > 1;
+                            && DateTime.Now.Month >= relatedPayment.Date.Month)
+                           || DateTime.Now.Year - relatedPayment.Date.Year > 1;
 
                 default:
                     return false;

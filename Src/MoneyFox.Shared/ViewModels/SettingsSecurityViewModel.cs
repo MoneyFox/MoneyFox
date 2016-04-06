@@ -25,8 +25,8 @@ namespace MoneyManager.Core.ViewModels
         public bool IsPasswortActive
         {
             get { return Settings.PasswordRequired; }
-            set 
-            { 
+            set
+            {
                 Settings.PasswordRequired = value;
                 RaisePropertyChanged();
             }

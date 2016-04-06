@@ -11,10 +11,10 @@ namespace MoneyManager.Core.ViewModels
     [ImplementPropertyChanged]
     public class StatisticMonthlyExpensesViewModel : StatisticViewModel
     {
-        private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
         private readonly OxyColor graphColor = OxyColor.Parse("#c43633");
+        private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
 
-        public StatisticMonthlyExpensesViewModel(IPaymentRepository paymentRepository) 
+        public StatisticMonthlyExpensesViewModel(IPaymentRepository paymentRepository)
             : base(DateTime.Today.AddMonths(-6), DateTime.Today)
         {
             monthlyExpensesDataProvider = new MonthlyExpensesDataProvider(paymentRepository);
@@ -58,7 +58,7 @@ namespace MoneyManager.Core.ViewModels
 
             foreach (var statisticItem in monthlyExpenses)
             {
-                columnSeries.Items.Add(new ColumnItem(statisticItem.Value) {Color = graphColor });
+                columnSeries.Items.Add(new ColumnItem(statisticItem.Value) {Color = graphColor});
                 axe.Labels.Add(statisticItem.Label);
             }
 

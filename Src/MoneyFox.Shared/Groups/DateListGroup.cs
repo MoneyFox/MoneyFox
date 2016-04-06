@@ -8,7 +8,7 @@ namespace MoneyManager.Foundation.Groups
     public class DateListGroup<T> : List<T>
     {
         /// <summary>
-        /// The delegate that is used to get the key information.
+        ///     The delegate that is used to get the key information.
         /// </summary>
         /// <param name="item">An object of type T</param>
         /// <returns>The key value to use for this object</returns>
@@ -17,12 +17,7 @@ namespace MoneyManager.Foundation.Groups
         public delegate DateTime GetSortKeyDelegate(T item);
 
         /// <summary>
-        /// The Key of this group.
-        /// </summary>
-        public string Key { get; private set; }
-
-        /// <summary>
-        /// Public constructor.
+        ///     Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
         public DateListGroup(string key)
@@ -31,7 +26,12 @@ namespace MoneyManager.Foundation.Groups
         }
 
         /// <summary>
-        /// Create a list of AlphaGroup<T> with keys set by a SortedLocaleGrouping.
+        ///     The Key of this group.
+        /// </summary>
+        public string Key { get; }
+
+        /// <summary>
+        ///     Create a list of AlphaGroup<T> with keys set by a SortedLocaleGrouping.
         /// </summary>
         /// <param name="items">The items to place in the groups.</param>
         /// <param name="ci">The CultureInfo to group and sort by.</param>
@@ -61,7 +61,7 @@ namespace MoneyManager.Foundation.Groups
 
             if (sort)
             {
-                foreach (DateListGroup<T> group in list)
+                foreach (var group in list)
                 {
                     group.Sort((c0, c1) => getSortKey(c1).Date.Day.CompareTo(getSortKey(c0).Date.Day));
                 }

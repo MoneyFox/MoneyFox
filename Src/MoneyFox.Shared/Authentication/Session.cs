@@ -15,7 +15,10 @@ namespace MoneyManager.Core.Authentication
         /// </summary>
         public bool ValidateSession()
         {
-            if (!Settings.PasswordRequired) return true;
+            if (!Settings.PasswordRequired)
+            {
+                return true;
+            }
 
             return !string.IsNullOrEmpty(Settings.SessionTimestamp) && CheckIfSessionExpired();
         }
