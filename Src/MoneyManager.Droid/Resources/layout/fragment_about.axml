@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="?android:windowBackground">
+    <include
+        layout="@layout/toolbar_actionbar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp">
+        <ImageView
+            android:src="@drawable/logo"
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:layout_height="80dp" />
+        <TextView
+            android:text="@string/textview_version"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="1.0.0"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            local:MvxBind="Text Version" />
+        <TextView
+            android:text="@string/textview_contact"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp" />
+        <TextView
+            android:text="Website"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            local:MvxBind="Text Website; Click GoToWebsiteCommand" />
+        <TextView
+            android:text="Supportmail"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="7dp"
+            local:MvxBind="Text SupportMail; Click SendMailCommand" />
+        <Button
+            android:text="@string/button_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            local:MvxBind="Click RateAppCommand" />
+        <TextView
+            android:text="@string/textview_opensource"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:gravity="bottom"
+            android:layout_marginTop="7dp" />
+        <TextView
+            android:text="@string/textview_github"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            local:MvxBind="Click GoToRepositoryCommand" />
+    </LinearLayout>
+</LinearLayout>
