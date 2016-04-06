@@ -1,4 +1,5 @@
-﻿using MoneyManager.DataAccess;
+﻿using MoneyFox.Shared.DataAccess;
+using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 

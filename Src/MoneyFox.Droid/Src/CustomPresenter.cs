@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Reflection;
-using Android.Content;
-using MvvmCross.Droid.Support.V7.Fragging.Presenter;
+using MoneyManager.Droid;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class CustomPresenter : MvxFragmentsPresenter
     {

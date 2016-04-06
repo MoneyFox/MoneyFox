@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Android.Content;
+using MoneyFox.Droid;
 using MoneyManager.Core;
 using MoneyManager.Droid.Src.Widgets;
 using MoneyManager.Foundation.Interfaces;

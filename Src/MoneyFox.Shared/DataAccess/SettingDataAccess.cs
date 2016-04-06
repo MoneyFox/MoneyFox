@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using MoneyManager.Foundation.Interfaces;
 using PropertyChanged;
 
-namespace MoneyManager.DataAccess
+namespace MoneyFox.Shared.DataAccess
 {
     [ImplementPropertyChanged]
     public class SettingDataAccess : INotifyPropertyChanged
