@@ -10,7 +10,7 @@ using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
 namespace MoneyFox.Droid.Fragments
 {
-    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
+    [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.PaymentListFragment")]
     public class PaymentListFragment : MvxFragment<PaymentListViewModel>
     {
@@ -19,8 +19,8 @@ namespace MoneyFox.Droid.Fragments
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.fragment_payment_list, null);
 
-            ((MainActivity)Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
-            ((MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            ((MainActivity) Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
+            ((MainActivity) Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             HasOptionsMenu = true;
 
             LoadBalancePanel();
@@ -31,21 +31,21 @@ namespace MoneyFox.Droid.Fragments
         private void LoadBalancePanel()
         {
             var fragment = new BalanceFragment
-                {
-                    ViewModel = (PaymentListBalanceViewModel) ViewModel.BalanceViewModel
-                };
+            {
+                ViewModel = (PaymentListBalanceViewModel) ViewModel.BalanceViewModel
+            };
 
             FragmentManager.BeginTransaction()
                 .Replace(Resource.Id.payment_list_balance_frame, fragment)
                 .Commit();
         }
 
-        public override void OnResume ()
-		{
-			base.OnResume ();
+        public override void OnResume()
+        {
+            base.OnResume();
 
-			ViewModel.LoadCommand.Execute();
-		}
+            ViewModel.LoadCommand.Execute();
+        }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {

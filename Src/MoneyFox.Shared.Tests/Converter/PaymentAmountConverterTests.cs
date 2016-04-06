@@ -16,14 +16,14 @@ namespace MoneyFox.Shared.Tests.Converter
         [TestMethod]
         public void Converter_Payment_NegativeAmountSign()
         {
-            new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int)PaymentType.Expense}, null,
+            new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int) PaymentType.Expense}, null,
                 null, null).ShouldBe("- " + 80.ToString("C"));
         }
-        
+
         [TestMethod]
         public void Converter_Payment_PositiveAmountSign()
         {
-            new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int)PaymentType.Income }, null,
+            new PaymentAmountConverter().Convert(new Payment {Amount = 80, Type = (int) PaymentType.Income}, null,
                 null, null).ShouldBe("+ " + 80.ToString("C"));
         }
 

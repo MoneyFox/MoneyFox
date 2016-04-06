@@ -12,12 +12,24 @@ using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
 namespace MoneyFox.Droid.Fragments
 {
-    [MvxFragment(typeof(MainViewModel), Resource.Id.navigation_frame)]
+    [MvxFragment(typeof (MainViewModel), Resource.Id.navigation_frame)]
     [Register("moneymanager.droid.fragments.MenuFragment")]
     public class MenuFragment : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
         private NavigationView navigationView;
         private IMenuItem previousMenuItem;
+
+        public bool OnNavigationItemSelected(IMenuItem item)
+        {
+            item.SetCheckable(true);
+            item.SetChecked(true);
+            previousMenuItem?.SetChecked(false);
+            previousMenuItem = item;
+
+            Navigate(item.ItemId);
+
+            return true;
+        }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -32,42 +44,30 @@ namespace MoneyFox.Droid.Fragments
             return view;
         }
 
-        public bool OnNavigationItemSelected(IMenuItem item)
-        {
-            item.SetCheckable(true);
-            item.SetChecked(true);
-            previousMenuItem?.SetChecked(false);
-            previousMenuItem = item;
-
-            Navigate (item.ItemId);
-
-            return true;
-        }
-
         private async Task Navigate(int itemId)
         {
-            ((MainActivity)Activity).DrawerLayout.CloseDrawers ();
-            await Task.Delay (TimeSpan.FromMilliseconds (250));
+            ((MainActivity) Activity).DrawerLayout.CloseDrawers();
+            await Task.Delay(TimeSpan.FromMilliseconds(250));
 
             switch (itemId)
             {
                 case Resource.Id.nav_accounts:
-                    ViewModel.ShowViewModelByType(typeof(AccountListViewModel));
+                    ViewModel.ShowViewModelByType(typeof (AccountListViewModel));
                     break;
                 case Resource.Id.nav_statistics:
-                    ViewModel.ShowViewModelByType(typeof(StatisticSelectorViewModel));
+                    ViewModel.ShowViewModelByType(typeof (StatisticSelectorViewModel));
                     break;
                 case Resource.Id.nav_categories:
-                    ViewModel.ShowViewModelByType(typeof(CategoryListViewModel));
+                    ViewModel.ShowViewModelByType(typeof (CategoryListViewModel));
                     break;
                 case Resource.Id.nav_backup:
-                    ViewModel.ShowViewModelByType(typeof(BackupViewModel));
+                    ViewModel.ShowViewModelByType(typeof (BackupViewModel));
                     break;
                 case Resource.Id.nav_settings:
-                    ViewModel.ShowViewModelByType(typeof(SettingsViewModel));
+                    ViewModel.ShowViewModelByType(typeof (SettingsViewModel));
                     break;
                 case Resource.Id.nav_about:
-                    ViewModel.ShowViewModelByType(typeof(AboutViewModel));
+                    ViewModel.ShowViewModelByType(typeof (AboutViewModel));
                     break;
             }
         }

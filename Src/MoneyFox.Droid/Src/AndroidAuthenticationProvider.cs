@@ -38,7 +38,8 @@ namespace MoneyFox.Droid
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            var auth = new OAuth2Authenticator(OneDriveAuthenticationConstants.MSA_CLIENT_ID, string.Join(",", OneDriveAuthenticationConstants.Scopes), new Uri(GetAuthorizeUrl()),
+            var auth = new OAuth2Authenticator(OneDriveAuthenticationConstants.MSA_CLIENT_ID,
+                string.Join(",", OneDriveAuthenticationConstants.Scopes), new Uri(GetAuthorizeUrl()),
                 new Uri(OneDriveAuthenticationConstants.RETURN_URL));
 
             auth.Completed += (sender, eventArgs) =>
@@ -63,8 +64,10 @@ namespace MoneyFox.Droid
         {
             var requestUriStringBuilder = new StringBuilder();
             requestUriStringBuilder.Append(OneDriveAuthenticationConstants.AUTHENTICATION_URL);
-            requestUriStringBuilder.AppendFormat("?{0}={1}", Constants.Authentication.RedirectUriKeyName, OneDriveAuthenticationConstants.RETURN_URL);
-            requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ClientIdKeyName, OneDriveAuthenticationConstants.MSA_CLIENT_ID);
+            requestUriStringBuilder.AppendFormat("?{0}={1}", Constants.Authentication.RedirectUriKeyName,
+                OneDriveAuthenticationConstants.RETURN_URL);
+            requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ClientIdKeyName,
+                OneDriveAuthenticationConstants.MSA_CLIENT_ID);
             requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ScopeKeyName,
                 string.Join("%20", OneDriveAuthenticationConstants.Scopes));
             requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ResponseTypeKeyName,

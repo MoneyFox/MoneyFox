@@ -1,24 +1,24 @@
-﻿using MoneyFox.Shared.Interfaces.Shotcuts;
+﻿using System;
+using System.Threading.Tasks;
+using MoneyFox.Shared.Interfaces.Shotcuts;
 
 namespace MoneyFox.Droid.Widgets
 {
     public class IncomeWidget : IIncomeShortcut
     {
-        public System.Threading.Tasks.Task CreateShortCut()
+        public Task CreateShortCut()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
-        public System.Threading.Tasks.Task RemoveShortcut()
+
+        public Task RemoveShortcut()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
+
         public bool IsShortcutExisting
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
+            get { throw new NotImplementedException(); }
         }
     }
 }
-

@@ -20,8 +20,8 @@ namespace MoneyFox.Droid.Activities
         Name = "moneymanager.droid.activities.MainActivity")]
     public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
-        public DrawerLayout DrawerLayout;
         private CustomFragmentInfo currentFragmentInfo;
+        public DrawerLayout DrawerLayout;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -43,9 +43,11 @@ namespace MoneyFox.Droid.Activities
             return new FragmentCacheConfigurationCustomFragmentInfo();
         }
 
-        public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo, FragmentTransaction transaction)
+        public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
+            FragmentTransaction transaction)
         {
-            transaction.SetCustomAnimations(Resource.Animation.abc_grow_fade_in_from_bottom, Resource.Animation.abc_fade_out);
+            transaction.SetCustomAnimations(Resource.Animation.abc_grow_fade_in_from_bottom,
+                Resource.Animation.abc_fade_out);
             base.OnBeforeFragmentChanging(fragmentInfo, transaction);
         }
 
@@ -78,7 +80,7 @@ namespace MoneyFox.Droid.Activities
                     else
                     {
                         SupportFragmentManager.PopBackStackImmediate();
-                    }    
+                    }
                     return true;
 
                 case Resource.Id.action_add_income:

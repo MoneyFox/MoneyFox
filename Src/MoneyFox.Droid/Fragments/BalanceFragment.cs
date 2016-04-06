@@ -10,7 +10,7 @@ namespace MoneyFox.Droid.Fragments
 
         public override void OnStart()
         {
-            base.OnResume();
+            OnResume();
 
             ViewModel.UpdateBalanceCommand.Execute();
         }

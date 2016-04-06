@@ -99,7 +99,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var commandCalled = false;
 
             var webbrowserTaskSetup = new Mock<IMvxWebBrowserTask>();
-            webbrowserTaskSetup.Setup(x => x.ShowWebPage(It.Is<string>(s => s == Constants.Constants.GIT_HUB_REPOSITORY_URL)))
+            webbrowserTaskSetup.Setup(
+                x => x.ShowWebPage(It.Is<string>(s => s == Constants.Constants.GIT_HUB_REPOSITORY_URL)))
                 .Callback(() => commandCalled = true);
 
             new AboutViewModel(new Mock<IAppInformation>().Object,

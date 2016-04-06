@@ -14,8 +14,8 @@ namespace MoneyFox.Droid
         protected override void Show(Intent intent)
         {
             Activity.StartActivity(intent);
-            Activity.OverridePendingTransition(Resource.Animation.abc_grow_fade_in_from_bottom, Resource.Animation.abc_fade_out);
+            Activity.OverridePendingTransition(Resource.Animation.abc_grow_fade_in_from_bottom,
+                Resource.Animation.abc_fade_out);
         }
-
     }
 }

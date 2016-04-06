@@ -12,8 +12,8 @@ using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 
 namespace MoneyFox.Droid.Fragments
-{    
-    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
+{
+    [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.SettingsFragment")]
     public class SettingsFragment : BaseFragment<SettingsViewModel>
     {
@@ -23,19 +23,19 @@ namespace MoneyFox.Droid.Fragments
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            ((MainActivity)Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
-            ((MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            ((MainActivity) Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
+            ((MainActivity) Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             var viewPager = view.FindViewById<ViewPager>(Resource.Id.viewpager);
             if (viewPager != null)
             {
                 var fragments = new List<MvxFragmentPagerAdapter.FragmentInfo>
-                    {
+                {
 //                        new MvxFragmentPagerAdapter.FragmentInfo(Strings.ShortcutsTitle, typeof (SettingsShortcutsFragment),
 //                            typeof (SettingsShortcutsViewModel)),
-                        new MvxFragmentPagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof (SettingsSecurityFragment),
-                            typeof (SettingsSecurityViewModel))
-                    };
+                    new MvxFragmentPagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof (SettingsSecurityFragment),
+                        typeof (SettingsSecurityViewModel))
+                };
                 viewPager.Adapter = new MvxFragmentPagerAdapter(Activity, ChildFragmentManager, fragments);
             }
 
@@ -46,4 +46,3 @@ namespace MoneyFox.Droid.Fragments
         }
     }
 }
-

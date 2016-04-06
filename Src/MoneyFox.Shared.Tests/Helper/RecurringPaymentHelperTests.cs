@@ -57,14 +57,14 @@ namespace MoneyFox.Shared.Tests.Helper
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof (ArgumentOutOfRangeException))]
         public void GetTypeString_InvalidType_Exception()
         {
             PaymentTypeHelper.GetTypeString(3);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof (ArgumentOutOfRangeException))]
         public void GetTypeString_NegativeType_Exception()
         {
             PaymentTypeHelper.GetTypeString(-1);

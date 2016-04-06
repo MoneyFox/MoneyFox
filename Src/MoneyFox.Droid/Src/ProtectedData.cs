@@ -26,7 +26,7 @@ namespace MoneyFox.Droid
             try
             {
                 return preferences.GetString(key, null);
-            } 
+            }
             catch
             {
                 return null;

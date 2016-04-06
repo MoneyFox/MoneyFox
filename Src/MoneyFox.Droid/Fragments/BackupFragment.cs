@@ -4,7 +4,7 @@ using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 
 namespace MoneyFox.Droid.Fragments
 {
-    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
+    [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.BackupFragment")]
     public class BackupFragment : BaseFragment<BackupViewModel>
     {
