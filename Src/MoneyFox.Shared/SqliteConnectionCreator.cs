@@ -1,10 +1,10 @@
-﻿using System.Linq;
+﻿using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Plugins.Sqlite;
 using SQLite.Net;
 
-namespace MoneyManager.Foundation
+namespace MoneyFox.Shared
 {
     public class SqliteConnectionCreator : ISqliteConnectionCreator
     {

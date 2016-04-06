@@ -1,15 +1,14 @@
-using Android.Runtime;
-using MoneyManager.Core.ViewModels;
-using MvvmCross.Droid.Support.V7.Fragging.Attributes;
-using Android.Views;
 using Android.OS;
-using OxyPlot.Xamarin.Android;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
-using MvvmCross.Binding.Droid.BindingContext;
-using MoneyManager.Droid.Activities;
+using Android.Runtime;
 using Android.Support.V7.Widget;
+using Android.Views;
+using MoneyManager.Core.ViewModels;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Droid.Support.V7.Fragging.Attributes;
+using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using OxyPlot.Xamarin.Android;
 
-namespace MoneyManager.Droid.Fragments
+namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneymanager.droid.fragments.StatisticCashFlowFragment")]
@@ -22,8 +21,8 @@ namespace MoneyManager.Droid.Fragments
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.fragment_graphical_statistic, null);
 
-            ((MainActivity)Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
-            ((MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            ((Activities.MainActivity)Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
+            ((Activities.MainActivity)Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             plotModel = view.FindViewById<PlotView>(Resource.Id.plotViewModel);        
 

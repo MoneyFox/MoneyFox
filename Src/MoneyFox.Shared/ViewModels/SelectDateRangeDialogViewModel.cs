@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Shared.ViewModels;
 using MoneyManager.Foundation.Messages;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;

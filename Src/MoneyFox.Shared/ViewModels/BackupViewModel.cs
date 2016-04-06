@@ -6,6 +6,7 @@ using MoneyManager.Foundation.Interfaces;
 using MvvmCross.Core.ViewModels;
 using Xamarin;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {

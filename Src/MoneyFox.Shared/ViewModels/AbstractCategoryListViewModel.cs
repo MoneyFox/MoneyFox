@@ -4,6 +4,7 @@ using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Core.ViewModels;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {

@@ -1,5 +1,6 @@
 ﻿using MoneyManager.Core.ViewModels;
 using Android.Runtime;
+using MoneyFox.Droid;
 using MoneyManager.Droid.Fragments;
 
 namespace MoneyManager.Droid.Fragments

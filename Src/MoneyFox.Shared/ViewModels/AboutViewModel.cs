@@ -5,7 +5,7 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {

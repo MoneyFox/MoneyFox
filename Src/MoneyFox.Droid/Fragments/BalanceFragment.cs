@@ -1,4 +1,5 @@
 using Android.Runtime;
+using MoneyFox.Droid;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.Fragging.Attributes;
 

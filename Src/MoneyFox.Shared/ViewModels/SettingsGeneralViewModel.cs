@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Shared.DataAccess;
+using MoneyFox.Shared.ViewModels;
 using MoneyManager.DataAccess;
 
 namespace MoneyManager.Core.ViewModels

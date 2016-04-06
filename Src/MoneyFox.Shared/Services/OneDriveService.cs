@@ -6,10 +6,10 @@ using Microsoft.OneDrive.Sdk;
 using MoneyManager.Core.Extensions;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;
-using Xamarin;
 using MvvmCross.Plugins.File;
+using Xamarin;
 
-namespace MoneyManager.Core.Services
+namespace MoneyFox.Shared.Services
 {
     public class OneDriveService : IBackupService
     {

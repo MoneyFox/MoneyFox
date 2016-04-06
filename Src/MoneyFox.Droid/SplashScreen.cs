@@ -1,5 +1,6 @@
 using Android.App;
 using Android.Content.PM;
+using MoneyFox.Droid;
 using MvvmCross.Droid.Views;
 
 namespace MoneyManager.Droid

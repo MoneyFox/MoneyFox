@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using MoneyFox.Shared.ViewModels;
 using MoneyManager.Core.Helpers;
 using MoneyManager.Foundation;
 using MoneyManager.Foundation.Interfaces;

@@ -1,4 +1,5 @@
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Model;
 using MvvmCross.Core.ViewModels;

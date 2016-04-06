@@ -11,13 +11,13 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.Fragging.Caching;
 using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
-namespace MoneyManager.Droid.Activities
+namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "MoneyManager",
         Icon = "@drawable/icon",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop,
-        Name = "moneymanager.droid.activities.MainActivity")]
+        Name = "moneyfox.droid.activities.MainActivity")]
     public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
         public DrawerLayout DrawerLayout;

@@ -4,7 +4,7 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Shared.ViewModels
 {
     public abstract class BaseViewModel : MvxViewModel
     {

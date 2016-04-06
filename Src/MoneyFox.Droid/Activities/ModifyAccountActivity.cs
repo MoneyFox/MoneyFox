@@ -5,6 +5,7 @@ using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Android.Content.PM;
 using Android.Support.V7.Widget;
+using MoneyFox.Droid;
 
 namespace MoneyManager.Droid.Activities
 {

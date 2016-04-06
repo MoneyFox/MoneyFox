@@ -5,6 +5,7 @@ using MoneyManager.Foundation.Model;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 
 namespace MoneyManager.Core.ViewModels
 {

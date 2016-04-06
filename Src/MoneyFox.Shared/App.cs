@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
+using MoneyFox.Shared;
 using MoneyManager.Core.Authentication;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation;

@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Shared.DataAccess;
+using MoneyFox.Shared.ViewModels;
 using MoneyManager.DataAccess;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
 using MvvmCross.Core.ViewModels;

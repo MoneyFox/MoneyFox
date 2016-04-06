@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Android.Content;
-using MoneyFox.Droid;
+using MoneyFox.Shared.Resources;
 using MoneyManager.Core;
+using MoneyManager.Droid;
 using MoneyManager.Droid.Src.Widgets;
 using MoneyManager.Foundation.Interfaces;
 using MoneyManager.Foundation.Interfaces.Shotcuts;
-using MoneyManager.Localization;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
 using MvvmCross.Droid.Views;
@@ -15,7 +15,7 @@ using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using Xamarin;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class Setup : MvxAndroidSetup
     {
@@ -72,7 +72,7 @@ namespace MoneyManager.Droid
 #endif
             if (!Insights.IsInitialized)
             {
-                Insights.Initialize(insightKey, ApplicationContext);
+                //Insights.Initialize(insightKey);
             }
 
             Strings.Culture = new Localize().GetCurrentCultureInfo();

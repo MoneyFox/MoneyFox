@@ -30,6 +30,10 @@
         /// </summary>
         public const string AUTHENTICATION_URL = "https://login.live.com/oauth20_authorize.srf";
 
+        public const string MSA_CLIENT_ID = "<ID>";
+
+        public const string MSA_CLIENT_SECRET = "<secret>";
+
         /// <summary>
         ///     Scopes for OneDrive access
         /// </summary>

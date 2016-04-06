@@ -1,16 +1,16 @@
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using MoneyFox.Shared.Resources;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Fragments;
-using MoneyManager.Localization;
-using MvvmCross.Platform;
-using Android.Content.PM;
-using Toolbar = Android.Support.V7.Widget.Toolbar;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platform;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
-namespace MoneyManager.Droid.Activities
+namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "CategoryListActivity",
         Name = "moneymanager.droid.activities.SelectCategoryListActivity",
