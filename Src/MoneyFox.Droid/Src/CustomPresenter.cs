@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Reflection;
-using Android.App;
 using Android.Content;
-using MoneyManager.Droid;
-using MvvmCross.Droid.Support.V7.Fragging.Presenter;
+using MvvmCross.Droid.Shared.Presenter;
 
 namespace MoneyFox.Droid
 {

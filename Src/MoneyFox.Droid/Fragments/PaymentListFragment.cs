@@ -5,7 +5,7 @@ using Android.Views;
 using MoneyManager.Core.ViewModels;
 using MoneyManager.Droid.Fragments;
 using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Droid.Support.V7.Fragging.Attributes;
+using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
 namespace MoneyFox.Droid.Fragments

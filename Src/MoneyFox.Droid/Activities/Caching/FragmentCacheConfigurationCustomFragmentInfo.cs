@@ -1,6 +1,6 @@
-using MvvmCross.Droid.Support.V7.Fragging.Caching;
+using MvvmCross.Droid.Shared.Caching;
 
-namespace MoneyManager.Droid.Activities.Caching
+namespace MoneyFox.Droid.Activities.Caching
 {
     class FragmentCacheConfigurationCustomFragmentInfo : FragmentCacheConfiguration<MainActivityFragmentCacheInfoFactory.SerializableCustomFragmentInfo>
     {
