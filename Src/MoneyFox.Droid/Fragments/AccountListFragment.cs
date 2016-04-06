@@ -10,14 +10,14 @@ using MvvmCross.Droid.Shared.Attributes;
 namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
-    [Register("moneymanager.droid.fragments.AccountListFragment")]
+    [Register("moneyfox.droid.fragments.AccountListFragment")]
     public class AccountListFragment : BaseFragment<AccountListViewModel>
     {
-		protected override int FragmentId => Resource.Layout.fragment_account_list;
+        protected override int FragmentId => Resource.Layout.fragment_account_list;
 
-		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-		{
-			var view =  base.OnCreateView (inflater, container, savedInstanceState);
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            var view =  base.OnCreateView (inflater, container, savedInstanceState);
 
             LoadBalancePanel();
 
@@ -25,8 +25,8 @@ namespace MoneyFox.Droid.Fragments
             RegisterForContextMenu(list);
             HasOptionsMenu = true;
 
-			return view;
-		}
+            return view;
+        }
 
         private void LoadBalancePanel()
         {

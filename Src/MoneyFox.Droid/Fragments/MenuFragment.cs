@@ -13,7 +13,7 @@ using MvvmCross.Droid.Shared.Attributes;
 namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.navigation_frame)]
-    [Register("moneymanager.droid.fragments.MenuFragment")]
+    [Register("moneyfox.droid.fragments.MenuFragment")]
     public class MenuFragment : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
         private NavigationView navigationView;

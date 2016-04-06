@@ -14,7 +14,7 @@ using MvvmCross.Droid.Support.V4;
 namespace MoneyFox.Droid.Fragments
 {    
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
-    [Register("moneymanager.droid.fragments.SettingsFragment")]
+    [Register("moneyfox.droid.fragments.SettingsFragment")]
     public class SettingsFragment : BaseFragment<SettingsViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_settings;

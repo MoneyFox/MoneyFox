@@ -10,7 +10,7 @@ using MoneyFox.Droid;
 namespace MoneyManager.Droid.Activities
 {
     [Activity(Label = "ModifyAccountActivity",
-        Name = "moneymanager.droid.activities.ModifyAccountActivity",
+        Name = "moneyfox.droid.activities.ModifyAccountActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
     public class ModifyAccountActivity : MvxCachingFragmentCompatActivity<ModifyAccountViewModel>
