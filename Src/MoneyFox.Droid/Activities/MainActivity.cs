@@ -13,7 +13,7 @@ using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace MoneyFox.Droid.Activities
 {
-    [Activity(Label = "MoneyManager",
+    [Activity(Label = "Money Fox",
         Icon = "@drawable/icon",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop,
