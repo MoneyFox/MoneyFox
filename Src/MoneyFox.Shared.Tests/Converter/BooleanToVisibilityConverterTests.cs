@@ -3,7 +3,7 @@ using MoneyFox.Shared.Converter;
 using MvvmCross.Platform.UI;
 using Xunit;
 
-namespace MoneyManager.Core.Tests.Converter
+namespace MoneyFox.Shared.Tests.Converter
 {
     public class BooleanToVisibilityConverterTests
     {

@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using Moq;
 
-namespace MoneyManager.Core.Tests.StatisticProvider
+namespace MoneyFox.Shared.Tests.StatisticProvider
 {
     [TestClass]
     public class CashFlowProviderTests

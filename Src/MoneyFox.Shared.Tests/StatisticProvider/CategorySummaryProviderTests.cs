@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using Moq;
 using Xunit;
 
-namespace MoneyManager.Core.Tests.StatisticProvider
+namespace MoneyFox.Shared.Tests.StatisticProvider
 {
     public class CategorySummaryProviderTests
     {

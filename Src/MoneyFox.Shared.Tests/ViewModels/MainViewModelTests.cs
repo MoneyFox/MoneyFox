@@ -1,4 +1,3 @@
-using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
@@ -9,7 +8,7 @@ using MvvmCross.Core.Platform;
 using MvvmCross.Test.Core;
 using Xunit;
 
-namespace MoneyManager.Core.Tests.ViewModels
+namespace MoneyFox.Shared.Tests.ViewModels
 {
     internal class MainViewModelTests : MvxIoCSupportingTest
     {

@@ -1,11 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Model;
 using Xunit;
 
-namespace MoneyManager.Core.Tests.Helper
+namespace MoneyFox.Shared.Tests.Helper
 {
     [TestClass]
     public class RecurringPaymentHelperTests

@@ -4,7 +4,7 @@ using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Model;
 using Xunit;
 
-namespace MoneyManager.Core.Tests.Helper
+namespace MoneyFox.Shared.Tests.Helper
 {
     public class UtilitiesTest
     {

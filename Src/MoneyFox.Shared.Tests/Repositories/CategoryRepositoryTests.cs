@@ -4,12 +4,12 @@ using System.Linq;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
-using MoneyManager.Core.Tests.Mocks;
+using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.Tests.Mocks;
 using Moq;
 using Xunit;
-using MoneyFox.Shared.Resources;
 
-namespace MoneyManager.Core.Tests.Repositories
+namespace MoneyFox.Shared.Tests.Repositories
 {
     public class CategoryRepositoryTests
     {

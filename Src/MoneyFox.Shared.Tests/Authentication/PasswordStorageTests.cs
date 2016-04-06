@@ -5,7 +5,7 @@ using MoneyFox.Shared.Interfaces;
 using Moq;
 using Xunit;
 
-namespace MoneyManager.Core.Tests.Authentication
+namespace MoneyFox.Shared.Tests.Authentication
 {
     [TestClass]
     public class PasswordStorageTests

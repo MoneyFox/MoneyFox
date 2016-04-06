@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MoneyManager.Core.Tests
+namespace MoneyFox.Shared.Tests
 {
     public static class ShouldExtension
     {

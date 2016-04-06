@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
-using MoneyManager.Core.Tests.Mocks;
+using MoneyFox.Shared.Tests.Mocks;
 using Moq;
 
-namespace MoneyManager.Core.Tests.Repositories
+namespace MoneyFox.Shared.Tests.Repositories
 {
     [TestClass]
     public class AccountRepositoryTests

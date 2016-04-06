@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared;
 using MoneyFox.Shared.Converter;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
@@ -9,7 +8,7 @@ using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 
-namespace MoneyManager.Core.Tests.Converter
+namespace MoneyFox.Shared.Tests.Converter
 {
     [TestClass]
     public class PaymentAmountConverterTests : MvxIoCSupportingTest

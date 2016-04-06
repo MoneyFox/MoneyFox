@@ -2,7 +2,7 @@
 using MoneyFox.Shared.Extensions;
 using Xunit;
 
-namespace MoneyManager.Core.Tests.Extensions
+namespace MoneyFox.Shared.Tests.Extensions
 {
     public class DateTimeExtensionTests
     {

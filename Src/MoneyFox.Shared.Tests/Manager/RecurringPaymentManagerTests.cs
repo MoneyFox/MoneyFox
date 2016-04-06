@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using Moq;
 
-namespace MoneyManager.Core.Tests.Manager
+namespace MoneyFox.Shared.Tests.Manager
 {
     [TestClass]
     public class RecurringPaymentManagerTests

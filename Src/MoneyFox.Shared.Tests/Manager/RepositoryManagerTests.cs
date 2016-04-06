@@ -8,7 +8,7 @@ using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using Moq;
 
-namespace MoneyManager.Core.Tests.Manager
+namespace MoneyFox.Shared.Tests.Manager
 {
     [TestClass]
     public class RepositoryManagerTests

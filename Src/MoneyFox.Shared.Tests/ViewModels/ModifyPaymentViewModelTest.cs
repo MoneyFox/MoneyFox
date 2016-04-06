@@ -2,19 +2,17 @@
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared;
-using Moq;
-using MvvmCross.Platform;
-using MvvmCross.Plugins.Messenger;
-using MvvmCross.Test.Core;
-using Xunit;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.ViewModels;
+using Moq;
+using MvvmCross.Platform;
+using MvvmCross.Plugins.Messenger;
+using MvvmCross.Test.Core;
 
-namespace MoneyManager.Core.Tests.ViewModels
+namespace MoneyFox.Shared.Tests.ViewModels
 {
     [TestClass]
     public class ModifyPaymentViewModelTest : MvxIoCSupportingTest

@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 
-namespace MoneyManager.Core.Tests.Mocks
+namespace MoneyFox.Shared.Tests.Mocks
 {
     public class CategoryDataAccessMock : IDataAccess<Category>
     {

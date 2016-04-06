@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Converter;
 
-namespace MoneyManager.Core.Tests.Converter
+namespace MoneyFox.Shared.Tests.Converter
 {
     [TestClass]
     public class DateFormatConverterTests

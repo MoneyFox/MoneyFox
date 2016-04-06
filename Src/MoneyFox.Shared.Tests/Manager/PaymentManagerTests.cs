@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Resources;
 using Moq;
 using Xunit;
-using MoneyFox.Shared.Resources;
 
-namespace MoneyManager.Core.Tests.Manager
+namespace MoneyFox.Shared.Tests.Manager
 {
     public class PaymentManagerTests
     {

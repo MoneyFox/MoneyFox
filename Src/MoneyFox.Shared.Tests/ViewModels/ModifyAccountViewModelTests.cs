@@ -5,7 +5,7 @@ using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using Moq;
 
-namespace MoneyManager.Core.Tests.ViewModels
+namespace MoneyFox.Shared.Tests.ViewModels
 {
     [TestClass]
     public class ModifyAccountViewModelTests

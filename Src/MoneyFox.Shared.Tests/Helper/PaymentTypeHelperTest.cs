@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using MoneyFox.Shared;
 using MoneyFox.Shared.Helpers;
-using Xunit;
 using MoneyFox.Shared.Resources;
+using Xunit;
 
-namespace MoneyManager.Core.Tests.Helper
+namespace MoneyFox.Shared.Tests.Helper
 {
     public class PaymentTypeHelperTest
     {

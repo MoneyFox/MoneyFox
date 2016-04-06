@@ -7,7 +7,7 @@ using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
 
-namespace MoneyManager.Core.Tests.ViewModels
+namespace MoneyFox.Shared.Tests.ViewModels
 {
     [TestClass]
     public class AccountListViewModelTests : MvxIoCSupportingTest

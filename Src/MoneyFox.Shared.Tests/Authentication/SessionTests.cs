@@ -6,7 +6,7 @@ using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
 
-namespace MoneyManager.Core.Tests.Authentication
+namespace MoneyFox.Shared.Tests.Authentication
 {
     [TestClass]
     public class SessionTests : MvxIoCSupportingTest
