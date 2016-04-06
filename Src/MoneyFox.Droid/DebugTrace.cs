@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using MvvmCross.Platform.Platform;
 
-namespace MoneyManager.Droid
+namespace MoneyFox.Droid
 {
     public class DebugTrace : IMvxTrace
     {
