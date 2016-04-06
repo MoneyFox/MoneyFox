@@ -1,13 +1,12 @@
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
+using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using Android.Content.PM;
-using Android.Support.V7.Widget;
-using MoneyFox.Droid;
 
-namespace MoneyManager.Droid.Activities
+namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "ModifyAccountActivity",
         Name = "moneyfox.droid.activities.ModifyAccountActivity",

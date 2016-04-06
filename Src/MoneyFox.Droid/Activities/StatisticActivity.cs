@@ -3,11 +3,10 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
-using MoneyFox.Droid;
 using MoneyManager.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 
-namespace MoneyManager.Droid.Activities
+namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "StatisticActivity",
         Name = "moneyfox.droid.activities.StatisticActivity",

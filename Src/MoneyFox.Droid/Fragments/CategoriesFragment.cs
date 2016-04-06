@@ -4,7 +4,6 @@ using Android.Views;
 using Android.Widget;
 using MoneyFox.Shared.Resources;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Droid.Fragments;
 using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Platform;
 
