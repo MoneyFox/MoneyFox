@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(NuGetPackageRoot)' == ''">
+    <NuGetPackageRoot>$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+  </PropertyGroup>
+  <ImportGroup>
+    <Import Project="$(NuGetPackageRoot)\EntityFramework.Commands\7.0.0-rc1-final\build\netcore50\EntityFramework.Commands.props" Condition="Exists('$(NuGetPackageRoot)\EntityFramework.Commands\7.0.0-rc1-final\build\netcore50\EntityFramework.Commands.props')" />
+    <Import Project="$(NuGetPackageRoot)\EntityFramework.Relational.Design\7.0.0-rc1-final\build\netcore50\EntityFramework.Relational.Design.props" Condition="Exists('$(NuGetPackageRoot)\EntityFramework.Relational.Design\7.0.0-rc1-final\build\netcore50\EntityFramework.Relational.Design.props')" />
+  </ImportGroup>
+</Project>

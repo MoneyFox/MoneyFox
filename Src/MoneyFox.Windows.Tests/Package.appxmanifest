@@ -5,11 +5,11 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   IgnorableNamespaces="uap mp">
 
-  <Identity Name="b6bf67f5-6c7a-487d-a0ac-b11acd1058d3"
+  <Identity Name="6303d730-3c42-48d1-a551-1f4a3fb95312"
             Publisher="CN=ninop"
             Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="b6bf67f5-6c7a-487d-a0ac-b11acd1058d3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="6303d730-3c42-48d1-a551-1f4a3fb95312" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>MoneyFox.Windows.Tests</DisplayName>
