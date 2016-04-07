@@ -353,6 +353,17 @@
           "lib/win81/MvvmCross.Platform.dll": {}
         }
       },
+      "MvvmCross.Plugin.Messenger/4.1.0": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.0"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.Plugin.SQLitePCL/4.1.0": {
         "dependencies": {
           "MvvmCross.Platform": "4.1.0",
@@ -2393,6 +2404,17 @@
           "lib/win81/MvvmCross.Platform.dll": {}
         }
       },
+      "MvvmCross.Plugin.Messenger/4.1.0": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.0"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.Plugin.SQLitePCL/4.1.0": {
         "dependencies": {
           "MvvmCross.Platform": "4.1.0",
@@ -4279,6 +4301,17 @@
           "lib/win81/MvvmCross.Platform.dll": {}
         }
       },
+      "MvvmCross.Plugin.Messenger/4.1.0": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.0"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.Plugin.SQLitePCL/4.1.0": {
         "dependencies": {
           "MvvmCross.Platform": "4.1.0",
@@ -6161,6 +6194,17 @@
         "runtime": {
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Messenger/4.1.0": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.0"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.Plugin.SQLitePCL/4.1.0": {
@@ -8049,6 +8093,17 @@
           "lib/win81/MvvmCross.Platform.dll": {}
         }
       },
+      "MvvmCross.Plugin.Messenger/4.1.0": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.0"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.Plugin.SQLitePCL/4.1.0": {
         "dependencies": {
           "MvvmCross.Platform": "4.1.0",
@@ -9931,6 +9986,17 @@
         "runtime": {
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Messenger/4.1.0": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.0"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.Plugin.SQLitePCL/4.1.0": {
@@ -11817,6 +11883,17 @@
         "runtime": {
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Messenger/4.1.0": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.0"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
       "MvvmCross.Plugin.SQLitePCL/4.1.0": {
@@ -14149,6 +14226,32 @@
         "lib/wpa81/MvvmCross.Platform.WindowsCommon.pri",
         "lib/wpa81/MvvmCross.Platform.dll",
         "lib/wpa81/MvvmCross.Platform.dll.mdb"
+      ]
+    },
+    "MvvmCross.Plugin.Messenger/4.1.0": {
+      "sha512": "tI3Iob79jxBmSs11oiny90jx/dut+2CVzmfw5Ylv7peQjPver+78ukz8lnW3CMHQDbMJrl4uuZA9pJz7YzpBjA==",
+      "type": "package",
+      "files": [
+        "MvvmCross.Plugin.Messenger.4.1.0.nupkg.sha512",
+        "MvvmCross.Plugin.Messenger.nuspec",
+        "content/MonoAndroid/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "content/Xamarin.iOS10/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "content/net45/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "content/netcore45/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "content/win81/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "content/wp8/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "content/wpa81/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "lib/MonoAndroid/MvvmCross.Plugins.Messenger.dll",
+        "lib/Xamarin.Mac20/MvvmCross.Plugins.Messenger.dll",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.Messenger.dll",
+        "lib/dotnet/MvvmCross.Plugins.Messenger.dll",
+        "lib/net45/MvvmCross.Plugins.Messenger.dll",
+        "lib/netcore45/MvvmCross.Plugins.Messenger.dll",
+        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.Messenger.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.Messenger.dll",
+        "lib/win81/MvvmCross.Plugins.Messenger.dll",
+        "lib/wp8/MvvmCross.Plugins.Messenger.dll",
+        "lib/wpa81/MvvmCross.Plugins.Messenger.dll"
       ]
     },
     "MvvmCross.Plugin.SQLitePCL/4.1.0": {
