@@ -95,5 +95,6 @@ namespace MoneyManager.Core
         public static PasswordUserControlViewModel PasswordUserControls => Mvx.Resolve<PasswordUserControlViewModel>();
         public static SettingDefaultsViewModel SettingDefaultsView => Mvx.Resolve<SettingDefaultsViewModel>();
         public static TileSettingsViewModel TileSettingsView => Mvx.Resolve<TileSettingsViewModel>();
+        public static PersonalizationUserControlViewModel PersonalizationView => Mvx.Resolve<PersonalizationUserControlViewModel>();
     }
 }

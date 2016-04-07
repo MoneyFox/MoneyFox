@@ -9,6 +9,8 @@ namespace MoneyManager.Core.ViewModels.SettingViews
         private readonly IDefaultManager defaultManager;
         private readonly SettingDataAccess settings;
 
+        private bool _isDarkThemeEnabled = false;
+
         public SettingDefaultsViewModel(IDefaultManager defaultManager, SettingDataAccess settings)
         {
             this.defaultManager = defaultManager;

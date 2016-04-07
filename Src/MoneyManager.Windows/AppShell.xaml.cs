@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Navigation;
 using MoneyManager.Localization;
 using MoneyManager.Windows.Controls.CustomControls;
 using MoneyManager.Windows.Views;
+using Windows.UI.Xaml.Data;
+using MoneyManager.Core.ViewModels.SettingViews;
 
 namespace MoneyManager.Windows
 {
@@ -87,6 +89,19 @@ namespace MoneyManager.Windows
             NavMenuListTop.SelectedIndex = 0;
             //start with a hidden back button. This changes when you navigate to an other page
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+ 
+        }
+
+        //Bind the saved theme from settings to the root element which cascadingly applies to children elements
+        private void SetColor()
+        {
+            Binding colorBinding = new Binding
+            {
+                Source = new PersonalizationUserControlViewModel(),
+                Path = new PropertyPath("IsDarkThemeEnabled"),
+                Converter = new Converter.BooleanToThemeConverter(),
+            };
+            BindingOperations.SetBinding(Root, RequestedThemeProperty, colorBinding);
         }
 
         public Frame AppFrame => Frame;
@@ -351,6 +366,7 @@ namespace MoneyManager.Windows
                     NavMenuListBottom.SetSelectedItem(null);
                 }
             }
+            SetColor();
         }
 
         private void OnNavigatedToPage(object sender, NavigationEventArgs e)
@@ -368,7 +384,6 @@ namespace MoneyManager.Windows
                     ((Frame) sender).CanGoBack
                         ? AppViewBackButtonVisibility.Visible
                         : AppViewBackButtonVisibility.Collapsed;
-
             }
         }
 

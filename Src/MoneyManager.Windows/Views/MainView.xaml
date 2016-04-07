@@ -7,6 +7,7 @@
       xmlns:basicControls="using:MoneyManager.Windows.Controls.BasicControls"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:converter="using:MoneyManager.Windows.Converter"
       DataContext="{Binding MainView, Source={StaticResource CoreModule}}"
       mc:Ignorable="d">
 
@@ -17,6 +18,7 @@
     </interactivity:Interaction.Behaviors>
 
 
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

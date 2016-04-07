@@ -16,6 +16,9 @@ namespace MoneyManager.Core.Helpers
         private const string SESSION_TIMESTAMP_DEFAULT = "";
         private const bool PASSWORD_REQUIRED_KEYDEFAULT = false;
 
+        private const string REQUESTED_THEME = "requested_theme";
+        private const bool REQUESTED_THEME_KEYDEFAULT = true;
+
         private static ILocalSettings AppSettings => Mvx.Resolve<ILocalSettings>();
 
         public static string SessionTimestamp
@@ -28,6 +31,12 @@ namespace MoneyManager.Core.Helpers
         {
             get { return AppSettings.GetValueOrDefault(PASSWORD_REQUIRED_KEYNAME, PASSWORD_REQUIRED_KEYDEFAULT); }
             set { AppSettings.AddOrUpdateValue(PASSWORD_REQUIRED_KEYNAME, value); }
+        }
+
+        public static bool SelectedTheme
+        {
+            get { return AppSettings.GetValueOrDefault(REQUESTED_THEME, REQUESTED_THEME_KEYDEFAULT); }
+            set { AppSettings.AddOrUpdateValue(REQUESTED_THEME, value); }
         }
     }
 }

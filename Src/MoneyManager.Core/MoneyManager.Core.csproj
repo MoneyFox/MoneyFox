@@ -89,6 +89,7 @@
     <Compile Include="ViewModels\SettingViews\PasswordUserControlViewModel.cs" />
     <Compile Include="ViewModels\CategoryList\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\SelectDateRangeDialogViewModel.cs" />
+    <Compile Include="ViewModels\SettingViews\PersonalizationUserControlViewModel.cs" />
     <Compile Include="ViewModels\SettingViews\SettingDefaultsViewModel.cs" />
     <Compile Include="ViewModels\CategoryList\SettingsCategoryListViewModel.cs" />
     <Compile Include="ViewModels\Statistics\StatisticViewModel.cs" />

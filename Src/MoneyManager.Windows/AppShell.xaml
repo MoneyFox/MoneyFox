@@ -12,6 +12,7 @@
       mc:Ignorable="d"
       PointerPressed="Root_PointerPressed">
 
+
     <!-- Using a Page as the root for the app provides a design time experience as well as ensures that
          when it runs on Mobile the app content won't appear under the system's StatusBar which is visible 
          by default with a transparent background.  It will also take into account the presence of software

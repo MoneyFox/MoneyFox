@@ -3,13 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:core="using:MoneyManager.Core"
              xmlns:windows="using:MoneyManager.Windows"
-             RequestedTheme="Dark">
+             xmlns:converter="using:MoneyManager.Windows.Converter"
+            RequestedTheme="Dark">
 
     <Application.Resources>
         <ResourceDictionary>
             <core:CoreModule x:Key="CoreModule" />
             <windows:WindowsModule x:Key="WindowsModule" />
-
+            <converter:BooleanToThemeConverter x:Key="BooleanToThemeConverter"/>
+            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Style/AppStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>

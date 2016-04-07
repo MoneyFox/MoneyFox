@@ -120,6 +120,9 @@
     <Compile Include="Controls\BalanceUserControl.xaml.cs">
       <DependentUpon>BalanceUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PersonalizationSettingsUserControl.xaml.cs">
+      <DependentUpon>PersonalizationSettingsUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\StatisticControls\CashFlowUserControl.xaml.cs">
       <DependentUpon>CashFlowUserControl.xaml</DependentUpon>
     </Compile>
@@ -149,6 +152,7 @@
     <Compile Include="Controls\TransactionListUserControl.xaml.cs">
       <DependentUpon>TransactionListUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\BooleanToThemeConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\CultureConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
@@ -309,6 +313,10 @@
     <Page Include="Controls\BalanceUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PersonalizationSettingsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\StatisticControls\CashFlowUserControl.xaml">
       <SubType>Designer</SubType>

@@ -10,6 +10,7 @@ namespace MoneyManager.Core.ViewModels
         private readonly ModifyAccountViewModel modifyAccountViewModel;
         private readonly ModifyTransactionViewModel modifyTransactionViewModel;
 
+
         /// <summary>
         ///     Creates an MainViewModel object.
         /// </summary>
@@ -20,6 +21,7 @@ namespace MoneyManager.Core.ViewModels
             this.modifyAccountViewModel = modifyAccountViewModel;
             this.modifyTransactionViewModel = modifyTransactionViewModel;
             this.balanceViewModel = balanceViewModel;
+
         }
 
         /// <summary>
