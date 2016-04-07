@@ -1,4 +1,4 @@
-﻿<Page x:Class="MoneyFox.Windows.Views.ModifyPaymentView"
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.ModifyPaymentView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,6 +8,7 @@
       xmlns:converter="using:MoneyFox.Windows.Converter"
       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
       xmlns:model="using:MoneyFox.Shared.Model"
+      xmlns:views="using:MvvmCross.WindowsUWP.Views"
       mc:Ignorable="d"
       NavigationCacheMode="Enabled"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -151,4 +152,4 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
-</Page>
+</views:MvxWindowsPage>
