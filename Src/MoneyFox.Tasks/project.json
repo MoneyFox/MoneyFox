@@ -5,9 +5,6 @@
     "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmCross.Plugin.SQLitePCL": "4.1.0",
-    "SQLite.Net-PCL": "3.1.1",
-    "SQLite.Net.Async-PCL": "3.1.1",
-    "SQLite.Net.Core-PCL": "3.1.1",
     "Xamarin.Insights": "1.12.3"
   },
   "frameworks": {

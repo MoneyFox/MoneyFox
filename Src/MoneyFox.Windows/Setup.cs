@@ -43,7 +43,6 @@ namespace MoneyFox.Windows
         protected override void InitializeFirstChance()
         {
             base.InitializeFirstChance();
-
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IAppInformation, AppInformation>();
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
