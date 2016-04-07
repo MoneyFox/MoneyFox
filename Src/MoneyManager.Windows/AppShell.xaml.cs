@@ -93,6 +93,8 @@ namespace MoneyManager.Windows
         }
 
         //Bind the saved theme from settings to the root element which cascadingly applies to children elements
+        //the reason this is bound in code behind is that because viewmodels are loaded after the pages,
+        //resulting to a nullreference exception if bound in xamlW.
         private void SetColor()
         {
             Binding colorBinding = new Binding
@@ -366,6 +368,7 @@ namespace MoneyManager.Windows
                     NavMenuListBottom.SetSelectedItem(null);
                 }
             }
+            //Change the theme on page navigation; maybe it can be moved somewhere else.
             SetColor();
         }
 
@@ -378,7 +381,7 @@ namespace MoneyManager.Windows
                 var control = page;
                 control.Loaded += Page_Loaded;
 
-                //Check whether the navigation stack is empty and hide the back button if so
+                //Check whether the navigation stack is empty and hide the back button if so;
                 // otherwise, make it visible.
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
                     ((Frame) sender).CanGoBack
