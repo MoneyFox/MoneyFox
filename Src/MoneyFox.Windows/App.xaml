@@ -4,8 +4,8 @@
              xmlns:converter="using:MoneyManager.Windows.Converter">
 
     <Application.Resources>
+        <converter:BooleanToThemeConverter x:Key="BooleanToThemeConverter" />
         <ResourceDictionary>
-            <converter:BooleanToThemeConverter x:Key="BooleanToThemeConverter" />
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Default">
                     <ResourceDictionary.MergedDictionaries>
