@@ -22,6 +22,7 @@ using MoneyFox.Windows.Views;
 using MoneyManager.Windows;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
 
@@ -74,7 +75,11 @@ namespace MoneyFox.Windows
             {
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                shell.AppMyFrame.Navigate(typeof (MainView));
+                var setup = new Setup(shell.AppMyFrame);
+                setup.Initialize();
+
+                var start = Mvx.Resolve<IMvxAppStart>();
+                start.Start();
             }
 
             if (Mvx.Resolve<Session>().ValidateSession())

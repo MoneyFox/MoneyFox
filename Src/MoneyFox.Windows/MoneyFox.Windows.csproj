@@ -127,6 +127,7 @@
     <Compile Include="SettingAccess\LocalSettings.cs" />
     <Compile Include="SettingAccess\RoamingSettings.cs" />
     <Compile Include="SettingAccess\Settings.cs" />
+    <Compile Include="Setup.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\ProtectedData.cs" />
     <Compile Include="Src\Shortcuts\ExpenseTile.cs" />
