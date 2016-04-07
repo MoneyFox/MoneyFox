@@ -107,12 +107,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -673,7 +694,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -681,7 +702,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -2385,12 +2406,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -2934,7 +2976,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -2942,7 +2984,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -4506,12 +4548,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -5041,7 +5104,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -5049,7 +5112,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -6591,12 +6654,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -7149,7 +7233,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -7157,7 +7241,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -8721,12 +8805,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -9259,7 +9364,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -9267,7 +9372,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -10809,12 +10914,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -11367,7 +11493,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -11375,7 +11501,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -12939,12 +13065,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -13477,7 +13624,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -13485,7 +13632,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -15068,22 +15215,23 @@
         "package/services/metadata/core-properties/549f8a68026f4c6d88ab4dc623e03d5b.psmdcp"
       ]
     },
-    "Microsoft.ApplicationInsights/1.2.3": {
-      "sha512": "a34atobxpucCTTX9VCD7aIu6Ydzry+Va7TxK2tTQcfaMvefGW4kUKtg9GHKIn19IaXe+A4oZt/GBqsOt5vQrBA==",
-      "type": "Package",
+    "Microsoft.ApplicationInsights/2.0.1": {
+      "sha512": "iZjOx8ysupwITjhCl6suEOBQ+yTUBlJhQ2lfXBJkpS66gjB5TDJxIPrqKJ17/v4QqiFw//eHTGtMUCtoMN6WDQ==",
+      "type": "package",
       "files": [
+        "Microsoft.ApplicationInsights.2.0.1.nupkg.sha512",
         "Microsoft.ApplicationInsights.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
+        "lib/dotnet5.4/Microsoft.ApplicationInsights.XML",
+        "lib/dotnet5.4/Microsoft.ApplicationInsights.dll",
         "lib/net40/Microsoft.ApplicationInsights.XML",
         "lib/net40/Microsoft.ApplicationInsights.dll",
         "lib/net45/Microsoft.ApplicationInsights.XML",
         "lib/net45/Microsoft.ApplicationInsights.dll",
-        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.XML",
+        "lib/net46/Microsoft.ApplicationInsights.XML",
+        "lib/net46/Microsoft.ApplicationInsights.dll",
         "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll",
-        "lib/wp8/Microsoft.ApplicationInsights.XML",
-        "lib/wp8/Microsoft.ApplicationInsights.dll",
-        "package/services/metadata/core-properties/3b36eef276524f5d883c618d5fd8c500.psmdcp"
+        "lib/uap10.0/Microsoft.ApplicationInsights.dll",
+        "lib/wp8/Microsoft.ApplicationInsights.dll"
       ]
     },
     "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -16164,11 +16312,11 @@
         "tools/install.ps1"
       ]
     },
-    "NotificationsExtensions.Win10/10586.0.2": {
-      "sha512": "aK0M0hQdG0L1qjkmrHIp4WYro6afeBg6ljMfg6jP5cswqQg4gW2WppFOcCLJaWa+ZGVGSgYXkazWEbA0MwRpow==",
+    "NotificationsExtensions.Win10/14295.0.0": {
+      "sha512": "/FXUu5DHTQiEmd30MnPI4jWGm+fbrZA3plSdz/9NfW7DuNRk0t51NRiprT1dKvTK7IS8XuiqYQ2WD0Cn/WImEg==",
       "type": "package",
       "files": [
-        "NotificationsExtensions.Win10.10586.0.2.nupkg.sha512",
+        "NotificationsExtensions.Win10.14295.0.0.nupkg.sha512",
         "NotificationsExtensions.Win10.nuspec",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.XML",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.dll",
@@ -16183,22 +16331,20 @@
         "lib/uap10.0/NotificationsExtensions.xml"
       ]
     },
-    "PropertyChanged.Fody/1.50.4": {
-      "sha512": "RcYoNikGPm9koqwsrffX5PS4dDxBTPHvpddzY+TXFgoHdbh6fKAsQTuIxIB2qklkTANPMMBRJ2K+6ehW+Ci8YQ==",
-      "type": "Package",
+    "PropertyChanged.Fody/1.51.0": {
+      "sha512": "4uO0gtL1SyTXUE+ixL1Pn6ss07B60FzW5EyLqNyi+OLyBMB5ebv8I3L8D8GP3U9VtwvJD7N7ZC0DZULN+bVBpw==",
+      "type": "package",
       "files": [
         "Lib/dotnet/PropertyChanged.dll",
         "Lib/dotnet/PropertyChanged.xml",
         "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.dll",
         "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.xml",
+        "PropertyChanged.Fody.1.51.0.nupkg.sha512",
         "PropertyChanged.Fody.dll",
         "PropertyChanged.Fody.nuspec",
         "PropertyChanged.Fody.pdb",
         "Tools/install.ps1",
-        "Tools/uninstall.ps1",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "package/services/metadata/core-properties/4aaa1e89f960409c9283732f854ee889.psmdcp"
+        "Tools/uninstall.ps1"
       ]
     },
     "Remotion.Linq/2.0.1": {
@@ -18997,7 +19143,7 @@
     "": [
       "EntityFramework.Commands >= 7.0.0-rc1-final",
       "EntityFramework.SQLite >= 7.0.0-rc1-final",
-      "Microsoft.ApplicationInsights >= 1.2.3",
+      "Microsoft.ApplicationInsights >= 2.0.1",
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.2.3",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.1.1",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"

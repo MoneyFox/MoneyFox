@@ -716,7 +716,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
@@ -725,7 +725,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "type": "package",
         "dependencies": {
           "Fody": "1.29.2"
@@ -3110,7 +3110,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
@@ -3119,7 +3119,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "type": "package",
         "dependencies": {
           "Fody": "1.29.2"
@@ -5354,7 +5354,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
@@ -5363,7 +5363,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "type": "package",
         "dependencies": {
           "Fody": "1.29.2"
@@ -7599,7 +7599,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
@@ -7608,7 +7608,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "type": "package",
         "dependencies": {
           "Fody": "1.29.2"
@@ -9846,7 +9846,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
@@ -9855,7 +9855,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "type": "package",
         "dependencies": {
           "Fody": "1.29.2"
@@ -12091,7 +12091,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
@@ -12100,7 +12100,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "type": "package",
         "dependencies": {
           "Fody": "1.29.2"
@@ -14338,7 +14338,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
@@ -14347,7 +14347,7 @@
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "type": "package",
         "dependencies": {
           "Fody": "1.29.2"
@@ -17116,11 +17116,11 @@
         "tools/install.ps1"
       ]
     },
-    "NotificationsExtensions.Win10/10586.0.2": {
-      "sha512": "aK0M0hQdG0L1qjkmrHIp4WYro6afeBg6ljMfg6jP5cswqQg4gW2WppFOcCLJaWa+ZGVGSgYXkazWEbA0MwRpow==",
+    "NotificationsExtensions.Win10/14295.0.0": {
+      "sha512": "/FXUu5DHTQiEmd30MnPI4jWGm+fbrZA3plSdz/9NfW7DuNRk0t51NRiprT1dKvTK7IS8XuiqYQ2WD0Cn/WImEg==",
       "type": "package",
       "files": [
-        "NotificationsExtensions.Win10.10586.0.2.nupkg.sha512",
+        "NotificationsExtensions.Win10.14295.0.0.nupkg.sha512",
         "NotificationsExtensions.Win10.nuspec",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.XML",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.dll",
@@ -17135,22 +17135,20 @@
         "lib/uap10.0/NotificationsExtensions.xml"
       ]
     },
-    "PropertyChanged.Fody/1.50.4": {
-      "sha512": "RcYoNikGPm9koqwsrffX5PS4dDxBTPHvpddzY+TXFgoHdbh6fKAsQTuIxIB2qklkTANPMMBRJ2K+6ehW+Ci8YQ==",
-      "type": "Package",
+    "PropertyChanged.Fody/1.51.0": {
+      "sha512": "4uO0gtL1SyTXUE+ixL1Pn6ss07B60FzW5EyLqNyi+OLyBMB5ebv8I3L8D8GP3U9VtwvJD7N7ZC0DZULN+bVBpw==",
+      "type": "package",
       "files": [
         "Lib/dotnet/PropertyChanged.dll",
         "Lib/dotnet/PropertyChanged.xml",
         "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.dll",
         "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.xml",
+        "PropertyChanged.Fody.1.51.0.nupkg.sha512",
         "PropertyChanged.Fody.dll",
         "PropertyChanged.Fody.nuspec",
         "PropertyChanged.Fody.pdb",
         "Tools/install.ps1",
-        "Tools/uninstall.ps1",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "package/services/metadata/core-properties/4aaa1e89f960409c9283732f854ee889.psmdcp"
+        "Tools/uninstall.ps1"
       ]
     },
     "Remotion.Linq/2.0.1": {
@@ -19955,8 +19953,8 @@
       "Microsoft.NETNative.Analyzer >= 1.0.0",
       "Microsoft.OneDriveSDK >= 1.1.20",
       "MvvmLightLibs >= 5.2.0",
-      "NotificationsExtensions.Win10 >= 10586.0.2",
-      "PropertyChanged.Fody >= 1.50.4"
+      "NotificationsExtensions.Win10 >= 14295.0.0",
+      "PropertyChanged.Fody >= 1.51.0"
     ],
     "UAP,Version=v10.0": []
   }

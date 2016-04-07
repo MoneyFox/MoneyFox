@@ -8,8 +8,8 @@
     "Microsoft.NETNative.Analyzer": "1.0.0",
     "Microsoft.OneDriveSDK": "1.1.20",
     "MvvmLightLibs": "5.2.0",
-    "NotificationsExtensions.Win10": "10586.0.2",
-    "PropertyChanged.Fody": "1.50.4"
+    "NotificationsExtensions.Win10": "14295.0.0",
+    "PropertyChanged.Fody": "1.51.0"
   },
   "frameworks": {
     "uap10.0": {}

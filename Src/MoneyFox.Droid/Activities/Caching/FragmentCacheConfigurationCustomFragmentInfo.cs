@@ -1,4 +1,4 @@
-using MvvmCross.Droid.Support.V7.Fragging.Caching;
+using MvvmCross.Droid.Shared.Caching;
 
 namespace MoneyFox.Droid.Activities.Caching
 {

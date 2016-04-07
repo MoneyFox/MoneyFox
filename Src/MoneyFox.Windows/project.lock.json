@@ -23,10 +23,10 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
         }
       },
-      "Cimbalino.Toolkit/2.1.2": {
+      "Cimbalino.Toolkit/2.2.1": {
         "dependencies": {
-          "Cimbalino.Toolkit.Core": "2.1.2",
-          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3"
+          "Cimbalino.Toolkit.Core": "2.2.1",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
         },
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
@@ -35,10 +35,7 @@
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
         }
       },
-      "Cimbalino.Toolkit.Core/2.1.2": {
-        "dependencies": {
-          "Microsoft.Bcl.Compression": "3.9.85"
-        },
+      "Cimbalino.Toolkit.Core/2.2.1": {
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
         },
@@ -150,12 +147,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -179,18 +197,6 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        }
-      },
-      "Microsoft.Bcl.Build/1.0.14": {},
-      "Microsoft.Bcl.Compression/3.9.85": {
-        "dependencies": {
-          "Microsoft.Bcl.Build": "1.0.14"
-        },
-        "compile": {
-          "lib/win8/_._": {}
-        },
-        "runtime": {
-          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -738,7 +744,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -765,7 +771,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -2393,10 +2399,10 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
         }
       },
-      "Cimbalino.Toolkit/2.1.2": {
+      "Cimbalino.Toolkit/2.2.1": {
         "dependencies": {
-          "Cimbalino.Toolkit.Core": "2.1.2",
-          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3"
+          "Cimbalino.Toolkit.Core": "2.2.1",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
         },
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
@@ -2405,10 +2411,7 @@
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
         }
       },
-      "Cimbalino.Toolkit.Core/2.1.2": {
-        "dependencies": {
-          "Microsoft.Bcl.Compression": "3.9.85"
-        },
+      "Cimbalino.Toolkit.Core/2.2.1": {
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
         },
@@ -2520,12 +2523,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -2549,18 +2573,6 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        }
-      },
-      "Microsoft.Bcl.Build/1.0.14": {},
-      "Microsoft.Bcl.Compression/3.9.85": {
-        "dependencies": {
-          "Microsoft.Bcl.Build": "1.0.14"
-        },
-        "compile": {
-          "lib/win8/_._": {}
-        },
-        "runtime": {
-          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -3091,7 +3103,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -3118,7 +3130,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -4606,10 +4618,10 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
         }
       },
-      "Cimbalino.Toolkit/2.1.2": {
+      "Cimbalino.Toolkit/2.2.1": {
         "dependencies": {
-          "Cimbalino.Toolkit.Core": "2.1.2",
-          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3"
+          "Cimbalino.Toolkit.Core": "2.2.1",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
         },
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
@@ -4618,10 +4630,7 @@
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
         }
       },
-      "Cimbalino.Toolkit.Core/2.1.2": {
-        "dependencies": {
-          "Microsoft.Bcl.Compression": "3.9.85"
-        },
+      "Cimbalino.Toolkit.Core/2.2.1": {
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
         },
@@ -4733,12 +4742,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -4762,18 +4792,6 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        }
-      },
-      "Microsoft.Bcl.Build/1.0.14": {},
-      "Microsoft.Bcl.Compression/3.9.85": {
-        "dependencies": {
-          "Microsoft.Bcl.Build": "1.0.14"
-        },
-        "compile": {
-          "lib/win8/_._": {}
-        },
-        "runtime": {
-          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -5290,7 +5308,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -5317,7 +5335,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -6783,10 +6801,10 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
         }
       },
-      "Cimbalino.Toolkit/2.1.2": {
+      "Cimbalino.Toolkit/2.2.1": {
         "dependencies": {
-          "Cimbalino.Toolkit.Core": "2.1.2",
-          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3"
+          "Cimbalino.Toolkit.Core": "2.2.1",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
         },
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
@@ -6795,10 +6813,7 @@
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
         }
       },
-      "Cimbalino.Toolkit.Core/2.1.2": {
-        "dependencies": {
-          "Microsoft.Bcl.Compression": "3.9.85"
-        },
+      "Cimbalino.Toolkit.Core/2.2.1": {
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
         },
@@ -6910,12 +6925,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -6939,18 +6975,6 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        }
-      },
-      "Microsoft.Bcl.Build/1.0.14": {},
-      "Microsoft.Bcl.Compression/3.9.85": {
-        "dependencies": {
-          "Microsoft.Bcl.Build": "1.0.14"
-        },
-        "compile": {
-          "lib/win8/_._": {}
-        },
-        "runtime": {
-          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -7490,7 +7514,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -7517,7 +7541,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -9005,10 +9029,10 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
         }
       },
-      "Cimbalino.Toolkit/2.1.2": {
+      "Cimbalino.Toolkit/2.2.1": {
         "dependencies": {
-          "Cimbalino.Toolkit.Core": "2.1.2",
-          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3"
+          "Cimbalino.Toolkit.Core": "2.2.1",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
         },
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
@@ -9017,10 +9041,7 @@
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
         }
       },
-      "Cimbalino.Toolkit.Core/2.1.2": {
-        "dependencies": {
-          "Microsoft.Bcl.Compression": "3.9.85"
-        },
+      "Cimbalino.Toolkit.Core/2.2.1": {
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
         },
@@ -9132,12 +9153,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -9161,18 +9203,6 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        }
-      },
-      "Microsoft.Bcl.Build/1.0.14": {},
-      "Microsoft.Bcl.Compression/3.9.85": {
-        "dependencies": {
-          "Microsoft.Bcl.Build": "1.0.14"
-        },
-        "compile": {
-          "lib/win8/_._": {}
-        },
-        "runtime": {
-          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -9692,7 +9722,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -9719,7 +9749,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -11185,10 +11215,10 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
         }
       },
-      "Cimbalino.Toolkit/2.1.2": {
+      "Cimbalino.Toolkit/2.2.1": {
         "dependencies": {
-          "Cimbalino.Toolkit.Core": "2.1.2",
-          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3"
+          "Cimbalino.Toolkit.Core": "2.2.1",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
         },
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
@@ -11197,10 +11227,7 @@
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
         }
       },
-      "Cimbalino.Toolkit.Core/2.1.2": {
-        "dependencies": {
-          "Microsoft.Bcl.Compression": "3.9.85"
-        },
+      "Cimbalino.Toolkit.Core/2.2.1": {
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
         },
@@ -11312,12 +11339,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -11341,18 +11389,6 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        }
-      },
-      "Microsoft.Bcl.Build/1.0.14": {},
-      "Microsoft.Bcl.Compression/3.9.85": {
-        "dependencies": {
-          "Microsoft.Bcl.Build": "1.0.14"
-        },
-        "compile": {
-          "lib/win8/_._": {}
-        },
-        "runtime": {
-          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -11892,7 +11928,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -11919,7 +11955,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -13407,10 +13443,10 @@
           "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.Extras.CommonServiceLocator.dll": {}
         }
       },
-      "Cimbalino.Toolkit/2.1.2": {
+      "Cimbalino.Toolkit/2.2.1": {
         "dependencies": {
-          "Cimbalino.Toolkit.Core": "2.1.2",
-          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.0.3"
+          "Cimbalino.Toolkit.Core": "2.2.1",
+          "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0"
         },
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
@@ -13419,10 +13455,7 @@
           "lib/uap10.0/Cimbalino.Toolkit.dll": {}
         }
       },
-      "Cimbalino.Toolkit.Core/2.1.2": {
-        "dependencies": {
-          "Microsoft.Bcl.Compression": "3.9.85"
-        },
+      "Cimbalino.Toolkit.Core/2.2.1": {
         "compile": {
           "lib/uap10.0/Cimbalino.Toolkit.Core.dll": {}
         },
@@ -13534,12 +13567,33 @@
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
         }
       },
-      "Microsoft.ApplicationInsights/1.2.3": {
+      "Microsoft.ApplicationInsights/2.0.1": {
+        "dependencies": {
+          "System.Collections": "4.0.10",
+          "System.Diagnostics.Debug": "4.0.10",
+          "System.Diagnostics.Tools": "4.0.0",
+          "System.Diagnostics.Tracing": "4.0.20",
+          "System.Globalization": "4.0.10",
+          "System.IO": "4.0.10",
+          "System.IO.Compression": "4.0.0",
+          "System.Linq": "4.0.0",
+          "System.Net.Http": "4.0.0",
+          "System.Reflection": "4.0.10",
+          "System.Reflection.Extensions": "4.0.0",
+          "System.Runtime": "4.0.20",
+          "System.Runtime.Extensions": "4.0.10",
+          "System.Text.Encoding": "4.0.10",
+          "System.Text.Encoding.Extensions": "4.0.10",
+          "System.Text.RegularExpressions": "4.0.10",
+          "System.Threading": "4.0.10",
+          "System.Threading.Tasks": "4.0.10",
+          "System.Xml.XDocument": "4.0.10"
+        },
         "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         },
         "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
+          "lib/uap10.0/Microsoft.ApplicationInsights.dll": {}
         }
       },
       "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -13563,18 +13617,6 @@
         },
         "runtime": {
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        }
-      },
-      "Microsoft.Bcl.Build/1.0.14": {},
-      "Microsoft.Bcl.Compression/3.9.85": {
-        "dependencies": {
-          "Microsoft.Bcl.Build": "1.0.14"
-        },
-        "compile": {
-          "lib/win8/_._": {}
-        },
-        "runtime": {
-          "lib/win8/_._": {}
         }
       },
       "Microsoft.CSharp/4.0.0": {
@@ -14094,7 +14136,7 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
+      "NotificationsExtensions.Win10/14295.0.0": {
         "compile": {
           "lib/uap10.0/NotificationsExtensions.winmd": {}
         },
@@ -14121,7 +14163,7 @@
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
         }
       },
-      "PropertyChanged.Fody/1.50.4": {
+      "PropertyChanged.Fody/1.51.0": {
         "dependencies": {
           "Fody": "1.29.2"
         },
@@ -15596,13 +15638,12 @@
         "package/services/metadata/core-properties/3f4a052a769145d9924d0070094b0481.psmdcp"
       ]
     },
-    "Cimbalino.Toolkit/2.1.2": {
-      "sha512": "IEv0JWFOrC10M6QMEHd/v1qmbfTCxkInowgFvCJMVfrfB2PMhkWcTjP5UlbI+digFULplx/dOjotNyXhvTL5Wg==",
-      "type": "Package",
+    "Cimbalino.Toolkit/2.2.1": {
+      "sha512": "V2j0+aoexzfW8Zg8hSY4VPHa4kOnpLPV1sEjRckA6xlESRmaz+ZaYiX/R3rHR/VO0F9UtewCGM+lnn1kgphnjg==",
+      "type": "package",
       "files": [
+        "Cimbalino.Toolkit.2.2.1.nupkg.sha512",
         "Cimbalino.Toolkit.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
         "lib/uap10.0/Cimbalino.Toolkit.dll",
         "lib/uap10.0/Cimbalino.Toolkit.pdb",
         "lib/uap10.0/Cimbalino.Toolkit.pri",
@@ -15614,24 +15655,29 @@
         "lib/wp8/Cimbalino.Toolkit.dll",
         "lib/wp8/Cimbalino.Toolkit.pdb",
         "lib/wp8/Cimbalino.Toolkit.xml",
+        "lib/wp81/Cimbalino.Toolkit.dll",
+        "lib/wp81/Cimbalino.Toolkit.pdb",
+        "lib/wp81/Cimbalino.Toolkit.xml",
         "lib/wpa81/Cimbalino.Toolkit.dll",
         "lib/wpa81/Cimbalino.Toolkit.pdb",
         "lib/wpa81/Cimbalino.Toolkit.pri",
         "lib/wpa81/Cimbalino.Toolkit.xml",
-        "package/services/metadata/core-properties/5a88c65e46344b27a175960f9b227232.psmdcp",
         "tools/win8/Install.ps1",
         "tools/win8/Uninstall.ps1",
+        "tools/wp8/Install.ps1",
+        "tools/wp8/Uninstall.ps1",
+        "tools/wp81/Install.ps1",
+        "tools/wp81/Uninstall.ps1",
         "tools/wpa81/Install.ps1",
         "tools/wpa81/Uninstall.ps1"
       ]
     },
-    "Cimbalino.Toolkit.Core/2.1.2": {
-      "sha512": "L35KEVokHiY8AcMGawa8oJpmgsSLhLChKRr0Jbr+fXsUEPZ5ayXkS2Cmml/WZL6r+jv1S/EoUh2jQ8vYUlBB2w==",
-      "type": "Package",
+    "Cimbalino.Toolkit.Core/2.2.1": {
+      "sha512": "VF29MDN8BiPpbHIIJp6wBo/7z0HJJbQ9BiBM+ZkWF07+s6yyCAb7uCPz0sZtF7fGqcIHN9KIqITElpgvyuTYrw==",
+      "type": "package",
       "files": [
+        "Cimbalino.Toolkit.Core.2.2.1.nupkg.sha512",
         "Cimbalino.Toolkit.Core.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
         "lib/portable-net45+wp8+win8+wpa81/Cimbalino.Toolkit.Core.dll",
         "lib/portable-net45+wp8+win8+wpa81/Cimbalino.Toolkit.Core.pdb",
         "lib/portable-net45+wp8+win8+wpa81/Cimbalino.Toolkit.Core.xml",
@@ -15646,11 +15692,13 @@
         "lib/wp8/Cimbalino.Toolkit.Core.dll",
         "lib/wp8/Cimbalino.Toolkit.Core.pdb",
         "lib/wp8/Cimbalino.Toolkit.Core.xml",
+        "lib/wp81/Cimbalino.Toolkit.Core.dll",
+        "lib/wp81/Cimbalino.Toolkit.Core.pdb",
+        "lib/wp81/Cimbalino.Toolkit.Core.xml",
         "lib/wpa81/Cimbalino.Toolkit.Core.dll",
         "lib/wpa81/Cimbalino.Toolkit.Core.pdb",
         "lib/wpa81/Cimbalino.Toolkit.Core.pri",
         "lib/wpa81/Cimbalino.Toolkit.Core.xml",
-        "package/services/metadata/core-properties/1f40c84b99d141b7ad753f59c98c8d64.psmdcp",
         "tools/Cimbalino.Toolkit.Core.targets"
       ]
     },
@@ -15797,22 +15845,23 @@
         "package/services/metadata/core-properties/549f8a68026f4c6d88ab4dc623e03d5b.psmdcp"
       ]
     },
-    "Microsoft.ApplicationInsights/1.2.3": {
-      "sha512": "a34atobxpucCTTX9VCD7aIu6Ydzry+Va7TxK2tTQcfaMvefGW4kUKtg9GHKIn19IaXe+A4oZt/GBqsOt5vQrBA==",
-      "type": "Package",
+    "Microsoft.ApplicationInsights/2.0.1": {
+      "sha512": "iZjOx8ysupwITjhCl6suEOBQ+yTUBlJhQ2lfXBJkpS66gjB5TDJxIPrqKJ17/v4QqiFw//eHTGtMUCtoMN6WDQ==",
+      "type": "package",
       "files": [
+        "Microsoft.ApplicationInsights.2.0.1.nupkg.sha512",
         "Microsoft.ApplicationInsights.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
+        "lib/dotnet5.4/Microsoft.ApplicationInsights.XML",
+        "lib/dotnet5.4/Microsoft.ApplicationInsights.dll",
         "lib/net40/Microsoft.ApplicationInsights.XML",
         "lib/net40/Microsoft.ApplicationInsights.dll",
         "lib/net45/Microsoft.ApplicationInsights.XML",
         "lib/net45/Microsoft.ApplicationInsights.dll",
-        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.XML",
+        "lib/net46/Microsoft.ApplicationInsights.XML",
+        "lib/net46/Microsoft.ApplicationInsights.dll",
         "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll",
-        "lib/wp8/Microsoft.ApplicationInsights.XML",
-        "lib/wp8/Microsoft.ApplicationInsights.dll",
-        "package/services/metadata/core-properties/3b36eef276524f5d883c618d5fd8c500.psmdcp"
+        "lib/uap10.0/Microsoft.ApplicationInsights.dll",
+        "lib/wp8/Microsoft.ApplicationInsights.dll"
       ]
     },
     "Microsoft.ApplicationInsights.PersistenceChannel/1.2.3": {
@@ -15847,52 +15896,6 @@
         "lib/wpa81/Microsoft.ApplicationInsights.Extensibility.Windows.XML",
         "lib/wpa81/Microsoft.ApplicationInsights.Extensibility.Windows.dll",
         "package/services/metadata/core-properties/8265b8c93c244c80b4e8bce27f31849d.psmdcp"
-      ]
-    },
-    "Microsoft.Bcl.Build/1.0.14": {
-      "sha512": "cDLKSvNvRa519hplsbSoYqO69TjdDIhfjtKUM0g20/nVROoWsGav9KCI9HtnGjLmdV1+TcUUDhbotcllibjPEA==",
-      "type": "Package",
-      "files": [
-        "License-Stable.rtf",
-        "Microsoft.Bcl.Build.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "content/net40/_._",
-        "content/netcore45/_._",
-        "content/portable-net40+win8+sl4+wp71+wpa81/_._",
-        "content/sl4-windowsphone71/_._",
-        "content/sl4/_._",
-        "package/services/metadata/core-properties/ded9cfb683144eaba586f13af4ae979c.psmdcp",
-        "tools/Install.ps1",
-        "tools/Microsoft.Bcl.Build.Tasks.dll",
-        "tools/Microsoft.Bcl.Build.targets",
-        "tools/Uninstall.ps1"
-      ]
-    },
-    "Microsoft.Bcl.Compression/3.9.85": {
-      "sha512": "3DO/7SNSF3GV25zR8CllyFeRYTUWGhW4pQvQMTlrrHHNXgADaTnVZn67KAc8fOV4sn1yp3X1ZsfMb28O0sdb5Q==",
-      "type": "Package",
-      "files": [
-        "License-Stable.rtf",
-        "Microsoft.Bcl.Compression.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "build/wp8/Microsoft.Bcl.Compression.targets",
-        "lib/native/ARM/ClrCompression.dll",
-        "lib/native/ARM/ClrCompression.winmd",
-        "lib/native/x86/ClrCompression.dll",
-        "lib/native/x86/ClrCompression.winmd",
-        "lib/net45/_._",
-        "lib/portable-net45+win8+wp8+wpa81/System.IO.Compression.dll",
-        "lib/portable-net45+win8+wp8+wpa81/System.IO.Compression.xml",
-        "lib/portable-net45+win8+wpa81/_._",
-        "lib/portable-net45+wp8+wpa81/System.IO.Compression.dll",
-        "lib/portable-net45+wp8+wpa81/System.IO.Compression.xml",
-        "lib/win8/_._",
-        "lib/wp8/System.IO.Compression.dll",
-        "lib/wp8/System.IO.Compression.xml",
-        "lib/wpa81/_._",
-        "package/services/metadata/core-properties/71e716530e0746f5935fdafbd13788de.psmdcp"
       ]
     },
     "Microsoft.CSharp/4.0.0": {
@@ -16957,11 +16960,11 @@
         "tools/install.ps1"
       ]
     },
-    "NotificationsExtensions.Win10/10586.0.2": {
-      "sha512": "aK0M0hQdG0L1qjkmrHIp4WYro6afeBg6ljMfg6jP5cswqQg4gW2WppFOcCLJaWa+ZGVGSgYXkazWEbA0MwRpow==",
+    "NotificationsExtensions.Win10/14295.0.0": {
+      "sha512": "/FXUu5DHTQiEmd30MnPI4jWGm+fbrZA3plSdz/9NfW7DuNRk0t51NRiprT1dKvTK7IS8XuiqYQ2WD0Cn/WImEg==",
       "type": "package",
       "files": [
-        "NotificationsExtensions.Win10.10586.0.2.nupkg.sha512",
+        "NotificationsExtensions.Win10.14295.0.0.nupkg.sha512",
         "NotificationsExtensions.Win10.nuspec",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.XML",
         "lib/dotnet/NotificationsExtensions.Win10.NETCore.dll",
@@ -17027,22 +17030,20 @@
         "package/services/metadata/core-properties/a4292403266f496984f1b4c78d453d58.psmdcp"
       ]
     },
-    "PropertyChanged.Fody/1.50.4": {
-      "sha512": "RcYoNikGPm9koqwsrffX5PS4dDxBTPHvpddzY+TXFgoHdbh6fKAsQTuIxIB2qklkTANPMMBRJ2K+6ehW+Ci8YQ==",
-      "type": "Package",
+    "PropertyChanged.Fody/1.51.0": {
+      "sha512": "4uO0gtL1SyTXUE+ixL1Pn6ss07B60FzW5EyLqNyi+OLyBMB5ebv8I3L8D8GP3U9VtwvJD7N7ZC0DZULN+bVBpw==",
+      "type": "package",
       "files": [
         "Lib/dotnet/PropertyChanged.dll",
         "Lib/dotnet/PropertyChanged.xml",
         "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.dll",
         "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.xml",
+        "PropertyChanged.Fody.1.51.0.nupkg.sha512",
         "PropertyChanged.Fody.dll",
         "PropertyChanged.Fody.nuspec",
         "PropertyChanged.Fody.pdb",
         "Tools/install.ps1",
-        "Tools/uninstall.ps1",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "package/services/metadata/core-properties/4aaa1e89f960409c9283732f854ee889.psmdcp"
+        "Tools/uninstall.ps1"
       ]
     },
     "Remotion.Linq/2.0.1": {
@@ -19858,10 +19859,10 @@
     "": [
       "Autofac >= 3.5.2",
       "Autofac.Extras.CommonServiceLocator >= 3.2.0",
-      "Cimbalino.Toolkit >= 2.1.2",
+      "Cimbalino.Toolkit >= 2.2.1",
       "EntityFramework.Commands >= 7.0.0-rc1-final",
       "EntityFramework.SQLite >= 7.0.0-rc1-final",
-      "Microsoft.ApplicationInsights >= 1.2.3",
+      "Microsoft.ApplicationInsights >= 2.0.1",
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.2.3",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.1.1",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
