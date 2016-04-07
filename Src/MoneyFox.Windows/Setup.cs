@@ -18,6 +18,7 @@ using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Plugins.WebBrowser.WindowsCommon;
 using MvvmCross.WindowsUWP.Platform;
 using Xamarin;
+using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
 
 namespace MoneyFox.Windows
 {
@@ -31,7 +32,7 @@ namespace MoneyFox.Windows
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
             base.LoadPlugins(pluginManager);
-            pluginManager.EnsurePluginLoaded<MvvmCross.Plugins.Messenger.PluginLoader>();
+            pluginManager.EnsurePluginLoaded<PluginLoader>();
 
             //We have to do this here, since the loading via bootloader won't work for UWP projects
             Mvx.RegisterType<IMvxComposeEmailTask, MvxComposeEmailTask>();

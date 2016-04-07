@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-	  xmlns:local="http://schemas.android.com/apk/res-auto">
+      xmlns:local="http://schemas.android.com/apk/res-auto">
 
   <item android:id="@+id/action_add_income"
         android:icon="@drawable/ic_add"
         android:title="@string/action_add_income"
         local:showAsAction="always|withText" />
-  
+
   <item android:id="@+id/action_add_spending"
         android:icon="@drawable/ic_remove"
         android:title="@string/action_add_spending"

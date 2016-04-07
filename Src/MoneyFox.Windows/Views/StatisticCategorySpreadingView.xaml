@@ -1,4 +1,4 @@
-﻿<Page
+﻿<views:MvxWindowsPage
     x:Class="MoneyFox.Windows.Views.StatisticCategorySpreadingView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,6 +9,7 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
     xmlns:viewModels="using:MoneyFox.Shared.ViewModels"
+    xmlns:views="using:MvvmCross.WindowsUWP.Views"
     mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
@@ -81,4 +82,4 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
-</Page>
+</views:MvxWindowsPage>

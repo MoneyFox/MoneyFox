@@ -9,7 +9,7 @@ namespace MoneyFox.Windows.Converter
         //if it's true, use dark theme, else use light theme
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is bool && (bool)value)
+            if (value is bool && (bool) value)
             {
                 if (parameter != null)
                 {
@@ -17,40 +17,23 @@ namespace MoneyFox.Windows.Converter
                     {
                         return ElementTheme.Light;
                     }
-                    else
-                    {
-                        return ElementTheme.Dark;
-                    }
+                    return ElementTheme.Dark;
                 }
-                else
+                return ElementTheme.Dark;
+            }
+            if (parameter != null)
+            {
+                if (parameter.ToString() == "!")
                 {
                     return ElementTheme.Dark;
                 }
+                return ElementTheme.Light;
             }
-            else
-            {
-                if (parameter != null)
-                {
-                    if (parameter.ToString() == "!")
-                    {
-                        return ElementTheme.Dark;
-                    }
-                    else
-                    {
-                        return ElementTheme.Light;
-                    }
-                }
-                else
-                {
-                    return ElementTheme.Light;
-                }
-            }
-
-
+            return ElementTheme.Light;
         }
 
         /// <summary>
-        /// Convert visibility to boolean
+        ///     Convert visibility to boolean
         /// </summary>
         /// <param name="value">Value to convert</param>
         /// <param name="targetType">Target type</param>
@@ -59,7 +42,7 @@ namespace MoneyFox.Windows.Converter
         /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            if (value is ElementTheme && (ElementTheme)value == ElementTheme.Dark)
+            if (value is ElementTheme && (ElementTheme) value == ElementTheme.Dark)
             {
                 return true;
             }

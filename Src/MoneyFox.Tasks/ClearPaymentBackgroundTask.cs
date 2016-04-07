@@ -45,7 +45,8 @@ namespace MoneyFox.Tasks
             {
                 paymentManager.ClearPayments();
                 Tile.UpdateMainTile();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Insights.Report(ex);
             }

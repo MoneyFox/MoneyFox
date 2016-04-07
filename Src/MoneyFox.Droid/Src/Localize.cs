@@ -1,5 +1,4 @@
 using System.Globalization;
-using Java.Util;
 using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Droid

@@ -1,9 +1,5 @@
 using System;
 using System.Globalization;
-using Android.App;
-using Android.Content;
-using Android.Preferences;
-using Java.Lang;
 using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Droid

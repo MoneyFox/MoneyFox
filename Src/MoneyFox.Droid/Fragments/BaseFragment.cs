@@ -1,12 +1,4 @@
-﻿using Android.Content.Res;
-using Android.OS;
-using Android.Support.V7.Widget;
-using Android.Views;
-using MoneyFox.Droid.Activities;
-using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Droid.Support.V7.AppCompat;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+﻿using MoneyFox.Droid.Activities;
 
 namespace MoneyFox.Droid.Fragments
 {
@@ -69,7 +61,7 @@ namespace MoneyFox.Droid.Fragments
 
     public abstract class BaseFragment<TViewModel> : BaseFragment where TViewModel : class, IMvxViewModel
     {
-        public new TViewModel ViewModel
+        public TViewModel ViewModel
         {
             get { return (TViewModel) base.ViewModel; }
             set { base.ViewModel = value; }

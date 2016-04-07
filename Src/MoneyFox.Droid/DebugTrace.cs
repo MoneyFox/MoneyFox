@@ -1,6 +1,4 @@
 using System;
-using System.Diagnostics;
-using MvvmCross.Platform.Platform;
 
 namespace MoneyFox.Droid
 {
