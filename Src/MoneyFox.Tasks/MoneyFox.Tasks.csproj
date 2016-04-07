@@ -112,15 +112,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj">
-      <Project>{2F774D5A-E9B5-4AB2-84AA-51A6E9BDB456}</Project>
-      <Name>MoneyFox.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">
+      <Project>{3E0E36AF-65D9-4542-8551-31B76577AA4C}</Project>
+      <Name>MoneyFox.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Windows\MoneyFox.Windows.csproj">
+      <Project>{66EA2C31-4D7C-4FD1-8F9B-24E56266A8D2}</Project>
+      <Name>MoneyFox.Windows</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

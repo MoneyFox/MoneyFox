@@ -2,9 +2,9 @@
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
-using Microsoft.Practices.ServiceLocation;
-using MoneyFox.Core.ViewModels;
+using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Views.Dialogs;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
 {
@@ -13,7 +13,7 @@ namespace MoneyFox.Windows.Views
         public SelectCategoryListView()
         {
             InitializeComponent();
-            DataContext = ServiceLocator.Current.GetInstance<SelectCategoryListViewModel>();
+            DataContext = Mvx.Resolve<SelectCategoryListViewModel>();
         }
 
         private async void AddCategory(object sender, RoutedEventArgs e)

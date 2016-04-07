@@ -140,18 +140,18 @@
         </Grid.RowDefinitions>
 
         <userControls:BalanceUserControl Grid.Row="0"
-                                          DataContext="{Binding BalanceViewModel}" />
+                                         DataContext="{Binding BalanceViewModel}" />
 
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
                 <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
-                                                  EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
-                                                  ItemsSource="{Binding Source={StaticResource Groups}}"
-                                                  ItemTemplate="{StaticResource PaymentViewModelTemplate}"
-                                                  HorizontalAlignment="Stretch"
-                                                  ShowsScrollingPlaceholders="false"
-                                                  IsItemClickEnabled="True"
-                                                  IsSynchronizedWithCurrentItem="False">
+                                                 EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                                 ItemsSource="{Binding Source={StaticResource Groups}}"
+                                                 ItemTemplate="{StaticResource PaymentViewModelTemplate}"
+                                                 HorizontalAlignment="Stretch"
+                                                 ShowsScrollingPlaceholders="false"
+                                                 IsItemClickEnabled="True"
+                                                 IsSynchronizedWithCurrentItem="False">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
                             <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}"

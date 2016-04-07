@@ -1,11 +1,13 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
 using Microsoft.ApplicationInsights;
-using MoneyFox.Core.DataAccess;
-using MoneyFox.Core.DatabaseModels;
-using MoneyFox.Core.Manager;
-using MoneyFox.Core.Repositories;
-using MoneyFox.Core.Shortcut;
+using MoneyFox.Shared;
+using MoneyFox.Shared.DataAccess;
+using MoneyFox.Shared.Manager;
+using MoneyFox.Shared.Repositories;
+using MoneyManager.Windows.Shortcut;
+using MvvmCross.Plugins.Sqlite.WindowsUWP;
+using Xamarin;
 
 namespace MoneyFox.Tasks
 {
@@ -15,13 +17,25 @@ namespace MoneyFox.Tasks
 
         public ClearPaymentBackgroundTask()
         {
-            var accountRepository = new AccountRepository(new GenericDataRepository<Account>());
+            var insightKey = "599ff6bfdc79368ff3d5f5629a57c995fe93352e";
+
+#if DEBUG
+            insightKey = Insights.DebugModeKey;
+#endif
+            if (!Insights.IsInitialized)
+            {
+                Insights.Initialize(insightKey);
+            }
+
+            var sqliteConnectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
+
+            var accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnectionCreator));
 
             paymentManager = new PaymentManager(
-                new PaymentRepository(new GenericDataRepository<Payment>(),
-                    new GenericDataRepository<RecurringPayment>(),
+                new PaymentRepository(new PaymentDataAccess(sqliteConnectionCreator),
+                    new RecurringPaymentDataAccess(sqliteConnectionCreator),
                     accountRepository,
-                    new CategoryRepository(new GenericDataRepository<Category>())),
+                    new CategoryRepository(new CategoryDataAccess(sqliteConnectionCreator))),
                 accountRepository,
                 null);
         }
@@ -32,10 +46,9 @@ namespace MoneyFox.Tasks
             {
                 paymentManager.ClearPayments();
                 Tile.UpdateMainTile();
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
-                new TelemetryClient().TrackException(ex);
+                Insights.Report(ex);
             }
         }
     }

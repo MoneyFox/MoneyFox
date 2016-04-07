@@ -3,7 +3,7 @@ using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 
-namespace MoneyFox.Windows.Converter
+namespace MoneyManager.Windows.Converter
 {
     public class SelectedConverter : IValueConverter
     {

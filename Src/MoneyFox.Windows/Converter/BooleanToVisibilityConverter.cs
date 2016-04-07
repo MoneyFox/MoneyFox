@@ -4,23 +4,21 @@ using Windows.UI.Xaml.Data;
 
 namespace MoneyManager.Windows.Converter
 {
-    public class NoteVisibilityConverter : IValueConverter
+    public class BooleanToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value == null)
+            if (parameter != null && parameter.ToString() == "revert")
             {
-                return Visibility.Collapsed;
+                return (bool) value ? Visibility.Collapsed : Visibility.Visible;
             }
 
-            return string.IsNullOrEmpty(value.ToString())
-                ? Visibility.Collapsed
-                : Visibility.Visible;
+            return (bool) value ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            return (bool) value ? Visibility.Collapsed : Visibility.Visible;
         }
     }
 }
