@@ -1,7 +1,7 @@
 ﻿using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.ViewModels;
 
-namespace MoneyManager.Windows
+namespace MoneyFox.Windows
 {
     public class TileHelper : BaseViewModel
     {

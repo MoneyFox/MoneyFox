@@ -18,6 +18,7 @@ using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Views;
 using MoneyManager.Windows;
 using MoneyManager.Windows.Services;
@@ -93,7 +94,7 @@ namespace MoneyFox.Windows
                 shell.AppMyFrame.Navigate(typeof (LoginView));
             }
 
-            Mvx.Resolve<TileHelper>().DoNavigation(string.IsNullOrEmpty(e.Arguments)
+            new TileHelper().DoNavigation(string.IsNullOrEmpty(e.Arguments)
                 ? e.TileId
                 : e.Arguments);
 

@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyManager.Windows.Services
+namespace MoneyFox.Windows.Services
 {
     public class BackgroundTaskService : IBackgroundTaskService
     {
         private Dictionary<string, string> Tasks => new Dictionary<string, string>
         {
-            {"ClearPaymentBackgroundTask", "MoneyManager.Tasks.Windows"}
+            {"ClearPaymentBackgroundTask", "MoneyFox.Tasks"}
         };
 
         public async Task RegisterTasksAsync()

@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
-using Microsoft.ApplicationInsights;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Manager;
