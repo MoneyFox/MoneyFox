@@ -7,8 +7,8 @@
     xmlns:windows="using:OxyPlot.Windows"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:viewModels="using:MoneyFox.Core.ViewModels"
     xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+    xmlns:viewModels="using:MoneyFox.Shared.ViewModels"
     mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>

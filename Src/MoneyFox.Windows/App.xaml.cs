@@ -13,20 +13,18 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.ApplicationInsights;
-using Microsoft.Data.Entity;
-using Microsoft.Practices.ServiceLocation;
-using MoneyFox.Core;
-using MoneyFox.Core.Authentication;
-using MoneyFox.Core.Constants;
-using MoneyFox.Core.DataAccess;
-using MoneyFox.Core.DatabaseModels;
-using MoneyFox.Core.Helpers;
-using MoneyFox.Core.Services;
-using MoneyFox.Core.SettingAccess;
-using MoneyFox.Core.Shortcut;
-using MoneyFox.Core.Resources;
+using MoneyFox.Shared.Authentication;
+using MoneyFox.Shared.Constants;
+using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Model;
+using MoneyFox.Shared.Resources;
+using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Views;
+using MoneyManager.Windows;
+using MoneyManager.Windows.Services;
+using MoneyManager.Windows.Shortcut;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
 using UniversalRateReminder;
 
 namespace MoneyFox.Windows
@@ -47,87 +45,9 @@ namespace MoneyFox.Windows
             WindowsAppInitializer.InitializeAsync();
 #endif
 
-            MigrateDatabase();
             Suspending += OnSuspending;
         }
 
-        private async void MigrateDatabase()
-        {
-            using (var db = new MoneyFoxDataContext())
-            {
-                db.Database.Migrate();
-
-                var filestore = new FileStore();
-
-                if (!await filestore.Exists(Path.Combine(ApplicationData.Current.LocalFolder.Path,
-                            OneDriveConstants.DB_NAME_OLD)))
-                {
-                    return;
-                }
-
-                using (var oldDb = new MoneyFoxOldDataContext())
-                {
-                    foreach (var oldCategory in oldDb.Categories)
-                    {
-                        db.Categories.Add(new Category
-                        {
-                            Id = oldCategory.Id,
-                            Name = oldCategory.Name
-                        });
-                    }
-
-                    foreach (var oldAccount in oldDb.Accounts)
-                    {
-                        db.Accounts.Add(new Account
-                        {
-                            Id = oldAccount.Id,
-                            Name = oldAccount.Name,
-                            CurrentBalance = oldAccount.CurrentBalance,
-                            Iban = oldAccount.Iban,
-                            Note = oldAccount.Note
-                        });
-                    }
-
-                    foreach (var oldPayment in oldDb.Payments)
-                    {
-                        db.Payments.Add(new Payment
-                        {
-                            Id = oldPayment.Id,
-                            ChargedAccountId = oldPayment.ChargedAccountId,
-                            TargetAccountId = oldPayment.TargetAccountId,
-                            Amount = oldPayment.Amount,
-                            CategoryId = oldPayment.CategoryId,
-                            Date = oldPayment.Date,
-                            IsCleared = oldPayment.IsCleared,
-                            IsRecurring = oldPayment.IsRecurring,
-                            Note = oldPayment.Note,
-                            RecurringPaymentId = oldPayment.RecurringPaymentId,
-                            Type = oldPayment.Type
-                        });
-                    }
-
-                    foreach (var oldRecPayments in oldDb.RecurringPayments)
-                    {
-                        db.RecurringPayments.Add(new RecurringPayment
-                        {
-                            Id = oldRecPayments.Id,
-                            Amount = oldRecPayments.Amount,
-                            CategoryId = oldRecPayments.CategoryId,
-                            ChargedAccountId = oldRecPayments.ChargedAccountId,
-                            TargetAccountId = oldRecPayments.TargetAccountId,
-                            Recurrence = oldRecPayments.Recurrence,
-                            IsEndless = oldRecPayments.IsEndless,
-                            Note = oldRecPayments.Note,
-                            StartDate = oldRecPayments.StartDate,
-                            EndDate = oldRecPayments.EndDate,
-                            Type = oldRecPayments.Type
-                        });
-                    }
-
-                    oldDb.Database.EnsureDeleted();
-                }
-            }
-        }
 
         /// <summary>
         ///     Invoked when the application is launched normally by the end user.  Other entry points
@@ -156,10 +76,14 @@ namespace MoneyFox.Windows
             {
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                shell.AppMyFrame.Navigate(typeof (MainView));
+                var setup = new Setup(shell.AppMyFrame);
+                setup.Initialize();
+
+                var start = Mvx.Resolve<IMvxAppStart>();
+                start.Start();
             }
 
-            if (ServiceLocator.Current.GetInstance<Session>().ValidateSession())
+            if (Mvx.Resolve<Session>().ValidateSession())
             {
                 shell.SetLoggedInView();
                 shell.AppMyFrame.Navigate(typeof (MainView));
@@ -170,7 +94,7 @@ namespace MoneyFox.Windows
                 shell.AppMyFrame.Navigate(typeof (LoginView));
             }
 
-            ServiceLocator.Current.GetInstance<TileHelper>().DoNavigation(string.IsNullOrEmpty(e.Arguments)
+            new TileHelper().DoNavigation(string.IsNullOrEmpty(e.Arguments)
                 ? e.TileId
                 : e.Arguments);
 

@@ -5,9 +5,9 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.Practices.ServiceLocation;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Resources;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Resources;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
 {
@@ -34,7 +34,7 @@ namespace MoneyFox.Windows.Views
 
         private async Task Login()
         {
-            if (!ServiceLocator.Current.GetInstance<IPasswordStorage>().ValidatePassword(PasswordBox.Password))
+            if (!Mvx.Resolve<IPasswordStorage>().ValidatePassword(PasswordBox.Password))
             {
                 await new MessageDialog(Strings.PasswordWrongMessage, Strings.PasswordWrongTitle).ShowAsync();
                 return;

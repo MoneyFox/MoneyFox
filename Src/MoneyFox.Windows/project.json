@@ -1,24 +1,30 @@
 ﻿{
   "dependencies": {
-    "Autofac": "3.5.2",
-    "Autofac.Extras.CommonServiceLocator": "3.2.0",
-    "Cimbalino.Toolkit": "2.1.2",
-    "EntityFramework.Commands": "7.0.0-rc1-final",
-    "EntityFramework.SQLite": "7.0.0-rc1-final",
-    "Microsoft.ApplicationInsights": "1.2.3",
+    "Microsoft.ApplicationInsights": "2.0.1",
     "Microsoft.ApplicationInsights.PersistenceChannel": "1.2.3",
     "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Microsoft.NETNative.Analyzer": "1.0.0",
     "Microsoft.OneDriveSDK": "1.1.20",
     "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
-    "MvvmLightLibs": "5.2.0",
+    "MvvmCross.Core": "4.1.0",
+    "MvvmCross.Plugin.Email": "4.1.0",
+    "MvvmCross.Plugin.File": "4.1.0",
+    "MvvmCross.Plugin.Messenger": "4.1.0",
+    "MvvmCross.Plugin.SQLitePCL": "4.1.0",
+    "MvvmCross.Plugin.WebBrowser": "4.1.1",
+    "NotificationsExtensions.Win10": "14295.0.0",
     "OxyPlot.Windows": "2015.1.1033-alpha",
-    "UniversalRateReminder": "2.0.0"
+    "PropertyChanged.Fody": "1.51.0",
+    "SQLite.Net-PCL": "3.1.1",
+    "SQLite.Net.Async-PCL": "3.1.1",
+    "SQLite.Net.Core-PCL": "3.1.1",
+    "UniversalRateReminder": "2.0.0",
+    "Xamarin.Insights": "1.12.3"
   },
-    "frameworks": {
-        "uap10.0": { }
-    },
+  "frameworks": {
+    "uap10.0": {}
+  },
   "runtimes": {
     "win10-arm": {},
     "win10-arm-aot": {},

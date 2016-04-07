@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using MoneyFox.Core.Resources;
+using MoneyFox.Shared.Resources;
 using MoneyFox.Windows.Controls;
 
 namespace MoneyFox.Windows.Views
@@ -435,7 +435,7 @@ namespace MoneyFox.Windows.Views
         public string Label { get; set; }
         public Symbol Symbol { get; set; }
 
-        public char SymbolAsChar => (char)Symbol;
+        public char SymbolAsChar => (char) Symbol;
 
         public Type DestPage { get; set; }
         public object Arguments { get; set; }

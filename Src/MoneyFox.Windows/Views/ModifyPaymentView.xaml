@@ -5,20 +5,19 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:converters="using:Cimbalino.Toolkit.Converters"
       xmlns:converter="using:MoneyFox.Windows.Converter"
       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-      xmlns:databaseModels="using:MoneyFox.Core.DatabaseModels"
+      xmlns:model="using:MoneyFox.Shared.Model"
       mc:Ignorable="d"
       NavigationCacheMode="Enabled"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-        <converter:AmountFormatConverter x:Key="AmountConverter" />
+        <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-        <converters:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <DataTemplate x:Key="ComboBoxTemplate"
-                      x:DataType="databaseModels:Account">
+                      x:DataType="model:Account">
             <StackPanel Margin="0,0,0,12"
                         Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
@@ -111,7 +110,8 @@
                                   VerticalAlignment="Stretch"
                                   IsOn="{Binding SelectedPayment.IsRecurring, Mode=TwoWay}"
                                   Margin="0,7,0,0" />
-                    <StackPanel Visibility="{Binding SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
+                    <StackPanel
+                        Visibility="{Binding SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
                         <ComboBox Header="Reccurence"
                                   x:Uid="RecurrenceComboBox"
                                   HorizontalAlignment="Stretch"

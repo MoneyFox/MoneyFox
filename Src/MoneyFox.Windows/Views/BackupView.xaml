@@ -5,8 +5,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:converters="using:Cimbalino.Toolkit.Converters"
       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+      xmlns:converter="using:MoneyFox.Windows.Converter"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -17,7 +17,7 @@
     </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
-        <converters:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
     </Page.Resources>
 
     <Grid>

@@ -111,25 +111,40 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converter\CultureConverter.cs" />
+    <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="Converter\NativeAmountFormatConverter.cs" />
+    <Compile Include="Converter\NativePaymentAmountConverter.cs" />
+    <Compile Include="Converter\NoteVisibilityConverter.cs" />
+    <Compile Include="Converter\RevertVisibilityConverter.cs" />
+    <Compile Include="Converter\SelectedAccountConverter.cs" />
+    <Compile Include="Converter\SelectedConverter.cs" />
+    <Compile Include="Converter\ThemedImageConverter.cs" />
+    <Compile Include="Services\BackgroundTaskService.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\OneDriveAuthenticator.cs" />
+    <Compile Include="SettingAccess\LocalSettings.cs" />
+    <Compile Include="SettingAccess\RoamingSettings.cs" />
+    <Compile Include="SettingAccess\Settings.cs" />
+    <Compile Include="Setup.cs" />
+    <Compile Include="Src\AppInformation.cs" />
+    <Compile Include="Src\ProtectedData.cs" />
+    <Compile Include="Src\Shortcuts\ExpenseTile.cs" />
+    <Compile Include="Src\Shortcuts\IncomeTile.cs" />
+    <Compile Include="Src\Shortcuts\Tile.cs" />
+    <Compile Include="Src\Shortcuts\TransferTile.cs" />
+    <Compile Include="Src\StoreFeatures.cs" />
+    <Compile Include="Src\ThemedImageConverterLogic.cs" />
+    <Compile Include="Src\TileHelper.cs" />
+    <Compile Include="Src\UserNotification.cs" />
     <Compile Include="Views\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\AlternatingRowListView.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Controls\SwipeableSplitView.cs" />
-    <Compile Include="Converter\AmountFormatConverter.cs" />
-    <Compile Include="Converter\CultureConverter.cs" />
-    <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
-    <Compile Include="Converter\NoteVisibilityConverter.cs" />
-    <Compile Include="Converter\PaymentAmountConverter.cs" />
-    <Compile Include="Converter\RevertVisibilityConverter.cs" />
-    <Compile Include="Converter\SelectedAccountConverter.cs" />
-    <Compile Include="Converter\SelectedConverter.cs" />
-    <Compile Include="Converter\ThemedImageConverter.cs" />
-    <Compile Include="Src\PageNavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Src\ThemedImageConverterLogic.cs" />
-    <Compile Include="Src\ViewModelLocator.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
@@ -304,6 +319,7 @@
     <None Include="MoneyFox.Windows_StoreKey.pfx" />
     <None Include="MoneyFox.Windows_TemporaryKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
+    <None Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -462,18 +478,11 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj">
-      <Project>{2F774D5A-E9B5-4AB2-84AA-51A6E9BDB456}</Project>
-      <Name>MoneyFox.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Tasks\MoneyFox.Tasks.csproj">
-      <Project>{55dd9633-db49-4e60-8805-4db14603b160}</Project>
-      <Name>MoneyFox.Tasks</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.12.0">
+      <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
     <SDKReference Include="WindowsDesktop, Version=10.0.10586.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
@@ -481,6 +490,12 @@
     <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">
+      <Project>{3E0E36AF-65D9-4542-8551-31B76577AA4C}</Project>
+      <Name>MoneyFox.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

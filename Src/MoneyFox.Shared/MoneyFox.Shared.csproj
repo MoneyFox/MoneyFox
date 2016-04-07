@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3E0E36AF-65D9-4542-8551-31B76577AA4C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MoneyFox.Shared</RootNamespace>
+    <AssemblyName>MoneyFox.Shared</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.cs" />
+    <Compile Include="AppStart.cs" />
+    <Compile Include="Authentication\PasswordStorage.cs" />
+    <Compile Include="Authentication\Session.cs" />
+    <Compile Include="Converter\AmountFormatConverter.cs" />
+    <Compile Include="Converter\DateTimeFormatConverter.cs" />
+    <Compile Include="Converter\PaymentAmountConverter.cs" />
+    <Compile Include="DataAccess\AbstractDataAccess.cs" />
+    <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Constants\OneDriveAuthenticationConstants.cs" />
+    <Compile Include="DataAccess\AccountDataAccess.cs" />
+    <Compile Include="DataAccess\CategoryDataAccess.cs" />
+    <Compile Include="DataAccess\PaymentDataAccess.cs" />
+    <Compile Include="DataAccess\RecurringPaymentDataAccess.cs" />
+    <Compile Include="DataAccess\SettingDataAccess.cs" />
+    <Compile Include="Enumerations.cs" />
+    <Compile Include="Exceptions\AccountMissingException.cs" />
+    <Compile Include="Exceptions\BackupException.cs" />
+    <Compile Include="Exceptions\ConnectionException.cs" />
+    <Compile Include="Exceptions\ExtendedFormatException.cs" />
+    <Compile Include="Extensions\DateTimeExtension.cs" />
+    <Compile Include="Extensions\StreamExtension.cs" />
+    <Compile Include="Groups\AlphaGroupListGroup.cs" />
+    <Compile Include="Groups\DateListGroup.cs" />
+    <Compile Include="Helpers\PaymentTypeHelper.cs" />
+    <Compile Include="Helpers\RecurringPaymentHelper.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Helpers\Utilities.cs" />
+    <Compile Include="Interfaces\IAccountRepository.cs" />
+    <Compile Include="Interfaces\IAppInformation.cs" />
+    <Compile Include="Interfaces\IAutobackupManager.cs" />
+    <Compile Include="Interfaces\IBackgroundTaskService.cs" />
+    <Compile Include="Interfaces\IBackupService.cs" />
+    <Compile Include="Interfaces\IDataAccess.cs" />
+    <Compile Include="Interfaces\IDefaultManager.cs" />
+    <Compile Include="Interfaces\IDialogService.cs" />
+    <Compile Include="Interfaces\ILocalize.cs" />
+    <Compile Include="Interfaces\ILocalSettings.cs" />
+    <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
+    <Compile Include="Interfaces\IPasswordStorage.cs" />
+    <Compile Include="Interfaces\IPaymentManager.cs" />
+    <Compile Include="Interfaces\IPaymentRepository.cs" />
+    <Compile Include="Interfaces\IProtectedData.cs" />
+    <Compile Include="Interfaces\IRecurringPaymentManager.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IRepositoryManager.cs" />
+    <Compile Include="Interfaces\IRoamingSettings.cs" />
+    <Compile Include="Interfaces\ISqliteConnectionCreator.cs" />
+    <Compile Include="Interfaces\IStatisticProvider.cs" />
+    <Compile Include="Interfaces\IStoreFeatures.cs" />
+    <Compile Include="Interfaces\IUserNotification.cs" />
+    <Compile Include="Interfaces\Shotcuts\IIncomeShortcut.cs" />
+    <Compile Include="Interfaces\Shotcuts\IShortcut.cs" />
+    <Compile Include="Interfaces\Shotcuts\ISpendingShortcut.cs" />
+    <Compile Include="Interfaces\Shotcuts\ITransferShortcut.cs" />
+    <Compile Include="Interfaces\ViewModels\IAccountListViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\ICategoryListViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
+    <Compile Include="Manager\AutoBackupManager.cs" />
+    <Compile Include="Manager\DefaultManager.cs" />
+    <Compile Include="Manager\PaymentManager.cs" />
+    <Compile Include="Manager\RecurringPaymentManager.cs" />
+    <Compile Include="Manager\RepositoryManager.cs" />
+    <Compile Include="Messages\CategorySelectedMessage.cs" />
+    <Compile Include="Messages\DateSelectedMessage.cs" />
+    <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\CashFlow.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Payment.cs" />
+    <Compile Include="Model\RecurringPayment.cs" />
+    <Compile Include="Model\StatisticItem.cs" />
+    <Compile Include="Model\StatisticSelectorType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\PaymentRepository.cs" />
+    <Compile Include="Resources\Strings.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.de.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Strings.pt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.pt.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Strings.ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Strings.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\OneDriveService.cs" />
+    <Compile Include="SqliteConnectionCreator.cs" />
+    <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
+    <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
+    <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />
+    <Compile Include="StatisticDataProvider\ExpensesMonthlyDataProvider.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\AccountListViewModel.cs" />
+    <Compile Include="ViewModels\BackupViewModel.cs" />
+    <Compile Include="ViewModels\BalanceViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CategoryDialogViewModel.cs" />
+    <Compile Include="ViewModels\CategoryListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
+    <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
+    <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
+    <Compile Include="ViewModels\PaymentListViewModel.cs" />
+    <Compile Include="ViewModels\RecurringPaymentListViewModel.cs" />
+    <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
+    <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
+    <Compile Include="ViewModels\SettingsGeneralViewModel.cs" />
+    <Compile Include="ViewModels\SettingsSecurityViewModel.cs" />
+    <Compile Include="ViewModels\SettingsShortcutsViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\StatisticCashFlowViewModel.cs" />
+    <Compile Include="ViewModels\StatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\StatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\StatisticMonthlyExpensesViewModel.cs" />
+    <Compile Include="ViewModels\StatisticSelectorViewModel.cs" />
+    <Compile Include="ViewModels\StatisticViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MvvmCross.Core">
+      <HintPath>..\packages\MvvmCross.Core.4.1.0\lib\MonoAndroid\MvvmCross.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform">
+      <HintPath>..\MoneyFox.Shared.Tests\bin\Debug\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Email">
+      <HintPath>..\packages\MvvmCross.Plugin.Email.4.1.0\lib\MonoAndroid\MvvmCross.Plugins.Email.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File">
+      <HintPath>..\packages\MvvmCross.Plugin.File.4.1.0\lib\MonoAndroid\MvvmCross.Plugins.File.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger">
+      <HintPath>..\packages\MvvmCross.Plugin.Messenger.4.1.0\lib\MonoAndroid\MvvmCross.Plugins.Messenger.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Sqlite, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.SQLitePCL.4.1.0\lib\portable-win+net45+wp8+win8+wpa81+win81+dotnet\MvvmCross.Plugins.Sqlite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.WebBrowser">
+      <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.1.1\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OneDriveSdk, Version=1.1.20.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.OneDriveSDK.1.1.20\lib\portable-net45+netcore45+wpa81+win8\OneDriveSdk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OxyPlot, Version=2015.1.999.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.2015.1.999-alpha\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\OxyPlot.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PropertyChanged, Version=1.51.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\packages\PropertyChanged.Fody.1.51.0\lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SQLite.Net, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite.Net.Async, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLite.Net.Async-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.Async.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Insights, Version=1.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Insights.1.12.3\lib\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Strings.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.pt.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.pt.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\packages\Fody.1.30.0-beta01\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.30.0-beta01\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.1.30.0-beta01\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.30.0-beta01\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Xamarin.Insights.1.12.3\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Insights.1.12.3\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets'))" />
+  </Target>
+  <Import Project="..\packages\Xamarin.Insights.1.12.3\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.12.3\build\portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10\Xamarin.Insights.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
