@@ -19,8 +19,8 @@
                 <PivotItem>
                     <PivotItem.Header>
                         <userControls:TabHeader Label="Tiles"
-                                                 x:Uid="TilesHeader"
-                                                 Glyph="&#xE8FC;" />
+                                                x:Uid="TilesHeader"
+                                                Glyph="&#xE8FC;" />
                     </PivotItem.Header>
                     <userControls:SettingsShortcutsUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
@@ -29,8 +29,8 @@
                 <PivotItem>
                     <PivotItem.Header>
                         <userControls:TabHeader Label="Password"
-                                                 x:Uid="SecurityHeader"
-                                                 Glyph="&#xE8D7;" />
+                                                x:Uid="SecurityHeader"
+                                                Glyph="&#xE8D7;" />
                     </PivotItem.Header>
                     <userControls:SettingsSecurityUserControl Margin="-7,0,-7,0" />
                 </PivotItem>

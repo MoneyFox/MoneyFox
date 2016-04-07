@@ -18,7 +18,7 @@
     </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
-        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="CategoryTemplate">
             <Grid HorizontalAlignment="Stretch"
                   VerticalAlignment="Center"
@@ -65,9 +65,9 @@
 
             <ScrollViewer Grid.Row="1">
                 <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                                  EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                                  ItemsSource="{Binding CategorySummary}"
-                                                  ItemTemplate="{StaticResource CategoryTemplate}">
+                                                 EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                                 ItemsSource="{Binding CategorySummary}"
+                                                 ItemTemplate="{StaticResource CategoryTemplate}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment"

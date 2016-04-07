@@ -4,6 +4,6 @@
     <NuGetPackageRoot>$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
   </PropertyGroup>
   <ImportGroup>
-    <Import Project="$(NuGetPackageRoot)\Microsoft.Data.Sqlite\1.0.0-rc1-final\build\netcore50\Microsoft.Data.Sqlite.targets" Condition="Exists('$(NuGetPackageRoot)\Microsoft.Data.Sqlite\1.0.0-rc1-final\build\netcore50\Microsoft.Data.Sqlite.targets')" />
+    <Import Project="$(NuGetPackageRoot)\Xamarin.Insights\1.12.3\build\windows8\Xamarin.Insights.targets" Condition="Exists('$(NuGetPackageRoot)\Xamarin.Insights\1.12.3\build\windows8\Xamarin.Insights.targets')" />
   </ImportGroup>
 </Project>

@@ -5,12 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-             xmlns:designTime="using:MoneyManager.Core.ViewModels.DesignTime"
-             xmlns:cimbalinoConverters="using:Cimbalino.Toolkit.Converters"
              xmlns:controls="using:MoneyFox.Windows.Controls"
              xmlns:converter="using:MoneyFox.Windows.Converter"
              xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-             xmlns:models="using:MoneyFox.Core.ViewModels.Models"
+             xmlns:model="using:MoneyFox.Shared.Model"
              d:DataContext="{d:DesignInstance designTime:DesignTimePaymentViewModelListViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -23,15 +21,15 @@
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
-        <converter:PaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
+        <converter:NativePaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
         <converter:CultureConverter x:Key="FormatConverter" />
-        <cimbalinoConverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="PaymentViewModelTemplate"
-                      x:DataType="models:PaymentViewModel">
+                      x:DataType="model:Payment">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"
@@ -140,18 +138,18 @@
         </Grid.RowDefinitions>
 
         <userControls:BalanceUserControl Grid.Row="0"
-                                          DataContext="{Binding BalanceViewModel}" />
+                                         DataContext="{Binding BalanceViewModel}" />
 
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
                 <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
-                                                  EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
-                                                  ItemsSource="{Binding Source={StaticResource Groups}}"
-                                                  ItemTemplate="{StaticResource PaymentViewModelTemplate}"
-                                                  HorizontalAlignment="Stretch"
-                                                  ShowsScrollingPlaceholders="false"
-                                                  IsItemClickEnabled="True"
-                                                  IsSynchronizedWithCurrentItem="False">
+                                                 EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
+                                                 ItemsSource="{Binding Source={StaticResource Groups}}"
+                                                 ItemTemplate="{StaticResource PaymentViewModelTemplate}"
+                                                 HorizontalAlignment="Stretch"
+                                                 ShowsScrollingPlaceholders="false"
+                                                 IsItemClickEnabled="True"
+                                                 IsSynchronizedWithCurrentItem="False">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
                             <core:InvokeCommandAction Command="{Binding EditCommand, Mode=OneWay}"

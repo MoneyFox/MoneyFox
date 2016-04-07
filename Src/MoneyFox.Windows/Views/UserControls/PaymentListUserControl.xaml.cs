@@ -1,9 +1,9 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
-using Microsoft.Practices.ServiceLocation;
-using MoneyFox.Core.ViewModels;
-using MoneyFox.Core.ViewModels.Models;
+using MoneyFox.Shared.Model;
+using MoneyFox.Shared.ViewModels;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
@@ -12,31 +12,31 @@ namespace MoneyFox.Windows.Views.UserControls
         public PaymentViewModelListUserControl()
         {
             InitializeComponent();
-            DataContext = ServiceLocator.Current.GetInstance<PaymentListViewModel>();
+            DataContext = Mvx.Resolve<PaymentListViewModel>();
         }
 
         private void EditPaymentViewModel(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var paymentViewModel = element.DataContext as PaymentViewModel;
-            if (paymentViewModel == null)
+            var payment = element.DataContext as Payment;
+            if (payment == null)
             {
                 return;
             }
             var viewmodel = DataContext as PaymentListViewModel;
 
-            viewmodel?.EditCommand.Execute(paymentViewModel);
+            viewmodel?.EditCommand.Execute(payment);
         }
 
         private void DeletePaymentViewModel(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            var paymentViewModel = element.DataContext as PaymentViewModel;
-            if (paymentViewModel == null)
+            var payment = element.DataContext as Payment;
+            if (payment == null)
             {
                 return;
             }
-            (DataContext as PaymentListViewModel)?.DeletePaymentViewModelCommand.Execute(paymentViewModel);
+            (DataContext as PaymentListViewModel)?.DeletePaymentCommand.Execute(payment);
         }
 
         private void PaymentViewModelList_Holding(object sender, HoldingRoutedEventArgs e)
