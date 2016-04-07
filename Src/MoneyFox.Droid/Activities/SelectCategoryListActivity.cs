@@ -1,12 +1,20 @@
+using Android.App;
+using Android.Content.PM;
+using Android.OS;
+using Android.Views;
+using Android.Widget;
 using MoneyFox.Droid.Fragments;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platform;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+
 
 namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "CategoryListActivity",
-        Name = "moneyfox.droid.activities.SelectCategoryListActivity",
+        Name = "moneymanager.droid.activities.SelectCategoryListActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
     public class SelectCategoryListActivity : MvxFragmentCompatActivity<SelectCategoryListViewModel>
@@ -70,7 +78,7 @@ namespace MoneyFox.Droid.Activities
 
         public override bool OnContextItemSelected(IMenuItem item)
         {
-            var selected = ViewModel.Categories[((AdapterView.AdapterContextMenuInfo) item.MenuInfo).Position];
+            var selected = ViewModel.Categories[((AdapterView.AdapterContextMenuInfo)item.MenuInfo).Position];
 
             switch (item.ItemId)
             {

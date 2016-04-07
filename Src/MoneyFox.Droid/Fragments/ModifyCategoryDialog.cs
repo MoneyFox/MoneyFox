@@ -1,5 +1,13 @@
 using System;
+using Android.App;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.OS;
+using Android.Views;
+using Android.Widget;
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Droid.FullFragging.Fragments;
 
 namespace MoneyFox.Droid.Fragments
 {

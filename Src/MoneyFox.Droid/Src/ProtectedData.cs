@@ -1,3 +1,5 @@
+using Android.App;
+using Android.Content;
 using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Droid

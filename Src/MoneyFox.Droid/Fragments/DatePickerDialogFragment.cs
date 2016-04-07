@@ -1,4 +1,7 @@
 using System;
+using Android.App;
+using Android.Content;
+using Android.OS;
 
 namespace MoneyFox.Droid.Fragments
 {
