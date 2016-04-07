@@ -1,4 +1,8 @@
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.Droid.Shared.Attributes;
 
 namespace MoneyFox.Droid.Fragments
 {

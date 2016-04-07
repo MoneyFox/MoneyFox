@@ -1,4 +1,13 @@
-﻿using MoneyFox.Droid.Activities;
+﻿using Android.App;
+using Android.Content.Res;
+using Android.OS;
+using Android.Support.V7.Widget;
+using Android.Views;
+using MoneyFox.Droid.Activities;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
 namespace MoneyFox.Droid.Fragments
 {

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Reflection;
+using Android.Content;
+using MvvmCross.Droid.Shared.Presenter;
 
 namespace MoneyFox.Droid
 {

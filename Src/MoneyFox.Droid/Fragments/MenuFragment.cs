@@ -1,7 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Android.OS;
+using Android.Runtime;
+using Android.Support.Design.Widget;
+using Android.Views;
 using MoneyFox.Droid.Activities;
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Droid.Shared.Attributes;
+using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
 namespace MoneyFox.Droid.Fragments
 {
@@ -37,7 +44,7 @@ namespace MoneyFox.Droid.Fragments
             return view;
         }
 
-        private async Task Navigate(int itemId)
+        private async void Navigate(int itemId)
         {
             ((MainActivity) Activity).DrawerLayout.CloseDrawers();
             await Task.Delay(TimeSpan.FromMilliseconds(250));

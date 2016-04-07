@@ -2,7 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Android.App;
+using Android.Content;
+using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
+using Xamarin.Auth;
 using Constants = Microsoft.OneDrive.Sdk.Constants;
 
 namespace MoneyFox.Droid
