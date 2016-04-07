@@ -1,6 +1,7 @@
 ﻿using System;
 using MoneyFox.Shared.Extensions;
 using Xunit;
+using XunitShouldExtension;
 
 namespace MoneyFox.Shared.Tests.Extensions
 {

@@ -7,6 +7,7 @@
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:controls="using:MoneyFox.Windows.Controls"
              xmlns:converter="using:MoneyFox.Windows.Converter"
+             xmlns:model="using:MoneyFox.Shared.Model"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -26,7 +27,7 @@
         <converter:SelectedConverter x:Key="SelectedConverter" />
 
         <DataTemplate x:Key="PaymentViewModelTemplate"
-                      x:DataType="models:PaymentViewModel">
+                      x:DataType="model:Payment">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
                         MinWidth="100"

@@ -4,6 +4,7 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using Moq;
+using XunitShouldExtension;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {

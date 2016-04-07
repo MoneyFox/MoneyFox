@@ -7,6 +7,7 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using Moq;
+using XunitShouldExtension;
 
 namespace MoneyFox.Shared.Tests.Manager
 {

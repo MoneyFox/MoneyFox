@@ -4,6 +4,7 @@ using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Interfaces;
 using Moq;
 using Xunit;
+using XunitShouldExtension;
 
 namespace MoneyFox.Shared.Tests.Authentication
 {

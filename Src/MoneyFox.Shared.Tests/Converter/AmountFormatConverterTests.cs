@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Converter;
+using XunitShouldExtension;
 
 namespace MoneyFox.Shared.Tests.Converter
 {

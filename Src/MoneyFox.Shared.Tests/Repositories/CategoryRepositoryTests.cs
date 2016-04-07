@@ -8,6 +8,7 @@ using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.Tests.Mocks;
 using Moq;
 using Xunit;
+using XunitShouldExtension;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
