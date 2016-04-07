@@ -18,7 +18,7 @@ namespace MoneyFox.Droid.Activities
         Icon = "@drawable/icon",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop,
-        Name = "moneymanager.droid.activities.MainActivity")]
+        Name = "moneyfox.droid.activities.MainActivity")]
     public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
         private CustomFragmentInfo currentFragmentInfo;

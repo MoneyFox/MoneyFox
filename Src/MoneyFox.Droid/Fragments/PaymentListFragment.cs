@@ -11,7 +11,7 @@ using MvvmCross.Droid.Shared.Attributes;
 namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
-    [Register("moneymanager.droid.fragments.PaymentListFragment")]
+    [Register("moneyfox.droid.fragments.PaymentListFragment")]
     public class PaymentListFragment : MvxFragment<PaymentListViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

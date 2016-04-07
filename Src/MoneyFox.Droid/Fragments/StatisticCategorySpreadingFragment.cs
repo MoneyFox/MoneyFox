@@ -12,7 +12,7 @@ using OxyPlot.Xamarin.Android;
 namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
-    [Register("moneymanager.droid.fragments.StatisticCategorySpreadingFragment")]
+    [Register("moneyfox.droid.fragments.StatisticCategorySpreadingFragment")]
     public class StatisticCategorySpreadingFragment : MvxFragment<StatisticCategorySpreadingViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

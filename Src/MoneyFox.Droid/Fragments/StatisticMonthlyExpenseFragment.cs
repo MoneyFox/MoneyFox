@@ -12,7 +12,7 @@ using OxyPlot.Xamarin.Android;
 namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
-    [Register("moneymanager.droid.fragments.StatisticMonthlyExpenseFragment")]
+    [Register("moneyfox.droid.fragments.StatisticMonthlyExpenseFragment")]
     public class StatisticMonthlyExpenseFragment : MvxFragment<StatisticMonthlyExpensesViewModel>
     {
         private PlotView plotModel;

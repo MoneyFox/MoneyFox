@@ -11,7 +11,7 @@ using MvvmCross.Droid.Shared.Attributes;
 namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
-    [Register("moneymanager.droid.fragments.StatisticCategorySummaryFragment")]
+    [Register("moneyfox.droid.fragments.StatisticCategorySummaryFragment")]
     public class StatisticCategorySummaryFragment : MvxFragment<StatisticCategorySummaryViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

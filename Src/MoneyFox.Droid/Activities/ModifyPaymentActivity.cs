@@ -13,7 +13,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "ModifyPaymentActivity",
-        Name = "moneymanager.droid.activities.ModifyPaymentActivity",
+        Name = "moneyfox.droid.activities.ModifyPaymentActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
     public class ModifyPaymentActivity : MvxCachingFragmentCompatActivity<ModifyPaymentViewModel>,
