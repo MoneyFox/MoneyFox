@@ -34,6 +34,16 @@
                     </PivotItem.Header>
                     <userControls:SettingsSecurityUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
+                
+                <!-- Personalization Settings-->
+                <PivotItem>
+                    <PivotItem.Header>
+                        <basicControls:TabHeader Label="Theme"
+                                                 x:Uid="ThemeHeader"
+                                                 Glyph="&#xE2B1;" />
+                    </PivotItem.Header>
+                    <controls:PersonalizationSettingsUserControl Margin="-7,0,-7,0" />
+                </PivotItem>
             </Pivot>
         </Grid>
         <CommandBar Grid.Row="2" ClosedDisplayMode="Minimal">

@@ -141,7 +141,6 @@
           "lib/netcore50/EntityFramework.Sqlite.dll": {}
         }
       },
-      "Fody/1.29.2": {},
       "Ix-Async/1.2.5": {
         "compile": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
@@ -738,14 +737,6 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
-        "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -763,17 +754,6 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "PropertyChanged.Fody/1.50.4": {
-        "dependencies": {
-          "Fody": "1.29.2"
-        },
-        "compile": {
-          "Lib/dotnet/PropertyChanged.dll": {}
-        },
-        "runtime": {
-          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "Remotion.Linq/2.0.1": {
@@ -2511,7 +2491,6 @@
           "lib/netcore50/EntityFramework.Sqlite.dll": {}
         }
       },
-      "Fody/1.29.2": {},
       "Ix-Async/1.2.5": {
         "compile": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
@@ -3091,14 +3070,6 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
-        "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -3116,17 +3087,6 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "PropertyChanged.Fody/1.50.4": {
-        "dependencies": {
-          "Fody": "1.29.2"
-        },
-        "compile": {
-          "Lib/dotnet/PropertyChanged.dll": {}
-        },
-        "runtime": {
-          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "Remotion.Linq/2.0.1": {
@@ -4724,7 +4684,6 @@
           "lib/netcore50/EntityFramework.Sqlite.dll": {}
         }
       },
-      "Fody/1.29.2": {},
       "Ix-Async/1.2.5": {
         "compile": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
@@ -5290,14 +5249,6 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
-        "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -5315,17 +5266,6 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "PropertyChanged.Fody/1.50.4": {
-        "dependencies": {
-          "Fody": "1.29.2"
-        },
-        "compile": {
-          "Lib/dotnet/PropertyChanged.dll": {}
-        },
-        "runtime": {
-          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "Remotion.Linq/2.0.1": {
@@ -6901,7 +6841,6 @@
           "lib/netcore50/EntityFramework.Sqlite.dll": {}
         }
       },
-      "Fody/1.29.2": {},
       "Ix-Async/1.2.5": {
         "compile": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
@@ -7490,14 +7429,6 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
-        "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -7515,17 +7446,6 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "PropertyChanged.Fody/1.50.4": {
-        "dependencies": {
-          "Fody": "1.29.2"
-        },
-        "compile": {
-          "Lib/dotnet/PropertyChanged.dll": {}
-        },
-        "runtime": {
-          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "Remotion.Linq/2.0.1": {
@@ -9123,7 +9043,6 @@
           "lib/netcore50/EntityFramework.Sqlite.dll": {}
         }
       },
-      "Fody/1.29.2": {},
       "Ix-Async/1.2.5": {
         "compile": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
@@ -9692,14 +9611,6 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
-        "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -9717,17 +9628,6 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "PropertyChanged.Fody/1.50.4": {
-        "dependencies": {
-          "Fody": "1.29.2"
-        },
-        "compile": {
-          "Lib/dotnet/PropertyChanged.dll": {}
-        },
-        "runtime": {
-          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "Remotion.Linq/2.0.1": {
@@ -11303,7 +11203,6 @@
           "lib/netcore50/EntityFramework.Sqlite.dll": {}
         }
       },
-      "Fody/1.29.2": {},
       "Ix-Async/1.2.5": {
         "compile": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
@@ -11892,14 +11791,6 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
-        "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -11917,17 +11808,6 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "PropertyChanged.Fody/1.50.4": {
-        "dependencies": {
-          "Fody": "1.29.2"
-        },
-        "compile": {
-          "Lib/dotnet/PropertyChanged.dll": {}
-        },
-        "runtime": {
-          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "Remotion.Linq/2.0.1": {
@@ -13525,7 +13405,6 @@
           "lib/netcore50/EntityFramework.Sqlite.dll": {}
         }
       },
-      "Fody/1.29.2": {},
       "Ix-Async/1.2.5": {
         "compile": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
@@ -14094,14 +13973,6 @@
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "NotificationsExtensions.Win10/10586.0.2": {
-        "compile": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/NotificationsExtensions.winmd": {}
-        }
-      },
       "OxyPlot.Core/2015.1.1033-alpha": {
         "compile": {
           "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10/OxyPlot.dll": {}
@@ -14119,17 +13990,6 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
-        }
-      },
-      "PropertyChanged.Fody/1.50.4": {
-        "dependencies": {
-          "Fody": "1.29.2"
-        },
-        "compile": {
-          "Lib/dotnet/PropertyChanged.dll": {}
-        },
-        "runtime": {
-          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "Remotion.Linq/2.0.1": {
@@ -15758,29 +15618,6 @@
         "lib/netcore50/EntityFramework.Sqlite.xml"
       ]
     },
-    "Fody/1.29.2": {
-      "sha512": "7SoewNkJQFedmOiJHD5P1akJ1fRow+tFjj/M4QlJ5M5RTHdnDXxEnuSKF2t22aSxTmn9+4wO3FbtOrJYy31xmA==",
-      "type": "Package",
-      "files": [
-        "Content/FodyWeavers.xml",
-        "Fody.dll",
-        "Fody.nuspec",
-        "Fody.pdb",
-        "FodyCommon.dll",
-        "FodyCommon.pdb",
-        "FodyIsolated.dll",
-        "FodyIsolated.pdb",
-        "Mono.Cecil.Mdb.dll",
-        "Mono.Cecil.Pdb.dll",
-        "Mono.Cecil.Rocks.dll",
-        "Mono.Cecil.dll",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "build/dotnet/Fody.targets",
-        "build/portable-net+sl+win+wpa+wp/Fody.targets",
-        "package/services/metadata/core-properties/b094559303b349a78e387aa14ccb27d7.psmdcp"
-      ]
-    },
     "Ix-Async/1.2.5": {
       "sha512": "8EXO8q7cpDUH9G2q+UOPOO/6uZ9aN7mx/4xjFIfkp+qLWVJiYuglkRhjY8Ggs2CucXzHR8GHnovJKB5yQoYaJg==",
       "type": "Package",
@@ -16957,25 +16794,6 @@
         "tools/install.ps1"
       ]
     },
-    "NotificationsExtensions.Win10/10586.0.2": {
-      "sha512": "aK0M0hQdG0L1qjkmrHIp4WYro6afeBg6ljMfg6jP5cswqQg4gW2WppFOcCLJaWa+ZGVGSgYXkazWEbA0MwRpow==",
-      "type": "package",
-      "files": [
-        "NotificationsExtensions.Win10.10586.0.2.nupkg.sha512",
-        "NotificationsExtensions.Win10.nuspec",
-        "lib/dotnet/NotificationsExtensions.Win10.NETCore.XML",
-        "lib/dotnet/NotificationsExtensions.Win10.NETCore.dll",
-        "lib/dotnet/NotificationsExtensions.Win10.NETCore.pdb",
-        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.XML",
-        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.dll",
-        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.pdb",
-        "lib/uap10.0/NotificationsExtensions.pdb",
-        "lib/uap10.0/NotificationsExtensions.pri",
-        "lib/uap10.0/NotificationsExtensions.winmd",
-        "lib/uap10.0/NotificationsExtensions.winmd.xml",
-        "lib/uap10.0/NotificationsExtensions.xml"
-      ]
-    },
     "OxyPlot.Core/2015.1.1033-alpha": {
       "sha512": "To4qVNaOBb+xHUYp7SCJYZQZzB5vlowymNNAmKx/PCXg8plm4osRMLBYwYOCH18uy3hpA/D4bOy5M+I20g9HYQ==",
       "type": "Package",
@@ -17025,24 +16843,6 @@
         "lib/portable-windows8+wpa81/OxyPlot.Windows/OxyPlot.Windows.xr.xml",
         "lib/portable-windows8+wpa81/OxyPlot.Windows/Themes/Generic.xbf",
         "package/services/metadata/core-properties/a4292403266f496984f1b4c78d453d58.psmdcp"
-      ]
-    },
-    "PropertyChanged.Fody/1.50.4": {
-      "sha512": "RcYoNikGPm9koqwsrffX5PS4dDxBTPHvpddzY+TXFgoHdbh6fKAsQTuIxIB2qklkTANPMMBRJ2K+6ehW+Ci8YQ==",
-      "type": "Package",
-      "files": [
-        "Lib/dotnet/PropertyChanged.dll",
-        "Lib/dotnet/PropertyChanged.xml",
-        "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.dll",
-        "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.xml",
-        "PropertyChanged.Fody.dll",
-        "PropertyChanged.Fody.nuspec",
-        "PropertyChanged.Fody.pdb",
-        "Tools/install.ps1",
-        "Tools/uninstall.ps1",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "package/services/metadata/core-properties/4aaa1e89f960409c9283732f854ee889.psmdcp"
       ]
     },
     "Remotion.Linq/2.0.1": {

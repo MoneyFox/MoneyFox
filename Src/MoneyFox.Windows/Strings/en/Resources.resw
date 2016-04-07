@@ -359,4 +359,16 @@ Tap to visit the Repository:</value>
   <data name="MonthlyExpenseStatisticTitle.Text" xml:space="preserve">
     <value>Monthly Expenses</value>
   </data>
+  <data name="ThemeHeader.Label" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="ThemeToggleDescription.Text" xml:space="preserve">
+    <value>You can change between dark and light theme. Changes are applied upon page navigation.</value>
+  </data>
+  <data name="ThemeToggleSwitch.OffContent" xml:space="preserve">
+    <value>Light Theme</value>
+  </data>
+  <data name="ThemeToggleSwitch.OnContent" xml:space="preserve">
+    <value>Dark Theme</value>
+  </data>
 </root>

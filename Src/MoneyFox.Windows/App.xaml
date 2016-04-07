@@ -1,11 +1,11 @@
 ﻿<Application x:Class="MoneyFox.Windows.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:windows="using:MoneyFox.Windows">
+             xmlns:converter="using:MoneyManager.Windows.Converter">
 
     <Application.Resources>
         <ResourceDictionary>
-            <windows:ViewModelLocator x:Name="Locator" />
+            <converter:BooleanToThemeConverter x:Key="BooleanToThemeConverter" />
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Default">
                     <ResourceDictionary.MergedDictionaries>

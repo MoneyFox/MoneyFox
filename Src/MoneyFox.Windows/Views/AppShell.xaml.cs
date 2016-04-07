@@ -8,9 +8,9 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using MoneyFox.Core.Resources;
 using MoneyFox.Windows.Controls;
 
 namespace MoneyFox.Windows.Views
@@ -95,6 +95,21 @@ namespace MoneyFox.Windows.Views
             NavMenuListTop.SelectedIndex = 0;
             //start with a hidden back button. This changes when you navigate to an other page
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+ 
+        }
+
+        //Bind the saved theme from settings to the root element which cascadingly applies to children elements
+        //the reason this is bound in code behind is that because viewmodels are loaded after the pages,
+        //resulting to a nullreference exception if bound in xamlW.
+        private void SetColor()
+        {
+            Binding colorBinding = new Binding
+            {
+                Source = new PersonalizationUserControlViewModel(),
+                Path = new PropertyPath("IsDarkThemeEnabled"),
+                Converter = new Converter.BooleanToThemeConverter(),
+            };
+            BindingOperations.SetBinding(Root, RequestedThemeProperty, colorBinding);
         }
 
         public Frame AppMyFrame => MyFrame;
@@ -389,6 +404,8 @@ namespace MoneyFox.Windows.Views
                     NavMenuListBottom.SetSelectedItem(null);
                 }
             }
+            //Change the theme on page navigation; maybe it can be moved somewhere else.
+            SetColor();
         }
 
         private void OnNavigatedToPage(object sender, NavigationEventArgs e)
@@ -400,7 +417,7 @@ namespace MoneyFox.Windows.Views
                 var control = page;
                 control.Loaded += Page_Loaded;
 
-                //Check whether the navigation stack is empty and hide the back button if so
+                //Check whether the navigation stack is empty and hide the back button if so;
                 // otherwise, make it visible.
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
                     ((Frame) sender).CanGoBack
