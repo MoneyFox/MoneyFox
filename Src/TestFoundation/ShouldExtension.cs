@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
-namespace MoneyFox.Shared.Tests
+namespace TestFoundation
 {
     public static class ShouldExtension
     {
         public static void ShouldBe<T>(this T self, T other)
         {
-            Assert.AreEqual(other, self);
+            Assert.Equal(other, self);
         }
 
         public static void ShouldNotBe<T>(this T self, T other)
         {
-            Assert.AreNotEqual(other, self);
+            Assert.NotEqual(other, self);
         }
 
         public static void ShouldBeNull(this object self)
         {
-            Assert.IsNull(self);
+            Assert.Null(self);
         }
 
         public static void ShouldNotBeNull(this object self)
         {
-            Assert.IsNotNull(self);
+            Assertno(self);
         }
 
         public static void ShouldBeSameAs(this object self, object other)

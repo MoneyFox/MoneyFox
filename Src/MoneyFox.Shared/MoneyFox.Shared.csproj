@@ -45,7 +45,6 @@
     <Compile Include="Authentication\PasswordStorage.cs" />
     <Compile Include="Authentication\Session.cs" />
     <Compile Include="Converter\AmountFormatConverter.cs" />
-    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
     <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="DataAccess\AbstractDataAccess.cs" />

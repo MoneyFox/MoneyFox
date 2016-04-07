@@ -5,10 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-             xmlns:converters="using:Cimbalino.Toolkit.Converters"
              xmlns:controls="using:MoneyFox.Windows.Controls"
              xmlns:converter="using:MoneyFox.Windows.Converter"
-             xmlns:models="using:MoneyFox.Core.ViewModels.Models"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -20,9 +18,9 @@
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
-        <converter:PaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
+        <converter:NativePaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
         <converter:CultureConverter x:Key="FormatConverter" />
-        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:SelectedConverter x:Key="SelectedConverter" />

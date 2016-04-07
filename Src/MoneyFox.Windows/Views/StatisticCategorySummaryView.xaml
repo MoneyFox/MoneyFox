@@ -18,7 +18,7 @@
     </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
-        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <DataTemplate x:Key="CategoryTemplate">
             <Grid HorizontalAlignment="Stretch"
                   VerticalAlignment="Center"
