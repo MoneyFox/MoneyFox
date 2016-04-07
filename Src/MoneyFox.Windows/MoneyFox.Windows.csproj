@@ -118,7 +118,6 @@
     <Compile Include="Controls\AlternatingRowListView.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Controls\SwipeableSplitView.cs" />
-    <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\CultureConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
