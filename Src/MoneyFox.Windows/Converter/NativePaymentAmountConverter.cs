@@ -1,7 +1,7 @@
 ﻿using MoneyFox.Shared.Converter;
 using MvvmCross.Platform.WindowsCommon.Converters;
 
-namespace MoneyManager.Windows.Converter
+namespace MoneyFox.Windows.Converter
 {
     public class NativePaymentAmountConverter : MvxNativeValueConverter<PaymentAmountConverter>
     {

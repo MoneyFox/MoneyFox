@@ -1,11 +1,9 @@
 ﻿<Application x:Class="MoneyFox.Windows.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:windows="using:MoneyFox.Windows">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Application.Resources>
         <ResourceDictionary>
-            <windows:ViewModelLocator x:Name="Locator" />
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Default">
                     <ResourceDictionary.MergedDictionaries>

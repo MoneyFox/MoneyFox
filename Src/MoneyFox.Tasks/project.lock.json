@@ -3,6 +3,7 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/2.0.1": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -401,6 +402,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.51.0": {
+        "dependencies": {
+          "Fody": "1.29.2"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -1984,6 +1996,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/2.0.1": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -2375,6 +2388,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.51.0": {
+        "dependencies": {
+          "Fody": "1.29.2"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -3818,6 +3842,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/2.0.1": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -4195,6 +4220,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.51.0": {
+        "dependencies": {
+          "Fody": "1.29.2"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -5616,6 +5652,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/2.0.1": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -6013,6 +6050,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.51.0": {
+        "dependencies": {
+          "Fody": "1.29.2"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -7456,6 +7504,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/2.0.1": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -7833,6 +7882,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.51.0": {
+        "dependencies": {
+          "Fody": "1.29.2"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -9254,6 +9314,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/2.0.1": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -9651,6 +9712,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.51.0": {
+        "dependencies": {
+          "Fody": "1.29.2"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -11094,6 +11166,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "Fody/1.29.2": {},
       "Microsoft.ApplicationInsights/2.0.1": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -11471,6 +11544,17 @@
         },
         "runtime": {
           "lib/portable-windows8+wpa81/OxyPlot.Windows.dll": {}
+        }
+      },
+      "PropertyChanged.Fody/1.51.0": {
+        "dependencies": {
+          "Fody": "1.29.2"
+        },
+        "compile": {
+          "Lib/dotnet/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "Lib/dotnet/PropertyChanged.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -12893,6 +12977,27 @@
     }
   },
   "libraries": {
+    "Fody/1.29.2": {
+      "sha512": "7SoewNkJQFedmOiJHD5P1akJ1fRow+tFjj/M4QlJ5M5RTHdnDXxEnuSKF2t22aSxTmn9+4wO3FbtOrJYy31xmA==",
+      "type": "package",
+      "files": [
+        "Content/FodyWeavers.xml",
+        "Fody.1.29.2.nupkg.sha512",
+        "Fody.dll",
+        "Fody.nuspec",
+        "Fody.pdb",
+        "FodyCommon.dll",
+        "FodyCommon.pdb",
+        "FodyIsolated.dll",
+        "FodyIsolated.pdb",
+        "Mono.Cecil.Mdb.dll",
+        "Mono.Cecil.Pdb.dll",
+        "Mono.Cecil.Rocks.dll",
+        "Mono.Cecil.dll",
+        "build/dotnet/Fody.targets",
+        "build/portable-net+sl+win+wpa+wp/Fody.targets"
+      ]
+    },
     "Microsoft.ApplicationInsights/2.0.1": {
       "sha512": "iZjOx8ysupwITjhCl6suEOBQ+yTUBlJhQ2lfXBJkpS66gjB5TDJxIPrqKJ17/v4QqiFw//eHTGtMUCtoMN6WDQ==",
       "type": "package",
@@ -13815,6 +13920,22 @@
         "lib/portable-windows8+wpa81/OxyPlot.Windows.xml",
         "lib/portable-windows8+wpa81/OxyPlot.Windows/OxyPlot.Windows.xr.xml",
         "lib/portable-windows8+wpa81/OxyPlot.Windows/Themes/Generic.xbf"
+      ]
+    },
+    "PropertyChanged.Fody/1.51.0": {
+      "sha512": "4uO0gtL1SyTXUE+ixL1Pn6ss07B60FzW5EyLqNyi+OLyBMB5ebv8I3L8D8GP3U9VtwvJD7N7ZC0DZULN+bVBpw==",
+      "type": "package",
+      "files": [
+        "Lib/dotnet/PropertyChanged.dll",
+        "Lib/dotnet/PropertyChanged.xml",
+        "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.dll",
+        "Lib/portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40/PropertyChanged.xml",
+        "PropertyChanged.Fody.1.51.0.nupkg.sha512",
+        "PropertyChanged.Fody.dll",
+        "PropertyChanged.Fody.nuspec",
+        "PropertyChanged.Fody.pdb",
+        "Tools/install.ps1",
+        "Tools/uninstall.ps1"
       ]
     },
     "SQLite.Net-PCL/3.1.1": {
