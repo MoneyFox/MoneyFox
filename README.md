@@ -1,7 +1,8 @@
 ## Money Fox
-[![Join the chat at https://gitter.im/Apply-Solutions/MoneyManager](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Apply-Solutions/MoneyManager?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 A way to make budgeting easy. A basic idea for the community, made even better by the community.
+
+### Talk with us
+We have a slack team to make communication a bit easier. Write me a mail to get your invitation.
 
 ### Try it
 There are two versions in the Windows Marketplace available for all devices with Windows 10:
@@ -22,22 +23,21 @@ If you wanna have a look how the current development of our Android App is going
 
 [Android Alpha  Version](https://play.google.com/apps/testing/com.applysolutions.moneyfox)
 
-### Next steps
-
-We’re in the process of improve our apps for Windows 10 Desktop and Mobile. We’re also working towards a release on Android and iOS via Xamarin.
-Head to the Issues to see all the details.
-
 ### Contribution
 
 Head over [here] (https://github.com/Apply-Solutions/MoneyManager/blob/master/CONTRIBUTE.md)
 
+### Translations
+
+Help us translate the money fox to as many languages as possible. Head over [here](https://crowdin.com/project/money-fox) and get involved!
 
 ### Tools
-We use Visual Studio 2015. If you use resharper please ensure to use the settings in the repository for this project.
+We use Visual Studio 2015 (inkl. xamarin). If you use resharper please ensure you align the formatting to this solution.
 
-If you don't have a Xamarin Subscription, you may apply for an open source license directly at Xamarin. [Application Formula](https://resources.xamarin.com/open-source-contributor.html)
-
-NOTE: I assume they will only offer this to contributors of an open source project.
+Also, please install the SQLite Extension for Visual Studio.
 
 ### Contact
-Feel free to contact me. Just write me a mail or join our gitter chat. 
+Feel free to contact me. Just write me a mail or even better join our slack channel.
+
+### Sponsoring
+The development of this app is supported by [Apply Solutions](http://www.apply-solutions.ch/).
