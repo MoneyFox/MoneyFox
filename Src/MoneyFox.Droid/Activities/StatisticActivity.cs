@@ -1,10 +1,4 @@
-using Android.App;
-using Android.Content.PM;
-using Android.OS;
-using Android.Support.V7.Widget;
-using Android.Views;
 using MoneyFox.Shared.ViewModels;
-using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace MoneyFox.Droid.Activities
 {

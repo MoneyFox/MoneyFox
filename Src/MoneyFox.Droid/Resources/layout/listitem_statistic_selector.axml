@@ -1,27 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+              xmlns:local="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="?android:attr/activatedBackgroundIndicator">
+  <TextView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?android:attr/activatedBackgroundIndicator">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="fill_horizontal"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginTop="5dp"
-        local:MvxBind="Text Name" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="fill_horizontal"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginTop="5dp"
-        local:MvxBind="Text Description" />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="5dp"
-        android:background="@color/med_gray" />
+    android:layout_height="wrap_content"
+    android:gravity="fill_horizontal"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:layout_marginTop="5dp"
+    local:MvxBind="Text Name" />
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="fill_horizontal"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:layout_marginTop="5dp"
+    local:MvxBind="Text Description" />
+  <View
+    android:layout_width="fill_parent"
+    android:layout_height="1dp"
+    android:layout_marginBottom="5dp"
+    android:background="@color/med_gray" />
 </LinearLayout>

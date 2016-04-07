@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using MoneyFox.Droid.Fragments;
 using MoneyFox.Shared.ViewModels;
-using MvvmCross.Droid.Support.V7.Fragging.Caching;
-using MvvmCross.Droid.Shared.Caching;
 
 namespace MoneyFox.Droid.Activities.Caching
 {

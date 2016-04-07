@@ -1,25 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/nav_items">
-    	<item
-            android:id="@+id/nav_accounts"
-            android:title="@string/title_accounts" />
-      	<item
-            android:id="@+id/nav_statistics"
-            android:title="@string/title_statistics" />
-    </group>
-	<group android:id="@+id/nav_footer">
-		<item
-            android:id="@+id/nav_categories"
-            android:title="@string/title_categories" />
-    	<item
-            android:id="@+id/nav_backup"
-            android:title="@string/title_backup" />
-        <item
-            android:id="@+id/nav_settings"
-            android:title="@string/title_settings" />
-        <item
-            android:id="@+id/nav_about"
-            android:title="@string/title_about" />
-    </group>
+  <group android:id="@+id/nav_items">
+    <item
+      android:id="@+id/nav_accounts"
+      android:title="@string/title_accounts" />
+    <item
+      android:id="@+id/nav_statistics"
+      android:title="@string/title_statistics" />
+  </group>
+  <group android:id="@+id/nav_footer">
+    <item
+      android:id="@+id/nav_categories"
+      android:title="@string/title_categories" />
+    <item
+      android:id="@+id/nav_backup"
+      android:title="@string/title_backup" />
+    <item
+      android:id="@+id/nav_settings"
+      android:title="@string/title_settings" />
+    <item
+      android:id="@+id/nav_about"
+      android:title="@string/title_about" />
+  </group>
 </menu>

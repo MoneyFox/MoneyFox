@@ -1,13 +1,6 @@
-using Android.App;
-using Android.Content.PM;
-using Android.OS;
-using Android.Views;
-using Android.Widget;
 using MoneyFox.Droid.Fragments;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
-using MvvmCross.Droid.Support.V7.AppCompat;
-using MvvmCross.Platform;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyFox.Droid.Activities

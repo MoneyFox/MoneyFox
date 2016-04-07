@@ -1,15 +1,7 @@
 ﻿using System.Collections.Generic;
-using Android.OS;
-using Android.Runtime;
-using Android.Support.Design.Widget;
-using Android.Support.V4.View;
-using Android.Support.V7.Widget;
-using Android.Views;
 using MoneyFox.Droid.Activities;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
-using MvvmCross.Droid.Support.V4;
-using MvvmCross.Droid.Shared.Attributes;
 
 namespace MoneyFox.Droid.Fragments
 {

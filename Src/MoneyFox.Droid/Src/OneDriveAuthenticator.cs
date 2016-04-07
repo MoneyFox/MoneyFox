@@ -1,7 +1,5 @@
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
-using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces;
 

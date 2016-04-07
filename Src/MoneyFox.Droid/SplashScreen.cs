@@ -1,7 +1,3 @@
-using Android.App;
-using Android.Content.PM;
-using MvvmCross.Droid.Views;
-
 namespace MoneyFox.Droid
 {
     [Activity(Label = "Money Fox", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppTheme.Splash",
