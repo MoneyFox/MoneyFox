@@ -191,7 +191,7 @@
       <HintPath>..\packages\MvvmCross.Core.4.1.0\lib\MonoAndroid\MvvmCross.Core.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Platform">
-      <HintPath>..\packages\MvvmCross.Platform.4.1.0\lib\MonoAndroid\MvvmCross.Platform.dll</HintPath>
+      <HintPath>..\MoneyFox.Shared.Tests\bin\Debug\MvvmCross.Platform.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Email">
       <HintPath>..\packages\MvvmCross.Plugin.Email.4.1.0\lib\MonoAndroid\MvvmCross.Plugins.Email.dll</HintPath>
