@@ -3,7 +3,7 @@ using System.Globalization;
 using Windows.Storage;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyFox.Core.SettingAccess
+namespace MoneyFox.Windows.SettingsAccess
 {
     /// <summary>
     ///     Grants CRUD operations to the roaming settings on windows.

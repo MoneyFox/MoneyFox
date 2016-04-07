@@ -8,9 +8,11 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Controls;
 
 namespace MoneyFox.Windows.Views
@@ -97,7 +99,21 @@ namespace MoneyFox.Windows.Views
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
-        public Frame AppMyFrame => MyFrame;
+        //Bind the saved theme from settings to the root element which cascadingly applies to children elements
+         //the reason this is bound in code behind is that because viewmodels are loaded after the pages,
+         //resulting to a nullreference exception if bound in xamlW.
+         private void SetColor()
+         {
+             Binding colorBinding = new Binding
+             {
+                 Source = new PersonalizationUserControlViewModel(),
+                 Path = new PropertyPath("IsDarkThemeEnabled"),
+                 Converter = new Converter.BooleanToThemeConverter(),
+             };
+             BindingOperations.SetBinding(Root, RequestedThemeProperty, colorBinding);
+          }
+
+public Frame AppMyFrame => MyFrame;
 
         public Rect TogglePaneButtonRect { get; private set; }
 
@@ -389,6 +405,9 @@ namespace MoneyFox.Windows.Views
                     NavMenuListBottom.SetSelectedItem(null);
                 }
             }
+
+            //Change the theme on page navigation; maybe it can be moved somewhere else.
+            SetColor();
         }
 
         private void OnNavigatedToPage(object sender, NavigationEventArgs e)

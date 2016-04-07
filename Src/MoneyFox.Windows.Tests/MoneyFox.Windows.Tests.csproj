@@ -123,6 +123,12 @@
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Windows\MoneyFox.Windows.csproj">
+      <Project>{66EA2C31-4D7C-4FD1-8F9B-24E56266A8D2}</Project>
+      <Name>MoneyFox.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

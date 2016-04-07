@@ -1,7 +1,7 @@
 using Windows.UI.Xaml.Controls;
-using MoneyFox.Core.SettingAccess;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Shotcuts;
+using MoneyFox.Windows.SettingsAccess;
 using MoneyManager.Windows;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
