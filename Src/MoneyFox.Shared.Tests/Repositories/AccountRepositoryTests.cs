@@ -6,12 +6,29 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Tests.Mocks;
 using Moq;
+using MvvmCross.Test.Core;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
     [TestClass]
-    public class AccountRepositoryTests
+    public class AccountRepositoryTests : MvxIoCSupportingTest
     {
+        public AccountRepositoryTests()
+        {
+            Setup();
+
+            // We setup the static setting classes here for the general usage in the app
+            var settingsMockSetup = new Mock<ILocalSettings>();
+            settingsMockSetup.SetupAllProperties();
+
+            var roamSettingsMockSetup = new Mock<IRoamingSettings>();
+            roamSettingsMockSetup.SetupAllProperties();
+
+            Mvx.RegisterType(() => settingsMockSetup.Object);
+            Mvx.RegisterType(() => roamSettingsMockSetup.Object);
+        }
+
         [TestMethod]
         public void Save_InputName_CorrectNameAssigned()
         {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
@@ -13,17 +12,19 @@ using MoneyFox.Shared.Tests.Mocks;
 using Moq;
 using MvvmCross.Test.Core;
 using Xunit;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 using MvvmCross.Platform;
+using MvvmCross.Core;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
-    [TestClass]
-    public class PaymentRepositoryTests : MvxIoCSupportingTest
+    public class PaymentRepositoryTests : MvxIoCSupportingTest, IDisposable
     {
         public PaymentRepositoryTests()
         {
-            Setup();
+            if (MvxSingletonCache.Instance == null)
+            {
+                Setup();
+            }
 
             // We setup the static setting classes here for the general usage in the app
             var settingsMockSetup = new Mock<ILocalSettings>();
@@ -55,7 +56,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 Amount = 20
             };
 
-            Xunit.Assert.Throws<AccountMissingException>(() => repository.Save(payment));
+            Assert.Throws<AccountMissingException>(() => repository.Save(payment));
         }
 
         [Fact]
@@ -89,8 +90,8 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             repository.Save(payment);
 
-            Assert.AreSame(payment, paymentDataAccessMock.PaymentTestList[0]);
-            Assert.AreEqual((int) PaymentType.Income, paymentDataAccessMock.PaymentTestList[0].Type);
+            Assert.Same(payment, paymentDataAccessMock.PaymentTestList[0]);
+            Assert.Equal((int) PaymentType.Income, paymentDataAccessMock.PaymentTestList[0].Type);
         }
 
         [Fact]
@@ -132,8 +133,8 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             repository.Save(payment);
 
-            Assert.AreSame(payment, repository.Data[0]);
-            Assert.AreEqual((int) PaymentType.Transfer, repository.Data[0].Type);
+            Assert.Same(payment, repository.Data[0]);
+            Assert.Equal((int) PaymentType.Transfer, repository.Data[0].Type);
         }
 
         [Fact]
@@ -165,11 +166,11 @@ namespace MoneyFox.Shared.Tests.Repositories
             };
 
             repository.Save(payment);
-            Assert.AreSame(payment, repository.Data[0]);
+            Assert.Same(payment, repository.Data[0]);
 
             repository.Delete(payment);
 
-            Assert.IsFalse(repository.Data.Any());
+            Assert.False(repository.Data.Any());
         }
 
         [Fact]
@@ -186,7 +187,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 accountRepositorySetup.Object,
                 categoryRepositorySetup.Object);
 
-            Assert.IsFalse(paymentRepo.Data.Any());
+            Assert.False(paymentRepo.Data.Any());
         }
 
         [Fact]
@@ -217,7 +218,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             };
 
             repository.Save(payment);
-            Assert.IsTrue(repository.Data.Contains(payment));
+            Assert.True(repository.Data.Contains(payment));
         }
 
         [Fact]
@@ -254,7 +255,7 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             var payments = repository.GetUnclearedPayments();
 
-            Assert.AreEqual(1, payments.Count());
+            Assert.Equal(1, payments.Count());
         }
 
         /// <summary>
@@ -291,10 +292,10 @@ namespace MoneyFox.Shared.Tests.Repositories
                 );
 
             var payments = repository.GetUnclearedPayments();
-            Assert.AreEqual(0, payments.Count());
+            Assert.Equal(0, payments.Count());
 
             payments = repository.GetUnclearedPayments(Utilities.GetEndOfMonth());
-            Assert.AreEqual(1, payments.Count());
+            Assert.Equal(1, payments.Count());
         }
 
         [Fact]
@@ -321,7 +322,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 );
 
             var payments = repository.GetUnclearedPayments();
-            Assert.AreEqual(1, payments.Count());
+            Assert.Equal(1, payments.Count());
         }
 
         [Fact]
@@ -347,8 +348,8 @@ namespace MoneyFox.Shared.Tests.Repositories
                 categoryDataAccessSetup.Object);
             paymentRepository.Load();
 
-            Assert.IsTrue(paymentRepository.Data.Any(x => x.Id == 10));
-            Assert.IsTrue(paymentRepository.Data.Any(x => x.Id == 15));
+            Assert.True(paymentRepository.Data.Any(x => x.Id == 10));
+            Assert.True(paymentRepository.Data.Any(x => x.Id == 15));
         }
 
         [Fact]
@@ -379,8 +380,8 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             var result = repo.GetRelatedPayments(account1).ToList();
 
-            Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(2, result.First().Id);
+            Assert.Equal(1, result.Count);
+            Assert.Equal(2, result.First().Id);
         }
 
         [Fact]
@@ -431,9 +432,9 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             var result = repo.LoadRecurringList().ToList();
 
-            Assert.AreEqual(2, result.Count);
-            Assert.AreEqual(1, result[0].Id);
-            Assert.AreEqual(3, result[1].Id);
+            Assert.Equal(2, result.Count);
+            Assert.Equal(1, result[0].Id);
+            Assert.Equal(3, result[1].Id);
         }
 
         [Theory]
@@ -486,8 +487,8 @@ namespace MoneyFox.Shared.Tests.Repositories
                 .Delete(
                     payment);
 
-            Assert.AreEqual(10, deletedId);
-            Assert.AreEqual(500, account.CurrentBalance);
+            Assert.Equal(10, deletedId);
+            Assert.Equal(500, account.CurrentBalance);
         }
 
         [Theory]
@@ -546,9 +547,14 @@ namespace MoneyFox.Shared.Tests.Repositories
                 categoryDataAccessSetup.Object).Delete(
                     payment);
 
-            Assert.AreEqual(10, deletedId);
-            Assert.AreEqual(500, account1.CurrentBalance);
-            Assert.AreEqual(900, account2.CurrentBalance);
+            Assert.Equal(10, deletedId);
+            Assert.Equal(500, account1.CurrentBalance);
+            Assert.Equal(900, account2.CurrentBalance);
+        }
+
+        public void Dispose()
+        {
+            ClearAll();
         }
     }
 }

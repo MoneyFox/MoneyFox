@@ -9,11 +9,33 @@ using MoneyFox.Shared.Tests.Mocks;
 using Moq;
 using Xunit;
 using TestFoundation;
+using MvvmCross.Test.Core;
+using MvvmCross.Platform;
+using System;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
-    public class CategoryRepositoryTests
+    public class CategoryRepositoryTests : MvxIoCSupportingTest
     {
+        private DateTime localDateSetting;
+
+        public CategoryRepositoryTests()
+        {
+            Setup();
+
+            // We setup the static setting classes here for the general usage in the app
+            var settingsMockSetup = new Mock<ILocalSettings>();
+            settingsMockSetup.SetupAllProperties();
+            settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>()))
+                .Callback((string key, DateTime date) => localDateSetting = date);
+
+            var roamSettingsMockSetup = new Mock<IRoamingSettings>();
+            roamSettingsMockSetup.SetupAllProperties();
+
+            Mvx.RegisterType(() => settingsMockSetup.Object);
+            Mvx.RegisterType(() => roamSettingsMockSetup.Object);
+        }
+
         public static IEnumerable NamePlaceholder
         {
             get
@@ -22,7 +44,6 @@ namespace MoneyFox.Shared.Tests.Repositories
                 yield return new object[] {"", Strings.NoNamePlaceholderLabel};
             }
         }
-
 
         [Theory]
         [MemberData(nameof(NamePlaceholder))]
@@ -106,6 +127,16 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             categoryRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
             categoryRepository.Data.Any(x => x.Id == 15).ShouldBeTrue();
+        }
+
+        [Fact]
+        public void Save_UpdateTimeStamp()
+        {
+            var dataAccessSetup = new Mock<IDataAccess<Category>>();
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+
+            new CategoryRepository(dataAccessSetup.Object).Save(new Category());
+            localDateSetting.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now.AddSeconds(1));
         }
     }
 }

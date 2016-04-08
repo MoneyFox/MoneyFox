@@ -23,9 +23,6 @@ namespace MoneyFox.Shared.Tests.Mocks
             }
         }
 
-        public List<Account> LoadList(Expression<Func<Account, bool>> filter = null)
-        {
-            return AccountTestList;
-        }
+        public List<Account> LoadList(Expression<Func<Account, bool>> filter = null) => AccountTestList;
     }
 }
