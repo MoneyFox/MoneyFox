@@ -1,27 +1,40 @@
 ﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Extensions;
-using Xunit;
 
 namespace MoneyFox.Shared.Tests.Extensions
 {
+    [TestClass]
     public class DateTimeExtensionTests
     {
-        [Theory]
-        [InlineData(2)]
-        [InlineData(12)]
-        [InlineData(6)]
-        public void GetFirstDayOfMonth_DifferentMonths_DateTimeFirstDay(int month)
+        [TestMethod]
+        public void GetFirstDayOfMonth_TwoDigitMonth_DateTimeFirstDay()
         {
-            new DateTime(2015, month, 26).GetFirstDayOfMonth().ShouldBe(new DateTime(2015, month, 1));
+            new DateTime(2015, 12, 26).GetFirstDayOfMonth().ShouldBe(new DateTime(2015, 12, 1));
         }
 
-        [Theory]
-        [InlineData(2, 28)]
-        [InlineData(12, 31)]
-        [InlineData(6, 30)]
-        public void GetLastDayOfMonth_DifferentMonths_DateTimeLastDay(int month, int expectedDay)
+        [TestMethod]
+        public void GetFirstDayOfMonth_SingleDigitMonth_DateTimeFirstDay()
         {
-            new DateTime(2015, month, 26).GetLastDayOfMonth().ShouldBe(new DateTime(2015, month, expectedDay));
+            new DateTime(2015, 2, 26).GetFirstDayOfMonth().ShouldBe(new DateTime(2015, 2, 1));
+        }
+
+        [TestMethod]
+        public void GetLastDayOfMonth_TwoDigitMonth_DateTimeLastDay()
+        {
+            new DateTime(2015, 12, 26).GetLastDayOfMonth().ShouldBe(new DateTime(2015, 12, 31));
+        }
+
+        [TestMethod]
+        public void GetLastDayOfMonth_SingleDigitMonth_DateTimeLastDay()
+        {
+            new DateTime(2015, 1, 26).GetLastDayOfMonth().ShouldBe(new DateTime(2015, 1, 31));
+        }
+
+        [TestMethod]
+        public void GetLastDayOfMonth_February_DateTimeLastDay()
+        {
+            new DateTime(2015, 2, 26).GetLastDayOfMonth().ShouldBe(new DateTime(2015, 2, 28));
         }
     }
 }
