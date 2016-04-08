@@ -126,12 +126,15 @@
       <Name>MoneyFox.Windows</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestFoundation\TestFoundation.csproj">
-      <Project>{93012CAD-EDC4-450B-AEFB-2BE4EC6D5123}</Project>
+      <Project>{93012cad-edc4-450b-aefb-2be4ec6d5123}</Project>
       <Name>TestFoundation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

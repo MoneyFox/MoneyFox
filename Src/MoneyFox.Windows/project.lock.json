@@ -17339,7 +17339,7 @@
       ]
     },
     "Xamarin.Insights/1.12.3": {
-      "sha512": "VQXgvnpsmQbyldn8p9hrS8wcuY+mfy8Erq0yKIH5a0lW03493/UMNQLMUtfxRrff0poKIAydigZS/R2x6NXyUw==",
+      "sha512": "+0EvucRutdlnqY0AjBL90SMN3YlUT7ulU+W4FlX1XBKV6dVhpZ6LKiijsuOsUtL5l1LweIJkgTEF2AIoFy6ooA==",
       "type": "package",
       "files": [
         "ThirdPartyNotices.txt",
