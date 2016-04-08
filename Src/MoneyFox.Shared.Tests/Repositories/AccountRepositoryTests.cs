@@ -7,26 +7,22 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Tests.Mocks;
 using Moq;
-using MvvmCross.Core;
 using MvvmCross.Test.Core;
 using MvvmCross.Platform;
 using TestFoundation;
-using Xunit;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Assert = Xunit.Assert;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
     [TestClass]
-    public class AccountRepositoryTests : MvxIoCSupportingTest, IDisposable
+    public class AccountRepositoryTests : MvxIoCSupportingTest
     {
         private DateTime _localDateSetting;
 
-        public AccountRepositoryTests()
+        [TestInitialize]
+        public void Init()
         {
-            if (MvxSingletonCache.Instance == null)
-            {
-                Setup();
-            }
+            Setup();
 
             // We setup the static setting classes here for the general usage in the app
             var settingsMockSetup = new Mock<ILocalSettings>();
@@ -63,8 +59,8 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             accountRepository.Save(account);
 
-            Assert.AreSame(testList[0], account);
-            Assert.AreSame(testList[0].Name, account.Name);
+            Assert.Same(testList[0], account);
+            Assert.Same(testList[0].Name, account.Name);
         }
 
         [TestMethod]
@@ -89,14 +85,14 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             accountRepository.Save(account);
 
-            Assert.AreSame(testList[0], account);
-            Assert.AreSame(testList[0].Name, account.Name);
+            Assert.Same(testList[0], account);
+            Assert.Same(testList[0].Name, account.Name);
         }
 
         [TestMethod]
         public void AccessCache()
         {
-            Assert.IsNotNull(new AccountRepository(new AccountDataAccessMock()).Data);
+            Assert.NotNull(new AccountRepository(new AccountDataAccessMock()).Data);
         }
 
         [TestMethod]
@@ -123,8 +119,8 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             repository.Delete(account);
 
-            Assert.IsFalse(testList.Any());
-            Assert.IsFalse(repository.Data.Any());
+            Assert.False(testList.Any());
+            Assert.False(repository.Data.Any());
         }
 
         [TestMethod]
@@ -140,11 +136,11 @@ namespace MoneyFox.Shared.Tests.Repositories
             var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
             accountRepository.Load();
 
-            Assert.IsTrue(accountRepository.Data.Any(x => x.Id == 10));
-            Assert.IsTrue(accountRepository.Data.Any(x => x.Id == 15));
+            Assert.True(accountRepository.Data.Any(x => x.Id == 10));
+            Assert.True(accountRepository.Data.Any(x => x.Id == 15));
         }
 
-        [Fact]
+        [TestMethod]
         public void Save_UpdateTimeStamp()
         {
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
@@ -152,11 +148,6 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             new CategoryRepository(dataAccessSetup.Object).Save(new Category());
             _localDateSetting.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now.AddSeconds(1));
-        }
-
-        public void Dispose()
-        {
-            ClearAll();
         }
     }
 }

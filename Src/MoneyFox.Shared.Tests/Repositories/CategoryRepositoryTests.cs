@@ -7,25 +7,23 @@ using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.Tests.Mocks;
 using Moq;
-using Xunit;
 using TestFoundation;
 using MvvmCross.Test.Core;
 using MvvmCross.Platform;
 using System;
-using MvvmCross.Platform.IoC;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
-    public class CategoryRepositoryTests : MvxIoCSupportingTest, IDisposable
+    [TestClass]
+    public class CategoryRepositoryTests : MvxIoCSupportingTest
     {
         private DateTime _localDateSetting;
 
-        public CategoryRepositoryTests()
+        [TestInitialize]
+        public void Init()
         {
-            if (MvxSimpleIoCContainer.Instance == null)
-            {
-                Setup();
-            }
+            Setup();
 
             // We setup the static setting classes here for the general usage in the app
             var settingsMockSetup = new Mock<ILocalSettings>();
@@ -49,25 +47,42 @@ namespace MoneyFox.Shared.Tests.Repositories
             }
         }
 
-        [Theory]
-        [MemberData(nameof(NamePlaceholder))]
-        public void Save_InputName_CorrectNameAssigned(string inputName, string expectedResult)
+        [TestMethod]
+        public void Save_EmptyString_CorrectNameAssigned()
         {
             var categoryDataAccessMock = new CategoryDataAccessMock();
             var repository = new CategoryRepository(categoryDataAccessMock);
 
             var category = new Category
             {
-                Name = inputName
+                Name = ""
             };
 
             repository.Save(category);
 
             categoryDataAccessMock.CategoryTestList[0].ShouldBeSameAs(category);
-            categoryDataAccessMock.CategoryTestList[0].Name.ShouldBe(expectedResult);
+            categoryDataAccessMock.CategoryTestList[0].Name.ShouldBe(Strings.NoNamePlaceholderLabel);
         }
 
-        [Fact]
+        [TestMethod]
+        public void Save_InputName_CorrectNameAssigned()
+        {
+            const string name = "Ausgang";
+            var categoryDataAccessMock = new CategoryDataAccessMock();
+            var repository = new CategoryRepository(categoryDataAccessMock);
+
+            var category = new Category
+            {
+                Name = name
+            };
+
+            repository.Save(category);
+
+            categoryDataAccessMock.CategoryTestList[0].ShouldBeSameAs(category);
+            categoryDataAccessMock.CategoryTestList[0].Name.ShouldBe(name);
+        }
+
+        [TestMethod]
         public void CategoryRepository_Delete()
         {
             var categoryDataAccessMock = new CategoryDataAccessMock();
@@ -88,13 +103,13 @@ namespace MoneyFox.Shared.Tests.Repositories
             repository.Data.Any().ShouldBeFalse();
         }
 
-        [Fact]
+        [TestMethod]
         public void CategoryRepository_AccessCache()
         {
             new CategoryRepository(new CategoryDataAccessMock()).Data.ShouldNotBeNull();
         }
 
-        [Fact]
+        [TestMethod]
         public void CategoryRepository_AddMultipleToCache()
         {
             var repository = new CategoryRepository(new CategoryDataAccessMock());
@@ -116,7 +131,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             repository.Data[1].ShouldBeSameAs(secondCategory);
         }
 
-        [Fact]
+        [TestMethod]
         public void Load_CategoryDataAccess_DataInitialized()
         {
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
@@ -133,7 +148,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             categoryRepository.Data.Any(x => x.Id == 15).ShouldBeTrue();
         }
 
-        [Fact]
+        [TestMethod]
         public void Save_UpdateTimeStamp()
         {
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
@@ -141,11 +156,6 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             new CategoryRepository(dataAccessSetup.Object).Save(new Category());
             _localDateSetting.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now.AddSeconds(1));
-        }
-
-        public void Dispose()
-        {
-            ClearAll();
         }
     }
 }

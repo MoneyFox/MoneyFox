@@ -1,20 +1,19 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyFox.Shared.Converter;
+﻿using MoneyFox.Shared.Converter;
 using TestFoundation;
+using Xunit;
 
 namespace MoneyFox.Shared.Tests.Converter
 {
-    [TestClass]
     public class AmountFormatConverterTests
     {
-        [TestMethod]
+        [Fact]
         public void Convert_FloatAmount_ValidString()
         {
             var amount = 123.45;
-            Assert.AreEqual(amount.ToString("C"), new AmountFormatConverter().Convert(amount, null, null, null));
+            new AmountFormatConverter().Convert(amount, null, null, null).ShouldBe(123.45.ToString("C"));
         }
 
-        [TestMethod]
+        [Fact]
         public void ConvertBack_Input_EqualsInput()
         {
             var amount = 30;

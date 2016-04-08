@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
@@ -10,24 +11,22 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Tests.Mocks;
 using Moq;
-using MvvmCross.Test.Core;
-using Xunit;
 using MvvmCross.Platform;
-using MvvmCross.Core;
+using MvvmCross.Test.Core;
 using TestFoundation;
+using Assert = Xunit.Assert;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
-    public class PaymentRepositoryTests : MvxIoCSupportingTest, IDisposable
+    [TestClass]
+    public class PaymentRepositoryTests : MvxIoCSupportingTest
     {
         private DateTime _localDateSetting;
 
-        public PaymentRepositoryTests()
+        [TestInitialize]
+        public void Init()
         {
-            if (MvxSingletonCache.Instance == null)
-            {
-                Setup();
-            }
+            Setup();
 
             // We setup the static setting classes here for the general usage in the app
             var settingsMockSetup = new Mock<ILocalSettings>();
@@ -42,7 +41,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Mvx.RegisterType(() => roamSettingsMockSetup.Object);
         }
 
-        [Fact]
+        [TestMethod]
         public void SaveWithouthAccount_NoAccount_InvalidDataException()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -64,7 +63,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.Throws<AccountMissingException>(() => repository.Save(payment));
         }
 
-        [Fact]
+        [TestMethod]
         public void Save_DifferentPaymentTypes_CorrectlySaved()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -99,7 +98,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.Equal((int) PaymentType.Income, paymentDataAccessMock.PaymentTestList[0].Type);
         }
 
-        [Fact]
+        [TestMethod]
         public void Save_TransferPayment_CorrectlySaved()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -142,7 +141,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.Equal((int) PaymentType.Transfer, repository.Data[0].Type);
         }
 
-        [Fact]
+        [TestMethod]
         public void PaymentRepository_Delete()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -178,7 +177,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.False(repository.Data.Any());
         }
 
-        [Fact]
+        [TestMethod]
         public void PaymentRepository_AccessCache()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -195,7 +194,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.False(paymentRepo.Data.Any());
         }
 
-        [Fact]
+        [TestMethod]
         public void AddItemToDataList_SaveAccount_IsAddedToData()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -226,7 +225,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.True(repository.Data.Contains(payment));
         }
 
-        [Fact]
+        [TestMethod]
         public void GetUnclearedPayments_PastDate_PastPayments()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -266,7 +265,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         /// <summary>
         ///     This Test may fail if the date overlaps with the month transition.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void GetUnclearedPayments_FutureDate_PastPayments()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -303,7 +302,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.Equal(1, payments.Count());
         }
 
-        [Fact]
+        [TestMethod]
         public void GetUnclearedPayments_AccountNull()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -330,7 +329,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.Equal(1, payments.Count());
         }
 
-        [Fact]
+        [TestMethod]
         public void Load_Payment_DataInitialized()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -357,7 +356,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.True(paymentRepository.Data.Any(x => x.Id == 15));
         }
 
-        [Fact]
+        [TestMethod]
         public void GetRelatedPayments_Account_CorrectAccounts()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -389,7 +388,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.Equal(2, result.First().Id);
         }
 
-        [Fact]
+        [TestMethod]
         public void LoadRecurringList_NoParameters_ListWithRecurringTrans()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -442,12 +441,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.Equal(3, result[1].Id);
         }
 
-        [Theory]
-        [InlineData(PaymentType.Expense, true)]
-        [InlineData(PaymentType.Expense, false)]
-        [InlineData(PaymentType.Income, true)]
-        [InlineData(PaymentType.Income, false)]
-        public void DeletePayment_WithoutSpending_DeletedAccountBalanceSet(PaymentType type, bool cleared)
+        [TestMethod]
+        public void DeletePayment_IncomeCleared_DeletedAccountBalanceSet()
         {
             var deletedId = 0;
 
@@ -464,8 +459,8 @@ namespace MoneyFox.Shared.Tests.Repositories
                 ChargedAccountId = account.Id,
                 ChargedAccount = account,
                 Amount = 50,
-                Type = (int) type,
-                IsCleared = cleared
+                Type = (int) PaymentType.Income,
+                IsCleared = true
             };
 
             var paymentDataAccessMockSetup = new Mock<IDataAccess<Payment>>();
@@ -496,10 +491,158 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.Equal(500, account.CurrentBalance);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void DeletePayment_Transfer_Deleted(bool isCleared)
+        [TestMethod]
+        public void DeletePayment_IncomeNotCleared_DeletedAccountBalanceSet()
+        {
+            var deletedId = 0;
+
+            var account = new Account
+            {
+                Id = 3,
+                Name = "just an account",
+                CurrentBalance = 500
+            };
+
+            var payment = new Payment
+            {
+                Id = 10,
+                ChargedAccountId = account.Id,
+                ChargedAccount = account,
+                Amount = 50,
+                Type = (int) PaymentType.Income,
+                IsCleared = false
+            };
+
+            var paymentDataAccessMockSetup = new Mock<IDataAccess<Payment>>();
+            paymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<Payment>()))
+                .Callback((Payment trans) => deletedId = trans.Id);
+            paymentDataAccessMockSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()));
+            paymentDataAccessMockSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment> {payment});
+
+            var recPaymentDataAccessMockSetup = new Mock<IDataAccess<RecurringPayment>>();
+            recPaymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<RecurringPayment>()));
+            recPaymentDataAccessMockSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>()))
+                .Returns(new List<RecurringPayment>());
+
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {account});
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
+
+            new PaymentRepository(paymentDataAccessMockSetup.Object,
+                recPaymentDataAccessMockSetup.Object,
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object)
+                .Delete(
+                    payment);
+
+            Assert.Equal(10, deletedId);
+            Assert.Equal(500, account.CurrentBalance);
+        }
+
+        [TestMethod]
+        public void DeletePayment_ExpenseNotCleared_DeletedAccountBalanceSet()
+        {
+            var deletedId = 0;
+
+            var account = new Account
+            {
+                Id = 3,
+                Name = "just an account",
+                CurrentBalance = 500
+            };
+
+            var payment = new Payment
+            {
+                Id = 10,
+                ChargedAccountId = account.Id,
+                ChargedAccount = account,
+                Amount = 50,
+                Type = (int) PaymentType.Expense,
+                IsCleared = false
+            };
+
+            var paymentDataAccessMockSetup = new Mock<IDataAccess<Payment>>();
+            paymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<Payment>()))
+                .Callback((Payment trans) => deletedId = trans.Id);
+            paymentDataAccessMockSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()));
+            paymentDataAccessMockSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment> {payment});
+
+            var recPaymentDataAccessMockSetup = new Mock<IDataAccess<RecurringPayment>>();
+            recPaymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<RecurringPayment>()));
+            recPaymentDataAccessMockSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>()))
+                .Returns(new List<RecurringPayment>());
+
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {account});
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
+
+            new PaymentRepository(paymentDataAccessMockSetup.Object,
+                recPaymentDataAccessMockSetup.Object,
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object)
+                .Delete(
+                    payment);
+
+            Assert.Equal(10, deletedId);
+            Assert.Equal(500, account.CurrentBalance);
+        }
+
+        [TestMethod]
+        public void DeletePayment_ExpenseCleared_DeletedAccountBalanceSet()
+        {
+            var deletedId = 0;
+
+            var account = new Account
+            {
+                Id = 3,
+                Name = "just an account",
+                CurrentBalance = 500
+            };
+
+            var payment = new Payment
+            {
+                Id = 10,
+                ChargedAccountId = account.Id,
+                ChargedAccount = account,
+                Amount = 50,
+                Type = (int) PaymentType.Expense,
+                IsCleared = true
+            };
+
+            var paymentDataAccessMockSetup = new Mock<IDataAccess<Payment>>();
+            paymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<Payment>()))
+                .Callback((Payment trans) => deletedId = trans.Id);
+            paymentDataAccessMockSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()));
+            paymentDataAccessMockSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment> {payment});
+
+            var recPaymentDataAccessMockSetup = new Mock<IDataAccess<RecurringPayment>>();
+            recPaymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<RecurringPayment>()));
+            recPaymentDataAccessMockSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>()))
+                .Returns(new List<RecurringPayment>());
+
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {account});
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
+
+            new PaymentRepository(paymentDataAccessMockSetup.Object,
+                recPaymentDataAccessMockSetup.Object,
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object)
+                .Delete(
+                    payment);
+
+            Assert.Equal(10, deletedId);
+            Assert.Equal(500, account.CurrentBalance);
+        }
+
+        [TestMethod]
+        public void DeletePayment_TransferClearedTrue_Deleted()
         {
             var deletedId = 0;
 
@@ -525,7 +668,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 TargetAccount = account2,
                 Amount = 50,
                 Type = (int) PaymentType.Transfer,
-                IsCleared = isCleared
+                IsCleared = true
             };
 
 
@@ -557,7 +700,66 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.Equal(900, account2.CurrentBalance);
         }
 
-        [Fact]
+        [TestMethod]
+        public void DeletePayment_TransferClearedFalse_Deleted()
+        {
+            var deletedId = 0;
+
+            var account1 = new Account
+            {
+                Id = 3,
+                Name = "just an account",
+                CurrentBalance = 500
+            };
+            var account2 = new Account
+            {
+                Id = 4,
+                Name = "just an account",
+                CurrentBalance = 900
+            };
+
+            var payment = new Payment
+            {
+                Id = 10,
+                ChargedAccountId = account1.Id,
+                ChargedAccount = account1,
+                TargetAccountId = account2.Id,
+                TargetAccount = account2,
+                Amount = 50,
+                Type = (int) PaymentType.Transfer,
+                IsCleared = false
+            };
+
+
+            var paymentDataAccessMockSetup = new Mock<IDataAccess<Payment>>();
+            paymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<Payment>()))
+                .Callback((Payment trans) => deletedId = trans.Id);
+            paymentDataAccessMockSetup.Setup(x => x.SaveItem(It.IsAny<Payment>()));
+            paymentDataAccessMockSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment> {payment});
+
+            var recPaymentDataAccessMockSetup = new Mock<IDataAccess<RecurringPayment>>();
+            recPaymentDataAccessMockSetup.Setup(x => x.DeleteItem(It.IsAny<RecurringPayment>()));
+            recPaymentDataAccessMockSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>()))
+                .Returns(new List<RecurringPayment>());
+
+            var accountRepositorySetup = new Mock<IAccountRepository>();
+            accountRepositorySetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Account> {account1, account2});
+
+            var categoryDataAccessSetup = new Mock<IRepository<Category>>();
+            categoryDataAccessSetup.SetupGet(x => x.Data).Returns(new ObservableCollection<Category>());
+
+            new PaymentRepository(paymentDataAccessMockSetup.Object,
+                recPaymentDataAccessMockSetup.Object,
+                accountRepositorySetup.Object,
+                categoryDataAccessSetup.Object).Delete(
+                    payment);
+
+            Assert.Equal(10, deletedId);
+            Assert.Equal(500, account1.CurrentBalance);
+            Assert.Equal(900, account2.CurrentBalance);
+        }
+
+        [TestMethod]
         public void Save_UpdateTimeStamp()
         {
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
@@ -565,11 +767,6 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             new CategoryRepository(dataAccessSetup.Object).Save(new Category());
             _localDateSetting.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now.AddSeconds(1));
-        }
-
-        public void Dispose()
-        {
-            ClearAll();
         }
     }
 }
