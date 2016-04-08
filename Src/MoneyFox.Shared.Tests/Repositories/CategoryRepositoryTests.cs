@@ -12,22 +12,26 @@ using TestFoundation;
 using MvvmCross.Test.Core;
 using MvvmCross.Platform;
 using System;
+using MvvmCross.Platform.IoC;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
-    public class CategoryRepositoryTests : MvxIoCSupportingTest
+    public class CategoryRepositoryTests : MvxIoCSupportingTest, IDisposable
     {
-        private DateTime localDateSetting;
+        private DateTime _localDateSetting;
 
         public CategoryRepositoryTests()
         {
-            Setup();
+            if (MvxSimpleIoCContainer.Instance == null)
+            {
+                Setup();
+            }
 
             // We setup the static setting classes here for the general usage in the app
             var settingsMockSetup = new Mock<ILocalSettings>();
             settingsMockSetup.SetupAllProperties();
             settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>()))
-                .Callback((string key, DateTime date) => localDateSetting = date);
+                .Callback((string key, DateTime date) => _localDateSetting = date);
 
             var roamSettingsMockSetup = new Mock<IRoamingSettings>();
             roamSettingsMockSetup.SetupAllProperties();
@@ -136,7 +140,12 @@ namespace MoneyFox.Shared.Tests.Repositories
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
 
             new CategoryRepository(dataAccessSetup.Object).Save(new Category());
-            localDateSetting.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now.AddSeconds(1));
+            _localDateSetting.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now.AddSeconds(1));
+        }
+
+        public void Dispose()
+        {
+            ClearAll();
         }
     }
 }

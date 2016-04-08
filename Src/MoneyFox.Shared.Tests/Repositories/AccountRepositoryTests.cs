@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
@@ -6,21 +7,32 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Tests.Mocks;
 using Moq;
+using MvvmCross.Core;
 using MvvmCross.Test.Core;
 using MvvmCross.Platform;
+using TestFoundation;
+using Xunit;
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
     [TestClass]
-    public class AccountRepositoryTests : MvxIoCSupportingTest
+    public class AccountRepositoryTests : MvxIoCSupportingTest, IDisposable
     {
+        private DateTime _localDateSetting;
+
         public AccountRepositoryTests()
         {
-            Setup();
+            if (MvxSingletonCache.Instance == null)
+            {
+                Setup();
+            }
 
             // We setup the static setting classes here for the general usage in the app
             var settingsMockSetup = new Mock<ILocalSettings>();
             settingsMockSetup.SetupAllProperties();
+            settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>()))
+                .Callback((string key, DateTime date) => _localDateSetting = date);
 
             var roamSettingsMockSetup = new Mock<IRoamingSettings>();
             roamSettingsMockSetup.SetupAllProperties();
@@ -130,6 +142,21 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             Assert.IsTrue(accountRepository.Data.Any(x => x.Id == 10));
             Assert.IsTrue(accountRepository.Data.Any(x => x.Id == 15));
+        }
+
+        [Fact]
+        public void Save_UpdateTimeStamp()
+        {
+            var dataAccessSetup = new Mock<IDataAccess<Category>>();
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+
+            new CategoryRepository(dataAccessSetup.Object).Save(new Category());
+            _localDateSetting.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now.AddSeconds(1));
+        }
+
+        public void Dispose()
+        {
+            ClearAll();
         }
     }
 }

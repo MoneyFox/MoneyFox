@@ -14,11 +14,14 @@ using MvvmCross.Test.Core;
 using Xunit;
 using MvvmCross.Platform;
 using MvvmCross.Core;
+using TestFoundation;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
     public class PaymentRepositoryTests : MvxIoCSupportingTest, IDisposable
     {
+        private DateTime _localDateSetting;
+
         public PaymentRepositoryTests()
         {
             if (MvxSingletonCache.Instance == null)
@@ -29,6 +32,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             // We setup the static setting classes here for the general usage in the app
             var settingsMockSetup = new Mock<ILocalSettings>();
             settingsMockSetup.SetupAllProperties();
+            settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>()))
+                .Callback((string key, DateTime date) => _localDateSetting = date);
 
             var roamSettingsMockSetup = new Mock<IRoamingSettings>();
             roamSettingsMockSetup.SetupAllProperties();
@@ -550,6 +555,16 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.Equal(10, deletedId);
             Assert.Equal(500, account1.CurrentBalance);
             Assert.Equal(900, account2.CurrentBalance);
+        }
+
+        [Fact]
+        public void Save_UpdateTimeStamp()
+        {
+            var dataAccessSetup = new Mock<IDataAccess<Category>>();
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+
+            new CategoryRepository(dataAccessSetup.Object).Save(new Category());
+            _localDateSetting.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now.AddSeconds(1));
         }
 
         public void Dispose()
