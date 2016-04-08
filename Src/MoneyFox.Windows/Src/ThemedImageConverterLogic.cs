@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace MoneyManager.Windows
+namespace MoneyFox.Windows
 {
     public static class ThemedImageConverterLogic
     {

@@ -5,7 +5,7 @@ using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
 using NotificationsExtensions.Tiles;
 
-namespace MoneyManager.Windows
+namespace MoneyFox.Windows
 {
     public class UserNotification : IUserNotification
     {
