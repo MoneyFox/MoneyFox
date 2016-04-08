@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using MoneyFox.Windows.Converter;
 using Xunit;
-using XunitShouldExtension;
+using TestFoundation;
 
 namespace MoneyFox.Windows.Tests.Converters
 {

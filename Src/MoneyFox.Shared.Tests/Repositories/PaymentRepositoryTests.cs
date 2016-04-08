@@ -14,14 +14,29 @@ using Moq;
 using MvvmCross.Test.Core;
 using Xunit;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
     [TestClass]
     public class PaymentRepositoryTests : MvxIoCSupportingTest
     {
-        [TestMethod]
-        [ExpectedException(typeof (AccountMissingException))]
+        public PaymentRepositoryTests()
+        {
+            Setup();
+
+            // We setup the static setting classes here for the general usage in the app
+            var settingsMockSetup = new Mock<ILocalSettings>();
+            settingsMockSetup.SetupAllProperties();
+
+            var roamSettingsMockSetup = new Mock<IRoamingSettings>();
+            roamSettingsMockSetup.SetupAllProperties();
+
+            Mvx.RegisterType(() => settingsMockSetup.Object);
+            Mvx.RegisterType(() => roamSettingsMockSetup.Object);
+        }
+
+        [Fact]
         public void SaveWithouthAccount_NoAccount_InvalidDataException()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -40,10 +55,10 @@ namespace MoneyFox.Shared.Tests.Repositories
                 Amount = 20
             };
 
-            repository.Save(payment);
+            Xunit.Assert.Throws<AccountMissingException>(() => repository.Save(payment));
         }
 
-        [TestMethod]
+        [Fact]
         public void Save_DifferentPaymentTypes_CorrectlySaved()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -78,7 +93,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.AreEqual((int) PaymentType.Income, paymentDataAccessMock.PaymentTestList[0].Type);
         }
 
-        [TestMethod]
+        [Fact]
         public void Save_TransferPayment_CorrectlySaved()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -121,7 +136,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.AreEqual((int) PaymentType.Transfer, repository.Data[0].Type);
         }
 
-        [TestMethod]
+        [Fact]
         public void PaymentRepository_Delete()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -157,7 +172,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.IsFalse(repository.Data.Any());
         }
 
-        [TestMethod]
+        [Fact]
         public void PaymentRepository_AccessCache()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -174,7 +189,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.IsFalse(paymentRepo.Data.Any());
         }
 
-        [TestMethod]
+        [Fact]
         public void AddItemToDataList_SaveAccount_IsAddedToData()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -205,7 +220,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.IsTrue(repository.Data.Contains(payment));
         }
 
-        [TestMethod]
+        [Fact]
         public void GetUnclearedPayments_PastDate_PastPayments()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -245,7 +260,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         /// <summary>
         ///     This Test may fail if the date overlaps with the month transition.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void GetUnclearedPayments_FutureDate_PastPayments()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -282,7 +297,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.AreEqual(1, payments.Count());
         }
 
-        [TestMethod]
+        [Fact]
         public void GetUnclearedPayments_AccountNull()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -309,7 +324,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.AreEqual(1, payments.Count());
         }
 
-        [TestMethod]
+        [Fact]
         public void Load_Payment_DataInitialized()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -336,7 +351,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.IsTrue(paymentRepository.Data.Any(x => x.Id == 15));
         }
 
-        [TestMethod]
+        [Fact]
         public void GetRelatedPayments_Account_CorrectAccounts()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -368,7 +383,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             Assert.AreEqual(2, result.First().Id);
         }
 
-        [TestMethod]
+        [Fact]
         public void LoadRecurringList_NoParameters_ListWithRecurringTrans()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();

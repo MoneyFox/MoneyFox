@@ -7,7 +7,7 @@ using MvvmCross.Platform.Core;
 using MvvmCross.Plugins.Email;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Test.Core;
-using XunitShouldExtension;
+using TestFoundation;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {

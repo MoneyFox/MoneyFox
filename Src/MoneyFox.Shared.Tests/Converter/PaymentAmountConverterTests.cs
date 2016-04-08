@@ -7,7 +7,7 @@ using MoneyFox.Shared.Model;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
-using XunitShouldExtension;
+using TestFoundation;
 
 namespace MoneyFox.Shared.Tests.Converter
 {

@@ -99,10 +99,6 @@
       <HintPath>..\packages\xunit.extensibility.execution.2.1.0\lib\net45\xunit.execution.desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="XunitShouldExtension, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xunit.Should.Extension.1.0.4\lib\net45\XunitShouldExtension.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -158,6 +154,10 @@
     <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">
       <Project>{3E0E36AF-65D9-4542-8551-31B76577AA4C}</Project>
       <Name>MoneyFox.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestFoundation\TestFoundation.csproj">
+      <Project>{93012CAD-EDC4-450B-AEFB-2BE4EC6D5123}</Project>
+      <Name>TestFoundation</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

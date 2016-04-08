@@ -6,7 +6,7 @@ using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using Moq;
 using Xunit;
-using XunitShouldExtension;
+using TestFoundation;
 
 namespace MoneyFox.Shared.Tests.Manager
 {

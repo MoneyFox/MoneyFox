@@ -5,7 +5,7 @@ using MoneyFox.Shared.Interfaces;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
-using XunitShouldExtension;
+using TestFoundation;
 
 namespace MoneyFox.Shared.Tests.Authentication
 {
