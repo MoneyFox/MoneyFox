@@ -9,7 +9,10 @@
     d:DesignWidth="400">
 
     <StackPanel>
-         <TextBlock Margin="5" x:Uid="ThemeToggleDescription" Text="You can change between dark and light theme. Changes are applied upon page navigation."/>
-        <ToggleSwitch Margin="5" x:Uid="ThemeToggleSwitch" IsOn="{Binding IsDarkThemeEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" OnContent="Dark Theme" OffContent="Light Theme"/>
+        <TextBlock Margin="5" x:Uid="ThemeToggleDescription"
+                   Text="You can change between dark and light theme. Changes are applied upon page navigation." />
+        <ToggleSwitch Margin="5" x:Uid="ThemeToggleSwitch"
+                      IsOn="{Binding IsDarkThemeEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      OnContent="Dark Theme" OffContent="Light Theme" />
     </StackPanel>
 </UserControl>

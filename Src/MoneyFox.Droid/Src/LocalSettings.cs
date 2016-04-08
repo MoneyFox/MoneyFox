@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using Android.App;
 using Android.Content;
-using Android.Preferences;
+using Android.Support.V7.Preferences;
 using Java.Lang;
 using MoneyFox.Shared.Interfaces;
 
@@ -202,8 +202,7 @@ namespace MoneyFox.Droid
                     }
                     else
                     {
-                        throw new ArgumentException(string.Format("Value of type {0} is not supported.",
-                            value.GetType().Name));
+                        throw new ArgumentException($"Value of type {value.GetType().Name} is not supported.");
                     }
 
                     break;
@@ -258,8 +257,8 @@ namespace MoneyFox.Droid
                                 }
                                 else
                                 {
-                                    throw new ArgumentException(string.Format("Value of type {0} is not supported.",
-                                        value.GetType().Name));
+                                    throw new ArgumentException(
+                                        $"Value of type {value.GetType().Name} is not supported.");
                                 }
                                 break;
                         }

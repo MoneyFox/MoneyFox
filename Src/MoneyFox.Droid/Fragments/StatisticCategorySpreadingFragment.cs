@@ -1,13 +1,13 @@
 using Android.OS;
 using Android.Runtime;
-using Android.Support.V7.Widget;
 using Android.Views;
-using MoneyFox.Droid.Activities;
-using MoneyFox.Shared.ViewModels;
-using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using OxyPlot.Xamarin.Android;
+using MvvmCross.Binding.Droid.BindingContext;
+using Android.Support.V7.Widget;
+using MoneyFox.Droid.Activities;
+using MoneyFox.Shared.ViewModels;
+using MvvmCross.Droid.Shared.Attributes;
 
 namespace MoneyFox.Droid.Fragments
 {

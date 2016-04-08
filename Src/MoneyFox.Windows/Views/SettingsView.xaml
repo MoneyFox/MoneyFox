@@ -34,13 +34,13 @@
                     </PivotItem.Header>
                     <userControls:SettingsSecurityUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
-                
+
                 <!-- Personalization Settings-->
                 <PivotItem>
                     <PivotItem.Header>
                         <userControls:TabHeader Label="Theme"
-                                                  x:Uid="ThemeHeader"
-                                                  Glyph="&#xE2B1;" />
+                                                x:Uid="ThemeHeader"
+                                                Glyph="&#xE2B1;" />
                     </PivotItem.Header>
                     <userControls:PersonalizationSettingsUserControl Margin="-7,0,-7,0" />
                 </PivotItem>

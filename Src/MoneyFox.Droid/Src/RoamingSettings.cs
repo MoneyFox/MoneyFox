@@ -1,6 +1,6 @@
 using System;
 using Android.App;
-using Android.Preferences;
+using Android.Support.V7.Preferences;
 using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Droid
