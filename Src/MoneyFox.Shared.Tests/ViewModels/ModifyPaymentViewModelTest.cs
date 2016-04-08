@@ -11,7 +11,6 @@ using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Test.Core;
-using TestFoundation;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {

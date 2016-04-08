@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Model;
 using Xunit;
-using TestFoundation;
 
 namespace MoneyFox.Shared.Tests.Helper
 {

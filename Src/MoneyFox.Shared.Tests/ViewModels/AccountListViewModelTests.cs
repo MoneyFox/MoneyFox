@@ -6,7 +6,6 @@ using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Platform.Core;
 using MvvmCross.Test.Core;
-using TestFoundation;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {

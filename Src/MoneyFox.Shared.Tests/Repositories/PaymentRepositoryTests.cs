@@ -13,7 +13,6 @@ using MoneyFox.Shared.Tests.Mocks;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
-using TestFoundation;
 using Assert = Xunit.Assert;
 
 namespace MoneyFox.Shared.Tests.Repositories

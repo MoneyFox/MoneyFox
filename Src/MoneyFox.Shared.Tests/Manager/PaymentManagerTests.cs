@@ -8,7 +8,6 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using Moq;
 using Xunit;
-using TestFoundation;
 
 namespace MoneyFox.Shared.Tests.Manager
 {

@@ -1,5 +1,4 @@
 ﻿using MoneyFox.Shared.Converter;
-using TestFoundation;
 using Xunit;
 
 namespace MoneyFox.Shared.Tests.Converter

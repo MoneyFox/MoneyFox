@@ -7,7 +7,6 @@ using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.Tests.Mocks;
 using Moq;
-using TestFoundation;
 using MvvmCross.Test.Core;
 using MvvmCross.Platform;
 using System;

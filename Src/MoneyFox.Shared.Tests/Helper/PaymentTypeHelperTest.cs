@@ -2,7 +2,6 @@
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Resources;
 using Xunit;
-using TestFoundation;
 
 namespace MoneyFox.Shared.Tests.Helper
 {

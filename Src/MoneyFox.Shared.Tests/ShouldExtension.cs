@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Xunit;
 
-namespace TestFoundation
+namespace MoneyFox.Shared.Tests
 {
     public static class ShouldExtensions
     {
