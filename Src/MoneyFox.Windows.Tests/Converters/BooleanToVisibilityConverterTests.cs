@@ -8,31 +8,31 @@ namespace MoneyFox.Windows.Tests.Converters
     public class BooleanToVisibilityConverterTests
     {
         [TestMethod]
-        public void Convert_FalseNoParam_Visibility(bool input, object parameter, Visibility result)
+        public void Convert_FalseNoParam_Visibility()
         {
             Assert.AreEqual(Visibility.Collapsed, new BooleanToVisibilityConverter().Convert(false, null, null, string.Empty));
         }
 
         [TestMethod]
-        public void Convert_TrueNoParam_Visibility(bool input, object parameter, Visibility result)
+        public void Convert_TrueNoParam_Visibility()
         {
             Assert.AreEqual(Visibility.Visible, new BooleanToVisibilityConverter().Convert(true, null, null, string.Empty));
         }
 
         [TestMethod]
-        public void Convert_TrueParam_Visibility(bool input, object parameter, Visibility result)
+        public void Convert_TrueParam_Visibility()
         {
             Assert.AreEqual(Visibility.Collapsed, new BooleanToVisibilityConverter().Convert(true, null, "revert", string.Empty));
         }
 
         [TestMethod]
-        public void Convert_FalseParam_Visibility(bool input, object parameter, Visibility result)
+        public void Convert_FalseParam_Visibility()
         {
             Assert.AreEqual(Visibility.Visible, new BooleanToVisibilityConverter().Convert(false, null, "revert", string.Empty));
         }
 
         [TestMethod]
-        public void Convert_FalseFalseParam_Visibility(bool input, object parameter, Visibility result)
+        public void Convert_FalseFalseParam_Visibility()
         {
             Assert.AreEqual(Visibility.Collapsed, new BooleanToVisibilityConverter().Convert(false, null, "foo", string.Empty));
         }
