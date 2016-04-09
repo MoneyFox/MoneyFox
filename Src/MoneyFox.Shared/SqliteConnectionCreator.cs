@@ -4,9 +4,13 @@ using MoneyFox.Shared.Model;
 using MvvmCross.Plugins.File;
 using MvvmCross.Plugins.Sqlite;
 using SQLite.Net;
+using SQLite.Net.Async;
 
 namespace MoneyFox.Shared
 {
+    /// <summary>
+    ///     Provides connections to the database
+    /// </summary>
     public class SqliteConnectionCreator : ISqliteConnectionCreator
     {
 
@@ -23,12 +27,21 @@ namespace MoneyFox.Shared
         }
 
         /// <summary>
-        ///     Creates the config and establishe the connection to the sqlite database.
+        ///     Creates the config and establish and async connection to access the sqlite database synchronous.
         /// </summary>
-        /// <returns>Established SQLiteConnection.</returns>
+        /// <returns>Established sync connection.</returns>
         public SQLiteConnection GetConnection()
         {
             return connectionFactory.GetConnection(new SqLiteConfig(OneDriveAuthenticationConstants.DB_NAME, false));
+        }
+
+        /// <summary>
+        ///     Creates the config and establish and async connection to access the sqlite database asynchronous.
+        /// </summary>
+        /// <returns>Established async connection.</returns>
+        public SQLiteAsyncConnection GetAsyncConnection()
+        {
+            return connectionFactory.GetAsyncConnection(new SqLiteConfig(OneDriveAuthenticationConstants.DB_NAME, false));
         }
 
         private void CreateDb()
