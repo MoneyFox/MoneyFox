@@ -2,18 +2,19 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using Moq;
-using Xunit;
 
 namespace MoneyFox.Shared.Tests.Manager
 {
+    [TestClass]
     public class PaymentManagerTests
     {
-        [Fact]
+        [TestMethod]
         public void DeleteAssociatedPaymentsFromDatabase_Account_DeleteRightPayments()
         {
             var resultList = new List<int>();
@@ -54,11 +55,11 @@ namespace MoneyFox.Shared.Tests.Manager
             new PaymentManager(repo, new Mock<IAccountRepository>().Object, new Mock<IDialogService>().Object)
                 .DeleteAssociatedPaymentsFromDatabase(account1);
 
-            resultList.Count.ShouldBe(1);
-            resultList.First().ShouldBe(payment.Id);
+            Assert.AreEqual(1, resultList.Count);
+            Assert.AreEqual(payment.Id, resultList.First());
         }
 
-        [Fact]
+        [TestMethod]
         public void DeleteAssociatedPaymentsFromDatabase_DataNull_DoNothing()
         {
             new PaymentManager(new Mock<IPaymentRepository>().Object,
@@ -67,7 +68,7 @@ namespace MoneyFox.Shared.Tests.Manager
                     new Account {Id = 3});
         }
 
-        [Fact]
+        [TestMethod]
         public async void CheckForRecurringPayment_IsRecurringFalse_ReturnFalse()
         {
             var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
@@ -78,11 +79,10 @@ namespace MoneyFox.Shared.Tests.Manager
             result.ShouldBeFalse();
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public async void CheckForRecurringPayment_IsRecurringTrue_ReturnUserInput(bool userAnswer)
+        [TestMethod]
+        public async void CheckForRecurringPayment_IsRecurringTrue_ReturnUserInput()
         {
+            const bool userAnswer = true;
             var dialogService = new Mock<IDialogService>();
             dialogService.Setup(
                 x => x.ShowConfirmMessage(It.Is<string>(y => y == Strings.ChangeSubsequentPaymentTitle),
@@ -95,10 +95,29 @@ namespace MoneyFox.Shared.Tests.Manager
                 dialogService.Object)
                 .CheckForRecurringPayment(new Payment {IsRecurring = true});
 
-            result.ShouldBe(userAnswer);
+            Assert.AreEqual(userAnswer, result);
         }
 
-        [Fact]
+        [TestMethod]
+        public async void CheckForRecurringPayment_IsRecurringFalse_ReturnUserInput()
+        {
+            const bool userAnswer = false;
+            var dialogService = new Mock<IDialogService>();
+            dialogService.Setup(
+                x => x.ShowConfirmMessage(It.Is<string>(y => y == Strings.ChangeSubsequentPaymentTitle),
+                    It.Is<string>(y => y == Strings.ChangeSubsequentPaymentMessage),
+                    It.Is<string>(y => y == Strings.RecurringLabel),
+                    It.Is<string>(y => y == Strings.JustThisLabel))).Returns(Task.FromResult(userAnswer));
+
+            var result = await new PaymentManager(new Mock<IPaymentRepository>().Object,
+                new Mock<IAccountRepository>().Object,
+                dialogService.Object)
+                .CheckForRecurringPayment(new Payment {IsRecurring = true});
+
+            Assert.AreEqual(userAnswer, result);
+        }
+
+        [TestMethod]
         public void RemoveRecurringForPayments_RecTrans_PaymentPropertiesProperlyChanged()
         {
             var payment = new Payment
