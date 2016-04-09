@@ -145,7 +145,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
 
             new CategoryRepository(dataAccessSetup.Object).Save(new Category());
-            _localDateSetting.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now.AddSeconds(1));
+            _localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
+            _localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
         }
     }
 }
