@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Model;
 using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Shared.Tests.Helper
 {

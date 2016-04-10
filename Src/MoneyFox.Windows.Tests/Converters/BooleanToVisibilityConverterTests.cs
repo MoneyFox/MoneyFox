@@ -1,32 +1,58 @@
 ﻿using Windows.UI.Xaml;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyFox.Windows.Converter;
-using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Windows.Tests.Converters
 {
+    [TestClass]
     public class BooleanToVisibilityConverterTests
     {
-        [Theory]
-        [InlineData(false, null, Visibility.Collapsed)]
-        [InlineData(true, null, Visibility.Visible)]
-        [InlineData(true, "revert", Visibility.Collapsed)]
-        [InlineData(false, "revert", Visibility.Visible)]
-        [InlineData(false, "foo", Visibility.Collapsed)]
-        public void Convert_Bool_Visibility(bool input, object parameter, Visibility result)
+        [TestMethod]
+        public void Convert_FalseNoParam_Visibility()
         {
-            new BooleanToVisibilityConverter().Convert(input, null, parameter, string.Empty)
-                .ShouldBe(result);
+            Assert.AreEqual(Visibility.Collapsed, new BooleanToVisibilityConverter().Convert(false, null, null, string.Empty));
         }
 
-        [Theory]
-        [InlineData(false, null, Visibility.Visible)]
-        [InlineData(true, null, Visibility.Collapsed)]
-        [InlineData(false, "foo", Visibility.Visible)]
-        public void ConvertBack_Bool_Visibility(bool input, object parameter, Visibility result)
+        [TestMethod]
+        public void Convert_TrueNoParam_Visibility()
         {
-            new BooleanToVisibilityConverter().ConvertBack(input, null, parameter, string.Empty)
-                .ShouldBe(result);
+            Assert.AreEqual(Visibility.Visible, new BooleanToVisibilityConverter().Convert(true, null, null, string.Empty));
+        }
+
+        [TestMethod]
+        public void Convert_TrueParam_Visibility()
+        {
+            Assert.AreEqual(Visibility.Collapsed, new BooleanToVisibilityConverter().Convert(true, null, "revert", string.Empty));
+        }
+
+        [TestMethod]
+        public void Convert_FalseParam_Visibility()
+        {
+            Assert.AreEqual(Visibility.Visible, new BooleanToVisibilityConverter().Convert(false, null, "revert", string.Empty));
+        }
+
+        [TestMethod]
+        public void Convert_FalseFalseParam_Visibility()
+        {
+            Assert.AreEqual(Visibility.Collapsed, new BooleanToVisibilityConverter().Convert(false, null, "foo", string.Empty));
+        }
+
+        [TestMethod]
+        public void ConvertBack_falseNoParam_Visibility()
+        {
+            Assert.AreEqual(Visibility.Visible, new BooleanToVisibilityConverter().ConvertBack(false, null, null, string.Empty));
+        }
+
+        [TestMethod]
+        public void ConvertBack_FalseParam_Visibility()
+        {
+            Assert.AreEqual(Visibility.Visible, new BooleanToVisibilityConverter().ConvertBack(false, null, "foo", string.Empty));
+        }
+
+        [TestMethod]
+        public void ConvertBack_TrueNoParam_Visibility()
+        {
+            Assert.AreEqual(Visibility.Collapsed, new BooleanToVisibilityConverter().ConvertBack(true, null, null, string.Empty));
         }
     }
 }

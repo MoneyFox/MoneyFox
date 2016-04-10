@@ -3,19 +3,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Interfaces;
 using Moq;
-using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Shared.Tests.Authentication
 {
     [TestClass]
     public class PasswordStorageTests
     {
-        [Theory]
-        [InlineData("This is a password")]
-        [InlineData("+\"*%&(()=")]
-        public void SavePassword_StringPassword_SavedPassword(string passwordString)
+        [TestMethod]
+        public void SavePassword_String_SavedPassword()
         {
+            const string input = "This is a password";
             var resultPassword = string.Empty;
             var resultKey = string.Empty;
 
@@ -27,10 +24,31 @@ namespace MoneyFox.Shared.Tests.Authentication
                     resultPassword = password;
                 });
 
-            new PasswordStorage(mockSetup.Object).SavePassword(passwordString);
+            new PasswordStorage(mockSetup.Object).SavePassword(input);
 
             resultKey.ShouldBe("password");
-            resultPassword.ShouldBe(passwordString);
+            resultPassword.ShouldBe(input);
+        }
+
+        [TestMethod]
+        public void SavePassword_SpecialCharacter_SavedPassword()
+        {
+            const string input = "+\"*%&(()=";
+            var resultPassword = string.Empty;
+            var resultKey = string.Empty;
+
+            var mockSetup = new Mock<IProtectedData>();
+            mockSetup.Setup(x => x.Protect(It.IsAny<string>(), It.IsAny<string>()))
+                .Callback((string key, string password) =>
+                {
+                    resultKey = key;
+                    resultPassword = password;
+                });
+
+            new PasswordStorage(mockSetup.Object).SavePassword(input);
+
+            resultKey.ShouldBe("password");
+            resultPassword.ShouldBe(input);
         }
 
         [TestMethod]
@@ -71,16 +89,27 @@ namespace MoneyFox.Shared.Tests.Authentication
             called.ShouldBeTrue();
         }
 
-        [Theory]
-        [InlineData("fooo", "fooo", true)]
-        [InlineData("fooo", "not the same", false)]
-        public void ValidatePassword_PassPasswordString_CorrectlyValidated(string password, string stringToCheck,
-            bool result)
+        [TestMethod]
+        public void ValidatePassword_ValidPassword_CorrectlyValidated()
         {
-            var mockSetup = new Mock<IProtectedData>();
-            mockSetup.Setup(x => x.Unprotect(It.Is<string>(y => y == "password"))).Returns(password);
+            const string password = "password";
 
-            new PasswordStorage(mockSetup.Object).ValidatePassword(stringToCheck).ShouldBe(result);
+            var mockSetup = new Mock<IProtectedData>();
+            mockSetup.Setup(x => x.Unprotect(It.Is<string>(y => y == password))).Returns(password);
+
+            Assert.IsTrue(new PasswordStorage(mockSetup.Object).ValidatePassword(password));
+        }
+
+        [TestMethod]
+        public void ValidatePassword_InvalidValidPassword_CorrectlyValidated()
+        {
+            const string password = "password";
+            const string passwordPassed = "abc";
+
+            var mockSetup = new Mock<IProtectedData>();
+            mockSetup.Setup(x => x.Unprotect(It.Is<string>(y => y == password))).Returns(password);
+
+            Assert.IsFalse(new PasswordStorage(mockSetup.Object).ValidatePassword(passwordPassed));
         }
     }
 }

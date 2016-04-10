@@ -99,10 +99,6 @@
       <HintPath>..\packages\xunit.extensibility.execution.2.1.0\lib\net45\xunit.execution.desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="XunitShouldExtension, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xunit.Should.Extension.1.0.4\lib\net45\XunitShouldExtension.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -141,6 +137,7 @@
     <Compile Include="Repositories\AccountRepositoryTests.cs" />
     <Compile Include="Repositories\CategoryRepositoryTests.cs" />
     <Compile Include="Repositories\PaymentRepositoryTests.cs" />
+    <Compile Include="ShouldExtension.cs" />
     <Compile Include="StatisticProvider\CashFlowProviderTests.cs" />
     <Compile Include="StatisticProvider\CategorySpreadingProviderTests.cs" />
     <Compile Include="StatisticProvider\CategorySummaryProviderTests.cs" />

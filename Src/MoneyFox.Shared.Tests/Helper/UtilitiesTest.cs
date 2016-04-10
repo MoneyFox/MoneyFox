@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Model;
-using Xunit;
-using XunitShouldExtension;
 
 namespace MoneyFox.Shared.Tests.Helper
 {
+    [TestClass]
     public class UtilitiesTest
     {
-        [Fact]
+        [TestMethod]
         public void RoundStatisticItems_ListOfItems_ListWithRoundedItems()
         {
             var statisticItems = new List<StatisticItem>
@@ -38,17 +38,23 @@ namespace MoneyFox.Shared.Tests.Helper
             statisticItems[3].Value.ShouldBe(9);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetEndOfMonth_NoneInput_LastDayOfMonth()
         {
             Utilities.GetEndOfMonth().ShouldBeInstanceOf(typeof (DateTime));
         }
 
-        [Theory]
-        [InlineData(6000000.45)]
-        [InlineData(6000000)]
-        public void FormatLargeNumbers_AmountShort_ValidString(double amount)
+        [TestMethod]
+        public void FormatLargeNumbers_NumberWithFloat_ValidString()
         {
+            const double amount = 6000000.45;
+            Utilities.FormatLargeNumbers(amount).ShouldBe(amount.ToString("N"));
+        }
+
+        [TestMethod]
+        public void FormatLargeNumbers_NumberWithoutFloat_ValidString()
+        {
+            const double amount = 6000000;
             Utilities.FormatLargeNumbers(amount).ShouldBe(amount.ToString("N"));
         }
     }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Converter;
-using XunitShouldExtension;
 
 namespace MoneyFox.Shared.Tests.Converter
 {
@@ -18,7 +17,7 @@ namespace MoneyFox.Shared.Tests.Converter
         public void ConvertBack_Input_EqualsInput()
         {
             var amount = 30;
-            new AmountFormatConverter().Convert(amount, null, null, null).ShouldBe(amount.ToString("C"));
+            Assert.AreEqual(amount.ToString("C"), new AmountFormatConverter().Convert(amount, null, null, null));
         }
     }
 }

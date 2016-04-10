@@ -2107,18 +2107,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0": {},
-      "Xunit.Should.Extension/1.0.4": {
-        "dependencies": {
-          "xunit": "2.0.0"
-        },
-        "compile": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        },
-        "runtime": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        }
-      }
+      "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-arm": {
       "Fody/1.29.2": {},
@@ -4078,18 +4067,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0": {},
-      "Xunit.Should.Extension/1.0.4": {
-        "dependencies": {
-          "xunit": "2.0.0"
-        },
-        "compile": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        },
-        "runtime": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        }
-      }
+      "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-arm-aot": {
       "Fody/1.29.2": {},
@@ -6013,18 +5991,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0": {},
-      "Xunit.Should.Extension/1.0.4": {
-        "dependencies": {
-          "xunit": "2.0.0"
-        },
-        "compile": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        },
-        "runtime": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        }
-      }
+      "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x64": {
       "Fody/1.29.2": {},
@@ -7990,18 +7957,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0": {},
-      "Xunit.Should.Extension/1.0.4": {
-        "dependencies": {
-          "xunit": "2.0.0"
-        },
-        "compile": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        },
-        "runtime": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        }
-      }
+      "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x64-aot": {
       "Fody/1.29.2": {},
@@ -9925,18 +9881,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0": {},
-      "Xunit.Should.Extension/1.0.4": {
-        "dependencies": {
-          "xunit": "2.0.0"
-        },
-        "compile": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        },
-        "runtime": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        }
-      }
+      "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x86": {
       "Fody/1.29.2": {},
@@ -11902,18 +11847,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0": {},
-      "Xunit.Should.Extension/1.0.4": {
-        "dependencies": {
-          "xunit": "2.0.0"
-        },
-        "compile": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        },
-        "runtime": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        }
-      }
+      "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x86-aot": {
       "Fody/1.29.2": {},
@@ -13837,18 +13771,7 @@
           "lib/win8/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.1.0": {},
-      "Xunit.Should.Extension/1.0.4": {
-        "dependencies": {
-          "xunit": "2.0.0"
-        },
-        "compile": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        },
-        "runtime": {
-          "lib/netcore451/XunitShouldExtension.dll": {}
-        }
-      }
+      "xunit.runner.visualstudio/2.1.0": {}
     }
   },
   "libraries": {
@@ -17718,30 +17641,11 @@
         "xunit.runner.visualstudio.2.1.0.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
-    },
-    "Xunit.Should.Extension/1.0.4": {
-      "sha512": "lNpCLN4wiXx4vXa5VVu1YkLOeXUXBu6yCKPsCk3d9bcNBnevHirAACb2yhZdfO/f6SgxHgtaYn0ZOtrxj+tTSg==",
-      "type": "package",
-      "files": [
-        "Xunit.Should.Extension.1.0.4.nupkg.sha512",
-        "Xunit.Should.Extension.nuspec",
-        "lib/MonoAndroid/XunitShouldExtension.dll",
-        "lib/MonoMac/XunitShouldExtension.dll",
-        "lib/MonoTouch/XunitShouldExtension.dll",
-        "lib/net45/XunitShouldExtension.dll",
-        "lib/netcore45/XunitShouldExtension.dll",
-        "lib/netcore451/XunitShouldExtension.dll",
-        "lib/portable-net4+sl4+wp7+win8/XunitShouldExtension.dll",
-        "lib/wp8/XunitShouldExtension.dll",
-        "lib/wp81/XunitShouldExtension.dll",
-        "lib/wpa81/XunitShouldExtension.dll"
-      ]
     }
   },
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "Xunit.Should.Extension >= 1.0.4",
       "xunit >= 2.1.0",
       "xunit.runner.visualstudio >= 2.1.0"
     ],

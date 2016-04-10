@@ -6,7 +6,6 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using Moq;
-using XunitShouldExtension;
 
 namespace MoneyFox.Shared.Tests.StatisticProvider
 {
