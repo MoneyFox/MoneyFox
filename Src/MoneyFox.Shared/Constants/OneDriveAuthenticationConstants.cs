@@ -8,7 +8,12 @@
         /// <summary>
         ///     Name of the sqlite database
         /// </summary>
-        public const string DB_NAME = "moneyfox.sqlite";
+        public const string DB_NAME_OLD = "moneyfox.sqlite";
+
+        /// <summary>
+        ///     Name of the sqlite database
+        /// </summary>
+        public const string DB_NAME = "moneyfox.db";
 
         /// <summary>
         ///     Name of the Backup Folder
@@ -18,7 +23,7 @@
         /// <summary>
         ///     Name of the database backup
         /// </summary>
-        public const string BACKUP_NAME = "backupmoneyfox.sqlite";
+        public const string BACKUP_NAME = "backupmoneyfox.db";
 
         /// <summary>
         ///     Return url for the OneDrive authentication

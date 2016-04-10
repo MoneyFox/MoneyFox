@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Model;
+using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 
 namespace MoneyFox.Windows.Tests.DataAccess
@@ -11,12 +12,12 @@ namespace MoneyFox.Windows.Tests.DataAccess
     [TestClass]
     public class PaymentDataAccessTests
     {
-        private SqliteConnectionCreator _connectionCreator;
+        private SqliteConnectionCreator connectionCreator;
 
         [TestInitialize]
         public void Init()
         {
-            _connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
+            connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
         }
 
         [TestMethod]
@@ -29,7 +30,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 Amount = amount
             };
 
-            new PaymentDataAccess(_connectionCreator).SaveItem(payment);
+            new PaymentDataAccess(connectionCreator).SaveItem(payment);
 
             Assert.IsTrue(payment.Id >= 1);
             Assert.AreEqual(amount, payment.Amount);
@@ -40,7 +41,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         {
             var payment = new Payment();
 
-            var dataAccess = new PaymentDataAccess(_connectionCreator);
+            var dataAccess = new PaymentDataAccess(connectionCreator);
             dataAccess.SaveItem(payment);
 
             Assert.AreEqual(0, payment.Amount);
@@ -66,7 +67,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 Note = "MultiPayment2",
             };
 
-            var dataAccess = new RecurringPaymentDataAccess(_connectionCreator);
+            var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
             dataAccess.SaveItem(payment1);
             dataAccess.SaveItem(payment2);
 
@@ -87,7 +88,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 Amount = firstAmount
             };
 
-            var dataAccess = new PaymentDataAccess(_connectionCreator);
+            var dataAccess = new PaymentDataAccess(connectionCreator);
             dataAccess.SaveItem(payment);
 
             Assert.AreEqual(firstAmount, dataAccess.LoadList().FirstOrDefault(x => x.Id == payment.Id).Amount);
@@ -108,7 +109,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
                 Note = "paymentToDelete",
             };
 
-            var dataAccess = new PaymentDataAccess(_connectionCreator);
+            var dataAccess = new PaymentDataAccess(connectionCreator);
             dataAccess.SaveItem(payment);
 
             Assert.IsTrue(dataAccess.LoadList(x => x.Id == payment.Id).Any());

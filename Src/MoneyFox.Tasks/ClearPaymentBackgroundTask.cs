@@ -5,6 +5,7 @@ using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
 using MoneyManager.Windows.Shortcut;
+using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using Xamarin;
 
@@ -26,7 +27,7 @@ namespace MoneyFox.Tasks
                 Insights.Initialize(insightKey);
             }
 
-            var sqliteConnectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory());
+            var sqliteConnectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
 
             var accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnectionCreator));
 
