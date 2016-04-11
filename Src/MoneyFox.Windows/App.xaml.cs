@@ -37,9 +37,7 @@ namespace MoneyFox.Windows
         public App()
         {
             InitializeComponent();
-#if !DEBUG
-            WindowsAppInitializer.InitializeAsync();
-#endif
+
             HockeyClient.Current.Configure("69b33c875c09476ea73921bb9f2fc96e", new TelemetryConfiguration());
             Suspending += OnSuspending;
         }
