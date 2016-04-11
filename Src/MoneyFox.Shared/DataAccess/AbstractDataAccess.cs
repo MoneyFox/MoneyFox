@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
-using Xamarin;
 
 namespace MoneyFox.Shared.DataAccess
 {
@@ -15,14 +14,7 @@ namespace MoneyFox.Shared.DataAccess
         /// <param name="itemToSave">item to save.</param>
         public void SaveItem(T itemToSave)
         {
-            try
-            {
-                SaveToDb(itemToSave);
-            }
-            catch (Exception ex)
-            {
-                Insights.Report(ex, Insights.Severity.Error);
-            }
+            SaveToDb(itemToSave);
         }
 
         /// <summary>
@@ -31,14 +23,7 @@ namespace MoneyFox.Shared.DataAccess
         /// <param name="itemToDelete">Item to delete.</param>
         public void DeleteItem(T itemToDelete)
         {
-            try
-            {
-                DeleteFromDatabase(itemToDelete);
-            }
-            catch (Exception ex)
-            {
-                Insights.Report(ex, Insights.Severity.Error);
-            }
+            DeleteFromDatabase(itemToDelete);
         }
 
         /// <summary>
@@ -47,15 +32,7 @@ namespace MoneyFox.Shared.DataAccess
         /// <returns>The list from db.</returns>
         public List<T> LoadList(Expression<Func<T, bool>> filter = null)
         {
-            try
-            {
-                return GetListFromDb(filter);
-            }
-            catch (Exception ex)
-            {
-                Insights.Report(ex, Insights.Severity.Error);
-            }
-            return new List<T>();
+            return GetListFromDb(filter);
         }
 
         protected abstract void SaveToDb(T itemToAdd);

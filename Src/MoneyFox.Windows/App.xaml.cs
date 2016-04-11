@@ -11,6 +11,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.HockeyApp;
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
@@ -39,10 +40,9 @@ namespace MoneyFox.Windows
 #if !DEBUG
             WindowsAppInitializer.InitializeAsync();
 #endif
-
+            HockeyClient.Current.Configure("69b33c875c09476ea73921bb9f2fc96e", new TelemetryConfiguration());
             Suspending += OnSuspending;
         }
-
 
         /// <summary>
         ///     Invoked when the application is launched normally by the end user.  Other entry points

@@ -1,14 +1,11 @@
 ﻿{
   "dependencies": {
-    "Microsoft.ApplicationInsights": "2.0.1",
-    "Microsoft.ApplicationInsights.PersistenceChannel": "1.2.3",
-    "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
+    "HockeySDK.UWP": "3.2.1-build35445",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmCross.Plugin.SQLitePCL": "4.1.0",
     "SQLite.Net-PCL": "3.1.1",
     "SQLite.Net.Async-PCL": "3.1.1",
-    "SQLite.Net.Core-PCL": "3.1.1",
-    "Xamarin.Insights": "1.12.3"
+    "SQLite.Net.Core-PCL": "3.1.1"
   },
   "frameworks": {
     "uap10.0": {}
