@@ -7,7 +7,6 @@ using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Interfaces;
 using MvvmCross.Plugins.File;
-using Xamarin;
 
 namespace MoneyFox.Shared.Services
 {
@@ -64,9 +63,8 @@ namespace MoneyFox.Shared.Services
                     return uploadedItem != null ? TaskCompletionType.Successful : TaskCompletionType.Unsuccessful;
                 }
             }
-            catch (OneDriveException ex)
+            catch (OneDriveException)
             {
-                Insights.Report(ex, Insights.Severity.Error);
                 return TaskCompletionType.Unsuccessful;
             }
         }
@@ -95,7 +93,6 @@ namespace MoneyFox.Shared.Services
             }
             catch (OneDriveException ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
                 return TaskCompletionType.Unsuccessful;
             }
 
@@ -109,19 +106,12 @@ namespace MoneyFox.Shared.Services
                 await Login();
             }
 
-            try
-            {
-                var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
-                var existingBackup = children.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_NAME);
+            var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
+            var existingBackup = children.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_NAME);
 
-                if (existingBackup != null)
-                {
-                    return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
-                }
-            }
-            catch (Exception ex)
+            if (existingBackup != null)
             {
-                Insights.Report(ex);
+                return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
             }
 
             return DateTime.MinValue;

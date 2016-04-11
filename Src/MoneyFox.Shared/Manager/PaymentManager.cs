@@ -5,7 +5,6 @@ using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
-using Xamarin;
 
 namespace MoneyFox.Shared.Manager
 {
@@ -63,48 +62,32 @@ namespace MoneyFox.Shared.Manager
             var payments = paymentRepository.GetUnclearedPayments();
             foreach (var payment in payments)
             {
-                try
+                if (payment.ChargedAccount == null)
                 {
-                    if (payment.ChargedAccount == null)
-                    {
-                        payment.ChargedAccount =
-                            accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                    payment.ChargedAccount =
+                        accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
 
-                        Insights.Report(
-                            new AccountMissingException("Charged account was missing while clearing payments."),
-                            Insights.Severity.Error);
-                    }
-
-                    payment.IsCleared = true;
-                    paymentRepository.Save(payment);
-
-                    accountRepository.AddPaymentAmount(payment);
+                    throw new AccountMissingException("Charged account was missing while clearing payments.");
                 }
-                catch (Exception ex)
-                {
-                    Insights.Report(ex, Insights.Severity.Error);
-                }
+
+                payment.IsCleared = true;
+                paymentRepository.Save(payment);
+
+                accountRepository.AddPaymentAmount(payment);
             }
         }
 
         public void RemoveRecurringForPayments(RecurringPayment recurringPayment)
         {
-            try
-            {
-                var relatedPayment = paymentRepository
+            var relatedPayment = paymentRepository
                     .Data
                     .Where(x => x.IsRecurring && x.RecurringPaymentId == recurringPayment.Id);
 
-                foreach (var payment in relatedPayment)
-                {
-                    payment.IsRecurring = false;
-                    payment.RecurringPaymentId = 0;
-                    paymentRepository.Save(payment);
-                }
-            }
-            catch (Exception ex)
+            foreach (var payment in relatedPayment)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                payment.IsRecurring = false;
+                payment.RecurringPaymentId = 0;
+                paymentRepository.Save(payment);
             }
         }
     }

@@ -44,7 +44,7 @@ namespace MoneyFox.Droid.Activities
         private void SetupInsights()
         {
             // Register the crash manager before Initializing the trace writer
-            HockeyApp.CrashManager.Register(this, "69b33c875c09476ea73921bb9f2fc96e", );
+            HockeyApp.CrashManager.Register(this, "69b33c875c09476ea73921bb9f2fc96e");
 
             // Initialize the Trace Writer
             HockeyApp.TraceWriter.Initialize();
