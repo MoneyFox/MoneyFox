@@ -1,10 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.OneDrive.Sdk;
+﻿using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
+using System;
+using System.Threading.Tasks;
 using Xamarin;
 
 namespace MoneyFox.Shared.ViewModels
@@ -116,16 +116,10 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         private async Task<bool> ShowOverwriteBackupInfo()
-        {
-            return await dialogService
-                .ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
-        }
+            => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
 
         private async Task<bool> ShowOverwriteDataInfo()
-        {
-            return await dialogService
-                .ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
-        }
+            => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
 
         private async Task ShowCompletionNote()
         {

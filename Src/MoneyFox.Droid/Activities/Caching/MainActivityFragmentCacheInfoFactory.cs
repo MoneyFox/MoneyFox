@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
 using MoneyFox.Droid.Fragments;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Caching;
+using System;
+using System.Collections.Generic;
 
 namespace MoneyFox.Droid.Activities.Caching
 {
@@ -85,10 +85,7 @@ namespace MoneyFox.Droid.Activities.Caching
             }
         };
 
-        public Dictionary<string, MainActivity.CustomFragmentInfo> GetFragmentsRegistrationData()
-        {
-            return MyFragmentsInfo;
-        }
+        public Dictionary<string, MainActivity.CustomFragmentInfo> GetFragmentsRegistrationData() => MyFragmentsInfo;
 
         public override IMvxCachedFragmentInfo CreateFragmentInfo(string tag, Type fragmentType, Type viewModelType,
             bool cacheFragment = true,

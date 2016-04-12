@@ -1,5 +1,5 @@
-﻿using System;
-using MoneyFox.Shared.Resources;
+﻿using MoneyFox.Shared.Resources;
+using System;
 
 namespace MoneyFox.Shared.Helpers
 {
@@ -13,7 +13,7 @@ namespace MoneyFox.Shared.Helpers
         /// </summary>
         /// <param name="input">String to parse.</param>
         /// <returns>Parsed PaymentType.</returns>
-        public static PaymentType GetEnumFromString(string input) 
+        public static PaymentType GetEnumFromString(string input)
             => (PaymentType)Enum.Parse(typeof(PaymentType), input);
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace MoneyFox.Shared.Helpers
         /// <param name="type">Int of the enum.</param>
         /// <param name="isEditMode">States if the title is used for the edit mode or for adding</param>
         /// <returns>Title for the enum.</returns>
-        public static string GetViewTitleForType(int type, bool isEditMode) 
+        public static string GetViewTitleForType(int type, bool isEditMode)
             => GetViewTitleForType((PaymentType)type, isEditMode);
 
         /// <summary>
@@ -58,13 +58,13 @@ namespace MoneyFox.Shared.Helpers
         {
             switch (type)
             {
-                case (int) PaymentType.Income:
+                case (int)PaymentType.Income:
                     return PaymentType.Income.ToString();
 
-                case (int) PaymentType.Expense:
+                case (int)PaymentType.Expense:
                     return PaymentType.Expense.ToString();
 
-                case (int) PaymentType.Transfer:
+                case (int)PaymentType.Transfer:
                     return PaymentType.Transfer.ToString();
 
                 default:

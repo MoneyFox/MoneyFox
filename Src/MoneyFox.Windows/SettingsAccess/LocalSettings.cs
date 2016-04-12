@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MoneyFox.Shared.Interfaces;
+using System;
 using System.Globalization;
 using Windows.Storage;
-using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Windows.SettingsAccess
 {
@@ -22,7 +22,7 @@ namespace MoneyFox.Windows.SettingsAccess
             object value;
             lock (locker)
             {
-                if (typeof (T) == typeof (decimal))
+                if (typeof(T) == typeof(decimal))
                 {
                     string savedDecimal;
                     // If the key exists, retrieve the value.
@@ -38,9 +38,9 @@ namespace MoneyFox.Windows.SettingsAccess
 
                     value = Convert.ToDecimal(savedDecimal, CultureInfo.InvariantCulture);
 
-                    return (T) value;
+                    return (T)value;
                 }
-                if (typeof (T) == typeof (DateTime))
+                if (typeof(T) == typeof(DateTime))
                 {
                     string savedTime = null;
                     // If the key exists, retrieve the value.
@@ -61,7 +61,7 @@ namespace MoneyFox.Windows.SettingsAccess
                         value = new DateTime(ticks);
                     }
 
-                    return null != value ? (T) value : defaultValue;
+                    return null != value ? (T)value : defaultValue;
                 }
 
                 // If the key exists, retrieve the value.
@@ -70,7 +70,7 @@ namespace MoneyFox.Windows.SettingsAccess
                     var tempValue = AppSettings.Values[key];
                     if (tempValue != null)
                     {
-                        value = (T) tempValue;
+                        value = (T)tempValue;
                     }
                     else
                     {
@@ -84,7 +84,7 @@ namespace MoneyFox.Windows.SettingsAccess
                 }
             }
 
-            return null != value ? (T) value : defaultValue;
+            return null != value ? (T)value : defaultValue;
         }
 
         /// <summary>
@@ -93,10 +93,7 @@ namespace MoneyFox.Windows.SettingsAccess
         /// <param name="key">key to update</param>
         /// <param name="value">value to set</param>
         /// <returns>True if added or update and you need to save</returns>
-        public bool AddOrUpdateValue<T>(string key, T value)
-        {
-            return InternalAddOrUpdateValue(key, value);
-        }
+        public bool AddOrUpdateValue<T>(string key, T value) => InternalAddOrUpdateValue(key, value);
 
         /// <summary>
         ///     Removes a desired key from the settings

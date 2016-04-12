@@ -1,5 +1,5 @@
-﻿using System;
-using MoneyFox.Shared.Helpers;
+﻿using MoneyFox.Shared.Helpers;
+using System;
 
 namespace MoneyFox.Shared.Authentication
 {
@@ -24,9 +24,7 @@ namespace MoneyFox.Shared.Authentication
         }
 
         private static bool CheckIfSessionExpired()
-        {
-            return (DateTime.Now - Convert.ToDateTime(Settings.SessionTimestamp)).TotalMinutes < SESSION_TIMEOUT;
-        }
+            => (DateTime.Now - Convert.ToDateTime(Settings.SessionTimestamp)).TotalMinutes < SESSION_TIMEOUT;
 
         /// <summary>
         ///     Adds the current time as timestamp to the local settings.

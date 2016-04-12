@@ -13,7 +13,6 @@ namespace MoneyFox.Shared
     /// </summary>
     public class SqliteConnectionCreator : ISqliteConnectionCreator
     {
-
         private readonly IMvxSqliteConnectionFactory connectionFactory;
         private readonly IMvxFileStore fileStore;
 
@@ -30,14 +29,14 @@ namespace MoneyFox.Shared
         ///     Creates the config and establish and async connection to access the sqlite database synchronous.
         /// </summary>
         /// <returns>Established SQLiteConnection.</returns>
-        public SQLiteConnection GetConnection() 
+        public SQLiteConnection GetConnection()
             => connectionFactory.GetConnection(new SqLiteConfig(OneDriveAuthenticationConstants.DB_NAME, false));
 
         /// <summary>
         ///     Creates the config and establish and async connection to access the sqlite database asynchronous.
         /// </summary>
         /// <returns>Established async connection.</returns>
-        public SQLiteAsyncConnection GetAsyncConnection() 
+        public SQLiteAsyncConnection GetAsyncConnection()
             => connectionFactory.GetAsyncConnection(new SqLiteConfig(OneDriveAuthenticationConstants.DB_NAME, false));
 
         private void CreateDb()

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using MoneyFox.Shared.Helpers;
+﻿using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -21,10 +21,7 @@ namespace MoneyFox.Shared.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected override double GetTotalBalance()
-        {
-            return AccountRepository.Selected.CurrentBalance;
-        }
+        protected override double GetTotalBalance() => AccountRepository.Selected.CurrentBalance;
 
         /// <summary>
         ///     Calculates the sum of the selected account at the end of the month.
@@ -40,15 +37,15 @@ namespace MoneyFox.Shared.ViewModels
             {
                 switch (payment.Type)
                 {
-                    case (int) PaymentType.Expense:
+                    case (int)PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
 
-                    case (int) PaymentType.Income:
+                    case (int)PaymentType.Income:
                         balance += payment.Amount;
                         break;
 
-                    case (int) PaymentType.Transfer:
+                    case (int)PaymentType.Transfer:
                         balance = HandleTransferAmount(payment, balance);
                         break;
                 }
@@ -71,11 +68,9 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         private IEnumerable<Payment> LoadUnclreadPayments()
-        {
-            return PaymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth())
+            => PaymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth())
                 .Where(x => x.ChargedAccountId == AccountRepository.Selected.Id
                             || x.TargetAccountId == AccountRepository.Selected.Id)
                 .ToList();
-        }
     }
 }

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq.Expressions;
-using MvvmCross.Core.ViewModels;
+﻿using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
+using System;
+using System.Linq.Expressions;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -16,9 +16,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <typeparam name="TService">The type of the service.</typeparam>
         /// <returns>An instance of the service.</returns>
         public TService GetService<TService>() where TService : class
-        {
-            return Mvx.Resolve<TService>();
-        }
+            => Mvx.Resolve<TService>();
 
         /// <summary>
         ///     Checks if a property already matches a desired value.  Sets the property and

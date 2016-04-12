@@ -1,5 +1,5 @@
-﻿using System;
-using MoneyFox.Shared.Model;
+﻿using MoneyFox.Shared.Model;
+using System;
 
 namespace MoneyFox.Shared.Helpers
 {
@@ -16,24 +16,24 @@ namespace MoneyFox.Shared.Helpers
         public static RecurringPayment GetRecurringFromPayment(Payment payment,
                     bool isEndless,
                     int recurrence,
-                    DateTime enddate = new DateTime()) 
+                    DateTime enddate = new DateTime())
             => new RecurringPayment
-                {
-                    Id = payment.RecurringPaymentId,
-                    ChargedAccount = payment.ChargedAccount,
-                    ChargedAccountId = payment.ChargedAccount.Id,
-                    TargetAccount = payment.TargetAccount,
-                    TargetAccountId = payment.TargetAccount?.Id ?? 0,
-                    StartDate = payment.Date,
-                    EndDate = enddate,
-                    IsEndless = isEndless,
-                    Amount = payment.Amount,
-                    CategoryId = payment.CategoryId,
-                    Category = payment.Category,
-                    Type = payment.Type,
-                    Recurrence = recurrence,
-                    Note = payment.Note
-                };
+            {
+                Id = payment.RecurringPaymentId,
+                ChargedAccount = payment.ChargedAccount,
+                ChargedAccountId = payment.ChargedAccount.Id,
+                TargetAccount = payment.TargetAccount,
+                TargetAccountId = payment.TargetAccount?.Id ?? 0,
+                StartDate = payment.Date,
+                EndDate = enddate,
+                IsEndless = isEndless,
+                Amount = payment.Amount,
+                CategoryId = payment.CategoryId,
+                Category = payment.Category,
+                Type = payment.Type,
+                Recurrence = recurrence,
+                Note = payment.Note
+            };
 
         /// <summary>
         ///     Creates an payment based on the recurring payment.
@@ -45,7 +45,7 @@ namespace MoneyFox.Shared.Helpers
             var date = DateTime.Today;
 
             //If the payment is monthly we want it on the same day of month again.
-            if (recurringPayment.Recurrence == (int) PaymentRecurrence.Monthly)
+            if (recurringPayment.Recurrence == (int)PaymentRecurrence.Monthly)
             {
                 date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
             }
@@ -83,26 +83,26 @@ namespace MoneyFox.Shared.Helpers
 
             switch (recurringPayment.Recurrence)
             {
-                case (int) PaymentRecurrence.Daily:
+                case (int)PaymentRecurrence.Daily:
                     return DateTime.Today.Date != relatedPayment.Date.Date;
 
-                case (int) PaymentRecurrence.DailyWithoutWeekend:
+                case (int)PaymentRecurrence.DailyWithoutWeekend:
                     return DateTime.Today.Date != relatedPayment.Date.Date
                            && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
                            && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
 
-                case (int) PaymentRecurrence.Weekly:
+                case (int)PaymentRecurrence.Weekly:
                     var daysWeekly = DateTime.Now - relatedPayment.Date;
                     return daysWeekly.Days >= 7;
 
-                case (int) PaymentRecurrence.Biweekly:
+                case (int)PaymentRecurrence.Biweekly:
                     var daysBiweekly = DateTime.Now - relatedPayment.Date;
                     return daysBiweekly.Days >= 14;
 
-                case (int) PaymentRecurrence.Monthly:
+                case (int)PaymentRecurrence.Monthly:
                     return DateTime.Now.Month != relatedPayment.Date.Month;
 
-                case (int) PaymentRecurrence.Yearly:
+                case (int)PaymentRecurrence.Yearly:
                     return (DateTime.Now.Year != relatedPayment.Date.Year
                             && DateTime.Now.Month >= relatedPayment.Date.Month)
                            || DateTime.Now.Year - relatedPayment.Date.Year > 1;

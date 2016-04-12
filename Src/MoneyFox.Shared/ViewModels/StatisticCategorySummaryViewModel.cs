@@ -1,8 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using PropertyChanged;
+using System.Collections.ObjectModel;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -29,8 +29,6 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         private ObservableCollection<StatisticItem> GetCategorySummaryData()
-        {
-            return new ObservableCollection<StatisticItem>(categorySummaryDataDataProvider.GetValues(StartDate, EndDate));
-        }
+            => new ObservableCollection<StatisticItem>(categorySummaryDataDataProvider.GetValues(StartDate, EndDate));
     }
 }

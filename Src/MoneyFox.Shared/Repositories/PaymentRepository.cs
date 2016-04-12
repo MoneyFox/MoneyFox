@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Linq.Expressions;
-using MoneyFox.Shared.Exceptions;
+﻿using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using PropertyChanged;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace MoneyFox.Shared.Repositories
 {
@@ -169,12 +169,10 @@ namespace MoneyFox.Shared.Repositories
         /// </summary>
         /// <returns>list of uncleared payments</returns>
         public IEnumerable<Payment> GetUnclearedPayments(DateTime date)
-        {
-            return Data
-                .Where(x => !x.IsCleared)
-                .Where(x => x.Date.Date <= date.Date)
-                .ToList();
-        }
+            => Data
+            .Where(x => !x.IsCleared)
+            .Where(x => x.Date.Date <= date.Date)
+            .ToList();
 
         /// <summary>
         ///     returns a list with payments who are related to this account
@@ -182,12 +180,9 @@ namespace MoneyFox.Shared.Repositories
         /// <param name="account">account to search the related</param>
         /// <returns>List of payments</returns>
         public IEnumerable<Payment> GetRelatedPayments(Account account)
-        {
-            return Data.Where(x => x.ChargedAccountId == account.Id
-                                   || x.TargetAccountId == account.Id)
-                .OrderByDescending(x => x.Date)
-                .ToList();
-        }
+            => Data.Where(x => x.ChargedAccountId == account.Id || x.TargetAccountId == account.Id)
+                   .OrderByDescending(x => x.Date)
+                   .ToList();
 
         /// <summary>
         ///     returns a list with payments who recure in a given timeframe
