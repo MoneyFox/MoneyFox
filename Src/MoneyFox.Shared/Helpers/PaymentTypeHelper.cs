@@ -13,10 +13,8 @@ namespace MoneyFox.Shared.Helpers
         /// </summary>
         /// <param name="input">String to parse.</param>
         /// <returns>Parsed PaymentType.</returns>
-        public static PaymentType GetEnumFromString(string input)
-        {
-            return (PaymentType) Enum.Parse(typeof (PaymentType), input);
-        }
+        public static PaymentType GetEnumFromString(string input) 
+            => (PaymentType)Enum.Parse(typeof(PaymentType), input);
 
         /// <summary>
         ///     Returns based on an enum int the title for the PaymentType.
@@ -24,10 +22,8 @@ namespace MoneyFox.Shared.Helpers
         /// <param name="type">Int of the enum.</param>
         /// <param name="isEditMode">States if the title is used for the edit mode or for adding</param>
         /// <returns>Title for the enum.</returns>
-        public static string GetViewTitleForType(int type, bool isEditMode)
-        {
-            return GetViewTitleForType((PaymentType) type, isEditMode);
-        }
+        public static string GetViewTitleForType(int type, bool isEditMode) 
+            => GetViewTitleForType((PaymentType)type, isEditMode);
 
         /// <summary>
         ///     Returns based on an PaymentType the title.

@@ -29,10 +29,7 @@ namespace MoneyFox.Shared.Authentication
         ///     Loads the password from the secure storage.
         /// </summary>
         /// <returns>Loaded password.</returns>
-        public string LoadPassword()
-        {
-            return protectedData.Unprotect(PASSWORD_KEY);
-        }
+        public string LoadPassword() => protectedData.Unprotect(PASSWORD_KEY);
 
         /// <summary>
         ///     Removes the password from the secure storage.
@@ -54,9 +51,6 @@ namespace MoneyFox.Shared.Authentication
         /// </summary>
         /// <param name="passwordToValidate">String to verify.</param>
         /// <returns>Boolean if password matched.</returns>
-        public bool ValidatePassword(string passwordToValidate)
-        {
-            return LoadPassword() == passwordToValidate;
-        }
+        public bool ValidatePassword(string passwordToValidate) => LoadPassword() == passwordToValidate;
     }
 }

@@ -14,28 +14,26 @@ namespace MoneyFox.Shared.Helpers
         /// <param name="enddate">Enddate for the recurring payment if it's not endless.</param>
         /// <returns>The new created recurring payment</returns>
         public static RecurringPayment GetRecurringFromPayment(Payment payment,
-            bool isEndless,
-            int recurrence,
-            DateTime enddate = new DateTime())
-        {
-            return new RecurringPayment
-            {
-                Id = payment.RecurringPaymentId,
-                ChargedAccount = payment.ChargedAccount,
-                ChargedAccountId = payment.ChargedAccount.Id,
-                TargetAccount = payment.TargetAccount,
-                TargetAccountId = payment.TargetAccount?.Id ?? 0,
-                StartDate = payment.Date,
-                EndDate = enddate,
-                IsEndless = isEndless,
-                Amount = payment.Amount,
-                CategoryId = payment.CategoryId,
-                Category = payment.Category,
-                Type = payment.Type,
-                Recurrence = recurrence,
-                Note = payment.Note
-            };
-        }
+                    bool isEndless,
+                    int recurrence,
+                    DateTime enddate = new DateTime()) 
+            => new RecurringPayment
+                {
+                    Id = payment.RecurringPaymentId,
+                    ChargedAccount = payment.ChargedAccount,
+                    ChargedAccountId = payment.ChargedAccount.Id,
+                    TargetAccount = payment.TargetAccount,
+                    TargetAccountId = payment.TargetAccount?.Id ?? 0,
+                    StartDate = payment.Date,
+                    EndDate = enddate,
+                    IsEndless = isEndless,
+                    Amount = payment.Amount,
+                    CategoryId = payment.CategoryId,
+                    Category = payment.Category,
+                    Type = payment.Type,
+                    Recurrence = recurrence,
+                    Note = payment.Note
+                };
 
         /// <summary>
         ///     Creates an payment based on the recurring payment.

@@ -162,10 +162,7 @@ namespace MoneyFox.Shared.Repositories
         ///     Returns all uncleared payments up to today
         /// </summary>
         /// <returns>list of uncleared payments</returns>
-        public IEnumerable<Payment> GetUnclearedPayments()
-        {
-            return GetUnclearedPayments(DateTime.Today);
-        }
+        public IEnumerable<Payment> GetUnclearedPayments() => GetUnclearedPayments(DateTime.Today);
 
         /// <summary>
         ///     Returns all uncleared payments up to the passed date from the database.

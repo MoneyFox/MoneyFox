@@ -21,10 +21,8 @@ namespace MoneyFox.Shared
         ///     Creates the config and establishe the connection to the sqlite database.
         /// </summary>
         /// <returns>Established SQLiteConnection.</returns>
-        public SQLiteConnection GetConnection()
-        {
-            return connectionFactory.GetConnection(new SqLiteConfig(OneDriveAuthenticationConstants.DB_NAME, false));
-        }
+        public SQLiteConnection GetConnection() 
+            => connectionFactory.GetConnection(new SqLiteConfig(OneDriveAuthenticationConstants.DB_NAME, false));
 
         private void CreateDb()
         {

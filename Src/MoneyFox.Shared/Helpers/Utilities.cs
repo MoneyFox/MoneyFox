@@ -34,9 +34,7 @@ namespace MoneyFox.Shared.Helpers
         /// </summary>
         /// <param name="value">Double who shall be converted</param>
         /// <returns>Formated string.</returns>
-        public static string FormatLargeNumbers(double value)
-        {
-            return value.ToString("N", CultureInfo.CurrentCulture);
-        }
+        public static string FormatLargeNumbers(double value) 
+            => value.ToString("N", CultureInfo.CurrentCulture);
     }
 }
