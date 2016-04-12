@@ -8,7 +8,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
-using Microsoft.ApplicationInsights;
 
 namespace MoneyFox.Windows.Controls
 {
@@ -442,14 +441,7 @@ namespace MoneyFox.Windows.Controls
         {
             if (IsSwipeablePaneOpen)
             {
-                try
-                {
-                    OpenSwipeablePaneAnimation.Begin();
-                }
-                catch (Exception ex)
-                {
-                    new TelemetryClient().TrackException(ex);
-                }
+                OpenSwipeablePaneAnimation.Begin();
             }
             else
             {
@@ -461,14 +453,7 @@ namespace MoneyFox.Windows.Controls
         {
             if (!IsSwipeablePaneOpen)
             {
-                try
-                {
-                    CloseSwipeablePaneAnimation.Begin();
-                }
-                catch (Exception ex)
-                {
-                    new TelemetryClient().TrackException(ex);
-                }
+                CloseSwipeablePaneAnimation.Begin();
             }
             else
             {

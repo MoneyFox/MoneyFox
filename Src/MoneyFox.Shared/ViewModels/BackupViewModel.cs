@@ -5,7 +5,6 @@ using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
-using Xamarin;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -110,7 +109,6 @@ namespace MoneyFox.Shared.ViewModels
             }
             catch (OneDriveException ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
                 await dialogService.ShowMessage(Strings.LoginFailedTitle, Strings.LoginFailedMessage);
             }
         }

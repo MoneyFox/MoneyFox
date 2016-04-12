@@ -3,7 +3,6 @@ using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
-using Xamarin;
 
 namespace MoneyFox.Shared.Manager
 {
@@ -35,21 +34,14 @@ namespace MoneyFox.Shared.Manager
         /// </summary>
         public async void UploadBackupIfNewwer()
         {
-            try
+            if (!roamingSettings.IsBackupAutouploadEnabled)
             {
-                if (!roamingSettings.IsBackupAutouploadEnabled)
-                {
-                    return;
-                }
-
-                if (await backupService.GetBackupDate() < Settings.LastDatabaseUpdate)
-                {
-                    await backupService.Upload();
-                }
+                return;
             }
-            catch (OneDriveException ex)
+
+            if (await backupService.GetBackupDate() < Settings.LastDatabaseUpdate)
             {
-                Insights.Report(ex);
+                await backupService.Upload();
             }
         }
 
@@ -58,24 +50,17 @@ namespace MoneyFox.Shared.Manager
         /// </summary>
         public async Task RestoreBackupIfNewer()
         {
-            try
+            if (!roamingSettings.IsBackupAutouploadEnabled)
             {
-                if (!roamingSettings.IsBackupAutouploadEnabled)
-                {
-                    return;
-                }
-
-                var backupDate = await backupService.GetBackupDate();
-                if (backupDate > Settings.LastDatabaseUpdate)
-                {
-                    await backupService.Restore();
-                    repositoryManager.ReloadData();
-                    Settings.LastDatabaseUpdate = backupDate;
-                }
+                return;
             }
-            catch (OneDriveException ex)
+
+            var backupDate = await backupService.GetBackupDate();
+            if (backupDate > Settings.LastDatabaseUpdate)
             {
-                Insights.Report(ex);
+                await backupService.Restore();
+                repositoryManager.ReloadData();
+                Settings.LastDatabaseUpdate = backupDate;
             }
         }
     }

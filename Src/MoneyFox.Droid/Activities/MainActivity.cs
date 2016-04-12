@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Views;
@@ -27,6 +29,8 @@ namespace MoneyFox.Droid.Activities
         {
             base.OnCreate(bundle);
 
+            SetupInsights();
+
             SetContentView(Resource.Layout.activity_main);
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
@@ -35,6 +39,31 @@ namespace MoneyFox.Droid.Activities
             {
                 ViewModel.ShowMenuAndFirstDetail();
             }
+        }
+
+        private void SetupInsights()
+        {
+            // Register the crash manager before Initializing the trace writer
+            HockeyApp.CrashManager.Register(this, "69b33c875c09476ea73921bb9f2fc96e");
+
+            // Initialize the Trace Writer
+            HockeyApp.TraceWriter.Initialize();
+
+            // Wire up Unhandled Expcetion handler from Android
+            AndroidEnvironment.UnhandledExceptionRaiser += (sender, args) =>
+            {
+                // Use the trace writer to log exceptions so HockeyApp finds them
+                HockeyApp.TraceWriter.WriteTrace(args.Exception);
+                args.Handled = true;
+            };
+
+            // Wire up the .NET Unhandled Exception handler
+            AppDomain.CurrentDomain.UnhandledException +=
+                (sender, args) => HockeyApp.TraceWriter.WriteTrace(args.ExceptionObject);
+
+            // Wire up the unobserved task exception handler
+            TaskScheduler.UnobservedTaskException +=
+                (sender, args) => HockeyApp.TraceWriter.WriteTrace(args.Exception);
         }
 
         public override IFragmentCacheConfiguration BuildFragmentCacheConfiguration()
