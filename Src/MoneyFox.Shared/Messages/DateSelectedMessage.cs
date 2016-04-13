@@ -1,5 +1,5 @@
-﻿using System;
-using MvvmCross.Plugins.Messenger;
+﻿using MvvmCross.Plugins.Messenger;
+using System;
 
 namespace MoneyFox.Shared.Messages
 {
@@ -15,11 +15,11 @@ namespace MoneyFox.Shared.Messages
         /// <summary>
         ///     The selected start date
         /// </summary>
-        public DateTime StartDate { get; private set; }
+        public DateTime StartDate { get; }
 
         /// <summary>
         ///     The selected end date
         /// </summary>
-        public DateTime EndDate { get; private set; }
+        public DateTime EndDate { get; }
     }
 }

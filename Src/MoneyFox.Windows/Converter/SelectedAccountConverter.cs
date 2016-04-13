@@ -8,9 +8,7 @@ namespace MoneyFox.Windows.Converter
     public class SelectedAccountConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            return ((SelectionChangedEventArgs) value).AddedItems.FirstOrDefault();
-        }
+            => ((SelectionChangedEventArgs)value).AddedItems.FirstOrDefault();
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {

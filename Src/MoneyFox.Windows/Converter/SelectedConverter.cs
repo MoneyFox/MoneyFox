@@ -8,9 +8,7 @@ namespace MoneyFox.Windows.Converter
     public class SelectedConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            return ((SelectionChangedEventArgs) value)?.AddedItems.FirstOrDefault();
-        }
+            => ((SelectionChangedEventArgs)value)?.AddedItems.FirstOrDefault();
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
@@ -21,9 +19,7 @@ namespace MoneyFox.Windows.Converter
     public class ClickConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            return ((ItemClickEventArgs) value)?.ClickedItem;
-        }
+            => ((ItemClickEventArgs)value)?.ClickedItem;
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {

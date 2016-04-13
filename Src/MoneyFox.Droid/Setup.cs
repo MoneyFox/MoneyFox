@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Reflection;
 using Android.Content;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
@@ -17,6 +15,8 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using MvvmCross.Plugins.Messenger;
+using System.Collections.Generic;
+using System.Reflection;
 using Xamarin;
 
 namespace MoneyFox.Droid
@@ -84,9 +84,6 @@ namespace MoneyFox.Droid
             return new App();
         }
 
-        protected override IMvxTrace CreateDebugTrace()
-        {
-            return new DebugTrace();
-        }
+        protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
     }
 }

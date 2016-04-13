@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MoneyFox.Shared.Model;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
-using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Helpers
 {
@@ -35,8 +35,6 @@ namespace MoneyFox.Shared.Helpers
         /// <param name="value">Double who shall be converted</param>
         /// <returns>Formated string.</returns>
         public static string FormatLargeNumbers(double value)
-        {
-            return value.ToString("N", CultureInfo.CurrentCulture);
-        }
+            => value.ToString("N", CultureInfo.CurrentCulture);
     }
 }

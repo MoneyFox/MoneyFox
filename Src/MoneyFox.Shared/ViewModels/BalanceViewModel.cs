@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using MoneyFox.Shared.Helpers;
+﻿using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
+using System.Linq;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -50,10 +50,7 @@ namespace MoneyFox.Shared.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected virtual double GetTotalBalance()
-        {
-            return AccountRepository.Data?.Sum(x => x.CurrentBalance) ?? 0;
-        }
+        protected virtual double GetTotalBalance() => AccountRepository.Data?.Sum(x => x.CurrentBalance) ?? 0;
 
         /// <summary>
         ///     Calculates the sum of all accounts at the end of the month.
@@ -69,11 +66,11 @@ namespace MoneyFox.Shared.ViewModels
                 //Transfer can be ignored since they don't change the summary.
                 switch (payment.Type)
                 {
-                    case (int) PaymentType.Expense:
+                    case (int)PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
 
-                    case (int) PaymentType.Income:
+                    case (int)PaymentType.Income:
                         balance += payment.Amount;
                         break;
                 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Support.V4.View;
@@ -9,6 +8,7 @@ using MoneyFox.Droid.Activities.Caching;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using System;
 using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace MoneyFox.Droid.Activities
@@ -37,11 +37,9 @@ namespace MoneyFox.Droid.Activities
             }
         }
 
+        // custom FragmentCacheConfiguration is used because custom IMvxFragmentInfo is used -> CustomFragmentInfo
         public override IFragmentCacheConfiguration BuildFragmentCacheConfiguration()
-        {
-            // custom FragmentCacheConfiguration is used because custom IMvxFragmentInfo is used -> CustomFragmentInfo
-            return new FragmentCacheConfigurationCustomFragmentInfo();
-        }
+            => new FragmentCacheConfigurationCustomFragmentInfo();
 
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
             FragmentTransaction transaction)

@@ -1,7 +1,7 @@
-using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using System;
 
 namespace MoneyFox.Droid.Fragments
 {
@@ -19,8 +19,6 @@ namespace MoneyFox.Droid.Fragments
         }
 
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
-        {
-            return new DatePickerDialog(context, listener, date.Year, date.Month - 1, date.Day);
-        }
+            => new DatePickerDialog(context, listener, date.Year, date.Month - 1, date.Day);
     }
 }

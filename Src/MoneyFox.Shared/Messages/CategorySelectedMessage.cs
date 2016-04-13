@@ -18,6 +18,6 @@ namespace MoneyFox.Shared.Messages
         /// <summary>
         ///     Selected Category.
         /// </summary>
-        public Category SelectedCategory { get; private set; }
+        public Category SelectedCategory { get; }
     }
 }

@@ -1,19 +1,16 @@
-﻿using System;
-using System.Threading.Tasks;
-using Windows.UI.StartScreen;
-using MoneyFox.Shared.Extensions;
+﻿using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.StatisticDataProvider;
 using MvvmCross.Platform;
+using System;
+using System.Threading.Tasks;
+using Windows.UI.StartScreen;
 
 namespace MoneyManager.Windows.Shortcut
 {
     public abstract class Tile
     {
-        protected bool TileExists(string id)
-        {
-            return SecondaryTile.Exists(id);
-        }
+        protected bool TileExists(string id) => SecondaryTile.Exists(id);
 
         protected async Task Create(SecondaryTile secondTile)
         {
