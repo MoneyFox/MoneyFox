@@ -17646,6 +17646,8 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "MvvmCross.Plugin.File >= 4.1.0",
+      "MvvmCross.Plugin.SQLitePCL >= 4.1.0",
       "xunit >= 2.1.0",
       "xunit.runner.visualstudio >= 2.1.0"
     ],
