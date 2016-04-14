@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+﻿using System;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using MoneyFox.Shared;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Helpers;
@@ -7,9 +8,8 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using System;
 
-namespace MoneyFox.Windows.Tests.Src
+namespace MoneyFox.Windows.Tests
 {
     [TestClass]
     public class RecurringPaymentManagerTests

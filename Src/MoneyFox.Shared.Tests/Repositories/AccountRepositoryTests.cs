@@ -16,7 +16,7 @@ namespace MoneyFox.Shared.Tests.Repositories
     [TestClass]
     public class AccountRepositoryTests : MvxIoCSupportingTest
     {
-        private DateTime _localDateSetting;
+        private DateTime localDateSetting;
 
         [TestInitialize]
         public void Init()
@@ -27,7 +27,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             var settingsMockSetup = new Mock<ILocalSettings>();
             settingsMockSetup.SetupAllProperties();
             settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>()))
-                .Callback((string key, DateTime date) => _localDateSetting = date);
+                .Callback((string key, DateTime date) => localDateSetting = date);
 
             var roamSettingsMockSetup = new Mock<IRoamingSettings>();
             roamSettingsMockSetup.SetupAllProperties();
@@ -146,7 +146,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
 
             new CategoryRepository(dataAccessSetup.Object).Save(new Category());
-            _localDateSetting.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now.AddSeconds(1));
+            localDateSetting.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now.AddSeconds(1));
         }
     }
 }
