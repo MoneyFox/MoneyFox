@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="MoneyFox.Windows.Views.UserControls.PersonalizationSettingsUserControl"
+    x:Class="MoneyFox.Windows.Views.UserControls.SettingsPersonalizationUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,7 +10,8 @@
 
     <StackPanel>
         <TextBlock Margin="5" x:Uid="ThemeToggleDescription"
-                   Text="You can change between dark and light theme. Changes are applied upon page navigation." />
+                   Text="You can change between dark and light theme. Changes are applied upon page navigation."
+                   TextWrapping="WrapWholeWords"/>
         <ToggleSwitch Margin="5" x:Uid="ThemeToggleSwitch"
                       IsOn="{Binding IsDarkThemeEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                       OnContent="Dark Theme" OffContent="Light Theme" />
