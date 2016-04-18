@@ -26,7 +26,7 @@ namespace MoneyFox.Shared.Helpers
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
 
         private const string REQUESTED_THEME = "requested_theme";
-        private const bool REQUESTED_THEME_KEYDEFAULT = true;
+        private const bool REQUESTED_THEME_KEYDEFAULT = false;
         private static DateTime DatabaseLastUpdateKeydefault { get; } = DateTime.MinValue;
 
         private static ILocalSettings LocalSettings => Mvx.Resolve<ILocalSettings>();
