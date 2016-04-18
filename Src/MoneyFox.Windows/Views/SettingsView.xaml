@@ -42,7 +42,7 @@
                                                 x:Uid="ThemeHeader"
                                                 Glyph="&#xE2B1;" />
                     </PivotItem.Header>
-                    <userControls:PersonalizationSettingsUserControl Margin="-7,0,-7,0" />
+                    <userControls:SettingsPersonalizationUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
             </Pivot>
         </Grid>
