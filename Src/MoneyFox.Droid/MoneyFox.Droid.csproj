@@ -279,9 +279,6 @@
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\menu\menu_main.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\menu\menu_modification.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>

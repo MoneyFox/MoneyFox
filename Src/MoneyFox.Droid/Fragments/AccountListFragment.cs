@@ -1,10 +1,16 @@
+using Android.App;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
+using MoneyFox.Shared;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Attributes;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Droid.Platform;
+using System.Collections.Generic;
 
 namespace MoneyFox.Droid.Fragments
 {
@@ -22,9 +28,48 @@ namespace MoneyFox.Droid.Fragments
 
             var list = view.FindViewById<ListView>(Resource.Id.account_list);
             RegisterForContextMenu(list);
-            HasOptionsMenu = true;
 
+            var button = view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_item);
+            button.Click += (s, e) =>
+            {
+                var builder = new AlertDialog.Builder(Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
+                builder.SetTitle(Strings.ChooseLabel);
+                builder.SetItems(itemList.ToArray(), OnSelectItemForCreation);
+                builder.SetNegativeButton(Strings.CancelLabel, (d, t) => (d as Dialog).Dismiss());
+                builder.Show();
+            };
             return view;
+        }
+
+        private List<string> itemList = new List<string>
+            {
+                Strings.AddAccountLabel,
+                Strings.AddIncomeLabel,
+                Strings.AddExpenseLabel,
+                Strings.AddTransferLabel
+            };
+
+        public void OnSelectItemForCreation(object sender, Android.Content.DialogClickEventArgs args)
+        {
+            var selected = itemList[args.Which];
+            var mainview = Mvx.Resolve<MainViewModel>();
+
+            if (selected == Strings.AddAccountLabel)
+            {
+                mainview.GoToAddAccountCommand.Execute();
+            }
+            else if(selected == Strings.AddIncomeLabel)
+            {
+                mainview.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
+            }
+            else if (selected == Strings.AddExpenseLabel)
+            {
+                mainview.GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
+            }
+            else if (selected == Strings.AddTransferLabel)
+            {
+                mainview.GoToAddPaymentCommand.Execute(PaymentType.Transfer.ToString());
+            }
         }
 
         private void LoadBalancePanel()
@@ -47,12 +92,6 @@ namespace MoneyFox.Droid.Fragments
                 menu.Add(Strings.EditLabel);
                 menu.Add(Strings.DeleteLabel);
             }
-        }
-
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-        {
-            inflater.Inflate(Resource.Menu.menu_main, menu);
-            base.OnCreateOptionsMenu(menu, inflater);
         }
 
         public override bool OnContextItemSelected(IMenuItem item)

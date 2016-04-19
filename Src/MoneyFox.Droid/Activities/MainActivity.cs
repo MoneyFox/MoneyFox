@@ -1,8 +1,10 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
+using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyFox.Droid.Activities.Caching;
 using MoneyFox.Shared.ViewModels;
@@ -22,6 +24,8 @@ namespace MoneyFox.Droid.Activities
     {
         private CustomFragmentInfo currentFragmentInfo;
         public DrawerLayout DrawerLayout;
+
+        public FloatingActionButton fabCreateItem; 
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -66,38 +70,32 @@ namespace MoneyFox.Droid.Activities
             }
         }
 
+        /// <summary>
+        ///     Handle Clicks in the Toolbar
+        /// </summary>
+        /// <param name="item">Represents the clicked menu item.</param>
+        /// <returns>Returns true if the operation was succesful and false if not.</returns>
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    if (currentFragmentInfo != null && currentFragmentInfo.IsRoot)
-                    {
-                        DrawerLayout.OpenDrawer(GravityCompat.Start);
-                    }
-                    else
-                    {
-                        SupportFragmentManager.PopBackStackImmediate();
-                    }
-                    return true;
-
-                case Resource.Id.action_add_income:
-                    ViewModel.GoToAddPaymentCommand.Execute("Income");
-                    return true;
-
-                case Resource.Id.action_add_spending:
-                    ViewModel.GoToAddPaymentCommand.Execute("Expense");
-                    return true;
-
-                case Resource.Id.action_add_transfer:
-                    ViewModel.GoToAddPaymentCommand.Execute("Transfer");
-                    return true;
-
-                case Resource.Id.action_add_account:
-                    ViewModel.GoToAddAccountCommand.Execute();
-                    return true;
+                    return HandleHomeButton();
             }
             return base.OnOptionsItemSelected(item);
+        }
+
+        private bool HandleHomeButton()
+        {
+            if (currentFragmentInfo != null && currentFragmentInfo.IsRoot)
+            {
+                DrawerLayout.OpenDrawer(GravityCompat.Start);
+            }
+            else
+            {
+                SupportFragmentManager.PopBackStackImmediate();
+            }
+            return true;
         }
 
         public class CustomFragmentInfo : MvxCachedFragmentInfo

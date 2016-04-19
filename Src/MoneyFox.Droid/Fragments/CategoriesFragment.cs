@@ -21,6 +21,7 @@ namespace MoneyFox.Droid.Fragments
 
             var list = view.FindViewById<ListView>(Resource.Id.category_list);
             RegisterForContextMenu(list);
+
             HasOptionsMenu = true;
 
             return view;

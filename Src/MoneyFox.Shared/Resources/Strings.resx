@@ -135,7 +135,7 @@
   <data name="AddIncomeLabel" xml:space="preserve">
     <value>Add Income</value>
   </data>
-  <data name="AddSpendingLabel" xml:space="preserve">
+  <data name="AddExpenseLabel" xml:space="preserve">
     <value>Add Expense</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
@@ -294,7 +294,7 @@
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>Add Income</value>
   </data>
-  <data name="AddSpendingTitle" xml:space="preserve">
+  <data name="AddExpenseTitle" xml:space="preserve">
     <value>Add Expense</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
@@ -378,5 +378,14 @@ Do you want to go the the store to rate?</value>
   </data>
   <data name="ExpenseHistoryDescription" xml:space="preserve">
     <value>Shows a month by month comparison over your total expenses for the selected time range.</value>
+  </data>
+  <data name="AddAccountLabel" xml:space="preserve">
+    <value>Add Account</value>
+  </data>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChooseLabel" xml:space="preserve">
+    <value>Choose</value>
   </data>
 </root>

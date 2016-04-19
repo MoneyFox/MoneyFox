@@ -17,7 +17,7 @@ namespace MoneyFox.Shared.Tests.Helper
                 yield return new object[] {2, Strings.EditTransferTitle, true};
 
                 //Editmode false
-                yield return new object[] {0, Strings.AddSpendingTitle, false};
+                yield return new object[] {0, Strings.AddExpenseTitle, false};
                 yield return new object[] {1, Strings.AddIncomeTitle, false};
                 yield return new object[] {2, Strings.AddTransferTitle, false};
             }
@@ -33,7 +33,7 @@ namespace MoneyFox.Shared.Tests.Helper
                 yield return new object[] {PaymentType.Transfer, Strings.EditTransferTitle, true};
 
                 //Editmode false
-                yield return new object[] {PaymentType.Expense, Strings.AddSpendingTitle, false};
+                yield return new object[] {PaymentType.Expense, Strings.AddExpenseTitle, false};
                 yield return new object[] {PaymentType.Income, Strings.AddIncomeTitle, false};
                 yield return new object[] {PaymentType.Transfer, Strings.AddTransferTitle, false};
             }

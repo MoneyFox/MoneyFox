@@ -11,14 +11,5 @@ namespace MoneyFox.Droid.Fragments
     public class AboutFragment : BaseFragment<AboutViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_about;
-
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
-
-            RetainInstance = true;
-
-            return view;
-        }
     }
 }
