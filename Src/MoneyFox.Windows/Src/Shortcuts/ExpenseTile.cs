@@ -15,7 +15,7 @@ namespace MoneyManager.Windows.Shortcut
         {
             await Create(new SecondaryTile(
                 Constants.ADD_EXPENSE_TILE_ID,
-                Strings.AddSpendingLabel,
+                Strings.AddExpenseLabel,
                 Constants.ADD_EXPENSE_TILE_ID,
                 new Uri("ms-appx:///Assets/SpendingTileIcon.png", UriKind.Absolute),
                 TileSize.Default));

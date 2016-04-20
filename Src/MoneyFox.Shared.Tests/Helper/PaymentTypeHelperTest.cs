@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Resources;
 
@@ -48,7 +47,7 @@ namespace MoneyFox.Shared.Tests.Helper
         [TestMethod]
         public void GetEnumFrostring_ExpenseIntEditFalse_Titel()
         {
-            Assert.AreEqual(Strings.AddSpendingTitle, PaymentTypeHelper.GetViewTitleForType(0, false));
+            Assert.AreEqual(Strings.AddExpenseTitle, PaymentTypeHelper.GetViewTitleForType(0, false));
         }
 
         [TestMethod]
@@ -83,7 +82,7 @@ namespace MoneyFox.Shared.Tests.Helper
         [TestMethod]
         public void GetEnumFrostring_ExpenseEnumEditFalse_Titel()
         {
-            Assert.AreEqual(Strings.AddSpendingTitle, PaymentTypeHelper.GetViewTitleForType(PaymentType.Expense, false));
+            Assert.AreEqual(Strings.AddExpenseTitle, PaymentTypeHelper.GetViewTitleForType(PaymentType.Expense, false));
         }
 
         [TestMethod]

@@ -29,6 +29,7 @@ namespace MoneyFox.Droid.Fragments
 
             var view = this.BindingInflate(FragmentId, null);
 
+            //TODO: I guess this can be removed?
             _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
             if (_toolbar != null)
             {

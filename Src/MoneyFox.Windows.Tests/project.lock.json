@@ -14746,7 +14746,7 @@
       ]
     },
     "NotificationsExtensions.Win10/14295.0.1": {
-      "sha512": "XFRE87hwcl7xIqoYQD+bpEZGCb7jqFOJK5YpcPKVD/pcMa7KajLvh7rUD6of1gnxM/iGVZg4D7LczeMH2D58aQ==",
+      "sha512": "7guXcl341xsRlepVXP2bUPHGPDiSppHovo2nuV3u1Adf3GetT8aVKjvViXTP0SyJuGWA90ngvrbl+Z3G/PEDdA==",
       "type": "package",
       "files": [
         "NotificationsExtensions.Win10.14295.0.1.nupkg.sha512",
@@ -17561,7 +17561,7 @@
       ]
     },
     "Xamarin.Insights/1.12.3": {
-      "sha512": "+0EvucRutdlnqY0AjBL90SMN3YlUT7ulU+W4FlX1XBKV6dVhpZ6LKiijsuOsUtL5l1LweIJkgTEF2AIoFy6ooA==",
+      "sha512": "VQXgvnpsmQbyldn8p9hrS8wcuY+mfy8Erq0yKIH5a0lW03493/UMNQLMUtfxRrff0poKIAydigZS/R2x6NXyUw==",
       "type": "package",
       "files": [
         "ThirdPartyNotices.txt",

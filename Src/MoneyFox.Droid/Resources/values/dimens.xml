@@ -8,6 +8,8 @@
   <dimen name="margin_large">32dp</dimen>
   <dimen name="margin_huge">64dp</dimen>
 
+  <dimen name="fab_margin">16dp</dimen>
+
   <!-- Semantic definitions -->
 
   <dimen name="button_login_height">60dp</dimen>
