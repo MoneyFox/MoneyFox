@@ -159,7 +159,7 @@ namespace MoneyFox.Windows
             jumpList.Items.Add(listItemAddIncome);
 
             var listItemAddSpending = JumpListItem.CreateWithArguments(Constants.ADD_EXPENSE_TILE_ID,
-                Strings.AddSpendingLabel);
+                Strings.AddExpenseLabel);
             listItemAddSpending.Logo = new Uri("ms-appx:///Assets/SpendingTileIcon.png");
             jumpList.Items.Add(listItemAddSpending);
 

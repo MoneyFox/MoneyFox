@@ -22,7 +22,6 @@ namespace MoneyFox.Droid.Fragments
 
             ((MainActivity) Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
             ((MainActivity) Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            HasOptionsMenu = true;
 
             LoadBalancePanel();
 
@@ -46,12 +45,6 @@ namespace MoneyFox.Droid.Fragments
             base.OnResume();
 
             ViewModel.LoadCommand.Execute();
-        }
-
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-        {
-            inflater.Inflate(Resource.Menu.menu_main, menu);
-            base.OnCreateOptionsMenu(menu, inflater);
         }
     }
 }

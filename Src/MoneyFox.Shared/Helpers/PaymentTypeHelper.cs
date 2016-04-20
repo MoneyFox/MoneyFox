@@ -36,7 +36,7 @@ namespace MoneyFox.Shared.Helpers
             switch (type)
             {
                 case PaymentType.Expense:
-                    return isEditMode ? Strings.EditSpendingTitle : Strings.AddSpendingTitle;
+                    return isEditMode ? Strings.EditSpendingTitle : Strings.AddExpenseTitle;
 
                 case PaymentType.Income:
                     return isEditMode ? Strings.EditIncomeTitle : Strings.AddIncomeTitle;
