@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
+using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyFox.Droid.Activities.Caching;
 using MoneyFox.Shared.ViewModels;
@@ -37,6 +38,24 @@ namespace MoneyFox.Droid.Activities
             if (bundle == null)
             {
                 ViewModel.ShowMenuAndFirstDetail();
+            }
+
+            var _toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            if (_toolbar != null)
+            {
+                SetSupportActionBar(_toolbar);
+                SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+                var drawerToggle = new MvxActionBarDrawerToggle(
+                    this, // host Activity
+                    DrawerLayout, // DrawerLayout object
+                    _toolbar, // nav drawer icon to replace 'Up' caret
+                    Resource.String.drawer_open, // "open drawer" description
+                    Resource.String.drawer_close // "close drawer" description
+                    );
+
+                DrawerLayout.SetDrawerListener(drawerToggle);
+                drawerToggle.SyncState();
             }
         }
 
