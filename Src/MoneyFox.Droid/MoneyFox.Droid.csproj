@@ -45,11 +45,20 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
-    <AotAssemblies>True</AotAssemblies>
+    <AotAssemblies>False</AotAssemblies>
     <DevInstrumentationEnabled>False</DevInstrumentationEnabled>
-    <EnableLLVM>true</EnableLLVM>
+    <EnableLLVM>False</EnableLLVM>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
+    <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
+    <AndroidLinkSkip />
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <BundleAssemblies>False</BundleAssemblies>
+    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86,x86_64,arm64-v8a</AndroidSupportedAbis>
+    <AndroidStoreUncompressedFileExtensions />
+    <MandroidI18n />
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <EnableProguard>False</EnableProguard>
+    <DebugSymbols>False</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Platform)' != 'Unix'">
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
