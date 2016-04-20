@@ -1,5 +1,6 @@
 ﻿using Android.OS;
 using Android.Runtime;
+using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using MoneyFox.Shared.Resources;
@@ -22,15 +23,18 @@ namespace MoneyFox.Droid.Fragments
             var list = view.FindViewById<ListView>(Resource.Id.category_list);
             RegisterForContextMenu(list);
 
-            HasOptionsMenu = true;
+            var button = view.FindViewById<FloatingActionButton>(Resource.Id.fab_create_category);
+            button.Click += (s, e) =>
+            {
+                var dialog = new ModifyCategoryDialog
+                {
+                    ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
+                };
+
+                dialog.Show(Activity.FragmentManager, "dialog");
+            };
 
             return view;
-        }
-
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-        {
-            inflater.Inflate(Resource.Menu.menu_add, menu);
-            base.OnCreateOptionsMenu(menu, inflater);
         }
 
         public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
@@ -40,28 +44,6 @@ namespace MoneyFox.Droid.Fragments
                 menu.SetHeaderTitle(Strings.SelectOperationLabel);
                 menu.Add(Strings.EditLabel);
                 menu.Add(Strings.DeleteLabel);
-            }
-        }
-
-        /// <summary>
-        ///     This hook is called whenever an item in your options menu is selected.
-        /// </summary>
-        /// <param name="item">The menu item that was selected.</param>
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Resource.Id.action_add:
-                    var dialog = new ModifyCategoryDialog
-                    {
-                        ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
-                    };
-
-                    dialog.Show(Activity.FragmentManager, "dialog");
-                    return true;
-
-                default:
-                    return false;
             }
         }
     }
