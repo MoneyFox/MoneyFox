@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <include
             layout="@layout/toolbar_actionbar" />
         <FrameLayout
@@ -17,11 +18,12 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent" />
         <MvxListView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:paddingLeft="6dp"
             android:paddingRight="6dp"
             android:id="@+id/account_list"
+            local:layout_behavior="@string/appbar_scrolling_view_behavior"
             local:MvxItemTemplate="@layout/listitem_account"
             local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />
     </LinearLayout>
@@ -29,7 +31,7 @@
         android:id="@+id/fab_create_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="bottom|center"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add" />
 </android.support.design.widget.CoordinatorLayout>
