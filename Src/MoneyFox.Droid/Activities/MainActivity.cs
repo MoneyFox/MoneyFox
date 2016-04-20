@@ -4,7 +4,6 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
-using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyFox.Droid.Activities.Caching;
 using MoneyFox.Shared.ViewModels;
@@ -48,7 +47,7 @@ namespace MoneyFox.Droid.Activities
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
             FragmentTransaction transaction)
         {
-            transaction.SetCustomAnimations(Resource.Animation.abc_grow_fade_in_from_bottom,
+            transaction.SetCustomAnimations(Resource.Animation.abc_fade_in,
                 Resource.Animation.abc_fade_out);
             base.OnBeforeFragmentChanging(fragmentInfo, transaction);
         }
