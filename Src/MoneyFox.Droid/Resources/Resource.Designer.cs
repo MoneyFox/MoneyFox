@@ -2048,40 +2048,61 @@ namespace MoneyFox.Droid
 			public const int design_snackbar_background = 2130837574;
 			
 			// aapt resource value: 0x7f020047
-			public const int ic_add = 2130837575;
+			public const int ic_account_balance = 2130837575;
 			
 			// aapt resource value: 0x7f020048
-			public const int ic_delete = 2130837576;
+			public const int ic_add = 2130837576;
 			
 			// aapt resource value: 0x7f020049
-			public const int ic_done = 2130837577;
+			public const int ic_backup = 2130837577;
 			
 			// aapt resource value: 0x7f02004a
-			public const int ic_done_black = 2130837578;
+			public const int ic_delete = 2130837578;
 			
 			// aapt resource value: 0x7f02004b
-			public const int ic_forward = 2130837579;
+			public const int ic_done = 2130837579;
 			
 			// aapt resource value: 0x7f02004c
-			public const int ic_recurring = 2130837580;
+			public const int ic_done_black = 2130837580;
 			
 			// aapt resource value: 0x7f02004d
-			public const int ic_remove = 2130837581;
+			public const int ic_forward = 2130837581;
 			
 			// aapt resource value: 0x7f02004e
-			public const int ic_save = 2130837582;
+			public const int ic_info = 2130837582;
 			
 			// aapt resource value: 0x7f02004f
-			public const int Icon = 2130837583;
+			public const int ic_label_outline = 2130837583;
 			
 			// aapt resource value: 0x7f020050
-			public const int icon_wide = 2130837584;
+			public const int ic_loop = 2130837584;
 			
 			// aapt resource value: 0x7f020051
-			public const int logo = 2130837585;
+			public const int ic_recurring = 2130837585;
 			
 			// aapt resource value: 0x7f020052
-			public const int notification_template_icon_bg = 2130837586;
+			public const int ic_remove = 2130837586;
+			
+			// aapt resource value: 0x7f020053
+			public const int ic_save = 2130837587;
+			
+			// aapt resource value: 0x7f020054
+			public const int ic_settings = 2130837588;
+			
+			// aapt resource value: 0x7f020055
+			public const int ic_show_chart = 2130837589;
+			
+			// aapt resource value: 0x7f020056
+			public const int Icon = 2130837590;
+			
+			// aapt resource value: 0x7f020057
+			public const int icon_wide = 2130837591;
+			
+			// aapt resource value: 0x7f020058
+			public const int logo = 2130837592;
+			
+			// aapt resource value: 0x7f020059
+			public const int notification_template_icon_bg = 2130837593;
 			
 			static Drawable()
 			{
