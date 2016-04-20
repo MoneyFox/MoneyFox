@@ -26,8 +26,8 @@ namespace MoneyFox.Shared.Tests.Authentication
 
             new PasswordStorage(mockSetup.Object).SavePassword(input);
 
-            resultKey.ShouldBe("password");
-            resultPassword.ShouldBe(input);
+            Assert.AreEqual("password", resultKey);
+            Assert.AreEqual(input, resultPassword);
         }
 
         [TestMethod]
@@ -47,8 +47,8 @@ namespace MoneyFox.Shared.Tests.Authentication
 
             new PasswordStorage(mockSetup.Object).SavePassword(input);
 
-            resultKey.ShouldBe("password");
-            resultPassword.ShouldBe(input);
+            Assert.AreEqual("password", resultKey);
+            Assert.AreEqual(input, resultPassword);
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace MoneyFox.Shared.Tests.Authentication
             var mockSetup = new Mock<IProtectedData>();
             mockSetup.Setup(x => x.Unprotect(It.Is<string>(y => y == "password"))).Returns(expectedPassword);
 
-            new PasswordStorage(mockSetup.Object).LoadPassword().ShouldBe(expectedPassword);
+            Assert.AreEqual(expectedPassword, new PasswordStorage(mockSetup.Object).LoadPassword());
         }
 
         [TestMethod]
@@ -70,7 +70,7 @@ namespace MoneyFox.Shared.Tests.Authentication
 
             new PasswordStorage(mockSetup.Object).RemovePassword();
 
-            called.ShouldBeTrue();
+            Assert.IsTrue(called);
         }
 
         [TestMethod]
@@ -86,7 +86,7 @@ namespace MoneyFox.Shared.Tests.Authentication
 
             new PasswordStorage(mockSetup.Object).RemovePassword();
 
-            called.ShouldBeTrue();
+            Assert.IsTrue(called);
         }
 
         [TestMethod]

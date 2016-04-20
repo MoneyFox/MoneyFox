@@ -42,9 +42,9 @@ namespace MoneyFox.Shared.Tests.Manager
             new RepositoryManager(accountRepo, paymentRepository, categoryRepo,
                 new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object)).ReloadData();
 
-            accountRepo.Selected.ShouldBeNull();
-            paymentRepository.Selected.ShouldBeNull();
-            categoryRepo.Selected.ShouldBeNull();
+            Assert.IsNull(accountRepo.Selected);
+            Assert.IsNull(paymentRepository.Selected);
+            Assert.IsNull(categoryRepo.Selected);
         }
 
         [TestMethod]
@@ -76,9 +76,9 @@ namespace MoneyFox.Shared.Tests.Manager
                 new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object))
                 .ReloadData();
 
-            accountsLoaded.ShouldBeTrue();
-            paymentsLoaded.ShouldBeTrue();
-            categoryLoaded.ShouldBeTrue();
+            Assert.IsTrue(accountsLoaded);
+            Assert.IsTrue(paymentsLoaded);
+            Assert.IsTrue(categoryLoaded);
         }
 
         [TestMethod]
@@ -112,8 +112,8 @@ namespace MoneyFox.Shared.Tests.Manager
             new RepositoryManager(accountRepo, paymentRepository, categoryRepoSetup.Object,
                 new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object))
                 .ReloadData();
-
-            payment.IsCleared.ShouldBeTrue();
+            
+            Assert.IsTrue(payment.IsCleared);
         }
     }
 }

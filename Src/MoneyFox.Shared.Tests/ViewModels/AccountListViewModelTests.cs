@@ -35,7 +35,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             viewModel.OpenOverviewCommand.Execute(new Account {Id = 42});
 
-            accountRepo.Selected.Id.ShouldBe(42);
+            Assert.AreEqual(42, accountRepo.Selected.Id);
         }
 
         [TestMethod]
@@ -55,7 +55,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             viewModel.OpenOverviewCommand.Execute(null);
 
-            accountRepo.Selected.ShouldBeNull();
+            Assert.IsNull(accountRepo.Selected);
         }
 
         [TestMethod]

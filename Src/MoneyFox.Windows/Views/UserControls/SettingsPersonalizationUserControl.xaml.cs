@@ -3,9 +3,9 @@ using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
-    public sealed partial class PersonalizationSettingsUserControl
+    public sealed partial class SettingsPersonalizationUserControl
     {
-        public PersonalizationSettingsUserControl()
+        public SettingsPersonalizationUserControl()
         {
             InitializeComponent();
 

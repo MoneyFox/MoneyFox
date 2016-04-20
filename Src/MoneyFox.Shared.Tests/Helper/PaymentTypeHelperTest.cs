@@ -1,65 +1,100 @@
-﻿using System.Collections;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Resources;
-using Xunit;
 
 namespace MoneyFox.Shared.Tests.Helper
 {
+    [TestClass]
     public class PaymentTypeHelperTest
     {
-        public static IEnumerable GetEnumFrostringWithIntData
+        [TestMethod]
+        public void GetEnumFromString_Expense_Titel()
         {
-            get
-            {
-                //Editmode true
-                yield return new object[] {0, Strings.EditSpendingTitle, true};
-                yield return new object[] {1, Strings.EditIncomeTitle, true};
-                yield return new object[] {2, Strings.EditTransferTitle, true};
-
-                //Editmode false
-                yield return new object[] {0, Strings.AddExpenseTitle, false};
-                yield return new object[] {1, Strings.AddIncomeTitle, false};
-                yield return new object[] {2, Strings.AddTransferTitle, false};
-            }
+            Assert.AreEqual(PaymentType.Expense, PaymentTypeHelper.GetEnumFromString("Expense"));
         }
 
-        public static IEnumerable GetEnumFrostringWithEnumData
+        [TestMethod]
+        public void GetEnumFromString_Income_Titel()
         {
-            get
-            {
-                //Editmode true
-                yield return new object[] {PaymentType.Expense, Strings.EditSpendingTitle, true};
-                yield return new object[] {PaymentType.Income, Strings.EditIncomeTitle, true};
-                yield return new object[] {PaymentType.Transfer, Strings.EditTransferTitle, true};
-
-                //Editmode false
-                yield return new object[] {PaymentType.Expense, Strings.AddExpenseTitle, false};
-                yield return new object[] {PaymentType.Income, Strings.AddIncomeTitle, false};
-                yield return new object[] {PaymentType.Transfer, Strings.AddTransferTitle, false};
-            }
+            Assert.AreEqual(PaymentType.Income, PaymentTypeHelper.GetEnumFromString("Income"));
         }
 
-        [Theory]
-        [InlineData("Expense", PaymentType.Expense)]
-        [InlineData("Income", PaymentType.Income)]
-        [InlineData("Transfer", PaymentType.Transfer)]
-        public void GetEnumFrostring_String_Titel(string inputString, PaymentType expectedType)
+        [TestMethod]
+        public void GetEnumFromString_Transfer_Titel()
         {
-            PaymentTypeHelper.GetEnumFromString(inputString).ShouldBe(expectedType);
+            Assert.AreEqual(PaymentType.Transfer, PaymentTypeHelper.GetEnumFromString("Transfer"));
         }
 
-        [Theory]
-        [MemberData(nameof(GetEnumFrostringWithIntData))]
-        public void GetEnumFrostring_Int_Titel(int input, string expectedTitle, bool isEditMode)
+
+        [TestMethod]
+        public void GetEnumFrostring_ExpenseIntEditTrue_Titel()
         {
-            PaymentTypeHelper.GetViewTitleForType(input, isEditMode).ShouldBe(expectedTitle);
+            Assert.AreEqual(Strings.EditSpendingTitle, PaymentTypeHelper.GetViewTitleForType(0, true));
         }
 
-        [Theory]
-        [MemberData(nameof(GetEnumFrostringWithEnumData))]
-        public void GetEnumFrostring_Type_Titel(PaymentType input, string expectedTitle, bool isEditMode)
+        [TestMethod]
+        public void GetEnumFrostring_IncomeIntEditTrue_Titel()
         {
-            PaymentTypeHelper.GetViewTitleForType(input, isEditMode).ShouldBe(expectedTitle);
+            Assert.AreEqual(Strings.EditIncomeTitle, PaymentTypeHelper.GetViewTitleForType(1, true));
+        }
+
+        [TestMethod]
+        public void GetEnumFrostring_TransferIntEditTrue_Titel()
+        {
+            Assert.AreEqual(Strings.EditTransferTitle, PaymentTypeHelper.GetViewTitleForType(2, true));
+        }
+
+        [TestMethod]
+        public void GetEnumFrostring_ExpenseIntEditFalse_Titel()
+        {
+            Assert.AreEqual(Strings.AddExpenseTitle, PaymentTypeHelper.GetViewTitleForType(0, false));
+        }
+
+        [TestMethod]
+        public void GetEnumFrostring_IncomeIntEditFalse_Titel()
+        {
+            Assert.AreEqual(Strings.AddIncomeTitle, PaymentTypeHelper.GetViewTitleForType(1, false));
+        }
+
+        [TestMethod]
+        public void GetEnumFrostring_TransferIntEditFalse_Titel()
+        {
+            Assert.AreEqual(Strings.AddTransferTitle, PaymentTypeHelper.GetViewTitleForType(2, false));
+        }
+        [TestMethod]
+        public void GetEnumFrostring_ExpenseEnumEditTrue_Titel()
+        {
+            Assert.AreEqual(Strings.EditSpendingTitle, PaymentTypeHelper.GetViewTitleForType(PaymentType.Expense, true));
+        }
+
+        [TestMethod]
+        public void GetEnumFrostring_IncomeEnumEditTrue_Titel()
+        {
+            Assert.AreEqual(Strings.EditIncomeTitle, PaymentTypeHelper.GetViewTitleForType(PaymentType.Income, true));
+        }
+
+        [TestMethod]
+        public void GetEnumFrostring_TransferEnumEditTrue_Titel()
+        {
+            Assert.AreEqual(Strings.EditTransferTitle, PaymentTypeHelper.GetViewTitleForType(PaymentType.Transfer, true));
+        }
+
+        [TestMethod]
+        public void GetEnumFrostring_ExpenseEnumEditFalse_Titel()
+        {
+            Assert.AreEqual(Strings.AddExpenseTitle, PaymentTypeHelper.GetViewTitleForType(PaymentType.Expense, false));
+        }
+
+        [TestMethod]
+        public void GetEnumFrostring_IncomeEnumEditFalse_Titel()
+        {
+            Assert.AreEqual(Strings.AddIncomeTitle, PaymentTypeHelper.GetViewTitleForType(PaymentType.Income, false));
+        }
+
+        [TestMethod]
+        public void GetEnumFrostring_TransferEnumEditFalse_Titel()
+        {
+            Assert.AreEqual(Strings.AddTransferTitle, PaymentTypeHelper.GetViewTitleForType(PaymentType.Transfer, false));
         }
     }
 }

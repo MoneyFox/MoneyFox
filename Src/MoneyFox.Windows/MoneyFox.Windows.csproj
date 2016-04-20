@@ -214,8 +214,8 @@
     <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
       <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\PersonalizationSettingsUserControl.xaml.cs">
-      <DependentUpon>PersonalizationSettingsUserControl.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\SettingsPersonalizationUserControl.xaml.cs">
+      <DependentUpon>SettingsPersonalizationUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\RecurringPaymentListUserControl.xaml.cs">
       <DependentUpon>RecurringPaymentListUserControl.xaml</DependentUpon>
@@ -458,7 +458,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\PersonalizationSettingsUserControl.xaml">
+    <Page Include="Views\UserControls\SettingsPersonalizationUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
