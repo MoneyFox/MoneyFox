@@ -80,6 +80,24 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; has been succesfully created.
+        /// </summary>
+        public static string AccountCreatedMessage {
+            get {
+                return ResourceManager.GetString("AccountCreatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; has been succesfully modified.
+        /// </summary>
+        public static string AccountModifiedMessage {
+            get {
+                return ResourceManager.GetString("AccountModifiedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select an account..
         /// </summary>
         public static string AccountRequiredMessage {
