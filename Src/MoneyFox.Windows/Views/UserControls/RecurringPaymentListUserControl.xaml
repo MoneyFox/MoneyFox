@@ -5,10 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-             xmlns:converters="using:Cimbalino.Toolkit.Converters"
-             xmlns:model="using:MoneyFox.Foundation.Model"
-             xmlns:controls1="using:MoneyFox.Windows.Controls"
-             xmlns:converter1="using:MoneyFox.Windows.Converter"
+             xmlns:controls="using:MoneyFox.Windows.Controls"
+             xmlns:converter="using:MoneyFox.Windows.Converter"
+             xmlns:model="using:MoneyFox.Shared.Model"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -20,14 +19,14 @@
     </interactivity:Interaction.Behaviors>
 
     <UserControl.Resources>
-        <converter1:PaymentAmountConverter x:Key="PaymentAmountConverter" />
-        <converter1:CultureConverter x:Key="FormatConverter" />
-        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <converter1:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
-        <converter1:ThemedImageConverter x:Key="ThemedImageConverter" />
-        <converter1:SelectedConverter x:Key="SelectedConverter" />
+        <converter:NativePaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
+        <converter:CultureConverter x:Key="FormatConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
+        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
+        <converter:SelectedConverter x:Key="SelectedConverter" />
 
-        <DataTemplate x:Key="PaymentTemplate"
+        <DataTemplate x:Key="PaymentViewModelTemplate"
                       x:DataType="model:Payment">
             <StackPanel Margin="0,0,0,6"
                         HorizontalAlignment="Stretch"
@@ -49,7 +48,7 @@
                     <TextBlock
                         Text="{x:Bind Date, ConverterParameter=\{0:d\}, Converter={StaticResource FormatConverter}}" />
                     <TextBlock
-                        Text="{Binding Converter={StaticResource PaymentAmountConverter}, ConverterParameter=IgnoreTransfer}"
+                        Text="{Binding Converter={StaticResource PaymentViewModelAmountConverter}, ConverterParameter=IgnoreTransfer}"
                         HorizontalAlignment="Right" />
                 </Grid>
                 <Grid>
@@ -133,10 +132,10 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <SemanticZoom>
             <SemanticZoom.ZoomedInView>
-                <controls1:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
+                <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
                                                  EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
                                                  ItemsSource="{Binding Source={StaticResource Groups}}"
-                                                 ItemTemplate="{StaticResource PaymentTemplate}"
+                                                 ItemTemplate="{StaticResource PaymentViewModelTemplate}"
                                                  HorizontalAlignment="Stretch"
                                                  ShowsScrollingPlaceholders="false"
                                                  Margin="0,20,0,0">
@@ -159,7 +158,7 @@
                         <GroupStyle HidesIfEmpty="True"
                                     HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
                     </ListView.GroupStyle>
-                </controls1:AlternatingRowListView>
+                </controls:AlternatingRowListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView Margin="0,12,0,0"

@@ -2,10 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
-using MoneyFox.Foundation.Exceptions;
-using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.DatabaseModels;
+using MoneyFox.Core.Exceptions;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Resources;
+using MoneyFox.Core.ViewModels.Models;
 
 namespace MoneyFox.Core.Manager
 {
@@ -44,7 +45,7 @@ namespace MoneyFox.Core.Manager
             }
         }
 
-        public async Task<bool> CheckForRecurringPayment(Payment payment)
+        public async Task<bool> CheckForRecurringPayment(PaymentViewModel payment)
         {
             if (!payment.IsRecurring)
             {
@@ -68,7 +69,7 @@ namespace MoneyFox.Core.Manager
                     if (payment.ChargedAccount == null)
                     {
                         payment.ChargedAccount =
-                            accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
+                            accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccount.Id);
 
                         new TelemetryClient().TrackException(
                             new AccountMissingException("Charged account was missing while clearing payments."));
@@ -86,18 +87,18 @@ namespace MoneyFox.Core.Manager
             }
         }
 
-        public void RemoveRecurringForPayments(RecurringPayment recurringPayment)
+        public void RemoveRecurringForPayments(RecurringPaymentViewModel recurringPayment)
         {
             try
             {
                 var relatedPayment = paymentRepository
                     .Data
-                    .Where(x => x.IsRecurring && x.RecurringPaymentId == recurringPayment.Id);
+                    .Where(x => x.IsRecurring && x.RecurringPayment.Id == recurringPayment.Id);
 
                 foreach (var payment in relatedPayment)
                 {
                     payment.IsRecurring = false;
-                    payment.RecurringPaymentId = 0;
+                    payment.RecurringPayment.Id = 0;
                     paymentRepository.Save(payment);
                 }
             }

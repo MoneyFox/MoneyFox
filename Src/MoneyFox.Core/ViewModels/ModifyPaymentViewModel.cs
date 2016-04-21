@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using MoneyFox.Core.Constants;
+using MoneyFox.Core.DatabaseModels;
 using MoneyFox.Core.Helpers;
-using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Resources;
+using MoneyFox.Core.ViewModels.Models;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
 using PropertyChanged;
-using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
+using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.ViewModels
 {
@@ -48,7 +48,7 @@ namespace MoneyFox.Core.ViewModels
         }
 
         /// <summary>
-        ///     Saves the payment or updates the existing depending on the IsEdit Flag.
+        ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
         public RelayCommand SaveCommand => new RelayCommand(Save);
 
@@ -58,7 +58,7 @@ namespace MoneyFox.Core.ViewModels
         public RelayCommand GoToSelectCategorydialogCommand => new RelayCommand(OpenSelectCategoryList);
 
         /// <summary>
-        ///     Delets the payment or updates the existing depending on the IsEdit Flag.
+        ///     Delets the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
         public RelayCommand DeleteCommand => new RelayCommand(Delete);
 
@@ -68,7 +68,7 @@ namespace MoneyFox.Core.ViewModels
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <summary>
-        ///     Resets the category of the currently selected payment
+        ///     Resets the category of the currently selected PaymentViewModel
         /// </summary>
         public RelayCommand ResetCategoryCommand => new RelayCommand(ResetSelection);
 
@@ -79,7 +79,7 @@ namespace MoneyFox.Core.ViewModels
         public bool IsEdit { get; private set; }
 
         /// <summary>
-        ///     Indicates if the payment is a transfer.
+        ///     Indicates if the PaymentViewModel is a transfer.
         /// </summary>
         public bool IsTransfer { get; private set; }
 
@@ -89,7 +89,7 @@ namespace MoneyFox.Core.ViewModels
         public bool IsEndless { get; set; }
 
         /// <summary>
-        ///     The Enddate for recurring payment
+        ///     The Enddate for recurring PaymentViewModel
         /// </summary>
         public DateTime EndDate { get; set; }
 
@@ -130,9 +130,9 @@ namespace MoneyFox.Core.ViewModels
         };
 
         /// <summary>
-        ///     The selected payment
+        ///     The selected PaymentViewModel
         /// </summary>
-        public Payment SelectedPayment
+        public PaymentViewModel SelectedPayment
         {
             get { return paymentRepository.Selected; }
             set { paymentRepository.Selected = value; }
@@ -146,18 +146,18 @@ namespace MoneyFox.Core.ViewModels
         /// <summary>
         ///     Returns the Title for the page
         /// </summary>
-        public string Title => PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, IsEdit);
+        public string Title => PaymentViewModelTypeHelper.GetViewTitleForType(SelectedPayment.Type, IsEdit);
 
         /// <summary>
         ///     Returns the Header for the account field
         /// </summary>
         public string AccountHeader
-            => SelectedPayment?.Type == (int) PaymentType.Income
+            => SelectedPayment?.Type == PaymentType.Income
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
 
         /// <summary>
-        ///     The payment date
+        ///     The PaymentViewModel date
         /// </summary>
         public DateTime Date
         {
@@ -177,8 +177,8 @@ namespace MoneyFox.Core.ViewModels
         /// <summary>
         ///     Init the view. Is executed after the constructor call
         /// </summary>
-        /// <param name="type">Type of the payment.</param>
-        /// <param name="isEdit">Weather the payment is in edit mode or not.</param>
+        /// <param name="type">Type of the PaymentViewModel.</param>
+        /// <param name="isEdit">Weather the PaymentViewModel is in edit mode or not.</param>
         public void Init(PaymentType type, bool isEdit = false)
         {
             IsEdit = isEdit;
@@ -214,17 +214,17 @@ namespace MoneyFox.Core.ViewModels
 
         private void PrepareDefault(PaymentType type)
         {
-            SetDefaultPayment(type);
+            SetDefaultPaymentViewModel(type);
             SelectedPayment.ChargedAccount = defaultManager.GetDefaultAccount();
             IsTransfer = type == PaymentType.Transfer;
             EndDate = DateTime.Now;
         }
 
-        private void SetDefaultPayment(PaymentType paymentType)
+        private void SetDefaultPaymentViewModel(PaymentType paymentType)
         {
-            SelectedPayment = new Payment
+            SelectedPayment = new PaymentViewModel()
             {
-                Type = (int) paymentType,
+                Type = paymentType,
                 Date = DateTime.Now,
                 // Assign empty category to reset the GUI
                 Category = new Category()
@@ -249,10 +249,10 @@ namespace MoneyFox.Core.ViewModels
             RemoveOldAmount();
             SelectedPayment.Amount = amount;
 
-            //Create a recurring payment based on the payment or update an existing
+            //Create a recurring PaymentViewModel based on the PaymentViewModel or update an existing
             await PrepareRecurringPayment();
 
-            // Save item or update the payment and add the amount to the account
+            // Save item or update the PaymentViewModel and add the amount to the account
             paymentRepository.Save(SelectedPayment);
             accountRepository.AddPaymentAmount(SelectedPayment);
 
@@ -273,10 +273,11 @@ namespace MoneyFox.Core.ViewModels
                 || SelectedPayment.IsRecurring)
             {
                 SelectedPayment.RecurringPayment = RecurringPaymentHelper.
-                    GetRecurringFromPayment(SelectedPayment,
+                    GetRecurringFromPaymentViewModel(SelectedPayment,
                         IsEndless,
-                        Recurrence,
-                        EndDate);
+                        (PaymentRecurrence) Enum.ToObject(typeof (PaymentRecurrence), Recurrence),
+                        EndDate)
+                    .GetRecurringPayment();
             }
         }
 
@@ -287,7 +288,7 @@ namespace MoneyFox.Core.ViewModels
 
         private async void Delete()
         {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentViewModelConfirmationMessage))
             {
                 if (await paymentManager.CheckForRecurringPayment(SelectedPayment))
                 {

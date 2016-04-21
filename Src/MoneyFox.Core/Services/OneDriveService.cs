@@ -4,10 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
 using Microsoft.OneDrive.Sdk;
-using MoneyFox.Foundation.Interfaces;
-using MoneyManager.Core.Extensions;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.Constants;
+using MoneyFox.Core.Extensions;
+using MoneyFox.Core.Interfaces;
 
 namespace MoneyFox.Core.Services
 {
@@ -50,13 +49,13 @@ namespace MoneyFox.Core.Services
 
             try
             {
-                using (var dbstream = await fileStore.OpenRead(OneDriveAuthenticationConstants.DB_NAME))
+                using (var dbstream = await fileStore.OpenRead(OneDriveConstants.DB_NAME))
                 {
                     var uploadedItem = await OneDriveClient
                         .Drive
                         .Root
-                        .ItemWithPath(Path.Combine(OneDriveAuthenticationConstants.BACKUP_FOLDER_NAME,
-                            OneDriveAuthenticationConstants.BACKUP_NAME))
+                        .ItemWithPath(Path.Combine(OneDriveConstants.BACKUP_FOLDER_NAME,
+                            OneDriveConstants.BACKUP_NAME))
                         .Content
                         .Request()
                         .PutAsync<Item>(dbstream);
@@ -81,16 +80,16 @@ namespace MoneyFox.Core.Services
             try
             {
                 var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
-                var existingBackup = children.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_NAME);
+                var existingBackup = children.FirstOrDefault(x => x.Name == OneDriveConstants.BACKUP_NAME);
 
                 if (existingBackup != null)
                 {
                     var backup = await OneDriveClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
-                    if (await fileStore.Exists(OneDriveAuthenticationConstants.DB_NAME))
+                    if (await fileStore.Exists(OneDriveConstants.DB_NAME))
                     {
-                        fileStore.DeleteFile(OneDriveAuthenticationConstants.DB_NAME);
+                        fileStore.DeleteFile(OneDriveConstants.DB_NAME);
                     }
-                    fileStore.WriteFile(OneDriveAuthenticationConstants.DB_NAME, backup.ReadToEnd());
+                    fileStore.WriteFile(OneDriveConstants.DB_NAME, backup.ReadToEnd());
                 }
             }
             catch (OneDriveException ex)
@@ -112,11 +111,11 @@ namespace MoneyFox.Core.Services
             try
             {
                 var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
-                var existingBackup = children.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_NAME);
+                var existingBackup = children.FirstOrDefault(x => x.Name == OneDriveConstants.BACKUP_NAME);
 
                 if (existingBackup != null)
                 {
-                    return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
+                    return existingBackup.LastModifiedDateTime?.DateTime.ToLocalTime() ?? DateTime.MinValue;
                 }
             }
             catch (Exception ex)
@@ -131,7 +130,7 @@ namespace MoneyFox.Core.Services
         {
             var children = await OneDriveClient.Drive.Root.Children.Request().GetAsync();
             BackupFolder =
-                children.CurrentPage.FirstOrDefault(x => x.Name == OneDriveAuthenticationConstants.BACKUP_FOLDER_NAME);
+                children.CurrentPage.FirstOrDefault(x => x.Name == OneDriveConstants.BACKUP_FOLDER_NAME);
 
             if (BackupFolder == null)
             {
@@ -143,7 +142,7 @@ namespace MoneyFox.Core.Services
         {
             var folderToCreate = new Item
             {
-                Name = OneDriveAuthenticationConstants.BACKUP_FOLDER_NAME,
+                Name = OneDriveConstants.BACKUP_FOLDER_NAME,
                 Folder = new Folder()
             };
 

@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyFox.Core.DatabaseModels;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.SettingAccess;
-using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation.Interfaces;
 
 namespace MoneyFox.Core.Manager
 {

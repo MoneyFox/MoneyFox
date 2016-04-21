@@ -1,9 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation.Interfaces.ViewModels;
+using MoneyFox.Core.DatabaseModels;
+using MoneyFox.Core.Interfaces.ViewModels;
+using MoneyManager.Core.ViewModels.DesignTime;
 
-namespace MoneyManager.Core.ViewModels.DesignTime
+namespace MoneyFox.Core.ViewModels.DesignTime
 {
     public class DesignTimeAccountListViewModel : IAccountListViewModel
     {

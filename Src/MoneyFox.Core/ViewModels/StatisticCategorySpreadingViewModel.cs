@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyFox.Foundation.Model;
-using MoneyManager.Core.StatisticDataProvider;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.DatabaseModels;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Statistics.DataProviders;
+using MoneyFox.Core.Statistics.Models;
 using OxyPlot;
 using OxyPlot.Series;
 using PropertyChanged;

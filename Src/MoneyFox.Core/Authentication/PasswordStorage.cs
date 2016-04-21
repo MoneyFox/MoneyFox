@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.ApplicationModel;
 using Windows.Security.Credentials;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.Interfaces;
 
 namespace MoneyFox.Core.Authentication
 {

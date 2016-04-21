@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Linq.Expressions;
-using MoneyFox.Foundation.Exceptions;
-using MoneyFox.Foundation.Model;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.DatabaseModels;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.ViewModels.Models;
 using PropertyChanged;
 
 namespace MoneyFox.Core.Repositories
@@ -15,23 +14,23 @@ namespace MoneyFox.Core.Repositories
     {
         private readonly IAccountRepository accountRepository;
         private readonly IRepository<Category> categoryRepository;
-        private readonly IDataAccess<Payment> dataAccess;
-        private readonly IDataAccess<RecurringPayment> recurringDataAccess;
-        private ObservableCollection<Payment> data;
+        private readonly IGenericDataRepository<Payment> dataAccess;
+        private readonly IGenericDataRepository<RecurringPayment> recurringDataAccess;
+        private ObservableCollection<PaymentViewModel> data;
 
         /// <summary>
-        ///     Creates a paymentRepository Object
+        ///     Creates a PaymentRepository Object
         /// </summary>
-        /// <param name="dataAccess">Instanced <see cref="IDataAccess{T}" /> for <see cref="Payment" /></param>
+        /// <param name="dataAccess">Instanced <see cref="IGenericDataRepository{T}" /> for <see cref="Payment" /></param>
         /// <param name="recurringDataAccess">
-        ///     Instanced <see cref="IDataAccess{T}" /> for <see cref="RecurringPayment" />
+        ///     Instanced <see cref="IGenericDataRepository{T}" /> for <see cref="RecurringPayment" />
         /// </param>
         /// <param name="accountRepository">Instanced <see cref="IAccountRepository" /></param>
         /// <param name="categoryRepository">
         ///     Instanced <see cref="IRepository{T}" /> for <see cref="Category" />
         /// </param>
-        public PaymentRepository(IDataAccess<Payment> dataAccess,
-            IDataAccess<RecurringPayment> recurringDataAccess,
+        public PaymentRepository(IGenericDataRepository<Payment> dataAccess,
+            IGenericDataRepository<RecurringPayment> recurringDataAccess,
             IAccountRepository accountRepository,
             IRepository<Category> categoryRepository)
         {
@@ -40,14 +39,14 @@ namespace MoneyFox.Core.Repositories
             this.accountRepository = accountRepository;
             this.categoryRepository = categoryRepository;
 
-            Data = new ObservableCollection<Payment>();
+            Data = new ObservableCollection<PaymentViewModel>();
             Load();
         }
 
         /// <summary>
         ///     Cached accountToDelete data
         /// </summary>
-        public ObservableCollection<Payment> Data
+        public ObservableCollection<PaymentViewModel> Data
         {
             get { return data; }
             set
@@ -63,47 +62,46 @@ namespace MoneyFox.Core.Repositories
         /// <summary>
         ///     The currently selected Payment
         /// </summary>
-        public Payment Selected { get; set; }
+        public PaymentViewModel Selected { get; set; }
 
         /// <summary>
         ///     Save a new payment or update an existin one.
         /// </summary>
-        /// <param name="payment">item to save</param>
-        public void Save(Payment payment)
+        /// <param name="paymentVm">item to save</param>
+        public void Save(PaymentViewModel paymentVm)
         {
-            if (payment.ChargedAccountId == 0)
-            {
-                throw new AccountMissingException("charged accout is missing");
-            }
-
-            payment.IsCleared = payment.ClearPaymentNow;
+            paymentVm.IsCleared = paymentVm.ClearPaymentNow;
 
             //delete recurring payment if isRecurring is no longer set.
-            if (!payment.IsRecurring && payment.RecurringPaymentId != 0)
+            if (paymentVm.IsRecurring)
             {
-                recurringDataAccess.DeleteItem(payment.RecurringPayment);
-                payment.RecurringPaymentId = 0;
+                recurringDataAccess.Delete(paymentVm.RecurringPayment);
+                paymentVm.RecurringPayment.Id = 0;
             }
 
-            if (payment.Id == 0)
+            if (paymentVm.Id == 0)
             {
-                data.Add(payment);
+                data.Add(paymentVm);
+                dataAccess.Add(paymentVm.GetPayment());
             }
-            dataAccess.SaveItem(payment);
+            else
+            {
+                dataAccess.Update(paymentVm.GetPayment());
+            }
         }
 
         /// <summary>
         ///     Deletes the passed payment and removes the item from cache
         /// </summary>
-        /// <param name="paymentToDelete">Payment to delete.</param>
-        public void Delete(Payment paymentToDelete)
+        /// <param name="paymentVmToDelete">Payment to delete.</param>
+        public void Delete(PaymentViewModel paymentVmToDelete)
         {
-            var payments = Data.Where(x => x.Id == paymentToDelete.Id).ToList();
+            var payments = Data.Where(x => x.Id == paymentVmToDelete.Id).ToList();
 
             foreach (var payment in payments)
             {
                 data.Remove(payment);
-                dataAccess.DeleteItem(payment);
+                dataAccess.Delete(paymentVmToDelete.GetPayment());
 
                 // If this accountToDelete was the last finacial accountToDelete for the linked recurring accountToDelete
                 // delete the db entry for the recurring accountToDelete.
@@ -115,11 +113,11 @@ namespace MoneyFox.Core.Repositories
         ///     Deletes the passed recurring payment
         /// </summary>
         /// <param name="paymentToDelete">Recurring payment to delete.</param>
-        public void DeleteRecurring(Payment paymentToDelete)
+        public void DeleteRecurring(PaymentViewModel paymentToDelete)
         {
             var payments = Data.Where(x => x.Id == paymentToDelete.Id).ToList();
 
-            recurringDataAccess.DeleteItem(paymentToDelete.RecurringPayment);
+            recurringDataAccess.Delete(paymentToDelete.RecurringPayment);
 
             foreach (var payment in payments)
             {
@@ -132,26 +130,16 @@ namespace MoneyFox.Core.Repositories
         /// <summary>
         ///     Loads all payments from the database to the data collection
         /// </summary>
-        public void Load(Expression<Func<Payment, bool>> filter = null)
+        public void Load()
         {
             Data.Clear();
-            var payments = dataAccess.LoadList(filter);
-            var recurringTransactions = recurringDataAccess.LoadList();
+            var payments = dataAccess.GetList(null, payment => payment.ChargedAccount,
+                payment => payment.Category,
+                payment => payment.RecurringPayment);
 
             foreach (var payment in payments)
             {
-                payment.ChargedAccount = accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
-                payment.TargetAccount = accountRepository.Data.FirstOrDefault(x => x.Id == payment.TargetAccountId);
-
-                payment.Category = categoryRepository.Data.FirstOrDefault(x => x.Id == payment.CategoryId);
-
-                if (payment.IsRecurring)
-                {
-                    payment.RecurringPayment =
-                        recurringTransactions.FirstOrDefault(x => x.Id == payment.RecurringPaymentId);
-                }
-
-                Data.Add(payment);
+                Data.Add(new PaymentViewModel(payment));
             }
         }
 
@@ -159,7 +147,7 @@ namespace MoneyFox.Core.Repositories
         ///     Returns all uncleared payments up to today
         /// </summary>
         /// <returns>list of uncleared payments</returns>
-        public IEnumerable<Payment> GetUnclearedPayments()
+        public IEnumerable<PaymentViewModel> GetUnclearedPayments()
         {
             return GetUnclearedPayments(DateTime.Today);
         }
@@ -168,7 +156,7 @@ namespace MoneyFox.Core.Repositories
         ///     Returns all uncleared payments up to the passed date from the database.
         /// </summary>
         /// <returns>list of uncleared payments</returns>
-        public IEnumerable<Payment> GetUnclearedPayments(DateTime date)
+        public IEnumerable<PaymentViewModel> GetUnclearedPayments(DateTime date)
         {
             return Data
                 .Where(x => !x.IsCleared)
@@ -181,10 +169,10 @@ namespace MoneyFox.Core.Repositories
         /// </summary>
         /// <param name="account">account to search the related</param>
         /// <returns>List of payments</returns>
-        public IEnumerable<Payment> GetRelatedPayments(Account account)
+        public IEnumerable<PaymentViewModel> GetRelatedPayments(Account account)
         {
-            return Data.Where(x => x.ChargedAccountId == account.Id
-                                   || x.TargetAccountId == account.Id)
+            return Data.Where(x => x.ChargedAccount.Id == account.Id
+                                   || x.TargetAccount.Id == account.Id)
                 .OrderByDescending(x => x.Date)
                 .ToList();
         }
@@ -193,33 +181,33 @@ namespace MoneyFox.Core.Repositories
         ///     returns a list with payments who recure in a given timeframe
         /// </summary>
         /// <returns>list of recurring payments</returns>
-        public IEnumerable<Payment> LoadRecurringList(Func<Payment, bool> filter = null)
+        public IEnumerable<PaymentViewModel> LoadRecurringList(Func<PaymentViewModel, bool> filter = null)
         {
             var list = Data
-                .Where(x => x.IsRecurring && x.RecurringPaymentId != 0)
+                .Where(x => x.IsRecurring && x.RecurringPayment.Id != 0)
                 .Where(x => (x.RecurringPayment.IsEndless ||
                              x.RecurringPayment.EndDate >= DateTime.Now.Date)
                             && (filter == null || filter.Invoke(x)))
                 .ToList();
 
             return list
-                .Select(x => x.RecurringPaymentId)
+                .Select(x => x.RecurringPayment.Id)
                 .Distinct()
-                .Select(id => list.Where(x => x.RecurringPaymentId == id)
+                .Select(id => list.Where(x => x.RecurringPayment.Id == id)
                     .OrderByDescending(x => x.Date)
                     .Last())
                 .ToList();
         }
 
-        private void DeleteRecurringPaymentIfLastAssociated(Payment item)
+        private void DeleteRecurringPaymentIfLastAssociated(PaymentViewModel item)
         {
-            if (Data.All(x => x.RecurringPaymentId != item.RecurringPaymentId))
+            if (Data.All(x => x.RecurringPayment != item.RecurringPayment))
             {
-                var recurringList = recurringDataAccess.LoadList(x => x.Id == item.RecurringPaymentId).ToList();
+                var recurringList = recurringDataAccess.GetList(x => x.Id == item.RecurringPayment.Id).ToList();
 
                 foreach (var recTrans in recurringList)
                 {
-                    recurringDataAccess.DeleteItem(recTrans);
+                    recurringDataAccess.Delete(recTrans);
                 }
             }
         }

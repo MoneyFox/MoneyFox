@@ -1,13 +1,12 @@
 ﻿using System;
-using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation;
+using MoneyFox.Core.Resources;
 
 namespace MoneyFox.Core.Helpers
 {
     /// <summary>
-    ///     A collection of helper methods for handling PaymentTypes
+    ///     A collection of helper methods for handling PaymentViewModelTypes
     /// </summary>
-    public class PaymentTypeHelper
+    public class PaymentViewModelTypeHelper
     {
         /// <summary>
         ///     Parse a string to PaymentType
@@ -57,7 +56,7 @@ namespace MoneyFox.Core.Helpers
         /// <summary>
         ///     Determines the string for PaymentType based on the passed int.
         /// </summary>
-        /// <param name="type">The Payment type as int.</param>
+        /// <param name="type">The PaymentViewModel type as int.</param>
         /// <returns>The string for the determined type.</returns>
         public static string GetTypeString(int type)
         {
@@ -74,7 +73,7 @@ namespace MoneyFox.Core.Helpers
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type),
-                        "Passed Number didn't match to a payment type.");
+                        "Passed Number didn't match to a PaymentViewModel type.");
             }
         }
     }

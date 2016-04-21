@@ -17,7 +17,6 @@
         <Grid x:Name="TitleBar">
             <ContentPresenter VerticalAlignment="{x:Bind VerticalContentAlignment}"
                               HorizontalAlignment="{x:Bind HorizontalContentAlignment}"
-                              Foreground="white"
                               Margin="{x:Bind Padding}"
                               Content="{x:Bind HeaderContent}" />
         </Grid>

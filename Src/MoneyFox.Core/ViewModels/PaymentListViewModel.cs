@@ -5,28 +5,27 @@ using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.Constants;
+using MoneyFox.Core.Groups;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Interfaces.ViewModels;
+using MoneyFox.Core.Resources;
+using MoneyFox.Core.ViewModels.Models;
 using MoneyManager.Core.ViewModels;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Groups;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Interfaces.ViewModels;
 using PropertyChanged;
-using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
+using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.ViewModels
 {
     [ImplementPropertyChanged]
-    public class PaymentListViewModel : ViewModelBase, IPaymentListViewModel
+    public class PaymentListViewModel : ViewModelBase, IPaymentViewModelListViewModel
     {
         private readonly IAccountRepository accountRepository;
         private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
-        private readonly IPaymentRepository paymentRepository;
         private readonly IPaymentManager paymentManager;
+        private readonly IPaymentRepository paymentRepository;
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
@@ -42,7 +41,7 @@ namespace MoneyFox.Core.ViewModels
             this.navigationService = navigationService;
             this.paymentManager = paymentManager;
 
-            BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository);
+            BalanceViewModel = new PaymentViewModelListBalanceViewModel(accountRepository, paymentRepository);
         }
 
         public IBalanceViewModel BalanceViewModel { get; }
@@ -50,12 +49,12 @@ namespace MoneyFox.Core.ViewModels
         /// <summary>
         ///     Loads the data for this view.
         /// </summary>
-        public virtual RelayCommand LoadCommand => new RelayCommand(LoadPayments);
+        public virtual RelayCommand LoadCommand => new RelayCommand(LoadPaymentViewModels);
 
         /// <summary>
-        ///     Navigate to the add payment view.
+        ///     Navigate to the add PaymentViewModel view.
         /// </summary>
-        public RelayCommand<string> GoToAddPaymentCommand => new RelayCommand<string>(GoToAddPayment);
+        public RelayCommand<string> GoToAddPaymentViewModelCommand => new RelayCommand<string>(GoToAddPaymentViewModel);
 
         /// <summary>
         ///     Deletes the current account and updates the balance.
@@ -63,54 +62,54 @@ namespace MoneyFox.Core.ViewModels
         public RelayCommand DeleteAccountCommand => new RelayCommand(DeleteAccount);
 
         /// <summary>
-        ///     Edits the passed payment.
+        ///     Edits the passed PaymentViewModel.
         /// </summary>
-        public RelayCommand<Payment> EditCommand { get; private set; }
+        public RelayCommand<PaymentViewModel> EditCommand { get; private set; }
 
         /// <summary>
-        ///     Deletes the passed payment.
+        ///     Deletes the passed PaymentViewModel.
         /// </summary>
-        public RelayCommand<Payment> DeletePaymentCommand => new RelayCommand<Payment>(DeletePayment);
+        public RelayCommand<PaymentViewModel> DeletePaymentViewModelCommand => new RelayCommand<PaymentViewModel>(DeletePaymentViewModel);
 
         /// <summary>
-        ///     Returns all Payment who are assigned to this repository
+        ///     Returns all PaymentViewModel who are assigned to this repository
         ///     This has to stay until the android list with headers is implemented.
         ///     Currently only used for Android
         /// </summary>
-        public ObservableCollection<Payment> RelatedPayments { get; set; }
+        public ObservableCollection<PaymentViewModel> RelatedPaymentViewModels { get; set; }
 
         /// <summary>
-        ///     Returns groupped related payments
+        ///     Returns groupped related PaymentViewModels
         /// </summary>
-        public ObservableCollection<DateListGroup<Payment>> Source { get; set; }
+        public ObservableCollection<DateListGroup<PaymentViewModel>> Source { get; set; }
 
         /// <summary>
         ///     Returns the name of the account title for the current page
         /// </summary>
         public string Title => accountRepository.Selected.Name;
 
-        private void LoadPayments()
+        private void LoadPaymentViewModels()
         {
             EditCommand = null;
             //Refresh balance control with the current account
             BalanceViewModel.UpdateBalanceCommand.Execute(null);
 
-            RelatedPayments = new ObservableCollection<Payment>(paymentRepository
+            RelatedPaymentViewModels = new ObservableCollection<PaymentViewModel>(paymentRepository
                 .GetRelatedPayments(accountRepository.Selected)
                 .OrderByDescending(x => x.Date)
                 .ToList());
 
-            Source = new ObservableCollection<DateListGroup<Payment>>(
-                DateListGroup<Payment>.CreateGroups(RelatedPayments,
+            Source = new ObservableCollection<DateListGroup<PaymentViewModel>>(
+                DateListGroup<PaymentViewModel>.CreateGroups(RelatedPaymentViewModels,
                     CultureInfo.CurrentUICulture,
                     s => s.Date.ToString("MMMM", CultureInfo.InvariantCulture) + " " + s.Date.Year,
                     s => s.Date, true));
 
             //We have to set the command here to ensure that the selection changed event is triggered earlier
-            EditCommand = new RelayCommand<Payment>(Edit);
+            EditCommand = new RelayCommand<PaymentViewModel>(Edit);
         }
 
-        private void GoToAddPayment(string typeString)
+        private void GoToAddPaymentViewModel(string typeString)
         {
             navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW,
                 Enum.Parse(typeof (PaymentType), typeString));
@@ -126,28 +125,28 @@ namespace MoneyFox.Core.ViewModels
             }
         }
 
-        private void Edit(Payment payment)
+        private void Edit(PaymentViewModel paymentViewModel)
         {
-            paymentRepository.Selected = payment;
+            paymentRepository.Selected = paymentViewModel;
 
-            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, payment);
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, paymentViewModel);
         }
 
-        private async void DeletePayment(Payment payment)
+        private async void DeletePaymentViewModel(PaymentViewModel PaymentViewModel)
         {
             if (!await
-                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
+                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentViewModelConfirmationMessage))
             {
                 return;
             }
 
-            if (await paymentManager.CheckForRecurringPayment(payment))
+            if (await paymentManager.CheckForRecurringPayment(PaymentViewModel))
             {
-                paymentRepository.DeleteRecurring(payment);
+                paymentRepository.DeleteRecurring(PaymentViewModel);
             }
 
-            accountRepository.RemovePaymentAmount(payment);
-            paymentRepository.Delete(payment);
+            accountRepository.RemovePaymentAmount(PaymentViewModel);
+            paymentRepository.Delete(PaymentViewModel);
             LoadCommand.Execute(null);
         }
     }

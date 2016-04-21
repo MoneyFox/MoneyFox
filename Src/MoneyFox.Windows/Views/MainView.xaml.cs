@@ -1,5 +1,5 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using MoneyFox.Core.ViewModels;
+﻿using MoneyFox.Shared.ViewModels;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
 {
@@ -8,7 +8,7 @@ namespace MoneyFox.Windows.Views
         public MainView()
         {
             InitializeComponent();
-            DataContext = ServiceLocator.Current.GetInstance<MainViewModel>();
+            DataContext = Mvx.Resolve<MainViewModel>();
         }
     }
 }

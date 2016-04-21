@@ -1,13 +1,12 @@
 ﻿using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Interfaces.ViewModels;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces;
-using MoneyManager.Foundation.Interfaces.ViewModels;
 using PropertyChanged;
 
-namespace MoneyManager.Core.ViewModels
+namespace MoneyFox.Core.ViewModels
 {
     [ImplementPropertyChanged]
     public class BalanceViewModel : ViewModelBase, IBalanceViewModel
@@ -33,13 +32,13 @@ namespace MoneyManager.Core.ViewModels
         public double EndOfMonthBalance { get; set; }
 
         /// <summary>
-        ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
+        ///     Refreshes the balances. Depending on if it is displayed in a PaymentViewModel view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
         public RelayCommand UpdateBalanceCommand => new RelayCommand(UpdateBalance);
 
         /// <summary>
-        ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
+        ///     Refreshes the balances. Depending on if it is displayed in a PaymentViewModel view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
         private void UpdateBalance()
@@ -60,23 +59,23 @@ namespace MoneyManager.Core.ViewModels
         /// <summary>
         ///     Calculates the sum of all accounts at the end of the month.
         /// </summary>
-        /// <returns>Sum of all balances including all payments to come till end of month.</returns>
+        /// <returns>Sum of all balances including all PaymentViewModels to come till end of month.</returns>
         protected virtual double GetEndOfMonthValue()
         {
             var balance = TotalBalance;
-            var unclearedPayments = PaymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth());
+            var unclearedPaymentViewModels = PaymentRepository.GetUnclearedPayments(Utilities.GetEndOfMonth());
 
-            foreach (var payment in unclearedPayments)
+            foreach (var paymentViewModel in unclearedPaymentViewModels)
             {
                 //Transfer can be ignored since they don't change the summary.
-                switch (payment.Type)
+                switch (paymentViewModel.Type)
                 {
-                    case (int) PaymentType.Expense:
-                        balance -= payment.Amount;
+                    case PaymentType.Expense:
+                        balance -= paymentViewModel.Amount;
                         break;
 
-                    case (int) PaymentType.Income:
-                        balance += payment.Amount;
+                    case PaymentType.Income:
+                        balance += paymentViewModel.Amount;
                         break;
                 }
             }

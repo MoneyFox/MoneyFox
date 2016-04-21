@@ -141,8 +141,8 @@
   <data name="AddExpenseLabel.Label" xml:space="preserve">
     <value>Add Expense</value>
   </data>
-  <data name="AddPaymentTitle.Text" xml:space="preserve">
-    <value>Add Payment</value>
+  <data name="AddPaymentViewModelTitle.Text" xml:space="preserve">
+    <value>Add PaymentViewModel</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
     <value>Add Transfer</value>
@@ -157,13 +157,13 @@ WARNING: Local changes you made meanwhile we be lost.</value>
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>Backup</value>
   </data>
-  <data name="CashFlowTitle.Text" xml:space="preserve">
+  <data name="CashFlowStatisticTitle.Text" xml:space="preserve">
     <value>Cash Flow</value>
   </data>
   <data name="CategoriesHeader.Label" xml:space="preserve">
     <value>Categories</value>
   </data>
-  <data name="CategorySummaryTitle.Text" xml:space="preserve">
+  <data name="CategorySummaryStatisticTitle.Text" xml:space="preserve">
     <value>Category Summary</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
@@ -206,7 +206,7 @@ Tap to visit the Repository:</value>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="SpreadingTitle.Text" xml:space="preserve">
+  <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
     <value>Spreading</value>
   </data>
   <data name="TilesHeader.Label" xml:space="preserve">
@@ -338,8 +338,8 @@ Tap to visit the Repository:</value>
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Start Date</value>
   </data>
-  <data name="RecurringPaymentList.Label" xml:space="preserve">
-    <value>Recurring Payment Overview</value>
+  <data name="RecurringPaymentViewModelList.Label" xml:space="preserve">
+    <value>Recurring PaymentViewModel Overview</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
     <value>Select Statistic</value>
@@ -356,10 +356,7 @@ Tap to visit the Repository:</value>
   <data name="DatabaseModifiedText.Text" xml:space="preserve">
     <value>Last database modification:</value>
   </data>
-  <data name="TranslationMissingHelpText.Text" xml:space="preserve">
-    <value>Do you miss a translation for your mother tongue? Help us!</value>
-  </data>
-  <data name="GoToProject.Text" xml:space="preserve">
-    <value>Go to the project.</value>
+  <data name="MonthlyExpenseStatisticTitle.Text" xml:space="preserve">
+    <value>Monthly Expenses</value>
   </data>
 </root>

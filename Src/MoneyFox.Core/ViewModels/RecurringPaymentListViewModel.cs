@@ -3,12 +3,12 @@ using System.Globalization;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation.Groups;
-using MoneyManager.Foundation.Interfaces;
-using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
+using MoneyFox.Core.Constants;
+using MoneyFox.Core.Groups;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Resources;
+using MoneyFox.Core.ViewModels.Models;
+using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.ViewModels
 {
@@ -26,66 +26,66 @@ namespace MoneyFox.Core.ViewModels
             this.dialogService = dialogService;
             this.navigationService = navigationService;
 
-            AllPayments = new ObservableCollection<Payment>();
+            AllPaymentViewModels = new ObservableCollection<PaymentViewModel>();
         }
 
-        public ObservableCollection<Payment> AllPayments { get; }
+        public ObservableCollection<PaymentViewModel> AllPaymentViewModels { get; }
 
         /// <summary>
-        ///     Returns groupped related payments
+        ///     Returns groupped related PaymentViewModels
         /// </summary>
-        public ObservableCollection<AlphaGroupListGroup<Payment>> Source { get; private set; }
+        public ObservableCollection<AlphaGroupListGroup<PaymentViewModel>> Source { get; private set; }
 
         /// <summary>
-        ///     Prepares the recurring payment list view
+        ///     Prepares the recurring PaymentViewModel list view
         /// </summary>
         public RelayCommand LoadedCommand => new RelayCommand(Loaded);
 
         /// <summary>
-        ///     Edits the currently selected payment.
+        ///     Edits the currently selected PaymentViewModel.
         /// </summary>
-        public RelayCommand<Payment> EditCommand { get; private set; }
+        public RelayCommand<PaymentViewModel> EditCommand { get; private set; }
 
         /// <summary>
-        ///     Deletes the selected payment
+        ///     Deletes the selected PaymentViewModel
         /// </summary>
-        public RelayCommand<Payment> DeleteCommand => new RelayCommand<Payment>(Delete);
+        public RelayCommand<PaymentViewModel> DeleteCommand => new RelayCommand<PaymentViewModel>(Delete);
 
         private void Loaded()
         {
             EditCommand = null;
 
-            AllPayments.Clear();
-            foreach (var payment in paymentRepository.LoadRecurringList())
+            AllPaymentViewModels.Clear();
+            foreach (var paymentViewModel in paymentRepository.LoadRecurringList())
             {
-                AllPayments.Add(payment);
+                AllPaymentViewModels.Add(paymentViewModel);
             }
 
-            Source = new ObservableCollection<AlphaGroupListGroup<Payment>>(
-                AlphaGroupListGroup<Payment>.CreateGroups(AllPayments,
+            Source = new ObservableCollection<AlphaGroupListGroup<PaymentViewModel>>(
+                AlphaGroupListGroup<PaymentViewModel>.CreateGroups(AllPaymentViewModels,
                     CultureInfo.CurrentUICulture,
                     s => s.ChargedAccount.Name));
 
             //We have to set the command here to ensure that the selection changed event is triggered earlier
-            EditCommand = new RelayCommand<Payment>(Edit);
+            EditCommand = new RelayCommand<PaymentViewModel>(Edit);
         }
 
-        private void Edit(Payment payment)
+        private void Edit(PaymentViewModel paymentViewModel)
         {
-            paymentRepository.Selected = payment;
+            paymentRepository.Selected = paymentViewModel;
 
-            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, payment);
+            navigationService.NavigateTo(NavigationConstants.MODIFY_PAYMENT_VIEW, paymentViewModel);
         }
 
-        private async void Delete(Payment payment)
+        private async void Delete(PaymentViewModel paymentViewModel)
         {
             if (!await
-                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
+                dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentViewModelConfirmationMessage))
             {
                 return;
             }
 
-            paymentRepository.Delete(payment);
+            paymentRepository.Delete(paymentViewModel);
             LoadedCommand.Execute(null);
         }
     }

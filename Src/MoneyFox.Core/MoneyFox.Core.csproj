@@ -110,14 +110,104 @@
     <Compile Include="AppInformation.cs" />
     <Compile Include="Authentication\PasswordStorage.cs" />
     <Compile Include="Authentication\Session.cs" />
+    <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Constants\NavigationConstants.cs" />
+    <Compile Include="Constants\OneDriveConstants.cs" />
+    <Compile Include="DataAccess\GenericDataRepository.cs" />
+    <Compile Include="DataAccess\MoneyFoxDataContext.cs" />
+    <Compile Include="DataAccess\MoneyFoxOldDataContext.cs" />
+    <Compile Include="DatabaseModels\Old\Account.cs" />
+    <Compile Include="DatabaseModels\Old\Category.cs" />
+    <Compile Include="DatabaseModels\Old\Payment.cs" />
+    <Compile Include="DatabaseModels\Old\RecurringPayment.cs" />
+    <Compile Include="Enumerations.cs" />
+    <Compile Include="Exceptions\AccountMissingException.cs" />
+    <Compile Include="Exceptions\BackupException.cs" />
+    <Compile Include="Exceptions\ConnectionException.cs" />
+    <Compile Include="Exceptions\ExtendedFormatException.cs" />
     <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\StreamExtension.cs" />
     <Compile Include="FileStore.cs" />
+    <Compile Include="Groups\AlphaGroupListGroup.cs" />
+    <Compile Include="Groups\DateListGroup.cs" />
     <Compile Include="Helpers\PaymentTypeHelper.cs" />
     <Compile Include="Helpers\RecurringPaymentHelper.cs" />
     <Compile Include="Helpers\TileHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Authentication\ProtectedData.cs" />
+    <Compile Include="Interfaces\IAccountRepository.cs" />
+    <Compile Include="Interfaces\IAppInformation.cs" />
+    <Compile Include="Interfaces\IAutobackupManager.cs" />
+    <Compile Include="Interfaces\IBackgroundTaskService.cs" />
+    <Compile Include="Interfaces\IBackupService.cs" />
+    <Compile Include="Interfaces\IDefaultManager.cs" />
+    <Compile Include="Interfaces\IDialogService.cs" />
+    <Compile Include="Interfaces\IFileStore.cs" />
+    <Compile Include="Interfaces\IGenericDataRepository.cs" />
+    <Compile Include="Interfaces\ILocalSettings.cs" />
+    <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
+    <Compile Include="Interfaces\IPasswordStorage.cs" />
+    <Compile Include="Interfaces\IPaymentManager.cs" />
+    <Compile Include="Interfaces\IPaymentRepository.cs" />
+    <Compile Include="Interfaces\IProtectedData.cs" />
+    <Compile Include="Interfaces\IRecurringPaymentManager.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IRepositoryManager.cs" />
+    <Compile Include="Interfaces\IRoamingSettings.cs" />
+    <Compile Include="Interfaces\IStatisticProvider.cs" />
+    <Compile Include="Interfaces\IUserNotification.cs" />
+    <Compile Include="Interfaces\Shotcuts\IIncomeShortcut.cs" />
+    <Compile Include="Interfaces\Shotcuts\IShortcut.cs" />
+    <Compile Include="Interfaces\Shotcuts\ISpendingShortcut.cs" />
+    <Compile Include="Interfaces\Shotcuts\ITransferShortcut.cs" />
+    <Compile Include="Interfaces\ViewModels\IAccountListViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\IBalanceViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\ICategoryListViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\IPaymentListViewModel.cs" />
+    <Compile Include="Messages\DateSelectedMessage.cs" />
+    <Compile Include="DatabaseModels\Account.cs" />
+    <Compile Include="Migrations\20160402144253_InitMigration.cs" />
+    <Compile Include="Migrations\20160402144253_InitMigration.designer.cs">
+      <DependentUpon>20160402144253_InitMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MoneyFoxDataContextModelSnapshot.cs" />
+    <Compile Include="ViewModels\Models\AccountViewModel.cs" />
+    <Compile Include="ViewModels\Models\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Models\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\Models\RecurringPaymentViewModel.cs" />
+    <Compile Include="Resources\Strings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Statistics\Models\CashFlow.cs" />
+    <Compile Include="DatabaseModels\Category.cs" />
+    <Compile Include="DatabaseModels\Payment.cs" />
+    <Compile Include="DatabaseModels\RecurringPayment.cs" />
+    <Compile Include="Statistics\Models\StatisticItem.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\PaymentRepository.cs" />
+    <Compile Include="Resources\Strings.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.de.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Strings.pt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.pt.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Strings.ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Strings.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.zh-CN.resx</DependentUpon>
+    </Compile>
     <Compile Include="SettingAccess\LocalSettings.cs" />
     <Compile Include="Manager\AutoBackupManager.cs" />
     <Compile Include="Manager\DefaultManager.cs" />
@@ -125,9 +215,6 @@
     <Compile Include="Manager\RecurringPaymentManager.cs" />
     <Compile Include="Manager\RepositoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AccountRepository.cs" />
-    <Compile Include="Repositories\CategoryRepository.cs" />
-    <Compile Include="Repositories\PaymentRepository.cs" />
     <Compile Include="SettingAccess\RoamingSettings.cs" />
     <Compile Include="Services\BackgroundTaskService.cs" />
     <Compile Include="Services\DialogService.cs" />
@@ -138,11 +225,10 @@
     <Compile Include="Shortcut\IncomeTile.cs" />
     <Compile Include="Shortcut\Tile.cs" />
     <Compile Include="Shortcut\TransferTile.cs" />
-    <Compile Include="SQLiteConnectionFactory.cs" />
-    <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
-    <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
-    <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />
-    <Compile Include="StatisticDataProvider\ExpensesMonthlyDataProvider.cs" />
+    <Compile Include="Statistics\DataProviders\CashFlowDataProvider.cs" />
+    <Compile Include="Statistics\DataProviders\CategorySpreadingDataProvider.cs" />
+    <Compile Include="Statistics\DataProviders\CategorySummaryDataProvider.cs" />
+    <Compile Include="Statistics\DataProviders\ExpensesMonthlyDataProvider.cs" />
     <Compile Include="UserNotification.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />
@@ -174,19 +260,30 @@
     <Compile Include="ViewModels\StatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
     <EmbeddedResource Include="Properties\MoneyFox.Core.rd.xml" />
+    <EmbeddedResource Include="Resources\Strings.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.pt.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.pt.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
-      <Project>{6BB2D9A2-ED2E-4103-921C-D26B548F6B9A}</Project>
-      <Name>MoneyFox.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
-      <Project>{1CFF6968-BA09-48AF-9718-5D1E02E656E6}</Project>
-      <Name>MoneyFox.Foundation</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cimbalino.Toolkit.Core">

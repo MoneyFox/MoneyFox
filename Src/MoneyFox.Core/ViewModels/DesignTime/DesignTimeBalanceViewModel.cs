@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MoneyManager.Foundation.Interfaces.ViewModels;
+using MoneyFox.Core.Interfaces.ViewModels;
 
-namespace MoneyManager.Core.ViewModels.DesignTime
+namespace MoneyFox.Core.ViewModels.DesignTime
 {
     public class DesignTimeBalanceViewModel : IBalanceViewModel
     {
@@ -11,7 +11,7 @@ namespace MoneyManager.Core.ViewModels.DesignTime
             EndOfMonthBalance = 45677;
         }
 
-        public bool IsPaymentView { get; set; }
+        public bool IsPaymentViewModelView { get; set; }
         public double TotalBalance { get; set; }
 
         public double EndOfMonthBalance { get; set; }

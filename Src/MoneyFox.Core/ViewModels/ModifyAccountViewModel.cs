@@ -2,10 +2,10 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Core.DatabaseModels;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Resources;
 using MoneyManager.Core.Helpers;
-using MoneyManager.Foundation.Interfaces;
 using PropertyChanged;
 
 namespace MoneyFox.Core.ViewModels

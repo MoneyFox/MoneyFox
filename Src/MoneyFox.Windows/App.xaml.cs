@@ -11,17 +11,15 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.ApplicationInsights;
-using Microsoft.Practices.ServiceLocation;
-using MoneyFox.Core.Authentication;
-using MoneyFox.Core.Helpers;
-using MoneyFox.Core.Services;
-using MoneyFox.Core.SettingAccess;
-using MoneyFox.Core.Shortcut;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Shared.Authentication;
+using MoneyFox.Shared.Constants;
+using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Resources;
+using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Views;
-using MoneyManager.Foundation;
-using MoneyManager.Windows;
+using MoneyManager.Windows.Shortcut;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform;
 using UniversalRateReminder;
 
 namespace MoneyFox.Windows
@@ -45,6 +43,7 @@ namespace MoneyFox.Windows
             Suspending += OnSuspending;
         }
 
+
         /// <summary>
         ///     Invoked when the application is launched normally by the end user.  Other entry points
         ///     will be used such as when the application is launched to open a specific file.
@@ -61,32 +60,36 @@ namespace MoneyFox.Windows
                 // Create a AppShell to act as the navigation context and navigate to the first page
                 shell = new AppShell {Language = ApplicationLanguages.Languages[0]};
 
-                shell.AppFrame.NavigationFailed += OnNavigationFailed;
+                shell.AppMyFrame.NavigationFailed += OnNavigationFailed;
             }
 
             // Place our app shell in the current Window
             Window.Current.Content = shell;
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
-            if (shell.AppFrame.Content == null)
+            if (shell.AppMyFrame.Content == null)
             {
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                shell.AppFrame.Navigate(typeof (MainView));
+                var setup = new Setup(shell.AppMyFrame);
+                setup.Initialize();
+
+                var start = Mvx.Resolve<IMvxAppStart>();
+                start.Start();
             }
 
-            if (ServiceLocator.Current.GetInstance<Session>().ValidateSession())
+            if (Mvx.Resolve<Session>().ValidateSession())
             {
                 shell.SetLoggedInView();
-                shell.AppFrame.Navigate(typeof (MainView));
+                shell.AppMyFrame.Navigate(typeof (MainView));
             }
             else
             {
                 shell.SetLoginView();
-                shell.AppFrame.Navigate(typeof (LoginView));
+                shell.AppMyFrame.Navigate(typeof (LoginView));
             }
 
-            ServiceLocator.Current.GetInstance<TileHelper>().DoNavigation(string.IsNullOrEmpty(e.Arguments)
+            new TileHelper().DoNavigation(string.IsNullOrEmpty(e.Arguments)
                 ? e.TileId
                 : e.Arguments);
 
@@ -156,7 +159,7 @@ namespace MoneyFox.Windows
             jumpList.Items.Add(listItemAddIncome);
 
             var listItemAddSpending = JumpListItem.CreateWithArguments(Constants.ADD_EXPENSE_TILE_ID,
-                Strings.AddSpendingLabel);
+                Strings.AddExpenseLabel);
             listItemAddSpending.Logo = new Uri("ms-appx:///Assets/SpendingTileIcon.png");
             jumpList.Items.Add(listItemAddSpending);
 

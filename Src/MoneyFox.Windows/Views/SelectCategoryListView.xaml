@@ -1,11 +1,12 @@
-﻿<Page x:Class="MoneyFox.Windows.Views.SelectCategoryListView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-      mc:Ignorable="d"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.SelectCategoryListView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      mc:Ignorable="d"
+                      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.BottomAppBar>
         <CommandBar>
@@ -37,4 +38,4 @@
             <userControls:CategoryListUserControl />
         </Grid>
     </Grid>
-</Page>
+</views:MvxWindowsPage>

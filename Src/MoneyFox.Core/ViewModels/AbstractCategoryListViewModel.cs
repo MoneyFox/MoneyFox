@@ -3,10 +3,10 @@ using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using MoneyFox.Foundation.Model;
-using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation.Interfaces;
-using IDialogService = MoneyManager.Foundation.Interfaces.IDialogService;
+using MoneyFox.Core.DatabaseModels;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Resources;
+using IDialogService = MoneyFox.Core.Interfaces.IDialogService;
 
 namespace MoneyFox.Core.ViewModels
 {

@@ -1,6 +1,6 @@
 using System;
 using Microsoft.Practices.ServiceLocation;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.Interfaces;
 using PropertyChanged;
 
 namespace MoneyFox.Core.SettingAccess

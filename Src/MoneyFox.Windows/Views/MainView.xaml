@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
+      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
       mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -14,17 +14,17 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <userControls1:PageHeader>
-            <userControls1:PageHeader.HeaderContent>
+        <userControls:PageHeader>
+            <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Accounts"
                            x:Uid="AccountTitle" />
-            </userControls1:PageHeader.HeaderContent>
-        </userControls1:PageHeader>
+            </userControls:PageHeader.HeaderContent>
+        </userControls:PageHeader>
 
         <Grid Grid.Row="1"
               Margin="0,9.5,0,0"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <userControls1:AccountListUserControl VerticalAlignment="Stretch" />
+            <userControls:AccountListUserControl VerticalAlignment="Stretch" />
         </Grid>
 
         <CommandBar Grid.Row="3">
@@ -50,10 +50,10 @@
                               x:Uid="AddAccountLabel"
                               Label="Add Account"
                               Command="{Binding GoToAddAccountCommand}" />
-                <AppBarButton x:Uid="RecurringPaymentList"
-                              Label="Recurring Payment Overview"
+                <AppBarButton x:Uid="RecurringPaymentViewModelList"
+                              Label="Recurring PaymentViewModel Overview"
                               Visibility="Collapsed"
-                              Command="{Binding GoToRecurringPaymentListCommand}" />
+                              Command="{Binding GoToRecurringPaymentViewModelListCommand}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

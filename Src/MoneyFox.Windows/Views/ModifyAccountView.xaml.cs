@@ -1,10 +1,10 @@
 ﻿using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.Practices.ServiceLocation;
-using MoneyFox.Core.ViewModels;
-using MoneyFox.Foundation.Model;
-using MoneyManager.Core.Helpers;
+using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Model;
+using MoneyFox.Shared.ViewModels;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
 {
@@ -13,7 +13,7 @@ namespace MoneyFox.Windows.Views
         public ModifyAccountView()
         {
             InitializeComponent();
-            DataContext = ServiceLocator.Current.GetInstance<ModifyAccountViewModel>();
+            DataContext = Mvx.Resolve<ModifyAccountViewModel>();
 
             // code to handle bottom app bar when keyboard appears
             // workaround since otherwise the keyboard would overlay some controls

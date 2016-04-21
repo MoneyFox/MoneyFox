@@ -1,9 +1,8 @@
 ﻿using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Foundation.Interfaces;
-using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Resources;
 
 namespace MoneyFox.Core.ViewModels
 {
@@ -64,22 +63,22 @@ namespace MoneyFox.Core.ViewModels
         ///     Returns the apply solutions webite url from the
         ///     ressource file
         /// </summary>
-        public string Website => Constants.WEBSITE_URL;
+        public string Website => Constants.Constants.WEBSITE_URL;
 
         /// <summary>
         ///     Returns the mailaddress for support cases from the
         ///     ressource file
         /// </summary>
-        public string SupportMail => Constants.SUPPORT_MAIL;
+        public string SupportMail => Constants.Constants.SUPPORT_MAIL;
 
         private void GoToWebsite()
         {
-            launcherService.LaunchUriAsync(Constants.WEBSITE_URL);
+            launcherService.LaunchUriAsync(Constants.Constants.WEBSITE_URL);
         }
 
         private void SendMail()
         {
-            emailComposeService.ShowAsync(Constants.SUPPORT_MAIL,
+            emailComposeService.ShowAsync(Constants.Constants.SUPPORT_MAIL,
                 string.Empty,
                 Strings.FeedbackSubject,
                 string.Empty,
@@ -93,7 +92,7 @@ namespace MoneyFox.Core.ViewModels
 
         private void GoToRepository()
         {
-            launcherService.LaunchUriAsync(Constants.GIT_HUB_REPOSITORY_URL);
+            launcherService.LaunchUriAsync(Constants.Constants.GIT_HUB_REPOSITORY_URL);
         }
     }
 }

@@ -141,7 +141,7 @@
   <data name="AddExpenseLabel.Label" xml:space="preserve">
     <value>Ausgabe hinzufügen</value>
   </data>
-  <data name="AddPaymentTitle.Text" xml:space="preserve">
+  <data name="AddPaymentViewModelTitle.Text" xml:space="preserve">
     <value>Zahlung hinzufügen</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
@@ -157,13 +157,13 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>Sicherung</value>
   </data>
-  <data name="CashFlowTitle.Text" xml:space="preserve">
+  <data name="CashFlowStatisticTitle.Text" xml:space="preserve">
     <value>Kapitalfluss</value>
   </data>
   <data name="CategoriesHeader.Label" xml:space="preserve">
     <value>Kategorien</value>
   </data>
-  <data name="CategorySummaryTitle.Text" xml:space="preserve">
+  <data name="CategorySummaryStatisticTitle.Text" xml:space="preserve">
     <value>Zusammenfassung Kategorien</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
@@ -205,7 +205,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
-  <data name="SpreadingTitle.Text" xml:space="preserve">
+  <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
     <value>Verteilung</value>
   </data>
   <data name="TilesHeader.Label" xml:space="preserve">
@@ -337,7 +337,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Startdatum</value>
   </data>
-  <data name="RecurringPaymentList.Label" xml:space="preserve">
+  <data name="RecurringPaymentViewModelList.Label" xml:space="preserve">
     <value>Übersicht Zahlungsaufträge</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
@@ -354,5 +354,8 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
   <data name="DatabaseModifiedText.Text" xml:space="preserve">
     <value>Letzte Datenbankänderung:</value>
+  </data>
+  <data name="MonthlyExpenseStatisticTitle.Text" xml:space="preserve">
+    <value>Monatliche Ausgaben</value>
   </data>
 </root>

@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
-using MoneyFox.Foundation.Resources;
-using MoneyManager.Foundation;
-using MoneyManager.Foundation.Interfaces.Shotcuts;
+using MoneyFox.Core.Interfaces.Shotcuts;
+using MoneyFox.Core.Resources;
 
 namespace MoneyFox.Core.Shortcut
 {
     public class TransferTile : Tile, ITransferShortcut
     {
-        public bool IsShortcutExisting => TileExists(Constants.ADD_TRANSFER_TILE_ID);
+        public bool IsShortcutExisting => TileExists(Constants.Constants.ADD_TRANSFER_TILE_ID);
 
         public async Task CreateShortCut()
         {
             await Create(new SecondaryTile(
-                Constants.ADD_TRANSFER_TILE_ID,
+                Constants.Constants.ADD_TRANSFER_TILE_ID,
                 Strings.AddTransferLabel,
-                Constants.ADD_TRANSFER_TILE_ID,
+                Constants.Constants.ADD_TRANSFER_TILE_ID,
                 new Uri("ms-appx:///Assets/TransferTileIcon.png", UriKind.Absolute),
                 TileSize.Default));
         }
@@ -25,7 +24,7 @@ namespace MoneyFox.Core.Shortcut
         {
             if (IsShortcutExisting)
             {
-                await Remove(new SecondaryTile(Constants.ADD_TRANSFER_TILE_ID));
+                await Remove(new SecondaryTile(Constants.Constants.ADD_TRANSFER_TILE_ID));
             }
         }
     }

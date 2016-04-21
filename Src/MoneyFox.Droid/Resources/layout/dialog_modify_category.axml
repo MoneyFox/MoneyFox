@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:local="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:hint="@string/hint_category_name"
+    local:MvxBind="Text Selected.Name" />
+  <Button
+    android:id="@+id/button_save_category"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:gravity="center"
+    android:layout_marginBottom="227dp"
+    android:text="@string/button_save_category"
+    local:MvxBind="Click DoneCommand" />
+</LinearLayout>

@@ -112,29 +112,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj">
-      <Project>{2F774D5A-E9B5-4AB2-84AA-51A6E9BDB456}</Project>
-      <Name>MoneyFox.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.DataAccess\MoneyFox.DataAccess.csproj">
-      <Project>{6BB2D9A2-ED2E-4103-921C-D26B548F6B9A}</Project>
-      <Name>MoneyFox.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
-      <Project>{1cff6968-ba09-48af-9718-5d1e02e656e6}</Project>
-      <Name>MoneyFox.Foundation</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.ApplicationInsights">
-      <HintPath>..\..\..\..\..\.nuget\packages\Microsoft.ApplicationInsights\1.2.3\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.dll</HintPath>
-    </Reference>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.11.1">
+    <SDKReference Include="SQLite.UWP.2015, Version=3.12.1">
       <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">
+      <Project>{3E0E36AF-65D9-4542-8551-31B76577AA4C}</Project>
+      <Name>MoneyFox.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Windows\MoneyFox.Windows.csproj">
+      <Project>{66EA2C31-4D7C-4FD1-8F9B-24E56266A8D2}</Project>
+      <Name>MoneyFox.Windows</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

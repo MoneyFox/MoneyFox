@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls1="using:MoneyFox.Windows.Views.UserControls"
+    xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -18,21 +18,31 @@
                 <!--Tiles-->
                 <PivotItem>
                     <PivotItem.Header>
-                        <userControls1:TabHeader Label="Tiles"
+                        <userControls:TabHeader Label="Tiles"
                                                 x:Uid="TilesHeader"
                                                 Glyph="&#xE8FC;" />
                     </PivotItem.Header>
-                    <userControls1:SettingsShortcutsUserControl Margin="-7,0,-7,0" />
+                    <userControls:SettingsShortcutsUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
 
                 <!--Password Settings-->
                 <PivotItem>
                     <PivotItem.Header>
-                        <userControls1:TabHeader Label="Password"
+                        <userControls:TabHeader Label="Password"
                                                 x:Uid="SecurityHeader"
                                                 Glyph="&#xE8D7;" />
                     </PivotItem.Header>
-                    <userControls1:SettingsSecurityUserControl Margin="-7,0,-7,0" />
+                    <userControls:SettingsSecurityUserControl Margin="-7,0,-7,0" />
+                </PivotItem>
+
+                <!-- Personalization Settings-->
+                <PivotItem>
+                    <PivotItem.Header>
+                        <userControls:TabHeader Label="Theme"
+                                                x:Uid="ThemeHeader"
+                                                Glyph="&#xE2B1;" />
+                    </PivotItem.Header>
+                    <userControls:SettingsPersonalizationUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
             </Pivot>
         </Grid>

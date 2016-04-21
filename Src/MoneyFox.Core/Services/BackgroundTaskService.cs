@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
-using MoneyManager.Foundation.Interfaces;
+using MoneyFox.Core.Interfaces;
 
 namespace MoneyFox.Core.Services
 {
@@ -11,7 +11,7 @@ namespace MoneyFox.Core.Services
     {
         private Dictionary<string, string> Tasks => new Dictionary<string, string>
         {
-            {"ClearPaymentBackgroundTask", "MoneyFox.Tasks"}
+            {"ClearPaymentViewModelBackgroundTask", "MoneyFox.Tasks"}
         };
 
         public async Task RegisterTasksAsync()
