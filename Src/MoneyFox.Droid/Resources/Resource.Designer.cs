@@ -2132,8 +2132,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f06007b
 			public const int account_list_balance_frame = 2131099771;
 			
-			// aapt resource value: 0x7f06008f
-			public const int action0 = 2131099791;
+			// aapt resource value: 0x7f06008e
+			public const int action0 = 2131099790;
 			
 			// aapt resource value: 0x7f0600a0
 			public const int action_add = 2131099808;
@@ -2165,8 +2165,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0600a2
 			public const int action_delete = 2131099810;
 			
-			// aapt resource value: 0x7f060093
-			public const int action_divider = 2131099795;
+			// aapt resource value: 0x7f060092
+			public const int action_divider = 2131099794;
 			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
@@ -2210,8 +2210,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f06007a
 			public const int button_save_category = 2131099770;
 			
-			// aapt resource value: 0x7f060090
-			public const int cancel_action = 2131099792;
+			// aapt resource value: 0x7f06008f
+			public const int cancel_action = 2131099791;
 			
 			// aapt resource value: 0x7f06006f
 			public const int category = 2131099759;
@@ -2231,8 +2231,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f060054
 			public const int checkbox = 2131099732;
 			
-			// aapt resource value: 0x7f060096
-			public const int chronometer = 2131099798;
+			// aapt resource value: 0x7f060095
+			public const int chronometer = 2131099797;
 			
 			// aapt resource value: 0x7f060035
 			public const int clip_horizontal = 2131099701;
@@ -2285,8 +2285,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f06001d
 			public const int end = 2131099677;
 			
-			// aapt resource value: 0x7f06009b
-			public const int end_padder = 2131099803;
+			// aapt resource value: 0x7f06009a
+			public const int end_padder = 2131099802;
 			
 			// aapt resource value: 0x7f060072
 			public const int enddate = 2131099762;
@@ -2339,8 +2339,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f060044
 			public const int icon = 2131099716;
 			
-			// aapt resource value: 0x7f06009c
-			public const int icon_frame = 2131099804;
+			// aapt resource value: 0x7f06009b
+			public const int icon_frame = 2131099803;
 			
 			// aapt resource value: 0x7f060021
 			public const int ifRoom = 2131099681;
@@ -2351,8 +2351,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f060084
 			public const int image_view_row_icon = 2131099780;
 			
-			// aapt resource value: 0x7f06009a
-			public const int info = 2131099802;
+			// aapt resource value: 0x7f060099
+			public const int info = 2131099801;
 			
 			// aapt resource value: 0x7f060000
 			public const int item_touch_helper_previous_elevation = 2131099648;
@@ -2360,20 +2360,20 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f060031
 			public const int left = 2131099697;
 			
-			// aapt resource value: 0x7f060094
-			public const int line1 = 2131099796;
+			// aapt resource value: 0x7f060093
+			public const int line1 = 2131099795;
 			
-			// aapt resource value: 0x7f060098
-			public const int line3 = 2131099800;
+			// aapt resource value: 0x7f060097
+			public const int line3 = 2131099799;
 			
-			// aapt resource value: 0x7f06009e
-			public const int list = 2131099806;
+			// aapt resource value: 0x7f06009d
+			public const int list = 2131099805;
 			
 			// aapt resource value: 0x7f06000d
 			public const int listMode = 2131099661;
 			
-			// aapt resource value: 0x7f06009d
-			public const int list_container = 2131099805;
+			// aapt resource value: 0x7f06009c
+			public const int list_container = 2131099804;
 			
 			// aapt resource value: 0x7f060043
 			public const int list_item = 2131099715;
@@ -2384,8 +2384,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f06006d
 			public const int main_frame = 2131099757;
 			
-			// aapt resource value: 0x7f060092
-			public const int media_actions = 2131099794;
+			// aapt resource value: 0x7f060091
+			public const int media_actions = 2131099793;
 			
 			// aapt resource value: 0x7f06001e
 			public const int middle = 2131099678;
@@ -2561,32 +2561,32 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f060033
 			public const int start = 2131099699;
 			
-			// aapt resource value: 0x7f06008e
-			public const int statistic_list = 2131099790;
+			// aapt resource value: 0x7f06008d
+			public const int statistic_list = 2131099789;
 			
-			// aapt resource value: 0x7f060091
-			public const int status_bar_latest_event_content = 2131099793;
+			// aapt resource value: 0x7f060090
+			public const int status_bar_latest_event_content = 2131099792;
 			
 			// aapt resource value: 0x7f060067
 			public const int submit_area = 2131099751;
 			
-			// aapt resource value: 0x7f06009f
-			public const int switchWidget = 2131099807;
+			// aapt resource value: 0x7f06009e
+			public const int switchWidget = 2131099806;
 			
 			// aapt resource value: 0x7f06000f
 			public const int tabMode = 2131099663;
 			
-			// aapt resource value: 0x7f06008c
-			public const int tabs = 2131099788;
+			// aapt resource value: 0x7f06008b
+			public const int tabs = 2131099787;
 			
 			// aapt resource value: 0x7f060086
 			public const int test_slogan = 2131099782;
 			
-			// aapt resource value: 0x7f060099
-			public const int text = 2131099801;
+			// aapt resource value: 0x7f060098
+			public const int text = 2131099800;
 			
-			// aapt resource value: 0x7f060097
-			public const int text2 = 2131099799;
+			// aapt resource value: 0x7f060096
+			public const int text2 = 2131099798;
 			
 			// aapt resource value: 0x7f06004f
 			public const int textSpacerNoButtons = 2131099727;
@@ -2594,8 +2594,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f060085
 			public const int text_container = 2131099781;
 			
-			// aapt resource value: 0x7f060095
-			public const int time = 2131099797;
+			// aapt resource value: 0x7f060094
+			public const int time = 2131099796;
 			
 			// aapt resource value: 0x7f060045
 			public const int title = 2131099717;
@@ -2603,8 +2603,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f06004a
 			public const int title_template = 2131099722;
 			
-			// aapt resource value: 0x7f06008b
-			public const int toolbar = 2131099787;
+			// aapt resource value: 0x7f06009f
+			public const int toolbar = 2131099807;
 			
 			// aapt resource value: 0x7f060034
 			public const int top = 2131099700;
@@ -2621,8 +2621,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f06000a
 			public const int view_offset_helper = 2131099658;
 			
-			// aapt resource value: 0x7f06008d
-			public const int viewpager = 2131099789;
+			// aapt resource value: 0x7f06008c
+			public const int viewpager = 2131099788;
 			
 			// aapt resource value: 0x7f060023
 			public const int withText = 2131099683;

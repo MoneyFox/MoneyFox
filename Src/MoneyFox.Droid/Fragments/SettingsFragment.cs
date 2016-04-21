@@ -3,9 +3,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
-using Android.Support.V7.Widget;
 using Android.Views;
-using MoneyFox.Droid.Activities;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Attributes;
@@ -22,9 +20,6 @@ namespace MoneyFox.Droid.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
-
-            ((MainActivity) Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
-            ((MainActivity) Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             var viewPager = view.FindViewById<ViewPager>(Resource.Id.viewpager);
             if (viewPager != null)
