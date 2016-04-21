@@ -97,6 +97,7 @@
                    TextWrapping="Wrap" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Center" 
+                   Margin="6"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"                       
                    Foreground="{ThemeResource SystemBaseMediumLowColor}" 
                    Visibility="{Binding AllAccounts, Converter={StaticResource AccountListVisibilityConverter}}"/>
