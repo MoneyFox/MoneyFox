@@ -388,4 +388,10 @@ Do you want to go the the store to rate?</value>
   <data name="ChooseLabel" xml:space="preserve">
     <value>Choose</value>
   </data>
+  <data name="AccountCreatedMessage" xml:space="preserve">
+    <value>'{0}' has been succesfully created</value>
+  </data>
+  <data name="AccountModifiedMessage" xml:space="preserve">
+    <value>'{0}' has been succesfully modified</value>
+  </data>
 </root>
