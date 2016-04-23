@@ -12,10 +12,12 @@ namespace MoneyFox.Shared.ViewModels
     public class ModifyAccountViewModel : BaseViewModel
     {
         private readonly IAccountRepository accountRepository;
+        private readonly IDialogService dialogService;
 
-        public ModifyAccountViewModel(IAccountRepository accountRepository)
+        public ModifyAccountViewModel(IAccountRepository accountRepository, IDialogService dialogService)
         {
             this.accountRepository = accountRepository;
+            this.dialogService = dialogService;
         }
 
         /// <summary>
@@ -98,6 +100,7 @@ namespace MoneyFox.Shared.ViewModels
         private void SaveAccount()
         {
             accountRepository.Save(accountRepository.Selected);
+            this.dialogService.ShowMessage(Strings.SuccessTitle, string.Format(IsEdit ? Strings.AccountModifiedMessage : Strings.AccountCreatedMessage, SelectedAccount.Name));
             Close(this);
         }
 

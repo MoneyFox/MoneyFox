@@ -359,4 +359,7 @@ Tap to visit the Repository:</value>
   <data name="MonthlyExpenseStatisticTitle.Text" xml:space="preserve">
     <value>Monthly Expenses</value>
   </data>
+  <data name="accountsPlaceholder.Text" xml:space="preserve">
+    <value>There are no accounts, add one by tapping on the three dots at bottom</value>
+  </data>
 </root>
