@@ -21,6 +21,7 @@ using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
+using Microsoft.ApplicationInsights;
 
 namespace MoneyFox.Windows
 {

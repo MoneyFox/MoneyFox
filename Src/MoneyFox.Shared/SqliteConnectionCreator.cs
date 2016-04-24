@@ -1,4 +1,5 @@
-﻿using MoneyFox.Shared.Constants;
+﻿using System.Linq;
+using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MvvmCross.Plugins.File;
@@ -54,9 +55,9 @@ namespace MoneyFox.Shared
         {
             if (fileStore.Exists(OneDriveAuthenticationConstants.DB_NAME_OLD))
             {
-                using (var dbOld = connectionFactory.GetConnection(OneDriveAuthenticationConstants.DB_NAME_OLD))
+                using (var dbOld = connectionFactory.GetConnection(new SqLiteConfig(OneDriveAuthenticationConstants.DB_NAME_OLD, false)))
                 {
-                    using (var db = connectionFactory.GetConnection(OneDriveAuthenticationConstants.DB_NAME))
+                    using (var db = GetConnection())
                     {
                         db.InsertAll(dbOld.Table<Account>());
                         db.InsertAll(dbOld.Table<Category>());
