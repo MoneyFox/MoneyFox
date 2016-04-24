@@ -7,9 +7,9 @@ using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views.UserControls
 {
-    public partial class PaymentViewModelListUserControl
+    public partial class PaymentListUserControl
     {
-        public PaymentViewModelListUserControl()
+        public PaymentListUserControl()
         {
             InitializeComponent();
             DataContext = Mvx.Resolve<PaymentListViewModel>();
