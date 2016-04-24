@@ -45,12 +45,12 @@
     <Compile Include="AppStart.cs" />
     <Compile Include="Authentication\PasswordStorage.cs" />
     <Compile Include="Authentication\Session.cs" />
+    <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Constants\OneDriveAuthenticationConstants.cs" />
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
     <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="DataAccess\AbstractDataAccess.cs" />
-    <Compile Include="Constants\Constants.cs" />
-    <Compile Include="Constants\OneDriveAuthenticationConstants.cs" />
     <Compile Include="DataAccess\AccountDataAccess.cs" />
     <Compile Include="DataAccess\CategoryDataAccess.cs" />
     <Compile Include="DataAccess\PaymentDataAccess.cs" />
@@ -79,6 +79,7 @@
     <Compile Include="Interfaces\IDialogService.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Interfaces\ILocalSettings.cs" />
+    <Compile Include="Interfaces\INotificationService.cs" />
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />
     <Compile Include="Interfaces\IPaymentManager.cs" />
