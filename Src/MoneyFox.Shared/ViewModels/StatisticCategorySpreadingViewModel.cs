@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
@@ -56,11 +57,19 @@ namespace MoneyFox.Shared.ViewModels
                 return new PlotModel();
             }
 
-            var model = new PlotModel
+            var model = new PlotModel();
+
+            if (Settings.DarkThemeSelected)
             {
-                Background = OxyColors.Black,
-                TextColor = OxyColors.White
-            };
+                model.Background = OxyColors.Black;
+                model.TextColor = OxyColors.White;
+            }
+            else
+            {
+                model.Background = OxyColors.White;
+                model.TextColor = OxyColors.Black;
+            }
+
             var pieSeries = new PieSeries
             {
                 InsideLabelFormat = ""

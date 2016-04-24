@@ -18,7 +18,7 @@ namespace MoneyFox.Windows.Converter
             else
             {
                 var list = (ObservableCollection<Account>)value;
-                return list.Any() ? Visibility.Visible : Visibility.Collapsed;
+                return !list.Any() ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 

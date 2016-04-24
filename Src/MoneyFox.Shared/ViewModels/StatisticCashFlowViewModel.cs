@@ -1,4 +1,5 @@
-﻿using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -42,19 +43,28 @@ namespace MoneyFox.Shared.ViewModels
 
             var model = new PlotModel
             {
-                Background = OxyColors.Black,
-                TextColor = OxyColors.White
+                Background = OxyColors.White,
+                TextColor = OxyColors.Black
             };
 
             var columnSeries = new ColumnSeries();
             var axe = new CategoryAxis
             {
-                AxislineColor = OxyColors.White,
-                TextColor = OxyColors.White,
+                AxislineColor = OxyColors.Black,
+                TextColor = OxyColors.Black,
                 IsPanEnabled = false,
                 IsZoomEnabled = false,
                 Angle = 45
             };
+
+            if (Settings.DarkThemeSelected)
+            {
+                axe.AxislineColor = OxyColors.White;
+                axe.AxislineColor = OxyColors.White;
+
+                model.Background = OxyColors.Black;
+                model.TextColor = OxyColors.White;
+            }
 
             columnSeries.Items.Add(new ColumnItem(cashFlow.Income.Value) {Color = OxyColors.LightGreen});
             axe.Labels.Add(cashFlow.Income.Label);
