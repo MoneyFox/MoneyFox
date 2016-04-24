@@ -25,8 +25,8 @@ namespace MoneyFox.Shared.Helpers
 
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
 
-        private const string REQUESTED_THEME = "requested_theme";
-        private const bool REQUESTED_THEME_KEYDEFAULT = false;
+        private const string DARK_THEME_SELECTED = "dark_theme_selected";
+        private const bool DARK_THEME_SELECTED_KEYDEFAULT = false;
         private static DateTime DatabaseLastUpdateKeydefault { get; } = DateTime.MinValue;
 
         private static ILocalSettings LocalSettings => Mvx.Resolve<ILocalSettings>();
@@ -78,10 +78,10 @@ namespace MoneyFox.Shared.Helpers
             set { LocalSettings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value); }
         }
 
-        public static bool SelectedTheme
+        public static bool DarkThemeSelected
         {
-            get { return LocalSettings.GetValueOrDefault(REQUESTED_THEME, REQUESTED_THEME_KEYDEFAULT); }
-            set { LocalSettings.AddOrUpdateValue(REQUESTED_THEME, value); }
+            get { return LocalSettings.GetValueOrDefault(DARK_THEME_SELECTED, DARK_THEME_SELECTED_KEYDEFAULT); }
+            set { LocalSettings.AddOrUpdateValue(DARK_THEME_SELECTED, value); }
         }
 
         #endregion Properties

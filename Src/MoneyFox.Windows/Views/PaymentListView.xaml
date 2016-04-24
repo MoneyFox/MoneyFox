@@ -28,7 +28,7 @@
         <Grid Grid.Row="1"
               Margin="0,9.5,0,0"
               EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <userControls:PaymentViewModelListUserControl />
+            <userControls:PaymentListUserControl />
         </Grid>
 
         <CommandBar Grid.Row="2">
@@ -36,17 +36,17 @@
                 <AppBarButton Icon="Add"
                               x:Uid="AddIncomeLabel"
                               Label="add income"
-                              Command="{Binding GoToAddPaymentViewModelCommand}"
+                              Command="{Binding GoToAddPaymentViewCommand}"
                               CommandParameter="Income" />
                 <AppBarButton Icon="Remove"
                               x:Uid="AddExpenseLabel"
                               Label="add spending"
-                              Command="{Binding GoToAddPaymentViewModelCommand}"
+                              Command="{Binding GoToAddPaymentViewCommand}"
                               CommandParameter="Expense" />
                 <AppBarButton Icon="Switch"
                               x:Uid="AddTransferLabel"
                               Label="add transfer"
-                              Command="{Binding GoToAddPaymentViewModelCommand}"
+                              Command="{Binding GoToAddPaymentViewCommand}"
                               CommandParameter="Transfer" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>

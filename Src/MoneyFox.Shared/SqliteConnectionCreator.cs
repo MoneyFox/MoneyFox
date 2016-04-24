@@ -61,8 +61,27 @@ namespace MoneyFox.Shared
                     {
                         db.InsertAll(dbOld.Table<Account>());
                         db.InsertAll(dbOld.Table<Category>());
-                        db.InsertAll(dbOld.Table<RecurringPayment>());
-                        db.InsertAll(dbOld.Table<Payment>());
+
+                        var paymentList = dbOld.Table<Payment>().ToList();
+                        var recPaymentList = dbOld.Table<RecurringPayment>().ToList();
+
+                        foreach (var payment in paymentList.Where(x => x.IsRecurring && x.RecurringPaymentId == 0))
+                        {
+                            payment.IsRecurring = false;
+                        }
+
+                        foreach (var recurringPayment in recPaymentList)
+                        {
+                            int recIdOld = recurringPayment.Id;
+                            db.Insert(recurringPayment);
+
+                            foreach (var payment in paymentList.Where(x => x.RecurringPaymentId == recIdOld))
+                            {
+                                payment.RecurringPaymentId = db.Table<RecurringPayment>().LastOrDefault().Id;
+                            }
+                        }
+
+                        db.InsertAll(paymentList);
                     }
                 }
 
@@ -72,7 +91,7 @@ namespace MoneyFox.Shared
 
         private const string RECURRING_PAYMENT_CREATE_SCRIPT =
             "CREATE TABLE IF NOT EXISTS RecurringPayments( " +
-            "Id INTEGER NOT NULL CONSTRAINT PK_RecurringPayment PRIMARY KEY AUTOINCREMENT, " +
+            "Id INTEGER NOT NULL CONSTRAINT PK_RecurringPayment PRIMARY KEY, " +
             "Amount REAL NOT NULL, " +
             "CategoryId INTEGER, " +
             "ChargedAccountId INTEGER NOT NULL, " +

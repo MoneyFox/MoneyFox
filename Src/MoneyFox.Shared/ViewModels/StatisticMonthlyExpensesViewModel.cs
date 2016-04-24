@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.StatisticDataProvider;
 using OxyPlot;
@@ -40,11 +41,19 @@ namespace MoneyFox.Shared.ViewModels
         {
             var monthlyExpenses = monthlyExpensesDataProvider.GetValues(StartDate, EndDate);
 
-            var model = new PlotModel
+            //TODO: refactor this into an helper class
+            var model = new PlotModel();
+
+            if (Settings.DarkThemeSelected)
             {
-                Background = OxyColors.Black,
-                TextColor = OxyColors.White
-            };
+                model.Background = OxyColors.Black;
+                model.TextColor = OxyColors.White;
+            }
+            else
+            {
+                model.Background = OxyColors.Black;
+                model.TextColor = OxyColors.White;
+            }
 
             var columnSeries = new ColumnSeries();
             var axe = new CategoryAxis
