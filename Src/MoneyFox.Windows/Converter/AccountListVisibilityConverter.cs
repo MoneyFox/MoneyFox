@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MoneyFox.Shared.Model;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
@@ -15,8 +17,8 @@ namespace MoneyFox.Windows.Converter
             }
             else
             {
-                var list = (ObservableCollection<Shared.Model.Account>)value;
-                return list.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+                var list = (ObservableCollection<Account>)value;
+                return list.Any() ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
