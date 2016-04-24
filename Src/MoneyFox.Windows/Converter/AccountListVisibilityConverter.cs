@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Windows.Converter
 {
-    class AccountListVisibilityConverter : IValueConverter
+    public class AccountListVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
