@@ -64,7 +64,7 @@
             <TextBlock Grid.Row="0" Text="{Binding Title}"
                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
 
-            <ScrollViewer Grid.Row="1">
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                 <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
                                                  EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
                                                  ItemsSource="{Binding CategorySummary}"
