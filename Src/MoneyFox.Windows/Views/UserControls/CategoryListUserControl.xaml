@@ -50,7 +50,7 @@
                  Margin="5,0,5,0"
                  x:Uid="SearchHeader"
                  Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <ScrollViewer Margin="0,7,0,0" Grid.Row="1">
+        <ScrollViewer Margin="0,7,0,0" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
                                              EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
                                              ItemsSource="{Binding Categories}"
