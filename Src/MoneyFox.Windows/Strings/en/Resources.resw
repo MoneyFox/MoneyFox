@@ -362,4 +362,7 @@ Tap to visit the Repository:</value>
   <data name="accountsPlaceholder.Text" xml:space="preserve">
     <value>There are no accounts, add one by tapping on the three dots at bottom</value>
   </data>
+  <data name="ThemeToggleDescription.Text" xml:space="preserve">
+    <value>You can change between dark and light theme. To apply this changes please restart the application.</value>
+  </data>
 </root>
