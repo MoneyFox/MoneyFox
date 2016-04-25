@@ -25,7 +25,11 @@ namespace MoneyFox.Shared.Helpers
 
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
 
-        private const string DARK_THEME_SELECTED = "dark_theme_selected";
+        /// <summary>
+        ///     Constant for the Theme Setting
+        ///     This is public because we have to access the setting directly in the Windows App.xaml.cs to set the theme.
+        /// </summary>
+        public const string DARK_THEME_SELECTED = "dark_theme_selected";
         private const bool DARK_THEME_SELECTED_KEYDEFAULT = false;
         private static DateTime DatabaseLastUpdateKeydefault { get; } = DateTime.MinValue;
 
@@ -78,7 +82,7 @@ namespace MoneyFox.Shared.Helpers
             set { LocalSettings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value); }
         }
 
-        public static bool DarkThemeSelected
+        public static bool IsDarkThemeSelected
         {
             get { return LocalSettings.GetValueOrDefault(DARK_THEME_SELECTED, DARK_THEME_SELECTED_KEYDEFAULT); }
             set { LocalSettings.AddOrUpdateValue(DARK_THEME_SELECTED, value); }

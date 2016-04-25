@@ -44,7 +44,7 @@ namespace MoneyFox.Shared.ViewModels
             //TODO: refactor this into an helper class
             var model = new PlotModel();
 
-            if (Settings.DarkThemeSelected)
+            if (Settings.IsDarkThemeSelected)
             {
                 model.Background = OxyColors.Black;
                 model.TextColor = OxyColors.White;

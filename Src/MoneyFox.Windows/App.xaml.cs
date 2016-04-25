@@ -14,14 +14,15 @@ using Windows.UI.Xaml.Navigation;
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Windows.Services;
+using MoneyFox.Windows.SettingsAccess;
 using MoneyFox.Windows.Views;
 using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
-using Microsoft.ApplicationInsights;
 
 namespace MoneyFox.Windows
 {
@@ -40,10 +41,24 @@ namespace MoneyFox.Windows
 #if !DEBUG
             WindowsAppInitializer.InitializeAsync();
 #endif
-
+            SetColor();
             Suspending += OnSuspending;
         }
-
+        
+        /// <summary>
+        ///     Bind the saved theme from settings to the root element which cascadingly applies to children elements
+        ///     the reason this is bound in code behind is that because viewmodels are loaded after the pages,
+        ///     resulting to a nullreference exception if bound in xaml.
+        /// </summary>
+        private void SetColor()
+        {
+            // We have to create a own local settings object here since the general dependency 
+            // registration takes place later and the Theme can only be set in the constructor.
+            if (new LocalSettings().GetValueOrDefault(Settings.DARK_THEME_SELECTED, false))
+            {
+                RequestedTheme = ApplicationTheme.Dark;
+            }
+        }
 
         /// <summary>
         ///     Invoked when the application is launched normally by the end user.  Other entry points
@@ -82,12 +97,12 @@ namespace MoneyFox.Windows
             if (Mvx.Resolve<Session>().ValidateSession())
             {
                 shell.SetLoggedInView();
-                shell.AppMyFrame.Navigate(typeof (MainView));
+                shell.AppMyFrame.Navigate(typeof(MainView));
             }
             else
             {
                 shell.SetLoginView();
-                shell.AppMyFrame.Navigate(typeof (LoginView));
+                shell.AppMyFrame.Navigate(typeof(LoginView));
             }
 
             new TileHelper().DoNavigation(string.IsNullOrEmpty(e.Arguments)
