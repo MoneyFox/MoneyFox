@@ -10,7 +10,7 @@
 
     <StackPanel>
         <TextBlock Margin="5" x:Uid="ThemeToggleDescription"
-                   Text="You can change between dark and light theme. Changes are applied upon page navigation."
+                   Text="You can change between dark and light theme. To apply this changes please restart the application."
                    TextWrapping="WrapWholeWords"/>
         <ToggleSwitch Margin="5" x:Uid="ThemeToggleSwitch"
                       IsOn="{Binding IsDarkThemeEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"

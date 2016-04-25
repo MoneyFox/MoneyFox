@@ -104,20 +104,6 @@ namespace MoneyFox.Windows.Views
 
         public Rect TogglePaneButtonRect { get; private set; }
 
-        //Bind the saved theme from settings to the root element which cascadingly applies to children elements
-        //the reason this is bound in code behind is that because viewmodels are loaded after the pages,
-        //resulting to a nullreference exception if bound in xamlW.
-        private void SetColor()
-        {
-            var colorBinding = new Binding
-            {
-                Source = new PersonalizationUserControlViewModel(),
-                Path = new PropertyPath("IsDarkThemeEnabled"),
-                Converter = new BooleanToThemeConverter()
-            };
-            BindingOperations.SetBinding(Root, RequestedThemeProperty, colorBinding);
-        }
-
         /// <summary>
         ///     Default keyboard focus movement for any unhandled keyboarding
         /// </summary>
@@ -406,9 +392,6 @@ namespace MoneyFox.Windows.Views
                     NavMenuListBottom.SetSelectedItem(null);
                 }
             }
-
-            //Change the theme on page navigation; maybe it can be moved somewhere else.
-            SetColor();
         }
 
         private void OnNavigatedToPage(object sender, NavigationEventArgs e)

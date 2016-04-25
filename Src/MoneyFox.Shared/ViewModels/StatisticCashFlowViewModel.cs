@@ -57,7 +57,7 @@ namespace MoneyFox.Shared.ViewModels
                 Angle = 45
             };
 
-            if (Settings.DarkThemeSelected)
+            if (Settings.IsDarkThemeSelected)
             {
                 axe.AxislineColor = OxyColors.White;
                 axe.AxislineColor = OxyColors.White;

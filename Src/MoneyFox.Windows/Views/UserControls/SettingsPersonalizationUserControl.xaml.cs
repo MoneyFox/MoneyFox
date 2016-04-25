@@ -8,7 +8,6 @@ namespace MoneyFox.Windows.Views.UserControls
         public SettingsPersonalizationUserControl()
         {
             InitializeComponent();
-
             DataContext = Mvx.Resolve<PersonalizationUserControlViewModel>();
         }
     }

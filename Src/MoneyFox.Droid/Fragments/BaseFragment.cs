@@ -1,5 +1,4 @@
-﻿using Android.App;
-using Android.Content.Res;
+﻿using Android.Content.Res;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
@@ -13,8 +12,8 @@ namespace MoneyFox.Droid.Fragments
 {
     public abstract class BaseFragment : MvxFragment
     {
-        private MvxActionBarDrawerToggle _drawerToggle;
-        private Toolbar _toolbar;
+        private MvxActionBarDrawerToggle drawerToggle;
+        private Toolbar toolbar;
 
         protected BaseFragment()
         {
@@ -30,21 +29,21 @@ namespace MoneyFox.Droid.Fragments
             var view = this.BindingInflate(FragmentId, null);
 
             //TODO: I guess this can be removed?
-            _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
-            if (_toolbar != null)
+            toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
+            if (toolbar != null)
             {
-                ((MainActivity) Activity).SetSupportActionBar(_toolbar);
+                ((MainActivity) Activity).SetSupportActionBar(toolbar);
                 ((MainActivity) Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-                _drawerToggle = new MvxActionBarDrawerToggle(
+                drawerToggle = new MvxActionBarDrawerToggle(
                     Activity, // host Activity
                     ((MainActivity) Activity).DrawerLayout, // DrawerLayout object
-                    _toolbar, // nav drawer icon to replace 'Up' caret
+                    toolbar, // nav drawer icon to replace 'Up' caret
                     Resource.String.drawer_open, // "open drawer" description
                     Resource.String.drawer_close // "close drawer" description
                     );
 
-                ((MainActivity) Activity).DrawerLayout.SetDrawerListener(_drawerToggle);
+                ((MainActivity) Activity).DrawerLayout.SetDrawerListener(drawerToggle);
             }
 
             return view;
@@ -53,25 +52,25 @@ namespace MoneyFox.Droid.Fragments
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
-            if (_toolbar != null)
+            if (toolbar != null)
             {
-                _drawerToggle.OnConfigurationChanged(newConfig);
+                drawerToggle.OnConfigurationChanged(newConfig);
             }
         }
 
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-            if (_toolbar != null)
+            if (toolbar != null)
             {
-                _drawerToggle.SyncState();
+                drawerToggle.SyncState();
             }
         }
     }
 
     public abstract class BaseFragment<TViewModel> : BaseFragment where TViewModel : class, IMvxViewModel
     {
-        public TViewModel ViewModel
+        public new TViewModel ViewModel
         {
             get { return (TViewModel) base.ViewModel; }
             set { base.ViewModel = value; }
