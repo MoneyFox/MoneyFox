@@ -5,6 +5,7 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
+using System.Linq;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -34,6 +35,11 @@ namespace MoneyFox.Shared.ViewModels
             get { return accountRepository.Data; }
             set { accountRepository.Data = value; }
         }
+
+        /// <summary>
+        ///     Returns if the AllAccounts Collection is emtpy or not.
+        /// </summary>
+        public bool IsAllAccountsEmpty => !AllAccounts.Any();
 
         /// <summary>
         ///     Prepares the account list

@@ -16,7 +16,7 @@
 
     <UserControl.Resources>
         <converter:ClickConverter x:Key="ClickConverter" />
-        <converter:NativeListVisibilityConverter x:Key="ListVisibilityConverter" />
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="CategoryTemplate"
                       x:DataType="model:Category">
@@ -74,7 +74,7 @@
             </controls:AlternatingRowListView>
         </ScrollViewer>
 
-        <TextBlock x:Uid="categoriesPlaceholder"
+        <TextBlock x:Uid="CategoriesPlaceholder"
                    Grid.Row="1"
                    TextWrapping="Wrap"
                    VerticalAlignment="Center"
@@ -82,6 +82,6 @@
                    Margin="6"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    Foreground="{ThemeResource SystemBaseMediumLowColor}"
-                   Visibility="{Binding AllCategories, Converter={StaticResource ListVisibilityConverter}, ConverterParameter=category}" />
+                   Visibility="{Binding IsCategoriesEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />    
     </Grid>
 </UserControl>

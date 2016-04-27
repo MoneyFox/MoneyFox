@@ -47,7 +47,6 @@
     <Compile Include="Authentication\Session.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Constants\OneDriveAuthenticationConstants.cs" />
-    <Compile Include="Converter\AccountListVisibilityConverter.cs" />
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
     <Compile Include="Converter\PaymentAmountConverter.cs" />

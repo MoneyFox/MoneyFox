@@ -26,7 +26,6 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:NoteVisibilityConverter x:Key="NoteVisibilityConverter" />
         <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
-        <converter:NativeListVisibilityConverter x:Key="ListVisibilityConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="PaymentViewModelTemplate"
@@ -179,7 +178,7 @@
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
         
-        <TextBlock x:Uid="paymentsPlaceholder"
+        <TextBlock x:Uid="PaymentsPlaceholder"
                    Grid.Row="1"
                    TextWrapping="Wrap"
                    VerticalAlignment="Center"
@@ -187,7 +186,6 @@
                    Margin="6"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    Foreground="{ThemeResource SystemBaseMediumLowColor}"
-                   Visibility="{Binding AllCategories, Converter={StaticResource ListVisibilityConverter}, ConverterParameter=payment}" />
-
+                   Visibility="{Binding IsPaymentsEmtpy, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </UserControl>

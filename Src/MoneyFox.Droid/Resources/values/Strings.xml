@@ -36,6 +36,9 @@
     Download the previous uploaded database backup and replace your local data with it.
     WARNING: Local changes you made meanwhile we be lost.
   </string>
+  <string name="accounts_placeholder">There are no accounts. Add one by tapping on the three dots at bottom</string>
+  <string name="payments_placeholder">There are no payments. Add one by tapping on one of the three symbols at the bottom.</string>
+  <string name="categories_placeholder">There are no categories. Add one by tapping on the plus symbol at bottom.</string>
 
   <!--buttons-->
   <string name="button_date">Date</string>

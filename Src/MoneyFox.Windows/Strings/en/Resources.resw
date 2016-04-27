@@ -359,13 +359,13 @@ Tap to visit the Repository:</value>
   <data name="MonthlyExpenseStatisticTitle.Text" xml:space="preserve">
     <value>Monthly Expenses</value>
   </data>
-  <data name="accountsPlaceholder.Text" xml:space="preserve">
+  <data name="AccountsPlaceholder.Text" xml:space="preserve">
     <value>There are no accounts. Add one by tapping on the three dots at bottom</value>
   </data>
-  <data name="categoriesPlaceholder.Text" xml:space="preserve">
+  <data name="CategoriesPlaceholder.Text" xml:space="preserve">
     <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
   </data>
-  <data name="paymentsPlaceholder.Text" xml:space="preserve">
+  <data name="PaymentsPlaceholder.Text" xml:space="preserve">
     <value>There are no payments. Add one by tapping on one of the three symbols at the bottom.</value>
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">

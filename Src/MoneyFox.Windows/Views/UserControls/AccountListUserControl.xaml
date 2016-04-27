@@ -24,7 +24,7 @@
     <UserControl.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:SelectedAccountConverter x:Key="SelectedAccountConverter" />
-        <converter:NativeListVisibilityConverter x:Key="ListVisibilityConverter"/>
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="AccountTemplate" x:DataType="model:Account">
             <StackPanel HorizontalAlignment="Stretch"
@@ -92,14 +92,14 @@
             </controls:AlternatingRowListView>
         </ScrollViewer>
 
-        <TextBlock x:Uid="accountsPlaceholder" 
+        <TextBlock x:Uid="AccountsPlaceholder" 
                    Grid.Row="1" 
                    TextWrapping="Wrap" 
                    VerticalAlignment="Center" 
                    HorizontalAlignment="Center" 
                    Margin="6"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"                       
-                   Foreground="{ThemeResource SystemBaseMediumLowColor}" 
-                   Visibility="{Binding AllAccounts, Converter={StaticResource ListVisibilityConverter}, ConverterParameter=account}"/>
+                   Foreground="{ThemeResource SystemBaseMediumLowColor}"
+                   Visibility="{Binding IsAllAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
 </UserControl>
