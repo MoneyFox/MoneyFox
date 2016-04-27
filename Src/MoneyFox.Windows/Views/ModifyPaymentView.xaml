@@ -17,6 +17,7 @@
         <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:PaymentHeaderConverter x:Key="PaymentHeaderConverter"/>
         <DataTemplate x:Key="ComboBoxTemplate"
                       x:DataType="model:Account">
             <StackPanel Margin="0,0,0,12"
@@ -39,8 +40,7 @@
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Add PaymentViewModel"
-                           x:Uid="ModifyPaymentViewTitle" />
+                           Text="{Binding Path=SelectedPayment.Type, Converter={StaticResource PaymentHeaderConverter}}"/>
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 

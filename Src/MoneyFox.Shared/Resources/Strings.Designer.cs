@@ -458,6 +458,15 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add expense.
+        /// </summary>
+        public static string ExpenseHeader {
+            get {
+                return ResourceManager.GetString("ExpenseHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expense History.
         /// </summary>
         public static string ExpenseHistory {
@@ -499,6 +508,15 @@ namespace MoneyFox.Shared.Resources {
         public static string FeedbackSubject {
             get {
                 return ResourceManager.GetString("FeedbackSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add income.
+        /// </summary>
+        public static string IncomeHeader {
+            get {
+                return ResourceManager.GetString("IncomeHeader", resourceCulture);
             }
         }
         
@@ -860,6 +878,15 @@ namespace MoneyFox.Shared.Resources {
         public static string TaskSuccessfulMessage {
             get {
                 return ResourceManager.GetString("TaskSuccessfulMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add transfer.
+        /// </summary>
+        public static string TransferHeader {
+            get {
+                return ResourceManager.GetString("TransferHeader", resourceCulture);
             }
         }
         
