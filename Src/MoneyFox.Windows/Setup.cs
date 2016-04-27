@@ -49,7 +49,7 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
             Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
             Mvx.RegisterType<ILocalSettings, LocalSettings>();
-            Mvx.RegisterType<ITileUpdateService, UserNotification>();
+            Mvx.RegisterType<ITileUpdateService, TileUpdateService>();
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
             Mvx.RegisterType<ISpendingShortcut, ExpenseTile>();
