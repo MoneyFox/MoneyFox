@@ -101,6 +101,5 @@
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"                       
                    Foreground="{ThemeResource SystemBaseMediumLowColor}" 
                    Visibility="{Binding AllAccounts, Converter={StaticResource ListVisibilityConverter}, ConverterParameter=account}"/>
-
     </Grid>
 </UserControl>
