@@ -1,6 +1,6 @@
 ﻿namespace MoneyFox.Shared.Interfaces
 {
-    public interface IUserNotification
+    public interface ITileUpdateService
     {
         /// <summary>
         ///     Sets the MainTile with new Information

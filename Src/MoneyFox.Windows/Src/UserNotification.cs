@@ -7,7 +7,7 @@ using NotificationsExtensions.Tiles;
 
 namespace MoneyFox.Windows
 {
-    public class UserNotification : IUserNotification
+    public class UserNotification : ITileUpdateService
     {
         /// <summary>
         ///     Sets the MainTile with new Information
