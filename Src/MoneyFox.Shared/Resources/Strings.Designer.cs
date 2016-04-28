@@ -458,6 +458,42 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occured while saving the item. .
+        /// </summary>
+        public static string ErrorMessageDelete {
+            get {
+                return ResourceManager.GetString("ErrorMessageDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured while saving the item. .
+        /// </summary>
+        public static string ErrorMessageSave {
+            get {
+                return ResourceManager.GetString("ErrorMessageSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error on save.
+        /// </summary>
+        public static string ErrorTitleDelete {
+            get {
+                return ResourceManager.GetString("ErrorTitleDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error on save.
+        /// </summary>
+        public static string ErrorTitleSave {
+            get {
+                return ResourceManager.GetString("ErrorTitleSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add expense.
         /// </summary>
         public static string ExpenseHeader {

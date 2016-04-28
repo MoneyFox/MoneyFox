@@ -12,12 +12,10 @@ namespace MoneyFox.Shared.ViewModels
     public class ModifyAccountViewModel : BaseViewModel
     {
         private readonly IAccountRepository accountRepository;
-        private readonly INotificationService notificationService;
 
-        public ModifyAccountViewModel(IAccountRepository accountRepository, INotificationService notificationService)
+        public ModifyAccountViewModel(IAccountRepository accountRepository)
         {
             this.accountRepository = accountRepository;
-            this.notificationService = notificationService;
         }
 
         /// <summary>

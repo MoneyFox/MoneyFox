@@ -14,7 +14,8 @@ namespace MoneyFox.Shared.Interfaces
         ///     Updates or Inserts an item on the database
         /// </summary>
         /// <param name="itemToSave">Item of type T to save.</param>
-        void SaveItem(T itemToSave);
+        /// <returns>Returns if the operation was successful</returns>
+        bool SaveItem(T itemToSave);
 
         /// <summary>
         ///     Will Load the data from the database
@@ -27,6 +28,7 @@ namespace MoneyFox.Shared.Interfaces
         ///     Delete item from the database
         /// </summary>
         /// <param name="itemToDelete">Item to delete.</param>
-        void DeleteItem(T itemToDelete);
+        /// <returns>Returns if the operation was successful</returns>
+        bool DeleteItem(T itemToDelete);
     }
 }

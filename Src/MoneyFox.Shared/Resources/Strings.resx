@@ -403,4 +403,16 @@ Do you want to go the the store to rate?</value>
   <data name="TransferHeader" xml:space="preserve">
     <value>Add transfer</value>
   </data>
+  <data name="ErrorMessageDelete" xml:space="preserve">
+    <value>An error occured while saving the item. </value>
+  </data>
+  <data name="ErrorMessageSave" xml:space="preserve">
+    <value>An error occured while saving the item. </value>
+  </data>
+  <data name="ErrorTitleDelete" xml:space="preserve">
+    <value>Error on save</value>
+  </data>
+  <data name="ErrorTitleSave" xml:space="preserve">
+    <value>Error on save</value>
+  </data>
 </root>

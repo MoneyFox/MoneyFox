@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyFox.Shared.Repositories
 {
@@ -18,6 +19,8 @@ namespace MoneyFox.Shared.Repositories
         private readonly IRepository<Category> categoryRepository;
         private readonly IDataAccess<Payment> dataAccess;
         private readonly IDataAccess<RecurringPayment> recurringDataAccess;
+        private readonly INotificationService notificationService;
+
         private ObservableCollection<Payment> data;
 
         /// <summary>
@@ -34,12 +37,13 @@ namespace MoneyFox.Shared.Repositories
         public PaymentRepository(IDataAccess<Payment> dataAccess,
             IDataAccess<RecurringPayment> recurringDataAccess,
             IAccountRepository accountRepository,
-            IRepository<Category> categoryRepository)
+            IRepository<Category> categoryRepository, INotificationService notificationService)
         {
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;
             this.accountRepository = accountRepository;
             this.categoryRepository = categoryRepository;
+            this.notificationService = notificationService;
 
             Data = new ObservableCollection<Payment>();
             Load();
@@ -90,8 +94,13 @@ namespace MoneyFox.Shared.Repositories
             {
                 data.Add(payment);
             }
-            dataAccess.SaveItem(payment);
-            Settings.LastDatabaseUpdate = DateTime.Now;
+            if (dataAccess.SaveItem(payment))
+            {
+                notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
+            } else
+            {
+                Settings.LastDatabaseUpdate = DateTime.Now;
+            }
         }
 
         /// <summary>
@@ -106,12 +115,18 @@ namespace MoneyFox.Shared.Repositories
             {
                 data.Remove(payment);
                 dataAccess.DeleteItem(payment);
+                if (dataAccess.DeleteItem(payment))
+                {
+                    notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+                } else
+                {
+                    Settings.LastDatabaseUpdate = DateTime.Now;
+                }
 
                 // If this accountToDelete was the last finacial accountToDelete for the linked recurring accountToDelete
                 // delete the db entry for the recurring accountToDelete.
                 DeleteRecurringPaymentIfLastAssociated(payment);
             }
-            Settings.LastDatabaseUpdate = DateTime.Now;
         }
 
         /// <summary>
@@ -214,7 +229,13 @@ namespace MoneyFox.Shared.Repositories
 
                 foreach (var recTrans in recurringList)
                 {
-                    recurringDataAccess.DeleteItem(recTrans);
+                    if (recurringDataAccess.DeleteItem(recTrans))
+                    {
+                        notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+                    } else
+                    {
+                        Settings.LastDatabaseUpdate = DateTime.Now;
+                    }
                 }
             }
         }
