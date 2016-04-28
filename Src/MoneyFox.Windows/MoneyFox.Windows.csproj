@@ -112,6 +112,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\BackupDateVisibilityConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\CultureConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Converter\NativePaymentAmountConverter.cs" />
     <Compile Include="Converter\NoteVisibilityConverter.cs" />
     <Compile Include="Converter\AccountListVisibilityConverter.cs" />
+    <Compile Include="Converter\PaymentHeaderConverter.cs" />
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
