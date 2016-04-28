@@ -3027,6 +3027,9 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f080014
 			public const int abc_toolbar_collapse_description = 2131230740;
 			
+			// aapt resource value: 0x7f080034
+			public const int accounts_placeholder = 2131230772;
+			
 			// aapt resource value: 0x7f08001f
 			public const int action_add = 2131230751;
 			
@@ -3060,35 +3063,38 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f080032
 			public const int backup_information = 2131230770;
 			
-			// aapt resource value: 0x7f080035
-			public const int button_category = 2131230773;
-			
-			// aapt resource value: 0x7f080039
-			public const int button_create_backup = 2131230777;
-			
-			// aapt resource value: 0x7f080034
-			public const int button_date = 2131230772;
-			
-			// aapt resource value: 0x7f08003a
-			public const int button_done = 2131230778;
-			
-			// aapt resource value: 0x7f080036
-			public const int button_rate = 2131230774;
-			
 			// aapt resource value: 0x7f080038
-			public const int button_restore_backup = 2131230776;
+			public const int button_category = 2131230776;
+			
+			// aapt resource value: 0x7f08003c
+			public const int button_create_backup = 2131230780;
 			
 			// aapt resource value: 0x7f080037
-			public const int button_save_category = 2131230775;
+			public const int button_date = 2131230775;
+			
+			// aapt resource value: 0x7f08003d
+			public const int button_done = 2131230781;
+			
+			// aapt resource value: 0x7f080039
+			public const int button_rate = 2131230777;
+			
+			// aapt resource value: 0x7f08003b
+			public const int button_restore_backup = 2131230779;
+			
+			// aapt resource value: 0x7f08003a
+			public const int button_save_category = 2131230778;
+			
+			// aapt resource value: 0x7f080036
+			public const int categories_placeholder = 2131230774;
 			
 			// aapt resource value: 0x7f080017
 			public const int character_counter_pattern = 2131230743;
 			
-			// aapt resource value: 0x7f080046
-			public const int drawer_close = 2131230790;
+			// aapt resource value: 0x7f080049
+			public const int drawer_close = 2131230793;
 			
-			// aapt resource value: 0x7f080045
-			public const int drawer_open = 2131230789;
+			// aapt resource value: 0x7f080048
+			public const int drawer_open = 2131230792;
 			
 			// aapt resource value: 0x7f080023
 			public const int hint_account_name = 2131230755;
@@ -3123,14 +3129,17 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f08002b
 			public const int hint_search_text = 2131230763;
 			
-			// aapt resource value: 0x7f08003b
-			public const int label_cleared = 2131230779;
+			// aapt resource value: 0x7f08003e
+			public const int label_cleared = 2131230782;
 			
-			// aapt resource value: 0x7f08003d
-			public const int label_password_activated = 2131230781;
+			// aapt resource value: 0x7f080040
+			public const int label_password_activated = 2131230784;
 			
-			// aapt resource value: 0x7f08003c
-			public const int label_slogan = 2131230780;
+			// aapt resource value: 0x7f08003f
+			public const int label_slogan = 2131230783;
+			
+			// aapt resource value: 0x7f080035
+			public const int payments_placeholder = 2131230773;
 			
 			// aapt resource value: 0x7f080033
 			public const int restore_information = 2131230771;
@@ -3138,8 +3147,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f080015
 			public const int status_bar_notification_info_overflow = 2131230741;
 			
-			// aapt resource value: 0x7f080044
-			public const int text_endless = 2131230788;
+			// aapt resource value: 0x7f080047
+			public const int text_endless = 2131230791;
 			
 			// aapt resource value: 0x7f08002f
 			public const int textview_contact = 2131230767;
@@ -3153,23 +3162,23 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f08002e
 			public const int textview_version = 2131230766;
 			
-			// aapt resource value: 0x7f080043
-			public const int title_about = 2131230787;
-			
-			// aapt resource value: 0x7f08003e
-			public const int title_accounts = 2131230782;
+			// aapt resource value: 0x7f080046
+			public const int title_about = 2131230790;
 			
 			// aapt resource value: 0x7f080041
-			public const int title_backup = 2131230785;
+			public const int title_accounts = 2131230785;
 			
-			// aapt resource value: 0x7f080040
-			public const int title_categories = 2131230784;
+			// aapt resource value: 0x7f080044
+			public const int title_backup = 2131230788;
+			
+			// aapt resource value: 0x7f080043
+			public const int title_categories = 2131230787;
+			
+			// aapt resource value: 0x7f080045
+			public const int title_settings = 2131230789;
 			
 			// aapt resource value: 0x7f080042
-			public const int title_settings = 2131230786;
-			
-			// aapt resource value: 0x7f08003f
-			public const int title_statistics = 2131230783;
+			public const int title_statistics = 2131230786;
 			
 			// aapt resource value: 0x7f080000
 			public const int v7_preference_off = 2131230720;

@@ -39,7 +39,7 @@ namespace MoneyManager.Windows.Shortcut
                     DateTime.Today.GetFirstDayOfMonth(),
                     DateTime.Today.GetLastDayOfMonth());
 
-            Mvx.Resolve<IUserNotification>()
+            Mvx.Resolve<ITileUpdateService>()
                 .UpdateMainTile(cashFlow.Income.Label, cashFlow.Spending.Label, cashFlow.Revenue.Label);
         }
     }

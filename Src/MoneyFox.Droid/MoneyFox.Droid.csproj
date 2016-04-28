@@ -266,6 +266,7 @@
     <Compile Include="Src\CustomPresenter.cs" />
     <Compile Include="Src\CustomServiceInfoProvider.cs" />
     <Compile Include="Src\DialogService.cs" />
+    <Compile Include="Src\NotificationService.cs" />
     <Compile Include="Src\Localize.cs" />
     <Compile Include="Src\LocalSettings.cs" />
     <Compile Include="Src\OneDriveAuthenticator.cs" />

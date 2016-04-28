@@ -2,8 +2,8 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:background="?android:windowBackground"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
     <LinearLayout
         android:layout_centerInParent="true"
@@ -25,6 +25,13 @@
             local:MvxItemTemplate="@layout/listitem_account"
             local:MvxBind="ItemsSource AllAccounts;ItemClick OpenOverviewCommand" />
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/accounts_placeholder"
+        local:MvxBind="Visible IsAllAccountsEmpty" />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_create_item"
         android:layout_width="wrap_content"

@@ -3,6 +3,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
+using MoneyFox.Droid.Src;
 using MoneyFox.Droid.Widgets;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
@@ -58,6 +59,7 @@ namespace MoneyFox.Droid
             Mvx.RegisterType<ISpendingShortcut, ExpenseWidget>();
             Mvx.RegisterType<IIncomeShortcut, IncomeWidget>();
             Mvx.RegisterType<ITransferShortcut, TransferWidget>();
+            Mvx.RegisterType<INotificationService, NotificationService>();
         }
 
         protected override IMvxAndroidViewPresenter CreateViewPresenter()

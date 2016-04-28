@@ -37,6 +37,8 @@ namespace MoneyFox.Shared.ViewModels
 
         public ObservableCollection<Category> Categories { get; set; }
 
+        public bool IsCategoriesEmpty => !Categories.Any();
+
         /// <summary>
         ///     Text to search for. Will perform the search when the text changes.
         /// </summary>
