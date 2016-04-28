@@ -68,7 +68,7 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public ObservableCollection<Payment> RelatedPayments { get; set; }
 
-        public bool IsPaymentsEmtpy => !RelatedPayments.Any();
+        public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
 
         /// <summary>
         ///     Returns groupped related payments
