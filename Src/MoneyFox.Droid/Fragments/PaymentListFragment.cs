@@ -13,12 +13,13 @@ namespace MoneyFox.Droid.Fragments
 {
     [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
     [Register("moneyfox.droid.fragments.PaymentListFragment")]
-    public class PaymentListFragment : MvxFragment<PaymentListViewModel>
+    public class PaymentListFragment : BaseFragment<PaymentListViewModel>
     {
+        protected override int FragmentId => Resource.Layout.fragment_account_list;
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var ignore = base.OnCreateView(inflater, container, savedInstanceState);
-            var view = this.BindingInflate(Resource.Layout.fragment_payment_list, null);
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
 
             ((MainActivity) Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
             ((MainActivity) Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
