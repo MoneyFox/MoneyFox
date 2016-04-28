@@ -13,15 +13,18 @@ namespace MoneyFox.Shared.Repositories
     public class CategoryRepository : IRepository<Category>
     {
         private readonly IDataAccess<Category> dataAccess;
+        private readonly INotificationService notificationService;
+
         private ObservableCollection<Category> data;
 
         /// <summary>
         ///     Creates a CategoryRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced Category data Access</param>
-        public CategoryRepository(IDataAccess<Category> dataAccess)
+        public CategoryRepository(IDataAccess<Category> dataAccess, INotificationService notificationService)
         {
             this.dataAccess = dataAccess;
+            this.notificationService = notificationService;
 
             Data = new ObservableCollection<Category>();
             Load();
@@ -60,8 +63,13 @@ namespace MoneyFox.Shared.Repositories
             {
                 data.Add(category);
             }
-            dataAccess.SaveItem(category);
-            Settings.LastDatabaseUpdate = DateTime.Now;
+            if (dataAccess.SaveItem(category))
+            {
+                notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
+            } else
+            {
+                Settings.LastDatabaseUpdate = DateTime.Now;
+            }
         }
 
         /// <summary>
@@ -71,8 +79,13 @@ namespace MoneyFox.Shared.Repositories
         public void Delete(Category categoryToDelete)
         {
             data.Remove(categoryToDelete);
-            dataAccess.DeleteItem(categoryToDelete);
-            Settings.LastDatabaseUpdate = DateTime.Now;
+            if (dataAccess.DeleteItem(categoryToDelete))
+            {
+                notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+            } else
+            {
+                Settings.LastDatabaseUpdate = DateTime.Now;
+            }
         }
 
         /// <summary>

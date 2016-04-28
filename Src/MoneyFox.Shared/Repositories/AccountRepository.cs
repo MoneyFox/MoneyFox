@@ -14,15 +14,19 @@ namespace MoneyFox.Shared.Repositories
     public class AccountRepository : IAccountRepository
     {
         private readonly IDataAccess<Account> dataAccess;
+        private readonly INotificationService notificationService;
+
         private ObservableCollection<Account> data;
 
         /// <summary>
         ///     Creates a AccountRepository Object
         /// </summary>
         /// <param name="dataAccess">Instanced account data Access</param>
-        public AccountRepository(IDataAccess<Account> dataAccess)
+        /// <param name="notificationService">Service to notify user in case of errors.</param>
+        public AccountRepository(IDataAccess<Account> dataAccess, INotificationService notificationService)
         {
             this.dataAccess = dataAccess;
+            this.notificationService = notificationService;
 
             Data = new ObservableCollection<Account>();
             Load();
@@ -61,8 +65,14 @@ namespace MoneyFox.Shared.Repositories
             {
                 data.Add(account);
             }
-            dataAccess.SaveItem(account);
-            Settings.LastDatabaseUpdate = DateTime.Now;
+            if (dataAccess.SaveItem(account))
+            {
+                notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
+            }
+            else
+            {
+                Settings.LastDatabaseUpdate = DateTime.Now;
+            }
         }
 
         /// <summary>
@@ -72,8 +82,13 @@ namespace MoneyFox.Shared.Repositories
         public void Delete(Account accountToDelete)
         {
             data.Remove(accountToDelete);
-            dataAccess.DeleteItem(accountToDelete);
-            Settings.LastDatabaseUpdate = DateTime.Now;
+            if (dataAccess.DeleteItem(accountToDelete))
+            {
+                notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+            } else
+            {
+                Settings.LastDatabaseUpdate = DateTime.Now;
+            }
         }
 
         /// <summary>

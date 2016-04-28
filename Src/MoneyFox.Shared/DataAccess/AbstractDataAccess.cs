@@ -13,7 +13,7 @@ namespace MoneyFox.Shared.DataAccess
         ///     update the existing
         /// </summary>
         /// <param name="itemToSave">item to save.</param>
-        public void SaveItem(T itemToSave)
+        public bool SaveItem(T itemToSave)
         {
             try
             {
@@ -22,14 +22,16 @@ namespace MoneyFox.Shared.DataAccess
             catch (Exception ex)
             {
                 Insights.Report(ex, Insights.Severity.Error);
+                return false;
             }
+            return true;
         }
 
         /// <summary>
         ///     Deletes the passed item from the database
         /// </summary>
         /// <param name="itemToDelete">Item to delete.</param>
-        public void DeleteItem(T itemToDelete)
+        public bool DeleteItem(T itemToDelete)
         {
             try
             {
@@ -38,7 +40,9 @@ namespace MoneyFox.Shared.DataAccess
             catch (Exception ex)
             {
                 Insights.Report(ex, Insights.Severity.Error);
+                return false;
             }
+            return true;
         }
 
         /// <summary>
