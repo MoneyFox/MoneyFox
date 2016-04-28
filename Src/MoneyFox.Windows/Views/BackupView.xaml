@@ -18,6 +18,7 @@
 
     <Page.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+        <converter:BackupDateVisibilityConverter x:Key="BackupDateVisibilityConverter"/>
     </Page.Resources>
 
     <Grid>
@@ -57,9 +58,11 @@
                             Margin="0,15,0,7">
                     <TextBlock x:Uid="BackupLastModifiedText"
                                Text="Last Backup created at:"
-                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}" />
+                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                               Visibility="{Binding BackupLastModified, Converter={StaticResource BackupDateVisibilityConverter}}"/>
                     <TextBlock Text="{Binding BackupLastModified}"
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                               Visibility="{Binding BackupLastModified, Converter={StaticResource BackupDateVisibilityConverter}}"
                                Margin="5,0,0,0" />
 
                 </StackPanel>

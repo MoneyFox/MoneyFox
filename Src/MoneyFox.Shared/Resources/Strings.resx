@@ -394,4 +394,13 @@ Do you want to go the the store to rate?</value>
   <data name="AccountModifiedMessage" xml:space="preserve">
     <value>'{0}' has been succesfully modified</value>
   </data>
+  <data name="ExpenseHeader" xml:space="preserve">
+    <value>Add expense</value>
+  </data>
+  <data name="IncomeHeader" xml:space="preserve">
+    <value>Add income</value>
+  </data>
+  <data name="TransferHeader" xml:space="preserve">
+    <value>Add transfer</value>
+  </data>
 </root>
