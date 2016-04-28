@@ -119,7 +119,6 @@
     <Compile Include="Converter\NativeAmountFormatConverter.cs" />
     <Compile Include="Converter\NativePaymentAmountConverter.cs" />
     <Compile Include="Converter\NoteVisibilityConverter.cs" />
-    <Compile Include="Converter\AccountListVisibilityConverter.cs" />
     <Compile Include="Converter\PaymentHeaderConverter.cs" />
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />
