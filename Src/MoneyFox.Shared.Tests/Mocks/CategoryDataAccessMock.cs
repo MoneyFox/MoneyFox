@@ -10,17 +10,19 @@ namespace MoneyFox.Shared.Tests.Mocks
     {
         public List<Category> CategoryTestList = new List<Category>();
 
-        public void SaveItem(Category itemToSave)
+        public bool SaveItem(Category itemToSave)
         {
             CategoryTestList.Add(itemToSave);
+            return true;
         }
 
-        public void DeleteItem(Category item)
+        public bool DeleteItem(Category item)
         {
             if (CategoryTestList.Contains(item))
             {
                 CategoryTestList.Remove(item);
             }
+            return true;
         }
 
         public List<Category> LoadList(Expression<Func<Category, bool>> filter = null) => CategoryTestList;

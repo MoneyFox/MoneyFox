@@ -47,7 +47,8 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
+            var accountRepository = new AccountRepository(accountDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
 
             var account = new Account
             {
@@ -73,7 +74,8 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             accountDataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
 
-            var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
+            var accountRepository = new AccountRepository(accountDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
 
             var account = new Account
             {
@@ -90,7 +92,8 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void AccessCache()
         {
-            Assert.IsNotNull(new AccountRepository(new AccountDataAccessMock()).Data);
+            Assert.IsNotNull(new AccountRepository(new AccountDataAccessMock(),
+                new Mock<INotificationService>().Object).Data);
         }
 
         [TestMethod]
@@ -113,7 +116,8 @@ namespace MoneyFox.Shared.Tests.Repositories
                 account
             });
 
-            var repository = new AccountRepository(accountDataAccessSetup.Object);
+            var repository = new AccountRepository(accountDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
 
             repository.Delete(account);
 
@@ -131,7 +135,8 @@ namespace MoneyFox.Shared.Tests.Repositories
                 new Account {Id = 15}
             });
 
-            var accountRepository = new AccountRepository(accountDataAccessSetup.Object);
+            var accountRepository = new AccountRepository(accountDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
             accountRepository.Load();
 
             Assert.IsTrue(accountRepository.Data.Any(x => x.Id == 10));
@@ -144,7 +149,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
 
-            new CategoryRepository(dataAccessSetup.Object).Save(new Category());
+            new CategoryRepository(dataAccessSetup.Object,
+                new Mock<INotificationService>().Object).Save(new Category());
 
             localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
             localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));

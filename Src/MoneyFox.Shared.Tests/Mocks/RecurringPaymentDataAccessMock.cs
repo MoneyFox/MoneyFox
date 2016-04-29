@@ -10,17 +10,19 @@ namespace MoneyFox.Shared.Tests.Mocks
     {
         public List<RecurringPayment> RecurringPaymentTestList = new List<RecurringPayment>();
 
-        public void SaveItem(RecurringPayment itemToSave)
+        public bool SaveItem(RecurringPayment itemToSave)
         {
             RecurringPaymentTestList.Add(itemToSave);
+            return true;
         }
 
-        public void DeleteItem(RecurringPayment item)
+        public bool DeleteItem(RecurringPayment item)
         {
             if (RecurringPaymentTestList.Contains(item))
             {
                 RecurringPaymentTestList.Remove(item);
             }
+            return true;
         }
 
         public List<RecurringPayment> LoadList(Expression<Func<RecurringPayment, bool>> filter = null) => RecurringPaymentTestList;

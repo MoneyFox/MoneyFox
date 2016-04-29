@@ -50,7 +50,8 @@ namespace MoneyFox.Shared.Tests.Repositories
         public void Save_EmptyString_CorrectNameAssigned()
         {
             var categoryDataAccessMock = new CategoryDataAccessMock();
-            var repository = new CategoryRepository(categoryDataAccessMock);
+            var repository = new CategoryRepository(categoryDataAccessMock,
+                new Mock<INotificationService>().Object);
 
             var category = new Category
             {
@@ -68,7 +69,8 @@ namespace MoneyFox.Shared.Tests.Repositories
         {
             const string name = "Ausgang";
             var categoryDataAccessMock = new CategoryDataAccessMock();
-            var repository = new CategoryRepository(categoryDataAccessMock);
+            var repository = new CategoryRepository(categoryDataAccessMock,
+                new Mock<INotificationService>().Object);
 
             var category = new Category
             {
@@ -85,7 +87,8 @@ namespace MoneyFox.Shared.Tests.Repositories
         public void CategoryRepository_Delete()
         {
             var categoryDataAccessMock = new CategoryDataAccessMock();
-            var repository = new CategoryRepository(categoryDataAccessMock);
+            var repository = new CategoryRepository(categoryDataAccessMock,
+                new Mock<INotificationService>().Object);
 
             var category = new Category
             {
@@ -105,13 +108,15 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void CategoryRepository_AccessCache()
         {
-            new CategoryRepository(new CategoryDataAccessMock()).Data.ShouldNotBeNull();
+            new CategoryRepository(new CategoryDataAccessMock(), new Mock<INotificationService>().Object)
+                .Data.ShouldNotBeNull();
         }
 
         [TestMethod]
         public void CategoryRepository_AddMultipleToCache()
         {
-            var repository = new CategoryRepository(new CategoryDataAccessMock());
+            var repository = new CategoryRepository(new CategoryDataAccessMock(),
+                new Mock<INotificationService>().Object);
             var category = new Category
             {
                 Name = "Ausgang"
@@ -140,7 +145,8 @@ namespace MoneyFox.Shared.Tests.Repositories
                 new Category {Id = 15}
             });
 
-            var categoryRepository = new CategoryRepository(dataAccessSetup.Object);
+            var categoryRepository = new CategoryRepository(dataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
             categoryRepository.Load();
 
             categoryRepository.Data.Any(x => x.Id == 10).ShouldBeTrue();
@@ -153,7 +159,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
 
-            new CategoryRepository(dataAccessSetup.Object).Save(new Category());
+            new CategoryRepository(dataAccessSetup.Object,
+                new Mock<INotificationService>().Object).Save(new Category());
             _localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
             _localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
         }

@@ -10,17 +10,19 @@ namespace MoneyFox.Shared.Tests.Mocks
     {
         public List<Payment> PaymentTestList = new List<Payment>();
 
-        public void SaveItem(Payment itemToSave)
+        public bool SaveItem(Payment itemToSave)
         {
             PaymentTestList.Add(itemToSave);
+            return true;
         }
 
-        public void DeleteItem(Payment item)
+        public bool DeleteItem(Payment item)
         {
             if (PaymentTestList.Contains(item))
             {
                 PaymentTestList.Remove(item);
             }
+            return true;
         }
 
         public List<Payment> LoadList(Expression<Func<Payment, bool>> filter = null) => PaymentTestList;
