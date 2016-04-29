@@ -54,12 +54,6 @@ namespace MoneyFox.Droid.Activities.Caching
                     typeof (AboutViewModel), isRoot: true)
             },
             {
-                typeof (PaymentListViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (PaymentListViewModel).Name,
-                    typeof (PaymentListFragment),
-                    typeof (PaymentListViewModel), isRoot: false)
-            },
-            {
                 typeof (StatisticSelectorViewModel).ToString(),
                 new MainActivity.CustomFragmentInfo(typeof (StatisticSelectorViewModel).Name,
                     typeof (StatisticSelectorFragment),
