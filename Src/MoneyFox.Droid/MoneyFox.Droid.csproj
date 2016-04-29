@@ -234,7 +234,6 @@
     <Compile Include="Activities\SelectCategoryListActivity.cs" />
     <Compile Include="Activities\ModifyAccountActivity.cs" />
     <Compile Include="Activities\ModifyPaymentActivity.cs" />
-    <Compile Include="Activities\StatisticActivity.cs" />
     <Compile Include="Activities\StatisticCashFlowActivity.cs" />
     <Compile Include="Activities\StatisticCategorySpreadingActivity.cs" />
     <Compile Include="Activities\StatisticCategorySummaryActivity.cs" />
