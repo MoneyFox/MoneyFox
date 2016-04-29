@@ -5,7 +5,6 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using MoneyFox.Droid.Activities;
 using MoneyFox.Shared.ViewModels;
-using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
@@ -21,10 +20,10 @@ namespace MoneyFox.Droid.Fragments
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            ((MainActivity) Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
+            //((MainActivity) Activity).SetSupportActionBar(view.FindViewById<Toolbar>(Resource.Id.toolbar));
             ((MainActivity) Activity).SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            LoadBalancePanel();
+            //LoadBalancePanel();
 
             return view;
         }

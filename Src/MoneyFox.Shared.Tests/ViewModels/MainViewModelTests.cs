@@ -23,11 +23,14 @@ namespace MoneyFox.Shared.Tests.ViewModels
             Ioc.RegisterSingleton<IMvxStringToTypeParser>(new MvxStringToTypeParser());
 
             var dbHelper = new Mock<ISqliteConnectionCreator>().Object;
-            var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper));
+            var accountRepository = new AccountRepository(new AccountDataAccess(dbHelper),
+                new Mock<INotificationService>().Object);
             var paymentRepository = new PaymentRepository(new PaymentDataAccess(dbHelper),
                 new RecurringPaymentDataAccess(dbHelper),
                 accountRepository,
-                new CategoryRepository(new CategoryDataAccess(dbHelper)));
+                new CategoryRepository(new CategoryDataAccess(dbHelper),
+                new Mock<INotificationService>().Object),
+                new Mock<INotificationService>().Object);
             var paymentManager = new PaymentManager(paymentRepository, accountRepository,
                 new Mock<IDialogService>().Object);
 
