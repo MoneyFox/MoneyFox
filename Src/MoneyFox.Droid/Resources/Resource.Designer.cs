@@ -2195,8 +2195,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f06001f
 			public const int always = 2131099679;
 			
-			// aapt resource value: 0x7f06008a
-			public const int appbar = 2131099786;
+			// aapt resource value: 0x7f060089
+			public const int appbar = 2131099785;
 			
 			// aapt resource value: 0x7f06001c
 			public const int beginning = 2131099676;
@@ -2348,8 +2348,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f060041
 			public const int image = 2131099713;
 			
-			// aapt resource value: 0x7f060086
-			public const int image_view_row_icon = 2131099782;
+			// aapt resource value: 0x7f060085
+			public const int image_view_row_icon = 2131099781;
 			
 			// aapt resource value: 0x7f060099
 			public const int info = 2131099801;
@@ -2378,8 +2378,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f060043
 			public const int list_item = 2131099715;
 			
-			// aapt resource value: 0x7f060089
-			public const int main_content = 2131099785;
+			// aapt resource value: 0x7f060088
+			public const int main_content = 2131099784;
 			
 			// aapt resource value: 0x7f06006d
 			public const int main_frame = 2131099757;
@@ -2426,8 +2426,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f060077
 			public const int navigation_header_container = 2131099767;
 			
-			// aapt resource value: 0x7f060085
-			public const int navigation_view = 2131099781;
+			// aapt resource value: 0x7f060084
+			public const int navigation_view = 2131099780;
 			
 			// aapt resource value: 0x7f060022
 			public const int never = 2131099682;
@@ -2453,8 +2453,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f06002b
 			public const int pin = 2131099691;
 			
-			// aapt resource value: 0x7f060084
-			public const int plotViewModel = 2131099780;
+			// aapt resource value: 0x7f06008d
+			public const int plotViewModel = 2131099789;
 			
 			// aapt resource value: 0x7f060006
 			public const int progress_circular = 2131099654;
@@ -2561,8 +2561,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f060033
 			public const int start = 2131099699;
 			
-			// aapt resource value: 0x7f06008d
-			public const int statistic_list = 2131099789;
+			// aapt resource value: 0x7f06008c
+			public const int statistic_list = 2131099788;
 			
 			// aapt resource value: 0x7f060090
 			public const int status_bar_latest_event_content = 2131099792;
@@ -2576,11 +2576,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f06000f
 			public const int tabMode = 2131099663;
 			
-			// aapt resource value: 0x7f06008b
-			public const int tabs = 2131099787;
+			// aapt resource value: 0x7f06008a
+			public const int tabs = 2131099786;
 			
-			// aapt resource value: 0x7f060088
-			public const int test_slogan = 2131099784;
+			// aapt resource value: 0x7f060087
+			public const int test_slogan = 2131099783;
 			
 			// aapt resource value: 0x7f060098
 			public const int text = 2131099800;
@@ -2591,8 +2591,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f06004f
 			public const int textSpacerNoButtons = 2131099727;
 			
-			// aapt resource value: 0x7f060087
-			public const int text_container = 2131099783;
+			// aapt resource value: 0x7f060086
+			public const int text_container = 2131099782;
 			
 			// aapt resource value: 0x7f060094
 			public const int time = 2131099796;
@@ -2621,8 +2621,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f06000a
 			public const int view_offset_helper = 2131099658;
 			
-			// aapt resource value: 0x7f06008c
-			public const int viewpager = 2131099788;
+			// aapt resource value: 0x7f06008b
+			public const int viewpager = 2131099787;
 			
 			// aapt resource value: 0x7f060023
 			public const int withText = 2131099683;
@@ -2765,82 +2765,82 @@ namespace MoneyFox.Droid
 			public const int activity_payment_list = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int comboboxitem_account = 2130903070;
+			public const int category_summary_activity = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int design_layout_snackbar = 2130903071;
+			public const int comboboxitem_account = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int design_layout_snackbar_include = 2130903072;
+			public const int design_layout_snackbar = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int design_layout_tab_icon = 2130903073;
+			public const int design_layout_snackbar_include = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int design_layout_tab_text = 2130903074;
+			public const int design_layout_tab_icon = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int design_menu_item_action_area = 2130903075;
+			public const int design_layout_tab_text = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int design_navigation_item = 2130903076;
+			public const int design_menu_item_action_area = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int design_navigation_item_header = 2130903077;
+			public const int design_navigation_item = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int design_navigation_item_separator = 2130903078;
+			public const int design_navigation_item_header = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int design_navigation_item_subheader = 2130903079;
+			public const int design_navigation_item_separator = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int design_navigation_menu = 2130903080;
+			public const int design_navigation_item_subheader = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int design_navigation_menu_item = 2130903081;
+			public const int design_navigation_menu = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int dialog_modify_category = 2130903082;
+			public const int design_navigation_menu_item = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int fragment_about = 2130903083;
+			public const int dialog_modify_category = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int fragment_account_list = 2130903084;
+			public const int fragment_about = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int fragment_backup = 2130903085;
+			public const int fragment_account_list = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int fragment_balance = 2130903086;
+			public const int fragment_backup = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int fragment_category_list = 2130903087;
+			public const int fragment_balance = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int fragment_category_summary = 2130903088;
+			public const int fragment_category_list = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int fragment_graphical_statistic = 2130903089;
+			public const int fragment_navigation = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int fragment_navigation = 2130903090;
+			public const int fragment_navigation_header = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int fragment_navigation_header = 2130903091;
+			public const int fragment_settings = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int fragment_settings = 2130903092;
+			public const int fragment_settings_security = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int fragment_settings_security = 2130903093;
+			public const int fragment_settings_shortcuts = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int fragment_settings_shortcuts = 2130903094;
+			public const int fragment_statistic_selector = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int fragment_statistic_selector = 2130903095;
+			public const int graphical_statistic_activity = 2130903095;
 			
 			// aapt resource value: 0x7f030038
 			public const int listitem_account = 2130903096;

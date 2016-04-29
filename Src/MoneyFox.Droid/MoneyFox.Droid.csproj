@@ -235,6 +235,10 @@
     <Compile Include="Activities\ModifyAccountActivity.cs" />
     <Compile Include="Activities\ModifyPaymentActivity.cs" />
     <Compile Include="Activities\StatisticActivity.cs" />
+    <Compile Include="Activities\StatisticCashFlowActivity.cs" />
+    <Compile Include="Activities\StatisticCategorySpreadingActivity.cs" />
+    <Compile Include="Activities\StatisticCategorySummaryActivity.cs" />
+    <Compile Include="Activities\StatisticMonthlyExpenseActivity.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
@@ -249,13 +253,9 @@
     <Compile Include="Fragments\BalanceFragment.cs" />
     <Compile Include="Fragments\BaseFragment.cs" />
     <Compile Include="Activities\PaymentListActivity.cs" />
-    <Compile Include="Fragments\StatisticCashFlowFragment.cs" />
-    <Compile Include="Fragments\StatisticCategorySpreadingFragment.cs" />
-    <Compile Include="Fragments\StatisticCategorySummaryFragment.cs" />
     <Compile Include="Fragments\DatePickerDialogFragment.cs" />
     <Compile Include="Fragments\MenuFragment.cs" />
     <Compile Include="Fragments\ModifyCategoryDialog.cs" />
-    <Compile Include="Fragments\StatisticMonthlyExpenseFragment.cs" />
     <Compile Include="Fragments\StatisticSelectorFragment.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -315,7 +315,7 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_balance.axml" />
-    <AndroidResource Include="Resources\layout\fragment_category_summary.axml">
+    <AndroidResource Include="Resources\layout\category_summary_activity.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\listitem_category_summary.axml">
@@ -332,7 +332,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_modify_payment.axml" />
     <AndroidResource Include="Resources\layout\fragment_statistic_selector.axml" />
-    <AndroidResource Include="Resources\layout\fragment_graphical_statistic.axml">
+    <AndroidResource Include="Resources\layout\graphical_statistic_activity.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\icon_wide.png" />
