@@ -98,10 +98,6 @@ namespace MoneyFox.Shared.ViewModels
         private void SaveAccount()
         {
             accountRepository.Save(accountRepository.Selected);
-            notificationService.SendBasicNotification(
-                Strings.SuccessTitle, string.Format(IsEdit 
-                ? Strings.AccountModifiedMessage 
-                : Strings.AccountCreatedMessage, SelectedAccount.Name));
             Close(this);
         }
 

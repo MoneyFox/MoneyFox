@@ -12,7 +12,7 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.ModifyAccountActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class ModifyAccountActivity : MvxCachingFragmentCompatActivity<ModifyAccountViewModel>
+    public class ModifyAccountActivity : MvxAppCompatActivity<ModifyAccountViewModel>
     {
         /// <summary>
         ///     Raises the create event.

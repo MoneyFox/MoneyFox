@@ -1,29 +1,33 @@
 using Android.App;
-using Android.Content.PM;
 using Android.OS;
-using Android.Support.V7.Widget;
-using Android.Views;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using Android.Content.PM;
+using Android.Support.V7.Widget;
+using Android.Views;
 
 namespace MoneyFox.Droid.Activities
 {
-    [Activity(Label = "StatisticActivity",
-        Name = "moneyfox.droid.activities.StatisticActivity",
+    [Activity(Label = "StatisticCategorySummaryActivity",
+        Name = "moneyfox.droid.activities.StatisticCategorySummaryActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class StatisticActivity : MvxCachingFragmentCompatActivity<StatisticViewModel>
+    public class StatisticCategorySummaryActivity : MvxAppCompatActivity<StatisticCategorySummaryViewModel>
     {
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(bundle);
+            base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.activity_frame);
+            SetContentView(Resource.Layout.category_summary_activity);
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
         }
 
+        /// <summary>
+        ///     This hook is called whenever an item in your options menu is selected.
+        /// </summary>
+        /// <param name="item">The menu item that was selected.</param>
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)

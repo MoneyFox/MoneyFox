@@ -8,6 +8,7 @@ using MoneyManager.Windows.Shortcut;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
 using Xamarin;
+using MoneyManager.Windows.Services;
 
 namespace MoneyFox.Tasks
 {
@@ -28,14 +29,16 @@ namespace MoneyFox.Tasks
             }
 
             var sqliteConnectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
+            var notificationService = new NotificationService();
 
-            var accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnectionCreator));
+            var accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnectionCreator), notificationService);
 
             paymentManager = new PaymentManager(
                 new PaymentRepository(new PaymentDataAccess(sqliteConnectionCreator),
                     new RecurringPaymentDataAccess(sqliteConnectionCreator),
                     accountRepository,
-                    new CategoryRepository(new CategoryDataAccess(sqliteConnectionCreator))),
+                    new CategoryRepository(new CategoryDataAccess(sqliteConnectionCreator), notificationService),
+                    notificationService),
                 accountRepository,
                 null);
         }

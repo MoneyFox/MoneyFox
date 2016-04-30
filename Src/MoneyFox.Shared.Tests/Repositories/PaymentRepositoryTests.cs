@@ -52,7 +52,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
                 new RecurringPaymentDataAccessMock(),
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object);
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
 
             var payment = new Payment
             {
@@ -75,7 +76,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var repository = new PaymentRepository(paymentDataAccessMock,
                 new RecurringPaymentDataAccessMock(),
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object);
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
 
             var account = new Account
             {
@@ -110,7 +112,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
                 new RecurringPaymentDataAccessMock(),
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object);
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
 
             var account = new Account
             {
@@ -153,7 +156,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
                 new RecurringPaymentDataAccessMock(),
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object);
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
 
             var account = new Account
             {
@@ -188,7 +192,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var paymentRepo = new PaymentRepository(new PaymentDataAccessMock(),
                 new RecurringPaymentDataAccessMock(),
                 accountRepositorySetup.Object,
-                categoryRepositorySetup.Object);
+                categoryRepositorySetup.Object,
+                new Mock<INotificationService>().Object);
 
             Assert.False(paymentRepo.Data.Any());
         }
@@ -205,7 +210,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
                 new RecurringPaymentDataAccessMock(),
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object);
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
 
             var account = new Account
             {
@@ -236,7 +242,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
                 new RecurringPaymentDataAccessMock(),
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object);
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
 
             var account = new Account
             {
@@ -276,7 +283,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
                 new RecurringPaymentDataAccessMock(),
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object);
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
 
             var account = new Account
             {
@@ -313,7 +321,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var repository = new PaymentRepository(new PaymentDataAccessMock(),
                 new RecurringPaymentDataAccessMock(),
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object);
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
 
             repository.Data.Add(new Payment
             {
@@ -348,7 +357,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var paymentRepository = new PaymentRepository(dataAccessSetup.Object,
                 new Mock<IDataAccess<RecurringPayment>>().Object,
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object);
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
             paymentRepository.Load();
 
             Assert.True(paymentRepository.Data.Any(x => x.Id == 10));
@@ -370,7 +380,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var repo = new PaymentRepository(dataAccessSetup.Object,
                 new Mock<IDataAccess<RecurringPayment>>().Object,
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object);
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object);
 
             var account1 = new Account {Id = 1};
             var account3 = new Account {Id = 3};
@@ -402,7 +413,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             var repo = new PaymentRepository(dataAccessSetup.Object,
                 new Mock<IDataAccess<RecurringPayment>>().Object,
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object)
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object)
             {
                 Data = new ObservableCollection<Payment>(new List<Payment>
                 {
@@ -482,7 +494,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             new PaymentRepository(paymentDataAccessMockSetup.Object,
                 recPaymentDataAccessMockSetup.Object,
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object)
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object)
                 .Delete(
                     payment);
 
@@ -532,7 +545,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             new PaymentRepository(paymentDataAccessMockSetup.Object,
                 recPaymentDataAccessMockSetup.Object,
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object)
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object)
                 .Delete(
                     payment);
 
@@ -582,7 +596,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             new PaymentRepository(paymentDataAccessMockSetup.Object,
                 recPaymentDataAccessMockSetup.Object,
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object)
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object)
                 .Delete(
                     payment);
 
@@ -632,7 +647,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             new PaymentRepository(paymentDataAccessMockSetup.Object,
                 recPaymentDataAccessMockSetup.Object,
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object)
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object)
                 .Delete(
                     payment);
 
@@ -691,7 +707,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             new PaymentRepository(paymentDataAccessMockSetup.Object,
                 recPaymentDataAccessMockSetup.Object,
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object).Delete(
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object).Delete(
                     payment);
 
             Assert.Equal(10, deletedId);
@@ -750,7 +767,8 @@ namespace MoneyFox.Shared.Tests.Repositories
             new PaymentRepository(paymentDataAccessMockSetup.Object,
                 recPaymentDataAccessMockSetup.Object,
                 accountRepositorySetup.Object,
-                categoryDataAccessSetup.Object).Delete(
+                categoryDataAccessSetup.Object,
+                new Mock<INotificationService>().Object).Delete(
                     payment);
 
             Assert.Equal(10, deletedId);
@@ -764,7 +782,9 @@ namespace MoneyFox.Shared.Tests.Repositories
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
 
-            new CategoryRepository(dataAccessSetup.Object).Save(new Category());
+            new CategoryRepository(dataAccessSetup.Object,
+                new Mock<INotificationService>().Object)
+                .Save(new Category());
             _localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
             _localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
         }

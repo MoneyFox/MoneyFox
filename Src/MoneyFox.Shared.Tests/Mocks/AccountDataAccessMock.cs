@@ -10,17 +10,19 @@ namespace MoneyFox.Shared.Tests.Mocks
     {
         public List<Account> AccountTestList = new List<Account>();
 
-        public void SaveItem(Account itemToSave)
+        public bool SaveItem(Account itemToSave)
         {
             AccountTestList.Add(itemToSave);
+            return true;
         }
 
-        public void DeleteItem(Account item)
+        public bool DeleteItem(Account item)
         {
             if (AccountTestList.Contains(item))
             {
                 AccountTestList.Remove(item);
             }
+            return true;
         }
 
         public List<Account> LoadList(Expression<Func<Account, bool>> filter = null) => AccountTestList;
