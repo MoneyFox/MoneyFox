@@ -59,6 +59,10 @@ namespace MoneyFox.Windows
             {
                 RequestedTheme = ApplicationTheme.Dark;
             }
+            else
+            {
+                RequestedTheme = ApplicationTheme.Light;
+            }
         }
 
         /// <summary>
