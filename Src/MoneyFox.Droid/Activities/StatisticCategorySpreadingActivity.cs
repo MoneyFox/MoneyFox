@@ -34,7 +34,7 @@ namespace MoneyFox.Droid.Activities
             OnResume();
 
             ViewModel.LoadCommand.Execute();
-            //plotModel.Model = ViewModel.SpreadingModel;
+            plotModel.Model = ViewModel.SpreadingModel;
         }
 
         /// <summary>
