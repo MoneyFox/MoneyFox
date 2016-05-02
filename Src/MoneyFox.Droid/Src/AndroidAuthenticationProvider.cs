@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Droid.Platform;
 using Xamarin.Auth;
 using Constants = Microsoft.OneDrive.Sdk.Constants;
 
@@ -14,6 +17,7 @@ namespace MoneyFox.Droid
     public class AndroidAuthenticationProvider : AuthenticationProvider
     {
         private IDictionary<string, string> authenticationResponseValues;
+        protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 
         public AndroidAuthenticationProvider(ServiceInfo serviceInfo) : base(serviceInfo)
         {
@@ -34,9 +38,21 @@ namespace MoneyFox.Droid
             throw new NotImplementedException();
         }
 
+        public const string ONEDRIVE_KEY = "OneDrive";
+
         private Task<bool> ShowWebView()
         {
             var tcs = new TaskCompletionSource<bool>();
+
+            var accounts = AccountStore.Create(Application.Context).FindAccountsForService(ONEDRIVE_KEY).ToList();
+
+            if (accounts.Any())
+            {
+                authenticationResponseValues = accounts.FirstOrDefault()?.Properties;
+                tcs.SetResult(true);
+                return tcs.Task;
+            }
+
 
             var auth = new OAuth2Authenticator(OneDriveAuthenticationConstants.MSA_CLIENT_ID,
                 string.Join(",", OneDriveAuthenticationConstants.Scopes), new Uri(GetAuthorizeUrl()),
@@ -45,9 +61,10 @@ namespace MoneyFox.Droid
             auth.Completed += (sender, eventArgs) =>
             {
                 if (eventArgs.IsAuthenticated)
-                {
+                { 
                     OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
                     authenticationResponseValues = eventArgs.Account.Properties;
+                    AccountStore.Create(Application.Context).Save(eventArgs.Account, ONEDRIVE_KEY);
                     tcs.SetResult(true);
                 }
             };
