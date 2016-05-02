@@ -5,7 +5,6 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
-using System.Collections.Generic;
 
 namespace MoneyFox.Droid
 {
