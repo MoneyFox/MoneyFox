@@ -1,6 +1,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using MoneyFox.Droid.Fragments;
@@ -23,10 +24,13 @@ namespace MoneyFox.Droid.Activities
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.fragment_category_list);
+            SetContentView(Resource.Layout.activity_select_category_list);
 
-            //SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
-            //SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            var list = FindViewById<ListView>(Resource.Id.category_list);
+            RegisterForContextMenu(list);
         }
 
         /// <summary>
@@ -68,7 +72,7 @@ namespace MoneyFox.Droid.Activities
 
         public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
         {
-            if (v.Id == Resource.Id.accountList)
+            if (v.Id == Resource.Id.category_list)
             {
                 menu.SetHeaderTitle(Strings.SelectOperationLabel);
                 menu.Add(Strings.EditLabel);
