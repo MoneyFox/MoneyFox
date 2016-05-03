@@ -11,11 +11,15 @@
         android:layout_height="wrap_content"
         android:paddingLeft="6dp"
         android:paddingRight="6dp">
-        <EditText
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_search_text"
-            local:MvxBind="Text SearchText" />
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_search_text"
+                local:MvxBind="Text SearchText" />
+        </android.support.design.widget.TextInputLayout>
         <MvxListView
             android:id="@+id/category_list"
             android:orientation="vertical"
