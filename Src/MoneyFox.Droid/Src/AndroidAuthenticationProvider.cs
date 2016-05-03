@@ -47,7 +47,7 @@ namespace MoneyFox.Droid
         /// <summary>
         ///     Tries to get an account session from the cache or via the refresh token.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>AccountSession created via the refresh token.</returns>
         private async Task<AccountSession> GetSessionFromCache()
         {
             var accounts = AccountStore.Create(Application.Context).FindAccountsForService(ONEDRIVE_KEY).ToList();
@@ -71,10 +71,12 @@ namespace MoneyFox.Droid
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            
             var auth = new OAuth2Authenticator(OneDriveAuthenticationConstants.MSA_CLIENT_ID,
-                string.Join(",", OneDriveAuthenticationConstants.Scopes), new Uri(GetAuthorizeUrl()),
-                new Uri(OneDriveAuthenticationConstants.RETURN_URL));
+                OneDriveAuthenticationConstants.MSA_CLIENT_SECRET,
+                string.Join(",", OneDriveAuthenticationConstants.Scopes), 
+                new Uri(GetAuthorizeUrl()),
+                new Uri(OneDriveAuthenticationConstants.RETURN_URL),
+                new Uri(OneDriveAuthenticationConstants.TOKEN_URL));
 
             auth.Completed += (sender, eventArgs) =>
             {
