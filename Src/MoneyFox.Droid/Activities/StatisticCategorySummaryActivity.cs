@@ -18,11 +18,18 @@ namespace MoneyFox.Droid.Activities
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.category_summary_activity);
+            SetContentView(Resource.Layout.activity_category_summary);
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
         }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            ViewModel.LoadCommand.Execute();
+        }
+
 
         /// <summary>
         ///     This hook is called whenever an item in your options menu is selected.

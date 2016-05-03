@@ -315,7 +315,7 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_balance.axml" />
-    <AndroidResource Include="Resources\layout\category_summary_activity.axml">
+    <AndroidResource Include="Resources\layout\activity_category_summary.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\listitem_category_summary.axml">

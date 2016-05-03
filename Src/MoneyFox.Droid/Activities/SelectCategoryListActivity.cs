@@ -25,8 +25,8 @@ namespace MoneyFox.Droid.Activities
 
             SetContentView(Resource.Layout.fragment_category_list);
 
-            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            //SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+            //SupportActionBar.SetDisplayHomeAsUpEnabled(true);
         }
 
         /// <summary>
