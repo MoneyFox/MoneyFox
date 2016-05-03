@@ -11,8 +11,6 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using Xamarin.Auth;
 using Constants = Microsoft.OneDrive.Sdk.Constants;
-using System.Net;
-using System.Net.Http;
 
 namespace MoneyFox.Droid
 {
