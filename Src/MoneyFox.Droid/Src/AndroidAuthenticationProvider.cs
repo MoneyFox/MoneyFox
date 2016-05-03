@@ -49,14 +49,17 @@ namespace MoneyFox.Droid
             if (accounts.Any())
             {
                 authenticationResponseValues = accounts.FirstOrDefault()?.Properties;
-                tcs.SetResult(true);
-                return tcs.Task;
+                //tcs.SetResult(true);
+                //return tcs.Task;
             }
 
 
             var auth = new OAuth2Authenticator(OneDriveAuthenticationConstants.MSA_CLIENT_ID,
-                string.Join(",", OneDriveAuthenticationConstants.Scopes), new Uri(GetAuthorizeUrl()),
-                new Uri(OneDriveAuthenticationConstants.RETURN_URL));
+                OneDriveAuthenticationConstants.MSA_CLIENT_SECRET,
+                string.Join(",", OneDriveAuthenticationConstants.Scopes), 
+                new Uri(GetAuthorizeUrl()),
+                new Uri(OneDriveAuthenticationConstants.RETURN_URL),
+                new Uri(OneDriveAuthenticationConstants.TOKEN_URL));
 
             auth.Completed += (sender, eventArgs) =>
             {
