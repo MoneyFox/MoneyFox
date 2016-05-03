@@ -56,7 +56,16 @@ namespace MoneyFox.Droid
             {
                 var accountValues = accounts.FirstOrDefault()?.Properties;
 
-                return await RefreshAccessTokenAsync(accountValues.Keys.FirstOrDefault(x => x == Constants.Authentication.RefreshTokenKeyName));
+                if (accountValues == null)
+                {
+                    return null;
+                }
+
+                string refreshToken;
+                if (accountValues.TryGetValue(Constants.Authentication.RefreshTokenKeyName, out refreshToken))
+                {
+                    return await RefreshAccessTokenAsync(refreshToken);
+                }
             }
             return null;
         }
