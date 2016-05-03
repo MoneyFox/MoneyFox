@@ -11,11 +11,15 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using Xamarin.Auth;
 using Constants = Microsoft.OneDrive.Sdk.Constants;
+using System.Net;
+using System.Net.Http;
 
 namespace MoneyFox.Droid
 {
     public class AndroidAuthenticationProvider : AuthenticationProvider
     {
+        private const string ONEDRIVE_KEY = "OneDrive";
+
         private IDictionary<string, string> authenticationResponseValues;
         protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 
@@ -25,6 +29,13 @@ namespace MoneyFox.Droid
 
         protected override async Task<AccountSession> GetAuthenticationResultAsync()
         {
+            var sessionFromCache = await GetSessionFromCache();
+
+            if (sessionFromCache != null)
+            {
+                return sessionFromCache;
+            }
+            
             await ShowWebView();
             return new AccountSession(authenticationResponseValues, ServiceInfo.AppId,
                 AccountType.MicrosoftAccount)
@@ -33,27 +44,34 @@ namespace MoneyFox.Droid
             };
         }
 
+        /// <summary>
+        ///     Tries to get an account session from the cache or via the refresh token.
+        /// </summary>
+        /// <returns></returns>
+        private async Task<AccountSession> GetSessionFromCache()
+        {
+            var accounts = AccountStore.Create(Application.Context).FindAccountsForService(ONEDRIVE_KEY).ToList();
+
+            if (accounts.Any())
+            {
+                var accountValues = accounts.FirstOrDefault()?.Properties;
+
+                return await RefreshAccessTokenAsync(accountValues.Keys.FirstOrDefault(x => x == Constants.Authentication.RefreshTokenKeyName));
+            }
+            return null;
+        }
+
+
         public override Task SignOutAsync()
         {
             throw new NotImplementedException();
         }
 
-        public const string ONEDRIVE_KEY = "OneDrive";
-
         private Task<bool> ShowWebView()
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            var accounts = AccountStore.Create(Application.Context).FindAccountsForService(ONEDRIVE_KEY).ToList();
-
-            if (accounts.Any())
-            {
-                authenticationResponseValues = accounts.FirstOrDefault()?.Properties;
-                tcs.SetResult(true);
-                return tcs.Task;
-            }
-
-
+            
             var auth = new OAuth2Authenticator(OneDriveAuthenticationConstants.MSA_CLIENT_ID,
                 string.Join(",", OneDriveAuthenticationConstants.Scopes), new Uri(GetAuthorizeUrl()),
                 new Uri(OneDriveAuthenticationConstants.RETURN_URL));
