@@ -44,26 +44,28 @@ namespace MoneyFox.Shared.ViewModels
             //TODO: refactor this into an helper class
             var model = new PlotModel();
 
-            if (Settings.IsDarkThemeSelected)
-            {
-                model.Background = OxyColors.Black;
-                model.TextColor = OxyColors.White;
-            }
-            else
-            {
-                model.Background = OxyColors.Black;
-                model.TextColor = OxyColors.White;
-            }
-
             var columnSeries = new ColumnSeries();
             var axe = new CategoryAxis
             {
-                AxislineColor = OxyColors.White,
-                TextColor = OxyColors.White,
                 IsPanEnabled = false,
                 IsZoomEnabled = false,
                 Angle = 45
             };
+
+            if (Settings.IsDarkThemeSelected)
+            {
+                model.Background = OxyColors.Black;
+                model.TextColor = OxyColors.White;
+                axe.AxislineColor = OxyColors.White;
+                axe.TextColor = OxyColors.White;
+            }
+            else
+            {
+                model.Background = OxyColors.White;
+                model.TextColor = OxyColors.Black;
+                axe.AxislineColor = OxyColors.Black;
+                axe.TextColor = OxyColors.Black;
+            }
 
             foreach (var statisticItem in monthlyExpenses)
             {

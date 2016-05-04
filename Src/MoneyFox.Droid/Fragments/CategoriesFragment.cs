@@ -31,7 +31,7 @@ namespace MoneyFox.Droid.Fragments
                     ViewModel = Mvx.Resolve<CategoryDialogViewModel>()
                 };
 
-                dialog.Show(Activity.FragmentManager, "dialog");
+                dialog.Show(Activity.FragmentManager, Strings.AddCategoryTitle);
             };
 
             return view;

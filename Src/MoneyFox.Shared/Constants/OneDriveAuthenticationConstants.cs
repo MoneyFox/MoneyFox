@@ -35,7 +35,12 @@
         /// </summary>
         public const string AUTHENTICATION_URL = "https://login.live.com/oauth20_authorize.srf";
 
-        public const string MSA_CLIENT_ID = "<ID>";
+        /// <summary>
+        ///     The Token URL is used to retrieve a access token in the code flow oauth
+        /// </summary>
+        public const string TOKEN_URL = "https://login.live.com/oauth20_token.srf";
+
+        public const string MSA_CLIENT_ID = "<id>";
 
         public const string MSA_CLIENT_SECRET = "<secret>";
 

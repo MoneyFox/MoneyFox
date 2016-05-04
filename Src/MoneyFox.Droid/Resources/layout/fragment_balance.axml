@@ -15,7 +15,7 @@
     android:gravity="fill_horizontal"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:layout_marginTop="5dp"
-    local:MvxBind="Text TotalBalance" />
+    local:MvxBind="Text AmountFormat(TotalBalance)" />
   <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -30,5 +30,5 @@
     android:gravity="fill_horizontal"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:layout_marginTop="5dp"
-    local:MvxBind="Text EndOfMonthBalance" />
+    local:MvxBind="Text AmountFormat(EndOfMonthBalance)" />
 </LinearLayout>
