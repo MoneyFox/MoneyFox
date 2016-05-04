@@ -135,8 +135,8 @@
   <data name="AddIncomeLabel" xml:space="preserve">
     <value>添加收入</value>
   </data>
-  <data name="AddSpendingLabel" xml:space="preserve">
-    <value>添加支出</value>
+  <data name="AddExpenseLabel" xml:space="preserve">
+    <value>Add Expense</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
     <value>添加转账</value>
@@ -294,8 +294,8 @@
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>添加收入</value>
   </data>
-  <data name="AddSpendingTitle" xml:space="preserve">
-    <value>添加支出</value>
+  <data name="AddExpenseTitle" xml:space="preserve">
+    <value>Add Expense</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>添加转账</value>
@@ -377,5 +377,41 @@
   </data>
   <data name="ExpenseHistoryDescription" xml:space="preserve">
     <value>显示您所选的时间范围内的总开支，按月比较。</value>
+  </data>
+  <data name="AddAccountLabel" xml:space="preserve">
+    <value>Add Account</value>
+  </data>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChooseLabel" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="AccountCreatedMessage" xml:space="preserve">
+    <value>'{0}' has been succesfully created</value>
+  </data>
+  <data name="AccountModifiedMessage" xml:space="preserve">
+    <value>'{0}' has been succesfully modified</value>
+  </data>
+  <data name="ExpenseHeader" xml:space="preserve">
+    <value>Add expense</value>
+  </data>
+  <data name="IncomeHeader" xml:space="preserve">
+    <value>Add income</value>
+  </data>
+  <data name="TransferHeader" xml:space="preserve">
+    <value>Add transfer</value>
+  </data>
+  <data name="ErrorMessageDelete" xml:space="preserve">
+    <value>An error occured while saving the item.</value>
+  </data>
+  <data name="ErrorMessageSave" xml:space="preserve">
+    <value>An error occured while saving the item.</value>
+  </data>
+  <data name="ErrorTitleDelete" xml:space="preserve">
+    <value>Error on delete</value>
+  </data>
+  <data name="ErrorTitleSave" xml:space="preserve">
+    <value>Error on save</value>
   </data>
 </root>
