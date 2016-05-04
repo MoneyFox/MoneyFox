@@ -50,10 +50,10 @@
                               x:Uid="AddAccountLabel"
                               Label="Add Account"
                               Command="{Binding GoToAddAccountCommand}" />
-                <AppBarButton x:Uid="RecurringPaymentViewModelList"
-                              Label="Recurring PaymentViewModel Overview"
+                <AppBarButton x:Uid="RecurringPaymentList"
+                              Label="Recurring Payment Overview"
                               Visibility="Collapsed"
-                              Command="{Binding GoToRecurringPaymentViewModelListCommand}" />
+                              Command="{Binding GoToRecurringPaymentListCommand}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

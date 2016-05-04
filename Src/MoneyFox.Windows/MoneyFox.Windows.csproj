@@ -102,12 +102,11 @@
     <None Include="MoneyFox.Windows_StoreKey.pfx" />
     <None Include="MoneyFox.Windows_TemporaryKey.pfx" />
     <None Include="project.json" />
-    <PRIResource Include="Strings\en\Resources.resw" />
     <PRIResource Include="Strings\zh-cn\Resources.resw" />
     <PRIResource Include="Strings\ru\Resources.resw" />
     <PRIResource Include="Strings\pt\Resources.resw" />
-    <PRIResource Include="Strings\ru\Resources.resw" />
     <PRIResource Include="Strings\de\Resources.resw" />
+    <PRIResource Include="Strings\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -326,12 +325,6 @@
     <None Include="Package.StoreAssociation.xml" />
     <None Include="FodyWeavers.xml" />
     <Content Include="Properties\Default.rd.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\de\Resources.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\ru\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

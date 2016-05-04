@@ -28,43 +28,32 @@ namespace MoneyFox.Shared.StatisticDataProvider
         public IEnumerable<StatisticItem> GetValues(DateTime startDate, DateTime endDate)
         {
             // Get all Payments inlcuding income.
-            var getPaymentListFunc =
-                new Func<List<Payment>>(() =>
-                    paymentRepository.Data
-                        .Where(x => x.Category != null)
-                        .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
-                        .Where(x => x.Type == (int) PaymentType.Expense || x.Type == (int) PaymentType.Income)
+            return GetSpreadingStatisticItems(paymentRepository.Data
+                        .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
+                        .Where(x => x.Type == (int)PaymentType.Expense || x.Type == (int)PaymentType.Income)
                         .ToList());
-
-            return GetSpreadingStatisticItems(getPaymentListFunc);
         }
 
-        private List<StatisticItem> GetSpreadingStatisticItems(
-            Func<List<Payment>> getPaymentListFunc)
+        private List<StatisticItem> GetSpreadingStatisticItems(List<Payment> payments)
         {
-            var payments = getPaymentListFunc();
+           var tempStatisticList = (from payment in payments
+                                     group payment by new
+                                     {
+                                         category = payment.Category != null ? payment.Category.Name : string.Empty
+                                     } into temp
+                                     select new StatisticItem
+                                     {
+                                         Category = temp.Key.category,
+                                         // we subtract income payments here so that we have all expenses without presign
+                                         Value = temp.Sum(x => x.Type == (int)PaymentType.Income ? -x.Amount : x.Amount)
+                                     })
+                                     .Where(x => x.Value > 0)
+                                     .OrderByDescending(x => x.Value)
+                                     .ToList();
 
-            var tempStatisticList = categoryRepository.Data.Select(category => new StatisticItem
-            {
-                Category = category.Name,
-                Value = payments
-                    .Where(x => x.Type == (int) PaymentType.Expense)
-                    .Where(x => x.Category.Id == category.Id)
-                    .Sum(x => x.Amount)
-            }).ToList();
-
-            RemoveZeroAmountEntries(tempStatisticList);
-
-            tempStatisticList = tempStatisticList.OrderByDescending(x => x.Value).ToList();
             var statisticList = tempStatisticList.Take(6).ToList();
 
             AddOtherItem(tempStatisticList, statisticList);
-
-            IncludeIncome(statisticList, payments);
-
-            // Remove again all entries with zero amount.
-            RemoveZeroAmountEntries(statisticList);
-
             SetLabel(statisticList);
 
             return statisticList;
@@ -132,6 +121,7 @@ namespace MoneyFox.Shared.StatisticDataProvider
                     .Where(x => !statisticList.Contains(x))
                     .Sum(x => x.Value)
             };
+
             othersItem.Label = othersItem.Category + ": " + othersItem.Value;
 
             if (othersItem.Value > 0)

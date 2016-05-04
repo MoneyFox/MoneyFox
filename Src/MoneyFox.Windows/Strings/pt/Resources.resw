@@ -141,9 +141,6 @@
   <data name="AddExpenseLabel.Label" xml:space="preserve">
     <value>Adicionar despesa</value>
   </data>
-  <data name="AddPaymentViewModelTitle.Text" xml:space="preserve">
-    <value>Adicionar pagamento</value>
-  </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
     <value>Adicionar transferência</value>
   </data>
@@ -156,13 +153,13 @@
   <data name="BackupTitle.Text" xml:space="preserve">
     <value>Backup</value>
   </data>
-  <data name="CashFlowTitle.Text" xml:space="preserve">
+  <data name="CashFlowStatisticTitle.Text" xml:space="preserve">
     <value>Fluxo de caixa</value>
   </data>
   <data name="CategoriesHeader.Label" xml:space="preserve">
     <value>Categorias</value>
   </data>
-  <data name="CategorySummaryTitle.Text" xml:space="preserve">
+  <data name="CategorySummaryStatisticTitle.Text" xml:space="preserve">
     <value>Resumo de categoria</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
@@ -204,7 +201,7 @@
   <data name="SettingsTitle" xml:space="preserve">
     <value>Preferências</value>
   </data>
-  <data name="SpreadingTitle.Text" xml:space="preserve">
+  <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
     <value>Se espalhando</value>
   </data>
   <data name="TilesHeader.Label" xml:space="preserve">
@@ -336,8 +333,8 @@
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Data de Início</value>
   </data>
-  <data name="RecurringPaymentViewModelList.Label" xml:space="preserve">
-    <value>Visão geral de pagamento recorrente</value>
+  <data name="RecurringPaymentList.Label" xml:space="preserve">
+    <value>Recurring Payment Overview</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
     <value>Selecionar estatística</value>
@@ -353,5 +350,20 @@
   </data>
   <data name="DatabaseModifiedText.Text" xml:space="preserve">
     <value>Última modificação de banco de dados:</value>
+  </data>
+  <data name="MonthlyExpenseStatisticTitle.Text" xml:space="preserve">
+    <value>Despesas mensais</value>
+  </data>
+  <data name="AccountsPlaceholder.Text" xml:space="preserve">
+    <value>There are no accounts. Add one by tapping on the three dots at bottom</value>
+  </data>
+  <data name="CategoriesPlaceholder.Text" xml:space="preserve">
+    <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
+  </data>
+  <data name="PaymentsPlaceholder.Text" xml:space="preserve">
+    <value>There are no payments. Add one by tapping on one of the three symbols at the bottom.</value>
+  </data>
+  <data name="ThemeToggleDescription.Text" xml:space="preserve">
+    <value>You can change between dark and light theme. To apply this changes please restart the application.</value>
   </data>
 </root>

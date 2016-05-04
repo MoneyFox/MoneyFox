@@ -16,10 +16,10 @@ namespace MoneyFox.Shared.ViewModels
     {
         private readonly OxyColor[] colors =
         {
-            OxyColor.Parse("#411718"), OxyColor.Parse("#5c2021"),
-            OxyColor.Parse("#77292a"), OxyColor.Parse("#933233"),
-            OxyColor.Parse("#af3a3c"), OxyColor.Parse("#c44a4c"),
-            OxyColor.Parse("#ce6466")
+            OxyColor.Parse("#393939"), OxyColor.Parse("#4b4b4b"),
+            OxyColor.Parse("#5d5d5d"), OxyColor.Parse("#a75538"),
+            OxyColor.Parse("#c16342"), OxyColor.Parse("#cb7a5d"),
+            OxyColor.Parse("#d49078")
         };
 
         private readonly CategorySpreadingDataProvider speadingDataProvider;

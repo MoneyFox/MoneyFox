@@ -74,6 +74,7 @@ namespace MoneyFox.Shared.ViewModels
 
             IsLoading = true;
             await BackupService.Upload();
+            BackupLastModified = DateTime.Now;
             await ShowCompletionNote();
             IsLoading = false;
         }

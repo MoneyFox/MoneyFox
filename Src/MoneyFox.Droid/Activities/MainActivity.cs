@@ -40,16 +40,16 @@ namespace MoneyFox.Droid.Activities
                 ViewModel.ShowMenuAndFirstDetail();
             }
 
-            var _toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            if (_toolbar != null)
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            if (toolbar != null)
             {
-                SetSupportActionBar(_toolbar);
+                SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
                 var drawerToggle = new MvxActionBarDrawerToggle(
                     this, // host Activity
                     DrawerLayout, // DrawerLayout object
-                    _toolbar, // nav drawer icon to replace 'Up' caret
+                    toolbar, // nav drawer icon to replace 'Up' caret
                     Resource.String.drawer_open, // "open drawer" description
                     Resource.String.drawer_close // "close drawer" description
                     );
