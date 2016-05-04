@@ -52,6 +52,7 @@
                            TextWrapping="WrapWholeWords" />
                 <Button Content="Restore"
                         x:Uid="RestoreBackup"
+                        IsEnabled="{Binding BackupAvailable}"
                         Command="{Binding RestoreCommand}"
                         HorizontalAlignment="Stretch" />
                 <StackPanel Orientation="Horizontal"
