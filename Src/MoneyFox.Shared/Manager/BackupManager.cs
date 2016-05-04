@@ -1,6 +1,7 @@
 ﻿using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
+using MvvmCross.Plugins.File;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,11 +26,15 @@ namespace MoneyFox.Shared.Manager
     {
         private readonly IRepositoryManager repositoryManager;
         private readonly IBackupService backupService;
+        private readonly IMvxFileStore fileStore;
 
-        public BackupManager(IRepositoryManager repositoryManager, IBackupService backupService)
+        private bool OldBackupRestored = false;
+
+        public BackupManager(IRepositoryManager repositoryManager, IBackupService backupService, IMvxFileStore fileStore)
         {
             this.repositoryManager = repositoryManager;
             this.backupService = backupService;
+            this.fileStore = fileStore;
         }
 
         public async Task<DateTime> GetBackupDate()
@@ -72,6 +77,11 @@ namespace MoneyFox.Shared.Manager
                 var backupNames = GetBackupName(await backupService.GetFileNames());
                 await backupService.Restore(backupNames.Item1, backupNames.Item2);
 
+                if (OldBackupRestored && fileStore.Exists(BackupConstants.DB_NAME))
+                {
+                    fileStore.DeleteFile(BackupConstants.DB_NAME);
+                }
+
                 repositoryManager.ReloadData();
                 Settings.LastDatabaseUpdate = DateTime.Now;
             }
@@ -83,6 +93,7 @@ namespace MoneyFox.Shared.Manager
             {
                 return new Tuple<string, string>(BackupConstants.BACKUP_NAME, BackupConstants.DB_NAME);
             }
+            OldBackupRestored = true;
             return new Tuple<string, string>(BackupConstants.BACKUP_NAME_OLD, BackupConstants.DB_NAME_OLD);
         }
 
