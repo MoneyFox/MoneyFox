@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/text_gray"
+            android:textColor="@color/black"
             local:MvxBind="Text Date, Converter=DateTimeFormat" />
         <TextView
             android:layout_width="match_parent"
@@ -24,6 +24,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/black"
             local:MvxBind="Text PaymentAmount(., ChargedAccount)" />
     </LinearLayout>
     <LinearLayout
