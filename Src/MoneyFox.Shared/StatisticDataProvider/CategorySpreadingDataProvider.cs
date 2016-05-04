@@ -29,7 +29,6 @@ namespace MoneyFox.Shared.StatisticDataProvider
         {
             // Get all Payments inlcuding income.
             return GetSpreadingStatisticItems(paymentRepository.Data
-                        .Where(x => x.Category != null)
                         .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .Where(x => x.Type == (int)PaymentType.Expense || x.Type == (int)PaymentType.Income)
                         .ToList());
@@ -40,27 +39,21 @@ namespace MoneyFox.Shared.StatisticDataProvider
            var tempStatisticList = (from payment in payments
                                      group payment by new
                                      {
-                                         category = payment.Category != null ? payment.Category.Name : string.Empty, 
-                                         value = payment.Amount
+                                         category = payment.Category != null ? payment.Category.Name : string.Empty
                                      } into temp
                                      select new StatisticItem
                                      {
                                          Category = temp.Key.category,
-                                         Value = temp.Sum(x => x.Amount)
+                                         // we subtract income payments here so that we have all expenses without presign
+                                         Value = temp.Sum(x => x.Type == (int)PaymentType.Income ? -x.Amount : x.Amount)
                                      })
-                                     .Where(x => Math.Abs(x.Value) > 0.001)
+                                     .Where(x => x.Value > 0)
                                      .OrderByDescending(x => x.Value)
                                      .ToList();
 
             var statisticList = tempStatisticList.Take(6).ToList();
 
             AddOtherItem(tempStatisticList, statisticList);
-
-            IncludeIncome(statisticList, payments);
-
-            // Remove again all entries with zero amount.
-            RemoveZeroAmountEntries(statisticList);
-
             SetLabel(statisticList);
 
             return statisticList;
