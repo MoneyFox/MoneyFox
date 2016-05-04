@@ -458,7 +458,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured while saving the item. .
+        ///   Looks up a localized string similar to An error occured while saving the item..
         /// </summary>
         public static string ErrorMessageDelete {
             get {
@@ -467,7 +467,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured while saving the item. .
+        ///   Looks up a localized string similar to An error occured while saving the item..
         /// </summary>
         public static string ErrorMessageSave {
             get {
@@ -476,7 +476,7 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error on save.
+        ///   Looks up a localized string similar to Error on delete.
         /// </summary>
         public static string ErrorTitleDelete {
             get {
