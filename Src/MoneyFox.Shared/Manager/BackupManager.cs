@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.OneDrive.Sdk;
 
 namespace MoneyFox.Shared.Manager
 {
@@ -49,7 +50,6 @@ namespace MoneyFox.Shared.Manager
         /// <summary>
         ///     Tries to log in the user to the backup service.
         /// </summary>
-        ///<exception cref="ConnectionException">Occurs when the backupservice wasn't reachable.</exception>
         ///<exception cref="OneDriveException">Thrown when any error in the OneDrive SDK Occurs</exception>
         public async Task Login()
         {
@@ -59,7 +59,7 @@ namespace MoneyFox.Shared.Manager
         public async Task<bool> IsBackupExisting()
         {
             var files = await backupService.GetFileNames();
-            return files.Any();
+            return files != null && files.Any();
         }
 
         public async Task UploadNewBackup()

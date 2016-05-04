@@ -33,13 +33,6 @@ namespace MoneyFox.Shared.ViewModels
         public MvxCommand LoadedCommand => new MvxCommand(Loaded);
 
         /// <summary>
-        ///     The Backup Service for the current platform.
-        ///     On Android this needs to be overwritten with an
-        ///     instance with the current activity setup.
-        /// </summary>
-        public IBackupService BackupService { get; }
-
-        /// <summary>
         ///     Will create a backup of the database and upload it to onedrive
         /// </summary>
         public MvxCommand BackupCommand => new MvxCommand(CreateBackup);
@@ -60,7 +53,8 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void Loaded()
         {
-            await backupManager.IsBackupExisting();
+            BackupAvailable = true;
+            //BackupAvailable = await backupManager.IsBackupExisting();
             BackupLastModified = await backupManager.GetBackupDate();            
         }
 
