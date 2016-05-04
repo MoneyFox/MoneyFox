@@ -29,7 +29,7 @@ namespace MoneyFox.Shared.StatisticDataProvider
                 new Func<List<Payment>>(() =>
                     paymentRepository.Data
                         .Where(x => x.Type != (int) PaymentType.Transfer)
-                        .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
+                        .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .ToList());
 
             return GetCashFlowStatisticItems(getPaymentListFunc);

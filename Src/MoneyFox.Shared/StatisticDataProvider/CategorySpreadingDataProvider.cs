@@ -30,7 +30,7 @@ namespace MoneyFox.Shared.StatisticDataProvider
             // Get all Payments inlcuding income.
             return GetSpreadingStatisticItems(paymentRepository.Data
                         .Where(x => x.Category != null)
-                        .Where(x => x.Date >= startDate.Date && x.Date <= endDate.Date)
+                        .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
                         .Where(x => x.Type == (int)PaymentType.Expense || x.Type == (int)PaymentType.Income)
                         .ToList());
         }
