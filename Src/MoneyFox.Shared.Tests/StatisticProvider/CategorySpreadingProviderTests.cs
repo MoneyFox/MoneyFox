@@ -143,8 +143,8 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
 
             //Assertion
             result.Count.ShouldBe(2);
-            result[0].Value.ShouldBe(30);
-            result[1].Value.ShouldBe(40);
+            result[0].Value.ShouldBe(40);
+            result[1].Value.ShouldBe(30);
         }
 
         [Fact]
