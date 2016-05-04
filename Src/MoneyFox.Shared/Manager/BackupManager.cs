@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.OneDrive.Sdk;
 
 namespace MoneyFox.Shared.Manager
 {
@@ -29,7 +28,7 @@ namespace MoneyFox.Shared.Manager
         private readonly IBackupService backupService;
         private readonly IMvxFileStore fileStore;
 
-        private bool OldBackupRestored = false;
+        private bool oldBackupRestored;
 
         public BackupManager(IRepositoryManager repositoryManager, IBackupService backupService, IMvxFileStore fileStore)
         {
@@ -42,7 +41,7 @@ namespace MoneyFox.Shared.Manager
         {
             if (await CheckIfUserIsLoggedIn())
             {
-                await backupService.GetBackupDate();
+                return await backupService.GetBackupDate();
             }
             return DateTime.MinValue;
         }
@@ -58,8 +57,12 @@ namespace MoneyFox.Shared.Manager
 
         public async Task<bool> IsBackupExisting()
         {
-            var files = await backupService.GetFileNames();
-            return files != null && files.Any();
+            if (await CheckIfUserIsLoggedIn())
+            {
+                var files = await backupService.GetFileNames();
+                return files != null && files.Any();
+            }
+            return false;
         }
 
         public async Task UploadNewBackup()
@@ -77,7 +80,7 @@ namespace MoneyFox.Shared.Manager
                 var backupNames = GetBackupName(await backupService.GetFileNames());
                 await backupService.Restore(backupNames.Item1, backupNames.Item2);
 
-                if (OldBackupRestored && fileStore.Exists(BackupConstants.DB_NAME))
+                if (oldBackupRestored && fileStore.Exists(BackupConstants.DB_NAME))
                 {
                     fileStore.DeleteFile(BackupConstants.DB_NAME);
                 }
@@ -93,7 +96,7 @@ namespace MoneyFox.Shared.Manager
             {
                 return new Tuple<string, string>(BackupConstants.BACKUP_NAME, BackupConstants.DB_NAME);
             }
-            OldBackupRestored = true;
+            oldBackupRestored = true;
             return new Tuple<string, string>(BackupConstants.BACKUP_NAME_OLD, BackupConstants.DB_NAME_OLD);
         }
 

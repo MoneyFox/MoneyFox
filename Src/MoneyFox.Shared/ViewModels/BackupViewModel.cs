@@ -6,6 +6,7 @@ using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace MoneyFox.Shared.ViewModels
@@ -53,8 +54,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void Loaded()
         {
-            BackupAvailable = true;
-            //BackupAvailable = await backupManager.IsBackupExisting();
+            BackupAvailable = await backupManager.IsBackupExisting();
             BackupLastModified = await backupManager.GetBackupDate();            
         }
 
