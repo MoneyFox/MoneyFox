@@ -65,9 +65,8 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void CreateBackup()
         {
-            await Login();
-
-            if (!await ShowOverwriteBackupInfo())
+            // If login wasn't succesful or overwrite info was dismissed cancel upload
+            if (await Login() ||!await ShowOverwriteBackupInfo())
             {
                 return;
             }
@@ -81,9 +80,8 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void RestoreBackup()
         {
-            await Login();
-
-            if (!await ShowOverwriteDataInfo())
+            // If login wasn't succesful or overwrite info was dismissed cancel download
+            if (await Login() || !await ShowOverwriteDataInfo())
             {
                 return;
             }
@@ -97,13 +95,14 @@ namespace MoneyFox.Shared.ViewModels
             IsLoading = false;
         }
 
-        private async Task Login()
+        private async Task<bool> Login()
         {
             try
             {
                 IsLoading = true;
                 await BackupService.Login();
                 IsLoading = false;
+                return true;
             }
             catch (ConnectionException)
             {
@@ -114,6 +113,7 @@ namespace MoneyFox.Shared.ViewModels
                 Insights.Report(ex, Insights.Severity.Error);
                 await dialogService.ShowMessage(Strings.LoginFailedTitle, Strings.LoginFailedMessage);
             }
+            return false;
         }
 
         private async Task<bool> ShowOverwriteBackupInfo()
