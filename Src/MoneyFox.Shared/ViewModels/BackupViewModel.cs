@@ -1,27 +1,25 @@
 ﻿using Microsoft.OneDrive.Sdk;
+using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using System;
 using System.Threading.Tasks;
-using Xamarin;
 
 namespace MoneyFox.Shared.ViewModels
 {
     public class BackupViewModel : BaseViewModel
     {
+        private readonly IBackupManager backupManager;
         private readonly IDialogService dialogService;
-        private readonly IRepositoryManager repositoryManager;
 
-        public BackupViewModel(IRepositoryManager repositoryManager,
-            IBackupService backupService,
+        public BackupViewModel(IBackupManager backupManager,
             IDialogService dialogService)
         {
-            this.repositoryManager = repositoryManager;
+            this.backupManager = backupManager;
             this.dialogService = dialogService;
-
-            BackupService = backupService;
         }
 
         /// <summary>
@@ -58,21 +56,23 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public bool IsLoading { get; private set; }
 
+        public bool BackupAvailable { get; private set; }
+
         private async void Loaded()
         {
-            BackupLastModified = await BackupService.GetBackupDate();
+            await backupManager.IsBackupExisting();
+            BackupLastModified = await backupManager.GetBackupDate();            
         }
 
         private async void CreateBackup()
         {
-            // If login wasn't succesful or overwrite info was dismissed cancel upload
-            if (await Login() ||!await ShowOverwriteBackupInfo())
+            if(!await ShowOverwriteBackupInfo())
             {
                 return;
             }
 
             IsLoading = true;
-            await BackupService.Upload();
+            await backupManager.UploadNewBackup();
             BackupLastModified = DateTime.Now;
             await ShowCompletionNote();
             IsLoading = false;
@@ -80,41 +80,16 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void RestoreBackup()
         {
-            // If login wasn't succesful or overwrite info was dismissed cancel download
-            if (await Login() || !await ShowOverwriteDataInfo())
+            if(!await ShowOverwriteDataInfo())
             {
                 return;
             }
 
             IsLoading = true;
-
-            await BackupService.Restore();
-            repositoryManager.ReloadData();
-
+            await backupManager.RestoreBackup();
             await ShowCompletionNote();
             IsLoading = false;
-        }
-
-        private async Task<bool> Login()
-        {
-            try
-            {
-                IsLoading = true;
-                await BackupService.Login();
-                IsLoading = false;
-                return true;
-            }
-            catch (ConnectionException)
-            {
-                await dialogService.ShowMessage(Strings.LoginFailedTitle, Strings.LoginFailedMessage);
-            }
-            catch (OneDriveException ex)
-            {
-                Insights.Report(ex, Insights.Severity.Error);
-                await dialogService.ShowMessage(Strings.LoginFailedTitle, Strings.LoginFailedMessage);
-            }
-            return false;
-        }
+        }        
 
         private async Task<bool> ShowOverwriteBackupInfo()
             => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);

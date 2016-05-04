@@ -12,8 +12,7 @@ namespace MoneyFox.Shared.Manager
     /// </summary>
     public class AutoBackupManager : IAutobackupManager
     {
-        private readonly IBackupService backupService;
-        private readonly IRepositoryManager repositoryManager;
+        private readonly IBackupManager backupManager;
         private readonly SettingDataAccess roamingSettings;
 
         /// <summary>
@@ -22,12 +21,10 @@ namespace MoneyFox.Shared.Manager
         /// <param name="backupService">Helper for uploading and downloading to the respective backup service.</param>
         /// <param name="roamingSettings">Access to the roaming settings.</param>
         /// <param name="repositoryManager">An instance of the repository manager to reload data.</param>
-        public AutoBackupManager(IBackupService backupService, SettingDataAccess roamingSettings,
-            IRepositoryManager repositoryManager)
+        public AutoBackupManager(IBackupManager backupManager, SettingDataAccess roamingSettings)
         {
-            this.backupService = backupService;
+            this.backupManager = backupManager;
             this.roamingSettings = roamingSettings;
-            this.repositoryManager = repositoryManager;
         }
 
         /// <summary>
@@ -42,9 +39,9 @@ namespace MoneyFox.Shared.Manager
                     return;
                 }
 
-                if (await backupService.GetBackupDate() < Settings.LastDatabaseUpdate)
+                if (await backupManager.GetBackupDate() < Settings.LastDatabaseUpdate)
                 {
-                    await backupService.Upload();
+                    await backupManager.UploadNewBackup();
                 }
             }
             catch (OneDriveException ex)
@@ -65,12 +62,10 @@ namespace MoneyFox.Shared.Manager
                     return;
                 }
 
-                var backupDate = await backupService.GetBackupDate();
+                var backupDate = await backupManager.GetBackupDate();
                 if (backupDate > Settings.LastDatabaseUpdate)
                 {
-                    await backupService.Restore();
-                    repositoryManager.ReloadData();
-                    Settings.LastDatabaseUpdate = backupDate;
+                    await backupManager.RestoreBackup();
                 }
             }
             catch (OneDriveException ex)
