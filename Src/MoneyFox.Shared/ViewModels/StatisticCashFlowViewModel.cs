@@ -41,11 +41,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             var cashFlow = cashFlowDataProvider.GetValues(StartDate, EndDate);
 
-            var model = new PlotModel
-            {
-                Background = OxyColors.White,
-                TextColor = OxyColors.Black
-            };
+            var model = new PlotModel();
 
             var columnSeries = new ColumnSeries();
             var axe = new CategoryAxis
@@ -64,6 +60,14 @@ namespace MoneyFox.Shared.ViewModels
 
                 model.Background = OxyColors.Black;
                 model.TextColor = OxyColors.White;
+            }
+            else
+            {
+                axe.AxislineColor = OxyColors.Black;
+                axe.AxislineColor = OxyColors.Black;
+
+                model.Background = OxyColors.White;
+                model.TextColor = OxyColors.Black;
             }
 
             columnSeries.Items.Add(new ColumnItem(cashFlow.Income.Value) {Color = OxyColors.LightGreen});

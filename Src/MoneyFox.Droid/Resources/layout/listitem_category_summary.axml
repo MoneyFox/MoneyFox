@@ -1,23 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:local="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="?android:attr/activatedBackgroundIndicator">
-  <TextView
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="left"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:layout_marginTop="5dp"
-    local:MvxBind="Text Label" />
-  <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="right"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:layout_marginTop="5dp"
-    local:MvxBind="Text Value" />
+    android:layout_height="match_parent"
+    android:background="?android:attr/activatedBackgroundIndicator">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_weight="0.9"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="5dp"
+        local:MvxBind="Text Category" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_gravity="right"
+        android:layout_weight="0.1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="5dp"
+        local:MvxBind="Text AmountFormat(Value)" />
 </LinearLayout>

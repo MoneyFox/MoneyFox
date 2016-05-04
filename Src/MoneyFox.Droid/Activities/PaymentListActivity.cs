@@ -26,6 +26,7 @@ namespace MoneyFox.Droid.Activities
 
             LoadBalancePanel();
         }
+
         private void LoadBalancePanel()
         {
             var fragment = new BalanceFragment
