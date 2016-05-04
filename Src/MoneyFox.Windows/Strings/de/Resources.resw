@@ -141,9 +141,6 @@
   <data name="AddExpenseLabel.Label" xml:space="preserve">
     <value>Ausgabe hinzufügen</value>
   </data>
-  <data name="AddPaymentViewModelTitle.Text" xml:space="preserve">
-    <value>Zahlung hinzufügen</value>
-  </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
     <value>Übertrag hinzufügen</value>
   </data>
@@ -337,7 +334,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Startdatum</value>
   </data>
-  <data name="RecurringPaymentViewModelList.Label" xml:space="preserve">
+  <data name="RecurringPaymentList.Label" xml:space="preserve">
     <value>Übersicht Zahlungsaufträge</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
@@ -357,5 +354,17 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
   <data name="MonthlyExpenseStatisticTitle.Text" xml:space="preserve">
     <value>Monatliche Ausgaben</value>
+  </data>
+  <data name="AccountsPlaceholder.Text" xml:space="preserve">
+    <value>Du hast noch kein Konto erfasst. Erfasse eines über das Menu mit den Drei Punkten in der unteren Leiste.</value>
+  </data>
+  <data name="CategoriesPlaceholder.Text" xml:space="preserve">
+    <value>Du hast noch keine Kategorien erfasst. Erfasse eine über das Menu mit den Drei Punkten in der unteren Leiste.</value>
+  </data>
+  <data name="PaymentsPlaceholder.Text" xml:space="preserve">
+    <value>Du hast noch keine Zahlungen erfasst. Erfasse eine über das Menu mit den Drei Punkten in der unteren Leiste.</value>
+  </data>
+  <data name="ThemeToggleDescription.Text" xml:space="preserve">
+    <value>Du kannst zwischen dem dunklen und dem hellen Theme wechseln. Damit die Änderungen übernommen werden, musst du das App neustarten.</value>
   </data>
 </root>

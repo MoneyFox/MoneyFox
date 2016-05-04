@@ -141,9 +141,6 @@
   <data name="AddExpenseLabel.Label" xml:space="preserve">
     <value>Add Expense</value>
   </data>
-  <data name="AddPaymentViewModelTitle.Text" xml:space="preserve">
-    <value>Add PaymentViewModel</value>
-  </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
     <value>Add Transfer</value>
   </data>
@@ -338,8 +335,8 @@ Tap to visit the Repository:</value>
   <data name="StartDateHeader.Header" xml:space="preserve">
     <value>Start Date</value>
   </data>
-  <data name="RecurringPaymentViewModelList.Label" xml:space="preserve">
-    <value>Recurring PaymentViewModel Overview</value>
+  <data name="RecurringPaymentList.Label" xml:space="preserve">
+    <value>Recurring Payment Overview</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
     <value>Select Statistic</value>
@@ -360,7 +357,7 @@ Tap to visit the Repository:</value>
     <value>Monthly Expenses</value>
   </data>
   <data name="AccountsPlaceholder.Text" xml:space="preserve">
-    <value>There are no accounts. Add one by tapping on the three dots at bottom</value>
+    <value>There are no accounts. Add one by tapping on the three dots at bottom.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
     <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>

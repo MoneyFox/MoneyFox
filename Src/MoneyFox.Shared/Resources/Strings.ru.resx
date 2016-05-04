@@ -135,8 +135,8 @@
   <data name="AddIncomeLabel" xml:space="preserve">
     <value>Доход</value>
   </data>
-  <data name="AddSpendingLabel" xml:space="preserve">
-    <value>Расход</value>
+  <data name="AddExpenseLabel" xml:space="preserve">
+    <value>Add Expense</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
     <value>Перевод</value>
@@ -153,17 +153,17 @@
   <data name="CashflowLabel" xml:space="preserve">
     <value>Баланс</value>
   </data>
-  <data name="ChangeSubsequentTransactionsMessage" xml:space="preserve">
-    <value>Это повторяющаяся операция. Вы хотите изменить все будущие операции или только эту?</value>
+  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
+    <value>Это повторяющаяся операция. Вы хотите обновить все будущие операции или только эту?</value>
   </data>
-  <data name="ChangeSubsequentTransactionsTitle" xml:space="preserve">
+  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Обновить повторения?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Каждый день</value>
+    <value>Ежедневно</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Каждый день без выходных</value>
+    <value>Ежедневно без выходных</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Вы действительно хотите удалить этот счёт?</value>
@@ -174,10 +174,16 @@
   <data name="DeleteLabel" xml:space="preserve">
     <value>Удалить</value>
   </data>
+  <data name="ShortcutsTitle" xml:space="preserve">
+    <value>Сочетания клавиш</value>
+  </data>
+  <data name="SecurityTitle" xml:space="preserve">
+    <value>Безопасность</value>
+  </data>
   <data name="DeleteTitle" xml:space="preserve">
     <value>Удалить?</value>
   </data>
-  <data name="DeleteTransactionConfirmationMessage" xml:space="preserve">
+  <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
     <value>Вы действительно хотите удалить эту операцию?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
@@ -190,7 +196,7 @@
     <value>Обратная связь</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback Money Fox</value>
+    <value>Обратная связь Money Fox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
     <value>Редактировать доход</value>
@@ -288,8 +294,8 @@
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>Доход</value>
   </data>
-  <data name="AddSpendingTitle" xml:space="preserve">
-    <value>Расход</value>
+  <data name="AddExpenseTitle" xml:space="preserve">
+    <value>Add Expense</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Перевод</value>
@@ -319,7 +325,7 @@
     <value>Добавить</value>
   </data>
   <data name="CategorySummary" xml:space="preserve">
-    <value>Суммарная категория</value>
+    <value>Категории</value>
   </data>
   <data name="SpreadingLabel" xml:space="preserve">
     <value>Категория распространения</value>
@@ -345,22 +351,67 @@
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Оценить приложение</value>
   </data>
-  <data name="HalloWeltText" xml:space="preserve">
-    <value>Hallo Welt</value>
-  </data>
-  <data name="HelloWorldResponse" xml:space="preserve">
-    <value>Hello beautiful</value>
-  </data>
-  <data name="HelloWorldText" xml:space="preserve">
-    <value>Здравствуй, мир</value>
-  </data>
   <data name="BiweeklyLabel" xml:space="preserve">
     <value>Раз в две недели</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Add Category </value>
+    <value>Добавить категорию </value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Edit Category</value>
+    <value>Изменить категорию</value>
+  </data>
+  <data name="CategoriesLabel" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="CashflowDescription" xml:space="preserve">
+    <value>Доходы, расходы и выгоды для выбранного периода времени.</value>
+  </data>
+  <data name="CategorieSpreadingDescription" xml:space="preserve">
+    <value>Распространение расходов к категории.</value>
+  </data>
+  <data name="CategorySummaryDescription" xml:space="preserve">
+    <value>Краткое описание категорий с оплатой.</value>
+  </data>
+  <data name="ExpenseHistory" xml:space="preserve">
+    <value>История расходов</value>
+  </data>
+  <data name="ExpenseHistoryDescription" xml:space="preserve">
+    <value>Показывает сопоставление по месяцам ваши общие расходы для выбранного интервала.</value>
+  </data>
+  <data name="AddAccountLabel" xml:space="preserve">
+    <value>Add Account</value>
+  </data>
+  <data name="CancelLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChooseLabel" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="AccountCreatedMessage" xml:space="preserve">
+    <value>'{0}' has been succesfully created</value>
+  </data>
+  <data name="AccountModifiedMessage" xml:space="preserve">
+    <value>'{0}' has been succesfully modified</value>
+  </data>
+  <data name="ExpenseHeader" xml:space="preserve">
+    <value>Add expense</value>
+  </data>
+  <data name="IncomeHeader" xml:space="preserve">
+    <value>Add income</value>
+  </data>
+  <data name="TransferHeader" xml:space="preserve">
+    <value>Add transfer</value>
+  </data>
+  <data name="ErrorMessageDelete" xml:space="preserve">
+    <value>An error occured while saving the item.</value>
+  </data>
+  <data name="ErrorMessageSave" xml:space="preserve">
+    <value>An error occured while saving the item.</value>
+  </data>
+  <data name="ErrorTitleDelete" xml:space="preserve">
+    <value>Error on delete</value>
+  </data>
+  <data name="ErrorTitleSave" xml:space="preserve">
+    <value>Error on save</value>
   </data>
 </root>
