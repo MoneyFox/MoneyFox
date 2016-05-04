@@ -32,7 +32,7 @@ namespace MoneyFox.Windows.Tests
         {
             new SqliteConnectionCreator(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
             
-            Assert.IsTrue(new MvxWindowsCommonFileStore().Exists(OneDriveAuthenticationConstants.DB_NAME));
+            Assert.IsTrue(new MvxWindowsCommonFileStore().Exists(BackupConstants.DB_NAME));
         }
     }
 }

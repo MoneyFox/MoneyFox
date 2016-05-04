@@ -52,6 +52,7 @@
                            TextWrapping="WrapWholeWords" />
                 <Button Content="Restore"
                         x:Uid="RestoreBackup"
+                        IsEnabled="{Binding BackupAvailable}"
                         Command="{Binding RestoreCommand}"
                         HorizontalAlignment="Stretch" />
                 <StackPanel Orientation="Horizontal"
@@ -64,7 +65,6 @@
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                                Visibility="{Binding BackupLastModified, Converter={StaticResource BackupDateVisibilityConverter}}"
                                Margin="5,0,0,0" />
-
                 </StackPanel>
             </StackPanel>
         </StackPanel>
