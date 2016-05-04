@@ -78,12 +78,12 @@ namespace MoneyFox.Droid
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            var auth = new OAuth2Authenticator(OneDriveAuthenticationConstants.MSA_CLIENT_ID,
-                OneDriveAuthenticationConstants.MSA_CLIENT_SECRET,
-                string.Join(",", OneDriveAuthenticationConstants.Scopes), 
+            var auth = new OAuth2Authenticator(BackupConstants.MSA_CLIENT_ID,
+                BackupConstants.MSA_CLIENT_SECRET,
+                string.Join(",", BackupConstants.Scopes), 
                 new Uri(GetAuthorizeUrl()),
-                new Uri(OneDriveAuthenticationConstants.RETURN_URL),
-                new Uri(OneDriveAuthenticationConstants.TOKEN_URL));
+                new Uri(BackupConstants.RETURN_URL),
+                new Uri(BackupConstants.TOKEN_URL));
 
             auth.Completed += (sender, eventArgs) =>
             {
@@ -107,13 +107,13 @@ namespace MoneyFox.Droid
         private string GetAuthorizeUrl()
         {
             var requestUriStringBuilder = new StringBuilder();
-            requestUriStringBuilder.Append(OneDriveAuthenticationConstants.AUTHENTICATION_URL);
+            requestUriStringBuilder.Append(BackupConstants.AUTHENTICATION_URL);
             requestUriStringBuilder.AppendFormat("?{0}={1}", Constants.Authentication.RedirectUriKeyName,
-                OneDriveAuthenticationConstants.RETURN_URL);
+                BackupConstants.RETURN_URL);
             requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ClientIdKeyName,
-                OneDriveAuthenticationConstants.MSA_CLIENT_ID);
+                BackupConstants.MSA_CLIENT_ID);
             requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ScopeKeyName,
-                string.Join("%20", OneDriveAuthenticationConstants.Scopes));
+                string.Join("%20", BackupConstants.Scopes));
             requestUriStringBuilder.AppendFormat("&{0}={1}", Constants.Authentication.ResponseTypeKeyName,
                 Constants.Authentication.CodeKeyName);
 

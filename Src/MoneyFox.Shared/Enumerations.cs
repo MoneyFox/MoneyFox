@@ -30,13 +30,6 @@
         Setting
     }
 
-    public enum TaskCompletionType
-    {
-        Successful,
-        Unsuccessful,
-        Aborted
-    }
-
     public enum StatisticType
     {
         Cashflow,
