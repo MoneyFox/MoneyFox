@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
-using Microsoft.ApplicationInsights;
+using Xamarin;
 
 namespace MoneyFox.Windows.Controls
 {
@@ -448,7 +448,7 @@ namespace MoneyFox.Windows.Controls
                 }
                 catch (Exception ex)
                 {
-                    new TelemetryClient().TrackException(ex);
+                    Insights.Report(ex);
                 }
             }
             else
@@ -467,7 +467,7 @@ namespace MoneyFox.Windows.Controls
                 }
                 catch (Exception ex)
                 {
-                    new TelemetryClient().TrackException(ex);
+                    Insights.Report(ex);
                 }
             }
             else
