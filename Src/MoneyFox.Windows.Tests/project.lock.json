@@ -350,9 +350,9 @@
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
         }
       },
-      "MvvmCross.Core/4.1.0": {
+      "MvvmCross.Core/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/uap/MvvmCross.Core.dll": {},
@@ -363,7 +363,7 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.Platform/4.1.0": {
+      "MvvmCross.Platform/4.1.4": {
         "compile": {
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {}
@@ -373,9 +373,9 @@
           "lib/win81/MvvmCross.Platform.dll": {}
         }
       },
-      "MvvmCross.Plugin.Email/4.1.0": {
+      "MvvmCross.Plugin.Email/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {},
@@ -386,9 +386,9 @@
           "lib/win81/MvvmCross.Plugins.Email.dll": {}
         }
       },
-      "MvvmCross.Plugin.File/4.1.0": {
+      "MvvmCross.Plugin.File/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {},
@@ -399,9 +399,9 @@
           "lib/win81/MvvmCross.Plugins.File.dll": {}
         }
       },
-      "MvvmCross.Plugin.Messenger/4.1.0": {
+      "MvvmCross.Plugin.Messenger/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
@@ -410,9 +410,9 @@
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
-      "MvvmCross.Plugin.SQLitePCL/4.1.0": {
+      "MvvmCross.Plugin.SQLitePCL/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0",
+          "MvvmCross.Platform": "4.1.4",
           "SQLite.Net-PCL": "3.1.1",
           "SQLite.Net.Async-PCL": "3.1.1",
           "SQLite.Net.Core-PCL": "3.1.1"
@@ -426,9 +426,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
         }
       },
-      "MvvmCross.Plugin.WebBrowser/4.1.1": {
+      "MvvmCross.Plugin.WebBrowser/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {},
@@ -2031,7 +2031,7 @@
           }
         }
       },
-      "UniversalRateReminder/2.0.0": {
+      "UniversalRateReminder/2.1.0": {
         "compile": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         },
@@ -2397,9 +2397,9 @@
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
         }
       },
-      "MvvmCross.Core/4.1.0": {
+      "MvvmCross.Core/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/uap/MvvmCross.Core.dll": {},
@@ -2410,7 +2410,7 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.Platform/4.1.0": {
+      "MvvmCross.Platform/4.1.4": {
         "compile": {
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {}
@@ -2420,9 +2420,9 @@
           "lib/win81/MvvmCross.Platform.dll": {}
         }
       },
-      "MvvmCross.Plugin.Email/4.1.0": {
+      "MvvmCross.Plugin.Email/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {},
@@ -2433,9 +2433,9 @@
           "lib/win81/MvvmCross.Plugins.Email.dll": {}
         }
       },
-      "MvvmCross.Plugin.File/4.1.0": {
+      "MvvmCross.Plugin.File/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {},
@@ -2446,9 +2446,9 @@
           "lib/win81/MvvmCross.Plugins.File.dll": {}
         }
       },
-      "MvvmCross.Plugin.Messenger/4.1.0": {
+      "MvvmCross.Plugin.Messenger/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
@@ -2457,9 +2457,9 @@
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
-      "MvvmCross.Plugin.SQLitePCL/4.1.0": {
+      "MvvmCross.Plugin.SQLitePCL/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0",
+          "MvvmCross.Platform": "4.1.4",
           "SQLite.Net-PCL": "3.1.1",
           "SQLite.Net.Async-PCL": "3.1.1",
           "SQLite.Net.Core-PCL": "3.1.1"
@@ -2473,9 +2473,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
         }
       },
-      "MvvmCross.Plugin.WebBrowser/4.1.1": {
+      "MvvmCross.Plugin.WebBrowser/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {},
@@ -3989,7 +3989,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "UniversalRateReminder/2.0.0": {
+      "UniversalRateReminder/2.1.0": {
         "compile": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         },
@@ -4352,9 +4352,9 @@
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
         }
       },
-      "MvvmCross.Core/4.1.0": {
+      "MvvmCross.Core/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/uap/MvvmCross.Core.dll": {},
@@ -4365,7 +4365,7 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.Platform/4.1.0": {
+      "MvvmCross.Platform/4.1.4": {
         "compile": {
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {}
@@ -4375,9 +4375,9 @@
           "lib/win81/MvvmCross.Platform.dll": {}
         }
       },
-      "MvvmCross.Plugin.Email/4.1.0": {
+      "MvvmCross.Plugin.Email/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {},
@@ -4388,9 +4388,9 @@
           "lib/win81/MvvmCross.Plugins.Email.dll": {}
         }
       },
-      "MvvmCross.Plugin.File/4.1.0": {
+      "MvvmCross.Plugin.File/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {},
@@ -4401,9 +4401,9 @@
           "lib/win81/MvvmCross.Plugins.File.dll": {}
         }
       },
-      "MvvmCross.Plugin.Messenger/4.1.0": {
+      "MvvmCross.Plugin.Messenger/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
@@ -4412,9 +4412,9 @@
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
-      "MvvmCross.Plugin.SQLitePCL/4.1.0": {
+      "MvvmCross.Plugin.SQLitePCL/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0",
+          "MvvmCross.Platform": "4.1.4",
           "SQLite.Net-PCL": "3.1.1",
           "SQLite.Net.Async-PCL": "3.1.1",
           "SQLite.Net.Core-PCL": "3.1.1"
@@ -4428,9 +4428,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
         }
       },
-      "MvvmCross.Plugin.WebBrowser/4.1.1": {
+      "MvvmCross.Plugin.WebBrowser/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {},
@@ -5905,7 +5905,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "UniversalRateReminder/2.0.0": {
+      "UniversalRateReminder/2.1.0": {
         "compile": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         },
@@ -6276,9 +6276,9 @@
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
         }
       },
-      "MvvmCross.Core/4.1.0": {
+      "MvvmCross.Core/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/uap/MvvmCross.Core.dll": {},
@@ -6289,7 +6289,7 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.Platform/4.1.0": {
+      "MvvmCross.Platform/4.1.4": {
         "compile": {
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {}
@@ -6299,9 +6299,9 @@
           "lib/win81/MvvmCross.Platform.dll": {}
         }
       },
-      "MvvmCross.Plugin.Email/4.1.0": {
+      "MvvmCross.Plugin.Email/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {},
@@ -6312,9 +6312,9 @@
           "lib/win81/MvvmCross.Plugins.Email.dll": {}
         }
       },
-      "MvvmCross.Plugin.File/4.1.0": {
+      "MvvmCross.Plugin.File/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {},
@@ -6325,9 +6325,9 @@
           "lib/win81/MvvmCross.Plugins.File.dll": {}
         }
       },
-      "MvvmCross.Plugin.Messenger/4.1.0": {
+      "MvvmCross.Plugin.Messenger/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
@@ -6336,9 +6336,9 @@
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
-      "MvvmCross.Plugin.SQLitePCL/4.1.0": {
+      "MvvmCross.Plugin.SQLitePCL/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0",
+          "MvvmCross.Platform": "4.1.4",
           "SQLite.Net-PCL": "3.1.1",
           "SQLite.Net.Async-PCL": "3.1.1",
           "SQLite.Net.Core-PCL": "3.1.1"
@@ -6352,9 +6352,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
         }
       },
-      "MvvmCross.Plugin.WebBrowser/4.1.1": {
+      "MvvmCross.Plugin.WebBrowser/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {},
@@ -7871,7 +7871,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "UniversalRateReminder/2.0.0": {
+      "UniversalRateReminder/2.1.0": {
         "compile": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         },
@@ -8234,9 +8234,9 @@
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
         }
       },
-      "MvvmCross.Core/4.1.0": {
+      "MvvmCross.Core/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/uap/MvvmCross.Core.dll": {},
@@ -8247,7 +8247,7 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.Platform/4.1.0": {
+      "MvvmCross.Platform/4.1.4": {
         "compile": {
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {}
@@ -8257,9 +8257,9 @@
           "lib/win81/MvvmCross.Platform.dll": {}
         }
       },
-      "MvvmCross.Plugin.Email/4.1.0": {
+      "MvvmCross.Plugin.Email/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {},
@@ -8270,9 +8270,9 @@
           "lib/win81/MvvmCross.Plugins.Email.dll": {}
         }
       },
-      "MvvmCross.Plugin.File/4.1.0": {
+      "MvvmCross.Plugin.File/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {},
@@ -8283,9 +8283,9 @@
           "lib/win81/MvvmCross.Plugins.File.dll": {}
         }
       },
-      "MvvmCross.Plugin.Messenger/4.1.0": {
+      "MvvmCross.Plugin.Messenger/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
@@ -8294,9 +8294,9 @@
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
-      "MvvmCross.Plugin.SQLitePCL/4.1.0": {
+      "MvvmCross.Plugin.SQLitePCL/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0",
+          "MvvmCross.Platform": "4.1.4",
           "SQLite.Net-PCL": "3.1.1",
           "SQLite.Net.Async-PCL": "3.1.1",
           "SQLite.Net.Core-PCL": "3.1.1"
@@ -8310,9 +8310,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
         }
       },
-      "MvvmCross.Plugin.WebBrowser/4.1.1": {
+      "MvvmCross.Plugin.WebBrowser/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {},
@@ -9787,7 +9787,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "UniversalRateReminder/2.0.0": {
+      "UniversalRateReminder/2.1.0": {
         "compile": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         },
@@ -10158,9 +10158,9 @@
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
         }
       },
-      "MvvmCross.Core/4.1.0": {
+      "MvvmCross.Core/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/uap/MvvmCross.Core.dll": {},
@@ -10171,7 +10171,7 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.Platform/4.1.0": {
+      "MvvmCross.Platform/4.1.4": {
         "compile": {
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {}
@@ -10181,9 +10181,9 @@
           "lib/win81/MvvmCross.Platform.dll": {}
         }
       },
-      "MvvmCross.Plugin.Email/4.1.0": {
+      "MvvmCross.Plugin.Email/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {},
@@ -10194,9 +10194,9 @@
           "lib/win81/MvvmCross.Plugins.Email.dll": {}
         }
       },
-      "MvvmCross.Plugin.File/4.1.0": {
+      "MvvmCross.Plugin.File/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {},
@@ -10207,9 +10207,9 @@
           "lib/win81/MvvmCross.Plugins.File.dll": {}
         }
       },
-      "MvvmCross.Plugin.Messenger/4.1.0": {
+      "MvvmCross.Plugin.Messenger/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
@@ -10218,9 +10218,9 @@
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
-      "MvvmCross.Plugin.SQLitePCL/4.1.0": {
+      "MvvmCross.Plugin.SQLitePCL/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0",
+          "MvvmCross.Platform": "4.1.4",
           "SQLite.Net-PCL": "3.1.1",
           "SQLite.Net.Async-PCL": "3.1.1",
           "SQLite.Net.Core-PCL": "3.1.1"
@@ -10234,9 +10234,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
         }
       },
-      "MvvmCross.Plugin.WebBrowser/4.1.1": {
+      "MvvmCross.Plugin.WebBrowser/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {},
@@ -11753,7 +11753,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "UniversalRateReminder/2.0.0": {
+      "UniversalRateReminder/2.1.0": {
         "compile": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         },
@@ -12116,9 +12116,9 @@
           "lib/uap10.0/Microsoft.Xaml.Interactivity.dll": {}
         }
       },
-      "MvvmCross.Core/4.1.0": {
+      "MvvmCross.Core/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/uap/MvvmCross.Core.dll": {},
@@ -12129,7 +12129,7 @@
           "lib/uap/MvvmCross.WindowsUWP.dll": {}
         }
       },
-      "MvvmCross.Platform/4.1.0": {
+      "MvvmCross.Platform/4.1.4": {
         "compile": {
           "lib/win81/MvvmCross.Platform.WindowsCommon.dll": {},
           "lib/win81/MvvmCross.Platform.dll": {}
@@ -12139,9 +12139,9 @@
           "lib/win81/MvvmCross.Platform.dll": {}
         }
       },
-      "MvvmCross.Plugin.Email/4.1.0": {
+      "MvvmCross.Plugin.Email/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Email.WindowsCommon.dll": {},
@@ -12152,9 +12152,9 @@
           "lib/win81/MvvmCross.Plugins.Email.dll": {}
         }
       },
-      "MvvmCross.Plugin.File/4.1.0": {
+      "MvvmCross.Plugin.File/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.File.WindowsCommon.dll": {},
@@ -12165,9 +12165,9 @@
           "lib/win81/MvvmCross.Plugins.File.dll": {}
         }
       },
-      "MvvmCross.Plugin.Messenger/4.1.0": {
+      "MvvmCross.Plugin.Messenger/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
@@ -12176,9 +12176,9 @@
           "lib/win81/MvvmCross.Plugins.Messenger.dll": {}
         }
       },
-      "MvvmCross.Plugin.SQLitePCL/4.1.0": {
+      "MvvmCross.Plugin.SQLitePCL/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0",
+          "MvvmCross.Platform": "4.1.4",
           "SQLite.Net-PCL": "3.1.1",
           "SQLite.Net.Async-PCL": "3.1.1",
           "SQLite.Net.Core-PCL": "3.1.1"
@@ -12192,9 +12192,9 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
         }
       },
-      "MvvmCross.Plugin.WebBrowser/4.1.1": {
+      "MvvmCross.Plugin.WebBrowser/4.1.4": {
         "dependencies": {
-          "MvvmCross.Platform": "4.1.0"
+          "MvvmCross.Platform": "4.1.4"
         },
         "compile": {
           "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll": {},
@@ -13669,7 +13669,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "UniversalRateReminder/2.0.0": {
+      "UniversalRateReminder/2.1.0": {
         "compile": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         },
@@ -14453,13 +14453,14 @@
         "lib/uap10.0/Microsoft.Xaml.Interactivity.xml"
       ]
     },
-    "MvvmCross.Core/4.1.0": {
-      "sha512": "yfxzpL2UpyRzjJMyD99nePtLpMndvu0sgIEgiwswqvU6Y8V6XwtNgYLFrNA1/6v0YQ1M0+Kwcu94sKHmPL5+hg==",
+    "MvvmCross.Core/4.1.4": {
+      "sha512": "1nI8KtLOHABBKaUUAUF1dLv7ez+05VmhI6z60u9mY+umaUUkkCK6KS4IZYuQok8Qup8j2gmkQ7t5j9aL3pxH7A==",
       "type": "package",
       "files": [
-        "MvvmCross.Core.4.1.0.nupkg.sha512",
+        "MvvmCross.Core.4.1.4.nupkg.sha512",
         "MvvmCross.Core.nuspec",
         "lib/MonoAndroid/MvvmCross.Core.dll",
+        "lib/MonoAndroid/MvvmCross.Droid.Shared.dll",
         "lib/MonoAndroid/MvvmCross.Droid.dll",
         "lib/Xamarin.Mac20/MvvmCross.Core.dll",
         "lib/Xamarin.Mac20/MvvmCross.Mac.dll",
@@ -14491,11 +14492,11 @@
         "lib/wpa81/MvvmCross.WindowsCommon.pri"
       ]
     },
-    "MvvmCross.Platform/4.1.0": {
-      "sha512": "YcpR+chmmOLDT6ktapadcUbX0Zm5fCew5xLqfhfSMX5Uo8VmYqBbBCP/POi4EMbceU1MGRVvlbvOw2VOvb5pGg==",
+    "MvvmCross.Platform/4.1.4": {
+      "sha512": "oizHpYwp3LUDmMNBw423fuQDo4tHZ3ionybjzMSvych+/AP2TUAsYOaKVvBlW90uSzqccjRT45owxdHiT2XjGw==",
       "type": "package",
       "files": [
-        "MvvmCross.Platform.4.1.0.nupkg.sha512",
+        "MvvmCross.Platform.4.1.4.nupkg.sha512",
         "MvvmCross.Platform.nuspec",
         "lib/MonoAndroid/MvvmCross.Platform.Droid.dll",
         "lib/MonoAndroid/MvvmCross.Platform.dll",
@@ -14536,11 +14537,11 @@
         "lib/wpa81/MvvmCross.Platform.dll.mdb"
       ]
     },
-    "MvvmCross.Plugin.Email/4.1.0": {
-      "sha512": "j8u/S39LcKlWK33TJ3dirscgLlbP5KhrQdln5ilqJLEUjtzwkDKZO6hUGxKkKBDOuGEaaDLuXCg2A0EjDU2e/w==",
+    "MvvmCross.Plugin.Email/4.1.4": {
+      "sha512": "HyEBRWwTgMmf9FR/QPRreORmhV+Exmsj79TevgjXfG1RWIJ32NFDONrcHyvP0mN/i0a99DWNO/jWpieBsnXaGw==",
       "type": "package",
       "files": [
-        "MvvmCross.Plugin.Email.4.1.0.nupkg.sha512",
+        "MvvmCross.Plugin.Email.4.1.4.nupkg.sha512",
         "MvvmCross.Plugin.Email.nuspec",
         "content/MonoAndroid/Bootstrap/EmailPluginBootstrap.cs.pp",
         "content/Xamarin.iOS10/Bootstrap/EmailPluginBootstrap.cs.pp",
@@ -14585,11 +14586,11 @@
         "lib/wpa81/MvvmCross.Plugins.Email.dll.mdb"
       ]
     },
-    "MvvmCross.Plugin.File/4.1.0": {
-      "sha512": "Y8Djn0qXj7eAK6x8F6F6JTg2ldTQ1mo/PqqmTut7T096ald/nCMez6hwmXFgK+AWnNopMRM/r/pOsvww3+QS4A==",
+    "MvvmCross.Plugin.File/4.1.4": {
+      "sha512": "yeNTK4eMZKIxj+pWVV7bIWlXjfCaSCRJdvANCSaFJsvfGM3SVTbTQYD0IA+EbI3SAMN4lVSEYQVZHc4PpGD1cA==",
       "type": "package",
       "files": [
-        "MvvmCross.Plugin.File.4.1.0.nupkg.sha512",
+        "MvvmCross.Plugin.File.4.1.4.nupkg.sha512",
         "MvvmCross.Plugin.File.nuspec",
         "content/MonoAndroid/Bootstrap/FilePluginBootstrap.cs.pp",
         "content/Xamarin.iOS10/Bootstrap/FilePluginBootstrap.cs.pp",
@@ -14632,11 +14633,11 @@
         "lib/wpa81/MvvmCross.Plugins.File.dll.mdb"
       ]
     },
-    "MvvmCross.Plugin.Messenger/4.1.0": {
-      "sha512": "tI3Iob79jxBmSs11oiny90jx/dut+2CVzmfw5Ylv7peQjPver+78ukz8lnW3CMHQDbMJrl4uuZA9pJz7YzpBjA==",
+    "MvvmCross.Plugin.Messenger/4.1.4": {
+      "sha512": "+JixvwCiKgqIcODblDfpazuuPk1YeKooZ+ETIUFvVKi3ZBvBa+splCvd8VNziK0x7yEpsv3Ya53blUszlBlKCQ==",
       "type": "package",
       "files": [
-        "MvvmCross.Plugin.Messenger.4.1.0.nupkg.sha512",
+        "MvvmCross.Plugin.Messenger.4.1.4.nupkg.sha512",
         "MvvmCross.Plugin.Messenger.nuspec",
         "content/MonoAndroid/Bootstrap/MessengerPluginBootstrap.cs.pp",
         "content/Xamarin.iOS10/Bootstrap/MessengerPluginBootstrap.cs.pp",
@@ -14658,17 +14659,18 @@
         "lib/wpa81/MvvmCross.Plugins.Messenger.dll"
       ]
     },
-    "MvvmCross.Plugin.SQLitePCL/4.1.0": {
-      "sha512": "wbre2GV4jlp9GtcHkC3hPT6elmzBOMSIsOucGC4zE8ucKFRSL74N9mS9KJHBxPPrcdxzWUAzTujwUKoek0zH9w==",
+    "MvvmCross.Plugin.SQLitePCL/4.1.4": {
+      "sha512": "7/3uCQdtO4b26ztld73x65h742CSgAAxF2C94eTGIySdLZSMvhCCDlv76OEAA6zcqbklCQSQ3ZcxU8DUSWkWjQ==",
       "type": "package",
       "files": [
-        "MvvmCross.Plugin.SQLitePCL.4.1.0.nupkg.sha512",
+        "MvvmCross.Plugin.SQLitePCL.4.1.4.nupkg.sha512",
         "MvvmCross.Plugin.SQLitePCL.nuspec",
         "content/MonoAndroid/Bootstrap/SqlitePluginBootstrap.cs.pp",
         "content/Xamarin.iOS10/Bootstrap/SqlitePluginBootstrap.cs.pp",
         "content/net45/Bootstrap/SqlitePclPluginBootstrap.cs.pp",
         "content/uap10.0/Bootstrap/SqlitePluginBootstrap.cs.pp",
         "content/win81/Bootstrap/SqlitePluginBootstrap.cs.pp",
+        "content/wp8/Bootstrap/SqlitePclPluginBootstrap.cs.pp",
         "content/wpa81/Bootstrap/SqlitePluginBootstrap.cs.pp",
         "lib/MonoAndroid/MvvmCross.Plugins.Sqlite.Droid.dll",
         "lib/MonoAndroid/MvvmCross.Plugins.Sqlite.dll",
@@ -14682,15 +14684,18 @@
         "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll",
         "lib/win81/MvvmCross.Plugins.Sqlite.WindowsCommon.dll",
         "lib/win81/MvvmCross.Plugins.Sqlite.dll",
+        "lib/wp8/MvvmCross.Plugins.Sqlite.WindowsPhone.dll",
+        "lib/wp8/MvvmCross.Plugins.Sqlite.dll",
+        "lib/wp8/MvvmCross.Plugins.Sqlite.dll.mdb",
         "lib/wpa81/MvvmCross.Plugins.Sqlite.WindowsCommon.dll",
         "lib/wpa81/MvvmCross.Plugins.Sqlite.dll"
       ]
     },
-    "MvvmCross.Plugin.WebBrowser/4.1.1": {
-      "sha512": "tUYxx7vje0/Ftvy4JDTrxRKWCjB1AC6SEitt2S9ZJSbIqmqvCm7B1PFpCB+bA+qqzB31EutB7vOXutVeaxLS+A==",
+    "MvvmCross.Plugin.WebBrowser/4.1.4": {
+      "sha512": "9pdTRB7dK6FjBms0SGitsQuRro2KCtkKUg2aLsbH/dVXuHFYv2GE+857eo0lUcY2gQhEv5gBMWLKxClXXufpRg==",
       "type": "package",
       "files": [
-        "MvvmCross.Plugin.WebBrowser.4.1.1.nupkg.sha512",
+        "MvvmCross.Plugin.WebBrowser.4.1.4.nupkg.sha512",
         "MvvmCross.Plugin.WebBrowser.nuspec",
         "content/MonoAndroid/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
         "content/Xamarin.iOS10/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
@@ -14701,27 +14706,38 @@
         "content/wpa81/Bootstrap/WebBrowserPluginBootstrap.cs.pp",
         "lib/MonoAndroid/MvvmCross.Plugins.WebBrowser.Droid.dll",
         "lib/MonoAndroid/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.WebBrowser.dll.mdb",
         "lib/Xamarin.Mac20/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/Xamarin.Mac20/MvvmCross.Plugins.WebBrowser.dll.mdb",
         "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.dll.mdb",
         "lib/Xamarin.iOS10/MvvmCross.Plugins.WebBrowser.iOS.dll",
         "lib/dotnet/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/dotnet/MvvmCross.Plugins.WebBrowser.dll.mdb",
         "lib/net45/MvvmCross.Plugins.WebBrowser.Wpf.dll",
         "lib/net45/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/net45/MvvmCross.Plugins.WebBrowser.dll.mdb",
         "lib/netcore45/MvvmCross.Plugins.WebBrowser.WindowsStore.dll",
         "lib/netcore45/MvvmCross.Plugins.WebBrowser.WindowsStore.pri",
         "lib/netcore45/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/netcore45/MvvmCross.Plugins.WebBrowser.dll.mdb",
         "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.WebBrowser.dll.mdb",
         "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
         "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
         "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.WebBrowser.dll.mdb",
         "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
         "lib/win81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
         "lib/win81/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/win81/MvvmCross.Plugins.WebBrowser.dll.mdb",
         "lib/wp8/MvvmCross.Plugins.WebBrowser.WindowsPhone.dll",
         "lib/wp8/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/wp8/MvvmCross.Plugins.WebBrowser.dll.mdb",
         "lib/wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.dll",
         "lib/wpa81/MvvmCross.Plugins.WebBrowser.WindowsCommon.pri",
-        "lib/wpa81/MvvmCross.Plugins.WebBrowser.dll"
+        "lib/wpa81/MvvmCross.Plugins.WebBrowser.dll",
+        "lib/wpa81/MvvmCross.Plugins.WebBrowser.dll.mdb"
       ]
     },
     "Newtonsoft.Json/7.0.1": {
@@ -17545,19 +17561,18 @@
         "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll"
       ]
     },
-    "UniversalRateReminder/2.0.0": {
-      "sha512": "LXY44TSgwf4BvswRHh1xHTsqcn6lYxRz3wFA5CM9rp1TVNEzjgtsNThf0DZZbCL+So1nq8kzxtKo32U5yyWW0w==",
+    "UniversalRateReminder/2.1.0": {
+      "sha512": "P3yffxFRIcl2DgPGnRELra0ve3sOm/igFxYltNniytu4yJxJ60F8FiMuUYZXR/yXNdx3NDct8EyxM+5D2q+e5w==",
       "type": "package",
       "files": [
-        "UniversalRateReminder.2.0.0.nupkg.sha512",
+        "UniversalRateReminder.2.1.0.nupkg.sha512",
         "UniversalRateReminder.nuspec",
         "lib/portable-netcore451+wpa81/UniversalRateReminder.XML",
         "lib/portable-netcore451+wpa81/UniversalRateReminder.dll",
         "lib/portable-netcore451+wpa81/UniversalRateReminder.pri",
         "lib/uap10.0/UniversalRateReminder.dll",
         "lib/uap10.0/UniversalRateReminder.pri",
-        "lib/uap10.0/UniversalRateReminder.xml",
-        "lib/uap10.0/UniversalRateReminder/Properties/UniversalRateReminder.rd.xml"
+        "lib/uap10.0/UniversalRateReminder.xml"
       ]
     },
     "Xamarin.Insights/1.12.3": {
@@ -17740,8 +17755,8 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
-      "MvvmCross.Plugin.File >= 4.1.0",
-      "MvvmCross.Plugin.SQLitePCL >= 4.1.0",
+      "MvvmCross.Plugin.File >= 4.1.4",
+      "MvvmCross.Plugin.SQLitePCL >= 4.1.4",
       "xunit >= 2.1.0",
       "xunit.runner.visualstudio >= 2.1.0"
     ],

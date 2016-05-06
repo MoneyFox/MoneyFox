@@ -8,7 +8,7 @@ using MoneyFox.Droid.Activities;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Shared.Attributes;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using MvvmCross.Droid.Support.V4;
 
 namespace MoneyFox.Droid.Fragments
 {

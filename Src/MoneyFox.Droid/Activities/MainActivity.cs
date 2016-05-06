@@ -54,7 +54,7 @@ namespace MoneyFox.Droid.Activities
                     Resource.String.drawer_close // "close drawer" description
                     );
 
-                DrawerLayout.SetDrawerListener(drawerToggle);
+                DrawerLayout.AddDrawerListener(drawerToggle);
                 drawerToggle.SyncState();
             }
         }

@@ -5,8 +5,8 @@ using Android.Views;
 using MoneyFox.Droid.Activities;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
 namespace MoneyFox.Droid.Fragments
 {
@@ -43,7 +43,7 @@ namespace MoneyFox.Droid.Fragments
                     Resource.String.drawer_close // "close drawer" description
                     );
 
-                ((MainActivity) Activity).DrawerLayout.SetDrawerListener(drawerToggle);
+                ((MainActivity) Activity).DrawerLayout.AddDrawerListener(drawerToggle);
             }
 
             return view;
