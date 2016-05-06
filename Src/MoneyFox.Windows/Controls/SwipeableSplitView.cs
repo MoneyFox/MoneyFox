@@ -107,12 +107,8 @@ namespace MoneyFox.Windows.Controls
         private Storyboard openSwipeablePane;
         private Storyboard closeSwipeablePane;
 
-        private Selector menuHost;
         private readonly IList<SelectorItem> menuItems = new List<SelectorItem>();
         private int toBeSelectedIndex;
-        private static readonly double TOTAL_PANNING_DISTANCE = 160d;
-        private double distancePerItem;
-        private double startingDistance;
 
         #endregion
 
@@ -337,10 +333,7 @@ namespace MoneyFox.Windows.Controls
                     VisualStateManager.GoToState(item, "Normal", true);
                 }
 
-                toBeSelectedIndex =
-                    (int)
-                        Math.Round((e.Cumulative.Translation.Y + startingDistance)/distancePerItem,
-                            MidpointRounding.AwayFromZero);
+                toBeSelectedIndex = (int)Math.Round(e.Cumulative.Translation.Y, MidpointRounding.AwayFromZero);
                 if (toBeSelectedIndex < 0)
                 {
                     toBeSelectedIndex = 0;
@@ -410,12 +403,6 @@ namespace MoneyFox.Windows.Controls
 
                     // do a selection after a short delay to allow visual effect takes place first
                     await Task.Delay(250);
-                    menuHost.SelectedIndex = toBeSelectedIndex;
-                }
-                else
-                {
-                    // recalculate the starting distance
-                    startingDistance = distancePerItem*menuHost.SelectedIndex;
                 }
             }
         }
