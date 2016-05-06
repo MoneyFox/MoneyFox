@@ -1,6 +1,4 @@
-﻿using Windows.Foundation.Metadata;
-
-namespace MoneyFox.Shared.Constants
+﻿namespace MoneyFox.Shared.Constants
 {
     /// <summary>
     ///     Contains constant values used for the onedrive authentication
@@ -9,14 +7,14 @@ namespace MoneyFox.Shared.Constants
     {
         /// <summary>
         ///     Name of the sqlite database
+        ///     DEPREDCATED: Use DB_NAME instead
         /// </summary>
-        [Deprecated("Use DB_NAME instead", DeprecationType.Deprecate, 2)]
         public const string DB_NAME_OLD = "moneyfox.sqlite";
 
         /// <summary>
         ///     Name of the database backup
+        ///     DEPREDCATED: Use BACKUP_NAME instead
         /// </summary>
-        [Deprecated("Use BACKUP_NAME instead", DeprecationType.Deprecate, 2)]
         public const string BACKUP_NAME_OLD = "backupmoneyfox.sqlite";
 
         /// <summary>
