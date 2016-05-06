@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Navigation;
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Windows.Services;
 using MoneyFox.Windows.SettingsAccess;
@@ -23,7 +22,6 @@ using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
-using Microsoft.ApplicationInsights;
 
 namespace MoneyFox.Windows
 {
@@ -39,9 +37,6 @@ namespace MoneyFox.Windows
         public App()
         {
             InitializeComponent();
-#if !DEBUG
-            WindowsAppInitializer.InitializeAsync();
-#endif
             SetColor();
             Suspending += OnSuspending;
         }
