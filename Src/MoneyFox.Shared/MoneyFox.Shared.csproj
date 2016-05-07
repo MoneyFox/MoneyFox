@@ -55,7 +55,6 @@
     <Compile Include="DataAccess\CategoryDataAccess.cs" />
     <Compile Include="DataAccess\PaymentDataAccess.cs" />
     <Compile Include="DataAccess\RecurringPaymentDataAccess.cs" />
-    <Compile Include="DataAccess\SettingDataAccess.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\BackupException.cs" />
@@ -66,7 +65,7 @@
     <Compile Include="Groups\DateListGroup.cs" />
     <Compile Include="Helpers\PaymentTypeHelper.cs" />
     <Compile Include="Helpers\RecurringPaymentHelper.cs" />
-    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Helpers\SettingsHelperNew.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\IAppInformation.cs" />
@@ -77,7 +76,6 @@
     <Compile Include="Interfaces\IDefaultManager.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
-    <Compile Include="Interfaces\ILocalSettings.cs" />
     <Compile Include="Interfaces\INotificationService.cs" />
     <Compile Include="Interfaces\IOneDriveAuthenticator.cs" />
     <Compile Include="Interfaces\IPasswordStorage.cs" />
@@ -87,7 +85,6 @@
     <Compile Include="Interfaces\IRecurringPaymentManager.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IRepositoryManager.cs" />
-    <Compile Include="Interfaces\IRoamingSettings.cs" />
     <Compile Include="Interfaces\ISqliteConnectionCreator.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />
     <Compile Include="Interfaces\IStoreFeatures.cs" />
@@ -173,7 +170,6 @@
     <Compile Include="ViewModels\RecurringPaymentListViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
-    <Compile Include="ViewModels\SettingDefaultsViewModel.cs" />
     <Compile Include="ViewModels\SettingsGeneralViewModel.cs" />
     <Compile Include="ViewModels\SettingsSecurityViewModel.cs" />
     <Compile Include="ViewModels\SettingsShortcutsViewModel.cs" />
@@ -190,6 +186,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.1.2.5\lib\portable-net45+win+wpa81+wp80\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Binding.4.1.4\lib\portable-net45+win+wpa81+wp80\MvvmCross.Binding.dll</HintPath>
       <Private>True</Private>

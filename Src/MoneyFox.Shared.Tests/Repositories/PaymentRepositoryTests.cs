@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
+using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Helpers;
@@ -20,7 +21,7 @@ namespace MoneyFox.Shared.Tests.Repositories
     [TestClass]
     public class PaymentRepositoryTests : MvxIoCSupportingTest
     {
-        private DateTime _localDateSetting;
+        private DateTime localDateSetting;
 
         [TestInitialize]
         public void Init()
@@ -28,16 +29,12 @@ namespace MoneyFox.Shared.Tests.Repositories
             Setup();
 
             // We setup the static setting classes here for the general usage in the app
-            var settingsMockSetup = new Mock<ILocalSettings>();
+            var settingsMockSetup = new Mock<ISettings>();
             settingsMockSetup.SetupAllProperties();
-            settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>()))
-                .Callback((string key, DateTime date) => _localDateSetting = date);
-
-            var roamSettingsMockSetup = new Mock<IRoamingSettings>();
-            roamSettingsMockSetup.SetupAllProperties();
+            settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>(), false))
+                .Callback((string key, DateTime date) => localDateSetting = date);
 
             Mvx.RegisterType(() => settingsMockSetup.Object);
-            Mvx.RegisterType(() => roamSettingsMockSetup.Object);
         }
 
         [TestMethod]
@@ -789,8 +786,8 @@ namespace MoneyFox.Shared.Tests.Repositories
                 new Mock<IRepository<Category>>().Object,
                 new Mock<INotificationService>().Object).Save(new Payment { ChargedAccountId = 2 });
 
-            _localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
-            _localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
+            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
+            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
         }
 
         [TestMethod]

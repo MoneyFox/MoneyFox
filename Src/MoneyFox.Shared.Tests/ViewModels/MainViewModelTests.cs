@@ -34,8 +34,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var paymentManager = new PaymentManager(paymentRepository, accountRepository,
                 new Mock<IDialogService>().Object);
 
-            var defaultManager = new DefaultManager(accountRepository,
-                new SettingDataAccess(new Mock<IRoamingSettings>().Object));
+            var defaultManager = new DefaultManager(accountRepository);
 
             var modifyPaymentViewModel =
                 new ModifyPaymentViewModel(paymentRepository,

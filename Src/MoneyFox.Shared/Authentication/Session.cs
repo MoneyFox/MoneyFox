@@ -15,23 +15,23 @@ namespace MoneyFox.Shared.Authentication
         /// </summary>
         public bool ValidateSession()
         {
-            if (!Settings.PasswordRequired)
+            if (!SettingsHelper.PasswordRequired)
             {
                 return true;
             }
 
-            return !string.IsNullOrEmpty(Settings.SessionTimestamp) && CheckIfSessionExpired();
+            return !string.IsNullOrEmpty(SettingsHelper.SessionTimestamp) && CheckIfSessionExpired();
         }
 
         private static bool CheckIfSessionExpired()
-            => (DateTime.Now - Convert.ToDateTime(Settings.SessionTimestamp)).TotalMinutes < SESSION_TIMEOUT;
+            => (DateTime.Now - Convert.ToDateTime(SettingsHelper.SessionTimestamp)).TotalMinutes < SESSION_TIMEOUT;
 
         /// <summary>
         ///     Adds the current time as timestamp to the local settings.
         /// </summary>
         public void AddSession()
         {
-            Settings.SessionTimestamp = DateTime.Now.ToString();
+            SettingsHelper.SessionTimestamp = DateTime.Now.ToString();
         }
     }
 }
