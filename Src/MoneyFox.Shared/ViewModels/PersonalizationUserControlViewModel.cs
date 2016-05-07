@@ -6,8 +6,8 @@ namespace MoneyFox.Shared.ViewModels
     {
         public bool IsDarkThemeEnabled
         {
-            get { return Settings.IsDarkThemeSelected; }
-            set { Settings.IsDarkThemeSelected = value; }
+            get { return SettingsHelper.IsDarkThemeSelected; }
+            set { SettingsHelper.IsDarkThemeSelected = value; }
         }
     }
 }

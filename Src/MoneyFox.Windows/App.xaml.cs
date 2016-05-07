@@ -11,12 +11,12 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Windows.Services;
-using MoneyFox.Windows.SettingsAccess;
 using MoneyFox.Windows.Views;
 using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
@@ -50,7 +50,7 @@ namespace MoneyFox.Windows
         {
             // We have to create a own local settings object here since the general dependency 
             // registration takes place later and the Theme can only be set in the constructor.
-            RequestedTheme = new LocalSettings().GetValueOrDefault(Settings.DARK_THEME_SELECTED, false)
+            RequestedTheme = new WindowsCommonSettings().GetValue(SettingsHelper.DARK_THEME_SELECTED, false)
                 ? ApplicationTheme.Dark
                 : ApplicationTheme.Light;
         }
@@ -204,7 +204,7 @@ namespace MoneyFox.Windows
             var deferral = e.SuspendingOperation.GetDeferral();
 
             Tile.UpdateMainTile();
-            Settings.SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
+            SettingsHelper.SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
             deferral.Complete();
         }

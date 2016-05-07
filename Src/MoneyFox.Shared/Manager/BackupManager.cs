@@ -102,7 +102,7 @@ namespace MoneyFox.Shared.Manager
                 sqliteConnectionCreator.MigrateDatabase();
 
                 repositoryManager.ReloadData();
-                Settings.LastDatabaseUpdate = DateTime.Now;
+                SettingsHelper.LastDatabaseUpdate = DateTime.Now;
             }
         }
 

@@ -1,20 +1,19 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using MoneyFox.Shared.DataAccess;
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Manager
 {
+    //TODO: Refactor to helper class
     public class DefaultManager : IDefaultManager
     {
         private readonly IAccountRepository accountRepository;
-        private readonly SettingDataAccess settings;
 
-        public DefaultManager(IAccountRepository accountRepository, SettingDataAccess settings)
+        public DefaultManager(IAccountRepository accountRepository)
         {
             this.accountRepository = accountRepository;
-            this.settings = settings;
         }
 
         public Account GetDefaultAccount()
@@ -29,9 +28,9 @@ namespace MoneyFox.Shared.Manager
                 accountRepository.Data = new ObservableCollection<Account>();
             }
 
-            if (accountRepository.Data.Any() && settings.DefaultAccount != -1)
+            if (accountRepository.Data.Any() && SettingsHelper.DefaultAccount != -1)
             {
-                return accountRepository.Data.FirstOrDefault(x => x.Id == settings.DefaultAccount);
+                return accountRepository.Data.FirstOrDefault(x => x.Id == SettingsHelper.DefaultAccount);
             }
 
             return accountRepository.Data.FirstOrDefault();

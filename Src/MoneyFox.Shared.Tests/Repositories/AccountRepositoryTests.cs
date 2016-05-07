@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
@@ -23,16 +24,12 @@ namespace MoneyFox.Shared.Tests.Repositories
             Setup();
 
             // We setup the static setting classes here for the general usage in the app
-            var settingsMockSetup = new Mock<ILocalSettings>();
+            var settingsMockSetup = new Mock<ISettings>();
             settingsMockSetup.SetupAllProperties();
-            settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>()))
-                .Callback((string key, DateTime date) => localDateSetting = date);
-
-            var roamSettingsMockSetup = new Mock<IRoamingSettings>();
-            roamSettingsMockSetup.SetupAllProperties();
+            settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>(), false))
+                .Callback((string key, DateTime date, bool roam) => localDateSetting = date);
 
             Mvx.RegisterType(() => settingsMockSetup.Object);
-            Mvx.RegisterType(() => roamSettingsMockSetup.Object);
         }
 
         [TestMethod]

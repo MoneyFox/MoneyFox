@@ -8,7 +8,7 @@ namespace MoneyFox.Shared.ViewModels
         /// <summary>
         ///     Returns the timestamp when the last change was made to the database
         /// </summary>
-        public string TimeStampDbUpdate => Settings.LastDatabaseUpdate.ToString();
+        public string TimeStampDbUpdate => SettingsHelper.LastDatabaseUpdate.ToString();
 
         /// <summary>
         ///     Prepare everything and navigate to the add payment view

@@ -23,10 +23,10 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public bool IsPasswortActive
         {
-            get { return Settings.PasswordRequired; }
+            get { return SettingsHelper.PasswordRequired; }
             set
             {
-                Settings.PasswordRequired = value;
+                SettingsHelper.PasswordRequired = value;
                 RaisePropertyChanged();
             }
         }

@@ -1,22 +1,15 @@
-﻿using MoneyFox.Shared.DataAccess;
+﻿using MoneyFox.Shared.Helpers;
 
 namespace MoneyFox.Shared.ViewModels
 {
     public class SettingsGeneralViewModel : BaseViewModel
     {
-        private readonly SettingDataAccess settingsDataAccess;
-
-        public SettingsGeneralViewModel(SettingDataAccess settingsDataAccess)
-        {
-            this.settingsDataAccess = settingsDataAccess;
-        }
-
         public bool IsAutoBackupEnabled
         {
-            get { return settingsDataAccess.IsBackupAutouploadEnabled; }
+            get { return SettingsHelper.IsBackupAutouploadEnabled; }
             set
             {
-                settingsDataAccess.IsBackupAutouploadEnabled = value;
+                SettingsHelper.IsBackupAutouploadEnabled = value;
                 RaisePropertyChanged();
             }
         }

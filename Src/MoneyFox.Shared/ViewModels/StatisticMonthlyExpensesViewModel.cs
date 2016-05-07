@@ -52,7 +52,7 @@ namespace MoneyFox.Shared.ViewModels
                 Angle = 45
             };
 
-            if (Settings.IsDarkThemeSelected)
+            if (SettingsHelper.IsDarkThemeSelected)
             {
                 model.Background = OxyColors.Black;
                 model.TextColor = OxyColors.White;

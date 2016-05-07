@@ -43,8 +43,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var accountRepo = accountRepoMock.Object;
             accountRepo.Data = new ObservableCollection<Account> {new Account {Id = 3}};
 
-            var defaultManager = new DefaultManager(accountRepo,
-                new SettingDataAccess(new Mock<IRoamingSettings>().Object));
+            var defaultManager = new DefaultManager(accountRepo);
 
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepo,
@@ -90,8 +89,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new Mock<IDialogService>().Object);
 
 
-            var defaultManager = new DefaultManager(accountRepo,
-                new SettingDataAccess(new Mock<IRoamingSettings>().Object));
+            var defaultManager = new DefaultManager(accountRepo);
 
             var viewmodel = new ModifyPaymentViewModel(paymentRepoSetup.Object,
                 accountRepo,

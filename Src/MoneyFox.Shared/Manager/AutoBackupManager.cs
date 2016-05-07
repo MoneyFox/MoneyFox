@@ -13,18 +13,14 @@ namespace MoneyFox.Shared.Manager
     public class AutoBackupManager : IAutobackupManager
     {
         private readonly IBackupManager backupManager;
-        private readonly SettingDataAccess roamingSettings;
 
         /// <summary>
         ///     Creates a new instance
         /// </summary>
-        /// <param name="backupService">Helper for uploading and downloading to the respective backup service.</param>
-        /// <param name="roamingSettings">Access to the roaming settings.</param>
-        /// <param name="repositoryManager">An instance of the repository manager to reload data.</param>
-        public AutoBackupManager(IBackupManager backupManager, SettingDataAccess roamingSettings)
+        /// <param name="backupManager">An backup manager object that handles the restoring and creating of backups.</param>
+        public AutoBackupManager(IBackupManager backupManager)
         {
             this.backupManager = backupManager;
-            this.roamingSettings = roamingSettings;
         }
 
         /// <summary>
@@ -34,12 +30,12 @@ namespace MoneyFox.Shared.Manager
         {
             try
             {
-                if (!roamingSettings.IsBackupAutouploadEnabled)
+                if (!SettingsHelper.IsBackupAutouploadEnabled)
                 {
                     return;
                 }
 
-                if (await backupManager.GetBackupDate() < Settings.LastDatabaseUpdate)
+                if (await backupManager.GetBackupDate() < SettingsHelper.LastDatabaseUpdate)
                 {
                     await backupManager.CreateNewBackup();
                 }
@@ -57,13 +53,13 @@ namespace MoneyFox.Shared.Manager
         {
             try
             {
-                if (!roamingSettings.IsBackupAutouploadEnabled)
+                if (!SettingsHelper.IsBackupAutouploadEnabled)
                 {
                     return;
                 }
 
                 var backupDate = await backupManager.GetBackupDate();
-                if (backupDate > Settings.LastDatabaseUpdate)
+                if (backupDate > SettingsHelper.LastDatabaseUpdate)
                 {
                     await backupManager.RestoreBackup();
                 }

@@ -1,12 +1,12 @@
 using System;
-using MoneyFox.Shared.Interfaces;
+using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using MvvmCross.Platform;
 using PropertyChanged;
 
 namespace MoneyFox.Shared.Helpers
 {
     [ImplementPropertyChanged]
-    public class Settings
+    public class SettingsHelper
     {
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
         private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
@@ -33,59 +33,58 @@ namespace MoneyFox.Shared.Helpers
         private const bool DARK_THEME_SELECTED_KEYDEFAULT = false;
         private static DateTime DatabaseLastUpdateKeydefault { get; } = DateTime.MinValue;
 
-        private static ILocalSettings LocalSettings => Mvx.Resolve<ILocalSettings>();
-        private static IRoamingSettings RoamingSettings => Mvx.Resolve<IRoamingSettings>();
+        private static ISettings Settings => Mvx.Resolve<ISettings>();
 
         #region Properties
 
         public static int DefaultAccount
         {
-            get { return RoamingSettings.GetValueOrDefault(DEFAULT_ACCOUNT_KEYNAME, DEFAULT_ACCOUNT_KEYDEFAULT); }
-            set { RoamingSettings.AddOrUpdateValue(DEFAULT_ACCOUNT_KEYNAME, value); }
+            get { return Settings.GetValue(DEFAULT_ACCOUNT_KEYNAME, DEFAULT_ACCOUNT_KEYDEFAULT, true); }
+            set { Settings.AddOrUpdateValue(DEFAULT_ACCOUNT_KEYNAME, value); }
         }
 
         public static bool ShowCashFlowOnMainTile
         {
             get
             {
-                return RoamingSettings.GetValueOrDefault(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME,
+                return Settings.GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME,
                     SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT);
             }
-            set { RoamingSettings.AddOrUpdateValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value); }
+            set { Settings.AddOrUpdateValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value); }
         }
 
         public static bool IsBackupAutouploadEnabled
         {
             get
             {
-                return RoamingSettings.GetValueOrDefault(AUTOUPLOAD_BACKUP_KEYNAME,
-                    AUTOUPLOAD_BACKUP_KEYDEFAULT);
+                return Settings.GetValue(AUTOUPLOAD_BACKUP_KEYNAME,
+                    AUTOUPLOAD_BACKUP_KEYDEFAULT, true);
             }
-            set { RoamingSettings.AddOrUpdateValue(AUTOUPLOAD_BACKUP_KEYNAME, value); }
+            set { Settings.AddOrUpdateValue(AUTOUPLOAD_BACKUP_KEYNAME, value); }
         }
 
         public static string SessionTimestamp
         {
-            get { return LocalSettings.GetValueOrDefault(SESSION_TIMESTAMP_KEY, SESSION_TIMESTAMP_DEFAULT); }
-            set { LocalSettings.AddOrUpdateValue(SESSION_TIMESTAMP_KEY, value); }
+            get { return Settings.GetValue(SESSION_TIMESTAMP_KEY, SESSION_TIMESTAMP_DEFAULT); }
+            set { Settings.AddOrUpdateValue(SESSION_TIMESTAMP_KEY, value); }
         }
 
         public static bool PasswordRequired
         {
-            get { return LocalSettings.GetValueOrDefault(PASSWORD_REQUIRED_KEYNAME, PASSWORD_REQUIRED_KEYDEFAULT); }
-            set { LocalSettings.AddOrUpdateValue(PASSWORD_REQUIRED_KEYNAME, value); }
+            get { return Settings.GetValue(PASSWORD_REQUIRED_KEYNAME, PASSWORD_REQUIRED_KEYDEFAULT); }
+            set { Settings.AddOrUpdateValue(PASSWORD_REQUIRED_KEYNAME, value); }
         }
 
         public static DateTime LastDatabaseUpdate
         {
-            get { return LocalSettings.GetValueOrDefault(DATABASE_LAST_UPDATE_KEYNAME, DatabaseLastUpdateKeydefault); }
-            set { LocalSettings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value); }
+            get { return Settings.GetValue(DATABASE_LAST_UPDATE_KEYNAME, DatabaseLastUpdateKeydefault); }
+            set { Settings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value); }
         }
 
         public static bool IsDarkThemeSelected
         {
-            get { return LocalSettings.GetValueOrDefault(DARK_THEME_SELECTED, DARK_THEME_SELECTED_KEYDEFAULT); }
-            set { LocalSettings.AddOrUpdateValue(DARK_THEME_SELECTED, value); }
+            get { return Settings.GetValue(DARK_THEME_SELECTED, DARK_THEME_SELECTED_KEYDEFAULT); }
+            set { Settings.AddOrUpdateValue(DARK_THEME_SELECTED, value); }
         }
 
         #endregion Properties

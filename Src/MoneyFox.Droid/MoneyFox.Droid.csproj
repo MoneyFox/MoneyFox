@@ -64,6 +64,14 @@
     <CscToolPath>$(MSBuildProgramFiles32)\MSBuild\14.0\Bin</CscToolPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.1.2.5\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Cheesebaron.MvxPlugins.Settings.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.1.2.5\lib\MonoAndroid10\Cheesebaron.MvxPlugins.Settings.Droid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Export" />
     <Reference Include="mscorlib" />
@@ -248,6 +256,7 @@
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Bootstrap\SettingsPluginBootstrap.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
@@ -274,10 +283,8 @@
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\NotificationService.cs" />
     <Compile Include="Src\Localize.cs" />
-    <Compile Include="Src\LocalSettings.cs" />
     <Compile Include="Src\OneDriveAuthenticator.cs" />
     <Compile Include="Src\ProtectedData.cs" />
-    <Compile Include="Src\RoamingSettings.cs" />
     <Compile Include="Src\StoreFeatures.cs" />
     <Compile Include="Src\TempMessage.cs" />
     <Compile Include="Activities\MainActivity.cs" />

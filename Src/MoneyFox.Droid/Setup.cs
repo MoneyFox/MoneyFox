@@ -52,8 +52,6 @@ namespace MoneyFox.Droid
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IAppInformation, AppInformation>();
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
-            Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
-            Mvx.RegisterType<ILocalSettings, LocalSettings>();
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();
             Mvx.RegisterType<ISpendingShortcut, ExpenseWidget>();
