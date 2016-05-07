@@ -3,6 +3,20 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "Cheesebaron.MvxPlugins.Connectivity/0.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "MvvmCross.Plugin.Messenger": "4.0.0"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        }
+      },
       "Cheesebaron.MvxPlugins.Settings/1.2.5": {
         "dependencies": {
           "MvvmCross.Platform": "4.0.0",
@@ -2062,6 +2076,20 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-arm": {
+      "Cheesebaron.MvxPlugins.Connectivity/0.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "MvvmCross.Plugin.Messenger": "4.0.0"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        }
+      },
       "Cheesebaron.MvxPlugins.Settings/1.2.5": {
         "dependencies": {
           "MvvmCross.Platform": "4.0.0",
@@ -3982,6 +4010,20 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "Cheesebaron.MvxPlugins.Connectivity/0.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "MvvmCross.Plugin.Messenger": "4.0.0"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        }
+      },
       "Cheesebaron.MvxPlugins.Settings/1.2.5": {
         "dependencies": {
           "MvvmCross.Platform": "4.0.0",
@@ -5860,6 +5902,20 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x64": {
+      "Cheesebaron.MvxPlugins.Connectivity/0.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "MvvmCross.Plugin.Messenger": "4.0.0"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        }
+      },
       "Cheesebaron.MvxPlugins.Settings/1.2.5": {
         "dependencies": {
           "MvvmCross.Platform": "4.0.0",
@@ -7788,6 +7844,20 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "Cheesebaron.MvxPlugins.Connectivity/0.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "MvvmCross.Plugin.Messenger": "4.0.0"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        }
+      },
       "Cheesebaron.MvxPlugins.Settings/1.2.5": {
         "dependencies": {
           "MvvmCross.Platform": "4.0.0",
@@ -9666,6 +9736,20 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x86": {
+      "Cheesebaron.MvxPlugins.Connectivity/0.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "MvvmCross.Plugin.Messenger": "4.0.0"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        }
+      },
       "Cheesebaron.MvxPlugins.Settings/1.2.5": {
         "dependencies": {
           "MvvmCross.Platform": "4.0.0",
@@ -11594,6 +11678,20 @@
       "xunit.runner.visualstudio/2.1.0": {}
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "Cheesebaron.MvxPlugins.Connectivity/0.0.2": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "MvvmCross.Plugin.Messenger": "4.0.0"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll": {}
+        }
+      },
       "Cheesebaron.MvxPlugins.Settings/1.2.5": {
         "dependencies": {
           "MvvmCross.Platform": "4.0.0",
@@ -13473,6 +13571,40 @@
     }
   },
   "libraries": {
+    "Cheesebaron.MvxPlugins.Connectivity/0.0.2": {
+      "sha512": "CpFAbSbftUahB9QwmRoq6/Hr3+wCUAGPzaaJpwGb+WgIISdRxjXzgxHC08c/5wVkpd67YD+/Bl+U0zHkOfjKzg==",
+      "type": "package",
+      "files": [
+        "Cheesebaron.MvxPlugins.Connectivity.0.0.2.nupkg.sha512",
+        "Cheesebaron.MvxPlugins.Connectivity.nuspec",
+        "content/MonoAndroid10/Bootstrap/ConnectivityPluginBootstrap.cs.pp",
+        "content/Xamarin.iOS10/Bootstrap/ConnectivityPluginBootstrap.cs.pp",
+        "content/win81/Bootstrap/ConnectivityPluginBootstrap.cs.pp",
+        "content/wpa81/Bootstrap/ConnectivityPluginBootstrap.cs.pp",
+        "lib/MonoAndroid10/Cheesebaron.MvxPlugins.Connectivity.Droid.dll",
+        "lib/MonoAndroid10/Cheesebaron.MvxPlugins.Connectivity.dll",
+        "lib/MonoAndroid10/Cheesebaron.MvxPlugins.Connectivity.dll.mdb",
+        "lib/Xamarin.iOS10/Cheesebaron.MvxPlugins.Connectivity.Touch.dll",
+        "lib/Xamarin.iOS10/Cheesebaron.MvxPlugins.Connectivity.dll",
+        "lib/Xamarin.iOS10/Cheesebaron.MvxPlugins.Connectivity.dll.mdb",
+        "lib/dotnet/Cheesebaron.MvxPlugins.Connectivity.dll",
+        "lib/dotnet/Cheesebaron.MvxPlugins.Connectivity.dll.mdb",
+        "lib/portable-net45+win+wpa81/Cheesebaron.MvxPlugins.Connectivity.dll",
+        "lib/portable-net45+win+wpa81/Cheesebaron.MvxPlugins.Connectivity.dll.mdb",
+        "lib/portable-win81+wpa81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll",
+        "lib/portable-win81+wpa81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.pri",
+        "lib/portable-win81+wpa81/Cheesebaron.MvxPlugins.Connectivity.dll",
+        "lib/portable-win81+wpa81/Cheesebaron.MvxPlugins.Connectivity.dll.mdb",
+        "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll",
+        "lib/win81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.pri",
+        "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll",
+        "lib/win81/Cheesebaron.MvxPlugins.Connectivity.dll.mdb",
+        "lib/wpa81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.dll",
+        "lib/wpa81/Cheesebaron.MvxPlugins.Connectivity.WindowsCommon.pri",
+        "lib/wpa81/Cheesebaron.MvxPlugins.Connectivity.dll",
+        "lib/wpa81/Cheesebaron.MvxPlugins.Connectivity.dll.mdb"
+      ]
+    },
     "Cheesebaron.MvxPlugins.Settings/1.2.5": {
       "sha512": "PU4Kj+2MTV1cTZaUv3tkbnl0AJVChIdRM/niPGNTLU75h58W4P2qlLUe+KE8bj8/3VwQyCwjAhKHzLMZxIq48g==",
       "type": "package",

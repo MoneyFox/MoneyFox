@@ -1,4 +1,6 @@
 using Windows.UI.Xaml.Controls;
+using Cheesebaron.MvxPlugins.Connectivity;
+using Cheesebaron.MvxPlugins.Connectivity.WindowsCommon;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Shared.Interfaces;
@@ -41,6 +43,7 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<IMvxSqliteConnectionFactory, WindowsSqliteConnectionFactory>();
             Mvx.RegisterType<IMvxFileStore, MvxWindowsCommonFileStore>();
             Mvx.RegisterType<ISettings, WindowsCommonSettings>();
+            Mvx.RegisterType<IConnectivity, Connectivity>();
         }
 
         protected override void InitializeFirstChance()
