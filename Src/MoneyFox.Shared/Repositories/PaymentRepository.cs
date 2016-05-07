@@ -96,10 +96,10 @@ namespace MoneyFox.Shared.Repositories
             }
             if (dataAccess.SaveItem(payment))
             {
-                notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
+                Settings.LastDatabaseUpdate = DateTime.Now;
             } else
             {
-                Settings.LastDatabaseUpdate = DateTime.Now;
+                notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
             }
         }
 
@@ -109,24 +109,18 @@ namespace MoneyFox.Shared.Repositories
         /// <param name="paymentToDelete">Payment to delete.</param>
         public void Delete(Payment paymentToDelete)
         {
-            var payments = Data.Where(x => x.Id == paymentToDelete.Id).ToList();
-
-            foreach (var payment in payments)
+            data.Remove(paymentToDelete);
+            if (dataAccess.DeleteItem(paymentToDelete))
             {
-                data.Remove(payment);
-                dataAccess.DeleteItem(payment);
-                if (dataAccess.DeleteItem(payment))
-                {
-                    notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
-                } else
-                {
-                    Settings.LastDatabaseUpdate = DateTime.Now;
-                }
-
-                // If this accountToDelete was the last finacial accountToDelete for the linked recurring accountToDelete
-                // delete the db entry for the recurring accountToDelete.
-                DeleteRecurringPaymentIfLastAssociated(payment);
+                Settings.LastDatabaseUpdate = DateTime.Now;
+            } else
+            {
+                notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
             }
+
+            // If this payment was the last one for the linked recurring payment
+            // delete the db entry for the recurring payment.
+            DeleteRecurringPaymentIfLastAssociated(paymentToDelete);
         }
 
         /// <summary>
