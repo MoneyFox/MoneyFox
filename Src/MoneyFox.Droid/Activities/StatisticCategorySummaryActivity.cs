@@ -5,6 +5,7 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 using Android.Content.PM;
 using Android.Support.V7.Widget;
 using Android.Views;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -22,6 +23,8 @@ namespace MoneyFox.Droid.Activities
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            Title = Strings.CategorySummaryLabel;
         }
 
         protected override void OnStart()

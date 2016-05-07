@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
@@ -42,7 +43,7 @@ namespace MoneyFox.Shared.ViewModels
         public bool IsEdit { get; set; }
 
         public string Title => IsEdit
-            ? $"{Strings.EditTitle} {SelectedAccount.Name}"
+            ? string.Format(Strings.EditAccountTitle, SelectedAccount.Name)
             : Strings.AddAccountTitle;
 
         /// <summary>

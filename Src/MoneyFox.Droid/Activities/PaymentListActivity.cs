@@ -25,6 +25,7 @@ namespace MoneyFox.Droid.Activities
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             LoadBalancePanel();
+            Title = ViewModel.Title;
         }
 
         private void LoadBalancePanel()

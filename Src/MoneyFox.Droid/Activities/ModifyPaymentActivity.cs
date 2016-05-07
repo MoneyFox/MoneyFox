@@ -40,6 +40,8 @@ namespace MoneyFox.Droid.Activities
             {
                 ViewModel.EndDate = date;
             }
+
+            Title = ViewModel.Title;
         }
 
         /// <summary>
