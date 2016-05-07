@@ -7,6 +7,7 @@ namespace MoneyFox.Droid.Fragments
     public class BalanceFragment : BaseFragment<BalanceViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_balance;
+        protected override string Title => string.Empty;
 
         public override void OnStart()
         {

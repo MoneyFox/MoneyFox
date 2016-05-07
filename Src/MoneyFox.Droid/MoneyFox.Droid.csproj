@@ -282,7 +282,6 @@
     <Compile Include="Src\TempMessage.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Fragments\SettingsFragment.cs" />
-    <Compile Include="Fragments\SettingsShortcutsFragment.cs" />
     <Compile Include="Fragments\SettingsSecurityFragment.cs" />
     <Compile Include="Src\Widgets\ExpenseWidget.cs" />
     <Compile Include="Src\Widgets\IncomeWidget.cs" />

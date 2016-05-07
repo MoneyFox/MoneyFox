@@ -15,6 +15,7 @@ namespace MoneyFox.Droid.Fragments
     public class CategoriesFragment : BaseFragment<CategoryListViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_category_list;
+        protected override string Title => Strings.CategoriesLabel;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
