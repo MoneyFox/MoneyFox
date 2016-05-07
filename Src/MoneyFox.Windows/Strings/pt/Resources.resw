@@ -355,7 +355,7 @@
     <value>Despesas mensais</value>
   </data>
   <data name="AccountsPlaceholder.Text" xml:space="preserve">
-    <value>There are no accounts. Add one by tapping on the three dots at bottom</value>
+    <value>There are no accounts. Add one by tapping on the three dots at bottom.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
     <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
