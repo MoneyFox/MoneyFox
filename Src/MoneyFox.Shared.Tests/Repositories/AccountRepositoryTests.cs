@@ -27,13 +27,9 @@ namespace MoneyFox.Shared.Tests.Repositories
             var settingsMockSetup = new Mock<ISettings>();
             settingsMockSetup.SetupAllProperties();
             settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>(), false))
-                .Callback((string key, DateTime date) => localDateSetting = date);
-
-            var roamSettingsMockSetup = new Mock<ISettings>();
-            roamSettingsMockSetup.SetupAllProperties();
+                .Callback((string key, DateTime date, bool roam) => localDateSetting = date);
 
             Mvx.RegisterType(() => settingsMockSetup.Object);
-            Mvx.RegisterType(() => roamSettingsMockSetup.Object);
         }
 
         [TestMethod]

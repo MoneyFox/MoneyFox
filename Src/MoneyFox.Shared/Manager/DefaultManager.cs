@@ -6,6 +6,7 @@ using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Manager
 {
+    //TODO: Refactor to helper class
     public class DefaultManager : IDefaultManager
     {
         private readonly IAccountRepository accountRepository;

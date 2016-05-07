@@ -32,7 +32,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             var settingsMockSetup = new Mock<ISettings>();
             settingsMockSetup.SetupAllProperties();
             settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>(), false))
-                .Callback((string key, DateTime date) => localDateSetting = date);
+                .Callback((string key, DateTime date, bool roam) => localDateSetting = date);
 
             Mvx.RegisterType(() => settingsMockSetup.Object);
         }
@@ -849,7 +849,6 @@ namespace MoneyFox.Shared.Tests.Repositories
                 new Mock<IAccountRepository>().Object,
                 new Mock<IRepository<Category>>().Object,
                 new Mock<INotificationService>().Object).Save(new Payment { ChargedAccountId = 0 });
-
         }
     }
 }

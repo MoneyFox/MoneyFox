@@ -83,7 +83,7 @@ namespace MoneyFox.Shared.Tests.Authentication
 
             var settingsSetup = new Mock<ISettings>();
             settingsSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<string>(), false))
-                .Callback((string key, string value) => resultDateTime = Convert.ToDateTime(value));
+                .Callback((string key, string value, bool roam) => resultDateTime = Convert.ToDateTime(value));
             settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(true);
 
