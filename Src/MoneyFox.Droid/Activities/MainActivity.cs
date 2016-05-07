@@ -25,8 +25,6 @@ namespace MoneyFox.Droid.Activities
         private CustomFragmentInfo currentFragmentInfo;
         public DrawerLayout DrawerLayout;
 
-        public FloatingActionButton fabCreateItem; 
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);

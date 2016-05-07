@@ -4,24 +4,18 @@
     android:id="@+id/drawer_layout"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/main_frame"
-        android:fitsSystemWindows="true"
+    <LinearLayout
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+        <include
+            layout="@layout/toolbar_actionbar" />
+        <FrameLayout
+            android:id="@+id/content_frame"
             android:layout_width="match_parent"
-            android:orientation="vertical">
-            <include
-                layout="@layout/toolbar_actionbar" />
-            <FrameLayout
-                android:id="@+id/content_frame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true" />
-        </LinearLayout>
-    </android.support.design.widget.CoordinatorLayout>
+            android:layout_height="match_parent" />
+    </LinearLayout>
     <FrameLayout
         android:id="@+id/navigation_frame"
         android:layout_height="match_parent"
