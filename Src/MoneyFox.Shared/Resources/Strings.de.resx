@@ -300,8 +300,8 @@
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Übertrag hinzufügen</value>
   </data>
-  <data name="EditTitle" xml:space="preserve">
-    <value>Bearbeiten</value>
+  <data name="EditAccountTitle" xml:space="preserve">
+    <value>{0} Bearbeiten</value>
   </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
     <value>Das Passwort und die Passwortbestätigung waren nicht übereinstimmend. Bitte überprüfe deine Eingabe.</value>
@@ -324,10 +324,10 @@
   <data name="AddTitle" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
-  <data name="CategorySummary" xml:space="preserve">
-    <value>Kategorie Zusammenfassung</value>
+  <data name="CategorySummaryLabel" xml:space="preserve">
+    <value>Zusammenfassung Kategorien</value>
   </data>
-  <data name="SpreadingLabel" xml:space="preserve">
+  <data name="CategorySpreadingLabel" xml:space="preserve">
     <value>Kategorienverteilung</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
@@ -373,7 +373,7 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Zusammenfassung der Kategorien mit einer Zahlung.</value>
   </data>
-  <data name="ExpenseHistory" xml:space="preserve">
+  <data name="ExpenseHistoryLabel" xml:space="preserve">
     <value>Ausgabenverlauf</value>
   </data>
   <data name="ExpenseHistoryDescription" xml:space="preserve">
@@ -414,5 +414,8 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   </data>
   <data name="ErrorTitleSave" xml:space="preserve">
     <value>Fehler beim Speichern</value>
+  </data>
+  <data name="ChooseCategorieTitle" xml:space="preserve">
+    <value>Kategorie wählen</value>
   </data>
 </root>

@@ -19,6 +19,8 @@ namespace MoneyFox.Droid.Fragments
     public class AccountListFragment : BaseFragment<AccountListViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_account_list;
+        protected override string Title => Strings.AccountsLabel;
+        
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -38,10 +40,11 @@ namespace MoneyFox.Droid.Fragments
                 builder.SetNegativeButton(Strings.CancelLabel, (d, t) => (d as Dialog).Dismiss());
                 builder.Show();
             };
+
             return view;
         }
 
-        private List<string> itemList = new List<string>
+        private readonly List<string> itemList = new List<string>
             {
                 Strings.AddAccountLabel,
                 Strings.AddIncomeLabel,

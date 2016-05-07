@@ -300,8 +300,8 @@
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Adicionar transferência</value>
   </data>
-  <data name="EditTitle" xml:space="preserve">
-    <value>Editar</value>
+  <data name="EditAccountTitle" xml:space="preserve">
+    <value>Edit {0}</value>
   </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
     <value>A senha e a confirmação da senha não correspondem. Por favor, verifique sua entrada.</value>
@@ -324,11 +324,11 @@
   <data name="AddTitle" xml:space="preserve">
     <value>Adicionar</value>
   </data>
-  <data name="CategorySummary" xml:space="preserve">
-    <value>Resumo de categoria</value>
+  <data name="CategorySummaryLabel" xml:space="preserve">
+    <value>Category Summary</value>
   </data>
-  <data name="SpreadingLabel" xml:space="preserve">
-    <value>Categoria se espalhando</value>
+  <data name="CategorySpreadingLabel" xml:space="preserve">
+    <value>Category Spreading</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Conta carregada</value>
@@ -373,8 +373,8 @@ Você deseja ir à loja para avaliar?</value>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Resumo das categorias com um pagamento.</value>
   </data>
-  <data name="ExpenseHistory" xml:space="preserve">
-    <value>História de despesa</value>
+  <data name="ExpenseHistoryLabel" xml:space="preserve">
+    <value>Expense History</value>
   </data>
   <data name="ExpenseHistoryDescription" xml:space="preserve">
     <value>Mostra uma comparação mês a mês ao longo de suas despesas totais para o intervalo de tempo selecionado.</value>
@@ -414,5 +414,8 @@ Você deseja ir à loja para avaliar?</value>
   </data>
   <data name="ErrorTitleSave" xml:space="preserve">
     <value>Error on save</value>
+  </data>
+  <data name="ChooseCategorieTitle" xml:space="preserve">
+    <value>Choose Categorie</value>
   </data>
 </root>

@@ -118,245 +118,246 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>О приложении</value>
+    <value>关于</value>
   </data>
   <data name="AccountTitle.Text" xml:space="preserve">
-    <value>Счета</value>
+    <value>账户</value>
   </data>
   <data name="AddAccountLabel.Label" xml:space="preserve">
-    <value>Добавить счёт</value>
+    <value>添加账户</value>
   </data>
   <data name="AddAccountText.Text" xml:space="preserve">
-    <value>Добавить счёт</value>
+    <value>添加账户</value>
   </data>
   <data name="AddAccountTitle.Text" xml:space="preserve">
-    <value>Добавить счёт</value>
+    <value>添加账户</value>
   </data>
   <data name="AddCategoryLabel.Label" xml:space="preserve">
-    <value>Добавить категорию</value>
+    <value>新建类别</value>
   </data>
   <data name="AddIncomeLabel.Label" xml:space="preserve">
-    <value>Доход</value>
+    <value>添加收入</value>
   </data>
   <data name="AddExpenseLabel.Label" xml:space="preserve">
-    <value>Расход</value>
+    <value>添加支出</value>
   </data>
   <data name="AddTransferLabel.Label" xml:space="preserve">
-    <value>Перевод</value>
+    <value>添加转账</value>
   </data>
   <data name="BackupInformation.Text" xml:space="preserve">
-    <value>Ваши данные сохранены в OneDrive. Вы можете найти их в папке "MoneyFoxBackupManager".</value>
+    <value>您的数据将被保存至您的OneDrive账户。您可以在叫做“MoneyFoxBackupManager"的文件夹里找到它们。</value>
   </data>
   <data name="RestoreInformation.Text" xml:space="preserve">
-    <value>Восстановить ваши данные из OneDrive. 
-Внимание: Ваши локальные данные будут потеряны.</value>
+    <value>将下载过去上传的数据备份并代替现存的本地数据。
+【警告】：未备份的本地更改将被丢失。</value>
   </data>
   <data name="BackupTitle.Text" xml:space="preserve">
-    <value>Резервная копия</value>
+    <value>备份</value>
   </data>
   <data name="CashFlowStatisticTitle.Text" xml:space="preserve">
-    <value>Денежный поток</value>
+    <value>现金流</value>
   </data>
   <data name="CategoriesHeader.Label" xml:space="preserve">
-    <value>Категории</value>
+    <value>类别</value>
   </data>
   <data name="CategorySummaryStatisticTitle.Text" xml:space="preserve">
-    <value>Категории</value>
+    <value>类别摘要</value>
   </data>
   <data name="ContactLabel.Text" xml:space="preserve">
-    <value>Связаться с нами:</value>
+    <value>联系方式：</value>
   </data>
   <data name="Delete.Text" xml:space="preserve">
-    <value>Удалить</value>
+    <value>删除</value>
   </data>
   <data name="DeleteAccountLabel.Label" xml:space="preserve">
-    <value>Удалить счет</value>
+    <value>删除账户</value>
   </data>
   <data name="DeveloperLabel.Text" xml:space="preserve">
-    <value>Разработчик</value>
+    <value>开发者</value>
   </data>
   <data name="Edit.Text" xml:space="preserve">
-    <value>Изменить</value>
+    <value>编辑</value>
   </data>
   <data name="InfoLabel.Text" xml:space="preserve">
-    <value>Информация</value>
+    <value>信息</value>
   </data>
   <data name="OpenSourceNote.Text" xml:space="preserve">
-    <value>Это проект с открытым исходным кодом. Мы будем рады поработать с вами! Нажмите, чтобы перейти в репозиторий:</value>
+    <value>这是一个开源的项目，我们期待着与你合作！请随时做出贡献。
+点击访问资源库</value>
   </data>
   <data name="RateThisApp.Content" xml:space="preserve">
-    <value>Оценить приложение</value>
+    <value>评价此应用</value>
   </data>
   <data name="SecurityHeader.Label" xml:space="preserve">
-    <value>Безопасность</value>
+    <value>安全</value>
   </data>
   <data name="SelectCategoryTitle.Text" xml:space="preserve">
-    <value>Выберите категорию</value>
+    <value>选择类别</value>
   </data>
   <data name="SetDate.Label" xml:space="preserve">
-    <value>Выбрать дату</value>
+    <value>设置日期</value>
   </data>
   <data name="SavePassword.Content" xml:space="preserve">
-    <value>Сохранить пароль</value>
+    <value>保存密码</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Параметры</value>
+    <value>设置</value>
   </data>
   <data name="SpreadingStatisticTitle.Text" xml:space="preserve">
-    <value>Расходы</value>
+    <value>转移</value>
   </data>
   <data name="TilesHeader.Label" xml:space="preserve">
-    <value>Плитки</value>
+    <value>磁贴</value>
   </data>
   <data name="TotalLabel.Text" xml:space="preserve">
-    <value>Всего: </value>
+    <value>总计： </value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>Версия: </value>
+    <value>版本： </value>
   </data>
   <data name="Password.Header" xml:space="preserve">
-    <value>Пароль</value>
+    <value>密码</value>
   </data>
   <data name="PasswordConfirmation.Header" xml:space="preserve">
-    <value>Подтвердите пароль</value>
+    <value>确认密码</value>
   </data>
   <data name="PasswordSettingSwitch.OffContent" xml:space="preserve">
-    <value>Защита паролем выключена</value>
+    <value>密码保护未启用</value>
   </data>
   <data name="PasswordSettingSwitch.OnContent" xml:space="preserve">
-    <value>Защита паролем включена</value>
+    <value>密码保护启用</value>
   </data>
   <data name="Login.Content" xml:space="preserve">
-    <value>Имя пользователя</value>
+    <value>登录</value>
   </data>
   <data name="PleaseLogin.Text" xml:space="preserve">
-    <value>Пожалуйста, введите ваш пароль для входа.</value>
+    <value>请输入您的密码</value>
   </data>
   <data name="Willkommen.Text" xml:space="preserve">
-    <value>Добро пожаловать!</value>
+    <value>欢迎！</value>
   </data>
   <data name="AddIncomeTile.Content" xml:space="preserve">
-    <value>Создать плитку дохода</value>
+    <value>创建收入磁贴</value>
   </data>
   <data name="AddExpenseTile.Content" xml:space="preserve">
-    <value>Создать плитку расхода</value>
+    <value>创建支出磁贴</value>
   </data>
   <data name="AddTransferTile.Content" xml:space="preserve">
-    <value>Создать плитку перевода</value>
+    <value>创建转账磁贴</value>
   </data>
   <data name="CategoryDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Готово</value>
+    <value>完成</value>
   </data>
   <data name="CategoryDialog.SecondaryButtonText" xml:space="preserve">
-    <value>Отмена</value>
+    <value>取消</value>
   </data>
   <data name="CategoryDialog.Title" xml:space="preserve">
-    <value>Добавить категорию</value>
+    <value>增加类别</value>
   </data>
   <data name="CreateBackup.Content" xml:space="preserve">
-    <value>Создать резервную копию</value>
+    <value>创建备份</value>
   </data>
   <data name="RemoveIncomeTile.Content" xml:space="preserve">
-    <value>Удалить плитку дохода</value>
+    <value>移除收入磁铁</value>
   </data>
   <data name="RemoveExpenseTile.Content" xml:space="preserve">
-    <value>Убрать плитку расхода</value>
+    <value>移除支出磁贴</value>
   </data>
   <data name="RemoveTransferTile.Content" xml:space="preserve">
-    <value>Удалить плитку перевода</value>
+    <value>移除转账磁贴</value>
   </data>
   <data name="RestoreBackup.Content" xml:space="preserve">
-    <value>Восстановить резервную копию</value>
+    <value>还原备份</value>
   </data>
   <data name="SelectDateRangeDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Готово</value>
+    <value>完成</value>
   </data>
   <data name="SelectDateRangeDialog.SecondaryButtonText" xml:space="preserve">
-    <value>Отмена</value>
+    <value>取消</value>
   </data>
   <data name="SelectDateRangeDialog.Title" xml:space="preserve">
-    <value>Выберите диапазон дат</value>
+    <value>选择日期范围</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.Header" xml:space="preserve">
-    <value>Показывать денежный поток на основной плитке</value>
+    <value>在主磁贴上展示现金流</value>
   </data>
   <data name="SearchHeader.Header" xml:space="preserve">
-    <value>Поиск</value>
+    <value>搜索</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.OffContent" xml:space="preserve">
-    <value>Нет</value>
+    <value>不</value>
   </data>
   <data name="ShowInfoOnMainTileHeader.OnContent" xml:space="preserve">
-    <value>Да</value>
+    <value>是</value>
   </data>
   <data name="AmountTextBox.Header" xml:space="preserve">
-    <value>Сумма</value>
+    <value>金额</value>
   </data>
   <data name="CategoryTextBox.Header" xml:space="preserve">
-    <value>Категория</value>
+    <value>类别</value>
   </data>
   <data name="DateDatePicker.Header" xml:space="preserve">
-    <value>Дата</value>
+    <value>日期</value>
   </data>
   <data name="EndlessCheckBox.Content" xml:space="preserve">
-    <value>Бесконечно</value>
+    <value>永不停止</value>
   </data>
   <data name="NoteTextBox.Header" xml:space="preserve">
-    <value>Примечание</value>
+    <value>备注</value>
   </data>
   <data name="RecurrenceComboBox.Header" xml:space="preserve">
-    <value>Периодичность</value>
+    <value>重复</value>
   </data>
   <data name="RepeatSwitch.Header" xml:space="preserve">
-    <value>Повторять</value>
+    <value>重复</value>
   </data>
   <data name="TargetAccountTextBox.Header" xml:space="preserve">
-    <value>Целевой счет</value>
+    <value>目标帐户</value>
   </data>
   <data name="PrivacyInfo.Text" xml:space="preserve">
-    <value>Для дальнейшего улучшения приложения, мы собираем данные о происходящих ошибка и проблемах.</value>
+    <value>为了进一步改进此程序，我们搜集了错误与问题的非个人隐私数据。</value>
   </data>
   <data name="DeleteLabel.Label" xml:space="preserve">
-    <value>Удалить</value>
+    <value>删除</value>
   </data>
   <data name="ModifyCategoryDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Готово</value>
+    <value>完成</value>
   </data>
   <data name="ModifyCategoryDialog.SecondaryButtonText" xml:space="preserve">
-    <value>Отмена</value>
+    <value>取消</value>
   </data>
   <data name="NameHeader.Header" xml:space="preserve">
-    <value>Имя</value>
+    <value>名称</value>
   </data>
   <data name="EndDateHeader.Header" xml:space="preserve">
-    <value>Дата окончания</value>
+    <value>结束日期</value>
   </data>
   <data name="StartDateHeader.Header" xml:space="preserve">
-    <value>Дата начала</value>
+    <value>开始日期</value>
   </data>
   <data name="RecurringPaymentList.Label" xml:space="preserve">
     <value>Recurring Payment Overview</value>
   </data>
   <data name="StatisticSelectorTitle.Text" xml:space="preserve">
-    <value>Выбрать статистику</value>
+    <value>选择统计</value>
   </data>
   <data name="BackupLastModifiedText.Text" xml:space="preserve">
-    <value>Последняя резервная копия была создана в:</value>
+    <value>最新的备份创建于：</value>
   </data>
   <data name="AutoBackupSettingHeader.Header" xml:space="preserve">
-    <value>Загрузить и скачать резервную копию вручную</value>
+    <value>手动上传、下载备份</value>
   </data>
   <data name="GeneralHeader.Label" xml:space="preserve">
-    <value>Общие параметры</value>
+    <value>通用</value>
   </data>
   <data name="DatabaseModifiedText.Text" xml:space="preserve">
-    <value>Последняя модификация базы данных:</value>
+    <value>最后一次数据修改：</value>
   </data>
   <data name="MonthlyExpenseStatisticTitle.Text" xml:space="preserve">
-    <value>Месячные расходы</value>
+    <value>每月费用</value>
   </data>
   <data name="AccountsPlaceholder.Text" xml:space="preserve">
-    <value>There are no accounts. Add one by tapping on the three dots at bottom</value>
+    <value>There are no accounts. Add one by tapping on the three dots at bottom.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
     <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>

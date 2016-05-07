@@ -26,6 +26,8 @@ namespace MoneyFox.Droid.Activities
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            Title = ViewModel.Title;
         }
 
         /// <summary>

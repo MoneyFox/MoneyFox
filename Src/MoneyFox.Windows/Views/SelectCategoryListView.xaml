@@ -8,21 +8,11 @@
                       mc:Ignorable="d"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.BottomAppBar>
-        <CommandBar>
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Add"
-                              Label="add"
-                              x:Uid="AddCategoryLabel"
-                              Click="AddCategory" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <userControls:PageHeader>
@@ -37,5 +27,15 @@
               EntranceNavigationTransitionInfo.IsTargetElement="True">
             <userControls:CategoryListUserControl />
         </Grid>
+
+        <CommandBar Grid.Row="2">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Add"
+                              Label="add"
+                              x:Uid="AddCategoryLabel"
+                              Click="AddCategory" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+
     </Grid>
 </views:MvxWindowsPage>

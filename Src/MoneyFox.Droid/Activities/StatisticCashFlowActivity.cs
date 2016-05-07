@@ -6,6 +6,7 @@ using Android.Content.PM;
 using Android.Support.V7.Widget;
 using OxyPlot.Xamarin.Android;
 using Android.Views;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -27,6 +28,7 @@ namespace MoneyFox.Droid.Activities
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             plotModel = FindViewById<PlotView>(Resource.Id.plotViewModel);
 
+            Title = Strings.CashflowLabel;
         }
 
         protected override void OnStart()

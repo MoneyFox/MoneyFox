@@ -1,12 +1,8 @@
-﻿using Microsoft.OneDrive.Sdk;
-using MoneyFox.Shared.Constants;
-using MoneyFox.Shared.Exceptions;
-using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace MoneyFox.Shared.ViewModels
@@ -66,7 +62,7 @@ namespace MoneyFox.Shared.ViewModels
             }
 
             IsLoading = true;
-            await backupManager.UploadNewBackup();
+            await backupManager.CreateNewBackup();
             BackupLastModified = DateTime.Now;
             await ShowCompletionNote();
             IsLoading = false;

@@ -31,6 +31,8 @@ namespace MoneyFox.Droid.Activities
 
             var list = FindViewById<ListView>(Resource.Id.category_list);
             RegisterForContextMenu(list);
+
+            Title = Strings.ChooseCategorieTitle;
         }
 
         /// <summary>

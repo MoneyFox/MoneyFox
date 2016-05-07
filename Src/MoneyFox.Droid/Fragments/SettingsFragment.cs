@@ -16,6 +16,7 @@ namespace MoneyFox.Droid.Fragments
     public class SettingsFragment : BaseFragment<SettingsViewModel>
     {
         protected override int FragmentId => Resource.Layout.fragment_settings;
+        protected override string Title => Strings.SettingsLabel;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -26,8 +27,6 @@ namespace MoneyFox.Droid.Fragments
             {
                 var fragments = new List<MvxFragmentPagerAdapter.FragmentInfo>
                 {
-//                        new MvxFragmentPagerAdapter.FragmentInfo(Strings.ShortcutsTitle, typeof (SettingsShortcutsFragment),
-//                            typeof (SettingsShortcutsViewModel)),
                     new MvxFragmentPagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof (SettingsSecurityFragment),
                         typeof (SettingsSecurityViewModel))
                 };

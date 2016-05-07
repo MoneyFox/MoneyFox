@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
+using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using OxyPlot.Xamarin.Android;
@@ -27,6 +28,7 @@ namespace MoneyFox.Droid.Activities
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             plotModel = FindViewById<PlotView>(Resource.Id.plotViewModel);
 
+            Title = Strings.ExpenseHistoryLabel;
         }
 
         protected override void OnStart()

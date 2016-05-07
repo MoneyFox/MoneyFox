@@ -65,10 +65,10 @@ namespace MoneyFox.Shared.Repositories
             }
             if (dataAccess.SaveItem(category))
             {
-                notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
+                Settings.LastDatabaseUpdate = DateTime.Now;
             } else
             {
-                Settings.LastDatabaseUpdate = DateTime.Now;
+                notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
             }
         }
 
@@ -81,10 +81,10 @@ namespace MoneyFox.Shared.Repositories
             data.Remove(categoryToDelete);
             if (dataAccess.DeleteItem(categoryToDelete))
             {
-                notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
+                Settings.LastDatabaseUpdate = DateTime.Now;
             } else
             {
-                Settings.LastDatabaseUpdate = DateTime.Now;
+                notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
             }
         }
 

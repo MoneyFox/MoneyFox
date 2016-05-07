@@ -18,8 +18,7 @@
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
                 <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Add Account"
-                           x:Uid="ModifyAccountViewTitle" />
+                           Text="{Binding Title}" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 

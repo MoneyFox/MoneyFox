@@ -17,7 +17,7 @@ namespace MoneyFox.Shared.Tests.Repositories
     [TestClass]
     public class CategoryRepositoryTests : MvxIoCSupportingTest
     {
-        private DateTime _localDateSetting;
+        private DateTime localDateSetting;
 
         [TestInitialize]
         public void Init()
@@ -28,7 +28,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             var settingsMockSetup = new Mock<ILocalSettings>();
             settingsMockSetup.SetupAllProperties();
             settingsMockSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<DateTime>()))
-                .Callback((string key, DateTime date) => _localDateSetting = date);
+                .Callback((string key, DateTime date) => localDateSetting = date);
 
             var roamSettingsMockSetup = new Mock<IRoamingSettings>();
             roamSettingsMockSetup.SetupAllProperties();
@@ -158,11 +158,50 @@ namespace MoneyFox.Shared.Tests.Repositories
         {
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Category>())).Returns(true);
 
             new CategoryRepository(dataAccessSetup.Object,
                 new Mock<INotificationService>().Object).Save(new Category());
-            _localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
-            _localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
+            localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
+            localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
+        }
+
+        [TestMethod]
+        public void Save_NotifyUserOfFailure()
+        {
+            bool isNotificationServiceCalled = false;
+
+            var dataAccessSetup = new Mock<IDataAccess<Category>>();
+            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Category>())).Returns(false);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+
+            var notificationServiceSetup = new Mock<INotificationService>();
+            notificationServiceSetup.Setup(x => x.SendBasicNotification(It.IsAny<string>(), It.IsAny<string>()))
+                .Callback((string x, string y) => isNotificationServiceCalled = true);
+
+            new CategoryRepository(dataAccessSetup.Object,
+                notificationServiceSetup.Object).Save(new Category());
+
+            isNotificationServiceCalled.ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void Delete_NotifyUserOfFailure()
+        {
+            bool isNotificationServiceCalled = false;
+
+            var dataAccessSetup = new Mock<IDataAccess<Category>>();
+            dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Category>())).Returns(false);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+
+            var notificationServiceSetup = new Mock<INotificationService>();
+            notificationServiceSetup.Setup(x => x.SendBasicNotification(It.IsAny<string>(), It.IsAny<string>()))
+                .Callback((string x, string y) => isNotificationServiceCalled = true);
+
+            new CategoryRepository(dataAccessSetup.Object,
+                notificationServiceSetup.Object).Delete(new Category());
+
+            isNotificationServiceCalled.ShouldBeTrue();
         }
     }
 }

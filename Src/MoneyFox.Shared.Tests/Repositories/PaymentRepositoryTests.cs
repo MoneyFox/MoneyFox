@@ -779,14 +779,80 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Save_UpdateTimeStamp()
         {
-            var dataAccessSetup = new Mock<IDataAccess<Category>>();
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+            var dataAccessSetup = new Mock<IDataAccess<Payment>>();
+            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>())).Returns(true);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
 
-            new CategoryRepository(dataAccessSetup.Object,
-                new Mock<INotificationService>().Object)
-                .Save(new Category());
+            new PaymentRepository(dataAccessSetup.Object,
+                new Mock<IDataAccess<RecurringPayment>>().Object,
+                new Mock<IAccountRepository>().Object,
+                new Mock<IRepository<Category>>().Object,
+                new Mock<INotificationService>().Object).Save(new Payment { ChargedAccountId = 2 });
+
             _localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
             _localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
+        }
+
+        [TestMethod]
+        public void Save_NotifyUserOfFailure()
+        {
+            bool isNotificationServiceCalled = false;
+
+            var dataAccessSetup = new Mock<IDataAccess<Payment>>();
+            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>())).Returns(false);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
+
+            var notificationServiceSetup = new Mock<INotificationService>();
+            notificationServiceSetup.Setup(x => x.SendBasicNotification(It.IsAny<string>(), It.IsAny<string>()))
+                .Callback((string x, string y) => isNotificationServiceCalled = true);
+
+            new PaymentRepository(dataAccessSetup.Object,
+                new Mock<IDataAccess<RecurringPayment>>().Object,
+                new Mock<IAccountRepository>().Object,
+                new Mock<IRepository<Category>>().Object,
+                notificationServiceSetup.Object).Save(new Payment {ChargedAccountId = 2});
+
+            isNotificationServiceCalled.ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void Delete_NotifyUserOfFailure()
+        {
+            bool isNotificationServiceCalled = false;
+
+            var dataAccessSetup = new Mock<IDataAccess<Payment>>();
+            dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Payment>())).Returns(false);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
+
+            var redDataAccessSetup = new Mock<IDataAccess<RecurringPayment>>();
+            redDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>())).Returns(new List<RecurringPayment>());
+
+            var notificationServiceSetup = new Mock<INotificationService>();
+            notificationServiceSetup.Setup(x => x.SendBasicNotification(It.IsAny<string>(), It.IsAny<string>()))
+                .Callback((string x, string y) => isNotificationServiceCalled = true);
+
+            new PaymentRepository(dataAccessSetup.Object,
+                redDataAccessSetup.Object,
+                new Mock<IAccountRepository>().Object,
+                new Mock<IRepository<Category>>().Object,
+                notificationServiceSetup.Object).Delete(new Payment());
+
+            isNotificationServiceCalled.ShouldBeTrue();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(AccountMissingException))]
+        public void Save_NoChargedAccount()
+        {
+            var dataAccessSetup = new Mock<IDataAccess<Payment>>();
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
+
+            new PaymentRepository(dataAccessSetup.Object,
+                new Mock<IDataAccess<RecurringPayment>>().Object,
+                new Mock<IAccountRepository>().Object,
+                new Mock<IRepository<Category>>().Object,
+                new Mock<INotificationService>().Object).Save(new Payment { ChargedAccountId = 0 });
+
         }
     }
 }

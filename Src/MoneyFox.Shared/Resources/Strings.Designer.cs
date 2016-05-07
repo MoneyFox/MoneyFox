@@ -287,11 +287,11 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category Summary.
+        ///   Looks up a localized string similar to Category Spreading.
         /// </summary>
-        public static string CategorySummary {
+        public static string CategorySpreadingLabel {
             get {
-                return ResourceManager.GetString("CategorySummary", resourceCulture);
+                return ResourceManager.GetString("CategorySpreadingLabel", resourceCulture);
             }
         }
         
@@ -301,6 +301,15 @@ namespace MoneyFox.Shared.Resources {
         public static string CategorySummaryDescription {
             get {
                 return ResourceManager.GetString("CategorySummaryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category Summary.
+        /// </summary>
+        public static string CategorySummaryLabel {
+            get {
+                return ResourceManager.GetString("CategorySummaryLabel", resourceCulture);
             }
         }
         
@@ -328,6 +337,15 @@ namespace MoneyFox.Shared.Resources {
         public static string ChargedAccountLabel {
             get {
                 return ResourceManager.GetString("ChargedAccountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Categorie.
+        /// </summary>
+        public static string ChooseCategorieTitle {
+            get {
+                return ResourceManager.GetString("ChooseCategorieTitle", resourceCulture);
             }
         }
         
@@ -404,6 +422,15 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit {0}.
+        /// </summary>
+        public static string EditAccountTitle {
+            get {
+                return ResourceManager.GetString("EditAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Category.
         /// </summary>
         public static string EditCategoryTitle {
@@ -436,15 +463,6 @@ namespace MoneyFox.Shared.Resources {
         public static string EditSpendingTitle {
             get {
                 return ResourceManager.GetString("EditSpendingTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit.
-        /// </summary>
-        public static string EditTitle {
-            get {
-                return ResourceManager.GetString("EditTitle", resourceCulture);
             }
         }
         
@@ -503,20 +521,20 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expense History.
-        /// </summary>
-        public static string ExpenseHistory {
-            get {
-                return ResourceManager.GetString("ExpenseHistory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Shows a month by month comparison over your total expenses for the selected time range..
         /// </summary>
         public static string ExpenseHistoryDescription {
             get {
                 return ResourceManager.GetString("ExpenseHistoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expense History.
+        /// </summary>
+        public static string ExpenseHistoryLabel {
+            get {
+                return ResourceManager.GetString("ExpenseHistoryLabel", resourceCulture);
             }
         }
         
@@ -860,15 +878,6 @@ namespace MoneyFox.Shared.Resources {
         public static string ShortcutsTitle {
             get {
                 return ResourceManager.GetString("ShortcutsTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Category Spreading.
-        /// </summary>
-        public static string SpreadingLabel {
-            get {
-                return ResourceManager.GetString("SpreadingLabel", resourceCulture);
             }
         }
         

@@ -21,12 +21,18 @@ namespace MoneyFox.Droid.Fragments
         }
 
         protected abstract int FragmentId { get; }
+        protected abstract string Title { get; }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
 
             var view = this.BindingInflate(FragmentId, null);
+
+            if (Title != string.Empty)
+            {
+                Activity.Title = Title;
+            }
 
             //TODO: I guess this can be removed?
             toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);

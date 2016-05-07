@@ -20,19 +20,19 @@ namespace MoneyFox.Shared.ViewModels
             },
             new StatisticSelectorType
             {
-                Name = Strings.SpreadingLabel,
+                Name = Strings.CategorySpreadingLabel,
                 Description = Strings.CategorieSpreadingDescription,
                 Type = StatisticType.CategorySpreading
             },
             new StatisticSelectorType
             {
-                Name = Strings.CategorySummary,
+                Name = Strings.CategorySummaryLabel,
                 Description = Strings.CategorySummaryDescription,
                 Type = StatisticType.CategorySummary
             },
             new StatisticSelectorType
             {
-                Name = Strings.ExpenseHistory,
+                Name = Strings.ExpenseHistoryLabel,
                 Description = Strings.ExpenseHistoryDescription,
                 Type = StatisticType.ExpenseHistory
             }

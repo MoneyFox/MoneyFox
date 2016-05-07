@@ -22,8 +22,8 @@ namespace MoneyFox.Shared
             this.connectionFactory = connectionFactory;
             this.fileStore = fileStore;
 
-            CreateDb();
-            MigrateDb();
+            CreateDatabase();
+            MigrateDatabase();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace MoneyFox.Shared
         public SQLiteAsyncConnection GetAsyncConnection()
             => connectionFactory.GetAsyncConnection(new SqLiteConfig(BackupConstants.DB_NAME, false));
 
-        private void CreateDb()
+        public void CreateDatabase()
         {
             using (var db = connectionFactory.GetConnection(BackupConstants.DB_NAME))
             {
@@ -51,7 +51,7 @@ namespace MoneyFox.Shared
             }
         }
 
-        private void MigrateDb()
+        public void MigrateDatabase()
         {
             if (fileStore.Exists(BackupConstants.DB_NAME_OLD))
             {

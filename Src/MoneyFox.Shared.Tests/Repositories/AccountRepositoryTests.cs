@@ -146,14 +146,53 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Save_UpdateTimeStamp()
         {
-            var dataAccessSetup = new Mock<IDataAccess<Category>>();
-            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Category>());
+            var dataAccessSetup = new Mock<IDataAccess<Account>>();
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>())).Returns(true);
 
-            new CategoryRepository(dataAccessSetup.Object,
-                new Mock<INotificationService>().Object).Save(new Category());
+            new AccountRepository(dataAccessSetup.Object,
+                new Mock<INotificationService>().Object).Save(new Account());
 
             localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
             localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
+        }
+
+        [TestMethod]
+        public void Save_NotifyUserOfFailure()
+        {
+            bool isNotificationServiceCalled = false;
+
+            var dataAccessSetup = new Mock<IDataAccess<Account>>();
+            dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>())).Returns(false);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
+            var notificationServiceSetup = new Mock<INotificationService>();
+            notificationServiceSetup.Setup(x => x.SendBasicNotification(It.IsAny<string>(), It.IsAny<string>()))
+                .Callback((string x, string y) => isNotificationServiceCalled = true);
+
+            new AccountRepository(dataAccessSetup.Object,
+                notificationServiceSetup.Object).Save(new Account());
+
+            isNotificationServiceCalled.ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void Delete_NotifyUserOfFailure()
+        {
+            bool isNotificationServiceCalled = false;
+
+            var dataAccessSetup = new Mock<IDataAccess<Account>>();
+            dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Account>())).Returns(false);
+            dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Account>());
+
+            var notificationServiceSetup = new Mock<INotificationService>();
+            notificationServiceSetup.Setup(x => x.SendBasicNotification(It.IsAny<string>(), It.IsAny<string>()))
+                .Callback((string x, string y) => isNotificationServiceCalled = true);
+
+            new AccountRepository(dataAccessSetup.Object,
+                notificationServiceSetup.Object).Delete(new Account());
+
+            isNotificationServiceCalled.ShouldBeTrue();
         }
     }
 }

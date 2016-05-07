@@ -300,8 +300,8 @@
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Add Transfer</value>
   </data>
-  <data name="EditTitle" xml:space="preserve">
-    <value>Edit</value>
+  <data name="EditAccountTitle" xml:space="preserve">
+    <value>Edit {0}</value>
   </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
     <value>The passwod and the password confirmation didn't match. Please check your input.</value>
@@ -324,10 +324,10 @@
   <data name="AddTitle" xml:space="preserve">
     <value>Add</value>
   </data>
-  <data name="CategorySummary" xml:space="preserve">
+  <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Category Summary</value>
   </data>
-  <data name="SpreadingLabel" xml:space="preserve">
+  <data name="CategorySpreadingLabel" xml:space="preserve">
     <value>Category Spreading</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
@@ -373,7 +373,7 @@ Do you want to go the the store to rate?</value>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Summary of the categories with a payment.</value>
   </data>
-  <data name="ExpenseHistory" xml:space="preserve">
+  <data name="ExpenseHistoryLabel" xml:space="preserve">
     <value>Expense History</value>
   </data>
   <data name="ExpenseHistoryDescription" xml:space="preserve">
@@ -414,5 +414,8 @@ Do you want to go the the store to rate?</value>
   </data>
   <data name="ErrorTitleSave" xml:space="preserve">
     <value>Error on save</value>
+  </data>
+  <data name="ChooseCategorieTitle" xml:space="preserve">
+    <value>Choose Categorie</value>
   </data>
 </root>

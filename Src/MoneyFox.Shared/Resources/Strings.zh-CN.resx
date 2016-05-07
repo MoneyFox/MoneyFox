@@ -300,8 +300,8 @@
   <data name="AddTransferTitle" xml:space="preserve">
     <value>添加转账</value>
   </data>
-  <data name="EditTitle" xml:space="preserve">
-    <value>编辑</value>
+  <data name="EditAccountTitle" xml:space="preserve">
+    <value>Edit {0}</value>
   </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
     <value>密码和确认密码不相符，请检查您的输入。</value>
@@ -324,11 +324,11 @@
   <data name="AddTitle" xml:space="preserve">
     <value>添加</value>
   </data>
-  <data name="CategorySummary" xml:space="preserve">
-    <value>类别摘要</value>
+  <data name="CategorySummaryLabel" xml:space="preserve">
+    <value>Category Summary</value>
   </data>
-  <data name="SpreadingLabel" xml:space="preserve">
-    <value>类别Spreading</value>
+  <data name="CategorySpreadingLabel" xml:space="preserve">
+    <value>Category Spreading</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
     <value>原账户</value>
@@ -372,8 +372,8 @@
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>有款项的类别的摘要</value>
   </data>
-  <data name="ExpenseHistory" xml:space="preserve">
-    <value>支出历史</value>
+  <data name="ExpenseHistoryLabel" xml:space="preserve">
+    <value>Expense History</value>
   </data>
   <data name="ExpenseHistoryDescription" xml:space="preserve">
     <value>显示您所选的时间范围内的总开支，按月比较。</value>
@@ -413,5 +413,8 @@
   </data>
   <data name="ErrorTitleSave" xml:space="preserve">
     <value>Error on save</value>
+  </data>
+  <data name="ChooseCategorieTitle" xml:space="preserve">
+    <value>Choose Categorie</value>
   </data>
 </root>

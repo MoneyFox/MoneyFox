@@ -300,8 +300,8 @@
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Перевод</value>
   </data>
-  <data name="EditTitle" xml:space="preserve">
-    <value>Изменить</value>
+  <data name="EditAccountTitle" xml:space="preserve">
+    <value>Edit {0}</value>
   </data>
   <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
     <value>Пароль и подтверждение пароля не совпадают.</value>
@@ -324,11 +324,11 @@
   <data name="AddTitle" xml:space="preserve">
     <value>Добавить</value>
   </data>
-  <data name="CategorySummary" xml:space="preserve">
-    <value>Категории</value>
+  <data name="CategorySummaryLabel" xml:space="preserve">
+    <value>Category Summary</value>
   </data>
-  <data name="SpreadingLabel" xml:space="preserve">
-    <value>Категория распространения</value>
+  <data name="CategorySpreadingLabel" xml:space="preserve">
+    <value>Category Spreading</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
     <value>Исходный счёт</value>
@@ -372,8 +372,8 @@
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Краткое описание категорий с оплатой.</value>
   </data>
-  <data name="ExpenseHistory" xml:space="preserve">
-    <value>История расходов</value>
+  <data name="ExpenseHistoryLabel" xml:space="preserve">
+    <value>Expense History</value>
   </data>
   <data name="ExpenseHistoryDescription" xml:space="preserve">
     <value>Показывает сопоставление по месяцам ваши общие расходы для выбранного интервала.</value>
@@ -413,5 +413,8 @@
   </data>
   <data name="ErrorTitleSave" xml:space="preserve">
     <value>Error on save</value>
+  </data>
+  <data name="ChooseCategorieTitle" xml:space="preserve">
+    <value>Choose Categorie</value>
   </data>
 </root>

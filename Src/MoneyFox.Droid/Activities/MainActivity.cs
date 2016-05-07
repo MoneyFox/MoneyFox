@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
@@ -15,7 +14,7 @@ using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace MoneyFox.Droid.Activities
 {
-    [Activity(Label = "MoneyManager",
+    [Activity(Label = "Money Fox",
         Icon = "@drawable/icon",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop,
@@ -24,8 +23,6 @@ namespace MoneyFox.Droid.Activities
     {
         private CustomFragmentInfo currentFragmentInfo;
         public DrawerLayout DrawerLayout;
-
-        public FloatingActionButton fabCreateItem; 
 
         protected override void OnCreate(Bundle bundle)
         {

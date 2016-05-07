@@ -41,7 +41,7 @@ namespace MoneyFox.Shared.Manager
 
                 if (await backupManager.GetBackupDate() < Settings.LastDatabaseUpdate)
                 {
-                    await backupManager.UploadNewBackup();
+                    await backupManager.CreateNewBackup();
                 }
             }
             catch (OneDriveException ex)
