@@ -48,7 +48,7 @@ namespace MoneyFox.Shared.Helpers
             get
             {
                 return Settings.GetValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME,
-                    SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT, true);
+                    SHOW_CASH_FLOW_ON_MAIN_TILE_KEYDEFAULT);
             }
             set { Settings.AddOrUpdateValue(SHOW_CASH_FLOW_ON_MAIN_TILE_KEYNAME, value); }
         }
