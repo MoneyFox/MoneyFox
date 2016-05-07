@@ -48,6 +48,7 @@
                     <VisualState.Setters>
                         <Setter Target="RootSplitView.DisplayMode" Value="CompactInline" />
                         <Setter Target="RootSplitView.IsPaneOpen" Value="True" />
+                        <Setter Target="RootSplitView.IsSwipeablePaneOpen" Value="True" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -57,6 +58,10 @@
                     <VisualState.Setters>
                         <Setter Target="RootSplitView.DisplayMode"
                                 Value="CompactOverlay" />
+                        <Setter Target="RootSplitView.IsPaneOpen"
+                                Value="False" />
+                        <Setter Target="RootSplitView.IsSwipeablePaneOpen"
+                                Value="False" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -65,6 +70,10 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="RootSplitView.DisplayMode" Value="Overlay" />
+                        <Setter Target="RootSplitView.IsPaneOpen"
+                                Value="False" />
+                        <Setter Target="RootSplitView.IsSwipeablePaneOpen"
+                                Value="False" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -118,7 +127,6 @@
 
         <!-- Declared last to have it rendered above everything else, but it needs to be the first item in the tab sequence. -->
         <ToggleButton x:Name="TogglePaneButton"
-                      Foreground="White"
                       TabIndex="1"
                       Style="{StaticResource SplitViewTogglePaneButtonStyle}"
                       IsChecked="{Binding IsSwipeablePaneOpen, ElementName=RootSplitView, Mode=TwoWay}"

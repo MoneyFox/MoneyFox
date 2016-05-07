@@ -692,6 +692,24 @@ namespace MoneyFox.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not connected to the internet. Please check your connection and try again..
+        /// </summary>
+        public static string NoNetworkMessage {
+            get {
+                return ResourceManager.GetString("NoNetworkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Internet Connection.
+        /// </summary>
+        public static string NoNetworkTitle {
+            get {
+                return ResourceManager.GetString("NoNetworkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not Now.
         /// </summary>
         public static string NotNowLabel {
