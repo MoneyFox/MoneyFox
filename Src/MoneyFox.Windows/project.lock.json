@@ -3,6 +3,20 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "Cheesebaron.MvxPlugins.Settings/1.2.5": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "Newtonsoft.Json": "8.0.2"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        }
+      },
       "Fody/1.29.2": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
@@ -387,7 +401,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {}
         }
       },
-      "Newtonsoft.Json/7.0.1": {
+      "Newtonsoft.Json/8.0.2": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -1997,6 +2011,20 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "Cheesebaron.MvxPlugins.Settings/1.2.5": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "Newtonsoft.Json": "8.0.2"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        }
+      },
       "Fody/1.29.2": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
@@ -2331,7 +2359,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {}
         }
       },
-      "Newtonsoft.Json/7.0.1": {
+      "Newtonsoft.Json/8.0.2": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -3852,6 +3880,20 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "Cheesebaron.MvxPlugins.Settings/1.2.5": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "Newtonsoft.Json": "8.0.2"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        }
+      },
       "Fody/1.29.2": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
@@ -4183,7 +4225,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {}
         }
       },
-      "Newtonsoft.Json/7.0.1": {
+      "Newtonsoft.Json/8.0.2": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -5665,6 +5707,20 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "Cheesebaron.MvxPlugins.Settings/1.2.5": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "Newtonsoft.Json": "8.0.2"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        }
+      },
       "Fody/1.29.2": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
@@ -6004,7 +6060,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {}
         }
       },
-      "Newtonsoft.Json/7.0.1": {
+      "Newtonsoft.Json/8.0.2": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -7528,6 +7584,20 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "Cheesebaron.MvxPlugins.Settings/1.2.5": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "Newtonsoft.Json": "8.0.2"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        }
+      },
       "Fody/1.29.2": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
@@ -7859,7 +7929,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {}
         }
       },
-      "Newtonsoft.Json/7.0.1": {
+      "Newtonsoft.Json/8.0.2": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -9341,6 +9411,20 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "Cheesebaron.MvxPlugins.Settings/1.2.5": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "Newtonsoft.Json": "8.0.2"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        }
+      },
       "Fody/1.29.2": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
@@ -9680,7 +9764,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {}
         }
       },
-      "Newtonsoft.Json/7.0.1": {
+      "Newtonsoft.Json/8.0.2": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -11204,6 +11288,20 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "Cheesebaron.MvxPlugins.Settings/1.2.5": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.0.0",
+          "Newtonsoft.Json": "8.0.2"
+        },
+        "compile": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll": {},
+          "lib/win81/Cheesebaron.MvxPlugins.Settings.dll": {}
+        }
+      },
       "Fody/1.29.2": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
@@ -11535,7 +11633,7 @@
           "lib/win81/MvvmCross.Plugins.WebBrowser.dll": {}
         }
       },
-      "Newtonsoft.Json/7.0.1": {
+      "Newtonsoft.Json/8.0.2": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         },
@@ -13018,6 +13116,50 @@
     }
   },
   "libraries": {
+    "Cheesebaron.MvxPlugins.Settings/1.2.5": {
+      "sha512": "PU4Kj+2MTV1cTZaUv3tkbnl0AJVChIdRM/niPGNTLU75h58W4P2qlLUe+KE8bj8/3VwQyCwjAhKHzLMZxIq48g==",
+      "type": "package",
+      "files": [
+        "Cheesebaron.MvxPlugins.Settings.1.2.5.nupkg.sha512",
+        "Cheesebaron.MvxPlugins.Settings.nuspec",
+        "content/MonoAndroid10/Bootstrap/SettingsPluginBootstrap.cs.pp",
+        "content/Xamarin.iOS10/Bootstrap/SettingsPluginBootstrap.cs.pp",
+        "content/net45/Bootstrap/SettingsPluginBootstrap.cs.pp",
+        "content/win81/Bootstrap/SettingsPluginBootstrap.cs.pp",
+        "content/wp8/Bootstrap/SettingsPluginBootstrap.cs.pp",
+        "content/wpa81/Bootstrap/SettingsPluginBootstrap.cs.pp",
+        "lib/MonoAndroid10/Cheesebaron.MvxPlugins.Settings.Droid.dll",
+        "lib/MonoAndroid10/Cheesebaron.MvxPlugins.Settings.Droid.dll.mdb",
+        "lib/MonoAndroid10/Cheesebaron.MvxPlugins.Settings.dll",
+        "lib/MonoAndroid10/Cheesebaron.MvxPlugins.Settings.dll.mdb",
+        "lib/Xamarin.iOS10/Cheesebaron.MvxPlugins.Settings.Touch.dll",
+        "lib/Xamarin.iOS10/Cheesebaron.MvxPlugins.Settings.Touch.dll.mdb",
+        "lib/Xamarin.iOS10/Cheesebaron.MvxPlugins.Settings.dll",
+        "lib/Xamarin.iOS10/Cheesebaron.MvxPlugins.Settings.dll.mdb",
+        "lib/dotnet/Cheesebaron.MvxPlugins.Settings.dll",
+        "lib/dotnet/Cheesebaron.MvxPlugins.Settings.dll.mdb",
+        "lib/net45/Cheesebaron.MvxPlugins.Settings.Wpf.dll",
+        "lib/net45/Cheesebaron.MvxPlugins.Settings.dll",
+        "lib/net45/Cheesebaron.MvxPlugins.Settings.dll.mdb",
+        "lib/portable-net45+win+wpa81+wp80/Cheesebaron.MvxPlugins.Settings.dll",
+        "lib/portable-net45+win+wpa81+wp80/Cheesebaron.MvxPlugins.Settings.dll.mdb",
+        "lib/portable-win81+wpa81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll",
+        "lib/portable-win81+wpa81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.pri",
+        "lib/portable-win81+wpa81/Cheesebaron.MvxPlugins.Settings.dll",
+        "lib/portable-win81+wpa81/Cheesebaron.MvxPlugins.Settings.dll.mdb",
+        "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll",
+        "lib/win81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.pri",
+        "lib/win81/Cheesebaron.MvxPlugins.Settings.dll",
+        "lib/win81/Cheesebaron.MvxPlugins.Settings.dll.mdb",
+        "lib/wp8/Cheesebaron.MvxPlugins.Settings.WindowsPhone.dll",
+        "lib/wp8/Cheesebaron.MvxPlugins.Settings.dll",
+        "lib/wp8/Cheesebaron.MvxPlugins.Settings.dll.mdb",
+        "lib/wpa81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.dll",
+        "lib/wpa81/Cheesebaron.MvxPlugins.Settings.WindowsCommon.pri",
+        "lib/wpa81/Cheesebaron.MvxPlugins.Settings.dll",
+        "lib/wpa81/Cheesebaron.MvxPlugins.Settings.dll.mdb"
+      ]
+    },
     "Fody/1.29.2": {
       "sha512": "7SoewNkJQFedmOiJHD5P1akJ1fRow+tFjj/M4QlJ5M5RTHdnDXxEnuSKF2t22aSxTmn9+4wO3FbtOrJYy31xmA==",
       "type": "package",
@@ -13997,13 +14139,12 @@
         "lib/wpa81/MvvmCross.Plugins.WebBrowser.dll.mdb"
       ]
     },
-    "Newtonsoft.Json/7.0.1": {
-      "sha512": "q3V4KLetMLnt1gpAVWgtXnHjKs0UG/RalBc29u2ZKxd5t5Ze4JBL5WiiYIklJyK/5CRiIiNwigVQUo0FgbsuWA==",
-      "type": "Package",
+    "Newtonsoft.Json/8.0.2": {
+      "sha512": "e5yWmEfu68rmtG431zl9N/7PlNKQDIuiDW5MHlEFAZcecakcxrIGnKqrPAtWNILzK2oNanRB5cD150MYhECK3g==",
+      "type": "package",
       "files": [
+        "Newtonsoft.Json.8.0.2.nupkg.sha512",
         "Newtonsoft.Json.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -14016,7 +14157,6 @@
         "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll",
         "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.xml",
-        "package/services/metadata/core-properties/49e907fc018c4c7ab632e6d4ad4766f8.psmdcp",
         "tools/install.ps1"
       ]
     },
@@ -17047,6 +17187,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "Cheesebaron.MvxPlugins.Settings >= 1.2.5",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
       "Microsoft.NETNative.Analyzer >= 1.0.0",
       "Microsoft.OneDriveSDK >= 1.1.20",

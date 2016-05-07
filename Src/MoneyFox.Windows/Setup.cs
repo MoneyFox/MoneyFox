@@ -1,7 +1,8 @@
 using Windows.UI.Xaml.Controls;
+using Cheesebaron.MvxPlugins.Settings.Interfaces;
+using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Shotcuts;
-using MoneyFox.Windows.SettingsAccess;
 using MoneyManager.Windows;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
@@ -39,6 +40,7 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
             Mvx.RegisterType<IMvxSqliteConnectionFactory, WindowsSqliteConnectionFactory>();
             Mvx.RegisterType<IMvxFileStore, MvxWindowsCommonFileStore>();
+            Mvx.RegisterType<ISettings, WindowsCommonSettings>();
         }
 
         protected override void InitializeFirstChance()
@@ -47,8 +49,6 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<IDialogService, DialogService>();
             Mvx.RegisterType<IAppInformation, AppInformation>();
             Mvx.RegisterType<IStoreFeatures, StoreFeatures>();
-            Mvx.RegisterType<IRoamingSettings, RoamingSettings>();
-            Mvx.RegisterType<ILocalSettings, LocalSettings>();
             Mvx.RegisterType<ITileUpdateService, TileUpdateService>();
             Mvx.RegisterType<IOneDriveAuthenticator, OneDriveAuthenticator>();
             Mvx.RegisterType<IProtectedData, ProtectedData>();

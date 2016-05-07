@@ -127,8 +127,6 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\OneDriveAuthenticator.cs" />
-    <Compile Include="SettingsAccess\LocalSettings.cs" />
-    <Compile Include="SettingsAccess\RoamingSettings.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\ProtectedData.cs" />

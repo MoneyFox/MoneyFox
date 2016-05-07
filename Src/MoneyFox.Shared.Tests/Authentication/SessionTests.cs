@@ -1,7 +1,7 @@
 ﻿using System;
+using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Authentication;
-using MoneyFox.Shared.Interfaces;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
@@ -21,8 +21,8 @@ namespace MoneyFox.Shared.Tests.Authentication
         [TestMethod]
         public void ValidateSession_PasswordNotRequired_SessionValid()
         {
-            var settingsSetup = new Mock<ILocalSettings>();
-            settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
+            var settingsSetup = new Mock<ISettings>();
+            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(false);
 
             Mvx.RegisterSingleton(settingsSetup.Object);
@@ -33,12 +33,12 @@ namespace MoneyFox.Shared.Tests.Authentication
         [TestMethod]
         public void ValidateSession_PasswordRequiredSessionNeverSet_SessionInvalid()
         {
-            var settingsSetup = new Mock<ILocalSettings>();
-            settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
+            var settingsSetup = new Mock<ISettings>();
+            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(true);
 
-            var roamingSettingsSetup = new Mock<IRoamingSettings>();
-            roamingSettingsSetup.Setup(x => x.GetValueOrDefault(It.IsAny<string>(), false))
+            var roamingSettingsSetup = new Mock<ISettings>();
+            roamingSettingsSetup.Setup(x => x.GetValue(It.IsAny<string>(), false, true))
                 .Returns(true);
 
             Mvx.RegisterSingleton(settingsSetup.Object);
@@ -49,11 +49,11 @@ namespace MoneyFox.Shared.Tests.Authentication
         [TestMethod]
         public void ValidateSession_PasswordRequiredSession_SessionInvalid()
         {
-            var settingsSetup = new Mock<ILocalSettings>();
+            var settingsSetup = new Mock<ISettings>();
             settingsSetup.Setup(
-                x => x.GetValueOrDefault(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>()))
+                x => x.GetValue(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>(), false))
                 .Returns(DateTime.Now.AddMinutes(-15).ToString);
-            settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
+            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(true);
 
             Mvx.RegisterSingleton(settingsSetup.Object);
@@ -64,11 +64,11 @@ namespace MoneyFox.Shared.Tests.Authentication
         [TestMethod]
         public void ValidateSession_PasswordRequiredSession_SessionValid()
         {
-            var settingsSetup = new Mock<ILocalSettings>();
+            var settingsSetup = new Mock<ISettings>();
             settingsSetup.Setup(
-                x => x.GetValueOrDefault(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>()))
+                x => x.GetValue(It.Is((string s) => s == "session_timestamp"), It.IsAny<string>(), false))
                 .Returns(DateTime.Now.AddMinutes(-5).ToString);
-            settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
+            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(true);
 
             Mvx.RegisterSingleton(settingsSetup.Object);
@@ -81,10 +81,10 @@ namespace MoneyFox.Shared.Tests.Authentication
         {
             var resultDateTime = DateTime.Today.AddDays(-10);
 
-            var settingsSetup = new Mock<ILocalSettings>();
-            settingsSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback((string key, string value) => resultDateTime = Convert.ToDateTime(value));
-            settingsSetup.Setup(x => x.GetValueOrDefault(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>()))
+            var settingsSetup = new Mock<ISettings>();
+            settingsSetup.Setup(x => x.AddOrUpdateValue(It.IsAny<string>(), It.IsAny<string>(), false))
+                .Callback((string key, string value, bool roam) => resultDateTime = Convert.ToDateTime(value));
+            settingsSetup.Setup(x => x.GetValue(It.Is((string s) => s == "PasswordRequired"), It.IsAny<bool>(), false))
                 .Returns(true);
 
             Mvx.RegisterSingleton(settingsSetup.Object);
