@@ -8,13 +8,11 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Shared.Resources;
-using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Controls;
-using MoneyFox.Windows.Converter;
 
 namespace MoneyFox.Windows.Views
 {
@@ -33,25 +31,25 @@ namespace MoneyFox.Windows.Views
                 {
                     Symbol = Symbol.Tag,
                     Label = Strings.CategoriesLabel,
-                    DestPage = typeof (CategoriesView)
+                    DestPage = typeof(CategoriesView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.SyncFolder,
                     Label = Strings.BackupLabel,
-                    DestPage = typeof (BackupView)
+                    DestPage = typeof(BackupView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.Setting,
                     Label = Strings.SettingsLabel,
-                    DestPage = typeof (SettingsView)
+                    DestPage = typeof(SettingsView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.Account,
                     Label = Strings.AboutLabel,
-                    DestPage = typeof (AboutView)
+                    DestPage = typeof(AboutView)
                 }
             });
 
@@ -64,13 +62,13 @@ namespace MoneyFox.Windows.Views
                 {
                     Symbol = Symbol.Library,
                     Label = Strings.AccountsLabel,
-                    DestPage = typeof (MainView)
+                    DestPage = typeof(MainView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.View,
                     Label = Strings.StatisticsLabel,
-                    DestPage = typeof (StatisticSelectorView)
+                    DestPage = typeof(StatisticSelectorView)
                 }
             });
 
@@ -193,6 +191,17 @@ namespace MoneyFox.Windows.Views
             else
             {
                 TogglePaneButtonRect = new Rect();
+            }
+
+            if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay && !RootSplitView.IsSwipeablePaneOpen)
+            {
+                TogglePaneButton.Foreground =
+                    (SolidColorBrush) Application.Current.Resources["SplitViewToggleButtonForegroundDark"];
+            }
+            else
+            {
+                TogglePaneButton.Foreground =
+                    (SolidColorBrush) Application.Current.Resources["SplitViewToggleButtonForegroundLight"];
             }
 
             var handler = TogglePaneButtonRectChanged;
@@ -417,14 +426,6 @@ namespace MoneyFox.Windows.Views
             ((Page) sender).Focus(FocusState.Programmatic);
             ((Page) sender).Loaded -= Page_Loaded;
             CheckTogglePaneButtonSizeChanged();
-
-            if (SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility ==
-                AppViewBackButtonVisibility.Collapsed
-                || RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay
-                || RootSplitView.DisplayMode == SplitViewDisplayMode.CompactOverlay)
-            {
-                RootSplitView.IsSwipeablePaneOpen = false;
-            }
         }
 
         #endregion

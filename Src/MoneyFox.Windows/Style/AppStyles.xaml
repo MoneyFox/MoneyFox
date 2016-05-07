@@ -25,6 +25,12 @@
     <SolidColorBrush x:Key="AppBarBrush"
                      Color="{StaticResource ColorAppBar}" />
 
+    <SolidColorBrush x:Key="SplitViewToggleButtonForegroundLight"
+                     Color="White" />
+    
+    <SolidColorBrush x:Key="SplitViewToggleButtonForegroundDark"
+                     Color="Black" />
+
     <!--Accent Color -->
     <SolidColorBrush x:Key="SystemControlBackgroundAccentBrush"
                      Color="{ThemeResource SystemAccentColor}" />
@@ -60,5 +66,4 @@
                      Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="JumpListDefaultEnabledBackground"
                      Color="{ThemeResource SystemAccentColor}" />
-
 </ResourceDictionary>
