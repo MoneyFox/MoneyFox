@@ -227,6 +227,32 @@ namespace MoneyFox.Windows.Views
             }
         }
 
+        public void SetLoginView()
+        {
+            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                TogglePaneButton.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                TogglePaneButton.Visibility = Visibility.Collapsed;
+                RootSplitView.OpenPaneLength = 0;
+            }
+        }
+
+        public void SetLoggedInView()
+        {
+            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                TogglePaneButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TogglePaneButton.Visibility = Visibility.Visible;
+                RootSplitView.OpenPaneLength = 256;
+            }
+        }
+
         private void Root_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             var temp = false;
