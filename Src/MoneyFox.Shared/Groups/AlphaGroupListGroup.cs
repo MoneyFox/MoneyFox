@@ -33,7 +33,7 @@ namespace MoneyFox.Shared.Groups
         public string Key { get; }
 
         /// <summary>
-        ///     Create a list of AlphaGroup<T> with keys set by a SortedLocaleGrouping.
+        ///     Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
         /// </summary>
         /// <param name="items">The items to place in the groups.</param>
         /// <param name="ci">The CultureInfo to group and sort by.</param>
