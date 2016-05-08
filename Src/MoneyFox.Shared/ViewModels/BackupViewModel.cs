@@ -61,11 +61,9 @@ namespace MoneyFox.Shared.ViewModels
             {
                 IsCheckingBackupAvailability = true;
                 BackupAvailable = await backupManager.IsBackupExisting();
-                IsCheckingBackupAvailability = false;
-
                 BackupLastModified = await backupManager.GetBackupDate();
-            }
-            else
+                IsCheckingBackupAvailability = false;
+            } else
             {
                 await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
             }

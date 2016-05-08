@@ -2,21 +2,17 @@
 using System.Globalization;
 using MvvmCross.Platform.Converters;
 using MvvmCross.Platform.UI;
+using MvvmCross.Plugins.Visibility;
 
 namespace MoneyFox.Shared.Converter
 {
-    public class BackupDateVisibilityConverter : IMvxValueConverter
+    public class BackupDateVisibilityConverter : MvxBaseVisibilityValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        protected override MvxVisibility Convert(object value, object parameter, CultureInfo culture)
         {
             var backupDate = (DateTime)value;
-            var visiblity = backupDate == new DateTime() ? MvxVisibility.Collapsed : MvxVisibility.Visible;
-            return visiblity;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
+            var test = backupDate == new DateTime() ? MvxVisibility.Collapsed : MvxVisibility.Visible;
+            return test;
         }
     }
 }
