@@ -79,8 +79,12 @@
             <StackPanel HorizontalAlignment="Center"
                         VerticalAlignment="Center">
                 <ProgressRing IsActive="{Binding IsLoading}"
-                              Background="Transparent" />
-                <TextBlock Text="loading..." />
+                              Background="Transparent"
+                              Height="100"
+                              Width="100"/>
+                <TextBlock Text="loading..."
+                           x:Uid="IsLoading"
+                           TextAlignment="Center"/>
             </StackPanel>
         </Grid>
     </Grid>
