@@ -39,6 +39,35 @@
                            Style="{ThemeResource BodyTextBlockStyle}" />
             </StackPanel>
         </DataTemplate>
+
+        <DataTemplate x:Key="GroupHeaderTemplate">
+            <Border Background="Transparent"
+                    Padding="3">
+                <TextBlock Text="{Binding Key}"
+                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                           FontSize="18"
+                           FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center" />
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="JumpTemplate">
+            <Border Padding="5">
+                <Border HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Group.Key}"
+                               Width="150"
+                               Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                               FontSize="18"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center" />
+                </Border>
+            </Border>
+        </DataTemplate>
+
+        <CollectionViewSource x:Key="Groups"
+                              IsSourceGrouped="True"
+                              Source="{Binding Source}" />
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
@@ -51,28 +80,41 @@
                  Margin="5,0,5,0"
                  x:Uid="SearchHeader"
                  Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <ScrollViewer Margin="0,7,0,0" Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
-                                             EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
-                                             ItemsSource="{Binding Categories}"
-                                             ItemTemplate="{StaticResource CategoryTemplate }"
-                                             IsItemClickEnabled="True">
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="ItemClick">
-                        <core:InvokeCommandAction Command="{Binding DoneCommand, Mode=OneWay}"
-                                                  InputConverter="{StaticResource ClickConverter}" />
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
-                        <Setter Property="VerticalContentAlignment"
-                                Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </controls:AlternatingRowListView>
-        </ScrollViewer>
+        <SemanticZoom Grid.Row="1">
+            <SemanticZoom.ZoomedInView>
+
+                <controls:AlternatingRowListView OddRowBackground="{StaticResource ListViewBackgroundOddBrush}"
+                                                 EvenRowBackground="{StaticResource ListViewBackgroundEvenBrush}"
+                                                 ItemsSource="{Binding Source={StaticResource Groups}}"
+                                                 ItemTemplate="{StaticResource CategoryTemplate }"
+                                                 IsItemClickEnabled="True"
+                                                 IsSynchronizedWithCurrentItem="False">
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="ItemClick">
+                            <core:InvokeCommandAction Command="{Binding DoneCommand, Mode=OneWay}"
+                                                      InputConverter="{StaticResource ClickConverter}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.GroupStyle>
+                        <GroupStyle HidesIfEmpty="True"
+                                    HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
+                    </ListView.GroupStyle>
+                </controls:AlternatingRowListView>
+            </SemanticZoom.ZoomedInView>
+            <SemanticZoom.ZoomedOutView>
+                <GridView Margin="0,12,0,0"
+                          ItemsSource="{Binding Source={StaticResource Groups}, Path=CollectionGroups}"
+                          ItemTemplate="{StaticResource JumpTemplate}" />
+            </SemanticZoom.ZoomedOutView>
+        </SemanticZoom>
 
         <TextBlock x:Uid="CategoriesPlaceholder"
                    Grid.Row="1"
@@ -82,6 +124,6 @@
                    Margin="6"
                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    Foreground="{ThemeResource SystemBaseMediumLowColor}"
-                   Visibility="{Binding IsCategoriesEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />    
+                   Visibility="{Binding IsCategoriesEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </UserControl>

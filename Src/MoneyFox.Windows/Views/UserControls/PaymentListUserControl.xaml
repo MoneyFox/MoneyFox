@@ -128,7 +128,6 @@
         <CollectionViewSource x:Key="Groups"
                               IsSourceGrouped="True"
                               Source="{Binding Source}" />
-
     </UserControl.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">

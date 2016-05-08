@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -10,22 +12,28 @@ using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
-using System.Collections.Generic;
 
 namespace MoneyFox.Droid.Fragments
 {
-    [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneyfox.droid.fragments.AccountListFragment")]
     public class AccountListFragment : BaseFragment<AccountListViewModel>
     {
+        private readonly List<string> itemList = new List<string>
+        {
+            Strings.AddAccountLabel,
+            Strings.AddIncomeLabel,
+            Strings.AddExpenseLabel,
+            Strings.AddTransferLabel
+        };
+
+        private View view;
         protected override int FragmentId => Resource.Layout.fragment_account_list;
         protected override string Title => Strings.AccountsLabel;
-        
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
-
+            view = base.OnCreateView(inflater, container, savedInstanceState);
             LoadBalancePanel();
 
             var list = view.FindViewById<ListView>(Resource.Id.account_list);
@@ -44,15 +52,7 @@ namespace MoneyFox.Droid.Fragments
             return view;
         }
 
-        private readonly List<string> itemList = new List<string>
-            {
-                Strings.AddAccountLabel,
-                Strings.AddIncomeLabel,
-                Strings.AddExpenseLabel,
-                Strings.AddTransferLabel
-            };
-
-        public void OnSelectItemForCreation(object sender, Android.Content.DialogClickEventArgs args)
+        public void OnSelectItemForCreation(object sender, DialogClickEventArgs args)
         {
             var selected = itemList[args.Which];
             var mainview = Mvx.Resolve<MainViewModel>();
@@ -61,7 +61,7 @@ namespace MoneyFox.Droid.Fragments
             {
                 mainview.GoToAddAccountCommand.Execute();
             }
-            else if(selected == Strings.AddIncomeLabel)
+            else if (selected == Strings.AddIncomeLabel)
             {
                 mainview.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
             }

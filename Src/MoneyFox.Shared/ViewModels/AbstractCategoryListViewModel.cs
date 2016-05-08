@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
+using MoneyFox.Shared.Groups;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
@@ -11,8 +13,6 @@ namespace MoneyFox.Shared.ViewModels
     {
         protected readonly IRepository<Category> CategoryRepository;
         protected readonly IDialogService DialogService;
-
-        private ObservableCollection<Category> categories = new ObservableCollection<Category>();
 
         private string searchText;
 
@@ -28,6 +28,11 @@ namespace MoneyFox.Shared.ViewModels
             DialogService = dialogService;
 
             Categories = CategoryRepository.Data;
+
+            Source = new ObservableCollection<AlphaGroupListGroup<Category>>(
+                AlphaGroupListGroup<Category>.CreateGroups(Categories,
+                    CultureInfo.CurrentUICulture,
+                    s => s.Name[0].ToString()));
         }
 
         /// <summary>
@@ -35,7 +40,15 @@ namespace MoneyFox.Shared.ViewModels
         /// </summary>
         public MvxCommand<Category> DeleteCategoryCommand => new MvxCommand<Category>(DeleteCategory);
 
+        /// <summary>
+        ///     Collection with all categories
+        /// </summary>
         public ObservableCollection<Category> Categories { get; set; }
+
+        /// <summary>
+        ///     Collection with categories alphanumeric grouped by 
+        /// </summary>
+        public ObservableCollection<AlphaGroupListGroup<Category>> Source { get; set; }
 
         public bool IsCategoriesEmpty => !Categories.Any();
 

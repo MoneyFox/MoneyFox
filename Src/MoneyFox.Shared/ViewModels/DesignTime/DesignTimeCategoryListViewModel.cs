@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using MoneyFox.Shared.Groups;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MoneyFox.Shared.Model;
 
@@ -15,6 +16,7 @@ namespace MoneyFox.Shared.ViewModels.DesignTime
         }
 
         public ObservableCollection<Category> Categories { get; set; }
+        public ObservableCollection<AlphaGroupListGroup<Payment>> Source { get; set; }
         public Category SelectedCategory { get; set; }
         public string SearchText { get; set; }
     }
