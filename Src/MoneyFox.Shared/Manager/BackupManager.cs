@@ -18,19 +18,19 @@ namespace MoneyFox.Shared.Manager
         private readonly IRepositoryManager repositoryManager;
         private readonly IBackupService backupService;
         private readonly IMvxFileStore fileStore;
-        private readonly ISqliteConnectionCreator sqliteConnectionCreator;
+        private readonly IDatabaseManager databaseManager;
 
         private bool oldBackupRestored;
 
         public BackupManager(IRepositoryManager repositoryManager, 
             IBackupService backupService, 
             IMvxFileStore fileStore,
-            ISqliteConnectionCreator sqliteConnectionCreator)
+            IDatabaseManager databaseManager)
         {
             this.repositoryManager = repositoryManager;
             this.backupService = backupService;
             this.fileStore = fileStore;
-            this.sqliteConnectionCreator = sqliteConnectionCreator;
+            this.databaseManager = databaseManager;
         }
 
         /// <summary>
@@ -98,8 +98,8 @@ namespace MoneyFox.Shared.Manager
                     fileStore.DeleteFile(BackupConstants.DB_NAME);
                 }
 
-                sqliteConnectionCreator.CreateDatabase();
-                sqliteConnectionCreator.MigrateDatabase();
+                databaseManager.CreateDatabase();
+                databaseManager.MigrateDatabase();
 
                 repositoryManager.ReloadData();
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;

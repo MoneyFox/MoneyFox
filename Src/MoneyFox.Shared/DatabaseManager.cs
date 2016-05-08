@@ -12,12 +12,12 @@ namespace MoneyFox.Shared
     /// <summary>
     ///     Provides connections to the database
     /// </summary>
-    public class SqliteConnectionCreator : ISqliteConnectionCreator
+    public class DatabaseManager : IDatabaseManager
     {
         private readonly IMvxSqliteConnectionFactory connectionFactory;
         private readonly IMvxFileStore fileStore;
 
-        public SqliteConnectionCreator(IMvxSqliteConnectionFactory connectionFactory, IMvxFileStore fileStore)
+        public DatabaseManager(IMvxSqliteConnectionFactory connectionFactory, IMvxFileStore fileStore)
         {
             this.connectionFactory = connectionFactory;
             this.fileStore = fileStore;

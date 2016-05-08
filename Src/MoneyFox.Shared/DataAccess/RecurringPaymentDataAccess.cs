@@ -11,9 +11,9 @@ namespace MoneyFox.Shared.DataAccess
     [ImplementPropertyChanged]
     public class RecurringPaymentDataAccess : AbstractDataAccess<RecurringPayment>
     {
-        private readonly ISqliteConnectionCreator connectionCreator;
+        private readonly IDatabaseManager connectionCreator;
 
-        public RecurringPaymentDataAccess(ISqliteConnectionCreator connectionCreator)
+        public RecurringPaymentDataAccess(IDatabaseManager connectionCreator)
         {
             this.connectionCreator = connectionCreator;
         }

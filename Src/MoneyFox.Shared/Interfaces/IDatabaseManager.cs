@@ -2,7 +2,7 @@
 
 namespace MoneyFox.Shared.Interfaces
 {
-    public interface ISqliteConnectionCreator
+    public interface IDatabaseManager
     {
         void CreateDatabase();
 

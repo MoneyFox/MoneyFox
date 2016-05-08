@@ -11,12 +11,12 @@ namespace MoneyFox.Windows.Tests.DataAccess
     [TestClass]
     public class CategoryDataAccessTests
     {
-        private SqliteConnectionCreator _connectionCreator;
+        private DatabaseManager _connectionCreator;
 
         [TestInitialize]
         public void Init()
         {
-            _connectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
+            _connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
         }
 
         [TestMethod]

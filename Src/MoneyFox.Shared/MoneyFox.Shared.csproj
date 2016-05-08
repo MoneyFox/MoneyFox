@@ -85,7 +85,7 @@
     <Compile Include="Interfaces\IRecurringPaymentManager.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IRepositoryManager.cs" />
-    <Compile Include="Interfaces\ISqliteConnectionCreator.cs" />
+    <Compile Include="Interfaces\IDatabaseManager.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />
     <Compile Include="Interfaces\IStoreFeatures.cs" />
     <Compile Include="Interfaces\ITileUpdateService.cs" />
@@ -143,7 +143,7 @@
       <DependentUpon>Strings.zh-CN.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\OneDriveService.cs" />
-    <Compile Include="SqliteConnectionCreator.cs" />
+    <Compile Include="DatabaseManager.cs" />
     <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />
