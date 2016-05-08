@@ -14,7 +14,7 @@ namespace MoneyFox.Windows.Tests
         [TestMethod]
         public void GetConnection_CorrectType()
         {
-            Assert.IsInstanceOfType(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory(),
+            Assert.IsInstanceOfType(new DatabaseManager(new WindowsSqliteConnectionFactory(),
                 new MvxWindowsCommonFileStore()).GetConnection(),
                 typeof (SQLiteConnection));
         }
@@ -22,7 +22,7 @@ namespace MoneyFox.Windows.Tests
         [TestMethod]
         public void GetAsyncConnection_CorrectType()
         {
-            Assert.IsInstanceOfType(new SqliteConnectionCreator(new WindowsSqliteConnectionFactory(),
+            Assert.IsInstanceOfType(new DatabaseManager(new WindowsSqliteConnectionFactory(),
                 new MvxWindowsCommonFileStore()).GetAsyncConnection(),
                 typeof (SQLiteAsyncConnection));
         }
@@ -30,7 +30,7 @@ namespace MoneyFox.Windows.Tests
         [TestMethod]
         public void GetConnection_DbFileCreated()
         {
-            new SqliteConnectionCreator(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
+            new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
             
             Assert.IsTrue(new MvxWindowsCommonFileStore().Exists(BackupConstants.DB_NAME));
         }

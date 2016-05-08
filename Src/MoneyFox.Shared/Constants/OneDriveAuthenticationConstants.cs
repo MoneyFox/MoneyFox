@@ -47,9 +47,9 @@
         /// </summary>
         public const string TOKEN_URL = "https://login.live.com/oauth20_token.srf";
 
-        public const string MSA_CLIENT_ID = "<id>";
+        public const string MSA_CLIENT_ID = "000000004416B470";
 
-        public const string MSA_CLIENT_SECRET = "<secret>";
+        public const string MSA_CLIENT_SECRET = "YoWyKydsjQTLEEjklZO049M38BBi8X5k";
 
         /// <summary>
         ///     Scopes for OneDrive access

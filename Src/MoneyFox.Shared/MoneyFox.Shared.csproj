@@ -48,6 +48,7 @@
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Constants\OneDriveAuthenticationConstants.cs" />
     <Compile Include="Converter\AmountFormatConverter.cs" />
+    <Compile Include="Converter\BackupDateVisibilityConverter.cs" />
     <Compile Include="Converter\DateTimeFormatConverter.cs" />
     <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="DataAccess\AbstractDataAccess.cs" />
@@ -85,7 +86,7 @@
     <Compile Include="Interfaces\IRecurringPaymentManager.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IRepositoryManager.cs" />
-    <Compile Include="Interfaces\ISqliteConnectionCreator.cs" />
+    <Compile Include="Interfaces\IDatabaseManager.cs" />
     <Compile Include="Interfaces\IStatisticProvider.cs" />
     <Compile Include="Interfaces\IStoreFeatures.cs" />
     <Compile Include="Interfaces\ITileUpdateService.cs" />
@@ -143,7 +144,7 @@
       <DependentUpon>Strings.zh-CN.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\OneDriveService.cs" />
-    <Compile Include="SqliteConnectionCreator.cs" />
+    <Compile Include="DatabaseManager.cs" />
     <Compile Include="StatisticDataProvider\CashFlowDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySpreadingDataProvider.cs" />
     <Compile Include="StatisticDataProvider\CategorySummaryDataProvider.cs" />
@@ -192,18 +193,6 @@
     </Reference>
     <Reference Include="Cheesebaron.MvxPlugins.Settings, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Cheesebaron.MvxPlugins.Settings.1.2.5\lib\portable-net45+win+wpa81+wp80\Cheesebaron.MvxPlugins.Settings.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Cirrious.CrossCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e16445fd9b451819, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.1\lib\portable-win+net45+wp8+win8+wpa81\Cirrious.CrossCore.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Localization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.1\lib\portable-win+net45+wp8+win8+wpa81\Cirrious.MvvmCross.Localization.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Plugins.Messenger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Messenger.3.5.1\lib\portable-win+net45+wp8+win8+wpa81\Cirrious.MvvmCross.Plugins.Messenger.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -11,5 +11,12 @@ namespace MoneyFox.Droid.Fragments
     {
         protected override int FragmentId => Resource.Layout.fragment_backup;
         protected override string Title => Strings.BackupLabel;
+
+        public override void OnStart()
+        {
+            base.OnStart();
+
+            ViewModel.LoadedCommand.Execute();
+        }
     }
 }

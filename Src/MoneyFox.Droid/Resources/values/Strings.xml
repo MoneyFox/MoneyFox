@@ -53,6 +53,7 @@
   <string name="label_cleared">IsCleared: </string>
   <string name="label_slogan">A way to make budgeting easy.</string>
   <string name="label_password_activated">Password protection is activated</string>
+  <string name="label_backup_date">Last Backup created at:</string>
 
   <!---titles-->
   <string name="title_accounts">Accounts</string>

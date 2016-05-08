@@ -28,7 +28,7 @@ namespace MoneyFox.Tasks
                 Insights.Initialize(insightKey);
             }
 
-            var sqliteConnectionCreator = new SqliteConnectionCreator(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
+            var sqliteConnectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
             var notificationService = new NotificationService();
 
             var accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnectionCreator), notificationService);

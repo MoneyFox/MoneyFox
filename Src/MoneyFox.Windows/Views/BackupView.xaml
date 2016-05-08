@@ -18,7 +18,7 @@
 
     <Page.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
-        <converter:BackupDateVisibilityConverter x:Key="BackupDateVisibilityConverter"/>
+        <converter:NativeBackupDateVisibilityConverter x:Key="BackupDateVisibilityConverter" />
     </Page.Resources>
 
     <Grid>
@@ -29,7 +29,9 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Backup" x:Uid="BackupTitle" />
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
+                           Text="Backup"
+                           x:Uid="BackupTitle" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
@@ -42,7 +44,7 @@
                            Margin="-5,0,0,7"
                            TextWrapping="WrapWholeWords" />
                 <Button Content="Create Backup"
-                        x:Uid="CreateBackup"
+                        x:Uid="Create Backup"
                         Command="{Binding BackupCommand}"
                         HorizontalAlignment="Stretch"
                         Margin="0,0,0,7" />
@@ -50,20 +52,36 @@
                            Text="RestoreInformation"
                            Margin="-5,5,0,7"
                            TextWrapping="WrapWholeWords" />
-                <Button Content="Restore"
-                        x:Uid="RestoreBackup"
-                        IsEnabled="{Binding BackupAvailable}"
-                        Command="{Binding RestoreCommand}"
-                        HorizontalAlignment="Stretch" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="41*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content="Restore Backup"
+                            x:Uid="RestoreBackup"
+                            IsEnabled="{Binding BackupAvailable}"
+                            Command="{Binding RestoreCommand}"
+                            HorizontalAlignment="Stretch"
+                            Grid.ColumnSpan="2" />
+
+                    <ProgressRing IsActive="{Binding IsCheckingBackupAvailability}"
+                                  Background="Transparent"
+                                  Grid.Column="1"
+                                  Margin="0,3,0,3"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch" />
+                </Grid>
+
                 <StackPanel Orientation="Horizontal"
-                            Margin="0,15,0,7">
+                            Margin="0,15,0,7"
+                            Visibility="{Binding BackupLastModified, Converter={StaticResource BackupDateVisibilityConverter}}">
                     <TextBlock x:Uid="BackupLastModifiedText"
                                Text="Last Backup created at:"
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                               Visibility="{Binding BackupLastModified, Converter={StaticResource BackupDateVisibilityConverter}}"/>
+                               />
                     <TextBlock Text="{Binding BackupLastModified}"
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                               Visibility="{Binding BackupLastModified, Converter={StaticResource BackupDateVisibilityConverter}}"
                                Margin="5,0,0,0" />
                 </StackPanel>
             </StackPanel>
@@ -79,8 +97,12 @@
             <StackPanel HorizontalAlignment="Center"
                         VerticalAlignment="Center">
                 <ProgressRing IsActive="{Binding IsLoading}"
-                              Background="Transparent" />
-                <TextBlock Text="loading..." />
+                              Background="Transparent"
+                              Height="100"
+                              Width="100"/>
+                <TextBlock Text="loading..."
+                           x:Uid="IsLoading"
+                           TextAlignment="Center"/>
             </StackPanel>
         </Grid>
     </Grid>

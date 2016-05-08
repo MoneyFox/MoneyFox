@@ -22,11 +22,6 @@ namespace MoneyFox.Shared.ViewModels
         }
 
         /// <summary>
-        ///     The Date when the backup was modified the last time.
-        /// </summary>
-        public DateTime BackupLastModified { get; private set; }
-
-        /// <summary>
         ///     Prepares the View when loaded.
         /// </summary>
         public MvxCommand LoadedCommand => new MvxCommand(Loaded);
@@ -44,9 +39,19 @@ namespace MoneyFox.Shared.ViewModels
         public MvxCommand RestoreCommand => new MvxCommand(RestoreBackup);
 
         /// <summary>
-        ///     Indicator if something is in work.
+        ///     The Date when the backup was modified the last time.
+        /// </summary>
+        public DateTime BackupLastModified { get; private set; }
+
+        /// <summary>
+        ///     Indicator if something is in work who should block the UI
         /// </summary>
         public bool IsLoading { get; private set; }
+
+        /// <summary>
+        ///     Indicator that the app is checking if backups available.
+        /// </summary>
+        public bool IsCheckingBackupAvailability { get; private set; }
 
         public bool BackupAvailable { get; private set; }
 
@@ -54,10 +59,11 @@ namespace MoneyFox.Shared.ViewModels
         {
             if (connectivity.IsConnected)
             {
+                IsCheckingBackupAvailability = true;
                 BackupAvailable = await backupManager.IsBackupExisting();
                 BackupLastModified = await backupManager.GetBackupDate();
-            }
-            else
+                IsCheckingBackupAvailability = false;
+            } else
             {
                 await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
             }

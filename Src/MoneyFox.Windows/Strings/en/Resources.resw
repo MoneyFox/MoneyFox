@@ -368,4 +368,7 @@ Tap to visit the Repository:</value>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
     <value>You can change between dark and light theme. To apply this changes please restart the application.</value>
   </data>
+  <data name="IsLoading.Text" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
 </root>

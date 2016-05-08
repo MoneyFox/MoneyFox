@@ -11,9 +11,9 @@ namespace MoneyFox.Shared.DataAccess
     [ImplementPropertyChanged]
     public class AccountDataAccess : AbstractDataAccess<Account>
     {
-        private readonly ISqliteConnectionCreator connectionCreator;
+        private readonly IDatabaseManager connectionCreator;
 
-        public AccountDataAccess(ISqliteConnectionCreator connectionCreator)
+        public AccountDataAccess(IDatabaseManager connectionCreator)
         {
             this.connectionCreator = connectionCreator;
         }

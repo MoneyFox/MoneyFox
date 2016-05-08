@@ -402,6 +402,19 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
         }
       },
+      "MvvmCross.Plugin.Visibility/4.1.4": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.4"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
+        }
+      },
       "MvvmCross.Plugin.WebBrowser/4.1.4": {
         "dependencies": {
           "MvvmCross.Platform": "4.1.4"
@@ -2374,6 +2387,19 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
         }
       },
+      "MvvmCross.Plugin.Visibility/4.1.4": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.4"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
+        }
+      },
       "MvvmCross.Plugin.WebBrowser/4.1.4": {
         "dependencies": {
           "MvvmCross.Platform": "4.1.4"
@@ -4254,6 +4280,19 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
         }
       },
+      "MvvmCross.Plugin.Visibility/4.1.4": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.4"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
+        }
+      },
       "MvvmCross.Plugin.WebBrowser/4.1.4": {
         "dependencies": {
           "MvvmCross.Platform": "4.1.4"
@@ -6101,6 +6140,19 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Visibility/4.1.4": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.4"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
         }
       },
       "MvvmCross.Plugin.WebBrowser/4.1.4": {
@@ -7986,6 +8038,19 @@
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
         }
       },
+      "MvvmCross.Plugin.Visibility/4.1.4": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.4"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
+        }
+      },
       "MvvmCross.Plugin.WebBrowser/4.1.4": {
         "dependencies": {
           "MvvmCross.Platform": "4.1.4"
@@ -9833,6 +9898,19 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Visibility/4.1.4": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.4"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
         }
       },
       "MvvmCross.Plugin.WebBrowser/4.1.4": {
@@ -11716,6 +11794,19 @@
         "runtime": {
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.WindowsUWP.dll": {},
           "lib/uap10.0/MvvmCross.Plugins.Sqlite.dll": {}
+        }
+      },
+      "MvvmCross.Plugin.Visibility/4.1.4": {
+        "dependencies": {
+          "MvvmCross.Platform": "4.1.4"
+        },
+        "compile": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
+        },
+        "runtime": {
+          "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll": {},
+          "lib/win81/MvvmCross.Plugins.Visibility.dll": {}
         }
       },
       "MvvmCross.Plugin.WebBrowser/4.1.4": {
@@ -14213,6 +14304,55 @@
         "lib/wp8/MvvmCross.Plugins.Sqlite.dll.mdb",
         "lib/wpa81/MvvmCross.Plugins.Sqlite.WindowsCommon.dll",
         "lib/wpa81/MvvmCross.Plugins.Sqlite.dll"
+      ]
+    },
+    "MvvmCross.Plugin.Visibility/4.1.4": {
+      "sha512": "6FMAG6whLHdjU6L4FKobjEEW6vYqSsB8VI0fICQga+zMdLBIZske/7Srp6FijxzGXQKPzqNXbZ1FmkGuAn3zrQ==",
+      "type": "package",
+      "files": [
+        "MvvmCross.Plugin.Visibility.4.1.4.nupkg.sha512",
+        "MvvmCross.Plugin.Visibility.nuspec",
+        "content/MonoAndroid/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "content/Xamarin.iOS10/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "content/net45/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "content/netcore45/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "content/win81/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "content/wp8/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "content/wpa81/Bootstrap/VisibilityPluginBootstrap.cs.pp",
+        "lib/MonoAndroid/MvvmCross.Plugins.Visibility.Droid.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.Visibility.dll",
+        "lib/MonoAndroid/MvvmCross.Plugins.Visibility.dll.mdb",
+        "lib/Xamarin.Mac20/MvvmCross.Plugins.Visibility.dll",
+        "lib/Xamarin.Mac20/MvvmCross.Plugins.Visibility.dll.mdb",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.Visibility.dll",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.Visibility.dll.mdb",
+        "lib/Xamarin.iOS10/MvvmCross.Plugins.Visibility.iOS.dll",
+        "lib/dotnet/MvvmCross.Plugins.Visibility.dll",
+        "lib/dotnet/MvvmCross.Plugins.Visibility.dll.mdb",
+        "lib/net45/MvvmCross.Plugins.Visibility.Wpf.dll",
+        "lib/net45/MvvmCross.Plugins.Visibility.dll",
+        "lib/net45/MvvmCross.Plugins.Visibility.dll.mdb",
+        "lib/netcore45/MvvmCross.Plugins.Visibility.WindowsStore.dll",
+        "lib/netcore45/MvvmCross.Plugins.Visibility.WindowsStore.pri",
+        "lib/netcore45/MvvmCross.Plugins.Visibility.dll",
+        "lib/netcore45/MvvmCross.Plugins.Visibility.dll.mdb",
+        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.Visibility.dll",
+        "lib/portable-net45+win+wpa81+wp80/MvvmCross.Plugins.Visibility.dll.mdb",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.Visibility.WindowsCommon.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.Visibility.WindowsCommon.pri",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.Visibility.dll",
+        "lib/portable-win81+wpa81/MvvmCross.Plugins.Visibility.dll.mdb",
+        "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.dll",
+        "lib/win81/MvvmCross.Plugins.Visibility.WindowsCommon.pri",
+        "lib/win81/MvvmCross.Plugins.Visibility.dll",
+        "lib/win81/MvvmCross.Plugins.Visibility.dll.mdb",
+        "lib/wp8/MvvmCross.Plugins.Visibility.WindowsPhone.dll",
+        "lib/wp8/MvvmCross.Plugins.Visibility.dll",
+        "lib/wp8/MvvmCross.Plugins.Visibility.dll.mdb",
+        "lib/wpa81/MvvmCross.Plugins.Visibility.WindowsCommon.dll",
+        "lib/wpa81/MvvmCross.Plugins.Visibility.WindowsCommon.pri",
+        "lib/wpa81/MvvmCross.Plugins.Visibility.dll",
+        "lib/wpa81/MvvmCross.Plugins.Visibility.dll.mdb"
       ]
     },
     "MvvmCross.Plugin.WebBrowser/4.1.4": {
