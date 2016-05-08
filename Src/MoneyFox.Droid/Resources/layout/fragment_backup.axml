@@ -9,8 +9,8 @@
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <TextView
             android:text="@string/backup_information"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:gravity="left" />
         <Button
+            android:id="@+id/btn_backup"
             android:text="@string/button_create_backup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,16 +30,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left" />
-        <Button
-            android:text="@string/button_restore_backup"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            local:MvxBind="Click RestoreCommand" />
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_restore"
+                android:text="@string/button_restore_backup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp" />
+            <ProgressBar
+                android:id="@+id/pb_check_backup"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignBottom="@+id/btn_restore"
+                android:layout_marginBottom="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginRight="3dp"
+                android:elevation="2dp"
+                local:MvxBind="Visibility Visibility(IsCheckingBackupAvailability)" />
+        </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            local:MvxBind="Visibility BackupDateVisibility(BackupLastModified)">
             <TextView
                 android:text="@string/label_backup_date"
                 android:textAppearance="?android:attr/textAppearanceSmall"

@@ -18,7 +18,7 @@
 
     <Page.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
-        <converter:BackupDateVisibilityConverter x:Key="BackupDateVisibilityConverter" />
+        <converter:NativeBackupDateVisibilityConverter x:Key="BackupDateVisibilityConverter" />
     </Page.Resources>
 
     <Grid>
