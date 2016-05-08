@@ -2,22 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="?android:windowBackground">
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        local:MvxBind="Visibility Visibility(IsLoading)" />
     <LinearLayout
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        local:MvxBind="Visibility InvertedVisibility(IsLoading)">
+        android:layout_height="wrap_content">
         <TextView
             android:text="@string/backup_information"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -42,5 +35,30 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             local:MvxBind="Click RestoreCommand" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/label_backup_date"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left" />
+            <TextView
+                android:layout_marginRight="5dp"
+                android:text="@string/restore_information"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                local:MvxBind="Text BackupLastModified" />
+        </LinearLayout>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            local:MvxBind="Visibility Visibility(IsLoading)" />
     </LinearLayout>
 </LinearLayout>
