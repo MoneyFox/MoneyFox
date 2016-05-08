@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            local:MvxBind="Visible BackupDateVisibility(BackupLastModified)">
+            local:MvxBind="Visibility BackupDateVisibility(BackupLastModified)">
             <TextView
                 android:text="@string/label_backup_date"
                 android:textAppearance="?android:attr/textAppearanceSmall"
