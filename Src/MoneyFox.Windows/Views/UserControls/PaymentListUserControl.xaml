@@ -140,7 +140,7 @@
         <userControls:BalanceUserControl Grid.Row="0"
                                          DataContext="{Binding BalanceViewModel}" />
 
-        <SemanticZoom Grid.Row="1">
+        <SemanticZoom Grid.Row="1" >
             <SemanticZoom.ZoomedInView>
                 <controls:AlternatingRowListView OddRowBackground="{ThemeResource ListViewBackgroundOddBrush}"
                                                  EvenRowBackground="{ThemeResource ListViewBackgroundEvenBrush}"
@@ -172,7 +172,7 @@
                 </controls:AlternatingRowListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
-                <GridView Margin="0,12,0,0"
+                <GridView Margin="0,12,0,0" 
                           ItemsSource="{Binding Source={StaticResource Groups}, Path=CollectionGroups}"
                           ItemTemplate="{StaticResource JumpTemplate}" />
             </SemanticZoom.ZoomedOutView>
