@@ -131,6 +131,7 @@
                       Style="{StaticResource SplitViewTogglePaneButtonStyle}"
                       IsChecked="{Binding IsSwipeablePaneOpen, ElementName=RootSplitView, Mode=TwoWay}"
                       Unchecked="TogglePaneButton_Checked"
+                      Checked="TogglePaneButton_OnChecked"
                       ToolTipService.ToolTip="Menu" />
     </Grid>
 </Page>
