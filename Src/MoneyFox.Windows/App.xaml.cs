@@ -15,6 +15,7 @@ using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Views;
@@ -202,8 +203,8 @@ namespace MoneyFox.Windows
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-
             Tile.UpdateMainTile();
+
             SettingsHelper.SessionTimestamp = DateTime.Now.AddMinutes(-15).ToString(CultureInfo.CurrentCulture);
 
             deferral.Complete();

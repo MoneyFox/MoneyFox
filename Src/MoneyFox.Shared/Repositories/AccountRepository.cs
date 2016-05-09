@@ -23,7 +23,8 @@ namespace MoneyFox.Shared.Repositories
         /// </summary>
         /// <param name="dataAccess">Instanced account data Access</param>
         /// <param name="notificationService">Service to notify user in case of errors.</param>
-        public AccountRepository(IDataAccess<Account> dataAccess, INotificationService notificationService)
+        public AccountRepository(IDataAccess<Account> dataAccess,
+            INotificationService notificationService)
         {
             this.dataAccess = dataAccess;
             this.notificationService = notificationService;
@@ -68,11 +69,9 @@ namespace MoneyFox.Shared.Repositories
             if (dataAccess.SaveItem(account))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-            }
-            else
+            } else
             {
                 notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
-
             }
         }
 
