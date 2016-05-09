@@ -20,9 +20,6 @@ namespace MoneyFox.Shared
 
             // Start the app with the Main View Model.
             RegisterAppStart(new AppStart());
-
-            Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
-            Mvx.Resolve<IPaymentManager>().ClearPayments();
         }
 
         private void RegisterDependencies()
