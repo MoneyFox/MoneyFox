@@ -2,7 +2,11 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using MoneyFox.Shared.Authentication;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
 {
@@ -28,7 +32,14 @@ namespace MoneyFox.Windows.Views
 
         private void Login()
         {
-            (ViewModel as LoginViewModel)?.LoginCommand.Execute(PasswordBox.Password);
+            if (!Mvx.Resolve<IPasswordStorage>().ValidatePassword(PasswordBox.Password))
+            {
+                Mvx.Resolve<IDialogService>().ShowMessage(Strings.PasswordWrongTitle, Strings.PasswordWrongMessage);
+                return;
+            }
+
+            AppShell.Current.SetLoggedInView();
+            AppShell.Current.AppMyFrame.Navigate(typeof(MainView));
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
