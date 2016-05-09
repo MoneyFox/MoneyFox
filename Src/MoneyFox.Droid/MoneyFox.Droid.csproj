@@ -307,7 +307,6 @@
     <Compile Include="Src\TempMessage.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Fragments\SettingsFragment.cs" />
-    <Compile Include="Fragments\SettingsSecurityFragment.cs" />
     <Compile Include="Src\Widgets\ExpenseWidget.cs" />
     <Compile Include="Src\Widgets\IncomeWidget.cs" />
     <Compile Include="Src\Widgets\TransferWidget.cs" />
@@ -372,7 +371,6 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_settings.axml" />
-    <AndroidResource Include="Resources\layout\fragment_settings_shortcuts.axml" />
     <AndroidResource Include="Resources\layout\fragment_settings_security.axml" />
     <AndroidResource Include="Resources\layout\fragment_category_list.axml" />
     <AndroidResource Include="Resources\menu\menu_save.axml">
