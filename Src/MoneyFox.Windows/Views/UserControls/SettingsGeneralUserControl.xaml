@@ -12,7 +12,9 @@
         <StackPanel>
             <TextBlock Text="Setting explanation"
                        x:Uid="AutoBackupSettingExplanation"
-                       TextWrapping="WrapWholeWords"/>
+                       TextWrapping="WrapWholeWords"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       Margin="0,0,0,10"/>
             <ToggleSwitch VerticalAlignment="Center"
                           Header="Upload and download backup manually"
                           x:Uid="AutoBackupSettingHeader"
