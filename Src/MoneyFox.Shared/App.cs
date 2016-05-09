@@ -3,6 +3,7 @@ using System.Reflection;
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Manager;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
@@ -28,20 +29,17 @@ namespace MoneyFox.Shared
             Mvx.RegisterSingleton<IPasswordStorage>(new PasswordStorage(Mvx.Resolve<IProtectedData>()));
             Mvx.RegisterType(() => new Session());
 
+            Mvx.RegisterType<IBackupManager, BackupManager>();
+            Mvx.RegisterType<IAutobackupManager, AutoBackupManager>();
+
             CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            CreatableTypes(typeof (AccountDataAccess).GetTypeInfo().Assembly)
+            CreatableTypes()
                 .EndingWith("DataAccess")
                 .AsInterfaces()
-                .RegisterAsLazySingleton();
-
-            // Used for the settings data access who doesn't have an interface
-            CreatableTypes(typeof (AccountDataAccess).GetTypeInfo().Assembly)
-                .EndingWith("DataAccess")
-                .AsTypes()
                 .RegisterAsLazySingleton();
 
             CreatableTypes()
@@ -59,7 +57,6 @@ namespace MoneyFox.Shared
                 .Where(x => !x.Name.StartsWith("DesignTime"))
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-
 
             CreatableTypes()
                 .EndingWith("ViewModel")

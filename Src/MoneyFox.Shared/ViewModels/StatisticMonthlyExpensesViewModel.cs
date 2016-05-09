@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.StatisticDataProvider;
@@ -16,7 +17,7 @@ namespace MoneyFox.Shared.ViewModels
         private readonly MonthlyExpensesDataProvider monthlyExpensesDataProvider;
 
         public StatisticMonthlyExpensesViewModel(IPaymentRepository paymentRepository)
-            : base(DateTime.Today.AddMonths(-6), DateTime.Today)
+            : base(DateTime.Today.AddMonths(-6), DateTime.Now.GetLastDayOfMonth())
         {
             monthlyExpensesDataProvider = new MonthlyExpensesDataProvider(paymentRepository);
 

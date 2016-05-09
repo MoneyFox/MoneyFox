@@ -8,6 +8,8 @@ namespace MoneyFox.Shared
     {
         public void Start(object hint = null)
         {
+            Mvx.Resolve<IAutobackupManager>().RestoreBackupIfNewer();
+
             Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
             Mvx.Resolve<IPaymentManager>().ClearPayments();
         }

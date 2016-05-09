@@ -371,4 +371,8 @@ Tap to visit the Repository:</value>
   <data name="IsLoading.Text" xml:space="preserve">
     <value>Loading...</value>
   </data>
+  <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
+    <value>If you activate this setting after every change on the database a backup is made to OneDrive.
+Also if you launch the application there it will check if there are newer backups and restore it if so.</value>
+  </data>
 </root>
