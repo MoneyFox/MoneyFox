@@ -29,10 +29,7 @@ namespace MoneyFox.Shared.ViewModels
 
             Categories = CategoryRepository.Data;
 
-            Source = new ObservableCollection<AlphaGroupListGroup<Category>>(
-                AlphaGroupListGroup<Category>.CreateGroups(Categories,
-                    CultureInfo.CurrentUICulture,
-                    s => s.Name[0].ToString()));
+            Source = CreateGroup();
         }
 
         /// <summary>
@@ -81,6 +78,15 @@ namespace MoneyFox.Shared.ViewModels
             {
                 Categories = new ObservableCollection<Category>(CategoryRepository.Data);
             }
+            Source = CreateGroup();
+        }
+
+        private ObservableCollection<AlphaGroupListGroup<Category>> CreateGroup()
+        {
+            return new ObservableCollection<AlphaGroupListGroup<Category>>(
+                AlphaGroupListGroup<Category>.CreateGroups(Categories,
+                    CultureInfo.CurrentUICulture,
+                    s => s.Name[0].ToString().ToUpper()));
         }
 
         private async void DeleteCategory(Category categoryToDelete)

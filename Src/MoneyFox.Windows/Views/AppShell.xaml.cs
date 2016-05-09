@@ -96,6 +96,7 @@ namespace MoneyFox.Windows.Views
             NavMenuListTop.SelectedIndex = 0;
             //start with a hidden back button. This changes when you navigate to an other page
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            CheckColorToggleButton();
         }
 
         public Frame AppMyFrame => MyFrame;
@@ -171,6 +172,7 @@ namespace MoneyFox.Windows.Views
         private void TogglePaneButton_Checked(object sender, RoutedEventArgs e)
         {
             CheckTogglePaneButtonSizeChanged();
+            CheckColorToggleButton();
         }
 
         /// <summary>
@@ -193,20 +195,32 @@ namespace MoneyFox.Windows.Views
                 TogglePaneButtonRect = new Rect();
             }
 
-            if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay && !RootSplitView.IsSwipeablePaneOpen)
+            if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay)
             {
-                TogglePaneButton.Foreground =
-                    (SolidColorBrush) Application.Current.Resources["SplitViewToggleButtonForegroundDark"];
-            }
-            else
-            {
-                TogglePaneButton.Foreground =
-                    (SolidColorBrush) Application.Current.Resources["SplitViewToggleButtonForegroundLight"];
+                RootSplitView.IsSwipeablePaneOpen = false;
             }
 
             var handler = TogglePaneButtonRectChanged;
             // handler(this, this.TogglePaneButtonRect);
             handler?.DynamicInvoke(this, TogglePaneButtonRect);
+        }
+
+        private void TogglePaneButton_OnChecked(object sender, RoutedEventArgs e)
+        {
+            CheckColorToggleButton();
+        }
+
+        private void CheckColorToggleButton()
+        {
+            if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay && !RootSplitView.IsSwipeablePaneOpen)
+            {
+                TogglePaneButton.Foreground =
+                    (SolidColorBrush)Application.Current.Resources["SplitViewToggleButtonForegroundDark"];
+            } else
+            {
+                TogglePaneButton.Foreground =
+                    (SolidColorBrush)Application.Current.Resources["SplitViewToggleButtonForegroundLight"];
+            }
         }
 
         /// <summary>

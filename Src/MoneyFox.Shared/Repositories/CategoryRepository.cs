@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Linq.Expressions;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
@@ -62,6 +63,8 @@ namespace MoneyFox.Shared.Repositories
             if (category.Id == 0)
             {
                 data.Add(category);
+
+                data = new ObservableCollection<Category>(data.OrderBy(x => x.Name));
             }
             if (dataAccess.SaveItem(category))
             {
