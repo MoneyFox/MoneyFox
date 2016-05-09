@@ -15,6 +15,16 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <Pivot Style="{StaticResource TabsStylePivotStyle}">
+                <!--General-->
+                <PivotItem>
+                    <PivotItem.Header>
+                        <userControls:TabHeader Label="Tiles"
+                                                x:Uid="TilesHeader"
+                                                Glyph="&#xE8FC;" />
+                    </PivotItem.Header>
+                    <userControls:SettingsGeneralUserControl Margin="-7,0,-7,0" />
+                </PivotItem>                
+                
                 <!--Tiles-->
                 <PivotItem>
                     <PivotItem.Header>

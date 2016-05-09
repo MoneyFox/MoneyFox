@@ -18,7 +18,6 @@ namespace MoneyFox.Shared.DataAccess
             this.connectionCreator = connectionCreator;
         }
 
-
         /// <summary>
         ///     Saves a Account to the database.
         /// </summary>

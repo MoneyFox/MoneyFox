@@ -1,5 +1,6 @@
 using System;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
+using MoneyFox.Shared.Interfaces;
 using MvvmCross.Platform;
 using PropertyChanged;
 
@@ -58,7 +59,7 @@ namespace MoneyFox.Shared.Helpers
             get
             {
                 return Settings.GetValue(AUTOUPLOAD_BACKUP_KEYNAME,
-                    AUTOUPLOAD_BACKUP_KEYDEFAULT, true);
+                    AUTOUPLOAD_BACKUP_KEYDEFAULT);
             }
             set { Settings.AddOrUpdateValue(AUTOUPLOAD_BACKUP_KEYNAME, value); }
         }
@@ -78,7 +79,11 @@ namespace MoneyFox.Shared.Helpers
         public static DateTime LastDatabaseUpdate
         {
             get { return Settings.GetValue(DATABASE_LAST_UPDATE_KEYNAME, DatabaseLastUpdateKeydefault); }
-            set { Settings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value); }
+            set
+            {
+                Settings.AddOrUpdateValue(DATABASE_LAST_UPDATE_KEYNAME, value);
+                Mvx.Resolve<IAutobackupManager>().UploadBackupIfNewwer();
+            }
         }
 
         public static bool IsDarkThemeSelected

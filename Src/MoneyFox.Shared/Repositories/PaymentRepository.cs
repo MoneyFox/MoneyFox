@@ -37,7 +37,8 @@ namespace MoneyFox.Shared.Repositories
         public PaymentRepository(IDataAccess<Payment> dataAccess,
             IDataAccess<RecurringPayment> recurringDataAccess,
             IAccountRepository accountRepository,
-            IRepository<Category> categoryRepository, INotificationService notificationService)
+            IRepository<Category> categoryRepository,
+            INotificationService notificationService)
         {
             this.dataAccess = dataAccess;
             this.recurringDataAccess = recurringDataAccess;

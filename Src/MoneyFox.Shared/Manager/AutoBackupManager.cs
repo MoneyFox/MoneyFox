@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.OneDrive.Sdk;
-using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using Xamarin;
