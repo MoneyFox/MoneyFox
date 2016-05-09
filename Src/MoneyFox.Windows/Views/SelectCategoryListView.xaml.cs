@@ -20,6 +20,7 @@ namespace MoneyFox.Windows.Views
         {
             await new ModifyCategoryDialog().ShowAsync();
 
+            // Make an empty search to refresh the list and groups
             var selectCategoryListViewModel = DataContext as SelectCategoryListViewModel;
             if (selectCategoryListViewModel != null)
             {

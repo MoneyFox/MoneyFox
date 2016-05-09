@@ -17,6 +17,14 @@ namespace MoneyFox.Windows.Views
         private async void AddCategory(object sender, RoutedEventArgs e)
         {
             await new ModifyCategoryDialog().ShowAsync();
+
+            // Make an empty search to refresh the list and groups
+            var categoryListViewModel = CategoryListUserControl.DataContext as CategoryListViewModel;
+            if (categoryListViewModel != null)
+            {
+                categoryListViewModel.SearchText = string.Empty;
+                categoryListViewModel.Search();
+            }
         }
     }
 }
