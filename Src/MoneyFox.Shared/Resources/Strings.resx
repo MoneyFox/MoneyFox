@@ -424,4 +424,7 @@ Do you want to go the the store to rate?</value>
   <data name="NoNetworkTitle" xml:space="preserve">
     <value>No Internet Connection</value>
   </data>
+  <data name="GeneralTitle" xml:space="preserve">
+    <value>General</value>
+  </data>
 </root>
