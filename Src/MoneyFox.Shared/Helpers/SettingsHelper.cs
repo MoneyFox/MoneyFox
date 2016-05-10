@@ -6,8 +6,13 @@ using PropertyChanged;
 
 namespace MoneyFox.Shared.Helpers
 {
+    /// <summary>
+    ///     Helps accessing the settings for this App.
+    ///     NOTE: be sure that you have registered a dependency for <see cref="ISettings"/> and 
+    ///     <see cref="IAutobackupManager"/>.
+    /// </summary>
     [ImplementPropertyChanged]
-    public class SettingsHelper
+    public static class SettingsHelper
     {
         private const string DEFAULT_ACCOUNT_KEYNAME = "DefaultAccount";
         private const int DEFAULT_ACCOUNT_KEYDEFAULT = -1;
