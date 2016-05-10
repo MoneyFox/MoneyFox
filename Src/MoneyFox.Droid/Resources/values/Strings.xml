@@ -39,6 +39,10 @@
   <string name="accounts_placeholder">There are no accounts. Add one by tapping on the three dots at bottom</string>
   <string name="payments_placeholder">There are no payments. Add one by tapping on one of the three symbols at the bottom.</string>
   <string name="categories_placeholder">There are no categories. Add one by tapping on the plus symbol at bottom.</string>
+  <string name="text_auto_backup_explanation">
+    If you activate this setting after every change on the database a backup is made to OneDrive.
+    Also if you launch the application there it will check if there are newer backups and restore it if so.
+  </string>
 
   <!--buttons-->
   <string name="button_date">Date</string>

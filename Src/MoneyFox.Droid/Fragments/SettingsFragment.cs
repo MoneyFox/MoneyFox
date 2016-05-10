@@ -28,7 +28,9 @@ namespace MoneyFox.Droid.Fragments
                 var fragments = new List<MvxFragmentPagerAdapter.FragmentInfo>
                 {
                     new MvxFragmentPagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof (SettingsSecurityFragment),
-                        typeof (SettingsSecurityViewModel))
+                        typeof (SettingsSecurityViewModel)),
+                    new MvxFragmentPagerAdapter.FragmentInfo(Strings.GeneralTitle, typeof (SettingsGeneralFragment),
+                        typeof (SettingsGeneralViewModel))
                 };
                 viewPager.Adapter = new MvxFragmentPagerAdapter(Activity, ChildFragmentManager, fragments);
             }
