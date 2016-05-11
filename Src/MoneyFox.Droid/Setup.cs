@@ -18,7 +18,6 @@ using MvvmCross.Platform.Plugins;
 using MvvmCross.Plugins.Messenger;
 using System.Collections.Generic;
 using System.Reflection;
-using Xamarin;
 
 namespace MoneyFox.Droid
 {

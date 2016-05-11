@@ -57,6 +57,7 @@
     <Compile Include="DataAccess\CategoryDataAccess.cs" />
     <Compile Include="DataAccess\PaymentDataAccess.cs" />
     <Compile Include="DataAccess\RecurringPaymentDataAccess.cs" />
+    <Compile Include="DebugTrace.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Exceptions\AccountMissingException.cs" />
     <Compile Include="Exceptions\BackupException.cs" />

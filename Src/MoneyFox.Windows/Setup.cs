@@ -10,6 +10,7 @@ using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using MvvmCross.Platform.UI;
 using MvvmCross.Plugins.Email;
@@ -67,5 +68,7 @@ namespace MoneyFox.Windows
         {
             return new Shared.App();
         }
+
+        protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
     }
 }
