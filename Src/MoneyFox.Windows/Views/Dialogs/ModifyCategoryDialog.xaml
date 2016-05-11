@@ -6,7 +6,7 @@
                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                mc:Ignorable="d"
-               Title="ADD CATEGORY"
+               Title="{Binding Title}"
                x:Uid="ModifyCategoryDialog"
                PrimaryButtonText="done"
                SecondaryButtonText="cancel"
