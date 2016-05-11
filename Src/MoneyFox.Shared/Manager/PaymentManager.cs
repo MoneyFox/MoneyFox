@@ -5,7 +5,8 @@ using MoneyFox.Shared.Exceptions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
-using Xamarin;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 
 namespace MoneyFox.Shared.Manager
 {
@@ -70,9 +71,7 @@ namespace MoneyFox.Shared.Manager
                         payment.ChargedAccount =
                             accountRepository.Data.FirstOrDefault(x => x.Id == payment.ChargedAccountId);
 
-                        Insights.Report(
-                            new AccountMissingException("Charged account was missing while clearing payments."),
-                            Insights.Severity.Error);
+                        Mvx.Trace(MvxTraceLevel.Error, "Charged account was missing while clearing payments.");
                     }
 
                     payment.IsCleared = true;
@@ -82,7 +81,7 @@ namespace MoneyFox.Shared.Manager
                 }
                 catch (Exception ex)
                 {
-                    Insights.Report(ex, Insights.Severity.Error);
+                    Mvx.Trace(MvxTraceLevel.Error, ex.Message);
                 }
             }
         }
@@ -104,7 +103,7 @@ namespace MoneyFox.Shared.Manager
             }
             catch (Exception ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
         }
     }

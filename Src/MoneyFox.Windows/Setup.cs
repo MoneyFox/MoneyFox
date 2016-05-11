@@ -22,7 +22,6 @@ using MvvmCross.Plugins.Visibility.WindowsCommon;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Plugins.WebBrowser.WindowsCommon;
 using MvvmCross.WindowsUWP.Platform;
-using Xamarin;
 using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
 
 namespace MoneyFox.Windows
@@ -66,16 +65,6 @@ namespace MoneyFox.Windows
 
         protected override IMvxApplication CreateApp()
         {
-            var insightKey = "599ff6bfdc79368ff3d5f5629a57c995fe93352e";
-
-#if DEBUG
-            insightKey = Insights.DebugModeKey;
-#endif
-            if (!Insights.IsInitialized)
-            {
-                Insights.Initialize(insightKey);
-            }
-
             return new Shared.App();
         }
     }

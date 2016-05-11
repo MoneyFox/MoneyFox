@@ -8,7 +8,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
-using Xamarin;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 
 namespace MoneyFox.Windows.Controls
 {
@@ -314,8 +315,6 @@ namespace MoneyFox.Windows.Controls
 
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            try
-            {
                 var x = panAreaTransform.TranslateX + e.Delta.Translation.X;
 
                 // keep the pan within the bountry
@@ -327,32 +326,27 @@ namespace MoneyFox.Windows.Controls
                 // while we are panning the PanArea on X axis, let's sync the PaneRoot's position X too
                 paneRootTransform.TranslateX = panAreaTransform.TranslateX = x;
 
-                if (sender == paneRoot && IsPanSelectorEnabled)
-                {
-                    // un-highlight everything first
-                    foreach (var item in menuItems)
-                    {
-                        VisualStateManager.GoToState(item, "Normal", true);
-                    }
-
-                    toBeSelectedIndex = (int) Math.Round(e.Cumulative.Translation.Y, MidpointRounding.AwayFromZero);
-                    if (toBeSelectedIndex < 0)
-                    {
-                        toBeSelectedIndex = 0;
-                    }
-                    else if (toBeSelectedIndex >= menuItems.Count)
-                    {
-                        toBeSelectedIndex = menuItems.Count - 1;
-                    }
-
-                    // highlight the item that's going to be selected
-                    var itemContainer = menuItems[toBeSelectedIndex];
-                    VisualStateManager.GoToState(itemContainer, "PointerOver", true);
-                }
-            }
-            catch (Exception ex)
+            if (sender == paneRoot && IsPanSelectorEnabled)
             {
-                Insights.Report(ex);
+                // un-highlight everything first
+                foreach (var item in menuItems)
+                {
+                    VisualStateManager.GoToState(item, "Normal", true);
+                }
+
+                toBeSelectedIndex = (int) Math.Round(e.Cumulative.Translation.Y, MidpointRounding.AwayFromZero);
+                if (toBeSelectedIndex < 0)
+                {
+                    toBeSelectedIndex = 0;
+                }
+                else if (toBeSelectedIndex >= menuItems.Count)
+                {
+                    toBeSelectedIndex = menuItems.Count - 1;
+                }
+
+                // highlight the item that's going to be selected
+                var itemContainer = menuItems[toBeSelectedIndex];
+                VisualStateManager.GoToState(itemContainer, "PointerOver", true);
             }
         }
 
@@ -442,7 +436,7 @@ namespace MoneyFox.Windows.Controls
                 }
                 catch (Exception ex)
                 {
-                    Insights.Report(ex);
+                    Mvx.Trace(MvxTraceLevel.Error, ex.Message);
                 }
             }
             else
@@ -461,7 +455,7 @@ namespace MoneyFox.Windows.Controls
                 }
                 catch (Exception ex)
                 {
-                    Insights.Report(ex);
+                    Mvx.Trace(MvxTraceLevel.Error, ex.Message);
                 }
             }
             else
