@@ -117,9 +117,9 @@
                            x:Uid="OpenSourceNote"
                            Margin="0,12,0,0"
                            VerticalAlignment="Top" />
-                <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
-                           TextWrapping="Wrap"
+                <TextBlock TextWrapping="Wrap"
                            Text="www.github.com"
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center">
                     <interactivity:Interaction.Behaviors>
@@ -135,11 +135,11 @@
                            x:Uid="TranslationMissingHelpText"
                            Margin="0,12,0,0"
                            VerticalAlignment="Top" />
-                <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
-                           TextWrapping="Wrap"
+                <TextBlock TextWrapping="Wrap"
                            Text="www.crowdin.com"
                            HorizontalAlignment="Center"
-                           VerticalAlignment="Center">
+                           VerticalAlignment="Center"
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Tapped">
                             <core:InvokeCommandAction Command="{Binding GoToTranslationProjectCommand, Mode=OneWay}" />
@@ -148,7 +148,7 @@
                 </TextBlock>
 
                 <TextBlock TextWrapping="Wrap"
-                           Style="{ThemeResource BodyTextBlockStyle}"
+                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                            Text="Privacy Information"
                            HorizontalAlignment="Left"
                            x:Uid="PrivacyInfo"
