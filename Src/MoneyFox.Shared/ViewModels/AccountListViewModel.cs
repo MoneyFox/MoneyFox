@@ -98,6 +98,7 @@ namespace MoneyFox.Shared.ViewModels
             {
                 accountRepository.Delete(item);
             }
+            BalanceViewModel.UpdateBalanceCommand.Execute();
         }
 
         private void GoToAddAccount()
