@@ -15,7 +15,6 @@ using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Views;
@@ -23,6 +22,7 @@ using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
+using Xamarin;
 
 namespace MoneyFox.Windows
 {
@@ -40,8 +40,14 @@ namespace MoneyFox.Windows
             InitializeComponent();
             SetColor();
             Suspending += OnSuspending;
+            UnhandledException += OnUnhandledException;
         }
-        
+
+        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Insights.Report(e.Exception);
+        }
+
         /// <summary>
         ///     Bind the saved theme from settings to the root element which cascadingly applies to children elements
         ///     the reason this is bound in code behind is that because viewmodels are loaded after the pages,
@@ -209,5 +215,7 @@ namespace MoneyFox.Windows
 
             deferral.Complete();
         }
+
+        
     }
 }
