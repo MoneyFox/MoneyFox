@@ -68,16 +68,31 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
             android:gravity="bottom"
-            android:layout_marginTop="7dp" />
+            android:layout_marginTop="12dp" />
         <TextView
             android:id="@+id/text_github"
-            android:text="@string/textview_github"
+            android:text="www.github.com"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             local:MvxBind="Click GoToRepositoryCommand" />
+        <TextView
+            android:id="@+id/text_open_source"
+            android:text="@string/textview_opensource"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:layout_marginTop="12dp" />
+        <TextView
+            android:id="@+id/text_translation"
+            android:text="www.crowdin.com"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            local:MvxBind="Click GoToTranslationProjectCommand" />
     </LinearLayout>
 </LinearLayout>
