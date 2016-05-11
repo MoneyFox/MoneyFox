@@ -15,7 +15,7 @@ using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "Money Fox",
-        Icon = "@drawable/icon",
+        Icon = "@mipmap/ic_launcher",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop,
         Name = "moneyfox.droid.activities.MainActivity")]

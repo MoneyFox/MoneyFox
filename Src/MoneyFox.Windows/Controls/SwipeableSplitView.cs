@@ -314,38 +314,45 @@ namespace MoneyFox.Windows.Controls
 
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            var x = panAreaTransform.TranslateX + e.Delta.Translation.X;
-
-            // keep the pan within the bountry
-            if (x < PanAreaInitialTranslateX || x > 0)
+            try
             {
-                return;
+                var x = panAreaTransform.TranslateX + e.Delta.Translation.X;
+
+                // keep the pan within the bountry
+                if (x < PanAreaInitialTranslateX || x > 0)
+                {
+                    return;
+                }
+
+                // while we are panning the PanArea on X axis, let's sync the PaneRoot's position X too
+                paneRootTransform.TranslateX = panAreaTransform.TranslateX = x;
+
+                if (sender == paneRoot && IsPanSelectorEnabled)
+                {
+                    // un-highlight everything first
+                    foreach (var item in menuItems)
+                    {
+                        VisualStateManager.GoToState(item, "Normal", true);
+                    }
+
+                    toBeSelectedIndex = (int) Math.Round(e.Cumulative.Translation.Y, MidpointRounding.AwayFromZero);
+                    if (toBeSelectedIndex < 0)
+                    {
+                        toBeSelectedIndex = 0;
+                    }
+                    else if (toBeSelectedIndex >= menuItems.Count)
+                    {
+                        toBeSelectedIndex = menuItems.Count - 1;
+                    }
+
+                    // highlight the item that's going to be selected
+                    var itemContainer = menuItems[toBeSelectedIndex];
+                    VisualStateManager.GoToState(itemContainer, "PointerOver", true);
+                }
             }
-
-            // while we are panning the PanArea on X axis, let's sync the PaneRoot's position X too
-            paneRootTransform.TranslateX = panAreaTransform.TranslateX = x;
-
-            if (sender == paneRoot && IsPanSelectorEnabled)
+            catch (Exception ex)
             {
-                // un-highlight everything first
-                foreach (var item in menuItems)
-                {
-                    VisualStateManager.GoToState(item, "Normal", true);
-                }
-
-                toBeSelectedIndex = (int)Math.Round(e.Cumulative.Translation.Y, MidpointRounding.AwayFromZero);
-                if (toBeSelectedIndex < 0)
-                {
-                    toBeSelectedIndex = 0;
-                }
-                else if (toBeSelectedIndex >= menuItems.Count)
-                {
-                    toBeSelectedIndex = menuItems.Count - 1;
-                }
-
-                // highlight the item that's going to be selected
-                var itemContainer = menuItems[toBeSelectedIndex];
-                VisualStateManager.GoToState(itemContainer, "PointerOver", true);
+                Insights.Report(ex);
             }
         }
 

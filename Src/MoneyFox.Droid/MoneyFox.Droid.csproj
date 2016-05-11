@@ -295,7 +295,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="SplashScreen.cs" />
+    <Compile Include="Activities\SplashScreenActivity.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\AndroidAuthenticationProvider.cs" />
     <Compile Include="Src\CustomPresenter.cs" />
@@ -331,7 +331,7 @@
     <AndroidResource Include="Resources\menu\navigation_drawer.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\splash_screen.axml" />
+    <AndroidResource Include="Resources\layout\activity_splash_screen.axml" />
     <AndroidResource Include="Resources\layout\toolbar_actionbar.axml" />
     <AndroidResource Include="Resources\layout\fragment_account_list.axml" />
     <AndroidResource Include="Resources\layout\listitem_account.axml">
@@ -394,9 +394,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Shared\MoneyFox.Shared.csproj">
@@ -492,6 +489,22 @@
       <Visible>False</Visible>
       <Version>1.2.3.1</Version>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Insights.1.12.3\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.12.3\build\MonoAndroid10\Xamarin.Insights.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

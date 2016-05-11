@@ -36,7 +36,6 @@ namespace MoneyFox.Droid
             typeof (Toolbar).Assembly,
             typeof (DrawerLayout).Assembly,
             typeof (ViewPager).Assembly
-            //typeof(MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView).Assembly
         };
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)
