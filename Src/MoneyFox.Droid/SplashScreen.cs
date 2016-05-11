@@ -4,7 +4,7 @@ using MvvmCross.Droid.Views;
 
 namespace MoneyFox.Droid
 {
-    [Activity(Label = "Money Fox", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/AppTheme.Splash",
+    [Activity(Label = "Money Fox", MainLauncher = true, Icon = "@mipmap/ic_launcher", Theme = "@style/AppTheme.Splash",
         NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreen : MvxSplashScreenActivity
     {
