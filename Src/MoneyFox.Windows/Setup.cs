@@ -3,6 +3,7 @@ using Cheesebaron.MvxPlugins.Connectivity;
 using Cheesebaron.MvxPlugins.Connectivity.WindowsCommon;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Shotcuts;
 using MoneyManager.Windows;
