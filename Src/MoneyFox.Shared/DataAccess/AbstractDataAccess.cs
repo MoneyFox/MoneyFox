@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using MoneyFox.Shared.Interfaces;
-using Xamarin;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 
 namespace MoneyFox.Shared.DataAccess
 {
@@ -21,7 +22,7 @@ namespace MoneyFox.Shared.DataAccess
             }
             catch (Exception ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
                 return false;
             }
             return true;
@@ -39,7 +40,7 @@ namespace MoneyFox.Shared.DataAccess
             }
             catch (Exception ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
                 return false;
             }
             return true;
@@ -57,7 +58,7 @@ namespace MoneyFox.Shared.DataAccess
             }
             catch (Exception ex)
             {
-                Insights.Report(ex, Insights.Severity.Error);
+                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
             return new List<T>();
         }

@@ -2,6 +2,7 @@
   "dependencies": {
     "Cheesebaron.MvxPlugins.Connectivity": "0.0.2",
     "Cheesebaron.MvxPlugins.Settings": "1.2.5",
+    "HockeySDK.UWP": "4.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
     "Microsoft.NETNative.Analyzer": "1.0.0",
     "Microsoft.OneDriveSDK": "1.1.20",
@@ -19,8 +20,7 @@
     "SQLite.Net-PCL": "3.1.1",
     "SQLite.Net.Async-PCL": "3.1.1",
     "SQLite.Net.Core-PCL": "3.1.1",
-    "UniversalRateReminder": "2.1.0",
-    "Xamarin.Insights": "1.12.3"
+    "UniversalRateReminder": "2.1.0"
   },
   "frameworks": {
     "uap10.0": {}

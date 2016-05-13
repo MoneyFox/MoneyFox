@@ -1,13 +1,14 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
+using Microsoft.HockeyApp;
 using MoneyFox.Shared;
+using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
 using MoneyManager.Windows.Shortcut;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using Xamarin;
 using MoneyManager.Windows.Services;
 
 namespace MoneyFox.Tasks
@@ -18,15 +19,11 @@ namespace MoneyFox.Tasks
 
         public ClearPaymentBackgroundTask()
         {
-            var insightKey = "599ff6bfdc79368ff3d5f5629a57c995fe93352e";
-
-#if DEBUG
-            insightKey = Insights.DebugModeKey;
+#if !DEBUG
+            HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID);
 #endif
-            if (!Insights.IsInitialized)
-            {
-                Insights.Initialize(insightKey);
-            }
+
+            HockeyClient.Current.TrackEvent("BackgroundTask");
 
             var sqliteConnectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
             var notificationService = new NotificationService();
@@ -45,15 +42,8 @@ namespace MoneyFox.Tasks
 
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            try
-            {
-                paymentManager.ClearPayments();
-                Tile.UpdateMainTile();
-            }
-            catch (Exception ex)
-            {
-                Insights.Report(ex);
-            }
+            paymentManager.ClearPayments();
+            Tile.UpdateMainTile();
         }
     }
 }

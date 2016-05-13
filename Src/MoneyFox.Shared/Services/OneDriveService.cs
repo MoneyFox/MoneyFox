@@ -7,8 +7,9 @@ using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Interfaces;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.File;
-using Xamarin;
 
 namespace MoneyFox.Shared.Services
 {
@@ -51,13 +52,13 @@ namespace MoneyFox.Shared.Services
                 await GetBackupFolder();
             }
 
-            using (var dbstream = fileStore.OpenRead(BackupConstants.DB_NAME))
+            using (var dbstream = fileStore.OpenRead(DatabaseConstants.DB_NAME))
             {
                 var uploadedItem = await OneDriveClient
                     .Drive
                     .Root
-                    .ItemWithPath(Path.Combine(BackupConstants.BACKUP_FOLDER_NAME,
-                        BackupConstants.BACKUP_NAME))
+                    .ItemWithPath(Path.Combine(DatabaseConstants.BACKUP_FOLDER_NAME,
+                        DatabaseConstants.BACKUP_NAME))
                     .Content
                     .Request()
                     .PutAsync<Item>(dbstream);
@@ -108,7 +109,7 @@ namespace MoneyFox.Shared.Services
             try
             {
                 var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
-                var existingBackup = children.FirstOrDefault(x => x.Name == BackupConstants.BACKUP_NAME);
+                var existingBackup = children.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
                 if (existingBackup != null)
                 {
@@ -117,7 +118,7 @@ namespace MoneyFox.Shared.Services
             }
             catch (Exception ex)
             {
-                Insights.Report(ex);
+                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
 
             return DateTime.MinValue;
@@ -127,7 +128,7 @@ namespace MoneyFox.Shared.Services
         {
             var children = await OneDriveClient.Drive.Root.Children.Request().GetAsync();
             BackupFolder =
-                children.CurrentPage.FirstOrDefault(x => x.Name == BackupConstants.BACKUP_FOLDER_NAME);
+                children.CurrentPage.FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_FOLDER_NAME);
 
             if (BackupFolder == null)
             {
@@ -139,7 +140,7 @@ namespace MoneyFox.Shared.Services
         {
             var folderToCreate = new Item
             {
-                Name = BackupConstants.BACKUP_FOLDER_NAME,
+                Name = DatabaseConstants.BACKUP_FOLDER_NAME,
                 Folder = new Folder()
             };
 

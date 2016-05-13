@@ -93,9 +93,9 @@ namespace MoneyFox.Shared.Manager
                 var backupNames = GetBackupName(await backupService.GetFileNames());
                 await backupService.Restore(backupNames.Item1, backupNames.Item2);
 
-                if (oldBackupRestored && fileStore.Exists(BackupConstants.DB_NAME))
+                if (oldBackupRestored && fileStore.Exists(DatabaseConstants.DB_NAME))
                 {
-                    fileStore.DeleteFile(BackupConstants.DB_NAME);
+                    fileStore.DeleteFile(DatabaseConstants.DB_NAME);
                 }
 
                 databaseManager.CreateDatabase();
@@ -108,12 +108,12 @@ namespace MoneyFox.Shared.Manager
 
         private Tuple<string, string> GetBackupName(List<string> filenames)
         {
-            if (filenames.Contains(BackupConstants.BACKUP_NAME))
+            if (filenames.Contains(DatabaseConstants.BACKUP_NAME))
             {
-                return new Tuple<string, string>(BackupConstants.BACKUP_NAME, BackupConstants.DB_NAME);
+                return new Tuple<string, string>(DatabaseConstants.BACKUP_NAME, DatabaseConstants.DB_NAME);
             }
             oldBackupRestored = true;
-            return new Tuple<string, string>(BackupConstants.BACKUP_NAME_OLD, BackupConstants.DB_NAME_OLD);
+            return new Tuple<string, string>(DatabaseConstants.BACKUP_NAME_OLD, DatabaseConstants.DB_NAME_OLD);
         }
 
         private async Task<bool> CheckIfUserIsLoggedIn()

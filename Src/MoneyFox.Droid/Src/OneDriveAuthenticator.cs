@@ -22,10 +22,10 @@ namespace MoneyFox.Droid
             if (oneDriveClient == null)
             {
                 oneDriveClient = OneDriveClient.GetMicrosoftAccountClient(
-                    BackupConstants.MSA_CLIENT_ID,
-                    BackupConstants.RETURN_URL,
-                    BackupConstants.Scopes,
-                    BackupConstants.MSA_CLIENT_SECRET,
+                    ServiceConstants.MSA_CLIENT_ID,
+                    ServiceConstants.RETURN_URL,
+                    ServiceConstants.Scopes,
+                    ServiceConstants.MSA_CLIENT_SECRET,
                     null, null,
                     new CustomServiceInfoProvider());
                 try

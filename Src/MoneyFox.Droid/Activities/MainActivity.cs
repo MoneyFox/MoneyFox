@@ -10,6 +10,9 @@ using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using System;
+using HockeyApp;
+using HockeyApp.Metrics;
+using MoneyFox.Shared.Constants;
 using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace MoneyFox.Droid.Activities
@@ -29,6 +32,11 @@ namespace MoneyFox.Droid.Activities
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.activity_main);
+
+#if !DEBUG
+            CrashManager.Register(this, ServiceConstants.HOCKEY_APP_DROID_ID);
+            MetricsManager.Register(this, Application, ServiceConstants.HOCKEY_APP_DROID_ID);
+#endif
 
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
 
