@@ -3,6 +3,7 @@ using Cheesebaron.MvxPlugins.Connectivity;
 using Cheesebaron.MvxPlugins.Connectivity.WindowsCommon;
 using Cheesebaron.MvxPlugins.Settings.Interfaces;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Shotcuts;
 using MoneyManager.Windows;
@@ -10,6 +11,7 @@ using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using MvvmCross.Platform.UI;
 using MvvmCross.Plugins.Email;
@@ -22,7 +24,6 @@ using MvvmCross.Plugins.Visibility.WindowsCommon;
 using MvvmCross.Plugins.WebBrowser;
 using MvvmCross.Plugins.WebBrowser.WindowsCommon;
 using MvvmCross.WindowsUWP.Platform;
-using Xamarin;
 using PluginLoader = MvvmCross.Plugins.Messenger.PluginLoader;
 
 namespace MoneyFox.Windows
@@ -66,17 +67,9 @@ namespace MoneyFox.Windows
 
         protected override IMvxApplication CreateApp()
         {
-            var insightKey = "599ff6bfdc79368ff3d5f5629a57c995fe93352e";
-
-#if DEBUG
-            insightKey = Insights.DebugModeKey;
-#endif
-            if (!Insights.IsInitialized)
-            {
-                Insights.Initialize(insightKey);
-            }
-
             return new Shared.App();
         }
+
+        protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
     }
 }
