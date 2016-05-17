@@ -11,7 +11,7 @@ using MvvmCross.Droid.Support.V4;
 
 namespace MoneyFox.Droid.Fragments
 {
-    [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneyfox.droid.fragments.SettingsFragment")]
     public class SettingsFragment : BaseFragment<SettingsViewModel>
     {
@@ -27,10 +27,10 @@ namespace MoneyFox.Droid.Fragments
             {
                 var fragments = new List<MvxFragmentPagerAdapter.FragmentInfo>
                 {
-                    new MvxFragmentPagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof (SettingsSecurityFragment),
-                        typeof (SettingsSecurityViewModel)),
-                    new MvxFragmentPagerAdapter.FragmentInfo(Strings.GeneralTitle, typeof (SettingsGeneralFragment),
-                        typeof (SettingsGeneralViewModel))
+                    new MvxFragmentPagerAdapter.FragmentInfo(Strings.GeneralTitle, typeof(SettingsGeneralFragment),
+                        typeof(SettingsGeneralViewModel)),
+                    new MvxFragmentPagerAdapter.FragmentInfo(Strings.SecurityTitle, typeof(SettingsSecurityFragment),
+                        typeof(SettingsSecurityViewModel))
                 };
                 viewPager.Adapter = new MvxFragmentPagerAdapter(Activity, ChildFragmentManager, fragments);
             }
