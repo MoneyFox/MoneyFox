@@ -2783,32 +2783,32 @@ namespace MoneyFox.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0c004e
-			public const int abc_background_cache_hint_selector_material_dark = 2131492942;
+			// aapt resource value: 0x7f0c0058
+			public const int abc_background_cache_hint_selector_material_dark = 2131492952;
 			
-			// aapt resource value: 0x7f0c004f
-			public const int abc_background_cache_hint_selector_material_light = 2131492943;
+			// aapt resource value: 0x7f0c0059
+			public const int abc_background_cache_hint_selector_material_light = 2131492953;
 			
-			// aapt resource value: 0x7f0c0050
-			public const int abc_color_highlight_material = 2131492944;
+			// aapt resource value: 0x7f0c005a
+			public const int abc_color_highlight_material = 2131492954;
 			
 			// aapt resource value: 0x7f0c0000
 			public const int abc_input_method_navigation_guard = 2131492864;
 			
-			// aapt resource value: 0x7f0c0051
-			public const int abc_primary_text_disable_only_material_dark = 2131492945;
+			// aapt resource value: 0x7f0c005b
+			public const int abc_primary_text_disable_only_material_dark = 2131492955;
 			
-			// aapt resource value: 0x7f0c0052
-			public const int abc_primary_text_disable_only_material_light = 2131492946;
+			// aapt resource value: 0x7f0c005c
+			public const int abc_primary_text_disable_only_material_light = 2131492956;
 			
-			// aapt resource value: 0x7f0c0053
-			public const int abc_primary_text_material_dark = 2131492947;
+			// aapt resource value: 0x7f0c005d
+			public const int abc_primary_text_material_dark = 2131492957;
 			
-			// aapt resource value: 0x7f0c0054
-			public const int abc_primary_text_material_light = 2131492948;
+			// aapt resource value: 0x7f0c005e
+			public const int abc_primary_text_material_light = 2131492958;
 			
-			// aapt resource value: 0x7f0c0055
-			public const int abc_search_url_text = 2131492949;
+			// aapt resource value: 0x7f0c005f
+			public const int abc_search_url_text = 2131492959;
 			
 			// aapt resource value: 0x7f0c0001
 			public const int abc_search_url_text_normal = 2131492865;
@@ -2819,11 +2819,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0c0003
 			public const int abc_search_url_text_selected = 2131492867;
 			
-			// aapt resource value: 0x7f0c0056
-			public const int abc_secondary_text_material_dark = 2131492950;
+			// aapt resource value: 0x7f0c0060
+			public const int abc_secondary_text_material_dark = 2131492960;
 			
-			// aapt resource value: 0x7f0c0057
-			public const int abc_secondary_text_material_light = 2131492951;
+			// aapt resource value: 0x7f0c0061
+			public const int abc_secondary_text_material_light = 2131492961;
 			
 			// aapt resource value: 0x7f0c0004
 			public const int accent_material_dark = 2131492868;
@@ -2843,8 +2843,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0c0009
 			public const int background_material_light = 2131492873;
 			
-			// aapt resource value: 0x7f0c004c
-			public const int black = 2131492940;
+			// aapt resource value: 0x7f0c0056
+			public const int black = 2131492950;
 			
 			// aapt resource value: 0x7f0c000a
 			public const int bright_foreground_disabled_material_dark = 2131492874;
@@ -2870,17 +2870,17 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0c0011
 			public const int button_material_light = 2131492881;
 			
-			// aapt resource value: 0x7f0c0046
-			public const int colorAccent = 2131492934;
+			// aapt resource value: 0x7f0c0050
+			public const int colorAccent = 2131492944;
 			
-			// aapt resource value: 0x7f0c0044
-			public const int colorPrimary = 2131492932;
+			// aapt resource value: 0x7f0c004e
+			public const int colorPrimary = 2131492942;
 			
-			// aapt resource value: 0x7f0c0045
-			public const int colorPrimaryDark = 2131492933;
+			// aapt resource value: 0x7f0c004f
+			public const int colorPrimaryDark = 2131492943;
 			
-			// aapt resource value: 0x7f0c004b
-			public const int dark_gray = 2131492939;
+			// aapt resource value: 0x7f0c0055
+			public const int dark_gray = 2131492949;
 			
 			// aapt resource value: 0x7f0c003a
 			public const int design_fab_shadow_end_color = 2131492922;
@@ -2930,8 +2930,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0c0017
 			public const int foreground_material_light = 2131492887;
 			
-			// aapt resource value: 0x7f0c004a
-			public const int gray = 2131492938;
+			// aapt resource value: 0x7f0c0054
+			public const int gray = 2131492948;
 			
 			// aapt resource value: 0x7f0c0018
 			public const int highlighted_text_material_dark = 2131492888;
@@ -2945,8 +2945,38 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0c001b
 			public const int hint_foreground_material_light = 2131492891;
 			
+			// aapt resource value: 0x7f0c0044
+			public const int hockeyapp_background_header = 2131492932;
+			
+			// aapt resource value: 0x7f0c0045
+			public const int hockeyapp_background_light = 2131492933;
+			
+			// aapt resource value: 0x7f0c0046
+			public const int hockeyapp_background_white = 2131492934;
+			
+			// aapt resource value: 0x7f0c0047
+			public const int hockeyapp_button_background = 2131492935;
+			
 			// aapt resource value: 0x7f0c0048
-			public const int light_gray = 2131492936;
+			public const int hockeyapp_button_background_pressed = 2131492936;
+			
+			// aapt resource value: 0x7f0c0049
+			public const int hockeyapp_button_background_selected = 2131492937;
+			
+			// aapt resource value: 0x7f0c004a
+			public const int hockeyapp_text_black = 2131492938;
+			
+			// aapt resource value: 0x7f0c004b
+			public const int hockeyapp_text_light = 2131492939;
+			
+			// aapt resource value: 0x7f0c004c
+			public const int hockeyapp_text_normal = 2131492940;
+			
+			// aapt resource value: 0x7f0c004d
+			public const int hockeyapp_text_white = 2131492941;
+			
+			// aapt resource value: 0x7f0c0052
+			public const int light_gray = 2131492946;
 			
 			// aapt resource value: 0x7f0c001c
 			public const int material_blue_grey_800 = 2131492892;
@@ -2984,8 +3014,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0c0027
 			public const int material_grey_900 = 2131492903;
 			
-			// aapt resource value: 0x7f0c0049
-			public const int med_gray = 2131492937;
+			// aapt resource value: 0x7f0c0053
+			public const int med_gray = 2131492947;
 			
 			// aapt resource value: 0x7f0c0028
 			public const int primary_dark_material_dark = 2131492904;
@@ -3035,11 +3065,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0c0037
 			public const int switch_thumb_disabled_material_light = 2131492919;
 			
-			// aapt resource value: 0x7f0c0058
-			public const int switch_thumb_material_dark = 2131492952;
+			// aapt resource value: 0x7f0c0062
+			public const int switch_thumb_material_dark = 2131492962;
 			
-			// aapt resource value: 0x7f0c0059
-			public const int switch_thumb_material_light = 2131492953;
+			// aapt resource value: 0x7f0c0063
+			public const int switch_thumb_material_light = 2131492963;
 			
 			// aapt resource value: 0x7f0c0038
 			public const int switch_thumb_normal_material_dark = 2131492920;
@@ -3047,11 +3077,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0c0039
 			public const int switch_thumb_normal_material_light = 2131492921;
 			
-			// aapt resource value: 0x7f0c004d
-			public const int text_gray = 2131492941;
+			// aapt resource value: 0x7f0c0057
+			public const int text_gray = 2131492951;
 			
-			// aapt resource value: 0x7f0c0047
-			public const int white = 2131492935;
+			// aapt resource value: 0x7f0c0051
+			public const int white = 2131492945;
 			
 			static Color()
 			{
@@ -3698,58 +3728,61 @@ namespace MoneyFox.Droid
 			public const int design_snackbar_background = 2130837580;
 			
 			// aapt resource value: 0x7f02004d
-			public const int ic_account_balance = 2130837581;
+			public const int hockeyapp_btn_background = 2130837581;
 			
 			// aapt resource value: 0x7f02004e
-			public const int ic_add = 2130837582;
+			public const int ic_account_balance = 2130837582;
 			
 			// aapt resource value: 0x7f02004f
-			public const int ic_backup = 2130837583;
+			public const int ic_add = 2130837583;
 			
 			// aapt resource value: 0x7f020050
-			public const int ic_delete = 2130837584;
+			public const int ic_backup = 2130837584;
 			
 			// aapt resource value: 0x7f020051
-			public const int ic_done = 2130837585;
+			public const int ic_delete = 2130837585;
 			
 			// aapt resource value: 0x7f020052
-			public const int ic_done_black = 2130837586;
+			public const int ic_done = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int ic_forward = 2130837587;
+			public const int ic_done_black = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int ic_info = 2130837588;
+			public const int ic_forward = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int ic_label_outline = 2130837589;
+			public const int ic_info = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int ic_loop = 2130837590;
+			public const int ic_label_outline = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int ic_recurring = 2130837591;
+			public const int ic_loop = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int ic_remove = 2130837592;
+			public const int ic_recurring = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int ic_save = 2130837593;
+			public const int ic_remove = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int ic_settings = 2130837594;
+			public const int ic_save = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int ic_show_chart = 2130837595;
+			public const int ic_settings = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int icon_wide = 2130837596;
+			public const int ic_show_chart = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int logo = 2130837597;
+			public const int icon_wide = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int notification_template_icon_bg = 2130837598;
+			public const int logo = 2130837598;
+			
+			// aapt resource value: 0x7f02005f
+			public const int notification_template_icon_bg = 2130837599;
 			
 			static Drawable()
 			{
@@ -3779,11 +3812,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f07008a
 			public const int account_list_balance_frame = 2131165322;
 			
-			// aapt resource value: 0x7f07009e
-			public const int action0 = 2131165342;
+			// aapt resource value: 0x7f0700ba
+			public const int action0 = 2131165370;
 			
-			// aapt resource value: 0x7f0700b0
-			public const int action_add = 2131165360;
+			// aapt resource value: 0x7f0700cc
+			public const int action_add = 2131165388;
 			
 			// aapt resource value: 0x7f07005c
 			public const int action_bar = 2131165276;
@@ -3809,11 +3842,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f07005d
 			public const int action_context_bar = 2131165277;
 			
-			// aapt resource value: 0x7f0700b2
-			public const int action_delete = 2131165362;
+			// aapt resource value: 0x7f0700ce
+			public const int action_delete = 2131165390;
 			
-			// aapt resource value: 0x7f0700a2
-			public const int action_divider = 2131165346;
+			// aapt resource value: 0x7f0700be
+			public const int action_divider = 2131165374;
 			
 			// aapt resource value: 0x7f070003
 			public const int action_menu_divider = 2131165187;
@@ -3830,8 +3863,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f07003e
 			public const int action_mode_close_button = 2131165246;
 			
-			// aapt resource value: 0x7f0700b1
-			public const int action_save = 2131165361;
+			// aapt resource value: 0x7f0700cd
+			public const int action_save = 2131165389;
 			
 			// aapt resource value: 0x7f07003f
 			public const int activity_chooser_view_content = 2131165247;
@@ -3860,14 +3893,32 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f070046
 			public const int buttonPanel = 2131165254;
 			
+			// aapt resource value: 0x7f0700ab
+			public const int button_add_response = 2131165355;
+			
+			// aapt resource value: 0x7f0700a6
+			public const int button_attachment = 2131165350;
+			
+			// aapt resource value: 0x7f0700b0
+			public const int button_login = 2131165360;
+			
 			// aapt resource value: 0x7f070086
 			public const int button_rate = 2131165318;
+			
+			// aapt resource value: 0x7f0700ac
+			public const int button_refresh = 2131165356;
 			
 			// aapt resource value: 0x7f07007f
 			public const int button_save_category = 2131165311;
 			
-			// aapt resource value: 0x7f07009f
-			public const int cancel_action = 2131165343;
+			// aapt resource value: 0x7f0700a7
+			public const int button_send = 2131165351;
+			
+			// aapt resource value: 0x7f0700b4
+			public const int button_update = 2131165364;
+			
+			// aapt resource value: 0x7f0700bb
+			public const int cancel_action = 2131165371;
 			
 			// aapt resource value: 0x7f07006f
 			public const int category = 2131165295;
@@ -3887,8 +3938,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f070054
 			public const int checkbox = 2131165268;
 			
-			// aapt resource value: 0x7f0700a5
-			public const int chronometer = 2131165349;
+			// aapt resource value: 0x7f0700c1
+			public const int chronometer = 2131165377;
 			
 			// aapt resource value: 0x7f070035
 			public const int clip_horizontal = 2131165237;
@@ -3944,8 +3995,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f07001e
 			public const int end = 2131165214;
 			
-			// aapt resource value: 0x7f0700aa
-			public const int end_padder = 2131165354;
+			// aapt resource value: 0x7f0700c6
+			public const int end_padder = 2131165382;
 			
 			// aapt resource value: 0x7f070072
 			public const int enddate = 2131165298;
@@ -3992,8 +4043,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f070044
 			public const int icon = 2131165252;
 			
-			// aapt resource value: 0x7f0700ab
-			public const int icon_frame = 2131165355;
+			// aapt resource value: 0x7f0700c7
+			public const int icon_frame = 2131165383;
 			
 			// aapt resource value: 0x7f070022
 			public const int ifRoom = 2131165218;
@@ -4007,29 +4058,71 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f070095
 			public const int image_view_row_icon = 2131165333;
 			
-			// aapt resource value: 0x7f0700a9
-			public const int info = 2131165353;
+			// aapt resource value: 0x7f0700c5
+			public const int info = 2131165381;
+			
+			// aapt resource value: 0x7f0700a2
+			public const int input_email = 2131165346;
+			
+			// aapt resource value: 0x7f0700a4
+			public const int input_message = 2131165348;
+			
+			// aapt resource value: 0x7f0700a1
+			public const int input_name = 2131165345;
+			
+			// aapt resource value: 0x7f0700af
+			public const int input_password = 2131165359;
+			
+			// aapt resource value: 0x7f0700a3
+			public const int input_subject = 2131165347;
 			
 			// aapt resource value: 0x7f070000
 			public const int item_touch_helper_previous_elevation = 2131165184;
 			
+			// aapt resource value: 0x7f0700b6
+			public const int label_author = 2131165366;
+			
+			// aapt resource value: 0x7f0700b7
+			public const int label_date = 2131165367;
+			
+			// aapt resource value: 0x7f0700a9
+			public const int label_last_updated = 2131165353;
+			
+			// aapt resource value: 0x7f07009e
+			public const int label_message = 2131165342;
+			
+			// aapt resource value: 0x7f0700b8
+			public const int label_text = 2131165368;
+			
+			// aapt resource value: 0x7f0700b2
+			public const int label_title = 2131165362;
+			
+			// aapt resource value: 0x7f0700b3
+			public const int label_version = 2131165363;
+			
 			// aapt resource value: 0x7f070031
 			public const int left = 2131165233;
 			
-			// aapt resource value: 0x7f0700a3
-			public const int line1 = 2131165347;
+			// aapt resource value: 0x7f0700bf
+			public const int line1 = 2131165375;
 			
-			// aapt resource value: 0x7f0700a7
-			public const int line3 = 2131165351;
+			// aapt resource value: 0x7f0700c3
+			public const int line3 = 2131165379;
 			
-			// aapt resource value: 0x7f0700ad
-			public const int list = 2131165357;
+			// aapt resource value: 0x7f0700c9
+			public const int list = 2131165385;
 			
 			// aapt resource value: 0x7f07000d
 			public const int listMode = 2131165197;
 			
-			// aapt resource value: 0x7f0700ac
-			public const int list_container = 2131165356;
+			// aapt resource value: 0x7f0700b9
+			public const int list_attachments = 2131165369;
+			
+			// aapt resource value: 0x7f0700c8
+			public const int list_container = 2131165384;
+			
+			// aapt resource value: 0x7f0700ad
+			public const int list_feedback_messages = 2131165357;
 			
 			// aapt resource value: 0x7f070043
 			public const int list_item = 2131165251;
@@ -4040,8 +4133,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f07006d
 			public const int main_frame = 2131165293;
 			
-			// aapt resource value: 0x7f0700a1
-			public const int media_actions = 2131165345;
+			// aapt resource value: 0x7f0700bd
+			public const int media_actions = 2131165373;
 			
 			// aapt resource value: 0x7f07001f
 			public const int middle = 2131165215;
@@ -4052,29 +4145,29 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f070018
 			public const int multiply = 2131165208;
 			
-			// aapt resource value: 0x7f0700ba
-			public const int nav_about = 2131165370;
+			// aapt resource value: 0x7f0700d6
+			public const int nav_about = 2131165398;
 			
-			// aapt resource value: 0x7f0700b4
-			public const int nav_accounts = 2131165364;
+			// aapt resource value: 0x7f0700d0
+			public const int nav_accounts = 2131165392;
 			
-			// aapt resource value: 0x7f0700b8
-			public const int nav_backup = 2131165368;
+			// aapt resource value: 0x7f0700d4
+			public const int nav_backup = 2131165396;
 			
-			// aapt resource value: 0x7f0700b7
-			public const int nav_categories = 2131165367;
+			// aapt resource value: 0x7f0700d3
+			public const int nav_categories = 2131165395;
 			
-			// aapt resource value: 0x7f0700b6
-			public const int nav_footer = 2131165366;
+			// aapt resource value: 0x7f0700d2
+			public const int nav_footer = 2131165394;
 			
-			// aapt resource value: 0x7f0700b3
-			public const int nav_items = 2131165363;
+			// aapt resource value: 0x7f0700cf
+			public const int nav_items = 2131165391;
 			
-			// aapt resource value: 0x7f0700b9
-			public const int nav_settings = 2131165369;
+			// aapt resource value: 0x7f0700d5
+			public const int nav_settings = 2131165397;
 			
-			// aapt resource value: 0x7f0700b5
-			public const int nav_statistics = 2131165365;
+			// aapt resource value: 0x7f0700d1
+			public const int nav_statistics = 2131165393;
 			
 			// aapt resource value: 0x7f07006e
 			public const int navigation_frame = 2131165294;
@@ -4223,14 +4316,14 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f07009c
 			public const int statistic_list = 2131165340;
 			
-			// aapt resource value: 0x7f0700a0
-			public const int status_bar_latest_event_content = 2131165344;
+			// aapt resource value: 0x7f0700bc
+			public const int status_bar_latest_event_content = 2131165372;
 			
 			// aapt resource value: 0x7f070067
 			public const int submit_area = 2131165287;
 			
-			// aapt resource value: 0x7f0700ae
-			public const int switchWidget = 2131165358;
+			// aapt resource value: 0x7f0700ca
+			public const int switchWidget = 2131165386;
 			
 			// aapt resource value: 0x7f07000f
 			public const int tabMode = 2131165199;
@@ -4241,11 +4334,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f070097
 			public const int test_slogan = 2131165335;
 			
-			// aapt resource value: 0x7f0700a8
-			public const int text = 2131165352;
+			// aapt resource value: 0x7f0700c4
+			public const int text = 2131165380;
 			
-			// aapt resource value: 0x7f0700a6
-			public const int text2 = 2131165350;
+			// aapt resource value: 0x7f0700c2
+			public const int text2 = 2131165378;
 			
 			// aapt resource value: 0x7f07004f
 			public const int textSpacerNoButtons = 2131165263;
@@ -4264,6 +4357,9 @@ namespace MoneyFox.Droid
 			
 			// aapt resource value: 0x7f070088
 			public const int text_github = 2131165320;
+			
+			// aapt resource value: 0x7f0700ae
+			public const int text_headline = 2131165358;
 			
 			// aapt resource value: 0x7f070087
 			public const int text_open_source = 2131165319;
@@ -4286,8 +4382,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f070084
 			public const int text_website = 2131165316;
 			
-			// aapt resource value: 0x7f0700a4
-			public const int time = 2131165348;
+			// aapt resource value: 0x7f0700c0
+			public const int time = 2131165376;
 			
 			// aapt resource value: 0x7f070045
 			public const int title = 2131165253;
@@ -4295,8 +4391,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f07004a
 			public const int title_template = 2131165258;
 			
-			// aapt resource value: 0x7f0700af
-			public const int toolbar = 2131165359;
+			// aapt resource value: 0x7f0700cb
+			public const int toolbar = 2131165387;
 			
 			// aapt resource value: 0x7f070034
 			public const int top = 2131165236;
@@ -4313,17 +4409,38 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f070016
 			public const int useLogo = 2131165206;
 			
+			// aapt resource value: 0x7f0700b1
+			public const int view_header = 2131165361;
+			
 			// aapt resource value: 0x7f07000a
 			public const int view_offset_helper = 2131165194;
 			
 			// aapt resource value: 0x7f07009b
 			public const int viewpager = 2131165339;
 			
+			// aapt resource value: 0x7f0700b5
+			public const int web_update_details = 2131165365;
+			
 			// aapt resource value: 0x7f070024
 			public const int withText = 2131165220;
 			
 			// aapt resource value: 0x7f070017
 			public const int wrap_content = 2131165207;
+			
+			// aapt resource value: 0x7f0700a5
+			public const int wrapper_attachments = 2131165349;
+			
+			// aapt resource value: 0x7f0700a0
+			public const int wrapper_feedback = 2131165344;
+			
+			// aapt resource value: 0x7f07009f
+			public const int wrapper_feedback_scroll = 2131165343;
+			
+			// aapt resource value: 0x7f0700a8
+			public const int wrapper_messages = 2131165352;
+			
+			// aapt resource value: 0x7f0700aa
+			public const int wrapper_messages_buttons = 2131165354;
 			
 			static Id()
 			{
@@ -4550,82 +4667,100 @@ namespace MoneyFox.Droid
 			public const int graphical_statistic_activity = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int listitem_account = 2130968635;
+			public const int hockeyapp_activity_expiry_info = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int listitem_category = 2130968636;
+			public const int hockeyapp_activity_feedback = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int listitem_category_summary = 2130968637;
+			public const int hockeyapp_activity_login = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int listitem_payment = 2130968638;
+			public const int hockeyapp_activity_update = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int listitem_statistic_selector = 2130968639;
+			public const int hockeyapp_fragment_update = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int notification_media_action = 2130968640;
+			public const int hockeyapp_view_feedback_message = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int notification_media_cancel_action = 2130968641;
+			public const int listitem_account = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int notification_template_big_media = 2130968642;
+			public const int listitem_category = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int notification_template_big_media_narrow = 2130968643;
+			public const int listitem_category_summary = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int notification_template_lines = 2130968644;
+			public const int listitem_payment = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int notification_template_media = 2130968645;
+			public const int listitem_statistic_selector = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int notification_template_part_chronometer = 2130968646;
+			public const int notification_media_action = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int notification_template_part_time = 2130968647;
+			public const int notification_media_cancel_action = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int preference = 2130968648;
+			public const int notification_template_big_media = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int preference_category = 2130968649;
+			public const int notification_template_big_media_narrow = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int preference_dialog_edittext = 2130968650;
+			public const int notification_template_lines = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int preference_information = 2130968651;
+			public const int notification_template_media = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int preference_list_fragment = 2130968652;
+			public const int notification_template_part_chronometer = 2130968652;
 			
 			// aapt resource value: 0x7f04004d
-			public const int preference_recyclerview = 2130968653;
+			public const int notification_template_part_time = 2130968653;
 			
 			// aapt resource value: 0x7f04004e
-			public const int preference_widget_checkbox = 2130968654;
+			public const int preference = 2130968654;
 			
 			// aapt resource value: 0x7f04004f
-			public const int preference_widget_switch_compat = 2130968655;
+			public const int preference_category = 2130968655;
 			
 			// aapt resource value: 0x7f040050
-			public const int select_dialog_item_material = 2130968656;
+			public const int preference_dialog_edittext = 2130968656;
 			
 			// aapt resource value: 0x7f040051
-			public const int select_dialog_multichoice_material = 2130968657;
+			public const int preference_information = 2130968657;
 			
 			// aapt resource value: 0x7f040052
-			public const int select_dialog_singlechoice_material = 2130968658;
+			public const int preference_list_fragment = 2130968658;
 			
 			// aapt resource value: 0x7f040053
-			public const int support_simple_spinner_dropdown_item = 2130968659;
+			public const int preference_recyclerview = 2130968659;
 			
 			// aapt resource value: 0x7f040054
-			public const int toolbar_actionbar = 2130968660;
+			public const int preference_widget_checkbox = 2130968660;
+			
+			// aapt resource value: 0x7f040055
+			public const int preference_widget_switch_compat = 2130968661;
+			
+			// aapt resource value: 0x7f040056
+			public const int select_dialog_item_material = 2130968662;
+			
+			// aapt resource value: 0x7f040057
+			public const int select_dialog_multichoice_material = 2130968663;
+			
+			// aapt resource value: 0x7f040058
+			public const int select_dialog_singlechoice_material = 2130968664;
+			
+			// aapt resource value: 0x7f040059
+			public const int support_simple_spinner_dropdown_item = 2130968665;
+			
+			// aapt resource value: 0x7f04005a
+			public const int toolbar_actionbar = 2130968666;
 			
 			static Layout()
 			{
@@ -4747,77 +4882,77 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f090014
 			public const int abc_toolbar_collapse_description = 2131296276;
 			
-			// aapt resource value: 0x7f090036
-			public const int accounts_placeholder = 2131296310;
+			// aapt resource value: 0x7f09007d
+			public const int accounts_placeholder = 2131296381;
 			
-			// aapt resource value: 0x7f090022
-			public const int action_add = 2131296290;
+			// aapt resource value: 0x7f090069
+			public const int action_add = 2131296361;
 			
-			// aapt resource value: 0x7f090021
-			public const int action_add_account = 2131296289;
+			// aapt resource value: 0x7f090068
+			public const int action_add_account = 2131296360;
 			
-			// aapt resource value: 0x7f09001e
-			public const int action_add_income = 2131296286;
+			// aapt resource value: 0x7f090065
+			public const int action_add_income = 2131296357;
 			
-			// aapt resource value: 0x7f09001f
-			public const int action_add_spending = 2131296287;
+			// aapt resource value: 0x7f090066
+			public const int action_add_spending = 2131296358;
 			
-			// aapt resource value: 0x7f090020
-			public const int action_add_transfer = 2131296288;
+			// aapt resource value: 0x7f090067
+			public const int action_add_transfer = 2131296359;
 			
-			// aapt resource value: 0x7f090023
-			public const int action_delete = 2131296291;
+			// aapt resource value: 0x7f09006a
+			public const int action_delete = 2131296362;
 			
-			// aapt resource value: 0x7f090025
-			public const int action_done = 2131296293;
+			// aapt resource value: 0x7f09006c
+			public const int action_done = 2131296364;
 			
-			// aapt resource value: 0x7f090024
-			public const int action_save = 2131296292;
+			// aapt resource value: 0x7f09006b
+			public const int action_save = 2131296363;
 			
-			// aapt resource value: 0x7f09001d
-			public const int app_name = 2131296285;
+			// aapt resource value: 0x7f090064
+			public const int app_name = 2131296356;
 			
 			// aapt resource value: 0x7f090016
 			public const int appbar_scrolling_view_behavior = 2131296278;
 			
-			// aapt resource value: 0x7f090034
-			public const int backup_information = 2131296308;
+			// aapt resource value: 0x7f09007b
+			public const int backup_information = 2131296379;
 			
 			// aapt resource value: 0x7f090017
 			public const int bottom_sheet_behavior = 2131296279;
 			
-			// aapt resource value: 0x7f09003c
-			public const int button_category = 2131296316;
+			// aapt resource value: 0x7f090083
+			public const int button_category = 2131296387;
 			
-			// aapt resource value: 0x7f090040
-			public const int button_create_backup = 2131296320;
+			// aapt resource value: 0x7f090087
+			public const int button_create_backup = 2131296391;
 			
-			// aapt resource value: 0x7f09003b
-			public const int button_date = 2131296315;
+			// aapt resource value: 0x7f090082
+			public const int button_date = 2131296386;
 			
-			// aapt resource value: 0x7f090041
-			public const int button_done = 2131296321;
+			// aapt resource value: 0x7f090088
+			public const int button_done = 2131296392;
 			
-			// aapt resource value: 0x7f09003d
-			public const int button_rate = 2131296317;
+			// aapt resource value: 0x7f090084
+			public const int button_rate = 2131296388;
 			
-			// aapt resource value: 0x7f09003f
-			public const int button_restore_backup = 2131296319;
+			// aapt resource value: 0x7f090086
+			public const int button_restore_backup = 2131296390;
 			
-			// aapt resource value: 0x7f09003e
-			public const int button_save_category = 2131296318;
+			// aapt resource value: 0x7f090085
+			public const int button_save_category = 2131296389;
 			
-			// aapt resource value: 0x7f090038
-			public const int categories_placeholder = 2131296312;
+			// aapt resource value: 0x7f09007f
+			public const int categories_placeholder = 2131296383;
 			
 			// aapt resource value: 0x7f090018
 			public const int character_counter_pattern = 2131296280;
 			
-			// aapt resource value: 0x7f09004e
-			public const int drawer_close = 2131296334;
+			// aapt resource value: 0x7f090095
+			public const int drawer_close = 2131296405;
 			
-			// aapt resource value: 0x7f09004d
-			public const int drawer_open = 2131296333;
+			// aapt resource value: 0x7f090094
+			public const int drawer_open = 2131296404;
 			
 			// aapt resource value: 0x7f09001b
 			public const int fab_scroll_shrink_grow_autohide_behavior = 2131296283;
@@ -4825,95 +4960,308 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f09001c
 			public const int fab_scroll_translation_autohide_behavior = 2131296284;
 			
-			// aapt resource value: 0x7f090026
-			public const int hint_account_name = 2131296294;
+			// aapt resource value: 0x7f09006d
+			public const int hint_account_name = 2131296365;
 			
-			// aapt resource value: 0x7f09002b
-			public const int hint_amount = 2131296299;
+			// aapt resource value: 0x7f090072
+			public const int hint_amount = 2131296370;
+			
+			// aapt resource value: 0x7f09006e
+			public const int hint_category_name = 2131296366;
+			
+			// aapt resource value: 0x7f090070
+			public const int hint_current_balance = 2131296368;
+			
+			// aapt resource value: 0x7f090074
+			public const int hint_endless = 2131296372;
+			
+			// aapt resource value: 0x7f09006f
+			public const int hint_iban = 2131296367;
+			
+			// aapt resource value: 0x7f090071
+			public const int hint_note = 2131296369;
+			
+			// aapt resource value: 0x7f090076
+			public const int hint_password = 2131296374;
+			
+			// aapt resource value: 0x7f090077
+			public const int hint_password_confirmation = 2131296375;
+			
+			// aapt resource value: 0x7f090073
+			public const int hint_recurring = 2131296371;
+			
+			// aapt resource value: 0x7f090075
+			public const int hint_search_text = 2131296373;
+			
+			// aapt resource value: 0x7f09001d
+			public const int hockeyapp_crash_dialog_app_name_fallback = 2131296285;
+			
+			// aapt resource value: 0x7f09001e
+			public const int hockeyapp_crash_dialog_message = 2131296286;
+			
+			// aapt resource value: 0x7f09001f
+			public const int hockeyapp_crash_dialog_negative_button = 2131296287;
+			
+			// aapt resource value: 0x7f090020
+			public const int hockeyapp_crash_dialog_neutral_button = 2131296288;
+			
+			// aapt resource value: 0x7f090021
+			public const int hockeyapp_crash_dialog_positive_button = 2131296289;
+			
+			// aapt resource value: 0x7f090022
+			public const int hockeyapp_crash_dialog_title = 2131296290;
+			
+			// aapt resource value: 0x7f090023
+			public const int hockeyapp_dialog_error_message = 2131296291;
+			
+			// aapt resource value: 0x7f090024
+			public const int hockeyapp_dialog_error_title = 2131296292;
+			
+			// aapt resource value: 0x7f090025
+			public const int hockeyapp_dialog_negative_button = 2131296293;
+			
+			// aapt resource value: 0x7f090026
+			public const int hockeyapp_dialog_positive_button = 2131296294;
 			
 			// aapt resource value: 0x7f090027
-			public const int hint_category_name = 2131296295;
-			
-			// aapt resource value: 0x7f090029
-			public const int hint_current_balance = 2131296297;
-			
-			// aapt resource value: 0x7f09002d
-			public const int hint_endless = 2131296301;
+			public const int hockeyapp_download_failed_dialog_message = 2131296295;
 			
 			// aapt resource value: 0x7f090028
-			public const int hint_iban = 2131296296;
+			public const int hockeyapp_download_failed_dialog_negative_button = 2131296296;
+			
+			// aapt resource value: 0x7f090029
+			public const int hockeyapp_download_failed_dialog_positive_button = 2131296297;
 			
 			// aapt resource value: 0x7f09002a
-			public const int hint_note = 2131296298;
+			public const int hockeyapp_download_failed_dialog_title = 2131296298;
 			
-			// aapt resource value: 0x7f09002f
-			public const int hint_password = 2131296303;
-			
-			// aapt resource value: 0x7f090030
-			public const int hint_password_confirmation = 2131296304;
+			// aapt resource value: 0x7f09002b
+			public const int hockeyapp_error_no_network_message = 2131296299;
 			
 			// aapt resource value: 0x7f09002c
-			public const int hint_recurring = 2131296300;
+			public const int hockeyapp_expiry_info_text = 2131296300;
+			
+			// aapt resource value: 0x7f09002d
+			public const int hockeyapp_expiry_info_title = 2131296301;
 			
 			// aapt resource value: 0x7f09002e
-			public const int hint_search_text = 2131296302;
+			public const int hockeyapp_feedback_attach_file = 2131296302;
 			
-			// aapt resource value: 0x7f090045
-			public const int label_backup_date = 2131296325;
+			// aapt resource value: 0x7f09002f
+			public const int hockeyapp_feedback_attach_picture = 2131296303;
 			
-			// aapt resource value: 0x7f090042
-			public const int label_cleared = 2131296322;
+			// aapt resource value: 0x7f090030
+			public const int hockeyapp_feedback_attachment_button_text = 2131296304;
 			
-			// aapt resource value: 0x7f090044
-			public const int label_password_activated = 2131296324;
+			// aapt resource value: 0x7f090031
+			public const int hockeyapp_feedback_attachment_error = 2131296305;
 			
-			// aapt resource value: 0x7f090043
-			public const int label_slogan = 2131296323;
+			// aapt resource value: 0x7f090032
+			public const int hockeyapp_feedback_attachment_loading = 2131296306;
 			
-			// aapt resource value: 0x7f090037
-			public const int payments_placeholder = 2131296311;
+			// aapt resource value: 0x7f090033
+			public const int hockeyapp_feedback_email_hint = 2131296307;
+			
+			// aapt resource value: 0x7f090034
+			public const int hockeyapp_feedback_failed_text = 2131296308;
 			
 			// aapt resource value: 0x7f090035
-			public const int restore_information = 2131296309;
+			public const int hockeyapp_feedback_failed_title = 2131296309;
+			
+			// aapt resource value: 0x7f090036
+			public const int hockeyapp_feedback_fetching_feedback_text = 2131296310;
+			
+			// aapt resource value: 0x7f090037
+			public const int hockeyapp_feedback_generic_error = 2131296311;
+			
+			// aapt resource value: 0x7f090038
+			public const int hockeyapp_feedback_last_updated_text = 2131296312;
+			
+			// aapt resource value: 0x7f090039
+			public const int hockeyapp_feedback_max_attachments_allowed = 2131296313;
+			
+			// aapt resource value: 0x7f09003a
+			public const int hockeyapp_feedback_message_hint = 2131296314;
+			
+			// aapt resource value: 0x7f09003b
+			public const int hockeyapp_feedback_name_hint = 2131296315;
+			
+			// aapt resource value: 0x7f09003c
+			public const int hockeyapp_feedback_refresh_button_text = 2131296316;
+			
+			// aapt resource value: 0x7f09003d
+			public const int hockeyapp_feedback_response_button_text = 2131296317;
+			
+			// aapt resource value: 0x7f09003e
+			public const int hockeyapp_feedback_select_file = 2131296318;
+			
+			// aapt resource value: 0x7f09003f
+			public const int hockeyapp_feedback_select_picture = 2131296319;
+			
+			// aapt resource value: 0x7f090040
+			public const int hockeyapp_feedback_send_button_text = 2131296320;
+			
+			// aapt resource value: 0x7f090041
+			public const int hockeyapp_feedback_send_generic_error = 2131296321;
+			
+			// aapt resource value: 0x7f090042
+			public const int hockeyapp_feedback_send_network_error = 2131296322;
+			
+			// aapt resource value: 0x7f090043
+			public const int hockeyapp_feedback_sending_feedback_text = 2131296323;
+			
+			// aapt resource value: 0x7f090044
+			public const int hockeyapp_feedback_subject_hint = 2131296324;
+			
+			// aapt resource value: 0x7f090045
+			public const int hockeyapp_feedback_title = 2131296325;
+			
+			// aapt resource value: 0x7f090046
+			public const int hockeyapp_feedback_validate_email_empty = 2131296326;
+			
+			// aapt resource value: 0x7f090047
+			public const int hockeyapp_feedback_validate_email_error = 2131296327;
+			
+			// aapt resource value: 0x7f090048
+			public const int hockeyapp_feedback_validate_name_error = 2131296328;
+			
+			// aapt resource value: 0x7f090049
+			public const int hockeyapp_feedback_validate_subject_error = 2131296329;
+			
+			// aapt resource value: 0x7f09004a
+			public const int hockeyapp_feedback_validate_text_error = 2131296330;
+			
+			// aapt resource value: 0x7f09004b
+			public const int hockeyapp_login_email_hint = 2131296331;
+			
+			// aapt resource value: 0x7f09004c
+			public const int hockeyapp_login_headline_text = 2131296332;
+			
+			// aapt resource value: 0x7f09004d
+			public const int hockeyapp_login_headline_text_email_only = 2131296333;
+			
+			// aapt resource value: 0x7f09004e
+			public const int hockeyapp_login_login_button_text = 2131296334;
+			
+			// aapt resource value: 0x7f09004f
+			public const int hockeyapp_login_missing_credentials_toast = 2131296335;
+			
+			// aapt resource value: 0x7f090050
+			public const int hockeyapp_login_password_hint = 2131296336;
+			
+			// aapt resource value: 0x7f090051
+			public const int hockeyapp_paint_dialog_message = 2131296337;
+			
+			// aapt resource value: 0x7f090052
+			public const int hockeyapp_paint_dialog_negative_button = 2131296338;
+			
+			// aapt resource value: 0x7f090053
+			public const int hockeyapp_paint_dialog_neutral_button = 2131296339;
+			
+			// aapt resource value: 0x7f090054
+			public const int hockeyapp_paint_dialog_positive_button = 2131296340;
+			
+			// aapt resource value: 0x7f090055
+			public const int hockeyapp_paint_indicator_toast = 2131296341;
+			
+			// aapt resource value: 0x7f090056
+			public const int hockeyapp_paint_menu_clear = 2131296342;
+			
+			// aapt resource value: 0x7f090057
+			public const int hockeyapp_paint_menu_save = 2131296343;
+			
+			// aapt resource value: 0x7f090058
+			public const int hockeyapp_paint_menu_undo = 2131296344;
+			
+			// aapt resource value: 0x7f090059
+			public const int hockeyapp_permission_dialog_negative_button = 2131296345;
+			
+			// aapt resource value: 0x7f09005a
+			public const int hockeyapp_permission_dialog_positive_button = 2131296346;
+			
+			// aapt resource value: 0x7f09005b
+			public const int hockeyapp_permission_update_message = 2131296347;
+			
+			// aapt resource value: 0x7f09005c
+			public const int hockeyapp_permission_update_title = 2131296348;
+			
+			// aapt resource value: 0x7f09005d
+			public const int hockeyapp_update_button = 2131296349;
+			
+			// aapt resource value: 0x7f09005e
+			public const int hockeyapp_update_dialog_message = 2131296350;
+			
+			// aapt resource value: 0x7f09005f
+			public const int hockeyapp_update_dialog_negative_button = 2131296351;
+			
+			// aapt resource value: 0x7f090060
+			public const int hockeyapp_update_dialog_positive_button = 2131296352;
+			
+			// aapt resource value: 0x7f090061
+			public const int hockeyapp_update_dialog_title = 2131296353;
+			
+			// aapt resource value: 0x7f090062
+			public const int hockeyapp_update_mandatory_toast = 2131296354;
+			
+			// aapt resource value: 0x7f090063
+			public const int hockeyapp_update_version_details_label = 2131296355;
+			
+			// aapt resource value: 0x7f09008c
+			public const int label_backup_date = 2131296396;
+			
+			// aapt resource value: 0x7f090089
+			public const int label_cleared = 2131296393;
+			
+			// aapt resource value: 0x7f09008b
+			public const int label_password_activated = 2131296395;
+			
+			// aapt resource value: 0x7f09008a
+			public const int label_slogan = 2131296394;
+			
+			// aapt resource value: 0x7f09007e
+			public const int payments_placeholder = 2131296382;
+			
+			// aapt resource value: 0x7f09007c
+			public const int restore_information = 2131296380;
 			
 			// aapt resource value: 0x7f090015
 			public const int status_bar_notification_info_overflow = 2131296277;
 			
-			// aapt resource value: 0x7f090039
-			public const int text_auto_backup_explanation = 2131296313;
+			// aapt resource value: 0x7f090080
+			public const int text_auto_backup_explanation = 2131296384;
 			
-			// aapt resource value: 0x7f09004c
-			public const int text_endless = 2131296332;
+			// aapt resource value: 0x7f090093
+			public const int text_endless = 2131296403;
 			
-			// aapt resource value: 0x7f09003a
-			public const int text_translation_info = 2131296314;
+			// aapt resource value: 0x7f090081
+			public const int text_translation_info = 2131296385;
 			
-			// aapt resource value: 0x7f090032
-			public const int textview_contact = 2131296306;
+			// aapt resource value: 0x7f090079
+			public const int textview_contact = 2131296377;
 			
-			// aapt resource value: 0x7f090033
-			public const int textview_opensource = 2131296307;
+			// aapt resource value: 0x7f09007a
+			public const int textview_opensource = 2131296378;
 			
-			// aapt resource value: 0x7f090031
-			public const int textview_version = 2131296305;
+			// aapt resource value: 0x7f090078
+			public const int textview_version = 2131296376;
 			
-			// aapt resource value: 0x7f09004b
-			public const int title_about = 2131296331;
+			// aapt resource value: 0x7f090092
+			public const int title_about = 2131296402;
 			
-			// aapt resource value: 0x7f090046
-			public const int title_accounts = 2131296326;
+			// aapt resource value: 0x7f09008d
+			public const int title_accounts = 2131296397;
 			
-			// aapt resource value: 0x7f090049
-			public const int title_backup = 2131296329;
+			// aapt resource value: 0x7f090090
+			public const int title_backup = 2131296400;
 			
-			// aapt resource value: 0x7f090048
-			public const int title_categories = 2131296328;
+			// aapt resource value: 0x7f09008f
+			public const int title_categories = 2131296399;
 			
-			// aapt resource value: 0x7f09004a
-			public const int title_settings = 2131296330;
+			// aapt resource value: 0x7f090091
+			public const int title_settings = 2131296401;
 			
-			// aapt resource value: 0x7f090047
-			public const int title_statistics = 2131296327;
+			// aapt resource value: 0x7f09008e
+			public const int title_statistics = 2131296398;
 			
 			// aapt resource value: 0x7f090000
 			public const int v7_preference_off = 2131296256;
@@ -4949,20 +5297,20 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f08014a
 			public const int Animation_Design_BottomSheetDialog = 2131231050;
 			
-			// aapt resource value: 0x7f080162
-			public const int AppTheme = 2131231074;
-			
-			// aapt resource value: 0x7f080163
-			public const int AppTheme_Base = 2131231075;
-			
-			// aapt resource value: 0x7f080164
-			public const int AppTheme_Login = 2131231076;
-			
 			// aapt resource value: 0x7f080165
-			public const int AppTheme_Menu = 2131231077;
+			public const int AppTheme = 2131231077;
 			
 			// aapt resource value: 0x7f080166
-			public const int AppTheme_Splash = 2131231078;
+			public const int AppTheme_Base = 2131231078;
+			
+			// aapt resource value: 0x7f080167
+			public const int AppTheme_Login = 2131231079;
+			
+			// aapt resource value: 0x7f080168
+			public const int AppTheme_Menu = 2131231080;
+			
+			// aapt resource value: 0x7f080169
+			public const int AppTheme_Splash = 2131231081;
 			
 			// aapt resource value: 0x7f080095
 			public const int Base_AlertDialog_AppCompat = 2131230869;
@@ -5392,6 +5740,15 @@ namespace MoneyFox.Droid
 			
 			// aapt resource value: 0x7f08014b
 			public const int Base_Widget_Design_TabLayout = 2131231051;
+			
+			// aapt resource value: 0x7f080162
+			public const int HockeyApp_ButtonStyle = 2131231074;
+			
+			// aapt resource value: 0x7f080163
+			public const int HockeyApp_EditTextStyle = 2131231075;
+			
+			// aapt resource value: 0x7f080164
+			public const int HockeyApp_SingleLineInputStyle = 2131231076;
 			
 			// aapt resource value: 0x7f080022
 			public const int Platform_AppCompat = 2131230754;

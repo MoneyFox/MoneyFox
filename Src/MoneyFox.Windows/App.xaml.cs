@@ -12,6 +12,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using Microsoft.HockeyApp;
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
@@ -22,7 +23,6 @@ using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
-using Xamarin;
 
 namespace MoneyFox.Windows
 {
@@ -40,12 +40,10 @@ namespace MoneyFox.Windows
             InitializeComponent();
             SetColor();
             Suspending += OnSuspending;
-            UnhandledException += OnUnhandledException;
-        }
-
-        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            Insights.Report(e.Exception);
+#if !DEBUG
+            HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID,
+             new TelemetryConfiguration { EnableDiagnostics = true });
+#endif
         }
 
         /// <summary>
@@ -215,7 +213,5 @@ namespace MoneyFox.Windows
 
             deferral.Complete();
         }
-
-        
     }
 }

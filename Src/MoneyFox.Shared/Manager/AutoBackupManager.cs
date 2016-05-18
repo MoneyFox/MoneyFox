@@ -2,7 +2,8 @@
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
-using Xamarin;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 
 namespace MoneyFox.Shared.Manager
 {
@@ -41,7 +42,7 @@ namespace MoneyFox.Shared.Manager
             }
             catch (OneDriveException ex)
             {
-                Insights.Report(ex);
+                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
         }
 
@@ -65,7 +66,7 @@ namespace MoneyFox.Shared.Manager
             }
             catch (OneDriveException ex)
             {
-                Insights.Report(ex);
+                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
         }
     }

@@ -32,6 +32,14 @@
         }
       },
       "Fody/1.29.2": {},
+      "HockeySDK.UWP/4.0.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -2027,14 +2035,6 @@
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
-      },
-      "Xamarin.Insights/1.12.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-arm": {
@@ -2067,6 +2067,14 @@
         }
       },
       "Fody/1.29.2": {},
+      "HockeySDK.UWP/4.0.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -3923,14 +3931,6 @@
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
-      },
-      "Xamarin.Insights/1.12.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
@@ -3963,6 +3963,14 @@
         }
       },
       "Fody/1.29.2": {},
+      "HockeySDK.UWP/4.0.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -5777,14 +5785,6 @@
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
-      },
-      "Xamarin.Insights/1.12.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-x64": {
@@ -5817,6 +5817,14 @@
         }
       },
       "Fody/1.29.2": {},
+      "HockeySDK.UWP/4.0.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -7681,14 +7689,6 @@
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
-      },
-      "Xamarin.Insights/1.12.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
@@ -7721,6 +7721,14 @@
         }
       },
       "Fody/1.29.2": {},
+      "HockeySDK.UWP/4.0.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -9535,14 +9543,6 @@
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
-      },
-      "Xamarin.Insights/1.12.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-x86": {
@@ -9575,6 +9575,14 @@
         }
       },
       "Fody/1.29.2": {},
+      "HockeySDK.UWP/4.0.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -11439,14 +11447,6 @@
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
-      },
-      "Xamarin.Insights/1.12.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
@@ -11479,6 +11479,14 @@
         }
       },
       "Fody/1.29.2": {},
+      "HockeySDK.UWP/4.0.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.HockeyApp.Kit.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Collections": "4.0.10",
@@ -13293,14 +13301,6 @@
         "runtime": {
           "lib/uap10.0/UniversalRateReminder.dll": {}
         }
-      },
-      "Xamarin.Insights/1.12.3": {
-        "compile": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        },
-        "runtime": {
-          "lib/windows8/Xamarin.Insights.dll": {}
-        }
       }
     }
   },
@@ -13402,6 +13402,19 @@
         "Mono.Cecil.dll",
         "build/dotnet/Fody.targets",
         "build/portable-net+sl+win+wpa+wp/Fody.targets"
+      ]
+    },
+    "HockeySDK.UWP/4.0.0": {
+      "sha512": "ByRaD8GrhJvkM+J5k8wvd8aAWoNxTU/eghaBxLbWw/F704X5w9dUKsVYC6CCWriYTAwxWdVQLerq2V6DQUfasw==",
+      "type": "package",
+      "files": [
+        "HockeySDK.UWP.4.0.0.nupkg.sha512",
+        "HockeySDK.UWP.nuspec",
+        "lib/uap10.0/Microsoft.HockeyApp.Kit.dll",
+        "lib/uap10.0/Microsoft.HockeyApp.Kit.dll.CodeAnalysisLog.xml",
+        "lib/uap10.0/Microsoft.HockeyApp.Kit.dll.lastcodeanalysissucceeded",
+        "lib/uap10.0/Microsoft.HockeyApp.Kit.pri",
+        "lib/uap10.0/Microsoft.HockeyApp.Kit/Properties/Microsoft.HockeyApp.Kit.rd.xml"
       ]
     },
     "Microsoft.CSharp/4.0.0": {
@@ -13979,7 +13992,7 @@
       ]
     },
     "Microsoft.OneDriveSDK/1.1.20": {
-      "sha512": "bEIs/XUM6CqFdHvRLm4Wt0KjEK3aAPPbXeZbMOsfTbCUTQVJ1UzY/hBZ+2F2mXCRTZs+K0/xSVfLkxf9fQy+7A==",
+      "sha512": "650vvWls5rnJEjemv//LhGv2Njy4UWfyCu6Z6b0wkOscFkbs7MtAIMCJwXZD/ZcsAMgEfDi26+Vl5seyXQ3OGQ==",
       "type": "package",
       "files": [
         "Microsoft.OneDriveSDK.1.1.20.nupkg.sha512",
@@ -14433,7 +14446,7 @@
       ]
     },
     "NotificationsExtensions.Win10/14295.0.1": {
-      "sha512": "7guXcl341xsRlepVXP2bUPHGPDiSppHovo2nuV3u1Adf3GetT8aVKjvViXTP0SyJuGWA90ngvrbl+Z3G/PEDdA==",
+      "sha512": "XFRE87hwcl7xIqoYQD+bpEZGCb7jqFOJK5YpcPKVD/pcMa7KajLvh7rUD6of1gnxM/iGVZg4D7LczeMH2D58aQ==",
       "type": "package",
       "files": [
         "NotificationsExtensions.Win10.14295.0.1.nupkg.sha512",
@@ -17421,46 +17434,13 @@
         "lib/uap10.0/UniversalRateReminder.pri",
         "lib/uap10.0/UniversalRateReminder.xml"
       ]
-    },
-    "Xamarin.Insights/1.12.3": {
-      "sha512": "VQXgvnpsmQbyldn8p9hrS8wcuY+mfy8Erq0yKIH5a0lW03493/UMNQLMUtfxRrff0poKIAydigZS/R2x6NXyUw==",
-      "type": "package",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "Xamarin.Insights.1.12.3.nupkg.sha512",
-        "Xamarin.Insights.nuspec",
-        "build/MonoAndroid10/Xamarin.Insights.Build.Task.dll",
-        "build/MonoAndroid10/Xamarin.Insights.targets",
-        "build/Xamarin.iOS10/Xamarin.Insights.Build.Task.dll",
-        "build/Xamarin.iOS10/Xamarin.Insights.targets",
-        "build/portable-win+net40/Xamarin.Insights.Build.Task.dll",
-        "build/portable-win+net40/Xamarin.Insights.targets",
-        "build/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.Build.Task.dll",
-        "build/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.targets",
-        "build/windows8/Xamarin.Insights.Build.Task.dll",
-        "build/windows8/Xamarin.Insights.targets",
-        "build/wpa/Xamarin.Insights.Build.Task.dll",
-        "build/wpa/Xamarin.Insights.targets",
-        "lib/MonoAndroid10/Xamarin.Insights.XML",
-        "lib/MonoAndroid10/Xamarin.Insights.dll",
-        "lib/Xamarin.iOS10/PLCrashReporterUnifiedBinding.dll",
-        "lib/Xamarin.iOS10/Xamarin.Insights.XML",
-        "lib/Xamarin.iOS10/Xamarin.Insights.dll",
-        "lib/net40/Xamarin.Insights.XML",
-        "lib/net40/Xamarin.Insights.dll",
-        "lib/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.XML",
-        "lib/portable-win+net45+wp80+windows8+wpa+MonoAndroid10+MonoTouch10/Xamarin.Insights.dll",
-        "lib/windows8/Xamarin.Insights.XML",
-        "lib/windows8/Xamarin.Insights.dll",
-        "lib/wpa/Xamarin.Insights.XML",
-        "lib/wpa/Xamarin.Insights.dll"
-      ]
     }
   },
   "projectFileDependencyGroups": {
     "": [
       "Cheesebaron.MvxPlugins.Connectivity >= 0.0.2",
       "Cheesebaron.MvxPlugins.Settings >= 1.2.5",
+      "HockeySDK.UWP >= 4.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
       "Microsoft.NETNative.Analyzer >= 1.0.0",
       "Microsoft.OneDriveSDK >= 1.1.20",
@@ -17478,8 +17458,7 @@
       "SQLite.Net-PCL >= 3.1.1",
       "SQLite.Net.Async-PCL >= 3.1.1",
       "SQLite.Net.Core-PCL >= 3.1.1",
-      "UniversalRateReminder >= 2.1.0",
-      "Xamarin.Insights >= 1.12.3"
+      "UniversalRateReminder >= 2.1.0"
     ],
     "UAP,Version=v10.0": []
   }

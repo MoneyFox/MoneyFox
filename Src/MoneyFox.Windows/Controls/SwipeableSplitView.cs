@@ -8,7 +8,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Shapes;
-using Xamarin;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 
 namespace MoneyFox.Windows.Controls
 {
@@ -16,7 +17,7 @@ namespace MoneyFox.Windows.Controls
     {
         public SwipeableSplitView()
         {
-            DefaultStyleKey = typeof (SwipeableSplitView);
+            DefaultStyleKey = typeof(SwipeableSplitView);
         }
 
         protected override void OnApplyTemplate()
@@ -74,7 +75,7 @@ namespace MoneyFox.Windows.Controls
                     break;
 
                 case SplitViewDisplayMode.Overlay:
-                    PanAreaInitialTranslateX = OpenPaneLength*-1;
+                    PanAreaInitialTranslateX = OpenPaneLength * -1;
                     overlayRoot.Visibility = Visibility.Visible;
                     break;
             }
@@ -107,8 +108,12 @@ namespace MoneyFox.Windows.Controls
         private Storyboard openSwipeablePane;
         private Storyboard closeSwipeablePane;
 
+        private Selector menuHost;
         private readonly IList<SelectorItem> menuItems = new List<SelectorItem>();
         private int toBeSelectedIndex;
+        private static readonly double TOTAL_PANNING_DISTANCE = 160d;
+        private double distancePerItem;
+        private double startingDistance;
 
         #endregion
 
@@ -224,36 +229,33 @@ namespace MoneyFox.Windows.Controls
 
         public bool IsSwipeablePaneOpen
         {
-            get { return (bool) GetValue(IsSwipeablePaneOpenProperty); }
+            get { return (bool)GetValue(IsSwipeablePaneOpenProperty); }
             set { SetValue(IsSwipeablePaneOpenProperty, value); }
         }
 
         public static readonly DependencyProperty IsSwipeablePaneOpenProperty =
-            DependencyProperty.Register("IsSwipeablePaneOpen", typeof (bool), typeof (SwipeableSplitView),
+            DependencyProperty.Register("IsSwipeablePaneOpen", typeof(bool), typeof(SwipeableSplitView),
                 new PropertyMetadata(false, OnIsSwipeablePaneOpenChanged));
 
         private static void OnIsSwipeablePaneOpenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var splitView = (SwipeableSplitView) d;
+            var splitView = (SwipeableSplitView)d;
 
             switch (splitView.DisplayMode)
             {
                 case SplitViewDisplayMode.Inline:
                 case SplitViewDisplayMode.CompactOverlay:
                 case SplitViewDisplayMode.CompactInline:
-                    splitView.IsPaneOpen = (bool) e.NewValue;
+                    splitView.IsPaneOpen = (bool)e.NewValue;
                     break;
 
                 case SplitViewDisplayMode.Overlay:
                     if (splitView.OpenSwipeablePaneAnimation == null || splitView.CloseSwipeablePaneAnimation == null)
-                    {
                         return;
-                    }
-                    if ((bool) e.NewValue)
+                    if ((bool)e.NewValue)
                     {
                         splitView.OpenSwipeablePane();
-                    }
-                    else
+                    } else
                     {
                         splitView.CloseSwipeablePane();
                     }
@@ -263,22 +265,22 @@ namespace MoneyFox.Windows.Controls
 
         public double PanAreaInitialTranslateX
         {
-            get { return (double) GetValue(PanAreaInitialTranslateXProperty); }
+            get { return (double)GetValue(PanAreaInitialTranslateXProperty); }
             set { SetValue(PanAreaInitialTranslateXProperty, value); }
         }
 
         public static readonly DependencyProperty PanAreaInitialTranslateXProperty =
-            DependencyProperty.Register("PanAreaInitialTranslateX", typeof (double), typeof (SwipeableSplitView),
+            DependencyProperty.Register("PanAreaInitialTranslateX", typeof(double), typeof(SwipeableSplitView),
                 new PropertyMetadata(0d));
 
         public double PanAreaThreshold
         {
-            get { return (double) GetValue(PanAreaThresholdProperty); }
+            get { return (double)GetValue(PanAreaThresholdProperty); }
             set { SetValue(PanAreaThresholdProperty, value); }
         }
 
         public static readonly DependencyProperty PanAreaThresholdProperty =
-            DependencyProperty.Register("PanAreaThreshold", typeof (double), typeof (SwipeableSplitView),
+            DependencyProperty.Register("PanAreaThreshold", typeof(double), typeof(SwipeableSplitView),
                 new PropertyMetadata(36d));
 
 
@@ -289,12 +291,12 @@ namespace MoneyFox.Windows.Controls
         /// </summary>
         public bool IsPanSelectorEnabled
         {
-            get { return (bool) GetValue(IsPanSelectorEnabledProperty); }
+            get { return (bool)GetValue(IsPanSelectorEnabledProperty); }
             set { SetValue(IsPanSelectorEnabledProperty, value); }
         }
 
         public static readonly DependencyProperty IsPanSelectorEnabledProperty =
-            DependencyProperty.Register("IsPanSelectorEnabled", typeof (bool), typeof (SwipeableSplitView),
+            DependencyProperty.Register("IsPanSelectorEnabled", typeof(bool), typeof(SwipeableSplitView),
                 new PropertyMetadata(true));
 
         #endregion
@@ -314,45 +316,37 @@ namespace MoneyFox.Windows.Controls
 
         private void OnManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            try
-            {
-                var x = panAreaTransform.TranslateX + e.Delta.Translation.X;
+            var x = panAreaTransform.TranslateX + e.Delta.Translation.X;
 
-                // keep the pan within the bountry
-                if (x < PanAreaInitialTranslateX || x > 0)
+            // keep the pan within the bountry
+            if (x < PanAreaInitialTranslateX || x > 0) return;
+
+            // while we are panning the PanArea on X axis, let's sync the PaneRoot's position X too
+            paneRootTransform.TranslateX = panAreaTransform.TranslateX = x;
+
+            if (sender == paneRoot && IsPanSelectorEnabled)
+            {
+                // un-highlight everything first
+                foreach (var item in menuItems)
                 {
-                    return;
+                    VisualStateManager.GoToState(item, "Normal", true);
                 }
 
-                // while we are panning the PanArea on X axis, let's sync the PaneRoot's position X too
-                paneRootTransform.TranslateX = panAreaTransform.TranslateX = x;
-
-                if (sender == paneRoot && IsPanSelectorEnabled)
+                toBeSelectedIndex =
+                    (int)
+                        Math.Round((e.Cumulative.Translation.Y + startingDistance) / distancePerItem,
+                            MidpointRounding.AwayFromZero);
+                if (toBeSelectedIndex < 0)
                 {
-                    // un-highlight everything first
-                    foreach (var item in menuItems)
-                    {
-                        VisualStateManager.GoToState(item, "Normal", true);
-                    }
-
-                    toBeSelectedIndex = (int) Math.Round(e.Cumulative.Translation.Y, MidpointRounding.AwayFromZero);
-                    if (toBeSelectedIndex < 0)
-                    {
-                        toBeSelectedIndex = 0;
-                    }
-                    else if (toBeSelectedIndex >= menuItems.Count)
-                    {
-                        toBeSelectedIndex = menuItems.Count - 1;
-                    }
-
-                    // highlight the item that's going to be selected
-                    var itemContainer = menuItems[toBeSelectedIndex];
-                    VisualStateManager.GoToState(itemContainer, "PointerOver", true);
+                    toBeSelectedIndex = 0;
+                } else if (toBeSelectedIndex >= menuItems.Count)
+                {
+                    toBeSelectedIndex = menuItems.Count - 1;
                 }
-            }
-            catch (Exception ex)
-            {
-                Insights.Report(ex);
+
+                // highlight the item that's going to be selected
+                var itemContainer = menuItems[toBeSelectedIndex];
+                VisualStateManager.GoToState(itemContainer, "PointerOver", true);
             }
         }
 
@@ -364,19 +358,16 @@ namespace MoneyFox.Windows.Controls
             if (x <= -0.1)
             {
                 CloseSwipeablePane();
-            }
-            else if (x > -0.1 && x < 0.1)
+            } else if (x > -0.1 && x < 0.1)
             {
-                if (Math.Abs(panAreaTransform.TranslateX) > Math.Abs(PanAreaInitialTranslateX)/2)
+                if (Math.Abs(panAreaTransform.TranslateX) > Math.Abs(PanAreaInitialTranslateX) / 2)
                 {
                     CloseSwipeablePane();
-                }
-                else
+                } else
                 {
                     OpenSwipeablePane();
                 }
-            }
-            else
+            } else
             {
                 OpenSwipeablePane();
             }
@@ -410,6 +401,11 @@ namespace MoneyFox.Windows.Controls
 
                     // do a selection after a short delay to allow visual effect takes place first
                     await Task.Delay(250);
+                    menuHost.SelectedIndex = toBeSelectedIndex;
+                } else
+                {
+                    // recalculate the starting distance
+                    startingDistance = distancePerItem * menuHost.SelectedIndex;
                 }
             }
         }
@@ -439,13 +435,11 @@ namespace MoneyFox.Windows.Controls
                 try
                 {
                     OpenSwipeablePaneAnimation.Begin();
-                }
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
-                    Insights.Report(ex);
+                    Mvx.Trace(MvxTraceLevel.Error, ex.Message);
                 }
-            }
-            else
+            } else
             {
                 IsSwipeablePaneOpen = true;
             }
@@ -458,13 +452,11 @@ namespace MoneyFox.Windows.Controls
                 try
                 {
                     CloseSwipeablePaneAnimation.Begin();
-                }
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
-                    Insights.Report(ex);
+                    Mvx.Trace(MvxTraceLevel.Error, ex.Message);
                 }
-            }
-            else
+            } else
             {
                 IsSwipeablePaneOpen = false;
             }

@@ -31,18 +31,18 @@ namespace MoneyFox.Shared
         /// </summary>
         /// <returns>Established SQLiteConnection.</returns>
         public SQLiteConnection GetConnection()
-            => connectionFactory.GetConnection(new SqLiteConfig(BackupConstants.DB_NAME, false));
+            => connectionFactory.GetConnection(new SqLiteConfig(DatabaseConstants.DB_NAME, false));
 
         /// <summary>
         ///     Creates the config and establish and async connection to access the sqlite database asynchronous.
         /// </summary>
         /// <returns>Established async connection.</returns>
         public SQLiteAsyncConnection GetAsyncConnection()
-            => connectionFactory.GetAsyncConnection(new SqLiteConfig(BackupConstants.DB_NAME, false));
+            => connectionFactory.GetAsyncConnection(new SqLiteConfig(DatabaseConstants.DB_NAME, false));
 
         public void CreateDatabase()
         {
-            using (var db = connectionFactory.GetConnection(BackupConstants.DB_NAME))
+            using (var db = connectionFactory.GetConnection(DatabaseConstants.DB_NAME))
             {
                 db.CreateTable<Account>();
                 db.CreateTable<Category>();
@@ -53,9 +53,9 @@ namespace MoneyFox.Shared
 
         public void MigrateDatabase()
         {
-            if (fileStore.Exists(BackupConstants.DB_NAME_OLD))
+            if (fileStore.Exists(DatabaseConstants.DB_NAME_OLD))
             {
-                using (var dbOld = connectionFactory.GetConnection(new SqLiteConfig(BackupConstants.DB_NAME_OLD, false)))
+                using (var dbOld = connectionFactory.GetConnection(new SqLiteConfig(DatabaseConstants.DB_NAME_OLD, false)))
                 {
                     using (var db = GetConnection())
                     {
@@ -85,7 +85,7 @@ namespace MoneyFox.Shared
                     }
                 }
 
-                fileStore.DeleteFile(BackupConstants.DB_NAME_OLD);
+                fileStore.DeleteFile(DatabaseConstants.DB_NAME_OLD);
             }
         }
 

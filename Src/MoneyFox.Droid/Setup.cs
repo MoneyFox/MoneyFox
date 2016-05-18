@@ -18,7 +18,6 @@ using MvvmCross.Platform.Plugins;
 using MvvmCross.Plugins.Messenger;
 using System.Collections.Generic;
 using System.Reflection;
-using Xamarin;
 
 namespace MoneyFox.Droid
 {
@@ -68,16 +67,6 @@ namespace MoneyFox.Droid
 
         protected override IMvxApplication CreateApp()
         {
-            var insightKey = "599ff6bfdc79368ff3d5f5629a57c995fe93352e";
-
-#if DEBUG
-            insightKey = Insights.DebugModeKey;
-#endif
-            if (!Insights.IsInitialized)
-            {
-                Insights.Initialize(insightKey, ApplicationContext);
-            }
-
             Strings.Culture = new Localize().GetCurrentCultureInfo();
 
             return new App();
