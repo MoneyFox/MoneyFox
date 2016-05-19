@@ -367,4 +367,14 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
     <value>Du kannst zwischen dem dunklen und dem hellen Theme wechseln. Damit die Änderungen übernommen werden, musst du das App neustarten.</value>
   </data>
+  <data name="IsLoading.Text" xml:space="preserve">
+    <value>Wird geladen...</value>
+  </data>
+  <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
+    <value>Wenn diese Einstellung aktiv ist, wird nach jeder Änderung auf der Datenbank eine Sicherung auf OneDrive gespeichert.
+Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung vorhanden ist und diese zurückgeladen.</value>
+  </data>
+  <data name="TranslationMissingHelpText.Text" xml:space="preserve">
+    <value>Ist etwas nicht richtig oder nicht übersetzt überhaupt? Helfen Sie uns! Gehen Sie zu crowdin und Hilf uns den Money Fox zu verbessern:</value>
+  </data>
 </root>
