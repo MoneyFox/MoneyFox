@@ -58,8 +58,7 @@ namespace MoneyFox.Shared.Manager
                     return;
                 }
 
-                var backupDate = await backupManager.GetBackupDate();
-                if (backupDate > SettingsHelper.LastDatabaseUpdate)
+                if (await backupManager.GetBackupDate() > SettingsHelper.LastDatabaseUpdate)
                 {
                     await backupManager.RestoreBackup();
                 }
