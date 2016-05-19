@@ -57,7 +57,7 @@
   <string name="label_slogan">A way to make budgeting easy.</string>
   <string name="label_password_activated">Password protection</string>
   <string name="label_backup_date">Last Backup created at:</string>
-  <string name="label_autobackup">Automaticlly upload and download backups</string>
+  <string name="label_autobackup">Automatically upload and download backups</string>
 
   <!---titles-->
   <string name="title_accounts">Accounts</string>

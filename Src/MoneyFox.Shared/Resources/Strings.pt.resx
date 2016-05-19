@@ -418,4 +418,13 @@ Você deseja ir à loja para avaliar?</value>
   <data name="ChooseCategorieTitle" xml:space="preserve">
     <value>Choose Categorie</value>
   </data>
+  <data name="NoNetworkMessage" xml:space="preserve">
+    <value>You are not connected to the internet. Please check your connection and try again.</value>
+  </data>
+  <data name="NoNetworkTitle" xml:space="preserve">
+    <value>No Internet Connection</value>
+  </data>
+  <data name="GeneralTitle" xml:space="preserve">
+    <value>General</value>
+  </data>
 </root>
