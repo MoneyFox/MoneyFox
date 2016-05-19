@@ -35,10 +35,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:id="@+id/editText_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="6dp"
                     android:hint="@string/hint_amount"
+                    android:gravity="right"
                     android:numeric="decimal"
                     local:MvxBind="Text AmountString" />
             </android.support.design.widget.TextInputLayout>
