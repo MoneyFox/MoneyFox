@@ -14,11 +14,21 @@
              d:DesignWidth="400">
 
     <Grid Background="{x:Bind Background}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
         <Grid x:Name="TitleBar">
             <ContentPresenter VerticalAlignment="{x:Bind VerticalContentAlignment}"
                               HorizontalAlignment="{x:Bind HorizontalContentAlignment}"
                               Margin="{x:Bind Padding}"
                               Content="{x:Bind HeaderContent}" />
         </Grid>
+        <ProgressRing Grid.Column="1"
+                      IsActive="{Binding IsActive, Mode=OneWay}"
+                      Background="Transparent"
+                      Margin="15"
+                      Width="20"
+                      Height="20" />
     </Grid>
 </UserControl>

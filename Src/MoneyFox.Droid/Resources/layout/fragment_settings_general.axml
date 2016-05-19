@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
     <TextView
         android:id="@+id/text_version"
-        android:text="@+string/text_auto_backup_explanation"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/text_auto_backup_explanation"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
@@ -15,6 +15,6 @@
     <Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/label_password_activated"
+        android:hint="@string/label_autobackup"
         local:MvxBind="Checked IsAutoBackupEnabled, Mode=TwoWay" />
 </LinearLayout>

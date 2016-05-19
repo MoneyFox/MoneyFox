@@ -41,7 +41,8 @@ namespace MoneyFox.Shared.Manager
         {
             if (await CheckIfUserIsLoggedIn())
             {
-                return await backupService.GetBackupDate();
+                var date = await backupService.GetBackupDate();
+                return date.ToLocalTime();
             }
             return DateTime.MinValue;
         }
