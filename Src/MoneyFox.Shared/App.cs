@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using MoneyFox.Shared.Authentication;
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Manager;
 using MvvmCross.Core.ViewModels;
@@ -23,6 +24,7 @@ namespace MoneyFox.Shared
 
         private void RegisterDependencies()
         {
+            Mvx.RegisterSingleton(() => new GlobalBusyIndicatorState());
             Mvx.RegisterType<IDatabaseManager, DatabaseManager>();
             Mvx.RegisterSingleton<IPasswordStorage>(new PasswordStorage(Mvx.Resolve<IProtectedData>()));
             Mvx.RegisterType(() => new Session());

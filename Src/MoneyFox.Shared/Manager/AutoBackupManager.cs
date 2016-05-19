@@ -13,14 +13,16 @@ namespace MoneyFox.Shared.Manager
     public class AutoBackupManager : IAutobackupManager
     {
         private readonly IBackupManager backupManager;
+        private readonly GlobalBusyIndicatorState globalBusyIndicatorState;
 
         /// <summary>
         ///     Creates a new instance
         /// </summary>
         /// <param name="backupManager">An backup manager object that handles the restoring and creating of backups.</param>
-        public AutoBackupManager(IBackupManager backupManager)
+        public AutoBackupManager(IBackupManager backupManager, GlobalBusyIndicatorState globalBusyIndicatorState)
         {
             this.backupManager = backupManager;
+            this.globalBusyIndicatorState = globalBusyIndicatorState;
         }
 
         /// <summary>
@@ -53,6 +55,7 @@ namespace MoneyFox.Shared.Manager
         {
             try
             {
+                globalBusyIndicatorState.IsActive = true;
                 if (!SettingsHelper.IsBackupAutouploadEnabled)
                 {
                     return;
@@ -67,6 +70,7 @@ namespace MoneyFox.Shared.Manager
             {
                 Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
+            globalBusyIndicatorState.IsActive = false;
         }
     }
 }
