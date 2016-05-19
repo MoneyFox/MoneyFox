@@ -4948,11 +4948,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f090018
 			public const int character_counter_pattern = 2131296280;
 			
-			// aapt resource value: 0x7f090095
-			public const int drawer_close = 2131296405;
+			// aapt resource value: 0x7f090096
+			public const int drawer_close = 2131296406;
 			
-			// aapt resource value: 0x7f090094
-			public const int drawer_open = 2131296404;
+			// aapt resource value: 0x7f090095
+			public const int drawer_open = 2131296405;
 			
 			// aapt resource value: 0x7f09001b
 			public const int fab_scroll_shrink_grow_autohide_behavior = 2131296283;
@@ -5206,6 +5206,9 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f090063
 			public const int hockeyapp_update_version_details_label = 2131296355;
 			
+			// aapt resource value: 0x7f09008d
+			public const int label_autobackup = 2131296397;
+			
 			// aapt resource value: 0x7f09008c
 			public const int label_backup_date = 2131296396;
 			
@@ -5230,8 +5233,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f090080
 			public const int text_auto_backup_explanation = 2131296384;
 			
-			// aapt resource value: 0x7f090093
-			public const int text_endless = 2131296403;
+			// aapt resource value: 0x7f090094
+			public const int text_endless = 2131296404;
 			
 			// aapt resource value: 0x7f090081
 			public const int text_translation_info = 2131296385;
@@ -5245,23 +5248,23 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f090078
 			public const int textview_version = 2131296376;
 			
-			// aapt resource value: 0x7f090092
-			public const int title_about = 2131296402;
-			
-			// aapt resource value: 0x7f09008d
-			public const int title_accounts = 2131296397;
-			
-			// aapt resource value: 0x7f090090
-			public const int title_backup = 2131296400;
-			
-			// aapt resource value: 0x7f09008f
-			public const int title_categories = 2131296399;
-			
-			// aapt resource value: 0x7f090091
-			public const int title_settings = 2131296401;
+			// aapt resource value: 0x7f090093
+			public const int title_about = 2131296403;
 			
 			// aapt resource value: 0x7f09008e
-			public const int title_statistics = 2131296398;
+			public const int title_accounts = 2131296398;
+			
+			// aapt resource value: 0x7f090091
+			public const int title_backup = 2131296401;
+			
+			// aapt resource value: 0x7f090090
+			public const int title_categories = 2131296400;
+			
+			// aapt resource value: 0x7f090092
+			public const int title_settings = 2131296402;
+			
+			// aapt resource value: 0x7f09008f
+			public const int title_statistics = 2131296399;
 			
 			// aapt resource value: 0x7f090000
 			public const int v7_preference_off = 2131296256;
