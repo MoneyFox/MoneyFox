@@ -66,6 +66,7 @@
     <Compile Include="Extensions\StreamExtension.cs" />
     <Compile Include="Groups\AlphaGroupListGroup.cs" />
     <Compile Include="Groups\DateListGroup.cs" />
+    <Compile Include="Helpers\GlobalBusyIndicatorState.cs" />
     <Compile Include="Helpers\PaymentTypeHelper.cs" />
     <Compile Include="Helpers\RecurringPaymentHelper.cs" />
     <Compile Include="Helpers\SettingsHelper.cs" />

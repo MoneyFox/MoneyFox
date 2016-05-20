@@ -7,12 +7,13 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
+        android:fitsSystemWindows="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <include
             layout="@layout/toolbar_actionbar" />
         <android.support.design.widget.TextInputLayout
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
