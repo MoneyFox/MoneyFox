@@ -36,13 +36,6 @@ namespace MoneyFox.Droid.Fragments
         {
             // Auto size the dialog based on it's contents
             Dialog.Window.SetLayout(ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
-
-            // Make sure there is no background behind our view
-            Dialog.Window.SetBackgroundDrawable(new ColorDrawable(Color.Transparent));
-
-            // Disable standard dialog styling/frame/theme: our custom view should create full UI
-            SetStyle(DialogFragmentStyle.Normal, Android.Resource.Style.Theme);
-
             base.OnResume();
         }
     }
