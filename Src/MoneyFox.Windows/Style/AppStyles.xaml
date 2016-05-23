@@ -25,6 +25,9 @@
     <SolidColorBrush x:Key="AppBarBrush"
                      Color="{StaticResource ColorAppBar}" />
 
+    <SolidColorBrush x:Key="SplitViewToggleButtonForegroundLight"
+                     Color="White" />
+
     <!--Accent Color -->
     <SolidColorBrush x:Key="SystemControlBackgroundAccentBrush"
                      Color="{ThemeResource SystemAccentColor}" />

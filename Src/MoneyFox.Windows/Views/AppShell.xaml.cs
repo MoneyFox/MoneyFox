@@ -96,7 +96,6 @@ namespace MoneyFox.Windows.Views
             NavMenuListTop.SelectedIndex = 0;
             //start with a hidden back button. This changes when you navigate to an other page
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-            CheckColorToggleButton();
         }
 
         public Frame AppMyFrame => MyFrame;
