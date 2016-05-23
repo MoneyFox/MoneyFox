@@ -25,7 +25,7 @@
                               Content="{x:Bind HeaderContent}" />
         </Grid>
         <ProgressRing Grid.Column="1"
-                      IsActive="{Binding IsActive, Mode=OneWay}"
+                      IsActive="{Binding IsActive, Mode=OneWay, FallbackValue=false}"
                       Background="Transparent"
                       Margin="15"
                       Width="20"
