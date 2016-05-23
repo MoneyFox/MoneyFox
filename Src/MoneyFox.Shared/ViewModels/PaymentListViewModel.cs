@@ -15,19 +15,16 @@ namespace MoneyFox.Shared.ViewModels
     public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
         private readonly IAccountRepository accountRepository;
-        private readonly IBalanceViewModel balanceViewModel;
         private readonly IDialogService dialogService;
         private readonly IPaymentManager paymentManager;
         private readonly IPaymentRepository paymentRepository;
 
         public PaymentListViewModel(IPaymentRepository paymentRepository,
             IAccountRepository accountRepository,
-            IBalanceViewModel balanceViewModel,
             IDialogService dialogService, IPaymentManager paymentManager)
         {
             this.paymentRepository = paymentRepository;
             this.accountRepository = accountRepository;
-            this.balanceViewModel = balanceViewModel;
             this.dialogService = dialogService;
             this.paymentManager = paymentManager;
 
@@ -111,7 +108,7 @@ namespace MoneyFox.Shared.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 accountRepository.Delete(accountRepository.Selected);
-                balanceViewModel.UpdateBalanceCommand.Execute();
+                BalanceViewModel.UpdateBalanceCommand.Execute();
                 Close(this);
             }
         }

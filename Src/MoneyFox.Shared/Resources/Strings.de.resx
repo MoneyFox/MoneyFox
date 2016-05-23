@@ -418,4 +418,13 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="ChooseCategorieTitle" xml:space="preserve">
     <value>Kategorie wählen</value>
   </data>
+  <data name="NoNetworkMessage" xml:space="preserve">
+    <value>Du musst mit dem Internet verbunden sein, um dich anzumelden. Bitte überprüfe deine Internetverbindung und versuche es erneut.</value>
+  </data>
+  <data name="NoNetworkTitle" xml:space="preserve">
+    <value>Keine Internetverbindung</value>
+  </data>
+  <data name="GeneralTitle" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
 </root>

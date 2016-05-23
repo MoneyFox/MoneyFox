@@ -29,20 +29,19 @@
   <!--text views-->
   <string name="textview_version">Version</string>
   <string name="textview_contact">Contact</string>
-  <string name="textview_github">GitHub</string>
   <string name="textview_opensource">This programm is open source. To contribute visit the repository:</string>
   <string name="backup_information">Your data will be saved to your OneDrive account. You’ll find them in a new folder called “MoneyFoxBackupManager”.</string>
   <string name="restore_information">
     Download the previous uploaded database backup and replace your local data with it.
     WARNING: Local changes you made meanwhile we be lost.
   </string>
-  <string name="accounts_placeholder">There are no accounts. Add one by tapping on the three dots at bottom</string>
-  <string name="payments_placeholder">There are no payments. Add one by tapping on one of the three symbols at the bottom.</string>
-  <string name="categories_placeholder">There are no categories. Add one by tapping on the plus symbol at bottom.</string>
+  <string name="accounts_placeholder">There are no accounts. Add one by tapping on the plus button at the bottom.</string>
+  <string name="payments_placeholder">There are no payments. Add one by tapping on the plus button at the bottom.</string>
+  <string name="categories_placeholder">There are no categories. Add one by tapping on the plus button at bottom.</string>
   <string name="text_auto_backup_explanation">
-    If you activate this setting after every change on the database a backup is made to OneDrive.
-    Also if you launch the application there it will check if there are newer backups and restore it if so.
+    If you activate this setting after every change on the database a backup is made to OneDrive. Also if you launch the application there it will check if there are newer backups and restore it if so.
   </string>
+  <string name="text_translation_info">Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</string>
 
   <!--buttons-->
   <string name="button_date">Date</string>
@@ -56,8 +55,9 @@
   <!--labels-->
   <string name="label_cleared">IsCleared: </string>
   <string name="label_slogan">A way to make budgeting easy.</string>
-  <string name="label_password_activated">Password protection is activated</string>
+  <string name="label_password_activated">Password protection</string>
   <string name="label_backup_date">Last Backup created at:</string>
+  <string name="label_autobackup">Automatically upload and download backups</string>
 
   <!---titles-->
   <string name="title_accounts">Accounts</string>

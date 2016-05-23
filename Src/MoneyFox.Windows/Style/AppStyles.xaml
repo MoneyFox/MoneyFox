@@ -27,9 +27,6 @@
 
     <SolidColorBrush x:Key="SplitViewToggleButtonForegroundLight"
                      Color="White" />
-    
-    <SolidColorBrush x:Key="SplitViewToggleButtonForegroundDark"
-                     Color="Black" />
 
     <!--Accent Color -->
     <SolidColorBrush x:Key="SystemControlBackgroundAccentBrush"

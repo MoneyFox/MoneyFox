@@ -23,26 +23,9 @@ namespace MoneyFox.Droid.Activities
         ///     Used to determine which button called the date picker
         /// </summary>
         private Button callerButton;
-
         private Button categoryButton;
         private Button enddateButton;
         private Button paymentDateButton;
-
-        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-        {
-            var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
-
-            if (callerButton == paymentDateButton)
-            {
-                ViewModel.SelectedPayment.Date = date;
-            }
-            else if (callerButton == enddateButton)
-            {
-                ViewModel.EndDate = date;
-            }
-
-            Title = ViewModel.Title;
-        }
 
         /// <summary>
         ///     Raises the create event.
@@ -64,6 +47,21 @@ namespace MoneyFox.Droid.Activities
             categoryButton.Click += SelectCategory;
             paymentDateButton.Click += ShowDatePicker;
             enddateButton.Click += ShowDatePicker;
+        }
+
+        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+        {
+            var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
+
+            if (callerButton == paymentDateButton)
+            {
+                ViewModel.SelectedPayment.Date = date;
+            } else if (callerButton == enddateButton)
+            {
+                ViewModel.EndDate = date;
+            }
+
+            Title = ViewModel.Title;
         }
 
         private void SelectCategory(object sender, EventArgs e)

@@ -5,6 +5,5 @@
   </PropertyGroup>
   <ImportGroup>
     <Import Project="$(NuGetPackageRoot)\Fody\1.29.2\build\dotnet\Fody.targets" Condition="Exists('$(NuGetPackageRoot)\Fody\1.29.2\build\dotnet\Fody.targets')" />
-    <Import Project="$(NuGetPackageRoot)\Xamarin.Insights\1.12.3\build\windows8\Xamarin.Insights.targets" Condition="Exists('$(NuGetPackageRoot)\Xamarin.Insights\1.12.3\build\windows8\Xamarin.Insights.targets')" />
   </ImportGroup>
 </Project>

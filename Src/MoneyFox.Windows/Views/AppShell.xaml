@@ -53,7 +53,7 @@
                 </VisualState>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="420" />
+                        <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="RootSplitView.DisplayMode"
@@ -64,7 +64,7 @@
                                 Value="False" />
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState>
+                <!--<VisualState>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
@@ -75,7 +75,7 @@
                         <Setter Target="RootSplitView.IsSwipeablePaneOpen"
                                 Value="False" />
                     </VisualState.Setters>
-                </VisualState>
+                </VisualState>-->
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
@@ -131,7 +131,6 @@
                       Style="{StaticResource SplitViewTogglePaneButtonStyle}"
                       IsChecked="{Binding IsSwipeablePaneOpen, ElementName=RootSplitView, Mode=TwoWay}"
                       Unchecked="TogglePaneButton_Checked"
-                      Checked="TogglePaneButton_OnChecked"
                       ToolTipService.ToolTip="Menu" />
     </Grid>
 </Page>

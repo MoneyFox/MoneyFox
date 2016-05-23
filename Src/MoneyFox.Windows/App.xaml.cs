@@ -12,10 +12,10 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
+using Microsoft.HockeyApp;
 using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Views;
@@ -40,8 +40,12 @@ namespace MoneyFox.Windows
             InitializeComponent();
             SetColor();
             Suspending += OnSuspending;
+#if !DEBUG
+            HockeyClient.Current.Configure(ServiceConstants.HOCKEY_APP_WINDOWS_ID,
+             new TelemetryConfiguration { EnableDiagnostics = true });
+#endif
         }
-        
+
         /// <summary>
         ///     Bind the saved theme from settings to the root element which cascadingly applies to children elements
         ///     the reason this is bound in code behind is that because viewmodels are loaded after the pages,

@@ -2,7 +2,8 @@
 using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
-using Xamarin;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Platform;
 
 namespace MoneyFox.Shared.Manager
 {
@@ -12,14 +13,16 @@ namespace MoneyFox.Shared.Manager
     public class AutoBackupManager : IAutobackupManager
     {
         private readonly IBackupManager backupManager;
+        private readonly GlobalBusyIndicatorState globalBusyIndicatorState;
 
         /// <summary>
         ///     Creates a new instance
         /// </summary>
         /// <param name="backupManager">An backup manager object that handles the restoring and creating of backups.</param>
-        public AutoBackupManager(IBackupManager backupManager)
+        public AutoBackupManager(IBackupManager backupManager, GlobalBusyIndicatorState globalBusyIndicatorState)
         {
             this.backupManager = backupManager;
+            this.globalBusyIndicatorState = globalBusyIndicatorState;
         }
 
         /// <summary>
@@ -41,7 +44,7 @@ namespace MoneyFox.Shared.Manager
             }
             catch (OneDriveException ex)
             {
-                Insights.Report(ex);
+                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
         }
 
@@ -52,21 +55,23 @@ namespace MoneyFox.Shared.Manager
         {
             try
             {
+                globalBusyIndicatorState.IsActive = true;
                 if (!SettingsHelper.IsBackupAutouploadEnabled)
                 {
+                    globalBusyIndicatorState.IsActive = false;
                     return;
                 }
 
-                var backupDate = await backupManager.GetBackupDate();
-                if (backupDate > SettingsHelper.LastDatabaseUpdate)
+                if (await backupManager.GetBackupDate() > SettingsHelper.LastDatabaseUpdate)
                 {
                     await backupManager.RestoreBackup();
                 }
             }
             catch (OneDriveException ex)
             {
-                Insights.Report(ex);
+                Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
+            globalBusyIndicatorState.IsActive = false;
         }
     }
 }

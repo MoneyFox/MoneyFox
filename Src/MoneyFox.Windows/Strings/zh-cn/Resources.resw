@@ -357,7 +357,7 @@
     <value>每月费用</value>
   </data>
   <data name="AccountsPlaceholder.Text" xml:space="preserve">
-    <value>There are no accounts. Add one by tapping on the three dots at bottom</value>
+    <value>There are no accounts. Add one by tapping on the three dots at bottom.</value>
   </data>
   <data name="CategoriesPlaceholder.Text" xml:space="preserve">
     <value>There are no categories. Add one by tapping on the plus symbol at bottom.</value>
@@ -367,5 +367,15 @@
   </data>
   <data name="ThemeToggleDescription.Text" xml:space="preserve">
     <value>You can change between dark and light theme. To apply this changes please restart the application.</value>
+  </data>
+  <data name="IsLoading.Text" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="AutoBackupSettingExplanation.Text" xml:space="preserve">
+    <value>If you activate this setting after every change on the database a backup is made to OneDrive.
+Also if you launch the application there it will check if there are newer backups and restore it if so.</value>
+  </data>
+  <data name="TranslationMissingHelpText.Text" xml:space="preserve">
+    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
   </data>
 </root>

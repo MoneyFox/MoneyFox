@@ -1,4 +1,5 @@
-﻿using MoneyFox.Shared.Interfaces;
+﻿using System;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Email;
@@ -29,35 +30,34 @@ namespace MoneyFox.Shared.ViewModels
             this.composeEmailTask = composeEmailTask;
             this.webBrowserTask = webBrowserTask;
             this.storeFeatures = storeFeatures;
-
-            GoToWebsiteCommand = new MvxCommand(GoToWebsite);
-            SendMailCommand = new MvxCommand(SendMail);
-            RateAppCommand = new MvxCommand(RateApp);
-            GoToRepositoryCommand = new MvxCommand(GoToRepository);
         }
 
         /// <summary>
         ///     Opens the webbrowser and loads to the apply solutions
         ///     website
         /// </summary>
-        public MvxCommand GoToWebsiteCommand { get; set; }
-
+        public MvxCommand GoToWebsiteCommand => new MvxCommand(GoToWebsite);
         /// <summary>
         ///     Sends a feedback mail to the apply solutions support
         ///     mail address
         /// </summary>
-        public MvxCommand SendMailCommand { get; set; }
+        public MvxCommand SendMailCommand => new MvxCommand(SendMail);
 
         /// <summary>
         ///     Opens the store to rate the app.
         /// </summary>
-        public MvxCommand RateAppCommand { get; set; }
+        public MvxCommand RateAppCommand => new MvxCommand(RateApp);
 
         /// <summary>
         ///     Opens the webbrowser and loads repository page
         ///     on GitHub
         /// </summary>
-        public MvxCommand GoToRepositoryCommand { get; set; }
+        public MvxCommand GoToRepositoryCommand => new MvxCommand(GoToRepository);
+
+        /// <summary>
+        ///     Opens the webbrowser and loads the project on crowdin.
+        /// </summary>
+        public MvxCommand GoToTranslationProjectCommand => new MvxCommand(GoToTranslationProject);
 
         /// <summary>
         ///     Returns the Version of App
@@ -98,6 +98,11 @@ namespace MoneyFox.Shared.ViewModels
         private void GoToRepository()
         {
             webBrowserTask.ShowWebPage(Constants.Constants.GIT_HUB_REPOSITORY_URL);
+        }
+        
+        private void GoToTranslationProject()
+        {
+            webBrowserTask.ShowWebPage(Constants.Constants.TRANSLATION_PROJECT_URL);
         }
     }
 }
