@@ -172,7 +172,6 @@ namespace MoneyFox.Windows.Views
         private void TogglePaneButton_Checked(object sender, RoutedEventArgs e)
         {
             CheckTogglePaneButtonSizeChanged();
-            CheckColorToggleButton();
         }
 
         /// <summary>
@@ -203,24 +202,6 @@ namespace MoneyFox.Windows.Views
             var handler = TogglePaneButtonRectChanged;
             // handler(this, this.TogglePaneButtonRect);
             handler?.DynamicInvoke(this, TogglePaneButtonRect);
-        }
-
-        private void TogglePaneButton_OnChecked(object sender, RoutedEventArgs e)
-        {
-            CheckColorToggleButton();
-        }
-
-        private void CheckColorToggleButton()
-        {
-            if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay && !RootSplitView.IsSwipeablePaneOpen)
-            {
-                TogglePaneButton.Foreground =
-                    (SolidColorBrush)Application.Current.Resources["SplitViewToggleButtonForegroundDark"];
-            } else
-            {
-                TogglePaneButton.Foreground =
-                    (SolidColorBrush)Application.Current.Resources["SplitViewToggleButtonForegroundLight"];
-            }
         }
 
         /// <summary>
