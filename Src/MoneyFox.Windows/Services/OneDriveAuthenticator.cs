@@ -3,7 +3,7 @@ using Microsoft.OneDrive.Sdk;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces;
 
-namespace MoneyManager.Windows.Services
+namespace MoneyFox.Windows.Services
 {
     public class OneDriveAuthenticator : IOneDriveAuthenticator
     {

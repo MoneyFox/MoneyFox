@@ -6,6 +6,7 @@ using Cheesebaron.MvxPlugins.Settings.WindowsCommon;
 using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Shotcuts;
+using MoneyFox.Windows.Services;
 using MoneyManager.Windows;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;

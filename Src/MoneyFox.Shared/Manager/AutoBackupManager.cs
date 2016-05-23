@@ -58,6 +58,7 @@ namespace MoneyFox.Shared.Manager
                 globalBusyIndicatorState.IsActive = true;
                 if (!SettingsHelper.IsBackupAutouploadEnabled)
                 {
+                    globalBusyIndicatorState.IsActive = false;
                     return;
                 }
 
