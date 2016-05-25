@@ -44,7 +44,7 @@ namespace MoneyFox.Windows
             //We have to do this here, since the loading via bootloader won't work for UWP projects
             Mvx.RegisterType<IMvxComposeEmailTask, MvxComposeEmailTask>();
             Mvx.RegisterType<IMvxWebBrowserTask, MvxWebBrowserTask>();
-            Mvx.RegisterType<IMvxSqliteConnectionFactory, WindowsSqliteConnectionFactory>();
+            Mvx.RegisterType<IMvxSqliteConnectionTestMethodory, WindowsSqliteConnectionTestMethodory>();
             Mvx.RegisterType<IMvxFileStore, MvxWindowsCommonFileStore>();
             Mvx.RegisterType<ISettings, WindowsCommonSettings>();
             Mvx.RegisterType<IConnectivity, Connectivity>();
