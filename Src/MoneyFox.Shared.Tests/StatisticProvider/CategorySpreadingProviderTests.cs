@@ -6,20 +6,21 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using Moq;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MoneyFox.Shared.Tests.StatisticProvider
 {
+    [TestClass]
     public class CategorySpreadingProviderTests
     {
-        [Fact]
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException)]
         public void GetValues_NullDependency_NullReferenceException()
         {
-            Assert.Throws<NullReferenceException>(
-                () => new CategorySpreadingDataProvider(null, null).GetValues(DateTime.Today, DateTime.Today));
+            new CategorySpreadingDataProvider(null, null).GetValues(DateTime.Today, DateTime.Today);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetValues_InitializedData_IgnoreTransfers()
         {
             //Setup
@@ -77,7 +78,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
             result.First().Value.ShouldBe(30);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetValues_InitializedData_CalculateIncome()
         {
             //Setup
@@ -147,7 +148,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
             result[1].Value.ShouldBe(30);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetValues_InitializedData_HandleDateCorrectly()
         {
             //Setup
@@ -207,7 +208,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
             result.First().Value.ShouldBe(90);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetValues_InitializedData_AddOtherItem()
         {
             //Setup

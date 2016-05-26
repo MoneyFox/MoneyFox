@@ -35,12 +35,12 @@ namespace MoneyFox.Shared
             CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()
-                .RegisterAsLazySingleton();
+                .RegisterAsDynamic();
 
             CreatableTypes()
                 .EndingWith("DataAccess")
                 .AsInterfaces()
-                .RegisterAsLazySingleton();
+                .RegisterAsDynamic();
 
             CreatableTypes()
                 .EndingWith("Repository")
@@ -50,18 +50,18 @@ namespace MoneyFox.Shared
             CreatableTypes()
                 .EndingWith("Manager")
                 .AsInterfaces()
-                .RegisterAsLazySingleton();
+                .RegisterAsDynamic();
 
             CreatableTypes()
                 .EndingWith("ViewModel")
                 .Where(x => !x.Name.StartsWith("DesignTime"))
                 .AsInterfaces()
-                .RegisterAsLazySingleton();
+                .RegisterAsDynamic();
 
             CreatableTypes()
                 .EndingWith("ViewModel")
                 .AsTypes()
-                .RegisterAsLazySingleton();
+                .RegisterAsDynamic();
         }
     }
 }
