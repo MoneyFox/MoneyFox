@@ -12,7 +12,8 @@ namespace MoneyFox.Shared.Tests.ViewModels
     [TestClass]
     public class AccountListViewModelTests : MvxIoCSupportingTest
     {
-        public AccountListViewModelTests()
+        [TestInitialize]
+        public void Init()
         {
             MvxSingleton.ClearAllSingletons();
             Setup();
