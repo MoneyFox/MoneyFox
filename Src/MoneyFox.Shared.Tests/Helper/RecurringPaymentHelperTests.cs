@@ -139,7 +139,7 @@ namespace MoneyFox.Shared.Tests.Helper
             };
 
             RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new Payment { Date = DateTime.Today.AddDays(15), IsCleared = true })
+                new Payment { Date = DateTime.Today.AddDays(-15), IsCleared = true })
                 .ShouldBeTrue();
         }
 
