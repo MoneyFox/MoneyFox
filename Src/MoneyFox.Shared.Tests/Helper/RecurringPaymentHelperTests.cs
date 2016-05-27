@@ -1,113 +1,187 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Model;
-using Xunit;
+using System;
 
 namespace MoneyFox.Shared.Tests.Helper
 {
     [TestClass]
     public class RecurringPaymentHelperTests
     {
-        [Theory]
-        [InlineData(0, "7.8.2016", true, 1)]
-        [InlineData(1, "7.8.2016", true, 2)]
-        [InlineData(2, "7.8.2016", false, 3)]
-        [InlineData(3, "7.8.2016", true, 1)]
-        [InlineData(4, "7.8.2016", false, 3)]
-        public void GetRecurringFromPayment(int recurrence, string date, bool isEndless, int type)
+        [TestMethod]
+        public void GetRecurringFromPayment_DailyEndlessIncome()
         {
             var startDate = new DateTime(2015, 03, 12);
-            var enddate = Convert.ToDateTime(date);
+            var enddate = Convert.ToDateTime("7.8.2016");
 
             var payment = new Payment
             {
-                ChargedAccount = new Account {Id = 3},
-                TargetAccount = new Account {Id = 8},
-                Category = new Category {Id = 16},
+                ChargedAccount = new Account { Id = 3 },
+                TargetAccount = new Account { Id = 8 },
+                Category = new Category { Id = 16 },
                 Date = startDate,
                 Amount = 2135,
                 IsCleared = false,
-                Type = type,
+                Type = (int)PaymentType.Income,
                 IsRecurring = true
             };
 
-            var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, isEndless,
-                recurrence, enddate);
+            var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, true,
+                (int)PaymentRecurrence.Daily, enddate);
 
             recurring.ChargedAccount.Id.ShouldBe(3);
             recurring.TargetAccount.Id.ShouldBe(8);
             recurring.StartDate.ShouldBe(startDate);
             recurring.EndDate.ShouldBe(enddate);
-            recurring.IsEndless.ShouldBe(isEndless);
+            recurring.IsEndless.ShouldBe(true);
             recurring.Amount.ShouldBe(payment.Amount);
             recurring.Category.Id.ShouldBe(payment.Category.Id);
-            recurring.Type.ShouldBe(type);
-            recurring.Recurrence.ShouldBe(recurrence);
+            recurring.Type.ShouldBe((int)PaymentType.Income);
+            recurring.Recurrence.ShouldBe((int)PaymentRecurrence.Daily);
             recurring.Note.ShouldBe(payment.Note);
         }
 
-        [Theory]
-        [InlineData(0, "Expense")]
-        [InlineData(1, "Income")]
-        [InlineData(2, "Transfer")]
-        public void GetTypeString_PaymentType_EnumString(int typeInt, string expectedResult)
+        [TestMethod]
+        public void GetRecurringFromPayment_WeeklyEndlessExpense()
         {
-            PaymentTypeHelper.GetTypeString(typeInt).ShouldBe(expectedResult);
+            var startDate = new DateTime(2015, 03, 12);
+            var enddate = Convert.ToDateTime("7.8.2016");
+
+            var payment = new Payment
+            {
+                ChargedAccount = new Account { Id = 3 },
+                TargetAccount = new Account { Id = 8 },
+                Category = new Category { Id = 16 },
+                Date = startDate,
+                Amount = 2135,
+                IsCleared = false,
+                Type = (int)PaymentType.Expense,
+                IsRecurring = true
+            };
+
+            var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, true,
+                (int)PaymentRecurrence.Weekly, enddate);
+
+            recurring.ChargedAccount.Id.ShouldBe(3);
+            recurring.TargetAccount.Id.ShouldBe(8);
+            recurring.StartDate.ShouldBe(startDate);
+            recurring.EndDate.ShouldBe(enddate);
+            recurring.IsEndless.ShouldBe(true);
+            recurring.Amount.ShouldBe(payment.Amount);
+            recurring.Category.Id.ShouldBe(payment.Category.Id);
+            recurring.Type.ShouldBe((int)PaymentType.Expense);
+            recurring.Recurrence.ShouldBe((int)PaymentRecurrence.Weekly);
+            recurring.Note.ShouldBe(payment.Note);
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ArgumentOutOfRangeException))]
+        public void GetRecurringFromPayment_MonthlyEndlessTransfer()
+        {
+            var startDate = new DateTime(2015, 03, 12);
+            var enddate = Convert.ToDateTime("7.8.2016");
+
+            var payment = new Payment
+            {
+                ChargedAccount = new Account { Id = 3 },
+                TargetAccount = new Account { Id = 8 },
+                Category = new Category { Id = 16 },
+                Date = startDate,
+                Amount = 2135,
+                IsCleared = false,
+                Type = (int)PaymentType.Transfer,
+                IsRecurring = true
+            };
+
+            var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, true,
+                (int)PaymentRecurrence.Monthly, enddate);
+
+            recurring.ChargedAccount.Id.ShouldBe(3);
+            recurring.TargetAccount.Id.ShouldBe(8);
+            recurring.StartDate.ShouldBe(startDate);
+            recurring.EndDate.ShouldBe(enddate);
+            recurring.IsEndless.ShouldBe(true);
+            recurring.Amount.ShouldBe(payment.Amount);
+            recurring.Category.Id.ShouldBe(payment.Category.Id);
+            recurring.Type.ShouldBe((int)PaymentType.Transfer);
+            recurring.Recurrence.ShouldBe((int)PaymentRecurrence.Monthly);
+            recurring.Note.ShouldBe(payment.Note);
+        }
+
+        [TestMethod]
+        public void GetRecurringFromPayment_YearlyEndlessTransfer()
+        {
+            var startDate = new DateTime(2015, 03, 12);
+            var enddate = Convert.ToDateTime("7.8.2016");
+
+            var payment = new Payment
+            {
+                ChargedAccount = new Account { Id = 3 },
+                TargetAccount = new Account { Id = 8 },
+                Category = new Category { Id = 16 },
+                Date = startDate,
+                Amount = 2135,
+                IsCleared = false,
+                Type = (int)PaymentType.Expense,
+                IsRecurring = true
+            };
+
+            var recurring = RecurringPaymentHelper.GetRecurringFromPayment(payment, false,
+                (int)PaymentRecurrence.Yearly, enddate);
+
+            recurring.ChargedAccount.Id.ShouldBe(3);
+            recurring.TargetAccount.Id.ShouldBe(8);
+            recurring.StartDate.ShouldBe(startDate);
+            recurring.EndDate.ShouldBe(enddate);
+            recurring.IsEndless.ShouldBe(false);
+            recurring.Amount.ShouldBe(payment.Amount);
+            recurring.Category.Id.ShouldBe(payment.Category.Id);
+            recurring.Type.ShouldBe((int)PaymentType.Expense);
+            recurring.Recurrence.ShouldBe((int)PaymentRecurrence.Yearly);
+            recurring.Note.ShouldBe(payment.Note);
+        }
+
+        [TestMethod]
+        public void GetTypeString_Expense_EnumString()
+        {
+            PaymentTypeHelper.GetTypeString(0).ShouldBe("Expense");
+        }
+
+        [TestMethod]
+        public void GetTypeString_Income_EnumString()
+        {
+            PaymentTypeHelper.GetTypeString(1).ShouldBe("Income");
+        }
+
+        [TestMethod]
+        public void GetTypeString_Transfer_EnumString()
+        {
+            PaymentTypeHelper.GetTypeString(2).ShouldBe("Transfer");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void GetTypeString_InvalidType_Exception()
         {
             PaymentTypeHelper.GetTypeString(3);
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void GetTypeString_NegativeType_Exception()
         {
             PaymentTypeHelper.GetTypeString(-1);
         }
 
-        [Theory]
-        [InlineData(PaymentRecurrence.Daily)]
-        [InlineData(PaymentRecurrence.DailyWithoutWeekend)]
-        [InlineData(PaymentRecurrence.Weekly)]
-        [InlineData(PaymentRecurrence.Yearly)]
-        public void GetPaymentFromRecurring_RecurringPayment_CorrectMappedFinancialTrans(
-            PaymentRecurrence recurrence)
-        {
-            var account = new Account {Id = 2};
-
-            var recurringPayment = new RecurringPayment
-            {
-                Id = 4,
-                Recurrence = (int) recurrence,
-                StartDate = new DateTime(2015, 08, 25),
-                ChargedAccountId = 2,
-                ChargedAccount = account,
-                Amount = 105
-            };
-
-            var result = RecurringPaymentHelper.GetPaymentFromRecurring(recurringPayment);
-
-            result.ChargedAccount.ShouldBe(account);
-            result.ChargedAccountId.ShouldBe(account.Id);
-            result.Amount.ShouldBe(105);
-            result.Date.ShouldBe(DateTime.Today);
-        }
-
         [TestMethod]
         public void GetPaymentFromRecurring_MonthlyPayment_CorrectMappedFinancialTrans()
         {
-            var account = new Account {Id = 2};
+            var account = new Account { Id = 2 };
             var dayOfMonth = 26;
 
             var recurringPayment = new RecurringPayment
             {
                 Id = 4,
-                Recurrence = (int) PaymentRecurrence.Monthly,
+                Recurrence = (int)PaymentRecurrence.Monthly,
                 StartDate = new DateTime(2015, 08, dayOfMonth),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
@@ -122,20 +196,15 @@ namespace MoneyFox.Shared.Tests.Helper
             result.Date.ShouldBe(new DateTime(DateTime.Today.Year, DateTime.Today.Month, dayOfMonth));
         }
 
-        [Theory]
-        [InlineData(PaymentRecurrence.Daily, 1)]
-        [InlineData(PaymentRecurrence.Weekly, 7)]
-        [InlineData(PaymentRecurrence.Monthly, 35)]
-        [InlineData(PaymentRecurrence.Yearly, 380)]
-        public void CheckIfRepeatable_DivRecurrences_ValidatedRecurrence(PaymentRecurrence recurrence,
-            int amountOfDaysBack)
+        [TestMethod]
+        public void CheckIfRepeatable_Daily_ValidatedRecurrence()
         {
-            var account = new Account {Id = 2};
+            var account = new Account { Id = 2 };
 
             var recurringPayment = new RecurringPayment
             {
                 Id = 4,
-                Recurrence = (int) recurrence,
+                Recurrence = (int)PaymentRecurrence.Daily,
                 StartDate = new DateTime(2015, 08, 25),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
@@ -143,19 +212,99 @@ namespace MoneyFox.Shared.Tests.Helper
             };
 
             RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new Payment {Date = DateTime.Today.AddDays(-amountOfDaysBack), IsCleared = true})
+                new Payment { Date = DateTime.Today.AddDays(-1), IsCleared = true })
+                .ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void CheckIfRepeatable_Biweekly_ValidatedRecurrence()
+        {
+            var account = new Account { Id = 2 };
+
+            var recurringPayment = new RecurringPayment
+            {
+                Id = 4,
+                Recurrence = (int)PaymentRecurrence.Biweekly,
+                StartDate = new DateTime(2015, 08, 25),
+                ChargedAccountId = 2,
+                ChargedAccount = account,
+                Amount = 105
+            };
+
+            RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
+                new Payment { Date = DateTime.Today.AddDays(-15), IsCleared = true })
+                .ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void CheckIfRepeatable_Weekly_ValidatedRecurrence()
+        {
+            var account = new Account { Id = 2 };
+
+            var recurringPayment = new RecurringPayment
+            {
+                Id = 4,
+                Recurrence = (int)PaymentRecurrence.Weekly,
+                StartDate = new DateTime(2015, 08, 25),
+                ChargedAccountId = 2,
+                ChargedAccount = account,
+                Amount = 105
+            };
+
+            RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
+                new Payment { Date = DateTime.Today.AddDays(-7), IsCleared = true })
+                .ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void CheckIfRepeatable_Monthly_ValidatedRecurrence()
+        {
+            var account = new Account { Id = 2 };
+
+            var recurringPayment = new RecurringPayment
+            {
+                Id = 4,
+                Recurrence = (int)PaymentRecurrence.Monthly,
+                StartDate = new DateTime(2015, 08, 25),
+                ChargedAccountId = 2,
+                ChargedAccount = account,
+                Amount = 105
+            };
+
+            RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
+                new Payment { Date = DateTime.Today.AddDays(-35), IsCleared = true })
+                .ShouldBeTrue();
+        }
+
+        [TestMethod]
+        public void CheckIfRepeatable_Yearly_ValidatedRecurrence()
+        {
+            var account = new Account { Id = 2 };
+
+            var recurringPayment = new RecurringPayment
+            {
+                Id = 4,
+                Recurrence = (int)PaymentRecurrence.Yearly,
+                StartDate = new DateTime(2015, 08, 25),
+                ChargedAccountId = 2,
+                ChargedAccount = account,
+                Amount = 105
+            };
+
+            RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
+                new Payment { Date = DateTime.Today.AddDays(-380), IsCleared = true })
                 .ShouldBeTrue();
         }
 
         [TestMethod]
         public void CheckIfRepeatable_UnclearedPayment_ReturnFalse()
         {
-            var account = new Account {Id = 2};
+            var account = new Account { Id = 2 };
 
             var recurringPayment = new RecurringPayment
             {
                 Id = 4,
-                Recurrence = (int) PaymentRecurrence.Weekly,
+                Recurrence = (int)PaymentRecurrence.Weekly,
                 StartDate = new DateTime(2015, 08, 25),
                 ChargedAccountId = 2,
                 ChargedAccount = account,
@@ -163,7 +312,7 @@ namespace MoneyFox.Shared.Tests.Helper
             };
 
             RecurringPaymentHelper.CheckIfRepeatable(recurringPayment,
-                new Payment {Date = DateTime.Today.AddDays(11)}).ShouldBeFalse();
+                new Payment { Date = DateTime.Today.AddDays(11) }).ShouldBeFalse();
         }
     }
 }

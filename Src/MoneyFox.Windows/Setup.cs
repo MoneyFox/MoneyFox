@@ -66,10 +66,7 @@ namespace MoneyFox.Windows
             Mvx.RegisterType<INotificationService, NotificationService>();
         }
 
-        protected override IMvxApplication CreateApp()
-        {
-            return new Shared.App();
-        }
+        protected override IMvxApplication CreateApp() => new Shared.App();
 
         protected override IMvxTrace CreateDebugTrace() => new DebugTrace();
     }
