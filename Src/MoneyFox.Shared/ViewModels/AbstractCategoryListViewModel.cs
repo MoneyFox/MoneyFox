@@ -86,7 +86,9 @@ namespace MoneyFox.Shared.ViewModels
             return new ObservableCollection<AlphaGroupListGroup<Category>>(
                 AlphaGroupListGroup<Category>.CreateGroups(Categories,
                     CultureInfo.CurrentUICulture,
-                    s => s.Name?[0].ToString().ToUpper()));
+                    s => string.IsNullOrEmpty(s.Name)
+                        ? "-"
+                        : s.Name[0].ToString().ToUpper()));
         }
 
         private async void DeleteCategory(Category categoryToDelete)
