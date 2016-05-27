@@ -6,7 +6,6 @@ using MoneyFox.Shared.ViewModels;
 using Moq;
 using MvvmCross.Core.Platform;
 using MvvmCross.Test.Core;
-using Xunit;
 
 namespace MoneyFox.Shared.Tests.ViewModels
 {
@@ -43,10 +42,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
 
-            Assert.False(modifyPaymentViewModel.IsEdit);
-            Assert.True(modifyPaymentViewModel.IsEndless);
-            Assert.False(modifyPaymentViewModel.IsTransfer);
-            Assert.Equal((int)PaymentType.Income, modifyPaymentViewModel.SelectedPayment.Type);
+            modifyPaymentViewModel.IsEdit.ShouldBeFalse();
+            modifyPaymentViewModel.IsEndless.ShouldBeTrue();
+            modifyPaymentViewModel.IsTransfer.ShouldBeFalse();
+            modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int)PaymentType.Income);
         }
 
         public void GoToAddPayment_Expense_CorrectPreparation()
@@ -80,10 +79,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Expense.ToString());
 
-            Assert.False(modifyPaymentViewModel.IsEdit);
-            Assert.True(modifyPaymentViewModel.IsEndless);
-            Assert.False(modifyPaymentViewModel.IsTransfer);
-            Assert.Equal((int)PaymentType.Expense, modifyPaymentViewModel.SelectedPayment.Type);
+            modifyPaymentViewModel.IsEdit.ShouldBeFalse();
+            modifyPaymentViewModel.IsEndless.ShouldBeTrue();
+            modifyPaymentViewModel.IsTransfer.ShouldBeFalse();
+            modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int)PaymentType.Expense);
         }
 
         public void GoToAddPayment_Transfer_CorrectPreparation()
@@ -117,10 +116,10 @@ namespace MoneyFox.Shared.Tests.ViewModels
 
             mainViewModel.GoToAddPaymentCommand.Execute(PaymentType.Income.ToString());
 
-            Assert.False(modifyPaymentViewModel.IsEdit);
-            Assert.True(modifyPaymentViewModel.IsEndless);
-            Assert.True(modifyPaymentViewModel.IsTransfer);
-            Assert.Equal((int)PaymentType.Transfer, modifyPaymentViewModel.SelectedPayment.Type);
+            modifyPaymentViewModel.IsEdit.ShouldBeFalse();
+            modifyPaymentViewModel.IsEndless.ShouldBeTrue();
+            modifyPaymentViewModel.IsTransfer.ShouldBeTrue();
+            modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int)PaymentType.Transfer);
         }
     }
 }

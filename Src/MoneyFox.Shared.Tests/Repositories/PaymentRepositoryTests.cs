@@ -14,7 +14,6 @@ using MoneyFox.Shared.Tests.Mocks;
 using Moq;
 using MvvmCross.Platform;
 using MvvmCross.Test.Core;
-using Assert = Xunit.Assert;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
@@ -39,6 +38,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         }
 
         [TestMethod]
+        [ExpectedException(typeof(AccountMissingException))]
         public void SaveWithouthAccount_NoAccount_InvalidDataException()
         {
             var accountRepositorySetup = new Mock<IAccountRepository>();
@@ -58,7 +58,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 Amount = 20
             };
 
-            Assert.Throws<AccountMissingException>(() => repository.Save(payment));
+            repository.Save(payment);
         }
 
         [TestMethod]
@@ -93,8 +93,8 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             repository.Save(payment);
 
-            Assert.Same(payment, paymentDataAccessMock.PaymentTestList[0]);
-            Assert.Equal((int) PaymentType.Income, paymentDataAccessMock.PaymentTestList[0].Type);
+            Assert.AreSame(payment, paymentDataAccessMock.PaymentTestList[0]);
+            Assert.AreEqual((int) PaymentType.Income, paymentDataAccessMock.PaymentTestList[0].Type);
         }
 
         [TestMethod]
@@ -137,8 +137,8 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             repository.Save(payment);
 
-            Assert.Same(payment, repository.Data[0]);
-            Assert.Equal((int) PaymentType.Transfer, repository.Data[0].Type);
+            Assert.AreSame(payment, repository.Data[0]);
+            Assert.AreEqual((int) PaymentType.Transfer, repository.Data[0].Type);
         }
 
         [TestMethod]
@@ -171,11 +171,11 @@ namespace MoneyFox.Shared.Tests.Repositories
             };
 
             repository.Save(payment);
-            Assert.Same(payment, repository.Data[0]);
+            Assert.AreSame(payment, repository.Data[0]);
 
             repository.Delete(payment);
 
-            Assert.False(repository.Data.Any());
+            Assert.IsFalse(repository.Data.Any());
         }
 
         [TestMethod]
@@ -193,7 +193,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 categoryRepositorySetup.Object,
                 new Mock<INotificationService>().Object);
 
-            Assert.False(paymentRepo.Data.Any());
+            Assert.IsFalse(paymentRepo.Data.Any());
         }
 
         [TestMethod]
@@ -225,7 +225,7 @@ namespace MoneyFox.Shared.Tests.Repositories
             };
 
             repository.Save(payment);
-            Assert.True(repository.Data.Contains(payment));
+            Assert.IsTrue(repository.Data.Contains(payment));
         }
 
         [TestMethod]
@@ -263,7 +263,7 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             var payments = repository.GetUnclearedPayments();
 
-            Assert.Equal(1, payments.Count());
+            Assert.AreEqual(1, payments.Count());
         }
 
         /// <summary>
@@ -301,10 +301,10 @@ namespace MoneyFox.Shared.Tests.Repositories
                 );
 
             var payments = repository.GetUnclearedPayments();
-            Assert.Equal(0, payments.Count());
+            Assert.AreEqual(0, payments.Count());
 
             payments = repository.GetUnclearedPayments(Utilities.GetEndOfMonth());
-            Assert.Equal(1, payments.Count());
+            Assert.AreEqual(1, payments.Count());
         }
 
         [TestMethod]
@@ -332,7 +332,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 );
 
             var payments = repository.GetUnclearedPayments();
-            Assert.Equal(1, payments.Count());
+            Assert.AreEqual(1, payments.Count());
         }
 
         [TestMethod]
@@ -359,8 +359,8 @@ namespace MoneyFox.Shared.Tests.Repositories
                 new Mock<INotificationService>().Object);
             paymentRepository.Load();
 
-            Assert.True(paymentRepository.Data.Any(x => x.Id == 10));
-            Assert.True(paymentRepository.Data.Any(x => x.Id == 15));
+            Assert.IsTrue(paymentRepository.Data.Any(x => x.Id == 10));
+            Assert.IsTrue(paymentRepository.Data.Any(x => x.Id == 15));
         }
 
         [TestMethod]
@@ -392,8 +392,8 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             var result = repo.GetRelatedPayments(account1).ToList();
 
-            Assert.Equal(1, result.Count);
-            Assert.Equal(2, result.First().Id);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(2, result.First().Id);
         }
 
         [TestMethod]
@@ -445,9 +445,9 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             var result = repo.LoadRecurringList().ToList();
 
-            Assert.Equal(2, result.Count);
-            Assert.Equal(1, result[0].Id);
-            Assert.Equal(3, result[1].Id);
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(1, result[0].Id);
+            Assert.AreEqual(3, result[1].Id);
         }
 
         [TestMethod]
@@ -497,8 +497,8 @@ namespace MoneyFox.Shared.Tests.Repositories
                 .Delete(
                     payment);
 
-            Assert.Equal(10, deletedId);
-            Assert.Equal(500, account.CurrentBalance);
+            Assert.AreEqual(10, deletedId);
+            Assert.AreEqual(500, account.CurrentBalance);
         }
 
         [TestMethod]
@@ -548,8 +548,8 @@ namespace MoneyFox.Shared.Tests.Repositories
                 .Delete(
                     payment);
 
-            Assert.Equal(10, deletedId);
-            Assert.Equal(500, account.CurrentBalance);
+            Assert.AreEqual(10, deletedId);
+            Assert.AreEqual(500, account.CurrentBalance);
         }
 
         [TestMethod]
@@ -599,8 +599,8 @@ namespace MoneyFox.Shared.Tests.Repositories
                 .Delete(
                     payment);
 
-            Assert.Equal(10, deletedId);
-            Assert.Equal(500, account.CurrentBalance);
+            Assert.AreEqual(10, deletedId);
+            Assert.AreEqual(500, account.CurrentBalance);
         }
 
         [TestMethod]
@@ -650,12 +650,12 @@ namespace MoneyFox.Shared.Tests.Repositories
                 .Delete(
                     payment);
 
-            Assert.Equal(10, deletedId);
-            Assert.Equal(500, account.CurrentBalance);
+            Assert.AreEqual(10, deletedId);
+            Assert.AreEqual(500, account.CurrentBalance);
         }
 
         [TestMethod]
-        public void DeletePayment_TransferClearedTrue_Deleted()
+        public void DeletePayment_TransferClearedIsTrue_Deleted()
         {
             var deletedId = 0;
 
@@ -709,13 +709,13 @@ namespace MoneyFox.Shared.Tests.Repositories
                 new Mock<INotificationService>().Object).Delete(
                     payment);
 
-            Assert.Equal(10, deletedId);
-            Assert.Equal(500, account1.CurrentBalance);
-            Assert.Equal(900, account2.CurrentBalance);
+            Assert.AreEqual(10, deletedId);
+            Assert.AreEqual(500, account1.CurrentBalance);
+            Assert.AreEqual(900, account2.CurrentBalance);
         }
 
         [TestMethod]
-        public void DeletePayment_TransferClearedFalse_Deleted()
+        public void DeletePayment_TransferClearedIsFalse_Deleted()
         {
             var deletedId = 0;
 
@@ -769,9 +769,9 @@ namespace MoneyFox.Shared.Tests.Repositories
                 new Mock<INotificationService>().Object).Delete(
                     payment);
 
-            Assert.Equal(10, deletedId);
-            Assert.Equal(500, account1.CurrentBalance);
-            Assert.Equal(900, account2.CurrentBalance);
+            Assert.AreEqual(10, deletedId);
+            Assert.AreEqual(500, account1.CurrentBalance);
+            Assert.AreEqual(900, account2.CurrentBalance);
         }
 
         [TestMethod]
