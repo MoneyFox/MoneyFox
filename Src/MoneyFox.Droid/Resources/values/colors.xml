@@ -7,7 +7,7 @@
   <color name="colorPrimaryDark">#1a264c</color>
   <color name="colorAccent">#314a9b</color>
 
-  <color name="color_selected">#57b0cc</color>
+  <color name="color_selected">#4d4d4d</color>
 
   <!-- White to Black -->
   <color name="white">#FFFFFF</color>
