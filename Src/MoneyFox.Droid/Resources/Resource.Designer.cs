@@ -2783,32 +2783,32 @@ namespace MoneyFox.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0b0058
-			public const int abc_background_cache_hint_selector_material_dark = 2131427416;
-			
 			// aapt resource value: 0x7f0b0059
-			public const int abc_background_cache_hint_selector_material_light = 2131427417;
+			public const int abc_background_cache_hint_selector_material_dark = 2131427417;
 			
 			// aapt resource value: 0x7f0b005a
-			public const int abc_color_highlight_material = 2131427418;
+			public const int abc_background_cache_hint_selector_material_light = 2131427418;
+			
+			// aapt resource value: 0x7f0b005b
+			public const int abc_color_highlight_material = 2131427419;
 			
 			// aapt resource value: 0x7f0b0000
 			public const int abc_input_method_navigation_guard = 2131427328;
 			
-			// aapt resource value: 0x7f0b005b
-			public const int abc_primary_text_disable_only_material_dark = 2131427419;
-			
 			// aapt resource value: 0x7f0b005c
-			public const int abc_primary_text_disable_only_material_light = 2131427420;
+			public const int abc_primary_text_disable_only_material_dark = 2131427420;
 			
 			// aapt resource value: 0x7f0b005d
-			public const int abc_primary_text_material_dark = 2131427421;
+			public const int abc_primary_text_disable_only_material_light = 2131427421;
 			
 			// aapt resource value: 0x7f0b005e
-			public const int abc_primary_text_material_light = 2131427422;
+			public const int abc_primary_text_material_dark = 2131427422;
 			
 			// aapt resource value: 0x7f0b005f
-			public const int abc_search_url_text = 2131427423;
+			public const int abc_primary_text_material_light = 2131427423;
+			
+			// aapt resource value: 0x7f0b0060
+			public const int abc_search_url_text = 2131427424;
 			
 			// aapt resource value: 0x7f0b0001
 			public const int abc_search_url_text_normal = 2131427329;
@@ -2819,11 +2819,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0b0003
 			public const int abc_search_url_text_selected = 2131427331;
 			
-			// aapt resource value: 0x7f0b0060
-			public const int abc_secondary_text_material_dark = 2131427424;
-			
 			// aapt resource value: 0x7f0b0061
-			public const int abc_secondary_text_material_light = 2131427425;
+			public const int abc_secondary_text_material_dark = 2131427425;
+			
+			// aapt resource value: 0x7f0b0062
+			public const int abc_secondary_text_material_light = 2131427426;
 			
 			// aapt resource value: 0x7f0b0004
 			public const int accent_material_dark = 2131427332;
@@ -2843,8 +2843,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0b0009
 			public const int background_material_light = 2131427337;
 			
-			// aapt resource value: 0x7f0b0056
-			public const int black = 2131427414;
+			// aapt resource value: 0x7f0b0057
+			public const int black = 2131427415;
 			
 			// aapt resource value: 0x7f0b000a
 			public const int bright_foreground_disabled_material_dark = 2131427338;
@@ -2879,8 +2879,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0b004f
 			public const int colorPrimaryDark = 2131427407;
 			
-			// aapt resource value: 0x7f0b0055
-			public const int dark_gray = 2131427413;
+			// aapt resource value: 0x7f0b0051
+			public const int color_selected = 2131427409;
+			
+			// aapt resource value: 0x7f0b0056
+			public const int dark_gray = 2131427414;
 			
 			// aapt resource value: 0x7f0b003a
 			public const int design_fab_shadow_end_color = 2131427386;
@@ -2930,8 +2933,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0b0017
 			public const int foreground_material_light = 2131427351;
 			
-			// aapt resource value: 0x7f0b0054
-			public const int gray = 2131427412;
+			// aapt resource value: 0x7f0b0055
+			public const int gray = 2131427413;
 			
 			// aapt resource value: 0x7f0b0018
 			public const int highlighted_text_material_dark = 2131427352;
@@ -2975,8 +2978,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0b004d
 			public const int hockeyapp_text_white = 2131427405;
 			
-			// aapt resource value: 0x7f0b0052
-			public const int light_gray = 2131427410;
+			// aapt resource value: 0x7f0b0053
+			public const int light_gray = 2131427411;
 			
 			// aapt resource value: 0x7f0b001c
 			public const int material_blue_grey_800 = 2131427356;
@@ -3014,8 +3017,8 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0b0027
 			public const int material_grey_900 = 2131427367;
 			
-			// aapt resource value: 0x7f0b0053
-			public const int med_gray = 2131427411;
+			// aapt resource value: 0x7f0b0054
+			public const int med_gray = 2131427412;
 			
 			// aapt resource value: 0x7f0b0028
 			public const int primary_dark_material_dark = 2131427368;
@@ -3065,11 +3068,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0b0037
 			public const int switch_thumb_disabled_material_light = 2131427383;
 			
-			// aapt resource value: 0x7f0b0062
-			public const int switch_thumb_material_dark = 2131427426;
-			
 			// aapt resource value: 0x7f0b0063
-			public const int switch_thumb_material_light = 2131427427;
+			public const int switch_thumb_material_dark = 2131427427;
+			
+			// aapt resource value: 0x7f0b0064
+			public const int switch_thumb_material_light = 2131427428;
 			
 			// aapt resource value: 0x7f0b0038
 			public const int switch_thumb_normal_material_dark = 2131427384;
@@ -3077,11 +3080,11 @@ namespace MoneyFox.Droid
 			// aapt resource value: 0x7f0b0039
 			public const int switch_thumb_normal_material_light = 2131427385;
 			
-			// aapt resource value: 0x7f0b0057
-			public const int text_gray = 2131427415;
+			// aapt resource value: 0x7f0b0058
+			public const int text_gray = 2131427416;
 			
-			// aapt resource value: 0x7f0b0051
-			public const int white = 2131427409;
+			// aapt resource value: 0x7f0b0052
+			public const int white = 2131427410;
 			
 			static Color()
 			{
@@ -3782,10 +3785,13 @@ namespace MoneyFox.Droid
 			public const int icon_wide = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int logo = 2130837599;
+			public const int list_item_selector = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int notification_template_icon_bg = 2130837600;
+			public const int logo = 2130837600;
+			
+			// aapt resource value: 0x7f020061
+			public const int notification_template_icon_bg = 2130837601;
 			
 			static Drawable()
 			{
