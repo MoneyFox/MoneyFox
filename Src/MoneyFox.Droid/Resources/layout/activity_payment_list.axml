@@ -27,4 +27,12 @@
             local:MvxItemTemplate="@layout/listitem_payment"
             local:MvxBind="ItemsSource RelatedPayments;ItemClick EditCommand" />
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_margin="6dp"
+        android:text="@string/payments_placeholder"
+        local:MvxBind="Visible IsPaymentsEmtpy" />
 </android.support.design.widget.CoordinatorLayout>
