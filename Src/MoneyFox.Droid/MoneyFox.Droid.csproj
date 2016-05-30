@@ -500,6 +500,7 @@
     <AndroidResource Include="Resources\drawable\ic_launcher.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\list_item_selector.xml" />
     <AndroidResource Include="Resources\drawable\ic_av_timer.png" />
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,11 @@
-﻿using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using MoneyFox.Shared.Groups;
+﻿using MoneyFox.Shared.Groups;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -43,7 +43,7 @@ namespace MoneyFox.Shared.ViewModels
         public ObservableCollection<Category> Categories { get; set; }
 
         /// <summary>
-        ///     Collection with categories alphanumeric grouped by 
+        ///     Collection with categories alphanumeric grouped by
         /// </summary>
         public ObservableCollection<AlphaGroupListGroup<Category>> Source { get; set; }
 
@@ -81,13 +81,13 @@ namespace MoneyFox.Shared.ViewModels
             Source = CreateGroup();
         }
 
-        private ObservableCollection<AlphaGroupListGroup<Category>> CreateGroup()
-        {
-            return new ObservableCollection<AlphaGroupListGroup<Category>>(
+        private ObservableCollection<AlphaGroupListGroup<Category>> CreateGroup() => 
+            new ObservableCollection<AlphaGroupListGroup<Category>>(
                 AlphaGroupListGroup<Category>.CreateGroups(Categories,
                     CultureInfo.CurrentUICulture,
-                    s => s.Name[0].ToString().ToUpper()));
-        }
+                    s => string.IsNullOrEmpty(s.Name)
+                        ? "-"
+                        : s.Name[0].ToString().ToUpper()));
 
         private async void DeleteCategory(Category categoryToDelete)
         {

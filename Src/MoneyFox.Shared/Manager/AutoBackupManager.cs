@@ -37,6 +37,8 @@ namespace MoneyFox.Shared.Manager
                     return;
                 }
 
+                globalBusyIndicatorState.IsActive = true;
+
                 if (await backupManager.GetBackupDate() < SettingsHelper.LastDatabaseUpdate)
                 {
                     await backupManager.CreateNewBackup();
@@ -46,6 +48,7 @@ namespace MoneyFox.Shared.Manager
             {
                 Mvx.Trace(MvxTraceLevel.Error, ex.Message);
             }
+            globalBusyIndicatorState.IsActive = false;
         }
 
         /// <summary>

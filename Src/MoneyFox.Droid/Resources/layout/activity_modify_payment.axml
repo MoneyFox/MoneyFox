@@ -41,7 +41,8 @@
                     android:layout_marginTop="6dp"
                     android:hint="@string/hint_amount"
                     android:gravity="right"
-                    android:numeric="decimal"
+                    android:selectAllOnFocus="true"
+                    android:inputType="numberDecimal"
                     local:MvxBind="Text AmountString" />
             </android.support.design.widget.TextInputLayout>
             <Button

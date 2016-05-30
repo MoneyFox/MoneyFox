@@ -9,9 +9,7 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp">
+        android:layout_marginTop="6dp">
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -27,9 +25,18 @@
             android:choiceMode="singleChoice"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:listSelector="@drawable/list_item_selector"
             local:MvxItemTemplate="@layout/listitem_category"
             local:MvxBind="ItemsSource Categories; ItemClick DoneCommand" />
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_margin="6dp"
+        android:text="@string/categories_placeholder"
+        local:MvxBind="Visible IsCategoriesEmpty" />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_create_category"
         android:layout_width="wrap_content"

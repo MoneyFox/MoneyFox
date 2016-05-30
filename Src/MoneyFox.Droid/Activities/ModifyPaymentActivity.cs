@@ -27,6 +27,8 @@ namespace MoneyFox.Droid.Activities
         private Button enddateButton;
         private Button paymentDateButton;
 
+        private EditText editTextAmount;
+
         /// <summary>
         ///     Raises the create event.
         /// </summary>
@@ -47,6 +49,21 @@ namespace MoneyFox.Droid.Activities
             categoryButton.Click += SelectCategory;
             paymentDateButton.Click += ShowDatePicker;
             enddateButton.Click += ShowDatePicker;
+
+            editTextAmount = FindViewById<EditText>(Resource.Id.edit_text_current_balance);
+            editTextAmount.FocusChange += EditTextAmountOnFocusChange;
+            editTextAmount.Text = ViewModel.AmountString;
+
+            Title = ViewModel.Title;
+        }
+
+        private void EditTextAmountOnFocusChange(object sender, View.FocusChangeEventArgs focusChangeEventArgs)
+        {
+            if (!focusChangeEventArgs.HasFocus)
+            {
+                ViewModel.AmountString = editTextAmount.Text;
+                editTextAmount.Text = ViewModel.AmountString;
+            }
         }
 
         public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
@@ -101,6 +118,7 @@ namespace MoneyFox.Droid.Activities
                     return true;
 
                 case Resource.Id.action_save:
+                    ViewModel.AmountString = editTextAmount.Text;
                     ViewModel.SaveCommand.Execute(null);
                     return true;
 
