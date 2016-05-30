@@ -1,10 +1,11 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Android.Support.V7.Widget;
 using Android.Views;
+using Android.Widget;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -14,6 +15,8 @@ namespace MoneyFox.Droid.Activities
         LaunchMode = LaunchMode.SingleTop)]
     public class ModifyAccountActivity : MvxAppCompatActivity<ModifyAccountViewModel>
     {
+        private EditText editTextCurrentBalance;
+
         /// <summary>
         ///     Raises the create event.
         /// </summary>
@@ -27,7 +30,19 @@ namespace MoneyFox.Droid.Activities
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
+            editTextCurrentBalance = FindViewById<EditText>(Resource.Id.edit_text_current_balance);
+            editTextCurrentBalance.FocusChange += EditTextCurrentBalanceOnFocusChange;
+
             Title = ViewModel.Title;
+        }
+
+        private void EditTextCurrentBalanceOnFocusChange(object sender, View.FocusChangeEventArgs focusChangeEventArgs)
+        {
+            if (!focusChangeEventArgs.HasFocus)
+            {
+                ViewModel.AmountString = editTextCurrentBalance.Text;
+                editTextCurrentBalance.Text = ViewModel.AmountString;
+            }
         }
 
         /// <summary>

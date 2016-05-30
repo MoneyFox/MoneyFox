@@ -17,61 +17,63 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="{Binding Title}" />
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="{Binding Title}" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
         <ScrollViewer Grid.Row="1"
                       HorizontalScrollMode="Auto"
                       VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="12,0,12,0"
-                        EntranceNavigationTransitionInfo.IsTargetElement="True">
-                <TextBox Text="{Binding SelectedAccount.Name, Mode=TwoWay}"
+            <StackPanel Margin="12,0,12,0" EntranceNavigationTransitionInfo.IsTargetElement="True">
+                <TextBox x:Uid="Name"
+                         Margin="0,0,0,12"
+                         VerticalAlignment="Top"
                          Header="Name"
+                         Text="{Binding SelectedAccount.Name,
+                                        Mode=TwoWay}" />
+                <TextBox x:Uid="Iban"
+                         Margin="0,0,0,12"
                          VerticalAlignment="Top"
-                         x:Uid="Name"
-                         Margin="0,0,0,12" />
-                <TextBox Text="{Binding SelectedAccount.Iban, Mode=TwoWay}"
                          Header="IBAN"
-                         VerticalAlignment="Top"
-                         x:Uid="Iban"
-                         Margin="0,0,0,12" />
+                         Text="{Binding SelectedAccount.Iban,
+                                        Mode=TwoWay}" />
                 <Grid>
-                    <TextBox Text="{Binding AmountString, Mode=TwoWay}"
+                    <TextBox x:Uid="Balance"
+                             x:Name="TextBoxCurrentBalance"
+                             Margin="0,0,0,12"
+                             GotFocus="TextBoxOnFocus"
                              Header="Amount"
                              InputScope="Number"
-                             x:Uid="Balance"
-                             x:Name="TextBoxCurrentBalance"
-                             TextAlignment="Right"
-                             GotFocus="TextBoxOnFocus"
                              LostFocus="FormatTextBoxOnLostFocus"
-                             Margin="0,0,0,12" />
+                             Text="{Binding AmountString,
+                                            Mode=TwoWay}"
+                             TextAlignment="Right" />
                 </Grid>
-                <TextBox Text="{Binding SelectedAccount.Note, Mode=TwoWay}"
-                         Header="Notes"
-                         VerticalAlignment="Top"
-                         x:Uid="Notes"
+                <TextBox x:Uid="Notes"
                          Margin="0,0,-0.167,0"
+                         VerticalAlignment="Top"
+                         Header="Notes"
+                         Text="{Binding SelectedAccount.Note,
+                                        Mode=TwoWay}"
                          TextWrapping="Wrap" />
             </StackPanel>
         </ScrollViewer>
         <CommandBar x:Name="BottomCommandBar" Grid.Row="2">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Save"
-                              x:Uid="Done"
-                              Label="Done"
-                              Command="{Binding SaveCommand}" />
-                <AppBarButton Icon="Cancel"
-                              x:Uid="Cancel"
-                              Label="Cancel"
-                              Command="{Binding CancelCommand}" />
+                <AppBarButton x:Uid="Done"
+                              Command="{Binding SaveCommand}"
+                              Icon="Save"
+                              Label="Done" />
+                <AppBarButton x:Uid="Cancel"
+                              Command="{Binding CancelCommand}"
+                              Icon="Cancel"
+                              Label="Cancel" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Delete"
-                              Label="Delete"
-                              x:Uid="DeleteLabel"
-                              Command="{Binding DeleteCommand}" />
+                <AppBarButton x:Uid="DeleteLabel"
+                              Command="{Binding DeleteCommand}"
+                              Icon="Delete"
+                              Label="Delete" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
 

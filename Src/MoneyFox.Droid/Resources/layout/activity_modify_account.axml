@@ -42,12 +42,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:id="@+id/edit_text_current_balance"
+                    android:selectAllOnFocus="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_current_balance"
-                    android:gravity="right"
-                    android:numeric="decimal"
-                    local:MvxBind="Text AmountString" />
+                    android:inputType="numberDecimal" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
