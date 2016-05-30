@@ -40,10 +40,10 @@ namespace MoneyFox.Shared.ViewModels
             this.defaultManager = defaultManager;
             this.accountRepository = accountRepository;
 
-            token =
-                MessageHub.Subscribe<CategorySelectedMessage>(
-                    message => SelectedPayment.Category = message.SelectedCategory);
+            token = MessageHub.Subscribe<CategorySelectedMessage>(ReceiveMessage);
         }
+
+        #region Commands
 
         /// <summary>
         ///     Saves the payment or updates the existing depending on the IsEdit Flag.
@@ -69,7 +69,10 @@ namespace MoneyFox.Shared.ViewModels
         ///     Resets the category of the currently selected payment
         /// </summary>
         public IMvxCommand ResetCategoryCommand => new MvxCommand(ResetSelection);
+        
+        #endregion
 
+        #region Properties
 
         /// <summary>
         ///     Indicates if the view is in Edit mode.
@@ -172,6 +175,8 @@ namespace MoneyFox.Shared.ViewModels
 
         private Account AccountBeforeEdit { get; set; }
 
+        #endregion
+
         /// <summary>
         ///     Init the view. Is executed after the constructor call
         /// </summary>
@@ -229,6 +234,16 @@ namespace MoneyFox.Shared.ViewModels
                 // Assign empty category to reset the GUI
                 Category = new Category()
             };
+        }
+
+        //TODO: Move back to inline
+        /// <summary>
+        ///     Moved to own method for debugg reasons
+        /// </summary>
+        /// <param name="message">Message sent.</param>
+        private void ReceiveMessage(CategorySelectedMessage message)
+        {
+            SelectedPayment.Category = message.SelectedCategory;
         }
 
         private async void Save()
@@ -311,7 +326,6 @@ namespace MoneyFox.Shared.ViewModels
             await dialogService.ShowMessage(Strings.InvalidEnddateTitle,
                 Strings.InvalidEnddateMessage);
         }
-
 
         private void ResetSelection()
         {
