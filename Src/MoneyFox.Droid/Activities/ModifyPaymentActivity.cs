@@ -47,6 +47,8 @@ namespace MoneyFox.Droid.Activities
             categoryButton.Click += SelectCategory;
             paymentDateButton.Click += ShowDatePicker;
             enddateButton.Click += ShowDatePicker;
+
+            Title = ViewModel.Title;
         }
 
         public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
