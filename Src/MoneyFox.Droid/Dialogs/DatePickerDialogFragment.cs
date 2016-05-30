@@ -3,7 +3,7 @@ using Android.Content;
 using Android.OS;
 using System;
 
-namespace MoneyFox.Droid.Fragments
+namespace MoneyFox.Droid.Dialogs
 {
     public class DatePickerDialogFragment : DialogFragment
     {

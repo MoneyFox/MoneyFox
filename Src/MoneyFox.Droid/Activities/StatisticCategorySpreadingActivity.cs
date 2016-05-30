@@ -7,6 +7,7 @@ using Android.Support.V7.Widget;
 using Android.Content.PM;
 using Android.Views;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Droid.Dialogs;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -39,6 +40,12 @@ namespace MoneyFox.Droid.Activities
             plotModel.Model = ViewModel.SpreadingModel;
         }
 
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.menu_select, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
         /// <summary>
         ///     This hook is called whenever an item in your options menu is selected.
         /// </summary>
@@ -49,6 +56,11 @@ namespace MoneyFox.Droid.Activities
             {
                 case Android.Resource.Id.Home:
                     Finish();
+                    return true;
+
+                case Resource.Id.action_add:
+                    var dialog = new SelectDateRangeDialog(this);
+                    dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
                     return true;
 
                 default:
