@@ -10,8 +10,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        local:MvxBind="Text Version" />
+        android:layout_marginBottom="5dp" />
     <Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

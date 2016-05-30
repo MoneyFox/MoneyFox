@@ -4,11 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/activatedBackgroundIndicator">
+    android:background="@color/light_gray"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:layout_margin="2dp"
+    android:translationZ="5dp">
     <LinearLayout
         android:orientation="horizontal"
-        android:paddingLeft="6dp"
-        android:paddingRight="6dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -16,14 +19,12 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginTop="5dp"
             local:MvxBind="Text Name" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginTop="5dp"
             local:MvxBind="Text CurrentBalance, Converter=AmountFormat" />
     </LinearLayout>
     <TextView
@@ -31,6 +32,5 @@
         android:layout_height="wrap_content"
         android:gravity="fill_horizontal"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginTop="5dp"
         local:MvxBind="Text Iban" />
 </LinearLayout>

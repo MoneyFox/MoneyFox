@@ -32,6 +32,7 @@ namespace MoneyFox.Droid.Activities
 
             editTextCurrentBalance = FindViewById<EditText>(Resource.Id.edit_text_current_balance);
             editTextCurrentBalance.FocusChange += EditTextCurrentBalanceOnFocusChange;
+            editTextCurrentBalance.Text = ViewModel.AmountString;
 
             Title = ViewModel.Title;
         }
@@ -69,6 +70,7 @@ namespace MoneyFox.Droid.Activities
                     return true;
 
                 case Resource.Id.action_save:
+                    ViewModel.AmountString = editTextCurrentBalance.Text;
                     ViewModel.SaveCommand.Execute(null);
                     return true;
 
