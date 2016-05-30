@@ -21,7 +21,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             var viewmodel = new ModifyAccountViewModel(accountRepositorySetup.Object)
             {IsEdit = true};
 
-            viewmodel.Title.ShouldBe(Strings.EditLabel + " " + accountname);
+            viewmodel.Title.ShouldBe("Sparkonto Bearbeiten");
         }
 
         [TestMethod]
