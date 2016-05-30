@@ -3737,55 +3737,58 @@ namespace MoneyFox.Droid
 			public const int ic_add = 2130837583;
 			
 			// aapt resource value: 0x7f020050
-			public const int ic_backup = 2130837584;
+			public const int ic_av_timer = 2130837584;
 			
 			// aapt resource value: 0x7f020051
-			public const int ic_delete = 2130837585;
+			public const int ic_backup = 2130837585;
 			
 			// aapt resource value: 0x7f020052
-			public const int ic_done = 2130837586;
+			public const int ic_delete = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int ic_done_black = 2130837587;
+			public const int ic_done = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int ic_forward = 2130837588;
+			public const int ic_done_black = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int ic_info = 2130837589;
+			public const int ic_forward = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int ic_label_outline = 2130837590;
+			public const int ic_info = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int ic_launcher = 2130837591;
+			public const int ic_label_outline = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int ic_loop = 2130837592;
+			public const int ic_launcher = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int ic_recurring = 2130837593;
+			public const int ic_loop = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int ic_remove = 2130837594;
+			public const int ic_recurring = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int ic_save = 2130837595;
+			public const int ic_remove = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int ic_settings = 2130837596;
+			public const int ic_save = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int ic_show_chart = 2130837597;
+			public const int ic_settings = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int icon_wide = 2130837598;
+			public const int ic_show_chart = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int logo = 2130837599;
+			public const int icon_wide = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int notification_template_icon_bg = 2130837600;
+			public const int logo = 2130837600;
+			
+			// aapt resource value: 0x7f020061
+			public const int notification_template_icon_bg = 2130837601;
 			
 			static Drawable()
 			{
