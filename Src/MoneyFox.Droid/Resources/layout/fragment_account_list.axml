@@ -19,8 +19,6 @@
         <MvxListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="6dp"
-            android:paddingRight="6dp"
             android:listSelector="@drawable/list_item_selector"
             android:id="@+id/account_list"
             local:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -32,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_margin="6dp"
         android:text="@string/accounts_placeholder"
         local:MvxBind="Visible IsAllAccountsEmpty" />
     <android.support.design.widget.FloatingActionButton
