@@ -199,7 +199,6 @@ namespace MoneyFox.Windows.Views
             }
 
             var handler = TogglePaneButtonRectChanged;
-            // handler(this, this.TogglePaneButtonRect);
             handler?.DynamicInvoke(this, TogglePaneButtonRect);
         }
 
