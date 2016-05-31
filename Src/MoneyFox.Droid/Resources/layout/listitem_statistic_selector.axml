@@ -23,9 +23,4 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_marginTop="5dp"
         local:MvxBind="Text Description" />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="5dp"
-        android:background="@color/med_gray" />
 </LinearLayout>
