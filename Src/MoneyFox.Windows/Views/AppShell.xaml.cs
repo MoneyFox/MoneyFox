@@ -195,7 +195,7 @@ namespace MoneyFox.Windows.Views
 
             if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay)
             {
-                RootSplitView.IsSwipeablePaneOpen = false;
+                RootSplitView.IsPaneOpen = false;
             }
 
             var handler = TogglePaneButtonRectChanged;
