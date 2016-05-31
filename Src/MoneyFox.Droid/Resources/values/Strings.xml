@@ -10,7 +10,7 @@
   <string name="action_add_account">Add Account</string>
   <string name="action_add">Add</string>
   <string name="action_delete">Delete</string>
-  <string name="action_save">SaveItem</string>
+  <string name="action_save">Save Item</string>
   <string name="action_done">Done</string>
 
   <!--hints-->

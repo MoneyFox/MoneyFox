@@ -12,6 +12,7 @@ using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
+using MvvmCross.Droid.Support.V4;
 
 namespace MoneyFox.Droid.Fragments
 {

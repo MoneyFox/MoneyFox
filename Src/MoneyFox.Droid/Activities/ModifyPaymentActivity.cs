@@ -50,7 +50,7 @@ namespace MoneyFox.Droid.Activities
             paymentDateButton.Click += ShowDatePicker;
             enddateButton.Click += ShowDatePicker;
 
-            editTextAmount = FindViewById<EditText>(Resource.Id.edit_text_current_balance);
+            editTextAmount = FindViewById<EditText>(Resource.Id.editText_amount);
             editTextAmount.FocusChange += EditTextAmountOnFocusChange;
             editTextAmount.Text = ViewModel.AmountString;
 
