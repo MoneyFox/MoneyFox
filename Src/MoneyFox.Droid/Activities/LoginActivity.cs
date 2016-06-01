@@ -11,6 +11,7 @@ using MoneyFox.Shared.Resources;
 namespace MoneyFox.Droid.Activities
 {
     [Activity(Label = "Money Fox",
+        Theme = "@style/AppTheme",
         NoHistory = true)]
     public class LoginActivity : MvxAppCompatActivity<LoginViewModel> {
 
