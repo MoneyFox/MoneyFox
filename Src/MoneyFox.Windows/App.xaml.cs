@@ -97,17 +97,6 @@ namespace MoneyFox.Windows
                 shell.ViewModel = Mvx.Resolve<MenuViewModel>();
             }
 
-            //if (Mvx.Resolve<Session>().ValidateSession())
-            //{
-            //    shell.SetLoggedInView();
-            //    shell.AppMyFrame.Navigate(typeof(MainView));
-            //}
-            //else
-            //{
-            //    shell.SetLoginView();
-            //    shell.AppMyFrame.Navigate(typeof(LoginView));
-            //}
-
             new TileHelper().DoNavigation(string.IsNullOrEmpty(e.Arguments)
                 ? e.TileId
                 : e.Arguments);
