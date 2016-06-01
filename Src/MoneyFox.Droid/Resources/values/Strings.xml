@@ -25,6 +25,7 @@
   <string name="hint_search_text">Search Text</string>
   <string name="hint_password">Password</string>
   <string name="hint_password_confirmation">Password Confirmation</string>
+  <string name="hint_username">Username</string>
 
   <!--text views-->
   <string name="textview_version">Version</string>
@@ -51,6 +52,8 @@
   <string name="button_restore_backup">Restore Backup</string>
   <string name="button_create_backup">Create Backup</string>
   <string name="button_done">Done</string>
+  <string name="button_login">Login</string>
+
 
   <!--labels-->
   <string name="label_cleared">IsCleared: </string>
@@ -58,6 +61,7 @@
   <string name="label_password_activated">Password protection</string>
   <string name="label_backup_date">Last Backup created at:</string>
   <string name="label_autobackup">Automatically upload and download backups</string>
+  <string name="label_welcome">Welcome!</string>
 
   <!---titles-->
   <string name="title_accounts">Accounts</string>
