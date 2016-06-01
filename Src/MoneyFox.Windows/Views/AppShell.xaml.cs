@@ -12,7 +12,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Controls;
+using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
 {
@@ -24,35 +26,6 @@ namespace MoneyFox.Windows.Views
     {
         public static AppShell Current;
 
-        private readonly List<NavMenuItem> navlistBottom = new List<NavMenuItem>(
-            new[]
-            {
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Tag,
-                    Label = Strings.CategoriesLabel,
-                    DestPage = typeof(CategoriesView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.SyncFolder,
-                    Label = Strings.BackupLabel,
-                    DestPage = typeof(BackupView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Setting,
-                    Label = Strings.SettingsLabel,
-                    DestPage = typeof(SettingsView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Account,
-                    Label = Strings.AboutLabel,
-                    DestPage = typeof(AboutView)
-                }
-            });
-
         // Declare the top level nav items
 
         private readonly List<NavMenuItem> navlistTop = new List<NavMenuItem>(
@@ -62,13 +35,48 @@ namespace MoneyFox.Windows.Views
                 {
                     Symbol = Symbol.Library,
                     Label = Strings.AccountsLabel,
-                    DestPage = typeof(MainView)
+                    DestViewModel = typeof(MainView),
+                    DestPage = typeof(MainViewModel)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.View,
                     Label = Strings.StatisticsLabel,
-                    DestPage = typeof(StatisticSelectorView)
+                    DestViewModel = typeof(StatisticSelectorView),
+                    DestPage = typeof(StatisticSelectorViewModel)
+                }
+            });
+
+        private readonly List<NavMenuItem> navlistBottom = new List<NavMenuItem>(
+            new[]
+            {
+                new NavMenuItem
+                {
+                    Symbol = Symbol.Tag,
+                    Label = Strings.CategoriesLabel,
+                    DestViewModel = typeof(CategoriesView),
+                    DestPage = typeof(CategoryListViewModel)
+                },
+                new NavMenuItem
+                {
+                    Symbol = Symbol.SyncFolder,
+                    Label = Strings.BackupLabel,
+                    DestViewModel = typeof(BackupView),
+                    DestPage = typeof(BackupViewModel)
+                },
+                new NavMenuItem
+                {
+                    Symbol = Symbol.Setting,
+                    Label = Strings.SettingsLabel,
+                    DestViewModel = typeof(SettingsView),
+                    DestPage = typeof(SettingsViewModel)
+                },
+                new NavMenuItem
+                {
+                    Symbol = Symbol.Account,
+                    Label = Strings.AboutLabel,
+                    DestViewModel = typeof(AboutViewModel),
+                    DestPage = typeof(AboutView)
                 }
             });
 
@@ -97,6 +105,8 @@ namespace MoneyFox.Windows.Views
             //start with a hidden back button. This changes when you navigate to an other page
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
+
+        public MenuViewModel ViewModel { get; set; }
 
         public Frame AppMyFrame => MyFrame;
 
@@ -321,7 +331,7 @@ namespace MoneyFox.Windows.Views
             if (item?.DestPage != null &&
                 item.DestPage != AppMyFrame.CurrentSourcePageType)
             {
-                AppMyFrame.Navigate(item.DestPage, item.Arguments);
+                ViewModel.ShowViewModelByType(item.DestViewModel);
             }
 
             //reset the bottom or top section depending on which section the user clicked
@@ -430,11 +440,13 @@ namespace MoneyFox.Windows.Views
     public class NavMenuItem
     {
         public string Label { get; set; }
+        
         public Symbol Symbol { get; set; }
 
         public char SymbolAsChar => (char) Symbol;
+       
+        public Type DestViewModel { get; set; }
 
         public Type DestPage { get; set; }
-        public object Arguments { get; set; }
     }
 }

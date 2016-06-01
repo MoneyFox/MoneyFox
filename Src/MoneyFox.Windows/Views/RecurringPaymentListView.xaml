@@ -15,9 +15,9 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Accounts"
-                           x:Uid="AccountTitle" />
+                <TextBlock x:Uid="AccountTitle"
+                           Style="{ThemeResource PageTitleTextBlockStyle}"
+                           Text="Accounts" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 

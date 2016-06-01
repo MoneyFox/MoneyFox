@@ -17,6 +17,7 @@ using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Views;
 using MoneyManager.Windows.Shortcut;
@@ -92,18 +93,20 @@ namespace MoneyFox.Windows
 
                 var start = Mvx.Resolve<IMvxAppStart>();
                 start.Start();
+
+                shell.ViewModel = Mvx.Resolve<MenuViewModel>();
             }
 
-            if (Mvx.Resolve<Session>().ValidateSession())
-            {
-                shell.SetLoggedInView();
-                shell.AppMyFrame.Navigate(typeof(MainView));
-            }
-            else
-            {
-                shell.SetLoginView();
-                shell.AppMyFrame.Navigate(typeof(LoginView));
-            }
+            //if (Mvx.Resolve<Session>().ValidateSession())
+            //{
+            //    shell.SetLoggedInView();
+            //    shell.AppMyFrame.Navigate(typeof(MainView));
+            //}
+            //else
+            //{
+            //    shell.SetLoginView();
+            //    shell.AppMyFrame.Navigate(typeof(LoginView));
+            //}
 
             new TileHelper().DoNavigation(string.IsNullOrEmpty(e.Arguments)
                 ? e.TileId
