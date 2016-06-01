@@ -10,6 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/statistic_list"
+        android:listSelector="@drawable/list_item_selector"
         local:MvxItemTemplate="@layout/listitem_statistic_selector"
         local:MvxBind="ItemsSource StatisticItems;ItemClick GoToStatisticCommand" />
 </LinearLayout>
