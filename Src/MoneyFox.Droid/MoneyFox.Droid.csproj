@@ -362,7 +362,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_modify_payment.axml" />
     <AndroidResource Include="Resources\layout\fragment_statistic_selector.axml" />
-    <AndroidResource Include="Resources\layout\graphical_statistic_activity.axml">
+    <AndroidResource Include="Resources\layout\activity_generic_graphical_statistic.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\icon_wide.png" />
