@@ -2,7 +2,7 @@
 A way to make budgeting easy. A basic idea for the community, made even better by the community.
 
 ### Talk with us
-We have a slack team to make communication a bit easier. Write me a mail to get your invitation.
+We have a slack team to make communication a bit easier. Write me a mail to nino.padrutt@apply-solutions.ch to get your invitation.
 
 ### Try it
 There are two versions in the Windows Marketplace available for all devices with Windows 10:
