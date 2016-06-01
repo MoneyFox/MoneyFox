@@ -1,15 +1,9 @@
-﻿using MoneyFox.Shared.Helpers;
-using MvvmCross.Core.ViewModels;
+﻿using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Shared.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        /// <summary>
-        ///     Returns the timestamp when the last change was made to the database
-        /// </summary>
-        public string TimeStampDbUpdate => SettingsHelper.LastDatabaseUpdate.ToString();
-
         /// <summary>
         ///     Prepare everything and navigate to the add payment view
         /// </summary>
