@@ -5,8 +5,8 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
                       xmlns:views="using:MvvmCross.WindowsUWP.Views"
-                      mc:Ignorable="d"
-                      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                      mc:Ignorable="d">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -17,8 +17,9 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="Select Category"
-                           x:Uid="SelectCategoryListViewTitle" />
+                <TextBlock x:Uid="SelectCategoryListViewTitle"
+                           Style="{ThemeResource PageTitleTextBlockStyle}"
+                           Text="Select Category" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
@@ -30,10 +31,10 @@
 
         <CommandBar Grid.Row="2">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Add"
-                              Label="add"
-                              x:Uid="AddCategoryLabel"
-                              Click="AddCategory" />
+                <AppBarButton x:Uid="AddCategoryLabel"
+                              Click="AddCategory"
+                              Icon="Add"
+                              Label="add" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
 

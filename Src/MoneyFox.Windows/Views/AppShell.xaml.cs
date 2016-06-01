@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Controls;
 
 namespace MoneyFox.Windows.Views
@@ -24,35 +25,6 @@ namespace MoneyFox.Windows.Views
     {
         public static AppShell Current;
 
-        private readonly List<NavMenuItem> navlistBottom = new List<NavMenuItem>(
-            new[]
-            {
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Tag,
-                    Label = Strings.CategoriesLabel,
-                    DestPage = typeof(CategoriesView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.SyncFolder,
-                    Label = Strings.BackupLabel,
-                    DestPage = typeof(BackupView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Setting,
-                    Label = Strings.SettingsLabel,
-                    DestPage = typeof(SettingsView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Account,
-                    Label = Strings.AboutLabel,
-                    DestPage = typeof(AboutView)
-                }
-            });
-
         // Declare the top level nav items
 
         private readonly List<NavMenuItem> navlistTop = new List<NavMenuItem>(
@@ -62,13 +34,48 @@ namespace MoneyFox.Windows.Views
                 {
                     Symbol = Symbol.Library,
                     Label = Strings.AccountsLabel,
+                    DestViewModel = typeof(MainViewModel),
                     DestPage = typeof(MainView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.View,
                     Label = Strings.StatisticsLabel,
+                    DestViewModel = typeof(StatisticSelectorViewModel),
                     DestPage = typeof(StatisticSelectorView)
+                }
+            });
+
+        private readonly List<NavMenuItem> navlistBottom = new List<NavMenuItem>(
+            new[]
+            {
+                new NavMenuItem
+                {
+                    Symbol = Symbol.Tag,
+                    Label = Strings.CategoriesLabel,
+                    DestViewModel = typeof(CategoryListViewModel),
+                    DestPage = typeof(CategoryListView)
+                },
+                new NavMenuItem
+                {
+                    Symbol = Symbol.SyncFolder,
+                    Label = Strings.BackupLabel,
+                    DestViewModel = typeof(BackupViewModel),
+                    DestPage = typeof(BackupView)
+                },
+                new NavMenuItem
+                {
+                    Symbol = Symbol.Setting,
+                    Label = Strings.SettingsLabel,
+                    DestViewModel = typeof(SettingsViewModel),
+                    DestPage = typeof(SettingsView)
+                },
+                new NavMenuItem
+                {
+                    Symbol = Symbol.Account,
+                    Label = Strings.AboutLabel,
+                    DestViewModel = typeof(AboutViewModel),
+                    DestPage = typeof(AboutView)
                 }
             });
 
@@ -98,7 +105,9 @@ namespace MoneyFox.Windows.Views
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
-        public Frame AppMyFrame => MyFrame;
+        public MenuViewModel ViewModel { get; set; }
+
+        public Frame MyAppFrame => Frame;
 
         public Rect TogglePaneButtonRect { get; private set; }
 
@@ -195,11 +204,10 @@ namespace MoneyFox.Windows.Views
 
             if (RootSplitView.DisplayMode == SplitViewDisplayMode.Overlay)
             {
-                RootSplitView.IsSwipeablePaneOpen = false;
+                RootSplitView.IsPaneOpen = false;
             }
 
             var handler = TogglePaneButtonRectChanged;
-            // handler(this, this.TogglePaneButtonRect);
             handler?.DynamicInvoke(this, TogglePaneButtonRect);
         }
 
@@ -272,37 +280,37 @@ namespace MoneyFox.Windows.Views
 
         private void BackRequested(ref bool handled)
         {
-            // Get a hold of the current MyFrame so that we can inspect the app back stack.
+            // Get a hold of the current Frame so that we can inspect the app back stack.
 
-            if (AppMyFrame == null)
+            if (MyAppFrame == null)
             {
                 return;
             }
 
             // Check to see if this is the top-most page on the app back stack.
-            if (AppMyFrame.CanGoBack && !handled)
+            if (MyAppFrame.CanGoBack && !handled)
             {
                 // If not, set the event to handled and go back to the previous page in the app.
                 handled = true;
-                AppMyFrame.GoBack();
+                MyAppFrame.GoBack();
             }
         }
 
         private void ForwardRequested(ref bool handled)
         {
-            // Get a hold of the current MyFrame so that we can inspect the app back stack.
+            // Get a hold of the current Frame so that we can inspect the app back stack.
 
-            if (AppMyFrame == null)
+            if (MyAppFrame == null)
             {
                 return;
             }
 
             // Check to see if this is the top-most page on the app back stack.
-            if (AppMyFrame.CanGoForward && !handled)
+            if (MyAppFrame.CanGoForward && !handled)
             {
                 // If not, set the event to handled and go back to the previous page in the app.
                 handled = true;
-                AppMyFrame.GoForward();
+                MyAppFrame.GoForward();
             }
         }
 
@@ -320,9 +328,9 @@ namespace MoneyFox.Windows.Views
             var item = (NavMenuItem) ((NavMenuListView) sender).ItemFromContainer(listViewItem);
 
             if (item?.DestPage != null &&
-                item.DestPage != AppMyFrame.CurrentSourcePageType)
+                item.DestPage != MyAppFrame.CurrentSourcePageType)
             {
-                AppMyFrame.Navigate(item.DestPage, item.Arguments);
+                ViewModel.ShowViewModelByType(item.DestViewModel);
             }
 
             //reset the bottom or top section depending on which section the user clicked
@@ -349,11 +357,11 @@ namespace MoneyFox.Windows.Views
                 var item =
                     (from p in navlistTop.Union(navlistBottom) where p.DestPage == e.SourcePageType select p)
                         .SingleOrDefault();
-                if (item == null && AppMyFrame.BackStackDepth > 0)
+                if (item == null && MyAppFrame.BackStackDepth > 0)
                 {
                     // In cases where a page drills into sub-pages then we'll highlight the most recent
                     // navigation menu item that appears in the BackStack
-                    foreach (var entry in AppMyFrame.BackStack.Reverse())
+                    foreach (var entry in MyAppFrame.BackStack.Reverse())
                     {
                         item =
                             (from p in navlistTop.Union(navlistBottom) where p.DestPage == entry.SourcePageType select p)
@@ -431,11 +439,13 @@ namespace MoneyFox.Windows.Views
     public class NavMenuItem
     {
         public string Label { get; set; }
+        
         public Symbol Symbol { get; set; }
 
         public char SymbolAsChar => (char) Symbol;
+       
+        public Type DestViewModel { get; set; }
 
         public Type DestPage { get; set; }
-        public object Arguments { get; set; }
     }
 }

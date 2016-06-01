@@ -8,6 +8,7 @@ using Android.Content.PM;
 using Android.Views;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Droid.Dialogs;
+using MvvmCross.Binding.Droid.Views;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -18,16 +19,18 @@ namespace MoneyFox.Droid.Activities
     public class StatisticCategorySpreadingActivity : MvxAppCompatActivity<StatisticCategorySpreadingViewModel>
     {
         private PlotView plotModel;
+        private MvxListView legendList;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.graphical_statistic_activity);
+            SetContentView(Resource.Layout.activity_category_spreading);
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             plotModel = FindViewById<PlotView>(Resource.Id.plotViewModel);
+            legendList = FindViewById<MvxListView>(Resource.Id.list_legend);
 
             Title = Strings.CategorySpreadingLabel;
         }
@@ -61,6 +64,7 @@ namespace MoneyFox.Droid.Activities
                 case Resource.Id.action_add:
                     var dialog = new SelectDateRangeDialog(this);
                     dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
+                    ViewModel.LoadCommand.Execute();
                     return true;
 
                 default:

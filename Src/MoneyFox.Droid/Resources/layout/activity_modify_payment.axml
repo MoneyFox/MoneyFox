@@ -42,8 +42,7 @@
                     android:hint="@string/hint_amount"
                     android:gravity="right"
                     android:selectAllOnFocus="true"
-                    android:inputType="numberDecimal"
-                    local:MvxBind="Text AmountString" />
+                    android:inputType="numberDecimal" />
             </android.support.design.widget.TextInputLayout>
             <Button
                 android:id="@+id/category"

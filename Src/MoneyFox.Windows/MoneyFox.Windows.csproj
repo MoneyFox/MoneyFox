@@ -24,7 +24,7 @@
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>127C8AECF240A694CE4ABA692C3CC4F1D7D9EDE1</PackageCertificateThumbprint>
     <PackageCertificateThumbprint>2BD393557073ED01CE890EA7BCA8FC74A2047C79</PackageCertificateThumbprint>
-    <PackageCertificateThumbprint>2DB535AA809391FBCF8EB61ED42032C867DAF255</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>76046B0AA56F62F0B0ADEB641E53269BF5FECEDC</PackageCertificateThumbprint>
     <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -143,7 +143,6 @@
     </Compile>
     <Compile Include="Controls\AlternatingRowListView.cs" />
     <Compile Include="Controls\NavMenuListView.cs" />
-    <Compile Include="Controls\SwipeableSplitView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
@@ -151,8 +150,8 @@
     <Compile Include="Views\BackupView.xaml.cs">
       <DependentUpon>BackupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CategoriesView.xaml.cs">
-      <DependentUpon>CategoriesView.xaml</DependentUpon>
+    <Compile Include="Views\CategoryListView.xaml.cs">
+      <DependentUpon>CategoryListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dialogs\ModifyCategoryDialog.cs">
       <DependentUpon>ModifyCategoryDialog.xaml</DependentUpon>
@@ -366,7 +365,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\CategoriesView.xaml">
+    <Page Include="Views\CategoryListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

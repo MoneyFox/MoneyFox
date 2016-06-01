@@ -8,7 +8,8 @@ namespace MoneyFox.Droid.Activities
         MainLauncher = true,
         Icon = "@drawable/ic_launcher",
         Theme = "@style/AppTheme.Splash",
-        NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
+        NoHistory = true,
+        ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreenActivity : MvxSplashScreenActivity
     {
         public SplashScreenActivity() : base(Resource.Layout.activity_splash_screen)

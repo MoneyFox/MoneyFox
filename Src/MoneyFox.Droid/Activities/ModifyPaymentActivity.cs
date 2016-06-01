@@ -16,7 +16,7 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.ModifyPaymentActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class ModifyPaymentActivity : MvxCachingFragmentCompatActivity<ModifyPaymentViewModel>,
+    public class ModifyPaymentActivity : MvxAppCompatActivity<ModifyPaymentViewModel>,
         DatePickerDialog.IOnDateSetListener
     {
         /// <summary>
@@ -50,7 +50,7 @@ namespace MoneyFox.Droid.Activities
             paymentDateButton.Click += ShowDatePicker;
             enddateButton.Click += ShowDatePicker;
 
-            editTextAmount = FindViewById<EditText>(Resource.Id.edit_text_current_balance);
+            editTextAmount = FindViewById<EditText>(Resource.Id.editText_amount);
             editTextAmount.FocusChange += EditTextAmountOnFocusChange;
             editTextAmount.Text = ViewModel.AmountString;
 

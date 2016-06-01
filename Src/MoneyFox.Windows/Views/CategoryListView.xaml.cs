@@ -6,9 +6,9 @@ using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
 {
-    public sealed partial class CategoriesView
+    public sealed partial class CategoryListView
     {
-        public CategoriesView()
+        public CategoryListView()
         {
             InitializeComponent();
             CategoryListUserControl.DataContext = Mvx.Resolve<CategoryListViewModel>();

@@ -23,7 +23,7 @@ namespace MoneyFox.Droid.Activities
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.graphical_statistic_activity);
+            SetContentView(Resource.Layout.activity_generic_graphical_statistic);
 
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -61,6 +61,7 @@ namespace MoneyFox.Droid.Activities
                 case Resource.Id.action_add:
                     var dialog = new SelectDateRangeDialog(this);
                     dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
+                    ViewModel.LoadCommand.Execute();
                     return true;
 
                 default:
