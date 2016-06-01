@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Navigation;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Controls;
-using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
 {
@@ -35,15 +34,15 @@ namespace MoneyFox.Windows.Views
                 {
                     Symbol = Symbol.Library,
                     Label = Strings.AccountsLabel,
-                    DestViewModel = typeof(MainView),
-                    DestPage = typeof(MainViewModel)
+                    DestViewModel = typeof(MainViewModel),
+                    DestPage = typeof(MainView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.View,
                     Label = Strings.StatisticsLabel,
-                    DestViewModel = typeof(StatisticSelectorView),
-                    DestPage = typeof(StatisticSelectorViewModel)
+                    DestViewModel = typeof(StatisticSelectorViewModel),
+                    DestPage = typeof(StatisticSelectorView)
                 }
             });
 
@@ -54,22 +53,22 @@ namespace MoneyFox.Windows.Views
                 {
                     Symbol = Symbol.Tag,
                     Label = Strings.CategoriesLabel,
-                    DestViewModel = typeof(CategoriesView),
-                    DestPage = typeof(CategoryListViewModel)
+                    DestViewModel = typeof(CategoryListViewModel),
+                    DestPage = typeof(CategoryListView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.SyncFolder,
                     Label = Strings.BackupLabel,
-                    DestViewModel = typeof(BackupView),
-                    DestPage = typeof(BackupViewModel)
+                    DestViewModel = typeof(BackupViewModel),
+                    DestPage = typeof(BackupView)
                 },
                 new NavMenuItem
                 {
                     Symbol = Symbol.Setting,
                     Label = Strings.SettingsLabel,
-                    DestViewModel = typeof(SettingsView),
-                    DestPage = typeof(SettingsViewModel)
+                    DestViewModel = typeof(SettingsViewModel),
+                    DestPage = typeof(SettingsView)
                 },
                 new NavMenuItem
                 {
