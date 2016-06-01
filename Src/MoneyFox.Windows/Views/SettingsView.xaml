@@ -1,11 +1,11 @@
-﻿<Page
-    x:Class="MoneyFox.Windows.Views.SettingsView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-    mc:Ignorable="d">
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.SettingsView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -15,42 +15,42 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <Pivot Style="{StaticResource TabsStylePivotStyle}">
-                <!--General-->
+                <!--  General  -->
                 <PivotItem>
                     <PivotItem.Header>
-                        <userControls:TabHeader Label="General"
-                                                x:Uid="GeneralHeader"
-                                                Glyph="&#xE774;" />
+                        <userControls:TabHeader x:Uid="GeneralHeader"
+                                                Glyph="&#xE774;"
+                                                Label="General" />
                     </PivotItem.Header>
                     <userControls:SettingsGeneralUserControl Margin="-7,0,-7,0" />
-                </PivotItem>                
-                
-                <!--Tiles-->
+                </PivotItem>
+
+                <!--  Tiles  -->
                 <PivotItem>
                     <PivotItem.Header>
-                        <userControls:TabHeader Label="Tiles"
-                                                x:Uid="TilesHeader"
-                                                Glyph="&#xE8FC;" />
+                        <userControls:TabHeader x:Uid="TilesHeader"
+                                                Glyph="&#xE8FC;"
+                                                Label="Tiles" />
                     </PivotItem.Header>
                     <userControls:SettingsShortcutsUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
 
-                <!--Password Settings-->
+                <!--  Password Settings  -->
                 <PivotItem>
                     <PivotItem.Header>
-                        <userControls:TabHeader Label="Password"
-                                                x:Uid="SecurityHeader"
-                                                Glyph="&#xE8D7;" />
+                        <userControls:TabHeader x:Uid="SecurityHeader"
+                                                Glyph="&#xE8D7;"
+                                                Label="Password" />
                     </PivotItem.Header>
                     <userControls:SettingsSecurityUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
 
-                <!-- Personalization Settings-->
+                <!--  Personalization Settings  -->
                 <PivotItem>
                     <PivotItem.Header>
-                        <userControls:TabHeader Label="Theme"
-                                                x:Uid="ThemeHeader"
-                                                Glyph="&#xE2B1;" />
+                        <userControls:TabHeader x:Uid="ThemeHeader"
+                                                Glyph="&#xE2B1;"
+                                                Label="Theme" />
                     </PivotItem.Header>
                     <userControls:SettingsPersonalizationUserControl Margin="-7,0,-7,0" />
                 </PivotItem>
@@ -58,11 +58,11 @@
         </Grid>
         <CommandBar Grid.Row="2" ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Add"
-                              Label="New Category"
-                              x:Uid="AddCategoryLabel"
-                              Click="AddCategory" />
+                <AppBarButton x:Uid="AddCategoryLabel"
+                              Click="AddCategory"
+                              Icon="Add"
+                              Label="New Category" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
-</Page>
+</views:MvxWindowsPage>

@@ -1,40 +1,40 @@
-﻿<Page
-    x:Class="MoneyFox.Windows.Views.StatisticSelectorView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:converter="using:MoneyFox.Windows.Converter"
-    xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-    xmlns:model="using:MoneyFox.Shared.Model"
-    xmlns:viewModels="using:MoneyFox.Shared.ViewModels"
-    d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel, IsDesignTimeCreatable=True}"
-    mc:Ignorable="d">
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.StatisticSelectorView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:converter="using:MoneyFox.Windows.Converter"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:model="using:MoneyFox.Shared.Model"
+                      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+                      xmlns:viewModels="using:MoneyFox.Shared.ViewModels"
+                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      d:DataContext="{d:DesignInstance viewModels:StatisticSelectorViewModel,
+                                                       IsDesignTimeCreatable=True}"
+                      mc:Ignorable="d">
 
     <Page.Resources>
         <converter:SelectedConverter x:Key="SelectedConverter" />
 
-        <DataTemplate x:Key="StatistcTypeTemplate"
-                      x:DataType="model:StatisticSelectorType">
-            <StackPanel HorizontalAlignment="Stretch"
-                        Background="Transparent"
-                        Margin="0,2,0,4">
-                <TextBlock Text="{x:Bind Name}"
-                           TextTrimming="CharacterEllipsis"
-                           Style="{StaticResource CustomSubtitleTextBlockStyle}" />
-                <TextBlock Text="{x:Bind Description}"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+        <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="model:StatisticSelectorType">
+            <StackPanel Margin="0,2,0,4"
+                        HorizontalAlignment="Stretch"
+                        Background="Transparent">
+                <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                           Text="{x:Bind Name}"
+                           TextTrimming="CharacterEllipsis" />
+                <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                           Text="{x:Bind Description}"
                            TextWrapping="WrapWholeWords" />
-                <Path Data="M9,242 L456,242"
-                      Height="5"
+                <Path Height="5"
                       Margin="-7,0,-7,0"
+                      Data="M9,242 L456,242"
+                      Fill="{ThemeResource SystemControlHighlightChromeHighBrush}"
                       Stretch="Fill"
-                      UseLayoutRounding="False"
                       Stroke="{ThemeResource SystemControlHighlightChromeHighBrush}"
                       StrokeThickness="1"
-                      Fill="{ThemeResource SystemControlHighlightChromeHighBrush}" />
+                      UseLayoutRounding="False" />
 
             </StackPanel>
         </DataTemplate>
@@ -49,26 +49,24 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
-                           Text="Select Statistic"
-                           x:Uid="StatisticSelectorViewTitle" />
+                <TextBlock x:Uid="StatisticSelectorViewTitle"
+                           Style="{ThemeResource PageTitleTextBlockStyle}"
+                           Text="Select Statistic" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
-        <ScrollViewer Margin="7,7,7,0"
-                      Grid.Row="1"
-                      VerticalScrollBarVisibility="Disabled"
+        <ScrollViewer Grid.Row="1"
+                      Margin="7,7,7,0"
+                      HorizontalAlignment="Center"
                       EntranceNavigationTransitionInfo.IsTargetElement="True"
-                      HorizontalAlignment="Center">
+                      VerticalScrollBarVisibility="Disabled">
 
-            <ListView ItemsSource="{Binding StatisticItems}"
-                      ItemTemplate="{StaticResource StatistcTypeTemplate}">
+            <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}" ItemsSource="{Binding StatisticItems}">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}"
-                                                  InputConverter="{StaticResource SelectedConverter}" />
+                        <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </ListView>
         </ScrollViewer>
     </Grid>
-</Page>
+</views:MvxWindowsPage>
