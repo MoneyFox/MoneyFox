@@ -71,11 +71,11 @@ namespace MoneyFox.Droid.Activities
 
                 case Resource.Id.action_save:
                     ViewModel.AmountString = editTextCurrentBalance.Text;
-                    ViewModel.SaveCommand.Execute(null);
+                    ViewModel.SaveCommand.Execute();
                     return true;
 
                 case Resource.Id.action_delete:
-                    ViewModel.DeleteCommand.Execute(null);
+                    ViewModel.DeleteCommand.Execute();
                     return true;
 
                 default:

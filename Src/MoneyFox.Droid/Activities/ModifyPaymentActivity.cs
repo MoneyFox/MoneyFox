@@ -16,7 +16,7 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.ModifyPaymentActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class ModifyPaymentActivity : MvxCachingFragmentCompatActivity<ModifyPaymentViewModel>,
+    public class ModifyPaymentActivity : MvxAppCompatActivity<ModifyPaymentViewModel>,
         DatePickerDialog.IOnDateSetListener
     {
         /// <summary>

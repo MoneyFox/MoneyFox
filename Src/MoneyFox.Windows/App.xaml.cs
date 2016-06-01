@@ -17,6 +17,7 @@ using MoneyFox.Shared.Authentication;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Services;
 using MoneyFox.Windows.Views;
 using MoneyManager.Windows.Shortcut;
@@ -76,33 +77,24 @@ namespace MoneyFox.Windows
                 // Create a AppShell to act as the navigation context and navigate to the first page
                 shell = new AppShell {Language = ApplicationLanguages.Languages[0]};
 
-                shell.AppMyFrame.NavigationFailed += OnNavigationFailed;
+                shell.MyAppFrame.NavigationFailed += OnNavigationFailed;
             }
 
             // Place our app shell in the current Window
             Window.Current.Content = shell;
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
-            if (shell.AppMyFrame.Content == null)
+            if (shell.MyAppFrame.Content == null)
             {
                 // When the navigation stack isn't restored, navigate to the first page
                 // suppressing the initial entrance animation.
-                var setup = new Setup(shell.AppMyFrame);
+                var setup = new Setup(shell.MyAppFrame);
                 setup.Initialize();
 
                 var start = Mvx.Resolve<IMvxAppStart>();
                 start.Start();
-            }
 
-            if (Mvx.Resolve<Session>().ValidateSession())
-            {
-                shell.SetLoggedInView();
-                shell.AppMyFrame.Navigate(typeof(MainView));
-            }
-            else
-            {
-                shell.SetLoginView();
-                shell.AppMyFrame.Navigate(typeof(LoginView));
+                shell.ViewModel = Mvx.Resolve<MenuViewModel>();
             }
 
             new TileHelper().DoNavigation(string.IsNullOrEmpty(e.Arguments)

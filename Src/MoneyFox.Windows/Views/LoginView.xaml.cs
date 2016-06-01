@@ -4,15 +4,20 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
 
 namespace MoneyFox.Windows.Views
 {
     public sealed partial class LoginView
     {
+        private readonly AppShell appShell;
+
         public LoginView()
         {
             InitializeComponent();
+            appShell = Window.Current.Content as AppShell;
+            appShell?.SetLoginView();
         }
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
@@ -36,8 +41,8 @@ namespace MoneyFox.Windows.Views
                 return;
             }
 
-            AppShell.Current.SetLoggedInView();
-            AppShell.Current.AppMyFrame.Navigate(typeof(MainView));
+            appShell?.SetLoggedInView();
+            (ViewModel as LoginViewModel)?.LoginNavigationCommand.Execute();
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)

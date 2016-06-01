@@ -1,4 +1,5 @@
-﻿using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Shared.Authentication;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
@@ -14,8 +15,15 @@ namespace MoneyFox.Shared
             Mvx.Resolve<IRecurringPaymentManager>().CheckRecurringPayments();
             Mvx.Resolve<IPaymentManager>().ClearPayments();
 
-            // Do the first navigation
-            ShowViewModel<MainViewModel>();
+
+            if (Mvx.Resolve<Session>().ValidateSession()) 
+            {
+                ShowViewModel<MainViewModel>();
+            } 
+            else 
+            {
+                ShowViewModel<LoginViewModel>();
+            }
         }
     }
 }
