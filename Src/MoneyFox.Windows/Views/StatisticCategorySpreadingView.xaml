@@ -1,16 +1,15 @@
-﻿<views:MvxWindowsPage
-    x:Class="MoneyFox.Windows.Views.StatisticCategorySpreadingView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:windows="using:OxyPlot.Windows"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
-    xmlns:viewModels="using:MoneyFox.Shared.ViewModels"
-    xmlns:views="using:MvvmCross.WindowsUWP.Views"
-    mc:Ignorable="d">
+﻿<views:MvxWindowsPage x:Class="MoneyFox.Windows.Views.StatisticCategorySpreadingView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:windows="using:OxyPlot.Windows"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                      xmlns:userControls="using:MoneyFox.Windows.Views.UserControls"
+                      xmlns:viewModels="using:MoneyFox.Shared.ViewModels"
+                      xmlns:views="using:MvvmCross.WindowsUWP.Views"
+                      mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
@@ -21,7 +20,8 @@
     <Page.Resources>
         <windows:OxyColorConverter x:Key="OxyColorConverter" />
 
-        <DataTemplate x:Key="LegendListTemplate" x:DataType="viewModels:LegendItem">
+        <DataTemplate x:Key="LegendListTemplate"
+                      x:DataType="viewModels:LegendItem">
             <StackPanel Orientation="Horizontal">
                 <Grid Height="20"
                       Width="20"
@@ -38,7 +38,8 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"
+                           MinHeight="317" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -73,7 +74,8 @@
                   ItemTemplate="{StaticResource LegendListTemplate}" />
 
         <CommandBar Grid.Row="3"
-                    ClosedDisplayMode="Minimal">
+                    ClosedDisplayMode="Minimal"
+                    Height="24">
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Calendar"
                               x:Uid="SetDate"
