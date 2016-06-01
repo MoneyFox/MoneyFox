@@ -5,6 +5,9 @@ using System;
 
 namespace MoneyFox.Droid.Dialogs
 {
+    /// <summary>
+    ///     Provides an Dialog to select a start and an end date.
+    /// </summary>
     public class DatePickerDialogFragment : DialogFragment
     {
         private readonly Context context;

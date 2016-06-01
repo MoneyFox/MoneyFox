@@ -148,6 +148,14 @@
       <HintPath>..\packages\MvvmCross.Platform.4.1.4\lib\MonoAndroid\MvvmCross.Platform.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MvvmCross.Plugins.Color, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.4.1.4\lib\MonoAndroid\MvvmCross.Plugins.Color.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Color.Droid, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.4.1.4\lib\MonoAndroid\MvvmCross.Plugins.Color.Droid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MvvmCross.Plugins.Email, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Plugin.Email.4.1.4\lib\MonoAndroid\MvvmCross.Plugins.Email.dll</HintPath>
       <Private>True</Private>
@@ -269,6 +277,7 @@
     <Compile Include="Activities\StatisticCategorySpreadingActivity.cs" />
     <Compile Include="Activities\StatisticCategorySummaryActivity.cs" />
     <Compile Include="Activities\StatisticMonthlyExpenseActivity.cs" />
+    <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
     <Compile Include="Bootstrap\ConnectivityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\EmailPluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
@@ -278,6 +287,7 @@
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
+    <Compile Include="Converters\OxyPlotColorConverter.cs" />
     <Compile Include="Dialogs\SelectDateRangeDialog.cs" />
     <Compile Include="Fragments\AboutFragment.cs" />
     <Compile Include="Fragments\AccountListFragment.cs" />
@@ -389,6 +399,12 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\dialog_select_date_range.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_category_spreading.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\listitem_legend_item.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>
