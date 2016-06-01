@@ -1,4 +1,5 @@
 using System;
+using Android.App;
 using Android.OS;
 using Android.Widget;
 using MoneyFox.Shared.ViewModels;
@@ -7,7 +8,10 @@ using MvvmCross.Platform;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 
-namespace MoneyFox.Droid.Activities {
+namespace MoneyFox.Droid.Activities
+{
+    [Activity(Label = "Money Fox",
+        NoHistory = true)]
     public class LoginActivity : MvxAppCompatActivity<LoginViewModel> {
 
         private EditText editTextPassword;
@@ -31,7 +35,7 @@ namespace MoneyFox.Droid.Activities {
                 return;
             }
 
-            ViewModel.LoginNavigationCommand();
+            ViewModel.LoginNavigationCommand.Execute();
         }
     }
 }

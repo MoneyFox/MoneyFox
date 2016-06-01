@@ -101,7 +101,7 @@
             </SplitView.Pane>
 
             <SplitView.Content>
-                <Frame x:Name="MyFrame"
+                <Frame x:Name="Frame"
                        Navigated="OnNavigatedToPage"
                        Navigating="OnNavigatingToPage">
                     <Frame.ContentTransitions>
