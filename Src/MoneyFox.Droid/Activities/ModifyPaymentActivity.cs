@@ -4,11 +4,11 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using MoneyFox.Droid.Dialogs;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
-using MoneyFox.Droid.Dialogs;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -23,11 +23,28 @@ namespace MoneyFox.Droid.Activities
         ///     Used to determine which button called the date picker
         /// </summary>
         private Button callerButton;
+
         private Button categoryButton;
+
+        private EditText editTextAmount;
         private Button enddateButton;
         private Button paymentDateButton;
 
-        private EditText editTextAmount;
+        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+        {
+            var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
+
+            if (callerButton == paymentDateButton)
+            {
+                ViewModel.SelectedPayment.Date = date;
+            }
+            else if (callerButton == enddateButton)
+            {
+                ViewModel.EndDate = date;
+            }
+
+            Title = ViewModel.Title;
+        }
 
         /// <summary>
         ///     Raises the create event.
@@ -65,21 +82,6 @@ namespace MoneyFox.Droid.Activities
                 ViewModel.AmountString = editTextAmount.Text;
                 editTextAmount.Text = ViewModel.AmountString;
             }
-        }
-
-        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-        {
-            var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
-
-            if (callerButton == paymentDateButton)
-            {
-                ViewModel.SelectedPayment.Date = date;
-            } else if (callerButton == enddateButton)
-            {
-                ViewModel.EndDate = date;
-            }
-
-            Title = ViewModel.Title;
         }
 
         private void SelectCategory(object sender, EventArgs e)

@@ -1,5 +1,5 @@
-﻿using MvvmCross.Plugins.Messenger;
-using System;
+﻿using System;
+using MvvmCross.Plugins.Messenger;
 
 namespace MoneyFox.Shared.Messages
 {

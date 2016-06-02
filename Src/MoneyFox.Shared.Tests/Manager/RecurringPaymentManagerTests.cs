@@ -77,7 +77,7 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList.First().ChargedAccountId.ShouldBe(2);
             resultList.First().RecurringPaymentId.ShouldBe(3);
             resultList.First().RecurringPayment.ShouldNotBeNull();
-            resultList.First().RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Daily);
+            resultList.First().RecurringPayment.Recurrence.ShouldBe((int) PaymentRecurrence.Daily);
         }
 
         [TestMethod]
@@ -127,7 +127,7 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList[0].ChargedAccountId.ShouldBe(2);
             resultList[0].RecurringPaymentId.ShouldBe(4);
             resultList[0].RecurringPayment.ShouldNotBeNull();
-            resultList[0].RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Weekly);
+            resultList[0].RecurringPayment.Recurrence.ShouldBe((int) PaymentRecurrence.Weekly);
         }
 
         [TestMethod]
@@ -177,7 +177,7 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList[0].ChargedAccountId.ShouldBe(2);
             resultList[0].RecurringPaymentId.ShouldBe(4);
             resultList[0].RecurringPayment.ShouldNotBeNull();
-            resultList[0].RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Biweekly);
+            resultList[0].RecurringPayment.Recurrence.ShouldBe((int) PaymentRecurrence.Biweekly);
         }
 
         [TestMethod]
@@ -227,7 +227,7 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList[0].ChargedAccountId.ShouldBe(2);
             resultList[0].RecurringPaymentId.ShouldBe(4);
             resultList[0].RecurringPayment.ShouldNotBeNull();
-            resultList[0].RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Monthly);
+            resultList[0].RecurringPayment.Recurrence.ShouldBe((int) PaymentRecurrence.Monthly);
         }
 
         [TestMethod]
@@ -277,7 +277,7 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList[0].ChargedAccountId.ShouldBe(2);
             resultList[0].RecurringPaymentId.ShouldBe(4);
             resultList[0].RecurringPayment.ShouldNotBeNull();
-            resultList[0].RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Yearly);
+            resultList[0].RecurringPayment.Recurrence.ShouldBe((int) PaymentRecurrence.Yearly);
         }
 
         [TestMethod]
@@ -346,13 +346,13 @@ namespace MoneyFox.Shared.Tests.Manager
             resultList[0].ChargedAccountId.ShouldBe(2);
             resultList[0].RecurringPaymentId.ShouldBe(3);
             resultList[0].RecurringPayment.ShouldNotBeNull();
-            resultList[0].RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Daily);
+            resultList[0].RecurringPayment.Recurrence.ShouldBe((int) PaymentRecurrence.Daily);
 
             resultList[1].Amount.ShouldBe(105);
             resultList[1].ChargedAccountId.ShouldBe(2);
             resultList[1].RecurringPaymentId.ShouldBe(4);
             resultList[1].RecurringPayment.ShouldNotBeNull();
-            resultList[1].RecurringPayment.Recurrence.ShouldBe((int)PaymentRecurrence.Weekly);
+            resultList[1].RecurringPayment.Recurrence.ShouldBe((int) PaymentRecurrence.Weekly);
         }
 
         [TestMethod]

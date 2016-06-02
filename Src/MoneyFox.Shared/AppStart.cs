@@ -16,11 +16,11 @@ namespace MoneyFox.Shared
             Mvx.Resolve<IPaymentManager>().ClearPayments();
 
 
-            if (Mvx.Resolve<Session>().ValidateSession()) 
+            if (Mvx.Resolve<Session>().ValidateSession())
             {
                 ShowViewModel<MainViewModel>();
-            } 
-            else 
+            }
+            else
             {
                 ShowViewModel<LoginViewModel>();
             }

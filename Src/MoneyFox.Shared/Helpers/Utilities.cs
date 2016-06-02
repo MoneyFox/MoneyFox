@@ -1,7 +1,7 @@
-﻿using MoneyFox.Shared.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Helpers
 {

@@ -1,13 +1,13 @@
 using Android.App;
-using Android.OS;
-using MvvmCross.Droid.Support.V7.AppCompat;
-using MoneyFox.Shared.ViewModels;
 using Android.Content.PM;
+using Android.OS;
 using Android.Support.V7.Widget;
-using OxyPlot.Xamarin.Android;
 using Android.Views;
-using MoneyFox.Shared.Resources;
 using MoneyFox.Droid.Dialogs;
+using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using OxyPlot.Xamarin.Android;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -61,7 +61,6 @@ namespace MoneyFox.Droid.Activities
                 case Resource.Id.action_add:
                     var dialog = new SelectDateRangeDialog(this);
                     dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
-                    ViewModel.LoadCommand.Execute();
                     return true;
 
                 default:

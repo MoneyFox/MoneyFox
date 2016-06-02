@@ -9,7 +9,7 @@ namespace MoneyFox.Windows.Views.UserControls
     {
         // Using a DependencyProperty as the backing store for HeaderContent.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HeaderContentProperty =
-            DependencyProperty.Register("HeaderContent", typeof (UIElement), typeof (PageHeader),
+            DependencyProperty.Register("HeaderContent", typeof(UIElement), typeof(PageHeader),
                 new PropertyMetadata(DependencyProperty.UnsetValue));
 
         public PageHeader()
@@ -22,7 +22,7 @@ namespace MoneyFox.Windows.Views.UserControls
                 TitleBar.Margin = new Thickness(AppShell.Current.TogglePaneButtonRect.Right, 0, 0, 0);
             };
 
-            DataContext = Mvx.Resolve<GlobalBusyIndicatorState>();
+            GlobalProgressRing.DataContext = Mvx.Resolve<GlobalBusyIndicatorState>();
         }
 
         public UIElement HeaderContent

@@ -1,8 +1,8 @@
-﻿using MoneyFox.Shared.Interfaces;
+﻿using System.Collections.ObjectModel;
+using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.StatisticDataProvider;
 using PropertyChanged;
-using System.Collections.ObjectModel;
 
 namespace MoneyFox.Shared.ViewModels
 {

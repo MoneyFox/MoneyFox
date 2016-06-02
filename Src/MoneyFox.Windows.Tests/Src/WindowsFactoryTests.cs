@@ -12,7 +12,7 @@ namespace MoneyFox.Windows.Tests
         [TestMethod]
         public void Ctor_PlattformCreated()
         {
-            Assert.IsInstanceOfType(new WindowsSqliteConnectionFactory().CurrentPlattform, typeof (SQLitePlatformWinRT));
+            Assert.IsInstanceOfType(new WindowsSqliteConnectionFactory().CurrentPlattform, typeof(SQLitePlatformWinRT));
         }
 
         [TestMethod]

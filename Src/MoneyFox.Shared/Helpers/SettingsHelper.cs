@@ -8,8 +8,8 @@ namespace MoneyFox.Shared.Helpers
 {
     /// <summary>
     ///     Helps accessing the settings for this App.
-    ///     NOTE: be sure that you have registered a dependency for <see cref="ISettings"/> and 
-    ///     <see cref="IAutobackupManager"/>.
+    ///     NOTE: be sure that you have registered a dependency for <see cref="ISettings" /> and
+    ///     <see cref="IAutobackupManager" />.
     /// </summary>
     [ImplementPropertyChanged]
     public static class SettingsHelper
@@ -36,6 +36,7 @@ namespace MoneyFox.Shared.Helpers
         ///     This is public because we have to access the setting directly in the Windows App.xaml.cs to set the theme.
         /// </summary>
         public const string DARK_THEME_SELECTED = "dark_theme_selected";
+
         private const bool DARK_THEME_SELECTED_KEYDEFAULT = false;
         private static DateTime DatabaseLastUpdateKeydefault { get; } = DateTime.MinValue;
 

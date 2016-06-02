@@ -1,9 +1,10 @@
 using MvvmCross.Platform.Plugins;
+using MvvmCross.Plugins.Email;
 
 namespace MoneyFox.Shared.Tests.Bootstrap
 {
     public class EmailPluginBootstrap
-        : MvxPluginBootstrapAction<MvvmCross.Plugins.Email.PluginLoader>
+        : MvxPluginBootstrapAction<PluginLoader>
     {
     }
 }

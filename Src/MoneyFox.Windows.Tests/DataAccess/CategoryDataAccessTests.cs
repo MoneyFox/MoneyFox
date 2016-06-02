@@ -16,7 +16,8 @@ namespace MoneyFox.Windows.Tests.DataAccess
         [TestInitialize]
         public void Init()
         {
-            _connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
+            _connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                new MvxWindowsCommonFileStore());
         }
 
         [TestMethod]
@@ -59,12 +60,12 @@ namespace MoneyFox.Windows.Tests.DataAccess
         {
             var category1 = new Category
             {
-                Name = "Einkaufen",
+                Name = "Einkaufen"
             };
 
             var category2 = new Category
             {
-                Name = "Beer",
+                Name = "Beer"
             };
 
             var dataAccess = new CategoryDataAccess(_connectionCreator);
@@ -106,7 +107,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         {
             var category = new Category
             {
-                Name = "categoryToDelete",
+                Name = "categoryToDelete"
             };
 
             var dataAccess = new CategoryDataAccess(_connectionCreator);

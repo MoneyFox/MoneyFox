@@ -41,9 +41,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var paymentMockSetup = new Mock<IPaymentRepository>();
             paymentMockSetup.Setup(x => x.GetUnclearedPayments(It.IsAny<DateTime>()))
-                .Returns(() => new List<Payment> {
+                .Returns(() => new List<Payment>
+                {
                     new Payment {Amount = 20, Type = (int) PaymentType.Expense},
-                    new Payment {Amount = 60, Type = (int) PaymentType.Expense}});
+                    new Payment {Amount = 60, Type = (int) PaymentType.Expense}
+                });
 
             var vm = new BalanceViewModel(new Mock<IAccountRepository>().Object,
                 paymentMockSetup.Object);
@@ -59,9 +61,11 @@ namespace MoneyFox.Shared.Tests.ViewModels
         {
             var paymentMockSetup = new Mock<IPaymentRepository>();
             paymentMockSetup.Setup(x => x.GetUnclearedPayments(It.IsAny<DateTime>()))
-                .Returns(() => new List<Payment> {
+                .Returns(() => new List<Payment>
+                {
                     new Payment {Amount = 20, Type = (int) PaymentType.Expense},
-                    new Payment {Amount = 60, Type = (int) PaymentType.Income}});
+                    new Payment {Amount = 60, Type = (int) PaymentType.Income}
+                });
 
             var vm = new BalanceViewModel(new Mock<IAccountRepository>().Object,
                 paymentMockSetup.Object);

@@ -42,7 +42,7 @@ namespace MoneyFox.Windows.Views
                     //TODO Refactor this that on edit the PaymentViewModel type isn't necessary since we don't need it here.
                     viewModel.Init(PaymentType.Expense.ToString(), true);
                 }
-                else if (e.Parameter?.GetType() == typeof (PaymentType))
+                else if (e.Parameter?.GetType() == typeof(PaymentType))
                 {
                     viewModel.Init(e.Parameter.ToString());
                 }

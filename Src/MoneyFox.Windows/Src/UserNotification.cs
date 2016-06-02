@@ -3,8 +3,8 @@ using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
-using NotificationsExtensions.Tiles;
 using NotificationsExtensions;
+using NotificationsExtensions.Tiles;
 
 namespace MoneyFox.Windows
 {

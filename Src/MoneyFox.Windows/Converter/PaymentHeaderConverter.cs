@@ -1,7 +1,7 @@
-﻿using MoneyFox.Shared;
-using MoneyFox.Shared.Resources;
-using System;
+﻿using System;
 using Windows.UI.Xaml.Data;
+using MoneyFox.Shared;
+using MoneyFox.Shared.Resources;
 
 namespace MoneyFox.Windows.Converter
 {
@@ -9,7 +9,7 @@ namespace MoneyFox.Windows.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            PaymentType pType = (PaymentType)value;
+            var pType = (PaymentType) value;
             switch (pType)
             {
                 default:

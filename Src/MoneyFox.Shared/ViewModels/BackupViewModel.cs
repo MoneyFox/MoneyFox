@@ -1,17 +1,17 @@
-﻿using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Resources;
-using MvvmCross.Core.ViewModels;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Cheesebaron.MvxPlugins.Connectivity;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Resources;
+using MvvmCross.Core.ViewModels;
 
 namespace MoneyFox.Shared.ViewModels
 {
     public class BackupViewModel : BaseViewModel
     {
         private readonly IBackupManager backupManager;
-        private readonly IDialogService dialogService;
         private readonly IConnectivity connectivity;
+        private readonly IDialogService dialogService;
 
         public BackupViewModel(IBackupManager backupManager,
             IDialogService dialogService, IConnectivity connectivity)
@@ -63,7 +63,8 @@ namespace MoneyFox.Shared.ViewModels
                 BackupAvailable = await backupManager.IsBackupExisting();
                 BackupLastModified = await backupManager.GetBackupDate();
                 IsCheckingBackupAvailability = false;
-            } else
+            }
+            else
             {
                 await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
             }
@@ -71,7 +72,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void CreateBackup()
         {
-            if(!await ShowOverwriteBackupInfo())
+            if (!await ShowOverwriteBackupInfo())
             {
                 return;
             }
@@ -85,7 +86,7 @@ namespace MoneyFox.Shared.ViewModels
 
         private async void RestoreBackup()
         {
-            if(!await ShowOverwriteDataInfo())
+            if (!await ShowOverwriteDataInfo())
             {
                 return;
             }
@@ -94,7 +95,7 @@ namespace MoneyFox.Shared.ViewModels
             await backupManager.RestoreBackup();
             await ShowCompletionNote();
             IsLoading = false;
-        }        
+        }
 
         private async Task<bool> ShowOverwriteBackupInfo()
             => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
@@ -102,7 +103,7 @@ namespace MoneyFox.Shared.ViewModels
         private async Task<bool> ShowOverwriteDataInfo()
             => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
 
-        private async Task ShowCompletionNote() 
+        private async Task ShowCompletionNote()
             => await dialogService.ShowMessage(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
     }
 }

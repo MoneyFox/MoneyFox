@@ -1,8 +1,8 @@
+using System;
+using System.Collections.Generic;
 using MoneyFox.Droid.Fragments;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Caching;
-using System;
-using System.Collections.Generic;
 
 namespace MoneyFox.Droid.Activities.Caching
 {
@@ -12,52 +12,52 @@ namespace MoneyFox.Droid.Activities.Caching
             <string, MainActivity.CustomFragmentInfo>
         {
             {
-                typeof (MenuViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (MenuViewModel).Name,
-                    typeof (MenuFragment),
-                    typeof (MenuViewModel))
+                typeof(MenuViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof(MenuViewModel).Name,
+                    typeof(MenuFragment),
+                    typeof(MenuViewModel))
             },
             {
-                typeof (AccountListViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (AccountListViewModel).Name,
-                    typeof (AccountListFragment),
-                    typeof (AccountListViewModel), isRoot: true)
+                typeof(AccountListViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof(AccountListViewModel).Name,
+                    typeof(AccountListFragment),
+                    typeof(AccountListViewModel), isRoot: true)
             },
             {
-                typeof (BalanceViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (BalanceViewModel).Name,
-                    typeof (BalanceFragment),
-                    typeof (BalanceViewModel), isRoot: true)
+                typeof(BalanceViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof(BalanceViewModel).Name,
+                    typeof(BalanceFragment),
+                    typeof(BalanceViewModel), isRoot: true)
             },
             {
-                typeof (StatisticViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (StatisticViewModel).Name,
-                    typeof (StatisticSelectorFragment),
-                    typeof (StatisticViewModel), isRoot: true)
+                typeof(StatisticViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof(StatisticViewModel).Name,
+                    typeof(StatisticSelectorFragment),
+                    typeof(StatisticViewModel), isRoot: true)
             },
             {
-                typeof (BackupViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (BackupViewModel).Name,
-                    typeof (BackupFragment),
-                    typeof (BackupViewModel), isRoot: true)
+                typeof(BackupViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof(BackupViewModel).Name,
+                    typeof(BackupFragment),
+                    typeof(BackupViewModel), isRoot: true)
             },
             {
-                typeof (SettingsViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (SettingsViewModel).Name,
-                    typeof (SettingsFragment),
-                    typeof (SettingsViewModel), isRoot: true)
+                typeof(SettingsViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof(SettingsViewModel).Name,
+                    typeof(SettingsFragment),
+                    typeof(SettingsViewModel), isRoot: true)
             },
             {
-                typeof (AboutViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (AboutViewModel).Name,
-                    typeof (AboutFragment),
-                    typeof (AboutViewModel), isRoot: true)
+                typeof(AboutViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof(AboutViewModel).Name,
+                    typeof(AboutFragment),
+                    typeof(AboutViewModel), isRoot: true)
             },
             {
-                typeof (StatisticSelectorViewModel).ToString(),
-                new MainActivity.CustomFragmentInfo(typeof (StatisticSelectorViewModel).Name,
-                    typeof (StatisticSelectorFragment),
-                    typeof (StatisticSelectorViewModel), isRoot: true)
+                typeof(StatisticSelectorViewModel).ToString(),
+                new MainActivity.CustomFragmentInfo(typeof(StatisticSelectorViewModel).Name,
+                    typeof(StatisticSelectorFragment),
+                    typeof(StatisticSelectorViewModel), isRoot: true)
             }
         };
 

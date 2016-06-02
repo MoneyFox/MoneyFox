@@ -14,81 +14,6 @@ namespace MoneyFox.Shared
     /// </summary>
     public class DatabaseManager : IDatabaseManager
     {
-        private readonly IMvxSqliteConnectionFactory connectionFactory;
-        private readonly IMvxFileStore fileStore;
-
-        public DatabaseManager(IMvxSqliteConnectionFactory connectionFactory, IMvxFileStore fileStore)
-        {
-            this.connectionFactory = connectionFactory;
-            this.fileStore = fileStore;
-
-            CreateDatabase();
-            MigrateDatabase();
-        }
-
-        /// <summary>
-        ///     Creates the config and establish and async connection to access the sqlite database synchronous.
-        /// </summary>
-        /// <returns>Established SQLiteConnection.</returns>
-        public SQLiteConnection GetConnection()
-            => connectionFactory.GetConnection(new SqLiteConfig(DatabaseConstants.DB_NAME, false));
-
-        /// <summary>
-        ///     Creates the config and establish and async connection to access the sqlite database asynchronous.
-        /// </summary>
-        /// <returns>Established async connection.</returns>
-        public SQLiteAsyncConnection GetAsyncConnection()
-            => connectionFactory.GetAsyncConnection(new SqLiteConfig(DatabaseConstants.DB_NAME, false));
-
-        public void CreateDatabase()
-        {
-            using (var db = connectionFactory.GetConnection(DatabaseConstants.DB_NAME))
-            {
-                db.CreateTable<Account>();
-                db.CreateTable<Category>();
-                db.CreateCommand(RECURRING_PAYMENT_CREATE_SCRIPT).ExecuteNonQuery();
-                db.CreateCommand(PAYMENT_TABLE_CREATE_SCRIPT).ExecuteNonQuery();
-            }
-        }
-
-        public void MigrateDatabase()
-        {
-            if (fileStore.Exists(DatabaseConstants.DB_NAME_OLD))
-            {
-                using (var dbOld = connectionFactory.GetConnection(new SqLiteConfig(DatabaseConstants.DB_NAME_OLD, false)))
-                {
-                    using (var db = GetConnection())
-                    {
-                        db.InsertAll(dbOld.Table<Account>());
-                        db.InsertAll(dbOld.Table<Category>());
-
-                        var paymentList = dbOld.Table<Payment>().ToList();
-                        var recPaymentList = dbOld.Table<RecurringPayment>().ToList();
-
-                        foreach (var payment in paymentList.Where(x => x.IsRecurring && x.RecurringPaymentId == 0))
-                        {
-                            payment.IsRecurring = false;
-                        }
-
-                        foreach (var recurringPayment in recPaymentList)
-                        {
-                            int recIdOld = recurringPayment.Id;
-                            db.Insert(recurringPayment);
-
-                            foreach (var payment in paymentList.Where(x => x.RecurringPaymentId == recIdOld))
-                            {
-                                payment.RecurringPaymentId = db.Table<RecurringPayment>().LastOrDefault().Id;
-                            }
-                        }
-
-                        db.InsertAll(paymentList);
-                    }
-                }
-
-                fileStore.DeleteFile(DatabaseConstants.DB_NAME_OLD);
-            }
-        }
-
         private const string RECURRING_PAYMENT_CREATE_SCRIPT =
             "CREATE TABLE IF NOT EXISTS RecurringPayments( " +
             "Id INTEGER NOT NULL CONSTRAINT PK_RecurringPayment PRIMARY KEY, " +
@@ -125,5 +50,81 @@ namespace MoneyFox.Shared
             "CONSTRAINT FK_Payment_RecurringPayment_RecurringPaymentId FOREIGN KEY(RecurringPaymentId) REFERENCES RecurringPayments(Id) ON DELETE RESTRICT, " +
             "CONSTRAINT FK_Payment_Account_TargetAccountId FOREIGN KEY(TargetAccountId) REFERENCES Accounts(Id) ON DELETE RESTRICT " +
             ")";
+
+        private readonly IMvxSqliteConnectionFactory connectionFactory;
+        private readonly IMvxFileStore fileStore;
+
+        public DatabaseManager(IMvxSqliteConnectionFactory connectionFactory, IMvxFileStore fileStore)
+        {
+            this.connectionFactory = connectionFactory;
+            this.fileStore = fileStore;
+
+            CreateDatabase();
+            MigrateDatabase();
+        }
+
+        /// <summary>
+        ///     Creates the config and establish and async connection to access the sqlite database synchronous.
+        /// </summary>
+        /// <returns>Established SQLiteConnection.</returns>
+        public SQLiteConnection GetConnection()
+            => connectionFactory.GetConnection(new SqLiteConfig(DatabaseConstants.DB_NAME, false));
+
+        public void CreateDatabase()
+        {
+            using (var db = connectionFactory.GetConnection(DatabaseConstants.DB_NAME))
+            {
+                db.CreateTable<Account>();
+                db.CreateTable<Category>();
+                db.CreateCommand(RECURRING_PAYMENT_CREATE_SCRIPT).ExecuteNonQuery();
+                db.CreateCommand(PAYMENT_TABLE_CREATE_SCRIPT).ExecuteNonQuery();
+            }
+        }
+
+        public void MigrateDatabase()
+        {
+            if (fileStore.Exists(DatabaseConstants.DB_NAME_OLD))
+            {
+                using (
+                    var dbOld = connectionFactory.GetConnection(new SqLiteConfig(DatabaseConstants.DB_NAME_OLD, false)))
+                {
+                    using (var db = GetConnection())
+                    {
+                        db.InsertAll(dbOld.Table<Account>());
+                        db.InsertAll(dbOld.Table<Category>());
+
+                        var paymentList = dbOld.Table<Payment>().ToList();
+                        var recPaymentList = dbOld.Table<RecurringPayment>().ToList();
+
+                        foreach (var payment in paymentList.Where(x => x.IsRecurring && x.RecurringPaymentId == 0))
+                        {
+                            payment.IsRecurring = false;
+                        }
+
+                        foreach (var recurringPayment in recPaymentList)
+                        {
+                            var recIdOld = recurringPayment.Id;
+                            db.Insert(recurringPayment);
+
+                            foreach (var payment in paymentList.Where(x => x.RecurringPaymentId == recIdOld))
+                            {
+                                payment.RecurringPaymentId = db.Table<RecurringPayment>().LastOrDefault().Id;
+                            }
+                        }
+
+                        db.InsertAll(paymentList);
+                    }
+                }
+
+                fileStore.DeleteFile(DatabaseConstants.DB_NAME_OLD);
+            }
+        }
+
+        /// <summary>
+        ///     Creates the config and establish and async connection to access the sqlite database asynchronous.
+        /// </summary>
+        /// <returns>Established async connection.</returns>
+        public SQLiteAsyncConnection GetAsyncConnection()
+            => connectionFactory.GetAsyncConnection(new SqLiteConfig(DatabaseConstants.DB_NAME, false));
     }
 }

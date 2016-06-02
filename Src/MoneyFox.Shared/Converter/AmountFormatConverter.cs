@@ -1,6 +1,6 @@
-﻿using MvvmCross.Platform.Converters;
-using System;
+﻿using System;
 using System.Globalization;
+using MvvmCross.Platform.Converters;
 
 namespace MoneyFox.Shared.Converter
 {

@@ -1,5 +1,4 @@
-﻿using System;
-using MoneyFox.Shared.Interfaces;
+﻿using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Email;
@@ -37,6 +36,7 @@ namespace MoneyFox.Shared.ViewModels
         ///     website
         /// </summary>
         public MvxCommand GoToWebsiteCommand => new MvxCommand(GoToWebsite);
+
         /// <summary>
         ///     Sends a feedback mail to the apply solutions support
         ///     mail address
@@ -99,7 +99,7 @@ namespace MoneyFox.Shared.ViewModels
         {
             webBrowserTask.ShowWebPage(Constants.Constants.GIT_HUB_REPOSITORY_URL);
         }
-        
+
         private void GoToTranslationProject()
         {
             webBrowserTask.ShowWebPage(Constants.Constants.TRANSLATION_PROJECT_URL);

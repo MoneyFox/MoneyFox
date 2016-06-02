@@ -1,11 +1,11 @@
-﻿using MoneyFox.Shared.Groups;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
+using MoneyFox.Shared.Groups;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
 using MvvmCross.Core.ViewModels;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -81,7 +81,7 @@ namespace MoneyFox.Shared.ViewModels
             Source = CreateGroup();
         }
 
-        private ObservableCollection<AlphaGroupListGroup<Category>> CreateGroup() => 
+        private ObservableCollection<AlphaGroupListGroup<Category>> CreateGroup() =>
             new ObservableCollection<AlphaGroupListGroup<Category>>(
                 AlphaGroupListGroup<Category>.CreateGroups(Categories,
                     CultureInfo.CurrentUICulture,

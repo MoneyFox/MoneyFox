@@ -29,27 +29,28 @@ namespace MoneyFox.Shared.StatisticDataProvider
         {
             // Get all Payments inlcuding income.
             return GetSpreadingStatisticItems(paymentRepository.Data
-                        .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
-                        .Where(x => x.Type == (int)PaymentType.Expense || x.Type == (int)PaymentType.Income)
-                        .ToList());
+                .Where(x => x.Date.Date >= startDate.Date && x.Date.Date <= endDate.Date)
+                .Where(x => x.Type == (int) PaymentType.Expense || x.Type == (int) PaymentType.Income)
+                .ToList());
         }
 
         private List<StatisticItem> GetSpreadingStatisticItems(List<Payment> payments)
         {
-           var tempStatisticList = (from payment in payments
-                                     group payment by new
-                                     {
-                                         category = payment.Category != null ? payment.Category.Name : string.Empty
-                                     } into temp
-                                     select new StatisticItem
-                                     {
-                                         Category = temp.Key.category,
-                                         // we subtract income payments here so that we have all expenses without presign
-                                         Value = temp.Sum(x => x.Type == (int)PaymentType.Income ? -x.Amount : x.Amount)
-                                     })
-                                     .Where(x => x.Value > 0)
-                                     .OrderByDescending(x => x.Value)
-                                     .ToList();
+            var tempStatisticList = (from payment in payments
+                group payment by new
+                {
+                    category = payment.Category != null ? payment.Category.Name : string.Empty
+                }
+                into temp
+                select new StatisticItem
+                {
+                    Category = temp.Key.category,
+                    // we subtract income payments here so that we have all expenses without presign
+                    Value = temp.Sum(x => x.Type == (int) PaymentType.Income ? -x.Amount : x.Amount)
+                })
+                .Where(x => x.Value > 0)
+                .OrderByDescending(x => x.Value)
+                .ToList();
 
             var statisticList = tempStatisticList.Take(6).ToList();
 

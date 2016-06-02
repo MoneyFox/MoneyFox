@@ -785,7 +785,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 new Mock<IDataAccess<RecurringPayment>>().Object,
                 new Mock<IAccountRepository>().Object,
                 new Mock<IRepository<Category>>().Object,
-                new Mock<INotificationService>().Object).Save(new Payment { ChargedAccountId = 2 });
+                new Mock<INotificationService>().Object).Save(new Payment {ChargedAccountId = 2});
 
             localDateSetting.ShouldBeGreaterThan(DateTime.Now.AddSeconds(-1));
             localDateSetting.ShouldBeLessThan(DateTime.Now.AddSeconds(1));
@@ -794,7 +794,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Save_NotifyUserOfFailure()
         {
-            bool isNotificationServiceCalled = false;
+            var isNotificationServiceCalled = false;
 
             var dataAccessSetup = new Mock<IDataAccess<Payment>>();
             dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Payment>())).Returns(false);
@@ -816,14 +816,15 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Delete_NotifyUserOfFailure()
         {
-            bool isNotificationServiceCalled = false;
+            var isNotificationServiceCalled = false;
 
             var dataAccessSetup = new Mock<IDataAccess<Payment>>();
             dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Payment>())).Returns(false);
             dataAccessSetup.Setup(x => x.LoadList(null)).Returns(new List<Payment>());
 
             var redDataAccessSetup = new Mock<IDataAccess<RecurringPayment>>();
-            redDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>())).Returns(new List<RecurringPayment>());
+            redDataAccessSetup.Setup(x => x.LoadList(It.IsAny<Expression<Func<RecurringPayment, bool>>>()))
+                .Returns(new List<RecurringPayment>());
 
             var notificationServiceSetup = new Mock<INotificationService>();
             notificationServiceSetup.Setup(x => x.SendBasicNotification(It.IsAny<string>(), It.IsAny<string>()))
@@ -849,7 +850,7 @@ namespace MoneyFox.Shared.Tests.Repositories
                 new Mock<IDataAccess<RecurringPayment>>().Object,
                 new Mock<IAccountRepository>().Object,
                 new Mock<IRepository<Category>>().Object,
-                new Mock<INotificationService>().Object).Save(new Payment { ChargedAccountId = 0 });
+                new Mock<INotificationService>().Object).Save(new Payment {ChargedAccountId = 0});
         }
     }
 }

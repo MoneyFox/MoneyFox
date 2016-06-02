@@ -9,7 +9,7 @@ namespace MoneyFox.Shared.Converter
     {
         protected override MvxVisibility Convert(object value, object parameter, CultureInfo culture)
         {
-            return (DateTime)value == new DateTime() ? MvxVisibility.Collapsed : MvxVisibility.Visible;
+            return (DateTime) value == new DateTime() ? MvxVisibility.Collapsed : MvxVisibility.Visible;
         }
     }
 }

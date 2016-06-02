@@ -105,7 +105,7 @@ namespace MoneyFox.Shared.Tests.StatisticProvider
         }
 
         [TestMethod]
-        [ExpectedException(typeof (NullReferenceException))]
+        [ExpectedException(typeof(NullReferenceException))]
         public void GetValues_NullDependency_NullReferenceException()
         {
             new CashFlowDataProvider(null).GetValues(DateTime.Today, DateTime.Today);

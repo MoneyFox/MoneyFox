@@ -1,17 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cheesebaron.MvxPlugins.Settings.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.Tests.Mocks;
 using Moq;
-using MvvmCross.Test.Core;
 using MvvmCross.Platform;
-using System;
-using Cheesebaron.MvxPlugins.Settings.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MvvmCross.Test.Core;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
@@ -19,6 +19,15 @@ namespace MoneyFox.Shared.Tests.Repositories
     public class CategoryRepositoryTests : MvxIoCSupportingTest
     {
         private DateTime localDateSetting;
+
+        public static IEnumerable NamePlaceholder
+        {
+            get
+            {
+                yield return new object[] {"Ausgang", "Ausgang"};
+                yield return new object[] {"", Strings.NoNamePlaceholderLabel};
+            }
+        }
 
         [TestInitialize]
         public void Init()
@@ -33,15 +42,6 @@ namespace MoneyFox.Shared.Tests.Repositories
 
             Mvx.RegisterType(() => new Mock<IAutobackupManager>().Object);
             Mvx.RegisterType(() => settingsMockSetup.Object);
-        }
-
-        public static IEnumerable NamePlaceholder
-        {
-            get
-            {
-                yield return new object[] {"Ausgang", "Ausgang"};
-                yield return new object[] {"", Strings.NoNamePlaceholderLabel};
-            }
         }
 
         [TestMethod]
@@ -167,7 +167,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Save_NotifyUserOfFailure()
         {
-            bool isNotificationServiceCalled = false;
+            var isNotificationServiceCalled = false;
 
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
             dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Category>())).Returns(false);
@@ -186,7 +186,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Delete_NotifyUserOfFailure()
         {
-            bool isNotificationServiceCalled = false;
+            var isNotificationServiceCalled = false;
 
             var dataAccessSetup = new Mock<IDataAccess<Category>>();
             dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Category>())).Returns(false);

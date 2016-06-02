@@ -37,6 +37,7 @@ namespace MoneyFox.Shared.ViewModels
             {
                 StartDate = message.StartDate;
                 EndDate = message.EndDate;
+                Load();
             });
         }
 

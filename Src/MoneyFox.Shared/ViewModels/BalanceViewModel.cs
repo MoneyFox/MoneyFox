@@ -1,9 +1,9 @@
-﻿using MoneyFox.Shared.Helpers;
+﻿using System.Linq;
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.ViewModels;
 using MvvmCross.Core.ViewModels;
 using PropertyChanged;
-using System.Linq;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -66,11 +66,11 @@ namespace MoneyFox.Shared.ViewModels
                 //Transfer can be ignored since they don't change the summary.
                 switch (payment.Type)
                 {
-                    case (int)PaymentType.Expense:
+                    case (int) PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
 
-                    case (int)PaymentType.Income:
+                    case (int) PaymentType.Income:
                         balance += payment.Amount;
                         break;
                 }

@@ -32,7 +32,7 @@ namespace MoneyFox.Droid.Activities
         {
             var fragment = new BalanceFragment
             {
-                ViewModel = (PaymentListBalanceViewModel)ViewModel.BalanceViewModel
+                ViewModel = (PaymentListBalanceViewModel) ViewModel.BalanceViewModel
             };
 
             SupportFragmentManager.BeginTransaction()

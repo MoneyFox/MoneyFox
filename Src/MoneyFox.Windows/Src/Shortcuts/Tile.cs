@@ -1,10 +1,10 @@
-﻿using MoneyFox.Shared.Extensions;
+﻿using System;
+using System.Threading.Tasks;
+using Windows.UI.StartScreen;
+using MoneyFox.Shared.Extensions;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.StatisticDataProvider;
 using MvvmCross.Platform;
-using System;
-using System.Threading.Tasks;
-using Windows.UI.StartScreen;
 
 namespace MoneyManager.Windows.Shortcut
 {

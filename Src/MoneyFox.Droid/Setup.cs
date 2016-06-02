@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Reflection;
 using Android.Content;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
@@ -16,8 +18,6 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
 using MvvmCross.Plugins.Messenger;
-using System.Collections.Generic;
-using System.Reflection;
 
 namespace MoneyFox.Droid
 {
@@ -30,11 +30,11 @@ namespace MoneyFox.Droid
 
         protected override IEnumerable<Assembly> AndroidViewAssemblies => new List<Assembly>(base.AndroidViewAssemblies)
         {
-            typeof (NavigationView).Assembly,
-            typeof (FloatingActionButton).Assembly,
-            typeof (Toolbar).Assembly,
-            typeof (DrawerLayout).Assembly,
-            typeof (ViewPager).Assembly
+            typeof(NavigationView).Assembly,
+            typeof(FloatingActionButton).Assembly,
+            typeof(Toolbar).Assembly,
+            typeof(DrawerLayout).Assembly,
+            typeof(ViewPager).Assembly
         };
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)

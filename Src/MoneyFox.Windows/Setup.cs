@@ -7,6 +7,7 @@ using MoneyFox.Shared;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Interfaces.Shotcuts;
 using MoneyFox.Windows.Services;
+using MoneyFox.Windows.Shortcuts;
 using MoneyManager.Windows;
 using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;

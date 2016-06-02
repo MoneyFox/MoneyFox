@@ -41,7 +41,7 @@ namespace MoneyFox.Shared.Tests.Helper
         [TestMethod]
         public void GetEndOfMonth_NoneInput_LastDayOfMonth()
         {
-            Utilities.GetEndOfMonth().ShouldBeInstanceOf(typeof (DateTime));
+            Utilities.GetEndOfMonth().ShouldBeInstanceOf(typeof(DateTime));
         }
 
         [TestMethod]

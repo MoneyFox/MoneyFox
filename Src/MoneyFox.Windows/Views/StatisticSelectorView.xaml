@@ -63,7 +63,8 @@
             <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}" ItemsSource="{Binding StatisticItems}">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedConverter}" />
+                        <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}"
+                                                  InputConverter="{StaticResource SelectedConverter}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </ListView>
