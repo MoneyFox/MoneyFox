@@ -22,7 +22,7 @@ namespace MoneyFox.Windows.Views.UserControls
                 TitleBar.Margin = new Thickness(AppShell.Current.TogglePaneButtonRect.Right, 0, 0, 0);
             };
 
-            DataContext = Mvx.Resolve<GlobalBusyIndicatorState>();
+            GlobalProgressRing.DataContext = Mvx.Resolve<GlobalBusyIndicatorState>();
         }
 
         public UIElement HeaderContent

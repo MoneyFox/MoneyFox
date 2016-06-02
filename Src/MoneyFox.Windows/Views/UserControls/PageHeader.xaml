@@ -3,15 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
-             VerticalAlignment="Top"
-             VerticalContentAlignment="Top"
-             HorizontalAlignment="Stretch"
-             HorizontalContentAlignment="Stretch"
              Height="48"
-             mc:Ignorable="d"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Top"
+             HorizontalContentAlignment="Stretch"
+             VerticalContentAlignment="Top"
              d:DesignHeight="300"
-             d:DesignWidth="400">
+             d:DesignWidth="400"
+             Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+             mc:Ignorable="d">
 
     <Grid Background="{x:Bind Background}">
         <Grid.ColumnDefinitions>
@@ -19,16 +19,19 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid x:Name="TitleBar">
-            <ContentPresenter VerticalAlignment="{x:Bind VerticalContentAlignment}"
+            <ContentPresenter Margin="{x:Bind Padding}"
                               HorizontalAlignment="{x:Bind HorizontalContentAlignment}"
-                              Margin="{x:Bind Padding}"
+                              VerticalAlignment="{x:Bind VerticalContentAlignment}"
                               Content="{x:Bind HeaderContent}" />
         </Grid>
-        <ProgressRing Grid.Column="1"
-                      IsActive="{Binding IsActive, Mode=OneWay, FallbackValue=false}"
-                      Background="Transparent"
-                      Margin="15"
+        <ProgressRing x:Name="GlobalProgressRing"
+                      Grid.Column="1"
                       Width="20"
-                      Height="20" />
+                      Height="20"
+                      Margin="15"
+                      Background="Transparent"
+                      IsActive="{Binding IsActive,
+                                         Mode=OneWay,
+                                         FallbackValue=false}" />
     </Grid>
 </UserControl>
