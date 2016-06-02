@@ -153,11 +153,11 @@
         </Grid>
         <CommandBar x:Name="BottomCommandBar" Grid.Row="2">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="Done"
+                <AppBarButton x:Uid="DoneLabel"
                               Command="{Binding SaveCommand}"
                               Icon="Save"
                               Label="Done" />
-                <AppBarButton x:Uid="Cancel"
+                <AppBarButton x:Uid="CancelLabel"
                               Command="{Binding CancelCommand}"
                               Icon="Cancel"
                               Label="Cancel" />

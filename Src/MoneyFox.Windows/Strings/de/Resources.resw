@@ -377,4 +377,10 @@ Ausserdem wird bei jedem Start der Applikation geprüft ob eine neuere Sicherung
   <data name="TranslationMissingHelpText.Text" xml:space="preserve">
     <value>Ist etwas nicht richtig oder nicht übersetzt überhaupt? Helfen Sie uns! Gehen Sie zu crowdin und Hilf uns den Money Fox zu verbessern:</value>
   </data>
+  <data name="CancelLabel.Label" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="DoneLabel.Label" xml:space="preserve">
+    <value>Fertig</value>
+  </data>
 </root>
