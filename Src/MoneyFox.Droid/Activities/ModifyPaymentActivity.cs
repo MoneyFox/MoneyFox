@@ -53,6 +53,7 @@ namespace MoneyFox.Droid.Activities
             editTextAmount = FindViewById<EditText>(Resource.Id.editText_amount);
             editTextAmount.FocusChange += EditTextAmountOnFocusChange;
             editTextAmount.Text = ViewModel.AmountString;
+            editTextAmount.ClearFocus();
 
             Title = ViewModel.Title;
         }
