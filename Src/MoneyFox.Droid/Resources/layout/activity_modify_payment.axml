@@ -31,6 +31,12 @@
                 local:MvxItemTemplate="@layout/comboboxitem_account"
                 local:MvxDropDownItemTemplate="@layout/comboboxitem_account"
                 local:MvxBind="ItemsSource AllAccounts; SelectedItem SelectedPayment.TargetAccount; Visible IsTransfer" />
+        <!-- Dummy item to prevent EditText from receiving focus -->
+            <LinearLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="0px"
+                android:layout_height="0px" />
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

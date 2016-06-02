@@ -4,6 +4,7 @@ using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
 using NotificationsExtensions.Tiles;
+using NotificationsExtensions;
 
 namespace MoneyFox.Windows
 {
@@ -41,27 +42,27 @@ namespace MoneyFox.Windows
             {
                 PeekImage = new TilePeekImage
                 {
-                    Source = new TileImageSource("Assets/Square150x150Logo.scale-400.png")
+                    Source = "Assets/Square150x150Logo.scale-400.png"
                 },
                 Children =
                 {
-                    new TileText
+                    new AdaptiveText
                     {
                         Text = income,
-                        Style = TileTextStyle.CaptionSubtle,
-                        Wrap = true
+                        HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                        HintWrap = true
                     },
-                    new TileText
+                    new AdaptiveText
                     {
                         Text = spending,
-                        Style = TileTextStyle.CaptionSubtle,
-                        Wrap = true
+                        HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                        HintWrap = true
                     },
-                    new TileText
+                    new AdaptiveText
                     {
                         Text = earnings,
-                        Wrap = true,
-                        Style = TileTextStyle.Caption
+                        HintWrap = true,
+                        HintStyle = AdaptiveTextStyle.Caption
                     }
                 }
             };
@@ -80,25 +81,25 @@ namespace MoneyFox.Windows
             {
                 PeekImage = new TilePeekImage
                 {
-                    Source = new TileImageSource("Assets/Wide310x150Logo.scale-400.png")
+                    Source = "Assets/Wide310x150Logo.scale-400.png"
                 },
                 Children =
                 {
-                    new TileText
+                    new AdaptiveText
                     {
                         Text = income,
-                        Style = TileTextStyle.CaptionSubtle
+                        HintStyle = AdaptiveTextStyle.CaptionSubtle
                     },
-                    new TileText
+                    new AdaptiveText
                     {
                         Text = spending,
-                        Style = TileTextStyle.CaptionSubtle
+                        HintStyle = AdaptiveTextStyle.CaptionSubtle
                     },
-                    new TileText
+                    new AdaptiveText
                     {
                         Text = earnings,
-                        Wrap = true,
-                        Style = TileTextStyle.Body
+                        HintWrap = true,
+                        HintStyle = AdaptiveTextStyle.Body
                     }
                 }
             };
@@ -117,25 +118,25 @@ namespace MoneyFox.Windows
             {
                 PeekImage = new TilePeekImage
                 {
-                    Source = new TileImageSource("Assets/Square310x310Logo.scale-400.png")
+                    Source = "Assets/Square310x310Logo.scale-400.png"
                 },
                 Children =
                 {
-                    new TileText
+                    new AdaptiveText
                     {
                         Text = income,
-                        Style = TileTextStyle.CaptionSubtle
+                        HintStyle = AdaptiveTextStyle.CaptionSubtle
                     },
-                    new TileText
+                    new AdaptiveText
                     {
                         Text = spending,
-                        Style = TileTextStyle.CaptionSubtle
+                        HintStyle = AdaptiveTextStyle.CaptionSubtle
                     },
-                    new TileText
+                    new AdaptiveText
                     {
                         Text = earnings,
-                        Wrap = true,
-                        Style = TileTextStyle.Body
+                        HintWrap = true,
+                        HintStyle = AdaptiveTextStyle.Body
                     }
                 }
             };

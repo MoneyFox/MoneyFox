@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:hint="@string/hint_password"
+                android:inputType="textPassword"
                 local:MvxBind="Text Password" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
@@ -35,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:hint="@string/hint_password_confirmation"
+                android:inputType="textPassword"
                 local:MvxBind="Text PasswordConfirmation" />
         </android.support.design.widget.TextInputLayout>
         <Button
