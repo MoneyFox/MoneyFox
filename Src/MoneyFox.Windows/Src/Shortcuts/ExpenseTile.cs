@@ -4,8 +4,9 @@ using Windows.UI.StartScreen;
 using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.Interfaces.Shotcuts;
 using MoneyFox.Shared.Resources;
+using MoneyManager.Windows.Shortcut;
 
-namespace MoneyManager.Windows.Shortcut
+namespace MoneyFox.Windows.Shortcuts
 {
     public class ExpenseTile : Tile, ISpendingShortcut
     {
