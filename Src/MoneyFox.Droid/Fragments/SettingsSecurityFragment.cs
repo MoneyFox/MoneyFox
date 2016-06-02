@@ -9,5 +9,11 @@ namespace MoneyFox.Droid.Fragments
     {
         protected override int FragmentId => Resource.Layout.fragment_settings_security;
         protected override string Title => Strings.SettingsLabel;
+
+        public override void OnStart()
+        {
+            ViewModel.LoadCommand.Execute();
+            base.OnStart();
+        }
     }
 }
