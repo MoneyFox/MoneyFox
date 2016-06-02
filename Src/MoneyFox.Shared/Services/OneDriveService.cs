@@ -96,7 +96,7 @@ namespace MoneyFox.Shared.Services
 
         /// <summary>
         ///     Get's the modification date for the existing backup.
-        ///     If there is no backup yet, it will return <see cref="DateTime.MinValue"/>
+        ///     If there is no backup yet, it will return <see cref="DateTime.MinValue" />
         /// </summary>
         /// <returns>Date of the last backup.</returns>
         public async Task<DateTime> GetBackupDate()
@@ -124,6 +124,19 @@ namespace MoneyFox.Shared.Services
             return DateTime.MinValue;
         }
 
+        /// <summary>
+        ///     Gets a list with all the filenames who are available in the backup folder.
+        ///     The name of the backupfolder is defined in the Constants.
+        /// </summary>
+        /// <returns>A list with all filenames.</returns>
+        public async Task<List<string>> GetFileNames()
+        {
+            await GetBackupFolder();
+
+            var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
+            return children.Select(x => x.Name).ToList();
+        }
+
         private async Task GetBackupFolder()
         {
             var children = await OneDriveClient.Drive.Root.Children.Request().GetAsync();
@@ -148,19 +161,6 @@ namespace MoneyFox.Shared.Services
 
             BackupFolder = await OneDriveClient.Drive.Items[root.Id].Children.Request()
                 .AddAsync(folderToCreate);
-        }
-
-        /// <summary>
-        ///     Gets a list with all the filenames who are available in the backup folder.
-        ///     The name of the backupfolder is defined in the Constants.
-        /// </summary>
-        /// <returns>A list with all filenames.</returns>
-        public async Task<List<string>> GetFileNames()
-        {
-            await GetBackupFolder();
-
-            var children = await OneDriveClient.Drive.Items[BackupFolder?.Id].Children.Request().GetAsync();
-            return children.Select(x => x.Name).ToList();
         }
     }
 }

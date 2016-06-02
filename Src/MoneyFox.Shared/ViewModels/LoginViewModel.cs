@@ -1,14 +1,13 @@
-﻿using System;
-using MoneyFox.Shared.Interfaces;
-using MvvmCross.Core.ViewModels;
+﻿using MvvmCross.Core.ViewModels;
 
-namespace MoneyFox.Shared.ViewModels {
+namespace MoneyFox.Shared.ViewModels
+{
     public class LoginViewModel : BaseViewModel
     {
-
         public MvxCommand LoginNavigationCommand => new MvxCommand(LoginNavigation);
 
-        private void LoginNavigation() {
+        private void LoginNavigation()
+        {
             ShowViewModel<MainViewModel>();
         }
     }

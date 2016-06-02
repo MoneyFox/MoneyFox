@@ -92,14 +92,14 @@
             </controls:AlternatingRowListView>
         </ScrollViewer>
 
-        <TextBlock x:Uid="AccountsPlaceholder" 
-                   Grid.Row="1" 
-                   TextWrapping="Wrap" 
-                   VerticalAlignment="Center" 
-                   HorizontalAlignment="Center" 
+        <TextBlock x:Uid="AccountsPlaceholder"
+                   Grid.Row="1"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
                    Margin="6"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"                       
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                    Foreground="{ThemeResource SystemBaseMediumLowColor}"
-                   Visibility="{Binding IsAllAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                   Visibility="{Binding IsAllAccountsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </UserControl>

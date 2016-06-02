@@ -1,8 +1,8 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using System;
+using System.Linq.Expressions;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
-using System;
-using System.Linq.Expressions;
 
 namespace MoneyFox.Shared.ViewModels
 {

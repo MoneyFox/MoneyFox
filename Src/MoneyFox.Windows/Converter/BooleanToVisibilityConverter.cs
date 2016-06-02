@@ -10,13 +10,13 @@ namespace MoneyFox.Windows.Converter
         {
             if (parameter != null && parameter.ToString() == "revert")
             {
-                return (bool)value ? Visibility.Collapsed : Visibility.Visible;
+                return (bool) value ? Visibility.Collapsed : Visibility.Visible;
             }
 
-            return (bool)value ? Visibility.Visible : Visibility.Collapsed;
+            return (bool) value ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
-            => (bool)value ? Visibility.Collapsed : Visibility.Visible;
+            => (bool) value ? Visibility.Collapsed : Visibility.Visible;
     }
 }

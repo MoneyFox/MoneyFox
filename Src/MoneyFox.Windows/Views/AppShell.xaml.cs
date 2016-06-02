@@ -24,27 +24,6 @@ namespace MoneyFox.Windows.Views
     {
         public static AppShell Current;
 
-        // Declare the top level nav items
-
-        private readonly List<NavMenuItem> navlistTop = new List<NavMenuItem>(
-            new[]
-            {
-                new NavMenuItem
-                {
-                    Symbol = Symbol.Library,
-                    Label = Strings.AccountsLabel,
-                    DestViewModel = typeof(MainViewModel),
-                    DestPage = typeof(MainView)
-                },
-                new NavMenuItem
-                {
-                    Symbol = Symbol.View,
-                    Label = Strings.StatisticsLabel,
-                    DestViewModel = typeof(StatisticSelectorViewModel),
-                    DestPage = typeof(StatisticSelectorView)
-                }
-            });
-
         private readonly List<NavMenuItem> navlistBottom = new List<NavMenuItem>(
             new[]
             {
@@ -75,6 +54,27 @@ namespace MoneyFox.Windows.Views
                     Label = Strings.AboutLabel,
                     DestViewModel = typeof(AboutViewModel),
                     DestPage = typeof(AboutView)
+                }
+            });
+
+        // Declare the top level nav items
+
+        private readonly List<NavMenuItem> navlistTop = new List<NavMenuItem>(
+            new[]
+            {
+                new NavMenuItem
+                {
+                    Symbol = Symbol.Library,
+                    Label = Strings.AccountsLabel,
+                    DestViewModel = typeof(MainViewModel),
+                    DestPage = typeof(MainView)
+                },
+                new NavMenuItem
+                {
+                    Symbol = Symbol.View,
+                    Label = Strings.StatisticsLabel,
+                    DestViewModel = typeof(StatisticSelectorViewModel),
+                    DestPage = typeof(StatisticSelectorView)
                 }
             });
 
@@ -438,11 +438,11 @@ namespace MoneyFox.Windows.Views
     public class NavMenuItem
     {
         public string Label { get; set; }
-        
+
         public Symbol Symbol { get; set; }
 
         public char SymbolAsChar => (char) Symbol;
-       
+
         public Type DestViewModel { get; set; }
 
         public Type DestPage { get; set; }

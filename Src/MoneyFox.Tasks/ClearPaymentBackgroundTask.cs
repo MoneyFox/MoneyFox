@@ -1,15 +1,13 @@
-﻿using System;
-using Windows.ApplicationModel.Background;
+﻿using Windows.ApplicationModel.Background;
 using Microsoft.HockeyApp;
 using MoneyFox.Shared;
-using MoneyFox.Shared.Constants;
 using MoneyFox.Shared.DataAccess;
 using MoneyFox.Shared.Manager;
 using MoneyFox.Shared.Repositories;
+using MoneyManager.Windows.Services;
 using MoneyManager.Windows.Shortcut;
 using MvvmCross.Plugins.File.WindowsCommon;
 using MvvmCross.Plugins.Sqlite.WindowsUWP;
-using MoneyManager.Windows.Services;
 
 namespace MoneyFox.Tasks
 {
@@ -25,10 +23,12 @@ namespace MoneyFox.Tasks
 
             HockeyClient.Current.TrackEvent("BackgroundTask");
 
-            var sqliteConnectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
+            var sqliteConnectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                new MvxWindowsCommonFileStore());
             var notificationService = new NotificationService();
 
-            var accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnectionCreator), notificationService);
+            var accountRepository = new AccountRepository(new AccountDataAccess(sqliteConnectionCreator),
+                notificationService);
 
             paymentManager = new PaymentManager(
                 new PaymentRepository(new PaymentDataAccess(sqliteConnectionCreator),

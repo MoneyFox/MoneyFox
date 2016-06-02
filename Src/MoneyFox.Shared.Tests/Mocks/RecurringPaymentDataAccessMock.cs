@@ -1,8 +1,8 @@
-﻿using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 
 namespace MoneyFox.Shared.Tests.Mocks
 {
@@ -25,6 +25,7 @@ namespace MoneyFox.Shared.Tests.Mocks
             return true;
         }
 
-        public List<RecurringPayment> LoadList(Expression<Func<RecurringPayment, bool>> filter = null) => RecurringPaymentTestList;
+        public List<RecurringPayment> LoadList(Expression<Func<RecurringPayment, bool>> filter = null)
+            => RecurringPaymentTestList;
     }
 }

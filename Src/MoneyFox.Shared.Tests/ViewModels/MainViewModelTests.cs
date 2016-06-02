@@ -24,7 +24,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new RecurringPaymentDataAccess(dbHelper),
                 accountRepository,
                 new CategoryRepository(new CategoryDataAccess(dbHelper),
-                new Mock<INotificationService>().Object),
+                    new Mock<INotificationService>().Object),
                 new Mock<INotificationService>().Object);
             var paymentManager = new PaymentManager(paymentRepository, accountRepository,
                 new Mock<IDialogService>().Object);
@@ -45,7 +45,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             modifyPaymentViewModel.IsEdit.ShouldBeFalse();
             modifyPaymentViewModel.IsEndless.ShouldBeTrue();
             modifyPaymentViewModel.IsTransfer.ShouldBeFalse();
-            modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int)PaymentType.Income);
+            modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int) PaymentType.Income);
         }
 
         public void GoToAddPayment_Expense_CorrectPreparation()
@@ -61,7 +61,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new RecurringPaymentDataAccess(dbHelper),
                 accountRepository,
                 new CategoryRepository(new CategoryDataAccess(dbHelper),
-                new Mock<INotificationService>().Object),
+                    new Mock<INotificationService>().Object),
                 new Mock<INotificationService>().Object);
             var paymentManager = new PaymentManager(paymentRepository, accountRepository,
                 new Mock<IDialogService>().Object);
@@ -82,7 +82,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             modifyPaymentViewModel.IsEdit.ShouldBeFalse();
             modifyPaymentViewModel.IsEndless.ShouldBeTrue();
             modifyPaymentViewModel.IsTransfer.ShouldBeFalse();
-            modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int)PaymentType.Expense);
+            modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int) PaymentType.Expense);
         }
 
         public void GoToAddPayment_Transfer_CorrectPreparation()
@@ -98,7 +98,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
                 new RecurringPaymentDataAccess(dbHelper),
                 accountRepository,
                 new CategoryRepository(new CategoryDataAccess(dbHelper),
-                new Mock<INotificationService>().Object),
+                    new Mock<INotificationService>().Object),
                 new Mock<INotificationService>().Object);
             var paymentManager = new PaymentManager(paymentRepository, accountRepository,
                 new Mock<IDialogService>().Object);
@@ -119,7 +119,7 @@ namespace MoneyFox.Shared.Tests.ViewModels
             modifyPaymentViewModel.IsEdit.ShouldBeFalse();
             modifyPaymentViewModel.IsEndless.ShouldBeTrue();
             modifyPaymentViewModel.IsTransfer.ShouldBeTrue();
-            modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int)PaymentType.Transfer);
+            modifyPaymentViewModel.SelectedPayment.Type.ShouldBe((int) PaymentType.Transfer);
         }
     }
 }

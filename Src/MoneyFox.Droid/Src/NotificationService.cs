@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
-using MoneyFox.Shared.Interfaces;
-using Android.Support.Design.Widget;
-using MvvmCross.Platform.Droid.Platform;
-using MvvmCross.Platform;
 using Android.App;
+using Android.Content;
+using Android.Support.Design.Widget;
 using Android.Views.InputMethods;
+using MoneyFox.Shared.Interfaces;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Droid.Platform;
 
 namespace MoneyFox.Droid.Src
 {
@@ -17,18 +18,19 @@ namespace MoneyFox.Droid.Src
             var tcs = new TaskCompletionSource<bool>();
 
             var view = CurrentActivity.Window.DecorView.FindViewById(Android.Resource.Id.Content);
-            
+
             // Will close keyboard if open to make the snackbar visible
-            if(view != null) {
-                InputMethodManager imm = (InputMethodManager)CurrentActivity
-                    .GetSystemService(Android.Content.Context.InputMethodService);
+            if (view != null)
+            {
+                var imm = (InputMethodManager) CurrentActivity
+                    .GetSystemService(Context.InputMethodService);
                 imm.HideSoftInputFromWindow(view.WindowToken, 0);
             }
 
             Snackbar
-              .Make(view,
-              message, Snackbar.LengthLong)
-              .Show();
+                .Make(view,
+                    message, Snackbar.LengthLong)
+                .Show();
 
             return tcs.Task;
         }

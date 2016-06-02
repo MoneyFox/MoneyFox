@@ -61,6 +61,7 @@ namespace MoneyFox.Shared.Tests.Helper
         {
             Assert.AreEqual(Strings.AddTransferTitle, PaymentTypeHelper.GetViewTitleForType(2, false));
         }
+
         [TestMethod]
         public void GetEnumFrostring_ExpenseEnumEditTrue_Titel()
         {

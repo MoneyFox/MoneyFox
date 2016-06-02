@@ -69,7 +69,8 @@ namespace MoneyFox.Shared.Repositories
             if (dataAccess.SaveItem(account))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-            } else
+            }
+            else
             {
                 notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
             }
@@ -85,7 +86,8 @@ namespace MoneyFox.Shared.Repositories
             if (dataAccess.DeleteItem(accountToDelete))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-            } else
+            }
+            else
             {
                 notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
             }

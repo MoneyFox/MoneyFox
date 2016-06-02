@@ -19,11 +19,12 @@ namespace MoneyFox.Droid
         private const string ONEDRIVE_KEY = "OneDrive";
 
         private IDictionary<string, string> authenticationResponseValues;
-        protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 
         public AndroidAuthenticationProvider(ServiceInfo serviceInfo) : base(serviceInfo)
         {
         }
+
+        protected Activity CurrentActivity => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity;
 
         protected override async Task<AccountSession> GetAuthenticationResultAsync()
         {
@@ -33,7 +34,7 @@ namespace MoneyFox.Droid
             {
                 return sessionFromCache;
             }
-            
+
             await ShowWebView();
             return new AccountSession(authenticationResponseValues, ServiceInfo.AppId,
                 AccountType.MicrosoftAccount)
@@ -80,7 +81,7 @@ namespace MoneyFox.Droid
 
             var auth = new OAuth2Authenticator(ServiceConstants.MSA_CLIENT_ID,
                 ServiceConstants.MSA_CLIENT_SECRET,
-                string.Join(",", ServiceConstants.Scopes), 
+                string.Join(",", ServiceConstants.Scopes),
                 new Uri(GetAuthorizeUrl()),
                 new Uri(ServiceConstants.RETURN_URL),
                 new Uri(ServiceConstants.TOKEN_URL));
@@ -88,7 +89,7 @@ namespace MoneyFox.Droid
             auth.Completed += (sender, eventArgs) =>
             {
                 if (eventArgs.IsAuthenticated)
-                { 
+                {
                     OAuthErrorHandler.ThrowIfError(eventArgs.Account.Properties);
                     authenticationResponseValues = eventArgs.Account.Properties;
                     AccountStore.Create(Application.Context).Save(eventArgs.Account, ONEDRIVE_KEY);

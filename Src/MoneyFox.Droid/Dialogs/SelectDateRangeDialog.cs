@@ -1,32 +1,45 @@
+using System;
+using Android.App;
 using Android.Content;
+using Android.OS;
 using Android.Views;
 using Android.Widget;
-using System;
-using Android.OS;
-using Android.Support.V4.App;
-using Android.App;
+using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
-using MoneyFox.Shared.Resources;
 
 namespace MoneyFox.Droid.Dialogs
 {
-    public class SelectDateRangeDialog : Android.App.DialogFragment, DatePickerDialog.IOnDateSetListener
+    public class SelectDateRangeDialog : DialogFragment, DatePickerDialog.IOnDateSetListener
     {
-        private Context context;
-        private SelectDateRangeDialogViewModel viewModel;
+        private Button callerButton;
+        private readonly Context context;
+        private Button doneButton;
+        private Button selectEndDateButton;
 
         private Button selectStartDateButton;
-        private Button selectEndDateButton;
-        private Button doneButton;
-
-        private Button callerButton;
+        private readonly SelectDateRangeDialogViewModel viewModel;
 
         public SelectDateRangeDialog(Context context)
         {
             this.context = context;
 
             viewModel = Mvx.Resolve<SelectDateRangeDialogViewModel>();
+        }
+
+        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+        {
+            var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
+
+            if (callerButton == selectStartDateButton)
+            {
+                viewModel.StartDate = date;
+            }
+            else if (callerButton == selectEndDateButton)
+            {
+                viewModel.EndDate = date;
+            }
+            AssignDateToButtons();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -77,21 +90,6 @@ namespace MoneyFox.Droid.Dialogs
         {
             viewModel.DoneCommand.Execute();
             Dismiss();
-        }
-
-        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-        {
-            var date = new DateTime(year, monthOfYear + 1, dayOfMonth);
-
-            if (callerButton == selectStartDateButton)
-            {
-                viewModel.StartDate = date;
-            }
-            else if (callerButton == selectEndDateButton)
-            {
-                viewModel.EndDate = date;
-            }
-            AssignDateToButtons();
         }
 
         private void AssignDateToButtons()

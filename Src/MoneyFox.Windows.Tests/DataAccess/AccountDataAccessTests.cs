@@ -16,7 +16,8 @@ namespace MoneyFox.Windows.Tests.DataAccess
         [TestInitialize]
         public void Init()
         {
-            connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
+            connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                new MvxWindowsCommonFileStore());
         }
 
         [TestMethod]

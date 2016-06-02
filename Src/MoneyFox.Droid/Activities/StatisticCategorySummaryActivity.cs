@@ -1,12 +1,12 @@
 using Android.App;
-using Android.OS;
-using MoneyFox.Shared.ViewModels;
-using MvvmCross.Droid.Support.V7.AppCompat;
 using Android.Content.PM;
+using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
-using MoneyFox.Shared.Resources;
 using MoneyFox.Droid.Dialogs;
+using MoneyFox.Shared.Resources;
+using MoneyFox.Shared.ViewModels;
+using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace MoneyFox.Droid.Activities
 {
@@ -33,6 +33,7 @@ namespace MoneyFox.Droid.Activities
             base.OnStart();
             ViewModel.LoadCommand.Execute();
         }
+
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.menu_select, menu);

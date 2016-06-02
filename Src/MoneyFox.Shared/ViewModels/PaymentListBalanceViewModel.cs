@@ -1,8 +1,8 @@
-﻿using MoneyFox.Shared.Helpers;
+﻿using System.Collections.Generic;
+using System.Linq;
+using MoneyFox.Shared.Helpers;
 using MoneyFox.Shared.Interfaces;
 using MoneyFox.Shared.Model;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace MoneyFox.Shared.ViewModels
 {
@@ -37,15 +37,15 @@ namespace MoneyFox.Shared.ViewModels
             {
                 switch (payment.Type)
                 {
-                    case (int)PaymentType.Expense:
+                    case (int) PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
 
-                    case (int)PaymentType.Income:
+                    case (int) PaymentType.Income:
                         balance += payment.Amount;
                         break;
 
-                    case (int)PaymentType.Transfer:
+                    case (int) PaymentType.Transfer:
                         balance = HandleTransferAmount(payment, balance);
                         break;
                 }

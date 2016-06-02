@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.System;
+﻿using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Shared.ViewModels;

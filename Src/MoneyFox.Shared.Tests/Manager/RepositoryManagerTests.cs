@@ -112,7 +112,7 @@ namespace MoneyFox.Shared.Tests.Manager
             new RepositoryManager(accountRepo, paymentRepository, categoryRepoSetup.Object,
                 new PaymentManager(paymentRepository, accountRepo, new Mock<IDialogService>().Object))
                 .ReloadData();
-            
+
             Assert.IsTrue(payment.IsCleared);
         }
     }

@@ -7,10 +7,10 @@ namespace MoneyFox.Windows.Controls
     public class AlternatingRowListView : ListView
     {
         public static readonly DependencyProperty OddRowBackgroundProperty =
-            DependencyProperty.Register("OddRowBackground", typeof (Brush), typeof (AlternatingRowListView), null);
+            DependencyProperty.Register("OddRowBackground", typeof(Brush), typeof(AlternatingRowListView), null);
 
         public static readonly DependencyProperty EvenRowBackgroundProperty =
-            DependencyProperty.Register("EvenRowBackground", typeof (Brush), typeof (AlternatingRowListView), null);
+            DependencyProperty.Register("EvenRowBackground", typeof(Brush), typeof(AlternatingRowListView), null);
 
         public Brush OddRowBackground
         {

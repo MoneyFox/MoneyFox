@@ -9,7 +9,7 @@ namespace MoneyFox.Windows.Views.UserControls
     {
         // Using a DependencyProperty as the backing store for HeaderContent.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HeaderContentProperty =
-            DependencyProperty.Register("HeaderContent", typeof (UIElement), typeof (PageHeader),
+            DependencyProperty.Register("HeaderContent", typeof(UIElement), typeof(PageHeader),
                 new PropertyMetadata(DependencyProperty.UnsetValue));
 
         public PageHeader()

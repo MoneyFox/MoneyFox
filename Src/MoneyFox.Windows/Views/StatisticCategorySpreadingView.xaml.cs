@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using MoneyFox.Shared.ViewModels;
 using MoneyFox.Windows.Views.Dialogs;
 
 namespace MoneyFox.Windows.Views

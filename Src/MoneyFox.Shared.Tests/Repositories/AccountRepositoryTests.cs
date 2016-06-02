@@ -8,8 +8,8 @@ using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Repositories;
 using MoneyFox.Shared.Tests.Mocks;
 using Moq;
-using MvvmCross.Test.Core;
 using MvvmCross.Platform;
+using MvvmCross.Test.Core;
 
 namespace MoneyFox.Shared.Tests.Repositories
 {
@@ -158,7 +158,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Save_NotifyUserOfFailure()
         {
-            bool isNotificationServiceCalled = false;
+            var isNotificationServiceCalled = false;
 
             var dataAccessSetup = new Mock<IDataAccess<Account>>();
             dataAccessSetup.Setup(x => x.SaveItem(It.IsAny<Account>())).Returns(false);
@@ -177,7 +177,7 @@ namespace MoneyFox.Shared.Tests.Repositories
         [TestMethod]
         public void Delete_NotifyUserOfFailure()
         {
-            bool isNotificationServiceCalled = false;
+            var isNotificationServiceCalled = false;
 
             var dataAccessSetup = new Mock<IDataAccess<Account>>();
             dataAccessSetup.Setup(x => x.DeleteItem(It.IsAny<Account>())).Returns(false);

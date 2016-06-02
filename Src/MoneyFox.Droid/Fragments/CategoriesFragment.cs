@@ -10,7 +10,7 @@ using MvvmCross.Platform;
 
 namespace MoneyFox.Droid.Fragments
 {
-    [MvxFragment(typeof (MainViewModel), Resource.Id.content_frame)]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("moneyfox.droid.fragments.CategoriesFragment")]
     public class CategoriesFragment : BaseFragment<CategoryListViewModel>
     {

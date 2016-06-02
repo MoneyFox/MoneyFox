@@ -1,14 +1,14 @@
-﻿using MoneyFox.Shared.Exceptions;
-using MoneyFox.Shared.Helpers;
-using MoneyFox.Shared.Interfaces;
-using MoneyFox.Shared.Model;
-using PropertyChanged;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
+using MoneyFox.Shared.Exceptions;
+using MoneyFox.Shared.Helpers;
+using MoneyFox.Shared.Interfaces;
+using MoneyFox.Shared.Model;
 using MoneyFox.Shared.Resources;
+using PropertyChanged;
 
 namespace MoneyFox.Shared.Repositories
 {
@@ -18,8 +18,8 @@ namespace MoneyFox.Shared.Repositories
         private readonly IAccountRepository accountRepository;
         private readonly IRepository<Category> categoryRepository;
         private readonly IDataAccess<Payment> dataAccess;
-        private readonly IDataAccess<RecurringPayment> recurringDataAccess;
         private readonly INotificationService notificationService;
+        private readonly IDataAccess<RecurringPayment> recurringDataAccess;
 
         private ObservableCollection<Payment> data;
 
@@ -98,7 +98,8 @@ namespace MoneyFox.Shared.Repositories
             if (dataAccess.SaveItem(payment))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-            } else
+            }
+            else
             {
                 notificationService.SendBasicNotification(Strings.ErrorTitleSave, Strings.ErrorMessageSave);
             }
@@ -114,7 +115,8 @@ namespace MoneyFox.Shared.Repositories
             if (dataAccess.DeleteItem(paymentToDelete))
             {
                 SettingsHelper.LastDatabaseUpdate = DateTime.Now;
-            } else
+            }
+            else
             {
                 notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
             }
@@ -180,9 +182,9 @@ namespace MoneyFox.Shared.Repositories
         /// <returns>list of uncleared payments</returns>
         public IEnumerable<Payment> GetUnclearedPayments(DateTime date)
             => Data
-            .Where(x => !x.IsCleared)
-            .Where(x => x.Date.Date <= date.Date)
-            .ToList();
+                .Where(x => !x.IsCleared)
+                .Where(x => x.Date.Date <= date.Date)
+                .ToList();
 
         /// <summary>
         ///     returns a list with payments who are related to this account
@@ -191,8 +193,8 @@ namespace MoneyFox.Shared.Repositories
         /// <returns>List of payments</returns>
         public IEnumerable<Payment> GetRelatedPayments(Account account)
             => Data.Where(x => x.ChargedAccountId == account.Id || x.TargetAccountId == account.Id)
-                   .OrderByDescending(x => x.Date)
-                   .ToList();
+                .OrderByDescending(x => x.Date)
+                .ToList();
 
         /// <summary>
         ///     returns a list with payments who recure in a given timeframe
@@ -227,7 +229,8 @@ namespace MoneyFox.Shared.Repositories
                     if (recurringDataAccess.DeleteItem(recTrans))
                     {
                         notificationService.SendBasicNotification(Strings.ErrorTitleDelete, Strings.ErrorMessageDelete);
-                    } else
+                    }
+                    else
                     {
                         SettingsHelper.LastDatabaseUpdate = DateTime.Now;
                     }

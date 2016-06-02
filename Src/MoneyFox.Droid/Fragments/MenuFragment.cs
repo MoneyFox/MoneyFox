@@ -12,7 +12,7 @@ using MvvmCross.Droid.Support.V4;
 
 namespace MoneyFox.Droid.Fragments
 {
-    [MvxFragment(typeof (MainViewModel), Resource.Id.navigation_frame)]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.navigation_frame)]
     [Register("moneyfox.droid.fragments.MenuFragment")]
     public class MenuFragment : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
@@ -52,22 +52,22 @@ namespace MoneyFox.Droid.Fragments
             switch (itemId)
             {
                 case Resource.Id.nav_accounts:
-                    ViewModel.ShowViewModelByType(typeof (AccountListViewModel));
+                    ViewModel.ShowViewModelByType(typeof(AccountListViewModel));
                     break;
                 case Resource.Id.nav_statistics:
-                    ViewModel.ShowViewModelByType(typeof (StatisticSelectorViewModel));
+                    ViewModel.ShowViewModelByType(typeof(StatisticSelectorViewModel));
                     break;
                 case Resource.Id.nav_categories:
-                    ViewModel.ShowViewModelByType(typeof (CategoryListViewModel));
+                    ViewModel.ShowViewModelByType(typeof(CategoryListViewModel));
                     break;
                 case Resource.Id.nav_backup:
-                    ViewModel.ShowViewModelByType(typeof (BackupViewModel));
+                    ViewModel.ShowViewModelByType(typeof(BackupViewModel));
                     break;
                 case Resource.Id.nav_settings:
-                    ViewModel.ShowViewModelByType(typeof (SettingsViewModel));
+                    ViewModel.ShowViewModelByType(typeof(SettingsViewModel));
                     break;
                 case Resource.Id.nav_about:
-                    ViewModel.ShowViewModelByType(typeof (AboutViewModel));
+                    ViewModel.ShowViewModelByType(typeof(AboutViewModel));
                     break;
             }
         }

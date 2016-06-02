@@ -17,7 +17,8 @@ namespace MoneyFox.Windows.Tests.DataAccess
         [TestInitialize]
         public void Init()
         {
-            connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(), new MvxWindowsCommonFileStore());
+            connectionCreator = new DatabaseManager(new WindowsSqliteConnectionFactory(),
+                new MvxWindowsCommonFileStore());
         }
 
         [TestMethod]
@@ -54,17 +55,18 @@ namespace MoneyFox.Windows.Tests.DataAccess
             Assert.AreEqual(id, payment.Id);
             Assert.AreEqual(amount, payment.Amount);
         }
+
         [TestMethod]
         public void SaveToDatabase_MultipleRecurringPayment_AllSaved()
         {
             var payment1 = new RecurringPayment
             {
-                Note = "MultiPayment1",
+                Note = "MultiPayment1"
             };
 
             var payment2 = new RecurringPayment
             {
-                Note = "MultiPayment2",
+                Note = "MultiPayment2"
             };
 
             var dataAccess = new RecurringPaymentDataAccess(connectionCreator);
@@ -106,7 +108,7 @@ namespace MoneyFox.Windows.Tests.DataAccess
         {
             var payment = new Payment
             {
-                Note = "paymentToDelete",
+                Note = "paymentToDelete"
             };
 
             var dataAccess = new PaymentDataAccess(connectionCreator);

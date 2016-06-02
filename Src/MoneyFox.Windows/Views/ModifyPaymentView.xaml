@@ -37,7 +37,8 @@
 
         <userControls:PageHeader>
             <userControls:PageHeader.HeaderContent>
-                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}" Text="{Binding Path=SelectedPayment.Type, Converter={StaticResource PaymentHeaderConverter}}" />
+                <TextBlock Style="{ThemeResource PageTitleTextBlockStyle}"
+                           Text="{Binding Path=SelectedPayment.Type, Converter={StaticResource PaymentHeaderConverter}}" />
             </userControls:PageHeader.HeaderContent>
         </userControls:PageHeader>
 
@@ -86,7 +87,8 @@
                                                 UpdateSourceTrigger=PropertyChanged}">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="GotFocus">
-                                    <core:InvokeCommandAction Command="{Binding GoToSelectCategorydialogCommand, Mode=OneWay}" />
+                                    <core:InvokeCommandAction
+                                        Command="{Binding GoToSelectCategorydialogCommand, Mode=OneWay}" />
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                         </TextBox>
@@ -122,7 +124,8 @@
                                   Header="repeat"
                                   IsOn="{Binding SelectedPayment.IsRecurring,
                                                  Mode=TwoWay}" />
-                    <StackPanel Visibility="{Binding SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
+                    <StackPanel
+                        Visibility="{Binding SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
                         <ComboBox x:Uid="RecurrenceComboBox"
                                   Margin="0,7,0,0"
                                   HorizontalAlignment="Stretch"

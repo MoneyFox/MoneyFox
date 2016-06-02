@@ -31,6 +31,8 @@ namespace MoneyFox.Shared.ViewModels
             BalanceViewModel = new PaymentListBalanceViewModel(accountRepository, paymentRepository);
         }
 
+        public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
+
         public IBalanceViewModel BalanceViewModel { get; }
 
         /// <summary>
@@ -64,8 +66,6 @@ namespace MoneyFox.Shared.ViewModels
         ///     Currently only used for Android
         /// </summary>
         public ObservableCollection<Payment> RelatedPayments { get; set; }
-
-        public bool IsPaymentsEmtpy => RelatedPayments != null && !RelatedPayments.Any();
 
         /// <summary>
         ///     Returns groupped related payments

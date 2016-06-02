@@ -1,5 +1,5 @@
-﻿using MoneyFox.Shared.Helpers;
-using System;
+﻿using System;
+using MoneyFox.Shared.Helpers;
 
 namespace MoneyFox.Shared.Authentication
 {

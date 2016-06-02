@@ -15,8 +15,9 @@ namespace MoneyFox.Shared.ViewModels.DesignTime
             };
         }
 
-        public ObservableCollection<Category> Categories { get; set; }
         public ObservableCollection<AlphaGroupListGroup<Payment>> Source { get; set; }
+
+        public ObservableCollection<Category> Categories { get; set; }
         public Category SelectedCategory { get; set; }
         public string SearchText { get; set; }
     }

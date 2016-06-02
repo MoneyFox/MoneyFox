@@ -1,7 +1,6 @@
-﻿using MoneyFox.Shared.Interfaces;
-using System.Threading.Tasks;
-using Windows.Data.Xml.Dom;
+﻿using System.Threading.Tasks;
 using Windows.UI.Notifications;
+using MoneyFox.Shared.Interfaces;
 
 namespace MoneyManager.Windows.Services
 {
@@ -9,8 +8,8 @@ namespace MoneyManager.Windows.Services
     {
         public Task SendBasicNotification(string title, string body)
         {
-            XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
-            XmlNodeList toastTextElements = toastXml.GetElementsByTagName("text");
+            var toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
+            var toastTextElements = toastXml.GetElementsByTagName("text");
             toastTextElements[0].AppendChild(toastXml.CreateTextNode(title));
             toastTextElements[1].AppendChild(toastXml.CreateTextNode(body));
             ToastNotificationManager.CreateToastNotifier().Show(new ToastNotification(toastXml));

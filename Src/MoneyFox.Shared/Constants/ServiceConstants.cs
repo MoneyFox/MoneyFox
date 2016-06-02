@@ -28,6 +28,6 @@
         /// <summary>
         ///     Scopes for OneDrive access
         /// </summary>
-        public static string[] Scopes = { "onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly" };
+        public static string[] Scopes = {"onedrive.readwrite", "wl.offline_access", "wl.signin", "onedrive.readonly"};
     }
 }

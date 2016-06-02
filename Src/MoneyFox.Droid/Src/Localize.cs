@@ -1,6 +1,6 @@
 using System.Globalization;
-using MoneyFox.Shared.Interfaces;
 using Java.Util;
+using MoneyFox.Shared.Interfaces;
 
 namespace MoneyFox.Droid
 {
