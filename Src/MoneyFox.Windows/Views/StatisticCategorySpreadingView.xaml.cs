@@ -20,7 +20,6 @@ namespace MoneyFox.Windows.Views
         private async void SetDate(object sender, RoutedEventArgs e)
         {
             await new SelectDateRangeDialog().ShowAsync();
-            (DataContext as StatisticCategorySpreadingViewModel)?.LoadCommand.Execute(null);
         }
     }
 }

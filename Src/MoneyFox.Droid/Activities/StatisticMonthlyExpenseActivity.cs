@@ -61,7 +61,6 @@ namespace MoneyFox.Droid.Activities
                 case Resource.Id.action_add:
                     var dialog = new SelectDateRangeDialog(this);
                     dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
-                    ViewModel.LoadCommand.Execute();
                     return true;
 
                 default:

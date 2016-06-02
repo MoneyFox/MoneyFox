@@ -68,6 +68,11 @@ namespace MoneyFox.Droid.Dialogs
             dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
         }
 
+        internal void OnDismiss(object reload)
+        {
+            throw new NotImplementedException();
+        }
+
         private void DoneButtonClick(object sender, EventArgs e)
         {
             viewModel.DoneCommand.Execute();
