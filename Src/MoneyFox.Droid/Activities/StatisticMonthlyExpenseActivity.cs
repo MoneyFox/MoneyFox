@@ -15,7 +15,7 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.StatisticMonthlyExpenseActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class StatisticMonthlyExpenseActivity : MvxAppCompatActivity<StatisticMonthlyExpensesViewModel>
+    public class StatisticMonthlyExpenseActivity : MvxAppCompatActivity<StatisticMonthlyExpensesViewModel>, IDateRangeDialogCloseListener
     {
         private PlotView plotModel;
 
@@ -66,6 +66,11 @@ namespace MoneyFox.Droid.Activities
                 default:
                     return false;
             }
+        }
+
+        public void HandleDialogClose()
+        {
+            plotModel.Model = ViewModel.MonthlyExpensesModel;
         }
     }
 }

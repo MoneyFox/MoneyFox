@@ -15,7 +15,7 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.StatisticCashFlowActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class StatisticCashFlowActivity : MvxAppCompatActivity<StatisticCashFlowViewModel>
+    public class StatisticCashFlowActivity : MvxAppCompatActivity<StatisticCashFlowViewModel>, IDateRangeDialogCloseListener
     {
         private PlotView plotModel;
 
@@ -37,6 +37,7 @@ namespace MoneyFox.Droid.Activities
             OnResume();
 
             ViewModel.LoadCommand.Execute();
+            //we have to assign this here since binding won't work.
             plotModel.Model = ViewModel.CashFlowModel;
         }
 
@@ -66,6 +67,11 @@ namespace MoneyFox.Droid.Activities
                 default:
                     return false;
             }
+        }
+
+        public void HandleDialogClose()
+        {
+            plotModel.Model = ViewModel.CashFlowModel;
         }
     }
 }

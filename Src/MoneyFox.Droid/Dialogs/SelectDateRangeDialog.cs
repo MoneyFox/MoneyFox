@@ -4,6 +4,7 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using MoneyFox.Droid.Activities;
 using MoneyFox.Shared.Resources;
 using MoneyFox.Shared.ViewModels;
 using MvvmCross.Platform;
@@ -12,13 +13,13 @@ namespace MoneyFox.Droid.Dialogs
 {
     public class SelectDateRangeDialog : DialogFragment, DatePickerDialog.IOnDateSetListener
     {
-        private Button callerButton;
         private readonly Context context;
+        private readonly SelectDateRangeDialogViewModel viewModel;
+        private Button callerButton;
         private Button doneButton;
         private Button selectEndDateButton;
 
         private Button selectStartDateButton;
-        private readonly SelectDateRangeDialogViewModel viewModel;
 
         public SelectDateRangeDialog(Context context)
         {
@@ -81,11 +82,6 @@ namespace MoneyFox.Droid.Dialogs
             dialog.Show(FragmentManager.BeginTransaction(), Strings.SelectDateTitle);
         }
 
-        internal void OnDismiss(object reload)
-        {
-            throw new NotImplementedException();
-        }
-
         private void DoneButtonClick(object sender, EventArgs e)
         {
             viewModel.DoneCommand.Execute();
@@ -96,6 +92,13 @@ namespace MoneyFox.Droid.Dialogs
         {
             selectStartDateButton.Hint = viewModel.StartDate.ToString("d");
             selectEndDateButton.Hint = viewModel.EndDate.ToString("d");
+        }
+
+        public override void OnDismiss(IDialogInterface dialog)
+        {
+            (Context as IDateRangeDialogCloseListener)?.HandleDialogClose();
+
+            base.OnDismiss(dialog);
         }
     }
 }

@@ -22,6 +22,7 @@ using MoneyManager.Windows.Shortcut;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using UniversalRateReminder;
+using Microsoft.HockeyApp;
 
 namespace MoneyFox.Windows
 {

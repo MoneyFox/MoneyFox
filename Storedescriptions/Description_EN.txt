@@ -11,4 +11,4 @@
 
 Check it out, available for Windows and Windows Mobile now.
 
-Are you a developer? Our project is Open-Source, you can contribute https://github.com/Apply-Solutions/MoneyManager here - we’d love to share our project with you!
+Are you a developer? Our project is Open-Source, you can contribute https://github.com/MoneyFox/MoneyFox.Windows here - we’d love to share our project with you!
