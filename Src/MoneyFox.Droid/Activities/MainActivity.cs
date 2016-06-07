@@ -11,6 +11,9 @@ using MoneyFox.Shared.ViewModels;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
+using HockeyApp;
+using HockeyApp.Metrics;
+using MoneyFox.Shared.Constants;
 
 namespace MoneyFox.Droid.Activities
 {

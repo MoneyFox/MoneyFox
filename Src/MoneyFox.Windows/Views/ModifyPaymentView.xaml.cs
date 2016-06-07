@@ -39,7 +39,7 @@ namespace MoneyFox.Windows.Views
                 var paymentViewModel = e.Parameter as Payment;
                 if (paymentViewModel != null)
                 {
-                    //TODO Refactor this that on edit the PaymentViewModel type isn't necessary since we don't need it here.
+                    //TODO Refactor this that on edit the Payment type isn't necessary since we don't need it here.
                     viewModel.Init(PaymentType.Expense.ToString(), true);
                 }
                 else if (e.Parameter?.GetType() == typeof(PaymentType))

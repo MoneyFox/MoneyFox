@@ -16,9 +16,8 @@ namespace MoneyFox.Droid.Activities
         Name = "moneyfox.droid.activities.StatisticCategorySpreadingActivity",
         Theme = "@style/AppTheme",
         LaunchMode = LaunchMode.SingleTop)]
-    public class StatisticCategorySpreadingActivity : MvxAppCompatActivity<StatisticCategorySpreadingViewModel>
+    public class StatisticCategorySpreadingActivity : MvxAppCompatActivity<StatisticCategorySpreadingViewModel>, IDateRangeDialogCloseListener
     {
-        private MvxListView legendList;
         private PlotView plotModel;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -30,7 +29,6 @@ namespace MoneyFox.Droid.Activities
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             plotModel = FindViewById<PlotView>(Resource.Id.plotViewModel);
-            legendList = FindViewById<MvxListView>(Resource.Id.list_legend);
 
             Title = Strings.CategorySpreadingLabel;
         }
@@ -69,6 +67,11 @@ namespace MoneyFox.Droid.Activities
                 default:
                     return false;
             }
+        }
+
+        public void HandleDialogClose()
+        {
+            plotModel.Model = ViewModel.SpreadingModel;
         }
     }
 }
