@@ -104,7 +104,8 @@
                                Text="Last Backup created at:" />
                     <TextBlock Margin="5,0,0,0"
                                Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                               Text="{Binding BackupLastModified}" />
+                               Text="{Binding BackupLastModified}"
+                               TextWrapping="WrapWholeWords"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
